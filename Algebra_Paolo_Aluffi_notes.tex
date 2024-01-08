@@ -1,0 +1,232 @@
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb} % originally imported to get the proof square
+
+\setmainfont{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{14}\selectfont%
+}
+\newcommand{\hTwo}{%
+   \color{MidnightBlue}%
+   \fontsize{13}{13}%
+}
+\newcommand{\hThree}{%
+   \color{PineGreen}
+   \fontsize{13}{13}
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{12}%
+}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{%
+   \setulcolor{Red}%
+   \setul{0.1ex}{0.15ex}%
+   \ul{#1}%
+}
+
+\newcommand*{\markDate}[1]{
+   {\huge \color{Black} \textbf{#1} \newline}
+}
+
+\newcommand{\pprime}{\prime\prime}
+
+\newcounter{PropNumber}
+\newcommand{\propCount}{%
+   \stepcounter{PropNumber}%
+   \thePropNumber%
+}
+
+
+
+\title{My Notes on Paolo Aluffi's Algebra Chapter 0}
+\author{Isabelle Mills}
+
+\begin{document}
+   \maketitle{}
+
+   \markDate{1/7/2024}
+
+   \hOne
+   A \udefine{multiset} is a collection of elements 
+   which like a set is unordered but unlike a set can
+   contain duplicate elements.
+   
+   \begin{myIndent}
+      \hTwo
+      One way we can define a multiset is as a function
+      \( f: A\rightarrow\mathbb{N} \) such that each
+      \(\alpha \in A \) is mapped to the number of times that 
+      \(\alpha\) appears in the multiset. Then, given the multisets 
+      \(f_{1}: A\rightarrow \mathbb{N}\) and \(f_{2}: 
+      B \rightarrow \mathbb{N}\), we can define the following
+      operations:
+
+      \hThree
+      \begin{itemize}
+         \item \(\alpha \in f_{1} \leftrightarrow \alpha \in A\)
+
+         \item \(f_{1} \subseteq f_{2} \leftrightarrow 
+               \forall \alpha \in f_{1}, \hspace{0.25em} \alpha \in f_{2} 
+               \text{ and } f_{1}(\alpha) \leq f_{2}(\alpha)\)
+
+         \item \(f_{1} \cup f_{2}: (A \cup B) \rightarrow
+               \mathbb{N} \) such that for \(\alpha
+               \in A \cup B\), if \(\alpha \in A \cap B \),
+               then \((f_{1} \cup f_{2})(\alpha) = f_{1}(\alpha)
+               + f_{2}(\alpha)\). As for if \(\alpha \notin 
+               A \cap B \), then \((f_{1} \cup f_{2})(\alpha)\)
+               equals whatever $\alpha$ was mapped to 
+               in the multiset it originally came from.
+         
+         \item \(f_{1} \cap f_{2}: (A \cap B) \rightarrow
+               \mathbb{N} \) such that for \(\alpha
+               \in A \cap B\), we have that\\
+               \((f_{1} \cap f_{2})(\alpha) = \min(f_{1}(\alpha)
+               , f_{2}(\alpha))\)
+         
+         \item \(f_{1} \setminus f_{2}: ((A \setminus B)
+               \cup \{\alpha \in A \cap B \mid f_{1}(\alpha) >
+               f_{2}(\alpha)\}) \rightarrow \mathbb{N} \) 
+               such that for each \(\alpha \in f_{1} \setminus f_{2}\), 
+               if \(\alpha \in f_{2} \), then \((f_{1} \setminus f_{2})(\alpha) 
+               = f_{1}(\alpha) - f_{2}(\alpha)\). As for if \(\alpha 
+               \notin f_{2} \), then \((f_{1} \setminus f_{2})(\alpha) = 
+               f_{1}(\alpha)\)
+         
+      \end{itemize}
+   
+      \begin{myIndent}\begin{myIndent}\begin{myIndent}
+      \begin{myIndent}\begin{myIndent}
+         \myComment
+         \hfill \break
+         A practical example of a multiset is the prime
+         factorization of any positive integer.
+      \end{myIndent}\end{myIndent}\end{myIndent}
+      \end{myIndent}\end{myIndent}
+   
+   \end{myIndent}
+
+   \hrulefill
+
+   \hOne
+   \hfill \break
+   We say that two sets $A$ and $B$ are \udefine{isomorphic} if and only
+   if there exists a bijection between $A$ and $B$. We denote this by
+   writing $A \cong B$. Additionally, we can refer to any bijection $f$
+   between $A$ and $B$ as an \udefine{isomorphism} between the two sets
+   (also written as \(f: A \xlongrightarrow{\sim} B\))
+
+   \hfill \break
+   A function $f: A \rightarrow B$ is a \udefine{monomorphism} (a.k.a 
+   a \udefine{monic}) if for all sets $Z$ and all functions $a\sp{\prime}$
+   and $a\sp{\pprime}: Z \rightarrow A$, we have that $f \circ a\sp{\prime}
+   = f \circ a\sp{\pprime} \Rightarrow a\sp{\prime} = a\sp{\pprime}$
+
+   
+   % Note to future self, I just made it so that if you
+   % type ctrl + shift + e followed by space, then it will
+   % surround a highlighted text with begin{}...end{}
+   \begin{myIndent}
+      \hTwo
+      Proposition \propCount: A function is injective if and only if
+      it is a monomorphism.
+
+      \begin{myIndent}
+         \hThree
+         Proof: Let's say we have a function $f: A \rightarrow B$.
+         \hfill \bigbreak
+
+         First, let us assume $f$ is injective.
+         
+         \begin{myIndent}
+            Then let us assume we have two functions $a\sp{\prime}$ 
+            and $a\sp{\pprime}$ from some set $Z$ to $A$ such that 
+            $f \circ a\sp{\prime} = f \circ a\sp{\pprime}$. Then, 
+            because $f$ is injective, we know there exists a function
+            $g: B \rightarrow A$ such that $g \circ f = \mathrm{Id}_A$.
+            Composing $g$ with the previous equation, we get that:
+            \[g\circ(f \circ a\sp{\prime}) = g \circ (f \circ 
+            a\sp{\pprime}) \Longrightarrow \mathrm{Id}_A \circ a\sp{\prime}
+            = \mathrm{Id}_A \circ a\sp{\pprime} \Longrightarrow 
+            a\sp{\prime} = a\sp{\pprime}\]
+            Thus by our assumptions, we have shown $f$ to be a\\
+            monomorphism.
+         \end{myIndent}
+         \hfill \bigbreak
+
+         Next, we shall assume $f$ is a monomorphism.
+
+         \begin{myIndent}
+            Based on this, we can say that for any two functions 
+            $a\sp{\prime}$ and $a\sp{\pprime}$ mapping a set
+            $Z$ to $A$, we have that $f \circ a\sp{\prime}
+            = f \circ a\sp{\pprime} \Rightarrow a\sp{\prime} = 
+            a\sp{\pprime}$. However, now note that if we make $Z$ a 
+            \udefine{singleton}, meaning it only contains one element, 
+            then $a\sp{\prime}$ and $a\sp{\pprime}$ can each
+            only take on one value. So, we can effectively rewrite
+            $f \circ a\sp{\prime} = f \circ a\sp{\pprime}
+            \Rightarrow a\sp{\prime} = a\sp{\pprime}$ as:
+            \[f(a\sp{\prime}) = f(a\sp{\pprime}) \Rightarrow 
+            a\sp{\prime} = a\sp{\pprime}\]
+            This is the definition of an injective function. $\blacksquare$
+         \end{myIndent}
+      \end{myIndent}
+   \end{myIndent}
+
+   \hfill \bigbreak
+   \markDate{1/8/2024}
+   \hfill \bigbreak
+
+   \hOne
+   A function $f: A \rightarrow B$ is an \udefine{epimorphism} 
+   (a.k.a an \udefine{epi}) if for all sets $Z$ and all functions $a\sp{\prime}$
+   and $a\sp{\pprime}: B \rightarrow Z$, we have that 
+   $a\sp{\prime} \circ f = a\sp{\pprime} \circ f \Rightarrow 
+   a\sp{\prime} = a\sp{\pprime}$
+
+   
+   \begin{myIndent}
+      \hTwo
+      Proposition \propCount: A function is a surjection if and
+      only if it is an epimorphism.
+      
+      \hThree
+      \begin{myIndent}
+         Proof: Let's say we have a function $f: A \rightarrow B$.
+         \hfill \bigbreak
+
+         First, let us assume $f$ is surjective.
+
+      \end{myIndent}
+   \end{myIndent}
+
+\end{document}
