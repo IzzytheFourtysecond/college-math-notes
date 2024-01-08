@@ -1,0 +1,120 @@
+% Note for any github stalkers. I am currently in the process
+% of learning LaTeX. I don't know what I'm doing yet. Sorry
+% if my code absolutely sucks.
+
+
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb} % originally imported to get the proof square
+
+\setmainfont{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{14}\selectfont%
+}
+\newcommand{\hTwo}{%
+   \color{MidnightBlue}%
+   \fontsize{13}{13}%
+}
+\newcommand{\hThree}{%
+   \color{PineGreen}
+   \fontsize{13}{13}
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{12}%
+}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{%
+   \setulcolor{Red}%
+   \setul{0.1ex}{0.15ex}%
+   \ul{#1}%
+}
+
+\newcounter{LectureNumber}
+\newcommand*{\markLecture}[1]{%
+   \stepcounter{LectureNumber}%
+   {\huge \color{Black} \textbf{Lecture \theLectureNumber: #1} \newline}%
+}
+
+\newcommand{\pprime}{\prime\prime}
+
+\newcounter{PropNumber}
+\newcommand{\propCount}{%
+   \stepcounter{PropNumber}%
+   \thePropNumber%
+}
+
+
+
+\title{Math 140A Lecture Notes (Professor: Brandon Seward)}
+\author{Isabelle Mills}
+
+
+\begin{document}
+   \maketitle
+
+   \markLecture{1/8/2024}
+
+   \hOne
+   An \udefine{order} on a set $S$, typically denoted as $<$, is
+   a binary relation satisfying:
+   \begin{enumerate}
+      \item $\forall x, y \in S$, exactly one of the following is true:
+      \begin{itemize}
+         \item $x<y$ \item $x=y$ \item $y<x$
+      \end{itemize}
+
+      \item given $x, y, z \in S$, we have that $x<y<z\Rightarrow x<z$
+   \end{enumerate}
+   \hfill \bigbreak
+
+   As a shorthand, we will specify that
+   \begin{itemize}
+      \item $x>y \Leftrightarrow y<x$
+      \item $x\leq y \Leftrightarrow x<y \text{ or } x=y$
+      \item $x\geq y \Leftrightarrow x>y \text{ or } x=y$
+   \end{itemize}
+
+   An \udefine{ordered set} is a set with a specified ordering. Let
+   $S$ be an ordered set and $E$ be a nonempty subset of $S$. If
+   $b \in S$ has the property that $\forall x \in E, \hspace{0.25em}
+   x \leq b$, then we call $b$ an \udefine{upperbound} to $E$ and 
+   say that $E$ is \udefine{bounded above} by $b$. Similarly, if $b$ 
+   has the property that $\forall x \in E, \hspace{0.25em}
+   x \geq b$, then we call $b$ an \udefine{lower bound} to $E$ and 
+   say that $E$ is \udefine{bounded below} by $b$.
+   \hfill \bigbreak
+
+   We call $\beta \in S$ the \udefine{least upperbound} to $E$ if
+   $\beta$ is an upper bound to $E$ and $\beta$ is the least of all
+   upperbounds to $E$. In this case, we also commonly call $\beta$ 
+   the \udefine{supremum} of $E$ and denote it as $\sup{E}$.
+
+\end{document}
