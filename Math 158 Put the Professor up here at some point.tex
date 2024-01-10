@@ -28,6 +28,7 @@
 %\graphicspath{{./140A_images/}}
 
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 
 \setmainfont{Calibri}
 \setlength{\parindent}{0pt}
@@ -70,14 +71,14 @@
 
 \newcommand{\udefine}[1]{%
    \setulcolor{Red}%
-   \setul{0.1ex}{0.15ex}%
+   \setul{0.2ex}{0.15ex}%
    \ul{#1}%
 }
 
-\newcommand{\uuline}[1]{%
-   \setulcolor{Black}%
-   \setul{0.15ex}{0.1ex}\ul{#1}%
-   \setul{0.50ex}{0.1ex}\llap{\ul{#1}}%
+\newcommand{\uuline}[2][.]{%
+   \setulcolor{#1}%
+   \setul{0.15ex}{0.1ex}\ul{#2}%
+   \setul{0.50ex}{0.1ex}\llap{\ul{#2}}%
 }
 
 \newcounter{LectureNumber}
@@ -94,8 +95,19 @@
    \thePropNumber%
 }
 
-\newcommand{\mySep}[1]{%
+\newcommand{\mySepOne}[1]{%
    {\noindent\color{#1}{\rule{16cm}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1]{%
+   {\noindent\color{#1}{\rule{16cm}{0.5mm}}}\\%
+}
+
+
+
+%\DeclareMathAlphabet{\mathrm}{OT1}{lmr}{m}{n}
+%\DeclareMathAlphabet{\mathit}{OT1}{lmr}{m}{it}
+\newcommand{\myRoman}[1]{%
+   {\fontfamily{lmr}\selectfont#1}%
 }
 
 
@@ -117,16 +129,172 @@
    
    \begin{center}
       \hTwo
-      Example: $G = (\{1, 2, 3\}, \{\{1, 2\}, \{2, 3\}\})$
+      For example: $G = (\{1, 2, 3\}, \{\{1, 2\}, \{2, 3\}\})$
       
+      % I'm so sorry I'm not using the packages I should be using
+      % to draw these graphs. I haven't had time to learn them yet
+      % and I want this section done at some point tonight before I go
+      % to bed. 
+      \hThree
       \begin{tikzpicture}
-         \filldraw[MidnightBlue] (-1, -0.5) circle (5pt) 
-                     node[anchor=east]{1.};
-         \filldraw[MidnightBlue] (0, 1) circle (5pt) 
-                     node[anchor=east]{2.};
-         \filldraw[MidnightBlue] (1, -0.5) circle (5pt) 
-                     node[anchor=west]{3.};
+         \useasboundingbox (225:1.5) rectangle (45:2.5);
+
+         \node (2) at (90:1) [circle, 
+            draw=PineGreen!70!MidnightBlue, thick, fill=White] {2};
+         \node (1) at (210:1) [circle, 
+            draw=PineGreen!70!MidnightBlue, thick, fill=White] {1};
+         \node (3) at (330:1) [circle, 
+            draw=PineGreen!70!MidnightBlue, thick, fill=White] {3};
+         \draw [thick] (1) -- (2);
+         \draw [thick] (2) -- (3);
       \end{tikzpicture}
    \end{center}
+
+\hOne
+A \udefine{directed graph} (a.k.a a \udefine{digraph}) is a pair $(V, E)$ 
+where $V$ is a set of vertices and $E$ is a set of ordered pairs 
+of elements of $V$.
+\begin{center}
+   \hTwo
+   For example: $G = (\{1, 2, 3\}, \{(1, 2), (2, 3)\})$
+
+   \hThree
+   \begin{tikzpicture}
+      \useasboundingbox (225:1.5) rectangle (45:2.5);
+
+      \node (2) at (90:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {2};
+      \node (1) at (210:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {1};
+      \node (3) at (330:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {3};
+      \draw [thick, -Triangle] (1) -- (2);
+      \draw [thick, -Triangle] (2) -- (3);
+   \end{tikzpicture}
+\end{center}
+
+\hOne
+A \udefine{multigraph} is a pair $(V, E)$ where $V$ is a set of vertices
+and $E$ is a multiset of unordered pairs of elements of $V$.
+
+\begin{center}
+   \hTwo
+   For example: $G = (\{1, 2, 3\}, \{\{1, 2\}, \{2, 3\}, \{2, 3\}\})$
+   
+   \hThree
+   \begin{tikzpicture}
+      \useasboundingbox (225:1.5) rectangle (45:2.5);
+
+      \node (2) at (90:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {2};
+      \node (1) at (210:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {1};
+      \node (3) at (330:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {3};
+      \draw [thick] (1) -- (2);
+      \draw [thick] (2) .. controls (50:.7) and (10:.7) .. (3);
+      \draw [thick] (2) .. controls (50:.4) and (10:.4) .. (3);
+   \end{tikzpicture}
+\end{center}
+
+\hOne
+A \udefine{pseudograph} is like a graph and multigraph except that the
+pairs in $E$ are multisets. 
+\begin{myIndent}\begin{myIndent}\begin{myIndent}
+\begin{myIndent}\begin{myIndent}
+   \teachComment
+   Essentially, an element $\{a, a\}$ can belong to $E$ in a 
+   pseudograph. This type of edge is called a \udefine{loop}.
+\end{myIndent}\end{myIndent}\end{myIndent}
+\end{myIndent}\end{myIndent}
+
+\begin{center}
+   \hTwo
+   For example: $G = (\{1, 2, 3\}, \{\{1, 2\}, \{2, 3\}, \{3, 3\}\})$
+   
+   \hThree
+   \begin{tikzpicture}
+      \useasboundingbox (225:2) rectangle (45:2.5);
+
+      \node (2) at (90:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {2};
+      \node (1) at (210:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {1};
+      \node (3) at (330:1) [circle, 
+         draw=PineGreen!70!MidnightBlue, thick, fill=White] {3};
+      \draw [thick] (1) -- (2);
+      \draw [thick] (2) -- (3);
+      \draw [thick] (3) to [out=350,in=280,looseness=6] (3);
+   \end{tikzpicture}
+\end{center}
+
+\newpage
+\hOne
+If $G = (V, E)$ and $v \in V$, the \udefine{neighborhood} of $v$ is
+$N_{G}(v)=\{w \in V \mid \{v, w\} \in E\}$. \bigbreak
+
+The \udefine{degree} of $v$ is $d_{G}(v) = \lvert N_{G}(v) \rvert$.
+Or in other words, $v$'s degree is equal to the number of edges 
+connecting to $v$.
+
+\mySepTwo{MidnightBlue}
+\hTwo
+\begin{myIndent}
+   The \udefine{Handshaking lemma} states that for any graph $(V, E)$:
+      {\fontsize{16}{15}\selectfont
+      \[ \sum_{v \in V} d_{G}(v) = 2 \lvert E \rvert \]}
+   
+   \hThree
+   \begin{myIndent}
+      The reason for this is that each edge increments the degrees of
+      exactly two vertices. So the above sum counts every edge twice.
+      \hfill \bigbreak
+   \end{myIndent}
+
+   \hTwo
+   \uuline{Lemma}: Every graph has an even number of vertices with odd
+   degrees.
+
+   \hThree
+   \begin{myIndent}
+      Proof: We can split the vertices of any graph into two categories:
+      those with odd degrees, and those with even degrees.
+      \hfill \bigbreak
+      Now recall that an even number plus an even number always equals
+      an even number, as does an odd number plus an odd number. However,
+      an odd number plus an even numbers equals an odd number. Based on
+      this fact, we can guarentee that the sum of even degrees in any
+      graph is even. And since the sum of even degrees plus the sum of 
+      odd\\ degrees must be even as it equals $2 \lvert E \rvert$ by
+      the Handshaking lemma, we thus know that the sum of odd degrees 
+      must be even. Hence, it must be the case that there are an even 
+      number of vertices with odd degree because otherwise the sum of 
+      their degrees won't be even.
+      \hfill \bigbreak
+   \end{myIndent}
+
+   \hTwo
+   A graph is called \udefine{$r$-regular} if all of its vertices have
+   degree $r$.
+   \hThree
+   \begin{myIndent}
+      Note that the number of edges in any $n$-vertex $r$-regular graph is
+      $ \displaystyle{\frac{rn}{2}}$.
+      \hfill \bigbreak
+   \end{myIndent}
+   
+   \hTwo
+   An $r$-dimensional \udefine{cube graph}, denoted as $\myRoman{Q}_{r}$,
+   is a graph such that $V(\myRoman{Q}_{r})$, the set of vertices in 
+   $\myRoman{Q}_{r}$, is equal to the set of binary strings of 
+   length $r$; and $E(\myRoman{Q}_{r})$, the set of edges in 
+   $\myRoman{Q}_{r}$, is equal to the set of pairs of binary strings
+   which differ in only one position.
+
+   % If I'm going to be awake in French class later, I need to stop working
+   % on this and get some sleep now. Oh well at least I've been learning
+   % a lot...
+\end{myIndent}
+
 
 \end{document}
