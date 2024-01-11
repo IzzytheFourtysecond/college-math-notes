@@ -2,6 +2,9 @@
 % of learning LaTeX. I don't know what I'm doing yet. Sorry
 % if my code absolutely sucks.
 
+% Additional note for gihub stalkers. I'm sorry I haven't
+% learned how to split this into multiple files yet. Sorry.
+
 
 \documentclass{book}
 
@@ -23,6 +26,13 @@
 \usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
 
 \usepackage{graphicx}
 \graphicspath{{./140A_images/}}
@@ -75,11 +85,19 @@
    \ul{#1}%
 }
 
-\newcommand{\uuline}[1]{%
-   \setulcolor{Black}%
-   \setul{0.15ex}{0.1ex}\ul{#1}%
-   \setul{0.50ex}{0.1ex}\llap{\ul{#1}}%
+\newcommand{\uuline}[2][.]{%
+   \setulcolor{#1}%
+   \setul{0.15ex}{0.1ex}\ul{#2}%
+   \setul{0.50ex}{0.1ex}\llap{\ul{#2}}%
 }
+
+\newcommand{\fillInBlank}[2][.]{{%
+   \color{#1}%
+   \rule[-0.12em]{#2em}{0.06em}\rule[-0.12em]{#2em}{0.06em}%
+   \rule[-0.12em]{#2em}{0.06em}
+}}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
 
 \newcounter{LectureNumber}
 \newcommand*{\markLecture}[1]{%
@@ -89,14 +107,24 @@
 
 \newcommand{\pprime}{\prime\prime}
 
+
 \newcounter{PropNumber}
-\newcommand{\propCount}{%
-   \stepcounter{PropNumber}%
+\newcommand{\propCount}[1][1]{
+   \addtocounter{PropNumber}{#1}%
    \thePropNumber%
 }
+\newcounter{SubPropNumber}
+\newcommand{\subPropCount}[1][1]{%
+   \addtocounter{SubPropNumber}{1}%
+   \theSubPropNumber%
+}
+\newcommand{\resetSubPropCount}{%
+   \setcounter{SubPropNumber}{0}%
+}
+
 
 \newcommand{\mySep}[1]{%
-   {\noindent\color{#1}{\rule{16cm}{1mm}}}\\%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
 }
 
 
@@ -281,7 +309,7 @@
 
    \mySep{Purple}
    \hOne\hfill \break
-   We say an ordered set $S$ has the \udefine{least upper bound
+   We say an ordered set $S$ has the \udefine{least upperbound
    property} if and only if when $E \subseteq S$ is nonempty and 
    bounded above, then the supremum of $E$ exists in $S$. Additionally, 
    we say an ordered set $S$ has the \udefine{greatest lower bound 
@@ -299,7 +327,7 @@
    \markLecture{1/10/2024}
    \begin{myIndent}
       \hTwo
-      Proposition \propCount: $S$ has the least upper bound property if
+      Proposition \propCount: $S$ has the least upperbound property if
       and only if $S$ has the greatest lower bound property.
       
       \hThree
@@ -307,24 +335,250 @@
          Proof: Let's say we have an ordered set $S$
          \hfill \bigbreak
 
-         Assume $S$ has the greatest lower bound property. Then, let
+         Assume $S$ has the least upperbound property. Then, let
          $B \subseteq S$ be a nonempty subset which is bounded below.
          Additionally, let $A \subseteq S$ be the set of all lower bounds
          of $B$. \newpage
+         
+         \begin{myIndent}
+            We know that $A \neq \emptyset$ because we assumed that $B$ is
+            bounded below. Thus, at least one lower bound to $B$ exists and
+            belongs to $A$. Additionally, because we assumed $B$ is nonempty,
+            we can say that each $b \in B$ is an upper bound to $A$. Thus, $A$
+            is bounded above. Because of these two facts, we can apply the
+            greatest lower bound property to say that the supremum of $A$ 
+            exists. \hfill \bigbreak
+   
+            Let's define $\alpha \coloneq \sup{A}$. With that, our goal is 
+            now to show that\\ $\alpha = \inf{B}$. To do this, we need to 
+            show firstly that $\alpha$ is a lower bound to $B$ and 
+            secondly that it is greater than all other lower bounds of $B$.
+            \retTwo
+            \begin{enumerate}
+               \item For each $b \in B$, we have that $b$ is an 
+                  upperbound to $A$. And since $\alpha = \sup{A}$ is the
+                  least upperbound to $A$, we must have that $\alpha \leq
+                  b$. Thus $\alpha$ is a lower bound to $B$. \retTwo
+               
+               \item If $x \in S$ is a lower bound to $B$, then $x \in A$.
+                  And since\\ $\alpha = \sup{A}$, $x \leq \alpha$. This shows
+                  that $\alpha$ is greater than or equal to all other lower
+                  bounds. \retTwo
+            \end{enumerate}
+            
+            Hense, $\alpha$ is the infimum of $B$. And since we did this
+            for a general $B \subseteq S$, we can thus say that $S$ has
+            the greatest lower bound property. \retTwo
+         \end{myIndent}
 
-         We know that $A \neq \emptyset$ because we assumed that $B$ is
-         bounded below. Thus, at least one lower bound to $B$ exists and
-         belongs to $A$. Additionally, because we assumed $B$ is nonempty,
-         we can say that each $b \in B$ is an upper bound to $A$. Thus, $A$
-         is bounded above. Because of these two facts, we can apply the
-         greatest lower bound property to say that the supremum of $A$ 
-         exists. \hfill \bigbreak
-
-         Let's define $\alpha \coloneq \sup{A}$. That way 
-
+         Now we skipped doing the reverse direction proof because it
+         is almost completely identical to the foward direction proof.
+         However, just know that the above proposition is an
+         \uuline{if and only if} statement. $\blacksquare$
       \end{myIndent}
-
    \end{myIndent}
+
+   \mySep{PineGreen}
+   \hOne\hfill \break
+   A \udefine{field} is a set $F$ equipped with $2$ binary operations,
+   denoted $+$ and $\cdot$, and containing two elements $0 \neq 1 \in F$
+   satisfying the following conditions for all $x, y, z \in F$:
+
+   \hTwo
+   \begin{myIndent}
+      
+      \begin{tabular}{ l c }%
+         {\large \textbullet} \hspace{1ex} Associativity: &
+            $\begin{matrix} (x + y) + z = x + (y + z) \\ (x \cdot y) 
+               \cdot z = x \cdot (y \cdot z) \end{matrix}$ \\ \\
+         
+         {\large \textbullet} \hspace{1ex} Commutativity: &
+            $\begin{matrix} x+y=y+x\\x\cdot y = y \cdot x\end{matrix}$
+               \\ \\
+         
+         {\large \textbullet} \hspace{1ex} Identity: &
+            $\begin{matrix}0+x=x\\1\cdot x=x\end{matrix}$ \\ \\
+         
+         {\large \textbullet} \hspace{1ex} Inverses: &
+            $\begin{matrix} \forall x\in F, \hspace{0.5em}
+               \exists {-x} \in F \hspace{0.50em} s.t.
+               \hspace{0.50em} x + {-x} = 0 \\ \forall x\neq 0\in F, 
+               \hspace{0.5em} \exists {\displaystyle 
+               \frac{1}{x}} \in F \hspace{0.50em} s.t. \hspace{0.50em} 
+               x \cdot {\displaystyle \frac{1}{x}}=1\end{matrix}$ \\ \\
+         
+         {\large \textbullet} \hspace{1ex} Distributivity: &
+            $x \cdot (y + z) = (x \cdot y) + (x \cdot z)$
+      \end{tabular}
+   \end{myIndent}
+
+   \newpage
+   \hOne
+   We shall assign the following notation: 
+   
+   {
+      \hTwo % Ok so I now know that lines on the table
+            % at least by default have the same color as the
+            % text color.
+      \centering
+      \renewcommand{\arraystretch}{2.2}
+      \begin{allowTableDashes}
+         \begin{tabular}{ c;{10pt/3pt}c }
+         
+            We write \fillInBlank{1} \hspace{0.75em} & 
+               \hspace{0.75em} to mean \fillInBlank{1} \\ \hline
+            
+            $x-y$ & $x + {-y}$ \\ \hdashline[10pt/3pt]
+
+            ${\displaystyle \frac{x}{y}}$ & $x \cdot 
+                  {\displaystyle \frac{1}{y}}$\\[8pt] \hdashline[10pt/3pt]
+            
+            $2$ & $1 + 1$\\ \hdashline[10pt/3pt]
+
+            $2x$ & $x + x$\\ \hdashline[10pt/3pt]
+
+            $x^2$ & $x \cdot x$
+         
+         \end{tabular}
+      \end{allowTableDashes}
+      \par
+   }
+   \retTwo
+   
+   \hOne
+   Now what follows is a number of propositions concerning the 
+   arithmetic properties of a field...
+   
+   \begin{myIndent}
+      \hTwo
+      \resetSubPropCount
+      For a field $F$ and elements $x,y,z\in F$, we have the
+      following propositions:
+      
+      Proposition \propCount.\subPropCount: $x+y=x+z \Rightarrow y=z$
+      {\hThree
+      \begin{myIndent}
+         Proof: Assume $x+y=x+z$. Then...
+            \begin{myIndent}
+               \renewcommand{\arraystretch}{1.4}
+               \begin{tabular}{ l c }
+                  $y=0+y$ & (addition identity property)\\
+                  $\hphantom{y}=({-x}+x)+y$ & (addition inverse property)\\
+                  $\hphantom{y}={-x}+(x+y)$ & (addition associative property)\\
+                  $\hphantom{y}={-x}+(x+z)$ & (by our assumption)\\
+                  $\hphantom{y}=({-x}+x)+z$ & (addition associative property)\\
+                  $\hphantom{y}=0+z$ & (addition inverse property)\\
+                  $\hphantom{y}=z$ & (addition identity property)
+               \end{tabular}
+            \end{myIndent}
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount: $x+y=x \Rightarrow y=0$
+      {\hThree
+      \begin{myIndent}
+         Proof: Plug in $z=0$ into proposition 2.1. in order to get
+         that $y=z=0$.
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount: $x+y=0 \Rightarrow y={-x}$
+      {\hThree
+      \begin{myIndent}
+         Proof: Plug in $z={-x}$ into proposition 2.1. in order to get
+         that\\ $y=z={-x}$.
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount: ${-(-x)}=x$
+      {\hThree
+      \begin{myIndent}
+         Proof: Observe that $x+{-x}={-x}+x=0$ by the inverse and\\ 
+         commutative properties of addition. Then, by proposition
+         2.3, we know that ${-x}+x=0 \Rightarrow x={-(-x)}$.
+      \end{myIndent}}
+      \newpage
+      Proposition \propCount[0].\subPropCount: $x\cdot y=x\cdot z 
+                                    \text{ and } x\neq0\Rightarrow y=z$
+      {\hThree
+      \begin{myIndent}
+         Proof: Assume $x\cdot y=x\cdot z$ and $x\neq0$. Then...
+            \begin{myIndent}
+               \renewcommand{\arraystretch}{1.4}
+               \begin{tabular}{ l c }
+                  $y=1\cdot y$ & (multiplication identity property)\\
+                  $\hphantom{y}=(\frac{1}{x}\cdot x)\cdot y$ & 
+                                 (multiplication inverse property)\\
+                  $\hphantom{y}=\frac{1}{x}\cdot(x\cdot y)$ & 
+                                 (multiplication associative property)\\
+                  $\hphantom{y}=\frac{1}{x}\cdot(x\cdot z)$ & 
+                                 (by our assumption)\\
+                  $\hphantom{y}=(\frac{1}{x}\cdot x)\cdot z$ & 
+                                 (multiplication associative property)\\
+                  $\hphantom{y}=1\cdot z$ & 
+                                 (multiplication inverse property)\\
+                  $\hphantom{y}=z$ & 
+                                 (multiplication identity property)
+               \end{tabular}
+               \retTwo
+            
+         \begin{myIndent}\begin{myIndent}\begin{myIndent}
+            \teachComment
+            Note that to use the multiplication inverse\\ property,
+            we have to assume $x \neq 0$ !!
+         \end{myIndent}\end{myIndent}\end{myIndent}
+
+         \end{myIndent}
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount: $x\cdot y=x \Rightarrow y=1$
+      {\hThree
+      \begin{myIndent}
+         Proof: Plug in $z=1$ into proposition 2.5. in order to get
+         that $y=z=1$.
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount: $x\cdot y=1 \Rightarrow 
+               y={\displaystyle\frac{1}{x}}$
+      {\hThree
+      \begin{myIndent}
+         Proof: Plug in $z={\displaystyle\frac{1}{x}}$ into proposition 2.5. in order to get
+         that\\ $y=z={\displaystyle\frac{1}{x}}$.
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount:
+         ${\displaystyle \frac{\hspace{0.15em}1\hspace{0.15em}}{
+            \frac{1}{x}}} = x$
+      {\hThree
+      \begin{myIndent}
+         Proof: Observe that $x\cdot{\displaystyle\frac{1}{x}}=
+         {\displaystyle\frac{1}{x}}\cdot x=0$ 
+         by the inverse and commutative \\[3pt] properties of multiplication. 
+         Then, by proposition 2.7, we know that \\[3pt]
+         ${\displaystyle\frac{1}{x}}\cdot x=0 \Rightarrow x={\displaystyle 
+         \frac{\hspace{0.15em}1\hspace{0.15em}}{\frac{1}{x}}}$.
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount: $0\cdot x = 0$
+      {\hThree
+      \begin{myIndent}
+         Proof: $(0\cdot x) + (0\cdot x) = (0+0)\cdot x = 0\cdot x$.
+         Thus we have an expression of the form $a+b=a$ which we can use
+         proposition 2.2 on. Hence, we can conclude $0\cdot x=0$.
+      \end{myIndent} \retTwo}
+
+      Proposition \propCount[0].\subPropCount: 
+         $x\neq0 \text{ and } y\neq0 \Rightarrow x\cdot y \neq 0$
+      {\hThree
+      \begin{myIndent}
+         Proof: since $x, y\neq0$, we can say that $x\cdot y \cdot
+         {\displaystyle\frac{1}{x}} \cdot {\displaystyle\frac{1}{y}}
+         = 1 \neq 0$. Now by proposition 2.9, $x\cdot y=0 \Rightarrow
+         (x\cdot y)\cdot({\displaystyle\frac{1}{x}} \cdot 
+         {\displaystyle\frac{1}{y}})=0$. However, we know that is not the
+         case. So $x\cdot y$ can't equal zero.
+      \end{myIndent} \retTwo}
+   \end{myIndent}
+   \newpage
+   
+   \markLecture{1/12/2024}
 
 
 \end{document}
