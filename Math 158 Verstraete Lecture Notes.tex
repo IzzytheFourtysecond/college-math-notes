@@ -24,6 +24,12 @@
 \usepackage{amsfonts}
 \usepackage{amssymb} % originally imported to get the proof square
 
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
 \usepackage{graphicx}
 %\graphicspath{{./140A_images/}}
 
@@ -343,10 +349,25 @@ We define subtracting a set of edges from a graph as follows:
          ${\displaystyle G - L = (V, E \setminus L) }$
       \end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
 \end{myIndent}
-\retTwo \hOne
 
-\mySepOne
+\mySepTwo \hOne
+\begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
+   Here are some basic classes of graphs: \retTwo
+\end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
 
+\begin{itemize}
+   \item \udefine{Complete graphs / cliques} are graphs where
+      every possible edge is present. \hTwo 
+      \begin{center}\begin{allowTableDashes}\begin{tabular}{ c;c;c;c }
 
+         \begin{tikzpicture}
+            \tikzstyle{myCir}=[circle, fill, radius=5pt];
+            \node (name) at (270:1) {$K_{1}$};
+            \node[myCir] (1) at (0:0) {};
+         \end{tikzpicture} 
+         
+         & A & A & A
+      \end{allowTableDashes}\end{tabular}\end{center}
+\end{itemize}
 
 \end{document}
