@@ -28,9 +28,10 @@
 %\graphicspath{{./140A_images/}}
 
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
 
-\setmainfont{Calibri}
+\newfontfamily{\calibri}{Calibri}
 \setlength{\parindent}{0pt}
 \definecolor{RawerSienna}{HTML}{945D27}
 
@@ -95,28 +96,22 @@
    \thePropNumber%
 }
 
-\newcommand{\mySepOne}[1]{%
-   {\noindent\color{#1}{\rule{16cm}{1mm}}}\\%
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
 }
-\newcommand{\mySepTwo}[1]{%
-   {\noindent\color{#1}{\rule{16cm}{0.5mm}}}\\%
-}
-
-
-
-%\DeclareMathAlphabet{\mathrm}{OT1}{lmr}{m}{n}
-%\DeclareMathAlphabet{\mathit}{OT1}{lmr}{m}{it}
-\newcommand{\myRoman}[1]{%
-   {\fontfamily{lmr}\selectfont#1}%
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
 }
 
+\newcommand{\retTwo}{\hfill\bigbreak}
 
-\title{Math 158 Lecture Notes (Professor: <fill in pls>)}
+\title{Math 158 Lecture Notes (Professor: Jacques Verstraete)}
 \author{Isabelle Mills}
 
 
 \begin{document}
    \maketitle
+   \calibri
 
    \markLecture{1/9/2024}
 
@@ -237,7 +232,7 @@ The \udefine{degree} of $v$ is $d_{G}(v) = \lvert N_{G}(v) \rvert$.
 Or in other words, $v$'s degree is equal to the number of edges 
 connecting to $v$.
 
-\mySepTwo{MidnightBlue}
+\mySepTwo[MidnightBlue]
 \hTwo
 \begin{myIndent}
    The \udefine{Handshaking lemma} states that for any graph $(V, E)$:
@@ -284,31 +279,74 @@ connecting to $v$.
    \end{myIndent}
    
    \hTwo
-   An $r$-dimensional \udefine{cube graph}, denoted as $\myRoman{Q}_{r}$,
-   is a graph such that $V(\myRoman{Q}_{r})$, the set of vertices in 
-   $\myRoman{Q}_{r}$, is equal to the set of binary strings of 
-   length $r$; and $E(\myRoman{Q}_{r})$, the set of edges in 
-   $\myRoman{Q}_{r}$, is equal to the set of pairs of binary strings
+   An $r$-dimensional \udefine{cube graph}, denoted as $\mathrm{Q}_{r}$,
+   is a graph such that $V(\mathrm{Q}_{r})$, the set of vertices in 
+   $\mathrm{Q}_{r}$, is equal to the set of binary strings of 
+   length $r$; and $E(\mathrm{Q}_{r})$, the set of edges in 
+   $\mathrm{Q}_{r}$, is equal to the set of pairs of binary strings
    which differ in only one position.
 
    \begin{center}
-      \hThree
-      \begin{tikzpicture}[auto]
-         \useasboundingbox (-1, -1) rectangle (2, 2);
-
-         \node (000) at (0,0,0) [circle, draw=PineGreen!70!MidnightBlue, 
-         thick, fill=White, label] {};
-               
-
-         
-         
-      \end{tikzpicture}
+      \begin{tabular}{ c c }
+         \hThree \fontsize{10}{10}\selectfont
+         \begin{tikzpicture}[scale=0.9]
+            \tikzstyle{myCir}=[circle,draw];
+            \node[myCir] (000) at (0,0,0) {000};
+            \node[myCir] (100) at (3,0,0) {100} edge (000);
+            \node[myCir] (010) at (0,3,0) {010} edge (000);
+            \node[myCir] (110) at (3,3,0) {110} edge (010) 
+                                             edge (100);
+            \node[myCir] (001) at (0,0,-3) {001} edge (000);
+            \node[myCir] (101) at (3,0,-3) {101} edge (100) 
+                                             edge (001);
+            \node[myCir] (011) at (0,3,-3) {011} edge (010)   
+                                             edge (001);
+            \node[myCir] (111) at (3,3,-3) {111} edge (110) 
+                                             edge (011) edge (101);
+         \end{tikzpicture}
+         & \hTwo
+         ${\displaystyle \quad\quad\quad
+         \begin{matrix}
+            \lvert V(\mathrm{Q}_{r})\rvert = 2^{r} \\ \\
+            \lvert E(\mathrm{Q}_{r})\rvert = \frac{2^{r}r}{2} = 
+               2^{r-1}r \\ \\ \\ \\{\teachComment\text{
+                  Note that } \mathrm{Q}_{r} \text{ is } r
+                  \text{-regular.}}
+         \end{matrix}}$
+      \end{tabular}
    \end{center}
-
-   % If I'm going to be awake in French class later, I need to stop working
-   % on this and get some sleep now. Oh well at least I've been learning
-   % a lot...
 \end{myIndent}
+
+\hOne
+If $G=(V, E)$, then $H=(W, F)$ is a \udefine{subgraph} of $G$
+if $W\subseteq V$ and $F\subseteq E$. \retTwo
+
+If $W=V$, then $H$ is a \udefine{spanning} subgraph of $G$ (meaning 
+that $H$ has the same vertices as $G$ but is lacking some of $G$'s 
+edges) \retTwo
+
+We define subtracting a set of vertices from a graph as follows:
+\begin{myIndent} \hTwo
+   For $G = (V, E)$ and $X \subset V$, we define...
+      \begin{myIndent}\begin{myIndent}
+         ${\displaystyle G - X = (V \setminus X, \{\{u, v\}\in E 
+         \mid \{u, v\}\cap X = \emptyset\}) }$
+      \end{myIndent}\end{myIndent}
+\end{myIndent}
+\retTwo
+
+\hOne % I might not actually need this command here...
+We define subtracting a set of edges from a graph as follows:
+\begin{myIndent} \hTwo
+   For $G = (V, E)$ and $L \subset E$, we define...
+      \begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
+         ${\displaystyle G - L = (V, E \setminus L) }$
+      \end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
+\end{myIndent}
+\retTwo \hOne
+
+\mySepOne
+
 
 
 \end{document}
