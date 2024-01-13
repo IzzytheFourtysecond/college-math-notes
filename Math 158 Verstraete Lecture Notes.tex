@@ -357,17 +357,92 @@ We define subtracting a set of edges from a graph as follows:
 
 \begin{itemize}
    \item \udefine{Complete graphs / cliques} are graphs where
-      every possible edge is present. \hTwo 
-      \begin{center}\begin{allowTableDashes}\begin{tabular}{ c;c;c;c }
+      every possible edge is present. \hTwo
 
-         \begin{tikzpicture}
-            \tikzstyle{myCir}=[circle, fill, radius=5pt];
-            \node (name) at (270:1) {$K_{1}$};
+      \begin{center}
+      \begin{allowTableDashes}\begin{tabular}
+                           { c;{10pt/3pt}c;{10pt/3pt}c;{10pt/3pt}c c c }
+
+         \begin{tikzpicture}[scale=0.5, inner sep=3pt]
+            \useasboundingbox (-1.5,-3.5) rectangle (1.5,3);
+
+            \tikzstyle{myCir}=[circle,fill];
             \node[myCir] (1) at (0:0) {};
-         \end{tikzpicture} 
-         
-         & A & A & A
-      \end{allowTableDashes}\end{tabular}\end{center}
+            \node (name) at (270:3) {$K_1$};
+         \end{tikzpicture}
+
+         &
+
+         \begin{tikzpicture}[scale=0.5, inner sep=3pt]
+            \useasboundingbox (-3,-3.5) rectangle (3,3);
+
+            \tikzstyle{myCir}=[circle,fill];
+            \node[myCir] (1) at (0:2) {};
+            \node[myCir] (2) at (180:2) {} edge (1);
+            \node (name) at (270:3) {$K_2$};
+         \end{tikzpicture}
+
+         &
+
+         \begin{tikzpicture}[scale=0.5, inner sep=3pt]
+            \useasboundingbox (-2.5,-3.5) rectangle (2.5,3);
+
+            \tikzstyle{myCir}=[circle,fill];
+            \node[myCir] (1) at (330:2) {};
+            \node[myCir] (2) at (210:2) {} edge (1);
+            \node[myCir] (3) at (90:2) {} edge (1) edge (2);
+            \node (name) at (270:3) {$K_3$};
+         \end{tikzpicture}
+
+         &
+
+         \begin{tikzpicture}[scale=0.5, inner sep=3pt]
+            \useasboundingbox (-2.5,-3.5) rectangle (2.5,3);
+
+            \tikzstyle{myCir}=[circle,fill];
+            \node[myCir] (1) at (45:2) {};
+            \node[myCir] (2) at (135:2) {} edge (1);
+            \node[myCir] (3) at (225:2) {} edge (1) edge (2);
+            \node[myCir] (4) at (315:2) {} edge (1) edge (2) edge (3);
+
+            \node (name) at (270:3) {$K_4$};
+         \end{tikzpicture}
+      \end{tabular} \end{allowTableDashes}
+      \end{center}
+
+      
+      \begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
+         \teachComment \begin{tabular}{ p{2.75in} c }
+            
+            Note we can also draw $K_4$ such that there are no edge
+            interceptions as follows: &
+         {\raisebox{-2.5em}{\tikz[scale=0.5, inner sep=3pt]{
+            \tikzstyle{myCir}=[circle,fill];
+            \node[myCir] (1) at (330:2) {};
+            \node[myCir] (2) at (210:2) {} edge (1);
+            \node[myCir] (3) at (90:2) {} edge (1) edge (2);
+            \node[myCir] (4) at (0:0) {} edge (1) edge (2) edge (3);
+         }}}
+         \end{tabular}
+      \end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
+
+      \hOne
+      \item \udefine{Complete bipartite graphs}, denoted $K_{s,t}$,
+         contain all edges with one end in a set of vertices of size $s$
+         and the other end in a set of vertices of size $t$.
+
+         \begin{myIndent} \hTwo
+            For example, $K_{3,2}$: \hspace{2em} \raisebox{-2.3em}{
+               \tikz[scale=0.5, inner sep=5pt]{
+                  \tikzstyle{myCir}=[circle, draw];
+                  \node[myCir] (t1) at (4,3) {};
+                  \node[myCir] (t2) at (4,1) {};
+                  \node[myCir] (s1) at (0,4) {} edge (t1) edge (t2);
+                  \node[myCir] (s2) at (0,2) {} edge (t1) edge (t2);
+                  \node[myCir] (s3) at (0,0) {} edge (t1) edge (t2); 
+               }
+            }
+         \end{myIndent}
 \end{itemize}
 
 \end{document}
