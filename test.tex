@@ -1,8 +1,10 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
 
 \usepackage{tikz}
 
+\usepackage{calc}
 \usepackage{fontspec} % used to import Calibri
 \usepackage{anyfontsize} % used to adjust font size
 
@@ -14,9 +16,15 @@
    \fontsize{14}{14}\selectfont%
 }
 
+\newcommand{\uuline}[2][.]{%
+   {\color{#1}%
+   \rlap{\rule[-0.20em]{\widthof{#2}}{0.06em}}%
+   \rlap{\rule[-0.40em]{\widthof{#2}}{0.06em}}}%
+   #2}
+
 \begin{document}
 
-\hOne This is some text with your formatting. \[\sup{A}\]
+\hOne This is some \uuline{text} with your formatting. \[\sup{A}\]
 
 
 
