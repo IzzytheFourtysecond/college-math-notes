@@ -143,20 +143,23 @@
 \colorlet{currentIdentifierFromLst}{Black}
 
 \lstdefinestyle{170test}{
-   language=Matlab,
+   basicstyle=\normalsize\ttfamily\color{Black},
+   language=MATLAB,
    backgroundcolor = \color{Dandelion!5},
    commentstyle=\color{OliveGreen},
-   keywordstyle=\color{BlueViolet},
+   keywordstyle=\color{Cerulean},
    numbersep=5pt,
    numbers=left,
    numberstyle=\color{Gray},
    tabsize=3,
-   identifierstyle=\color{BrickRed}
+   identifierstyle=\color{RedViolet},
+   stringstyle=\color{BrickRed},
+   showstringspaces=false,
+   %morestring=[b]"
 }
-
 \newcommand{\lstSetTest}{%
    \lstset{style=170test}%
-   \colorlet{currentIdentifierFromLst}{BrickRed}%
+   \colorlet{currentIdentifierFromLst}{RedViolet}%
 }
 
 \newcommand{\identifier}[1]{%
@@ -170,6 +173,7 @@
 \author{Isabelle Mills}
 
 \begin{document}
+   \lstSetTest
    \maketitle
    \calibri
 
@@ -189,7 +193,7 @@
       $\overrightharpoonup{u} = (u_1, u_2, \ldots, u_n)$ and
       $\overrightharpoonup{v} = (v_1, v_2, \ldots, v_n)$ requires
       $n$ multiplications and $(n-1)$ additions. So we'll say
-      it has a flops count of $2n-1$
+      it has a flops count of $2n-1$.
    \end{myIndent}
    \hOne
    \retTwo \retTwo
@@ -199,8 +203,6 @@
    hopefully it is easier to guess what is and is not a flop. For
    instance, observe the code written below for taking an inner
    product of two $n$-vectors.
-
-   \lstSetTest
 
    \begin{tabular}{ p{3.0in} p{3.0in}}
       \retTwo
@@ -223,9 +225,56 @@
 
    \mySepOne
 
-
+   Here is how we formally define \udefine{Big-O Notation}:
+   \retTwo
    For a sequence $a_n$, we define $a_n = O(b_n)$ if there exists
    real constants\\ $C, N \geq 0$ such that for $n \geq N$, \hspace{0.25em}
    $a_n \leq Cb_n$.
+   \retTwo
 
+   \exOne
+   \uuline{Example problem}:
+
+   \begin{tabular}{ p{3.7in} p{2.4in} }
+      \begin{lstlisting}
+      function x = lowertriangsolve(L, b)
+         N = size(L);
+         n=size(b,1);
+         x=b;
+   
+         for i=1:N(1):
+            for j=1:i-1
+               x(i) = x(i) - L(i,j)*x(j);
+            end
+   
+            if L(i, j) == 0
+               error('matrix is singular')
+            end
+            x(i) = x(i)/L(i,i);
+         end
+      end
+      \end{lstlisting}
+      &
+      \exP
+      Inside the main for loop (lines 6-15):
+      \begin{myIndent}
+         Line 8 has $2(\texttt{i}-1)$ flops.\newline
+         Line 14 has an additional flop.\newline
+      \end{myIndent}
+
+      Thus, the total number of flops is:
+      \[\sum_{\texttt{i}=1}^{n}(2\texttt{i}-1)
+      = 2\left(\sum_{\texttt{i}=1}^{n}\texttt{i}\right) - n\]
+
+      This then simplifies to:
+      \[ 2\left( \dfrac{n(n+1)}{2} \right) - n
+      = 1n^2 \]
+
+      So \identifier{x} has $O(n^2)$ flops as \identifier{n} goes
+      to \newline infinity.
+   \end{tabular}
+
+   \newpage \hOne
+   
+   test for Wednesday
 \end{document}
