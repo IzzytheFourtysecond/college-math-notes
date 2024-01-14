@@ -50,19 +50,19 @@
 }
 \newcommand{\hTwo}{%
    \color{MidnightBlue}%
-   \fontsize{13}{13}%
+   \fontsize{13}{13}\selectfont%
 }
 \newcommand{\hThree}{%
    \color{PineGreen}
-   \fontsize{13}{13}
+   \fontsize{13}{13}\selectfont%
 }
 \newcommand{\myComment}{%
    \color{RawerSienna}%
-   \fontsize{12}{12}%
+   \fontsize{12}{12}\selectfont%
 }
 \newcommand{\teachComment}{
    \color{Orange}%
-   \fontsize{12}{12}%
+   \fontsize{12}{12}\selectfont%
 }
 \newcommand{\exOne}{%
    \color{Purple}%
@@ -86,10 +86,10 @@
 }
 
 \newcommand{\uuline}[2][.]{%
-   \setulcolor{#1}%
-   \setul{0.15ex}{0.1ex}\ul{#2}%
-   \setul{0.50ex}{0.1ex}\llap{\ul{#2}}%
-}
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
 
 \newcommand{\fillInBlank}[2][.]{{%
    \color{#1}%
@@ -343,7 +343,7 @@
          \begin{myIndent}
             We know that $A \neq \emptyset$ because we assumed that $B$ is
             bounded below. Thus, at least one lower bound to $B$ exists and
-            belongs to $A$. Additionally, because we assumed $B$ is nonempty,
+            belongs to $A$. \\Additionally, because we assumed $B$ is nonempty,
             we can say that each $b \in B$ is an upper bound to $A$. Thus, $A$
             is bounded above. Because of these two facts, we can apply the
             greatest lower bound property to say that the supremum of $A$ 

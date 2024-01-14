@@ -1,0 +1,231 @@
+
+% Note for any github stalkers. I am currently in the process
+% of learning LaTeX. I don't know what I'm doing yet. Sorry
+% if my code absolutely sucks.
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb} % originally imported to get the proof square
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+%\graphicspath{{./140A_images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+
+\newfontfamily{\calibri}{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+\setul{0.14em}{0.07em}
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{15}\selectfont%
+}
+\newcommand{\hTwo}{%
+   \color{MidnightBlue}%
+   \fontsize{13}{13}\selectfont%
+}
+\newcommand{\hThree}{%
+   \color{PineGreen}
+   \fontsize{13}{13}\selectfont%
+}
+\newcommand{\hFour}{%
+   \color{Cerulean}
+   \fontsize{12}{12}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{12}\selectfont%
+}
+\newcommand{\teachComment}{
+   \color{Orange}%
+   \fontsize{12}{12}\selectfont%
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{14}{14}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{RedViolet}%
+   \fontsize{13}{13}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{VioletRed}%
+   \fontsize{12}{12}\selectfont%
+}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{%
+   {\setulcolor{Red}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1}}%
+}
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcounter{LectureNumber}
+\newcommand*{\markLecture}[1]{%
+   \stepcounter{LectureNumber}%
+   {\huge \color{Black} \textbf{Lecture \theLectureNumber: #1} \newline}%
+}
+
+\newcommand{\pprime}{\prime\prime}
+
+\newcounter{PropNumber}
+\newcommand{\propCount}{%
+   \stepcounter{PropNumber}%
+   \thePropNumber%
+}
+
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \\ \hline \end{tabular}%
+}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
+
+
+% Programming stuff:
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{listings} % for writing code...
+\lstset{
+   basicstyle=\ttfamily
+}
+
+\colorlet{currentIdentifierFromLst}{Black}
+
+\lstdefinestyle{170test}{
+   language=Matlab,
+   backgroundcolor = \color{Dandelion!5},
+   commentstyle=\color{OliveGreen},
+   keywordstyle=\color{BlueViolet},
+   numbersep=5pt,
+   numbers=left,
+   numberstyle=\color{Gray},
+   tabsize=3,
+   identifierstyle=\color{BrickRed}
+}
+
+\newcommand{\lstSetTest}{%
+   \lstset{style=170test}%
+   \colorlet{currentIdentifierFromLst}{BrickRed}%
+}
+
+\newcommand{\identifier}[1]{%
+   {\color{currentIdentifierFromLst}\texttt{#1}}%
+}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+\title{Math 170A Lecture Notes (Professor: Lei Huang)}
+\author{Isabelle Mills}
+
+\begin{document}
+   \maketitle
+   \calibri
+
+   {\huge \color{Black} \textbf{Week 1 Notes (1/8 - 1/12/2024)}%
+   \stepcounter{LectureNumber}%
+   \stepcounter{LectureNumber}%
+   \stepcounter{LectureNumber} \retTwo}
+   
+   \hOne
+   For this class, we shall define the number of \udefine{flops} an
+   algoirthm takes as the number of individual $+$, $-$, $\times$, $/$,
+   and $\sqrt{\phantom{x}}$ operations on \uuline{real numbers}
+   used in the algorithm. \retTwo
+   
+   \begin{myIndent} \hTwo
+      For example: taking the inner product of two vectors
+      $\overrightharpoonup{u} = (u_1, u_2, \ldots, u_n)$ and
+      $\overrightharpoonup{v} = (v_1, v_2, \ldots, v_n)$ requires
+      $n$ multiplications and $(n-1)$ additions. So we'll say
+      it has a flops count of $2n-1$
+   \end{myIndent}
+   \hOne
+   \retTwo \retTwo
+
+   Technically, the word "flop" stands for 
+   \textul{floating (point) operation}. Based on that knowledge,
+   hopefully it is easier to guess what is and is not a flop. For
+   instance, observe the code written below for taking an inner
+   product of two $n$-vectors.
+
+   \lstSetTest
+
+   \begin{tabular}{ p{3.0in} p{3.0in}}
+      \retTwo
+      \begin{lstlisting}
+   P = 0
+   for i = 1:n
+      P = P + v(i) * w(i)
+   end
+      \end{lstlisting}
+      &
+      \begin{myIndent} 
+         {\hTwo Neither incrementing \identifier{i} nor \newline
+         initializing any other variables are counted towards the 
+         flop number. Because the code does \identifier{n} additions
+         and multiplications between \newline floating point
+         numbers, we say this function has $2n$ flops.}
+      \end{myIndent}
+   \end{tabular}
+
+
+   \mySepOne
+
+
+   For a sequence $a_n$, we define $a_n = O(b_n)$ if there exists
+   real constants\\ $C, N \geq 0$ such that for $n \geq N$, \hspace{0.25em}
+   $a_n \leq Cb_n$.
+
+\end{document}
