@@ -42,45 +42,95 @@
 \setlength{\parindent}{0pt}
 \definecolor{RawerSienna}{HTML}{945D27}
 
-\newcommand{\hOne}{%
+
+% Deprecated Text Commands (Don't use!!!)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\newcommand{\hOneOld}{%
    \color{Black}%
    \fontsize{14}{14}\selectfont%
 }
-\newcommand{\hTwo}{%
+\newcommand{\hTwoOldd}{%
    \color{MidnightBlue}%
    \fontsize{13}{13}\selectfont%
 }
-\newcommand{\hThree}{%
+\newcommand{\hThreeOld}{%
    \color{PineGreen}
    \fontsize{13}{13}\selectfont%
 }
-\newcommand{\hFour}{%
+\newcommand{\hFourOldd}{%
    \color{Cerulean}
    \fontsize{12}{12}\selectfont%
 }
-\newcommand{\myComment}{%
-   \color{RawerSienna}%
-   \fontsize{12}{12}\selectfont%
-}
-\newcommand{\teachComment}{
+\newcommand{\teachCommentOldd}{
    \color{Orange}%
    \fontsize{12}{12}\selectfont%
 }
-\newcommand{\exOne}{%
+\newcommand{\exOneOldd}{%
    \color{Purple}%
    \fontsize{14}{14}\selectfont%
 }
-\newcommand{\exTwo}{%
+\newcommand{\exTwoOldd}{%
    \color{RedViolet}%
    \fontsize{13}{13}\selectfont%
 }
-\newcommand{\exP}{%
+\newcommand{\exPOldd}{%
    \color{VioletRed}%
    \fontsize{12}{12}\selectfont%
 }
+% Non Deprecated formatting commands use!!!
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwo}{%
+   \color{MidnightBlue}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hThree}{%
+   \color{PineGreen}
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hFour}{%
+   \color{Cerulean}
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\teachComment}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{VioletRed}%
+   \fontsize{12}{14}\selectfont%
+}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newenvironment{myIndent}{%
    \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
 }{%
    \end{adjustwidth}%
 }
@@ -143,7 +193,7 @@
 
    \markLecture{1/9/2024}
 
-   \hOne
+   \hOneOld
    A \udefine{graph} is a pair $(V, E)$ where $V$ is a set of vertices
    and $E$ is a set of unordered pairs of elements of $V$ called edges.
    For $u, v \in V$, we say $u$ and $v$ are \udefine{adjacent} if 
@@ -151,14 +201,14 @@
 
    
    \begin{center}
-      \hTwo
+      \hTwoOldd
       For example: $G = (\{1, 2, 3\}, \{\{1, 2\}, \{2, 3\}\})$
       
       % I'm so sorry I'm not using the packages I should be using
       % to draw these graphs. I haven't had time to learn them yet
       % and I want this section done at some point tonight before I go
       % to bed. 
-      \hThree
+      \hThreeOld
       \begin{tikzpicture}
          \useasboundingbox (225:1.5) rectangle (45:2.5);
 
@@ -173,15 +223,15 @@
       \end{tikzpicture}
    \end{center}
 
-\hOne
+\hOneOld
 A \udefine{directed graph} (a.k.a a \udefine{digraph}) is a pair $(V, E)$ 
 where $V$ is a set of vertices and $E$ is a set of ordered pairs 
 of elements of $V$.
 \begin{center}
-   \hTwo
+   \hTwoOldd
    For example: $G = (\{1, 2, 3\}, \{(1, 2), (2, 3)\})$
 
-   \hThree
+   \hThreeOld
    \begin{tikzpicture}
       \useasboundingbox (225:1.5) rectangle (45:2.5);
 
@@ -196,15 +246,15 @@ of elements of $V$.
    \end{tikzpicture}
 \end{center}
 
-\hOne
+\hOneOld
 A \udefine{multigraph} is a pair $(V, E)$ where $V$ is a set of vertices
 and $E$ is a multiset of unordered pairs of elements of $V$.
 
 \begin{center}
-   \hTwo
+   \hTwoOldd
    For example: $G = (\{1, 2, 3\}, \{\{1, 2\}, \{2, 3\}, \{2, 3\}\})$
    
-   \hThree
+   \hThreeOld
    \begin{tikzpicture}
       \useasboundingbox (225:1.5) rectangle (45:2.5);
 
@@ -220,22 +270,22 @@ and $E$ is a multiset of unordered pairs of elements of $V$.
    \end{tikzpicture}
 \end{center}
 
-\hOne
+\hOneOld
 A \udefine{pseudograph} is like a graph and multigraph except that the
 pairs in $E$ are multisets. 
 \begin{myIndent}\begin{myIndent}\begin{myIndent}
 \begin{myIndent}\begin{myIndent}
-   \teachComment
+   \teachCommentOldd
    Essentially, an element $\{a, a\}$ can belong to $E$ in a 
    \\pseudograph. This type of edge is called a \udefine{loop}.
 \end{myIndent}\end{myIndent}\end{myIndent}
 \end{myIndent}\end{myIndent}
 
 \begin{center}
-   \hTwo
+   \hTwoOldd
    For example: $G = (\{1, 2, 3\}, \{\{1, 2\}, \{2, 3\}, \{3, 3\}\})$
    
-   \hThree
+   \hThreeOld
    \begin{tikzpicture}
       \useasboundingbox (225:2) rectangle (45:2.5);
 
@@ -252,7 +302,7 @@ pairs in $E$ are multisets.
 \end{center}
 
 \newpage
-\hOne
+\hOneOld
 If $G = (V, E)$ and $v \in V$, the \udefine{neighborhood} of $v$ is
 $N_{G}(v)=\{w \in V \mid \{v, w\} \in E\}$. \bigbreak
 
@@ -261,24 +311,24 @@ Or in other words, $v$'s degree is equal to the number of edges
 connecting to $v$.
 
 \mySepTwo[MidnightBlue]
-\hTwo
+\hTwoOldd
 \begin{myIndent}
    The \udefine{Handshaking lemma} states that for any graph $(V, E)$:
       {\fontsize{16}{15}\selectfont
       \[ \sum_{v \in V} d_{G}(v) = 2 \lvert E \rvert \]}
    
-   \hThree
+   \hThreeOld
    \begin{myIndent}
       The reason for this is that each edge increments the degrees of
       exactly two vertices. So the above sum counts every edge twice.
       \hfill \bigbreak
    \end{myIndent}
 
-   \hTwo
+   \hTwoOldd
    \uuline{Lemma}: Every graph has an even number of vertices with odd
    degrees.
 
-   \hThree
+   \hThreeOld
    \begin{myIndent}
       Proof: We can split the vertices of any graph into two categories:
       those with odd degrees, and those with even degrees.
@@ -296,17 +346,17 @@ connecting to $v$.
       \hfill \bigbreak
    \end{myIndent}
 
-   \hTwo
+   \hTwoOldd
    A graph is called \udefine{$r$-regular} if all of its vertices have
    degree $r$.
-   \hThree
+   \hThreeOld
    \begin{myIndent}
       Note that the number of edges in any $n$-vertex $r$-regular graph is
       $ \displaystyle{\frac{rn}{2}}$.
       \hfill \bigbreak
    \end{myIndent}
    
-   \hTwo
+   \hTwoOldd
    An $r$-dimensional \udefine{cube graph}, denoted as $\mathrm{Q}_{r}$,
    is a graph such that $V(\mathrm{Q}_{r})$, the set of vertices in 
    $\mathrm{Q}_{r}$, is equal to the set of binary strings of 
@@ -316,7 +366,7 @@ connecting to $v$.
 
    \begin{center}
       \begin{tabular}{ c c }
-         \hThree \fontsize{10}{10}\selectfont
+         \hThreeOld \fontsize{10}{10}\selectfont
          \begin{tikzpicture}[scale=0.9]
             \tikzstyle{myCir}=[circle,draw];
             \node[myCir] (000) at (0,0,0) {000};
@@ -332,12 +382,12 @@ connecting to $v$.
             \node[myCir] (111) at (3,3,-3) {111} edge (110) 
                                              edge (011) edge (101);
          \end{tikzpicture}
-         & \hTwo
+         & \hTwoOldd
          ${\displaystyle \quad\quad\quad
          \begin{matrix}
             \lvert V(\mathrm{Q}_{r})\rvert = 2^{r} \\ \\
             \lvert E(\mathrm{Q}_{r})\rvert = \frac{2^{r}r}{2} = 
-               2^{r-1}r \\ \\ \\ \\{\teachComment\text{
+               2^{r-1}r \\ \\ \\ \\{\teachCommentOldd\text{
                   Note that } \mathrm{Q}_{r} \text{ is } r
                   \text{-regular.}}
          \end{matrix}}$
@@ -346,7 +396,7 @@ connecting to $v$.
 \end{myIndent}
 
 \newpage
-\hOne
+\hOneOld
 If $G=(V, E)$, then $H=(W, F)$ is a \udefine{subgraph} of $G$
 if $W\subseteq V$ and $F\subseteq E$. \retTwo
 
@@ -355,7 +405,7 @@ that $H$ has the same vertices as $G$ but is lacking some of $G$'s
 edges) \retTwo
 
 We define subtracting a set of vertices from a graph as follows:
-\begin{myIndent} \hTwo
+\begin{myIndent} \hTwoOldd
    For $G = (V, E)$ and $X \subset V$, we define...
       \begin{myIndent}\begin{myIndent}
          ${\displaystyle G - X = (V \setminus X, \{\{u, v\}\in E 
@@ -364,16 +414,16 @@ We define subtracting a set of vertices from a graph as follows:
 \end{myIndent}
 \retTwo
 
-\hOne % I might not actually need this command here...
+\hOneOld % I might not actually need this command here...
 We define subtracting a set of edges from a graph as follows:
-\begin{myIndent} \hTwo
+\begin{myIndent} \hTwoOldd
    For $G = (V, E)$ and $L \subset E$, we define...
       \begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
          ${\displaystyle G - L = (V, E \setminus L) }$
       \end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
 \end{myIndent} \retTwo
 
-\hOne \markLecture{1/11/2024} \retTwo
+\hOneOld \markLecture{1/11/2024} \retTwo
 
 We shall notate that $H$ is a subgraph of $G$ by 
 writing $H \subseteq G$. \retTwo
@@ -389,14 +439,14 @@ Given $G = (V, E)$ and $F \subseteq E$, the
 and whose vertex set is ${\displaystyle
 \bigcup_{e \in F}e}$. \retTwo
 
-\mySepTwo \hOne
+\mySepTwo \hOneOld
 \begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
    Here are some basic classes of graphs: \retTwo
 \end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
 
    \begin{itemize}
    \item \udefine{Complete graphs / cliques}, denoted $K_n$, are graphs 
-      where every possible edge is present between $n$ vertices.\hTwo
+      where every possible edge is present between $n$ vertices.\hTwoOldd
 
       \begin{center}
       \begin{allowTableDashes}\begin{tabular}
@@ -451,7 +501,7 @@ and whose vertex set is ${\displaystyle
 
       
       \begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
-         \teachComment \begin{tabular}{ p{2.75in} c }
+         \teachCommentOldd \begin{tabular}{ p{2.75in} c }
             
             Note we can also draw $K_4$ such that there are no edge
             interceptions as follows: &
@@ -465,7 +515,7 @@ and whose vertex set is ${\displaystyle
          \end{tabular}
       \end{myIndent}\end{myIndent}\end{myIndent}
       
-      \hTwo
+      \hTwoOldd
       $\lvert V(K_n) \rvert = n$ \\
       $\lvert E(K_n) \rvert = \begin{pmatrix} n
          \vphantom{\frac{1}{1}} \\ 2\vphantom{\frac{
@@ -473,11 +523,11 @@ and whose vertex set is ${\displaystyle
       \end{myIndent}
       \newpage
 
-      \hOne
+      \hOneOld
       \item A graph $G = (V, E)$ is bipartite if there exists a
          partition $(A, B)$ of $V$ such that every edge in $E$
          has one end in $A$ and one end in $B$. \retTwo
-         {\hTwo \begin{tabular}{p{2in} p{0.5in} p{3in}}
+         {\hTwoOldd \begin{tabular}{p{2in} p{0.5in} p{3in}}
             \raisebox{-6em}{
                \tikz[scale=0.6, inner sep=3pt]{
                   \tikzstyle{myCir}=[circle, fill];
@@ -509,7 +559,7 @@ and whose vertex set is ${\displaystyle
          $\lvert A \rvert = s$, $\lvert B \rvert = t$, and all 
          possible edges between $A$ and $B$ exist.
 
-         \begin{myIndent}\begin{myIndent} \hTwo
+         \begin{myIndent}\begin{myIndent} \hTwoOldd
             For example, $K_{3,2}$: \hspace{2em} \raisebox{-2.3em}{
                \tikz[scale=0.5, inner sep=3pt]{
                   \tikzstyle{myCir}=[circle, fill];
@@ -527,7 +577,7 @@ and whose vertex set is ${\displaystyle
          $E = \{\{v_1, v_2\}, \{v_2, v_3\}, \ldots, 
          \{v_{k-1}, v_k\}, \{v_k, v_{k+1}\}\}$.
       
-         {\center \hTwo
+         {\center \hTwoOldd
             Note that $\lvert V(P_k) \rvert = k+1$ and $\lvert E(P_k) 
             \rvert = k$. \\ Therefore, below would be $P_3$...
          
@@ -549,7 +599,7 @@ and whose vertex set is ${\displaystyle
          \{\{v_1, v_2\}, \{v_2, v_3\}, \ldots, \{v_{k-1}, v_k\},
             \{v_k, v_1\}\}$.
          
-         {\center \hTwo
+         {\center \hTwoOldd
             Note that $\lvert V(C_k) \rvert = k$ and $\lvert E(C_k) 
             \rvert = k$. \\ Therefore, below would be $C_4$...
 
@@ -581,14 +631,14 @@ $G = (V, E)$\ldots
    \end{itemize}
 
 
-\exOne
+\exOneOldd
 \begin{center}
 \begin{myClosureOne}{5.5}
    \uuline{Lemma (part 1)}: If $G = (V, E)$ is a graph of minimum degree
    $k \geq 2$, then $G$ contains a cycle of length at least
    $k + 1$.
 
-   {\exP \begin{myConstrict}
+   {\exPOldd \begin{myConstrict}
       Proof: Let $P$ be a longest possible path in $G$, say:
       \[V(P) = \{v_1, v_2, \ldots, v_r\}\]
 
@@ -614,7 +664,7 @@ $G = (V, E)$\ldots
    \uuline{Lemma (part 2)}: The cycle length $k+1$ is the longest 
    we can guarentee based on the minimum degree of the graph being $k$.
 
-   {\exP \begin{myConstrict}
+   {\exPOldd \begin{myConstrict}
       Proof: Take the graph $K_{k+1}$ which has a minimum degree $k$. 
       \newline
       Obviously, the longest cycle in $K_{k+1}$ is the cycle containing
@@ -626,13 +676,13 @@ $G = (V, E)$\ldots
 \end{center}
 \retTwo
 
-\hOne
+\hOneOld
 A \udefine{connected graph} is a graph in which any two vertices
 are the ends of a path. \retTwo
 
 The \udefine{components} of a graph are the \uuline{maximal connected
 subgraphs}. For example: \retTwo
-{\hTwo
+{\hTwoOldd
    \begin{myIndent}\begin{myIndent}
       Let us define $G$ as: \hspace{2em}
       \raisebox{-2em}{\tikz[scale=0.4, inner sep=3pt]{
@@ -659,7 +709,7 @@ subgraphs}. For example: \retTwo
 \newpage
 
 A \udefine{tree} is a connected graph with no cycles
-   (a.k.a it is acyclic). \hTwo
+   (a.k.a it is acyclic). \hTwoOldd
    \begin{myIndent}
       Some examples of small trees include: $K_1$, $K_2$, $K_{1,2}$, 
       $P_3$, and $K_{1,3}$.
@@ -669,7 +719,7 @@ A \udefine{tree} is a connected graph with no cycles
       \begin{myClosureOne}{5.5}
          \uuline{Lemma}: Every tree with $n$ vertices has exactly
          $n - 1$ edges.
-         \hThree
+         \hThreeOld
          \begin{myConstrict}
             Proof: We shall proceed by induction. \retTwo
             
@@ -685,15 +735,15 @@ A \udefine{tree} is a connected graph with no cycles
             of at least length 3. This
             of course contradicts the fact that $T$ is acyclic.)
             \retTwo 
-            Then $T - \{v\}$ is a tree with $n$ vertices, 
-            so by induction it has $n-1$ edges. And because
+            Then $T - \{v\}$ is a tree with $n$ vertices as it must be acyclic and connected. 
+            So by induction it has $n-1$ edges. And because
             $v$ has degree $1$, we know that \newline $\lvert E(T) \rvert
             = 1 + \lvert E(T - \{v\}) \rvert = 1 + (n - 1) = n$.
          \end{myConstrict} \retTwo
-         \hTwo
+         \hTwoOldd
 
-         \uuline{Lemma}: Any connected graph has a spanning tree.
-         \hThree
+         \uuline{Lemma}: Any connected graph with finite vertices has a spanning tree.
+         \hThreeOld
          \begin{myConstrict}
             Proof: \retTwo
 
@@ -708,7 +758,7 @@ A \udefine{tree} is a connected graph with no cycles
             does not remove any vertices.
             
          \end{myConstrict}
-         \teachComment
+         \teachCommentOldd
          \begin{myIndent}\begin{myIndent}
             \begin{myConstrict}
             This actually acts as an algorithm for finding a spanning
@@ -718,7 +768,7 @@ A \udefine{tree} is a connected graph with no cycles
       \end{myClosureOne}
    \end{center}\retTwo
 
-\hOne
+\hOneOld
 
 \begin{tabular}{ p{2in} p{1in} p{2.5in}}
    If $u$ and $v$ are two vertices in a connected graph, the
@@ -745,7 +795,7 @@ A \udefine{tree} is a connected graph with no cycles
 \end{tabular}
 \newpage
 
-\hOne
+\hOneOld
 Let $d_G(u, v)$ be the distance between $u$ and $v$.\retTwo
 
 Distance is a \udefine{metric}, meaning:
@@ -769,13 +819,13 @@ The \udefine{radius} of $G$ is equal to
 
 
 \begin{myIndent}
-   \hTwo \uuline{Examples}:
+   \hTwoOldd \uuline{Examples}:
    \begin{enumerate}
       \item The radius of $K_n$  is $1$. The diameter of $K_n$ is $n$.
       \retTwo
       \item The diameter of $P_k$ is $k$. The radius, can be computed as
          follows:
-         \begin{myIndent} \hFour
+         \begin{myIndent} \hFourOldd
             The middle vertex of a path will have the fastest access
             to either end of the path. So, we shall measure the radius
             from the vertex: $v_{\lceil \frac{k+1}{2} \rceil}$. Then,
@@ -790,22 +840,22 @@ The \udefine{radius} of $G$ is equal to
          \end{myIndent}
    \end{enumerate}
 \end{myIndent} \retTwo
-\hOne
+\hOneOld
 We can use a \udefine{search tree} to more generally find
 the radii and diameters of graphs. \retTwo
 
-\begin{myIndent} \hTwo
+\begin{myIndent} \hTwoOldd
    \uuline{Breadth-First-Search}
    \begin{myIndent}
       Here's how to find a spanning tree in a connected graph with a root
       vertex $v$ such that the tree "preserves" all distances
       from $v$.
       (This tree is called a \udefine{BFS tree}).
-      \begin{myIndent} \hThree
+      \begin{myIndent} \hThreeOld
          Let $G$ be a connected graph and let $(v_1, v_2, v_3,
          \ldots, v_n)$ be any ordering of the vertices of $G$.
          \retTwo
-         Pick a vertex $v=v_1$ to be the root of the BFS-tree.
+         Pick a vertex $v=v_1$ to be the root of the BFS tree.
          \retTwo
          Now, at any stage in constructing this tree, we will have
          a vertex set $V(T) = \{v_1, v_2 \ldots, v_k\}$ (when we first
@@ -813,8 +863,8 @@ the radii and diameters of graphs. \retTwo
          Now if $V(T)=V(G)$ we can stop. Otherwise though, we can say 
          that there is a smallest integer $i$ such that for $v_i \in V(T)$, 
          $\hspace{0.25em} N(v_i)\setminus V(T) \neq \emptyset$.
-         Choose $v_{k+1}$ to be the smallest neighbor of $v_i$ 
-         not in $T$ in the ordering of the vertices of $G$ and add 
+         Choose $v_{k+1}$ to be the smallest neighbor (by the ordering of $V(G)$) of $v_i$ 
+         not in $T$ and add 
          the edge $\{v_i, v_{k+1}\}$ to $T$. Then we repeat this paragraph.
          \retTwo
          Beware the ordering we are creating in our tree will often
@@ -822,12 +872,12 @@ the radii and diameters of graphs. \retTwo
       \end{myIndent}
    \end{myIndent}
       \newpage
-      \exOne
+      \exOneOldd
 
       
    \begin{center}\begin{myClosureOne}{5.5}
       \uuline{Worked Demonstration}: \retTwo
-      \exTwo
+      \exTwoOldd
       \begin{tabular}{ c c c }
          \begin{centering}
             \raisebox{-5em}{\tikz[scale=0.45,inner sep=4pt]{
@@ -879,24 +929,159 @@ the radii and diameters of graphs. \retTwo
       \end{tabular}
    \end{myClosureOne}\end{center} \retTwo
 
-   \hTwo
+   \hTwoOldd
    \begin{myIndent}
       \uuline{Properties of BFS}: \hfill \bigbreak
 
       \begin{itemize}
-         \item If the root is $v$, then $d_T(v, w) = d_g(v, w)$
-         \item The Tree has layers which are $N_i(v)=\{w\in V(G) \mid 
-         d_G(v, w)=i\}$ and all edges in the tree and the graph are
-         in some $N_i(v)$ or between $N_i(v)$ and $N_{i+1}(v)$.
+         \item If the root is $v$, then $d_T(v, w) = d_G(v, w)$. In otherwords, a BFS tree \\preserves distances from its root. \newline
+         
+         \item The Tree with root $v$ has layers $N_i(v)=\{w\in V(G) \mid d_G(v, w)=i\}$. Furthermore all edges in the original graph either stay inside a single layer $N_i(v)$ or go between adjacent layers (i.e. from $N_i(v)$ to $N_{i+1}(v)$).
+         {\begin{myIndent}\begin{myDindent}\begin{myDindent} \hThreeOld
+            If an edge did "jump over" a layer, that \\violate the fact that distance is a metric. \newline
+         \end{myDindent}\end{myDindent}\end{myIndent}}
+         
+
          \item The diameter of $G$ equals the maximum number of
-         layers of all BFS trees (not including the 0-layer).
+         layers of all BFS trees (not including the 0-layer). \newline
+
          \item The radius of $G$ equals the minimum number of layers
-         of all BFS trees (also not including the 0-layer).
+         of all BFS trees (also not including the 0-layer). \newline
       \end{itemize}
    \end{myIndent}
-
-      
-   
 \end{myIndent}
+
+\hOne
+\mySepTwo \newline
+\markLecture{1/16/2024}
+
+Note that a tree is "minimally connecting" as subtracting any edge from a tree will produce a disconnected graph.
+\begin{myIndent}
+   We know this is the case because if we could remove an edge and still have the graph be connected, then that would imply the existence of a path between two neighboring vertices that doesn't go through their shared edge. But then, we'd be able to make a cycle subgraph by adding their shared edge to that path.
+\end{myIndent}
+
+\newpage
+
+{\hTwo
+\begin{myIndent}
+   \uuline{Depth-First-Search}
+   \begin{myIndent}
+      Here is alternate algorithm for generating a spanning tree of a connected graph. A resulting tree of this algorithm is called a \udefine{DFS tree}.
+
+      {\begin{myIndent} \hThree
+         Let $G$ be a connected graph and let $(v_1, v_2, \ldots, v_n)$ be any ordering of the vertices of $G$. \retTwo
+
+         Pick a vertex $v=v_1$ to be the root of the DFS-tree. \retTwo
+
+         Now, at any stage in constructing this tree, we will have a vertex set $V(T)=\{v_1, v_2, \ldots, v_k\}$. If $V(T)=V(G)$, we can stop. Otherwise though, we select $i$ to be the largest integer such that for $v_i \in V(T)$,\\ $\hspace{0.25em} N(v_i)\setminus V(T) \neq \emptyset$. Then, choose $v_{k+1}$ to be the smallest neighbor (by the ordering of $V(G)$) of $v_i$ not in $V(T)$ and add 
+         the edge $\{v_i, v_{k+1}\}$ to $T$. Then we repeat this paragraph.
+         \retTwo
+         Once again beware the ordering we are creating in our tree will typically be different from the order of the graph you started with. \retTwo
+      \end{myIndent}}
+   \end{myIndent}
+
+   {\exOne
+   \begin{center}\begin{myClosureOne}{5.5}
+      \uuline{Worked Demonstration}: \retTwo
+      \exTwoOldd
+      \begin{tabular}{ c c c }
+         \begin{centering}
+            \raisebox{-5em}{\tikz[scale=0.45,inner sep=4pt]{
+               \tikzstyle{myCir}=[circle, draw];
+
+               \node[myCir] (3) at (4,2) {3};
+               \node[myCir] (2) at (-4,2) {2}
+                  edge (3);
+               \node[myCir] (1) at (-4,-2) {1}
+                  edge (2) edge (3);
+               \node[myCir] (4) at (4,-2) {4}
+                  edge (3) edge (2) edge (1);
+               \node[myCir] (5) at (0,5) {5}
+                  edge (2) edge (3);
+               \node[myCir] (6) at (0,-5) {6}
+                  edge (1) edge (4);
+            }\par}
+         \end{centering}
+         &
+         becomes
+         &
+         \begin{centering}
+            \raisebox{-5em}{\tikz[scale=0.45,inner sep=4pt]{
+               \tikzstyle{myCir}=[circle, draw];
+
+               \node[myCir] (3) at (4,2) {3};
+               \node[myCir] (2) at (-4,2) {2}
+                  edge (3);
+               \node[myCir] (1) at (-4,-2) {1}
+                  edge (2);
+               \node[myCir] (4) at (4,-2) {4}
+                  edge (3);
+               \node[myCir] (5) at (0,5) {5}
+                  edge (3);
+               \node[myCir] (6) at (0,-5) {6}
+                  edge (4);
+            }\par}
+         \end{centering}
+      \end{tabular}
+   \end{myClosureOne}\end{center}} \hTwo\retTwo
+
+   \mySepTwo[Black]
+
+   \uuline{Theorem}: A graph is bipartite if and only if it contains no odd cycles.
+
+   {\hThree
+   \begin{myIndent}
+      Proof: \\($\Longrightarrow$) First note that an odd cycle isn't bipartite. Thus, any graph containing an odd cycle is not bipartite. \retTwo
+
+      ($\Longleftarrow$) Now supposed we are given some graph $G$ with no odd cycles. \\
+      Then, assuming $G$ is connected (if $G$ isn't connected, we can break $G$ up into its component subgraphs and do this process for each component), we can construct a BFS-tree in $G$ rooted at some $v\in V(G)$. Let us name this tree $T$.
+      \newpage
+
+      Now as noted before, $T$ will have layers $L_i$ where each \\ $L_i=\{u\in V(G) \mid d_G(v, u)=i\}$. Using those layers, we can partition $T$ into two subsets $A$ and $B$ where $A$ is the union of all $L_i$ where $i$ is even and $B$ is the union of all $L_j$ where $j$ is odd. So, $T$ is clearly bipartite.
+      \retTwo
+
+      Now, let's reinsert the removed edges from $G$ back into $T$. Note that for each re-inserted edge $e$, it must be the case that either $e$ is a subset of some $L_i$ or that $e$ goes between some $L_i$ and $L_{i+1}$. Importantly, edges of the latter case do not violate our partition. So, if all the edges in $E(G) \setminus E(T)$ go between layers, then we can conclude that $G$ is definitely bipartite just like $T$.
+      \retTwo
+
+      With that, we now intend to show that an edge $G$ having an edge belonging to a single layer $L_i$ guarentees that $G$ contains an odd cycle.
+      {\begin{myIndent} \hFour
+         Assume the graph $G$ has an edge $\{u, w\}\subseteq L_i$ where $L_i$ is the $i$th layer of a BFS tree rooted at $v$. Then, we know that there exists a path $P_1$ contained in that BFS tree going from $v$ to $u$ and a path $P_2$ contained in that BFS tree going from $v$ to $w$. In order to draw a cycle from this information, let $x$ be the vertex of some $L_j$ such that $x\in V(P_1)$, $x\in V(P_2)$, and $j$ is as large as possible. That way, by defining the subpaths ${P_1}^\prime$ going from $x$ to $u$ and ${P_2}^\prime$ going from $x$ to $w$, we can get the following cyclic subgraph of $G$ :\[ C=(V({P_1}^\prime)\cup V({P_2}^\prime), E({P_1}^\prime)\cup E({P_2}^\prime) \cup \{u, w\})\]
+
+         However, now note that $\lvert E({P_1}^\prime) \rvert = \lvert E({P_2}^\prime) \rvert = i-j$. Hence, \\$\lvert E(C) \rvert = 2(i-j)+1$, which in turn means that $C$ has an odd number of edges. So, we have shown that if a graph $G$ contains an edge within a single layer $L_i$, then we can give an example of an odd cycle within $G$. \retTwo
+      \end{myIndent}}
+
+      So in conclusion, if we assume $G$ has no odd cycles, then $G$ can't have any edges which are subsets of a single layer $L_i$. But that means that every edge in $G$ respects the partition we made to show that $T$ is bipartite. So, $G$ must also be bipartite with the same partition as $T$. $\blacksquare$
+   \end{myIndent}
+   }
+\end{myIndent}}
+
+\hOne
+\mySepTwo
+
+A \udefine{Hamiltonian} cycle is a spanning cycle of a graph. We say a graph is Hamiltonian if it contains such a cycle. \retTwo
+
+A \udefine{walk} is a sequence of vertices and edges: i.e. $(v_1, \{v_1, v_2\}, v_2, \{v_2, v_3\}, ...)$
+
+{\begin{myTindent} \teachComment
+   Note that a walk can go over the same edge or vertex multiple times. \retTwo
+\end{myTindent}}
+
+A \udefine{trail} is a walk with no repeated edge.
+{\begin{myTindent} \teachComment
+   Interestingly, all paths are trails and all trails are walks. So a trail is kind of a middle concept between being a walk or a path.\retTwo
+\end{myTindent}}
+
+A \udefine{tour} is a trail with the same first and last vertex.
+{\begin{myTindent} \teachComment
+   So, all cycles are tours and all tours are walks.\retTwo
+\end{myTindent}}
+\newpage
+
+An \udefine{Eulerean tour} of a graph is a tour which contains all the edges of the graph. If a graph has an Eulerean tour, we say it is Eulerean.
+{\begin{myIndent} \hTwo
+   For context, the name Eulerean comes from the fact that a mathametican named Euler from the 1700s asked how one could tell if a graph is Eulerean or not (look up the Seven Bridges of Königsburg problem). \retTwo
+\end{myIndent}}
+
+\markLecture{1/18/2024}
 
 \end{document}
