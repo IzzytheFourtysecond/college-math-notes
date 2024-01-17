@@ -26,6 +26,7 @@
 \usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{amssymb} % originally imported to get the proof square
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
 \usepackage{xfrac}
 
 % Just am using this to get a dashed line in a table...
@@ -44,25 +45,41 @@
 \setlength{\parindent}{0pt}
 \definecolor{RawerSienna}{HTML}{945D27}
 
-\newcommand{\hOne}{%
+\newcommand{\hOneOld}{%
    \color{Black}%
    \fontsize{14}{14}\selectfont%
 }
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwoOld}{% deprecated
+   \color{MidnightBlue}%
+   \fontsize{13}{13}\selectfont%
+}
 \newcommand{\hTwo}{%
    \color{MidnightBlue}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hThreeOld}{% deprecated
+   \color{PineGreen}
    \fontsize{13}{13}\selectfont%
 }
 \newcommand{\hThree}{%
    \color{PineGreen}
-   \fontsize{13}{13}\selectfont%
+   \fontsize{13}{15}\selectfont%
 }
 \newcommand{\myComment}{%
    \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\teachCommentOld}{% deprecated
+   \color{Orange}%
    \fontsize{12}{12}\selectfont%
 }
 \newcommand{\teachComment}{
    \color{Orange}%
-   \fontsize{12}{12}\selectfont%
+   \fontsize{12}{14}\selectfont%
 }
 \newcommand{\exOne}{%
    \color{Purple}%
@@ -81,7 +98,7 @@
 
 \newcommand{\udefine}[1]{%
    \setulcolor{Red}%
-   \setul{0.1ex}{0.15ex}%
+   \setul{0.14em}{0.07em}%
    \ul{#1}%
 }
 
@@ -123,8 +140,11 @@
 }
 
 
-\newcommand{\mySep}[1]{%
+\newcommand{\mySepOne}[1]{%
    {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
 }
 
 
@@ -138,7 +158,7 @@
 
    \markLecture{1/8/2024}
 
-   \hOne
+   \hOneOld
    An \udefine{order} on a set $S$, typically denoted as $<$, is
    a binary relation satisfying:
    \begin{enumerate}
@@ -161,7 +181,7 @@
    An \udefine{ordered set} is a set with a specified ordering. Let
    $S$ be an ordered set and $E$ be a nonempty subset of $S$. 
 
-   \hTwo
+   \hTwoOld
    \begin{myIndent}
    \begin{itemize}
       \item If $b \in S$ has the property that $\forall x \in E, \hspace{0.25em}
@@ -197,7 +217,7 @@
    \end{itemize}
    \end{myIndent}
 
-   \hOne
+   \hOneOld
    \uuline{Fact}: For an ordered set $S$ and nonempty $E\subseteq S$,
    either:
    \begin{itemize}
@@ -237,13 +257,13 @@
       $\max{E}$ and $\sup{E}$ exist.
       \exP
       \begin{myIndent}
-         To prove this, we can show that there exists a function $f: 
-         \mathbb{Q}^+ \rightarrow \mathbb{Q}^+$ such that
-         $\forall q \in \mathbb{Q}^+$, we have that $q^2 < 2
-         \Rightarrow q^2 < (f(q))^2 < 2 \text{ and } 2 < q^2
-         \Rightarrow 2 < (f(q))^2 < q^2$. Thus, we can show that
-         the set of upper bounds to $E$ has no minimum element (meaning
-         $\sup{E}$ is undefined) and $E$ itself has no maximum element.
+         To prove this, we can show there exists a function $f:
+         \mathbb{Q}^+\rightarrow\mathbb{Q}^+$ such that
+         $\forall q \in \mathbb{Q}^+$,\\ $q^2 < 2
+         \Rightarrow q^2 < (f(q))^2 < 2$ and $2 < q^2
+         \Rightarrow 2 < (f(q))^2 < q^2$. That way we can give
+         a counter example to any possible claimed supremum or 
+         maximum of $E$.
          \hfill \bigbreak
 
 
@@ -307,8 +327,8 @@
       \end{myIndent}
    \end{itemize}
 
-   \mySep{Purple}
-   \hOne\hfill \break
+   \mySepOne{Purple}
+   \hOneOld\hfill \break
    We say an ordered set $S$ has the \udefine{least upperbound
    property} if and only if when $E \subseteq S$ is nonempty and 
    bounded above, then the supremum of $E$ exists in $S$. Additionally, 
@@ -318,7 +338,7 @@
    
    \begin{myIndent}\begin{myIndent}\begin{myIndent}
    \begin{myIndent}\begin{myIndent}
-      \teachComment
+      \teachCommentOld
       When we define the set of real numbers, this will be one of the
       fundamental properties of that set. \hfill \bigbreak
    \end{myIndent}\end{myIndent}\end{myIndent}
@@ -326,11 +346,11 @@
 
    \markLecture{1/10/2024}
    \begin{myIndent}
-      \hTwo
+      \hTwoOld
       Proposition \propCount: $S$ has the least upperbound property if
       and only if $S$ has the greatest lower bound property.
       
-      \hThree
+      \hThreeOld
       \begin{myIndent}
          Proof: Let's say we have an ordered set $S$
          \hfill \bigbreak
@@ -366,7 +386,7 @@
                   bounds. \retTwo
             \end{enumerate}
             
-            Hense, $\alpha$ is the infimum of $B$. And since we did this
+            Hence, $\alpha$ is the infimum of $B$. And since we did this
             for a general $B \subseteq S$, we can thus say that $S$ has
             the greatest lower bound property. \retTwo
          \end{myIndent}
@@ -378,13 +398,13 @@
       \end{myIndent}
    \end{myIndent}
 
-   \mySep{PineGreen}
-   \hOne\hfill \break
+   \mySepOne{PineGreen}
+   \hOneOld\hfill \break
    A \udefine{field} is a set $F$ equipped with $2$ binary operations,
    denoted $+$ and $\cdot$, and containing two elements $0 \neq 1 \in F$
    satisfying the following conditions for all $x, y, z \in F$:
 
-   \hTwo
+   \hTwoOld
    \begin{myIndent}
       
       \begin{tabular}{ l c }%
@@ -413,11 +433,11 @@
    \end{myIndent}
 
    \newpage
-   \hOne
+   \hOneOld
    We shall assign the following notation: 
    
    {
-      \hTwo % Ok so I now know that lines on the table
+      \hTwoOld %  Ok so I now know that lines on the table
             % at least by default have the same color as the
             % text color.
       \centering
@@ -437,26 +457,27 @@
 
             $2x$ & $x + x$\\ \hdashline[10pt/3pt]
 
-            $x^2$ & $x \cdot x$
-         
+            $x^2$ & $x \cdot x$\\ \hdashline[10pt/3pt]
+
+            $xy$ & $x\cdot y$
          \end{tabular}
       \end{allowTableDashes}
       \par
    }
    \retTwo
    
-   \hOne
+   \hOneOld
    Now what follows is a number of propositions concerning the 
    arithmetic properties of a field...
    
    \begin{myIndent}
-      \hTwo
+      \hTwoOld
       \resetSubPropCount
       For a field $F$ and elements $x,y,z\in F$, we have the
       following propositions:
       
       Proposition \propCount.\subPropCount: $x+y=x+z \Rightarrow y=z$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: Assume $x+y=x+z$. Then...
             \begin{myIndent}
@@ -474,21 +495,21 @@
       \end{myIndent} \retTwo}
 
       Proposition \propCount[0].\subPropCount: $x+y=x \Rightarrow y=0$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: Plug in $z=0$ into proposition 2.1. in order to get
          that $y=z=0$.
       \end{myIndent} \retTwo}
 
       Proposition \propCount[0].\subPropCount: $x+y=0 \Rightarrow y={-x}$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: Plug in $z={-x}$ into proposition 2.1. in order to get
          that\\ $y=z={-x}$.
       \end{myIndent} \retTwo}
 
       Proposition \propCount[0].\subPropCount: ${-(-x)}=x$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: Observe that $x+{-x}={-x}+x=0$ by the inverse and\\ 
          commutative properties of addition. Then, by proposition
@@ -497,7 +518,7 @@
       \newpage
       Proposition \propCount[0].\subPropCount: $x\cdot y=x\cdot z 
                                     \text{ and } x\neq0\Rightarrow y=z$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: Assume $x\cdot y=x\cdot z$ and $x\neq0$. Then...
             \begin{myIndent}
@@ -520,7 +541,7 @@
                \retTwo
             
          \begin{myIndent}\begin{myIndent}\begin{myIndent}
-            \teachComment
+            \teachCommentOld
             Note that to use the multiplication inverse\\ property,
             we have to assume $x \neq 0$ !!
          \end{myIndent}\end{myIndent}\end{myIndent}
@@ -529,7 +550,7 @@
       \end{myIndent} \retTwo}
 
       Proposition \propCount[0].\subPropCount: $x\cdot y=x \Rightarrow y=1$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: Plug in $z=1$ into proposition 2.5. in order to get
          that $y=z=1$.
@@ -537,27 +558,27 @@
 
       Proposition \propCount[0].\subPropCount: $x\cdot y=1 \Rightarrow 
                y={\displaystyle\frac{1}{x}}$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
-         Proof: Plug in $z={\displaystyle\frac{1}{x}}$ into proposition 2.5. in order to get
-         that\\ $y=z={\displaystyle\frac{1}{x}}$.
+         Proof: Plug in $z={\frac{1}{x}}$ into proposition 2.5. in order to get
+         that\\ $y=z={\frac{1}{x}}$.
       \end{myIndent} \retTwo}
 
       Proposition \propCount[0].\subPropCount:
-         ${\displaystyle \frac{\hspace{0.15em}1\hspace{0.15em}}{
+         ${\dfrac{\hspace{0.15em}1\hspace{0.15em}}{
             \frac{1}{x}}} = x$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
-         Proof: Observe that $x\cdot{\displaystyle\frac{1}{x}}=
-         {\displaystyle\frac{1}{x}}\cdot x=0$ 
+         Proof: Observe that $x\cdot{\frac{1}{x}}=
+         {\frac{1}{x}}\cdot x=1$ 
          by the inverse and commutative \\[3pt] properties of multiplication. 
          Then, by proposition 2.7, we know that \\[3pt]
-         ${\displaystyle\frac{1}{x}}\cdot x=0 \Rightarrow x={\displaystyle 
-         \frac{\hspace{0.15em}1\hspace{0.15em}}{\frac{1}{x}}}$.
+         ${\frac{1}{x}}\cdot x=1 \Rightarrow x={
+         \dfrac{\hspace{0.15em}1\hspace{0.15em}}{\frac{1}{x}}}$.
       \end{myIndent} \retTwo}
 
       Proposition \propCount[0].\subPropCount: $0\cdot x = 0$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: $(0\cdot x) + (0\cdot x) = (0+0)\cdot x = 0\cdot x$.
          Thus we have an expression of the form $a+b=a$ which we can use
@@ -566,19 +587,153 @@
 
       Proposition \propCount[0].\subPropCount: 
          $x\neq0 \text{ and } y\neq0 \Rightarrow x\cdot y \neq 0$
-      {\hThree
+      {\hThreeOld
       \begin{myIndent}
          Proof: since $x, y\neq0$, we can say that $x\cdot y \cdot
-         {\displaystyle\frac{1}{x}} \cdot {\displaystyle\frac{1}{y}}
+         {\frac{1}{x}} \cdot {\frac{1}{y}}
          = 1 \neq 0$. Now by proposition 2.9, $x\cdot y=0 \Rightarrow
-         (x\cdot y)\cdot({\displaystyle\frac{1}{x}} \cdot 
-         {\displaystyle\frac{1}{y}})=0$. However, we know that is not the
+         (x\cdot y)\cdot\left({\frac{1}{x}} \cdot 
+         {\frac{1}{y}}\right)=0$. However, we know that is not the
          case. So $x\cdot y$ can't equal zero.
       \end{myIndent} \retTwo}
    \end{myIndent}
    \newpage
    
    \markLecture{1/12/2024}
+   
+   {\begin{myIndent} \hTwo
+   Proposition \propCount[0].\subPropCount: $({-x})y={-(xy)}=x({-y})$
+      {\hThree
+      \begin{myIndent}
+         Proof: $xy+({-x})y=(x+{-x})y=0y=0$. Thus by proposition 2.3,\\
+         $({-x})y={-(xy)}$. We can make a similar argument to also say
+         that\\ $x({-y})={-(xy)}$.
+      \end{myIndent} \retTwo}
 
+      Proposition \propCount[0].\subPropCount: $({-x})({-y})=xy$
+      {\hThree
+      \begin{myIndent}
+         Proof: Using proposition 2.11, we can say that \\
+         $({-x})({-y}) = {-(x({-y}))} = {-({-(xy)})}$. Then
+         by proposition 2.4, we can \\conclude ${-({-(xy)})} = xy$.
+      \end{myIndent} \retTwo}
+   \end{myIndent}}
+   
+   \mySepOne{Black}
+
+
+   An \udefine{ordered field} is a field $F$ equipped with an ordering
+   $<$ satisfying $\forall x,y,z \in F$:
+   
+   \begin{myIndent}\begin{myIndent}
+      \begin{enumerate}
+         \item[OF1.] $y<z \Rightarrow y+x<z+x$
+         \item[OF2.] $(x>0 \text{ and } y>0) \Rightarrow xy>0$ 
+      \end{enumerate}
+   \end{myIndent}\end{myIndent} \retTwo
+
+   For $x$ in an ordered field, we call $x$ \udefine{positive} if and 
+   only if $x>0$. Similarly, we call $x$ \udefine{negative} if and
+   only if $x<0$.
+
+   {\begin{myIndent} \hTwo
+   Proposition \propCount: For an ordered field $F$ and 
+      $x, y, z \in F$, we have:
+
+      \begin{enumerate}
+         \item $x<y \Leftrightarrow {-y}<{-x}$
+         {\begin{myIndent} \hThree
+            Proof: By property OF1 of an ordered field, we can
+            say that\\ $x<y\Rightarrow x+({-x}+{-y})<y+({-x}+{-y})
+            \Rightarrow -y < -x$. \retTwo
+         \end{myIndent}}
+
+         \item $(x>0 \text{ and } y<z) \Rightarrow xy<xz$
+         {\begin{myIndent} \hThree
+            Proof: By property OF1 of an ordered field, $y<z
+            \Rightarrow y-y<z-y$. Or in other words, $0<z-y$.  
+            Therefore, since $x$ is also positive by assumption,
+            property OF2 of an ordered field tells us that
+            $x(z-y)>0$. Finally, adding $xy$ to both sides by property
+            OF1 and then distributing gives us: \\$xz-xy+xy=xz<xy$.
+            \retTwo
+         \end{myIndent}}
+
+         \item $(x<0 \text{ and } y<z) \Rightarrow xy>xz$
+         {\begin{myIndent} \hThree
+            Proof: Since $x<0$, we have $-x>0$ by proposition 3.1.
+            Then by applying proposition 3.2, we know that
+            $(-x>0 \text{ and } y<z) \Rightarrow -xy<-xz$.
+            Finally, by reapplying proposition 3.1, this becomes
+            $xy>xz$.\retTwo
+         \end{myIndent}}
+
+         \item $x \neq 0 \Rightarrow x^2 > 0$
+         {\begin{myIndent} \hThree
+            Proof: If $x>0$, then $x^2=xx>0x=0$ by property OF2
+            of an \\ordered field. Meanwhile, if $x<0$, then $-x>0$
+            by proposition 3.1. So $(-x)(-x)>0$ by property OF2.
+            But $(-x)(-x)=x^2$ by proposition 2.12. So $x^2>0$.
+            \retTwo
+         \end{myIndent}}
+         \newpage
+
+         \item $0<x<y \Rightarrow 0<\frac{1}{y}<\frac{1}{x}$
+         {\begin{myIndent} \hThree
+            Proof: Since $y>0$ and $y\cdot\frac{1}{y}=1>0=0\cdot\frac{1}{y}$,
+            we must have $\frac{1}{y}>0$ by propositions 3.2 and 3.3.
+            Note that $\frac{1}{y}\neq0$ because if it did,
+            $y\cdot\frac{1}{y}=0$. \\ Similarly, we can show $\frac{1}{x}
+            >0$. Now multiply both sides of $x<y$ by the positive element
+            $\frac{1}{x}\cdot\frac{1}{y}$ and apply proposition 3.2
+            to get that $\frac{1}{y}<\frac{1}{x}$.
+            \retTwo
+         \end{myIndent}}
+      \end{enumerate}
+   \end{myIndent}}
+
+   \mySepTwo[Black]
+
+   \hOne
+   \uuline{Theorem}: There is (up to isomorphism) precisely one ordered field that contains $\mathbb{Q}$ and has the least upper bound property.
+   We denote this field $\mathbb{R}$ and we call its elements 
+   \udefine{real numbers}.
+   
+   \begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
+   \begin{myIndent}\begin{myIndent}
+      {\teachComment
+         In other words, this theorem is stating that $\mathbb{R}$ exists and is unique. Unfortunately, the proof for this is very long and so won't be covered in lecture. However, the professor has left some resources to cover it. So, I will have the proof of this theorem later in these notes. \newline
+            See page: {\color{BrickRed} <research how to cite a page>}
+      }
+   \end{myIndent}\end{myIndent}
+   \end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
+
+   \mySepTwo[Black]
+
+   
+   {\begin{myIndent} \hTwo \resetSubPropCount
+      Proposition \propCount.\subPropCount: If $x\in\mathbb{R}$, $y\in\mathbb{R}$, and $x>0$, then there is a positive integer $n$ such that $nx>y$. This is called the \udefine{archimedean property}.
+
+      {\begin{myIndent} \hThree
+         Proof: We proceed by looking for a contradiction. Let $A=\{nx \mid n\in\mathbb{Z}^+\}$ and assume $\nexists n\in\mathbb{Z}^+$ such that $nx>y$. In that case we know $y$ is an \\upper bound of $A$. Additionally, since $A$ is bounded above, we know by the least upper bound property of the real numbers that $\sup{A}$ exists. So, let $\alpha=\sup{A}$. \retTwo
+
+         Now because $\mathbb{R}$ is an ordered field, we know that: \\
+         $x>0 \Rightarrow -x<0 \Rightarrow \alpha-x<\alpha$. Therefore, because $\alpha$ is the least upper bound, we know that $\alpha - x$ is not an upper bound for $A$. Or in other words, there exists $n\in\mathbb{Z}^+$ such that $nx>\alpha-x$. But this contradicts that $\alpha$ is the least upper bound of $A$ because $nx>\alpha-x \Rightarrow (n+1)x>\alpha$ and $(n+1)x\in A$. So we conclude that the supremum of $A$ can't exist, which by the contrapositive of the least upper bound property, means that $A$ is not bounded above.
+         \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount[0].\subPropCount: If $x, y\in\mathbb{R}$ and $x<y$, then there exists a $p\in\mathbb{Q}$ such that $x<p<y$. In other words, we say that $Q$ is \udefine{dense} in $R$.
+
+      {\begin{myIndent} \hThree
+         Proof: Since $x<y$, we have that $0<y-x$. Then because $y-x$ is positive, we can use the archimedean property to say that there exists an integer $n$ such that $n(y-x)>1$. Note for later that this means $ny>1+nx$.
+
+         \newpage
+
+         Now note that since $1>0$ and $nx$ is a real number, we can use the archimedean property twice to get positive integers $m_1$ and $m_2$ such that $m_1\cdot1>-nx$ and $m_2\cdot1>+nx$. Thus, we get the expression $-m_1 < nx < m_2$ which can be rewritten as $0 < nx + m_1 < m_1 + m_2$. Next, because the set of \\positive integers is well ordered, meaning every nonempty subset of them has a least element, and $m_1+m_2$ belongs to the set of positive integers greater than $nx + m_1$, we know there exists some least positive integer greater than $nx + m_1$. Or in other words, there exists $m^\prime$ such that $m^\prime - 1 \leq nx + m_1 < m^\prime$. This then leads us to conclude that there is an integer $m=m^\prime-m_1$ such that $m - 1 \leq nx < m$. \retTwo
+
+         We now combine inequalities as follows: $m-1 \leq nx \Rightarrow m \leq nx+1$. So we have that $nx < m \leq nx+1$. But now remember from the previous page that $ny>1+nx$. So we can say that $nx < m \leq nx+1 < ny$. Finally, because $n>0$, we can multiply the inequality by $\frac{1}{n}$ to get that $x<\frac{m}{n}<y$. $\blacksquare$
+
+      \end{myIndent}}
+   \end{myIndent}}
 
 \end{document}
