@@ -69,6 +69,10 @@
    \color{PineGreen}
    \fontsize{13}{15}\selectfont%
 }
+\newcommand{\hFour}{%
+   \color{Cerulean}
+   \fontsize{12}{14}\selectfont%
+}
 \newcommand{\myComment}{%
    \color{RawerSienna}%
    \fontsize{12}{14}\selectfont%
@@ -92,6 +96,16 @@
 
 \newenvironment{myIndent}{%
    \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5.0em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
 }{%
    \end{adjustwidth}%
 }
@@ -145,6 +159,13 @@
 }
 \newcommand{\mySepTwo}[1][.]{%
    {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \\ \hline \end{tabular}%
 }
 
 
@@ -729,11 +750,103 @@
 
          \newpage
 
-         Now note that since $1>0$ and $nx$ is a real number, we can use the archimedean property twice to get positive integers $m_1$ and $m_2$ such that $m_1\cdot1>-nx$ and $m_2\cdot1>+nx$. Thus, we get the expression $-m_1 < nx < m_2$ which can be rewritten as $0 < nx + m_1 < m_1 + m_2$. Next, because the set of \\positive integers is well ordered, meaning every nonempty subset of them has a least element, and $m_1+m_2$ belongs to the set of positive integers greater than $nx + m_1$, we know there exists some least positive integer greater than $nx + m_1$. Or in other words, there exists $m^\prime$ such that $m^\prime - 1 \leq nx + m_1 < m^\prime$. This then leads us to conclude that there is an integer $m=m^\prime-m_1$ such that $m - 1 \leq nx < m$. \retTwo
+         Now note that since $1>0$ and $nx$ is a real number, we can use the archimedean property twice to get positive integers $m_1$ and $m_2$ such that $m_1\cdot1>-nx$ and $m_2\cdot1>+nx$. Thus, we get the expression $-m_1 < nx < m_2$. So now \\consider the set $B = \{m \in \mathbb{Z} \mid -m_1 \geq nx \geq m_2 \text{ and } m>nx\}$. We know that $B$ has finitely many elements and that $B$ contains at least one \\element: $m_2$. So $B$ must have a minimum element. We'll refer to that \\minimum element as $m$. Notably, as $m$ is the minimum element of $B$, we know that $m-1 \notin B$, meaning that $m-1\leq nx < m$ \retTwo
 
          We now combine inequalities as follows: $m-1 \leq nx \Rightarrow m \leq nx+1$. So we have that $nx < m \leq nx+1$. But now remember from the previous page that $ny>1+nx$. So we can say that $nx < m \leq nx+1 < ny$. Finally, because $n>0$, we can multiply the inequality by $\frac{1}{n}$ to get that $x<\frac{m}{n}<y$. $\blacksquare$
 
       \end{myIndent}}
    \end{myIndent}}
+   \mySepTwo \newline
+   \markLecture{1/17/2024} \newline
+   \uuline{Theorem}: If $x\in\mathbb{R}$, $x>0$, $n\in\mathbb{Z}$, and $n>0$, then there is a unique $y\in \mathbb{R}$ with $y>0$ and $y^n=x$. This number $y$ is denoted $\sqrt[n]{x}$ or $x^\frac{1}{n}$. \retTwo
+
+   {\begin{myIndent} \hTwo
+      To prove this, first note the following lemma about positive integers $n$ and $a, b\in\mathbb{R}$:
+      
+      {\centering $b^n-a^n=(b-a)(b^{n-1}+ab^{n-2}+\ldots+a^{n-2}b+a^{n-1})$ \par}
+
+      To prove this, one can either use induction or just calculate it out by hand to verify that the equality holds. \retTwo
+
+      Additionally, also consider that if $n$ is a positive integer and $0\leq a \leq b$ where \\ $a,b\in\mathbb{R}$, then we have that $a^n\leq b^n$. Combining this fact with the lemma above, we can say that $0\leq a \leq b$ implies that $b^n-a^n \leq (b-a)nb^{n-1}$. Or in other words: $a^n \leq b^n \leq a^n + (b-a)nb^{n-1}$.
+      {\teachComment  \begin{myTindent}\begin{myDindent}
+         This comes from replasing every $a$ in the expression \\$(b^{n-1}+ab^{n-2}+\ldots+a^{n-2}b+a^{n-1})$ with $b$ in order to get that $b^n-a^n \leq (b-a)(b^{n-1} + b^{n-1} + \ldots + b^{n-1})$
+      \end{myDindent}\end{myTindent}} \retTwo
+
+      Now set $E=\{t\in\mathbb{R} \mid t>0, t^n\leq x\}$.
+      {\begin{myIndent} \hThree
+         We can show that $E$ is nonempty...
+         \begin{itemize}
+            \item If $x \geq 1$, then $t=1 \in E$ since $1^n=1\leq x$.
+            \item If $x < 1$, then $x\in E$ since $x<1 \Rightarrow x^{n-1}<1^{n-1}=1$. But then $x^n<x$.
+         \end{itemize}
+         Thus, we know $E \neq \emptyset$. \retTwo
+
+         We can also show that $E$ is bounded above. Consider $t=1+x$. In that case, $t>1$, which implies that $t^{n-1} > 1^{n-1} = 1$. Therefore, $t^n > t$, meaning that $t^n > x$. So $t=x+1$ is an upper bound for $E$.
+         \newpage
+         Thus by the least upper bound property of the real numbers, we know \\$y = \sup{E}$ exists. \retTwo
+      \end{myIndent}}
+
+      \uuline{Claim 1}: $y^n \geq x$.
+      
+      {\begin{myIndent} \hThree
+         To prove this, we shall procede towards a contradiction. Assume $y^n<x$\retTwo
+         
+         Then pick some $h$ such that $0<h<\gamma$ and $\gamma$ is some mystery constant for us to find. Then, we can say that $y<y+h$, meaning by the lemma on the previous page that $y^n \leq (y+h)^n \leq y^n + (y+h-y)n(y+h)^n-1$. Or in other words, $(y+h)^n \leq y^n + hn(y+h)^n-1$. \retTwo
+
+         Now we shall make our first assumption about $\gamma$: let $\gamma \leq 1$. That way, we know that $(y+h)^n \leq y^n + hn(y+h)^n-1 < y^n + hn(y+1)^n$. And since, we are assuming that $y^n<x$, we know there must exist some value of $h$ such that $y^n + hn(y+1)^{n-1} < x$. Putting this limitation on $h$, we get that $h < \frac{x - y^n}{n(y+1)^{n-1}}$ (Remember that $x-y^n$, $y$, and $n$ are all positive). So finally, we say that $\gamma = \min{\left( 1, \frac{x - y^n}{n(y+1)^{n-1}} \right)}$. This is so that for $0<h<\gamma$, we have that $(y+h)^n < x$. \retTwo
+
+         Thus, we have a contradiction as we assumed that $y$ is the supremum of $E$ and yet we just proved that $y+h \in E$. So, $y^n$ cannot be less than $x$, meaning that that $y^n \geq x$. \retTwo
+      \end{myIndent}}
+
+      \uuline{Claim 2}: $y^n \leq x$.
+      
+      {\begin{myIndent} \hThree
+         To prove this, we shall again proceed towards a contradiction. Assume \\$y^n>x$. \retTwo
+
+         Then for some $h$ such that $0<h<\gamma$ where $\gamma$ is a new mystery constant, consider $y-h$. \retTwo
+
+         
+         {\begin{center} \hFour
+            \begin{myClosureOne}{5}
+               I now realize that I need to prove this lemma: for a positive integer $n$ and real numbers $a$ and $b$ such that $a \geq b$, we have that \\$(a-b)^n \geq a^n-bna^{n-1}$. We can prove this through induction. \\ \\
+               Firstly for $n=1$: we have that $(a-b)^1 = a^1 - b(1)a^0$. \\ \\
+               Now assume that for $k\geq 1$, $(a-b)^k \geq a^k - bka^{k-1}$.\\ Then $(a-b)^{k+1} = (a-b)(a-b)^k$. And since $(a-b)>1$, we know that $(a-b)^{k+1} = (a-b)(a-b)^k \geq (a-b)(a^k - bka^{k-1})$. \\ \\
+
+               Now let's expand out our lesser term to get that: \\ $(a-b)^{k+1} \geq a^{k+1}-bka^k - ba^k + b^2ka^{k-1}$. Thus, we know that \\$(a-b)^{k+1} \geq a^{k+1}-b(k+1)a^k + b^2ka^{k-1} > a^{k+1}-b(k+1)a^k$. Hence, we have shown that $(a-b)^{k+1} \geq a^{k+1}-b(k+1)a^k$.
+            \end{myClosureOne}
+         \end{center}}
+         \newpage
+
+         Based on the lemma covered right before this, we have that \\$(y-h)^n \geq y^n-hny^{n-1}$. But now let's require that $y^n-hny^{n-1}>x$. Thus, we can say that $h<\frac{y^n-x}{ny^{n-1}}$. \retTwo
+
+         So setting $\gamma = \frac{y^n-x}{ny^{n-1}}$, we have that for $0 < h < \gamma$, \hspace{0.25em} $(y-h)^n > x$. But this now leads to a contradiction as $y-h$ must be an upper bound to $E$.
+         {\begin{myIndent} \hFour
+            (If some number $z$ is greater than $y{-h}$, than $z^n > (y{-h})^n > x$. So $z \notin E$.) \newline
+         \end{myIndent}}
+         However, $y-h$ can't be an upper bound to $E$ as we specified that $y$ is the least upper bound of $E$. So we conclude that $y^n$ cannot be greater than $x$, thus meaning $y^n \leq x$.
+      \end{myIndent}}
+
+      So since $y^n \leq x$ and $y^n \geq x$, we conclude that $y^n = x$.
+      \retTwo
+
+      Finally, we now shall mention that $y$ is obviously the unique number such that \\$y^n=x$. After all, for $0<a<y<b$, we have that $a^n < y^n < b^n$. So, there can only be one number $y$ such that $y^n=x$.
+   \end{myIndent}}
+
+   \mySepTwo \newline
+   \markLecture{1/19/2024}
+
+   \uuline{Decimal Representations of Real Numbers}:
+   \begin{itemize}
+      \item Each $x \in \mathbb{R}$ such that $x>0$ can be written $x=n_0.n_1n_2n_3\ldots$ where $n_0 \in \mathbb{Z}$ and $\forall i \geq 1$, $n_i \in \{0,1,2,3,4,5,6,7,8,9\}$.
+      {\begin{myIndent} \hTwo
+         Specifically, let $n_0$ be the largest integer with $n\leq x$. Then inductively, pick $n_k$ to be the max element in $\{0,1,2,3,4,5,6,7,8,9\}$ such that: \[
+            n_0 + \frac{n_1}{10} + \cdots + \frac{n_{k-1}}{10^{k-1}} + \frac{n_k}{10^k} \leq x\]
+      \end{myIndent}}
+      
+      \item Conversely, suppose $n_0 \in \mathbb{Z}$ and $\forall i \geq1, n_i \in \{0,1,2,3,4,5,6,7,8,9\}$. Then, defining $E=\{n_0, n_0 + \frac{n_1}{10}, \ldots, n_0 + \frac{n_1}{10} + \cdots + \frac{n_k}{10^k}, \ldots\}$, we have that\\ $n_0.n_1n_2n_3\ldots = x\in\mathbb{R}$ where $x = \sup{E}$.
+   \end{itemize} \retTwo
+
+   We will rarely ever use decimal representations though.
+
 
 \end{document}
