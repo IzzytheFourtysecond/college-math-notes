@@ -138,6 +138,9 @@
 
 \newcommand{\pprime}{\prime\prime}
 
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+
 
 \newcounter{PropNumber}
 \newcommand{\propCount}[1][1]{
@@ -835,7 +838,7 @@
    \mySepTwo \newline
    \markLecture{1/19/2024}
 
-   \uuline{Decimal Representations of Real Numbers}:
+   \uuline{Decimal representations of real numbers}:
    \begin{itemize}
       \item Each $x \in \mathbb{R}$ such that $x>0$ can be written $x=n_0.n_1n_2n_3\ldots$ where $n_0 \in \mathbb{Z}$ and $\forall i \geq 1$, $n_i \in \{0,1,2,3,4,5,6,7,8,9\}$.
       {\begin{myIndent} \hTwo
@@ -847,6 +850,102 @@
    \end{itemize} \retTwo
 
    We will rarely ever use decimal representations though.
+
+   \newpage
+
+   The \uuline{extended real number system} is the set $\mathbb{R} \cup \{{-\infty}, {+\infty}\}$ where for all $x\in\mathbb{R}$:
+   {\hTwo \begin{tabular}{ p{1.7in} p{2.2in} p{2.2in} }
+      \begin{itemize}
+         \item $-\infty < x < +\infty$
+         \item $x + \infty = +\infty$
+         \item $x - \infty = {-\infty}$
+         \item $\frac{x}{+\infty} = 0 = \frac{x}{-\infty}$
+      \end{itemize}
+      &
+      \begin{itemize}
+         \item $x>0 \Rightarrow x(+\infty)=+\infty$
+         \item $x>0 \Rightarrow x(-\infty)=-\infty$
+         \item $+\infty +\infty = +\infty$
+         \item $+\infty(+\infty) = +\infty$ 
+      \end{itemize}
+      &
+      \begin{itemize}
+         \item $x<0 \Rightarrow x(+\infty)=-\infty$
+         \item $x<0 \Rightarrow x(-\infty)=+\infty$
+         \item $-\infty - \infty = -\infty$
+         \item $+\infty(-\infty) = -\infty$ 
+      \end{itemize}
+   \end{tabular}}
+   {\begin{myTindent} \hFour
+      All other operation involving $+\infty$ and $-\infty$ are left undefined. \retTwo
+   \end{myTindent}}
+
+   \diamond \hspace{0.5em} Sometimes, we denote the extended real number system $\overbar{\mathbb{R}}$.
+
+   \diamond \hspace{0.5em} The extended real number system is not a field.
+
+   \diamond \hspace{0.5em} To distinguish $x\in\mathbb{R}$ from $\infty$ or $-\infty$, we call $x\in\mathbb{R}$ finite.
+
+   \mySepTwo
+
+   The set of \udefine{complex numbers}, denoted $\mathbb{C}$, is the set of all things of the form $a+bi$ where $a, b \in \mathbb{R}$ and $i$ is a symbol satisfying $i^2=-1$.
+   
+   {\teachComment \begin{myTindent}\begin{myIndent}
+      To be more rigorous about this definition, what we would do is define the set of complex numbers to be the set of pairs of real numbers equipped with the following operations:
+      \begin{myIndent}
+         For $z, u \in \mathbb{C}$ such that $z=(a, b)$ and $u=(c, d)$:
+         \begin{itemize}
+            \item $z+u = (a+c, b+d)$
+            \item $z\cdot u = (ac - bd, ad+bc)$ \newline
+         \end{itemize}
+      \end{myIndent}
+      Having done that, we would then:
+      \begin{enumerate}
+         \item Define $0 = (0, 0)$ and $1 = (1, 0)$
+         \item Prove that $\mathbb{C}$ satisfies our field axioms
+         \item Say that $i = (0, 1)$ and then show that $i^2 = (-1, 0)$
+         \item And finally show that for $a, b \in \mathbb{R}$, \hspace{0.25em} $a(1) + b(i) = (a, b)$ 
+         
+         \begin{myTindent}\begin{myTindent}
+            (Thus it makes sense to denote $z \in \mathbb{C}$ as $z = a + bi$)
+         \end{myTindent}\end{myTindent} \retTwo
+      \end{enumerate}
+
+      However, we're behind and so not going to spend time doing that in class. \retTwo
+   \end{myIndent}\end{myTindent}}
+   
+   For $z= a+bi$, we denote $\rea{z} = a$ the \udefine{real} part of $z$. On the other hand, we denote $\ima{z} = b$ the \udefine{imaginary} part of $z$. \retTwo
+
+   The \udefine{complex conjugate} of $z=a+bi$ is $\overbar{z}=a-bi$.
+   \newpage
+   
+   \begin{tabular}{ p{3.2in} p{2.8in} }
+      {\hTwo \begin{myIndent}
+         Proposition \propCount: If $z, w \in \mathbb{C}$, then:
+         \begin{enumerate}
+            \item $\overbar{z+w}=\overbar{z}+\overbar{w}$
+            \item $\overbar{zw} = \overbar{z}\cdot \overbar{w}$
+            \item $z + \overbar{z} = 2\rea{z}$
+            \item $z - \overbar{z} = 2\ima{z}i$
+            \item $z\overbar{z} \in \mathbb{R}$ and $z\overbar{z} > 0$ when $z\neq 0$. 
+         \end{enumerate}
+      \end{myIndent}}
+      &
+      \hThree
+      \begin{myClosureOne}{2.8}
+         {Proof: \newline
+            \hFour
+            Points 1-4 can be verified by direct\newline computation.\newline  As for point 5, note that if $z = a+bi$, then\newline $z\overbar{z} = (a+bi)(a-bi) = a^2+b^2$.\newline Now as $a, b\in\mathbb{R}$, we know that \newline $a^2+b^2\in\mathbb{R}$. But $a^2+b^2 > 0$ if $b\neq a\neq0$. Meanwhile, $a^2+b^2=0$ if $a=b=0$. So $z\overbar{z} > 0$ if $z\neq0$
+         }
+      \end{myClosureOne}
+   \end{tabular}
+
+   The 
+   
+   {\begin{myIndent} \hTwo
+      Propostion \propCount: 
+   \end{myIndent}}
+
 
 
 \end{document}
