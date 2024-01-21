@@ -43,43 +43,53 @@
 
 \newcommand{\hOne}{%
    \color{Black}%
-   \fontsize{14}{15}\selectfont%
+   \fontsize{14}{16}\selectfont%
 }
 \newcommand{\hTwo}{%
    \color{MidnightBlue}%
-   \fontsize{13}{13}\selectfont%
+   \fontsize{13}{15}\selectfont%
 }
 \newcommand{\hThree}{%
    \color{PineGreen}
-   \fontsize{13}{13}\selectfont%
+   \fontsize{13}{15}\selectfont%
 }
 \newcommand{\hFour}{%
    \color{Cerulean}
-   \fontsize{12}{12}\selectfont%
+   \fontsize{12}{14}\selectfont%
 }
 \newcommand{\myComment}{%
    \color{RawerSienna}%
-   \fontsize{12}{12}\selectfont%
+   \fontsize{12}{14}\selectfont%
 }
 \newcommand{\teachComment}{
    \color{Orange}%
-   \fontsize{12}{12}\selectfont%
+   \fontsize{12}{14}\selectfont%
 }
 \newcommand{\exOne}{%
    \color{Purple}%
-   \fontsize{14}{14}\selectfont%
+   \fontsize{14}{16}\selectfont%
 }
 \newcommand{\exTwo}{%
    \color{RedViolet}%
-   \fontsize{13}{13}\selectfont%
+   \fontsize{13}{15}\selectfont%
 }
 \newcommand{\exP}{%
    \color{VioletRed}%
-   \fontsize{12}{12}\selectfont%
+   \fontsize{12}{14}\selectfont%
 }
 
 \newenvironment{myIndent}{%
    \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5.0em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
 }{%
    \end{adjustwidth}%
 }
@@ -108,7 +118,7 @@
    {\huge \color{Black} \textbf{Lecture \theLectureNumber: #1} \newline}%
 }
 
-\newcommand{\pprime}{\prime\prime}
+\newcommand{\pprime}{{\prime\prime}}
 
 \newcounter{PropNumber}
 \newcommand{\propCount}{%
@@ -131,6 +141,17 @@
 }
 
 \newcommand{\retTwo}{\hfill\bigbreak}
+
+
+% Hopefully this will be good enough
+\NewOverArrowCommand{myVector}{%
+   start = {{\smallermathstyle\relbar}},
+   middle = {{\smallermathstyle\relbareda}},
+   end={{\rightharpoonup}}, space before arrow=0.15em,
+   space after arrow=-0.045em,
+}
+\newcommand{\mVec}[1]{\myVector{#1}}
+\newcommand{\mMat}[1]{\mathbf{#1}}
 
 
 % Programming stuff:
@@ -184,19 +205,19 @@
    
    \hOne
    For this class, we shall define the number of \udefine{flops} an
-   algoirthm takes as the number of individual $+$, $-$, $\times$, $/$,
+   algorithm takes as the number of individual $+$, $-$, $\times$, $/$,
    and $\sqrt{\phantom{x}}$ operations on \uuline{real numbers}
    used in the algorithm. \retTwo
    
    \begin{myIndent} \hTwo
       For example: taking the inner product of two vectors
-      $\overrightharpoonup{u} = (u_1, u_2, \ldots, u_n)$ and
-      $\overrightharpoonup{v} = (v_1, v_2, \ldots, v_n)$ requires
+      $\mVec{u} = (u_1, u_2, \ldots, u_n)$ and
+      $\mVec{v} = (v_1, v_2, \ldots, v_n)$ requires
       $n$ multiplications and $(n-1)$ additions. So we'll say
       it has a flops count of $2n-1$.
    \end{myIndent}
    \hOne
-   \retTwo \retTwo
+   \retTwo
 
    Technically, the word "flop" stands for 
    \textul{floating (point) operation}. Based on that knowledge,
@@ -276,5 +297,318 @@
 
    \newpage \hOne
    
-   test for Wednesday
+   \markLecture{1/17/2024}
+
+   Row operations used in Gaussian elemination can be represented via matrix \\multiplication as demonstrated below.
+   
+   {\hTwo
+   \begin{allowTableDashes}
+      \begin{tabular}{ p{4.4in};{10pt/3pt}p{1.6in} }
+         {\center \phantom{ Matrix representation}\newline Action \par} & {\center Matrix representation \newline of the operation \newline \par} \\
+         \hline {\hFour
+         \[
+         \begin{bmatrix}
+            a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} \\
+            a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} \\
+            a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} \\
+            a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4}
+         \end{bmatrix} \xlongrightarrow{R_2 \leftrightarrow R_3}
+         \begin{bmatrix}
+            a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} \\
+            a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} \\
+            a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} \\
+            a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4}
+         \end{bmatrix} \]} & {\hFour
+         \[
+         \begin{bmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 0 & 1
+         \end{bmatrix}\]}
+         \\
+         \hline {\hFour
+         \[
+         \begin{bmatrix}
+            a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} \\
+            a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} \\
+            a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} \\
+            a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4}
+         \end{bmatrix} \xlongrightarrow{\frac{2}{3}R_2 \rightarrow R_2}
+         \begin{bmatrix}
+            a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} \\
+            \frac{2}{3}a_{2,1} & \frac{2}{3}a_{2,2} & \frac{2}{3}a_{2,3} & \frac{2}{3}a_{2,4} \\
+            a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} \\
+            a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4}
+         \end{bmatrix} \]} & {\hFour
+         \[
+         \begin{bmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & \frac{2}{3} & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1
+         \end{bmatrix}\]}
+         \\
+         \hline {\hFour
+         \[
+         \begin{matrix}
+            \begin{bmatrix}
+               a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} \\
+               a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} \\
+               a_{3,1} & a_{3,2} & a_{3,3} & a_{3,4} \\
+               a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4}
+            \end{bmatrix} \\
+            \phantom{
+               \text{\footnotesize $R_3 + \frac{2}{3}R_2 \rightarrow R_3$ }}
+            {\left\downarrow \vphantom{{\int_A^\frac{\frac{\frac{A}{1}}{1}}{1}}} \right.}  \text{\footnotesize $R_3 + \frac{2}{3}R_2 \rightarrow R_3$ } \\
+            \begin{bmatrix}
+               a_{1,1} & a_{1,2} & a_{1,3} & a_{1,4} \\
+               a_{2,1} & a_{2,2} & a_{2,3} & a_{2,4} \\
+               a_{3,1} {+ \frac{2}{3}a_{2,1}}  & a_{3,2} {+ \frac{2}{3}a_{2,2}} & a_{3,3} {+ \frac{2}{3}a_{2,3}} & a_{3,4} {+ \frac{2}{3}a_{2,4}} \\
+               a_{4,1} & a_{4,2} & a_{4,3} & a_{4,4}
+            \end{bmatrix}
+         \end{matrix}
+         \]} & { \hFour \retTwo \retTwo 
+         \[
+         \begin{bmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & \frac{2}{3} & 1 & 0 \\
+            0 & 0 & 0 & 1
+         \end{bmatrix}\]} 
+      \end{tabular}
+   \end{allowTableDashes}
+   } \retTwo \retTwo
+
+   The importance of representing elementary row operations as matrices is that we can multiply these representations together to compose rows operations. Thus, these representations are central to many matrix decompositions.
+
+   
+   \begin{myIndent}
+      {\exTwo
+         For example, we can represent turning a matrix into row echelon form as follows:
+         \[
+         \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & -\frac{2}{9} & 1
+         \end{bmatrix}\begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            -2 & 0 & 1
+         \end{bmatrix}\begin{bmatrix}
+            1 & 0 & 0 \\
+            -3 & 1 & 0 \\
+            0 & 0 & 1
+         \end{bmatrix}\begin{bmatrix}
+            2 & 4 & 5 \\
+            6 & 3 & 4 \\
+            4 & 6 & 2
+         \end{bmatrix} = \begin{bmatrix}
+            2 & 4 & 5 \\
+            0 & -9 & -11 \\
+            0 & 0 & \frac{-50}{9}
+         \end{bmatrix}\]
+      }
+   \end{myIndent}
+   \newpage
+
+   Here are some more observations about row operation matrices:
+   
+   \begin{itemize}
+      \item Row scaling operations are represented by diagonal matrices and thus are also both lower and upper triangular.
+      
+      \item For $i<j$, adding a multiple of the $i$th row to the $j$th row is represented by a lower triangular matrix.
+      
+      \item For $i>j$, adding a multiple of the $i$th row to the $j$th row is represented by an upper triangular matrix.
+      
+      \item Row swaps are not represented as triangular matrices. However, they are\\ \uuline{permutation} matrices.
+   \end{itemize} \retTwo
+
+   Now note that in the normal algorithm for Gaussian elimination, assuming we never need to swap rows, all row operations will be such that their matrix representation is lower triangular. 
+   
+   \begin{myIndent} \hTwo
+      Thus, given an invertible square matrix $\mMat{A}$, we can represent doing \\Gaussian elimination on $\mMat{A}$ by the equation: $\mMat{L}_n\mMat{L}_{n-1}\dotsb\mMat{L}_{2}\mMat{L}_{1}\mMat{A} = \mMat{U}$ where $\mMat{L}_i$ is a lower triangular matrix and $\mMat{U}$ is an upper triangular matrix. Then, because the product of two lower triangular matrices is also lower triangular, we can multiply all the lower triangular matries together to get an equation of the form $\mMat{L}\mMat{A}=\mMat{U}$. Finally, we multiply both sides of the equation on the left by $\mMat{L}^{-1}$ to get that\\ $\mMat{A}=\mMat{L}^{-1}\mMat{U}$. And as the inverse of a lower triangular matrix is also lower triangular, we know that we have decomposed $\mMat{A}$ into the product of a lower triangular matrix and an upper triangular matrix. This algorithm is called \udefine{LU decomposition}. \retTwo
+   \end{myIndent}
+
+   As for why we would want to use LU decomposition, we can look at the number of flops different matrix operations require.
+   \hTwo
+   \begin{myIndent}
+      Assume we are given an invertible $n\times n$ matrix $\mMat{A}$ and two vectors $\mVec{x}, \mVec{b} \in \mathbb{R}^n$. \retTwo
+      Firstly note that row reduction takes approximately $\frac{2}{3}n^3$ flops while the back\\ substitution algorithm takes approximately $n^2$ flops. Thus, for larger values of $n$, solving the matrix equation $\mMat{A}\mVec{x} = \mVec{b}$ takes around $\frac{2}{3}n^3$ flops. \retTwo
+
+      Now lets compare this to the number of flops the best algorithm we can make to do LU decomposition takes.
+      
+      {\begin{myIndent} \hThree
+         Assuming we don't need to do any row swaps, than the only elementary row operations we need to do are adding scaled rows to other rows. This is where our first optimization comes into play. The inverse of a row addition is merely a row subtraction. For example:
+            {\begin{myTindent} \hThree
+               $\begin{bmatrix}
+                  1 & 0 & 0 \\
+                  a & 1 & 0 \\
+                  0 & 0 & 1
+               \end{bmatrix}^{-1} = \begin{bmatrix}
+                  1 & 0 & 0 \\
+                  -a & 1 & 0 \\
+                  0 & 0 & 1
+               \end{bmatrix}$ \retTwo
+            \end{myTindent}}
+
+         \newpage
+         Thus, we can fairly straightforwardly get an expression of the form \\$ \mMat{A} = \mMat{L}_1 \mMat{L}_2 \cdots \mMat{L}_k \mMat{U}$ by multiplying the inverse of each elementary row \\operation matrix to both sides of the equation representing the actions we took to reduce $\mMat{A}$ to $\mMat{U}$. \retTwo
+
+         Now, we apply another two shortcuts to speed up our calculations. \retTwo Firstly, observe that:
+         $
+         \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & a & 1 & 0 \\
+            0 & 0 & 0 & 1
+         \end{smallmatrix}\right]
+         \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & b & 0 & 1
+         \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & b & 0 & 1
+         \end{smallmatrix}\right]
+         \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & a & 1 & 0 \\
+            0 & 0 & 0 & 1
+         \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & a & 1 & 0 \\
+            0 & b & 0 & 1
+         \end{smallmatrix}\right]$
+         
+         {\begin{myTindent}\begin{myIndent} \hFour
+            There's nothing special about that column or that \\particular matrix size. In fact, this should make sense when you consider that those two elementary row \\operations don't effect each other.
+         \end{myIndent}\end{myTindent}} \retTwo
+
+         Next, observe that: $\left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            a & 1 & 0 & 0 \\
+            b & 0 & 1 & 0 \\
+            c & 0 & 0 & 1
+         \end{smallmatrix}\right]
+         \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & d & 1 & 0 \\
+            0 & e & 0 & 1
+         \end{smallmatrix}\right]
+         \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            0 & 1 & 0 & 0 \\
+            0 & 0 & 1 & 0 \\
+            0 & 0 & f & 1
+         \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+            1 & 0 & 0 & 0 \\
+            a & 1 & 0 & 0 \\
+            b & d & 1 & 0 \\
+            c & e & f & 1
+         \end{smallmatrix}\right]$
+
+         {\begin{myTindent}\begin{myIndent} \hFour
+            To intuit why this works, think about how the matrix \\product has every row affect the rows underneath it \\before it itself is affected by any rows above it. So, it is specifically the initial state of every row that is effecting every other row in the matrix product.
+         \end{myIndent}\end{myTindent}} \retTwo
+
+         The end result of these observations is that the $(i,j)$th element of $\mMat{L}$ where $i>j$ is just going to be the negative of whatever coefficient one multiplied a copy of row $i$ by before then adding that to row $j$ as part of doing the row reduction algorithm. But now note that means that every element in $\mMat{L}$ can be directly extracted from the calculations done to find $\mMat{U}$. So finding $\mMat{U}$ takes approximately $\frac{2}{3}n^3$ flops and finding $\mMat{L}$ takes no additional flops. \retTwo
+      \end{myIndent}}
+
+      Once, we've found $\mMat{L}\mMat{U}$, we can then use back substitution twice to solve any matrix vector equation $\mMat{A}\mVec{x} = \mMat{L}\mMat{U}\mVec{x} = \mVec{b}$. This will take $2n^2$ flops. \retTwo
+
+      Technically, this means that if you are trying to solve a single matrix vector equation $\mMat{A}\mVec{x} = \mVec{b}$ by first decomposing $\mMat{A}$, then it will take longer than if you just solved it directly. However, if you have many matrix vector equations involving $\mMat{A}$, then you can work way faster by decomposing $\mMat{A}$. This is because once you decompose $\mMat{A}$ once, you can just store $\mMat{L}$ and $\mMat{U}$ for later use. Thus, every subsequent matrix vector equation involving $\mMat{A}$ can be done in approximately $2n^2$ flops instead of taking approximately $\frac{2}{3}n^3$ flops. \retTwo
+   \end{myIndent}
+   \newpage
+
+   \hOne
+   \markLecture{1/19/2024}
+
+   A crucial assumption we made in the last lecture was that we never would have to do row swaps when doing row reduction. In this lecture, we'll now allow ourselves to do row swaps. \retTwo
+
+   Firstly, here are two general reasons to want to do row swaps.
+   
+   \begin{itemize}
+      \item Firstly, sometimes we have no choice.
+      {\begin{myTindent}\begin{myDindent} \exOne
+      
+         \begin{tabular}{p{0.9in} p{2.5in}}
+            \raisebox{-1.5em}{$\begin{bmatrix}
+               0 & 4 & 1 \\
+               1 & 3 & 4 \\
+               2 & 2 & 5
+            \end{bmatrix}$} &
+            For this matrix, if we were to \newline divide the second and third row by $a_{1,1}$, we'd be dividing them by $0$. Thus, we clearly can't do that.
+         \end{tabular}
+      \end{myDindent}\end{myTindent}}
+
+      \item Secondly, dividing by small numbers causes more roundoff erros. So, we can slow the accumulation of roundoff erros by swapping rows in order to prioritize dividing by larger elements.
+   \end{itemize}
+
+   So here's an algorithm called \udefine{parial pivoting} for taking a \udefine{PLU decomposition} of an invertible $n\times n$ matrix $\mMat{A}$.
+   
+   \hTwo
+   \begin{myIndent}
+      When doing Guassian elimination, for every new pivot of $\mMat{A}$, first perform a row swap with the top non-reduced row and the non-reduced row with the largest would-be pivot element. Only, after that do you then add a scaled version of the pivot row to the other rows like you were doing before. \retTwo
+
+      Now note that performing the same row swap twice in a row is equivalent to doing nothing. Thus, every matrix representing a row swap is its own inverse. \\ Additionally, as we already covered, the inverse of a row addition operation is just a row subtraction operation. Because of this, we can easily get an equation for $A$ as the product of many elementary triangular matrices and permutation matrices. \retTwo
+
+      Let's denote $\mMat{L}_i$ to be the lower triangular matrix representing all row additions of row $i$ to the rest of the matrix. In other words, every element below the main \\diagonal in $\mMat{L}_i$ will be nonzero except for the elements in column $i$. Additionally, let's denote $\mMat{P}_{i, j}$ to be the permutation matrix swapping row $i$ and row $j$. Then, we can say that:
+      \[\mMat{A} = \mMat{P}_{1, k_{1}}\mMat{L}_{1}\mMat{P}_{2, k_{2}}\mMat{L}_{2}\cdots\mMat{P}_{n-1, k_{n-1}}\mMat{L}_{n-1}\mMat{U}\]
+      {\begin{myTindent}\begin{myTindent} \hFour
+         (Note that $i < k_i \leq n$ since it doesn't make sense to swap a row that has already been dealt with.) \retTwo
+      \end{myTindent}\end{myTindent}}
+
+      We can rewrite this as $\mMat{P}_{1, k_{1}}\mMat{A} = \mMat{L}_{1}\mMat{P}_{2, k_{2}}\mMat{L}_{2}\cdots\mMat{P}_{n-1, k_{n-1}}\mMat{L}_{n-1}\mMat{U}$. And now here is where the magic starts. If we multiply both sides of that equation on the left by $\mMat{P}_{2, k_{2}}$, then we can say that $(\mMat{P}_{2, k_{2}}\mMat{L}_{1}\mMat{P}_{2, k_{2}})=\mMat{L}^\prime_{1}$ where $\mMat{L}^\prime_{1}$ is the matrix which would have resulted if we had only applied the permutation $\mMat{P}_{2, k_{2}}$ to the elements off the main diagonal.
+      \newpage
+
+      Now we can do the same process again to $(\mMat{L}^\prime_1\mMat{L}_2)\mMat{P}_{3, k_{3}}$, multiplying both sides of our equation by $\mMat{P}_{3, k_{3}}$ and then saying that $\mMat{L}^\prime_{2}=(\mMat{P}_{3, k_{3}}\mMat{L}^\prime_1\mMat{L}_2\mMat{P}_{3, k_{3}})$ is a lower triangular matrix whose only nonzero elements below the diagonal are in columns 1 and 2. Doing this for all remaining permutation matrices on the right side of the equation, we will eventually get an equation of the form:
+      \[\mMat{P}_{n-1, k_{n-1}}\cdots\mMat{P}_{2, k_{2}}\mMat{P}_{1, k_{1}}\mMat{A} = \mMat{L}\mMat{U}\] \retTwo
+
+      Finally, by multiplying those permutation matrices together, we get an equation: \[\mMat{P}\mMat{A} = \mMat{L}\mMat{U}\]
+
+      {\hThree \center
+      \begin{myClosureOne}{4.5}
+         Here is why the product $\mMat{P}_{i+1, k_{i+1}}\mMat{L}^\prime_{i-1}\mMat{L}_{i}\mMat{P}_{i, k_{i+1}}$ was equivalent to only applying the row permutation underneath the diagonal of $\mMat{L}^\prime_{i-1}\mMat{L}_{i}$. \\ \\
+
+         Observe the following diagram of where the permutation\\ matrices send the elements in row $i{+1}$, row $k_{i{+1}}$, column $i{+1}$, and column $k_{i{+1}}$ of the matrix $\mMat{L}^\prime_{i-1}\mMat{L}_{i}$: \\
+         \[
+         \begin{matrix}
+            \begin{bmatrix}
+               &     &     {\color{BrickRed}0}&    &    {\color{Orange}0}& & \\
+               &     &     {\color{BrickRed}0}&    &    {\color{Orange}0}& & \\
+               {\color{Plum}a}&     {\color{Plum}b}&     {\color{Plum}1}&    {\color{Plum}0}&    {\color{Plum}0}& {\color{Plum}0}& {\color{Plum}0}\\
+               &     &     {\color{BrickRed}0}&    &    {\color{Orange}0}& & \\
+               &     &     {\color{BrickRed}0}&    &    {\color{Orange}0}& & \\
+               {\color{Magenta}c}&     {\color{Magenta}d}&     {\color{Magenta}0}&    {\color{Magenta}0}&    {\color{Magenta}1}& {\color{Magenta}0}& {\color{Magenta}0}\\
+               &     &     {\color{BrickRed}0}&    &    {\color{Orange}0}& & \\
+               &     &     {\color{BrickRed}0}&    &    {\color{Orange}0}& & \\
+            \end{bmatrix}
+            \\
+            {\left\downarrow \vphantom{{\int_A^\frac{\frac{\frac{A}{1}}{1}}{1}}} \right.}
+            \\
+            \begin{bmatrix}
+               &     &     {\color{Orange}0}&    &    {\color{BrickRed}0}& & \\
+               &     &     {\color{Orange}0}&    &    {\color{BrickRed}0}& & \\
+               {\color{Magenta}c}&     {\color{Magenta}d}&     {\color{Magenta}1}&    {\color{Magenta}0}&    {\color{Magenta}0}& {\color{Magenta}0}& {\color{Magenta}0}\\
+               &     &     {\color{Orange}0}&    &    {\color{BrickRed}0}& & \\
+               &     &     {\color{Orange}0}&    &    {\color{BrickRed}0}& & \\
+               {\color{Plum}a}&     {\color{Plum}b}&     {\color{Plum}0}&    {\color{Plum}0}&    {\color{Plum}1}& {\color{Plum}0}& {\color{Plum}0}\\
+               &     &     {\color{Orange}0}&    &    {\color{BrickRed}0}& & \\
+               &     &     {\color{Orange}0}&    &    {\color{BrickRed}0}& & \\
+            \end{bmatrix}
+         \end{matrix} \]
+      \end{myClosureOne}
+      \par}
+   \end{myIndent}
+   \hOne \retTwo \retTwo
+   \uuline{Theorem}: Every invertible matrix has a PLU-decomposition.
+   \newpage
+   \markLecture{1/22/2024}
 \end{document}
