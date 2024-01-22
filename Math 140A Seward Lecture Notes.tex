@@ -171,6 +171,26 @@
    \\ \\ \hline \end{tabular}%
 }
 
+% Overarrow stuff:
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\NewOverArrowCommand{myVector}{%
+   start = {{\smallermathstyle\relbar}},
+   middle = {{\smallermathstyle\relbareda}},
+   end={{\rightharpoonup}}, space before arrow=0.15em,
+   space after arrow=-0.045em,
+}
+
+\NewOverArrowCommand{myBar}{%
+   start = {{\smallermathstyle\relbar}},
+   middle = {{\smallermathstyle\relbar}},
+   end={{\relbar}}, space before arrow=0.15em,
+   space after arrow=-0.025em,
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\mVec}[1]{\myVector{#1}}
+\newcommand{\mMat}[1]{\mathbf{#1}}
 
 \title{Math 140A Lecture Notes (Professor: Brandon Seward)}
 \author{Isabelle Mills}
@@ -411,7 +431,7 @@
             \end{enumerate}
             
             Hence, $\alpha$ is the infimum of $B$. And since we did this
-            for a general $B \subseteq S$, we can thus say that $S$ has
+            for a general \\$B \subseteq S$, we can thus say that $S$ has
             the greatest lower bound property. \retTwo
          \end{myIndent}
 
@@ -938,12 +958,46 @@
             Points 1-4 can be verified by direct\newline computation.\newline  As for point 5, note that if $z = a+bi$, then\newline $z\overbar{z} = (a+bi)(a-bi) = a^2+b^2$.\newline Now as $a, b\in\mathbb{R}$, we know that \newline $a^2+b^2\in\mathbb{R}$. But $a^2+b^2 > 0$ if $b\neq a\neq0$. Meanwhile, $a^2+b^2=0$ if $a=b=0$. So $z\overbar{z} > 0$ if $z\neq0$
          }
       \end{myClosureOne}
-   \end{tabular}
-
-   The 
+   \end{tabular} \retTwo
    
+   The \udefine{absolute value} of $z=a+bi$ is $\lvert z\rvert = \sqrt{z\myBar{z}}$
+
+   \begin{myIndent} \hTwo
+      Propostion \propCount: For $z, w \in \mathbb{C}$, we have that:
+
+      \begin{enumerate}
+         \item $\lvert 0 \rvert = 0$ and $\lvert z \rvert > 0$ when $z\neq0$.
+         \item $\lvert z \rvert = \lvert \overbar{z} \rvert$
+         \item $\lvert zw \rvert = \lvert z \rvert\lvert w \rvert$
+         \item $\lvert \rea{z} \rvert \leq \lvert z \rvert$
+         \item $\lvert \ima{z} \rvert \leq \lvert z \rvert$
+         \item $\lvert z + w \rvert \leq \lvert z \rvert + \lvert w \rvert$
+         {\begin{myDindent} \teachComment
+            This last bullet is the \uuline{triangle inequality}.
+         \end{myDindent}}
+      \end{enumerate}
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Claims 1, 2, and 3 can be verified through direct computation. \retTwo
+
+         To prove claim 4, note that $a^2 \leq a^2+b^2$. So, $\lvert a \rvert = \sqrt{a^2} \leq \sqrt{a^2+b^2} = \lvert z \rvert$. We can repeat this but with $b^2$ to prove claim 5. \retTwo
+
+         Lastly, to prove claim 6, note that $\lvert z+w\rvert^2=(z+w)(\overbar{z+w})=(z+w)(\overbar{z}+\overbar{w})$. Now, we can distribute to get that $\lvert z+w\rvert^2= z\overbar{z} + z\overbar{w} + w\overbar{z} + w\overbar{w}$. So, we know that $\lvert z+w\rvert^2 = \lvert z \rvert^2 + z\overbar{w} + w\overbar{z} + \lvert w \rvert^2$. \retTwo
+
+         But now observe that $w\overbar{z} = \overbar{z\myBar{w}}$. So $z\overbar{w} + w\overbar{z} = 2\rea{z\overbar{w}}$. But by claim 4, we know that $\rea{z\overbar{w}}\leq \lvert z\overbar{w} \rvert$. Additionally, by claims 2 and 3, we have that\\ $\lvert z\overbar{w} \rvert = \lvert z \rvert\lvert \overbar{w} \rvert = \lvert z \rvert\lvert w \rvert$. So, we know that $\lvert z+w\rvert^2 \leq \lvert z \rvert^2 + 2\lvert z \rvert\lvert w \rvert + \lvert w \rvert^2$. This simplifies to $\lvert z+w\rvert^2 \leq (\lvert z \rvert + \lvert w \rvert)^2$. Hence, $\lvert z + w \rvert \leq \lvert z \rvert + \lvert w \rvert$.
+      \end{myIndent}}
+   \end{myIndent}
+
+   \newpage
+   \markLecture{1/22/2024}
+
    {\begin{myIndent} \hTwo
-      Propostion \propCount: 
+      \uuline{Theorem}: (the Cauchy-Schwarz Inequality)
+      \begin{myIndent}
+         If $a_1, \ldots, a_n, b_1, \ldots, b_n \in \mathbb{C}$, then: \[
+            \left|\sum_{k=1}^n a_k\overbar*{b_k} \right| \leq \sum_{k=1}^n\lvert a_k \rvert^2\sum_{k=1}^n\lvert b_k \rvert^2\]
+      \end{myIndent}
    \end{myIndent}}
 
 
