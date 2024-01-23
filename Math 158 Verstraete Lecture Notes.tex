@@ -1056,9 +1056,11 @@ Note that a tree is "minimally connecting" as subtracting any edge from a tree w
 \end{myIndent}}
 
 \hOne
-\mySepTwo
+\mySepOne
 
-A \udefine{Hamiltonian} cycle is a spanning cycle of a graph. We say a graph is Hamiltonian if it contains such a cycle. \retTwo
+A \udefine{Hamiltonian cycle} is a spanning cycle of a graph. We say a graph is \udefine{Hamiltonian} if it contains such a cycle. \retTwo
+
+A \udefine{Hamiltonian path} is a spanning path of a graph. We say a graph is \udefine{traceable} if it has a hamiltonian path. \retTwo
 
 A \udefine{walk} is a sequence of vertices and edges: i.e. $(v_1, \{v_1, v_2\}, v_2, \{v_2, v_3\}, ...)$
 
@@ -1070,18 +1072,205 @@ A \udefine{trail} is a walk with no repeated edge.
 {\begin{myTindent} \teachComment
    Interestingly, all paths are trails and all trails are walks. So a trail is kind of a middle concept between being a walk or a path.\retTwo
 \end{myTindent}}
-
+\newpage
 A \udefine{tour} is a trail with the same first and last vertex.
 {\begin{myTindent} \teachComment
    So, all cycles are tours and all tours are walks.\retTwo
 \end{myTindent}}
-\newpage
 
-An \udefine{Eulerean tour} of a graph is a tour which contains all the edges of the graph. If a graph has an Eulerean tour, we say it is Eulerean.
+An \udefine{Eulerian tour} of a graph is a tour which contains all the edges of the graph.
 {\begin{myIndent} \hTwo
-   For context, the name Eulerean comes from the fact that a mathametican named Euler from the 1700s asked how one could tell if a graph is Eulerean or not (look up the Seven Bridges of Königsburg problem). \retTwo
+   For context, the name Eulerian is in honor of Leonhard Euler because he was the first mathematician to ask when a graph would have an Eulerian tour (look up the Seven Bridges of Königsburg problem). \retTwo
 \end{myIndent}}
 
+We call a graph \udefine{Eulerian} if for every vertex $v$ in the graph: $d(v)$ is even.
+
+\mySepTwo
+
 \markLecture{1/18/2024}
+
+Before finding conditions for the existence of an eulerian tour of a graph, let's \\establish some terminology for digraphs so that we can study Eulerian tours in \\digraphs as well. \retTwo
+
+Firstly, a walk, trail, and tour are defined almost identically in a digraph as in a graph. The one difference is that given some edge $(u, v)$ of a digraph, a walk, trail, and path are only allowed to traverse that edge going from $u$ to $v$. \retTwo
+
+Given a digraph $(V, E)$, the "out" and "in" neighborhoods of a vertex $v \in V$ are:
+\begin{myIndent}
+   \begin{itemize}
+      \item[{\color{BrickRed}out:}] $N^+(v)=\{w\in V \mid (v, w) \in E\}$
+      \item[{\color{BrickRed}\phantom{o}in:}] $N^-(v)=\{w\in V \mid (w, v) \in E\}$
+   \end{itemize}
+\end{myIndent} \retTwo
+
+Similarly, the out-degree and in-degree of $v \in V$ are:
+\begin{myIndent}
+   \begin{itemize}
+      \item[{\color{BrickRed}out:}] $d^+(v)=\lvert N^+(v) \rvert$
+      \item[{\color{BrickRed}\phantom{o}in:}] $d^-(v)=\lvert N^-(v) \rvert$
+   \end{itemize}
+\end{myIndent} \retTwo
+
+A digraph is called \udefine{Eulerian} if for each vertex $v \hspace{0.25em}$, $d^+(v)=d^-(v)$.
+{\center \exOne
+   \begin{tabular}{ p{1.5in} p{3in} }
+      \raisebox{-5em}{\tikz[scale=0.45,inner sep=3pt]{
+         \tikzstyle{myCir}=[circle, draw, thick, color=Purple];
+         \tikzstyle{inEdge} = [thick, color=Purple, arrows = {Stealth[scale=1.5]-}];
+         \tikzstyle{outEdge} = [thick, color=Purple, arrows = {-Stealth[scale=1.5]}];
+   
+         \node[myCir] (1) at (0, 0) {$v_1$};
+         \node[myCir] (3) at (5, 0) {$v_3$}
+            edge [outEdge] (1);
+         \node[myCir] (2) at (2.5, 4) {$v_2$}
+            edge [inEdge] (1)
+            edge [inEdge] (3);
+      }}
+      &
+      \[{\begin{matrix}
+         & d^+(v_1) = 1 & & d^+(v_2) = 0 & & d^+(v_3) = 2 \\
+         & d^-(v_1) = 1 & & d^-(v_2) = 2 & & d^-(v_3) = 0
+      \end{matrix}}\]
+      This digraph is not Eulerian.
+   \end{tabular}
+\par} \retTwo
+
+An \udefine{orientation} of a graph $G$ is a digraph with the same vertices as $G$ but where each $\{u, v\} \in E(G)$ is replaced with either $(u, v)$ or $(v, u)$. \retTwo
+
+The \udefine{underlying graph} (or multigraph) of a digraph $G$ is the graph (or multigraph) such that $\{u, v\}$ is an edge whenever $(u, v) \in G$.
+\newpage
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: 
+   \begin{enumerate}
+      \item A graph has an Eulerian tour if and only if it is connected and Eulerian.
+      \item A digraph has an Eulerian tour if and only if it has a connected underlying graph and if it is Eulerian. \retTwo
+   \end{enumerate}
+
+   \hThree
+   Proof of statement 1:
+   \begin{myIndent}
+      ($\Longrightarrow$) If $G$ has an Eulerian tour $v_0 e_0 v_1 e_1 v_2 e_2 \ldots v_k e_k v_0$, then for any $v_i$, the tour has to use an edge into $v_i$ and an edge out of $v_i$ each time it visits $v_i$. So, $d(v_i)$ is even for all $i$. \retTwo
+
+      ($\Longleftarrow$) Now suppose $G$ is connected and all vertices have even degree. Then let $T=v_0 e_0 v_1 e_1 v_2 e_2 \ldots v_l e_l v_{l+1}$ be a longest trail in $G$. \retTwo
+      
+      If $v_{l+1} \neq v_0$, then we know that $v_{l+1}$ has an odd degree in $T$ as the trail goes into $v_{l+1}$ and doesn't leave. However, because we assumed that all vertices in $G$ have an even degree, we know there must be an even number of edges coming out of $v_{l+1}$. So, we can add another edge to our trail to get a longer trail. But this contradicts our assumption that $T$ is a longest trail in $G$. Hence, we conclude that $v_{l+1} = v_0$, meaning $T$ is a tour.\retTwo
+      
+      Now consider if $T$ is not an Eulerian tour. In that case, there is an edge of $G$ not in $T$. Additionally, because $G$ is connected, we know that that edge will have the form $e = \{v_i, w\}$. So now consider a new trail: $T^\prime$ defined as $v_i e_i v_{i+1} e_{i+1} \ldots v_0 e_0 v_1 e_1 \ldots v_i e w$. Importantly, $T^\prime$ is a longer trail than $T$. So we have a contradiction as $T$ is not a longest trail. \retTwo
+
+      Therefore, the longest trail $T$ in $G$ must be an Eulerian tour. \retTwo
+   \end{myIndent}
+
+   The proof of statement 2 is nearly identical. \retTwo
+   
+   {\center \teachComment
+   \begin{myClosureOne}{4.5}
+      Note that this proof can be interpretted as giving an algorithm for finding an Eulerian tour.
+      \begin{enumerate}
+         \item Make a trail $T$.
+         \item Add edges to $T$ until you get stuck at a vertex. Then you know that your trail forms a tour.
+         \item If $T$ is not an Eulerian tour, then going by the steps in the proof above, define $T^\prime$. Then do step 2. on $T^prime$.
+         \item If $T$ is an Eulerian tour, you're done.
+      \end{enumerate}\end{myClosureOne}\par}
+\end{myIndent}}
+
+\newpage
+
+A harder problem is whether a graph has a Hamiltonian (spanning) cycle or not. \retTwo
+
+
+{\exOne\begin{center}
+   \begin{myClosureOne}{5}
+         {\exTwo \begin{tabular}{ p{2in} p{2.5in} }
+         This graph \uuline{does not} have a Hamiltonian cycle.
+         &
+         \begin{centering}
+            \raisebox{-5em}{\tikz[scale=0.45,inner sep=3pt]{
+               \tikzstyle{myCir}=[circle, fill];
+         
+               \node[myCir] (9) at (18:2) {};
+               \node[myCir] (7) at (90:2) {};
+               \node[myCir] (8) at (162:2) {}
+                  edge (9);
+               \node[myCir] (3) at (234:2) {}
+                  edge (9) edge(7);
+               \node[myCir] (10) at (306:2) {}
+                  edge (7) edge(8);
+               \node[myCir] (5) at (18:5) {}
+                  edge (9);
+               \node[myCir] (6) at (90:5) {}
+                  edge (7) edge (5);
+               \node[myCir] (2) at (162:5) {}
+                  edge (6) edge (8);
+               \node[myCir] (1) at (234:5) {}
+                  edge (2) edge (3);
+               \node[myCir] (4) at (306:5) {}
+                  edge (1) edge (10) edge (5);
+            }}\par
+         \end{centering}
+         \\ & \\
+         This graph \uuline{does} have a \newline Hamiltonian cycle.
+         &
+         \begin{centering}
+            \raisebox{-5em}{\tikz[scale=0.45,inner sep=3pt]{
+               \tikzstyle{myCir}=[circle, fill];
+      
+               \node[myCir] (0) at (0:0) {};
+               \node[myCir] (1) at (18:4) {}
+                  edge (0);
+               \node[myCir] (2) at (90:4) {}
+                  edge (1) edge (0);
+               \node[myCir] (3) at (162:4) {}
+                  edge (2) edge (0);
+               \node[myCir] (4) at (234:4) {}
+                  edge (3) edge (0);
+               \node[myCir] (5) at (306:4) {}
+                  edge (1) edge (4) edge (0);
+            }}\par
+         \end{centering}
+      \end{tabular}}
+   \end{myClosureOne}
+\end{center}} \retTwo
+
+{\hTwo
+\begin{myIndent}
+   \uuline{Dirac's Theorem}: Let $n \geq 3$ and let $G$ be an $n$-vertex graph of minimum degree at least $\frac{n}{2}$. Then $G$ is hamiltonian. \retTwo
+
+   
+   {\begin{myIndent} \hThree
+      Proof:\\ Suppose the theorem is false. Let $G$ be a counter-example with as many edges as possible (a maximal counter-example). Then, we know there exists an edge $\{u, v\} \notin E(G)$ as $G$ cannot equal $K_n$ since $K_n$ is hamiltonian. Furthermore, we know that $G + \{u, v\}$ is hamiltonian since $G$ was maximal. So, there is a hamiltonian cycle $C \subseteq G + \{u, v\}$ using the edge $\{u, v\}$. This in  turn means that $C - \{u, v\}$ is a hamiltonian path belonging to $G$.
+      \retTwo
+
+      Let $P=v_1e_1v_2e_2\ldots e_nv_n$ be the hamiltonian path in $G$ from $u$ to $v$ and let $N^+(w)$ denote the set of vertices immediately following a neighbor of $w$ on the path $P$. In other words: $N^+(w) = \{v_{i+1} \mid v_i \in N_G(w)\}$. \retTwo
+
+      By the theorem's assumption about the minimum degree of the graph,\\ we know that $\left| N_G(u) \right| \geq \frac{n}{2}$. Meanwhile on the other end of $P$, since\\ $v=v_n \notin N_G(v)$, we know that every neighbor of $v$ has an element\\ following it on the path. So $\left| N^+(v) \right| \geq \frac{n}{2}$. Thus $\left| N_G(u) \right| + \left| N^+(v) \right| \geq n$.\\ But now note that $u$ does not belong to either of the above sets. So\\ $\left| N_G(u) \cup N^+(v) \right| \leq n-1$. As a consequence of this, $\left| N_G(u) \cap N^+(v) \right| > 0$. 
+      
+      \newpage
+
+      Let $v_i$ be a vertex belonging to $(N_G(v) \cap N^+(u))$. Then we can draw a cycle in $G$ visiting all the vertices of $G$ in the following order: \[v_1, v_2, \ldots, v_{i-1}, v_n, v_{n-1}, \ldots, v_i, v_1\]
+
+      This contradicts our assumption that $G$ would be a counter example and thus not Hamiltonian. So, we assume no such counter example exists. \retTwo
+   \end{myIndent}}
+
+   We can also show that Dirac's Theorem gives the best possible minimum degree for a graph to be guarenteably Hamiltonian. Consider a graph $G$ containing two copies of $K_m$ sharing exactly one vertex. In that case, $n = \left| V(G) \right| = 2m - 1$ and\\ $\delta(G) = m-1 = \frac{n-1}{2}$. However, this graph does not have a spanning subcycle as any spanning cycle would have to cross that shared vertex twice. \retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+Let $P$ be a longest path in $G$ going from a vertex $u$ to a vertex $v$. Additionally, for any $w \in V(P)$, let $w^+$ be the vertex following $w$ as one travels from $u$ to $v$ along $P$. Importantly, since $P$ is a longest path, we know that $(N_G(u) \cup N_G(v)) \subseteq V(P)$. Furthermore, for each $w \in N_G(v)$, we can define $Q = P - \{w, w^+\} + \{v, w\}$ where $Q$ is a longest path of $G$ going from $u$ to $w^+$ instead of $u$ to $v$. We call $Q$ a \udefine{rotation} of $P$ at $v$.
+\retTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Pósa's Rotation Lemma}: Suppose $G$ is a graph and for every $S \subseteq V(G)$ with $\left| S \right| \leq t$, $\left| N(S) \right| > 2 \left| S \right|$. Then $G$ contains a path of length $3t + 1$.
+   {\begin{myTindent} \hFour
+      $N(S)$ is referring to the union of the neighborhoods of each $v \in S$ minus any vertices in $S$.
+   \end{myTindent}}
+   \retTwo
+   
+   {\begin{myIndent} \hThree
+      Proof:\\ Let $P$ be a longest path ending at a vertex $v$. Also, let $S$ be the set of end \\vertices of all possible longest paths that could be obtained through any \\number of rotations starting with $P$. Finally, let $S^+$ and $S^-$ denoted the vertices of $P$ immediately after and immediately before vertices in $S$ respectively. \retTwo
+
+      Obviously, $\lvert S^+ \rvert \leq \lvert S \rvert$ and $\lvert S^- \rvert \leq \lvert S \rvert$ as all vertices except the first and last vertex of $P$ have exactly one vertex before and after them in $P$. Also note that $N(S) \subseteq S^+ \cup S^-$. This is because for any $s \in S$ and $w \in N(s)$, we can do a rotation at $s$ to get another element of $s$ either directly after $w$ or directly before $w$.
+
+   \end{myIndent}}
+\end{myIndent}}
 
 \end{document}
