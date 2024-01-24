@@ -1268,9 +1268,13 @@ Let $P$ be a longest path in $G$ going from a vertex $u$ to a vertex $v$. Additi
    {\begin{myIndent} \hThree
       Proof:\\ Let $P$ be a longest path ending at a vertex $v$. Also, let $S$ be the set of end \\vertices of all possible longest paths that could be obtained through any \\number of rotations starting with $P$. Finally, let $S^+$ and $S^-$ denoted the vertices of $P$ immediately after and immediately before vertices in $S$ respectively. \retTwo
 
-      Obviously, $\lvert S^+ \rvert \leq \lvert S \rvert$ and $\lvert S^- \rvert \leq \lvert S \rvert$ as all vertices except the first and last vertex of $P$ have exactly one vertex before and after them in $P$. Also note that $N(S) \subseteq S^+ \cup S^-$. This is because for any $s \in S$ and $w \in N(s)$, we can do a rotation at $s$ to get another element of $s$ either directly after $w$ or directly before $w$.
+      Obviously, $\lvert S^+ \rvert \leq \lvert S \rvert$ and $\lvert S^- \rvert \leq \lvert S \rvert$ as all vertices except the first and last vertex of $P$ have exactly one vertex before and after them in $P$. Also note that $N(S) \subseteq S^+ \cup S^-$. This is because if there did exist $w \in N(S)$ such that $w \notin S^+ \cup S^-$, then we would know that no rotation of $P$ made it so that $w$ was not proceeded by $w^-$ and followed by $w^+$. So, doing a rotation with the vertex $w$, we would show that either $w^+$ or $w^-$ belonged to $S$, thus reaching a contradiction. 
+      \newpage
 
+      Overall, this means that $\lvert N(S) \rvert \leq \lvert S^+ \cup S^- \rvert \leq \lvert S^+ \rvert + \lvert S^- \rvert \leq 2 \lvert S \rvert$.\\ However, note that by the theorem's assumption about $G$, we know that $\left|S\right| \geq t$ because otherwise we'd have that $ 2\left| S \right| < \left|N(S)\right|$. So, let $T$ be a subset of $S$ such that $\left| T \right| = t$. Then, because $T$ and $N(T)$ are disjoint\\ subsets of $(S \cup N(S))$ which itself is a subset of $V(P)$, we know that\\ $\left| V(P) \right| \geq \left| T \right| + \left| N(T) \right|$. And since $\left| N(T) \right| > 2\left| T \right| = 2t$ by the theorem's assumption about $G$, we thus can say that $\left| V(P) \right| > 3t$. $\blacksquare$ \retTwo
    \end{myIndent}}
 \end{myIndent}}
+
+\markLecture{1/23/2024}
 
 \end{document}
