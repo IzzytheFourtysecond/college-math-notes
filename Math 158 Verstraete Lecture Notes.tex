@@ -1266,7 +1266,7 @@ Let $P$ be a longest path in $G$ going from a vertex $u$ to a vertex $v$. Additi
    \retTwo
    
    {\begin{myIndent} \hThree
-      Proof:\\ Let $P$ be a longest path ending at a vertex $v$. Also, let $S$ be the set of end \\vertices of all possible longest paths that could be obtained through any \\number of rotations starting with $P$. Finally, let $S^+$ and $S^-$ denoted the vertices of $P$ immediately after and immediately before vertices in $S$ respectively. \retTwo
+      Proof:\\ Let $P$ be a longest path ending at a vertex $v$. Also, let $S$ be the set of end \\vertices of all possible longest paths that could be obtained through any \\number of rotations starting with $P$. Finally, let $S^+$ and $S^-$ denoted the \\vertices of $P$ immediately after and immediately before vertices in $S$ \\respectively. \retTwo
 
       Obviously, $\lvert S^+ \rvert \leq \lvert S \rvert$ and $\lvert S^- \rvert \leq \lvert S \rvert$ as all vertices except the first and last vertex of $P$ have exactly one vertex before and after them in $P$. Also note that $N(S) \subseteq S^+ \cup S^-$. This is because if there did exist $w \in N(S)$ such that $w \notin S^+ \cup S^-$, then we would know that no rotation of $P$ made it so that $w$ was not proceeded by $w^-$ and followed by $w^+$. So, doing a rotation with the vertex $w$, we would show that either $w^+$ or $w^-$ belonged to $S$, thus reaching a contradiction. 
       \newpage
@@ -1276,5 +1276,142 @@ Let $P$ be a longest path in $G$ going from a vertex $u$ to a vertex $v$. Additi
 \end{myIndent}}
 
 \markLecture{1/23/2024}
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: If for every set $S$ of vertices in a graph $G$, we have that\\ $\left| N(S) \right| \geq \min{\{2\left|S\right| + 1, \hspace{0.25em} \left|V(G) \setminus S \right|\}}$, then $G$ has a hamiltonian path. \retTwo
+
+   {\begin{myIndent} \hThree
+      Proof:\\ Once again let us define $P$ as a longest path of $G$, as well as $S$ as the set of end vertices of all possible rotations of $P$. Then by the same reasoning as before, we know that $\left| N(S) \right| \leq 2 \left| S \right|$. Therefore, since $\left| N(S) \right|$ isn't greater than or equal to $2 \left| S \right| + 1$, we know by the assumption of the theorem that $N(S)$ is greater than or equal to $\left|V(G) \setminus S \right|$. \retTwo
+
+      Now $S \cup (V(G) \setminus S) = V(G)$ and $(S \cup N(S)) \subseteq V(P)$. Additionally, $S$ and $(V(G) \setminus S)$ are disjoint to each other, as is $S$ and $N(S)$. Thus, we can say that \[
+         \left| V(G) \right| = \left| S \right| + \left| (V(G) \setminus S) \right| \geq \left| S \right| + \left| N(S) \right| \leq \left| V(P) \right| \]
+      
+      Therefore the longest path $P$ must cover every vertex of $G$, meaning that it is a Hamiltonian path. $\blacksquare$\retTwo
+      {\begin{myTindent} \teachComment
+         This is what is used to find Hamiltonian paths in random graphs.
+      \end{myTindent}}
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+A graph is \udefine{uniquely Hamiltonian} if it has exactly one Hamiltonian cycle. \retTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: If all vertices in a graph $G$ have odd degree, then every edge is in an even number of hamiltonian cycles.
+   
+   {\begin{myTindent}\begin{myIndent} \teachComment
+      In other words such a graph is not uniquely Hamiltonian. \retTwo
+   \end{myIndent}\end{myTindent}}
+   {\begin{myIndent} \hThree
+      Proof: \\
+      If the graph $G$ in the theorem has no hamiltonian cycles, then we're done. Every edge is in $0$ hamiltonian cycles. \retTwo
+
+      Now pick an edge and suppose that there is a Hamiltonian cycle $C$ containing it. We'll call that edge $\{u, v\}$ and let $w$ be the vertex coming before $u$ on $C$. \retTwo
+      
+      Then, let us define a new graph $H$ whose vertices are Hamiltonian paths in $G$ which start with the edge $\{u, v\}$. For example, $(C - \{u, w\}) \in V(H)$. Additionally, let $\{P, Q\}$ be an edge of $H$ if $P$ and $Q$ are rotations of each other. \retTwo
+
+      If $P \in V(H)$ is a hamiltonian path in $G$ ending in a vertex $x \in V(G)$, then: \[d_H(P) = \left\{\begin{matrix}
+         d_G(x) - 1 & & x \notin N_G(u) \\
+         d_G(x) - 2 & & x \in N_G(u)
+      \end{matrix}\right.\]
+      {\begin{myIndent} \hFour
+         Essentially, for every edge connecting to $x$ except for the one already used by $P$, there is a rotation of $P$. We can then say that that rotation is a vertex of $H$ if it includes the edge $\{u, v\}$ (In other words, a rotation including the edge $\{u, x\}$ would not be included in $H$).
+      \end{myIndent}}
+
+      \retTwo
+      If $x$ is adjacent to $u$, then $P + \{\{u, x\}\}$ is a hamiltonian cycle containing $\{u, v\}$. \retTwo
+
+      Now here is the clever part: since $d_G(x)$ is assumed to be odd for all \\$v \in V(G)$, we have that $d_H(P)$ is even if $x$ is not adjacent to $u$ and odd if $x$ is adjacent to $u$. But now note that every graph has an even number of vertices of odd degree because of the handshaking lemma. So, there must be an even number of paths including the edge $\{u, v\}$ and ending in a vertex $x$ such that $x$ is adjacent to $u$. Or in other words, $G$ has an even number of hamiltonian cyles containing the edge $\{u, v\}$. $\blacksquare$
+   \end{myIndent}}
+\end{myIndent}} \retTwo
+
+{\exOne \center
+   \begin{myClosureOne}{5.2}
+      For example, by the above theorem we know that this graph is not uniquely Hamiltonian.
+      {\exTwo\center\raisebox{0em}{\tikz[scale=0.25,inner sep=3pt]{
+         \tikzstyle{myCir}=[circle, fill, thick, color=RedViolet];
+         \tikzstyle{myLine}=[thick, color=RedViolet];
+   
+         \node[myCir] (0) at (90.0:8) {};
+         \node[myCir] (1) at (115.0:8) {}
+               edge[myLine] (0);
+         \node[myCir] (2) at (141.0:8) {}
+               edge[myLine] (1);
+         \node[myCir] (3) at (167.0:8) {}
+               edge[myLine] (2);
+         \node[myCir] (4) at (192.0:8) {}
+               edge[myLine] (3);
+         \node[myCir] (5) at (218.0:8) {}
+               edge[myLine] (4);
+         \node[myCir] (6) at (244.0:8) {}
+               edge[myLine] (5) edge[myLine] (1);
+         \node[myCir] (7) at (270.0:8) {}
+               edge[myLine] (6) edge[myLine] (3);
+         \node[myCir] (8) at (295.0:8) {}
+               edge[myLine] (7) edge[myLine] (4);
+         \node[myCir] (9) at (321.0:8) {}
+               edge[myLine] (8);
+         \node[myCir] (10) at (347.0:8) {}
+               edge[myLine] (9) edge[myLine] (0);
+         \node[myCir] (11) at (372.0:8) {}
+               edge[myLine] (10) edge[myLine] (2);
+         \node[myCir] (12) at (398.0:8) {}
+               edge[myLine] (11) edge[myLine] (9);
+         \node[myCir] (13) at (424.0:8) {}
+               edge[myLine] (12) edge[myLine] (0) edge[myLine] (5);
+      }}\par}
+      One note about the above theorem is that it can be interpretted as giving an algorithm for finding a second hamiltonian cycle given one hamiltonian cycle in a graph where all degrees are odd.
+   \end{myClosureOne}
+\par}
+
+\newpage
+
+A \udefine{matching} in a graph is a set of vertex disjoint edges in the graph. \retTwo
+
+A vertex is \udefine{saturated} by a matching if one of the edges of the matching contains the vertex. Otherwise, we say the vertex is \udefine{exposed} by the matching. \retTwo
+
+{\begin{center} \exOne
+   \begin{tabular}{ p{3in} p{3in} }
+      \\
+         {\center\raisebox{0em}{\tikz[scale=0.35,inner sep=3pt]{
+         \tikzstyle{myCir}=[circle, fill, thick];
+         \tikzstyle{myLine}=[thick];
+         \tikzstyle{myHL}=[color=Orange, line width=8pt, opacity=0.25];
+         \useasboundingbox (-5,-5) rectangle (5, 2);
+   
+         \node[myCir, label=above:1] (0) at (90.0:5) {};
+         \node[myCir, label=above:2] (1) at (141.0:5) {}
+               edge[myLine] (0) edge[myHL] (0);
+         \node[myCir, label=left:3] (2) at (192.0:5) {}
+               edge[myLine] (1);
+         \node[myCir, label=below:4] (3) at (244.0:5) {}
+               edge[myLine] (2) edge[myHL] (2);
+         \node[myCir, label=below:5] (4) at (295.0:5) {}
+               edge[myLine] (3);
+         \node[myCir, label=right:6] (5) at (347.0:5) {}
+               edge[myLine] (4) edge[myHL] (4);
+         \node[myCir, label=above:7] (6) at (398.0:5) {}
+               edge[myLine] (5) edge[myLine] (0);
+      }}\par} &
+      The matching shown to the left is:
+      $M = \{\{1, 2\}, \{3, 4\}, \{5, 6\}\}$ \retTwo
+      In the matching to the left, $7$ is \newline exposed and all other vertices are \newline saturated.
+   \end{tabular}
+\end{center}}
+
+A \udefine{maximum matching} in a graph is a matching with the maximum number of edges. \retTwo
+
+A \udefine{perfect matching} (or $1$-factor) is a matching which saturates all the vertices of a graph.
+{\begin{myTindent}\begin{myTindent} \teachComment
+   Proposition: for a graph to have a perfect matching, it must have an even number of vertices. 
+\end{myTindent}\end{myTindent}}
+\retTwo
+
+\markLecture{1/30/2024}
+
+{\begin{myIndent} \hTwo
+   \uuline{Hall's Theorem}: Let $G$ be a bipartite graph with parts $A$ and $B$. Then $G$ has a \\matching saturating $A$ if and only if for every set $X \subset A$, \[ \lvert N_G(X) \rvert \geq \lvert X \rvert\text{.}\] In particular, if $\lvert A \rvert = \lvert B \rvert$, then $G$ has a perfect matching.
+\end{myIndent}}
 
 \end{document}
