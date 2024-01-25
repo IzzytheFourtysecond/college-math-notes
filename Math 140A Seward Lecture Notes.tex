@@ -38,6 +38,8 @@
 \usepackage{graphicx}
 \graphicspath{{./140A_images/}}
 
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
 
 \newfontfamily{\calibri}{Calibri}
 
@@ -143,7 +145,7 @@
 
 
 \newcounter{PropNumber}
-\newcommand{\propCount}[1][1]{
+\newcommand{\propCount}[1][1]{%
    \addtocounter{PropNumber}{#1}%
    \thePropNumber%
 }
@@ -766,7 +768,7 @@
          \retTwo
       \end{myIndent}}
 
-      Proposition \propCount[0].\subPropCount: If $x, y\in\mathbb{R}$ and $x<y$, then there exists a $p\in\mathbb{Q}$ such that $x<p<y$. In other words, we say that $Q$ is \udefine{dense} in $R$.
+      Proposition \propCount[0].\subPropCount: If $x, y\in\mathbb{R}$ and $x<y$, then there exists a $p\in\mathbb{Q}$ such that\\ $x<p<y$. In other words, we say that $Q$ is \udefine{dense} in $R$.
 
       {\begin{myIndent} \hThree
          Proof: Since $x<y$, we have that $0<y-x$. Then because $y-x$ is positive, we can use the archimedean property to say that there exists an integer $n$ such that $n(y-x)>1$. Note for later that this means $ny>1+nx$.
@@ -996,10 +998,115 @@
       \uuline{Theorem}: (the Cauchy-Schwarz Inequality)
       \begin{myIndent}
          If $a_1, \ldots, a_n, b_1, \ldots, b_n \in \mathbb{C}$, then: \[
-            \left|\sum_{k=1}^n a_k\overbar*{b_k} \right| \leq \sum_{k=1}^n\lvert a_k \rvert^2\sum_{k=1}^n\lvert b_k \rvert^2\]
+            \left|\sum_{j=1}^n a_j\overbar*{b_j} \right|^2 \leq \sum_{j=1}^n\lvert a_j \rvert^2\sum_{j=1}^n\lvert b_j \rvert^2\]
+            \retTwo
+            \retTwo
+            \hThree
+            Proof:\\
+            Define ${\displaystyle A = \sum_{j=1}^n\lvert a_j\rvert^2_,} \quad {\displaystyle B =\sum_{j=1}^n\lvert b_j\rvert^2_,} \hspace{0.5em}\text{and}\hspace{0.5em} {\displaystyle C =\sum_{j=1}^n{a_j\overbar*{b_j}}_.}$\\
+
+            Note that $A, B \in \mathbb{R}$ such that $A, B \geq 0$. Meanwhile, $C \in \mathbb{C}$. \retTwo
+
+            If $B = 0$, then $b_1 = \ldots = b_n = 0$. Thus $C = 0$ as well and so the inequality is trivially true. \retTwo
+            So now consider if $B > 0$. Then we can make a series of manipulations \\starting with: $0 \leq {\displaystyle \sum_{j=1}^n\lvert Ba_j - Cb_j\rvert^2_.}$ 
+            {\teachComment 
+            \begin{myTindent}\begin{myTindent}
+               (The professor said not to worry about how Rudin thought of using this formula.) \retTwo
+            \end{myTindent}\end{myTindent}}
+
+            \begin{center}
+               \begin{tabular}{ r c l }
+                  $0$ & $\leq$ & ${\displaystyle \sum_{j=1}^n\lvert Ba_j - Cb_j\rvert^2 }$ \\ \\
+                  & $=$ & ${\displaystyle \sum_{j=1}^n{(Ba_j - Cb_j)(B\overbar*{a_j} - \overbar*{C}\overbar*{b_j})} }$ \\ \\
+                  & $=$ & ${\displaystyle B^2 \sum_{j=1}^n\lvert a_j \rvert^2 - BC\sum_{j=1}^n{\overbar*{a_j}b_j} - B\overbar{C}\sum_{j=1}^n{a_j\overbar*{b_j}} + \lvert C \rvert^2\sum_{j=1}^n\lvert b_j \rvert^2}$ \\
+                  & $ = $ & ${\displaystyle B^2A - BC\overbar{C} - B\overbar{C}C + \lvert C \rvert^2B}$ \\
+                  & $ = $ & ${\displaystyle B^2A - B \lvert C \rvert^2}$ \\
+                  & $ = $ & ${\displaystyle B(AB - \lvert C \rvert^2)}$
+               \end{tabular}
+            \end{center}
+            \retTwo
+            Thus, since we're assuming $B > 0$, we know that $AB - \lvert C \rvert^2 \geq 0$.\\ So, $AB \geq \lvert C \rvert^2$. $\blacksquare$
       \end{myIndent}
    \end{myIndent}}
 
+   \newpage
 
+   We call elements $\mVec{x} = (x_1, x_2, \ldots, x_k) \in \mathbb{R}^k \hspace{0.5em}$ \udefine{vectors} or \udefine{points}. The $x_i$ are the\\ \udefine{coordinates} of $\mVec{x}$. \retTwo
 
+   The \udefine{inner product} or \udefine{dot product} of $\mVec{x}$, $\mVec{y} \in \mathbb{R}^k \hspace{0.4em}$ is: $\hspace{0.4em} {\displaystyle \mVec{x} \cdot \mVec{y} = \sum_{i=1}^k{x_iy_i}}$\retTwo
+
+   The \udefine{norm} of $x \in \mathbb{R}^k$ is $\lvert \mVec{x} \rvert = (\mVec{x} \cdot \mVec{x})^\frac{1}{2}$
+
+   {\begin{myIndent} \hTwo
+      \begin{tabular}{ p{3.5in} p{2.5in}}
+         Proposition \propCount: If $\mVec{x}, \mVec{y}, \mVec{z} \in \mathbb{R}^k$ and $\alpha \in \mathbb{R}$, then:
+         \begin{enumerate}
+            \item $\lvert \mVec{0} \rvert = 0$ and $\lvert \mVec{x} \rvert > 0$ when $\mVec{x} \neq \mVec{0}$.
+            \item $\lvert \alpha \mVec{x} \rvert = \alpha \lvert \mVec{x} \rvert $
+            \item $\lvert \mVec{x} \cdot \mVec{y} \rvert \leq \lvert \mVec{x} \rvert \lvert \mVec{y} \rvert$
+            \item $\lvert \mVec{x} + \mVec{y} \rvert \leq \lvert \mVec{x} \rvert + \lvert \mVec{y} \rvert$
+            \item  $\lvert \mVec{x} - \mVec{z} \rvert \leq \lvert \mVec{x} - \mVec{y} \rvert + \lvert \mVec{y} - \mVec{z} \rvert$
+         \end{enumerate}
+         & \hFour \retTwo
+         The proofs for 1-4. are nearly \newline identical to those for complex \newline numbers so we won't cover them\newline here.\retTwo As for 5, note that\newline $\mVec{x} + (-\mVec{z}) = \mVec{x} - \mVec{y} + \mVec{y} - \mVec{z}$.
+      \end{tabular}
+   \end{myIndent}}
+   \retTwo
+   \mySepOne{Black}
+
+   For sets $X$, $Y$ and a function $f: X\rightarrow Y$, we shall write:
+   \begin{itemize}
+      \item for $A \subseteq X, \hspace{0.5em} f(A) = \{f(a) \mid a\in A\}\quad$
+         {\color{BrickRed} (This is the image of $A$.)}
+      
+      \item for $B \subseteq Y, \hspace{0.5em} f^{-1}(B)=\{x\in X \mid f(x)\in B\} \quad$
+         {\color{BrickRed} (This is the preimage of $A$.)}
+
+      \item for $y \in Y$, we write $f^{-1}(y)$ for $f^{-1}(\{y\})$
+   \end{itemize}
+   \retTwo
+   We say two sets $A$ and $B$ have \udefine{equal cardinality}, denoted $\lvert A \rvert = \lvert B \rvert$ if there is a bijection $f$ from $A$ onto $B$. 
+   
+   \begin{myIndent}
+      \begin{itemize}
+         \item $A$ is \udefine{finite} if it has equal cardinality with $\{1, \ldots, n\}$ for some $n \in \mathbb{Z}^+$ or if $A = \emptyset$.
+         \item $A$ is \udefine{countable} if either $A$ is finite or $A$ has equal cardinality with $\mathbb{Z}^+$.
+         \item $A$ is \udefine{uncountable} if its not countable.
+      \end{itemize} \retTwo
+   \end{myIndent}
+
+   A \udefine{sequence} is a function $f$ having domain $\mathbb{Z}^+$. If $f(n) = x_n \in A$ for each $n$,\\ it is typical to denote $f$ by $(x_n)_{n \in \mathbb{Z}^+}$ \retTwo
+   {\hTwo
+   \begin{myIndent}
+      Proposition \propCount: If $A$ is countable and $E \subseteq A$, then $E$ is countable.
+      {\hThree
+      \begin{myIndent}
+         Proof:\\
+         If $E$ is finite, then $E$ is countable and we're done. So assume $E$ is infinite. Then as $E \subseteq A$, we know $A$ is infinite as well.
+         \newpage
+         Since $A$ is countable, we can enumerate $A$ as $x_1, x_2, x_3, \ldots.$\\ Set $n_1 = \min{\{m\in\mathbb{Z}^+ \mid x_m \in E\}}$. Then, inductively set \\
+         $n_{k+1} = \min{\{m\in\mathbb{Z}^+ \mid m>n_k \text{ and } x_m\in E\}}$. Finally, define\\ $f: \mathbb{Z}^+ \rightarrow E$ by the rule $f(k) = x_{n_k}$. That way $f$ is a bijection.
+      \end{myIndent}} \retTwo
+
+      Proposition \propCount: $\mathbb{Z}^+ \times \mathbb{Z}^+$ is countable.
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Define $g: \mathbb{Z}^+ \times \mathbb{Z}^+ \rightarrow \mathbb{Z}^+$ such that ${\displaystyle g(i, j) = \left(\sum_{k=1}^{i+j-2}k\right) + j}$. \\
+         This is a bijection.
+      \end{myIndent}}
+   \end{myIndent}}
+
+   {\begin{center} \exOne
+      \begin{myClosureOne}{3.5}
+         Here's what the bijection looks like: \\
+         \includegraphics[scale=0.55]{Cartesian_Product_Bijection.png}
+      \end{myClosureOne}
+   \end{center}}
+   \retTwo
+   \markLecture{1/24/2024}
+
+   {\hTwo
+   \begin{myIndent}
+      Proposition \propCount: If $A$ is a countable set, $B$ any set, and $g: A\rightarrow B$ is a surjection, then $B$ is countable.
+   \end{myIndent}}
 \end{document}
