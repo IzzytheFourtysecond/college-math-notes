@@ -611,4 +611,60 @@
    \uuline{Theorem}: Every invertible matrix has a PLU-decomposition.
    \newpage
    \markLecture{1/22/2024}
+
+   A matrix $\mMat{A} \in \mathbb{R}^{n\times n}$ is said to be \udefine{positive definite} if:
+   \begin{enumerate}
+      \item $\mMat{A}^T=\mMat{A} \quad$ ($\mMat{A}$ is symmetric)
+      \item $\mVec{x}^T\mMat{A}\mVec{x} = \langle\mVec{x}, \mMat{A}\mVec{x}\rangle  > 0$ for all vectors $\mVec{x} \in \mathbb{R}^n$ with $\mVec{x} \neq 0$.
+      {\begin{myTindent}\begin{myTindent} \hFour
+         ${\displaystyle \langle \mVec{x}, \mMat{A}\mVec{x} \rangle = \sum_{i=1}^n{\sum_{j=1}^n{x_ia_{i,j}x_j}}}$
+      \end{myTindent}\end{myTindent}}
+   \end{enumerate} \retTwo
+
+   {\hTwo
+   \begin{myIndent}
+      \uuline{Lemma}: If $\mMat{A}$ is positive definite, then $\mMat{A}$ is invertible.
+      {\hThree %Aww this class gonna finally make me be rigorous...
+      \begin{myIndent}
+         Proof: (we proceed towards a contradiction)\retTwo
+         Assume there exists a vector $\mVec{y} \in \mathbb{R}^n$ not equal to $0$ such that $\mMat{A}\mVec{y} = 0$. Then $\langle \mVec{y}, \mMat{A}\mVec{x} \rangle = \langle \mVec{y}, 0 \rangle = 0$. So, $\mMat{A}$ cannot be positive definite.
+      \end{myIndent}}\retTwo
+
+      \uuline{Theorem}: Let $\mMat{M} \in \mathbb{R}^{n\times n}$ be invertible. Then $\mMat{A} = \mMat{M}^T\mMat{M}$ is positive definite.
+
+      {\begin{myIndent} \hThree
+         Proof:
+         \begin{enumerate}
+            \item $\mMat{A}^T = \left(\mMat{M}^T\mMat{M}\right)^T = \mMat{M}^T\left(\mMat{M}^T\right)^T = \mMat{M}^T\mMat{M} = \mMat{A}$.
+            \item Note that {$\mVec{x}^T\mMat{A}\mVec{x} = \mVec{x}^T\mMat{M}^T\mMat{M}\mVec{x} =(\mMat{M}\mVec{x})^T\mMat{M}\mVec{x} = \langle \mMat{M}\mVec{x}, \mMat{M}\mVec{x} \rangle = \lvert \mMat{M}\mVec{x} \rvert$.} Now, $\lvert \mMat{M}\mVec{x} \rvert > 0$ for all $\mMat{M}\mVec{x} \neq 0$. And because $\mMat{M}$ is invertible, we know the only $\mVec{x}$ such that $\mMat{M}\mVec{x} = 0$ is $\mVec{x} = 0$. So, $\mVec{x}^T\mMat{A}\mVec{x} > 0$ for all $\mVec{x} \neq 0$.
+         \end{enumerate} \retTwo
+      \end{myIndent}}
+
+      \uuline{Theorem} (\udefine{Cholesky decomposition}):
+      \begin{myIndent}
+         Let $\mMat{A}$ be positive definite. Then there exists an upper triangular matrix $\mMat{R}$ such that $\mMat{A}=\mMat{R}^T\mMat{R}$.
+         \begin{itemize}
+            \item $\mMat{R}$ is called the \udefine{Cholesky factor}.
+            \item If the diagonal entries of $\mMat{R}$ are positivve, then the Cholesky decomposition is unique.
+         \end{itemize} \retTwo
+         {\hThree
+         \begin{myIndent}
+            \begin{myClosureOne}{4.5}
+               Here's what such a decomposition would like for $\mMat{A} \in \mathbb{R}^{3\times 3}$\\
+               \[
+               \begin{bmatrix}
+                  r_{1,1} & 0 & 0 \\ r_{1,2} & r_{2,2} & 0 \\ r_{1,3} & r_{2,3} & r_{3,3}
+               \end{bmatrix}\begin{bmatrix}
+                  r_{1,1} & r_{1,2} & r_{1,3} \\ 0 & r_{2,2} & r_{2,3} \\ 0 & 0 & r_{3,3}
+               \end{bmatrix} = 
+               \begin{bmatrix}
+                  a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3} \\ a_{3,1} & a_{3,2} & a_{3,3}
+               \end{bmatrix}\]
+            \end{myClosureOne}
+            \newpage
+            Now note that after some playing, we can arrive at the following formula for each element of $\mMat{A} = \mMat{R}^T\mMat{R}$:
+            \[a_{i,j}=\sum_{k=1}^{\min{(i,j)}}{r_{k,i}r_{k,j}}\]
+         \end{myIndent}}
+      \end{myIndent}
+   \end{myIndent}}
 \end{document}
