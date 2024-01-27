@@ -23,6 +23,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
 
 % Just am using this to get a dashed line in a table...
 % Also you apparently want this to be inactive if you aren't
@@ -635,36 +636,74 @@
       {\begin{myIndent} \hThree
          Proof:
          \begin{enumerate}
-            \item $\mMat{A}^T = \left(\mMat{M}^T\mMat{M}\right)^T = \mMat{M}^T\left(\mMat{M}^T\right)^T = \mMat{M}^T\mMat{M} = \mMat{A}$.
+            \item $\mMat{A}^T = \left(\mMat{M}^T\mMat{M}\right)^T = \mMat{M}^T\left(\mMat{M}^T\right)^T = \mMat{M}^T\mMat{M} = \mMat{A}$. So $\mMat{A}$ is symmetric.
             \item Note that {$\mVec{x}^T\mMat{A}\mVec{x} = \mVec{x}^T\mMat{M}^T\mMat{M}\mVec{x} =(\mMat{M}\mVec{x})^T\mMat{M}\mVec{x} = \langle \mMat{M}\mVec{x}, \mMat{M}\mVec{x} \rangle = \lvert \mMat{M}\mVec{x} \rvert$.} Now, $\lvert \mMat{M}\mVec{x} \rvert > 0$ for all $\mMat{M}\mVec{x} \neq 0$. And because $\mMat{M}$ is invertible, we know the only $\mVec{x}$ such that $\mMat{M}\mVec{x} = 0$ is $\mVec{x} = 0$. So, $\mVec{x}^T\mMat{A}\mVec{x} > 0$ for all $\mVec{x} \neq 0$.
+            {\begin{myIndent} \hFour
+               If $\mMat{M}$ is not invertible, then $\mMat{A}$ is positive semidefnite as $\lvert \mMat{M}\mVec{x} \rvert$ cannot be less than $0$ but we can find a nonzero $\mVec{x}$ such that $\lvert \mMat{M}\mVec{x} \rvert = 0$. 
+            \end{myIndent}}
          \end{enumerate} \retTwo
       \end{myIndent}}
 
       \uuline{Theorem} (\udefine{Cholesky decomposition}):
       \begin{myIndent}
-         Let $\mMat{A}$ be positive definite. Then there exists an upper triangular matrix $\mMat{R}$ such that $\mMat{A}=\mMat{R}^T\mMat{R}$.
-         \begin{itemize}
-            \item $\mMat{R}$ is called the \udefine{Cholesky factor}.
-            \item If the diagonal entries of $\mMat{R}$ are positivve, then the Cholesky decomposition is unique.
-         \end{itemize} \retTwo
-         {\hThree
-         \begin{myIndent}
-            \begin{myClosureOne}{4.5}
-               Here's what such a decomposition would like for $\mMat{A} \in \mathbb{R}^{3\times 3}$\\
-               \[
-               \begin{bmatrix}
-                  r_{1,1} & 0 & 0 \\ r_{1,2} & r_{2,2} & 0 \\ r_{1,3} & r_{2,3} & r_{3,3}
-               \end{bmatrix}\begin{bmatrix}
-                  r_{1,1} & r_{1,2} & r_{1,3} \\ 0 & r_{2,2} & r_{2,3} \\ 0 & 0 & r_{3,3}
-               \end{bmatrix} = 
-               \begin{bmatrix}
-                  a_{1,1} & a_{1,2} & a_{1,3} \\ a_{2,1} & a_{2,2} & a_{2,3} \\ a_{3,1} & a_{3,2} & a_{3,3}
-               \end{bmatrix}\]
-            \end{myClosureOne}
-            \newpage
-            Now note that after some playing, we can arrive at the following formula for each element of $\mMat{A} = \mMat{R}^T\mMat{R}$:
-            \[a_{i,j}=\sum_{k=1}^{\min{(i,j)}}{r_{k,i}r_{k,j}}\]
+         Let $\mMat{A}$ be positive definite. Then there exists an upper triangular matrix $\mMat{R}$ such that $\mMat{A}=\mMat{R}^T\mMat{R}$. We call $\mMat{R}$ the \udefine{Cholesky factor} and can calculate it as follows:\retTwo
+   
+         \hThree
+         If such an $\mMat{R}$ exists, then we can arrive at the following formula for each\\ element of $\mMat{A} = \mMat{R}^T\mMat{R}$:
+            \[a_{i,j}=\mathlarger{\mathlarger{\sum}}_{k=1}^{\min{(i,j)}}{r_{k,i}r_{k,j}}\]
+
+         Now as $\mMat{A}$ must be symmetric based on our formula, we can safely ignore the elements of $\mMat{A}$ below the main diagonal. So, assuming that $j \geq i$, we can rearrange terms to get the following equation including the element $a_{i,j}$:
+         \[r_{i,i}r_{i,j} = a_{i,j} - \sum_{k=1}^{i-1}{r_{k,i}r_{k,j}}\]
+
+         \newpage
+         
+         And with that, we now have a way of expressing any element $r_{i,j}$ in terms of \\elements of $\mMat{R}$ which are in previous rows or previous columns of $\mMat{R}$. So, we can inductively solve for the coefficients of $\mMat{R}$ as follows: \retTwo
+         {\begin{myIndent} \hFour
+            for $i = 1, \ldots, n$:\\
+            \begin{myIndent}
+               $r_{i,i} = \sqrt{a_{i,i} - {\displaystyle\sum_{k=1}^{i-1}{r_{k,i}^2}}}$\\
+
+               for $j = (i+1), \ldots, n$:\\
+               \begin{myIndent}
+               $r_{i,j} = \dfrac{1}{r_{i,i}}\left(a_{i,j} - {\displaystyle\sum_{k=1}^{i-1}{r_{k,i}r_{k,j}}}\right)$
+               \end{myIndent}
+               end
+            \end{myIndent}
+            end \\
          \end{myIndent}}
+
+         Now it's worth noting what can go wrong in the above algorithm. 
+         \begin{myIndent}
+            Firstly, if $a_{i,i} - {\displaystyle\sum_{k=1}^{i-1}{r_{k,i}^2}} < 0$, then $r_{i,i} \notin \mathbb{R}$. So, $\mMat{R}$ does not exist \retTwo
+            
+            Secondly, if $r_{i,i} = 0$, then you can't divide by it to isolate $r_{i,j}$. Thus, one of two possibilities will arise:
+            \begin{itemize}
+               \item If $\left(a_{i,j} - {\displaystyle\sum_{k=1}^{i-1}{r_{k,i}r_{k,j}}}\right) = 0$, then you can set $r_{i,j}$ to anything and maintain equality. Thus, if a Cholesky factorization exists, it is not unique. \\
+               \item If $\left(a_{i,j} - {\displaystyle\sum_{k=1}^{i-1}{r_{k,i}r_{k,j}}}\right) \neq 0$, then there is nothing you can set $r_{i,j}$ to. So, no Cholesky factor of $\mMat{A}$ exists.
+            \end{itemize}
+         \end{myIndent}\retTwo
+      
+         Now unfortunately, this class is not interested in proving when and when not each of the above problems will arise. So, for now just know that:
+         \begin{enumerate}
+            \item $\mMat{A}$ is positive definite if and only if $\mMat{R}$ exists and is unique.
+            \item $\mMat{A}$ is positive \uuline{semidefinite} if and only if $\mMat{R}$ exists but is not invertible and thus also not unique.
+            \item $\mMat{A}$ is not positive definite or semidefinite if and only if $\mMat{R}$ does not exist.
+         \end{enumerate}
+         {\begin{myDindent} \hFour
+            The second theorem covered in lecture today let's us easily prove one direction in each of the above implications. So, the challenging task would be to prove the other direction, and to do that you would need to show that for any positive definite or semidefinite matrix $\mMat{A}$, you can always use the above algorithm to find a matrix $\mMat{R}$.
+            \newpage
+            \teachComment
+            It takes approximately $\frac{1}{3}n^3$ flops to do Cholesky decomposition as $n$ gets larger. This is notably half of what LU decomposition takes.
+         \end{myDindent}}
       \end{myIndent}
-   \end{myIndent}}
+   \end{myIndent}} \retTwo
+
+   \markLecture{1/24/2024}
+
+   A \udefine{norm} of a vector $\mVec{x} \in \mathbb{R}^n$ is a real number $\|\mVec{x}\|$ that is assigned to $\mVec{x}$ satisfying:
+   \begin{itemize}
+      \item $\mVec{x} \neq 0 \Longrightarrow \|\mVec{x}\| > 0$ whereas $\| \mVec{0} \| = 0$.
+      \item $\| c\mVec{x} \| = \lvert c \rvert \| \mVec{x} \|$ for all $c \in \mathbb{R}$.
+      \item $\|\mVec{x}+\mVec{y}\| \leq \|\mVec{x}\| + \|\mVec{y}\|$ for all $\mVec{x}, \mVec{y} \in \mathbb{R}^n$
+   \end{itemize}
 \end{document}
