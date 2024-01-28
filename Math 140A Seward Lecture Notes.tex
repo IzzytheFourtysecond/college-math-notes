@@ -28,6 +28,7 @@
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
 \usepackage{xfrac}
+\usepackage{relsize}
 
 % Just am using this to get a dashed line in a table...
 % Also you apparently want this to be inactive if you aren't
@@ -1108,5 +1109,33 @@
    {\hTwo
    \begin{myIndent}
       Proposition \propCount: If $A$ is a countable set, $B$ any set, and $g: A\rightarrow B$ is a surjection, then $B$ is countable.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         If $A$ is finite, then $B = g(A)$ is finite as well. So the proposition is trivially true. Now assume $A$ is infinite. Then since $A$ is countable, there is a bijection\\ $f: \mathbb{Z}^+ \rightarrow A$. Now define $\phi = g \circ f: \mathbb{Z}^+ \rightarrow B$. We know that $\phi$ is a surjection as it is the composition of two surjections. \retTwo
+
+         Let $E \subseteq \mathbb{Z}^+$ be any set that contains precisely one element of $\phi^{-1}(b)$ for each $b\in B$. For instance, we can define $E$ as the set: \[\{n \in \mathbb{Z}^+ \mid \forall m \in \mathbb{Z}^+, \hspace{0.25em} m<n \Rightarrow \phi(m) \neq \phi(n)\}\]
+
+         \newpage
+
+         Now by proposition 8, we know that $E$ is countable as $E$ is a subset of a \\countable set. But additionally we have that $\phi$ acts as a bijection from $E$ to $B$. Therefore, $\lvert E \rvert = \lvert B \rvert$, meaning $B$ is countable. \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: A set $A$ is countable if and only if there exists a surjection from $\mathbb{Z}^+$ onto $A$.
+      {\hThree
+      \begin{myIndent}
+         Proof:\\
+         ($\Longleftarrow$) Since $\mathbb{Z}^+$ is the definition of a countable set, if there is a surjection from $\mathbb{Z}^+$ to $A$, then we have by proposition 10 that $A$ is also countable. \retTwo
+
+         ($\Longrightarrow$) Assume $A$ is countable. If $A$ is finite, then we can number the elements of $A$ as $\{a_1, a_2, \ldots, a_n\}$. So, we may define the surjection $f: \mathbb{Z}^+ \rightarrow A$ with the correspondance rule:
+         \[f(k) = \left\{
+         \begin{matrix}
+            a_k \quad \text{ if } k \leq n \\
+            a_n \quad \text{ if } k > n
+         \end{matrix}\right.\]
+         Meanwhile if $A$ is infinite, then by definition there exists a bijection from $\mathbb{Z}^+$ to $A$. So, no matter if $A$ is infinite or finite, if $A$ is countable, then there exists a bijection from $\mathbb{Z}^+$ to $A$. \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: If $E_n$ is a countable set for each $n\in\mathbb{Z}^+$, then ${\displaystyle \mathlarger{\bigcup}_{\phantom{+}n \in \mathbb{Z}^+}{E_n}}$ is countable.
    \end{myIndent}}
 \end{document}

@@ -705,5 +705,39 @@
       \item $\mVec{x} \neq 0 \Longrightarrow \|\mVec{x}\| > 0$ whereas $\| \mVec{0} \| = 0$.
       \item $\| c\mVec{x} \| = \lvert c \rvert \| \mVec{x} \|$ for all $c \in \mathbb{R}$.
       \item $\|\mVec{x}+\mVec{y}\| \leq \|\mVec{x}\| + \|\mVec{y}\|$ for all $\mVec{x}, \mVec{y} \in \mathbb{R}^n$
-   \end{itemize}
+   \end{itemize} \retTwo
+
+   Some important vector norms:
+   \begin{enumerate}
+      \item \udefine{Vector $p$-norm}: For an integer $p \geq 1$, we define $\|\mVec{x}\|_p = \left({\displaystyle \sum_{i=1}^n{\lvert x_i \rvert^p}}\right)^\frac{1}{p}$
+      
+      \item \udefine{Infinity Norm}: $\|\mVec{x}\|_\infty = \max{\{\lvert x_i\rvert \mid 1\leq i \leq n\}}$
+   \end{enumerate}
+
+   \mySepTwo
+
+   A \udefine{matrix norm} assigns a real value $\|\mMat{A}\|$ to a matrix $\mMat{A}$ satisfying:
+   \begin{itemize}
+      \item $\mMat{A} \neq \mMat{0} \Longrightarrow \|\mMat{A}\| > 0$ whereas $\| \mMat{0} \| = 0$.
+      \item $\| c\mMat{A} \| = \lvert c \rvert \| \mMat{A} \|$ for all $c \in \mathbb{R}$.
+      \item $\|\mMat{A}+\mMat{B}\| \leq \|\mMat{A}\| + \|\mMat{B}\|$ for all $\mMat{A}, \mMat{B} \in \mathbb{R}^{n\times n}$
+   \end{itemize} \retTwo
+
+   Some important matrix norms:
+   \begin{enumerate}
+      \item \udefine{Frobenius Norm}: $\| \mMat{A} \| = \left({\displaystyle\sum_{i,j=1}^n{a_{i,j}^2}}\right)^\frac{1}{2}$
+      {\begin{myTindent} \teachComment
+         Assuming $\mMat{A}$ is an $m\times n$ matrix, this norm is equivalent to stringing out $\mMat{A}$'s rows or columns to form an $mn$ element vector and then taking the $2$-norm of the resulting vector.
+         \[
+         \left\|\begin{bmatrix}
+            a & b & c \\ d & e & f \\ g & h & i
+         \end{bmatrix}\right\| = \left\|(a, b, c, d, e, f, g, h, i)\right\|\]
+      \end{myTindent}}
+      \item \udefine{Matrix $p$-norm}: For an integer $p \geq 1$, we define: \[\|\mMat{A}\|_p = \max{\left\{\frac{\|\mMat{A}\mVec{x}\|_p}{\|\mVec{x}\|_p}\hspace{0.15em} \middle| \hspace{0.15em} \mVec{x} \in \mathbb{R}^n \text{ and } \mVec{x} \neq 0\right\}}\]
+   \end{enumerate}
+   \newpage
+   
+   {\begin{myIndent} \hTwo
+      Basically, a matrix $p$-norm measures the maximum stretch which a linear function $L(\mVec{x}) = \mMat{A}\mVec{x}$ applies to a vector relative to its starting length.
+   \end{myIndent}}
 \end{document}
