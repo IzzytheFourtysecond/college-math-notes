@@ -1121,7 +1121,7 @@
          Now by proposition 8, we know that $E$ is countable as $E$ is a subset of a \\countable set. But additionally we have that $\phi$ acts as a bijection from $E$ to $B$. Therefore, $\lvert E \rvert = \lvert B \rvert$, meaning $B$ is countable. \retTwo
       \end{myIndent}}
 
-      Proposition \propCount: A set $A$ is countable if and only if there exists a surjection from $\mathbb{Z}^+$ onto $A$.
+      Proposition \propCount: A set $A$ is countable if and only if there exists a surjection from\\ $\mathbb{Z}^+$ onto $A$.
       {\hThree
       \begin{myIndent}
          Proof:\\
@@ -1137,5 +1137,41 @@
       \end{myIndent}}
 
       Proposition \propCount: If $E_n$ is a countable set for each $n\in\mathbb{Z}^+$, then ${\displaystyle \mathlarger{\bigcup}_{\phantom{+}n \in \mathbb{Z}^+}{E_n}}$ is countable.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\ For each $n \in \mathbb{Z}^+$, there is a surjection $f_n: \mathbb{Z}^+ \rightarrow E_n$.\\  Define $g: \mathbb{Z}^+ \times \mathbb{Z}^+ \rightarrow {\displaystyle \mathlarger{\bigcup}_{\phantom{+}n \in \mathbb{Z}^+}{E_n}} \hspace{0.1em}$ by $g(n, k) = f_n(k)$. \retTwo Then as $g$ is a surjection and $\mathbb{Z} \times \mathbb{Z}$ is countable by proposition 9, we know by proposition 10 that ${\displaystyle \mathlarger{\bigcup}_{\phantom{+}n \in \mathbb{Z}^+}{E_n}}$ is countable.
+         {\begin{myTindent}\begin{myDindent} \teachComment
+            In other words, the union of countably many \\countable sets is countable. \retTwo
+         \end{myDindent}\end{myTindent}}
+      \end{myIndent}}
+      
+      Proposition \propCount: If $A$ is countable, then for every $n \in \mathbb{Z}^+$, the set $A^n = A \times A \times \ldots \times A$ is countable.
+
+      {\hThree
+      \begin{myIndent}
+         Proof: (we can proceed by induction) \\
+         When $n=1$, then $A^n = A^1 = A$ is obviously countable.\\
+         Now assume the proposition is true for $n-1$, meaning $A^{n-1}$ is countable. Then: $A^n = {\displaystyle \mathlarger{\bigcup}_{a \in A}{\{a\} \times A^{n-1}}}$ is countable by proposition 12.
+      \end{myIndent}}
+      \newpage
+
+      Corollary: $\mathbb{Q}$ is countable.
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Define $f: \mathbb{Q} \rightarrow \mathbb{Z} \times \mathbb{Z}^+$ by setting $f(p) = (n, m)$ where $n, m$ are the unique coprime integers with $m>0$, $\frac{n}{m}=p$. Also define $f(0) = (1, 0)$ Then\\ $f(\mathbb{Q}) \subset \mathbb{Z} \times \mathbb{Z}^+$ and the latter set is countable. So $f(\mathbb{Q})$ is countable. Since $f$ is injective, $f$ is a bijection between $\mathbb{Q}$ and a countable set. Thus $\mathbb{Q}$ is countable. \retTwo
+      \end{myIndent}}
    \end{myIndent}}
+   Given sets $A$ and $B$, we write $A^B$ to denote the set of all functions from $B$ to $A$. \retTwo
+   
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: $\{0, 1\}^{\mathbb{Z}^+}$ is uncountable.
+      \hThree
+      \begin{myIndent}
+         Proof: Let $\{f_1, f_2, \ldots\}$ be any countable subset of $\{0, 1\}^{\mathbb{Z}^+}$. Then define\\ $g \in \{0, 1\}^{\mathbb{Z}^+}$ by the rule $g(n) = 1 - f_n(n)$. Since $g(n) \neq f_n(n)$, we have that $g \neq f_n$. Since this holds for all $n \in \mathbb{Z}^+$, we can thus conclude that $g \notin \{f_1, f_2, \ldots\}$. We thus conclude that any countable subset of $\{0, 1\}^{\mathbb{Z}^+}$ is a proper subset. So $\{0, 1\}^{\mathbb{Z}^+}$ must be uncountable.
+      \end{myIndent} \retTwo
+   \end{myIndent}}
+
+   \markLecture{1/26/2024}
+
+   test
 \end{document}
