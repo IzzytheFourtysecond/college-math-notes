@@ -140,7 +140,7 @@
 }
 
 \newcommand{\pprime}{\prime\prime}
-
+\newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
 \newcommand{\rea}[1]{\mathrm{Re}(#1)}
 \newcommand{\ima}[1]{\mathrm{Im}(#1)}
 
@@ -769,7 +769,7 @@
          \retTwo
       \end{myIndent}}
 
-      Proposition \propCount[0].\subPropCount: If $x, y\in\mathbb{R}$ and $x<y$, then there exists a $p\in\mathbb{Q}$ such that\\ $x<p<y$. In other words, we say that $Q$ is \udefine{dense} in $R$.
+      Proposition \propCount[0].\subPropCount: If $x, y\in\mathbb{R}$ and $x<y$, then there exists a $p\in\mathbb{Q}$ such that\\ $x<p<y$. In other words, we say that $\mathbb{Q}$ is \udefine{dense} in $\mathbb{R}$.
 
       {\begin{myIndent} \hThree
          Proof: Since $x<y$, we have that $0<y-x$. Then because $y-x$ is positive, we can use the archimedean property to say that there exists an integer $n$ such that $n(y-x)>1$. Note for later that this means $ny>1+nx$.
@@ -1173,5 +1173,78 @@
 
    \markLecture{1/26/2024}
 
-   test
+   A \udefine{metric space} is a set $X$ equipped with a function $d: X\times X \longrightarrow \left[0, \infty\right)$ satisfying:
+   \begin{enumerate}
+      \item $\forall p, q \in X \quad p\neq q \Rightarrow d(p, q) > 0$ whereas $p=q \Rightarrow d(p, q) = 0$
+      \item $\forall p, q \in X \quad d(p, q)=d(q, p)$
+      \item $\forall p, q, s \in X \quad d(p, q) \leq d(p, s) + d(s, q)$
+   \end{enumerate} \retTwo
+
+   The function $d$ is called a distance function or \udefine{metric}.
+   {\hTwo
+   \begin{myIndent}
+      Examples:
+      \begin{itemize}
+         \item $\mathbb{R}^k$ is a metric space (we have several metrics to choose from):
+         {\hThree
+         \begin{itemize}
+            \item[\diamond] $d_p(\mVec{x}, \mVec{y}) = \left(\sum{\left| x_i - y_i\right|^p}\right)^\frac{1}{p}$
+            {\begin{myTindent} \teachComment
+               $d_2(\mVec{x}, \mVec{y})=\lvert \mVec{x} - \mVec{y} \rvert$
+            \end{myTindent}}
+            \item[\diamond] $d_\infty(\mVec{x}, \mVec{y}) = \max\limits_{1\leq i \leq k}{\lvert x_i - y_i \rvert}$
+         \end{itemize}}
+
+         \item Any set $X$ is a metric space when equipped with the \udefine{discrete metric}:
+         {\begin{myIndent} \hThree
+            $d(p, q) = \left\{ \begin{matrix} 0 \text{ if } p=q\\ 1 \text{ if } p\neq q \end{matrix} \right.$
+         \end{myIndent}}
+
+         \item The set of all functions from $[0, 1] \rightarrow [0, 1]$ can be equipped with the metric: \hThree
+         \begin{myIndent}
+            $d(f, g) = \sup\limits_{x\in[0, 1]}{\left| f(x)-g(x) \right|}$
+         \end{myIndent} \retTwo
+      \end{itemize}
+   \end{myIndent}}
+
+   \newpage
+   Let $X$ be a metric space. Then for $p \in X$ and $r > 0$, the (open) \udefine{ball} of radius $r$ around $p$ is $B_r(p) = \{q \in X \mid d(p, q)<r\}$. \retTwo
+   
+   {\begin{myIndent} \hTwo
+      $p \in X$ is a \udefine{limit point} of $E \subseteq X$ if there are points in $E \setminus \{p\}$ that are arbitrarily close to $p$. Or in other words, if $p$ is a limit point, then
+   
+      {\centering $\forall r>0, \quad ((B_r(p) \setminus \{p\}) \cap E) \neq \emptyset$.\retTwo \par}
+   
+      The set of limit points of $E \subseteq X$ is denoted $E^\prime$.
+      \begin{itemize}
+         \item $E$ is \udefine{closed} if $E^\prime \subseteq E$.
+         \item $E$ is \udefine{perfect} if $E = E^\prime$.
+         \item We say $E$ is \udefine{dense} in $X$ if $E \cup E^\prime = X$
+      \end{itemize} \retTwo \retTwo
+   
+      $p \in X$ is an \udefine{interior point} of $E \subseteq X$ if $\exists r > 0 \suchthat B_r(p) \subseteq E$. \retTwo
+   
+      The set of interior points of $E$ is denoted $E^\circ$.
+      \begin{itemize}
+         \item $E$ is \udefine{open} if $E^\circ = E$.
+         \item $E$ is a \udefine{neighborhood} of $p$ if $p \in E^\circ$.
+      \end{itemize} \retTwo \retTwo
+   
+      The \udefine{complement} of $E$ is $E^C = X \setminus E$. \\
+      $E$ is \udefine{bounded} if there is a point $p \in X$ and $R > 0$ with $E \subseteq B_R(p)$. \\
+      If $p \in E$, we say $p$ is an \udefine{isolated} point of $E$ if $\exists r>0 \suchthat B_r(p)\cap E = \{p\}$.
+   \end{myIndent}}
+
+   \mySepTwo
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: If $X$ is a metric space, $p \in X$, and $r > 0$, then $B_r(p)$ is open.
+      {\hThree
+      \begin{myIndent}
+         Proof:\\
+         Consider a point $q \in B_r(p)$. We claim that $B_{(r-d(p, q))}(q) \subseteq B_r(p)$.\\ To prove this consider that for $z \in B_{(r-d(p, q))}(q)$, we have that\\ $d(p, z) \leq d(p, q) + d(q, z) < d(p, q) + (r - d(p, q)) = r$. Thus, $z \in B_r(p)$. And, since we can do this for any $z \in B_{(r-d(p, q))}(q)$, we know that\\ $B_{(r-d(p, q))}(q) \subseteq B_r(p)$. Therefore $q$ is an interior point of $B_r(p)$. And, since we can say this for any $q \in B_r(p)$, we thus conclude that $B_r(p)$ consists of interior points. So $B_r(p)$ is open.
+      \end{myIndent}}
+   \end{myIndent}}
+   \newpage
+   \markLecture{1/29/2024}
 \end{document}
