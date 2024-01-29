@@ -147,7 +147,7 @@
 % Hopefully this will be good enough
 \NewOverArrowCommand{myVector}{%
    start = {{\smallermathstyle\relbar}},
-   middle = {{\smallermathstyle\relbareda}},
+   middle = {{\smallermathstyle\relbar}},
    end={{\rightharpoonup}}, space before arrow=0.15em,
    space after arrow=-0.045em,
 }
@@ -733,11 +733,163 @@
             a & b & c \\ d & e & f \\ g & h & i
          \end{bmatrix}\right\| = \left\|(a, b, c, d, e, f, g, h, i)\right\|\]
       \end{myTindent}}
-      \item \udefine{Matrix $p$-norm}: For an integer $p \geq 1$, we define: \[\|\mMat{A}\|_p = \max{\left\{\frac{\|\mMat{A}\mVec{x}\|_p}{\|\mVec{x}\|_p}\hspace{0.15em} \middle| \hspace{0.15em} \mVec{x} \in \mathbb{R}^n \text{ and } \mVec{x} \neq 0\right\}}\]
+      \item \udefine{Induced Norm}: Let $\|\cdot\|$ be a vector norm on $\mathbb{R}^m$ and $\mathbb{R}^n$. Then the matrix norm induced by $\|\cdot \|$ is:  \[\|\mMat{A}\| = \max\limits_{\mVec{x} \neq 0}{\frac{\|\mMat{A}\mVec{x}\|}{\|\mVec{x}\|}}\]
    \end{enumerate}
    \newpage
    
    {\begin{myIndent} \hTwo
-      Basically, a matrix $p$-norm measures the maximum stretch which a linear function $L(\mVec{x}) = \mMat{A}\mVec{x}$ applies to a vector relative to its starting length.
+      The induced norm can be thought of as measuring the maximum stretch which a linear function $L(\mVec{x}) = \mMat{A}\mVec{x}$ applies to $\mVec{x}$ relative to $\mVec{x}$'s starting length. \retTwo
+
+      Importantly by the properties of a norm:
+      \[\frac{\|\mMat{A}\mVec{x}\|}{\|\mVec{x}\|} = \left\|\frac{1}{\|\mVec{x}\|}\mMat{A}\mVec{x}\right\| = \left\|\mMat{A}\frac{\mVec{x}}{\|\mVec{x}\|}\right\| = \left\|\mMat{A}\hat{x}\right\|\]
+      Thus, it's also common to see induced norms defined as: $\|\mMat{A}\| = \max\limits_{\|\mVec{x}\| = 1}{\|\mMat{A}\mVec{x}\|}$
+      \retTwo
+
+      Some important formulas: (let $\mMat{A}$ be an $m \times n$ matrix)
+      \begin{itemize}
+         \item $\|\mMat{A}\|_1 = \max\limits_{1\leq j \leq n}{{\displaystyle \sum_{k=1}^m{\lvert a_{k,j} \rvert}}}$ \retTwo
+         
+         {\begin{myIndent} \hFour
+            To prove this, first note that: \[\|\mMat{A}\mVec{x}\|_1 = \sum_{i=1}^m{\left|\sum_{j=1}^n{a_{i,j}x_j}\right|} \leq \sum_{i=1}^m{\sum_{j=1}^n{\left|a_{i,j}\right|\left|x_j\right|}} = \sum_{j=1}^n{\left(\left|x_j\right|\sum_{i=1}^m{\left|a_{i,j}\right|}\right)}\]
+            Now lets replace each $a_{i,j}$ with the max element $a_{i,k}$ in the $i$th row. Thus: \[\sum_{j=1}^n{\left(\left|x_j\right|\sum_{i=1}^m{\left|a_{i,j}\right|}\right)} \leq \sum_{j=1}^n{\left(\left|x_j\right|\max\limits_{1\leq k \leq m}{
+            \sum_{i=1}^m{\left|a_{i,k}\right|}}\right)}\]
+            And now we can seperate the summands to get that: \[\|\mMat{A}\mVec{x}\|_1 \leq \|\mVec{x}\|_1\max\limits_{1\leq k \leq m}{\left(\sum_{i=1}^m{\left|a_{i,k}\right|}\right)}\]
+            Now $\|\mMat{A}\|_1$ is the max value of $\|\mMat{A}\mVec{x}\|_1$ when $\|\mVec{x}\|_1 = 1$. So clearly: \[\|\mMat{A}\|_1 \leq{\displaystyle\max\limits_{1\leq k \leq m}{\left(\sum_{i=1}^m{\left|a_{i,k}\right|}\right)}}\]
+            Finally, to show equality note that the $k$th. standard unit basis vector $e_k$ satisfies both that $\|e_k\|_1 = 1$ and that:
+            \[\|\mMat{A}e_k\| = \max\limits_{1\leq k \leq m}{\left(\sum_{i=1}^m{\left|a_{i,k}\right|}\right)}\]. \retTwo
+         \end{myIndent}}
+
+         \item $\|\mMat{A}\|_\infty = \max\limits_{1\leq i \leq m}{{\displaystyle \sum_{k=1}^n{\lvert a_{i,k} \rvert}}}$ \retTwo
+         
+         {\begin{myIndent} \hFour
+            This one is more obvious. The $\mVec{x}$ which maximizes $\|\mMat{A}\mVec{x}\|_\infty$ while $\|\mVec{x}\|_\infty = 1$ is the vector whose elemnts are $1$ and $-1$ such that the $k$th element of $\mVec{x}$ has the same sign as the $k$th element of the row of $\mMat{A}$ whose elements have the largest sum of absolute values.
+         \end{myIndent}}
+         \newpage
+
+         \item $\| \mMat{A} \|_2 = \sqrt{\lambda_{\max}(\mMat{A}^T\mMat{A})}$
+         {\begin{myTindent}\begin{myIndent} \teachComment
+            ($\lambda_{\max}(\mMat{M})$ refers to the largest eigenvalue of $\mMat{M}$.)
+         \end{myIndent}\end{myTindent}}
+         {\begin{myIndent} \hFour
+            Neither the lecture notes or the author of our textbook Börgers at this point gives a proof of this. However, at the very least we know from the proposition on page 8 that $\mMat{A}^T\mMat{A}$ is positive definite or positive semidefinite. So, all of its eigenvalues are greater than or equal to zero, meaning that our distance \\formula will always give a real value. \retTwo
+         \end{myIndent}}
+      \end{itemize}
    \end{myIndent}}
+   
+   \markLecture{1/26/2024}
+
+   Here is proof that induced norms are matrix norms. \hTwo
+   \begin{enumerate}
+      \item Positivity:
+      {\begin{myIndent} \hThree
+         If $\|\mMat{A}\| = 0$, then $\|\mMat{A}\mVec{x}\| = 0$ for all nonzero $\mVec{x}$. This means that $\mMat{A}\mVec{x} = \mVec{0}$ for all nonzero $\mVec{x}$. However, note that $\mMat{A}e_k$ equals the $k$th column of $\mMat{A}$. So, all columns of $\mMat{A}$ must be zero. Hence, $\|\mMat{A}\| = 0 \Longrightarrow \mMat{A} = \mMat{0}$
+      \end{myIndent}}
+
+      \item Multiplication by a constant:
+      {\begin{myIndent} \hThree
+         $\|c\mMat{A}\| = \max\limits_{\mVec{x} \neq 0}{\dfrac{\|c\mMat{A}\mVec{x}\|}{\|\mVec{x}\|}} = \max\limits_{\mVec{x} \neq 0}{\dfrac{\left|c\right|\|\mMat{A}\mVec{x}\|}{\|\mVec{x}\|}} = \left|c\right|\left(\max\limits_{\mVec{x} \neq 0}{\dfrac{\|\mMat{A}\mVec{x}\|}{\|\mVec{x}\|}}\right) = \left|c\right|\|\mMat{A}\|$
+      \end{myIndent}}
+
+      \item Triangle inequality:
+      {\begin{myIndent} \hThree
+         {\center $\|\mMat{A}+\mMat{B}\| = \max\limits_{\mVec{x} \neq 0}{\dfrac{\|(\mMat{A}+\mMat{B})\mVec{x}\|}{\|\mVec{x}\|}} = \max\limits_{\mVec{x} \neq 0}{\dfrac{\|\mMat{A}\mVec{x} + \mMat{B}\mVec{x}\|}{\|\mVec{x}\|}}$ \par} Now, by the triangle inequality of the vector norm, we have that:\\
+         {\center $\dfrac{\|\mMat{A}\mVec{x} + \mMat{B}\mVec{x}\|}{\|\mVec{x}\|} \leq \dfrac{\|\mMat{A}\mVec{x}\| + \|\mMat{B}\mVec{x}\|}{\|\mVec{x}\|} = \dfrac{\|\mMat{A}\mVec{x}\|}{\|\mVec{x}\|} + \dfrac{\|\mMat{B}\mVec{x}\|}{\|\mVec{x}\|}$ \par} So, $\|\mMat{A}+\mMat{B}\| \leq \|\mMat{A}\| + \|\mMat{B}\|$.
+      \end{myIndent}}
+   \end{enumerate}
+
+   \hOne
+   Here are two more properties of induced norms:
+   {\hTwo
+   \begin{enumerate}
+      \item[4.] $\|\mMat{A}\mMat{B}\| \leq \|\mMat{A}\|\|\mMat{B}\| \quad \quad$ {\teachComment This is called \uuline{submultiplicativity}.}
+      {\begin{myIndent} \hThree
+         $\|\mMat{A}\mMat{B}\| = \max\limits_{\mVec{x} \neq 0}{\dfrac{\|(\mMat{A}\mMat{B})\mVec{x}\|}{\|\mVec{x}\|}} = \max\limits_{\mVec{x} \neq 0}{\left(\dfrac{\|\mMat{A}\mMat{B}\mVec{x}\|}{\|\mMat{B}\mVec{x}\|}\dfrac{\|\mMat{B}\mVec{x}\|}{\|\mVec{x}\|}\right)}$ if $\mMat{B}\mVec{x} \neq 0$. \retTwo
+         Now this is obviously less than or equal to $\max\limits_{\mMat{B}\mVec{x} \neq 0}\left({\dfrac{\|\mMat{A}\mMat{B}\mVec{x}\|}{\|\mMat{B}\mVec{x}\|}}\right)\max\limits_{\mVec{x} \neq 0}\left({\dfrac{\|\mMat{B}\mVec{x}\|}{\|\mVec{x}\|}}\right)$ \retTwo
+         Finally defining $\mVec{y} = \mMat{B}\mVec{x}$, we get that:
+         \[\|\mMat{A}\mMat{B}\| \leq \max\limits_{\mVec{y} \neq 0}\left({\dfrac{\|\mMat{A}\mVec{y}\|}{\|\mVec{y}\|}}\right)\max\limits_{\mVec{x} \neq 0}\left({\dfrac{\|\mMat{B}\mVec{x}\|}{\|\mVec{x}\|}}\right) = \|\mMat{A}\|\|\mMat{B}\|\]
+      \end{myIndent}}
+      \newpage
+      \item[5.] $\|\mMat{A}\mVec{x}\| \leq \|\mMat{A}\|\|\mVec{x}\|$ for all $\mVec{x} \in \mathbb{R}^n$.
+      {\begin{myIndent} \hThree
+         To explain this, remember that $\|\mMat{A}\|$ is the maximum value that $\frac{\|\mMat{A}\mVec{x}\|}{\|\mVec{x}\|}$ could be.
+      \end{myIndent}}
+   \end{enumerate}}
+
+   \mySepTwo
+
+   {\fontsize{18}{18}\selectfont \uuline{Sensitivity of $\mMat{A}\mVec{x}=\mVec{b}$ with respect to perturbation}}
+   \retTwo
+
+   Due to rounding errors and limited precision, we know that $\mVec{b}$ and $\mMat{A}$ will \\typically not be perfectly accurate when doing calculations. We refer to introducing this inaccuracy as perturbing $\mVec{b}$ and $\mMat{A}$. Now as seen in the demonstration below, this will effect the accuracy of our calculations. So, it would be nice to be able to predict and quantify that loss in accuracy.\retTwo
+
+   {\center \exOne
+   \begin{myClosureOne}{5.5}
+      Demonstration of perturbing $\mVec{b}$: \\
+      \begin{myIndent} \exTwo
+         $
+         \begin{bmatrix}
+            1 & 1 \\ 0 & 1
+         \end{bmatrix}
+         \begin{bmatrix}
+            x_1 \\ x_2
+         \end{bmatrix} = 
+         \begin{bmatrix}
+            2 \\ 0
+         \end{bmatrix}$ gives a solution of $\mVec{x} = 
+         \begin{bmatrix}
+            2 \\ 0
+         \end{bmatrix}$. Meanwhile, \newline \newline
+            $
+            \begin{bmatrix}
+               1 & 1 \\ 0 & 1
+            \end{bmatrix}
+            \begin{bmatrix}
+               x_1 \\ x_2
+            \end{bmatrix} = 
+            \begin{bmatrix}
+               2 \\ 0.001
+            \end{bmatrix}$ gives a solution of $\mVec{x}^\prime = 
+            \begin{bmatrix}
+               1.999 \\ 0.001
+            \end{bmatrix}$. \retTwo
+
+            The error in $\mVec{b}$ is $\|\mVec{b} - \mVec{b}^\prime\|_2 = 0.001$, whereas the \newline corresponding error in $\mVec{x}$ is $\|\mVec{x} - \mVec{x}^\prime\|_2 = \sqrt{2}(0.001) \approx 0.0014$
+      \end{myIndent}
+   \end{myClosureOne}
+   \par} \retTwo
+
+   For now, let's address perturbing $\mVec{b}$\dots
+   {\hTwo\begin{myIndent}
+      Assume $\mMat{A}$ is an invertible matrix.\\
+      Formally, we shall write:
+         
+         \begin{myIndent} $
+            \begin{matrix}
+               \text{\color{BrickRed}Original equation: } & \mMat{A}\mVec{x} = \mVec{b} \\
+               \text{\color{BrickRed}New equation: } & \mMat{A}\mVec{x}^\prime = \mVec{b}^\prime
+            \end{matrix}\quad \quad$ {\hFour where $\mVec{b}^\prime = \mVec{b} + \mVec{\delta b}$ and $\mVec{x}^\prime = \mVec{x} + \mVec{\delta x}$}
+         \end{myIndent}
+      
+      Then for any vector norm and induced matrix norm: $\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}\|} \leq \|\mMat{A}\|\|\mMat{A}^{-1}\|\dfrac{\|\mVec{\delta b}\|}{\|\mVec{b}\|}$.\retTwo
+
+      {\begin{myIndent} \hThree
+         Proof: \\
+         Firstly, $\mMat{A}\mVec{x}^\prime = \mVec{b}^\prime \Longrightarrow \mMat{A}\mVec{x} + \mMat{A}\mVec{\delta x} = \mVec{b} + \mVec{\delta b}$. Now since $\mMat{A}\mVec{x} = \mVec{b}$, it must be the case that $\mMat{A}\mVec{\delta x} = \mVec{\delta b}$. So, $\mVec{\delta x} = \mMat{A}^{-1}\mVec{\delta b}$. From this, we now get that for any vector norm and corresponding induced matrix norm, we have that\\ $\|\mVec{\delta x}\| = \|\mMat{A}^{-1}\mVec{\delta b}\| \leq \|\mMat{A}^{-1}\|\|\mVec{\delta b}\|$.
+         \newpage
+         Secondly, using the same norms as before, we have that:\\ $\mVec{b} = \mMat{A}\mVec{x} \Longrightarrow \|\mVec{b}\| = \|\mMat{A}\mVec{x}\| \leq \|\mMat{A}\|\|\mVec{x}\|$. Thus dividing both sides by\\ $\|\mVec{b}\|\|\mVec{x}\|$, we get that:
+         \[\frac{1}{\|\mVec{x}\|} \leq \|\mMat{A}\|\frac{1}{\|\mVec{b}\|}\]
+         \retTwo
+         Thus in conclusion: $\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}\|} \leq \|\mMat{A}\|\|\mMat{A^{-1}}\|\dfrac{\|\mVec{\delta b}\|}{\|\mVec{b}\|}$
+      \end{myIndent}} \retTwo
+
+      We call $K(\mMat{A}) = \|\mMat{A}\|\|\mMat{A^{-1}}\|$ the \udefine{condition number} of $\mMat{A}$ under some induced norm (indicated as a subscript to $K$). Clearly, it is useful as it gives us an upper bound to the relative error of our solution $\mVec{x}$ given the relative error in $\mVec{b}$.
+      
+      \begin{itemize}
+         \item If $K(\mMat{A})$ is small (close to $1$), then $\mMat{A}$ is called \udefine{well conditioned}.
+         \item If $K(\mMat{A})$ is large, then $\mMat{A}$ is called \udefine{ill conditioned}.
+      \end{itemize}
+   \end{myIndent}}
+
+
+
 \end{document}
