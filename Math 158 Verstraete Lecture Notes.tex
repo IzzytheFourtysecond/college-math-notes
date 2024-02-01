@@ -1453,9 +1453,59 @@ A \udefine{perfect matching} (or $1$-factor) is a matching which saturates all t
 
 \newpage
 
-One application of Hall's Theorem is the "systems of distinct representatives"
+One application of Hall's Theorem is the "systems of distinct representatives"\\ problem.
+
+{\begin{myIndent} \exOne
+   Let $S_1$, $S_2$, \dots, $S_n$ be committees and let $s_i \in S_j$ refer to some person in the $j$th committee. Then, is it possible to select a representative $s_i$ in each committee $S_j$ so that each $s_i$ is distinct? \retTwo
+
+   \exTwo To answer this, note that we can represent the above situation as a bipartite graph where vertex set $A$ contains people and vertex set $B$ contains committees. Then for a person $a \in A$ and committee $b \in B$, we add the edge $\{a, b\}$ if person $a$ is in committee $b$.
+   {\center\raisebox{0em}{\tikz[scale=0.5,inner sep=5pt]{
+      \tikzstyle{com}=[rectangle, fill];
+      \tikzstyle{people}=[circle, fill];
+      \tikzstyle{e}=[very thick, color=VioletRed];
+      %\tikzstyle{myHL}=[color=Orange, line width=8pt, opacity=0.25];
+
+      \node (name1) at (0, 3) {{\color{BrickRed} Committees:}};
+      \node (name2) at (0, 0) {{\color{MidnightBlue} People:}};
+
+      \draw[color=BrickRed] (-3, 3) arc (180:540:8.3 and 1.3);
+      \node[com] (c1) at (4, 3) {};
+      \node[com] (c2) at (6, 3) {};
+      \node[com] (c3) at (8, 3) {};
+      \node[com] (c4) at (10, 3) {};
+      \node[com] (c5) at (12, 3) {};
+
+      \draw[color=MidnightBlue] (-3, 0) arc (180:540:8.3 and 1.3);
+      \node[people] (p1) at (4.1, 0) {} edge[e] (c1) edge[e] (c2) edge[e] (c3);
+      \node[people] (p2) at (6.1, 0) {} edge[e] (c2) edge[e] (c3) edge[e] (c4);
+      \node[people] (p3) at (8.1, 0) {} edge[e] (c3) edge[e] (c4) edge[e] (c5);
+      \node[people] (p4) at (10.1, 0) {} edge[e] (c4) edge[e] (c5) edge[e] (c1);
+      \node[people] (p5) at (12.1, 0) {} edge[e] (c5) edge[e] (c1) edge[e] (c2);
+   }}\par}
+
+   \uuline{Theorem}: Committees $S_1$, $S_2$, \dots, $S_n$ have a system of distinct representatives if and only if for all $X \subseteq \{1, 2, \ldots, n\}$: \[\left| \bigcup_{i\in X}{S_i} \right| \geq \left| X \right|\]
+\end{myIndent}}
+
+\mySepTwo
+
+A \udefine{$1$-factorization} of a graph is a collection of pairwise edge-disjoint $1$-factors\\ $M_1$, $M_2$, \dots, $M_r$ such that $E(G) = M_1 \cup M_2 \cup \ldots \cup M_r$. \retTwo
+{\hTwo
+\begin{myIndent}
+   \uuline{Theorem}: Every $r$-regular bipartite graph has a $1$-factorization if $r \geq 1$.
+   
+   {\hThree\begin{myIndent}
+      Proof:\\
+      Let $X \subseteq A$. Then the number of edges going out from $X$ to $B$, written as $e(X, B)$, is equal to $r\left|X\right|$. Meanwhile, the number of edges going from $N(X)$ back to $A$ is equal to $e(N(X), A) = r\left|N(X)\right|$. \retTwo
+
+      Now note that every edge counted in $e(X, B)$ is also counted in $e(N(X), A)$. Therefore, $r\left|X\right| = e(X, B) \leq e(N(X), A) = r\left|N(X)\right|$. And finally as $r>0$, we have that $\left| X \right| \leq \left| N(X) \right|$. Thus Hall's condition is satisfied. \retTwo
+
+      Because Hall's condition is satisfied, we know by Hall's theorem that there is a matching $M_1$ saturating $A$. Additionally, because the total number of edges in the graph is equal to $e(A, B) = r\left|A\right| = r\left|B\right|$, we know that $\left|A\right| = \left|B\right|$. So the matching we found that saturates $A$ also saturates $B$. \retTwo
+   
+      Now, that we've a found a $1$-factor $M_1$, let's now subtract $M_1$ from our\\ bipartite graph. Then, the resulting subgraph is $(r-1)$ regular. So, we can apply the above reasoning again and again to get more $1$-factors. And\\ importantly, all of these $1$-factors must be disjoint.
+      \retTwo After $r$ iterations, our bipartite graph will have no edges left and we will have created a collection of $r$ many $1$-factors whose union is the original edge\\ set. $\blacksquare$ \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\markLecture{2/1/2024}
 
 \end{document}
-
-
-In particular, if $\lvert A \rvert = \lvert B \rvert$, then $G$ has a perfect matching.
