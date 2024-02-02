@@ -870,7 +870,7 @@
             \end{matrix}\quad \quad$ {\hFour where $\mVec{b}^\prime = \mVec{b} + \mVec{\delta b}$ and $\mVec{x}^\prime = \mVec{x} + \mVec{\delta x}$}
          \end{myIndent}
       
-      Then for any vector norm and induced matrix norm: $\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}\|} \leq \|\mMat{A}\|\|\mMat{A}^{-1}\|\dfrac{\|\mVec{\delta b}\|}{\|\mVec{b}\|}$.\retTwo
+      Then for any vector norm and its induced matrix norm: $\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}\|} \leq \|\mMat{A}\|\|\mMat{A}^{-1}\|\dfrac{\|\mVec{\delta b}\|}{\|\mVec{b}\|}$.\retTwo
 
       {\begin{myIndent} \hThree
          Proof: \\
@@ -886,10 +886,36 @@
       
       \begin{itemize}
          \item If $K(\mMat{A})$ is small (close to $1$), then $\mMat{A}$ is called \udefine{well conditioned}.
-         \item If $K(\mMat{A})$ is large, then $\mMat{A}$ is called \udefine{ill conditioned}.
+         \item If $K(\mMat{A})$ is large, then $\mMat{A}$ is called \udefine{ill conditioned}. \retTwo
       \end{itemize}
    \end{myIndent}}
 
+   \markLecture{1/29/2024}
 
+   Now let's consider perturbing $\mMat{A}$. As before, we shall assume that $\mMat{A}$ is invertible.
+   {\begin{myIndent} \hTwo
+      Formally, we shall write:
+      \begin{myIndent} $
+         \begin{matrix}
+            \text{\color{BrickRed}Original equation: } & \mMat{A}\mVec{x} = \mVec{b} \\
+            \text{\color{BrickRed}New equation: } & \mMat{A}^\prime\mVec{x}^\prime = \mVec{b}
+         \end{matrix}\quad \quad$ {\hFour where $\mMat{A}^\prime = \mMat{A} + \mMat{\delta A}$ and $\mVec{x}^\prime = \mVec{x} + \mVec{\delta x}$}
+      \end{myIndent}
 
+      Then for any vector norm and its induced matrix norm: $\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq K(A)\dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|}$.\retTwo
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         We can rewrite $\mMat{A}^\prime\mVec{x}^\prime = \mVec{b}$ as $\mMat{A}\mVec{x} + \mMat{A}\mVec{\delta x} + \mMat{\delta A}(\mVec{x} + \mVec{\delta x}) = \mVec{b}$. Then, by canceling out $\mVec{b}$ and $\mMat{A}\mVec{x}$, we get the formula: $\mMat{A}\mVec{\delta x} + \mMat{\delta A}\mVec{x}^\prime = 0$. And, further rearranging of this yields:
+
+         {\centering $\mVec{\delta x} = -\mMat{A}^{-1}(\mMat{\delta A})\mVec{x}^\prime$ \retTwo \par}
+
+         So by the submultiplicativity property of matrix norms:
+
+         {\centering $\|\mVec{\delta x}\| = \|\mMat{A}^{-1}(\mMat{\delta A})\mVec{x}^\prime\| \leq \|\mMat{A}^{-1}\|\|(\mMat{\delta A})\mVec{x}^\prime\| \leq \|\mMat{A}^{-1}\|\|(\mMat{\delta A})\|\|\mVec{x}^\prime\|$ \retTwo \par}
+
+         Dividing both sides by our above ineqality by $\|\mVec{x}^\prime\|$ and multiplying the greater side by $1 = \frac{\|\mMat{A}\|}{\|\mMat{A}\|}$, we finally get that:
+         \[\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq \|\mMat{A}^{-1}\|\|\mMat{A}\|\dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|} =  K(A)\dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|}\]
+      \end{myIndent}}
+   \end{myIndent}}
 \end{document}
