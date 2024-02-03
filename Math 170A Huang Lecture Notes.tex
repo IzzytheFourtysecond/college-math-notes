@@ -918,4 +918,51 @@
          \[\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq \|\mMat{A}^{-1}\|\|\mMat{A}\|\dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|} =  K(A)\dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|}\]
       \end{myIndent}}
    \end{myIndent}}
+
+   \newpage
+
+   Finally, let's consider perturbing $\mMat{A}$ and $\mVec{b}$. Once again, we will assume $\mMat{A}^{-1}$ exists.
+   {\begin{myIndent} \hTwo
+      Formally, we shall write:
+      \begin{myIndent} $
+         \begin{matrix}
+            \text{\color{BrickRed}Original equation: } & \mMat{A}\mVec{x} = \mVec{b} \\
+            \text{\color{BrickRed}New equation: } & \mMat{A}^\prime\mVec{x}^\prime = \mVec{b}^\prime
+         \end{matrix}\quad \quad$ {\hFour $
+         \begin{matrix}
+            \text{where } \mMat{A}^\prime = \mMat{A} + \mMat{\delta A}, \mVec{b}^\prime = \mVec{b} + \mVec{\delta b},\\ \text{ and } \mVec{x}^\prime = \mVec{x} + \mVec{\delta x} 
+         \end{matrix}$
+         \retTwo}
+      \end{myIndent}
+      
+      Then for any vector norm and its induced matrix norm:\\ \[\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq K(A)\left(\dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|} + \dfrac{\|\mVec{\delta b}\|}{\|\mVec{b}^\prime\|} + \dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\mVec{x}\|}\dfrac{\|\mVec{\delta b}\|}{\|\mVec{b}^\prime\|} \right)\].\retTwo
+
+      
+      {\begin{myIndent} \hThree
+         Proof:\retTwo
+         Step 1:\\ $\mMat{A}^\prime \mVec{x}^\prime = \mVec{b}^\prime$ can be rewritten as: $\mMat{A}\mVec{x} + \mMat{A}\mVec{\delta x} + \mMat{\delta A}(\mVec{x} + \mVec{\delta x}) = \mVec{b} + \mVec{\delta b}$. Then as $\mMat{A}\mVec{x} = \mVec{b}$, we cancel those two terms to ge that $\mMat{A}\mVec{\delta x} + \mMat{\delta A}(\mVec{x}^\prime) = \mVec{\delta b}$. And so, a little rearranging yields:
+
+         {\centering $\mVec{\delta x} = \mMat{A}^{-1}\left(\mVec{\delta b} - \mMat{\delta A}\mVec{x}^\prime\right)$ \retTwo \par}
+
+         Next, using properties of the induced matrix norm, we get that:
+
+         {\centering $
+         \begin{matrix}
+            \|\mVec{\delta x}\| = \|\mMat{A}^{-1}\left(\mVec{\delta b} - \mMat{\delta A}\mVec{x}^\prime\right)\| \leq \|\mMat{A}^{-1}\|\|\mVec{\delta b} - \mMat{\delta A}\mVec{x}^\prime\| \\
+
+            \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaa %first try
+            } \leq \|\mMat{A}^{-1}\|\left(\|\mVec{\delta b}\| + \|\mMat{\delta A}\mVec{x}^\prime\|\right) \\
+
+            \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa %second try
+            } \leq \|\mMat{A}^{-1}\|\left(\|\mVec{\delta b}\| + \|\mMat{\delta A}\|\|\mVec{x}^\prime\|\right)
+         \end{matrix}
+         $ \retTwo \par}
+
+         Therefore, by dividing both sides of our inequality by $\|\mVec{x}^\prime\|$ and multiplying the greater side by $1 = \frac{\|\mMat{A}\|}{\|\mMat{A}\|}$, we finally get that:
+         \[\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq K(A)\left(\dfrac{\|\mVec{\delta b}\|}{\|\mMat{A}\|\|\mVec{x}^\prime\|}+  \dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|}\right)\]
+
+         Step 2:
+      \end{myIndent}}
+   \end{myIndent}}
+
 \end{document}

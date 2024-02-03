@@ -143,6 +143,7 @@
 \newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
 \newcommand{\rea}[1]{\mathrm{Re}(#1)}
 \newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
 
 
 \newcounter{PropNumber}
@@ -1230,7 +1231,7 @@
          \item $E$ is a \udefine{neighborhood} of $p$ if $p \in E^\circ$.
       \end{itemize} \retTwo \retTwo
    
-      The \udefine{complement} of $E$ is $E^C = X \setminus E$. \\
+      The \udefine{complement} of $E$ is $E^\comp = X \setminus E$. \\
       $E$ is \udefine{bounded} if there is a point $p \in X$ and $R > 0$ with $E \subseteq B_R(p)$. \\
       If $p \in E$, we say $p$ is an \udefine{isolated} point of $E$ if $\exists r>0 \suchthat B_r(p)\cap E = \{p\}$.
    \end{myIndent}}
@@ -1247,4 +1248,140 @@
    \end{myIndent}}
    \newpage
    \markLecture{1/29/2024}
+
+   Let $X$ be a metric with metric $d$ and let $E \subseteq X$\dots \retTwo
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: If $p \in E^\prime$, then $(B_r(p) \setminus \{p\}) \cap E$ is infinite for every $r > 0$.
+      
+      {\begin{myIndent} \hThree
+         Proof (by contrapositive):\\
+         Let $p \in X$ and suppose $\exists r > 0$ with $(B_r(p) \setminus \{p\}) \cap E$ finite.\\ Then set $t = \min{\{d(p, q) \mid q \in (B_r(p) \setminus \{p\}) \cap E\}}$. That way, we must have that $t>0$.
+         But at the same time, $B_t(p) \setminus \{p\} \cap E$ is empty. Therefore $p \notin E^\prime$. \retTwo
+      \end{myIndent}}
+
+      Corollary: If $E$ is finite, then $E^\prime = \emptyset$. This means that finite sets are always closed. \retTwo
+
+      Propostion \propCount: $E$ is open if and only if $E^\comp$ is closed.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         \begin{tabular}{ r c l }
+            $E^\comp$ is closed & $\Longleftrightarrow$ & $\left(E^\comp\right)^\prime \subseteq E^\comp$ \\
+            & $\Longleftrightarrow$ & $\left(E^C\right)^\prime \cap E = \emptyset$ \\
+            & $\Longleftrightarrow$ & $\forall p \in E, \hspace{0.5em} p \notin \left(E^\comp\right)^\prime$ \\
+            & $\Longleftrightarrow$ & $\forall p \in E, \hspace{0.5em} \exists r > 0 \suchthat (B_r(p) \setminus \{p\}) \cap E^\comp = \emptyset$ \\
+            & $\Longleftrightarrow$ & $\forall p \in E, \hspace{0.5em} \exists r > 0 \suchthat B_r(p) \setminus \{p\} \subseteq E$ \\
+            & $\Longleftrightarrow$ & $\forall p \in E, \hspace{0.5em} \exists r > 0 \suchthat B_r(p) \subseteq E$ \\
+            & $\Longleftrightarrow$ & $\forall p \in E, \hspace{0.5em} p \in E^\circ$\\
+            & $\Longleftrightarrow$ & $E$ is open\\
+         \end{tabular} \retTwo
+      \end{myIndent}}
+
+      Corollary: $E$ is closed if and only if $E^\comp$ is open. \retTwo
+
+      Proposition \propCount: Let $A$ be any set.
+      \begin{enumerate}
+         \item If $u_\alpha \subseteq X$ is an open set for each $\alpha \in A$, then ${\displaystyle \bigcup_{\alpha \in A}{u_\alpha}}$ is open.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\ Let $p \in {\displaystyle \bigcup_{\alpha \in A}{u_\alpha}}$. Pick $\beta \in A$ with $p \in u_\beta$.\\
+            Since $u_\beta$ is open, we know that $\exists r>0 \suchthat B_r(p) \subseteq u_\beta \subseteq {\displaystyle \bigcup_{\alpha \in A}{u_\alpha}}$.\\ So $p$ is an interior point. Hence, we conclude that ${\displaystyle \bigcup_{\alpha \in A}{u_\alpha}}$ is open. \retTwo
+         \end{myIndent}}
+
+         \item If $F_\alpha \subseteq X$ is a closed set for each $\alpha \in A$, then  ${\displaystyle \bigcap_{\alpha \in A}{F_\alpha}}$ is closed.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\ $\left({\displaystyle \bigcap_{\alpha \in A}{F_\alpha}}\right)^\comp = {\displaystyle \bigcup_{\alpha \in A}{\left(F_\alpha\right)^\comp}}$ by De Morgan's laws.
+            \newpage
+            Since each $F_\alpha$ is closed, we know each $\left(F_\alpha\right)^\comp$ is open.\\ So by proposition 18.1, we know that ${\displaystyle \bigcup_{\alpha \in A}{\left(F_\alpha\right)^\comp}}$ is open.\\ Then, by proposition 17, we know that its complement, ${\displaystyle \bigcap_{\alpha \in A}{F_\alpha}}$ is closed. \retTwo
+         \end{myIndent}}
+
+         \item If $u_1, u_2, \ldots, u_n \subseteq X$ are open, then ${\displaystyle \bigcap_{i = 1}^n{u_i}}$ is open.
+         
+
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Let $p \in {\displaystyle \bigcap_{i = 1}^n{u_i}}$. Then $p \in u_i$ for every $i$.\\
+            Since $u_i$ is open, $\exists r_i > 0 \suchthat B_{r_i}(p) \subseteq u_i$. Therefore, set\\ $r = \min{\{r_i \mid 1\leq i \leq n\}}$ so that for all $i$, $B_r(p) \subseteq B_{r_i}(p) \subseteq u_i$.\\
+            Hence, $B_r(p) \subseteq {\displaystyle \bigcap_{i = 1}^n{u_i}}$. We thus conclude that ${\displaystyle \bigcap_{i = 1}^n{u_i}}$ is open. \retTwo
+         \end{myIndent}}
+
+         \item If $F_1, F_2, \ldots, F_n \subseteq X$ are closed, then ${\displaystyle \bigcup_{i = 1}^n{F_i}}$ is closed.
+         
+
+         {\begin{myIndent} \hThree
+            The proof of this follows from proposition 18.3 in the same way that proposition 18.2 follows from proposition 18.1. \retTwo
+         \end{myIndent}}
+      \end{enumerate}
+   \end{myIndent}}
+
+   \markLecture{2/2/2024}
+
+   Given a metric space $X$, the \udefine{closure} of $E \subseteq X$ is $\overbar*{E}\coloneq E \cup E^\prime$. \retTwo
+
+   {\begin{myIndent} \hTwo
+      \resetSubPropCount
+      Proposition \propCount.\subPropCount: $\overbar{E}$ is closed.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $p \in (\myBar{E})^\comp$. Thus, $p \notin E^\prime$, meaning that we can fix $r>0$ so that\\ $(B_r(p) \setminus \{p\}) \cap E = \emptyset$. Additionally, since $p \notin E$, we have that $B_r(p) \cap E = \emptyset$. \retTwo
+
+         Now consider any $q \in B_r(p)$. Setting $t = r - d(p, q)$, we have that\\ $B_t(q) \subseteq B_r(p)$. Therefore, since $B_r(p) \cap E = \emptyset$, we know $B_t(q) \cap E = \emptyset$. This tells us that $q \notin E^\prime$. Hence, $B_r(p) \cap E^\prime = \emptyset$.
+         \retTwo
+
+         We've now shown that $B_r(p) \cap E = \emptyset$ and that $B_r(p) \cap E^\prime = \emptyset$.\\ Therefore, $B_r(p) \cap (E \cup E^\prime) = B_r(p) \cap \myBar{E} = \emptyset$, meaning that $B_r(p) \subseteq (\myBar{E})^\comp$. So $(\myBar{E})^\comp$ is open, meaning that $\myBar{E}$ is closed.
+      \end{myIndent}}
+
+      \newpage
+
+      Proposition \propCount[0].\subPropCount: $E = \overbar{E}$ if and only if $E$ is closed.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         ($\Longrightarrow$) If $\overbar{E}$ is closed by proposition 19.1. So $E = \overbar{E}$ implies $E$ is closed.\\
+         ($\Longleftarrow$) If $E$ is closed, then $E^\prime \subseteq E$. Hence, $\overbar{E} = E \cup E^\prime = E$ \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount[0].\subPropCount: If $F$ is closed and $F \supseteq E$, then $F \supseteq \overbar{E}$.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Observe that if $F$ is any set and $E \subseteq F$, then $E^\prime \subseteq F^\prime$. Thus, if $F$ is also closed, we have that $E^\prime \subseteq F^\prime \subseteq F$. Therefore, $F = F \cup F^\prime \supseteq E \cup E^\prime = \myBar{E}$.
+         \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   Note that in this class, unless it is mentioned other wise, you can assume that we are equipping $\mathbb{R}$ or $\mathbb{R}^k$ with the \udefine{Euclidean} metric: $d_2$.
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: If $E \subseteq \mathbb{R}$ is nonempty and bounded above, then $\sup{E} \in \overbar{E}$.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Set $y = \sup{E}$. If $y \in E$, then we are done. So assume $y \notin E$.\\
+         Consider any $r > 0$. Since $y - r < y = \sup{E}$, we know $y-r$ is not an upperbound to $E$. Hence, there is $e \in E$ with $y-r<e<y$. Therefore, $(B_r(y) \setminus \{y\}) \cap E \neq \emptyset$. We therefore conclude $y \in E^\prime \subseteq \myBar{E}$. \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   Note that if $X$ is a metric space with metric $d$ and $Y \subseteq X$, then $Y$ is also a metric space with $d$ when $d$ is restricted to $Y$. \retTwo
+   $E \subseteq Y \subseteq X$ is \udefine{open/closed/etc. relative to $Y$} if $E$ is open/closed/etc. in the metric space $Y$. \retTwo
+
+   {\begin{myIndent} \hTwo
+      If $Y \subseteq X$ and $B_r(p)$ denotes the ball of radius $r$ around $p \in Y$ in the metric space $X$, then the ball of radius $r$ around $p$ in the metric space $Y$ is $B_r(p) \cap Y$. \retTwo
+
+      Proposition \propCount: Let $E \subseteq Y \subseteq X$. Then $E$ is open relative to $Y$ if and only if there is an open set $U \subseteq X$ with $E = U \cap Y$.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         ($\Longrightarrow$) For each $p \in E$, pick $r(p) > 0$ so that $B_{r(p)}(p) \cap Y \subseteq E$. Then, setting $U = {\displaystyle \bigcup_{p\in E}{B_{r(p)}(p)}}$, we have that $U$ is open and that \[E = \bigcup_{p\in E}{\{p\}} \subseteq \bigcup_{p\in E}{B_{r(p)}(p)} \cap Y = U \cap Y \subseteq E\]
+         So $U \cap Y = E$. \retTwo
+
+         ($\Longleftarrow$) For
+      \end{myIndent}}
+   \end{myIndent}}
 \end{document}
