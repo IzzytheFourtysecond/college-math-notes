@@ -1037,17 +1037,17 @@
 
    The \udefine{inner product} or \udefine{dot product} of $\mVec{x}$, $\mVec{y} \in \mathbb{R}^k \hspace{0.4em}$ is: $\hspace{0.4em} {\displaystyle \mVec{x} \cdot \mVec{y} = \sum_{i=1}^k{x_iy_i}}$\retTwo
 
-   The \udefine{norm} of $x \in \mathbb{R}^k$ is $\lvert \mVec{x} \rvert = (\mVec{x} \cdot \mVec{x})^\frac{1}{2}$
+   The \udefine{norm} of $x \in \mathbb{R}^k$ is $\| \mVec{x} \| = (\mVec{x} \cdot \mVec{x})^\frac{1}{2}$
 
    {\begin{myIndent} \hTwo
       \begin{tabular}{ p{3.5in} p{2.5in}}
          Proposition \propCount: If $\mVec{x}, \mVec{y}, \mVec{z} \in \mathbb{R}^k$ and $\alpha \in \mathbb{R}$, then:
          \begin{enumerate}
-            \item $\lvert \mVec{0} \rvert = 0$ and $\lvert \mVec{x} \rvert > 0$ when $\mVec{x} \neq \mVec{0}$.
-            \item $\lvert \alpha \mVec{x} \rvert = \alpha \lvert \mVec{x} \rvert $
-            \item $\lvert \mVec{x} \cdot \mVec{y} \rvert \leq \lvert \mVec{x} \rvert \lvert \mVec{y} \rvert$
-            \item $\lvert \mVec{x} + \mVec{y} \rvert \leq \lvert \mVec{x} \rvert + \lvert \mVec{y} \rvert$
-            \item  $\lvert \mVec{x} - \mVec{z} \rvert \leq \lvert \mVec{x} - \mVec{y} \rvert + \lvert \mVec{y} - \mVec{z} \rvert$
+            \item $\| \mVec{0} \| = 0$ and $\| \mVec{x} \| > 0$ when $\mVec{x} \neq \mVec{0}$.
+            \item $\| \alpha \mVec{x} \| = \alpha \| \mVec{x} \| $
+            \item $\| \mVec{x} \cdot \mVec{y} \| \leq \| \mVec{x} \| \| \mVec{y} \|$
+            \item $\| \mVec{x} + \mVec{y} \| \leq \| \mVec{x} \| + \| \mVec{y} \|$
+            \item  $\| \mVec{x} - \mVec{z} \| \leq \| \mVec{x} - \mVec{y} \| + \| \mVec{y} - \mVec{z} \|$
          \end{enumerate}
          & \hFour \retTwo
          The proofs for 1-4. are nearly \newline identical to those for complex \newline numbers so we won't cover them\newline here.\retTwo As for 5, note that\newline $\mVec{x} + (-\mVec{z}) = \mVec{x} - \mVec{y} + \mVec{y} - \mVec{z}$.
@@ -1191,7 +1191,7 @@
          \begin{itemize}
             \item[\diamond] $d_p(\mVec{x}, \mVec{y}) = \left(\sum{\left| x_i - y_i\right|^p}\right)^\frac{1}{p}$
             {\begin{myTindent} \teachComment
-               $d_2(\mVec{x}, \mVec{y})=\lvert \mVec{x} - \mVec{y} \rvert$
+               $d_2(\mVec{x}, \mVec{y})=\| \mVec{x} - \mVec{y} \|$
             \end{myTindent}}
             \item[\diamond] $d_\infty(\mVec{x}, \mVec{y}) = \max\limits_{1\leq i \leq k}{\lvert x_i - y_i \rvert}$
          \end{itemize}}
@@ -1354,7 +1354,7 @@
 
    \mySepTwo
 
-   Note that in this class, unless it is mentioned other wise, you can assume that we are equipping $\mathbb{R}$ or $\mathbb{R}^k$ with the \udefine{Euclidean} metric: $d_2$.
+   Note that in this class, unless it is mentioned otherwise, you should assume that we are equipping $\mathbb{R}$ or $\mathbb{R}^k$ with the \udefine{Euclidean} metric: $d_2$.
 
    {\begin{myIndent} \hTwo
       Proposition \propCount: If $E \subseteq \mathbb{R}$ is nonempty and bounded above, then $\sup{E} \in \overbar{E}$.
@@ -1405,5 +1405,67 @@
    \end{myIndent}}
 
    \markLecture{2/5/2024}
+
+   {\begin{myIndent} \hTwo
+      Finite sets are compact. \retTwo
+      Proposition \propCount: compactness is an \uuline{intrinisic} property, meaning if $K \subseteq Y \subseteq X$,\\ then $K$ is compact relative to $X$ if and only if $K$ is compact relative to $Y$.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         ($\Longrightarrow$) Consider any collection of sets $v_\alpha \subseteq Y$ that are open relative to $Y$ and satisfy that $K \subseteq {\displaystyle \bigcup_{\alpha \in A}{v_\alpha}}$. \retTwo
+         By a previous theorem, we know there are sets $w_\alpha$  open relative to $X$ such that $v_\alpha = w_\alpha \cap Y$. So we have that $K \subseteq {\displaystyle \bigcup_{\alpha \in A}{v_\alpha}} \subseteq {\displaystyle \bigcup_{\alpha \in A}{w_\alpha}}$. \retTwo
+         If $K$ is compact relative to $X$, then there exists $n \in \mathbb{Z}^+$ and $\alpha_1, \ldots, \alpha_n \in A$ such that $K \subseteq {\displaystyle \bigcup^n_{i=1}{w_{\alpha_i}}}$. And since $K \subseteq Y$, we have that:
+         \[K = K \cap Y \subseteq \left(\bigcup^n_{i=1}{w_{\alpha_i}}\right)\cap Y = \left(\bigcup^n_{i=1}{v_{\alpha_i}}\right)\]
+         Hence, $K$ is compact relative to $Y$.
+
+         \newpage
+
+         ($\Longleftarrow$) Now consider any set $K$ which is compact relative to $Y$ and open cover\\ $\{w_\alpha \mid \alpha \in A\}$ such that $w_\alpha \subseteq X$ and $K \subseteq {\displaystyle \bigcup_{\alpha \in A}{w_\alpha}}$. \retTwo By proposition 21, we know that $v_\alpha = w_\alpha \cap Y$ is open relative to $Y$. So as\\ $K \subseteq Y$, we have that $K = K \cap Y \subseteq {\displaystyle \bigcup_{\alpha \in A}{w_\alpha}} \cap Y = {\displaystyle \bigcup_{\alpha \in A}{v_\alpha}}$. \retTwo But that means that $\{v_\alpha \mid \alpha \in A\}$ forms an open cover of $K$ relative to $Y$. So, there exists $n \in \mathbb{Z}^+$ and $\alpha_1, \ldots, \alpha_n \in A$ such that $\{v_{\alpha_1}, \ldots, v_{\alpha_n}\}$ is a finite cover of $K$. Then note that:
+         \[K \subseteq \bigcup^n_{i=1}{v_{\alpha_i}} \subseteq \bigcup^n_{i=1}{w_{\alpha_i}}\]
+         So, $\{w_{\alpha_1}, \ldots, w_{\alpha_n}\}$ forms a finite subcover of $K$ using sets in our original arbitrary open cover. Therefore, we conclude that $K$ is compact relative to $X$. \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: Compact sets are closed.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $K \subseteq X$ be compact. It then suffices to show that $K^\comp$ is open. So, consider any $p \in K^\comp$. We know that $\{B_{\frac{1}{3}d(p, q)}(q) \mid q \in K\}$ forms an open cover of $K$. Additionally, because $K$ is compact, there exists $n \in \mathbb{Z}^+$ and $q_1, \ldots, q_n \in K$ such that:
+         \[K \subseteq \bigcup_{i=1}^n{B_{\frac{1}{3}d(p, q_i)}(q_i)}\]
+         Thus, let $r = \min{\{d(p, q_i) \mid 1 \leq i \leq n\}}$. That way, $\frac{1}{3}r > 0$ and \[\left(\bigcup_{i=1}^n{B_{\frac{1}{3}d(p, q_i)}(q_i)} \right) \cap B_{\frac{1}{3}r}(p) = \emptyset\text{.}\]
+         This then means that $K \cap B_{\frac{1}{3}r}(p) = \emptyset$, meaning that $B_{\frac{1}{3}r}(p) \subseteq K^\comp$. So $p$ is an interior point of $K^\comp$. We thus conclude that $K^\comp$ is open. \retTwo
+      \end{myIndent}}
+      
+      Proposition \propCount: $K$ is compact and $F \subseteq K$ is closed implies that $F$ is compact.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Consider any open cover $\{v_\alpha \mid \alpha \in A\}$ of $F$. Since $F$ is closed, $F^\comp$ is open. So, we can say that $\{F^\comp\} \cup \{v_\alpha \mid \alpha \in A\}$ is an open cover of $K$ as: \[\left(\bigcup_{\alpha \in A}{v_\alpha}\right) \cup F^\comp \supseteq F \cup F^\comp \supseteq K\] 
+         \newpage
+         Since $K$ is compact, there exists $n \in \mathbb{Z}^+$ and $\alpha_1, \ldots, \alpha_n \in A$ such that: \[K \subseteq \left(\bigcup_{i=1}^n{v_{\alpha_i}}\right) \cup F^\comp\]
+         {\begin{myTindent} \teachComment
+            $F^\comp$ may or may not be needed to cover $K$. However, its \\inclusion doesn't effect the finiteness of the cover. \retTwo
+         \end{myTindent}}
+         Therefore $F \subseteq {\displaystyle \bigcup_{i=1}^n{v_{\alpha_i}}}$. So, $F$ is compact. \retTwo
+      \end{myIndent}}
+
+      Corollary: $K$ is compact and $F$ is closed implies that $K \cap F$ is compact.
+      {\begin{myIndent} \hThree
+         Proof: $K$ being compact means that $K$ is closed. Thus $K \cap F$ is closed. And as $K \cap F$ is a subset of $K$, by the above theorem we have that $K \cap F$ is compact.
+         \retTwo
+      \end{myIndent}}
+
+      \uuline{Theorem (the Finite Intersection Property)}: If $\{K_\alpha \mid \alpha \in A\}$ is any collection of compact sets in $X$ having the property that the intersection of any finitely many of the $K_\alpha$'s is nonempty, then: \[\bigcap_{\alpha \in A}{K_\alpha} \neq \emptyset\]
+
+      {\begin{myIndent} \hThree
+         Proof: (we shall proceed by proving the contrapositive...)\\
+         Assume that ${\displaystyle \bigcap_{\alpha \in A}{K_\alpha} = \emptyset}$. Thus, taking complements gives: ${\displaystyle \bigcup_{\alpha \in A}{(X \setminus K_\alpha)}} = X$. \retTwo
+         Pick any $\alpha_0 \in A$. Then $\{X \setminus K_\alpha \mid \alpha \in A\}$ is an open cover of $K_{\alpha_0}$ because $K_{\alpha_0} \subseteq X$ and because each $X \setminus K_\alpha$ must be open due to $K_\alpha$ being closed. \retTwo
+         As $K_{\alpha_0}$ is compact, there exists $n \in \mathbb{Z}^+$ and $\alpha_1, \ldots, \alpha_n \in A$ such that: \[K_{\alpha_0} \subseteq \bigcup_{i=1}^n{(X \setminus K_{\alpha_i})}\]
+         Taking complements again, we get that: $X \setminus K_{\alpha_0} \supseteq {\displaystyle \bigcap_{i=1}^n{(K_{\alpha_i})}}$. So: \[\left(\bigcap_{i=1}^n{(K_{\alpha_i})}\right) \cap K_{\alpha_0} = \bigcap_{i=0}^n{(K_{\alpha_i})} = \emptyset\]
+      \end{myIndent}}
+
+      \newpage
+
+   \end{myIndent}}
 
 \end{document}
