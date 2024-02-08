@@ -175,6 +175,8 @@
    \\ \\ \hline \end{tabular}%
 }
 
+\newcommand{\myVS}{\vphantom{$\int_a^b$}}
+
 % Overarrow stuff:
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \NewOverArrowCommand{myVector}{%
@@ -194,6 +196,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newcommand{\mVec}[1]{\myVector{#1}}
+\newcommand{\mVecAst}[1]{\myVector*{#1}}
 \newcommand{\mMat}[1]{\mathbf{#1}}
 
 \title{Math 140A Lecture Notes (Professor: Brandon Seward)}
@@ -1466,6 +1469,177 @@
 
       \newpage
 
+      Proposition \propCount: If $K$ is compact and $E \subseteq K$ is infinite, then $E^\prime \neq \emptyset$.
+
+      {\begin{myIndent} \hThree
+         Proof: (we shall proceed by proving the contrapositive...)\\
+         Let $E \subseteq K$ and suppose $E^\prime = \emptyset$. Then for each $q \in K$, since $q \notin E^\prime$, we can pick $r(q) > 0$ such that $(B_{r(q)}(q) \setminus \{q\}) \cap E = \emptyset$. In particular,\\ $(B_{r(q)}(q)) \cap E \subseteq \{q\}$. \retTwo
+
+         Now note that ${\displaystyle \bigcup_{q \in K}{B_{r(q)}(q)}}$ is an open cover of $K$.\\ Since $K$ is compact, we can pick $q_1, \ldots, q_n \in K$ so that $K \subseteq {\displaystyle \bigcup_{i=1}^n{B_{r(q_i)}(q_i)}}$.\\
+
+         Then, $E = E \cap K \subseteq E \cap \left({\displaystyle \bigcup_{i=1}^n{B_{r(q_i)}(q_i)}}\right) = {\displaystyle \bigcup_{i=1}^n{\left(B_{r(q_i)}(q_i) \cap E\right)}} \subseteq {\displaystyle \bigcup_{i=1}^n{q_i}}$. \\
+
+         Hence $E$ is finite.
+      \end{myIndent}}
    \end{myIndent}}
+
+   \retTwo
+   \markLecture{2/7/2024} \retTwo
+   In $\mathbb{R}$, we define the \udefine{interval} $[a, b] = \{x \in \mathbb{R} \mid a \leq x \leq b\}$.
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: If $I_n = [a_n, b_n] \neq \emptyset$ and $I_{n+1} \subseteq I_n$ for all $n$, then ${\displaystyle \bigcap_{n\in\mathbb{N}}{I_n} \neq \emptyset}$. \\
+
+      {\begin{myIndent} \hThree
+         Proof: For all $n, m \in \mathbb{N}$, we have $a_n \leq a_{n+m} \leq b_{n+m} \leq b_m$. Thus, for all $m$ we have that $b_m$ is an upperbound to $\{a_n \mid n\in\mathbb{N}\}$. This means that by the least upper bound property of $\mathbb{R}$, we know that $\alpha = \sup{\{a_n \mid n\in\mathbb{N}\}}$ exists and that $a_m \leq \alpha \leq b_m$ for all $m$. Hence, $\alpha \in {\displaystyle \bigcap_{n \in \mathbb{N}}{I_n}}$, which means ${\displaystyle \bigcap_{n \in \mathbb{N}}{I_n}} \neq \emptyset$.\retTwo
+      \end{myIndent}}
+
+      Corollary: If $C_n = [a_{n, 1}, b_{n, 1}] \times [a_{n, 2}, b_{n, 2}] \times \dots \times [a_{n, k}, b_{n, k}] \subseteq \mathbb{R}^k$ and $C_{n+1} \subseteq C_n$ for all $n \in \mathbb{N}$, then ${\displaystyle \bigcap_{n\in\mathbb{N}}{C_n} \neq \emptyset}$.
+
+      {\begin{myIndent} \hThree
+         Proof: $\quad {\displaystyle \bigcap_{n\in\mathbb{N}}{C_n} = \left(\bigcap_{n\in\mathbb{N}}{[a_{n, 1}, b_{n, 1}]}\right) \times \dots \times \left(\bigcap_{n\in\mathbb{N}}{[a_{n, 1}, b_{n, 1}]}\right) \neq \emptyset}$
+         \retTwo \retTwo
+      \end{myIndent}}
+
+      \newpage
+
+      Proposition \propCount: $C = [a_{1}, b_{1}] \times [a_{2}, b_{2}] \times \dots \times [a_{k}, b_{k}] \subseteq \mathbb{R}^k$ is compact.
+
+      \begin{myIndent} \hThree
+         Proof: (we'll proceed by finding a contradiction)
+         Suppose $\{u_\alpha \mid \alpha \in A\}$ is an open cover of $C$ containing no finite subcover of $C$. \retTwo Then set $\delta = \sqrt{{\displaystyle \sum_{i=1}^k{b_i - a_i}}}$
+         
+         {\begin{myTindent}\begin{myIndent} \hFour
+            (this is the length of the largest diagonal of $C$.) \retTwo
+         \end{myIndent}\end{myTindent}}
+
+         Since $C$ forms a $k$-dimensional rectangle in $\mathbb{R}^k$, we can divide $C$ into $2^k$ many pieces by cutting each side of $C$ at its midpoints. Then each smaller piece will have a longest diagonal of length $\frac{1}{2}\delta$. \newline
+         {\center \raisebox{0em}{\tikz[scale=0.5]{
+            \draw[color=Red, very thick ,dashed] (0, 0) -- (8, 5);
+            \draw[color=Purple, ultra thick] (0, 0) rectangle (8, 5);
+            \draw[color=RedViolet, very thick] (0, 2.5) -- (8, 2.5);
+            \draw[color=RedViolet, very thick] (4, 0) -- (4, 5);
+         }} \retTwo\par}
+
+         Since $C$ can't be covered by finitely many $u_\alpha$, there must be a piece, call it $C_1$, which cannot be covered by finitely many $u_\alpha$. Also $C_1 \subseteq C$. \retTwo
+
+         Now proceed inductively to build a sequence $C_n$ such that:
+         \begin{enumerate}
+            \item $C_{n+1} \subset C_n$ for all $n$
+            \item The largest diagonal of $C_n$ is $2^{-n}\delta$
+            \item $C_n$ cannot be covered by finitely many $u_\alpha$ \newline
+         \end{enumerate}
+         {\center \raisebox{0em}{\tikz[scale=0.5]{
+            \draw[color=Red, very thick ,dashed] (0, 0) -- (8, 5);
+            \draw[color=Purple, ultra thick] (0, 0) rectangle (8, 5);
+            % C1
+            \draw[color=RedViolet, very thick] (0, 2.5) -- (8, 2.5);
+            \draw[color=RedViolet, very thick] (4, 0) -- (4, 5);
+            % C2
+            \draw[color=RedViolet, thick] (0, 3.75) -- (4, 3.75);
+            \draw[color=RedViolet, thick] (2, 2.5) -- (2, 5);
+            % C3
+            \draw[color=RedViolet, semithick] (2, 3.125) -- (4, 3.125);
+            \draw[color=RedViolet, semithick] (3, 2.5) -- (3, 3.75);
+            % C4
+            \draw[color=RedViolet, thin] (2, 2.8125) -- (3, 2.8125);
+            \draw[color=RedViolet, thin] (2.5, 2.5) -- (2.5, 3.125);
+            % C5
+            \draw[color=RedViolet, thin] (2, 2.96875) -- (2.5, 2.96875);
+            \draw[color=RedViolet, thin] (2.25, 2.8125) -- (2.25, 3.125);
+            % C6
+            \draw[color=RedViolet, very thin] (2.25, 2.890625) -- (2.5, 2.890625);
+            \draw[color=RedViolet, very thin] (2.375, 2.8125) -- (2.375, 2.96875);
+            % C7
+            \draw[color=RedViolet, very thin] (2.375, 2.9296875) -- (2.5, 2.9296875);
+            \draw[color=RedViolet, very thin] (2.4375, 2.890625) -- (2.4375, 2.96875);
+
+            %\fill[color=RedViolet] (2.375, 2.890625) rectangle (2.5, 2.96875);
+         }} \retTwo\par}
+
+         By the above corallary, ${\displaystyle \bigcap_{n\in\mathbb{N}}{C_n} \neq \emptyset}$. Thus consider $z \in {\displaystyle \bigcap_{n\in\mathbb{N}}{C_n}} \subseteq C$. \\
+         Pick $\alpha \in A$ with $z \in u_\alpha$. Since $u_\alpha$ is open, there exists $r > 0$ with $B_r(z) \subseteq u_\alpha$. Now pick $n$ with $2^{-n}\delta < r$. Then as $z \in C_n$, we know $C_n \subseteq B_r(z) \subseteq u_\alpha$. This contradicts the point that $C_n$ cannot be covered by finitely many $u_\alpha$. \retTwo
+         So we conclude $C$ is compact. \retTwo
+      \end{myIndent}
+
+      \newpage
+
+      Proposition \propCount: For $E \in \mathbb{R}^k$, the following are equivalent:
+      \begin{enumerate}
+         \item[a.] $E$ is closed and bounded.
+         \item[b.] $E$ is compact
+         \item[c.] Every infinite subset of $E$ has a limit point in $E$.
+      \end{enumerate}
+
+      {\begin{myIndent} \hThree
+         Proof: \\
+         (a. $\Longrightarrow$ b.) $E$ is bounded means $E \subseteq C$ for some bounded rectangle $C$. Since $E$ is closed and $C$ is compact, $E$ is compact by proposition 24. \retTwo
+
+         (b. $\Longrightarrow$ c.) This is just proposition 25. \retTwo
+
+         (c. $\Longrightarrow$ a.) Firstly, let us show that $E$ is bounded.
+         {\begin{myIndent} \hFour
+            Suppose $E$ is not bounded. Then for all $n \in \mathbb{N}$, pick $\mVecAst{x}_n \in E$ with $\|\mVecAst{x}_n\|\geq n$.\\
+            For any $\mVec{y} \in \mathbb{R}^k$, we have that: $\mVecAst{x}_n \in B_1(\mVec{y}) \Longrightarrow \|\mVecAst{x}_n\| \leq \|\mVec{y}\| + 1$, which in turn implies that $n \leq \|\mVec{y}\| + 1$. So $(B_1(\mVec{y}) \setminus \{\mVec{y}\}) \cap \{\mVecAst{x}_n \mid n \in \mathbb{N}\}$ is finite. As a result, we know $\mVec{y} \notin \{\mVecAst{x}_n \mid n \in \mathbb{N}\}^\prime$. Thus, $\{\mVecAst{x}_n \mid n \in \mathbb{N}\}$ has no limit points. But this is a contradiction because $\{\mVecAst{x}_n \mid n \in \mathbb{N}\}$ is an infinite subset of $E$. \retTwo
+         \end{myIndent}}
+         Now, let us show that $E$ is closed.
+         {\begin{myIndent} \hFour
+            Let $y \in E^\prime$. Then for each $n \in \mathbb{Z}^+$, we can pick $\mVecAst{x}_n \in B_{\frac{1}{n}}(\mVec{y}) \cap E$. Now if $\mVec{z} \in \mathbb{R}^k$ and $\mVec{z} \neq \mVec{y}$, then: \retTwo
+            
+            \begin{myIndent}
+               \begin{tabular}{r c l}
+                  $\mVecAst{x}_n \in B_{\frac{1}{2}\|\mVec{y}-\mVec{z}\|}(\mVec{z})$&$\Rightarrow$&$\|\mVec{y} - \mVec{z}\| \leq \|\mVec{y} - \mVecAst{x}_n\| + \|\mVecAst{x}_n - \mVec{z}\|$ \\ [0.2em]
+                  & & $\phantom{\|\mVec{y} - \mVec{z}\|} < \|\mVec{y} - \mVecAst{x}_n\| + \frac{1}{2}\|\mVecAst{y} - \mVec{z}\|$ \\ [0.6em]
+                  & $\Rightarrow$ & $\frac{1}{2}\|\mVecAst{y} - \mVec{z}\| < \|\mVec{y} - \mVecAst{x}_n\| < \frac{1}{n}$ \\ [0.6em]
+                  & $\Rightarrow$ & $n < \frac{2}{\|\mVec{y} - \mVecAst{x}_n\|}$
+               \end{tabular}
+            \end{myIndent}\retTwo
+
+            Therefore: $\left(B_{\frac{1}{2}\|\mVec{y}-\mVec{z}\|}(\mVec{z})\setminus \{\mVec{z}\}\right) \cap \{\mVecAst{x}_n \mid n \in \mathbb{Z}^+\}$ is finite.\\ So $\mVec{z} \notin \{\mVecAst{x}_n \mid n \in \mathbb{N}\}^\prime$, which means that $\mVec{y}$ is the unique limit point of\\ $\{\mVecAst{x}_n \mid n \in \mathbb{N}\}$. Finally, since we assumed that any infinite subset of $E$ has at least one limit point inside $E$, we know that $\mVec{y} \in E$ because it is the only possible limit point that can fulfill this requirement.
+         \end{myIndent}}
+
+      \end{myIndent}}
+   \end{myIndent}}
+
+
+
+
+
+
+   % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
+   \newpage
+   {\huge \color{Black} \textbf{An Incomplete List of How the Proposition Numbering in my Notes Matches up With Our Textbook:} \retTwo}
+   \exOne
+   
+   \begin{allowTableDashes}
+      \begin{tabular}{ c|c||c|c }
+         Proposition Number & Label in Textbook & Proposition Number & Label in Textbook \\ \hline
+         \myVS 1 &  & 2 &  \\ \hdashline[10pt/3pt]
+         \myVS 3 &  & 4 &  \\ \hdashline[10pt/3pt]
+         \myVS 5 &  & 6 &  \\ \hdashline[10pt/3pt]
+         \myVS 7 &  & 8 &  \\ \hdashline[10pt/3pt]
+         \myVS 9 &  & 10 &  \\ \hdashline[10pt/3pt]
+         \myVS 11 &  & 12 &  \\ \hdashline[10pt/3pt]
+         \myVS 13 &  & 14 &  \\ \hdashline[10pt/3pt]
+         \myVS 15 &  & 16 &  \\ \hdashline[10pt/3pt]
+         \myVS 17 &  & 18 &  \\ \hdashline[10pt/3pt]
+         \myVS 19 &  & 20 &  \\ \hdashline[10pt/3pt]
+         \myVS 21 &  & 22 &  \\ \hdashline[10pt/3pt]
+         \myVS 23 &  & 24 &  \\ \hdashline[10pt/3pt]
+         \myVS 25 & 2.37 & 26 & 2.38 \\ \hdashline[10pt/3pt]
+         \myVS 27 & 2.40 & 28 & 2.41 \\ \hdashline[10pt/3pt]
+         \myVS 29 &  & 30 &  \\ \hdashline[10pt/3pt]
+         \myVS 31 &  & 32 &  \\ \hdashline[10pt/3pt]
+         \myVS 33 &  & 34 &  \\ \hdashline[10pt/3pt]
+         \myVS 35 &  & 36 &  \\ \hdashline[10pt/3pt]
+         \myVS 37 &  & 38 &  \\ \hdashline[10pt/3pt]
+         \myVS 39 &  & 40 &  \\ \hdashline[10pt/3pt]
+         \myVS 41 &  & 42 &  \\ \hdashline[10pt/3pt]
+         \myVS 43 &  & 44 &  \\ \hdashline[10pt/3pt]
+
+
+         
+      \end{tabular}
+   \end{allowTableDashes}
 
 \end{document}
