@@ -152,6 +152,7 @@
    space after arrow=-0.045em,
 }
 \newcommand{\mVec}[1]{\myVector{#1}}
+\newcommand{\mVecAst}[1]{\myVector*{#1}}
 \newcommand{\mMat}[1]{\mathbf{#1}}
 
 
@@ -247,9 +248,9 @@
 
    \mySepOne
 
-   Here is how we formally define \udefine{Big-O Notation}:
+   Here is how we formally define \udefine{Big-$\mathcal{O}$ Notation}:
    \retTwo
-   For a sequence $a_n$, we define $a_n = O(b_n)$ if there exists
+   For a sequence $a_n$, we define $a_n = \mathcal{O}(b_n)$ if there exists
    real constants\\ $C, N \geq 0$ such that for $n \geq N$, \hspace{0.25em}
    $a_n \leq Cb_n$.
    \retTwo
@@ -292,7 +293,7 @@
       \[ 2\left( \dfrac{n(n+1)}{2} \right) - n
       = 1n^2 \]
 
-      So \identifier{x} has $O(n^2)$ flops as \identifier{n} goes
+      So \identifier{x} has $\mathcal{O}(n^2)$ flops as \identifier{n} goes
       to \newline infinity.
    \end{tabular}
 
@@ -959,10 +960,23 @@
          $ \retTwo \par}
 
          Therefore, by dividing both sides of our inequality by $\|\mVec{x}^\prime\|$ and multiplying the greater side by $1 = \frac{\|\mMat{A}\|}{\|\mMat{A}\|}$, we finally get that:
-         \[\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq K(A)\left(\dfrac{\|\mVec{\delta b}\|}{\|\mMat{A}\|\|\mVec{x}^\prime\|}+  \dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|}\right)\]
+         \[\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq K(A)\left(\dfrac{\|\mVec{\delta b}\|}{\|\mMat{A}\|\|\mVec{x}^\prime\|}+  \dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|}\right)\] \\
 
-         Step 2:
+         Step 2:\\ $\mVec{b}^\prime = \mMat{A}^\prime\mVec{x}^\prime \Longrightarrow \|\mVec{b}^\prime\| = \|(\mMat{A}^\prime)\mVec{x}^\prime\| \leq \|\mMat{A} + \mMat{\delta A}\|\|\mVec{x}^\prime\|$ \\
+         So dividing by $\|\mVec{b}^\prime\|\|\mVec{x}^\prime\|$, we get that: \[
+            \frac{1}{\|\mVec{x}^\prime\|} \leq \frac{\|\mMat{A} + \mMat{\delta A}\|}{\|\mVec{b}^\prime\|} \leq \frac{\|\mMat{A}\| + \|\mMat{\delta A}\|}{\|\mVec{b}^\prime\|}\]
+         \newpage
+         Step 3:\\
+         By combining the inequalities in steps 1 and 2, we know:
+         \[\dfrac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|} \leq K(A)\left(\dfrac{\|\mVec{\delta b}\|}{\|\mMat{A}\|}\left(\dfrac{\|\mMat{A}\| + \|\mMat{\delta A}\|}{\|\mVec{b}^\prime\|}\right)  +  \dfrac{\|\mMat{\delta A}\|}{\|\mMat{A}\|}\right)\]
+         We can then manipulate that into the inequality claimed above. \retTwo
       \end{myIndent}}
+
+      
+      \begin{myTindent}\begin{myIndent}
+         \myComment
+         If you are wondering why the upper bounds we derived in this lecture are for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|}$ instead of $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$, know that I am too. I asked the professor and he said its because the upper bounds for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$ are more difficult. That said, our textbook does derive upper bounds for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$.
+      \end{myIndent}\end{myTindent}
    \end{myIndent}}
 
 \end{document}
