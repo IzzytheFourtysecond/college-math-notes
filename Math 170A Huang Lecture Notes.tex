@@ -1205,13 +1205,120 @@
 
    A matrix $\mMat{P} \in \mathbb{R}^{n \times n}$ is called a \udefine{projector} if $\mMat{P}^2 = \mMat{P}$. \retTwo
 
-   Given $\mVec{u} \in \mathbb{R}^n$ with $\|\mVec{u}\|_2 = 1$, then $P = \mVec{u}\mVec{u}^T$ is an orthogonal projector.
+   Given $\mVec{u} \in \mathbb{R}^n$ with $\|\mVec{u}\|_2 = 1$, then $\mMat{P} = \mVec{u}\mVec{u}^T$ is an orthogonal projector.
    
    {\begin{myIndent} \hThree
-      Proof:\\
+      Proof:
       \begin{itemize}
          \item $\mMat{P}^2 = (\mVec{u}\mVec{u}^T)(\mVec{u}\mVec{u}^T) = \mVec{u}\langle \mVec{u}, \mVec{u} \rangle \mVec{u}^T = 1 \cdot \mVec{u}\mVec{u}^T = \mMat{P}$
-         \item $\mMat{P}^T = \left(\mVec{u}\mVec{u}^T\right)^T = \left( \mVec{u}^T\right)^T\mVec{u}^T = \mVec{u}\mVec{u}^T = P$
+         \item $\mMat{P}^T = \left(\mVec{u}\mVec{u}^T\right)^T = \left( \mVec{u}^T\right)^T\mVec{u}^T = \mVec{u}\mVec{u}^T = \mMat{P}$\\
       \end{itemize}
    \end{myIndent}}
+
+   Properties of $\mMat{P} = \mVec{u}\mVec{u}^T$:
+   \begin{itemize}
+      \item $\mMat{P}\mVec{u} = \mVec{u}$.
+      \item $\langle \mVec{u}, \mVec{v} \rangle = 0 \Longrightarrow \mMat{P}\mVec{v} = 0$
+   \end{itemize}
+
+   \mySepTwo
+
+   Let $\mVec{u} \in \mathbb{R}^n$ with $\|u\|_2 = 1$. Then the matrix $\mMat{Q} = \mMat{I} - 2\mVec{u}\mVec{u}^T$ is called a\\ \udefine{(Householder) reflector}.
+   
+   {\begin{myTindent}\begin{myTindent} \teachComment
+      If $\|\mVec{u}\|_2 \neq 1$, you an always normalize it and construct a reflector: $\mMat{Q} = \mMat{I} - \frac{2}{(\|\mVec{u}\|_2)^2}\mVec{u}\mVec{u}^T$ \\
+   \end{myTindent}\end{myTindent}}
+
+   Properties of $\mMat{Q} = \mMat{I} - 2\mVec{u}\mVec{u}^T$ where $\|\mVec{u}\|_2 = 1$:
+   
+   \begin{itemize}
+      \item $\mMat{Q}\mVec{u} = -\mVec{u}$.
+      {\begin{myIndent} \hThree
+         Proof: $\mMat{Q}\mVec{u} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{u} = \mVec{u} - 2\mVec{u} = -\mVec{u}$
+      \end{myIndent}}
+
+      \item $\langle \mVec{u}, \mVec{v} \rangle = 0$
+      {\begin{myIndent} \hThree
+         Proof: $\mMat{Q}\mVec{v} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{v} = \mVec{v} - 2\mVec{u}(0) = \mVec{v}$
+      \end{myIndent}}
+
+      \item $\mMat{Q}^T = \mMat{Q}$
+      {\begin{myIndent} \hThree
+         Proof: $\mMat{Q}^T = (\mMat{I} - 2\mVec{u}\mVec{u}^T)^T = \mMat{I}^T - 2(\mVec{u}\mVec{u}^T)^T = \mMat{I} - 2\mVec{u}\mVec{u}^T = \mMat{Q}$
+      \end{myIndent}}
+
+      \item $\mMat{Q}^2 = \mMat{Q}$
+      {\begin{myIndent} \hThree
+         Proof: ${\mMat{Q}^2 = (\mMat{I} - 2\mVec{u}\mVec{u}^T)^2 = \mMat{I} - 4\mVec{u}\mVec{u}^T + 4(\mVec{u}\mVec{u}^T)^2 = \mMat{I}}$
+      \end{myIndent}}
+
+      
+      {\begin{myTindent}\begin{myTindent} \hFour
+         Basically, $\mMat{Q}$ reflects any vector $\mVec{x}$ about the\\ hyperplane perpendicular to $\mVec{u}$. \retTwo
+      \end{myTindent}\end{myTindent}}
+   \end{itemize}
+
+   \newpage
+
+   Suppose $\mVec{x} \in \mathbb{R}^n$ and $\mVec{y} = \begin{bmatrix} \|\mVec{x}\|_2 & 0 & \cdots & 0 \end{bmatrix}^T = \|\mVec{x}\|_2e_1$. (Thus $\|\mVec{y}\| = \|\mVec{x}\|$) \\
+   Let $\mVec{v} = \mVec{x} - \mVec{y}$, and $\mVec{u} = \frac{\mVec{v}}{\|\mVec{v}\|_2}$. Then $\mMat{Q} = \mMat{I} - 2\mVec{u}\mVec{u}^T$ satisfies: $\mMat{Q}\mVec{x} = \mVec{y}$.
+   
+   {\begin{myIndent} \hThree
+      Proof: \\
+      $\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x} = \mVec{x}- 2\langle \mVec{u}, \mVec{x} \rangle \mVec{u}$ \\ [0.5em]
+      $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{2}{(\|\mVec{x} - \mVec{y}\|_2)^2}((\mVec{x} - \mVec{y})^T\mVec{x} )(\mVec{x} - \mVec{y})$ \\[0.5em]
+      $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{1}{(\|\mVec{x} - \mVec{y}\|_2)^2}(2(\|\mVec{x}\|_2)^2 - 2\mVec{y}^T\mVec{x})(\mVec{x} - \mVec{y})$ \\[0.5em]
+      $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{1}{(\|\mVec{x} - \mVec{y}\|_2)^2}((\|\mVec{x}\|_2)^2 + (\|\mVec{y}\|_2)^2 - 2\mVec{y}^T\mVec{x})(\mVec{x} - \mVec{y})$ \\[0.5em]
+      $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{1}{(\|\mVec{x} - \mVec{y}\|_2)^2}(\|\mVec{x} - \mVec{y}, \hspace{0.4em} \mVec{x} - \mVec{y}\|_2)^2(\mVec{x} - \mVec{y})$ \\ [0.50em]
+      $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \mVec{x} + \mVec{y} = \mVec{y}$
+   \end{myIndent}}
+
+   \mySepTwo
+
+   Now let's consider taking a full QR decomposition:\\
+   {\begin{myIndent} \hTwo
+      Consider $\mMat{A} = \begin{bmatrix} \mVecAst{a}_1 & \mVecAst{a}_2 & \cdots & \mVecAst{a}_m \end{bmatrix} \in \mathbb{R}^{n \times m}$.
+      
+      \begin{myIndent}
+         \begin{itemize}
+            \item[{\color{BrickRed}Step 1.}] Compute a reflector $\mMat{Q}_1$ such that $\mMat{Q}_1\mVecAst{a}_1 = \|\mVecAst{a}_1\|_2e_1$. Thus:
+            \[\mMat{Q}_1\mMat{A} = \begin{bmatrix} \mMat{Q}_1\mVecAst{a}_1 & \mMat{Q}_1\mVecAst{a}_2 & \cdots & \mMat{Q}_1\mVecAst{a}_m \end{bmatrix} = 
+            \begin{bmatrix}
+               \begin{bmatrix}
+                  \|\mVecAst{a}_1\|_2
+               \end{bmatrix} & \mVecAst{b}^{\phantom{|}T\phantom{1}} \\
+               \mVec{0} & \tilde{\mMat{A}_2}
+            \end{bmatrix}\]
+   
+            So, now consider $\tilde{\mMat{A}}_2 = \begin{bmatrix}\Tilde{a}_2 & \cdots & \Tilde{a}_m \end{bmatrix} \in \mathbb{R}^{(n-1) \times (m-1)}$ \retTwo
+   
+            \item[{\color{BrickRed}Step 2.}] Now consider a reflector $\tilde{\mMat{Q}}_2 \in \mathbb{R}^{(n-1), (m-1)}$ such that $\tilde{\mMat{Q}}_2\tilde{a}_2 = \|\tilde{a}_2\|_2e_1$.\\
+            Then define: ${\displaystyle \mMat{Q}_2 = \begin{bmatrix} \mMat{I}_1 & \mMat{0} \\ \mMat{0} & \tilde{\mMat{Q}}_2\end{bmatrix}}$\\
+            Therefore, we have that
+            $\mMat{Q}_2\mMat{Q}_1\mMat{A} = 
+            \begin{bmatrix}
+               \hat{\mMat{R}} & \mMat{B} \\ \mMat{0} & \tilde{\mMat{Q}_3}
+            \end{bmatrix}$, where $\tilde{\mMat{A}}_2 \in \mathbb{R}^{(n-2),(m-2)}$, $\hat{\mMat{R}}$ is $2 \times 2$ upper triangular, and $\mMat{B}$ is some rectangular matrix.
+            
+            {\begin{myTindent} \hFour
+               Note that only the lowest row in $\mMat{B}$ is effected by this step.
+            \end{myTindent}}
+            \retTwo
+            
+            \item[{\color{BrickRed}Step 3.}] Repeat step 2. over and over again on $\tilde{\mMat{Q}}_k$ until you can't any more. At the end, you will get an equation of the form:
+            \[\mMat{Q}_m\cdots\mMat{Q}_2\mMat{Q}_1\mMat{A} = 
+            \begin{bmatrix}
+               \hat{\mMat{R}} \\ \mMat{0}
+            \end{bmatrix}\]
+   
+            \newpage
+   
+            \item[{\color{BrickRed}Step 4.}] Each $\mMat{Q}_i$ is orthogonal by the properties of a reflector. And since the\\ product of orthogonal matrices is orthogonal, we can thus coallesce the $\mMat{Q}$ in order to get that $\mMat{A} = \mMat{Q}\mMat{R}$. \retTwo
+         \end{itemize}
+      \end{myIndent}
+   \end{myIndent}}
+
+   \markLecture{2/12/2024}
+
 \end{document}
+
