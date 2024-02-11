@@ -120,6 +120,12 @@
 }
 
 \newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\Proj}[2]{\mathrm{Proj}_{#2}(#1)}
+
 
 \newcounter{PropNumber}
 \newcommand{\propCount}{%
@@ -134,14 +140,23 @@
    {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
 }
 
-\newenvironment{myClosureOne}[2][.]{%
+\newenvironment{myClosureOneOld}[2][.]{%
    \color{#1}%
    \begin{tabular}{|p{#2in}|} \hline \\%
 }{%
    \\ \\ \hline \end{tabular}%
 }
 
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
 \newcommand{\retTwo}{\hfill\bigbreak}
+\newcommand{\myVS}{\vphantom{$\int_a^b$}}
+\newcommand{\myMathVS}{\vphantom{\int_a^b}}
 
 
 % Hopefully this will be good enough
@@ -576,7 +591,7 @@
       Finally, by multiplying those permutation matrices together, we get an equation: \[\mMat{P}\mMat{A} = \mMat{L}\mMat{U}\]
 
       {\hThree \center
-      \begin{myClosureOne}{4.5}
+      \begin{myClosureOneOld}{4.5}
          Here is why the product $\mMat{P}_{i+1, k_{i+1}}\mMat{L}^\prime_{i-1}\mMat{L}_{i}\mMat{P}_{i{+1}, k_{i+1}}$ was \\equivalent to only applying the row permutation underneath the diagonal of $\mMat{L}^\prime_{i-1}\mMat{L}_{i}$. \\ \\
 
          Observe the following diagram of where the permutation\\ matrices send the elements in row $i{+1}$, row $k_{i{+1}}$, column $i{+1}$, and column $k_{i{+1}}$ of the matrix $\mMat{L}^\prime_{i-1}\mMat{L}_{i}$: \\
@@ -606,7 +621,7 @@
                &     &     {\color{Orange}0}&    &    {\color{BrickRed}0}& & \\
             \end{bmatrix}
          \end{matrix} \]
-      \end{myClosureOne}
+      \end{myClosureOneOld}
       \par}
    \end{myIndent}
    \hOne \retTwo \retTwo
@@ -824,7 +839,7 @@
    Due to rounding errors and limited precision, we know that $\mVec{b}$ and $\mMat{A}$ will \\typically not be perfectly accurate when doing calculations. We refer to introducing this inaccuracy as perturbing $\mVec{b}$ and $\mMat{A}$. Now as seen in the demonstration below, this will effect the accuracy of our calculations. So, it would be nice to be able to predict and quantify that loss in accuracy.\retTwo
 
    {\center \exOne
-   \begin{myClosureOne}{5.5}
+   \begin{myClosureOneOld}{5.5}
       Demonstration of perturbing $\mVec{b}$: \\
       \begin{myIndent} \exTwo
          $
@@ -856,7 +871,7 @@
 
             The error in $\mVec{b}$ is $\|\mVec{b} - \mVec{b}^\prime\|_2 = 0.001$, whereas the \newline corresponding error in $\mVec{x}$ is $\|\mVec{x} - \mVec{x}^\prime\|_2 = \sqrt{2}(0.001) \approx 0.0014$
       \end{myIndent}
-   \end{myClosureOne}
+   \end{myClosureOneOld}
    \par} \retTwo
 
    For now, let's address perturbing $\mVec{b}$\dots
@@ -972,10 +987,9 @@
          We can then manipulate that into the inequality claimed above. \retTwo
       \end{myIndent}}
 
-      
       \begin{myTindent}\begin{myIndent}
          \myComment
-         If you are wondering why the upper bounds we derived in this lecture are for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|}$ instead of $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$, know that I am too. I asked the professor and he said its because the upper bounds for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$ are more difficult. That said, our textbook does derive upper bounds for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$ when perturbing $\mMat{A}$. \\
+         If you are wondering why the upper bounds we derived in this lecture are for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}^\prime\|}$ instead of $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$, know that I am too. I asked the professor and he said its because the upper bounds for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$ are more difficult. That said, our textbook does derive upper bounds for $\frac{\|\mVec{\delta x}\|}{\|\mVec{x}\|}$ when perturbing $\mMat{A}$.
       \end{myIndent}\end{myTindent}
    \end{myIndent}}
 
@@ -994,11 +1008,210 @@
          
          \begin{myIndent}
             1. ${\displaystyle \|\mMat{I}\| = \max\limits_{\mVecAst{x}\neq0}{\frac{\|\mMat{I}\mVec{x}\|}{\mVec{x}}} = \max\limits_{\mVecAst{x}\neq0}{\frac{\|\mVec{x}\|}{\mVec{x}}} = 1}$ \retTwo
-            2. $\mMat{I} = \mMat{A}\mMat{A}^{-1} \Longrightarrow 1 = \|\mMat{I}\|= \|\mMat{A}\mMat{A}^{-1}\| \leq \|\mMat{A}\|\|\mMat{A}^{-1}\| = K(\mMat{A})$ \retTwo
+            2. $\mMat{I} = \mMat{A}\mMat{A}^{-1} \Longrightarrow 1 = \|\mMat{I}\|= \|\mMat{A}\mMat{A}^{-1}\| \leq \|\mMat{A}\|\|\mMat{A}^{-1}\| = K(\mMat{A})$
          \end{myIndent}
       \end{myIndent}}
    \end{myIndent}}
 
-   
+   \mySepTwo
 
+   \markLecture{2/5/2024}
+
+   A matrix $\mMat{Q}$ is orthogonal if $\mMat{Q}^{-1} = \mMat{Q}^T$
+   {\begin{myIndent} \hTwo
+      If $\mMat{Q} \in \mathbb{R}^{n\times n}$ is orthogonal, then:
+      \begin{enumerate}
+         \item $\langle \mMat{Q}\mVec{x}, \mMat{Q}\mVec{y} \rangle = \mVec{x}^T\mMat{Q}^T\mMat{Q}\mVec{y} = \mVec{x}^T\mVec{y} = \langle \mVec{x}, \mVec{y} \rangle $
+         \item $\|\mMat{Q}\mVec{x}\|_2 = \langle \mMat{Q}\mVec{x}, \mMat{Q}\mVec{x} \rangle = \langle \mVec{x}, \mVec{x} \rangle = \|\mVec{x}\|_2$ \retTwo
+      \end{enumerate}
+   \end{myIndent}}
+
+   Theorem (\udefine{QR decomposition / full QR decomposition}):
+   {\begin{myIndent}
+      Suppose $\mMat{A} \in \mathbb{R}^{n \times m}$ where $n \geq m$. Then there exists an orthogonal matrix $\mMat{Q} \in \mathbb{R}^{n\times n}$ and a matrix $\mMat{R} = \begin{bmatrix}\hat{\mMat{R}}\\\mMat{0}\end{bmatrix} \in \mathbb{R}^{n \times m}$ where $\hat{\mMat{R}}$ is an $m \times m$ upper triangular matrix such that $\mMat{A} = \mMat{Q}\mMat{R}$.
+   \end{myIndent}}
+   \newpage
+   Some uses of QR decompositions:
+   \begin{itemize}
+      \item Solving matrix-vector equations:
+      {\begin{myIndent} \hTwo
+         Using the QR decomposition of a matrix, you can rewrite an equation $\mMat{A}\mVec{x} = \mVec{b}$ as follows:
+         
+         {\centering$\mMat{A}\mVec{x} = \mMat{Q}\mMat{R}\mVec{x} = \mVec{b} \Rightarrow \mMat{R}\mVec{x} = \mMat{Q}^{-1}\mVec{b}$\par}
+         
+         And now you can find $\mVec{x}$ using back substitution and matrix vector\\ multiplication. \retTwo
+      \end{myIndent}}
+
+      \item The \udefine{Least Square Problem (LSE)}: Suppose $\mMat{A} \in \mathbb{R}^{n \times m}$ where $n \geq m$ and $b \in \mathbb{R}^n$. Then the least square problem is of the form: $\min\limits_{\mVec{x} \in \mathbb{R}^m}{(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2}$.
+      {\begin{myTindent} \teachComment
+         For $n \geq m$, if the matrix-vector equation $\mMat{A}\mVec{x} = \mVec{b}$ has a solution, then the solution of the least square problem is also the solution of that matrix vector equation. \retTwo However, if there is no solution to the matrix-vector equation, then the least square problem is asking us to find a vector $\mVec{x}$ that minimizes the distance between $\mMat{A}\mVec{x}$ and $\mVec{b}$.
+      \end{myTindent}}
+      {\hTwo
+      \begin{myIndent}
+         \begin{itemize}
+            \item[{\color{BrickRed}Step 1.}] Find a QR-decomposition such that $\mMat{A} = \mMat{Q}\mMat{R}$ \retTwo
+            \item[{\color{BrickRed}Step 2.}] $(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2 = (\|\mVec{b} - \mMat{QR}\mVec{x}\|_2)^2 = (\|\mMat{Q}^T(\mVec{b} - \mMat{QR}\mVec{x})\|_2)^2$ \newline
+            $\phantom{(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2 } = (\|\mMat{Q}^T\mVec{b} - \mMat{Q}^T\mMat{QR}\mVec{x}\|_2)^2 = (\|\mMat{Q}^T\mVec{b} - \mMat{R}\mVec{x}\|_2)^2$ \newline
+            {\begin{myDindent} \hThree
+               Now denote: ${\displaystyle \mMat{Q}^T\mVec{b} = \begin{bmatrix}\mVec{c} \\ \mVec{d}\end{bmatrix} \text{ and } \mMat{R}\mVec{x} = \begin{bmatrix}\hat{\mMat{R}}\mVec{x} \\ \mVec{0}\end{bmatrix}}$
+               
+               \begin{myDindent}
+                  \dots where $\mVec{c}, \hat{\mMat{R}}\mVec{x} \in \mathbb{R}^m$ and $\mVec{d} \in \mathbb{R}^{n-m}$  \retTwo
+               \end{myDindent}
+            \end{myDindent}}
+            $(\|\mMat{Q}^T\mVec{b} - \mMat{R}\mVec{x}\|_2)^2 = \left(\left\|
+            \begin{bmatrix}
+               \mVec{c} \\ \mVec{d}
+            \end{bmatrix} - 
+            \begin{bmatrix}
+               \hat{\mMat{R}}\mVec{x} \\ \mVec{0}
+            \end{bmatrix}\right\|_2\right)^2 = \left\| 
+            \begin{bmatrix}
+               \mVec{c} - \hat{\mMat{R}}\mVec{x} \\ \mVec{d}
+            \end{bmatrix}\right\|_2^{\phantom{2}2}$\newline
+            
+            $\hphantom{(\|\mMat{Q}^T\mVec{b} - \mMat{R}\mVec{x}\|_2)^2 = \left(\left\|
+               \begin{bmatrix}
+                  \mVec{c} \\ \mVec{d}
+               \end{bmatrix} - 
+               \begin{bmatrix}
+                  \hat{\mMat{R}}\mVec{x} \\ \mVec{0}
+               \end{bmatrix}\right\|_2\right)^2}
+            = (\|\mVec{c} - \hat{\mMat{R}}\mVec{x}\|_2)^2 + (\|\mVec{d}\|_2)^2$ \retTwo
+            
+            \item[{\color{BrickRed}Step 3.}] Now $\min\limits_{\mVec{x} \in \mathbb{R}^m}{(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2} = \left(\min\limits_{\mVec{x} \in \mathbb{R}^m}{(\|\mVec{c} - \hat{\mMat{R}}\mVec{x}\|_2)^2}\right) + (\|\mVec{d}\|_2)^2$ \retTwo
+            
+            \item[{\color{BrickRed}Step 4.}] If $\mMat{A}$ has full-rank, then $\hat{\mMat{R}} \in \mathbb{R}^{m\times m}$ is invertible. So: $\hat{\mMat{R}}\mVec{x} = \mVec{c}$ has a unique solution, meaning that $\min\limits_{\mVec{x} \in \mathbb{R}^m}{(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2} = (\|\mVec{d}\|_2)^2$. So we get the theorem on the next page:
+         \end{itemize}
+
+         \newpage
+         
+         \uuline{Theorem}:
+         
+         \begin{itemize}
+            \item[\circ] The solution to the least squares problem is the solution to the linear system $\hat{\mMat{R}}\mVec{x} = \mVec{c}$ where $\mVec{c}$ is the first $m$ values of $\mMat{Q}^T\mVec{b}$. \\
+            \item[\circ] Meanwhile, the \udefine{optimal value} is $\min\limits_{\mVec{x} \in \mathbb{R}^m}{(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2} = (\|\mVec{d}\|_2)^2$ where $\mVec{d}$ is the remaining elements of $\mMat{Q}^T\mVec{b}$. \retTwo
+         \end{itemize}
+      \end{myIndent}}
+   \end{itemize}
+
+   \markLecture{2/7/2024}
+
+   A QR decomposition of $
+   \begin{bmatrix}
+      -1\myMathVS & -1 & 1 \\ 1\myMathVS & 3 & 3 \\ -1\myMathVS & -1 & 5 \\ 1\myMathVS & 3 & 7
+   \end{bmatrix}$ is: $\mMat{Q}\mMat{R} =
+   \begin{bmatrix}
+      -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & \frac{1}{2}\myMathVS \\
+      \frac{1}{2} & \frac{1}{2} & -\frac{1}{2} & -\frac{1}{2}\myMathVS \\
+      -\frac{1}{2} & \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}\myMathVS \\
+      \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \frac{1}{2}\myMathVS \\
+   \end{bmatrix}
+   \begin{bmatrix}
+      2 & 4 & 2\myMathVS \\ 0 & 2 & 8\myMathVS \\ 0 & 0 & 4\myMathVS\\ 0&0&0\myMathVS
+   \end{bmatrix}$ \retTwo
+
+   Meanwhile, a reduced QR decomposition of that same matrix would be:
+   \[\hat{\mMat{Q}}\hat{\mMat{R}} = \begin{bmatrix}
+      -\frac{1}{2} & \frac{1}{2} & -\frac{1}{2}\myMathVS \\
+      \frac{1}{2} & \frac{1}{2} & -\frac{1}{2}\myMathVS \\
+      -\frac{1}{2} & \frac{1}{2} & \frac{1}{2}\myMathVS \\
+      \frac{1}{2} & \frac{1}{2} & \frac{1}{2}\myMathVS \\
+   \end{bmatrix}\begin{bmatrix}
+      2 & 4 & 2\myMathVS \\ 0 & 2 & 8\myMathVS \\ 0 & 0 & 4\myMathVS
+   \end{bmatrix} \]
+   
+   {\begin{myTindent}\begin{myTindent} \hFour
+      \dots where $\hat{\mMat{R}}$ is the $m \times m$ upper triangular inside $\mMat{R}$ while $\hat{\mMat{Q}}$ is the matrix of the first $m$ columns in $\mMat{Q}$. \retTwo
+   \end{myTindent}\end{myTindent}}
+
+   Two notes:
+   \begin{itemize}
+      \item $\mMat{Q}\mMat{R} = \hat{\mMat{Q}}\hat{\mMat{R}}$.
+      \item $\hat{\mMat{Q}}$ is not orthogonal but it does have the property that $\hat{\mMat{Q}}^T\hat{\mMat{Q}} = I_m$. In other words, the columns of $\hat{\mMat{Q}}$ are an orthonormal set (a.k.a it's \udefine{column-orthogonal}). \retTwo
+   \end{itemize}
+   
+   {\begin{myIndent} \hTwo
+      Using the Gram-Schmit algorithm, for any $\mMat{A} \in \mathbb{R}^{n \times m}$ with full rank, we can\\ calculate a column-orthogonal matrix $\hat{\mMat{Q}}$ and upper triangular matrix $\hat{\mMat{R}}$ such that $\mMat{A} = \hat{\mMat{Q}}\hat{\mMat{R}}$.
+      
+      \newpage
+
+      \begin{myIndent}
+         \uuline{Classsic Gram-Schmit Algorithm:} \retTwo
+
+         \hThree
+         We'll denote $\mMat{A} = \begin{bmatrix} \mVecAst{a}_1 & \cdots & \mVecAst{a}_m \end{bmatrix}$ and $\hat{\mMat{Q}} = \begin{bmatrix} \mVecAst{q}_1 & \cdots & \mVecAst{q}_m \end{bmatrix}$\retTwo
+
+         For $i = 1,\cdots,m$:
+         \begin{myIndent}
+            For $k = 1,\cdots (i-1)$:
+            
+            \begin{myIndent}
+               $r_{k,i} = \langle \mVecAst{a}_i, \mVecAst{q}_k \rangle$
+            \end{myIndent}
+
+            end
+
+            $r_{i,i} = \left\|\mVecAst{a}_i - \sum\limits_{k=1}^{i-1}{(r_{k,i}\mVecAst{q}_k)}\right\|_2$ and $\mVecAst{q}_i =$ \raisebox{-0.5em}{
+               $\dfrac{\mVecAst{a}_i - \sum\limits_{k=1}^{i-1}{(r_{k,i}\mVecAst{q}_k)} }{ r_{i,i} }$
+            }
+         \end{myIndent}
+         
+         end \retTwo
+
+         {\center \myComment
+         \begin{myClosureOne}{4.5}
+            To remember this algorithm, note that:
+            \begin{itemize}
+               \item $\hat{\mMat{Q}}\hat{\mMat{R}} = \mMat{A} \Longrightarrow \hat{\mMat{R}} = \hat{\mMat{Q}}^T\mMat{A}$. So, $r_{i,j}$ equals the inner product of the $i$th column of $\hat{\mMat{Q}}^T$ and the $j$th column of $\mMat{A}$. \retTwo
+               
+               \item If $V_i$ is the space spanned by the first $i$ columns of $\hat{\mMat{Q}}$, then $\mVecAst{q}_{i+1}$ is equal to the normalized result of $\mVecAst{a}_{i+1} - \Proj{\mVecAst{a}_{i+1}}{V_i}$. However, each $\mVecAst{q}_i$ is a unit vector. So, the projection formula is simplified.
+            \end{itemize}
+         \end{myClosureOne}
+         \par}
+
+         \retTwo
+         \hTwo
+         \uuline{Modified Gram-Schmit Algorithm:} {\exOne (more stable for computers)} \retTwo
+
+         
+         \begin{lstlisting}
+   function [Q, R] = modifiedGS(A)
+      % Storing the number of columns in A
+      m = size(A, 2);
+            
+      % Copy Q into A (Matlab doesn't seem to alias the matrices)
+      Q = A;
+
+      for i=1:m
+         R(i,i) = norm(Q(:,i));
+         Q(:,I) = Q(:,i) / R(i, i) %Q(:,i) * (1 / R(i, i))
+         
+         for j = (i+1):m
+            R(i,j) = Q(:,i)' * Q(i,j); % A' is the transpose of A
+            Q(:,j) = Q(:,j) - (R(i,j) * Q(:, i));
+         end
+      end
+   end
+         \end{lstlisting} \retTwo
+      
+      The way that this modified algorithm differs from the original one is that instead of building a column of $\hat{\mMat{Q}}$ every iteration, it instead builds a row of $\hat{\mMat{R}}$ every iteration. This is much more numerically stable.
+      \end{myIndent}
+   \end{myIndent}}
+
+   \newpage
+
+   \markLecture{2/9/2024}
+
+   A matrix $\mMat{P} \in \mathbb{R}^{n \times n}$ is called a \udefine{projector} if $\mMat{P}^2 = \mMat{P}$. \retTwo
+
+   Given $\mVec{u} \in \mathbb{R}^n$ with $\|\mVec{u}\|_2 = 1$, then $P = \mVec{u}\mVec{u}^T$ is an orthogonal projector.
+   
+   {\begin{myIndent} \hThree
+      Proof:\\
+      \begin{itemize}
+         \item $\mMat{P}^2 = (\mVec{u}\mVec{u}^T)(\mVec{u}\mVec{u}^T) = \mVec{u}\langle \mVec{u}, \mVec{u} \rangle \mVec{u}^T = 1 \cdot \mVec{u}\mVec{u}^T = \mMat{P}$
+         \item $\mMat{P}^T = \left(\mVec{u}\mVec{u}^T\right)^T = \left( \mVec{u}^T\right)^T\mVec{u}^T = \mVec{u}\mVec{u}^T = P$
+      \end{itemize}
+   \end{myIndent}}
 \end{document}
