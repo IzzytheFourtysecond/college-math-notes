@@ -160,6 +160,18 @@
 }
 
 \newcommand{\pprime}{\prime\prime}
+\newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\oddComp}[1]{\mathrm{odd}(#1)}
+\newcommand{\exposed}[1]{\mathrm{ex}(#1)}
+
+
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\normalfont\mbox{\footnotesize#1}}}{\equiv}}
+
 
 \newcounter{PropNumber}
 \newcommand{\propCount}{%
@@ -1167,7 +1179,7 @@ The \udefine{underlying graph} (or multigraph) of a digraph $G$ is the graph (or
       \begin{enumerate}
          \item Make a trail $T$.
          \item Add edges to $T$ until you get stuck at a vertex. Then you know that your trail forms a tour.
-         \item If $T$ is not an Eulerian tour, then going by the steps in the proof above, define $T^\prime$. Then do step 2. on $T^prime$.
+         \item If $T$ is not an Eulerian tour, then going by the steps in the proof above, define $T^\prime$. Then do step 2. on $T^\prime$.
          \item If $T$ is an Eulerian tour, you're done.
       \end{enumerate}\end{myClosureOne}\par}
 \end{myIndent}}
@@ -1428,7 +1440,7 @@ A \udefine{perfect matching} (or $1$-factor) is a matching which saturates all t
 
       \newpage
 
-      Induction step:  assume that Hall's theorem works if $1 \leq \left| A \right| < n$. Then assume that $\left| A \right| = n$. Since we are assuming Hall's condition to be true, we know that for all proper subsets $X \subset A$, either $\lvert N_G(X) \rvert > \lvert X \rvert$ or $\lvert N_G(X) \rvert = \lvert X \rvert$ is true. \retTwo
+      Induction step:  Assume that Hall's theorem works if $1 \leq \left| A \right| < n$. Then assume that $\left| A \right| = n$. Since we are assuming Hall's condition to be true, we know that for all proper subsets $X \subset A$, either $\lvert N_G(X) \rvert > \lvert X \rvert$ or\\ $\lvert N_G(X) \rvert = \lvert X \rvert$ is true. \retTwo
 
       \begin{itemize}
          \item Case 1: For all proper subsets $X$ of $A, \hspace{0.5em}\lvert N_G(X) \rvert > \lvert X \rvert$\dots\\ {\hFour
@@ -1507,5 +1519,257 @@ A \udefine{$1$-factorization} of a graph is a collection of pairwise edge-disjoi
 \end{myIndent}}
 
 \markLecture{2/1/2024}
+
+For a graph $G$, let $\oddComp{G}$ denote the number of components of $G$ with an odd number of vertices. \retTwo
+
+If $G$ has a perfect matching, then $\oddComp{G} = 0$. Furthermore, for any set $S \subseteq V(G)$:
+
+{\centering $\oddComp{G - S} \leq |S|$ \retTwo \par}
+
+{\begin{myIndent} \hFour
+   \begin{myConstrict}
+      To understand why, let $\epsilon$ be the \uuline{minimum} number of exposed vertices in $G - S$ and consider that:
+      \begin{itemize}
+         \item We know $\epsilon \leq |S|$ because if $M$ is a perfect matching of $G$, then the number of exposed edges by the matching: $M \cap E(G - S)$ is at most equal to $|S|$. 
+         
+         \item Meanwhile, because no odd component of $G - S$ can have a perfect matching, we know that each odd component of $G - S$ must contribute at least one exposed vertex to an optimal matching of $G - S$. So\\ $\oddComp{G - S} \leq \epsilon$.
+      \end{itemize}
+         Combining the two bounds, we have $\oddComp{G - S} \leq \epsilon \leq |S|$. Therefore, $\oddComp{G - S} \leq |S|$.
+         
+         \begin{myTindent}\begin{myTindent} \myComment
+            I do not understand how the professor saw this as an obviously apparent truth that didn't need a proof but whatever.
+         \end{myTindent}\end{myTindent}
+   \end{myConstrict}
+\end{myIndent}}
+\retTwo
+
+This condition is called \udefine{Tutte's condition}. As shown above, it is a necessary condition for a graph to have a perfect matching. However, it happens to also be a sufficient condition.
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: A graph $G$ has a perfect matching if and only if $\oddComp{G - S} \leq S$ for every set $S \subseteq V(G)$.
+
+   \begin{myIndent} \hThree
+      Proof: \\
+      We already showed that Tutte's condition was necessary for a graph to have a perfect matching. So, what we need to show now is that assuming Tutte's condition holds, you can construct a perfect matching. \retTwo
+
+      We shall proceed by induction. Firstly note that if $S = \emptyset$, then there must be zero odd components. Therefore, Tutte's condition already limits us to focuing on graphs with an even total number of vertices. So, let our base case be when $|V(G)| = 2$. In that case   $G = K_2$ and so $G$ has a perfect matching.
+
+      \newpage
+      Now suppose $V(G) > 2$ and that our theorem holds for any graph with less than $V(G)$ vertices.\retTwo Let $S$ be the largest subset of $V(G)$ such that $|S| = \oddComp{G - S}$. We know that $S$ is nonempty because if $|S|$ equals $1$, the equality must hold.
+      {\begin{myIndent} \hFour
+         $|V(G)|$ having to be even implies that $|V(G)| - 1$ is odd. So $G - S$ must have an odd number of odd component. But by Tutte's condition, we know the number of odd components is at most $1$. Hence, equality must hold when $|S| = 1$.
+      \end{myIndent}}
+      This guarentees that $V(G - S) \leq V(G)$. \retTwo
+
+      Let's now consider any even component of $G - S$ which we shall denote $H$. We claim that $H$ has a perfect matching.
+      {\begin{myIndent} \hFour
+         Consider any $R \subseteq V(H)$. Because $R$ only contains vertices from an even component of $G - S$, we have that every odd component in $G - S$ is also in $G - (R \cup S)$. This combined with Tutte's condition tells us that:
+         
+         {\centering $\oddComp{H - R} + \oddComp{G - S} = \oddComp{G - (R \cup S)} \leq |S| + |R|$ \retTwo \par}
+
+         However, since we specified that $|S| = \oddComp{G - S}$, we can cancel out terms to get that $\oddComp{H - R} \leq |R|$. So Tutte's condition holds for $H$. And since $V(H) < V(G)$, we can thus conclude by our inductive hypothesis that $H$ has a perfect matching. \retTwo
+      \end{myIndent}}
+      
+      Meanwhile, consider any odd component of $G - S$ which we shall denote $F$. We claim that for any $v \in V(F)$, we know that $F^\prime = F - \{v\}$ has a perfect matching.
+      {\begin{myIndent} \hFour
+         Because $V(F^\prime) < V(G)$, we know by our inductive hypothesis that if $F^\prime$ does not have a perfect matching, then Tutte's condition must not hold. Or in other words, there exists $Q \subseteq V(F^\prime)$ such that $\oddComp{F^\prime - Q} > |Q|$. \retTwo
+
+         Now note that for any $R \subseteq V(F)$, because $|V(F)|$ is odd ($\equiv 1 \mod{2}$):
+         \begin{itemize}
+            \item $|R| \myequiv{2} 0 \Longrightarrow |V(F - R)| \myequiv{2} 1 \Longrightarrow \oddComp{F - R} \myequiv{2} 1$
+            \item  $|R| \myequiv{2} 1 \Longrightarrow |V(F - R)| \myequiv{2} 0 \Longrightarrow \oddComp{F - R} \myequiv{2} 0$
+         \end{itemize}
+         So $\oddComp{F - R} + |R| \myequiv{2} |V(F)| \myequiv{2} 1$. \retTwo
+
+         This means that $\oddComp{F - (Q \cup \{v\})} + |Q| + 1 \myequiv{2} 1$, which in turn says that $\oddComp{F^\prime - Q} + |Q| \myequiv{2} 0$. So both $\oddComp{F^\prime - Q}$ and $|Q|$ must have the same parity, meaning that  $\oddComp{F^\prime - Q} > |Q| \Rightarrow \oddComp{F^\prime - Q} \geq |Q| + 2$. \retTwo
+
+         Also observe that $\oddComp{G - S \cup \{v\} \cup Q} = \oddComp{G - S} - 1 + \oddComp{F^\prime - Q}$. This is because every odd component of $G - S$ except for $F$ is also an odd component of $G - S \cup \{v\} \cup Q$. \retTwo
+
+         Therefore we can say by Tutte's condition that:
+
+         {\center$ |S| + |Q| + 1 \geq  \oddComp{G - S} - 1 + \oddComp{F^\prime - Q} \geq \oddComp{G - S} + |Q| + 1$.\par}
+
+         \newpage
+
+         Therefore we've shown that $\oddComp{G - S \cup \{v\} \cup Q} = |S \cup \{v\} \cup Q|$.\\ However, this contradicts our previous assertion that $S$ is the largest subset of $V(G)$ such that $\oddComp{G - S} = |S|$. So we have shown that $Q$ cannot exist, meaning that $F^\prime$ has a perfect matching. \retTwo
+      \end{myIndent}}
+
+      Finally, let $C$ be the set of vertices consisting of one vertex from each odd component of $G - S$ such that each vertex in $C$ has an edge connecting to $S$. Then consider the bipartite graph $G(S, C)$ consisting of every edge in $G$ going between $C$ and $S$. We claim that this bipartite graph has a perfect matching.
+      {\begin{myIndent} \hFour
+         For every $X \subseteq C$, we know that removing $N(X)$ will make the components which each $x \in X = C$ belong to odd. So $|X| = \oddComp{G - N(X)}$. And by Tutte's condition: $\oddComp{G - N(X)} \leq N(X)$. So $|X| \leq |N(X)|$, meaning that by Hall's theorem, $G(S, C)$ has a perfect matching. \retTwo
+      \end{myIndent}}
+
+      Combining all the perfect matchings we made for $G(S, C)$ and each $H$ and $F^\prime$, we get a perfect matching for all $G$. $\blacksquare$
+   \end{myIndent}
+\end{myIndent}}
+
+\mySepTwo
+
+A \udefine{bridge} is an edge which when removed increases the number of components of a graph. Meanwhile, a \udefine{cubic} graph is a graph that is 3-regular. \retTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Petersen's Theorem}: Every bridgless cubic graph $G$ has a perfect matching.
+
+   {\begin{myIndent}\hThree
+      We check that for all $S \subseteq V(G)$, we have that $\oddComp{G - S} \leq |S|$. \retTwo
+
+      By handshaking lemma, each component of $G$ must have an even number of vertices. Thus, if $S = \emptyset$, then $\oddComp{G - S} = \oddComp{G} = 0$. \retTwo
+
+      Now suppose if $S \neq \emptyset$. Then each component of $G - S$ sends at least two edges to $S$ since $G$ is bridgeless. However, consider a hypothetical odd\\ component $H$ of $G - S$. Because the sum of degrees of $H$ must be even, we know that $H$ must send an odd number of edges to $S$. Therefore if every component of $G - S$ was odd, then the number of edges coming into $S$ must be at least $3(\oddComp{G - S})$. But, because $G$ is $3$-regular, the max number of edges that $S$ could possibly accept is $3|S|$. So, $\oddComp{G - S} \leq |S|$. \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\newpage
+
+\textbf{\uuline{Matching Algorithms}:} \retTwo
+Let $G$ be a graph and $M$ a matching in $G$.
+\begin{itemize}
+   \item An \udefine{$M$-alternating path} is a path whose edges are alternatly in and not in $M$.
+   \item An \udefine{$M$-augmenting path} is an alternating path whose first and last edge are not in $M$.
+   
+   {\exOne\center\raisebox{0em}{\tikz[scale=0.6,inner sep=3.5pt]{
+         \tikzstyle{myCir}=[circle, fill, thick];
+         \tikzstyle{myLine}=[ultra thick];
+         \tikzstyle{myHL}=[color=Orange, line width=8pt, opacity=0.4];
+   
+         \node[myCir] (1) at (0,0) {};
+         \node[myCir] (2) at (2,0) {} edge[myLine] (1);
+         \node[myCir] (3) at (4,0) {} edge[myLine] (2) edge[myHL] (2);
+         \node[myCir] (4) at (6,0) {} edge[myLine] (3);
+         \node[myCir] (5) at (8,0) {} edge[myLine] (4) edge[myHL] (4);
+         \node[myCir] (6) at (10,0) {} edge[myLine] (5);
+      }}\par}
+      \retTwo
+\end{itemize}
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: If $G$ is a graph and $M$ is a matching in $G$, then $M$ is a maximum matching if and only there is no augmenting path between two vertices not covered by $M$. \retTwo
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      ($\Longrightarrow$) the contrapositive of this is easy to show. If such an augmenting path does exist, then we can draw a larger matching by doing this: \retTwo
+
+      {\exOne\center\raisebox{0em}{\tikz[scale=0.6,inner sep=3.5pt]{
+         \tikzstyle{myCir}=[circle, fill, thick];
+         \tikzstyle{myLine}=[ultra thick];
+         \tikzstyle{myHL}=[color=Orange, line width=8pt, opacity=0.4];
+         
+         \node[myCir] (1) at (0,0) {};
+         \node[myCir] (2) at (2,0) {} edge[myLine] (1);
+         \node[myCir] (3) at (4,0) {} edge[myLine] (2) edge[myHL] (2);
+         \node[myCir] (4) at (6,0) {} edge[myLine] (3);
+         \node[myCir] (5) at (8,0) {} edge[myLine] (4) edge[myHL] (4);
+         \node[myCir] (6) at (10,0) {} edge[myLine] (5);
+
+         \fill (4.75,-1) -- (5.25,-1) -- (5.25, -2) -- (5.75, -2) -- (5, -3) -- (4.25,-2) -- (4.75, -2) -- (4.75, -1); 
+
+         \node[myCir] (1) at (0,-4) {};
+         \node[myCir] (2) at (2,-4) {} edge[myLine] (1) edge[myHL] (1);
+         \node[myCir] (3) at (4,-4) {} edge[myLine] (2);
+         \node[myCir] (4) at (6,-4) {} edge[myLine] (3) edge[myHL] (3);
+         \node[myCir] (5) at (8,-4) {} edge[myLine] (4);
+         \node[myCir] (6) at (10,-4) {} edge[myLine] (5) edge[myHL] (5);
+      }}\par}
+      \retTwo
+      ($\Longleftarrow$) we're not rigorously showing this direction for some reason in this class\dots
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+\textbf{\uuline{Edge Coloring}:} \retTwo
+A \udefine{(Proper) edge coloring} of a graph $G$ is a map $c: E(G) \longrightarrow S$, where $S$ is a set such that $c(e) \neq c(f)$ whenever $e \cap f \neq \emptyset$. \retTwo
+
+{\begin{center} \exOne
+   \begin{tabular}{ p{3in} p{3in} }
+      \\
+         {\center\raisebox{0em}{\tikz[scale=0.35,inner sep=3pt]{
+         \tikzstyle{myCir}=[circle, fill, ultra thick];
+         \tikzstyle{myLine}=[thick];
+         \tikzstyle{colOne}=[color=Orange!75!Yellow, line width=8pt, opacity=0.7];
+         \tikzstyle{colTwo}=[color=Red, line width=8pt, opacity=0.7];
+         \tikzstyle{colThree}=[color=VioletRed, line width=8pt, opacity=0.7];
+         \useasboundingbox (-5,-5) rectangle (5, 2);
+   
+         \node[myCir, label=above:1] (0) at (90.0:5) {};
+         \node[myCir, label=above:2] (1) at (141.0:5) {}
+               edge[myLine] (0) edge[colOne] (0);
+         \node[myCir, label=left:3] (2) at (192.0:5) {}
+               edge[myLine] (1) edge[colTwo] (1);
+         \node[myCir, label=below:4] (3) at (244.0:5) {}
+               edge[myLine] (2) edge[colThree] (2);
+         \node[myCir, label=below:5] (4) at (295.0:5) {}
+               edge[myLine] (3) edge[colTwo] (3);
+         \node[myCir, label=right:6] (5) at (347.0:5) {}
+               edge[myLine] (4) edge (4) edge[colThree] (4);
+         \node[myCir, label=above:7] (6) at (398.0:5) {}
+               edge[myLine] (5) edge[myLine] (0) edge[colTwo] (0) edge[colOne] (5);
+      }}\par} &
+      This is an edge coloring of $C_7$.\newline
+      $S = \{{\color{Orange!75!Yellow} \blacksquare}, {\color{Red} \blacksquare}, {\color{VioletRed} \blacksquare}\}$ and $c$ maps each \newline each edge of $C_7$ to an element of \newline $S$ as shown to the side.
+   \end{tabular}
+\end{center}}
+
+\newpage
+
+The \udefine{edge-cromatic number} $\chi^\prime(G)$ is the minimum $k$ for which $G$ has a proper\\ $k$-edge-coloring. \retTwo
+
+Observe that $\chi^\prime(G) \geq \Delta(G)$ (the maximum degree of $G$). After all, each edge coming off the vertex with the max degree have to have a different color. \retTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{König's Theorem}: Let $G$ be a bipartite multigraph. Then $\chi'(G) = \Delta(G)$.
+
+   
+   {\begin{myIndent} \hThree
+      Proof:\\
+      By taking two copies of $G$ and adding multiple edges between copies of the same vertex, we can get a $\Delta(G)$-regular-multigraph. Then, by the theorem on page 20 (which I realize we only explicitely proved for normal graphs but all the logic we used should also work for multigraphs...), we know that this new graph has $\Delta(G)$ disjoint perfect matches. Then assign colors to the original edges of $G$ based on which perfect matching that edge wound up in. \retTwo
+
+      \begin{myTindent}\begin{myTindent} \teachComment
+         A different proof is in the textbook\dots \retTwo
+      \end{myTindent}\end{myTindent}
+   \end{myIndent}}
+\end{myIndent}}
+
+\markLecture{2/6/2024}
+
+We define $\mu(G)$ to be the size of a maximum matching of a graph $G$. Meanwhile we define $\exposed{G}$ to be the number of vertices exposed by a maximum matching of $G$. \retTwo
+
+{\hTwo
+\begin{myIndent}
+   \uuline{König-Ore Theorem}: Let $G$ be a bipartite graph with parts $A$ and $B$. Additionally, define $\exposed{G, A} = |A| - \mu(G)$. In other words, this is the number of vertices in $A$ exposed by a maximum matching. Then:
+
+   {\centering $\exposed{G, A} = \max\limits_{S\subseteq A}{\{|S| - |N(S)|\}}$ \par}
+
+
+   \begin{myIndent} \hThree
+      Proof:\\
+      Denote the right hand side of the above equation by $d$. Then consider adding $d$ vertices to $B$ which are all adjacent to all vertices of $A$. Hall's condition is trivially true in this new graph, meaning that this new graph has a matching covering all vertices of $A$. Therefore, when we remove those added vertices and edges from our matching over $A$, we will still have a matching covering at least $|A|-d$ vertices in $A$. So, $\exposed{G, A} \leq d$.\retTwo
+      
+      On the other hand, if $M$ is a matching of size: $|A| - \exposed{G, A}$, meaning that $M$ is a maximum matching, then each $S \subseteq A$ has at least $|S| - \exposed{G, A}$ neighbors in $B$. Or in other words, $|N(S)| \geq |S| - \exposed{G, A}$ We know this because Hall's condition applise to $A$ if we remove the exposed vertices in $A$. Then, by subtracting $\exposed{G, A}$ from $|S|$, we are effectively canceling the influence of those exposed points which cause Hall's Theorem to fail. We can rewrite the above formula as $\exposed{G, A} \geq |S| - |N(S)|$. And since this is true for all $S$, we thus know that $d = \max\limits_{S\subseteq A}{\{|S| - |N(S)|\}} \leq \exposed{G, A}$
+
+      So in conlusion: $d \leq \exposed{G, A} \leq d \Longrightarrow d = \exposed{G, A}$.
+   \end{myIndent}
+\end{myIndent}}
+
+\newpage
+
+Here are two other theorems given without proof:
+
+{\begin{myIndent} \hTwo
+   \uuline{Tutte-Berge Formula}: For any multigraph $G$:
+   
+   {\center $\exposed{G} = \max\limits_{S \subseteq V(G)}{\{\oddComp{G-S}-|S|\}}$ \par}.
+   \retTwo
+   \uuline{Vizing's Theorem}: For every graph $G$ of maximum degree $\Delta$, either $\chi^\prime(G) = \Delta$ or $\chi^\prime(G) = \Delta + 1$.
+   \begin{myTindent} \hFour
+      If $\chi^\prime(G) = \Delta$, then $G$ is referred to as \udefine{class 1}. Meanwhile,\\ if $\chi^\prime(G) = \Delta + 1$, then $G$ is referred to as \udefine{class 2}. \retTwo
+
+      That said, it is an NP-complete problem to generally determine if a graph is class 1 or not.
+   \end{myTindent}
+\end{myIndent}}
+
+\mySepTwo
+
+
 
 \end{document}
