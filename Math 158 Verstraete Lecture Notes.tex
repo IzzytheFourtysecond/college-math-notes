@@ -32,7 +32,7 @@
 \newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
 
 \usepackage{graphicx}
-%\graphicspath{{./140A_images/}}
+\graphicspath{{./158_Images/}}
 
 \usepackage{tikz}
    \usetikzlibrary{arrows.meta}
@@ -186,11 +186,18 @@
    {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
 }
 
-\newenvironment{myClosureOne}[2][.]{%
+\newenvironment{myClosureDeprecated}[2][.]{%
    \color{#1}%
    \begin{tabular}{|p{#2in}|} \hline \\%
 }{%
    \\ \\ \hline \end{tabular}%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
 }
 
 \newcommand{\retTwo}{\hfill\bigbreak}
@@ -645,7 +652,7 @@ $G = (V, E)$\ldots
 
 \exOneOldd
 \begin{center}
-\begin{myClosureOne}{5.5}
+\begin{myClosureDeprecated}{5.5}
    \uuline{Lemma (part 1)}: If $G = (V, E)$ is a graph of minimum degree
    $k \geq 2$, then $G$ contains a cycle of length at least
    $k + 1$.
@@ -684,7 +691,7 @@ $G = (V, E)$\ldots
       are graphs with minimum degree $k$ which don't have cycles of
       length greater than \newline $k + 1$.
    \end{myConstrict}} 
-\end{myClosureOne}
+\end{myClosureDeprecated}
 \end{center}
 \retTwo
 
@@ -728,7 +735,7 @@ A \udefine{tree} is a connected graph with no cycles
    \end{myIndent}
 
    \begin{center}
-      \begin{myClosureOne}{5.5}
+      \begin{myClosureDeprecated}{5.5}
          \uuline{Lemma}: Every tree with $n$ vertices has exactly
          $n - 1$ edges.
          \hThreeOld
@@ -777,7 +784,7 @@ A \udefine{tree} is a connected graph with no cycles
             tree of any connected graph.
             \end{myConstrict}
          \end{myIndent}\end{myIndent}
-      \end{myClosureOne}
+      \end{myClosureDeprecated}
    \end{center}\retTwo
 
 \hOneOld
@@ -887,7 +894,7 @@ the radii and diameters of graphs. \retTwo
       \exOneOldd
 
       
-   \begin{center}\begin{myClosureOne}{5.5}
+   \begin{center}\begin{myClosureDeprecated}{5.5}
       \uuline{Worked Demonstration}: \retTwo
       \exTwoOldd
       \begin{tabular}{ c c c }
@@ -939,7 +946,7 @@ the radii and diameters of graphs. \retTwo
             }\par}
          \end{centering}
       \end{tabular}
-   \end{myClosureOne}\end{center} \retTwo
+   \end{myClosureDeprecated}\end{center} \retTwo
 
    \hTwoOldd
    \begin{myIndent}
@@ -993,7 +1000,7 @@ Note that a tree is "minimally connecting" as subtracting any edge from a tree w
    \end{myIndent}
 
    {\exOne
-   \begin{center}\begin{myClosureOne}{5.5}
+   \begin{center}\begin{myClosureDeprecated}{5.5}
       \uuline{Worked Demonstration}: \retTwo
       \exTwoOldd
       \begin{tabular}{ c c c }
@@ -1035,7 +1042,7 @@ Note that a tree is "minimally connecting" as subtracting any edge from a tree w
             }\par}
          \end{centering}
       \end{tabular}
-   \end{myClosureOne}\end{center}} \hTwo\retTwo
+   \end{myClosureDeprecated}\end{center}} \hTwo\retTwo
 
    \mySepTwo[Black]
 
@@ -1174,14 +1181,14 @@ The \udefine{underlying graph} (or multigraph) of a digraph $G$ is the graph (or
    The proof of statement 2 is nearly identical. \retTwo
    
    {\center \teachComment
-   \begin{myClosureOne}{4.5}
+   \begin{myClosureDeprecated}{4.5}
       Note that this proof can be interpretted as giving an algorithm for finding an Eulerian tour.
       \begin{enumerate}
          \item Make a trail $T$.
          \item Add edges to $T$ until you get stuck at a vertex. Then you know that your trail forms a tour.
          \item If $T$ is not an Eulerian tour, then going by the steps in the proof above, define $T^\prime$. Then do step 2. on $T^\prime$.
          \item If $T$ is an Eulerian tour, you're done.
-      \end{enumerate}\end{myClosureOne}\par}
+      \end{enumerate}\end{myClosureDeprecated}\par}
 \end{myIndent}}
 
 \newpage
@@ -1190,7 +1197,7 @@ A harder problem is whether a graph has a Hamiltonian (spanning) cycle or not. \
 
 
 {\exOne\begin{center}
-   \begin{myClosureOne}{5}
+   \begin{myClosureDeprecated}{5}
          {\exTwo \begin{tabular}{ p{2in} p{2.5in} }
          This graph \uuline{does not} have a Hamiltonian cycle.
          &
@@ -1239,7 +1246,7 @@ A harder problem is whether a graph has a Hamiltonian (spanning) cycle or not. \
             }}\par
          \end{centering}
       \end{tabular}}
-   \end{myClosureOne}
+   \end{myClosureDeprecated}
 \end{center}} \retTwo
 
 {\hTwo
@@ -1339,7 +1346,7 @@ A graph is \udefine{uniquely Hamiltonian} if it has exactly one Hamiltonian cycl
 \end{myIndent}} \retTwo
 
 {\exOne \center
-   \begin{myClosureOne}{5.2}
+   \begin{myClosureDeprecated}{5.2}
       For example, by the above theorem we know that this graph is not uniquely Hamiltonian.
       {\exTwo\center\raisebox{0em}{\tikz[scale=0.25,inner sep=3pt]{
          \tikzstyle{myCir}=[circle, fill, thick, color=RedViolet];
@@ -1374,7 +1381,7 @@ A graph is \udefine{uniquely Hamiltonian} if it has exactly one Hamiltonian cycl
                edge[myLine] (12) edge[myLine] (0) edge[myLine] (5);
       }}\par}
       One note about the above theorem is that it can be interpretted as giving an algorithm for finding a second hamiltonian cycle given one hamiltonian cycle in a graph where all degrees are odd.
-   \end{myClosureOne}
+   \end{myClosureDeprecated}
 \par}
 
 \newpage
@@ -1768,8 +1775,121 @@ Here are two other theorems given without proof:
    \end{myTindent}
 \end{myIndent}}
 
+\mySepOne
+
+An \udefine{embedding} of a graph $G = (V, E)$ is a function $f: V\cap E\longrightarrow \mathbb{R}^2 \cap \mathcal{C}$ (where $\mathcal{C}$ is the set of continuous curves in $\mathbb{R}^2$) such that $f$ is injective, $f(v)$ is a point in $\mathbb{R}^2$ for all $v \in V$, and $f(\{u, v\})$ is a continuous curve in $\mathbb{R}^2$ with ends at $f(u)$ and $f(v)$ for all $\{u, v\} \in \mathbb{R}^2$. \retTwo
+
+A graph is a \udefine{planar} if we can choose $f$ such that for all distinct $e, e^\prime \in E, \hspace{0.4em} f(e)$ only intersects  $f(e^\prime)$ at its end points if at all.
+{\begin{myTindent}\begin{myTindent}\begin{myIndent} \teachComment
+   In other words, $G$ is planar if we can draw it without crossings (and we won't get into the topology of what that means\dots) \retTwo
+\end{myIndent}\end{myTindent}\end{myTindent}}
+
+A \udefine{plane} graph is a graph which we have embedded in the plane without crossings.\\ 
+
 \mySepTwo
 
+A \udefine{subdivision} of a graph $H$ is a graph obtained by replacing every edge $e = \{u, v\}$ with a path $P_e$ which ends at $u$ and $v$ such that $V(P_e) \cap V(P_f) = e \cap f$ for all $e, f \in E(H)$.
 
+{\begin{center} \exOne
+   {\begin{myClosureOne}{3.7}
+      Here is an example of a subdivision:\\
+      \includegraphics[scale=0.75]{Subdivision_Image.png}
+   \end{myClosureOne}}
+\end{center}}
+
+{\begin{myIndent} \hTwo
+   \uuline{Kuratowski's Theorem}: A graph is planar if and only if it does not contain a\\ subdivision of $K_5$ or $K_{3,3}$.
+   \begin{myIndent} \hThree
+      The proof for this is beyond the scope of this class.
+      \newpage
+   \end{myIndent}
+\end{myIndent}}
+
+Let $G$ be a plane graph. Then the faces of $G$ are the maximal connected regions of $\mathbb{R}^2 \setminus G$.
+
+{\center \exOne
+   \begin{myClosureOne}{4}
+      The plane graph below has four faces: \retTwo 
+      \exTwo\huge
+
+      {\center\raisebox{-1em}{\tikz[scale=0.5,inner sep=5pt]{
+         \tikzstyle{myCir}=[circle, fill, ultra thick, color=Purple];
+         \tikzstyle{myLine}=[thick, line width=4pt, color=Purple];
+   
+         \node[myCir] (m) at (0:0) {};
+         \node[myCir] (t) at (90:6) {};
+         \node[myCir] (l) at (210:6) {};
+         \node[myCir] (r) at (330:6) {};
+   
+         \draw (m) edge[myLine] (t);
+         \draw (m) edge[myLine] (l);
+         \draw (m) edge[myLine] (r);
+         \draw (t) edge[myLine] (l);
+         \draw (t) edge[myLine] (r);
+         \draw (l) edge[myLine] (r);
+   
+         \node at (30:1.57) {$F_1$};
+         \node at (150:1.75) {$F_2$};
+         \node at (270:1.75) {$F_3$};
+         \node at (45:5) {$F_4$};
+      }}\par}
+   \end{myClosureOne}
+\par}
+\retTwo
+
+Beware that the same graph can have multiple plane drawings. \retTwo
+
+If $G$ is connected, then the \udefine{boundary walk} of a face of $G$ is the shortest closed walk which uses every edge on the topological boundary of any face. \retTwo
+
+The \udefine{degree} of a face is the length of its boundary walk.
+
+{\center \exOne
+   \begin{myClosureOne}{5.25}
+      The middle face the graph below has degree $10$\dots \retTwo 
+      \exTwo
+      
+      \begin{tabular}{p{2.5in} p{2in} p{0.2in}}
+         {\center\raisebox{0em}{\tikz[scale=0.5,inner sep=5pt]{
+            \tikzstyle{myCir}=[circle, fill, ultra thick, color=Purple];
+            \tikzstyle{myLine}=[thick, line width=4pt, color=Purple];
+            \useasboundingbox (-5,-5.75) rectangle (5, 5);
+
+            \node[myCir] (t) at (90:6) {};
+            \node[myCir] (tl) at (150:6) {};
+            \node[myCir] (bl) at (210:6) {};
+            \node[myCir] (b) at (270:6) {};
+            \node[myCir] (br) at (330:6) {};
+            \node[myCir] (tr) at (30:6) {};
+            \node[myCir] (t2) at (90:2) {};
+            \node[myCir] (b2) at (270:2) {};
+   
+            \draw (t) edge[myLine] (tl);
+            \draw (tl) edge[myLine] (bl);
+            \draw (bl) edge[myLine] (b);
+            \draw (b) edge[myLine] (br);
+            \draw (br) edge[myLine] (tr);
+            \draw (tr) edge[myLine] (t);
+            \draw (t) edge[myLine] (t2);
+            \draw (b) edge[myLine] (b2);
+            
+         }}\par}
+         &
+         \retTwo
+         The two vertices protruding inside the face have to be traversed twice by any walk going around the boundary of the internal face.
+         &
+      \end{tabular}
+   \end{myClosureOne}
+\par}
+\retTwo
+
+{\begin{myTindent}\begin{myTindent} \teachComment
+   Proposition: The degree of the only face in a plane graph of a tree is twice the tree's number of edges.
+\end{myTindent}\end{myTindent}}
+
+\newpage
+
+{\begin{myIndent} \hTwo
+   \uuline{Handshaking Lemma}: If $F(G)$ is the set of faces of a plane graph $G$, then: \[\sum_{f \in F(G)}{\text{degrees}(f)} = 2|E(G)|\]
+\end{myIndent}}
 
 \end{document}
