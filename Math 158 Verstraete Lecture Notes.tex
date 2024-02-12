@@ -1765,7 +1765,7 @@ Here are two other theorems given without proof:
 {\begin{myIndent} \hTwo
    \uuline{Tutte-Berge Formula}: For any multigraph $G$:
    
-   {\center $\exposed{G} = \max\limits_{S \subseteq V(G)}{\{\oddComp{G-S}-|S|\}}$ \par}.
+   {\center $\exposed{G} = \max\limits_{S \subseteq V(G)}{\{\oddComp{G-S}-|S|\}}$ \par}
    \retTwo
    \uuline{Vizing's Theorem}: For every graph $G$ of maximum degree $\Delta$, either $\chi^\prime(G) = \Delta$ or $\chi^\prime(G) = \Delta + 1$.
    \begin{myTindent} \hFour
@@ -1805,14 +1805,14 @@ A \udefine{subdivision} of a graph $H$ is a graph obtained by replacing every ed
    \end{myIndent}
 \end{myIndent}}
 
-Let $G$ be a plane graph. Then the faces of $G$ are the maximal connected regions of $\mathbb{R}^2 \setminus G$.
+Let $G$ be a plane graph. Then the faces of $G$ are the maximal connected regions of $\mathbb{R}^2 \setminus G$. We refer to the set of faces of $G$ as $F(G)$.
 
 {\center \exOne
    \begin{myClosureOne}{4}
       The plane graph below has four faces: \retTwo 
       \exTwo\huge
 
-      {\center\raisebox{-1em}{\tikz[scale=0.5,inner sep=5pt]{
+      {\center\raisebox{-1em}{\tikz[scale=0.4,inner sep=5pt]{
          \tikzstyle{myCir}=[circle, fill, ultra thick, color=Purple];
          \tikzstyle{myLine}=[thick, line width=4pt, color=Purple];
    
@@ -1828,7 +1828,7 @@ Let $G$ be a plane graph. Then the faces of $G$ are the maximal connected region
          \draw (t) edge[myLine] (r);
          \draw (l) edge[myLine] (r);
    
-         \node at (30:1.57) {$F_1$};
+         \node at (30:1.75) {$F_1$};
          \node at (150:1.75) {$F_2$};
          \node at (270:1.75) {$F_3$};
          \node at (45:5) {$F_4$};
@@ -1849,7 +1849,7 @@ The \udefine{degree} of a face is the length of its boundary walk.
       \exTwo
       
       \begin{tabular}{p{2.5in} p{2in} p{0.2in}}
-         {\center\raisebox{0em}{\tikz[scale=0.5,inner sep=5pt]{
+         {\center\raisebox{0em}{\tikz[scale=0.4,inner sep=5pt]{
             \tikzstyle{myCir}=[circle, fill, ultra thick, color=Purple];
             \tikzstyle{myLine}=[thick, line width=4pt, color=Purple];
             \useasboundingbox (-5,-5.75) rectangle (5, 5);
@@ -1889,7 +1889,62 @@ The \udefine{degree} of a face is the length of its boundary walk.
 \newpage
 
 {\begin{myIndent} \hTwo
-   \uuline{Handshaking Lemma}: If $F(G)$ is the set of faces of a plane graph $G$, then: \[\sum_{f \in F(G)}{\text{degrees}(f)} = 2|E(G)|\]
+   \uuline{Handshaking Lemma}: ${\displaystyle\sum_{f \in F(G)}{\text{degrees}(f)} = 2|E(G)|}$
+
+   {\begin{myIndent} \hThree
+      Intution why:\\
+      Each edge has a face on its left hand and right hand side (it might be the same face on both side). Thus the boundary walk of the face on the edge's left hand side will have to traverse that edge once, whereas the face on the edge's right hand side will also have to traverse that edge once. \retTwo
+   \end{myIndent}}
+
+   \uuline{Euler's formula}: Let $G$ be a connected plane graph. Then:
+   
+   {\center $|V(G)| - |E(G)| + |F(G)| = 2$\retTwo \par}
+
+   {\begin{myIndent} \hThree
+      Proof: (we shall prove by induction on the number of edges)\retTwo
+
+      If $|E(G)| = |V(G)| - 1$, then $G$ is a tree and $|F(G)|=1$. So equality holds. \retTwo
+      
+      Now assume that the formula holds if $|E(G)| = |V(G)| + n - 1$ for some integer $n \geq 0$. Then consider a graph $G$ such that $|E(G)| = |V(G)| + n$.\\ We know that $G$ cannot be tree and so $G$ must contain a cycle $C$. If $e \in E(C)$,\\ then $G - \{e\}$ is still connected. So we can now apply our inductive\\ hypothesis to say that $|V(G - \{e\})| - |E(G - \{e\})| + |F(G - \{e\})| = 2$. \retTwo
+      Note that $F(G - \{e\}) = F(G) - 1$ because by removing $e$, we removed the boundary seperating two different faces, thus merging them. Additionally, $V(G) = V(G - \{e\})$ and $E(G) = E(G - \{e\}) - 1$. So we can thus conclude that: $|V(G)| - (|E(G)| - 1) + (|F(G) - 1) = 2$. Or in other words:
+      \[|V(G)| - |E(G)| + |F(G)| = 2\]
+      \retTwo
+   \end{myIndent}}
+
+   \uuline{Theorem}: Let $G$ be a connected planar graph containing at least one cycle but\\ containing no cycles of length less than $g$. Then: \[|E(G)| \leq \dfrac{g}{g-2}\left(|V(G)| - 2\right)\]
+
+   {\begin{myIndent} \hThree
+      Proof: We know that the degree of each face $f \in F(G)$ is at least $g$. Thus, by the handshaking lemma, we get that $g|F(G)| \leq 2|E(G)|$. Now, inserting this into Euler's formula, we get that: \[|V(G)| - |E(G)| + \dfrac{2}{g}|E(G)| \geq |V(G)| - |E(G)| + |F(G)| = 2 \]
+      This can then be manipulated to get the above formula. \retTwo
+      
+      \begin{myTindent} \hFour
+         This upper bound is maximized when $g = 3$, thus giving a an upper bound not dependent on $g$ of:\[|E(G)| \leq 3|V(G)| - 6\]
+         All in all, this is a neat necessary condition for a graph $G$ to be planar.
+      \end{myTindent}
+   \end{myIndent}}
 \end{myIndent}}
+
+\newpage
+
+{\exOne
+Some example calculations:
+\begin{itemize}
+   \item $K_5$: {\exTwo The minimum cycle in $K_5$ is of length $3$. So note: 
+   
+   {\centering ${\displaystyle \frac{3}{3-2}(|V(G)| - 2) = 9 < 20 = |E(K_5)|}$ \par}
+   
+   Thus, we have shown that $K_5$ can't be planar.} \retTwo
+
+   \item Petersen Graph: {\exTwo The minimum cycle length in the Petersen graph is $5$. So note: 
+   
+   {\centering ${\displaystyle \frac{5}{5-2}(|V(G)| - 2) = 13\frac{1}{3} < 15 = |E(K_5)|}$ \par}
+   
+   Thus, we have shown that the Petersen graph can't be planar.}
+   \retTwo
+\end{itemize}
+}
+
+To be continued, time stamp: 1:04:35 Lecture 9
+
 
 \end{document}
