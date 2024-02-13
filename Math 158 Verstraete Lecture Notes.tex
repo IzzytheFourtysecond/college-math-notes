@@ -1685,7 +1685,7 @@ Let $G$ be a graph and $M$ a matching in $G$.
 \mySepTwo
 
 \textbf{\uuline{Edge Coloring}:} \retTwo
-A \udefine{(Proper) edge coloring} of a graph $G$ is a map $c: E(G) \longrightarrow S$, where $S$ is a set such that $c(e) \neq c(f)$ whenever $e \cap f \neq \emptyset$. \retTwo
+A \udefine{proper edge coloring} of a graph $G$ is a map $c: E(G) \longrightarrow S$, where $S$ is a set such that $c(e) \neq c(f)$ whenever $e \cap f \neq \emptyset$. \retTwo
 
 {\begin{center} \exOne
    \begin{tabular}{ p{3in} p{3in} }
@@ -1919,7 +1919,7 @@ The \udefine{degree} of a face is the length of its boundary walk.
       
       \begin{myTindent} \hFour
          This upper bound is maximized when $g = 3$, thus giving a an upper bound not dependent on $g$ of:\[|E(G)| \leq 3|V(G)| - 6\]
-         All in all, this is a neat necessary condition for a graph $G$ to be planar.
+         All in all, this is a neat necessary condition for a graph $G$ to be planar.\teachComment Beware though that this is not a sufficient condition. Some nonplanar graphs satisfy this inequality.
       \end{myTindent}
    \end{myIndent}}
 \end{myIndent}}
@@ -1944,7 +1944,89 @@ Some example calculations:
 \end{itemize}
 }
 
-To be continued, time stamp: 1:04:35 Lecture 9
+\markLecture{2/8/2024}
 
+A \udefine{proper (vertex) coloring} of $G$ is a map $c: V(G) \longrightarrow S$ where $S$ is a set such that\\ $c(u) \neq c(v)$ if $\{u, v\} \in E(G)$. \retTwo
+
+The \udefine{cromatic number} $\chi(G)$ is the minimum $k$ for which $G$ has a proper $k$-coloring. \retTwo
+
+{\begin{myIndent} \hTwo
+
+   A graph $G$ is \udefine{$d$-degenerate} if every induced subgraph of $G$ has a vertex of degree at most $d$. \retTwo
+   \uuline{Lemma}: If $G$ is $d$-degenerate, then $\chi(G) \leq d + 1$.
+   
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Firstly, observe that if a graph $G$ is $d$-degenerate, then any subgraph resulting by removing vertices from $G$ will also be $d$-degenerate. \retTwo
+      Also, observe that for any induced subgraph $H$ of $G$, we clearly have that $\delta(H) \leq d$. Therefore, assuming $H$ is nonempty, we know there exists a vertex $v \in V(H)$ such that $d(v) \leq d$. \retTwo
+      Using the above two observation, we can do induction over a $d$-degenerate graph as follows:
+      {\begin{myIndent} \hFour
+         For each integer $i \in \{1,\ldots,|V(G)|\}$, remove a vertex $v_i$ from\\ $H_i = G - \{v_1, \ldots, v_{i-1}\}$ satisfying the property that $d_{H_i}(v_i) \leq d$. \retTwo
+
+         Doing this, we will eventually be left with an empty graph. This graph\\ obviously has a proper coloring using at most $d + 1$ colors.\retTwo Next, consider adding vertices back in. For any $i \in \{1,\ldots,|V(G)|\}$, we shall inductively assume that $G - \{v_1, \ldots, v_{i-1}, v_i\}$ has a proper coloring using less than $d + 1$ colors. Then, because we specified that $v_i$ has at most a degree of $d$ in $G - \{v_1, \ldots, v_{i-1}\}$, we know there is at least one available color to assign $v_i$. So $G - \{v_1, \ldots, v_{i-1}\}$ has a proper coloring using at most $d + 1$ colors. $\blacksquare$
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \newpage
+
+   \uuline{Brook's Theorem}: If $G$ is a connected graph, then $\chi(G) \leq \Delta G$ unless $G$ is an odd cycle or a complete graph.
+
+   {\begin{myIndent} \hThree
+      Proof: (we shall proceed by induction on the number of vertices in $G$)\retTwo
+
+      To start, consider that $\chi(K_n) = \Delta(K_n) + 1$. Similarly for an odd cycle $C$, we have that $\chi(C) = \Delta(C) + 1$. Hence, this is why Brook's theorem specifies that $G$ is not one of the above graphs. Additionally, note that if $\Delta G < 3$, then the theorem is obviously true. So, we only need to focus on when $\Delta G \geq 3$. \retTwo
+
+      Now, note that we may assume for all $v \in V(G)$ that $G - \{v\}$ is connected. 
+      {\begin{myIndent} \hFour
+         After all, if $G - \{v\}$ was not connected, then we could write $G$ as the\\ union of two smaller connected graphs: $G_1$ and $G_2$ such that\\ $V(G_1) \cap V(G_2) = \{v\}$. Now if $G_i$ is an odd cycle or a complete graph,\\ then we know $\chi(G_i) = \Delta(G_i) + 1$. However, then $\Delta(G_i) \leq \Delta(G) - 1$ because the degree of the vertex connecting $G_i$ to the rest of $G$ is equal to $\Delta(G_i)$. Meanwhile if $G_i$ is not an odd cycle or complete graph,\\ then we can inductively prove Brook's Theorem for $G_i$ to get that\\ $\chi(G_i) \leq \Delta(G_i) \leq \Delta(G)$. In either case, we will get a coloring over $G_i$ using at most $\Delta G$ colors. \retTwo
+
+         So $G_1$ and $G_2$ both have colorings with at most $\Delta(G)$ colors. By setting $v$ in both graphs to have the same color, we  can then merge the colorings of $G_1$ and $G_2$ to get a suitable coloring of $G$.
+         \retTwo
+      \end{myIndent}}
+
+      Thus, assume that $G - \{v\}$ is connected for all $v \in V(G)$. Then, if\\ $G \neq K_{\Delta(G) + 1}$, we can pick vertices $v_1$, $v_{n-1}$ and $v_{n}$ such that\\ $\{v_1, v_{n-1}\} \in E(G)$, $\{v_1, v_{n}\} \in E(G)$, and $\{v_{n-1}, v_{n}\} \notin E(G)$. \retTwo
+
+      \uuline{Case 1}: Suppose $H = G - \{v_n\} - \{v_{n-1}\}$ is connected. Then, we can order the vertices of $H$: $v_1, v_2, \ldots, v_{n-2}$ so that for $i \geq 2$, $v_i$ always has at least one neighbor $v_j$ where $j < i$.
+      {\begin{myTindent}\begin{myTindent} \teachComment
+         This was proven in a homework exercise\dots\retTwo
+      \end{myTindent}\end{myTindent}}
+
+      Assign $v_n$ and $v_{n-1}$ the color $1$. Then, considering our graph $G$, since $v_i$ has at most $\Delta(G) - 1$ neighbors $v_j$ where $i < j$, we can iterate from $v_{n-2}$ to $v_2$, assigning whatever color is available to each vertex. After all, it is guarenteed that we will not have assigned all $\Delta(G)$ colors to the neighborhood of $v_i$ yet since we could have only assigned $\Delta(G) - 1$ colors at most.
+      {\begin{myTindent} \hFour
+         If $v_i$ is neighbors with $v_n$ or $v_{n+1}$ then that just means it isn't neighbors with onr or two more $v_j$ in our ordering. So, this doesn't affect our conclusion. \retTwo
+      \end{myTindent}}
+
+      Also, the number of colors assigned in $N(v_1)$ is at most $\Delta(G) - 1$ since two of $v_1$'s neighbors are assigned the same color. So we can assign it a remaining color afterwards. So $G$ has a proper coloring. \retTwo
+
+      \newpage
+
+      \uuline{Case 2}: Now suppose $H = G - \{v_n\} - \{v_{n+1}\}$ is disconnected. Then we may view $G$ as the union of two smaller connected graphs $G_1$ and $G_2$ such that $V(G_1) \cap V(G_2) = \{v_n, v_{n+1}\}$. By the same type of induction that we did earlier, we can prove that $G_1$ and $G_2$ can be covered by at most $\Delta(G)$ colors. So, choose coloring such that $v_n$ and $v_{n+1}$ are assigned the same colors in both $G_1$ and $G_2$. Then, we can merge the two colorings to get a proper coloring of $G$. $\blacksquare$
+   \end{myIndent}}
+   \retTwo
+   Note that $\Delta(G)$ can differ greatly from $\chi(G)$. For instance, bipartite graphs are always $2$-colorable no matter how many edges they have.
+\end{myIndent}}
+
+\mySepTwo
+
+A \udefine{maximal planar graph} is a graph that is planar but the addition of any edge\\ results in a non-planar graph. Similarly, a \udefine{maximal plane graph} is a plane drawing of a maximal planar graph. \retTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: Every planar graph has a vertex $v$ of degree at most $5$.
+   {\hThree 
+   \begin{myIndent}
+      Proof:\\
+      If $G$ is planar, then $|E(G)| \leq 3|V(G)| - 6$. However,\\ ${\displaystyle \sum_{v\in V(G)}{d_G(v)} = 2|E(G)| \leq 6|V(G)| - 12 < 6|V(G)|}$.\retTwo So not every vertex in $G$ can have a a degree of $6$ or more.
+   \end{myIndent}}
+   \retTwo
+
+   \uuline{The $5$-color Theorem}:  If $G$ is a planar graph, then $\chi(G) \leq 5$.
+   {\hThree 
+   \begin{myIndent}
+      Proof:\\
+      If $|V(G)| \leq 5$, then assign all vertices different colors to show that $\chi(G) \leq 5$. Also, if $\Delta(G) \leq 5$, then $\chi(G) \leq 5$ by Brook's theorem.\retTwo
+
+      So, consider when $|V(G)| \geq 6$ and $\Delta(G) \geq 6$. Then draw $G$ in the plane and add edges until we get a maximal plane graph: $\tilde{G}$. If $\delta(\tilde{G}) \leq 4$, remove $v \in V(G)$ with $d(v) \leq 4$.
+   \end{myIndent}}
+\end{myIndent}}
 
 \end{document}
