@@ -1993,14 +1993,14 @@ The \udefine{cromatic number} $\chi(G)$ is the minimum $k$ for which $G$ has a p
 
       Assign $v_n$ and $v_{n-1}$ the color $1$. Then, considering our graph $G$, since $v_i$ has at most $\Delta(G) - 1$ neighbors $v_j$ where $i < j$, we can iterate from $v_{n-2}$ to $v_2$, assigning whatever color is available to each vertex. After all, it is guarenteed that we will not have assigned all $\Delta(G)$ colors to the neighborhood of $v_i$ yet since we could have only assigned $\Delta(G) - 1$ colors at most.
       {\begin{myTindent} \hFour
-         If $v_i$ is neighbors with $v_n$ or $v_{n+1}$ then that just means it isn't neighbors with onr or two more $v_j$ in our ordering. So, this doesn't affect our conclusion. \retTwo
+         If $v_i$ is neighbors with $v_n$ or $v_{n+1}$ then that just means it isn't neighbors with one or two more $v_j$ in our ordering. So, this doesn't affect our conclusion. \retTwo
       \end{myTindent}}
 
-      Also, the number of colors assigned in $N(v_1)$ is at most $\Delta(G) - 1$ since two of $v_1$'s neighbors are assigned the same color. So we can assign it a remaining color afterwards. So $G$ has a proper coloring. \retTwo
+      Also, the number of colors assigned in $N(v_1)$ is at most $\Delta(G) - 1$ since two of $v_1$'s neighbors are assigned the same color. So we can assign it a remaining color afterwards. Hence $G$ has a proper coloring. \retTwo
 
       \newpage
 
-      \uuline{Case 2}: Now suppose $H = G - \{v_n\} - \{v_{n+1}\}$ is disconnected. Then we may view $G$ as the union of two smaller connected graphs $G_1$ and $G_2$ such that $V(G_1) \cap V(G_2) = \{v_n, v_{n+1}\}$. By the same type of induction that we did earlier, we can prove that $G_1$ and $G_2$ can be covered by at most $\Delta(G)$ colors. So, choose coloring such that $v_n$ and $v_{n+1}$ are assigned the same colors in both $G_1$ and $G_2$. Then, we can merge the two colorings to get a proper coloring of $G$. $\blacksquare$
+      \uuline{Case 2}: Now suppose $H = G - \{v_n\} - \{v_{n+1}\}$ is disconnected. Then we may view $G$ as the union of two smaller connected graphs $G_1$ and $G_2$ such that $V(G_1) \cap V(G_2) = \{v_n, v_{n+1}\}$. By the same type of induction that we did earlier, we can prove that $G_1$ and $G_2$ can be covered by at most $\Delta(G)$ colors. So, choose a coloring such that $v_n$ and $v_{n+1}$ are assigned the same colors in both $G_1$ and $G_2$. Then, we can merge the two colorings to get a proper coloring of $G$. $\blacksquare$
    \end{myIndent}}
    \retTwo
    Note that $\Delta(G)$ can differ greatly from $\chi(G)$. For instance, bipartite graphs are always $2$-colorable no matter how many edges they have.
@@ -2015,18 +2015,31 @@ A \udefine{maximal planar graph} is a graph that is planar but the addition of a
    {\hThree 
    \begin{myIndent}
       Proof:\\
-      If $G$ is planar, then $|E(G)| \leq 3|V(G)| - 6$. However,\\ ${\displaystyle \sum_{v\in V(G)}{d_G(v)} = 2|E(G)| \leq 6|V(G)| - 12 < 6|V(G)|}$.\retTwo So not every vertex in $G$ can have a a degree of $6$ or more.
+      If $G$ is planar, then $|E(G)| \leq 3|V(G)| - 6$. However,\\ ${\displaystyle \sum_{v\in V(G)}{d_G(v)} = 2|E(G)| \leq 6|V(G)| - 12 < 6|V(G)|}$.\retTwo So not every vertex in $G$ can have a a degree of $6$ or more. \retTwo
    \end{myIndent}}
-   \retTwo
+\end{myIndent}}
 
+A \udefine{contraction} of an edge $\{a, b\}$ in a graph $G$, notated as $G \slash \{a, b\}$, is the graph\\ obtained by adding a vertex $x$ to $G - \{a\} - \{b\}$ so that $x$ is adjacent to all vertices in $N_G(a) \cup N_G(b)$. An important property of contractions is that if $G$ is planar, then $G \slash \{a, b\}$ is also planar.\retTwo
+
+{\begin{myIndent} \hTwo
    \uuline{The $5$-color Theorem}:  If $G$ is a planar graph, then $\chi(G) \leq 5$.
    {\hThree 
    \begin{myIndent}
       Proof:\\
-      If $|V(G)| \leq 5$, then assign all vertices different colors to show that $\chi(G) \leq 5$. Also, if $\Delta(G) \leq 5$, then $\chi(G) \leq 5$ by Brook's theorem.\retTwo
+      If $|V(G)| \leq 5$, then we may simply assign all vertices different colors to show that $\chi(G) \leq 5$. So, consider when $|V(G)| \geq 6$.\retTwo
 
-      So, consider when $|V(G)| \geq 6$ and $\Delta(G) \geq 6$. Then draw $G$ in the plane and add edges until we get a maximal plane graph: $\tilde{G}$. If $\delta(\tilde{G}) \leq 4$, remove $v \in V(G)$ with $d(v) \leq 4$.
+      Then if $\delta(G) \leq 4$, we know there exists $v \in V(G)$ such that $d_G(v) \leq 4$. So, by induction we can find a proper $5$-coloring of $G - \{v\}$. And because $v$ has at most $4$ neighbors, there is at least one color left over to assign $v$ afterwards.\\ Meanwhile, because of the previous theorem, we know that any induced\\ subgraph of $G$ will have a minimum degree of at most $5$. So, the only \\non-trivial case we need to prove is when $\delta(G) = 5$. \retTwo
+
+      \newpage
+
+      Thus, assume there exists a vertex $v \in V(G)$ such that $d(v) = 5$. Since $K_5$ is not planar, there exists some pair of vertices: $a, b \in N_G(v)$ which are not\\ adjacent. Define $H = G \slash \{a, b\}$ with a new vertex $w$ adjacent to\\ $N_G(v) \cup N_g(a)$. \retTwo
+
+      Next contract $H$ again, defining $I = H \slash \{b, w\}$ with a new vertex $x$ adjacent to $N_H(w) \cup N_H(b)$. Note that $I$ and $H$ are planar. Thus, since $I$ is a planar graph with less vertices than $G$, we can do induction to find a proper $5$-coloring of $I$. We'll call this coloring $c$. \retTwo
+
+      For each $y \in V(I) \cap V(G)$, define $c^\prime(y) = c(y)$. This effectively gives a proper coloring of $G - {a} - {b} - {v}$. Then assign $c^\prime(a) = c^\prime(b) = c(x)$. We can do this because we chose $a$ and $b$ to not be adjacent and because none of $a$ and $b$'s neighbors could have been assigned $c(x)$. And finally, because $a$ and $b$ in $N(v)$ have been assigned same color, there is at least one color which we can assign to $v$. $\blacksquare$ \retTwo
    \end{myIndent}}
 \end{myIndent}}
+
+\markLecture{2/13/2024}
 
 \end{document}
