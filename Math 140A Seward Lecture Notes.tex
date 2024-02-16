@@ -88,9 +88,13 @@
    \color{Orange}%
    \fontsize{12}{14}\selectfont%
 }
-\newcommand{\exOne}{%
+\newcommand{\exOneOld}{%
    \color{Purple}%
    \fontsize{14}{14}\selectfont%
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{14}{16}\selectfont%
 }
 \newcommand{\exTwo}{%
    \color{RedViolet}%
@@ -282,7 +286,7 @@
    \end{itemize}
 
    \pagebreak
-   \exOne
+   \exOneOld
    Using $\mathbb{Q}$ as our ordered set...
    \begin{itemize}
       \item For $E = \{q \in \mathbb{Q} \mid 0<q<1\}$,
@@ -298,7 +302,7 @@
       \end{myIndent}
       \hfill \bigbreak
 
-      \exOne
+      \exOneOld
       \item For $E = \{q \in \mathbb{Q} \mid 0<q \leq 1\}$,
       $\max{E}$ and $\sup{E}$ exist and they both are equal to $1$
       \exP
@@ -307,7 +311,7 @@
       \end{myIndent}
       \hfill \bigbreak
       
-      \exOne
+      \exOneOld
       \item For $E = \{q \in \mathbb{Q} \mid q^2 < 2\}$, neither
       $\max{E}$ and $\sup{E}$ exist.
       \exP
@@ -1105,7 +1109,7 @@
       \end{myIndent}}
    \end{myIndent}}
 
-   {\begin{center} \exOne
+   {\begin{center} \exOneOld
       \begin{myClosureOne}{3.5}
          Here's what the bijection looks like: \\
          \includegraphics[scale=0.55]{Cartesian_Product_Bijection.png}
@@ -1621,7 +1625,7 @@
       Additionally, for $0 \leq i$, define $C_i = {\displaystyle \bigcup_{I \in E_i}{I}}$. \retTwo
 
       
-      {\begin{myIndent} \exOne
+      {\begin{myIndent} \exOneOld
          \begin{tabular}{|l|}
             \hline \\ [-0.4em]
              Here are the first few iterations: \\ [1em] \exTwo
@@ -1642,9 +1646,117 @@
 
    \markLecture{2/9/2024}
 
+   The Cantor set $C$ is closed.
+   {\begin{myIndent} \hTwo
+      Each $C_n$ is closed and the intercept of countably many closed sets is closed. \retTwo
+   \end{myIndent}}
 
+   $C$ is compact. 
+   {\begin{myIndent} \hTwo
+      $C \subseteq [0, 1]$. Therefore $C$ is a bounded closed set in $\mathbb{R}$ \retTwo
+   \end{myIndent}}
 
+   $C \neq \emptyset$.
+   {\begin{myIndent} \hTwo
+      We know this by the finite intersection property. Each $C_n$ is compact and the\\ intersect of any finitely many $C_n$ is nonempty as it will contain $0$ or $1$. \retTwo
+   \end{myIndent}}
 
+   If $x$ is an endpoint of an interval from $E_n$, then $x \in C$. \retTwo
+
+   $C$ contains no intervals.
+   
+   {\begin{myIndent} \hTwo
+      Any interval in $C$ must be contained in each $E_n$. Hence it must have length less than $3^{-n}$ for all $n$. \retTwo
+   \end{myIndent}}
+
+   $C$ is perfect.
+   {\begin{myIndent} \hTwo
+      Because $C$ is closed, we know $C^\prime \subseteq C$. Now, consider any $x \in C$ and let $r>0$. Picking $n$ with $3^{-n} < r$, we can specify $I$ to be the interval of $E_n$ containing $x$. The two end points of $I$ are within distance $r$ of $x$ and belong to $C$. At least one is not $x$. Thus, $(B_r(x) \setminus \{x\})\cap C \neq \emptyset$. So, $x \in C^\prime$, meaning that $C \subseteq C^\prime$.
+   \end{myIndent}}
+
+   \newpage
+
+   $C$ is uncountable.
+   {\begin{myIndent} \hTwo
+      We know this because\dots\\
+      Proposition \propCount: If $P \subseteq \mathbb{R}^k$ is perfect and nonempty, then $P$ is uncountable.
+
+      {\begin{myIndent} \hThree
+         To prove this, we first need two lemmas\dots\retTwo
+         
+         \uuline{Lemma A}: If $\mVecAst{p}_n \in \mathbb{R}^k$ and $r_n > 0$ satisfy that $\overbar{B_{r_{n+1}}(\mVecAst{p}_{n+1})} \subseteq B_{r_n}(\mVecAst{p}_n)$, and that $B_{r_n}(\mVecAst{p}_n) \cap P \neq \emptyset$, then:
+         
+         {\center${\displaystyle P \cap \left(\bigcap_{n\in\mathbb{N}}^{\vphantom{\ldots}}{\overbar{B_{r_n}(p_n)}}\right) \neq \emptyset}$\par}
+         
+         {\begin{myIndent} \hFour
+            Proof:\\
+            $P$ is closed since $P$ is perfect. So for all $n$, $P \cap \overbar{B_{r_{n}}(\mVecAst{p}_n)}$ is compact. Also by the assumption of the lemma, $B_{r_{n+1}}(\mVecAst{p}_{n+1}) \neq \emptyset$\\
+
+            Meanwhile, $P \cap \overbar{B_{r_{n+1}}(\mVecAst{p}_{n+1})} \subseteq P \cap B_{r_{n}}(\mVecAst{p}_{n}) \subseteq P \cap \overbar{B_{r_{n}}(\mVecAst{p}_{n})}$. Thus, we can use the finite intersection property to say that: 
+            \[P \cap \left(\bigcap_{n\in\mathbb{N}}{\overbar{B_{r_{n}}(\mVecAst{p}_n)}}\right) = \bigcap_{n\in\mathbb{N}}{\left(P \cap \overbar{B_{r_n}(\mVecAst{p}_n)}\right)} \neq \emptyset\] \retTwo
+         \end{myIndent}}
+
+         \uuline{Lemma B}: Say $\mVec{x} \neq \mVec{p} \in \mathbb{R}^k$ and $r>0$.\\ If $\mVec{q} \in B_r(p) \setminus \{\mVec{x}\}$, then there is $s>0$ with $\overbar{B_s(\mVecAst{q})} \subseteq B_r(\mVecAst{p})\setminus \{\mVec{x}\}$
+
+         {\begin{myIndent} \hFour
+            Proof:\\
+            Set $s = \frac{1}{2}\min{\{r - d(\mVec{p}, \mVec{q}), \quad d(\mVec{x}, \mVec{q})\}}$.
+         \end{myIndent}}
+
+         \retTwo
+
+         Now consider any countable set of points in $P$: $\mVecAst{x}_1, \mVecAst{x}_2, \ldots$ We will inductively choose $\mVecAst{p}_n \in P$ and $r_n > 0$ satisfying: 
+         
+         \begin{center}
+            \begin{tabular}{c c c c}
+               \bullet\quad $\mVecAst{x}_n \notin \overbar{B_{r_{n+1}}(\mVecAst{p}_{n+1})}$ & $\quad$ & $\quad$ & \bullet\quad $\overbar{B_{r_{n+1}}(\mVecAst{p}_{n+1})} \subseteq B_{r_n}(\mVecAst{p}_n)$
+            \end{tabular}\retTwo
+         \end{center}
+
+         To do this, first pick any $\mVecAst{p}_1 \in P$ and $r_1 > 0$. Then for any $n\geq1$, since $P$ is perfect, we know that $\mVecAst{p}_n \in P \Rightarrow \mVecAst{p}_n \in P^\prime$. So there are infinitely many points in $B_{r_n}(\mVecAst{p}_n) \cap P$. Pick $\mVecAst{p}_{n+1} \in B_{r_n}(\mVecAst{p}_n) \cap P$ such that $\mVecAst{p}_{n+1} \neq \mVecAst{x}_n$. Then, using lemma $B$, we can define $B_{r_{n+1}}(\mVecAst{p}_{n+1})$ satisfying our two requirements above. \retTwo
+
+         By lemma A, we know that the intercept of all $B_{r_n}(\mVecAst{p}_{n})$ is nonempty. However, we also know that each $\mVecAst{x}_n$ is not in $B_{r_{n+1}}(\mVecAst{p}_{n+1})$. So, the point in the intercept of all $B_{r_n}(\mVecAst{p}_{n})$ is an element of $P$ not included in our countable subset of $P$. \retTwo
+
+         Hence, all countable subsets of $P$ are proper. So, we conclude $P$ is\\ uncountable.
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \newpage
+
+   {\begin{myTindent}\begin{myDindent} \teachComment
+      Note: A real number $x$ is in the Cantor set if and only if it is between $0\leq x \leq 1$, and if in base $3$, all of the digits of $x$ are either $0$ or $2$. \retTwo
+
+      Hopefully it is clear from this how an irrational number could be found in the Cantor set. \retTwo
+   \end{myDindent}\end{myTindent}}
+
+   \mySepTwo
+
+   Let $X$ be a metric space. $A, B \subseteq X$ are \udefine{separated} if $\myBar{A} \cap B = \emptyset = A \cap \myBar{B}$. \retTwo
+
+   $E \subseteq X$ is \udefine{connected} if whenever $E = A \cup B$, either $A$ and $B$ are not separated or else one of $A, B$ is empty.
+   {\begin{myIndent} \exOne
+      For example, $(0, 1)$ and $(1, 2)$ are separated.\\
+      Meanwhile, $(0, 1]$ and $(1, 2)$ are disjoint but not separated. \retTwo
+   \end{myIndent}}
+   
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: $E \subseteq \mathbb{R}$ is connected if and only if $\forall x, y \in E$ with $x<y$, $[x, y] \subseteq E$
+      
+      {\begin{myIndent} \hThree
+         Proof: (for both directions we will prove the contrapositive)\retTwo
+         $(\Longrightarrow)$ Suppose $x, y \in E$, $x < y$, and $[x,y]\nsubseteq E$. Pick $z \in [x,y]\setminus E$.\\
+         Since $(-\infty, z)$ and $(z, +\infty)$ are separated, so are $A = E \cap (-\infty, z)$ and $B = E \cap (z, +\infty)$. Additionally, since $z \notin E$, we have that $E = A \cup B$. However, as $A \neq \emptyset \neq B$ since $x \in A$ and $y \in B$, we conclude that $E$ is not connected. \retTwo
+
+         $(\Longleftarrow)$ Now suppose $E$ is not connected. Say $A \neq \emptyset \neq B$ are separated and $A \cup B = E$. Pick $x \in A$ and $y \in B$. Without loss of generality, we can assume $x < y$. Define $z = \sup{(A \cap [x, y])}$. By proposition 20, we have that $z \in \overbar{A}$. So as $A$ and $B$ are separated, we have $z \notin B$.  \retTwo
+         If $z \notin A$, then we know that $z \notin E$. So as $x \leq z < y$, we know that $[x, y] \nsubseteq E$. Meanwhile, if $z \in A$, then $z \notin \overbar{B}$. So, there exists $z_1$ such that $z < z_1 < y$ and $z_1 \notin B$. Then, $z_1 \notin A \cup B$. So, $z_1 \notin E$, meaning $[x, y] \nsubseteq E$.
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   \markLecture{2/12/2024}
+
+   
    % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
    \newpage
    {\huge \color{Black} \textbf{An Incomplete List of How the Proposition Numbering in my Notes Matches up With Our Textbook:} \retTwo}
@@ -1662,13 +1774,13 @@
          \myVS 13 & 2.13 & 14 &  \\ \hdashline[10pt/3pt]
          \myVS 15 &  & 16 & 2.20 \\ \hdashline[10pt/3pt]
          \myVS 17 & 2.23 & 18 &  \\ \hdashline[10pt/3pt]
-         \myVS 19 & 2.27 & 20 &  \\ \hdashline[10pt/3pt]
+         \myVS 19 & 2.27 & 20 & 2.28 \\ \hdashline[10pt/3pt]
          \myVS 21 &  & 22 &  \\ \hdashline[10pt/3pt]
          \myVS 23 &  & 24 &  \\ \hdashline[10pt/3pt]
          \myVS 25 & 2.37 & 26 & 2.38 \\ \hdashline[10pt/3pt]
          \myVS 27 & 2.40 & 28 & 2.41 \\ \hdashline[10pt/3pt]
-         \myVS 29 & 2.42 & 30 &  \\ \hdashline[10pt/3pt]
-         \myVS 31 &  & 32 &  \\ \hdashline[10pt/3pt]
+         \myVS 29 & 2.42 & 30 & 2.43 \\ \hdashline[10pt/3pt]
+         \myVS 31 & 2.47 & 32 &  \\ \hdashline[10pt/3pt]
          \myVS 33 &  & 34 &  \\ \hdashline[10pt/3pt]
          \myVS 35 &  & 36 &  \\ \hdashline[10pt/3pt]
          \myVS 37 &  & 38 &  \\ \hdashline[10pt/3pt]
