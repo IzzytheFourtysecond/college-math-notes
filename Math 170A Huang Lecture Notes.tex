@@ -1,4 +1,7 @@
 
+% Ok Fuck. I guess next quarter, try to start with unicode math. Also, you aren't allowed to change the matrix typeface anymore...
+
+
 % Note for any github stalkers. I am currently in the process
 % of learning LaTeX. I don't know what I'm doing yet. Sorry
 % if my code absolutely sucks.
@@ -21,6 +24,7 @@
 
 \usepackage{mathtools}
 \usepackage{amsfonts}
+\usepackage{bm}
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
 \usepackage{relsize}
@@ -119,12 +123,17 @@
    {\huge \color{Black} \textbf{Lecture \theLectureNumber: #1} \newline}%
 }
 
+
 \newcommand{\pprime}{{\prime\prime}}
 \newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
 \newcommand{\rea}[1]{\mathrm{Re}(#1)}
 \newcommand{\ima}[1]{\mathrm{Im}(#1)}
 \newcommand{\comp}{\mathsf{C}}
+
 \newcommand{\Proj}[2]{\mathrm{Proj}_{#2}(#1)}
+\newcommand{\rank}[1]{\mathrm{rank}(#1)}
+\newcommand{\nullity}[1]{\mathrm{nullity}(#1)}
+\newcommand{\spanLA}[1]{\mathrm{span}\{#1\}}
 
 
 \newcounter{PropNumber}
@@ -169,7 +178,6 @@
 \newcommand{\mVec}[1]{\myVector{#1}}
 \newcommand{\mVecAst}[1]{\myVector*{#1}}
 \newcommand{\mMat}[1]{\mathbf{#1}}
-
 
 % Programming stuff:
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1089,7 +1097,7 @@
          \uuline{Theorem}:
          
          \begin{itemize}
-            \item[\circ] The solution to the least squares problem is the solution to the linear system $\hat{\mMat{R}}\mVec{x} = \mVec{c}$ where $\mVec{c}$ is the first $m$ values of $\mMat{Q}^T\mVec{b}$. \\
+            \item[\circ] The solution to the least squares problem is the solution to the linear\\ system $\hat{\mMat{R}}\mVec{x} = \mVec{c}$ where $\mVec{c}$ is the first $m$ values of $\mMat{Q}^T\mVec{b}$. \\
             \item[\circ] Meanwhile, the \udefine{optimal value} is $\min\limits_{\mVec{x} \in \mathbb{R}^m}{(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2} = (\|\mVec{d}\|_2)^2$ where $\mVec{d}$ is the remaining elements of $\mMat{Q}^T\mVec{b}$. \retTwo
          \end{itemize}
       \end{myIndent}}
@@ -1195,7 +1203,7 @@
    end
          \end{lstlisting} \retTwo
       
-      The way that this modified algorithm differs from the original one is that instead of building a column of $\hat{\mMat{Q}}$ every iteration, it instead builds a row of $\hat{\mMat{R}}$ every iteration. This is much more numerically stable.
+      The way that this modified algorithm differs from the original one is that\\ instead of building a column of $\hat{\mMat{Q}}$ every iteration, it instead builds a row of $\hat{\mMat{R}}$ every iteration. This is much more numerically stable.
       \end{myIndent}
    \end{myIndent}}
 
@@ -1318,7 +1326,168 @@
       \end{myIndent}
    \end{myIndent}}
 
+   \mySepTwo
+
    \markLecture{2/12/2024}
 
+   Let $\mMat{A} \in \mathbb{R}^{n\times m}$ with $\rank{\mMat{A}} = r$. Then there exists orthogonal matrices $\mMat{U} \in \mathbb{R}^{n\times n}$ and $\mMat{V} \in \mathbb{R}^{m \times m}$, as well as positive numbers $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r > 0$ such that letting: \[ \bm{\Sigma} = 
+   \begin{bmatrix}
+      \sigma_1 &        &      &        &  &\\
+          & \ddots &      &        &  &\\
+          &        & \sigma_r  &        &  &\\
+          &        &      & \ddots &  &\\
+          &        &      &        & 0 & \quad \quad\\
+   \end{bmatrix} \in \mathbb{R}^{n\times m}\text{,}\]
+   we have that $\mMat{A} = \mMat{U}\bm{\Sigma}\mMat{V}^T$. \retTwo
+
+   $\mMat{U}\bm{\Sigma}\mMat{V}^T$ is called the \udefine{SVD} of $\mMat{A}$. Also, each $\sigma_i$ is called a \udefine{singular value} of $\mMat{A}$.
+   {\begin{myTindent} \myComment
+      Specifically, SVD stands for "Singular Value Decomposition" \retTwo
+   \end{myTindent}}
+   
+   {\begin{myDindent} \teachComment
+      Geometric Explanation:\\
+      There exists an orthonormal basis $\mVecAst{v}_1, \mVecAst{v}_2, \ldots, \mVecAst{v}_m$ for $\mathbb{R}^m$, an orthonormal basis $\mVecAst{u}_1, \mVecAst{u}_2, \ldots, \mVecAst{u}_n$ for $\mathbb{R}^n$, and real numbers $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r > 0$ such that:
+      \[\mMat{A}\mVecAst{v}_i = \left\{
+      \begin{matrix}
+         \sigma_i\mVecAst{u}_i & \text{ if } i \in \{1,\ldots,r\} \phantom{aaaa} \\
+         \mVec{0} & \text{ if } i \in \{r+1,\ldots,m\}
+      \end{matrix}\right. \phantom{aaa}
+      \mMat{A}^T\mVecAst{u}_i = \left\{
+         \begin{matrix}
+            \sigma_i\mVecAst{v}_i & \text{ if } i \in \{1,\ldots,r\} \phantom{aaaa} \\
+            \mVec{0} & \text{ if } i \in \{r+1,\ldots,n\}
+         \end{matrix}\right.\]
+      \retTwo
+      \retTwo
+      
+      To see this, let $\mMat{U} = \left[
+      \begin{matrix}
+         \mVecAst{u}_1 & \mVecAst{u}_2 & \cdots & \mVecAst{u}_n
+      \end{matrix}\right]$, and $\mMat{V} = \left[
+      \begin{matrix}
+         \mVecAst{v}_1 & \mVecAst{v}_2 & \cdots & \mVecAst{v}_m
+      \end{matrix}\right]$. Also let $\bm{\Sigma}$ be a matrix defined as seen above. \retTwo 
+      $\mMat{A} = \mMat{U}\bm{\Sigma}\mMat{V}^T \Longrightarrow \mMat{A}\mMat{V} = \mMat{U}\bm{\Sigma}$. Therefore, we have that:\\ 
+      $\left[\begin{matrix}
+         \mMat{A}\mVecAst{v}_1 & \mMat{A}\mVecAst{v}_2 & \cdots & \mMat{A}\mVecAst{v}_m
+      \end{matrix}\right] = \left[\begin{matrix}
+         \sigma_1\mVecAst{u}_1 & \sigma_2\mVecAst{u}_2 & \cdots & \sigma_r\mVecAst{u}_r & \mVec{0} & \cdots & \mVec{0} 
+      \end{matrix}\right]$ \retTwo
+
+      Meanwhile $\mMat{A}^T = \mMat{V}\bm{\Sigma}^T\mMat{U}^T$. Thus, $\mMat{A}^T\mMat{U} = \mMat{V}\bm{\Sigma}^T$, which means that:\\
+      $\left[\begin{matrix}
+         \mMat{A}^T\mVecAst{u}_1 & \mMat{A}^T\mVecAst{u}_2 & \cdots & \mMat{A}^T\mVecAst{u}_m
+      \end{matrix}\right] = \left[\begin{matrix}
+         \sigma_1\mVecAst{v}_1 & \sigma_2\mVecAst{v}_2 & \cdots & \sigma_r\mVecAst{v}_r & \mVec{0} & \cdots & \mVec{0} 
+      \end{matrix}\right]$ \retTwo
+
+      Important fact:
+      \begin{myIndent}
+         For any $\mVec{w} \in \mathbb{R}^m$, we have that $\mVec{w} = \sum\limits_{i=1}^m{c_i\mVecAst{v}_i}$. Therefore:
+
+         {\center $\mMat{A}\mVec{w} = \sum\limits_{i=1}^m{c_i(\mMat{A}\mVecAst{v}_i)} = \sum\limits_{i=1}^r{c_i\sigma_i\mVecAst{u}_i}$ \par}
+      \end{myIndent}
+
+      \newpage
+
+      \uuline{Proposition}: 
+      {\myComment
+      \begin{myDindent}
+         (Note: In this class, the professor is writing $R(\mMat{A})$ to refer to the "\ul{range}" [a.k.a column space] of $\mMat{A}$. I don't personally like it but I'm also not going to rewrite $R(\mMat{A})$ every time he says it.) \retTwo
+      \end{myDindent}
+      }
+
+      \begin{tabular}{l c l}
+         $R(\mMat{A}) = \spanLA{\mVecAst{u}_1, \ldots, \mVecAst{u}_r}$ & \phantom{aaa} &
+         $N(\mMat{A}) = \spanLA{\mVecAst{v}_{r+1}, \ldots, \mVecAst{v}_{m}}$ \\ [3pt]
+         $R(\mMat{A}^T) = \spanLA{\mVecAst{v}_1, \ldots, \mVecAst{v}_r}$ & \phantom{aaa} &
+         $N(\mMat{A}^T) = \spanLA{\mVecAst{u}_{r+1}, \ldots, \mVecAst{u}_{n}}$ \\ [3pt]
+         $R(\mMat{A}^T) = N(\mMat{A})^\perp$ & & $R(\mMat{A}) = N(\mMat{A}^T)^\perp$
+      \end{tabular}
+   \end{myDindent}}
+   \retTwo
+
+   Similarly to QR decompositions, we can also find a \udefine{condensed / reduced SVD} of a matrix $\mMat{A}$\dots
+   \begin{myIndent}
+      Let $\mMat{A} \in \mathbb{R}^{n \times m}$ with $\rank{\mMat{A}} = r$. Then there exists $\hat{\mMat{U}} \in \mathbb{R}^{n \times r}$, $\hat{\bm{\Sigma}} \in \mathbb{R}^{r \times r}$, and $\hat{\mMat{V}} \in \mathbb{R}^{m \times r}$ such that:
+      \begin{itemize}
+         \item $\hat{\mMat{U}}^T\hat{\mMat{U}} = \mMat{I}_r$
+         \item $\hat{\mMat{V}}^T\hat{\mMat{V}} = \mMat{I}_r$
+         \item $\hat{\bm{\Sigma}}$ is a diagonal square matrix with decreasing\\ entries as one goes down the diagonal.
+         \item $\mMat{A} = \hat{\mMat{U}}\hat{\bm{\Sigma}}\hat{\mMat{V}}$.
+      \end{itemize}
+   \end{myIndent}
+   \retTwo
+
+   One last note for this lecture:
+   \begin{myIndent}
+      We won't be learning how to calculate SVDs of matrices yet\dots\\
+      That said, know that the singular values of $\mMat{A}$ are uniquely determined by $\mMat{A}$. \retTwo
+   \end{myIndent}
+
+   \mySepTwo
+
+   \markLecture{3/14/2024}
+
+   {\begin{myIndent} \hTwo
+      \uuline{Theorem}: For $\mMat{A} \in \mathbb{R}^{n \times m}$, we have that $\|\mMat{A}\|_2$ equals the largest singular value of $\mMat{A}$.
+
+      {\hThree\begin{myIndent}
+         Proof:\\
+         Let $\mMat{U}\bm{\Sigma}\mMat{V}^T$ be the SVD of $\mMat{A}$ where $\mMat{U} = \left[
+      \begin{matrix}
+         \mVecAst{u}_1 & \mVecAst{u}_2 & \cdots & \mVecAst{u}_n
+      \end{matrix}\right]$,\\ $\mMat{V} = \left[
+      \begin{matrix}
+         \mVecAst{v}_1 & \mVecAst{v}_2 & \cdots & \mVecAst{v}_m
+      \end{matrix}\right]$, and the singular values in $\bm{\Sigma}$ are $\sigma_1, \ldots, \sigma_r$.\retTwo
+      
+      From last lecture, we know that $\mMat{A}\mVecAst{v}_1 = \sigma_1\mVecAst{u}_1$. So: \[\|\mMat{A}\|_2 = \max\limits_{\mVec{x} \neq 0}{\frac{\|\mMat{A}\mVec{x}\|_2}{\|\mVec{x}\|_2}} \geq \frac{\|\mMat{A}\mVecAst{v}_1\|_2}{\|\mVecAst{v}_1\|_2} = \frac{\sigma_1\|\mVecAst{u}_1\|}{\|\mVecAst{v}_1}= \frac{\sigma_1(1)}{(1)} = \sigma_1\]\\
+
+      Meanwhile, note that $\mVec{x} \in \mathbb{R}^m$ can be expressed as a linear combination: $c_1\mVecAst{v}_1 + c_2\mVecAst{v}_2 + \ldots + c_m\mVecAst{v}_m$ because the columns of $\mMat{V}$ form a basis for $\mathbb{R}^m$. And, since $\mVecAst{v}_i \cdot \mVecAst{v}_j = 0$ for all $i \neq j$, we know that: 
+      \[(\|\mVec{x}\|_2)^2 = \mVec{x} \cdot \mVec{x} = \sum_{i=1}^n{c_i^2(\mVecAst{v}_i \cdot \mVecAst{v}_i)}\]
+
+      \newpage
+
+      Also, because each $\|\mVecAst{v}_i\|_2 = 1$, this further simplifies to: ${\displaystyle (\|\mVec{x}\|_2)^2 = \sum\limits_{i=1}^n{c_i^2} }$ \retTwo
+
+      At the same time:\\ $\mMat{A}\mVec{x} = \mMat{A}(c_1\mVecAst{v}_1 + c_2\mVecAst{v}_2 + \ldots + c_m\mVecAst{v}_m) = c_1\sigma_1\mVecAst{u}_1 + c_2\sigma_2\mVecAst{u}_2 + \ldots + c_r\sigma_r\mVecAst{u}_r$.\\
+      And as each $u_i$ is a unit vector and $u_i \cdot u_j = 0$ for all $i \neq j$, we thus have that: \[(\|\mMat{A}\mVec{x}\|_2)^2 = \sum\limits_{i=1}^r{c_i^2\sigma_i^2}\]
+
+      Then because $\sigma_1$ is the largest singular value, we have that:
+      \[\sum\limits_{i=1}^r{c_i^2\sigma_i^2} \leq \sum\limits_{i=1}^r{c_i^2\sigma_1^2} = \sigma_1^2\sum\limits_{i=1}^r{c_i^2} = \sigma_1^2(\|\mVec{x}\|_2)^2 \]
+
+      Thus, $(\|\mMat{A}\mVec{x}\|_2)^2 \leq \sigma_1^2(\|\mVec{x}\|_2)^2$. And since $\sigma_1$, $\|\mMat{A}\mVec{x}\|$, $\|\mVec{x}\|$ are all positive, we have that $\|\mMat{A}\mVec{x}\|_2 \leq \sigma_1\|\mVec{x}\|_2$. Therefore:
+      \[\|\mMat{A}\|_2 = \max\limits_{\mVec{x} \neq 0}{\frac{\|\mMat{A}\mVec{x}\|_2}{\|\mVec{x}\|_2}} \leq \max\limits_{\mVec{x} \neq 0}{\frac{\sigma_1\|\mVec{x}\|_2}{\|\mVec{x}\|_2}} = \sigma_1\]
+
+      
+      {\begin{myIndent} \hFour
+         Two notes:
+         \begin{itemize}
+            \item On page 12, it was mentioned that $\| \mMat{A} \|_2 = \sqrt{\lambda_{\max}(\mMat{A}^T\mMat{A})}$. So, consider that a hint about how SVDs are calculated.
+            
+            \item $\mMat{A}^T$ and $\mMat{A}$ have the same singular values. So $\|\mMat{A}\|_2 = \|\mMat{A}^T\|_2$.
+         \end{itemize}
+      \end{myIndent}}
+      \end{myIndent}}
+      \retTwo
+
+      \uuline{Theorem}: Let $\mMat{A} \in \mathbb{R}^{n \times n}$ be an invertible matrix with singular values\\ $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n > 0$. Then:
+      \[K_2(\mMat{A}) = \|\mMat{A}\|_2\|\mMat{A}^{-1}\|_2 = \frac{\sigma_1}{\sigma_n}\]
+
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $\mMat{U}\bm{\Sigma}\mMat{V}^T$ be the SVD of $\mMat{A}$. Note that as $\mMat{A}$ is invertible (and square), we know that $\bm{\Sigma}$ is a diagonal square matrix which constains $n$ strictly positive singular values. So, $\bm{\Sigma}$ is invertible. \retTwo
+
+         Now note: $\mMat{A}^{-1} = (\mMat{U}\bm{\Sigma}\mMat{V}^T)^{-1} = \mMat{V}\bm{\Sigma}^{-1}\mMat{U}^T$. Thus, we see that an SVD of $\mMat{A}^{-1}$ is $\mMat{V}\bm{\Sigma}^{-1}\mMat{U}^T$. Additionally, $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_n > 0$ implies that\\ $\frac{1}{\sigma_n} \geq \ldots \geq \frac{1}{\sigma_2} \geq \frac{1}{\sigma_1} > 0$. So the largest singular value in $\bm{\Sigma}^{-1}$ is $\frac{1}{\sigma_n}$.\\ We therefore conclude that $\|\mMat{A}^{-1}\|_2 = \frac{1}{\sigma_n}$. \retTwo
+
+         Hence, $\|\mMat{A}\|_2\|\mMat{A}^{-1}\|_2 = \sigma_1\frac{1}{\sigma_n}$.
+      \end{myIndent}}
+
+      \newpage
+
+   \end{myIndent}}
 \end{document}
 
