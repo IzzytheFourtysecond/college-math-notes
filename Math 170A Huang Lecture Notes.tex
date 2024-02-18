@@ -1342,7 +1342,7 @@
 
    $\mMat{U}\bm{\Sigma}\mMat{V}^T$ is called the \udefine{SVD} of $\mMat{A}$. Also, each $\sigma_i$ is called a \udefine{singular value} of $\mMat{A}$.
    {\begin{myTindent} \myComment
-      Specifically, SVD stands for "Singular Value Decomposition" \retTwo
+      Specifically, SVD stands for "Singular Value Decomposition". \retTwo
    \end{myTindent}}
    
    {\begin{myDindent} \teachComment
@@ -1499,8 +1499,8 @@
 
       {\begin{myIndent} \hThree
          Proof:\\
-         \begin{tabular}{ r c l c l }
-            $\mMat{A}$&$=$&$\hat{\mMat{U}}\hat{\bm{\Sigma}}\hat{\mMat{V}}^T$&$=$&$\begin{bmatrix}
+         \begin{tabular}{ l c l }
+            $\mMat{A}=\hat{\mMat{U}}\hat{\bm{\Sigma}}\hat{\mMat{V}}^T$&$=$&$\begin{bmatrix}
                \mVecAst{u}_1 & \ldots & \mVecAst{u}_r
             \end{bmatrix}
             \begin{bmatrix}
@@ -1512,12 +1512,12 @@
                \mVecAst{v}_1^{\phantom{|}T\phantom{|}} \\ \vdots \\ \mVecAst{v}_r^{\phantom{|}T\phantom{|}}
             \end{bmatrix}$ \\ \\
 
-            &&& $=$ & $\begin{bmatrix}
+            & $=$ & $\begin{bmatrix}
                \sigma_1\mVecAst{u}_1 & \ldots & \sigma_r\mVecAst{u}_r
             \end{bmatrix} \begin{bmatrix}
                \mVecAst{v}_1^{\phantom{|}T\phantom{|}} \\ \vdots \\ \mVecAst{v}_r^{\phantom{|}T\phantom{|}}
             \end{bmatrix}$ \\ \\
-            &&& $=$ & $\sigma_1\mVecAst{u}_1\mVecAst{v}_1^{\phantom{|}T} + \ldots + \sigma_r\mVecAst{u}_r\mVecAst{v}_r^{\phantom{|}T} $
+            & $=$ & $\sigma_1\mVecAst{u}_1\mVecAst{v}_1^{\phantom{|}T} + \ldots + \sigma_r\mVecAst{u}_r\mVecAst{v}_r^{\phantom{|}T} $
          \end{tabular} \retTwo
          
          {\begin{myTindent}\begin{myTindent} \hFour
@@ -1547,9 +1547,112 @@
    We previously covered a method using the QR decomposition of $\mMat{A}$. But that\\ required $\mMat{A}$ to be full rank. Now, here is a method using an SVD of $\mMat{A}$ which works even if $\mMat{A}$ is not full rank. \retTwo
 
    {\begin{myIndent} \hTwo
-      Suppose $\mMat{A}$ has an SVD: $\mMat{U}\bm{\Sigma}\mMat{V}^T$.
+      Let $\mMat{A} \in \mathbb{R}^{n\times m}$ where $n \geq m$. \retTwo
+      Suppose $\mMat{A}$ has an SVD: $\mMat{U}\bm{\Sigma}\mMat{V}^T$. Then:\\
+      $(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2 = (\|\mVec{b} - \mMat{U}\bm{\Sigma}\mMat{V}^T\mVec{x}\|_2)^2 = (\|\mMat{U}^T\mVec{b} - \bm{\Sigma}\mMat{V}^T\mVec{x}\|_2)^2$
+      {\hFour
+      \begin{myTindent}\begin{myIndent}
+         As a reminder, $\mMat{U}$ is an orthogonal matrix and so $\mMat{U}\mVec{x} \cdot \mMat{U}\mVec{y} = \mVec{x} \cdot \mVec{y}$. \retTwo
+      \end{myIndent}\end{myTindent}}
+
+      Thus, we get that: ${\displaystyle (\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2 = \left(\left\| 
+      \begin{bmatrix}
+         \mVec{c} \\ \mVec{d}
+      \end{bmatrix} - 
+      \begin{bmatrix}
+         \hat{\bm{\Sigma}}\mVec{y} \\ \mVec{0}
+      \end{bmatrix} \right\|_2\right)^2}$
+      {\begin{myTindent}\begin{myIndent} \hFour
+         \dots where $\mVec{y}$ is the vector containing the first $r$ elements of $\mMat{V}^T\mVec{x}$ with $r = \rank{\mMat{A}}$ and $\mMat{U}^T\mVec{b} = \left[
+         \begin{matrix}
+            \mVec{c} \\ \mVec{d}
+         \end{matrix} \right]$ where $\mVec{c} \in \mathbb{R}^r$. Also, $\bm{\Sigma} = 
+         \begin{bmatrix}
+            \hat{\bm{\Sigma}} & \mMat{0} \\
+            \mMat{0} & \mMat{0}
+         \end{bmatrix}$ such that $\hat{\bm{\Sigma}} \in \mathbb{R}^{r \times r}$. \retTwo
+      \end{myIndent}\end{myTindent}}
+
+      This can be rewritten as $(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2 = (\|\mVec{c} - \hat{\bm{\Sigma}}\mVec{y}\|_2)^2 + (\|\mVec{d}\|_2)^2$. $\mVec{d}$ is\\ independent from $\mVec{x}$. So we need only worry about minimizing $(\|\mVec{c} - \hat{\bm{\Sigma}}\mVec{y}\|_2)^2$ in order to minimize $(\|\mVec{b} - \mMat{A}\mVec{x}\|_2)^2$. Luckily, $\hat{\bm{\Sigma}}$ is invertible since it is a diagonal matrix with only positive entries. So, we can solve for $\mVec{y}$ such that $\mVec{c} - \hat{\bm{\Sigma}}\mVec{y} = \mVec{0}$ \retTwo
+
+      Therefore, any solution of the least squares problem of $\mMat{A}$ and $\mVec{b}$ satisfies that: $\mMat{V}^T\mVec{x} = 
+      \begin{bmatrix}
+         \mVec{y} \\ \mVec{z}
+      \end{bmatrix}$ where $\mVec{z} \in \mathbb{R}^{m-r}$ is any vector.\retTwo
+
+      Because $V^T$ is orthogonal, we can thus say that $\mVec{x} = \mMat{V}\begin{bmatrix}
+         \mVec{y} \\ \mVec{z}
+      \end{bmatrix}$. So the set of solutions to the least square problem is:
+      \[\left\{\mMat{V}\begin{bmatrix}
+         \mVec{y} \\ \mVec{z}
+      \end{bmatrix} \quad \middle| \quad \mVec{z} \in \mathbb{R}^{m-r}\right\}\]
+      \retTwo \retTwo
+
+      {\begin{myIndent} \hThree
+         Note: One important solution is the solution that minimizes $\|\mVec{x}\|_2$. To get this, note that $\|\mMat{V}\mVec{v}\|_2 = \|\mVec{v}\|_2$ because $\mMat{V}$ is orthogonal. So, the solution to the least square problem that minimizes $\|\mVec{x}\|_2$ is $\mVec{x} = \mMat{V}\begin{bmatrix}
+            \mVec{y} \\ \mVec{0}
+         \end{bmatrix}$. 
+      \end{myIndent}}
    \end{myIndent}}
 
+   \newpage
 
+   If $\mMat{A}$ is not a square matrix, there is no inverse. A \udefine{pseudo inverse} is a generalization that works for all matrices.
+
+   {\begin{myIndent} \hTwo
+      Note that if $\mMat{A}$ has the SVD: $\mMat{U}\bm{\Sigma}\mMat{V}^T$, and is invertible, then $\mMat{A}^{-1} = \mMat{V}\bm{\Sigma}^{-1}\mMat{U}^T$ where: \[
+         \bm{\Sigma}^{-1} = \begin{bmatrix}
+         \frac{1}{\sigma_1} & & \\
+         & \ddots & \\
+         & & \frac{1}{\sigma_n}
+      \end{bmatrix}\]
+      \retTwo
+      Importantly, no matter how $\mMat{A}$ isn't invertible (whether that be because it is rank deficient or non-square), the expression $\mMat{U}\bm{\Sigma}\mMat{V}^T$ is mostly well defined. The only problem that arrises if $\mMat{A}$ is not invertible is that $\bm{\Sigma}$ is not invertible anymore either. \retTwo
+
+      Given ${\bm{\Sigma} =} 
+      \begin{bmatrix}
+         \sigma_1 & \\
+         & \ddots \\
+         & & \sigma_r \\
+         & & & \\
+         & & & \hspace{0.8em}\vphantom{\int}\\
+      \end{bmatrix} {\in \mathbb{R}^{n \times m}}$, define ${\bm{\Sigma}^+ =} 
+      \begin{bmatrix}
+         \frac{1}{\sigma_1} & \\
+         & \ddots \\
+         & & \frac{1}{\sigma_r} \\
+         & & & \hspace{0.8em}\vphantom{\int}\hspace{0.8em} \\ 
+      \end{bmatrix} {\in \mathbb{R}^{m \times n}}$ \retTwo
+      Then, define $\mMat{A}^+ = \mMat{V}\bm{\Sigma}^+\mMat{U}^T \in \mathbb{R}^{m\times n}$.
+      
+      {\begin{myTindent} \hFour
+         Note that if $\mMat{A}$ is invertible, then $\mMat{A}^+ = \mMat{A}^{-1}$.
+      \end{myTindent}}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   {\begin{myIndent} \hTwo
+      \uuline{Theorem}: If $\mMat{A} \in \mathbb{R}^{n \times m}$ where $n \geq m$, then the solution $\mVec{x}$ to the least square problem of $\mMat{A}$ and $\mVec{b}$ such that $\|\mVec{x}\|_2$ is minimized is given by $\mVec{x} = \mMat{A}^+\mVec{b}$.
+
+      {\begin{myIndent} \hThree
+         Why: (recall how $\mVec{c}$, $\mVec{d}$, and $\mVec{y}$ were defined on the previous page\dots)
+         \begin{itemize}
+            \item $\mMat{U}^T\mVec{b} = 
+            \begin{bmatrix}
+               \mVec{c} \\ \mVec{d}
+            \end{bmatrix}$
+
+            \item $\bm{\Sigma}^+\begin{bmatrix}
+               \mVec{c} \\ \mVec{d}
+            \end{bmatrix} = \begin{bmatrix}
+               \mVec{y} \\ \mVec{0}
+            \end{bmatrix}$
+         \end{itemize}
+         \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \markLecture{2/21/2024}
 \end{document}
 
