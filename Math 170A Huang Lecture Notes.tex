@@ -1094,7 +1094,7 @@
 
          \newpage
          
-         \uuline{Theorem}:
+         \uuline{Theorem}: (For if $\mMat{A}$ has full rank\dots)
          
          \begin{itemize}
             \item[\circ] The solution to the least squares problem is the solution to the linear\\ system $\hat{\mMat{R}}\mVec{x} = \mVec{c}$ where $\mVec{c}$ is the first $m$ values of $\mMat{Q}^T\mVec{b}$. \\
@@ -1305,8 +1305,8 @@
             Therefore, we have that
             $\mMat{Q}_2\mMat{Q}_1\mMat{A} = 
             \begin{bmatrix}
-               \hat{\mMat{R}} & \mMat{B} \\ \mMat{0} & \tilde{\mMat{Q}_3}
-            \end{bmatrix}$, where $\tilde{\mMat{A}}_2 \in \mathbb{R}^{(n-2),(m-2)}$, $\hat{\mMat{R}}$ is $2 \times 2$ upper triangular, and $\mMat{B}$ is some rectangular matrix.
+               \hat{\mMat{R}} & \mMat{B} \\ \mMat{0} & \tilde{\mMat{A}_3}
+            \end{bmatrix}$, where $\tilde{\mMat{A}}_3 \in \mathbb{R}^{(n-2),(m-2)}$, $\hat{\mMat{R}}$ is $2 \times 2$ upper triangular, and $\mMat{B}$ is some rectangular matrix.
             
             {\begin{myTindent} \hFour
                Note that only the lowest row in $\mMat{B}$ is effected by this step.
@@ -1415,7 +1415,7 @@
          \item $\hat{\mMat{U}}^T\hat{\mMat{U}} = \mMat{I}_r$
          \item $\hat{\mMat{V}}^T\hat{\mMat{V}} = \mMat{I}_r$
          \item $\hat{\bm{\Sigma}}$ is a diagonal square matrix with decreasing\\ entries as one goes down the diagonal.
-         \item $\mMat{A} = \hat{\mMat{U}}\hat{\bm{\Sigma}}\hat{\mMat{V}}$.
+         \item $\mMat{A} = \hat{\mMat{U}}\hat{\bm{\Sigma}}\hat{\mMat{V}}^T$
       \end{itemize}
    \end{myIndent}
    \retTwo
@@ -1428,7 +1428,7 @@
 
    \mySepTwo
 
-   \markLecture{3/14/2024}
+   \markLecture{2/14/2024}
 
    {\begin{myIndent} \hTwo
       \uuline{Theorem}: For $\mMat{A} \in \mathbb{R}^{n \times m}$, we have that $\|\mMat{A}\|_2$ equals the largest singular value of $\mMat{A}$.
@@ -1487,7 +1487,69 @@
       \end{myIndent}}
 
       \newpage
-
+   
    \end{myIndent}}
+
+   Problem: For $\mMat{A} \in \mathbb{R}^{n \times n}$ and an integer $k > 0$, find the matrix $X$ with rank $k$ that minimizes $\|\mMat{A} - \mMat{X}\|_2$. \retTwo
+
+   {\begin{myIndent}\hTwo
+      To do this, first consider the following lemma:\\
+      Let $\mMat{A} \in \mathbb{R}^{n\times m}$ be a matrix with $\rank{\mMat{A}} = r$. Consider the singular values of $\mMat{A}$:\\ $\sigma_1 \geq \sigma_2 \geq \ldots \geq \sigma_r > 0$, with their respective right and left singular vectors: \\ $\mVecAst{v}_1, \ldots, \mVecAst{v}_r$ and $\mVecAst{u}_1, \ldots, \mVecAst{u}_r$. Then, we can write that:
+      \[\mMat{A} = \sum\limits_{i=1}^{r}{\sigma_i\mVecAst{u}_i\mVecAst{v}_i^{\phantom{|}T}}\]
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         \begin{tabular}{ r c l c l }
+            $\mMat{A}$&$=$&$\hat{\mMat{U}}\hat{\bm{\Sigma}}\hat{\mMat{V}}^T$&$=$&$\begin{bmatrix}
+               \mVecAst{u}_1 & \ldots & \mVecAst{u}_r
+            \end{bmatrix}
+            \begin{bmatrix}
+               \sigma_1 & & \\
+               & \ddots & \\
+               & & \sigma_r \\
+            \end{bmatrix}
+            \begin{bmatrix}
+               \mVecAst{v}_1^{\phantom{|}T\phantom{|}} \\ \vdots \\ \mVecAst{v}_r^{\phantom{|}T\phantom{|}}
+            \end{bmatrix}$ \\ \\
+
+            &&& $=$ & $\begin{bmatrix}
+               \sigma_1\mVecAst{u}_1 & \ldots & \sigma_r\mVecAst{u}_r
+            \end{bmatrix} \begin{bmatrix}
+               \mVecAst{v}_1^{\phantom{|}T\phantom{|}} \\ \vdots \\ \mVecAst{v}_r^{\phantom{|}T\phantom{|}}
+            \end{bmatrix}$ \\ \\
+            &&& $=$ & $\sigma_1\mVecAst{u}_1\mVecAst{v}_1^{\phantom{|}T} + \ldots + \sigma_r\mVecAst{u}_r\mVecAst{v}_r^{\phantom{|}T} $
+         \end{tabular} \retTwo
+         
+         {\begin{myTindent}\begin{myTindent} \hFour
+            In other words, $\mMat{A}$ is a linear combination of $r$ many rank $1$ matrices.
+         \end{myTindent}\end{myTindent}}
+         \retTwo
+      \end{myIndent}}
+
+      If $\mMat{A}$ has the SVD: $\mMat{A} = \sum\limits_{i=1}^r{\sigma_i\mVecAst{u}_i\mVecAst{v}_i^{\phantom{|}T}}$,
+      then the optimal matrix $\mMat{X}$ is $\mMat{A}_k = \sum\limits_{i=1}^k{\sigma_i\mVecAst{u}_i\mVecAst{v}_i^{\phantom{|}T}}$. \retTwo
+
+      Specifically, $\mMat{A}_k$ is the \udefine{rank-$k$ approximation} of $\mMat{A}$. \retTwo \retTwo
+
+      \uuline{Proposition}: $\|\mMat{A} - \mMat{A}_k\|_2 = \sigma_{k+1}$\\
+      {\begin{myIndent} \hThree
+         Proof: 
+         $\mMat{A} - \mMat{A}_k = \sum\limits_{i=k+1}^r{\sigma_i\mVecAst{u}_i\mVecAst{v}_i^{\phantom{|}T}}$. \retTwo
+         Thus, the largest singular value of $\mMat{A} - \mMat{A}_k$ is $\sigma_{k+1}$.
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \newpage
+
+   \markLecture{2/16/2024}
+
+   The least square problem revisited:\\
+   We previously covered a method using the QR decomposition of $\mMat{A}$. But that\\ required $\mMat{A}$ to be full rank. Now, here is a method using an SVD of $\mMat{A}$ which works even if $\mMat{A}$ is not full rank. \retTwo
+
+   {\begin{myIndent} \hTwo
+      Suppose $\mMat{A}$ has an SVD: $\mMat{U}\bm{\Sigma}\mMat{V}^T$.
+   \end{myIndent}}
+
+
 \end{document}
 
