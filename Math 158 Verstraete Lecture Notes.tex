@@ -141,11 +141,11 @@
    \end{adjustwidth}%
 }
 
-\newcommand{\udefine}[1]{%
+\newcommand{\udefine}[1]{{%
    \setulcolor{Red}%
    \setul{0.14em}{0.07em}%
    \ul{#1}%
-}
+}}
 
 \newcommand{\uuline}[2][.]{%
 {\vphantom{a}\color{#1}%
@@ -166,7 +166,7 @@
 \newcommand{\comp}{\mathsf{C}}
 \newcommand{\oddComp}[1]{\mathrm{odd}(#1)}
 \newcommand{\exposed}[1]{\mathrm{ex}(#1)}
-
+\newcommand{\myHS}{ \hspace{0.5em}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -2015,11 +2015,21 @@ A \udefine{maximal planar graph} is a graph that is planar but the addition of a
    {\hThree 
    \begin{myIndent}
       Proof:\\
-      If $G$ is planar, then $|E(G)| \leq 3|V(G)| - 6$. However,\\ ${\displaystyle \sum_{v\in V(G)}{d_G(v)} = 2|E(G)| \leq 6|V(G)| - 12 < 6|V(G)|}$.\retTwo So not every vertex in $G$ can have a a degree of $6$ or more. \retTwo
+      If $G$ is planar, then $|E(G)| \leq 3|V(G)| - 6$. However,\\ ${\displaystyle \sum_{v\in V(G)}{d_G(v)} = 2|E(G)| \leq 6|V(G)| - 12 < 6|V(G)|}$.\retTwo So not every vertex in $G$ can have a degree of $6$ or more. \retTwo
    \end{myIndent}}
 \end{myIndent}}
 
 A \udefine{contraction} of an edge $\{a, b\}$ in a graph $G$, notated as $G \slash \{a, b\}$, is the graph\\ obtained by adding a vertex $x$ to $G - \{a\} - \{b\}$ so that $x$ is adjacent to all vertices in $N_G(a) \cup N_G(b)$. An important property of contractions is that if $G$ is planar, then $G \slash \{a, b\}$ is also planar.\retTwo
+
+{\center\exOne
+\begin{myClosureOne}{5.8}
+   What a contraction looks like:
+   
+   {\centering\includegraphics[scale=0.75]{Contraction_Image.png}\par}
+\end{myClosureOne}
+\par}
+
+\newpage
 
 {\begin{myIndent} \hTwo
    \uuline{The $5$-color Theorem}:  If $G$ is a planar graph, then $\chi(G) \leq 5$.
@@ -2030,8 +2040,6 @@ A \udefine{contraction} of an edge $\{a, b\}$ in a graph $G$, notated as $G \sla
 
       Then if $\delta(G) \leq 4$, we know there exists $v \in V(G)$ such that $d_G(v) \leq 4$. So, by induction we can find a proper $5$-coloring of $G - \{v\}$. And because $v$ has at most $4$ neighbors, there is at least one color left over to assign $v$ afterwards.\\ Meanwhile, because of the previous theorem, we know that any induced\\ subgraph of $G$ will have a minimum degree of at most $5$. So, the only \\non-trivial case we need to prove is when $\delta(G) = 5$. \retTwo
 
-      \newpage
-
       Thus, assume there exists a vertex $v \in V(G)$ such that $d(v) = 5$. Since $K_5$ is not planar, there exists some pair of vertices: $a, b \in N_G(v)$ which are not\\ adjacent. Define $H = G \slash \{a, b\}$ with a new vertex $w$ adjacent to\\ $N_G(v) \cup N_g(a)$. \retTwo
 
       Next contract $H$ again, defining $I = H \slash \{b, w\}$ with a new vertex $x$ adjacent to $N_H(w) \cup N_H(b)$. Note that $I$ and $H$ are planar. Thus, since $I$ is a planar graph with less vertices than $G$, we can do induction to find a proper $5$-coloring of $I$. We'll call this coloring $c$. \retTwo
@@ -2040,6 +2048,90 @@ A \udefine{contraction} of an edge $\{a, b\}$ in a graph $G$, notated as $G \sla
    \end{myIndent}}
 \end{myIndent}}
 
+\mySepTwo
+
 \markLecture{2/13/2024}
+
+\uuline{\textbf{The Art Gallery Problem}}:\\
+Let $R$ be a region in the plane bounded by a polygon. Also, define that two points are "\textit{mutually visible}" if there exists a straight line between them that is contained entirely in $R$. Then, what is the smallest size of a set of points $S$ in $R$ such that every point in $R$ is mutually visible to a point in $S$. 
+
+\newpage
+
+\exOne
+\begin{myClosureOne}{6.2}
+   In terms of the art gallery analogy, $R$ is the floor plan of an art gallery and $|S|$ is the number of guards you've hired to guard the gallery.
+   Here are some example galleries with guards:\exTwo\color{BrickRed}
+   
+   {\centering
+   \begin{tabular}{p{1.4in} p{1.4in} p{1.4in} p{1.4in}}
+      {\centering\includegraphics[scale=0.6]{art_gallery_1.png} \newline
+      $3$ edges,
+      $1$ guard \par} &
+      {\centering\includegraphics[scale=0.6]{art_gallery_2.png} \newline
+      $4$ edges,
+      $1$ guard \par} &
+      {\centering\includegraphics[scale=0.6]{art_gallery_3.png} \newline
+      $5$ edges,
+      $1$ guard \par} &
+      {\centering\includegraphics[scale=0.6]{art_gallery_4.png} \newline
+      $6$ edges,
+      $2$ guard \par} \\
+   \end{tabular}\par}
+\end{myClosureOne}
+
+\retTwo
+\hOne
+
+{\begin{myIndent} \hTwo
+   \uuline{Art Gallery Theorem}: For an $n$-sided polygon, one needs to include at most $\lfloor \frac{n}{3} \rfloor$ many points in $S$ in order to have that every point in $R$ be mutually visible with a point in $S$.
+
+   \hThree
+   \begin{myIndent}
+      Proof:\\
+      Consider triangulating $R$. In other words, add straight edges between vertices of $R$ in order to partition $R$ into a bunch of triangular regions. \retTwo
+      Having done that, now consider the graph $G$ whose vertices are the vertices of $R$ and whose edges are the boundaries of the triangles of our triangulation of $R$. We can prove that $\chi(G) = 3$. \retTwo
+
+      {\hFour
+      \begin{myIndent}
+         When $n = 3$, we have that $G$ consists of a single triangle. So $\chi(G) = 3$. \retTwo
+         Now we proceed by induction. Assume that for $n > 3$, we know that \\$\chi(G) = 3$ if $R$ has less than $n$ sides. Therefore, we now consider a graph $G$ made from an $n$-sided polygon. Let $\{u, v\}$ be any edge of $G$ not on the boundary of the infinite face. Importantly, we know such a side will exist\\ because $n > 3$. Then, we can partition $G$ into two subgraphs $G_1$ and $G_2$ such that $V(G_1) \cap V(G_2) = \{u, v\}$ and $E(G_1) \cup E(G_2) = E(G)$. \retTwo
+
+         $G_1$ and $G_2$ are the triangulations of some polygon with less than $n$ sides.\\ Therefore by strong induction, there exists the proper vertex $3$-colorings:\\ $c_1: V(G_1) \rightarrow \{1, 2, 3\}$, and $c_2: V(G_2) \rightarrow \{1, 2, 3\}$. Shifting around the colors so that $c_1(u) = c_2(u)$ and $c_1(v) = c_2(v)$, we can then define a proper $3$-coloring of all $G$. So $\chi(G) \leq 3$. \retTwo
+
+         Since $G$ obviously can't be colored by 2 or less colors since the triangles in $G$ need three colors, we thus conclude that $\chi(G) = 3$. \retTwo
+      \end{myIndent}}
+
+      Having shown that $G$ has a $3$-coloring, now note that in that $3$-coloring, the three vertices enclosing any triangular face of $G$ must all have a different color assigned to them. Additionally, every point in a triangle is mutually visible to another point in that triangle.
+      \newpage
+      Letting the least assigned color be called $i$, make $S$ the set of locations of vertices which were assigned the color $i$. Then any point in any of the triangles partioning $R$ is mutually visible to a point in $S$. Also, $|S|$ is at most $\lfloor \frac{n}{3} \rfloor$. $\blacksquare$ \retTwo
+   \end{myIndent}
+\end{myIndent}}
+
+Some other problems related to the art gallery problem are:
+\begin{myIndent}
+   \begin{itemize}
+      \item The rectilinear art gallery problem.
+      {\begin{myIndent} \hTwo
+         In this version of the problem, all angles between sides must be right angles. As it turns out, with this restriction on $R$ we only need $\lfloor \frac{n}{4} \rfloor$\\ points in $S$ so that every point in $R$ is mutually visible with a point in $S$. However, we aren't proving that in this class.
+      \end{myIndent}}
+
+      \item The 3d art gallery problem
+      \item The non-polygon art gallery problem
+   \end{itemize}
+\end{myIndent}
+
+\mySepTwo
+
+
+{\begin{myIndent} \hTwo
+   \uuline{The 4-color Theorem}: If $G$ is a planar graph, then $\chi(G) \leq 4$.
+   
+   \begin{myTindent}\begin{myTindent} \hFour
+      Unfortunately, no short proof of this is known. The quickest proof  considers 633 different cases.
+   \end{myTindent}\end{myTindent}
+\end{myIndent}}
+
+
+
 
 \end{document}
