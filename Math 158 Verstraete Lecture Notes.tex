@@ -24,6 +24,7 @@
 \usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
 
 % Just am using this to get a dashed line in a table...
 % Also you apparently want this to be inactive if you aren't
@@ -117,6 +118,8 @@
 }
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+
 \newenvironment{myIndent}{%
    \begin{adjustwidth}{2.5em}{0em}%
 }{%
@@ -166,6 +169,7 @@
 \newcommand{\comp}{\mathsf{C}}
 \newcommand{\oddComp}[1]{\mathrm{odd}(#1)}
 \newcommand{\exposed}[1]{\mathrm{ex}(#1)}
+\newcommand{\exNums}[1]{\mathrm{ex}(#1)}
 \newcommand{\myHS}{ \hspace{0.5em}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
@@ -201,6 +205,8 @@
 }
 
 \newcommand{\retTwo}{\hfill\bigbreak}
+
+\newcommand{\gfam}[1]{\mathcal{#1}}
 
 \title{Math 158 Lecture Notes (Professor: Jacques Verstraete)}
 \author{Isabelle Mills}
@@ -2126,12 +2132,170 @@ Some other problems related to the art gallery problem are:
 {\begin{myIndent} \hTwo
    \uuline{The 4-color Theorem}: If $G$ is a planar graph, then $\chi(G) \leq 4$.
    
-   \begin{myTindent}\begin{myTindent} \hFour
-      Unfortunately, no short proof of this is known. The quickest proof  considers 633 different cases.
-   \end{myTindent}\end{myTindent}
+   \begin{myIndent} \hThree
+      Unfortunately, no short proof of this is known. The quickest proof  considers 633 different cases. \retTwo
+   \end{myIndent}
+\end{myIndent}}
+
+Let $G$ be a plane graph where $F(G)$ is the set of faces of $G$. Then the \udefine{dual} $G^*$ of $G$ has the vertex set $F(G)$. Also $E(G^*)$ has an edge $\{f_1, f_2\}$ whenever $f_1$ and $f_2$ share an edge on their boundary.\\
+
+{\centering \exOne
+   \begin{myClosureOne}{4}
+      \includegraphics[scale=0.6]{Dual_Image.png}\\
+      Note that the dual of a graph is a multigraph.\\
+      Also, the dual of a graph is planar.
+   \end{myClosureOne}
+\par}
+
+{\begin{myIndent}\hTwo
+   \retTwo
+   Here is one notable approach to the four color theorem: \retTwo
+
+   Firstly, to prove the $4$-color theorem, it is enough to prove it for maximal planar graphs (i.e. a planar graph with as many edges as possible). After all, removing edges does not make a coloring invalid.
+   
+   \newpage
+   
+   Also, note that in a maximal planar graph $G$ with at least three vertices, every face\\ (including the infinite face) is a triangle. Therefore, $G^*$ is $3$-regular. Furthermore, if $G$ has at least $4$ vertices, then no face can share more than one edge with any other face. So $G^*$ is a simple (a.k.a non-pseudo) graph.
+   \retTwo
+
+   A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if the dual a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
+
+   \uuline{Theorem}: Every planar graph $G$ is $4$-colorable if and only if every $3$-connected cubic planar graph is $3$-edge colorable.
+   {\begin{myIndent} \hThree
+      \color{BrickRed} Unfortunately the proof in the lecture notes is missing some key\\ considerations. I'm not doubting the theorem is wrong but his proof is not right and I've been trying to figure out how to correct it all afternoon. I'm moving on for today. \retTwo
+   \end{myIndent}}
 \end{myIndent}}
 
 
+{\centering{\myComment
+\begin{tabular}{ p{5.8in} }
+   \hline \\
+   Here's a quick useful calculation for the homework that the professor gave us:
+   {\begin{myIndent} \teachComment
+      Let $G$ be a maximal planar graph with $n$ vertices. By the handshaking lemma, we know that $3|F(G)| = 2|E(G)|$. And since $G$ is obviously connected, we can thus say that: $|V(G)| - |E(G)| + |F(G)| = n - \frac{1}{2}|F(G)| = 2$. So, $|F(G)| = 2n - 4$. Plugging this into Euler's formula again, we then get that $|E(G)| = 3n - 6$. \retTwo
 
+      As a result, we know that $G^*$ has $2n - 4$ vertices and $3n - 6$ edges. Finally, note that the proof for Euler's formula still works for connected planar multigraphs. Therefore, applying Euler's formula one more time to $G^*$, we get that \newline $|F(G^*)| = n$.
+   \end{myIndent}}
+   \\ \hline \\
+\end{tabular}}\par}
+
+\newpage
+
+\markLecture{2/15/2024}
+
+Let $\mathcal{F}$ be any family of graphs.\\
+The \udefine{external numbers / Turán numbers} for $\mathcal{F}$ are the quantities $\exNums{n, \mathcal{F}}$ which\\ denote the maximum number of edges in an $n$ vertex graph not containing any graph in $\mathcal{F}$.\retTwo
+
+We call a graph that does not contain any member of $\mathcal{F}$ an \udefine{$\gfam{F}$-free graph}.
+
+A \udefine{$k$-core} of a graph $G$ is the graph obtained through the following algorithm:
+{\begin{myIndent} \hTwo
+   1. Let $X$ be the set of vertices removed from $G$ in previous steps. \retTwo 
+   2. If there is no vertex $v \in V(G - X)$ with degree less than $k$ in $G - X$, then you are done as $G - X$ is a $k$-core of $G$. \retTwo
+   3. Otherwise, add $v$ to the set $X$ and go back to step 2. \retTwo
+\end{myIndent}}
+
+If not empty, a $k$-core is the largest subgraph of $G$ with minimum degree at least $k$.
+{\begin{myTindent} \teachComment
+   The order in which vertices are removed does not matter. The $k$-core of a graph is unique. \retTwo
+\end{myTindent}}
+
+{\begin{myIndent} \hTwo
+   \uuline{Lemma}: If $G$ is an $n$-vertex graph with more than $(k - 1)n -
+   \binom{k}{2}$ edges, then $G$ has a nonempty $k$-core.
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Now, if $\delta(G) \geq k$, we're done. So, assume that there is a vertex $v_1 \in V(G)$ with $d(v_1) \leq k - 1$. Then:
+      
+      {\center$|E(G - \{v\})| > (k-1)n - \binom{k}{2} \cyPen{- (k - 1)} = (k-1)(n \cyPen{- 1}) - \binom{k}{2}$\retTwo\par}
+
+      Now if $n = k$, then $|E(G)| > (k-1)k - \binom{k}{2} = \binom{k}{2}$. But that would mean that $G$ has more edges than $K_n$, which is impossible. So, we know that $n > k$. Therefore, it makes sense to consider repeating the above step $n - k$ times. Having done that, we will get that there are more than $(k - 1)(k) - \binom{k}{2}$ edges remaining. However, that is impossible as $k$ vertex graph can't have more than $\binom{k}{2}$ edges. Hence, we conclude that the algorithm must have terminated before all $n - k$ steps could be done. \retTwo
+   \end{myIndent}}
+
+   \uuline{Corollary}: If $G$ is a graph with $n$ vertices and more than $(k - 1)n - \binom{k}{2}$ edges, then $G$ contains a cycle of length at least $k + 1$ unless $G = K_k$.
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Let $H \subseteq G$ be a non-empty $k$-core in $G$. Since $\delta(H) \geq k$, $H$ contains a cycle of length at least $k + 1$. Thus so does $G$. $\blacksquare$
+      \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\newpage
+
+A \udefine{cut}: $(A, B)$, of a graph $G$ is a spanning subgraph of $G$ such that such that $V(G)$ is partitioned into two sets $A$ and $B$ and an edge $\{a, b\} \in E(G)$ is only included in the cut if $a \in A$ and $b \in B$. \retTwo
+
+A \udefine{max cut} is a cut with as many edges as possible.
+
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: Every graph with $m$ edges has a cut with at least $\sfrac{m}{2}$ edges.
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Let $G$ have $m$ edges. On each vertex of $G$, flip a fair coin. 
+      Then, let $A$ be the set of vertices which have heads and let $B$ be the set of vertices which have tails. That way, $(A, B)$ is a cut.
+      \retTwo
+
+      Since the assignment of each vertex is independent from the assignment of any other vertex, we have that there is a $\frac{1}{2}$ probability of any edge being included in the cut. Thus, the mean number of edges between $A$ and $B$ is: 
+      \[\sum\limits_{e \in E(G)}{\mathbb{P}(e\text{ is in the cut})} = \sum\limits_{i=1}^m\frac{1}{2} = \frac{1}{2}m\]
+
+      This implies that some cut $(A, B)$ of $G$ must have at least $\sfrac{m}{2}$ edges. (It also implies some cut has at most $\sfrac{m}{2}$ edges.) \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Erdös-Gallai Theorem}: Let $k \geq 1$, \hspace{0.2em} $n \geq 1$, and let $G$ be an $n$-vertex $P_k$-free graph. Then $|E(G)| \leq (k-1)\frac{n}{2}$ with equality if and only if $k$ divides $n$ and every component of $G$ is $K_k$.
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Let $G$ be an $n$-vertex graph with at least $(k - 1)\frac{n}{2}$ edges.\\
+      {\color{BrickRed} Well frick. Once again I do not understand how his proof works. Why does every component need to be $K_k$?!}
+      \retTwo
+   \end{myIndent}}
+\end{myIndent}}
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Unfortunately I think all these notes are wrong
+% Specifically, the professor overlooked to prove something and I need to go to office hours on Wednesday or Thursday...
+\newpage Suppose $G_0$ is a $3$-connected cubic plane graph. Then consider the\\ maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
+      
+$G_0$ and thus $G_1$ must have at least $4$ vertices. An easy way to know this is that since the minimum degree of $G_0$ is $3$, we therefore know that $G_0$ has a cycle of length $4$ due to one of the first theorems covered in this class. This means that $G_1^*$ is a planar simple graph. So by assumption, $\chi(G_1^*) \leq 4$.
+\retTwo
+
+Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. This is equivalent to assigning a color to the faces of $G_1$ so that two faces 
+Now as $G_0$ and thus $G_1$ is $3$-connected, every edge of $G_1$ must be 
+
+\retTwo
+Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. Because $G_1^*$ is a simple graph, we have that every edge of $G_1^*$ is going between two different vertices of different colors. So, we define an edge coloring as follows:
+\[c^\prime(\{u, v\}) = \left\{
+\begin{matrix}
+   1 & \text{ if } (c(u) = 1 \text{ and } c(v) = 2) \text{ or } (c(u) = 3 \text{ and } c(v) = 4) \\
+   2 & \text{ if } (c(u) = 1 \text{ and } c(v) = 3) \text{ or } (c(u) = 2 \text{ and } c(v) = 4) \\
+   3 & \text{ if } (c(u) = 1 \text{ and } c(v) = 4) \text{ or } (c(u) = 2 \text{ and } c(v) = 3) \\
+\end{matrix}\right.\]
+\end{myIndent}}
+\end{myIndent}}
