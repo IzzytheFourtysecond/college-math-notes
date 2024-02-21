@@ -2161,11 +2161,29 @@ Let $G$ be a plane graph where $F(G)$ is the set of faces of $G$. Then the \udef
    A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if the dual a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
 
    \uuline{Theorem}: Every planar graph $G$ is $4$-colorable if and only if every $3$-connected cubic planar graph is $3$-edge colorable.
+
    {\begin{myIndent} \hThree
-      \color{BrickRed} Unfortunately the proof in the lecture notes is missing some key\\ considerations. I'm not doubting the theorem is wrong but his proof is not right and I've been trying to figure out how to correct it all afternoon. I'm moving on for today. \retTwo
+      ($\Longrightarrow$) Suppose we have a 3-connected cubic planar graph $G_0$. \newpage Suppose $G_0$ is a $3$-connected cubic plane graph. Then consider the\\ maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
+      
+      $G_0$ and thus $G_1$ must have at least $4$ vertices. An easy way to know this is that since the minimum degree of $G_0$ is $3$, we therefore know that $G_0$ has a cycle of length $4$ due to one of the first theorems covered in this class. This means that $G_1^*$ is a planar simple graph. So by assumption, $\chi(G_1^*) \leq 4$.
+      \retTwo
+      
+      Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. This is equivalent to assigning a color to the faces of $G_1$ so that two faces 
+      Now as $G_0$ and thus $G_1$ is $3$-connected, every edge of $G_1$ must be 
+      
+      \retTwo
+      Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. Because $G_1^*$ is a simple graph, we have that every edge of $G_1^*$ is going between two different vertices of different colors. So, we define an edge coloring as follows:
+      \[c^\prime(\{u, v\}) = \left\{
+      \begin{matrix}
+         1 & \text{ if } (c(u) = 1 \text{ and } c(v) = 2) \text{ or } (c(u) = 3 \text{ and } c(v) = 4) \\
+         2 & \text{ if } (c(u) = 1 \text{ and } c(v) = 3) \text{ or } (c(u) = 2 \text{ and } c(v) = 4) \\
+         3 & \text{ if } (c(u) = 1 \text{ and } c(v) = 4) \text{ or } (c(u) = 2 \text{ and } c(v) = 3) \\
+      \end{matrix}\right.\]
+
    \end{myIndent}}
 \end{myIndent}}
 
+\newpage
 
 {\centering{\myComment
 \begin{tabular}{ p{5.8in} }
