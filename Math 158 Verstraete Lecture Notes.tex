@@ -2137,15 +2137,22 @@ Some other problems related to the art gallery problem are:
    \end{myIndent}
 \end{myIndent}}
 
-Let $G$ be a plane graph where $F(G)$ is the set of faces of $G$. Then the \udefine{dual} $G^*$ of $G$ has the vertex set $F(G)$. Also $E(G^*)$ has an edge $\{f_1, f_2\}$ whenever $f_1$ and $f_2$ share an edge on their boundary.\\
+Let $G$ be a plane graph. To get the \udefine{dual} of $G$, denoted $G^*$, represent each face $f \in F(G)$ as a vertex in $G^*$ and draw it inside its corresponding face in $G$. Then, for each edge $e \in E(G)$, draw an edge $\{f_1, f_2\} \in E(G^*)$ such that $e$ is between the faces $f_1$ and $f_2$ of $G$ and $\{f_1, f_2\}$ is drawn to only intercept $e$ at one point. \retTwo \retTwo
 
 {\centering \exOne
-   \begin{myClosureOne}{4}
-      \includegraphics[scale=0.6]{Dual_Image.png}\\
-      Note that the dual of a graph is a multigraph.\\
-      Also, the dual of a graph is planar.
+   \begin{myClosureOne}{5.25}
+      \includegraphics[scale=0.6]{Dual_Image.png}
    \end{myClosureOne}
 \par}
+
+
+
+% This all needs to be redone
+\newpage
+
+{
+\color{BrickRed}
+Needs to be redone\dots
 
 {\begin{myIndent}\hTwo
    \retTwo
@@ -2159,14 +2166,27 @@ Let $G$ be a plane graph where $F(G)$ is the set of faces of $G$. Then the \udef
    \retTwo
 
    A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if the dual a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
+\end{myIndent}}
 
+{\centering{\myComment
+\begin{tabular}{ p{5.8in} }
+   \hline \\
+   Here's a quick useful calculation for the homework that the professor gave us:
+   {\begin{myIndent} \teachComment
+      Let $G$ be a maximal planar graph with $n$ vertices. By the handshaking lemma, we know that $3|F(G)| = 2|E(G)|$. And since $G$ is obviously connected, we can thus say that: $|V(G)| - |E(G)| + |F(G)| = n - \frac{1}{2}|F(G)| = 2$. So, $|F(G)| = 2n - 4$. Plugging this into Euler's formula again, we then get that $|E(G)| = 3n - 6$. \retTwo
+
+      As a result, we know that $G^*$ has $2n - 4$ vertices and $3n - 6$ edges. Finally, note that the proof for Euler's formula still works for connected planar multigraphs. Therefore, applying Euler's formula one more time to $G^*$, we get that \newline $|F(G^*)| = n$.
+   \end{myIndent}}
+   \\ \hline \\
+\end{tabular}}\par}
+
+{\begin{myIndent}\hTwo
    \uuline{Theorem}: Every planar graph $G$ is $4$-colorable if and only if every $3$-connected cubic planar graph is $3$-edge colorable.
 
    {\begin{myIndent} \hThree
-      ($\Longrightarrow$) Suppose we have a 3-connected cubic planar graph $G_0$. \newpage Suppose $G_0$ is a $3$-connected cubic plane graph. Then consider the\\ maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
+      ($\Longrightarrow$) Suppose we have a 3-connected cubic planar graph $G_0$. Then consider the maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
       
-      $G_0$ and thus $G_1$ must have at least $4$ vertices. An easy way to know this is that since the minimum degree of $G_0$ is $3$, we therefore know that $G_0$ has a cycle of length $4$ due to one of the first theorems covered in this class. This means that $G_1^*$ is a planar simple graph. So by assumption, $\chi(G_1^*) \leq 4$.
-      \retTwo
+      
       
       Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. This is equivalent to assigning a color to the faces of $G_1$ so that two faces 
       Now as $G_0$ and thus $G_1$ is $3$-connected, every edge of $G_1$ must be 
@@ -2183,21 +2203,19 @@ Let $G$ be a plane graph where $F(G)$ is the set of faces of $G$. Then the \udef
    \end{myIndent}}
 \end{myIndent}}
 
+}
 \newpage
 
-{\centering{\myComment
-\begin{tabular}{ p{5.8in} }
-   \hline \\
-   Here's a quick useful calculation for the homework that the professor gave us:
-   {\begin{myIndent} \teachComment
-      Let $G$ be a maximal planar graph with $n$ vertices. By the handshaking lemma, we know that $3|F(G)| = 2|E(G)|$. And since $G$ is obviously connected, we can thus say that: $|V(G)| - |E(G)| + |F(G)| = n - \frac{1}{2}|F(G)| = 2$. So, $|F(G)| = 2n - 4$. Plugging this into Euler's formula again, we then get that $|E(G)| = 3n - 6$. \retTwo
+%Construction site done...
 
-      As a result, we know that $G^*$ has $2n - 4$ vertices and $3n - 6$ edges. Finally, note that the proof for Euler's formula still works for connected planar multigraphs. Therefore, applying Euler's formula one more time to $G^*$, we get that \newline $|F(G^*)| = n$.
-   \end{myIndent}}
-   \\ \hline \\
-\end{tabular}}\par}
 
-\newpage
+
+
+
+
+
+
+
 
 \markLecture{2/15/2024}
 
