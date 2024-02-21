@@ -153,6 +153,7 @@
 \newcommand{\rea}[1]{\mathrm{Re}(#1)}
 \newcommand{\ima}[1]{\mathrm{Im}(#1)}
 \newcommand{\comp}{\mathsf{C}}
+\newcommand{\diam}[1]{\mathrm{diam}(#1)}
 
 
 \newcounter{PropNumber}
@@ -1612,7 +1613,7 @@
       Proposition \propCount: (\uuline{Bolzano-Weierstrauss Theorem}): Every bounded infinite subset of $\mathbb{R}^k$ has a limit point.
       
       {\begin{myIndent} \hThree
-         Proof: Let $E$ be a bounded infinite subset of $\mathbb{R}^k$. Then $\overbar{E}$ is closed and bounded, meaning that every infinite subset of $\overbar{E}$ has a limit point in $\overbar{E}$, meaning $(\overbar{E})^\prime \neq \emptyset$. Finally, we know from a homework question last week that $(\overbar{E})^\prime = E^\prime$.\\ So, $E^\prime \neq \emptyset\vphantom{\overbar{E}}$. 
+         Proof: Let $E$ be a bounded infinite subset of $\mathbb{R}^k$. Then $\overbar{E}$ is closed and bounded, meaning that every infinite subset of $\overbar{E}$ has a limit point in $\overbar{E}$, meaning\\ $(\overbar{E})^\prime \neq \emptyset$. Finally, we know from a homework question last week that\\ $(\overbar{E})^\prime = E^\prime$. So, $E^\prime \neq \emptyset\vphantom{\overbar{E}}$. 
       \end{myIndent}}
    \end{myIndent}}
 
@@ -1929,6 +1930,8 @@
       \end{itemize}
    \end{myIndent}}
 
+   \mySepTwo
+
    If $n_1 < n_2 < \ldots$ are positive integers, then $(p_{n_i})_{i\in\mathbb{Z}^+}$ is called a \udefine{subsequence} of\\ $(p_n)_{n\in\mathbb{Z}^+}$. If $(p_{n_i})$ converges to $p$, we call $p$ a \udefine{subsequential limit of $(p_n)$}.
 
    {\begin{myIndent}\exOne
@@ -1975,7 +1978,182 @@
          \end{myIndent}}
       \end{itemize}
 
+      Proposition \propCount: For any metric space $X$, the set of all subsequential limits of $(p_n)$ is closed.
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $x \in X$ be a limit point of a set of subsequential limits of $(p_n)$. Also, fix $r > 0$. There must be a subsequential limit $q$ of $(p_n)$ with $q \in B_r(x)$. Setting $s = r - d(x, q)$ we have that $B_s(q) \subseteq B_r(x)$.
+         \retTwo
+         Since $q$ is a subsequential limit, by proposition 35, we know that the set:\\ $\{n \in \mathbb{N} \mid p_n \in B_s(q)\}$, is infinite. Thus, $\{n \in \mathbb{N} \mid p_n \in B_r(x)\}$ is infinite. So proposition 35, $x$ is a subsequential limit of $(p_n)$.
+         \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   A sequence $(p_n)$ is \udefine{Cauchy} if $\forall \varepsilon > 0, \myHS \exists N \in \mathbb{N} \suchthat \forall n,m > N, \myHS d(p_n, p_m) < \varepsilon$. \retTwo
+
+   The \udefine{diameter} of $\emptyset \neq E \subseteq X$ is $\diam{E} = \sup{\{d(p, q) \mid p,q \in E\}}$. Note that $\diam{E} \in [0, \infty]$. \retTwo
+   
+   {\begin{myIndent} \exOne
+      Observe: $(p_n)$ is Cauchy if and only if $\lim\limits_{n\rightarrow\infty}{(\diam{\{p_m \mid m \geq n\}})} = 0$.
+
+      \newpage
+
+      \hTwo
       Proposition \propCount:
+      \begin{itemize}
+         \item[(A)] For $\emptyset \neq E \subseteq X$, $\diam{\myBar{E}} = \diam{E}$.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Let $p, q \in \myBar{E}$ and $\varepsilon > 0$. Pick $p^\prime, q^\prime \in E$ with $d(p, p^\prime), d(q, q^\prime) < \varepsilon$. Then $d(p, q) \leq d(p, p^\prime) + d(p^\prime, q^\prime) + d(q, q^\prime) < \varepsilon + \diam{E} + \varepsilon = 2\varepsilon + \diam{E}$.\\ Since $\varepsilon > 0$ was arbitrary, we find that $d(p, q) \leq \diam{E}$.\\ Hence $\diam{\overbar{E}} \leq \diam{E}$. \retTwo
+
+            Meanwhile, its obvious that $\diam{E} \leq \diam{\myBar{E}}$. So $\diam{E} = \diam{\myBar{E}}$.
+            \retTwo
+         \end{myIndent}}
+
+         \item[(B)] If for all $n \in \mathbb{N}$, we have that $K_n$ is compact and nonempty, $K_{n+1} \subseteq K_n$, and $\diam{K_n} \rightarrow 0$, then $\bigcap\limits_{n \in \mathbb{N}}{K_n}$ is a singleton.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\ [1pt]
+            ${\displaystyle \bigcap\limits_{n\in\mathbb{N}}{K_n}} \neq \emptyset$ by the finite intersection property.\\ Also, $\diam{{\displaystyle \bigcap\limits_{n\in\mathbb{N}}{K_n}}} \leq \diam{K_n}$ for all $n$. So, $\diam{{\displaystyle \bigcap\limits_{n\in\mathbb{N}}{K_n}}} = 0$.\\
+            Thus ${\displaystyle \bigcap\limits_{n\in\mathbb{N}}{K_n}}$ contains a single point.
+            \retTwo
+         \end{myIndent}}
+      \end{itemize}
+
+      Proposition \propCount: Let $X$ be a metric space.
+      \begin{enumerate}
+         \item If $(p_n)$ converges, then $(p_n)$ is Cauchy.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Assume that $p_n \rightarrow p$. Let $\varepsilon > 0$. Pick $N$ with $\forall n \geq N$, $d(p_n, p) < \sfrac{\varepsilon}{2}$. Then for all $n, m \geq N$, $d(p_n, p_m) \leq d(p_n, p) + d(q_n, q) < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$.
+            \retTwo
+         \end{myIndent}}
+
+         \item If $X$ is compact, then $(p_n)$ being Cauchy implies that $(p_n)$ converges.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Set $E_n = \{p_n, p_{n+1}, \ldots\}$. Since $(p_n)$ is Cauchy, we know that:\\ $\diam{\overbar{E_n}} = \diam{E_n} \rightarrow 0$. Also, since $X$ is compact and $\overbar{E_n} \subseteq X$,  we know by proposition 24 that $\overbar{E_n}$ is compact. Additionally, $\overbar{E_{n+1}} \subseteq \overbar{E_n}$.
+            \retTwo
+            Therefore, by proposition 38.B, ${\displaystyle \bigcap\limits_{n\in\mathbb{N}}{\overbar{E_n}}} = \{p\}$ for some $p \in X$. \retTwo
+            Now let $\varepsilon > 0$. Pick $N$ with $\diam{\overbar{E_n}} < \varepsilon$. Then for all $n \geq N$, we have that $p_n, p \in \overbar{E_n}$. So $d(p_n, p) < \diam{\overbar{E_n}} < \varepsilon$. Hence, $p_n \rightarrow p$.
+            \retTwo
+         \end{myIndent}}
+
+         \newpage
+
+         \item If $X = \mathbb{R}^k$, then $(p_n)$ being Cauchy implies that $(p_n)$ converges.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Since $(p_n)$ is Cauchy, pick $N$ with $\diam{\{p_N, p_{N+1}, \ldots\}} < 1$. Setting\\ $r = \max\{1, d(p_1, p_N), \ldots, d(p_{N-1}, p_N)\}$, we have that for all $n$,\\ $d(p_n, p_N) \leq r$. So $(p_n)$ is bounded.
+            \retTwo
+         \end{myIndent}}
+      \end{enumerate}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   A metric space $X$ is \udefine{complete} if every Cauchy sequence in $X$ converges.
+   {\begin{myIndent} \hTwo
+      Fact: $\mathbb{R}$ is the smallest complete metric space containing $\mathbb{Q}$. \retTwo
+   \end{myIndent}}
+
+   A sequence $(s_n)$ in $\mathbb{R}$ is called:
+   \begin{itemize}
+      \item \udefine{monotone increasing} if $\forall n,\myHS s_n \leq s_{n+1}$.
+      \item \udefine{monotone decreasing} if $\forall n,\myHS s_n \geq s_{n+1}$.
+      \item \udefine{monotone} if either of the above.
+   \end{itemize}
+   \retTwo
+
+   \markLecture{2/16/2024}
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Suppose $(s_n) \subseteq \mathbb{R}$ is monotone. Then $(s_n)$ converges if and only if $(s_n)$ is bounded.
+      
+      {\begin{myIndent} \hThree
+         Proof: \\
+         ($\Longrightarrow$) This is just proposition 32.C. \retTwo
+
+         ($\Longleftarrow$) We'll assume $(s_n)$ is monotone increasing because the other case is basically identical but with flipped inequalities.\retTwo
+         Set $s = \sup\{s_n \mid n \in \mathbb{N}\}$. We know this exists because $(s_n)$ is bounded and $\mathbb{R}$ has the least upper bound property. Next let $\varepsilon > 0$. Since $s - \varepsilon$ is not an upper bound to $\{s_n \mid n \in \mathbb{N}\}$, we know there is $N$ with $s - \varepsilon < s_N$. Hence, $\forall n \geq N, \myHS s - \varepsilon < s_N \leq s_n \leq s$. Thus, $s_n \rightarrow s$.
+         \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   For a sequence $(s_n)$ in $\mathbb{R}$, we write:
+   \begin{itemize}
+      \item $s_n \rightarrow \infty$ or $\lim\limits_{n\rightarrow\infty}{(s_n)} = \infty$ if \hspace{0.15em}
+      $\forall M \in \mathbb{R},\myHS \exists N \in \mathbb{N} \suchthat \forall n \geq N, \myHS s_n > M$.
+
+      \item $s_n \rightarrow -\infty$ or $\lim\limits_{n\rightarrow\infty}{(s_n)} = -\infty$ if \hspace{0.15em}
+      $\forall M \in \mathbb{R},\myHS \exists N \in \mathbb{N} \suchthat \forall n \geq N, \myHS s_n < M$.
+   \end{itemize}
+
+   In both of the above cases, we still say that $s_n$ diverges.
+   
+   \newpage
+
+   Let $(s_n)$ be a sequence in $\mathbb{R}$. Let $E$ be the set of all subsequential limits of $(s_n)$ in $\mathbb{R} \cup \{-\infty, \infty\}$.
+   \retTwo
+
+   The \udefine{upper limit / limit supremum} of $(s_n)$ is: $\limsup{s_n} = \sup{E}$. Meanwhile, the \udefine{lower limit / limit infimum} of $(s_n)$ is $\liminf{s_n} = \inf{E}$.
+   
+   {\teachComment
+   \begin{myTindent}
+      Importantly, the limit supremum and limit infimum always exist. This is\\ because if $(s_n)$ is not bounded above, then $+\infty \in E$. Meanwhile if $(s_n)$ is not bounded below, then $-\infty \in E$. Finally, if $(s_n)$ is bounded, then by the Bolzano-Weierstrauss Theorem (proposition 29), $(s_n)$ has a limit point. Thus, by proposition 35, that limit point is a subsequential limit. \retTwo
+
+      All in all, this means that $E$ is never empty. And as the extended real numbers have the least upper bound property and all nonempty sets in the extended real numbers are bounded, we thus know that both the limit supremum and limit infimum always exist. \retTwo
+   \end{myTindent}}
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Let $(s_n)$ and $E$ be defined as above\dots
+      \begin{itemize}
+         \item[(A)] $\limsup{s_n} \in E$.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            If $(s_n)$ is not bounded above, then $+\infty \in E$. So $\limsup{s_n} = +\infty$ which is in $E$. So let's assume $(s_n)$ is bounded above. \retTwo
+            If $\limsup{s_n} = -\infty$, then $E = \{-\infty\}$. So $\limsup{s_n} \in E$.\retTwo
+            Finally, consider if $\limsup{s_n} \in \mathbb{R}$. Then $E \subseteq [-\infty, \limsup{s_n}]$. So,\\
+            $\limsup{s_n} = \sup{E} = \sup{(E \cap \mathbb{R})} \in \overbar{E \cap \mathbb{R}}$. Then, as $\mathbb{R}$ is closed and $E$ is closed by proposition 37, we have that $E \cap \mathbb{R} = \overbar{E \cap \mathbb{R}}$. Therefore,\\ $\limsup{s_n} \in E \cap \mathbb{R} \subseteq E$. \retTwo
+         \end{myIndent}}
+
+         \item[(B)] If $x > \limsup{s_n}$, then there exists an integer $N$ such that $\forall n \geq N,\myHS s_n < x$. 
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Let $x > \limsup{s_n}$. Then $E \cap [x, +\infty] = \emptyset$. Now towards a contradiction, suppose $s_n \geq x$ for infinitely many $n$. Then, $(s_n)$ has a subsequence in $[x, +\infty)$. Therefore, $(s_n)$ has a subsequential limit $y$ in $[x, +\infty]$. But this is a contradiction because $y \in E$ and $y > \sup{E}$.
+            \retTwo
+         \end{myIndent}}
+
+         \item[(C)] $\limsup{s_n}$ is the unique element of $E$ satisfying propositions 41.B.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Suppose towards a contradiction that both $p$ and $q$ satisfy  proposition 41.B and are in $E$. Without loss of generality, let $p < q$. Then consider $x$ with $p < x < q$. Applying proposition 41.B to $p$ and $x$, we find that all but finitely many $s_n$ are less than $x$. Hence, every subsequential limit is at most $x$. This contradicts that $q \in E$.
+            \retTwo
+         \end{myIndent}}
+
+         \item[] Also, one can obviously make analogous propositions for $\liminf{s_n}$.
+      \end{itemize}
+   \end{myIndent}}
+
+   \newpage
+
+   \exOne
+   Consider the sequence: $s_n = \dfrac{(-1)^n}{1 - \frac{1}{n}}$\dots\\
+   {\begin{myIndent} \exTwo
+      For every $s_n$ we have that $|s_n| > |1|$. Yet observe that:
+      \begin{itemize}
+         \item $\limsup{s_n} = +1$
+         \item $\liminf{s_n} = -1$
+      \end{itemize}
+      This demonstrates that the limite supremum or infinimum of a sequence is not the same as supremum or infimum of the range of a sequence.
    \end{myIndent}}
    
    % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
@@ -2004,9 +2182,9 @@
          \myVS 31 & 2.47 & 32 & 3.2\phantom{0} \\ \hdashline[10pt/3pt]
          \myVS 33 & 3.3\phantom{0}  & 34 & 3.4\phantom{0} \\ \hdashline[10pt/3pt]
          \myVS 35 & n.a. & 36 & 3.6\phantom{0} \\ \hdashline[10pt/3pt]
-         \myVS 37 &  & 38 &  \\ \hdashline[10pt/3pt]
-         \myVS 39 &  & 40 &  \\ \hdashline[10pt/3pt]
-         \myVS 41 &  & 42 &  \\ \hdashline[10pt/3pt]
+         \myVS 37 & 3.7 & 38 & 3.10  \\ \hdashline[10pt/3pt]
+         \myVS 39 & 3.11 & 40 & 3.14 \\ \hdashline[10pt/3pt]
+         \myVS 41 & 3.17 & 42 &  \\ \hdashline[10pt/3pt]
          \myVS 43 &  & 44 &  \\ \hdashline[10pt/3pt]
 
 
