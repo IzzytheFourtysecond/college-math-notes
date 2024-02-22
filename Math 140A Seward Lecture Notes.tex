@@ -2049,7 +2049,7 @@
          
          {\begin{myIndent} \hThree
             Proof:\\
-            Since $(p_n)$ is Cauchy, pick $N$ with $\diam{\{p_N, p_{N+1}, \ldots\}} < 1$. Setting\\ $r = \max\{1, d(p_1, p_N), \ldots, d(p_{N-1}, p_N)\}$, we have that for all $n$,\\ $d(p_n, p_N) \leq r$. So $(p_n)$ is bounded.
+            Since $(p_n)$ is Cauchy, pick $N$ with $\diam{\{p_N, p_{N+1}, \ldots\}} < 1$. Setting\\ $r = \max\{1, d(p_1, p_N), \ldots, d(p_{N-1}, p_N)\}$, we have that for all $n$,\\ $d(p_n, p_N) \leq r$. So $(p_n)$ is bounded. This means that the closure of the range of $(p_n)$ is compact. So $(p_n)$ is contained in a compact metric space, meaning that $(p_n)$ converges by proposition 39.2.
             \retTwo
          \end{myIndent}}
       \end{enumerate}
@@ -2059,7 +2059,9 @@
 
    A metric space $X$ is \udefine{complete} if every Cauchy sequence in $X$ converges.
    {\begin{myIndent} \hTwo
-      Fact: $\mathbb{R}$ is the smallest complete metric space containing $\mathbb{Q}$. \retTwo
+      Proposition 39 says that compact metric spaces and Euclidean spaces are complete.\retTwo
+      Fact 1: $\mathbb{R}$ is the smallest complete metric space containing $\mathbb{Q}$.\\
+      Fact 2: $\mathbb{C}$ is also complete. \retTwo
    \end{myIndent}}
 
    A sequence $(s_n)$ in $\mathbb{R}$ is called:
@@ -2176,7 +2178,13 @@
       {\begin{myIndent}\hThree
          Proof:\\
          Use induction\dots \retTwo
-         \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: If there exists $N > 0$ such that for all $n > N$, $0 \leq x_n \leq s_n$ and $s_n \rightarrow 0$, then $x_n \rightarrow 0$.
+
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Pick $\varepsilon > 0$. Then, we know there exists $M$ such that for all $n > M, \myHS 0 \leq s_n \leq \varepsilon$. However, $0 \leq x_n \leq s_n$. So for all $n > M$, we have that $0 \leq x_n \leq s_n <\varepsilon$. Hence, $x_n$ converges to $0$.\retTwo \retTwo
       \end{myIndent}}
 
       Proposition \propCount:
@@ -2185,7 +2193,7 @@
          
          {\begin{myIndent}\hThree
             Proof:\\
-            Let $\varepsilon > 0$. Then $\frac{1}{n^p} < \varepsilon$ whenever $(\frac{1}{\varepsilon})^\frac{1}{p} < n$
+            Let $\varepsilon > 0$. Then $0 < \frac{1}{n^p} < \varepsilon$ whenever $(\frac{1}{\varepsilon})^\frac{1}{p} < n$. Hence $\frac{1}{n^p} \rightarrow 0$.
             \retTwo
          \end{myIndent}}
 
@@ -2194,19 +2202,21 @@
          {\begin{myIndent}\hThree
             Proof:\\
             If $p > 1$, then $x_n = \sqrt[n]{p} - 1 > 0$. Also, $p = (x_n + 1)^n$. Therefore
-            by the\\ binomial theorem: $1 + nx_n \leq (x_n + 1)^n = 1 + nx_n + \ldots = p$. This means that $0 < x_n \leq (p - 1)\frac{1}{n}$.\retTwo
-            Using proposition 33.3 and the limit found above, we have that\\ $\frac{p-1}{n}\rightarrow 0$. And as each $x_n \leq \frac{p-1}{n}$, we thus know by proposition 33.3 that $0 < \lim\limits_{n\rightarrow\infty}{(x_n)} \leq 0 \Longrightarrow x_n \rightarrow 0$. Hence, $\sqrt[n]{p} = x_n + 1 \rightarrow 0 + 1 = 1$ 
+            by the\\ binomial theorem: $1 + nx_n \leq (x_n + 1)^n = 1 + nx_n + \ldots = p$. This means that $0 < x_n \leq (p - 1)\frac{1}{n}$.
+
+            \newpage
+
+            Using proposition 33.3 and the limit found above, we have that\\ $\frac{p-1}{n}\rightarrow 0$. And as each $0 < x_n \leq \frac{p-1}{n}$, we know by proposition 43 that $x_n \rightarrow 0$. Therefore, $\sqrt[n]{p} = x_n + 1 \rightarrow 0 + 1 = 1$ 
             \retTwo
 
             As for if $0 < p < 1$, then we know from above that $\frac{1}{\sqrt[n]{p}} = \sqrt[n]{\frac{1}{p}} \rightarrow 1$.\\ Therefore, $\sqrt[n]{p} = \frac{1}{1} = 1$ by proposition 33.4.
             \retTwo
 
             Finally, if $p = 1$, then the limit is $1$ trivially.
+            \retTwo
          \end{myIndent}}
 
-         \newpage
-
-         \item[(C)] $\sqrt[n]{n} \rightarrow 1$.
+         \item[(C)] $\sqrt[n]{n} \rightarrow 1$
          
          {\begin{myIndent}\hThree
             Proof:\\
@@ -2214,18 +2224,140 @@
             
             {\center$\frac{n(n-1)}{2}(x_n)^2 \leq \sum\limits_{k=0}^n{\binom{n}{k}(x_n)^{k}} = (x_n + 1)^n = n$ \retTwo\par}
 
-            Then we have that $0 \leq (x_n) \leq \sqrt{\frac{2n}{n(n-1)}} = \sqrt{\frac{2}{n-1}}$ when $n \geq 2$.
+            Then we have that $0 \leq x_n \leq \sqrt{\frac{2n}{n(n-1)}} = \sqrt{\frac{2}{n-1}}$ when $n \geq 2$.
             \retTwo
 
-            $\sqrt{\frac{2}{n-1}} = \sqrt{2}\frac{1}{(n-1)^\frac{1}{2}} < \sqrt{2}\frac{1}{(n)^\frac{1}{2}}$.
-            \retTwo
+            Now, $\sqrt{\frac{2}{n-1}} \rightarrow 0$.
+            {\begin{myIndent} \hFour
+               Proof: Let $\varepsilon > 0$. Then $\sqrt{\frac{2}{n-1}} < \varepsilon$ whenever $n > 1 + \frac{2}{\varepsilon^2}$. \retTwo
+            \end{myIndent}}
+
+            Therefore, by proposition 43, we know that $x_n \rightarrow 0$. So finally, we\\ conclude that: 
+            
+            {\centering$\sqrt[n]{n} \rightarrow \lim\limits_{n\rightarrow \infty}{(x_n)} + 1 = 0 + 1$\par} \retTwo
          \end{myIndent}}
          
-         \item[(D)]
+         \item[(D)] If $p > 0$ and $\alpha \in \mathbb{R}$, then $\frac{n^\alpha}{(1+p)^n} \rightarrow 0$.
          
-         \item[(E)]
+         {\begin{myIndent}\hThree
+            Proof:\\
+            Fix an integer $k > \max{(\alpha, 0)}$. When $n > 2k$, we have $n - k + 1 > \frac{n}{2}$.
+            {\begin{myIndent} \hFour
+               You should just be able to intuit the above inequality but here's proof:\\
+               $n > 2k \Longrightarrow \frac{n}{2} > k \Longrightarrow n - \frac{n}{2} = \frac{n}{2} < n - k < n - k + 1$. \retTwo
+            \end{myIndent}}
+
+            By the binomial theorem, we have that:
+
+            {\centering$ (1+p)^n > \binom{n}{k}p^k = \frac{n(n-1)\cdots(n-k+1)}{k!}p^k $\retTwo\par}
+
+            Applying the above inequality, we can then say that:
+
+            {\centering$ \frac{n(n-1)\cdots(n-k+1)}{k!}p^k > \left(\frac{n}{2}\right)\cdot\frac{1}{k!}p^k = \frac{p^k}{2^kk!}n^k$\retTwo\par}
+
+            So, $\frac{n^\alpha}{(1+p)^n} < \frac{2^k k!}{p^k}n^\alpha n^{-k}$. Now note that as $k > \alpha$, we have that $\alpha - k < 0$. Therefore, by proposition 44.A, we know that $n^\alpha n^{-k} = n^{\alpha - k} \rightarrow 0$.
+
+            \newpage
+
+            Multiplying this by the constant $\frac{2^k k!}{p^k}$ and applying proposition 33.3, we then get that $\frac{2^k k!}{p^k}n^\alpha n^{-k} \rightarrow 0$. Finally, note that $\frac{n^\alpha}{(1+p)^n} > 0$ because $(1 + p) > 0 \Longrightarrow (1+p)^n > 0$ and $n > 0 \Longrightarrow n^\alpha > 0$. Hence, we can apply proposition 43 to get that $\frac{n^\alpha}{(1+p)^n} \rightarrow 0$.  \retTwo
+         \end{myIndent}}
+         
+         \item[(E)] If $z \in \mathbb{C}$ and $|z| < 1$, then $z^n \rightarrow 0$.
+            
+         {\begin{myIndent} \hThree
+            $|z| < 1 \Longrightarrow \frac{1}{|z|} - 1 > 0$. So, using $p = \frac{1}{|z|} - 1$ and $\alpha = 0$, we know from proposition 44.D that $\frac{n^0}{(1+\frac{1}{|z|} - 1)^n} = |z|^n \rightarrow 0$. Now note that $0 \leq d(0, z^n) = |z^n| = |z|^n$. Therefore, $d(0, z^n) \rightarrow 0$, meaning that $z^n$ converges to $0$. \retTwo
+         \end{myIndent}}
       \end{itemize}
    \end{myIndent}}
+
+   \mySepTwo
+
+   \markLecture{2/21/2024}
+      Given a sequence $(a_n)$ in $\mathbb{C}$, we write $\sum\limits_{n=p}^q{a_n}$ to denote $a_p + a_{p+1} + \ldots + a_q$ where $p$ and $q$ are integers such that $p \leq q$. \\ [8pt]
+
+      We associate a sequence $(a_n)$ in $\mathbb{C}$ with a sequence $(s_n)$ such that $s_n = \sum\limits_{k=1}^n{a_k}$. We call each $s_n$ a \udefine{partial sum}. \\ [6pt]
+   
+      $a_1 + a_2 + \ldots$ and $\sum\limits_{n=1}^\infty{a_n}$ are called \udefine{series} and they denote the value $\lim\limits_{n\rightarrow\infty}{s_n}$ when that limit exists. \\ [6pt]
+      
+      We say that $\sum\limits_{n=1}^\infty{a_n}$ \udefine{converges} / \udefine{diverges} if $(s_n)$ converges / diverges.
+      
+      {\begin{myTindent} \teachComment
+         Series are also notated with other starting indexes. For example: $\sum\limits_{n=0}^\infty{a_n}$.\\ Additionally, when we don't want to worry about the first index in the series, we typically refer to $(s_n)$ as $\Sigma a_n$. \retTwo \retTwo
+      \end{myTindent}}
+
+      {\begin{myIndent}\hTwo
+         Proposition \propCount: $\Sigma a_n$ converges if and only if: 
+         
+         {\centering $\forall \varepsilon > 0, \myHS \exists N \in \mathbb{N} \suchthat \forall n \geq m \geq N, \myHS \left|\sum\limits_{k=m}^n{a_k}\right| < \varepsilon$ \par}
+         
+         {\begin{myIndent} \hThree
+            This is just proposition 39 (also called the \udefine{Cauchy Criterion}) applied to the sequence $(s_n)$. After all, $(s_n)$ is in a complete metric space.
+         \end{myIndent}}
+
+         \newpage
+
+         Proposition \propCount: If $\Sigma a_n$ converges, then $a_n \rightarrow 0$.
+         {\begin{myTindent}\begin{myTindent} \teachComment
+            Note, the converse isn't true.\\ For example: $\frac{1}{n} \rightarrow 0$ but $\Sigma \frac{1}{n}$ diverges.
+         \end{myTindent}\end{myTindent}}
+
+         {\begin{myIndent}\hThree
+            Proof:\\
+            Consider proposition 45 with $n = m$. Then we have that for any $\varepsilon > 0$, there exists $N$ such that $|a_k| < \varepsilon$ for all $k > N$. \retTwo
+         \end{myIndent}}
+
+         Proposition \propCount: If $\forall n, \myHS a_n \geq 0$, then $\Sigma a_n$ converges if and only if its partial sums are bounded.
+         {\begin{myIndent}\hThree
+            Proof:\\
+            $\Sigma a_n$ is monotone increasing. Thus $\Sigma a_n$ converges if it is bounded. \retTwo
+         \end{myIndent}}
+         
+         Proposition \propCount: (Comparison Test)
+         \begin{enumerate}
+            \item If $|a_n| \leq c_n$ for all $n \geq N$ and if $\Sigma c_n$ converges, then $\Sigma a_n$ converges.
+
+            {\begin{myIndent}\hThree
+               Proof:\\
+               Let $\varepsilon > 0$. Pick $M \geq N$ with $\forall n \geq m \geq M, \myHS \left|\sum\limits_{k=m}^n{c_k}\right| < \varepsilon$. \\ [4pt]
+               Then for $n \geq m \geq M$, we have:
+               
+               {\center$\left| \sum\limits_{k=m}^n{a_k} \right| \leq \sum\limits_{k=m}^n{\left|a_k\right|} \leq \sum\limits_{k=m}^n{c_k} = \left|\sum\limits_{k=m}^n{c_k}\right| < \varepsilon$.\retTwo\par}
+
+               So, $\Sigma a_n$ converges by proposition 45.
+               \retTwo
+            \end{myIndent}}
+
+            \item If $a_n \geq d_n \geq 0$ for all $n \geq N$ and $\Sigma d_n$ diverges, then $\Sigma a_n$ diverges.
+
+            {\begin{myIndent}\hThree
+               Proof:\\
+               This is the contrapositive of proposition 48.1.
+               \retTwo
+            \end{myIndent}}
+         \end{enumerate}
+
+         Proposition \propCount: For $z \in \mathbb{C}$, the series $\sum\limits_{n=0}^\infty{z^n}$ is called a \udefine{geometric series}. 
+         \begin{itemize}
+            \item If $|z| < 1$, then the geometric series converges.
+            
+            {\begin{myIndent} \hThree
+               Proof:\\
+               Assume $|z| < 1$. Then $s_n = \sum\limits_{k=0}^n{z^k} = 1 + z + z^2 + \ldots + z^n$.\\ Multiplying and dividing the partial sum by $1 - z$, we can cancel a lot of stuff out in order to get that: $s_n = \frac{1 - z^{n+1}}{1-z}$. Then:\\
+
+               {\center $ \lim\limits_{n\rightarrow \infty}{(s_n)} = \frac{1 - z\cdot \lim\limits_{n\rightarrow \infty}{(z^{n})}}{1-z} = \frac{1 - 0z}{1-z} = \frac{1}{1 - z}$ \retTwo\par}
+            \end{myIndent}}
+            
+            \newpage
+
+            \item If $|z| \geq 1$, then the geometric series diverges.
+            
+            {\begin{myIndent} \hThree
+               Proof:\\
+               When $|z| \geq 1$, then $|z| \not\rightarrow 0$. To see this, note that $|z|^n \geq |z| \geq 1$. Thus, every element of the sequence $(|z|^n)$ is at least $1$, which means that if the sequence did converge, it would have to converge in $[1, \infty)$. So, $d(z^n, 0)$ doesn't converge to $0$, which in turn means that $z^n$ does not stay close to $0$. Hence, $z^n$ doesn't converge to $0$, which means that by proposition 46, $\Sigma z^n$ diverges.
+            \end{myIndent}}
+
+         \end{itemize}
+      \end{myIndent}}
 
    % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
    \newpage
@@ -2256,11 +2388,23 @@
          \myVS 37 & 3.7 & 38 & 3.10  \\ \hdashline[10pt/3pt]
          \myVS 39 & 3.11 & 40 & 3.14 \\ \hdashline[10pt/3pt]
          \myVS 41 & 3.17 & 42 & 3.19 \\ \hdashline[10pt/3pt]
-         \myVS 43 & 3.20 & 44 &  \\ \hdashline[10pt/3pt]
-
-
-         
+         \myVS 43 & n.a & 44 & 3.20 \\ \hdashline[10pt/3pt]
+         \myVS 45 & 3.22 & 46 & 3.23 \\ \hdashline[10pt/3pt]
+         \myVS 47 & 3.24 & 48 & 3.25 \\ \hdashline[10pt/3pt]
+         \myVS 49 & 3.26 & 50 &  \\ \hdashline[10pt/3pt]
+         \myVS 51 &  & 52 &  \\ \hdashline[10pt/3pt]
+         \myVS 53 &  & 54 &  \\ \hdashline[10pt/3pt]
+         \myVS 55 &  & 56 &  \\ \hdashline[10pt/3pt]
+         \myVS 57 &  & 58 &  \\ \hdashline[10pt/3pt]   
       \end{tabular}
+
+      \newpage
+
+      \begin{tabular}{ c|c||c|c }
+         Proposition Number & Label in Textbook & Proposition Number & Label in Textbook \\ \hline
+         \myVS 59 &  & 60 &  \\ \hdashline[10pt/3pt]
+      \end{tabular}
+
    \end{allowTableDashes}
 
 \end{document}
