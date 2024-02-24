@@ -2142,30 +2142,37 @@ Let $G$ be a plane graph. To get the \udefine{dual} of $G$, denoted $G^*$, repre
 {\centering \exOne
    \begin{myClosureOne}{5.25}
       \includegraphics[scale=0.6]{Dual_Image.png}
+      \\ Note that {\color{RedViolet} $G^*$} is a planar multigraph.\\
    \end{myClosureOne}
 \par}
 
-
-
-% This all needs to be redone
 \newpage
 
-{
-\color{BrickRed}
-Needs to be redone\dots
+{\begin{myIndent} \hTwo
+   \uuline{Proposition}: If $G$ is connected, then $(G^*)^* \cong G$. In other words, while $(G^*)^*$ might be drawn in the plane differently from $G$, both graphs will have the same vertex, edge, and face sets.
+   
+   {\begin{myIndent} \hThree
+      The proof for this is beyond the scope of this class (and requires math I don't know yet). \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+The significance of the above proposition is that by taking the dual of a connected plane graph $G$, we can convert the faces of $G$ into vertices and the vertices of $G$ into faces.
+{\begin{myTindent}\begin{myTindent} \exOne
+   Application: coloring the faces of $G$ is equivalent to coloring the vertices of $G^*$.
+\end{myTindent}\end{myTindent}}
+
+\mySepTwo
+
+Here is one notable approach to the four color theorem: \retTwo
 
 {\begin{myIndent}\hTwo
-   \retTwo
-   Here is one notable approach to the four color theorem: \retTwo
-
    Firstly, to prove the $4$-color theorem, it is enough to prove it for maximal planar graphs (i.e. a planar graph with as many edges as possible). After all, removing edges does not make a coloring invalid.
-   
-   \newpage
-   
+   \retTwo
+
    Also, note that in a maximal planar graph $G$ with at least three vertices, every face\\ (including the infinite face) is a triangle. Therefore, $G^*$ is $3$-regular. Furthermore, if $G$ has at least $4$ vertices, then no face can share more than one edge with any other face. So $G^*$ is a simple (a.k.a non-pseudo) graph.
    \retTwo
 
-   A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if the dual a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
+   A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
 \end{myIndent}}
 
 {\centering{\myComment
@@ -2175,35 +2182,62 @@ Needs to be redone\dots
    {\begin{myIndent} \teachComment
       Let $G$ be a maximal planar graph with $n$ vertices. By the handshaking lemma, we know that $3|F(G)| = 2|E(G)|$. And since $G$ is obviously connected, we can thus say that: $|V(G)| - |E(G)| + |F(G)| = n - \frac{1}{2}|F(G)| = 2$. So, $|F(G)| = 2n - 4$. Plugging this into Euler's formula again, we then get that $|E(G)| = 3n - 6$. \retTwo
 
-      As a result, we know that $G^*$ has $2n - 4$ vertices and $3n - 6$ edges. Finally, note that the proof for Euler's formula still works for connected planar multigraphs. Therefore, applying Euler's formula one more time to $G^*$, we get that \newline $|F(G^*)| = n$.
+      As a result, we know that $G^*$ has $2n - 4$ vertices and $3n - 6$ edges.
    \end{myIndent}}
    \\ \hline \\
 \end{tabular}}\par}
 
-{\begin{myIndent}\hTwo
-   \uuline{Theorem}: Every planar graph $G$ is $4$-colorable if and only if every $3$-connected cubic planar graph is $3$-edge colorable.
+% This all needs to be redone
+% \newpage
+% 
+% {
+% \color{BrickRed}
+% Needs to be redone\dots
 
-   {\begin{myIndent} \hThree
-      ($\Longrightarrow$) Suppose we have a 3-connected cubic planar graph $G_0$. Then consider the maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
-      
-      
-      
-      Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. This is equivalent to assigning a color to the faces of $G_1$ so that two faces 
-      Now as $G_0$ and thus $G_1$ is $3$-connected, every edge of $G_1$ must be 
-      
-      \retTwo
-      Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. Because $G_1^*$ is a simple graph, we have that every edge of $G_1^*$ is going between two different vertices of different colors. So, we define an edge coloring as follows:
-      \[c^\prime(\{u, v\}) = \left\{
-      \begin{matrix}
-         1 & \text{ if } (c(u) = 1 \text{ and } c(v) = 2) \text{ or } (c(u) = 3 \text{ and } c(v) = 4) \\
-         2 & \text{ if } (c(u) = 1 \text{ and } c(v) = 3) \text{ or } (c(u) = 2 \text{ and } c(v) = 4) \\
-         3 & \text{ if } (c(u) = 1 \text{ and } c(v) = 4) \text{ or } (c(u) = 2 \text{ and } c(v) = 3) \\
-      \end{matrix}\right.\]
 
-   \end{myIndent}}
-\end{myIndent}}
+   
+%    Also, note that in a maximal planar graph $G$ with at least three vertices, every face\\ (including the infinite face) is a triangle. Therefore, $G^*$ is $3$-regular. Furthermore, if $G$ has at least $4$ vertices, then no face can share more than one edge with any other face. So $G^*$ is a simple (a.k.a non-pseudo) graph.
+%    \retTwo
 
-}
+%    A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if the dual a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
+% \end{myIndent}}
+
+% {\centering{\myComment
+% \begin{tabular}{ p{5.8in} }
+%    \hline \\
+%    Here's a quick useful calculation for the homework that the professor gave us:
+%    {\begin{myIndent} \teachComment
+%       Let $G$ be a maximal planar graph with $n$ vertices. By the handshaking lemma, we know that $3|F(G)| = 2|E(G)|$. And since $G$ is obviously connected, we can thus say that: $|V(G)| - |E(G)| + |F(G)| = n - \frac{1}{2}|F(G)| = 2$. So, $|F(G)| = 2n - 4$. Plugging this into Euler's formula again, we then get that $|E(G)| = 3n - 6$. \retTwo
+
+%       As a result, we know that $G^*$ has $2n - 4$ vertices and $3n - 6$ edges. Finally, note that the proof for Euler's formula still works for connected planar multigraphs. Therefore, applying Euler's formula one more time to $G^*$, we get that \newline $|F(G^*)| = n$.
+%    \end{myIndent}}
+%    \\ \hline \\
+% \end{tabular}}\par}
+
+% {\begin{myIndent}\hTwo
+%    \uuline{Theorem}: Every planar graph $G$ is $4$-colorable if and only if every $3$-connected cubic planar graph is $3$-edge colorable.
+
+%    {\begin{myIndent} \hThree
+%       ($\Longrightarrow$) Suppose we have a 3-connected cubic planar graph $G_0$. Then consider the maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
+      
+      
+      
+%       Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. This is equivalent to assigning a color to the faces of $G_1$ so that two faces 
+%       Now as $G_0$ and thus $G_1$ is $3$-connected, every edge of $G_1$ must be 
+      
+%       \retTwo
+%       Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. Because $G_1^*$ is a simple graph, we have that every edge of $G_1^*$ is going between two different vertices of different colors. So, we define an edge coloring as follows:
+%       \[c^\prime(\{u, v\}) = \left\{
+%       \begin{matrix}
+%          1 & \text{ if } (c(u) = 1 \text{ and } c(v) = 2) \text{ or } (c(u) = 3 \text{ and } c(v) = 4) \\
+%          2 & \text{ if } (c(u) = 1 \text{ and } c(v) = 3) \text{ or } (c(u) = 2 \text{ and } c(v) = 4) \\
+%          3 & \text{ if } (c(u) = 1 \text{ and } c(v) = 4) \text{ or } (c(u) = 2 \text{ and } c(v) = 3) \\
+%       \end{matrix}\right.\]
+
+%    \end{myIndent}}
+% \end{myIndent}}
+
+% }
 \newpage
 
 %Construction site done...
