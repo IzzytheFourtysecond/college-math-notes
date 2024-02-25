@@ -2157,23 +2157,96 @@ Let $G$ be a plane graph. To get the \udefine{dual} of $G$, denoted $G^*$, repre
 \end{myIndent}}
 
 The significance of the above proposition is that by taking the dual of a connected plane graph $G$, we can convert the faces of $G$ into vertices and the vertices of $G$ into faces.
-{\begin{myTindent}\begin{myTindent} \exOne
-   Application: coloring the faces of $G$ is equivalent to coloring the vertices of $G^*$.
-\end{myTindent}\end{myTindent}}
+{\begin{myDindent}\begin{myDindent} \exOne
+   Application: giving a proper coloring of the faces of $G$ is equivalent to giving a proper coloring of the vertices of $G^*$.
+\end{myDindent}\end{myDindent}}
 
 \mySepTwo
 
 Here is one notable approach to the four color theorem: \retTwo
 
-{\begin{myIndent}\hTwo
-   Firstly, to prove the $4$-color theorem, it is enough to prove it for maximal planar graphs (i.e. a planar graph with as many edges as possible). After all, removing edges does not make a coloring invalid.
-   \retTwo
+A graph $G$ is \udefine{$k$-edge-connected} if for every set $X$ of less than $k$ edges, $G - X$ is still connected.
 
-   Also, note that in a maximal planar graph $G$ with at least three vertices, every face\\ (including the infinite face) is a triangle. Therefore, $G^*$ is $3$-regular. Furthermore, if $G$ has at least $4$ vertices, then no face can share more than one edge with any other face. So $G^*$ is a simple (a.k.a non-pseudo) graph.
-   \retTwo
+{\begin{myIndent} \hTwo
+   \uuline{Proposition}: $G^*$ is simple if and only if $G$ is $3$-edge-connected.
 
-   A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
+   {\begin{myIndent} \hThree
+      Proof: (by contrapositive)\\
+      ($\Longrightarrow$) If $G$ is $1$-edge-connected, then we know there is a bridge $\{u, v\}$ in $G$. That bridge must have the same face on either side of it or else there'd be an alternate path going from $u$ to $v$, thus contradicting that $\{u, v\}$ is a bridge. This then means that $G^*$ must have a loop. So $G^*$ is not simple.\retTwo
+
+      Now consider if $G$ is $2$-edge-connected. In that case there exists edges $e_1$ and $e_2$ which when both removed split $G$ into two components. Let $e_1$ be on the boundary of $f_1$ and $f_2$. The effect of subtracting $e_1$ from $G$ is that we merged only those two faces in the graph $G - e_1$. Meanwhile, we know that $e_2$ must be a bridge in $G - e_1$. Therefore it must have the same face on either side of it. However, $e_2$ wasn't a bridge in $G$. This tells us that $e_2$ must also be on the boundary of $f_1$ and $f_2$. So $f_1$ and $f_2$ must share two edges on their boundaries, which in turn means  that $G^*$ is not simple.\retTwo
+
+      ($\Longleftarrow$) If $G^*$ has a loop, then that means there is an edge in $G$ not on the boundary of two distinct faces. Then that edge is a bridge, which means that $G$ is $1$-edge-connected.\retTwo
+
+      If $G^*$ has multiple edges going between two vertices, then two faces of $G$ share more than one edge. By removing one of those shared edges, all the remaining shared edges become bridges. Hence, removing two shared edges disconnects the graph. So $G$ is $2$-edge connected.
+   \end{myIndent}}
 \end{myIndent}}
+
+\newpage
+
+Now the $4$-color theorem is obviously true if $|V(G)| < 4$. Thus, to prove the $4$-color theorem, we can focus exclusively on graphs with at least $4$ vertices. Additionally, it is enough to prove the $4$-color theorem for maximal planar graphs (i.e. a planar graph with as many edges as possible). After all, removing edges does not make a coloring invalid.\retTwo
+
+{\begin{myIndent}\hTwo
+   Observation 1: $G$ is a maximal planar graph if and only if every face of $G$ is a triangle. \retTwo
+
+   Observation 2: The dual of any maximal planar graph with at least $4$ vertices is a simple planar $3$-edge-connected cubic graph.
+   {\begin{myIndent} \hThree
+      Let $G$ be a maximal planar graph. Then as every face of $G$ is a triangle, every face of $G$ has three neighbors. Hence $G^*$ is cubic.\retTwo
+
+      Additionally, as every face of $G$ must be a triangle, if two faces share two edges $\{u, v\}$ and $\{v, w\}$, then they must also both have an edge $\{u, w\}$. Since the graph $G$ has at least four vertices, we know that $G$ is not just a single triangle. Hence, the only way for both faces to have an edge $\{u, w\}$ would be if $G$ was a multigraph (something we haven't allowed for). So we conclude that $G^*$ has at most one edge going between any two vertices. \retTwo
+
+      Since $G$ and thus $(G^*)^*$ is assumed to be simple since we did not indicate otherwise, we know that $G$ is $3$-edge-connected.\retTwo
+   \end{myIndent}}
+
+   Observation 3: The dual of any planar $3$-connected cubic graph is a maximal planar graph.
+
+   {\begin{myIndent} \hThree
+      Let $G$ be a planar $3$-connected cubic graph. Then $G^*$ being $3$-connected\\ means that $G^*$ is simple (so it makes sense to even ask if $G^*$ is a maximal planar graph). Additionally, $G$ being cubic means that every face of $G^*$ is a\\ triangle. So $G^*$ is a maximal planar graph.
+      \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+This then leads to the following theorem:
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem}: Every planar graph $G$ is $4$-colorable if and only if every $3$-connected cubic planar graph is $3$-edge colorable.
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      ($\Longrightarrow$) Let $G$ be a $3$-connected cubic planar graph. Then we know that $G^*$ is a maximal planar graph. If $G^*$ is $4$-colorable, then we can properly color the vertices of $G^*$, which is equivalent to properly coloring the faces of $G$. \retTwo
+
+      Let $c: F(G) \rightarrow \{1, 2, 3, 4\}$ be a proper face coloring of $G$. Then because $G$ is $3$-connected, we know that no edge in $G$ is a bridge. So, every edge in $G$ is between two faces which are colored differently.
+      
+      \newpage
+      We now define the following $3$-edge-coloring of $G$:\\
+      \begin{myIndent}
+         If $e$ is between face colors $1$ and $2$, or $3$ and $4$, define $c^\prime(e) = 1$.\\
+         If $e$ is between face colors $1$ and $3$, or $2$ and $4$, define $c^\prime(e) = 2$.\\
+         If $e$ is between face colors $1$ and $4$, or $2$ and $3$, define $c^\prime(e) = 3$.\\
+      \end{myIndent}
+
+      Hence $\chi^\prime(G) = 3$. \retTwo \retTwo
+      
+      ($\Longleftarrow$) Now let $G$ be a maximal plane graph. If $G^*$ is $3$-edge-colorable, then there exists an edge coloring $c^\prime: E(G^*) \rightarrow \{1, 2, 3\}$. \retTwo
+
+      Consider the set $H_1 = \{e \in E(G^*) \mid c^\prime(e) \in \{1, 2\}\}$. $H_1$ must\\ consist of some number of disjoint cyles which span $G^*$. Similarly,\\ $H_2 = \{e \in E(G^*) \mid c^\prime(e) \in \{1, 3\}\}$ must also consist of some number of\\ disjoint cycles which span $G^*$. Note that $H_1 \cup H_2$ span $G^*$. So every edge is on the boundary of a cyle of either $H_1$ or $H_2$.\retTwo
+
+      Define $c_1(f)$ such that $c_1(f) = 1$ if $f$ is in the interior of a cycle of $H_1$, whereas $c_1(f) = 2$ if $f$ is not in the interior of a cycle of $H_1$. Similarly define $c_2(f)$ but using $H_2$. \retTwo
+
+      Now we define the following face coloring of $G^*$:
+      \begin{myIndent}
+         $c(f) = 1$ if $(c_1(f), c_2(f)) = (1, 1)$\\
+         $c(f) = 2$ if $(c_1(f), c_2(f)) = (1, 2)$\\
+         $c(f) = 3$ if $(c_1(f), c_2(f)) = (2, 1)$\\
+         $c(f) = 4$ if $(c_1(f), c_2(f)) = (2, 2)$\\
+      \end{myIndent}
+
+      Then $c$ is a proper $4$-face-coloring of $G^*$. So, we in turn know that $G$ has a proper $4$-vertex-coloring.
+
+      \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
 
 {\centering{\myComment
 \begin{tabular}{ p{5.8in} }
@@ -2187,69 +2260,7 @@ Here is one notable approach to the four color theorem: \retTwo
    \\ \hline \\
 \end{tabular}}\par}
 
-% This all needs to be redone
-% \newpage
-% 
-% {
-% \color{BrickRed}
-% Needs to be redone\dots
-
-
-   
-%    Also, note that in a maximal planar graph $G$ with at least three vertices, every face\\ (including the infinite face) is a triangle. Therefore, $G^*$ is $3$-regular. Furthermore, if $G$ has at least $4$ vertices, then no face can share more than one edge with any other face. So $G^*$ is a simple (a.k.a non-pseudo) graph.
-%    \retTwo
-
-%    A graph $G$ is \udefine{$k$-connected} if for every set $X$ of less than $k$ vertices, $G - X$ is still connected. Note that, if the dual a maximal planar graph $G$ has more than $3$ vertices, then $G^*$ is $3$-connected. \retTwo
-% \end{myIndent}}
-
-% {\centering{\myComment
-% \begin{tabular}{ p{5.8in} }
-%    \hline \\
-%    Here's a quick useful calculation for the homework that the professor gave us:
-%    {\begin{myIndent} \teachComment
-%       Let $G$ be a maximal planar graph with $n$ vertices. By the handshaking lemma, we know that $3|F(G)| = 2|E(G)|$. And since $G$ is obviously connected, we can thus say that: $|V(G)| - |E(G)| + |F(G)| = n - \frac{1}{2}|F(G)| = 2$. So, $|F(G)| = 2n - 4$. Plugging this into Euler's formula again, we then get that $|E(G)| = 3n - 6$. \retTwo
-
-%       As a result, we know that $G^*$ has $2n - 4$ vertices and $3n - 6$ edges. Finally, note that the proof for Euler's formula still works for connected planar multigraphs. Therefore, applying Euler's formula one more time to $G^*$, we get that \newline $|F(G^*)| = n$.
-%    \end{myIndent}}
-%    \\ \hline \\
-% \end{tabular}}\par}
-
-% {\begin{myIndent}\hTwo
-%    \uuline{Theorem}: Every planar graph $G$ is $4$-colorable if and only if every $3$-connected cubic planar graph is $3$-edge colorable.
-
-%    {\begin{myIndent} \hThree
-%       ($\Longrightarrow$) Suppose we have a 3-connected cubic planar graph $G_0$. Then consider the maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
-      
-      
-      
-%       Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. This is equivalent to assigning a color to the faces of $G_1$ so that two faces 
-%       Now as $G_0$ and thus $G_1$ is $3$-connected, every edge of $G_1$ must be 
-      
-%       \retTwo
-%       Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. Because $G_1^*$ is a simple graph, we have that every edge of $G_1^*$ is going between two different vertices of different colors. So, we define an edge coloring as follows:
-%       \[c^\prime(\{u, v\}) = \left\{
-%       \begin{matrix}
-%          1 & \text{ if } (c(u) = 1 \text{ and } c(v) = 2) \text{ or } (c(u) = 3 \text{ and } c(v) = 4) \\
-%          2 & \text{ if } (c(u) = 1 \text{ and } c(v) = 3) \text{ or } (c(u) = 2 \text{ and } c(v) = 4) \\
-%          3 & \text{ if } (c(u) = 1 \text{ and } c(v) = 4) \text{ or } (c(u) = 2 \text{ and } c(v) = 3) \\
-%       \end{matrix}\right.\]
-
-%    \end{myIndent}}
-% \end{myIndent}}
-
-% }
 \newpage
-
-%Construction site done...
-
-
-
-
-
-
-
-
-
 
 \markLecture{2/15/2024}
 
@@ -2329,43 +2340,3 @@ A \udefine{max cut} is a cut with as many edges as possible.
 \end{myIndent}}
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-% Unfortunately I think all these notes are wrong
-% Specifically, the professor overlooked to prove something and I need to go to office hours on Wednesday or Thursday...
-\newpage Suppose $G_0$ is a $3$-connected cubic plane graph. Then consider the\\ maximal plane graph $G_1$ with all the vertices and edges of $G_0$. \retTwo
-      
-$G_0$ and thus $G_1$ must have at least $4$ vertices. An easy way to know this is that since the minimum degree of $G_0$ is $3$, we therefore know that $G_0$ has a cycle of length $4$ due to one of the first theorems covered in this class. This means that $G_1^*$ is a planar simple graph. So by assumption, $\chi(G_1^*) \leq 4$.
-\retTwo
-
-Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. This is equivalent to assigning a color to the faces of $G_1$ so that two faces 
-Now as $G_0$ and thus $G_1$ is $3$-connected, every edge of $G_1$ must be 
-
-\retTwo
-Let $c: V(G_1^*) \longrightarrow \{1, 2, 3, 4\}$ be a proper vertex coloring of $G_1^*$. Because $G_1^*$ is a simple graph, we have that every edge of $G_1^*$ is going between two different vertices of different colors. So, we define an edge coloring as follows:
-\[c^\prime(\{u, v\}) = \left\{
-\begin{matrix}
-   1 & \text{ if } (c(u) = 1 \text{ and } c(v) = 2) \text{ or } (c(u) = 3 \text{ and } c(v) = 4) \\
-   2 & \text{ if } (c(u) = 1 \text{ and } c(v) = 3) \text{ or } (c(u) = 2 \text{ and } c(v) = 4) \\
-   3 & \text{ if } (c(u) = 1 \text{ and } c(v) = 4) \text{ or } (c(u) = 2 \text{ and } c(v) = 3) \\
-\end{matrix}\right.\]
-\end{myIndent}}
-\end{myIndent}}
