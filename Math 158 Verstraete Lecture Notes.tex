@@ -2287,11 +2287,11 @@ If not empty, a $k$-core is the largest subgraph of $G$ with minimum degree at l
 
    {\begin{myIndent} \hThree
       Proof:\\
-      Now, if $\delta(G) \geq k$, we're done. So, assume that there is a vertex $v_1 \in V(G)$ with $d(v_1) \leq k - 1$. Then:
+      If $\delta(G) \geq k$, we're done. So, assume that there is a vertex $v_1 \in V(G)$ with $d(v_1) \leq k - 1$. Then:
       
       {\center$|E(G - \{v\})| > (k-1)n - \binom{k}{2} \cyPen{- (k - 1)} = (k-1)(n \cyPen{- 1}) - \binom{k}{2}$\retTwo\par}
 
-      Now if $n = k$, then $|E(G)| > (k-1)k - \binom{k}{2} = \binom{k}{2}$. But that would mean that $G$ has more edges than $K_n$, which is impossible. So, we know that $n > k$. Therefore, it makes sense to consider repeating the above step $n - k$ times. Having done that, we will get that there are more than $(k - 1)(k) - \binom{k}{2}$ edges remaining. However, that is impossible as $k$ vertex graph can't have more than $\binom{k}{2}$ edges. Hence, we conclude that the algorithm must have terminated before all $n - k$ steps could be done. \retTwo
+      Now if $n = k$, then $|E(G)| > (k-1)k - \binom{k}{2} = \binom{k}{2}$. But that would mean that $G$ has more edges than $K_n$, which is impossible. So, we know that $n > k$. Therefore, it makes sense to consider repeating the above step $n - k$ times. Having done that, we will once again get that there are more than $(k - 1)(k) - \binom{k}{2}$ edges remaining. However, that is impossible as a $k$ vertex graph can't have more than $\binom{k}{2}$ edges. Hence, we conclude that the algorithm must have terminated before all $n - k$ steps could be done. \retTwo
    \end{myIndent}}
 
    \uuline{Corollary}: If $G$ is a graph with $n$ vertices and more than $(k - 1)n - \binom{k}{2}$ edges, then $G$ contains a cycle of length at least $k + 1$ unless $G = K_k$.
@@ -2332,11 +2332,72 @@ A \udefine{max cut} is a cut with as many edges as possible.
    \uuline{Erdös-Gallai Theorem}: Let $k \geq 1$, \hspace{0.2em} $n \geq 1$, and let $G$ be an $n$-vertex $P_k$-free graph. Then $|E(G)| \leq (k-1)\frac{n}{2}$ with equality if and only if $k$ divides $n$ and every component of $G$ is $K_k$.
 
    {\begin{myIndent} \hThree
-      Proof:\\
-      Let $G$ be an $n$-vertex graph with at least $(k - 1)\frac{n}{2}$ edges.\\
-      {\color{BrickRed} Well frick. Once again I do not understand how his proof works. Why does every component need to be $K_k$?!}
-      \retTwo
+      Proof: (we proceed by induction)\retTwo
+
+      Base Case:
+      {\begin{myIndent} \hFour
+         If $k = 1$, then $\exNums{n, P_k} = 0 = (k-1)\frac{n}{2}$. Thus, the theorem is trivially true. \retTwo
+
+         If $n \leq k$, then $\exNums{n, P_k} = E(K_n) = (n-1)\frac{n}{2} \leq (k - 1)\frac{n}{2}$. Specifically, equality holds if $n = k$. \retTwo
+      \end{myIndent}}
+
+      Inductive step: (assume the theorem holds if $|V(G)| < n$)
+      {\begin{myIndent} \hFour
+         Suppose $G$ is an $n$ vertex $P_k$-free graph. \retTwo
+
+         If $G$ is disconnected, then there are two disjoint subgraphs $G_1$ and $G_2$ such that $G = G_1 + G_2$. Furthermore, $G$ is $P_k$-free if and only if $G_1$ and $G_2$ are both $P_k$-free. Let $|V(G_1)| = n_1$ and $|V(G_2)| = n_2$. Because $n_1, n_2 < n$, we know by induction that for $G_1$ and $G_2$ to be $P_k$-free, we must have that $E(G_1) \leq (k - 1)\frac{n_1}{2}$ and that $E(G_2) \leq (k - 1)\frac{n_2}{2}$. Therefore:
+         
+         {\center $E(G) \leq (k - 1)\frac{n_1}{2} + (k - 1)\frac{n_2}{2} = (k - 1)\frac{n}{2}$ \par}
+         
+         \newpage
+
+         Now we suppose $G$ is connected.\retTwo
+
+         Firstly, consider if $G$ has a vertex $v$ of degree less than $\frac{k}{2}$. If $G$ is $P_k$ free,\\ we know that $G - \{v\}$ is $P_k$ free. So by induction, we know that\\ $|E(G - \{v\})| \leq (k-1)\frac{n-1}{2}$. This in turn means that:
+         {\center $|E(G)| \leq (k-1)\frac{n-1}{2} + \frac{k}{2} - 1 < (k-1)\frac{n-1}{2} + \frac{k-1}{2} = (k-1)\frac{n}{2}$. \retTwo\par}
+
+         Secondly, consider if $\delta(G) \geq \frac{k}{2}$. Then, assume towards a contradiction that $|E(G)| > (k - 2)\frac{n}{2}$. That way, by induction on $k$, we can conclude that $G$ has a path $P$ of length $k - 1$
+         {\begin{myTindent} \myComment
+            This was why we included the base case of when $k = 1$. \retTwo
+         \end{myTindent}}
+
+         If $P$ can be extended, then we have a contradiction as $G$ is not $P_k$ pathless. So assume $G$ can't be extended. Then, using the same trick as we used\\ previously to prove Dirac's Theorem (pages 14 and 15), we can turn $P$ into a cycle of length $k$. But this gives another contradiction because $G$ is\\ connected. So, there must be a vertex adjacent to our cycle of length $k$, which means that we can draw a path of length $k$ in $G$.
+         \retTwo
+
+         So, when $\delta(G) \geq \frac{k}{2}$, we have shown that $|E(G)| \leq (k - 2)\frac{n}{2} < (k - 1)\frac{n}{2}$. \retTwo
+      \end{myIndent}}
+
+      Also, note that in the above proof, our induction only maintains equality\\ between $|E(G)|$ and $(k-1)\frac{n}{2}$ if we always induct on the case that $G$ is\\ disconnected and the only base case we ever reach is when a component equals $K_k$. \retTwo
    \end{myIndent}}
 \end{myIndent}}
+
+\mySepTwo
+
+\markLecture{2/20/2024}
+
+The \udefine{Turán graph} $T_r(n)$ has $n$ vertices which are partitioned into $r$ sets of size $\lfloor \frac{n}{r} \rfloor$ or $\lceil \frac{n}{r} \rceil$ such that $E(T_r(n))$ consists of every possible edge going between different partitions.
+
+{\begin{myIndent} \hTwo
+   Observe: $K_{r+1} \nsubseteq T_r(n)$ because $\chi(K_{r+1}) = r + 1 > r = \chi(T_r(n))$ for any $n$. \retTwo
+
+   If $r \mid n$, then by handshaking lemma:
+   
+   {\center$e(T_r(n)) = \left(\frac{n}{r}(r - 1)\right)\frac{n}{2} = \binom{r}{2}\frac{n^2}{r^2} = \frac{n^2}{2}(1 - \frac{1}{r})$\par}
+   \retTwo
+   
+   \uuline{Turán's Theorem}: For all $n \geq 1$ and $r \geq 2$, $\exNums{n, K_{r+1}} = e(T_r(n))$. Also, if $G$ is a $K_{r+1}$-free graph on $n$ vertices and $e(G) = e(T_r(n))$, then $G = T_r(n)$.
+   {\begin{myIndent} \myComment
+      \begin{myTindent}\begin{myTindent}\begin{myDindent}
+         In other words, $T_r(n)$ is unique. \retTwo
+      \end{myDindent}\end{myTindent}\end{myTindent}
+
+      \hThree Proof:\\
+      When $n \leq r$, we clearly have that $\exNums{n, K_{r+1}} = e(K_n)$. However, we also have $T_r(n) = K_n$ when $n \leq r$. Thus, Turán's theorem is clearly true when $n \leq r$.
+
+
+   \end{myIndent}}
+
+\end{myIndent}}
+
 
 \end{document}
