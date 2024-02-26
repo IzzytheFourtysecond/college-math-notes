@@ -176,6 +176,9 @@
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
 \newcommand{\myequiv}[1]{\stackrel{\mathclap{\normalfont\mbox{\footnotesize#1}}}{\equiv}}
 
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
 
 \newcounter{PropNumber}
 \newcommand{\propCount}{%
@@ -2433,26 +2436,137 @@ Here is a theorem given without proof:
    {\center ${\displaystyle \lim\limits_{n\rightarrow\infty}\left(\frac{\exNums{n, F}}{\binom{n}{2}}\right) = 1 - \frac{1}{r}}$.\par}
 \end{myIndent}}
 
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
-{\color{BrickRed}
-   I'm leaving this page as a placeholder. The professor provided a really cool proof by probability of Turán's Theorem. However, I do not have time right now to understand it. 
-}
-\newpage
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
-
 
 {\begin{myIndent} \hTwo
+
+   \udefine{Jensen's inequality}: If a function $f(x)$ is convex and $x_1, x_2, \ldots x_t$ are real numbers, then:
+   \[\frac{1}{t}\sum_{i=1}^t{f(x_i)} \geq f\left(\frac{1}{t}\sum_{i=1}^t{x_i}\right)\]
+   \retTwo
+   {\begin{myTindent} \myComment
+      I will probably learn much more about this inequality in a later course.\retTwo \retTwo
+   \end{myTindent}}
+
+
    \uuline{Kövari-Sós-Turán Theorem}: For $s \geq r \geq 2$,
 
    {\center$ \exNums{n, K_{r,s}} \leq \frac{1}{2}\left( (s-1)^\frac{1}{r}n^{2-\frac{1}{r}} + (r-1)n \right) $\retTwo\par}
 
    {\begin{myIndent} \hThree
       Proof:\\
-      
+      If $G$ is an $n$-vertex $K_{r,s}$-free graph with average degree $d$ and $d \leq r-1$, then $e(G) \leq \frac{1}{2}(r-1)n$. So the inequality of the theorem is true automatically. \retTwo
+
+      So, suppose $d > r-1$. Since $G$ is $K_{r,s}$-free, we know that no set of $r$ vertices in $G$ has more than $s-1$ common neighbors. This leads us to the inequality that:
+      \[\sum\limits_{v \in V(G)}{\binom{d(v)}{r}} \leq (s-1)\binom{n}{r}\]
+
+      {\begin{myIndent} \hFour
+         Explanation of this inequality:
+         \begin{myIndent}
+            Let $X$ be the average number of common neighbors of any set of $r$\\ vertices in $G$. Meanwhile, let $Y$ be the total sum of the numbers of common neighbors of every set of $r$ vertices in $G$. Then:
+            
+            {\center $ X = \dfrac{Y}{\text{ \# of vertex sets of size }r} = \dfrac{Y}{\binom{n}{r}}$ \par}
+            \retTwo
+
+            If $X > (s - 1)$, then it is guarenteed that at least one set of $r$ vertices will have more than $s - 1$ common neighbors. So, we must have that $X \leq (s - 1)$.
+
+            Meanwhile, $Y = {\displaystyle \sum\limits_{v \in V(G)}{\binom{d(v)}{r}}}$. \\ [1pt]
+            
+            So one get's the above inequality by multiplying both sides of\\ $X \leq (s-1)$ by $\binom{n}{r}$. \retTwo
+         \end{myIndent}
+      \end{myIndent}}
+
+      Fact: $f(x) = \left\{
+      \begin{matrix}
+         0 & \text{ if } x < r \\
+         \binom{x}{r} & \text{ if } x \geq r
+      \end{matrix}\right.$ is a convex function for any $r$. \\
+
+      Thus, applying Jensen's inequality, we can say that:
+      \[\sum\limits_{v \in V(G)}{\binom{d(v)}{r}} \geq \sum\limits_{v \in V(G)}{\binom{d}{r}} = n\binom{d}{r}\]
+
+      \newpage
+
+      Now since $d \geq r$, we can safely cancel $(d-r)!$ to get:
+
+      {\center ${\displaystyle \binom{d}{r} = \frac{d!}{r!(d-r)!} = \frac{d\cdots(d-r+1)}{r!} \geq \frac{(d-r+1)^r}{r!}} $ \retTwo\par}
+
+      Meanwhile, since $n \geq r$, we can safely cancel $(n-r)!$ to get:
+
+      {\center ${\displaystyle \binom{n}{r} = \frac{n!}{r!(n-r)!} = \frac{n\cdots(n-r+1)}{r!} \leq \frac{n^r}{r!}} $ \retTwo\par}
+
+      Combining inequalities, we get that: $n\frac{(d-r+1)^r}{r!} \leq (s-1)\frac{(n)^r}{r!}$. This can then be reshuffled as follows: \\ [-6pt]
+
+      \begin{center}
+         \begin{tabular}{ r c l }
+            $n\frac{(d-r+1)^r}{r!} \leq (s-1)\frac{n^r}{r!}$ & $\Longrightarrow$ &
+            $(d-r+1)^r \leq (s-1)n^{r-1}$ \\ [3pt]
+            & $\Longrightarrow$ &
+            $d-r+1 \leq \left((s-1)n^{r-1}\right)^\frac{1}{r}$ \\ [3pt]
+            & $\Longrightarrow$ &
+            $d \leq (s-1)^\frac{1}{r}n^{1-\frac{1}{r}} + r - 1$ \\ [3pt]
+            & $\Longrightarrow$ &
+            $\frac{dn}{2} \leq \frac{n}{2}\left((s-1)^\frac{1}{r}n^{1-\frac{1}{r}} + r - 1\right)$ \\ [3pt]
+            & $\Longrightarrow$ &
+            $e(G) \leq \frac{1}{2}\left((s-1)^\frac{1}{r}n^{2-\frac{1}{r}} + (r - 1)n\right)$ $\blacksquare$
+         \end{tabular}
+      \end{center}
    \end{myIndent}}
    \retTwo
 \end{myIndent}}
 
+\markLecture{2/22/2024}
+
+A \udefine{Sidon set} in an abelian group $\Gamma$ (with the group operation $+$) is a set $A \subseteq \Gamma$ such that if $a+b = a^\prime + b^\prime$ with $a, b, a^\prime, b^\prime \in A$, then $\{a, b\} = \{c, d\}$. \retTwo
+
+{\begin{myDindent}\begin{myDindent} \myComment
+   \begin{myClosureOne}{4}
+      For those who haven't taken algebra yet:
+      \begin{myIndent}
+         A \udefine{group} $G$ is a set endowed with a binary \newline operation $\filledcirc$ satisfying:
+         \begin{itemize}
+            \item Associativity:\newline
+            $\forall g, h, k \in G, \myHS (g \filledcirc h) \filledcirc k = g \filledcirc (h \filledcirc k)$
+            \item Identity:\newline
+            $\exists e_G \in G \suchthat \forall g \in G, \myHS g \filledcirc e_G = g = e_G \filledcirc g$
+            \item Inverse:\newline
+            $\forall g \in G, \myHS \exists h \in G \suchthat g \filledcirc h = e_G = h \filledcirc g$ \newline
+         \end{itemize}
+         An \udefine{abelian group} is a group where $\filledcirc$ is also \newline commutative: $\forall h, g \in G, \myHS h \filledcirc g = g \filledcirc h$.\newline \newline
+         The \udefine{order} of a finite group is the number of\newline elements of the group.
+      \end{myIndent}
+   \end{myClosureOne} \retTwo
+\end{myDindent}\end{myDindent}}
+
+{\begin{myIndent} \hTwo
+   Here's an obvious upper bound to $|A|$:\\ $\binom{|A|}{2} \leq |\Gamma|$. This is because the set of the all pairs of $a$ and $b$ must be mapped to different elements of $\Gamma$ by the operation $+$.
+
+   \newpage
+
+   \uuline{Proposition}: The maximum size of a Sidon set in the abelian group $\Gamma$ of order $n$ is at most $x$ where $x(x-1) \leq n - 1$.
+
+\end{myIndent}}
+
+
+
+
+
+
+
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
+\newpage
+
+\begin{myIndent}
+   
+\end{myIndent}
+
+{\color{BrickRed}
+   I'm leaving this page as a placeholder. The professor provided a really cool proof by probability of Turán's Theorem. However, I do not have time right now to understand it. (2/20/2024)
+}
+
 \end{document}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
