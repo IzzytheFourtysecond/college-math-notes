@@ -178,11 +178,18 @@
    {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
 }
 
-\newenvironment{myClosureOne}[2][.]{%
+\newenvironment{myClosureOneDeprecated}[2][.]{%
    \color{#1}%
    \begin{tabular}{|p{#2in}|} \hline \\%
 }{%
    \\ \\ \hline \end{tabular}%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ [-6pt] \\ \hline \end{tabular}%
 }
 
 \newcommand{\myVS}{\vphantom{$\int_a^b$}}
@@ -847,13 +854,13 @@
 
          
          {\begin{center} \hFour
-            \begin{myClosureOne}{5}
+            \begin{myClosureOneDeprecated}{5}
                I now realize that I need to prove this lemma: for a positive integer $n$ and real numbers $a$ and $b$ such that $a \geq b$, we have that \\$(a-b)^n \geq a^n-bna^{n-1}$. We can prove this through induction. \\ \\
                Firstly for $n=1$: we have that $(a-b)^1 = a^1 - b(1)a^0$. \\ \\
                Now assume that for $k\geq 1$, $(a-b)^k \geq a^k - bka^{k-1}$.\\ Then $(a-b)^{k+1} = (a-b)(a-b)^k$. And since $(a-b)>1$, we know that $(a-b)^{k+1} = (a-b)(a-b)^k \geq (a-b)(a^k - bka^{k-1})$. \\ \\
 
                Now let's expand out our lesser term to get that: \\ $(a-b)^{k+1} \geq a^{k+1}-bka^k - ba^k + b^2ka^{k-1}$. Thus, we know that \\$(a-b)^{k+1} \geq a^{k+1}-b(k+1)a^k + b^2ka^{k-1} > a^{k+1}-b(k+1)a^k$. Hence, we have shown that $(a-b)^{k+1} \geq a^{k+1}-b(k+1)a^k$.
-            \end{myClosureOne}
+            \end{myClosureOneDeprecated}
          \end{center}}
          \newpage
 
@@ -969,12 +976,12 @@
       \end{myIndent}}
       &
       \hThree
-      \begin{myClosureOne}{2.8}
+      \begin{myClosureOneDeprecated}{2.8}
          {Proof: \newline
             \hFour
             Points 1-4 can be verified by direct\newline computation.\newline  As for point 5, note that if $z = a+bi$, then\newline $z\overbar{z} = (a+bi)(a-bi) = a^2+b^2$.\newline Now as $a, b\in\mathbb{R}$, we know that \newline $a^2+b^2\in\mathbb{R}$. But $a^2+b^2 > 0$ if $b\neq a\neq0$. Meanwhile, $a^2+b^2=0$ if $a=b=0$. So $z\overbar{z} > 0$ if $z\neq0$
          }
-      \end{myClosureOne}
+      \end{myClosureOneDeprecated}
    \end{tabular} \retTwo
    
    The \udefine{absolute value} of $z=a+bi$ is $\lvert z\rvert = \sqrt{z\myBar{z}}$
@@ -1112,10 +1119,10 @@
    \end{myIndent}}
 
    {\begin{center} \exOneOld
-      \begin{myClosureOne}{3.5}
+      \begin{myClosureOneDeprecated}{3.5}
          Here's what the bijection looks like: \\
          \includegraphics[scale=0.55]{Cartesian_Product_Bijection.png}
-      \end{myClosureOne}
+      \end{myClosureOneDeprecated}
    \end{center}}
    \retTwo
    \markLecture{1/24/2024}
@@ -2344,7 +2351,7 @@
                Proof:\\
                Assume $|z| < 1$. Then $s_n = \sum\limits_{k=0}^n{z^k} = 1 + z + z^2 + \ldots + z^n$.\\ Multiplying and dividing the partial sum by $1 - z$, we can cancel a lot of stuff out in order to get that: $s_n = \frac{1 - z^{n+1}}{1-z}$. Then:\\
 
-               {\center $ \lim\limits_{n\rightarrow \infty}{(s_n)} = \frac{1 - z\cdot \lim\limits_{n\rightarrow \infty}{(z^{n})}}{1-z} = \frac{1 - 0z}{1-z} = \frac{1}{1 - z}$ \retTwo\par}
+               {\center $ \lim\limits_{n\rightarrow \infty}{(s_n)} = \frac{1 - z \hspace{0.1em}\cdot \lim\limits_{n\rightarrow \infty}{(z^{n})}}{1-z} = \frac{1 - 0z}{1-z} = \frac{1}{1 - z}$ \retTwo\par}
             \end{myIndent}}
             
             \newpage
@@ -2353,11 +2360,218 @@
             
             {\begin{myIndent} \hThree
                Proof:\\
-               When $|z| \geq 1$, then $|z| \not\rightarrow 0$. To see this, note that $|z|^n \geq |z| \geq 1$. Thus, every element of the sequence $(|z|^n)$ is at least $1$, which means that if the sequence did converge, it would have to converge in $[1, \infty)$. So, $d(z^n, 0)$ doesn't converge to $0$, which in turn means that $z^n$ does not stay close to $0$. Hence, $z^n$ doesn't converge to $0$, which means that by proposition 46, $\Sigma z^n$ diverges.
+               When $|z| \geq 1$, then $|z| \not\rightarrow 0$. To see this, note that $|z|^n \geq |z| \geq 1$. Thus, every element of the sequence $(|z|^n)$ is at least $1$, which means that if the sequence did converge, it would have to converge in $[1, \infty)$. So, $d(z^n, 0)$ doesn't converge to $0$, which in turn means that $z^n$ does not stay close to $0$. Hence, $z^n$ doesn't converge to $0$, which means that by proposition 46, $\Sigma z^n$ diverges. \retTwo
             \end{myIndent}}
-
          \end{itemize}
+
+         Proposition \propCount: Suppose $a_1 \geq a_2 \geq \ldots \geq 0$.\\ Then $\sum\limits_{n=1}^\infty{a_n}$ converges if and only if $\sum\limits_{k=0}^\infty{2^ka_{2^k}}$ converges.
+         {\begin{myIndent} \hThree
+            Proof:\\
+            By proposition 47, each series converges if and only if its partial sums are bounded. Set $s_n = a_1 + \ldots + a_n$, and $t_k = a_1 + 2a_2 + \ldots + 2^ka_{2^k}$. \retTwo
+
+            When $n < 2^k$,\\
+            \begin{tabular}{l}
+              $s_n \leq a_1 + (a_2 + a_3) + (a_4 + a_5 + a_6 + a_7) + (a_{2^k}+\ldots+a_{2^{k+1}-1})$\\
+              $\phantom{s_n} \leq a_1 + 2a_2 + 4a_4 + \ldots + 2^ka_{2^k} = t_k$
+            \end{tabular}\retTwo
+            Thus $s_n \leq t_k$ when $n < 2^k$. \retTwo
+
+            When $n > 2^k$:\\
+            \begin{tabular}{l}
+               $s_n \geq a_1 + a_2 + (a_3 + a_4) + \ldots + (a_{2^{k-1} + 1}+\ldots+a_{2^{k}})$\\
+               $\phantom{s_n} \geq \frac{1}{2}a_1 + a_2 + 2a_4 + \ldots + 2^{k-1}a_{2^k} = \frac{1}{2}t_k$
+            \end{tabular}\retTwo
+            Thus $2s_n \geq t_k$ when $n > 2^k$. \retTwo
+            
+            Therefore, $(s_n)$ is bounded above if and only if $t_k$ is bounded above.\retTwo
+         \end{myIndent}}
+
+         Proposition \propCount: $\sum\limits_{n=1}^\infty{\frac{1}{n^p}}$ converges if $p > 1$ and diverges if $p \leq 1$.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            By proposition 50, $\sum{\frac{1}{n^p}}$ converges if and only if $\sum{2^k\frac{1}{2^{kp}}}$ converges. But\\ $\sum{2^k\frac{1}{2^{kp}}} = \sum{2^{k-kp}} = \sum{\left(2^{1-p}\right)^k}$ is a geometric series. So $\sum{\left(2^{1-p}\right)^k}$\\ converges if and only if $2^{1-p} < 1$, and this inequality is only true when $p > 1$.
+         \end{myIndent}}
+
+         \newpage
+
+         {\begin{myDindent}
+            \teachComment (We haven't officially covered logarithms yet but\dots)\\ [-6pt]
+         \end{myDindent}}
+
+         Proposition \propCount: $\sum\limits_{n=1}^\infty{\frac{1}{n(\log(n))^p}}$ converges if $p > 1$ and diverges if $p \leq 1$.
+
+         {\begin{myIndent} \hThree
+            Proof:\\
+            By proposition 50, $\sum{\frac{1}{n(\log(n))^p}}$ converges if and only if $\sum{2^k\frac{1}{2^{k}\left(\log(2^k)\right)^p}}$ \\converges. But $2^k\frac{1}{2^{k}\left(\log(2^k)\right)^p} = \frac{1}{\left(k\log(2)\right)^p} = \frac{1}{(\log(2))^p}\frac{1}{k^p}$. Therefore,\\ $\sum{2^k\frac{1}{2^{k}\left(\log(2^k)\right)^p}}$ is a geometric sequence and only converges if $p > 1$.\retTwo
+         \end{myIndent}}
       \end{myIndent}}
+
+      \mySepTwo[Purple]
+
+      We define $e = \sum\limits_{n=0}^\infty{\frac{1}{n!}} \approx 2.71828$.
+      
+      {\begin{myIndent} \exOne
+         We know that $\sum\limits_{n=0}^\infty{\frac{1}{n!}}$ converges\dots
+         {\begin{myIndent} \exTwo
+            $s_n = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \cdots + \frac{1}{n!} < 1 + 1 + \frac{1}{2} + \frac{1}{2^2} + \frac{1}{2^{n-1}} = 1 + \frac{1}{1 - \frac{1}{2}} = 3$.
+         \end{myIndent}}
+         \retTwo
+
+         Here are three facts we won't spend more time on because we're behind.
+         {\begin{itemize} \exTwo
+            \item $(1 + \frac{1}{n})^n \rightarrow e$.
+            \item $e$ is irrational.
+            \item $e$ is not algebraic.
+            \begin{myIndent}
+               (meaning $e$ is not the root of a polynomial with rational coefficients.)
+            \end{myIndent}
+         \end{itemize}}
+      \end{myIndent}}
+
+      \mySepTwo[Purple]
+
+      \markLecture{2/23/2024}
+
+      {\begin{myIndent} \hTwo
+         Proposition \propCount: (Root Test)\\
+         Consider a series $\Sigma a_n$ and let $\alpha = \limsup{\sqrt[n]{|a_n|}}$.
+         \begin{enumerate}
+            \item[(A)] If $\alpha < 1$, then $\Sigma a_n$ converges.
+            \item[(B)] If $\alpha > 1$, then $\Sigma a_n$ diverges.
+            \item[(C)] If $\alpha = 1$, this gives no information.
+         \end{enumerate}
+         \retTwo
+         
+         {\begin{myIndent} \hThree
+            Proof:
+            \begin{enumerate}
+               \item[(A)] Since $\alpha < 1$, we can pick $\alpha < \beta < 1$. Then by proposition 41.B, there exists $N$ with $\forall n \geq N, \myHS \sqrt[n]{|a_n|} < \beta$. Or in other words, $\forall n \geq N,$\\ $|a_n| < \beta^n$. $\Sigma \beta^n$ is a geometric sequence that converges. So by the\\ comparison test (proposition 48), $\Sigma a_n$ converges.
+               \newpage
+               \item[(B)] If $\limsup{\sqrt[n]{|a_n|}} > 1$, then there is a subsequence of $\sqrt[n]{|a_n|}$ that\\ converges to a value greater than $1$. This in turn means there is a\\ subsequence of $|a_n|$ that converges to a value greater than $1$.\\ So, $\limsup{|a_n|} > 1$. Hence, we know that $a_n \not\rightarrow 0$, which means $\Sigma a_n$ diverges.
+               \\
+               \item[(C)] $\alpha = 1$ for both $\sum\frac{1}{n}$ and $\sum\frac{1}{n^2}$. However, $\sum\frac{1}{n}$ diverges while $\sum\frac{1}{n^2}$\\ converges.
+            \end{enumerate}
+         \end{myIndent}}
+         \retTwo
+
+         Proposition \propCount: (Ratio Test)\\
+         Suppose $\forall n, \myHS a_n \neq 0$.
+         \begin{enumerate}
+            \item The series $\Sigma a_n$ converges if $\limsup{\left|\frac{a_{n+1}}{a_n}\right|} < 1$.
+            \item The series $\Sigma a_n$ diverges if $\exists N \suchthat \forall n \geq N, \myHS \left|\frac{a_{n+1}}{a_n}\right| \geq 1$.
+         \end{enumerate}
+         \retTwo
+
+         {\begin{myIndent} \hThree
+            Proof:
+            \begin{enumerate}
+               \item Pick $\beta$ with $\limsup{\left|\frac{a_{n+1}}{a_n}\right|} < \beta < 1$. By proposition 41.B, there is $N$ with $\forall n \geq N, \myHS \left| \frac{a_{n+1}}{a_n} \right| < \beta$. So, consider any $n \geq N$ and set $k = n - N$. That way, we have that $n = N + k$. \retTwo
+               
+               Now notice that for $n \geq N$:
+               
+               {\center $|a_{N+k}| < \beta |a_{N+k-1}| < \beta^2 |a_{N+k-2}| < \cdots < \beta^k |a_{N}| $ \retTwo\par}
+               
+               Therefore, $\forall n \geq N, \myHS |a_n| < \beta^{n-N}|a_n|$. However, $\beta^{n-N}|a_n|$ is a geometric sequence whose series converges. Hence, by the comparison test, we know that $a_n$ converges. \retTwo
+
+               \item If $\exists N \suchthat \forall n \geq N, \myHS \left|\frac{a_{n+1}}{a_n}\right| \geq 1$, then we must have that $a_n \not\rightarrow 0$. So $\Sigma a_n$ diverges. \retTwo
+            \end{enumerate}
+
+            {\begin{myTindent} \teachComment
+               The ratio test can often be easier to apply. However, the root test is almost always more accurate. Specifically, the root test will always give an answer if the ratio test gives an answer.\\ However, the reverse is not true. \retTwo
+
+               This is because for any sequence $(c_n)$ of positive numbers:
+               \begin{itemize}
+                  \item $\liminf{\frac{c_{n+1}}{c_n}} \leq \liminf{\sqrt[n]{c_n}}$
+                  \item $\limsup{\sqrt[n]{c_n}} \leq \limsup{\frac{c_{n+1}}{c_n}}$ \retTwo
+               \end{itemize}
+               (Unfortunately, we're behind and so won't be proving this\dots)
+            \end{myTindent}}
+         \end{myIndent}}
+      \end{myIndent}}
+
+      \newpage
+
+      For a sequence $c_n \in \mathbb{C}$ and any $z \in \mathbb{C}$, the series $\sum\limits_{n=0}^\infty{c_nz^n}$ is called a \udefine{power series}. \retTwo
+
+      {\begin{myIndent} \hTwo
+         Note that convergence/divergence of a power series depends on the value of $z$. \\ [-2pt] \retTwo
+
+         Proposition \propCount: For a power series $\sum\limits_{n=0}^\infty{c_nz^n}$, set $\alpha = \limsup{\sqrt[n]{|c_n|}}$ and\\ $R = \frac{1}{\alpha}$. (If $\alpha = +\infty$, then define $R = 0$, whereas if $\alpha = 0$, then define $R = +\infty$.)\\ [5pt]
+         Then $\sum{c_nz^n}$ converges when $|z| < R$ and diverges when $|z| > R$. \\ [-10pt]
+         {\begin{myIndent}\begin{myIndent}
+            $R$ is called the \udefine{radius of convergence}. Also, convergence/divergence is more complicated when $|z| = R$.
+            \end{myIndent} \retTwo\hThree
+
+            Proof: (apply the root test)\\
+            $\limsup{\sqrt[n]{|c_nz^n|}} = |z|\cdot\limsup{\sqrt[n]{|c_n|}} = \frac{|z|}{R}$. Thus, $\limsup{\sqrt[n]{|c_nz^n|}} < 1$ if and only if $|z| < R$. \retTwo
+         \end{myIndent}}
+      \end{myIndent}}
+      
+   \mySepTwo[Purple]
+
+   {\exOne
+   Examples:
+   \begin{itemize}
+      \item For $\sum{\frac{z^n}{n!}}$, we have by the ratio test that $R = +\infty$.
+      \item For $\sum{n^nz^n}$, we have that $R = 0$.
+      \item For $\sum{z^n}$, we have that $R = 1$. Also, it diverges when $|z| = 1$.
+      \item For $\sum{\frac{z^n}{n^z}}$, we have that $R = 1$. Also, it converges when $|z| = 1$.
+      \item For $\sum{\frac{z^n}{n}}$, we have that $R = 1$. Also, if $z = 1$, the series diverges. But if $z \neq 1$ and $|z| = 1$, then the series converges.
+   \end{itemize}
+   }
+
+   \mySepTwo[Purple]
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Given the sequences $(a_n)$ and $(b_n)$, set $A_{-1} = 0$ and then for $n \geq 0$, let $A_n = \sum\limits_{k=0}^n{a_k}$. Then for $0 \leq p \leq q$, we have: 
+      
+      {\centering $\sum\limits_{n=p}^{q}{a_nb_n} = \sum\limits_{n=p}^{q-1}{A_n(b_n - b_{n+1})} + A_qb_q - A_{p-1}b_p$ \retTwo\par}
+
+      
+      {\begin{myTindent} \teachComment
+         \begin{myClosureOne}{4.5}
+            Notice how similar this is to integration by parts (where $f = F^\prime$):\newline
+            
+            {\centering ${\displaystyle \int_a^b{fgdx} = -\int_a^b{Fg^\prime dx} + F(b)g(b) - F(a)g(a) }$ \par}
+         \end{myClosureOne}
+      \end{myTindent}}
+
+      \newpage
+      
+      {\begin{myIndent} \hThree
+         Proof:\\ [6pt]
+         \begin{tabular}{l}
+            $\sum\limits_{n=p}^{q}{a_nb_n} = 
+            \sum\limits_{n=p}^{q}{(A_n - A_{n-1})b_n}$ \\
+            $\phantom{\sum\limits_{n=p}^{q}{a_nb_n}} = 
+            \sum\limits_{n=p}^{q}{A_nb_n} - \sum\limits_{n=p-1}^{q-1}{A_{n}b_{n+1}}$ \\
+            $\phantom{\sum\limits_{n=p}^{q}{a_nb_n}} = 
+            \sum\limits_{n=p}^{q-1}{A_n(b_n - b_{n+1})} + A_qb_q - A_{p-1}b_p$ $\myHS \blacksquare$
+         \end{tabular}
+      \end{myIndent}} \retTwo
+
+      Proposition \propCount: If the partial sums of $\Sigma a_n$ are bounded and we have a sequence $b_0 \geq b_1 \geq b_2 \geq \cdots$ such that $b_n \rightarrow 0$, then $\sum{a_nb_n}$ will converge.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Set $A_n = \sum\limits_{k=0}^n{a_k}$. Then pick $M > 0$ such that $\forall n, \myHS |A_n| < M$. \retTwo
+
+         Given $\varepsilon > 0$, pick $N$ with $b_N < \frac{\varepsilon}{2M}$. Then when $q \geq p \geq N$, we have: \\ [6pt]
+         \begin{myIndent}
+            \begin{tabular}{l}
+               $\left| \sum\limits_{n=p}^q{a_nb_n} \right| = \left| \sum\limits_{n=p}^{q-1}{A_n(b_n - b_{n+1})} + A_qb_q - A_{p-1}b_p \right|$ \\
+               $\phantom{\left| \sum\limits_{n=p}^q{a_nb_n} \right|} \leq \sum\limits_{n=p}^{q-1}\left|A_n\right|(b_n - b_{n+1}) + |A_q|b_q + |A_{p-1}|b_p$ \\
+               $\phantom{\left| \sum\limits_{n=p}^q{a_nb_n} \right|} \leq M(b_p - b_q + b_q + b_p) = 2Mb_p \leq 2Mb_N < \varepsilon$
+            \end{tabular}
+         \end{myIndent}
+      \end{myIndent}} \retTwo
+   \end{myIndent}}
+
+   \markLecture{2/26/2024}
+
+
+   
 
    % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
    \newpage
@@ -2391,11 +2605,11 @@
          \myVS 43 & n.a & 44 & 3.20 \\ \hdashline[10pt/3pt]
          \myVS 45 & 3.22 & 46 & 3.23 \\ \hdashline[10pt/3pt]
          \myVS 47 & 3.24 & 48 & 3.25 \\ \hdashline[10pt/3pt]
-         \myVS 49 & 3.26 & 50 &  \\ \hdashline[10pt/3pt]
-         \myVS 51 &  & 52 &  \\ \hdashline[10pt/3pt]
-         \myVS 53 &  & 54 &  \\ \hdashline[10pt/3pt]
-         \myVS 55 &  & 56 &  \\ \hdashline[10pt/3pt]
-         \myVS 57 &  & 58 &  \\ \hdashline[10pt/3pt]   
+         \myVS 49 & 3.26 & 50 & 3.27 \\ \hdashline[10pt/3pt]
+         \myVS 51 & 3.28  & 52 & 3.29 \\ \hdashline[10pt/3pt]
+         \myVS 53 & 3.33 & 54 & 3.34 \\ \hdashline[10pt/3pt]
+         \myVS 55 & 3.39 & 56 & 3.41 \\ \hdashline[10pt/3pt]
+         \myVS 57 & 3.42  & 58 &  \\ \hdashline[10pt/3pt]   
       \end{tabular}
 
       \newpage
