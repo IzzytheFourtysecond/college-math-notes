@@ -2329,7 +2329,7 @@ A \udefine{max cut} is a cut with as many edges as possible.
 \mySepTwo
 
 {\begin{myIndent} \hTwo
-   \uuline{Erdös-Gallai Theorem}: Let $k \geq 1$, \hspace{0.2em} $n \geq 1$, and let $G$ be an $n$-vertex $P_k$-free graph. Then $|E(G)| \leq (k-1)\frac{n}{2}$ with equality if and only if $k$ divides $n$ and every component of $G$ is $K_k$.
+   \uuline{Erd\H{o}s-Gallai Theorem}: Let $k \geq 1$, \hspace{0.2em} $n \geq 1$, and let $G$ be an $n$-vertex $P_k$-free graph. Then $|E(G)| \leq (k-1)\frac{n}{2}$ with equality if and only if $k$ divides $n$ and every component of $G$ is $K_k$.
 
    {\begin{myIndent} \hThree
       Proof: (we proceed by induction)\retTwo
@@ -2353,10 +2353,14 @@ A \udefine{max cut} is a cut with as many edges as possible.
 
          Now we suppose $G$ is connected.\retTwo
 
-         Firstly, consider if $G$ has a vertex $v$ of degree less than $\frac{k}{2}$. If $G$ is $P_k$ free,\\ we know that $G - \{v\}$ is $P_k$ free. So by induction, we know that\\ $|E(G - \{v\})| \leq (k-1)\frac{n-1}{2}$. This in turn means that:
-         {\center $|E(G)| \leq (k-1)\frac{n-1}{2} + \frac{k}{2} - 1 < (k-1)\frac{n-1}{2} + \frac{k-1}{2} = (k-1)\frac{n}{2}$. \retTwo\par}
+         If $G$ has a vertex $v$ of degree less than $\frac{k}{2}$, then consider that because $G - \{v\}$ must be $P_k$ free, we know by induction that $|E(G - \{v\})| \leq (k-1)\frac{n-1}{2}$. This in turn means that:
+         {\center $|E(G)| \leq (k-1)\frac{n-1}{2} + \frac{k-1}{2} = (k-1)\frac{n}{2}$. \retTwo\par}
 
-         Secondly, consider if $\delta(G) \geq \frac{k}{2}$. Then, assume towards a contradiction that $|E(G)| > (k - 2)\frac{n}{2}$. That way, by induction on $k$, we can conclude that $G$ has a path $P$ of length $k - 1$
+         Also, note that by induction, $|E(G - \{v\})| = (k-1)\frac{n-1}{2}$ if and only if $|E(G - \{v\})|$ is a bunch of disjoint $K_k$ components. But in that case, if\\ $d(v) \geq 1$, then $G$ cannot be $P_k$-free. So, we can actually conclude that\\ $|E(G)| < (k-1)\frac{n}{2}$.
+
+         {\center{\rule{4in}{0.25mm}}\\ [8pt]\par}
+
+         Meanwhile, if $\delta(G) \geq \frac{k}{2}$, then assume towards a contradiction that\\ $|E(G)| > (k - 2)\frac{n}{2}$. That way, by induction on $k$, we can conclude that $G$ has a path $P$ of length $k - 1$
          {\begin{myTindent} \myComment
             This was why we included the base case of when $k = 1$. \retTwo
          \end{myTindent}}
@@ -2364,11 +2368,13 @@ A \udefine{max cut} is a cut with as many edges as possible.
          If $P$ can be extended, then we have a contradiction as $G$ is not $P_k$ pathless. So assume $G$ can't be extended. Then, using the same trick as we used\\ previously to prove Dirac's Theorem (pages 14 and 15), we can turn $P$ into a cycle of length $k$. But this gives another contradiction because $G$ is\\ connected. So, there must be a vertex adjacent to our cycle of length $k$, which means that we can draw a path of length $k$ in $G$.
          \retTwo
 
-         So, when $\delta(G) \geq \frac{k}{2}$, we have shown that $|E(G)| \leq (k - 2)\frac{n}{2} < (k - 1)\frac{n}{2}$. \retTwo
-      \end{myIndent}}
+         So, when $\delta(G) \geq \frac{k}{2}$, we have shown that $|E(G)| \leq (k - 2)\frac{n}{2} < (k - 1)\frac{n}{2}$.
 
-      Also, note that in the above proof, our induction only maintains equality\\ between $|E(G)|$ and $(k-1)\frac{n}{2}$ if we always induct on the case that $G$ is\\ disconnected and the only base case we ever reach is when a component equals $K_k$. \retTwo
-   \end{myIndent}}
+         {\center{\rule{4in}{0.25mm}}\\ [8pt]\par}
+
+         Notably, $|E(G)| = (k-1)\frac{n}{2}$ if and only if the only induction we ever did was considering if $G$ was disconnected, and if the only base case we ever reached was for when a subgraph equals $K_k$. So equality holds if and only if $k$ divides $n$ and every component of $G$ is $K_k$.
+      \end{myIndent}}
+   \end{myIndent}} 
 \end{myIndent}}
 
 \mySepTwo
@@ -2383,21 +2389,70 @@ The \udefine{Turán graph} $T_r(n)$ has $n$ vertices which are partitioned into 
    If $r \mid n$, then by handshaking lemma:
    
    {\center$e(T_r(n)) = \left(\frac{n}{r}(r - 1)\right)\frac{n}{2} = \binom{r}{2}\frac{n^2}{r^2} = \frac{n^2}{2}(1 - \frac{1}{r})$\par}
-   \retTwo
+   
+   \newpage
    
    \uuline{Turán's Theorem}: For all $n \geq 1$ and $r \geq 2$, $\exNums{n, K_{r+1}} = e(T_r(n))$. Also, if $G$ is a $K_{r+1}$-free graph on $n$ vertices and $e(G) = e(T_r(n))$, then $G = T_r(n)$.
    {\begin{myIndent} \myComment
-      \begin{myTindent}\begin{myTindent}\begin{myDindent}
-         In other words, $T_r(n)$ is unique. \retTwo
-      \end{myDindent}\end{myTindent}\end{myTindent}
+      \begin{myTindent}\begin{myDindent}
+         In other words, $T_r(n)$ is the unique maximal graph. \retTwo
+      \end{myDindent}\end{myTindent}
 
-      \hThree Proof:\\
-      When $n \leq r$, we clearly have that $\exNums{n, K_{r+1}} = e(K_n)$. However, we also have $T_r(n) = K_n$ when $n \leq r$. Thus, Turán's theorem is clearly true when $n \leq r$.
+      \hThree Proof: (we proceed by induction)\retTwo
 
+      Base Case:
+      {\begin{myIndent} \hFour
+         When $n \leq r$, we clearly have that $\exNums{n, K_{r+1}} = e(K_n)$. However, we also have $T_r(n) = K_n$ when $n \leq r$. Thus, Turán's theorem is clearly true when $n \leq r$.
+         \retTwo
+      \end{myIndent}}
 
+      Inductive Step: (assume the theorem holds when $r \leq |V(G)| < n$)
+      {\begin{myIndent} \hFour
+         Assume $G$ is a $K_{r+1}$-free graph such that $e(G) \geq e(T_r(n))$. \retTwo
+         Remove edges from $G$ until we get a graph $G^\prime$ with $e(G^\prime) = e(T_r(n))$. Then let $v$ be a vertex of $G^\prime$ of minimum degree. We know that $d_{G^\prime}(v) \leq \delta(T_r(b))$ because if this weren't the case, then $G^\prime$ would have to have more edges than $T_r(n)$ by the handshaking lemma. Therefore:
+         
+         {\center$e(G^\prime - \{v\}) \geq e(T_r(n)) - \delta(T_r(n)) = e(T_r(n-1))$. \retTwo\par}
+
+         But now by induction, we know that $G^\prime - \{v\}$ is $K_{r+1}$-free only if\\ $e(G^\prime - \{v\}) \leq e(T_r(n-1))$. Therefore $e(G^\prime - \{v\}) = e(T_r(n-1))$. Furthermore, this tells us by induction that $G^\prime - \{v\} = T_r(n-1)$.
+         \retTwo
+
+         Next, we try to fit $v$ back into $G^\prime - \{v\} = T_r(n-1)$. Let $W_1, \ldots, W_r$ be the partitions of $G^\prime - \{v\}$. If $N_{G^\prime}(v) \cap W_i \neq \emptyset$ for all $i \in \{1, \ldots, r\}$, then by picking one $v_i$ from each $W_i \cap N_{G^\prime}(v)$, we get that $\{v, v_1, \ldots, v_r\}$ induces a $K_{r+1}$ subgraph inside $G^\prime$. This is clearly a contradiction. So we conclude that there is a partition $W_i$ such that $N_{G^\prime}(v) \cap W_i = \emptyset$.\retTwo
+
+         Hence, $G^\prime$ is an $r$-partite graph. And since $e(G^\prime) = e(T_r(n))$ and $T_r(n)$ has more edges than every other $n$ vertex $r$-partite graph, we know that\\ $G^\prime = T_r(n)$. Finally, notice that $T_r(n)$ is a maximal $K_{r+1}$-free graph.\\ Therefore, we must have that $e(G) = e(G^\prime)$ if $G$ is $K_{r+1}$-free. \retTwo
+      \end{myIndent}}
    \end{myIndent}}
-
 \end{myIndent}}
 
+\mySepTwo
+
+Here is a theorem given without proof:
+
+{\begin{myIndent} \hTwo
+   \uuline{Erd\H{o}s-Simonovitz-Stone theorem}: If $F$ is any graph of cromatic number $r+1$, then:
+   
+   {\center ${\displaystyle \lim\limits_{n\rightarrow\infty}\left(\frac{\exNums{n, F}}{\binom{n}{2}}\right) = 1 - \frac{1}{r}}$.\par}
+\end{myIndent}}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
+\newpage
+{\color{BrickRed}
+   I'm leaving this page as a placeholder. The professor provided a really cool proof by probability of Turán's Theorem. However, I do not have time right now to understand it. 
+}
+\newpage
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
+
+
+{\begin{myIndent} \hTwo
+   \uuline{Kövari-Sós-Turán Theorem}: For $s \geq r \geq 2$,
+
+   {\center$ \exNums{n, K_{r,s}} \leq \frac{1}{2}\left( (s-1)^\frac{1}{r}n^{2-\frac{1}{r}} + (r-1)n \right) $\retTwo\par}
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      
+   \end{myIndent}}
+   \retTwo
+\end{myIndent}}
 
 \end{document}
