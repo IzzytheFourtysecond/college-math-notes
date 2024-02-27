@@ -2665,9 +2665,9 @@ If $G$ is a graph containing a cycle, then the \udefine{girth} of $G$ is the len
       Proof:\\
       ($g$ is odd):
       {\begin{myIndent} \hFour
-         Imagine drawing a BFS-tree inside $G$ starting at a vertex $v$ and name each layer of the tree $N_i$ such that $i$ is the distance from $v$ to any element of $N_i$. Because there can be no cycles of length $g - 1$ or less in $G$, we must have that for $i < \lfloor \frac{g-1}{2} \rfloor$, all edges with an end in $N_i$ not going to $N_{i-1}$ must be going to $N_{i+1}$ (Hence $N_{i+1}$ exists). Therefore: \\ [-6pt]
+         Imagine drawing a BFS-tree inside $G$ starting at a vertex $v$ and name each layer of the tree $N_i$ such that $i$ is the distance from $v$ to any element of $N_i$. Because there can be no cycles of length $g - 1$ or less in $G$, we must have that for $i < \lfloor \frac{g-1}{2} \rfloor$, all edges with an end in $N_i$ not going to $N_{i-1}$ must be going to a unique element in $N_{i+1}$.  Therefore: \\ [-6pt]
          \begin{myIndent}
-            \bullet \quad $N_0 = \{v\}$ has $1$ vertex.\\
+            \bullet \quad $N_0 = \{v\}$ obviously has $1$ vertex.\\
             \bullet \quad $N_1$ obviously will have $d$ vertices.\\
             \bullet \quad $N_2$ must have $d(d-1)$ vertices.\\
             \bullet \quad $N_3$ must have $d(d-1)^2$ vertices.\\
@@ -2687,13 +2687,13 @@ If $G$ is a graph containing a cycle, then the \udefine{girth} of $G$ is the len
 
          \newpage
 
-         Like before, we must have that for $i < \frac{g}{2} - 1$, all edges with an end in $N_i(u)$ not going to $N_{i-1}(u)$ must be going to $N_{i+1}(u)$, while all edges with an end in $N_i(v)$ not going to $N_{i-1}(v)$ must be going to $N_{i+1}(v)$. Otherwise, we would be able to draw a shorter cycle than length $g$. So: \\ [-6pt]
+         Like before, we must have that for $i < \frac{g}{2} - 1$, all edges with an end in $N_i(u)$ not going to $N_{i-1}(u)$ must be going to a unique vertex in $N_{i+1}(u)$, while all edges with an end in $N_i(v)$ not going to $N_{i-1}(v)$ must be going to a unique vertex in $N_{i+1}(v)$. Additionally, each $N_i(u)$ must be disjoint to every  $N_i(v)$ when $i < \frac{g}{2} - 1$. If these facts weren't true, we would be able to draw a shorter cycle than length $g$. So: \\ [-6pt]
          \begin{myIndent}
-            \bullet \quad $N_0(u) \cup N_0(v) = \{u\} \cup \{v\}$ has $2$ vertices.\\
-            \bullet \quad $N_1(u) \cup N_1(v)$ have $2(d-1)$ vertices.\\
+            \bullet \quad $N_0(u) \cup N_0(v) = \{u\} \cup \{v\}$ obviously has $2$ vertices.\\
+            \bullet \quad $N_1(u) \cup N_1(v)$ must have $2(d-1)$ vertices.\\
             \bullet \quad $N_2(u) \cup N_2(v)$ must have $2(d-1)^2$ vertices.\\
             $\phantom{aaaaaaaaaaaaaaa} \vdots$\\
-            \bullet \quad $N_{\frac{g}{2} - 1}$ must have $(d-1)^{{\frac{g}{2} - 1}}$ vertices.\\
+            \bullet \quad $N_{\frac{g}{2}}(u) \cup N_{\frac{g}{2}}(v)$ must have $2(d-1)^{{\frac{g}{2} - 1}}$ vertices.\\
          \end{myIndent}
 
          Adding up the number of vertices in each of those layers, we get a lower bound for $n$.
