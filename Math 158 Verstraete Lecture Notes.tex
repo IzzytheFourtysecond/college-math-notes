@@ -2368,7 +2368,7 @@ A \udefine{max cut} is a cut with as many edges as possible.
             This was why we included the base case of when $k = 1$. \retTwo
          \end{myTindent}}
 
-         If $P$ can be extended, then we have a contradiction as $G$ is not $P_k$ pathless. So assume $G$ can't be extended. Then, using the same trick as we used\\ previously to prove Dirac's Theorem (pages 14 and 15), we can turn $P$ into a cycle of length $k$. But this gives another contradiction because $G$ is\\ connected. So, there must be a vertex adjacent to our cycle of length $k$, which means that we can draw a path of length $k$ in $G$.
+         If $P$ can be extended, then we have a contradiction as $G$ is not $P_k$ pathless. So assume $G$ can't be extended. Then, using the same trick as we used\\ previously to prove Dirac's Theorem (pages 14 and 15), we can turn $P$ into a cycle of length $k - 1$. But this gives another contradiction because $G$ is\\ connected. So, there must be a vertex adjacent to our cycle of length $k$, which means that we can remove an edge of the cycle and add an edge to that adjacent vertex to get a path of length $k$ in $G$.
          \retTwo
 
          So, when $\delta(G) \geq \frac{k}{2}$, we have shown that $|E(G)| \leq (k - 2)\frac{n}{2} < (k - 1)\frac{n}{2}$.
@@ -2448,7 +2448,7 @@ Here is a theorem given without proof:
    \end{myTindent}}
 
 
-   \uuline{Kövari-Sós-Turán Theorem}: For $s \geq r \geq 2$,
+   \uuline{Kövari-Sós-Turán theorem}: For $s \geq r \geq 2$,
 
    {\center$ \exNums{n, K_{r,s}} \leq \frac{1}{2}\left( (s-1)^\frac{1}{r}n^{2-\frac{1}{r}} + (r-1)n \right) $\retTwo\par}
 
@@ -2516,7 +2516,7 @@ Here is a theorem given without proof:
 
 \markLecture{2/22/2024}
 
-A \udefine{Sidon set} in an abelian group $\Gamma$ (with the group operation $+$) is a set $A \subseteq \Gamma$ such that if $a+b = a^\prime + b^\prime$ with $a, b, a^\prime, b^\prime \in A$, then $\{a, b\} = \{c, d\}$. \retTwo
+A \udefine{Sidon set} in an abelian group $\Gamma$ (with the group operation $+$) is a set $A \subseteq \Gamma$ such that if $a+b = c + d$ with $a, b, c, d \in A$, then $\{a, b\} = \{c, d\}$. \retTwo
 
 {\begin{myDindent}\begin{myDindent} \myComment
    \begin{myClosureOne}{4}
@@ -2531,37 +2531,189 @@ A \udefine{Sidon set} in an abelian group $\Gamma$ (with the group operation $+$
             \item Inverse:\newline
             $\forall g \in G, \myHS \exists h \in G \suchthat g \filledcirc h = e_G = h \filledcirc g$ \newline
          \end{itemize}
-         An \udefine{abelian group} is a group where $\filledcirc$ is also \newline commutative: $\forall h, g \in G, \myHS h \filledcirc g = g \filledcirc h$.\newline \newline
-         The \udefine{order} of a finite group is the number of\newline elements of the group.
+         An \udefine{abelian group} is a group where $\filledcirc$ is also \newline commutative: $\forall h, g \in G, \myHS h \filledcirc g = g \filledcirc h$. %\newline \newline
+         % The \udefine{order} of a finite group is the number of\newline elements of the group.
       \end{myIndent}
    \end{myClosureOne} \retTwo
 \end{myDindent}\end{myDindent}}
 
+\newpage
+
 {\begin{myIndent} \hTwo
-   Here's an obvious upper bound to $|A|$:\\ $\binom{|A|}{2} \leq |\Gamma|$. This is because the set of the all pairs of $a$ and $b$ must be mapped to different elements of $\Gamma$ by the operation $+$.
+   \uuline{Proposition}: An upper bound to $|A|$ is given by $|A|(|A| - 1) \leq |\Gamma| - 1$.
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Consider any two distinct ordered pairs $(a, b)$ and $(c, d)$ of elements from $A$ such that both pairs have two distinct elements (i.e. $a \neq b$ and $c \neq d$).\\ Letting $-b$ and $-d$ be the inverses of $b$ and $d$ respectively, we know that if\\ $a - b = c - d$, then $a + d = b + c$.
+      \retTwo
+      Now note that because $A$ is a sidon set, we must have that $\{a, d\} = \{b, c\}$. Therefore, since we assumed above that $a \neq b$ and $c \neq d$, we must have that $a = c$ and $b = d$. However, this contradicts that $(a, b)$ and $(c, d)$ are distinct pairs.
+      \retTwo
+      This tells us that there must be a one-to-one mapping of ordered pairs of distinct elements of $A$ to $\Gamma$. The number of such ordered pairs is given by $\frac{|A|!}{(|A| - 2)!} = |A|(|A|-1)$. Therefore, $|A|(|A|-1) \leq |\Gamma|$.
+      \retTwo
+      Finally, note that no pair $(a, b)$ could be mapped to $0$ (the identity element of $\Gamma$) in the above process. After all, if $a - b = 0$, then $a = b$ and so $a$ and $b$ are not pairwise distinct. Hence, we get the bound of the proposition:
 
-   \newpage
-
-   \uuline{Proposition}: The maximum size of a Sidon set in the abelian group $\Gamma$ of order $n$ is at most $x$ where $x(x-1) \leq n - 1$.
-
+      {\center $|A|(|A| - 1) \leq |\Gamma| - 1$ \retTwo\par}
+   \end{myIndent}}
 \end{myIndent}}
 
+We can connect Sidon sets to graph theory as follows:\dots \retTwo
+
+{\begin{myIndent} \hTwo
+   Given any set $A \subseteq \Gamma$, we define the \udefine{Cayley sum graph} $G(A)$ such that $V(G(A)) = \Gamma$ and $\{x, y\} \in E(G(A))$ whenever $x + y \in A$.
+   
+   {\begin{myIndent} \hThree
+      Note that $G(A)$ may be a pseudograph because if $x + x$ belongs $A$, then $G(A)$ has a loop. Also, $G(A)$ is $|A|$-regular because $x + (-x + a) = a$ for all $x \in \Gamma$ and $a \in A$. \retTwo
+      
+      If $G(A)$ contains a quadrilateral $(x, y, z, w, x)$, then there exists distinct\\ elements $a, b, c, d \in A$ such that:
+      
+      {\center $ x + y = a \quad y + z = b \quad z + w = c \quad w + x = d $ \retTwo\par}
+   
+      But then $A$ cannot be a Sidon set because:
+      
+      {\center$
+      \begin{matrix}
+         x + y - y - z = a - b \Longrightarrow x - z = a - b \\
+         x + w - w - z = d - c \Longrightarrow x - z = d - c \\
+      \end{matrix} \Longrightarrow a - b = d - c$ \retTwo\par}
+   
+      So if $A$ is a Sidon set, then $G(A)$ is $C_4$-free. \retTwo
+
+      Unfortunately, because $G(A)$ may not be simple, we can not apply the Kövari-Sós-Turán theorem on $G(A)$ to get an equivalent or better upper bound on $|A|$. However, what we have done is found a way of generating $C_4$-free graphs. After all, $G(A)$ minus its loops is a simple $C_4$-free graph.
+   \end{myIndent}}
+\end{myIndent}}
+
+\newpage
+
+Let $q$ be an odd prime and $\mathbb{Z}_q$ denote \udefine{cyclic group} of integers modulo $q$.
+{\begin{myDindent} \myComment
+   In math 109, we referred to these as the set of congruence classes modulo $q$. \\ Since $q$ is a prime number, $\mathbb{Z}_q$ satisfies all the properties of a field and thus is a commutative group. \retTwo
+\end{myDindent}}
+
+Let $\Gamma_q = \mathbb{Z}_q \times \mathbb{Z}_q$ with addition as the group operation.
+{\begin{myDindent} \myComment
+   i.e. $(a, b) + (c, d) = (a + c \mod{(q)}, \myHS b + d \mod{(q)})$ \retTwo
+\end{myDindent}}
+
+Also define $n$ as $|\Gamma_q| = q^2$.\retTwo
+
+Then, consider $A = \{(x, x^2) \in \Gamma_q \mid x \in \mathbb{Z}_q\}$. 
+{\begin{myIndent} \hTwo
+   $|A| = q = \sqrt{n}$.\\
+   Also, $A$ is a Sidon set.
+   {\begin{myIndent} \hThree
+      Consider if $(a, a^2) + (b, b^2) = (c, c^2) + (d, d^2)$. Then we'd have that:
+      \[\begin{matrix}
+         a + b \myequiv{q} c + d \\
+         a^2 + b^2 \myequiv{q} c^2 + d^2
+      \end{matrix} \myHS \xLeftrightarrow{\text{ which is equivalent to saying that }} \myHS \begin{matrix}
+         a - c \myequiv{q} d - b \\
+         a^2 - c^2 \myequiv{q} d^2 - b^2
+      \end{matrix}\]
+
+      Now note that $a^2 - c^2 = (a - c)(a + c)$. And since $\mathbb{Z}_q$ is a field, we can divide both sides of $a^2 - c^2 \myequiv{q} d^2 - b^2$ by $a - c \myequiv{q} d - b$ to get: $ a + c \myequiv{q} d + b$.
+      \retTwo
+
+      Then combining $a + c \myequiv{q} b + d$ and $a - c \myequiv{q} d - b$ tells us that $2a \myequiv{q} 2d$. And since $q$ is odd, we can cancel out the $2$s to get that $a \myequiv{q} d$. \retTwo
+
+      Therefore $(a, b) = (c, d)$. \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+Now consider the Cayley sum graph $G(A)$.
+{\begin{myIndent}\hTwo
+   $G(A)$ has $q^2$ vertices, $\frac{q^3}{2}$ edges, and is $C_4$-free.\\
+   Also, $G(A)$ has a loop for every solution to $2(x, y) = (a, a^2)$. Since the solution to $2(x, y) = (a, a^2)$ is unique for each $a \in \mathbb{Z}_q$, we thus have that there are $q$ loops. \retTwo
+
+   So, after removing loops, we have shown that for each odd prime $q$:
+
+   {\center $\exNums{q^2, C_4} \geq \frac{q^3}{2} - q$ \par}
+\end{myIndent}}
+
+\mySepTwo
+
+Fact from number theory: for any $n \geq 2$, there exists a prime number $q$ between $n$ and $n + n^{\frac{2}{3}}$.
+{\begin{myIndent}
+   \hTwo Using the above fact, we can strategically pick a prime number $q$ such that:
+
+   {\center $ \exNums{n, C_4} \geq \frac{q^3}{2} - q\geq \frac{n^\frac{3\vphantom{|}}{2\vphantom{|}}}{2}(1 - o(1))$\retTwo\par} 
+   
+   {\begin{myDindent} \hFour
+      (where $o(1)$ is some unknown function $f(n)$ such that $\lim\limits_{n\rightarrow \infty}(f(n)) = 0$) \retTwo
+
+      \teachComment This is a taste of what researching external combinatorics is like when no exact answer for the external numbers of a graph can be derived.
+   \end{myDindent}}
+\end{myIndent}}
+
+\newpage
+
+As for an upper bound for a graph without $C_4$, note that $C_4 = K_{2,2}$. So we can use the Kövari-Sós-Turán theorem in order to say that: $ \exNums{n, C_4} \leq \frac{1}{2}(n^\frac{3}{2} + n)$. Thus, the asymptotic behavior of $\exNums{n, C_4}$ is that $ \exNums{n, C_4} = (\frac{1}{2} + o(1))n^\frac{3}{2}$. \retTwo
+
+\mySepTwo
+
+If $G$ is a graph containing a cycle, then the \udefine{girth} of $G$ is the length of a shortest cycle in $G$.
 
 
+{\begin{myIndent} \hTwo
+   \uuline{Theorem (Moore Bound)}: Let $G$ be a $d$-regular graph of girth at least $g$ with $n$\\ vertices. Then:
+   
+   \begin{itemize}
+      \item ${\displaystyle 1 + d\sum_{i=0}^{\lfloor \frac{g-1\vphantom{|}}{2\vphantom{|}} \rfloor}(d-1)^{i-1} \leq n} \quad (\text{ if }g \text{ is odd })$
+      
+      \item ${\displaystyle 2\sum_{i=0}^{\frac{g\vphantom{|}}{2\vphantom{|}}-1}(d-1)^i \leq n} \quad (\text{ if }g \text{ is even })$
+   \end{itemize}
 
+   {\begin{myIndent} \hThree
+      Proof:\\
+      ($g$ is odd):
+      {\begin{myIndent} \hFour
+         Imagine drawing a BFS-tree inside $G$ starting at a vertex $v$ and name each layer of the tree $N_i$ such that $i$ is the distance from $v$ to any element of $N_i$. Because there can be no cycles of length $g - 1$ or less in $G$, we must have that for $i < \lfloor \frac{g-1}{2} \rfloor$, all edges with an end in $N_i$ not going to $N_{i-1}$ must be going to $N_{i+1}$ (Hence $N_{i+1}$ exists). Therefore: \\ [-6pt]
+         \begin{myIndent}
+            \bullet \quad $N_0 = \{v\}$ has $1$ vertex.\\
+            \bullet \quad $N_1$ obviously will have $d$ vertices.\\
+            \bullet \quad $N_2$ must have $d(d-1)$ vertices.\\
+            \bullet \quad $N_3$ must have $d(d-1)^2$ vertices.\\
+            $\phantom{aaaaaaaaaaaaaaa} \vdots$\\
+            \bullet \quad $N_{\lfloor \frac{g-1}{2} \rfloor}$ must have $d(d-1)^{\lfloor \frac{g-1}{2} \rfloor - 1}$ vertices.\\
+         \end{myIndent}
+   
+         Adding up the number of vertices in each of those layers, we get a lower bound for $n$.
+         \retTwo
+      \end{myIndent}}
 
+      ($g$ is even):
+      {\begin{myIndent} \hFour
+         Our previous reasoning can be improved when $g$ is even because assuming that equality holds in the previously proven inequality, the shortest lenth of a cycle in $G$ is $2\lfloor \frac{g-1}{2} \rfloor + 1$. But that will be an odd number which we are not allowing. So clearly, the greatest lower bound we can give is higher when $g$ is even. 
+         \retTwo
+         Consider two adjacent vertices $u$ and $v$ in $G$. Then for each one of them, draw a BFS tree spanning $G - \{u, v\}$. Let $N_i(u)$ and $N_i(v)$ refer to the $i$th layer of tree coming out of $u$ and $v$ respectively.
 
+         \newpage
 
+         Like before, we must have that for $i < \frac{g}{2} - 1$, all edges with an end in $N_i(u)$ not going to $N_{i-1}(u)$ must be going to $N_{i+1}(u)$, while all edges with an end in $N_i(v)$ not going to $N_{i-1}(v)$ must be going to $N_{i+1}(v)$. Otherwise, we would be able to draw a shorter cycle than length $g$. So: \\ [-6pt]
+         \begin{myIndent}
+            \bullet \quad $N_0(u) \cup N_0(v) = \{u\} \cup \{v\}$ has $2$ vertices.\\
+            \bullet \quad $N_1(u) \cup N_1(v)$ have $2(d-1)$ vertices.\\
+            \bullet \quad $N_2(u) \cup N_2(v)$ must have $2(d-1)^2$ vertices.\\
+            $\phantom{aaaaaaaaaaaaaaa} \vdots$\\
+            \bullet \quad $N_{\frac{g}{2} - 1}$ must have $(d-1)^{{\frac{g}{2} - 1}}$ vertices.\\
+         \end{myIndent}
 
+         Adding up the number of vertices in each of those layers, we get a lower bound for $n$.
+         \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+\end{myIndent}}
+
+A \udefine{Moore graph} is a graph which acheives equality in the Moore Bound.
+
+{\begin{myIndent} \teachComment
+   For $g \in \{3, 4\}$, the Moore graphs are obvious. However, finding Moore graphs when $d \geq 3$ and $g \geq 5$ is an active area of research. \retTwo
+
+   Also, the Petersen graph is a $3$-regular Moore graph with girth $g = 5$.
+\end{myIndent}}
 
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
-
-\begin{myIndent}
-   
-\end{myIndent}
 
 {\color{BrickRed}
    I'm leaving this page as a placeholder. The professor provided a really cool proof by probability of Turán's Theorem. However, I do not have time right now to understand it. (2/20/2024)
