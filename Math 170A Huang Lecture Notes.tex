@@ -28,6 +28,7 @@
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
 \usepackage{relsize}
+\usepackage{xfrac}
 
 % Just am using this to get a dashed line in a table...
 % Also you apparently want this to be inactive if you aren't
@@ -1653,6 +1654,101 @@
       \end{myIndent}}
    \end{myIndent}}
 
-   \markLecture{2/21/2024}
+   \vphantom{\markLecture{2/21/2024}}\markLecture{2/23/2024}
+
+   Suppose $\mMat{A} \in \mathbb{R}^{n\times n}$. Then $\mMat{A}$ is called  \udefine{semisimple} if $\mMat{A}$ has $n$ linearly independent eigenvectors. Otherwise, $\mMat{A}$ is called \udefine{defective}. \retTwo
+
+   \uuline{Power method}:
+   {\begin{myIndent} \hTwo
+      Assume $\mMat{A} \in \mathbb{R}^{n\times n}$ is semisimple. That way, there are $n$ linearly independent\\ eigenvectors: $\mVecAst{v}_1, \mVecAst{v}_2, \ldots, \mVecAst{v}_n$, which form a basis for $\mathbb{R}^n$. Associate $\mVecAst{v}_i$ with the eigenvalue $\lambda_i$ and order the eigenvalues such that $|\lambda_1| \geq |\lambda_2| \geq \cdots \geq |\lambda_n|$.\retTwo
+
+      {\color{BrickRed} Also assume $|\lambda_1| > |\lambda_2|$. Otherwise, this algorithm will not converge.}
+
+      \newpage
+
+      Pre iteration steps:
+      \begin{myIndent}
+         Start with a random $\mVecAst{q}_0 \in \mathbb{R}^n$. Let $s_0$ equal the first entry of $\mVecAst{q}_0$ whose absolute value equals $\|\mVecAst{q}_0\|_\infty$. Then define $\mVecAst{q}_0^{\phantom{.}\prime} = \frac{1}{s_0}\mVecAst{q}_0$. \retTwo
+      \end{myIndent}
+
+      Iterative steps:
+      \begin{myIndent}
+         For $j \geq 0$, define:
+         \begin{itemize}
+            \item $\mVecAst{q}_{j+1} = \mMat{A}\mVecAst{q}_j^{\phantom{.}\prime}$
+            \item $s_{j+1}$ equals the first entry of $\mVecAst{q}_{j+1}$ whose absolute value equals $\|\mVecAst{q}_{j+1}\|_\infty$
+            \item $\mVecAst{q}_{j+1}^{\phantom{.}\prime} = \frac{1}{s_{j+1}}\mVecAst{q}_{j+1}$. \\ [-10pt]
+            
+            {\begin{myIndent}\teachComment
+               Note:\\
+               Dividing by $s_{j+1}$ makes all entries of $\mVecAst{q}_{j+1}^{\phantom{.}\prime}$ have an absolute value of at most $1$. Also, to be clear what the algorithm is saying $s_{j+1}$ equals:
+
+               {\center $\mVecAst{q}_{j+1} = 
+               \begin{bmatrix}
+                  -1 \\ 0 \\ \sfrac{1}{2} \\ 1 \\ 0
+               \end{bmatrix} \Longrightarrow s_{j+1} = -1$ while $\mVecAst{q}_{j+1} = 
+               \begin{bmatrix}
+                  1 \\ 0 \\ \sfrac{1}{2} \\ -1 \\ 0
+               \end{bmatrix} \Longrightarrow s_{j+1} = 1$ \retTwo\par}.
+            \end{myIndent}}
+         \end{itemize}
+         \retTwo
+      \end{myIndent}
+
+      \uuline{Theorem}: If the conditions assumed on the previous page about $\mMat{A}$ are true, then:\\
+      ${\displaystyle \begin{matrix}
+         \phantom{aaaa}s_{j} \longrightarrow \text{ the dominant eigenvalue: } \lambda_1 \\
+         \phantom{aaa}\mVecAst{q}_{j} \longrightarrow \text{ a dominant eigenvector: } \mVecAst{v}_1
+      \end{matrix}}$\retTwo
+
+      {\begin{myIndent} \hThree
+         Intuition why:\\
+         As the algorithm converges, we will get that $\mVecAst{q}_{j+1} = \frac{1}{s_j}\mMat{A}\mVecAst{q}_{j} \approx \mVecAst{q}_{j}$. Or in other words, $\mMat{A}\mVecAst{q}_{j} \approx s_j\mVecAst{q}_{j}$. This indicates that $s_j$ is approaching an eigenvalue of $\mMat{A}$ and $\mVecAst{q}_j$ is approaching an eigenvector of $\mMat{A}$. \retTwo
+
+         As for why $\mVecAst{q}_j$ and $s_j$ are specifically approaching the dominant eigenvector and eigenvalue respectively, note the following:
+         
+         \begin{myIndent} \hFour
+            We know that there exists constants $c_1, c_2, \ldots c_n$ such that\\ $\mVec{q} = c_1\mVecAst{v}_1 + c_2\mVecAst{v}_2 + \ldots + c_n\mVecAst{v}_n$. Thus, we then have that:\\
+            
+            \begin{center}
+               \begin{tabular}{l}
+                  $ \mMat{A}^j\mVec{q} = c_1\lambda_1^j\mVecAst{v}_1 + c_2\lambda_2^j\mVecAst{v}_2 + \ldots + c_n\lambda_n^j\mVecAst{v}_n$ \\
+                  $\phantom{\mMat{A}^j\mVec{q}} = \lambda_1^j\left( c_1\mVecAst{v}_1 + c_2\left(\frac{\lambda_2}{\lambda_1}\right)^j\mVecAst{v}_2 + \ldots + c_n\left(\frac{\lambda_n}{\lambda_1}\right)^j\mVecAst{v}_n \right)$
+               \end{tabular}
+            \end{center}
+            \retTwo
+   
+            Now because we assumed $\lambda_1 > \lambda_i$ for all $i > 1$, we can assume that each $\left(\frac{\lambda_i}{\lambda_1}\right)^j$ will approach $0$ as $j$ gets bigger. Therefore, for large $j$ we have that:
+            
+            {\center $\mMat{A}^j\mVec{q} \approx \lambda_1^{\vphantom{|}j}c_1\mVecAst{v}_1$ \retTwo\par}
+            
+            Now $\mVecAst{q}_j$ is just $\mMat{A}^j\mVecAst{q}$ scaled by some constant. 
+            \begin{myIndent}
+               The reason why we rescale $\mVecAst{q}_j$ in every iteration of the algorithm is\\ because if we didn't, then $\|\mVec{q}_j\|$ would either grow without bound or approach $0$. Hence, our algorithm would either not converge or would converge to a trivial eigenvector: $\mVec{0}$.
+            \end{myIndent}
+
+            \newpage
+
+            So for large $j$, we have that $\mVecAst{q}_j \approx d\mVecAst{v}_1$ where $d$ is some constant. Therefore, we've shown that $\mVecAst{q}_j$ will approach being the dominant eigenvector. \retTwo
+
+            It follows that since $s_j$ approaches the eigenvalue associated with the\\ dominant eigenvector, $s_j$ approaches being the dominant eigenvalue. \retTwo
+         \end{myIndent}
+      \end{myIndent}}
+
+      \teachComment
+      Three more notes about the power method:
+      \begin{myIndent}
+         If $\left|\frac{\lambda_2}{\lambda_1}\right|$ is close to $0$, than the power method will converge quickly.\retTwo
+   
+         If $\left|\frac{\lambda_2}{\lambda_1}\right|$ is cloes to $1$, than the power method will converge slowly.\retTwo
+   
+         The power method takes $\mathcal{O}(n^2N)$ flops where $\mMat{A} \in \mathbb{R}^{n\times n}$ and $N$ is the number of iterations we do. \retTwo
+      \end{myIndent}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   \markLecture{2/26/2024}
+
 \end{document}
 
