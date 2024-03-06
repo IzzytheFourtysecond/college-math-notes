@@ -2568,13 +2568,242 @@
       \end{myIndent}} \retTwo
    \end{myIndent}}
 
-   \markLecture{2/26/2024}
-   For the sake of brevity, From now on I will write $\lim{(c_n)}$ to denote $\lim\limits_{n\rightarrow \infty}(c_n)$ when $c_n$ is a sequence and it is clear from context what index variable is getting arbitrarily\\ [2 pt] large. \retTwo
+   \markLecture{2/26/2024}%
+   For the sake of brevity, from now on I will write $\lim{(c_n)}$ to denote $\lim\limits_{n\rightarrow \infty}(c_n)$ when\\ $c_n$ is a sequence and it is clear from context what index variable is getting arbitrarily\\ [3 pt] large. \retTwo
 
    {\begin{myIndent} \hTwo
-      Proposition \propCount: (Alternating Series Test)\\ Suppose $|c_1| \geq |c_2| \geq \ldots$, $\lim(c_n)$
+      Proposition \propCount: (Alternating Series Test)\\ Suppose $|c_1| \geq |c_2| \geq \ldots$, $\myHS \lim(c_n) = 0$, and $c_{2n+1}\geq0$ and $c_{2n} \leq 0$ for all $n$. Then $\Sigma c_n$ converges.
       
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $a_n = (-1)^{n+1}$ and $b_n = |c_n|$. Since $\Sigma a_n$ is bounded and $b_n \rightarrow 0$, we can apply proposition 57 to get that $\Sigma c_n = \sum a_n b_n$ converges.
+      \end{myIndent}}
+
+      \newpage
+
+      Proposition \propCount: Suppose $\sum\limits_{n=0}^\infty{c_nz^n}$ has a radius of convergence: 1, and that\\ $c_0 \geq c_1 \geq c_2 \geq \ldots \myHS$ and $c_n \rightarrow 0$. Then $\sum c_nz^n$ converges for all $z \in \mathbb{C}$ with\\ [6pt] $|z| = 1$ except possibly $z = 1$.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $a_n = z^n$ and $b_n = c_n$. Obviously, $c_n \rightarrow 0$. Meanwhile, when $|z| = 1$ and $z \neq 1$, we have:
+
+         {\center $ \left| \sum\limits_{k=0}^n{a_k} \right| = \left| \sum\limits_{k=0}^n{z^k} \right| = \left| \frac{1 - z^{n+1}}{1 - z} \right| \leq \frac{2}{|1 - z|}$ \retTwo\par}
+
+         Hence the partials sums of $\Sigma a_n$ are bounded. Therefore, applying\\ proposition 57, we get that $\Sigma c_nz^n = \Sigma a_nb_n$ converges. \retTwo
+      \end{myIndent}}
    \end{myIndent}}
+
+   We say that $\sum a_n$ \udefine{converges absolutely} if $\sum |a_n|$ converges. \retTwo
+
+   {\hTwo
+   \begin{myIndent} \hTwo
+      Proposition \propCount: If $\Sigma a_n$ converges absolutely, then $\Sigma a_n$ converges.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $b_n = |a_n|$. Then as $\Sigma b_n$ converges and $|a_n| \leq b_n$, we can use the\\ comparison test to say that $\Sigma a_n$ converges.\retTwo
+
+         \begin{myDindent}\begin{myIndent} \teachComment
+            Note that the comparison, root, and ratio tests all test for \\absolute convergence. Also, the radius of convergence of a \\power series is also the "radius of absolute convergence". \retTwo
+         \end{myIndent}\end{myDindent}
+      \end{myIndent}}
+
+      Proposition \propCount:
+      \begin{itemize}
+         \item If $\Sigma a_n = A$ and $\Sigma b_n = B$, then $\sum(a_n + b_n) = A + B$.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Set $A_n = \sum\limits_{k=0}^n{a_k}$ and $B_n = \sum\limits_{k=0}^n{b_k}$. Then $A_n \rightarrow A$ and $B_n \rightarrow B$. \\ [6pt]
+            Therefore:
+            
+            {\center $\sum(a_n + b_n) = \lim\limits_{n\rightarrow\infty}\left( \sum\limits_{k=0}^n{(a_k + b_k)} \right) = \lim\limits_{n\rightarrow\infty}(A_n + B_n) = A + B$. \retTwo\par}
+         \end{myIndent}}
+
+         \item Let $\Sigma a_n = A$ and $c \in \mathbb{C}$. Then $\sum{ca_n} = cA$.
+         {\begin{myIndent} \hThree
+            Set $A_n = \sum\limits_{k=0}^n{a_k}$. Then $A_n \rightarrow A$. So:
+
+            {\center $\sum ca_n = \lim\limits_{n\rightarrow\infty}\left( \sum\limits_{k=0}^n{ca_k} \right) = \lim\limits_{n\rightarrow\infty}{cA_n} = cA$ \par}
+            \retTwo
+         \end{myIndent}}
+      \end{itemize}
+   \end{myIndent}}
+
+   \newpage
+
+   The \udefine{Cauchy product} of $\sum\limits_{n=0}^\infty{a_n}$ and $\sum\limits_{n=0}^\infty{b_n}$ is $\sum\limits_{n=0}^\infty{c_n}$ where $c_n = \sum\limits_{k=0}^n{a_kb_{n-k}}$. \retTwo
+
+   {\center\exOne\begin{myClosureOne}{6}
+      The motivation for this definition is that if $\sum\limits_{n=0}^\infty{c_n}$ is the Cauchy product\\ of $\sum\limits_{n=0}^\infty{a_n}$ and $\sum\limits_{n=0}^\infty{b_n}$, then assuming we can regroup terms:
+      
+      {\center\exTwo $\left(a_0 + a_1z + a_2z^2 + \ldots\right)\left(b_0 + b_1z + b_2z^2 + \ldots\right)$\\$\phantom{aaaaaaaaaa} = a_0b_0 + (a_0b_1 + a_1b_0)z + (a_0b_2 + a_1b_1 + a_2b_0)z^2 + \ldots$\\$= c_0 + c_1z + c_2z^2 + \ldots\phantom{aaaaaaaaaaa.aaa}$\retTwo\par}
+
+      That said, sometimes $\left(\sum\limits_{n=0}^\infty{a_n}\right)\left(\sum\limits_{n=0}^\infty{b_n}\right) \neq \left(\sum\limits_{n=0}^\infty{c_n}\right)$.
+      {\begin{myTindent} \teachComment
+         We'll prove a theorem related to this in 140B. \retTwo
+      \end{myTindent}}
+
+      For example: Suppose $a_n = b_n = \left(\frac{(-1)^n}{\sqrt{n+1}}\right)$, and $\Sigma c_n$ is the Cauchy product of $\Sigma a_n$ and $\Sigma b_n$.
+      \begin{myIndent} \exTwo
+         $\Sigma a_n$ and $\Sigma b_n$ converge by the alternating series test (although they don't converge absolutely). However:
+
+         {\center $|c_n| = \left| \sum\limits_{k=0}^n{a_kb_{n-k}} \right| = \left| \sum\limits_{k=0}^n{\frac{(-1)^n}{\sqrt{(k+1)(n-k+1)}}} \right|$ \retTwo\par}
+
+         And since $(k+1)(n-k+1) = (\frac{n}{2} + 1)^2 - (\frac{n}{2} - k)^2 \leq (\frac{n}{2} + 1)^2$, we thus can say that:
+
+         {\center $ \left| \sum\limits_{k=0}^n{\frac{(-1)^n}{\sqrt{(k+1)(n-k+1)}}} \right| \geq \sum\limits_{k=0}^n{\frac{1}{\frac{n}{2} + 1}} = \frac{2(n+1)}{n+2}$. \retTwo\par}
+
+         Thus as $\frac{2(n+1)}{n+2} \not\rightarrow 0$ and $c_n \geq \frac{2(n+1)}{n+2}$, we know that $c_n \not\rightarrow 0$. So,\newline $\sum c_n$ diverges.
+      \end{myIndent}
+   \end{myClosureOne}\par}
+   \retTwo
+   
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: (Merten's Theorem)\\
+      Suppose $\sum a_n = A$ and $\sum b_n = B$ with $\sum a_n$ converging absolutely. Let $\sum c_n$ be the Cauchy product of $\sum a_n$ and $\sum b_n$. Then $\sum c_n = AB$.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Set $A_n = \sum\limits_{k=0}^n{a_k}$, $B_n = \sum\limits_{k=0}^n{b_k}$, and $C_n = \sum\limits_{k=0}^n{c_k}$. Also set $\beta_n = B_n - B$.
+         \newpage
+         Then:\\
+         \begin{tabular}{l}
+            $C_n = c_0 + c_1 + \ldots + c_n$ \\
+            $ \phantom{C_n} = a_0b_0 + (a_0b_1 + a_1b_0) + \ldots + (a_0b_n + \ldots a_nb_0)$ \\
+            $ \phantom{C_n} = a_0B_n + a_1B_{n-1} + \ldots + a_nB_0$ \\
+            $ \phantom{C_n} = a_0(\beta_n + B) + a_1(\beta_{n-1} + B) + \ldots + a_n(\beta_0 + B)$ \\
+            $ \phantom{C_n} = A_nB + a_0\beta_n + a_1\beta_{n-1} + \ldots + a_n\beta_0$ \retTwo
+         \end{tabular}
+
+         Since $A_nB \rightarrow AB$, it suffices to show that $\gamma_n \rightarrow 0$ where
+
+         {\center $\gamma_n = a_0\beta_n + a_1\beta_{n-1} + \ldots + a_n\beta_0$. \retTwo\par}
+
+         Let $\varepsilon > 0$ and set $\alpha = \sum\limits_{n=0}^\infty|a_n|$.\retTwo Since $\beta_n \rightarrow 0$, we can pick $N$ such that $\forall n \geq N, \myHS |\beta_n| < \varepsilon$. Then, for $n \geq N$, we have that:\\
+      \end{myIndent}{\hThree
+      \begin{tabular}{l}
+         $|\gamma_n| = |a_0\beta_n + a_1\beta_{n-1} + \ldots + a_{n-N}\beta_{N} + a_{n-N+1}\beta_{N-1} + \ldots + a_n\beta_0|$ \\ [3pt]
+         $\phantom{|\gamma_n|} \leq |a_0||\beta_n| + |a_1||\beta_{n-1}| + \ldots + |a_{n-N}||\beta_{N}| + |a_{n-N+1}\beta_{N-1} + \ldots + a_n\beta_0|$ \\ [3pt]
+         $\phantom{|\gamma_n|} < \varepsilon \sum\limits_{k=0}^{n-N}\left(|a_k|\right) + |a_{n-N+1}\beta_{N-1} + \ldots + a_n\beta_0|$ \\ [3pt]
+         $\phantom{|\gamma_n|} \leq \varepsilon \alpha + |a_{n-N+1}\beta_{N-1} + \ldots + a_n\beta_0|$\retTwo
+      \end{tabular}}
+      \begin{myIndent} \hThree
+         Now imporantly, $|a_{n-N+1}\beta_{N-1} + \ldots + a_n\beta_0|$ has exactly $N - 1$ terms which all approach a limit of $0$ because $a_k \rightarrow 0$. Thus, whatever it is, we know that $\limsup{|\gamma_n|} \leq \varepsilon\alpha$. \retTwo
+
+         However, $\varepsilon$ was arbitrary. Thus, $\limsup{|\gamma_n|} = 0$. And as $\liminf{|\gamma_n|} \geq 0$ trivially, we can conclude that $|\gamma_n| \rightarrow 0$. \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \markLecture{3/1/2024}
+
+   If $(k_n)$ is a sequence in $\mathbb{N}$ using each natural number precisely once and if we set $a^\prime_n = a_{k_n}$, then the series $\sum a^\prime_n$ is called a \udefine{rearrangement} of $\sum a_n$.\retTwo
+   
+   {\begin{myIndent}\hTwo
+      Proposition \propCount: (Riemann Theorem)\\
+      Suppose $\forall n, \myHS a_n \in \mathbb{R}$, and that $\sum a_n$ converges but not absolutely. Let\\ $-\infty \leq \alpha \leq \beta \leq \infty$. Then there exists a rearrangement $\sum a_n^\prime$ having partial\\ sums $s^\prime_n$ satisfying:
+      \begin{myIndent}
+         \begin{itemize}
+            \item $\liminf(s^\prime_n) = \alpha$
+            \item $\limsup(s^\prime_n) = \beta$
+         \end{itemize}
+         \hThree
+         \newpage
+
+         Proof:\\
+         Set $p_n = \left\{
+         \begin{matrix}
+            a_n & \text{ if } a_n \geq 0\\
+            0 & \text{ otherwise}\\
+         \end{matrix}\right.$ and $q_n = \left\{
+         \begin{matrix}
+            -a_n & \text{ if } a_n \leq 0\\
+            0 & \text{ otherwise}\\
+         \end{matrix}\right.$\retTwo
+         Note that for all $n$, we have that $a_n = p_n - q_n$ and $p_n, q_n \geq 0$.\retTwo
+
+         If $\sum p_n$ converges, then $\sum q_n = \sum(p_n - a_n)$ must converge (see proposition 61). And since $p_n = |p_n|$ and $q_n = |q_n|$, we can use proposition 61 again to get that $\sum(|p_n| + |q_n|)$ converges. However, this is a contradiction because $|a_n| \leq |p_n| + |q_n|$. So by comparison test, $|a_n|$ must converge absolutely which we assumed was not the case. \retTwo
+
+         So, $\sum p_n$ must diverge. By similar reasoning, $\sum q_n$ must diverge.
+         {\begin{myIndent} \hFour
+            Note that $\sum p_n$ and $\sum q_n$ specifically approach $+\infty$ because their partial\\ sums are monotonically increasing.
+            \retTwo
+         \end{myIndent}}
+
+         Let $P_1, P_2, \ldots \hspace{0.2em}$ be the list (in order) of the non-negative terms from $a_1, a_2, \ldots$\\ Also let $Q_1, Q_2, \ldots \hspace{0.2em}$ be the list (in order) of the absolute values of the strictly negative terms from $a_1, a_2, \ldots \hspace{0.2em}$ Then $\sum P_n$ and $\sum Q_n$ diverge since they only differ from $\sum p_n$ and $\sum q_n$ by $0$ terms.\retTwo
+
+         Choose sequences $(\alpha_n), (\beta_n)$ in $\mathbb{R}$ with $\alpha_n \rightarrow \alpha$, $\beta_n \rightarrow \beta$, $\beta_1 > 0$,\\
+         $\alpha_{n-1} < \beta_n$, and $\alpha_n < \beta_n$. \retTwo
+
+         Next, pick $m_1, k_1 \in \mathbb{Z}^+$ to be the least integers such that:\\ $P_1 + P_2 + \ldots + P_{m_1} > \beta_1$ and $P_1 + P_2 + \ldots + P_{m_1} - Q_1 - Q_2 - \ldots - Q_{k_1} < \alpha_1$. \retTwo
+
+         Continue inductively, picking the least $m_n, k_n \in \mathbb{Z}^+$ such that:
+      \end{myIndent}
+      \end{myIndent}}{\hThree
+      \begin{enumerate} 
+         \item[(1)] $P_1 + P_{m_1} - Q_1 - \ldots - Q_k + \ldots - Q_{k_{n-1}} + P_{m_{n-1} + 1} + P_{m_n} > \beta_n$
+         \item[(2)] $P_1 + P_{m_1} - Q_1 - \ldots - Q_k + \ldots - Q_{k_{n-1}} + P_{m_{n-1} + 1} + P_{m_n} - Q_{k_{n-1} + 1} - \ldots - Q_{k_n} < \alpha_n$
+      \end{enumerate}
+      }
+      {\begin{myIndent}\hTwo
+      {\begin{myIndent}\hThree
+
+         Let $x_n$ be the left side of equation (1) written just above and $y_n$ be the left side of equation (2) written just above. We claim that the rearrangement\\ $P_1 + \ldots + P_{m_1} - Q_1 - \ldots - Q_{k_1} + P_{m_1 + 1} + \cdots\cdots$ is what we want. \retTwo
+
+         Clearly $x_n$ and $y_n$ are partial sums. Also since $m_n$ was chosen to be least, we have that $x_n - P_{m_n} \leq \beta_n$. So, $\beta_n < x_n \leq \beta_n + P_{m_n}$. Similarly,\\ $\alpha_n - Q_{k_n} \leq y_n < \alpha_n$. Since $\sum a_n$ converges, we have that $a_n \rightarrow 0$. Hence, $P_n \rightarrow 0$ and  $Q_n \rightarrow 0$. It follows that $x_n \rightarrow \lim{\beta_n} = \beta_n$ and\\ $y_n \rightarrow \lim{\alpha_n} = \alpha$.\retTwo
+
+         So $\beta$ and $\alpha$ are subsequential limits of the partial sums $s_n^\prime$.
+
+         \newpage
+
+         If $\beta = +\infty$, then we must have that $\limsup{s_n^\prime} = +\infty = \beta$. Now suppose $\beta \neq +\infty$. Since $\limsup{x_n} = \lim{x_n} = \beta$, by proposition 41, for any real number $r > \beta$, there exists $N$ with $\forall n \geq N, \myHS x_n < r$. Let $r > \beta$ and let $N$ be as above. \retTwo
+
+         Pick $I$ with $s_I^\prime = x_N$ Now consider any $i \geq I$. Then there is $n \geq N$ with:
+      \end{myIndent}}
+      \end{myIndent}}{\hThree
+      $s_i^\prime = \left\{
+      \begin{matrix}
+         y_{n-1} + P_{m_{n-1}+1} + \ldots + P_j\phantom{aaaaaaaaaaaaaaaaaa} & \text{ for some } m_{n-1} + 1 \leq j \leq m_n \\
+         y_{n-1} + P_{m_{n-1}+1} + \ldots + P_j - Q_{k_{n-1}+1} - \ldots - Q_j & \text{ for some } k_{n-1} + 1 \leq j \leq k_n\phantom{a.}
+      \end{matrix}\right.$\retTwo
+      }
+      {\begin{myIndent}\hTwo
+      {\begin{myIndent}\hThree
+
+         In both cases, $s_i^\prime \leq y_{n-1} + P_{m_{n-1}+1} + \ldots + P_m = x_n < r$. Therefore, $\limsup{s_i^\prime} = \beta$ by proposition 41. \retTwo
+
+         We can do similar reasoning to show that $\liminf{s_i^\prime} = \alpha$. $\blacksquare$ \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: If $\forall n, \myHS a_n \in \mathbb{C}$ and if $\sum a_n$ converges absolutely, then for any\\ rearrangement $\sum a_n^\prime$, we have that $\sum a_n^\prime$ converges to $\sum a_n$.
+
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Let $(k_n)$ be a sequence in $\mathbb{Z}^+$ using each element of $\mathbb{Z}^+$ precisely once. \retTwo
+
+         Set $A = \sum a_n$, let $\varepsilon > 0$, and pick $N_1$ with $\forall n \geq N_1, \myHS \left| \sum\limits_{k=1}^n{(a_n)} - A \right| < \sfrac{\varepsilon}{2}$. \retTwo
+
+         By the Cauchy criterion, we can pick $N_2$ with $\forall m \geq N_2$, $\sum\limits_{k=N_2}^m|a_k| < \sfrac{\varepsilon}{2}$. \retTwo
+
+         Thus for all finite $I \subset \{N_2, N_2 + 1, \ldots\}$, we have that $\sum\limits_{k\in I}|a_k| < \sfrac{\varepsilon}{2}$. \retTwo
+
+         Set $N = \max(N_1, N_2)$ and pick $p \in \mathbb{Z}^+$ large enough that\\ $\{k_1, \ldots, k_p\} \supseteq \{1, 2, \ldots, N\}$. Then for all $q \geq p$, we have that:\\
+         
+         \begin{tabular}{l}
+            $\left| \sum\limits_{n=1}^q (a_{k_n}) - A \right| \leq \left| \sum\limits_{n=1}^q (a_{k_n}) - \sum\limits_{n=1}^N (a_n) \right| + \left| \sum\limits_{n=1}^N (a_n) - A \right|$ \\ [8pt]
+
+            $\phantom{\left| \sum\limits_{n=1}^q (a_{k_n}) - A \right|} < \left(\sum\limits_{n \in \{k_1, \ldots, k_p\} \setminus \{1, 2, \ldots, N\}}|a_n|\right) + \sfrac{\varepsilon}{2}$ \\ [8pt]
+
+            $\phantom{\left| \sum\limits_{n=1}^q (a_{k_n}) - A \right|} < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$\retTwo
+         \end{tabular}
+
+         We thus conclude that $\sum a_{k_n}$ converges to $A$.
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \newpage
+
+   \markLecture{3/4/2024}
 
    % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
    \newpage
@@ -2619,7 +2848,9 @@
 
       \begin{tabular}{ c|c||c|c }
          Proposition Number & Label in Textbook & Proposition Number & Label in Textbook \\ \hline
-         \myVS 59 &  & 60 &  \\ \hdashline[10pt/3pt]
+         \myVS 59 & 3.44 & 60 & 3.45 \\ \hdashline[10pt/3pt]
+         \myVS 61 & 3.47 & 62 & 3.50 \\ \hdashline[10pt/3pt]
+         \myVS 63 & 3.54 & 64 & 3.55 \\ \hdashline[10pt/3pt]
       \end{tabular}
 
    \end{allowTableDashes}
