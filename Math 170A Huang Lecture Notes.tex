@@ -176,6 +176,14 @@
    end={{\rightharpoonup}}, space before arrow=0.15em,
    space after arrow=-0.045em,
 }
+
+\NewOverArrowCommand{myBar}{%
+   start = {{\relbar}},
+   middle = {{\relbar}},
+   end={{\relbar}}, space before arrow=0em,
+   space after arrow=-0.13em,
+}
+
 \newcommand{\mVec}[1]{\myVector{#1}}
 \newcommand{\mVecAst}[1]{\myVector*{#1}}
 \newcommand{\mMat}[1]{\mathbf{#1}}
@@ -1747,8 +1755,88 @@
    \end{myIndent}}
 
    \mySepTwo
-
+   \retTwo
    \markLecture{2/26/2024}
+
+   Let $\lambda$ be an eigenvalue of a matrix $\mMat{A}$.
+   \begin{itemize}
+      \item Its \udefine{geometric multiplicity} is $\dim{(\ker{(\lambda \mMat{I} - \mMat{A})})}$.
+      
+      {\begin{myTindent} \teachComment
+         $\ker(\mMat{A})$ is a common way of referring to the null space of  $\mMat{A}$.
+      \end{myTindent}}
+
+      \item Its \udefine{algebraic multiplicity} is its multiplicity as a root of the equation:\\ $\det(\lambda \mMat{I} - \mMat{A}) = 0$ \retTwo
+   \end{itemize}
+
+   Suppose $\mMat{A}, \mMat{B} \in \mathbb{R}^{n\times n}$. They are \udefine{similar} if there exists an invertible matrix $\mMat{S} \in \mathbb{R}^{n\times n}$ such that $\mMat{A}\mMat{S} = \mMat{S}\mMat{B}$ (or in other words: $\mMat{A} = \mMat{S}\mMat{B}\mMat{S}^{-1})$. \retTwo
+
+   Furthermore, $\mMat{A}$ and $\mMat{B}$ are \udefine{orthogonally similar} if $\mMat{S}$ is orthogonal.
+
+   
+   {\begin{myIndent} \hTwo
+      \uuline{Theorem}: If $\mMat{A}$, $\mMat{B}$ are similar, then they have the same eigenvalues. 
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            $\mMat{A}\mVec{v} = \lambda_A \mVec{v} \Longrightarrow \mMat{S}\mMat{B}\mMat{S}^{-1}\mVec{v} = \lambda_A \mVec{v} \Longrightarrow \mMat{B}\left(\mMat{S}^{-1}\mVec{v}\right) = \lambda_A \left(\mMat{S}^{-1}\mVec{v}\right)$\\
+            $\mMat{B}\mVec{v} = \lambda_B \mVec{v} \Longrightarrow \mMat{S}^{-1}\mMat{A}\mMat{S}\mVec{v} = \lambda_B \mVec{v} \Longrightarrow \mMat{A}\left(\mMat{S}\mVec{v}\right) = \lambda_B \left( \mMat{S}\mVec{v} \right)$ \retTwo
+         \end{myIndent}}
+
+      Observation: If $\mMat{B} = \mMat{S}^{-1}\mMat{A}\mMat{S}$ and $\mVec{v}$ is an eigenvector of $\mMat{A}$ with respect to the\\ eigenvalue $\lambda$, then $\mMat{S}^{-1}\mVec{v}$ is an eigenvector of $\mMat{B}$ with respect to $\lambda$.
+   \end{myIndent}}
+
+   \newpage
+
+   Let $\mMat{A} \in \mathbb{C}^{n\times n}$ be a complex square matrix.
+   \begin{itemize}
+      \item $\myBar{\mMat{A}}$ refers to the matrix whose elements are the complex conjugates of the\\ elements of $\mMat{A}$. 
+      
+      \item $\mMat{A}^\ast = \myBar{\mMat{A}}^T$ is the \udefine{conjugate transpose} of $\mMat{A}$.
+      {\begin{myTindent} \teachComment
+         This is a complex generalizations of transposes.
+      \end{myTindent}}
+   \end{itemize}
+
+   $\mMat{U} \in \mathbb{C}^{n\times n}$ is called \udefine{unitary} if $\mMat{U}\mMat{U}^* = \mMat{U}^*\mMat{U} = \mMat{I}$. 
+   {\begin{myTindent}\begin{itemize} \teachComment
+      \item[] \phantom{.}This is a complex generalizations of orthogonality.\retTwo
+   \end{itemize}\end{myTindent}}
+
+   {\begin{myIndent} \hTwo
+      \uuline{Schur Theorem}: Let $\mMat{A} \in \mathbb{C}^{n\times n}$. Then there exists a unitary matrix $\mMat{U} \in \mathbb{C}^{n\times n}$ and an upper triangular matrix $\mMat{T} \in \mathbb{C}^{n\times n}$ such that $\mMat{A} = \mMat{U}\mMat{T}\mMat{U}^*$. \retTwo
+
+      \uuline{Real Schur Theorem}: If $\mMat{A} \in \mathbb{R}^{n\times n}$, then there exists an orthogonal matrix $\mMat{Q} \in \mathbb{R}^{n\times n}$ and "almost" upper triangular matrix $\mMat{T} \in \mathbb{R}^{n\times n}$ such that $\mMat{A} = \mMat{Q}\mMat{T}\mMat{Q}^T$. 
+      
+      
+      \begin{myTindent}
+         \myComment I don't think we will be learning how to take these decompositions in this class\dots \retTwo
+      \end{myTindent}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   \markLecture{2/28/2024}
+
+   QR-iteration: (Say we are given $\mMat{A} \in \mathbb{C}^{n\times n}$)
+   {\begin{myIndent} \hTwo
+      Let $\mMat{A}_0 = \mMat{A}$.\\
+      For $k = 0, 1, \ldots$
+      \begin{myIndent}
+         Compute a QR decomposition of $\mMat{A}_k$: $\mMat{A}_k = \mMat{Q}_{k+1}\mMat{R}_{k+1}$.\\
+         % {\begin{myIndent}\myComment
+         %    (\dots don't mind we never covered decomposing a general complex matrix\dots)
+         % \end{myIndent}}
+         Then define $\mMat{A}_{k+1} = \mMat{R}_{k+1}\mMat{Q}_{k+1}$ \retTwo
+      \end{myIndent}
+
+
+      \hThree Just by sight, this is a very expensive algorithm flops wise. So what's the point?
+      {\begin{myIndent} \hFour
+         $\mMat{A}_{k+1}$
+      \end{myIndent}}
+
+   \end{myIndent}}
 
 \end{document}
 
