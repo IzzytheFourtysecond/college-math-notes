@@ -2805,6 +2805,178 @@
 
    \markLecture{3/4/2024}
 
+   Suppose $X$ and $Y$ are metric spaces, $E \subseteq X$, and $f: E\rightarrow Y$. Let $p \in E^\prime$ and $q \in Y$. We say the \udefine{limit} of $f$ at $p$ is $q$, written as:
+   
+   {\center $\lim\limits_{x\rightarrow p}f(x) = q$ or alternatively $f(x)\rightarrow q$ as $x \rightarrow p$,\\ [4pt]\par}
+
+   if $\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat \forall x \in E, \myHS 0 < d_X(x, p) < \delta \Longrightarrow d_Y(f(x), q) < \varepsilon$. \retTwo
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: $\lim\limits_{x\rightarrow p}f(x) = q$ if and only if for all sequences $(p_n)$ in $E$ satisfying $\forall n,\myHS p_n \neq p$ and $p_n \rightarrow p$, we have that $\lim\limits_{n\rightarrow \infty}f(p_n) = q$. \retTwo
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         ($\Longrightarrow$) Consider a sequence $(p_n)$ in $E$ with $\forall n, \myHS p_n \neq p$ and $p_n \rightarrow p$.\\ Let $\varepsilon > 0$. Since $\lim\limits_{x \rightarrow p}f(x) = q$, there is $\delta > 0$ such that\\ $\forall x \in E, \myHS 0 < d_X(x, p) < \delta \Longrightarrow d_Y(f(x), q) < \varepsilon$. \retTwo
+
+         Since $p_n \rightarrow p$, pick $N$ with $\forall n \geq N$, $d_X(p_n, p) < \delta$. Then for $n \geq N$, we have $0 < d_X(x, p) < \delta$, and therefore $d_Y(f(p_n), q) < \varepsilon$. Thus $\lim\limits_{n\rightarrow \infty}f(p_n) = q$. \retTwo
+
+         ($\Longleftarrow$) Assume the statement is false. Then:\\ $\exists \varepsilon > 0 \suchthat \forall \delta > 0, \myHS \exists x \in E \suchthat 0 < d_X(x, p) < \delta \text{ and } d_Y(f(x), q) \geq \varepsilon$. \retTwo
+
+         For each $n \in \mathbb{Z}^+$, using $\delta = \frac{1}{n}$, we obtain a point $p_n \in E$ with\\ $0 < d_X(p_n, p) < \frac{1}{n}$ and $d_Y(f(p_n), q) \geq \varepsilon$. Then $(p_n)$ is a sequence in $E$ with $\forall n, \myHS p_n \neq p$ and $\lim(p_n) = p$ but $(f(p_n))$ does not converge to $q$. So, we've shown the contrapositive.\retTwo
+      \end{myIndent}}
+
+      Corollary: If $\lim\limits{x\rightarrow p}f(x) = q_1$ and $\lim\limits{x\rightarrow p}f(x) = q_2$, then $q_1 = q_2$.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Limits of sequences are unique. So, we can apply the previous theorem to easily show this corollary. \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   For functions $f, g: E \rightarrow \mathbb{C}$, we can build new functions:
+   \begin{itemize}
+      \item $(f + g)(x) = f(x) + g(x)$
+      \item $(f - g)(x) = f(x) - g(x)$
+      \item $(fg)(x) = f(x)g(x)$
+      \item $\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} \myHS\myHS$ (defined on $\{x \in E \mid g(x) \neq 0\}$)
+   \end{itemize}
+
+   \newpage
+
+   
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Let $X$ be a metric space, $E \subseteq X$, and $f, g: E \rightarrow \mathbb{C}$. Let $p \in E^\prime$. If $\lim\limits_{x\rightarrow p}f(x) = A$ and $\lim\limits_{x\rightarrow p}g(x) = B$, then:
+      \begin{itemize}
+         \item $\lim\limits_{x\rightarrow p}(f+g)(x) = A + B$
+         \item $\lim\limits_{x\rightarrow p}(f-g)(x) = A - B$
+         \item $\lim\limits_{x\rightarrow p}(fg)(x) = AB$
+         \item $\lim\limits_{x\rightarrow p}\left(\frac{f}{g}\right)(x) = \frac{A}{B}$ when $B \neq 0$.
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Apply the corresponding parts of proposition 33, a proposition about\\ sequences, as well as proposition 65. \retTwo
+         \end{myIndent}}
+      \end{itemize}
+
+      Similarly, if $\mVec{f}, \mVec{g}: E \rightarrow \mathbb{R}^k$, then:
+      \begin{itemize}
+         \item $\lim\limits_{x\rightarrow p}(\mVec{f}+\mVec{g})(x) = A + B$
+         \item $\lim\limits_{x\rightarrow p}(\mVec{f} \cdot \mVec{g})(x) = AB$
+         
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Apply proposition 34 and proposition 65. \retTwo
+         \end{myIndent}}
+      \end{itemize}
+   \end{myIndent}}
+
+   \markLecture{3/6/2024}
+
+   Let $X$, $Y$ be metric spaces, $E \subseteq X$, and $f: E \rightarrow Y$. For $p \in E$, we say $f$\\ is \udefine{continuous} at $p$ if:
+
+   {\centering$\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat \forall x \in E, \myHS 0 \leq d_X(x, p) < \delta \Longrightarrow d_Y(f(x), q) < \varepsilon$.\retTwo\par}
+
+   If $f$ is continuous at every point in its domain $E$, then we call $f$ \udefine{continuous}. \retTwo
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: If $p \in E\setminus E^\prime$, then every function $f: E \rightarrow Y$ will be continuous at $p$. If $p \in E \cap E^\prime$, then $f$ is continuous at $p$ if and only if $\lim\limits_{x\rightarrow p}f(x) = f(p)$. \retTwo
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         First suppose $p \in E\setminus E^\prime$. Then there exists $\delta > 0$ with $(B_\delta(p) \setminus \{p\}) \cap E = \emptyset$. Hence, $B_\delta(p) \cap E = \{p\}$. Then for any $x \in E$ and function $f$,
+      \end{myIndent}}{\hThree
+         {\center $ d_X(x, p) < \delta \Rightarrow x \in B_\delta(p) \cap E \Rightarrow x = p \Rightarrow f(x) = f(p) \Rightarrow d_y(f(x), f(p)) = 0$. \retTwo\par}
+      }{\begin{myIndent} \hThree
+         Thus $f$ is continuous at $p$. \retTwo
+
+         \newpage
+
+         Next, notice that for $p \in E \cap E^\prime$ and any function $f: E \rightarrow Y$, we have that:\\
+
+         {\center${\displaystyle
+         \begin{matrix}
+            \lim\limits_{x\rightarrow p}f(x) = f(p) \\
+            \Updownarrow \\
+            \vphantom{\int^b}\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat \forall x \in E, \myHS 0 < d_X(x, p) < \delta \Longrightarrow d_Y(f(x), f(p)) < \varepsilon \\
+            \vphantom{\int^b}\Updownarrow \\
+            \vphantom{\int^b}\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat \forall x \in E, \myHS 0 \leq d_X(x, p) < \delta \Longrightarrow d_Y(f(x), f(p)) < \varepsilon \\
+            \vphantom{\int^b}\Updownarrow \\
+            \vphantom{\int^b}f \text{ is continuous at } p
+         \end{matrix}
+         }$\par} \retTwo\retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: Let $X, Y, Z$ be metric spaces, let $E_x \subseteq X$, $E_y \subseteq Y$, $f: E_x \rightarrow E_y$, and $g: E_y \rightarrow Z$. Define $h: E_x \rightarrow Z$ by $h(x) = (g\circ f)(x)$. If $f$ is continuous at $p$ and $g$ is continuous at $f(p)$, then $h$ is continuous at $p$.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $\varepsilon > 0$. Since $g$ is continuous at $f(p)$, there is $\kappa > 0$ with:
+
+         {\centering $\forall y \in E_y, d_Y(y, f(p)) < \kappa \Rightarrow d_Z(g(y), g(f(p))) < \varepsilon$ \retTwo\par}
+
+         Then since $f$ is continuous at $p$, there is $\delta > 0$ with:
+      \end{myIndent}}{\hThree
+         {\centering $\forall x \in E_x, d_X(x, p) < \delta \Rightarrow d_Y(f(x), f(p)) < \kappa \Rightarrow d_Z(g(f(x)), g(f(p))) < \varepsilon $ \retTwo\par}
+      }{\begin{myIndent} \hThree
+
+         So $\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat d_X(x, p) < \delta \Longrightarrow d_Z(h(x), h(p)) < \varepsilon$. \retTwo\retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: $f: X\rightarrow Y$ is continuous if and only if $f^{-1}(V)$ is an open subset of $X$ whenever $V$ is an open subset of $Y$.
+      {\begin{myIndent} \hThree
+         Proof:\\
+         $(\Longrightarrow$) Let $V \subseteq Y$ be open. Consider any $p \in f^{-1}(V)$. Then $f(p) \in V$. And since $V$ is open, there is some $\varepsilon > 0$ with $B_\varepsilon(f(p)) \subseteq V$. \retTwo
+
+         Since $f$ is continuous, there is $\delta > 0$ such that for all $x \in X$,\\ $d_X(x, p) < \delta \Longrightarrow d_Y(f(x), f(p)) < \varepsilon$. Thus, $f(B_\delta(p)) \subseteq B_\varepsilon(f(p)) \subseteq V$, meaning that $B_\delta(p) \subseteq f^{-1}(V)$. Thus $p$ is an interior point of $f^{-1}(V)$. So we conclude that $f^{-1}(V)$ is open. \retTwo
+
+         ($\Longleftarrow$) Let $p \in X$ and let $\varepsilon > 0$. Set $V = B_\varepsilon(f(p))$. Then $V$ is open since $V$ is a ball, which in turn means that $f^{-1}$ is open. Clearly, $p \in f^{-1}(V)$, and since this set is open, there exists $\delta > 0$ with $B_\delta(p) \subseteq f^{-1}(V)$.
+
+         \newpage
+
+         Then $\forall x \in X$,\\
+         \begin{myIndent}
+            \begin{tabular}{l}
+               $d_X(x, p) < \delta \Longrightarrow x \in B_\delta(p) \subseteq f^{-1}(V)$ \\
+               $\phantom{d_X(x, p) < \delta } \Longrightarrow x \in f^{-1}(V)$ \\
+               $\phantom{d_X(x, p) < \delta } \Longrightarrow f(x) \in V = B_\varepsilon(f(p))$ \\
+               $d_Y(f(x), f(p)) < \varepsilon$. \retTwo
+            \end{tabular}
+         \end{myIndent}
+         Thus $f$ is continuous at $p$. So $f$ is a continuous function. \retTwo
+      \end{myIndent}}
+
+      Corollary: $f: X \rightarrow Y$ is continuous if and only if $f^{-1}(C)$ is closed whenever $C \subseteq Y$ is closed.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         For any set $D \subseteq Y$, we have that $f^{-1}(Y \setminus D) = X \setminus f^{-1}(D)$. Therefore, this corollary follows from the previous proposition in addition to the duality of open / closed sets under complements. \retTwo \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: If $f, g: X \rightarrow \mathbb{C}$ are continuous, then so are $f + g$, $f - g$, $fg$, and $\frac{f}{g}$.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         At isolated points, there is nothing to prove. At limit points, this follows from proposition 66. \retTwo \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount:
+      \begin{itemize}
+         \item[(a)] Let $f_1, f_2, \ldots, f_k: X \rightarrow \mathbb{R}$ and define $\mVec{f} : X \rightarrow \mathbb{R}^k$ by\\ $\mVec{f}(x) = (f_1(x), f_2(x), \ldots, f_k(x))$. Then $\mVec{f}$ is continuous if and only if $\forall 1 \leq i \leq k$, $f_i$ is continuous.
+         
+         {\begin{myIndent} \hThree
+            Proof: Use proposition 67, then 65, and then 34. \retTwo
+         \end{myIndent}}
+
+         \item[(b)] If $\mVec{f}$, $\mVec{g}: X \rightarrow \mathbb{R}^k$ are continuous, then so are $\mVec{f} + \mVec{g}$, $\mVec{f} - \mVec{g}$, and $\mVec{f} \cdot \mVec{g}$.
+         
+         {\begin{myIndent} \hThree
+            Proof: Use proposition 67 and then 66. \retTwo
+         \end{myIndent}}
+      \end{itemize}
+   \end{myIndent}}
+
+   \markLecture{3/8/2024}
+
    % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
    \newpage
    {\huge \color{Black} \textbf{An Incomplete List of How The Proposition Numbering in my Notes Lines up With Our Textbook:} \retTwo}
@@ -2851,6 +3023,13 @@
          \myVS 59 & 3.44 & 60 & 3.45 \\ \hdashline[10pt/3pt]
          \myVS 61 & 3.47 & 62 & 3.50 \\ \hdashline[10pt/3pt]
          \myVS 63 & 3.54 & 64 & 3.55 \\ \hdashline[10pt/3pt]
+         \myVS 65 & 4.2 & 66 & 4.4 \\ \hdashline[10pt/3pt]
+         \myVS 67 & 4.6 & 68 & 4.7 \\ \hdashline[10pt/3pt]
+         \myVS 69 & 4.8 & 70 & 4.9 \\ \hdashline[10pt/3pt]
+         \myVS 71 & 4.10 & 72 &  \\ \hdashline[10pt/3pt]
+         \myVS 73 &  & 74 &  \\ \hdashline[10pt/3pt]
+         \myVS 75 &  & 76 &  \\ \hdashline[10pt/3pt]
+         \myVS 77 &  & 78 &  \\ \hdashline[10pt/3pt]
       \end{tabular}
 
    \end{allowTableDashes}
