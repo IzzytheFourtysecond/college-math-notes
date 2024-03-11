@@ -1649,7 +1649,7 @@
          \end{tabular} \retTwo
       \end{myIndent}}
 
-      Then we define the Cantor set as $C = {\displaystyle \bigcap_{\phantom{^+}n\in\mathbb{Z}^\geq}{C_n}}$. \retTwo
+      Then we define the Cantor set as $C = {\displaystyle \bigcap_{\phantom{^+}n\in\mathbb{Z}^+}{C_n}}$. \retTwo
 
    \end{myIndent}
 
@@ -2977,6 +2977,104 @@
 
    \markLecture{3/8/2024}
 
+   \exOne
+   The map sending $\mVec{x} = (x_1, x_2, \ldots, x_k) \in \mathbb{R}^k$ to $x_i$ is continuous (this is trivial to check). Therefore, for $n_1, n_2, \ldots, n _k \in \mathbb{Z}^+$, the map:
+    
+   {\centering$\mVec{x} = (x_1, x_2, \ldots, x_k) \mapsto x_1^{n_1}x_2^{n_2}\cdots x_k^{n_k}$\par}
+
+   is continuous by proposition 70.
+
+   \newpage
+
+   In turn, this means that given a \udefine{polynomial}:
+   
+   {\center $p(\mVec{x}) = {\displaystyle\sum\limits_{(n_1, \ldots, n_k) \in {\mathbb{Z}^+}^k}{c_{(n_1, \ldots, n_k)}x_1^{n_1}x_2^{n_2}\cdots x_k^{n_k}}}$ \par}
+
+   where all but finitely many $(n_1, \ldots, n_k) \in {\mathbb{Z}^+}^k$ are zero, we have that $p(\mVec{x})$ is\\ continuous by proposition 70 and the previous observation. \retTwo
+
+   Next, this means that given a \udefine{rational function} $\frac{p(\mVec{x})}{q(\mVec{x})}$ where $p$ and $q$ are\\ polynomials, we have that that rational function is continuous on its domain (once again because of proposition 70). \retTwo \retTwo
+
+   Another continuous function is: $\mVec{x} \in \mathbb{R}^k \mapsto \|\mVec{x}\|$ (this is trivial to check).
+
+   \hOne
+   \mySepTwo
+
+   A function $f: E \rightarrow Y$ (where $Y$ is a metric space) is \udefine{bounded} if its image $f(E)$ is a bounded set in $Y$.
+   
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Let $X, Y$ be metric spaces. If $f: X \rightarrow Y$ is continuous and $X$ is compact, then $f(X)$ is compact.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Let $\{V_\alpha \mid \alpha \in A\}$ be an open cover of $f(X)$. Then by proposition 69, each $f^{-1}(V_\alpha)$ is open. So $\{f^{-1}(V_\alpha) \mid \alpha \in A\}$ is an open cover of $X$. \retTwo
+
+         Since $X$ is compact, there are $\alpha_1, \ldots, \alpha_n \in A$ with $X \subseteq {\displaystyle \bigcup\limits_{i=1}^n{f^{-1}(V_{\alpha_i})}}$. \\ Therefore, $f(X) \subseteq {\displaystyle \bigcup\limits_{i=1}^n{V_{\alpha_i}}}$. So, we conclude that $f(X)$ is compact. \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: If $X$ is a compact metric space and $f: X \rightarrow \mathbb{R}^k$ is continuous, then $f(X)$ is closed and bounded.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         This is just proposition 72 combined with proposition 28 (basically applying the previous proposition to $\mathbb{R}^k$). \retTwo \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: (Extreme Value Theorem)\\
+      If $X$ is a compact metric space and $f: X\rightarrow \mathbb{R}$ is continuous, then $f$ achieves a minimum and maximum value, meaning there are $p, q \in X$ with $f(p) = \sup{f(X)}$ and $f(q) = \inf{f(X)}$.
+
+      \newpage
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         By proposition 73, we know that $f(X)$ is closed and bounded. Thus as\\ $\inf{f(X)}$ and $\sup{f(X)}$ are in $\overbar{f(X)}$, we have that $\sup{f(X)} \in f(X)$\\ [4pt] and $\inf{f(X)} \in f(X)$. \retTwo\retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: Let $X$ and $Y$ be metric spaces. If $f: X \rightarrow Y$ is a continuous\\ bijection and $X$ is compact, then $f^{-1}: Y \rightarrow X$ is continuous.
+
+      {\begin{myIndent} \hThree
+         Proof:\\
+         By proposition 69, it suffices to show that $\left(f^{-1}\right)^{-1}(U) = f(U)$ is open\\ whenever $U \subseteq X$ is open. \retTwo
+
+         Let $U \subseteq X$ be open. Then $X \setminus U$ is closed. Since $X$ is compact, $X \setminus U$ is compact. Therefore, $f(X \setminus U)$ is compact by proposition 72, which means that $f(X \setminus U)$ is closed. \retTwo
+
+         In turn, $Y \setminus f(X \setminus U)$ is open. And, since $f$ is bijective, $f(X \setminus U) = Y \setminus f(U)$. So, $Y \setminus f(X \setminus U) = Y \setminus (Y \setminus f(U)) = f(U)$. Thus, $F(U)$ is open and we can conclude that $f^{-1}$ is continuous. \retTwo
+      \end{myIndent}}
+
+      
+      {\center\teachComment\begin{myClosureOne}{5}
+         Generally, it is not always true that the inverse of a continuous function is continuous. For example, consider $f: (-1, 0] \cup [1, 2] \rightarrow [0, 2]$ with the rule: $f(x) = |x|$. $f$ is continuous on its domain but $f^{-1}$ is not continuous at $x = 1$.
+      \end{myClosureOne}\par}
+      \retTwo\retTwo
+   \end{myIndent}}
+
+   Let $X$ and $Y$ be metric spaces and $f: X\rightarrow Y$. We say $f$ is \udefine{uniformly continuous} if\\ [1pt] $\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat \forall x_1, x_2 \in X, \myHS d_X(x_1, x_2) < \delta \Longrightarrow d_y(f(x_1), f(x_2)) < \varepsilon$. \retTwo
+   
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Let $X$ and $Y$ be metric spaces. If $X$ is compact and $f: X \rightarrow Y$ is continuous, then $f$ is uniformly continuous.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Consider the following lemma: If $X$ and $Y$ are metric spaces and $f: X \rightarrow Y$\\ is continuous, then for every $p \in X$ and $\varepsilon > 0$, there is $\delta > 0$ such that:
+
+         {\centering $ \forall x_1 \in B_\delta(p), \myHS \forall x_2 \in X, \myHS d_X(x_1, x_2) < \delta \Longrightarrow d_Y(f(x_1), f(x_2)) < \varepsilon$.\par}
+         
+         {\begin{myIndent} \hFour
+            Proof:\\
+            Since $f$ is continuous at $p$, we can find $\delta > 0$ with:\\ $\forall x \in X, \myHS d_X(x, p) < 2\delta \Longrightarrow d_Y(f(x), f(p)) < \frac{\varepsilon}{2}$.
+
+            \newpage
+
+            Now consider $x_1 \in B_\delta(p)$ and $x_2 \in X$ with $d_X(x_1, x_2) < \delta$.\\ Then $d_X(x_1, p) < \delta$ and $d_X(x_2, p) \leq d_X(x_2, x_1) + d_X(x_1, p) < 2\delta$. So $d_Y(f(x_1), f(p)) < \frac{\varepsilon}{2}$ and $d_Y(f(x_2), f(p)) < \frac{\varepsilon}{2}$. Finally, by the triangle\\ inequality:
+            $ d_Y(f(x_1), f(x_2)) \leq d_Y(f(x_1), f(p)) + d_Y(f(x_2), f(p)) < \varepsilon$.\retTwo
+         \end{myIndent}}
+
+         Now let $\varepsilon > 0$. Then for each $x \in X$, pick $\delta_x > 0$ as in the above the lemma. Note that $\{B_{\delta_x} \mid x \in X\}$ is an open cover of $X$. So, there are $x_1, \ldots, x_n$\\ in $X$ with $X = {\displaystyle \bigcap_{i=1}^n}{B_{\delta_{x_i}}(x_i)}$. \retTwo
+
+         Set $\delta = \min\limits_{1 \leq i \leq n}\delta_{x_i}$. Then consider any $x_1 \in X$ and pick an $i$ such that\\ $x_1 \in B_{\delta_{x_i}}(x_i)$. For any $x_2 \in X$, with $d(x_1, x_2) < \delta$, we know by the above\\ [6pt] lemma that $d_Y(f(x_1), f(x_2)) < \varepsilon$. \retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \markLecture{3/11/2024}
+
    % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
    \newpage
    {\huge \color{Black} \textbf{An Incomplete List of How The Proposition Numbering in my Notes Lines up With Our Textbook:} \retTwo}
@@ -3026,9 +3124,9 @@
          \myVS 65 & 4.2 & 66 & 4.4 \\ \hdashline[10pt/3pt]
          \myVS 67 & 4.6 & 68 & 4.7 \\ \hdashline[10pt/3pt]
          \myVS 69 & 4.8 & 70 & 4.9 \\ \hdashline[10pt/3pt]
-         \myVS 71 & 4.10 & 72 &  \\ \hdashline[10pt/3pt]
-         \myVS 73 &  & 74 &  \\ \hdashline[10pt/3pt]
-         \myVS 75 &  & 76 &  \\ \hdashline[10pt/3pt]
+         \myVS 71 & 4.10 & 72 & 4.14  \\ \hdashline[10pt/3pt]
+         \myVS 73 & 4.15 & 74 & 4.16 \\ \hdashline[10pt/3pt]
+         \myVS 75 & 4.17 & 76 & 4.19 \\ \hdashline[10pt/3pt]
          \myVS 77 &  & 78 &  \\ \hdashline[10pt/3pt]
       \end{tabular}
 
