@@ -770,8 +770,7 @@
    \begin{myIndent}\begin{myIndent}\begin{myIndent}\begin{myIndent}
    \begin{myIndent}\begin{myIndent}
       {\teachComment
-         In other words, this theorem is stating that $\mathbb{R}$ exists and is unique. Unfortunately, the proof for this is very long and so won't be covered in lecture. However, the professor has left some resources to cover it. So, I will have the proof of this theorem later in these notes. \newline
-            See page: {\color{BrickRed} <research how to cite a page>}
+         In other words, this theorem is stating that $\mathbb{R}$ exists and is unique. Unfortunately, the proof for this is very long and so won't be covered in lecture.
       }
    \end{myIndent}\end{myIndent}
    \end{myIndent}\end{myIndent}\end{myIndent}\end{myIndent}
@@ -3090,12 +3089,158 @@
          \begin{myIndent}
             If $E$ is also closed, then by the Heine-Borel theorem (proposition 28), we would have that $E$ is compact since $E \subseteq \mathbb{R}$. So, by our assumption that $E$ is not compact, we can conclude that $E^\prime \setminus E \neq \emptyset$. Thus, pick $x_0 \in E^\prime \setminus E$. \retTwo
             \begin{itemize}
-               \item[(A)] Define $f(x) = \frac{1}{x-x_0}$ for $x \in E$. Because $x_0 \notin E$, $f(x)$ is defined\\ over all $E$. Additionally, since $x - x_0$ is continuous, we know that $\frac{1}{x-x_0}$ is continuous over its domain by proposition 70. Finally, because $x_0$ is a limit point of $E$, we can find $x \in E$ arbitrarily close to $x_0$, meaning that $\frac{1}{x-x_0}$ is unbounded. Hence we have defined a\\ [1pt] continuous unbounded $f : E \rightarrow \mathbb{R}$.\retTwo
+               \item[(A)] Define $f(x) = \frac{1}{x-x_0}$ for $x \in E$. Because $x_0 \notin E$, $f(x)$ is defined\\ over all $E$. Additionally, we can show that $\frac{1}{x-x_0}$ is continuous over its domain. Finally, because $x_0$ is a limit point of $E$, we can find $x \in E$ arbitrarily close to $x_0$, meaning that $\frac{1}{x-x_0}$ is unbounded. Hence we \\ [1.5pt] have defined a continuous unbounded $f : E \rightarrow \mathbb{R}$.\retTwo
                
-               \item[(B)]
+               \item[(B)] Define $f(x) = \frac{1}{1 + |x - x_0|}$ for $x \in E$. $f$ is defined over all $E$ because $1 + |x - x_0| > 0$. Also, $f$ can be shown to be continuous. Meanwhile $\forall x \in E$, we have that $0 < f(x) \leq 1$. So $f$ is bounded. Because $x_0 \notin E$, we have that $f(x) \neq 1$ for any $x$. But because $x_0 \in E^\prime$, we can say that $\lim\limits_{x\rightarrow x_0}f(x) = \lim\limits_{x\rightarrow x_0}\frac{1}{1 + |x - x_0|} = 1$. So $f$ doesn't acheive a maximum. 
+               
+               \newpage
+
+               \item[(C)] Use the same $f$ as in (A). Let $\varepsilon > 0$. Consider any $\delta > 0$. Since $f$ is not bounded on $B_\frac{\delta}{2}(x_0) \cap E$, we can pick $p, q \in B_\frac{\delta}{2}(x_0) \cap E$ with $|f(p) - f(q)| \geq \varepsilon$. This shows $f$ is not uniform continuous. \retTwo
             \end{itemize}
          \end{myIndent}
 
+         Now assume $E$ is not bounded.
+         \begin{itemize}
+            \item[(A)] $f(x) = x$ for $x \in E$ is continuous but not bounded. \retTwo
+            
+            \item[(B)] Define $f(x) = \frac{|x|}{1 + |x|}$ for $x \in E$. $f$ is defined over all $E$ because $1 + |x| > 0$. Also $f$ is continuous. Meanwhile, $\forall x \in E$, we have that $0 \leq f(x) < 1$. So $f$ is bounded. Now note that we can rewrite $f$ as $f(x) = 1 - \frac{1}{1 + |x|}$. And since $x$ is unbounded, we thus have that $\sup\{f(x) \mid x \in E\} = 1$. Thus $f$ does not achieve a maximum. \retTwo
+         \end{itemize}
+      \end{myIndent}}
+
+      \exOne%
+      Observation: $\mathbb{Z} \subseteq \mathbb{R}$ is not compact and not bounded but every function $f: \mathbb{Z} \rightarrow \mathbb{R}$ is uniformly continuous.
+      \begin{myIndent}\exTwo%
+         Proof: Take $\delta < 1$ for all $\varepsilon$. \retTwo
+      \end{myIndent}
+
+      As a result, this shows that proposition 77.C is not true if $E$ is not necessarily true if $E$ is unbounded. \retTwo
+
+      \hTwo%
+      Proposition \propCount: Let $X$ and $Y$ be metric spaces and $f: X \rightarrow Y$ be continuous. If $E \subseteq X$ is connected, then $f(E)$ is connected.
+      {\begin{myIndent} \hThree
+         Proof:\\
+         We'll prove the contrapositive. Suppose $f(E)$ is not connected. Then there are separated sets $A$, and $B$ that are nonempty and satisfy $A \cap B = f(E)$. Set $G = E \cap f^{-1}(A)$ and $H = E \cap f^{-1}(B)$. Since $f$ is continuous, $f^{-1}(\overbar{A})$ is closed. That along with the fact that $G \subseteq f^{-1}(\overbar{A})$ means that $\overbar{G} \subseteq f^{-1}(\overbar{A})$. Now as $\overbar{A} \cap B = \emptyset$, we have: 
+         
+         {\centering$\overbar{G} \cap H =  f^{-1}(\overbar{A}) \cap f^{-1}(B) = f^{-1}(\overbar{A} \cap B) = f^{-1}(\emptyset) = \emptyset$.\retTwo\par}
+
+         We can use similar reasoning to show $G \cap \overbar{H} = \emptyset$. Therefore, $G, H$ are nonempty and separated. Finally, note that:
+         
+         {\centering$E = E \cap f^{-1}(f(E)) = E \cap f^{-1}(A \cup B) = G \cup H$.\retTwo\par}
+
+         Therefore $E$ is not connected. \retTwo
+      \end{myIndent}}
+
+      Proposition \propCount: (Intermediate Value Theorem)\\
+      Let $f: [a, b] \rightarrow \mathbb{R}$ be continuous. Then for $c \in \mathbb{R}$ such that $c$ is between $f(a)$ and $f(b)$, there is $x \in [a, b]$ with $f(x) = c$.
+      \newpage
+      \begin{myIndent} \hThree
+         Proof:\\
+         $[a, b]$ is connected because it satisfies proposition 31. Thus applying\\ proposition 78, we get that $f([a, b]) \subseteq \mathbb{R}$ is connected. Finally, by\\ proposition 31 again, we have that $[f(a), f(b)] \subseteq f([a, b])$. So there\\ exists $x$ such that $f(x) = c$. \retTwo
+      \end{myIndent}
+
+      \exOne%
+      Observation: The converse of proposition 79 is false.
+      \begin{myIndent} \exTwo
+         Define $f(x) = \left\{
+         \begin{matrix}
+            \sin(\frac{1}{x}) & \text{ when } x \neq 0 \\
+            0 & \text{ when } x = 0
+         \end{matrix}\right.$\\
+
+         For any $-1 \leq c \leq 1$, we can find $x \in [-1, 1]$. But $f$ is not continuous at $0$. \retTwo
+      \end{myIndent}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   If $x$ is in the domain of $f$ and $f$ is not continuous at $x$, then we call $x$ a \udefine{discontinuity} of $f$ and say $f$ is \udefine{discontinuous at} $x$. \retTwo
+
+   Let $f: (a, b) \rightarrow \mathbb{R}$. If $a \leq x < b$, we define the \udefine{right-hand limit} of $f$ at $x$ and denote this $f(x+)$ or $\lim\limits_{t\rightarrow x^+}f(t)$ to be $\lim\limits_{t\rightarrow x}g(t)$ where $g$ is the restriction of $f$ to $(x, b)$.\retTwo
+
+   Similarly, we define the \udefine{left-hand limit} of $f$ at $x$ and denote this $f(x-)$ or $\lim\limits_{t\rightarrow x^-}f(t)$ to be $\lim\limits_{t\rightarrow x}h(t)$ where $h$ is the restriction of $f$ to $(a, x)$.\retTwo
+   
+   {\begin{myIndent} \exOne
+      Observation: $\lim\limits_{t\rightarrow x}$ exists if and only if both $f(x-)$ and $f(x+)$ exist and are equal to each other. In this case, all three are equal to each other. \retTwo
+   \end{myIndent}}
+
+   If $f$ is discontinuous at $x$ and both $f(x-)$ and $f(x+)$ are defined, then we say that $x$ is a \udefine{discontinuity of the first kind} or a \udefine{simple discontinuity}. Otherwise, we say $x$ is a \udefine{discontinuity of the second kind}.
+
+   \mySepTwo
+
+   \markLecture{3/13/2024}
+
+   A function $f: (a, b) \rightarrow \mathbb{R}$ is \udefine{monotone increasing} if $f(x_1) \leq f(x_2)$ whenever\\ $x_1 \leq x_2$. Similarly, $f$ is \udefine{monotone decreasing} if $f(x_1) \geq f(x_2)$ whenever $x_1 \leq x_2$.
+
+   
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Let $f: (a, b) \rightarrow \mathbb{R}$ be monotone increasing. Then:
+      \begin{enumerate}
+         \item For every $x \in (a, b)$, both $f(x+)$ and $f(x-)$ exists and
+         
+         {\centering$\sup\limits_{a < t < x} f(t) = f(x-) \leq f(x) \leq f(x+) = \inf\limits_{x < t < b} f(t)$.\par}
+
+         \newpage
+
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Fix $x \in (a, b)$. Set $A = \sup\limits_{a < t < x} f(t)$ and let $\varepsilon > 0$. Since $A - \varepsilon$ is not an upperbound to $\{f(t) \mid a < t < x\}$, there is $\delta > 0$ so that $a < x - \delta$ \\ and $f(x - \delta) > A - \varepsilon$. Since $f$ is monotone increasing, we have that \\ $\forall t \in (x-\delta, x), \myHS A -\varepsilon < f(x - \delta) \leq f(t) \leq A$. Hence \\ $t \in (x - \delta, x) \Longrightarrow |f(t) - A| < \varepsilon$. So $\lim\limits_{t\rightarrow x^-}f(t) = A$. \retTwo
+
+            We can similarly show that $f(x+) = \inf\limits_{x < t < b} f(t)$. \retTwo
+
+            Now because $f$ is monotone increasing, we know that $f(x) \geq f(t)$ for all $t \in (a, x)$. By the definition of a supremum, we thus have that\\ $f(x) \geq \sup\limits_{a < t < x} f(t)$. By similar reasoning, we have that $f(x) \leq f(x+)$. \retTwo
+         \end{myIndent}}
+
+         \item If $x < y$, then $f(x+) \leq f(y-)$.
+         {\begin{myIndent} \hThree
+            Proof:\\
+            Pick any $x < c < y$. Since $f$ is monotone increasing:
+
+            {\centering $f(x+) = \inf\limits_{x < t < b} f(t) \leq f(c) \leq \sup\limits_{a < t < y} f(t) = f(y-)$ \retTwo\par}
+            
+            {\begin{myTindent}\begin{myDindent} \hFour
+               Obviously there is an analogous proposition for a monotone decreasing function. \retTwo
+            \end{myDindent}\end{myTindent}}
+         \end{myIndent}}
+      \end{enumerate}
+
+      Proposition \propCount: If $f: (a, b) \rightarrow \mathbb{R}$ is monotone, then it has at most countably many discontinuities (and they are all simple by the previous proposition).
+      {\begin{myIndent} \hThree
+         Proof:\\
+         Say $f$ is monotone increasing (the proof is mostly the same if $f$ is\\ monotone decreasing but with some flipped inequalities). Let $E$ be the\\ set of discontinuities of $f$.\retTwo
+
+         For each $x \in E$, we have $f(x-) < f(x+)$. So we can pick\\ $r(x) \in \mathbb{Q}$ with $f(x-) < r(x) < f(x+)$. If $x, y \in E$ and $x < y$,\\ then $r(x) < f(x+) \leq f(y-) < r(y)$. Therefore $r: E \rightarrow \mathbb{Q}$ is\\ injective, and hence $E$ is countable. \retTwo
+      \end{myIndent}}
+
+      \exOne%
+      Observation: Given any countable $E \subseteq (a, b)$, there is a monotone increasing function $f: (a, b) \rightarrow \mathbb{R}$ such that $E$ is the set of discontinuities of $f$.
+      \begin{myIndent}\exTwo%
+         Pick any sequence $(c_n)$ of positive real numbers such that $\sum c_n < \infty$. Also\\ let $x_1, x_2, \ldots$ be an enumeration of $E$. Then define:
+
+         {\centering $f(x) = {\displaystyle \sum_{\{n \in \mathbb{N} \hspace{0.1em} \mid \hspace{0.1em} x_n < x\}}{c_n}}$ \retTwo\par}
+
+         $f$ is monotone increasing. Also, $f$ is continuous at every point in $(a, b) \setminus E$ and for each $x_n \in E$, we have $f(x_n +) - f(x_n -) = c_n$.
+      \end{myIndent}
+   \end{myIndent}}
+   
+   \newpage
+
+   \markLecture{3/15/2024}
+
+   For $E \subseteq \mathbb{R}$ and $f: E \rightarrow \mathbb{R}$. Let $x \in E^\prime$ or $x = +\infty$ if $E$ is not bounded above or $x = -\infty$ if $E$ is not bounded below. Then for $y \in \mathbb{R} \cup \{-\infty, \infty\}$, we say the \udefine{limit of $f$ at $x$ is $y$} and write $\lim\limits_{t\rightarrow x}f(t) = y$ if for every sequence $(t_n)$ with $\lim{t_n} = x$ and with $\forall n, \myHS t_n \neq x$ and $t_n \in E$, we have that $\lim{f(t_n)} = y$. \retTwo
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Let $E$ and $x$ be as above. Let $f, g: E \rightarrow \mathbb{R}$ and assume $\lim\limits_{t\rightarrow x}f(t) = A$ and  $\lim\limits_{t\rightarrow x}g(t) = B$ where $A, B \in \mathbb{R} \cap \{-\infty, \infty\}$. Then:
+      \begin{itemize}
+         \item $\lim\limits_{t \rightarrow x}(f + g)(t) = A + B$
+         \item $\lim\limits_{t \rightarrow x}(fg)(t) = AB$
+         \item $\lim\limits_{t \rightarrow x}(\frac{f}{g})(t) = \frac{A}{B}$
+      \end{itemize}
+      \dots provided that the right hand sides of the above expressions are defined. \retTwo
+
+      Also $\lim\limits_{t \rightarrow x}f(t) = A^\prime \Longrightarrow A^\prime = A$. \retTwo
+      
+      {\begin{myIndent} \hThree
+         The proof for this has been left as an exercise by the professor and I don't have time to do it. :\rparen
       \end{myIndent}}
    \end{myIndent}}
 
@@ -3151,11 +3296,14 @@
          \myVS 71 & 4.10 & 72 & 4.14  \\ \hdashline[10pt/3pt]
          \myVS 73 & 4.15 & 74 & 4.16 \\ \hdashline[10pt/3pt]
          \myVS 75 & 4.17 & 76 & 4.19 \\ \hdashline[10pt/3pt]
-         \myVS 77 & 4.20 & 78 &  \\ \hdashline[10pt/3pt]
-         \myVS 79 &  & 80 &  \\ \hdashline[10pt/3pt]
-         \myVS 81 &  & 82 &  \\ \hdashline[10pt/3pt]
+         \myVS 77 & 4.20 & 78 & 4.22 \\ \hdashline[10pt/3pt]
+         \myVS 79 & 4.23 & 80 & 4.29 \\ \hdashline[10pt/3pt]
+         \myVS 81 & 4.30 & 82 & 4.34 \\ \hdashline[10pt/3pt]
       \end{tabular}
 
    \end{allowTableDashes}
 
+   \retTwo
+
+   Our textbook is \textit{Principles of Mathematical Analysis} by Walter Rudin.
 \end{document}
