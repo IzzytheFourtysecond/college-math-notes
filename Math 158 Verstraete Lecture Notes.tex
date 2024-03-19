@@ -2710,6 +2710,233 @@ A \udefine{Moore graph} is a graph which acheives equality in the Moore Bound.
    Also, the Petersen graph is a $3$-regular Moore graph with girth $g = 5$.
 \end{myIndent}}
 
+\mySepTwo
+
+\markLecture{3/5/2024}
+
+{\begin{myIndent} \hTwo
+   \uuline{Even Cycle Theorem}:\\
+   For some constant $c_k$ (which we prove is at most $8k$): $\exNums{n, C_{2k}} \leq c_kn^{1 + \frac{1}{k}}$. \retTwo
+
+   \begin{myIndent}
+      \color{BrickRed}%
+      The proof for this is rather long. So because of time crunch, it has been moved to the end of the notes on page <put a number>.
+   \end{myIndent}
+\end{myIndent}}
+
+\mySepTwo
+
+\markLecture{3/7/2024}
+
+The \udefine{Ramsey number} $r(s, t)$ for $s, t \in \mathbb{Z}^+$ is the minimum $N$ such that whenever the edges of $K_N$ are colored red and blue, either a red $K_s$ occurs or a blue $K_t$ occurs. \retTwo
+
+Equivalently, $r(s, t)$ is the minimum $N$ such that every $K_s$-free graph on $N$ vertices contains an \udefine{independent set} of size $t$.\\
+{\begin{myDindent} \myComment
+      To quote from homework 3 of the class:\\
+      An \textbf{independent set} in a graph $G$ is a set $X \subseteq V(G)$ such that $e(X) = 0$, and the \textbf{independence number} $\alpha(G)$ is the largest size of an independent set in $G$.\\
+\end{myDindent}}
+
+\newpage
+
+A $K_s$-free graph with $r(s, t) - 1$ vertices and no independent set of size $t$ is called\\ a \udefine{Ramsey graph}, and a coloring of $K_n$ with $n = r(s,t) - 1$ vertices and no\\ monocromatic $K_s$ or $K_t$ is called a \udefine{Ramsey coloring}.\retTwo
+
+\mySepTwo[Purple]
+
+{\centering\exOne\begin{tabular}{p{4in} p{1.5in}}
+   Example:\newline
+   We can show with the following\newline construction that $r(3, 3) > 5$ &
+   {\centering\raisebox{-4em}{\tikz[scale=0.4,inner sep=3pt]{
+      \tikzstyle{myCir}=[circle, draw, ultra thick];
+      \tikzstyle{Red} = [ultra thick, color=BrickRed];
+      \tikzstyle{Blue} = [ultra thick, color=MidnightBlue];
+
+      \node[myCir] (1) at (18:4) {};
+      \node[myCir] (2) at (90:4) {} edge[Blue] (1);
+      \node[myCir] (3) at (162:4) {} edge[Blue] (2) edge[Red] (1);
+      \node[myCir] (4) at (234:4) {} edge[Blue] (3) edge[Red] (1) edge[Red] (2);
+      \node[myCir] (5) at (306:4) {} edge[Blue] (4) edge[Blue] (1) edge[Red] (2) edge[Red] (3);
+   }\par}}
+\end{tabular}\\ [12pt]
+\begin{tabular}{p{5.7in}}
+Meanwhile for $N > 6$, note that given any vertex $v$ there must be three edges $\{v, x\}$, $\{v, y\}$, and $\{v, w\}$ with the same color. This is a result of the pigeonhole principle. Without loss of generality, assume that they are colored red.
+\end{tabular}
+{\centering\exOne\begin{tabular}{p{3.5in} p{2in}}
+   Now consider the edges $\{x, y\}$, $\{x, w\}$, and\newline $\{y, w\}$. If any one of them are red, we have a red triangle. Meanwhile, if all of them are not red, then we have a blue triangle. Thus, for $N \geq 6$, we must have a red or blue triangle. Hence, $r(3, 3) \leq 6$. &
+
+   {\centering\raisebox{-6em}{\tikz[scale=0.4,inner sep=3pt]{
+      \tikzstyle{myCir}=[circle, draw, ultra thick];
+      \tikzstyle{Red} = [ultra thick, color=BrickRed];
+      \tikzstyle{Blue} = [ultra thick, color=MidnightBlue];
+
+      \node at (-3, 0) {};
+      \node[myCir] (v) at (0,0) {$v$};
+      \node[myCir] (x) at (7,4) {$x$} edge[Red] (v);
+      \node[myCir] (y) at (4,0) {$y$} edge[Red] (v) edge[Blue, dotted] (x);
+      \node[myCir] (w) at (7,-4) {$w$} edge[Red] (v) edge[Blue, dotted] (y) edge[Blue, dotted] (x);
+   }\par}}
+\end{tabular}
+\par}}
+\retTwo
+\mySepTwo[Purple]
+
+{\begin{myTindent} \myComment
+   \begin{myClosureOne}{4.5}
+      Here's a hopefully obvious observation:\\
+      If all red-blue colorings of $K_N$ contain a forbidden graph, then\newline all red-blue colorings of $K_{N+1}$ will contain the forbidden graph\newline because $K_N$ is a subgraph of $K_{N+1}$.\\
+   \end{myClosureOne}
+\end{myTindent}}
+\retTwo
+{\begin{myIndent} \hTwo
+   \uuline{Erd\H{o}s-Szekeres Theorem}:\\[2pt]
+   For $s \geq 2$ and $t \geq 2$, $\myHS r(s, t) \leq r(s-1, t) + r(s, t-1)$. In particular:
+   \[r(s,t) \leq \binom{s+t-2}{s-1}\]
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      $r(1, t) = r(s, 1) = 1$ trivially. Also trivially, if $s = 2$, then $r(s, t) = t$.\\ Meanwhile if $t = 2$, then $r(s, t) = s$. Indeed, both of these satisfy the\\ inequalities of the theorem. \retTwo
+
+      \newpage
+
+      Now we proceed by induction, assuming $s \geq 3$, $t \geq 3$, and that the theorem is true when $s$ or $t$ is smaller.\retTwo
+
+      {\begin{myIndent} \hFour
+         Let $N = r(s, t)$ and Suppose we are given a red-blue coloring\\ of $E(K_N)$. Picking $v \in V(K_N)$, we know $d(v) = N - 1$. Then if\\
+         $N \geq r(s-1, t) + r(s, t-1) + 1$, we get at least either $r(s-1, t)$\\ red edges on $v$ or $r(s, t-1)$ blue edges on $v$. \retTwo
+
+         If there are $r(s-1, t)$ red edges on $v$, then the set $N_{\text{red}}(v)$ of\\ vertices joined to $v$ by a red edge contains either a red $K_{s-1}$\\ or a blue $K_t$ by induction. This is because $|N_{\text{red}}(v)| \geq r(s-1, t)$.\\
+         Now if there is a blue $K_t$ contained in the vertices of $N_\text{red}(v)$, we're\\ done. Otherwise, the red $K_{s-1}$ contained in the vertices of $N_\text{red}(v)$\\ combined with $v$ itself form $K_s$. \retTwo
+
+         As for if there are $r(s, t-1)$ blue edges on $v$, then we can do similar\\ reasoning to show that $K_n$ contains either a red $K_s$ or blue $K_t$. \retTwo
+      \end{myIndent}}
+
+      So $r(s, t) \leq r(s-1, t) + r(s, t-1)$ for $s \geq 2$ and $t \geq 2$. Now let's get the non-recursively defined inequality.\retTwo
+
+      We already said that $r(2, t), r(s, 2) \leq \binom{s+t-2}{s-1}$. Now once again proceed by\\ induction, assuming $s \geq 3$, $t \geq 3$, and that the theorem is true when $s$ or $t$\\ is smaller. \retTwo
+
+      {\begin{myIndent} \hFour
+         \begin{tabular}{l}
+            $r(s, t) \leq r(s-1, t) + r(s, t-1)$ \\ [3pt]
+            $\phantom{r(s, t)} \leq {\displaystyle \binom{s+t-3}{s-2}} + {\displaystyle \binom{s+t-3}{s-1}}$ 
+         \end{tabular}
+         \retTwo
+
+         Now use \uuline{Pascal's Triangle Identity}: ${\displaystyle \binom{a}{b} = \binom{a-1}{b} + \binom{a-1}{b-1}}$.\retTwo
+         
+         \begin{myIndent}
+            {\myComment\begin{myClosureOne}{4}
+               Here is a quick algebraic proof of this identity:\\ [3pt]
+               \begin{tabular}{l}
+                  $\binom{a-1}{b} + \binom{a-1}{b-1} = (a-1)!\left(\frac{1}{b!(a-b-1)!} + \frac{1}{(b-1)!(a-b)!}\right)$\\ [5pt]
+                  $\phantom{\binom{a-1}{b} + \binom{a-1}{b-1}} = (a-1)!\left(\frac{(a-b)}{b!(a-b)!} + \frac{b}{b!(a-b)!}\right)$\\ [5pt]
+                  $\phantom{\binom{a-1}{b} + \binom{a-1}{b-1}} = \frac{a!}{b!(a-b)!} = \binom{a}{b}$
+               \end{tabular} \\
+            \end{myClosureOne}}
+         \end{myIndent}
+         \retTwo
+
+         Letting $a = s + t - 2$ and $b = s - 1$, we can say that:
+
+         {\center ${\displaystyle \binom{s+t-3}{s-2}} + {\displaystyle \binom{s+t-3}{s-1}} = {\displaystyle \binom{s+t-2}{s-1}} $\retTwo\par}
+
+         {\begin{myTindent} \teachComment
+            As a consequence of this, we've shown that Ramsey\\ numbers are well-defined for all $s, t \in \mathbb{Z}^+$.
+         \end{myTindent}}
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \newpage%
+
+   Here's how to get an easier-to-write upper bound for $r(s, t)$:
+
+   
+   {\begin{myIndent} \hThree
+      ${\displaystyle \binom{s+t-2}{s-1}} = {\displaystyle \frac{(s+t-2)!}{(s-1)!(t-1)!}} = {\displaystyle \frac{(s+t-2)(s+t-3)\cdots(t)}{(s-1)!}}$\\
+      $\phantom{{\displaystyle \binom{s+t-2}{s-1}} = {\displaystyle \frac{(s+t-2)!}{(s-1)!(t-1)!}}} \leq \dfrac{(s+t-2)^{s-1}}{(s-1)!} \leq (s+t-2)^{s-1}$
+      \retTwo
+   \end{myIndent}}
+
+   In particular, this means that $r(3, t) \leq  (t+1)^2$. So $r(3, t)$ has a quadratically growing upper bound. That said, this is not the best upper bound that has been found. Recently, it was found that:
+
+   {\center $\dfrac{(t+1)^2}{4\log(t)} \leq r(3, t) \leq \dfrac{(t+1)^2}{\log(t)}$ \retTwo\par}
+
+   Also less than month earlier, professor Verstraete coauthored a paper showing that:
+
+   {\center $\dfrac{(t+1)^3}{10000(\log(t))^4} \leq r(3, t) \leq \dfrac{(t+1)^3}{\log(t)}$ \retTwo\par}
+
+   And there is an unsolved conjecture stating that $r(s, t)$ is of order $\dfrac{(t)^{s-1}}{(\log(t))^{c_s}}$ where $c_s$ is a constant depending on $s$.
+
+   \retTwo
+   Now a reason we care about bounds is that trying to find exact Ramsey numbers is incredibly difficult. Here are all the currently known Ramsey numbers:\\
+   \begin{center}
+      \begin{tabular}{ l c l c l }
+         \bullet\quad $r(2, t) = t$ &\quad& \bullet\quad $r(3, 3) = 6$ &\quad& \bullet\quad $r(3, 8) = 28$ \\
+         && \bullet\quad $r(3, 4) = 9$ && \bullet\quad $r(3, 9) = 36$ \\
+         && \bullet\quad $r(3, 5) = 14$ && \\
+         && \bullet\quad $r(3, 6) = 18$ && \bullet\quad $r(4, 4) = 18$\\
+         && \bullet\quad $r(3, 7) = 23$ && \bullet\quad $r(4, 5) = 25$\\
+      \end{tabular}
+   \end{center}\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem (Erd\H{o}s, 1947)}: $r(t, t) \geq \sqrt{2}^t$ for $t \geq 3$. \retTwo
+   
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Let $N = \lfloor \sqrt{2}^t \rfloor$. Color $E(K_N)$ randomly such that each edge independently has $\frac{1}{2}$ probability to be red rather than blue.\\
+
+      The average number of red $K_t$ is: $\mathbb{E}(\text{\# of red } K_t) = {\displaystyle \binom{N}{t}\left(\dfrac{1}{2}\right)^{
+      \begin{pmatrix}
+         t \\ 2
+      \end{pmatrix}}}$\\
+      
+      {\begin{myIndent} \hFour
+         Explanation:\\
+         There are $\binom{N}{t}$ possible groupings of $t$ vertices in $K_N$. Then $\left(\frac{1}{2}\right)^{\left(
+         \begin{smallmatrix}
+            t \\ 2
+         \end{smallmatrix}\right)}$ is the probability that every edge in a grouping of $t$ vertices will be colored red.
+      \end{myIndent}}
+
+      \newpage
+
+      Similarly, $\mathbb{E}(\text{\# of blue } K_t) = {\displaystyle \binom{N}{t}\left(\dfrac{1}{2}\right)^{
+         \begin{pmatrix}
+            t \\ 2
+         \end{pmatrix}}}$\retTwo
+
+      Thus the average number of red or blue $K_t$ is:
+
+      {\centering ${\displaystyle 2\binom{N}{t}\left(\frac{1}{2}\right)}^{
+      \begin{pmatrix}
+         t \\ 2
+      \end{pmatrix}} \leq 2\dfrac{N^t}{t!}\cdot2^{\frac{-t(t-1)}{2}} \leq 2\dfrac{(\sqrt{2})^{t^2}}{t!}\cdot 2^{\frac{-t^2}{2} + \frac{t}{2}} = \dfrac{2}{t!}\cdot 2^{\frac{t}{2}}$ \retTwo\par}
+
+      When $t \geq 3, \myHS \dfrac{2}{t!}\cdot 2^{\frac{t}{2}} < 1$ (you can visually check that on Desmos). This tells us that there must be a red-blue coloring of $K_N$ with no red $K_t$ or blue $K_t$.\retTwo
+
+      {\begin{myTindent} \teachComment
+         Side note: this was the first proof ever done using\\ probabilistic combinatorics.\retTwo
+      \end{myTindent}}
+   \end{myIndent}}
+
+   Using the Erd\H{o}s-Szekeres theorem, we can also get the following upper bound:
+
+   {\hThree\begin{myIndent}
+      $r(t,t) \leq {\displaystyle \binom{2t-2}{t-1}} \leq \dfrac{(2t-2)!}{(t-1)!(t-1)!} \leq \dfrac{(2(t-1))^{2t-2}}{\left((t-1)^{t-1}\right)^2}\hspace{0.75em}$ {\myComment(because $n! \leq n^n$)}\\ [5pt]
+      $\hphantom{r(t,t) \leq {\displaystyle \binom{2t-2}{t-1}} \leq \dfrac{(2t-2)!}{(t-1)!(t-1)!}} \leq \dfrac{2^{2t-2}(t-1)^{2t-2}}{(t-1)^{2t-2}}$\\ [5pt]
+      $\hphantom{r(t,t) \leq {\displaystyle \binom{2t-2}{t-1}} \leq \dfrac{(2t-2)!}{(t-1)!(t-1)!}} \leq 2^{2t-2} = 4^{t-1}$\retTwo
+   \end{myIndent}}
+
+   Thus $r(t, t)$ grows exponentially with $t$.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\markLecture{3/12/2024}
+
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
