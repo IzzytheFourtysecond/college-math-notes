@@ -37,7 +37,7 @@
 \newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
 
 \usepackage{graphicx}
-%\graphicspath{{./140A_images/}}
+\graphicspath{{./158_Images/}}
 
 \usepackage{tikz}
    \usetikzlibrary{arrows.meta}
@@ -1287,7 +1287,7 @@
       $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{2}{(\|\mVec{x} - \mVec{y}\|_2)^2}((\mVec{x} - \mVec{y})^T\mVec{x} )(\mVec{x} - \mVec{y})$ \\[0.5em]
       $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{1}{(\|\mVec{x} - \mVec{y}\|_2)^2}(2(\|\mVec{x}\|_2)^2 - 2\mVec{y}^T\mVec{x})(\mVec{x} - \mVec{y})$ \\[0.5em]
       $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{1}{(\|\mVec{x} - \mVec{y}\|_2)^2}((\|\mVec{x}\|_2)^2 + (\|\mVec{y}\|_2)^2 - 2\mVec{y}^T\mVec{x})(\mVec{x} - \mVec{y})$ \\[0.5em]
-      $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{1}{(\|\mVec{x} - \mVec{y}\|_2)^2}(\|\mVec{x} - \mVec{y}, \hspace{0.4em} \mVec{x} - \mVec{y}\|_2)^2(\mVec{x} - \mVec{y})$ \\ [0.50em]
+      $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \dfrac{1}{(\|\mVec{x} - \mVec{y}\|_2)^2}(\|\mVec{x} - \mVec{y}\|_2)^2(\mVec{x} - \mVec{y})$ \\ [0.50em]
       $\phantom{\mMat{Q}\mVec{x} = (\mMat{I} - 2\mVec{u}\mVec{u}^T)\mVec{x}} = \mVec{x} - \mVec{x} + \mVec{y} = \mVec{y}$
    \end{myIndent}}
 
@@ -1980,7 +1980,7 @@
 
    {\huge \color{Black} \textbf{Lecture 20: 3/6/2024} \newline}
 
-   Suppose $\mMat{A} \in \mathbb{R}^{n\times m}$ has the SVD decomposition $\mMat{A} = \mMat{U}\bm{\Sigma}\mMat{V}^T$.\retTwo
+   Suppose $\mMat{A} \in \mathbb{R}^{n\times m}$ has the SVD $\mMat{A} = \mMat{U}\bm{\Sigma}\mMat{V}^T$.\retTwo
 
    {\begin{myIndent} \hTwo
       Then $\mMat{A}\mMat{A}^T = \mMat{U}\bm{\Sigma}\mMat{V}^T\mMat{V}\bm{\Sigma}^T\mMat{U}^T = \mMat{U}\bm{\Sigma}\bm{\Sigma}^T\mMat{U}^T$, which means $\mMat{A}\mMat{A}^T\mMat{U} = \mMat{U}\bm{\Sigma}\bm{\Sigma}^T$.\retTwo
@@ -2003,17 +2003,107 @@
       \end{myTindent}}
    \end{myIndent}}
 
-   Thus, method 1 for finding an SVD decomposition of $\mMat{A}$ is by finding the eigenvalues and eigenvectors of $\mMat{A}\mMat{A}^T$ and $\mMat{A}^T\mMat{A}$.
+   Thus, method 1 for finding an SVD of $\mMat{A}$ is by finding the eigenvalues and\\ eigenvectors of $\mMat{A}\mMat{A}^T$ and $\mMat{A}^T\mMat{A}$.
    \begin{itemize}
       \item This method has a good flop count.
       \item $K_2(\mMat{A}\mMat{A}^T) = (K_2(\mMat{A}))^2$. So $\mMat{A}\mMat{A}^T$ is not well conditioned.
    \end{itemize}
 
-   \newpage
+   \mySepTwo
+
+   Here is another method for finding the SVD of $\mMat{A} \in \mathbb{R}^{n\times m}$\retTwo
+   {\begin{myIndent} \hTwo
+      Let $ \mMat{X} = 
+      \begin{bmatrix}
+         \mMat{0}_n & \mMat{A} \\
+         \mMat{A^T} & \mMat{0}_m
+      \end{bmatrix} \in \mathbb{R}^{(n+m)\times(n+m)}$ where $\mMat{0}_k$ is the $k\times k$ zero matrix. \retTwo
+
+      For $1 \leq i \leq r$ where $r$ is the number of singular values, we claim that, $\mMat{A}$ will have the eigenpairs:
+      
+      {\centering$(\sigma_i, 
+      \left[\begin{smallmatrix}
+         \mVecAst{u}_i \\ \mVecAst{v}_i
+      \end{smallmatrix}\right])$ and $(-\sigma_i, 
+      \left[\begin{smallmatrix}
+         \mVecAst{u}_i \\ -\mVecAst{v}_i
+      \end{smallmatrix}\right])$\par}
+
+      \newpage
+   
+      {\begin{myIndent} \hThree
+         Proof:\\
+         For $i \leq r$, $\mMat{A} = \mMat{U}\bm{\Sigma}\mMat{V}^T \Longrightarrow \mMat{U}^T\mMat{A} = \bm{\Sigma}\mMat{V}^T$. So we have that $\mMat{A}\mVecAst{u}_i = \sigma_i\mVecAst{v}_i$.\\
+         Also $\mMat{A}^T = \mMat{V}\bm{\Sigma}^T\mMat{U}^T \Longrightarrow \mMat{V}^T\mMat{A}^T = \bm{\Sigma}^T\mMat{U}^T$. So $\mMat{A}^T\mVecAst{v}_i = \sigma_i\mVecAst{u}_i$. \retTwo
+
+         So we have that (for $i \leq r$):\\
+         \begin{myIndent}
+            $\mMat{X}\left[\begin{smallmatrix}
+               \mVecAst{u}_i \\ \mVecAst{v}_i
+            \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+               \mMat{0}_n & \mMat{A} \\ \mMat{A}^T & \mMat{0}_m
+            \end{smallmatrix}\right]\left[\begin{smallmatrix}
+               \mVecAst{u}_i \\ \mVecAst{v}_i
+            \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+               \mMat{A}\mVecAst{v}_i \\ \mMat{A}^T\mVecAst{u}_i
+            \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+               \sigma_i\mVecAst{u}_i \\ \sigma_i\mVecAst{v}_i
+            \end{smallmatrix}\right] = \sigma_i\left[\begin{smallmatrix}
+               \mVecAst{u}_i \\ \mVecAst{v}_i
+            \end{smallmatrix}\right]$\\
+
+            $\mMat{X}\left[\begin{smallmatrix}
+               \mVecAst{u}_i \\ -\mVecAst{v}_i
+            \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+               \mMat{0}_n & \mMat{A} \\ \mMat{A}^T & \mMat{0}_m
+            \end{smallmatrix}\right]\left[\begin{smallmatrix}
+               \mVecAst{u}_i \\ -\mVecAst{v}_i
+            \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+               -\mMat{A}\mVecAst{v}_i \\ \mMat{A}^T\mVecAst{u}_i
+            \end{smallmatrix}\right] = \left[\begin{smallmatrix}
+               -\sigma_i\mVecAst{u}_i \\ \sigma_i\mVecAst{v}_i
+            \end{smallmatrix}\right] = -\sigma_i\left[\begin{smallmatrix}
+               \mVecAst{u}_i \\ -\mVecAst{v}_i
+            \end{smallmatrix}\right]$\retTwo
+         \end{myIndent}
+      \end{myIndent}}
+
+      Meanwhile for $i > r$, $\mMat{X}$ will have the eigenpairs: $(0, 
+      \left[\begin{smallmatrix}
+         \mVecAst{u}_i \\ \mVec{0}
+      \end{smallmatrix}\right])$ and $(0, 
+      \left[\begin{smallmatrix}
+         \mVec{0} \\ \mVecAst{v}_i
+      \end{smallmatrix}\right])$
+      
+      {\begin{myIndent} \hThree
+         For $i > r, \hspace{0.4em}\mMat{A}\mVecAst{u}_i = \mVec{0}$ and $\mMat{A}^T\mVecAst{v}_i = \mVec{0}$. So we can use similar reasoning as above to prove these eigenvalue-eigenvector pairings.\retTwo
+
+         
+         {\begin{myDindent}\begin{myDindent} \myComment
+            In total, we have $2r + (n - r) + (m - r) = n + m$\\ eigenvalues of $\mMat{X}$.
+         \end{myDindent}\end{myDindent}}
+      \end{myIndent}}
+   \end{myIndent}}
+
+   So, method 2 for finding an SVD of $\mMat{A}$ is to solve for the eigenvalues and eigenvectors of $\mMat{X}$.\\
+   
+   {\begin{myIndent} \hTwo
+      {\color{BrickRed}Issue: the eigenvalues of $\mMat{X}$ come in pairs. Thus, algorithms for caculating the eigenvalues of $\mMat{X}$ such as the power method will fail.}\retTwo
+
+      Common solution: calculate the eigenvalues of $\mMat{X} + \mu \mMat{I}$ where $\mu$ is a random shift. Then subtract $\mu$ from each eigenvalue you find.
+      {\begin{myIndent} \hFour
+         This works because if $\mMat{X}\mVec{v} = \lambda \mVec{v}$. Then $(\mMat{X} + \mu \mMat{I})\mVec{v} = \mMat{X}\mVec{v} + \mu\mVec{v} = (\lambda + \mu)\mVec{v}$. Thus adding $\mu\mMat{I}$ to $\mMat{X}$ has the effect of adding $\mu$ to all of $\mMat{X}$'s eigenvalues. \retTwo
+      \end{myIndent}}
+
+      This doesn't always fix the problem but assuming $\sigma_1 \neq \sigma_2$, then at least there will be a dominant eigenvalue of $\mMat{X} + \mu \mMat{I}$. \retTwo
+   \end{myIndent}}
+
+   \mySepOne
 
    \markLecture{2/28/2024}
 
-   QR-iteration: (Say we are given $\mMat{A} \in \mathbb{C}^{n\times n}$)
+   QR-iteration: (say we are given a matrix $\mMat{A} \in \mathbb{R}^{n\times n}$)
    {\begin{myIndent} \hTwo
       Let $\mMat{A}_0 = \mMat{A}$.\\
       For $k = 0, 1, \ldots$
@@ -2025,13 +2115,74 @@
          Then define $\mMat{A}_{k+1} = \mMat{R}_{k+1}\mMat{Q}_{k+1}$ \retTwo
       \end{myIndent}
 
+      \newpage
 
-      \hThree Just by sight, this is a very expensive algorithm flops wise. So what's the point?
-      {\begin{myIndent} \hFour
-         $\mMat{A}_{k+1}$
+      Just by sight, this is a very expensive algorithm flops wise. So what's the point?
+      {\begin{myIndent} \hThree
+         $\mMat{A}_{k+1} = \mMat{Q}^T_{k+1}\mMat{A}_k\mMat{Q}_{k+1}$. Thus $\mMat{A}_{k+1}$ and $\mMat{A}_k$ are orthogonally similar, which means they have the same eigenvalues as each other.\retTwo
       \end{myIndent}}
 
+      \uuline{Theorem}: If $\mMat{A} \in \mathbb{R}^{n\times n}$ has $n$ distinct eigenvalues and $\mMat{A} = \mMat{QTQ}^T$ is the real Schur decomposition of $\mMat{A}$,\\ [2pt] then $\lim\limits_{k\rightarrow \infty}\mMat{A}_k = \mMat{T}$. \retTwo
+
+      {\begin{myIndent} \hThree
+         We're not going to prove convergence here. However, this theorem is\\ useful because the eigenvalues of $\mMat{T}$ are easy to compute and $\mMat{T}$ is similar\\ to $\mMat{A}$. This is because $\mMat{T}$ will be block-upper-triangular with $(2\times 2)$ and\\ $(1\times 1)$ blocks.\\
+
+         {\center\myComment
+         \begin{tabular}{p{2in} p{2in}}
+            \raisebox{-6em}{\includegraphics[scale=0.6]{Math_170_Imposter.png}}
+            &
+            (I did not make this image.\newline Rather it was taken from the\newline class textbook.) 
+         \end{tabular}\retTwo\par}
+
+         We are not going to prove this but the eigenvalues of $\mMat{T}$ are the eigenvalues of each block on the diagonal of $\mMat{T}$.
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \mySepTwo
+
+   Still, the above algorithm sucks. If the eigenvalues of $\mMat{A}$ are close to each other, it\\ converges really slowly. Plus, taking a QR decomposition every iteration is\\ expensive. So how do we improve this?\retTwo
+
+   Idea:
+   {\begin{myIndent} \hTwo
+      $\mMat{H} \in \mathbb{R}^{n\times n}$ is called \udefine{upper-Hessenberg} if $h_{i,j} = 0$ for $i > j + 1$.\\ [-13pt]
+      {\begin{myIndent} \hFour
+         You can think of this as a weaker version of being upper-triangular.\retTwo
+      \end{myIndent}}
+
+      \uuline{Theorem}: Every $\mMat{A} \in \mathbb{R}^{n\times n}$ can be decomposed as $\mMat{A} = \mMat{Q}\mMat{H}\mMat{Q}^T$ where $\mMat{Q}$ is\\ orthogonal and $\mMat{H}$ is upper-Hessenberg.\retTwo
+      
+      {\begin{myIndent} \hThree
+         Idea of the algorithm: consider $\mMat{A} = 
+         \begin{bmatrix}
+            a_{1,1} & \mVecAst{y}^{\phantom{.}T\phantom{.}} \\ \mVecAst{x} & B
+         \end{bmatrix}$.\retTwo Create a Householder reflector $\tilde{\mMat{Q}}$ such that $\tilde{\mMat{Q}}\mVec{x} = \|\mVec{x}\|_2e_1$.\retTwo
+         Next define $\mMat{Q} = 
+         \begin{bmatrix}
+            1 & \mVecAst{0}^{\phantom{.}T\phantom{.}} \\ \mVec{0} & \tilde{\mMat{Q}}
+         \end{bmatrix}$. Then $\mMat{QAQ}^T = \begin{bmatrix}
+            a_{1,1} & \mVecAst{y}^{\phantom{.}T\phantom{.}}\tilde{\mMat{Q}} \\ \tilde{\mMat{Q}}\mVecAst{x} & \tilde{\mMat{Q}}B\tilde{\mMat{Q}}^{\phantom{.}T\phantom{.}}
+         \end{bmatrix}$
+
+         \newpage
+
+         Thus, the first column of $\mMat{Q}\mMat{A}\mMat{Q}^T$ has all zero elements after the second row.\retTwo
+
+         Now let $B^\prime = \tilde{\mMat{Q}}B\tilde{\mMat{Q}}^{\phantom{.}T\phantom{.}}$. Inductively, repeat this algorithm on $B^\prime$. Having\\ expressed $B^\prime = \tilde{\mMat{Q}}^\prime H^\prime (\tilde{\mMat{Q}}^\prime)^{\phantom{.}T\phantom{.}}$ where $H^\prime$ is an upper Hessenberg Matrix, define $\mMat{Q}^\prime = \begin{bmatrix}
+            \mMat{I}_2 & \mMat{0} \\ \mMat{0} & \tilde{\mMat{Q}}^\prime
+         \end{bmatrix}$. Then $\mMat{Q}^\prime\mMat{Q}\mMat{A}\mMat{Q}^T(\mMat{Q}^\prime)^T$ is upper-Hessenberg.\retTwo
+      \end{myIndent}}
+
+      Thus we come up with an improved algorithm for QR-iteration.
+      \begin{enumerate}
+         \item Find an upper-Hessenberg matrix $\mMat{H}$ such that $\mMat{A} = \mMat{QHQ}^T$.
+         \item Do QR-iteration on $\mMat{H}$ since $\mMat{H}$ is similar to $\mMat{A}$.\retTwo
+         
+         {\begin{myTindent} \teachComment
+            Note that each $\mMat{H}_k$ obtained by doing QR-iteration on $\mMat{H}$ is also upper-Hessenberg. So the algorithm converges faster. Also,\\ because $\mMat{H}$ has so many zero elements, QR-decomposition only needs $\mathcal{O}(n^2)$ flops. \retTwo
+
+            The total flop count of this algorithm is $\frac{10}{3}n^3 + \mathcal{O}(n^2\cdot N)$ where $n$ is the size of $\mMat{A}$ and $N$ is the number of iterations performed.
+         \end{myTindent}}
+      \end{enumerate}
    \end{myIndent}}
 
 \end{document}
-
