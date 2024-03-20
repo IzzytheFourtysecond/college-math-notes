@@ -25,6 +25,8 @@
 \usepackage{amsfonts}
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
 
 % Just am using this to get a dashed line in a table...
 % Also you apparently want this to be inactive if you aren't
@@ -179,6 +181,10 @@
 % Thank you chs who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
 \newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
 
 \newcounter{PropNumber}
 \newcommand{\propCount}{%
@@ -2738,14 +2744,14 @@ Equivalently, $r(s, t)$ is the minimum $N$ such that every $K_s$-free graph on $
 
 \newpage
 
-A $K_s$-free graph with $r(s, t) - 1$ vertices and no independent set of size $t$ is called\\ a \udefine{Ramsey graph}, and a coloring of $K_n$ with $n = r(s,t) - 1$ vertices and no\\ monocromatic $K_s$ or $K_t$ is called a \udefine{Ramsey coloring}.\retTwo
+A $K_s$-free graph with $r(s, t) - 1$ vertices and no independent set of size $t$ is called\\ a \udefine{Ramsey graph}, and a coloring of $K_n$ with $n = r(s,t) - 1$ vertices and no\\ monochromatic $K_s$ or $K_t$ is called a \udefine{Ramsey coloring}.\retTwo
 
 \mySepTwo[Purple]
 
 {\centering\exOne\begin{tabular}{p{4in} p{1.5in}}
-   Example:\newline
+   Example:\newline\newline
    We can show with the following\newline construction that $r(3, 3) > 5$ &
-   {\centering\raisebox{-4em}{\tikz[scale=0.4,inner sep=3pt]{
+   {\centering\raisebox{-4.5em}{\tikz[scale=0.4,inner sep=3pt]{
       \tikzstyle{myCir}=[circle, draw, ultra thick];
       \tikzstyle{Red} = [ultra thick, color=BrickRed];
       \tikzstyle{Blue} = [ultra thick, color=MidnightBlue];
@@ -2935,7 +2941,108 @@ Meanwhile for $N > 6$, note that given any vertex $v$ there must be three edges 
 
 \mySepTwo
 
+{\huge \color{Black} \textbf{Discussion Section Additional Notes} \newline}
+
+Generalization of Ramsey numbers:
+\begin{myIndent}
+   Let $H$ and $F$ be graphs. Then $r(H, F)$ is the minimum $N$ such that any\\ red-blue coloring of $E(K_N)$ will have either a red $H$ or blue $F$. Note\\ that $r(s, t) = r(K_s, K_t)$.
+   \retTwo
+\end{myIndent}
+\retTwo
+
+\hOne An equivalent way of thinking about Ramsey numbers is through the complements\\ [-3pt] of graphs. Let $G$ be an $n$-vertex graph. Then the \udefine{complement} of $G$ is $\overbar{G}$ where $\overbar{G}$ has the same vertices as $G$ and all the edges that $G$ doesn't have. \retTwo
+
+Then $r(H, F)$ is the minimum $N$ such that for any graph $G$ with $|V(G)| \geq N$,\\ [-3pt] $H \not\subseteq G \Longrightarrow F \subseteq \overbar{G}$.
+
+\newpage
+\teachComment
+Some tips for solving Ramsey number problems:
+\begin{itemize}
+   \item Restate the problem.
+   \item Think of basic lower bound constructions such as making one of the colors form a collection of cliques or a bipartite graph.
+   \item Remember the pigeonhole principle.
+\end{itemize}
+
+\exOne%
+\mySepTwo
+
+Example 1: Prove that every red-blue coloring of $K_n$ contains a monochromatic\\ spanning tree.
+{\begin{myIndent} \exTwo
+   Let $G = \mathrm{red}(K_n)$. We showed earlier that any connected graph with finite vertices has a spanning tree. So if $G$ is connected, we're done. Otherwise, we know that\\ [-3pt] $\overbar{G} = \mathrm{blue}(K_n)$ is connected. So $\overbar{G}$ has a spanning tree. $\blacksquare$\retTwo
+\end{myIndent}}
+
+Example 2: Prove that $\left\lceil \frac{3(k-1)}{2} \right\rceil \leq r(P_k, P_k) \leq 2k$.
+{\begin{myIndent} \exTwo
+   \ul{Upper Bound}: \\ [2pt]
+   By the Erd\H{o}s-Gallai Theorem: $\exNums{n, P_k} \leq (k-1)\frac{n}{2}$. Let $G$ have $n$ vertices.\\ If $G$ is $P_k$-free, then $|E(G)| \leq (k-1)\frac{n}{2}$, which means that:
+   
+   {\centering$|E(\overbar{G})| \geq \frac{n(n-1)}{2} - \frac{n(k-1)}{2} = \frac{n}{2}(n-k)$.\\[9pt]\par}
+   
+   If $n \geq 2k$, then $\frac{n}{2}(n-k) \geq \frac{n}{2}(k) > \frac{n}{2}(k-1)$. So $\overbar{G}$ contains $P_k$. Hence,\\
+   $R(P_k, P_k) \leq 2k$.\retTwo
+
+   \ul{Lower Bound}:\\ [2pt]
+   Now consider a graph $G$ consisting of two cliques of size $k-1$ and $l$. If $l \leq k-1$,\\[-3pt] then $G$ does not contain $P_k$. Meanwhile note that $\overbar{G} = K_{k-1, l}$. If $l < \frac{k-1}{2}$ then the\\ [-3pt] longest path in $\overbar{G}$ is $2l + 1 < k$.\retTwo
+   
+   If $k$ is odd, then letting $l = \frac{k-1}{2} - 1$, we have that $|V(G)| = k + \frac{k-1}{2} - 2$. Thus:
+
+   {\centering$r(P_k, P_k) \geq k + \frac{k-1}{2} - 1 = \left\lceil \frac{3(k-1)}{2} \right\rceil$.\retTwo\par}
+   
+   If $k$ is even, then letting $l = \frac{k}{2} - 1$, we have that $|V(G)| = k - 2 + \frac{k}{2}$. Thus: 
+
+   {\centering$r(P_k, P_k) \geq k - 1 + \frac{k}{2} =  \left\lceil \frac{3(k-1)}{2} \right\rceil$. $\blacksquare$\retTwo\par}
+\end{myIndent}}
+
 \markLecture{3/12/2024}
+
+Example 3: Prove that $r(K_{1,2}, K_t) = 2t-1$.
+{\begin{myIndent} \exTwo
+   If we red-blue color $K_N$ and there is no red $K_{1,2}$, then $\textrm{red}(K_N)$ forms a matching $M$. Letting $N = 2t - 1$, we can find $t$ vertices with no red edges between them. Specifically, pick one vertex from each match in $M$ plus some number of vertices outside the matching. Thus $\textrm{blue}(K_n)$ contains $k_t$, meaning $r(K_{1,2}, K_t) \leq 2t - 1$
+
+   \newpage
+
+   Now color $E(K_{2t-2})$ with a red perfect matching and all other edges blue. Then the largest blue clique is $K_{t-1}$. So $r(F, G) > 2t-2$. $\blacksquare$\retTwo
+\end{myIndent}}
+
+Example 4: Prove that $r(C_4, K_t) < 4t^2$ for $t \geq 1$.
+{\begin{myIndent} \exTwo
+   In a red-blue coloring of $E(K_N)$, if there is no red $C_4$, then by the Kövari-Sós-\\Turán theorem: $|E(\mathrm{red})| \leq \frac{1}{2}(N^\frac{3}{2} + N)$. Meanwhile, by Turán's Theorem, if there is no blue $K_t$, then $|E(\mathrm{blue})| \leq \binom{t-1}{2}\cdot\frac{N^2}{(t-1)^2} = \frac{t-2}{t-1}\left(\frac{N^2}{2}\right)$.\retTwo
+   
+   {\begin{myIndent} \exP
+      We did not prove this at the time, but even when $r \ndiv n$:
+
+      {\centering$ |E(T_r(n))| \leq \left(\frac{n}{r}(r - 1)\right)\frac{n}{2} = \binom{r}{2}\frac{n^2}{r^2} = \frac{n^2}{2}(1 - \frac{1}{r})$.\retTwo\par}
+   \end{myIndent}}
+
+   Putting those together, we have that: $E(K_N) = \binom{N}{2} \leq \frac{1}{2}(N^{\frac{3}{2}} + N) + \frac{t-2}{t-1}\left(\frac{N^2}{2}\right)$.\\
+   \begin{myIndent}
+      \begin{tabular}{l}
+         $ \binom{N}{2} \leq \frac{1}{2}(N^{\frac{3}{2}} + N) + \frac{t-2}{t-1}\left(\frac{N^2}{2}\right) \Longrightarrow \frac{N^2 - 2N - N^\frac{3}{2}}{2} \leq \frac{t-2}{t-1}\cdot\frac{N^2}{2}$\\
+         $ \phantom{\binom{N}{2} \leq \frac{1}{2}(N^{\frac{3}{2}} + N) + \frac{t-2}{t-1}\left(\frac{N^2}{2}\right)} \Longrightarrow -(\frac{1}{2}N^\frac{3}{2} + N) \leq \frac{-1}{t-1}\cdot\frac{N^2}{2}$ \\
+         $ \phantom{\binom{N}{2} \leq \frac{1}{2}(N^{\frac{3}{2}} + N) + \frac{t-2}{t-1}\left(\frac{N^2}{2}\right)} \Longrightarrow \frac{1}{2}N^\frac{3}{2} + N \geq \frac{1}{t-1}\cdot \frac{N^2}{2}$
+      \end{tabular}\retTwo
+   \end{myIndent}
+
+   For $N \geq 4$, we apparently have that $\frac{1}{2}N^\frac{3}{2} \geq N$. Now we can easily check that:
+   \begin{itemize}
+      \item $r(C_4, K_1) = 0 < (t+1)^2$ when $t = 1$
+      \item $r(C_4, K_2) = 4 < (t+1)^2$ when $t = 2$
+      \item $r(C_4, K_t) > 4$ when $t \geq 3$.
+   \end{itemize}
+
+   So since we now have permission to focus on when $t \geq 3$, we can assume $N \geq 4$\\ without contradicting our previous assumptions.\retTwo
+
+   $\frac{1}{t-1}\cdot \frac{N^2}{2} \leq \frac{1}{2}N^\frac{3}{2} + N \leq 2\cdot\frac{1}{2}N^\frac{3}{2}$. Therefore $\sqrt{N} \leq 2(t-1)$, which means that $N \leq 4(t-1)^2 < 4t^2$. So $r(C_4, K_t) \leq 4t^2$. $\blacksquare$\retTwo
+   
+   {\begin{myTindent}\teachComment
+      The best lower bound known is $r(C_r, K_t) \geq ct^\frac{3}{2}\sqrt{\log(t)}$\\ where $c>0$ is a constant.
+   \end{myTindent}}
+
+\end{myIndent}}
+
+\mySepTwo
+
+\hOne\newpage
 
 
 
