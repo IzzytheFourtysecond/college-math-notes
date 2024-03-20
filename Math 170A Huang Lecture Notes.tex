@@ -124,6 +124,7 @@
    {\huge \color{Black} \textbf{Lecture \theLectureNumber: #1} \newline}%
 }
 
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
 
 \newcommand{\pprime}{{\prime\prime}}
 \newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
@@ -1807,14 +1808,208 @@
       \uuline{Schur Theorem}: Let $\mMat{A} \in \mathbb{C}^{n\times n}$. Then there exists a unitary matrix $\mMat{U} \in \mathbb{C}^{n\times n}$ and an upper triangular matrix $\mMat{T} \in \mathbb{C}^{n\times n}$ such that $\mMat{A} = \mMat{U}\mMat{T}\mMat{U}^*$. \retTwo
 
       \uuline{Real Schur Theorem}: If $\mMat{A} \in \mathbb{R}^{n\times n}$, then there exists an orthogonal matrix $\mMat{Q} \in \mathbb{R}^{n\times n}$ and "almost" upper triangular matrix $\mMat{T} \in \mathbb{R}^{n\times n}$ such that $\mMat{A} = \mMat{Q}\mMat{T}\mMat{Q}^T$. 
-      
-      
-      \begin{myTindent}
-         \myComment I don't think we will be learning how to take these decompositions in this class\dots \retTwo
-      \end{myTindent}
+      \retTwo
    \end{myIndent}}
 
-   \mySepTwo
+   \mySepOne
+
+   {\myComment
+      Because I'm on a time crunch, these next lectures will be out of order. Also I'm probably never going to write down anything for lecture 18.\retTwo
+   }
+
+   {\huge \color{Black} \textbf{Lecture 21: 3/8/2024} \newline}
+
+   \uuline{Iterative Methods}:
+   {\begin{myIndent} \hTwo
+      When solving $\mMat{A}\mVec{x} = \mVec{b}$, Gaussian Elimination takes $\mathcal{O}(n^3)$ flops. When $n$ is large, this takes too long.\retTwo
+
+      Thus we instead consider iterative methods:
+      {\begin{myDindent} \hTwo
+         \begin{itemize}
+            \item[{\color{BrickRed}Step 1.}] Pick an inital guess $\mVecAst{x}^{\phantom{.}(0)}$.\\
+            \item[{\color{BrickRed}Step 2.}] Iterate and hope that $\mVecAst{x}^{\phantom{.}(k)} \rightarrow \mVec{x}$ where $\mVec{x}$ is the solution\\ to $\mMat{A}\mVec{X} = \mVec{b}$.\\
+            \item[{\color{BrickRed}Step 3.}] Choose $\varepsilon > 0$ and stop if $\|\mVecAst{x}^{\phantom{.}(k+1)} - \mVecAst{x}^{\phantom{.}(k)} \| \leq \varepsilon$
+         \end{itemize}\retTwo
+      \end{myDindent}}
+
+      The advantages of iterative methods are:
+      \begin{itemize}
+         \item If we choose a good first guess: $\mVec{x}^{\phantom{.}(0)}$, then our iterative method\\ might converge fast.
+         \item Iterative methods in general take $\mathcal{O}(n^2N)$ flops where $N$ is the number of iterations you need to do. So when $N \ll n$, this can save a lot of time.
+      \end{itemize}
+   \end{myIndent}}
+
+   \newpage
+
+   The Jacobi method:\\
+   
+   {\begin{myIndent} \hTwo
+      Let $\mMat{A} \in \mathbb{C}^{n\times n}$ and $\mVec{b}, \mVec{x} \in \mathbb{C}^n$.\\
+
+      Here is the motivation for the algorithm:\\
+      {\begin{myIndent} \hThree
+         $\mMat{A}\mVec{x} = \mVec{b} \Longleftrightarrow \left\{
+         \begin{matrix}
+            a_{1,1}x_1 + a_{1,2}x_2 + \cdots + a_{1,n}x_n = b_1 \\
+            a_{2,1}x_1 + a_{2,2}x_2 + \cdots + a_{2,n}x_n = b_2 \\
+            \vdots \\
+            a_{n,1}x_1 + a_{n,2}x_2 + \cdots + n_{n,n}x_n = b_n \\
+         \end{matrix}\right.$\retTwo
+
+         Equivalently, we can say that $a_{i,i}x_i + {\displaystyle \sum_{
+         \begin{smallmatrix}
+            j = 1 \\
+            j \neq i
+         \end{smallmatrix}}^n{a_{i,j}x_j}} = b_i$ for $i \in \{1, 2, \ldots, n\}$. \retTwo
+
+         Assuming all $a_{i,i} \neq 0$, then for all $i \in \{1, 2, \ldots, n\}$ we can isolate $x_i$ as:
+
+         {\centering $ x_i = \frac{1}{a_{i,i}}(b_i - {\displaystyle \sum_{
+            \begin{smallmatrix}
+               j = 1 \\
+               j \neq i
+            \end{smallmatrix}}^n{a_{i,j}x_j}})$\retTwo\par}
+
+         Hence, we now have the formula used in the procedure below.
+      \end{myIndent}}
+      \retTwo
+
+      The procedure:
+      {\begin{myIndent} \hThree
+         Pick any initial guess $\mVecAst{x}^{\phantom{.}(0)} = \mVec{q}$.  Then inductively for $k \geq 0$, define:
+         \begin{myIndent}
+            $\mVecAst{x}^{\phantom{.}(k+1)} = 
+            \begin{bmatrix}
+               x_1^{(k+1)} & x_2^{(k+1)} & \cdots & x_n^{(k+1)}
+            \end{bmatrix}$ such that for $i \in \{1, 2, \ldots, n\}$:\\
+
+            {\centering $ x_i^{(k+1)} = \frac{1}{a_{i,i}}(b_i - {\displaystyle \sum_{
+            \begin{smallmatrix}
+               j = 1 \\
+               j \neq i
+            \end{smallmatrix}}^n{a_{i,j}x_j^{(k)}}})$\retTwo\par}
+         \end{myIndent}
+
+         
+         {\begin{myTindent}\begin{myIndent} \color{BrickRed}
+            Beware, for all $i$, we must have that $a_{i,i} \neq 0$ or else the formula in the algorithm isn't defined.
+         \end{myIndent}\end{myTindent}}
+      \end{myIndent}}
+
+      
+      \begin{tabular}{ p{6in} }
+         \\ \hline
+      \end{tabular}\retTwo
+
+      Now let's try to rewrite this algorithm using matrices. Firstly, let $\mMat{D}$ be the diagonal matrix consisting of just the diagonal entries of $\mMat{A}$. Then, we can say that:
+
+      {\centering $ \mVecAst{x}^{\phantom{.}(k+1)} = \mMat{D}^{-1}(\mVec{b} - (\mMat{A} - \mMat{D})\mVecAst{x}^{\phantom{.}(k)}) $ \retTwo\par}
+
+      With this formula, we can then figure out when $\mVecAst{x}^{\phantom{.}(k)}$ converges to the real answer. \retTwo
+      
+      {\begin{myIndent} \hThree
+         Let $\mVec{x}$ be the solution to $\mMat{A}\mVec{x} = \mVec{b}$ and denote the error: $\mVecAst{e}^{\phantom{.}(k)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k)}$.
+
+         \newpage
+         
+         \begin{tabular}{l}
+            $\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)} = \mVec{x} - \mMat{D}^{-1}(\mVec{b} - (\mMat{A} - \mMat{D})\mVecAst{x}^{\phantom{.}(k)})$\\
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}} = \mVec{x} - \mMat{D}^{-1}(\mVec{b} - \mMat{A}\mVecAst{x}^{\phantom{.}(k)} + \mMat{D}\mVecAst{x}^{\phantom{.}(k)})$\\
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}} = \mVec{x} - \mMat{D}^{-1}((\mMat{A}\mVec{x}) - \mMat{A}\mVecAst{x}^{\phantom{.}(k)}) - \mVecAst{x}^{\phantom{.}(k)}$\\
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}} = \mVecAst{e}^{\phantom{.}(k)} - \mMat{D}^{-1}\mMat{A}\mVecAst{e}^{\phantom{.}(k)}$\\
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}} = (\mMat{I} - \mMat{D}^{-1}\mMat{A})\mVecAst{e}^{\phantom{.}(k)}$\\
+         \end{tabular}\retTwo
+
+         As a result, we have that $\mVecAst{e}^{\phantom{.}(k + 1)} = (\mMat{I} - \mMat{D}^{-1}\mMat{A})^{k+1}\mVecAst{e}^{\phantom{.}(0)}$\retTwo
+      \end{myIndent}}
+
+      \uuline{Theorem}: If all eigenvalues $\lambda$ of $\mMat{B} = \mMat{I} - \mMat{D}^{-1}\mMat{A}$ satisfy $|\lambda| < 1$, then the Jacobi\\ method will converge to $\mVec{x}$ for every choice of $\mVec{x}^{\phantom{.}(0)}$ \retTwo
+   \end{myIndent}}
+
+   {\huge \color{Black} \textbf{Lecture 22: 3/11/2024} \newline}
+
+   The Gauss-Seidel method:\\
+
+   {\begin{myIndent} \hTwo
+      Still let $\mMat{A} \in \mathbb{C}^{n\times n}$ and $\mVec{b}, \mVec{x} \in \mathbb{C}^n$. Also define $\mMat{A} = \mMat{D} + \mMat{L} + \mMat{U}$ where $\mMat{D}$ consists\\ of the diagonal entries of $\mMat{A}$, $\mMat{L}$ consists of the entries below the diagonal of $\mMat{A}$, and\\ $\mMat{U}$ consists of the entries above the diagonal of $\mMat{A}$.\retTwo
+
+      For the Jacobi method, we defined: 
+      
+      {\center$\mVecAst{x}^{\phantom{.}(k+1)} = \mMat{D}^{-1}(\mVec{b} - (\mMat{A} - \mMat{D})\mVecAst{x}^{\phantom{.}(k)}) = \mMat{D}^{-1}(\mVec{b} - \mMat{L}\mVecAst{x}^{\phantom{.}(k)} - \mMat{U}\mVecAst{x}^{\phantom{.}(k)})$\retTwo\par}
+
+      Now for the Gauss-Seidel method, we shall instead define:
+
+      {\center$\mVecAst{x}^{\phantom{.}(k+1)} = \mMat{D}^{-1}(\mVec{b}\vphantom{.}\cyPen{\vphantom{.} - \mMat{L}\mVecAst{x}^{\phantom{.}(k+1)}} - \mMat{U}\mVecAst{x}^{\phantom{.}(k)})$\retTwo\par}
+
+      {\begin{myIndent} \hThree
+         Then $ \mMat{D}\mVecAst{x}^{\phantom{.}(k+1)} = \mVec{b} - \mMat{L}\mVecAst{x}^{\phantom{.}(k+1)} - \mMat{U}\mVecAst{x}^{\phantom{.}(k)}$, which means that:
+         
+         {\centering$\mVecAst{x}^{\phantom{.}(k+1)} = (\mMat{D} + \mMat{L})^{-1}\left(\mVec{b} - \mMat{U}\mVecAst{x}^{\phantom{.}(k)}\right)$\par}
+
+         {\begin{myTindent}\begin{myDindent} \color{BrickRed}
+            Beware, $(\mMat{D} + \mMat{L})^{-1}$ only exists if all $a_{i,i} \neq 0$\\ on the diagonal of $\mMat{A}$.\retTwo
+         \end{myDindent}\end{myTindent}}
+
+         Now to analyze the convergence of this algorithm, once again let $\mVec{x}$ be the solution to $\mMat{A}\mVec{x} = \mVec{b}$ and denote the error $\mVecAst{e}^{\phantom{.}(k)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k)}$. Then:\\
+
+         \begin{tabular}{l}
+            $\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)} = \mVec{x} - (\mMat{D} + \mMat{L})^{-1}\left(\mVec{b} - \mMat{U}\mVecAst{x}^{\phantom{.}(k)}\right)$\\ [4pt]
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}}  = \mVec{x} - (\mMat{D} + \mMat{L})^{-1}\left(\mVec{b} - (\mMat{A} - \mMat{L} - \mMat{D})\mVecAst{x}^{\phantom{.}(k)}\right)$\\[4pt]
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}}  = \mVec{x} - (\mMat{D} + \mMat{L})^{-1}(\mMat{A}\mVec{x} - \mMat{A}\mVecAst{x}^{\phantom{.}(k)}) - \mVecAst{x}^{\phantom{.}(k)}$\\[4pt]
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}} = \mVecAst{e}^{\phantom{.}(k)} - (\mMat{D} + \mMat{L})^{-1}\mMat{A}\mVecAst{e}^{\phantom{.}(k)}$\\[4pt]
+
+            $\phantom{\mVecAst{e}^{\phantom{.}(k + 1)} = \mVec{x} - \mVecAst{x}^{\phantom{.}(k+1)}} = \left( \mMat{I} - (\mMat{D} + \mMat{L})^{-1}\mMat{A}\right)\mVecAst{e}^{\phantom{.}(k)}$\\
+         \end{tabular}\retTwo
+
+         Thus $\mVecAst{e}^{\phantom{.}(k + 1)} = ( \mMat{I} - (\mMat{D} + \mMat{L})^{-1}\mMat{A})^{k+1}\mVecAst{e}^{\phantom{.}(0)}$\retTwo
+      \end{myIndent}}
+
+      \newpage
+
+      \uuline{Theorem}: If all eigenvalues $\lambda$ of $\mMat{B} = \mMat{I} - (\mMat{D} + \mMat{L})^{-1}\mMat{A}$ satisfy $|\lambda| < 1$, then\\ the Gauss-Seidel method will converge to $\mVec{x}$ for every choice of $\mVec{x}^{\phantom{.}(0)}$ \retTwo
+   \end{myIndent}}
+
+   \mySepOne
+
+   {\huge \color{Black} \textbf{Lecture 20: 3/6/2024} \newline}
+
+   Suppose $\mMat{A} \in \mathbb{R}^{n\times m}$ has the SVD decomposition $\mMat{A} = \mMat{U}\bm{\Sigma}\mMat{V}^T$.\retTwo
+
+   {\begin{myIndent} \hTwo
+      Then $\mMat{A}\mMat{A}^T = \mMat{U}\bm{\Sigma}\mMat{V}^T\mMat{V}\bm{\Sigma}^T\mMat{U}^T = \mMat{U}\bm{\Sigma}\bm{\Sigma}^T\mMat{U}^T$, which means $\mMat{A}\mMat{A}^T\mMat{U} = \mMat{U}\bm{\Sigma}\bm{\Sigma}^T$.\retTwo
+
+      Now write $\mMat{U}$ as $
+      \begin{bmatrix}
+         \mVecAst{u}_1 & \mVecAst{u}_2 & \cdots & \mVecAst{u}_n
+      \end{bmatrix}$. Then if there are $r \leq n$ singular values, we\\ [2pt] have that for $i \in \{1, \ldots, r\}, \hspace{0.4em} \mMat{A}\mMat{A}^T\mVecAst{u}_i = \sigma_i^2\mVecAst{u}_i$, whereas for $i \in \{r+1, \ldots, n\}$,\\ [2pt] $\mMat{A}\mMat{A}^T\mVecAst{u}_i = 0\mVecAst{u}_i$. Hence, $\mVec{u}_i$ is the eigenvector of $\mMat{A}\mMat{A}^T$ with length $1$ associated with\\[2pt] the eigenvalue $\sigma_i^2$ or $0$ of $\mMat{A}\mMat{A}^T$. \retTwo \retTwo
+      
+
+      Meanwhile, $\mMat{A}^T\mMat{A} = \mMat{V}\bm{\Sigma}^T\mMat{U}^T\mMat{U}\bm{\Sigma}\mMat{V}^T = \mMat{V}\bm{\Sigma}^T\bm{\Sigma}\mMat{V}^T$, which means $\mMat{A}^T\mMat{A}\mMat{V} = \mMat{V}\bm{\Sigma}^T\bm{\Sigma}$.\retTwo
+
+      Similar to before, setting $\mMat{V}$ as $
+      \begin{bmatrix}
+         \mVecAst{v}_1 & \mVecAst{v}_2 & \cdots & \mVecAst{v}_n
+      \end{bmatrix}$, we have that for $i \in \{1, \ldots, r\}$,\\ [2pt] $\mMat{A}^T\mMat{A}\mVecAst{v}_i = \sigma_i^2\mVecAst{v}_i$, whereas for $i \in \{r+1, \ldots, m\}, \hspace{0.4em} \mMat{A}^T\mMat{A}\mVecAst{v}_i = 0\mVecAst{v}_i$. Hence, $\mVec{v}_i$ is\\ [2pt] the eigenvector of $\mMat{A}^T\mMat{A}$ with length $1$ associated with the eigenvalue $\sigma_i^2$ or $0$\\ [2pt] of $\mMat{A}^T\mMat{A}$. \retTwo
+      
+      {\begin{myTindent} \hFour
+         Because $\mMat{A}^T\mMat{A}$ and $\mMat{A}\mMat{A}^T$ are symmetric, we know that the eigenvectors of both form an orthonormal basis for their respective vector spaces. \retTwo
+      \end{myTindent}}
+   \end{myIndent}}
+
+   Thus, method 1 for finding an SVD decomposition of $\mMat{A}$ is by finding the eigenvalues and eigenvectors of $\mMat{A}\mMat{A}^T$ and $\mMat{A}^T\mMat{A}$.
+   \begin{itemize}
+      \item This method has a good flop count.
+      \item $K_2(\mMat{A}\mMat{A}^T) = (K_2(\mMat{A}))^2$. So $\mMat{A}\mMat{A}^T$ is not well conditioned.
+   \end{itemize}
+
+   \newpage
 
    \markLecture{2/28/2024}
 
