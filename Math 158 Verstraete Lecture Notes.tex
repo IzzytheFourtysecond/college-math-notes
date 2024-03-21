@@ -3063,7 +3063,7 @@ Here is an application of Ramsey theory:
    \uuline{Theorem}: For $k \geq 2, \myHS r_k(3) \leq \lfloor e\cdot k! \rfloor + 1$\\ [-11pt]
    {\begin{myIndent} \hFour
       Proof:\\
-      Obviously, $r_1(3) = 3 = \lfloor e\cdot k! \rfloor + 1$. So, let us now $k$-color $E(K_N)$ and proceed by induction on $k$ such that $k > 2$.\retTwo
+      Let us $k$-color $E(K_N)$ and proceed by induction on $k$.\retTwo
 
       Assume that $K_N$ has no monocromatic triangles. Then pick any $u \in V(K_N)$. By the pigeonhole principle, there must be some color with at least $\frac{N-1}{k}$ edges touching $u$. Letting $U$ be the set of neighbors of $u$ in that color, we have that $|U| \geq \frac{N-1}{k}$.\retTwo
 
@@ -3076,7 +3076,11 @@ Here is an application of Ramsey theory:
 
       Let's define $a_k = r_k(3) - 1$ and rewrite the expression as $a_k \leq \frac{k!}{k!} + \frac{k!}{(k-1)!}a_{k-1}$.\\ Then magically:
 
-      {\center $ a_k \leq \frac{k!}{k!} + \frac{k!}{(k-1)!}a_{k-1} \leq \frac{k!}{k!} + \frac{k!}{(k-1)!} + \frac{k!}{(k-2)!}a_{k-2} \leq \cdots \leq \sum\limits_{i=1}^k\frac{k!}{i!} \leq e\cdot k!$\retTwo\par}
+      {\center $ a_k \leq \frac{k!}{k!} + \frac{k!}{(k-1)!}a_{k-1} \leq \frac{k!}{k!} + \frac{k!}{(k-1)!} + \frac{k!}{(k-2)!}a_{k-2} \leq \cdots \leq \sum\limits_{i=2}^k\frac{k!}{i!} + k!a_{1}$\retTwo\par}
+
+      $a_1 = r_1(3) - 1 = 2$. So, we can rewrite $k!a_{1}$ as $\frac{k!}{1!} + \frac{k!}{0!}$. And finally:
+
+      {\center $ a_k \leq \sum\limits_{i=0}^k\frac{k!}{i!} = k! \cdot \sum\limits_{i=0}^k\frac{1}{i!} < k!\cdot e$\retTwo\par}
 
       Thus, $r_k(3) \leq \lfloor e\cdot k! \rfloor + 1$. \retTwo
 
@@ -3086,7 +3090,7 @@ Here is an application of Ramsey theory:
 
             If $N \leq 2^k - 1$, we can color all the edges of $K_N$ with $k$ different colors. And because all the colors are bipartite, there is no monocromatic odd cycle including a triangle. So $r_k(3) \geq 2^k$.\\
          \end{myClosureOne}
-         \retTwo \retTwo \retTwo
+         \retTwo \retTwo
       \end{center}}
    \end{myIndent}}
 
