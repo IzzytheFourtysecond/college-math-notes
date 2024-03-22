@@ -3143,18 +3143,41 @@ A \udefine{flow} in a digraph $G$ is a map $f: E(G) \rightarrow \mathbb{R}^{\geq
 To make the flow more interesting, we consider $G$ to have a \udefine{source} $s \in V(G)$ and \udefine{sink} $t \in V(G)$ where the conservation law doesn't need to hold.
 
 \newpage
+\exOne
+Here's an example of flow in a digraph:\\
 
-{\exOne
-{\color{BrickRed} Add a drawing at the top of this page on Friday or Saturday.
-\retTwo
-\retTwo
-\retTwo
-\retTwo
-\retTwo
-\retTwo
-\retTwo}
+{\centering\raisebox{0em}{\tikz[scale=0.7,inner sep=4pt]{
+   \tikzstyle{myCirImportant}=[circle, color=Purple, draw, ultra thick];
+   \tikzstyle{myCir}=[circle, color=Purple, fill, ultra thick];
+   \tikzstyle{pipe} = [ultra thick, color=Purple, arrows = {-Stealth[length = 15, width=10, scale=1]}];
+   %vertices
+   \node[myCirImportant] (s) at (0,0) {$s$};
+   \node[myCir] (1t) at (5,3) {};
+   \node[myCir] (1l) at (5,-3) {};
+   \node[myCir] (2t) at (10,3) {};
+   \node[myCir] (2l) at (10,-3) {};
+   \node[myCirImportant] (si) at (15,0) {$t$};
+   %edges
+   \draw[pipe] (s) -- (1t);
+   \draw[pipe] (2t) -- (1t);
+   \draw[pipe] (1t) -- (2l);
+   \draw[pipe] (2t) -- (si);
+   \draw[pipe] (2l) -- (si);
+   \draw[pipe] (s) -- (1l);
+   \draw[pipe] (1l) -- (2t);
+   \draw[pipe] (2l) -- (1l);
+   %flows
+   \node at (2.75,2.5) {{\exTwo$3$}};
+   \node at (2.95,-2.6) {{\exTwo$2$}};
+   \node at (6.7,3.65) {{\exTwo$1$}};
+   \node at (9.2,-1.1) {{\exTwo$4$}};
+   \node at (6.7,-3.65) {{\exTwo$2$}};
+   \node at (9.2,1.1) {{\exTwo$4$}};
+   \node at (13.3,1.8) {{\exTwo$3$}};
+   \node at (13.3,-1.8) {{\exTwo$2$}};
+}}\par}
 
-\mySepTwo}
+\mySepTwo\hOne
 
 If $s$ is the source of a flow $f$, then the \udefine{value of the flow} $f$ is:
 
@@ -3173,14 +3196,34 @@ A \udefine{capacity} function is a map $c: E(G) \rightarrow \mathbb{R}^{\geq 0}$
 
 \markLecture{3/14/2024}
 
-Question: In a digraph with capacities and a source and sink, what is the maximum value of a flow?
+Question: In a digraph with capacities and a source and sink, what is the maximum value of a flow that we can have?
 
 {\begin{myIndent} \hTwo
-   Let $(S, T)$ be an ordered pair of sets partitioning $V(G)$. The \udefine{capacity of a cut} is defined as: $c(S, T) = \hspace{-0.2em}\sum\limits_{
+   Let $(S, T)$ be a cut of $G$. Note that we are distinguishing between $(S, T)$ and $(T, S)$.\retTwo
+
+   \uuline{Theorem}: For any flow $f$ and cut $(S, T)$, we have that:
+   
+   {\center$v(f) = \hspace{-1em}\sum\limits_{
+   \begin{smallmatrix}
+      (x, y) \in E(G) \\
+      x \in S \\
+      y \in T
+   \end{smallmatrix}}\hspace{-1.1em}f(x, y)\hspace{0.3em} - \hspace{-1em}\sum\limits_{
+      \begin{smallmatrix}
+         (x, y) \in E(G) \\
+         x \in S \\
+         y \in T
+      \end{smallmatrix}}\hspace{-1.1em}f(y, x)$\par}
+   
+   \newpage
+
+   The \udefine{capacity of a cut} is defined as: 
+   
+   {\center $c(S, T) = \hspace{-0.2em}\sum\limits_{
    \begin{smallmatrix}
       v \in S \\
       w \in T
-   \end{smallmatrix}}\hspace{-0.1em}c(v, w)$.\retTwo
+   \end{smallmatrix}}\hspace{-0.1em}c(v, w)$.\par}\retTwo
 
    \uuline{Max Flow Min Cut Theorem}: The maximum value of any flow equals the minimum capacity of any cut.\retTwo
 
