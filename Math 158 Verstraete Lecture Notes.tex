@@ -3144,9 +3144,9 @@ To make the flow more interesting, we consider $G$ to have a \udefine{source} $s
 
 \newpage
 \exOne
-Here's an example of flow in a digraph:\\
+Here's an example of flow in a digraph:\\ [-11pt]
 
-{\centering\raisebox{0em}{\tikz[scale=0.7,inner sep=4pt]{
+{\centering\raisebox{0em}{\tikz[scale=0.6,inner sep=4pt]{
    \tikzstyle{myCirImportant}=[circle, color=Purple, draw, ultra thick];
    \tikzstyle{myCir}=[circle, color=Purple, fill, ultra thick];
    \tikzstyle{pipe} = [ultra thick, color=Purple, arrows = {-Stealth[length = 15, width=10, scale=1]}];
@@ -3181,29 +3181,25 @@ Here's an example of flow in a digraph:\\
 
 If $s$ is the source of a flow $f$, then the \udefine{value of the flow} $f$ is:
 
-{\center $v(f) = \hspace{-1em}\sum\limits_{(s,v) \in E(G)}\hspace{-0.9em}f(s, v)\hspace{0.2em} - \hspace{-1em}\sum\limits_{(v,s) \in E(G)}\hspace{-0.9em}f(v, s) = \text{ net flow leaving } s$.\par}
-
-\retTwo
-
-{\center\teachComment
-\begin{myClosureOne}{5}
-   Note that if you want to have more than one source, you can treat several sources as all being connected to one supersource. A similar trick also works if you want multiple sinks.\\
-\end{myClosureOne}\par}
+{\center $v(f) = \hspace{-0.7em}\sum\limits_{v \in N^+(s)}\hspace{-0.7em}f(s, v)\hspace{0.2em} - \hspace{-0.7em}\sum\limits_{v \in N^-(s)}\hspace{-0.7em}f(v, s) = \text{ net flow leaving } s$.\par}
 
 \retTwo
 
 A \udefine{capacity} function is a map $c: E(G) \rightarrow \mathbb{R}^{\geq 0}$ such that if $f: E(G) \rightarrow \mathbb{R}$ is a flow,\\ then $f(v, w) \leq c(v, w)$ for all $(v, w) \in E(G)$.\retTwo
 
+{\center\teachComment
+\begin{myClosureOne}{5}
+   Note that if you want to have more than one source, you can treat several sources as all being connected to one supersource. A similar trick also works if you want multiple sinks.\\ [-2pt]
+\end{myClosureOne}\par}
+
+\retTwo
+
 \markLecture{3/14/2024}
 
-Question: In a digraph with capacities and a source and sink, what is the maximum value of a flow that we can have?
+Let $G$ be a digraph and $f$ a flow with a source $s$ and sink $t$. If we have sets $S$ and\\ $T$ that partition $V(G)$ such that $s \in S$ and $t \in T$, then we can define the \udefine{$s$-$t$ cut}:\\ $(S, T)$, to be the spanning subgraph of $G$ containing all the edges going out of $S$\\ into $T$.\retTwo
 
 {\begin{myIndent} \hTwo
-   Let $(S, T)$ be a cut of $G$. Note that we are distinguishing between $(S, T)$ and $(T, S)$.\retTwo
-
-   \uuline{Theorem}: For any flow $f$ and cut $(S, T)$, we have that:
-   
-   {\center$v(f) = \hspace{-1em}\sum\limits_{
+   \uuline{Theorem}: For any flow $f$ and $s$-$t$ cut $(S, T)$, $\quad v(f) = \hspace{-1em}\sum\limits_{
    \begin{smallmatrix}
       (x, y) \in E(G) \\
       x \in S \\
@@ -3213,21 +3209,85 @@ Question: In a digraph with capacities and a source and sink, what is the maximu
          (x, y) \in E(G) \\
          x \in S \\
          y \in T
-      \end{smallmatrix}}\hspace{-1.1em}f(y, x)$\par}
+      \end{smallmatrix}}\hspace{-1.1em}f(y, x)$.
+
+   \retTwo
+   \begin{myIndent}
+      \hThree Proof:\\
+      By Kirchoff's law, for all $x \in S \setminus \{s, t\}$, $\myHS\sum\limits_{y \in N^+(x)}\hspace{-0.65em}f(x, y) = \hspace{-0.8em}\sum\limits_{y \in N^-(x)}\hspace{-0.65em}f(y, x)$.\\ [13pt]
+
+      Thus, $\sum\limits_{x \in S\setminus \{s\}} \hspace{-0.3em} \left( \hspace{0.1em}\sum\limits_{y \in N^+(x)} \hspace{-0.7em} f(x, y) \right) = \sum\limits_{x \in S\setminus \{s\}} \hspace{-0.3em} \left( \hspace{0.1em}\sum\limits_{y \in N^-(x)} \hspace{-0.7em} f(y, x) \right)$.
+
+      \newpage
+      
+      Meanwhile, by the definition of $v(f)$:$\hspace{-0.2em}\sum\limits_{y \in N^+(s)}\hspace{-0.65em}f(s, y) = \hspace{-0.8em}\sum\limits_{y \in N^-(s)}\hspace{-0.65em}f(y, s) + v(f)$.\\ [13pt]
    
-   \newpage
-
-   The \udefine{capacity of a cut} is defined as: 
+      So, $\sum\limits_{x \in S} \hspace{-0.3em} \left( \hspace{0.1em}\sum\limits_{y \in N^+(x)} \hspace{-0.7em} f(x, y) \right) = \sum\limits_{x \in S} \hspace{-0.3em} \left( \hspace{0.1em}\sum\limits_{y \in N^-(x)} \hspace{-0.7em} f(y, x) \right) + v(f)$.\\ [13pt]
    
-   {\center $c(S, T) = \hspace{-0.2em}\sum\limits_{
-   \begin{smallmatrix}
-      v \in S \\
-      w \in T
-   \end{smallmatrix}}\hspace{-0.1em}c(v, w)$.\par}\retTwo
+      Now for each $x \in S$ and $y \in N^+(x)$, if we also have that $y \in S$, then $f(x, y)$\\ will be added on both sides of the equation. So we can cancel out those edges, leaving us with the equation of the theorem. \retTwo
+   \end{myIndent}
 
-   \uuline{Max Flow Min Cut Theorem}: The maximum value of any flow equals the minimum capacity of any cut.\retTwo
+   \uuline{Corollary}: If $t$ is the sink of a flow $f$, then $-v(f) = \hspace{-0.7em}\sum\limits_{v \in N^+(t)}\hspace{-0.7em}f(t, v)\hspace{0.2em} - \hspace{-0.7em}\sum\limits_{v \in N^-(t)}\hspace{-0.7em}f(v, t)$.
 
-   {\color{BrickRed} Finish this after you're done.}
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Take $S = V(G) \setminus \{t\}$ and $T = \{t\}$. Then by the above theorem,\\ $\hspace{-0.7em}\sum\limits_{v \in N^-(t)}\hspace{-0.7em}f(v, t)\hspace{0.2em} = \hspace{-0.7em}\sum\limits_{v \in N^+(t)}\hspace{-0.7em}f(t, v) + v(f)$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+Given an $s$-$t$ cut $(S, T)$ and capacity function $c$, the \udefine{capacity of an $s$-$t$ cut} is defined\\ as: 
+   
+{\centering $c(S, T) = \hspace{-0.5em}\sum\limits_{e \in (S, T)}\hspace{-0.5em}c(v, w)$.\retTwo\par}
+
+{\begin{myIndent} \hTwo
+   \uuline{Max Flow Min Cut Theorem}: The maximum value of any flow equals the minimum capacity of any $s$-$t$ cut.\retTwo
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      For any flow $f$ and $s$-$t$ cut $(S, T)$, we must have that $v(f) \leq c(S, T)$.
+      {\begin{myIndent} \hFour
+         To see why, first note that:\\
+         $v(f) = \hspace{-1em}\sum\limits_{
+         \begin{smallmatrix}
+            (x, y) \in E(G) \\
+            x \in S \\
+            y \in T
+         \end{smallmatrix}}\hspace{-1.1em}f(x, y)\hspace{0.3em} - \hspace{-1em}\sum\limits_{
+            \begin{smallmatrix}
+               (x, y) \in E(G) \\
+               x \in S \\
+               y \in T
+            \end{smallmatrix}}\hspace{-1.1em}f(y, x) \leq 
+         \hspace{-1em}\sum\limits_{
+            \begin{smallmatrix}
+               (x, y) \in E(G) \\
+               x \in S \\
+               y \in T
+            \end{smallmatrix}}\hspace{-1.1em}f(x, y)\hspace{0.3em}
+         \leq 
+         \hspace{-1em}\sum\limits_{
+            \begin{smallmatrix}
+               (x, y) \in E(G) \\
+               x \in S \\
+               y \in T
+            \end{smallmatrix}}\hspace{-1.1em}c(x, y)\hspace{0.3em}$\\ [13pt]
+
+         Now note that $\{(x, y) \mid (x, y) \in E(G), x \in S, y \in T\} = E((S, T))$.\\
+         So we can rewrite our above inequality as $v(f) \leq c(S, T)$.\retTwo
+      \end{myIndent}}
+
+      This tells us that $v(f)$ is at most the minimum value of $c(S, T)$. So, what's left\\ to show is that for some flow $f$, $v(f)$ equals the minimum value of $c(S, T)$.\retTwo
+
+      Let $f$ be a maximum flow in $G$. Then define a set $S \subset V(G)$ as follows:
+      \begin{itemize}
+         \item Start by putting $s$ into $S$.
+         \item Then repeatedly until there are no more $y$ such that $(x, y) \in E(G)$\\ where $x \in S$ and $f(x, y) < c(x, y)$, put $y$ into $S$.\retTwo
+      \end{itemize}
+
+
+   \end{myIndent}}
+
+   
 
 
 \end{myIndent}}
