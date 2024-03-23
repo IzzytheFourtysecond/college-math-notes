@@ -2726,7 +2726,7 @@ A \udefine{Moore graph} is a graph which acheives equality in the Moore Bound.
 
    \begin{myIndent}
       \color{BrickRed}%
-      The proof for this is rather long. So because of time crunch, it has been moved to the end of the notes on page <put a number>.
+      The proof in class for this was very long and glossed over a lot of details\\ because most of us in the class don't know enough math to do the entire\\ proof yet. So, I'm just going to skip writing it down.
    \end{myIndent}
 \end{myIndent}}
 
@@ -3146,36 +3146,40 @@ To make the flow more interesting, we consider $G$ to have a \udefine{source} $s
 \exOne
 Here's an example of flow in a digraph:\\ [-11pt]
 
-{\centering\raisebox{0em}{\tikz[scale=0.6,inner sep=4pt]{
-   \tikzstyle{myCirImportant}=[circle, color=Purple, draw, ultra thick];
-   \tikzstyle{myCir}=[circle, color=Purple, fill, ultra thick];
-   \tikzstyle{pipe} = [ultra thick, color=Purple, arrows = {-Stealth[length = 15, width=10, scale=1]}];
-   %vertices
-   \node[myCirImportant] (s) at (0,0) {$s$};
-   \node[myCir] (1t) at (5,3) {};
-   \node[myCir] (1l) at (5,-3) {};
-   \node[myCir] (2t) at (10,3) {};
-   \node[myCir] (2l) at (10,-3) {};
-   \node[myCirImportant] (si) at (15,0) {$t$};
-   %edges
-   \draw[pipe] (s) -- (1t);
-   \draw[pipe] (2t) -- (1t);
-   \draw[pipe] (1t) -- (2l);
-   \draw[pipe] (2t) -- (si);
-   \draw[pipe] (2l) -- (si);
-   \draw[pipe] (s) -- (1l);
-   \draw[pipe] (1l) -- (2t);
-   \draw[pipe] (2l) -- (1l);
-   %flows
-   \node at (2.75,2.5) {{\exTwo$3$}};
-   \node at (2.95,-2.6) {{\exTwo$2$}};
-   \node at (6.7,3.65) {{\exTwo$1$}};
-   \node at (9.2,-1.1) {{\exTwo$4$}};
-   \node at (6.7,-3.65) {{\exTwo$2$}};
-   \node at (9.2,1.1) {{\exTwo$4$}};
-   \node at (13.3,1.8) {{\exTwo$3$}};
-   \node at (13.3,-1.8) {{\exTwo$2$}};
-}}\par}
+\begin{center}
+   \begin{tabular}{p{3in} p{3in}}
+      {\centering\raisebox{-8em}{\tikz[scale=0.45,inner sep=4pt]{
+         \tikzstyle{myCirImportant}=[circle, color=Purple, draw, ultra thick];
+         \tikzstyle{myCir}=[circle, color=Purple, fill, ultra thick];
+         \tikzstyle{pipe} = [ultra thick, color=Purple, arrows = {-Stealth[length = 15, width=10, scale=1]}];
+         %vertices
+         \node[myCirImportant] (s) at (0,0) {$s$};
+         \node[myCir] (1t) at (5,3) {};
+         \node[myCir] (1l) at (5,-3) {};
+         \node[myCir] (2t) at (10,3) {};
+         \node[myCir] (2l) at (10,-3) {};
+         \node[myCirImportant] (si) at (15,0) {$t$};
+         %edges
+         \draw[pipe] (s) -- (1t);
+         \draw[pipe] (2t) -- (1t);
+         \draw[pipe] (1t) -- (2l);
+         \draw[pipe] (2t) -- (si);
+         \draw[pipe] (2l) -- (si);
+         \draw[pipe] (s) -- (1l);
+         \draw[pipe] (1l) -- (2t);
+         \draw[pipe] (2l) -- (1l);
+         %flows
+         \node at (2.75,2.5) {{\exTwo$3$}};
+         \node at (2.75,-2.6) {{\exTwo$2$}};
+         \node at (6.7,3.95) {{\exTwo$1$}};%%
+         \node at (9.4,-1.0) {{\exTwo$4$}};
+         \node at (6.7,-3.95) {{\exTwo$2$}};%%
+         \node at (9.4,1.1) {{\exTwo$4$}};
+         \node at (13.3,2) {{\exTwo$3$}};
+         \node at (13.3,-2) {{\exTwo$2$}};
+      }}\par} & {\exP Note that repeat edges [i.e.\newline $\{(x, y), (x, y)\} \subseteq E(G)$] are completely\newline redundant. There is no reason to ever have\newline them. However, loops [i.e. $(x, x)$] can be\newline used to "store" flow at a vertex. Also\newline antiparallel edges [i.e. $(x, y), (y, x)$] let a\newline flow go either way.}
+   \end{tabular}
+\end{center}
 
 \mySepTwo\hOne
 
@@ -3329,11 +3333,37 @@ Given a capacity function $c$ and $s$-$t$ cut $(S, T)$, we define the \udefine{c
 
       
       
-      {\begin{myTindent}\begin{myDindent} \teachComment
-         \begin{myClosureOne}{3}
-            Note that this proof can also be interpretted\\ as an iterative algorithm for finding a\\ maximum flow and minimum cut.\\ [-2pt]
+      {\begin{center} \teachComment
+         \begin{myClosureOne}{4.5}
+            Note that this proof can also be interpretted as an iterative\\ algorithm for finding a maximal flow and minimum cut.\\
+            \begin{itemize}
+               \item Start with any valid flow $f_1$. 
+               \item Now inductively for $n \geq 1$, create a set $S$ using the flow $f_n$\newline as seen in the proof. If while creating $S$ you ever put $t$ into\newline $S$, then define a new flow $f_{n+1}$ via the formula seen above. 
+               \item If you finish making $S$ without ever putting in $t$, then\newline you're done because you've found a minimum cut\newline and maximal flow.\retTwo
+            \end{itemize}
+
+            {\myComment I would like to caution that we have not showed that this algorithm\newline terminates for a general capacity function $c: E(G) \rightarrow \mathbb{R}^{\geq 0}$. In\newline fact, as it is written out now, it will not terminate for some $c$.\newline However, due to the next corollary, this is not a problem in this\newline class.} \\[-2pt]
          \end{myClosureOne}
-      \end{myDindent}\end{myTindent}}
+      \end{center}}
+   \end{myIndent}}
+
+   \newpage
+
+   \uuline{Corollary}: Given a capacity function $c$, if $c(e)$ is an integer for all $e \in E(G)$, then\\ there exists a maximal flow $f$ such that $f(e) \in \mathbb{Z}$ for all $e \in E(G)$. Furthermore, by\\ making  $f_1$ map every edge of $G$ to $0$, the algorithm described on the previous page\\ will terminate with such an integral maximal flow in a finite number of steps.
+   
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Let $c: E(G) \rightarrow \mathbb{Z}^{\geq 0}$ and define $f_1: E(G) \rightarrow \{0\}$. Then do the algorithm described on the previous page.\retTwo
+
+      Assuming $c$ is not also a zero function, we know that the algorithm will do\\ at least two iterations. So we can consider that when $n \geq 2$, we have that\\ $v(f_n) = v(f_{n-1}) + \varepsilon$ where $\varepsilon > 0$. This tells us that the sequence $v(f_n)$\\ is strictly increasing.\retTwo
+
+      Also, note that since either $\varepsilon = f_n(e)$ or $\varepsilon = c(e) - f_n(e)$ for each\\ iteration that that the algorithm doesn't terminate on, if both $f_n$ and $c_n$\\ are functions mapping $E(G)$ to the integers, then $\varepsilon$ will be an integer.\\ This tells us two things.
+      \begin{enumerate}
+         \item By induction, every $f_n$ will map $E(G)$ to the integers if $f_1$ and $c$ both map\\ $E(G)$ to the integers. Thus, if this algorithm does terminate, it will\\ terminate on an integral maximal flow.
+         \item $(v(f_n))$ is a strictly increasing sequence of integers.\retTwo
+      \end{enumerate}
+
+      Finally note that $v(f_n)$ is both bounded below by $0$ and bounded above by\\ the capacity of the minimum $s$-$t$ cut which also must be an integer because\\ the sum of many integers is still an integer. Thus, there are finitely many\\ values that $v(f_n)$ could be. This combined with the fact that $(v(f_i))$ is\\ strictly increasing means that there must be finitely many $f_n$. So the algorithm\\ must terminate in a finite number of steps, giving us in the process a maximal\\ flow $f: E(G) \rightarrow \mathbb{Z}^{\geq 0}$. $\blacksquare$\retTwo
    \end{myIndent}}
 \end{myIndent}}
 
@@ -3341,45 +3371,81 @@ Given a capacity function $c$ and $s$-$t$ cut $(S, T)$, we define the \udefine{c
 
 Interestingly, the max flow min cut theorem is very closely related to Stokes\\ theorem, although showing that is outside the scope of this class.\retTwo
 
-To conclude the class, here is another proof of Hall's theorem using the max flow\\ min cut theorem which notably can also be interpretted as an algorithm for finding\\ a maximum matching on a bipartite graph.\retTwo
+To conclude the class, let's revist matching theory and Hall's Theorem.\retTwo
 
 {\begin{myIndent} \hTwo
-   \uuline{Hall's Theorem}: Let $G$ be a bipartite graph with parts $A$ and $B$. Then $G$ has a \\matching saturating $A$ if and only if for every set $X \subseteq A,\myHS \lvert N_G(X) \rvert \geq \lvert X \rvert$.
+   Here is an algorithm for finding an optimal matching in a bipartite graph which uses the max flow min cut theorem.
+   
+   {\begin{myIndent} \hThree
+      If $G$ be a bipartite graph with parts $A$ and $B$. Then define the digraph $G^*$\\ such that its vertex set is $V(G) \cup \{s, t\}$. Additionally, make $E(G^*)$ consist of\\ all the edges of $G$ directed from $A$ to $B$ in addition to adding every possible\\ edge directed from $s$ to $A$ and every possible edge directed from $B$ to $t$.\newpage
 
-   \begin{myIndent}\hThree
+      Next, define a capacity function $c$ assigning each edge of $G$ a capacity of $1$, and make $s$ and $t$ the source and sink respectively of $G$.\retTwo
+
+      Having done all that, define $f_1: E(G^*) \rightarrow \{0\}$ and then do the algorithm\\ from page 58 using $f_1$ as your starting flow. We know that this will eventually converge onto a maximal flow $f: E(G^*) \rightarrow \mathbb{Z}^{\geq 0}$.\retTwo
+
+      Claim: The set of edges: $\{\{a, b\} \in E(G) \mid a \in A, b \in B, \text{ and } f(a, b) = 1\}$, is an optimal matching.
+      {\begin{myIndent} \hFour
+         Proof:\\
+         Firstly, note that if the optimal matching $M$ of $G$ has size $N$, then we can define the flow:\\[-10pt]
+
+         {\center $ g(x, y) = \left\{
+         \begin{matrix}
+            1 & \text{ if } \{x, y\} \in M\phantom{x=s \text{ and }}  \\
+            1 & \text{ if } x=s \text{ and } \{y, z\} \in M \\
+            1 & \text{ if } y=t \text{ and } \{z, y\} \in M \\
+            0 & \text{ otherwise }\phantom{aaaaaaaaaaa}
+         \end{matrix}\right.\quad$\retTwo\par} 
+
+         The value of this flow is $N$. So we know $v(f) \geq N$.
+         \retTwo
+
+         Because $0 \leq f(x, y) \leq 1$ and $f(x, y) \in \mathbb{Z}$ for every $(x, y) \in E(G^*)$, we\\ know that $f$ maps every edge to either $0$ or $1$. Thus if $v(f) = M$, then there\\ must be exactly  $M$ edges going from $s$ to $A$ which $f$ maps to $1$.\retTwo
+         
+         In turn, this implies that there are $M$ edges going from $A$ to $B$ which $f$\\ maps to $1$. Because flow can not go backwards from $B$ to $A$, these are the\\ only edges with nonzero flow between $A$ and $B$. Now note that each of\\ these edges must be associated with a unique vertex of $A$ since each\\ vertex of $A$ has only one incoming edge. Also, each of these edges must be\\ associated with a unique vertex of $B$ because each vertex of $B$ only has\\ one outgoing edge.\retTwo
+
+         So, each of the $M$ edges going from $A$ to $B$ that have a flow of $1$ are disjoint.\\ Hence, they form a matching of size $M$ over $G$.\retTwo
+
+         If $M > N$, then this contradicts that $N$ is the size of the optimal matching\\ of $G$. Thus, as we already established that $M \geq N$, we must have that\\ $M = N$. So, an optimal matching in $G$ is formed by the $M$ edges in the\\ set:
+         
+         {\center $\{\{a, b\} \in E(G) \mid a \in A, b \in B, \text{ and } f(a, b) = 1\}$,\retTwo\retTwo\par} 
+      \end{myIndent}}
+   \end{myIndent}}
+
+   Finally, here is a second proof for \uuline{Hall's Theorem} which states that given a bipartite graph $G$ with parts $A$ and $B$, $G$ has a matching saturating $A$ if and only if for every set $X \subseteq A, \myHS |N_G(X)| \geq |X|$.
+
+   \newpage
+
+   \begin{myIndent} \hThree
       Proof:\\
       ($\Longrightarrow$) This direction is trivial to prove. So we don't care about it here.\retTwo
 
-      ($\Longleftarrow$) Assume $G$ is a bipartite graph with parts $A$ and $B$ satisfying Hall's\\ condition. Then orient all the the edges of $G$ to be directed from $A$ to $B$\\ and add a vertex $s$ adjacent to all of $A$ and a vertex $t$ adjacent to all of $B$.
+      ($\Longleftarrow$) Assume $G$ is a bipartite graph with parts $A$ and $B$ satisfying Hall's\\ condition. Then construct the digraph $G^*$ just like in the algorithm covered\\ right before this. If we can show that for any maximal flow $f$ in $G^*$, we have\\ that $v(f) = |A|$, then we know that our algorithm for finding an optimal\\ matching will  give us a matching saturating $A$.\retTwo
 
-      \newpage
+      Define $(S, T)$ to be any $s$-$t$ cut of $G^*$. Then $c(S, T) = |E((S, T))|$ and\\ $E((S, T))$ consists of all edges going from $s$ to $(A \setminus S)$, $(A \cap S)$ to $(B \setminus S)$,\\ and $(B \cap S)$ to $t$. Thus if $k$ is the number of edges going between $(A \cap S)$ and $(B \setminus S)$, then $c(S, T) = |A \setminus S| + k + |B \cap S|$.\retTwo
 
-      Now that $G$ is a digraph, define a capacity function $c$ assigning each edge\\ of $G$ a capacity of $1$, and make $s$ and $t$ the source and sink respectively of $G$.\\ Having done this, if $f$ is a max flow of $G$, then $v(f)$ equals the size of an\\ optimal matching.\retTwo
+      Consider if $|B \cap S| > |A \cap S|$. Then we're already done because:
+      \end{myIndent}
+      \end{myIndent}}
+         {\centering\hThree$\quad c(S, T) \geq |A \setminus S| + k + |B \cap S| \geq |A \setminus S| + |B \cap S| > |A \setminus S| + |A \cap S| = |A|$\retTwo\par}
+      {\begin{myIndent}\hThree
+      \begin{myIndent}
       
+      So it is safe to assume that $|B \cap S| \leq |A \cap S|$. In that case, note that by Hall's\\ condition, $|B \cap N(A \cap S)| \geq A \cap S$. Furthermore, in the worst case that\\ $B \cap S \subseteq B \cap N(A \cap S)$, we still have that:
       
-      
-      Define $(S, T)$ to be any $s$-$t$ cut of $G$. Then $c(S, T) = |E((S, T))|$ and\\ $E((S, T))$ consists of all edges going from $s$ to $(A \setminus S)$, $(A \cap S)$ to $(B \setminus S)$,\\ and $(B \cap S)$ to $t$.\retTwo
-      
-      
-      edges going from $(A \setminus T)$ to $(A \setminus S)$. \retTwo
+      {\centering $|(B \setminus S) \cap N(A \cap S)| \geq |A \cap S| - |B \cap S|$.\retTwo\par}
 
-
-
-      Let $X = (A \setminus S)$ and $Y = (B \cap S)$. Sin $c(S, T) = |E((S, T))|$ and\\ $|E((S, T))|$ consists of edges going from $s$ to $(A \setminus S)$, and $(A \cap S)$ to $(B \setminus S)$.
+      $k$ is minimized if there are as few edges going to $(B \setminus S) \cap N(A \cap S)$ from\\ $A \cap S$ as possible. So $k \geq |(B \setminus S) \cap N(A \cap S)| \geq |A \cap S| - |B \cap S|$.\\ Hence, we have once again shown that $c(S, T) \geq |A \setminus S| + |A \cap S| = |A|$.\retTwo
       
-      we know that $c(S, T) \geq |A \setminus S| + |B \setminus S|$.
+      So $c(S, T) \geq |A|$. Now finally to show that there exists $(S, T)$ such that\\ $c(S, T) = |A|$, consider $S = \{s\}$ and $T$ containing everything else. For that\\ $(S, T)$, we have that $c(S, T) = |A|$.\retTwo
 
+      Hence the minimum capacity of a cut of $G^*$ is $|A|$, which means that the max value of a flow in $G^*$ is $|A|$. $\blacksquare$
    \end{myIndent}
 \end{myIndent}}
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
-\newpage
-
-{\color{BrickRed}
-   I'm leaving this page as a placeholder. The professor provided a really cool proof by probability of Turán's Theorem. However, I do not have time right now to understand it. (2/20/2024)
-}
+\retTwo
+\retTwo
+\retTwo
+\retTwo
+\exOne The textbook for this class was the professor's course notes.\\
+Also, the T.A. Nicholas Sieger was immensely helpful.
 
 \end{document}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
