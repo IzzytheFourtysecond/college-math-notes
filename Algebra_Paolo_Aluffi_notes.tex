@@ -23,27 +23,67 @@
 \usepackage{mathtools}
 \usepackage{amsfonts}
 \usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
 
-\setmainfont{Calibri}
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+\graphicspath{{./158_Images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
+
+\newfontfamily{\calibri}{Calibri}
 \setlength{\parindent}{0pt}
 \definecolor{RawerSienna}{HTML}{945D27}
 
+
 \newcommand{\hOne}{%
    \color{Black}%
-   \fontsize{14}{14}\selectfont%
+   \fontsize{14}{16}\selectfont%
 }
 \newcommand{\hTwo}{%
    \color{MidnightBlue}%
-   \fontsize{13}{13}\selectfont%
+   \fontsize{13}{15}\selectfont%
 }
 \newcommand{\hThree}{%
    \color{PineGreen}
-   \fontsize{13}{13}\selectfont%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hFour}{%
+   \color{Cerulean}
+   \fontsize{12}{14}\selectfont%
 }
 \newcommand{\myComment}{%
    \color{RawerSienna}%
-   \fontsize{12}{12}\selectfont%
+   \fontsize{12}{14}\selectfont%
 }
+\newcommand{\teachComment}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{VioletRed}%
+   \fontsize{12}{14}\selectfont%
+}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
 
 \newenvironment{myIndent}{%
    \begin{adjustwidth}{2.5em}{0em}%
@@ -51,17 +91,58 @@
    \end{adjustwidth}%
 }
 
-\newcommand{\udefine}[1]{%
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{{%
    \setulcolor{Red}%
-   \setul{0.1ex}{0.15ex}%
+   \setul{0.14em}{0.07em}%
    \ul{#1}%
+}}
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcommand*{\markDate}[1]{%
+   {\huge \color{Black} \textbf{#1} \newline}%
 }
 
-\newcommand*{\markDate}[1]{
-   {\huge \color{Black} \textbf{#1} \newline}
-}
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\myHS}{ \hspace{0.5em}}
 
-\newcommand{\pprime}{\prime\prime}
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
+
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
 
 \newcounter{PropNumber}
 \newcommand{\propCount}{%
@@ -69,6 +150,21 @@
    \thePropNumber%
 }
 
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
 
 
 \title{My Notes on Paolo Aluffi's Algebra Chapter 0}
@@ -76,6 +172,7 @@
 
 \begin{document}
    \maketitle{}
+   \calibri
 
    \markDate{1/7/2024}
 
@@ -151,9 +248,9 @@
 
    \hfill \break
    A function $f: A \rightarrow B$ is a \udefine{monomorphism} (a.k.a 
-   a \udefine{monic}) if for all sets $Z$ and all functions $a\sp{\prime}$
-   and $a\sp{\pprime}: Z \rightarrow A$, we have that $f \circ a\sp{\prime}
-   = f \circ a\sp{\pprime} \Rightarrow a\sp{\prime} = a\sp{\pprime}$
+   a \udefine{monic}) if for all sets $Z$ and all functions $a^{\prime}$
+   and $a^{\pprime}: Z \rightarrow A$, we have that $f \circ a^{\prime}
+   = f \circ a^{\pprime} \Rightarrow a^{\prime} = a^{\pprime}$
 
    
    % Note to future self, I just made it so that if you
@@ -172,16 +269,16 @@
          First, let us assume $f$ is injective.
          
          \begin{myIndent}
-            Then let us assume we have two functions $a\sp{\prime}$ 
-            and $a\sp{\pprime}$ from some set $Z$ to $A$ such that 
-            $f \circ a\sp{\prime} = f \circ a\sp{\pprime}$. Then, 
+            Then let us assume we have two functions $a^{\prime}$ 
+            and $a^{\pprime}$ from some set $Z$ to $A$ such that 
+            $f \circ a^{\prime} = f \circ a^{\pprime}$. Then, 
             because $f$ is injective, we know there exists a function
             $g: B \rightarrow A$ such that $g \circ f = \mathrm{Id}_A$.
             Composing $g$ with the previous equation, we get that:
-            \[g\circ(f \circ a\sp{\prime}) = g \circ (f \circ 
-            a\sp{\pprime}) \Longrightarrow \mathrm{Id}_A \circ a\sp{\prime}
-            = \mathrm{Id}_A \circ a\sp{\pprime} \Longrightarrow 
-            a\sp{\prime} = a\sp{\pprime}\]
+            \[g\circ(f \circ a^{\prime}) = g \circ (f \circ 
+            a^{\pprime}) \Longrightarrow \mathrm{Id}_A \circ a^{\prime}
+            = \mathrm{Id}_A \circ a^{\pprime} \Longrightarrow 
+            a^{\prime} = a^{\pprime}\]
             Thus by our assumptions, we have shown $f$ to be a\\
             monomorphism.
          \end{myIndent}
@@ -191,17 +288,17 @@
 
          \begin{myIndent}
             Based on this, we can say that for any two functions 
-            $a\sp{\prime}$ and $a\sp{\pprime}$ mapping a set
-            $Z$ to $A$, we have that $f \circ a\sp{\prime}
-            = f \circ a\sp{\pprime} \Rightarrow a\sp{\prime} = 
-            a\sp{\pprime}$. However, now note that if we make $Z$ a 
+            $a^{\prime}$ and $a^{\pprime}$ mapping a set
+            $Z$ to $A$, we have that $f \circ a^{\prime}
+            = f \circ a^{\pprime} \Rightarrow a^{\prime} = 
+            a^{\pprime}$. However, now note that if we make $Z$ a 
             \udefine{singleton}, meaning it only contains one element, 
-            then $a\sp{\prime}$ and $a\sp{\pprime}$ can each
+            then $a^{\prime}$ and $a^{\pprime}$ can each
             only take on one value. So, we can effectively rewrite
-            $f \circ a\sp{\prime} = f \circ a\sp{\pprime}
-            \Rightarrow a\sp{\prime} = a\sp{\pprime}$ as:
-            \[f(a\sp{\prime}) = f(a\sp{\pprime}) \Rightarrow 
-            a\sp{\prime} = a\sp{\pprime}\]
+            $f \circ a^{\prime} = f \circ a^{\pprime}
+            \Rightarrow a^{\prime} = a^{\pprime}$ as:
+            \[f(a^{\prime}) = f(a^{\pprime}) \Rightarrow 
+            a^{\prime} = a^{\pprime}\]
             This is the definition of an injective function. $\blacksquare$
          \end{myIndent}
       \end{myIndent}
@@ -213,10 +310,10 @@
 
    \hOne
    A function $f: A \rightarrow B$ is an \udefine{epimorphism} 
-   (a.k.a an \udefine{epi}) if for all sets $Z$ and all functions $a\sp{\prime}$
-   and $a\sp{\pprime}: B \rightarrow Z$, we have that 
-   $a\sp{\prime} \circ f = a\sp{\pprime} \circ f \Rightarrow 
-   a\sp{\prime} = a\sp{\pprime}$
+   (a.k.a an \udefine{epi}) if for all sets $Z$ and all functions $a^{\prime}$
+   and $a^{\pprime}: B \rightarrow Z$, we have that 
+   $a^{\prime} \circ f = a^{\pprime} \circ f \Rightarrow 
+   a^{\prime} = a^{\pprime}$
 
    
    \begin{myIndent}
