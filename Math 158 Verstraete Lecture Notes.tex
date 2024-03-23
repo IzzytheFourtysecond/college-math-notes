@@ -1473,7 +1473,7 @@ A \udefine{perfect matching} (or $1$-factor) is a matching which saturates all t
          \item Case 2: There exists a proper subset $X$ of $A$ such that $\left|N_G(X)\right| = \left| X \right|$\dots\\ {\hFour
             In this second case our reasoning for case 1 breaks down because given $X \subseteq A^\prime$, we can no longer guarentee that $\lvert N_G(X) \rvert - 1 \geq \lvert X \rvert$. So, using that same set $X$,  consider $G_1$ the induced graph of $N_G(X) \cup X$ and $G_2$ equal to $G - V(G_1)$. \retTwo
 
-            For any $Y \subseteq X$, we have that $\left| N_{G_1}(Y) \right| = \left| N_G(Y) \right| \geq \left| Y \right|$ due to Hall's\\ condition. Thus, by our inductive hypothesis there exists a matching $M_1$ saturating $X$ in $G_1$. \retTwo
+            For any $Y \subseteq X$, we have that $\left| N_{G_1}(Y) \right| = \left| N_G(Y) \right| \geq \left| Y \right|$ due to Hall's\\ condition. Thus, by our inductive hypothesis there exists a matching $M_1$\\ saturating $X$ in $G_1$. \retTwo
 
             Additionally, for any $Y \subseteq A \setminus X$, consider $N_G(Y \cup X)$. By assuming Hall's condition, we know that $\lvert N_G(Y \cup X) \rvert \geq \left| Y \cup X \right|$. And, because $X$ and $Y$ are disjoint, $\left| Y \cup X \right| = \left| Y \right| + \left| X \right|$. On the other hand, we also know that $N_G(Y \cup X) = N_{G_2}(Y) + N_G(X)$. So, $\left|N_{G_2}(Y)\right| + \left| N_G(X) \right| \geq \left| Y \right| + \left| X \right|$. Finally, because $\left|N_G(X)\right| = \left| X \right|$, we can cancel terms to get that:\\ $\left| N_{G_2}(Y) \right| \geq \left| Y \right|$. Hence by our inductive hypothesis, we know there exists a matching $M_2$ saturating $A \setminus X$ in $G_2$. \retTwo
 
@@ -1734,9 +1734,9 @@ A \udefine{proper edge coloring} of a graph $G$ is a map $c: E(G) \longrightarro
 
 \newpage
 
-The \udefine{edge-cromatic number} $\chi^\prime(G)$ is the minimum $k$ for which $G$ has a proper\\ $k$-edge-coloring. \retTwo
+The \udefine{edge-chromatic number} $\chi^\prime(G)$ is the minimum $k$ for which $G$ has a proper\\ $k$-edge-coloring. \retTwo
 
-Observe that $\chi^\prime(G) \geq \Delta(G)$ (the maximum degree of $G$). After all, each edge coming off the vertex with the max degree have to have a different color. \retTwo
+Observe that $\chi^\prime(G) \geq \Delta(G)$ (the maximum degree of $G$). After all, each edge\\ coming off the vertex with the max degree have to have a different color. \retTwo
 
 {\begin{myIndent} \hTwo
    \uuline{König's Theorem}: Let $G$ be a bipartite multigraph. Then $\chi'(G) = \Delta(G)$.
@@ -1963,7 +1963,7 @@ Some example calculations:
 
 A \udefine{proper (vertex) coloring} of $G$ is a map $c: V(G) \longrightarrow S$ where $S$ is a set such that\\ $c(u) \neq c(v)$ if $\{u, v\} \in E(G)$. \retTwo
 
-The \udefine{cromatic number} $\chi(G)$ is the minimum $k$ for which $G$ has a proper $k$-coloring. \retTwo
+The \udefine{chromatic number} $\chi(G)$ is the minimum $k$ for which $G$ has a proper $k$-coloring. \retTwo
 
 {\begin{myIndent} \hTwo
 
@@ -2437,7 +2437,7 @@ The \udefine{Turán graph} $T_r(n)$ has $n$ vertices which are partitioned into 
 Here is a theorem given without proof:
 
 {\begin{myIndent} \hTwo
-   \uuline{Erd\H{o}s-Simonovitz-Stone theorem}: If $F$ is any graph of cromatic number $r+1$, then:
+   \uuline{Erd\H{o}s-Simonovitz-Stone theorem}: If $F$ is any graph of chromatic number $r+1$, then:
    
    {\center ${\displaystyle \lim\limits_{n\rightarrow\infty}\left(\frac{\exNums{n, F}}{\binom{n}{2}}\right) = 1 - \frac{1}{r}}$.\par}
 \end{myIndent}}
@@ -3065,7 +3065,7 @@ Here is an application of Ramsey theory:
       Proof:\\
       Let us $k$-color $E(K_N)$ and proceed by induction on $k$.\retTwo
 
-      Assume that $K_N$ has no monocromatic triangles. Then pick any $u \in V(K_N)$. By the pigeonhole principle, there must be some color with at least $\frac{N-1}{k}$ edges touching $u$. Letting $U$ be the set of neighbors of $u$ in that color, we have that $|U| \geq \frac{N-1}{k}$.\retTwo
+      Assume that $K_N$ has no monochromatic triangles. Then pick any $u \in V(K_N)$. By the pigeonhole principle, there must be some color with at least $\frac{N-1}{k}$ edges touching $u$. Letting $U$ be the set of neighbors of $u$ in that color, we have that $|U| \geq \frac{N-1}{k}$.\retTwo
 
       Now if for any two vertices $x, y \in U$, we had that $\{x, y\}$ is colored the same as\\ $\{x, u\}$ and $\{y, u\}$, then we would have a monochromatic triangle between $x$, $y$,\\ and $u$. So the edges in $U$ must have at most $k - 1$ colors. Since, there must not be\\ a monochromatic triangle in any of the other colors, we know $|U| 
       < r_{k-1}(3)$.\retTwo
@@ -3088,7 +3088,7 @@ Here is an application of Ramsey theory:
          \begin{myClosureOne}{5}
             For a lower bound on $r_k(3)$, consider recursively splitting $K_N$ into a\\ colored complete bipartite graph colored and $2$ uncolored remaining\\ cliques. Then repeat on the remaining cliques.\retTwo
 
-            If $N \leq 2^k - 1$, we can color all the edges of $K_N$ with $k$ different colors. And because all the colors are bipartite, there is no monocromatic odd cycle including a triangle. So $r_k(3) \geq 2^k$.\\
+            If $N \leq 2^k - 1$, we can color all the edges of $K_N$ with $k$ different colors. And because all the colors are bipartite, there is no monochromatic odd cycle including a triangle. So $r_k(3) \geq 2^k$.\\
          \end{myClosureOne}
          \retTwo \retTwo
       \end{center}}
@@ -3100,7 +3100,7 @@ Here is an application of Ramsey theory:
 
    \newpage
 
-   If $N \geq r_k(3)$, then there must be a monocromatic triangle $\{v_{i_1}, v_{i_2}, v_{i_3}\}$. Or in\\ other words, $c(|i_1 - i_2|) = c(|i_2 - i_3|) = c(|i_3 - i_1|)$.\retTwo
+   If $N \geq r_k(3)$, then there must be a monochromatic triangle $\{v_{i_1}, v_{i_2}, v_{i_3}\}$. Or in\\ other words, $c(|i_1 - i_2|) = c(|i_2 - i_3|) = c(|i_3 - i_1|)$.\retTwo
 
    {\begin{myIndent} \hFour
       Let $\{x, y, z\} = \{|i_1 - i_2|, |i_2 - i_3|, |i_3 - i_1|\}$. Then $x$, $y$, and $z$ all have the same color. Additionally, without loss of generality, if we assume that $i_1 < i_2 < i_3$, then $|i_1 - i_2| + |i_2 - i_3| = |i_3 - i_1|$. So we can have that $x + y = z$.\retTwo
@@ -3199,7 +3199,7 @@ A \udefine{capacity} function is a map $c: E(G) \rightarrow \mathbb{R}^{\geq 0}$
 Let $G$ be a digraph and $f$ a flow with a source $s$ and sink $t$. If we have sets $S$ and\\ $T$ that partition $V(G)$ such that $s \in S$ and $t \in T$, then we can define the \udefine{$s$-$t$ cut}:\\ $(S, T)$, to be the spanning subgraph of $G$ containing all the edges going out of $S$\\ into $T$.\retTwo
 
 {\begin{myIndent} \hTwo
-   \uuline{Theorem}: For any flow $f$ and $s$-$t$ cut $(S, T)$, $\quad v(f) = \hspace{-1em}\sum\limits_{
+   \uuline{Theorem}: For any flow $f$ and $s$-$t$ cut $(S, T)$, $\hspace{0.5em} v(f) = \hspace{-1em}\sum\limits_{
    \begin{smallmatrix}
       (x, y) \in E(G) \\
       x \in S \\
@@ -3235,7 +3235,7 @@ Let $G$ be a digraph and $f$ a flow with a source $s$ and sink $t$. If we have s
    \end{myIndent}}
 \end{myIndent}}
 
-Given an $s$-$t$ cut $(S, T)$ and capacity function $c$, the \udefine{capacity of an $s$-$t$ cut} is defined\\ as: 
+Given a capacity function $c$ and $s$-$t$ cut $(S, T)$, we define the \udefine{capacity of an $s$-$t$ cut}\\ as: 
    
 {\centering $c(S, T) = \hspace{-0.5em}\sum\limits_{e \in (S, T)}\hspace{-0.5em}c(v, w)$.\retTwo\par}
 
@@ -3244,7 +3244,7 @@ Given an $s$-$t$ cut $(S, T)$ and capacity function $c$, the \udefine{capacity o
 
    {\begin{myIndent} \hThree
       Proof:\\
-      For any flow $f$ and $s$-$t$ cut $(S, T)$, we must have that $v(f) \leq c(S, T)$.
+      Let $c$ be the capacity function for a digraph $G$ with a source $s$ and sink $t$.\\ For any flow $f$ and $s$-$t$ cut $(S, T)$, we must have that $v(f) \leq c(S, T)$.\\ [-14pt]
       {\begin{myIndent} \hFour
          To see why, first note that:\\
          $v(f) = \hspace{-1em}\sum\limits_{
@@ -3278,19 +3278,100 @@ Given an $s$-$t$ cut $(S, T)$ and capacity function $c$, the \udefine{capacity o
 
       This tells us that $v(f)$ is at most the minimum value of $c(S, T)$. So, what's left\\ to show is that for some flow $f$, $v(f)$ equals the minimum value of $c(S, T)$.\retTwo
 
-      Let $f$ be a maximum flow in $G$. Then define a set $S \subset V(G)$ as follows:
+      Let $f$ be a maximal flow in $G$. Then define a set $S \subseteq V(G)$ as follows:
       \begin{itemize}
          \item Start by putting $s$ into $S$.
-         \item Then repeatedly until there are no more $y$ such that $(x, y) \in E(G)$\\ where $x \in S$ and $f(x, y) < c(x, y)$, put $y$ into $S$.\retTwo
+         \item Then repeatedly until there are no more satisfactory $y$:
+         \begin{myIndent}
+            \begin{itemize}
+               \item[$\circ$] If $(x, y) \in E(G)$, $x \in S$, and $f(x, y) < c(x, y)$, then put $y$ into $S$.
+               \item[$\circ$] If $(y, x) \in E(G)$, $x \in S$, and $f(y, x) > 0$, then put $y$ into $S$. 
+            \end{itemize}
+         \end{myIndent}
       \end{itemize}
 
+      \newpage
 
-   \end{myIndent}}
+      Suppose $t \in S$. Then there exists a path $P$ with vertices: $v_1, v_2, \ldots, v_k$, going\\ from $s$ to $t$ (potentially including edges directed in opposing directions) such\\ that $v_i \in S$ for each $i$ and exactly one of the following inequalities is defined and true for every edge in the path:
+      
+      {\centering $f(v_i, v_{i+1}) < c(v_i, v_{i+1})$ or $f(v_{i+1}, v_i) > 0$,\retTwo\par}
 
+      Let $\varepsilon$ be the smallest of the defined $c(v_i, v_{i+1}) - f(v_i, v_{i+1})$ and $f(v_{i+1}, v_i)$. Then we can define a valid flow $g: E(G) \rightarrow \mathbb{R}^{\geq 0}$ as:
+
+      \begin{center}
+         $g(x, y) = \left\{
+         \begin{matrix}
+            f(x, y) + \varepsilon & \text{ if } (x, y) \in P \suchthat x = v_i \text{ and } y = v_{i+1} \\
+            f(x, y) - \varepsilon & \text{ if } (x, y) \in P \suchthat x = v_{i+1} \text{ and } y = v_{i} \\
+            f(x, y)\phantom{\vphantom{.}+ \varepsilon} & \text{ otherwise }\phantom{aaaaaaaaaaaaaaaaaaaaaa}
+         \end{matrix}\right.$\retTwo
+      \end{center}
+
+      Then $v(g) = v(f) + \varepsilon$, contradicting that $f$ was a maximal flow.\retTwo
+
+      So we conclude that $t \notin S$, which means that letting $T = V(G) \setminus S$, we know:
    
+      {\center $ v(f) = \hspace{-1em}\sum\limits_{
+      \begin{smallmatrix}
+         (x, y) \in E(G) \\
+         x \in S \\
+         y \in T
+      \end{smallmatrix}}\hspace{-1.1em}f(x, y)\hspace{0.3em} - \hspace{-1em}\sum\limits_{
+      \begin{smallmatrix}
+         (x, y) \in E(G) \\
+         x \in S \\
+         y \in T
+      \end{smallmatrix}}\hspace{-1.1em}f(y, x)$ \retTwo\par}
 
+      Finally, by how we constructed $S$, we know that for $(x, y) \in E(G)$ such that $x \in S$ and $y \in T$, we must have that $f(x, y) = c(x, y)$. Meanwhile, for\\ $(x, y) \in E(G)$ such that $x \in T$ and $y \in S$, we must have that $f(x, y) = 0$.\\Therefore:
 
+      {\centering $ v(f) = c(S, T) - 0 = c(S, T)$. $\blacksquare$ \retTwo\par}
+
+      
+      
+      {\begin{myTindent}\begin{myDindent} \teachComment
+         \begin{myClosureOne}{3}
+            Note that this proof can also be interpretted\\ as an iterative algorithm for finding a\\ maximum flow and minimum cut.\\ [-2pt]
+         \end{myClosureOne}
+      \end{myDindent}\end{myTindent}}
+   \end{myIndent}}
 \end{myIndent}}
+
+\mySepTwo
+
+Interestingly, the max flow min cut theorem is very closely related to Stokes\\ theorem, although showing that is outside the scope of this class.\retTwo
+
+To conclude the class, here is another proof of Hall's theorem using the max flow\\ min cut theorem which notably can also be interpretted as an algorithm for finding\\ a maximum matching on a bipartite graph.\retTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Hall's Theorem}: Let $G$ be a bipartite graph with parts $A$ and $B$. Then $G$ has a \\matching saturating $A$ if and only if for every set $X \subseteq A,\myHS \lvert N_G(X) \rvert \geq \lvert X \rvert$.
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      ($\Longrightarrow$) This direction is trivial to prove. So we don't care about it here.\retTwo
+
+      ($\Longleftarrow$) Assume $G$ is a bipartite graph with parts $A$ and $B$ satisfying Hall's\\ condition. Then orient all the the edges of $G$ to be directed from $A$ to $B$\\ and add a vertex $s$ adjacent to all of $A$ and a vertex $t$ adjacent to all of $B$.
+
+      \newpage
+
+      Now that $G$ is a digraph, define a capacity function $c$ assigning each edge\\ of $G$ a capacity of $1$, and make $s$ and $t$ the source and sink respectively of $G$.\\ Having done this, if $f$ is a max flow of $G$, then $v(f)$ equals the size of an\\ optimal matching.\retTwo
+      
+      
+      
+      Define $(S, T)$ to be any $s$-$t$ cut of $G$. Then $c(S, T) = |E((S, T))|$ and\\ $E((S, T))$ consists of all edges going from $s$ to $(A \setminus S)$, $(A \cap S)$ to $(B \setminus S)$,\\ and $(B \cap S)$ to $t$.\retTwo
+      
+      
+      edges going from $(A \setminus T)$ to $(A \setminus S)$. \retTwo
+
+
+
+      Let $X = (A \setminus S)$ and $Y = (B \cap S)$. Sin $c(S, T) = |E((S, T))|$ and\\ $|E((S, T))|$ consists of edges going from $s$ to $(A \setminus S)$, and $(A \cap S)$ to $(B \setminus S)$.
+      
+      we know that $c(S, T) \geq |A \setminus S| + |B \setminus S|$.
+
+   \end{myIndent}
+\end{myIndent}}
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
