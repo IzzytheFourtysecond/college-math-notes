@@ -44,6 +44,32 @@
 \setlength{\parindent}{0pt}
 \definecolor{RawerSienna}{HTML}{945D27}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Arrow Commands:
+
+% Thank you Bernard, gernot, and Sigur who I copied this from:
+% https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\newcommand{\Hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\Hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\Hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\Hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+
+% Thank you egreg who I copied from:
+% https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
+\newcommand{\longrightarrowdbl}{\longrightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\longleftarrowdbl}{\leftarrow\mathrel{\mkern-14mu}\longleftarrow}
+
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+\newcommand{\xleftarrowdbl}[2][]{%
+  \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
+}
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newcommand{\hOne}{%
    \color{Black}%
@@ -54,7 +80,7 @@
    \fontsize{13}{15}\selectfont%
 }
 \newcommand{\hThree}{%
-   \color{PineGreen}
+   \color{PineGreen!85!Orange}
    \fontsize{13}{15}\selectfont%
 }
 \newcommand{\hFour}{%
@@ -132,6 +158,8 @@
 \newcommand{\comp}{\mathsf{C}}
 \newcommand{\myHS}{ \hspace{0.5em}}
 
+\newcommand{\myId}{\mathrm{Id}}
+
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
 \newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
@@ -178,50 +206,49 @@
 
    \hOne
    A \udefine{multiset} is a collection of elements 
-   which like a set is unordered but unlike a set can
+   which like a set is unordered but unlike a set\\ can
    contain duplicate elements.
    
    \begin{myIndent}
       \hTwo
-      One way we can define a multiset is as a function
+      One way to define a multiset is as a function
       \( f: A\rightarrow\mathbb{N} \) such that each
-      \(\alpha \in A \) is mapped to the number of times that 
-      \(\alpha\) appears in the multiset. Then, given the multisets 
+      \(\alpha \in A \)\\ is mapped to the number of times that 
+      \(\alpha\) appears in the multiset. Then, given the\\ multisets 
       \(f_{1}: A\rightarrow \mathbb{N}\) and \(f_{2}: 
       B \rightarrow \mathbb{N}\), we can define the following
       operations:
-
       \hThree
       \begin{itemize}
-         \item \(\alpha \in f_{1} \leftrightarrow \alpha \in A\)
+         \item \(\alpha \in f_{1} \Longleftrightarrow \alpha \in A\)\\ [-10pt]
 
-         \item \(f_{1} \subseteq f_{2} \leftrightarrow 
+         \item \(f_{1} \subseteq f_{2} \Longleftrightarrow 
                \forall \alpha \in f_{1}, \hspace{0.25em} \alpha \in f_{2} 
-               \text{ and } f_{1}(\alpha) \leq f_{2}(\alpha)\)
+               \text{ and } f_{1}(\alpha) \leq f_{2}(\alpha)\)\\ [-12pt]
 
-         \item \(f_{1} \cup f_{2}: (A \cup B) \rightarrow
+         \item \(f_{1} \cup f_{2}: (A \cup B) \longrightarrow
                \mathbb{N} \) such that for \(\alpha
                \in A \cup B\), if \(\alpha \in A \cap B \),
                then\\ \((f_{1} \cup f_{2})(\alpha) = f_{1}(\alpha)
                + f_{2}(\alpha)\). As for if \(\alpha \notin 
-               A \cap B \), then \((f_{1} \cup f_{2})(\alpha)\)
+               A \cap B \), then \((f_{1} \cup f_{2})(\alpha)\)\\
                equals whatever $\alpha$ was mapped to 
-               in the multiset it originally came from.
+               in the multiset it originally came from.\\ [-12pt]
          
-         \item \(f_{1} \cap f_{2}: (A \cap B) \rightarrow
+         \item \(f_{1} \cap f_{2}: (A \cap B) \longrightarrow
                \mathbb{N} \) such that for \(\alpha
                \in A \cap B\), we have that\\
                \((f_{1} \cap f_{2})(\alpha) = \min(f_{1}(\alpha)
-               , f_{2}(\alpha))\)
+               , f_{2}(\alpha))\)\\ [-12pt]
          
          \item \(f_{1} \setminus f_{2}: ((A \setminus B)
                \cup \{\alpha \in A \cap B \mid f_{1}(\alpha) >
-               f_{2}(\alpha)\}) \rightarrow \mathbb{N} \) 
-               such that for each \(\alpha \in f_{1} \setminus f_{2}\), 
+               f_{2}(\alpha)\}) \longrightarrow \mathbb{N} \) 
+               such that for\\ each \(\alpha \in f_{1} \setminus f_{2}\), 
                if \(\alpha \in f_{2} \), then \((f_{1} \setminus f_{2})(\alpha) 
-               = f_{1}(\alpha) - f_{2}(\alpha)\). As for if \(\alpha 
+               = f_{1}(\alpha) - f_{2}(\alpha)\). As for if\\ \(\alpha 
                \notin f_{2} \), then \((f_{1} \setminus f_{2})(\alpha) = 
-               f_{1}(\alpha)\)
+               f_{1}(\alpha)\)\\ [-12pt]
          
       \end{itemize}
    
@@ -241,18 +268,16 @@
    \hOne
    \hfill \break
    We say that two sets $A$ and $B$ are \udefine{isomorphic} if and only
-   if there exists a bijection between $A$ and $B$. We denote this by
-   writing $A \cong B$. Additionally, we can refer to any bijection $f$
-   between $A$ and $B$ as an \udefine{isomorphism} between the two sets
-   (also written as \(f: A \xlongrightarrow{\sim} B\))
+   if there exists a bijection\\ between $A$ and $B$. We denote this by
+   writing $A \cong B$. Additionally, we can refer\\ to any bijection $f$
+   between $A$ and $B$ as an \udefine{isomorphism} between the two sets.
 
    \hfill \break
    A function $f: A \rightarrow B$ is a \udefine{monomorphism} (a.k.a 
-   a \udefine{monic}) if for all sets $Z$ and all functions $a^{\prime}$
+   a \udefine{monic}) if for all sets $Z$ and all\\ functions $a^{\prime}$
    and $a^{\pprime}: Z \rightarrow A$, we have that $f \circ a^{\prime}
-   = f \circ a^{\pprime} \Rightarrow a^{\prime} = a^{\pprime}$
+   = f \circ a^{\pprime} \Longrightarrow a^{\prime} = a^{\pprime}$.
 
-   
    % Note to future self, I just made it so that if you
    % type ctrl + shift + e followed by space, then it will
    % surround a highlighted text with begin{}...end{}
@@ -263,24 +288,21 @@
 
       \begin{myIndent}
          \hThree
-         Proof: Let's say we have a function $f: A \rightarrow B$.
-         \hfill \bigbreak
+         Proof: Let's say we have a function $f: A \rightarrow B$.\retTwo
 
          First, let us assume $f$ is injective.
          
          \begin{myIndent}
             Then let us assume we have two functions $a^{\prime}$ 
-            and $a^{\pprime}$ from some set $Z$ to $A$ such that 
-            $f \circ a^{\prime} = f \circ a^{\pprime}$. Then, 
-            because $f$ is injective, we know there exists a function
-            $g: B \rightarrow A$ such that $g \circ f = \mathrm{Id}_A$.
-            Composing $g$ with the previous equation, we get that:
-            \[g\circ(f \circ a^{\prime}) = g \circ (f \circ 
-            a^{\pprime}) \Longrightarrow \mathrm{Id}_A \circ a^{\prime}
-            = \mathrm{Id}_A \circ a^{\pprime} \Longrightarrow 
-            a^{\prime} = a^{\pprime}\]
-            Thus by our assumptions, we have shown $f$ to be a\\
-            monomorphism.
+            and $a^{\pprime}$ from some set $Z$\\ to $A$ such that 
+            $f \circ a^{\prime} = f \circ a^{\pprime}$. Because $f$ is injective, we know it has\\ a left-hand inverse
+            $g: B \rightarrow A$ such that $g \circ f = \myId_A$.
+            Composing\\ $g$ with the previous equation, we get that:
+
+            {\center $a^{\prime} = \mathrm{Id}_A \circ a^{\prime} = g\circ(f \circ a^{\prime}) = g \circ (f \circ 
+            a^{\pprime}) = \mathrm{Id}_A \circ a^{\pprime} = a^{\pprime}$\retTwo\par}
+
+            Thus, we've shown that $f$ is a monomorphism.
          \end{myIndent}
          \newpage
 
@@ -288,32 +310,32 @@
 
          \begin{myIndent}
             Based on this, we can say that for any two functions 
-            $a^{\prime}$ and $a^{\pprime}$ mapping a set
+            $a^{\prime}$ and $a^{\pprime}$ mapping\\ a set
             $Z$ to $A$, we have that $f \circ a^{\prime}
-            = f \circ a^{\pprime} \Rightarrow a^{\prime} = 
-            a^{\pprime}$. However, now note that if we make $Z$ a 
-            \udefine{singleton}, meaning it only contains one element, 
+            = f \circ a^{\pprime} \Longrightarrow a^{\prime} = 
+            a^{\pprime}$. However,\\ now note that if we make $Z$ a 
+            \udefine{singleton}, meaning it only contains one\\ element, 
             then $a^{\prime}$ and $a^{\pprime}$ can each
-            only take on one value. So, we can effectively rewrite
+            only take on one value. So, we can\\ effectively rewrite
             $f \circ a^{\prime} = f \circ a^{\pprime}
             \Rightarrow a^{\prime} = a^{\pprime}$ as:
-            \[f(a^{\prime}) = f(a^{\pprime}) \Rightarrow 
-            a^{\prime} = a^{\pprime}\]
-            This is the definition of an injective function. $\blacksquare$
+
+            {\center $f(a^{\prime}) = f(a^{\pprime}) \Rightarrow 
+            a^{\prime} = a^{\pprime}$\retTwo\par}
+
+            This is the definition of an injective function. $\blacksquare$\retTwo
          \end{myIndent}
       \end{myIndent}
    \end{myIndent}
 
-   \hfill \bigbreak
-   \markDate{1/8/2024}
-   \hfill \bigbreak
+   \markDate{3/23/2024}
 
    \hOne
    A function $f: A \rightarrow B$ is an \udefine{epimorphism} 
-   (a.k.a an \udefine{epi}) if for all sets $Z$ and all functions $a^{\prime}$
+   (a.k.a an \udefine{epi}) if for all sets $Z$ and all\\ functions $a^{\prime}$
    and $a^{\pprime}: B \rightarrow Z$, we have that 
    $a^{\prime} \circ f = a^{\pprime} \circ f \Rightarrow 
-   a^{\prime} = a^{\pprime}$
+   a^{\prime} = a^{\pprime}$.
 
    
    \begin{myIndent}
@@ -327,8 +349,64 @@
          \hfill \bigbreak
 
          First, let us assume $f$ is surjective.
+         \begin{myIndent}
+               Then let's assume we have two functions $a^\prime$ and $a^\pprime$ from $B$ to some\\ set $Z$ such that $a^\prime \circ f = a^\pprime \circ f$. Because $f$ is surjective, we know it\\ has a right-hand inverse $h: B \rightarrow A$ such that $f \circ h = \myId_B$. Composing\\ $h$ with the previous equation, we get that:
 
+               {\center $a^{\prime} = a^{\prime} \circ \myId_B = (a^\prime \circ f) \circ h = (a^\pprime \circ f) \circ h = a^\pprime \circ \myId_B = a^\pprime$\retTwo\par}
+
+               So $f$ is an epimorphism.\retTwo
+         \end{myIndent}
+
+         Next, assume $f$ is not surjective.
+         \begin{myIndent}
+            Then there exists $\beta \in B$ such that for all $\alpha \in A$, we have that\\ $f(\alpha) \neq \beta$. Importantly, as $f(\alpha) \in B$, we know $|B| \neq 1$. So set $a^\prime$\\ equal to $\myId_B$ and define $a^\pprime$ as a function mapping each element\\ of $B \setminus \{\beta \}$ to itself and $\beta$ to any of the other elements in $B$. Now,\\
+            $a^\prime \circ f = f = a^\pprime \circ f$ but $a^\prime \neq a^\pprime$. So $f$ is not epimorphic. $\blacksquare$\retTwo
+         \end{myIndent}
       \end{myIndent}
    \end{myIndent}
 
+   
+   \begin{tabular}{p{2in} p{4in}}
+      $\Hooklongrightarrow$ 
+      $\Hooklongleftarrow$ 
+      $\Hookxlongrightarrow{hellow}$ 
+      $\Hookxlongleftarrow{hellow}$\newline
+      $\longrightarrowdbl$ 
+      $\longleftarrowdbl$ 
+      $\xrightarrowdbl{hellow}$ 
+      $\xleftarrowdbl{hellow}$ &
+
+      aaaaaaaaaaaaaaaaaa\newline
+      aaaaaaaaaaaaaaaaaa\\ \\
+
+      aaaaaaaaaaaaaaaaaa\newline
+      aaaaaaaaaaaaaaaaaa &
+
+      aaaaaaaaaaaaaaaaaa\newline
+      aaaaaaaaaaaaaaaaaa
+   \end{tabular}\\
+
+   aaaaaaaaa\\
+   aaaaaaaaa
+
+
+   \newpage
+
+   A \udefine{relation} on a set $S$ is a subset $R$ of the cartesian product $S \times S$. Specifically, we\\ use the notation $x \hspace{0.2em}R\hspace{0.2em} y$ to mean that $(x, y) \in R$. Certain types of relations are\\ especially important and thus are represented with their own symbol.
+   \begin{itemize}
+      \item An \udefine{equivalence relation}, typically denoted $\sim$ on a set $S$ has the properties:\\
+      \begin{tabular}{l c l c l}
+         $\circ$ $\forall x \in S,\myHS x \sim x$ &\quad& $\circ$ $x \sim y \Longrightarrow y \sim x$ &\quad& $\circ$ $x \sim y$ and $y \sim z \Longrightarrow x \sim z$
+      \end{tabular}
+
+      \item An \udefine{order relation}, typically denoted $<$ on a set $S$ has the properties:\\
+      \begin{tabular}{l}
+         $\circ$ $\forall x, y \in S$, exactly one of the following is true: $x < y$, $y < x$, or $x = y$.\\
+         $\circ$ $x < y$ and $y < z$ implies that $x < z$.
+      \end{tabular}
+   \end{itemize}
+
 \end{document}
+
+
+(also\\ written as \(f: A \xlongrightarrow{\sim} B\))
