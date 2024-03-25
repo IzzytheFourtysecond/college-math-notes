@@ -40,6 +40,9 @@
    \usetikzlibrary{arrows.meta}
    \usetikzlibrary{graphs, graphs.standard}
 
+\usepackage{quiver} %commutative diagrams
+
+
 \newfontfamily{\calibri}{Calibri}
 \setlength{\parindent}{0pt}
 \definecolor{RawerSienna}{HTML}{945D27}
@@ -49,10 +52,10 @@
 
 % Thank you Bernard, gernot, and Sigur who I copied this from:
 % https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
-\newcommand{\Hooklongrightarrow}{\lhook\joinrel\longrightarrow}
-\newcommand{\Hooklongleftarrow}{\longleftarrow\joinrel\rhook}
-\newcommand{\Hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
-\newcommand{\Hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
 
 % Thank you egreg who I copied from:
 % https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
@@ -328,7 +331,7 @@
       \end{myIndent}
    \end{myIndent}
 
-   \markDate{3/23/2024}
+   \markDate{1/8/2024}
 
    \hOne
    A function $f: A \rightarrow B$ is an \udefine{epimorphism} 
@@ -365,23 +368,54 @@
       \end{myIndent}
    \end{myIndent}
 
-   Here's a note notation, 
+   Sometimes, to indicate that a function $f: A \rightarrow B$ is a monomorphism,\\ epimorphism, or isomorphism, we use the following notation:
+   \begin{itemize}
+      \item Monomorphism: $f: A \hooklongrightarrow B$
+      \item Epimorphism: $f: A \longrightarrowdbl B$
+      \item Isomorphism: $f: A \xrightarrow{\phantom{a}\sim\phantom{a}} B$
+   \end{itemize}
 
    \newpage
+   \markDate{3/24/2024}
 
-   A \udefine{relation} on a set $S$ is a subset $R$ of the cartesian product $S \times S$. Specifically, we\\ use the notation $x \hspace{0.2em}R\hspace{0.2em} y$ to mean that $(x, y) \in R$. Certain types of relations are\\ especially important and thus are represented with their own symbol.
+   A \udefine{relation} on a set $S$ is a subset $R$ of the cartesian product $S \times S$. Specifically,\\ we use the notation $x \hspace{0.2em}R\hspace{0.2em} y$ to mean that $(x, y) \in R$. Certain types of relations\\ are especially important and thus are represented with their own symbol.
    \begin{itemize}
-      \item An \udefine{equivalence relation}, typically denoted $\sim$ on a set $S$ has the properties:\\
+      \item An \udefine{equivalence relation}, typically denoted $\hspace{0.1em}\sim$, on a set $S$ has the properties:\\
       \begin{tabular}{l c l c l}
-         $\circ$ $\forall x \in S,\myHS x \sim x$ &\quad& $\circ$ $x \sim y \Longrightarrow y \sim x$ &\quad& $\circ$ $x \sim y$ and $y \sim z \Longrightarrow x \sim z$
+         $\circ$ $\forall a \in S,\myHS a \sim a$ &\quad& $\circ$ $a \sim b \Longrightarrow b \sim a$ &\quad& $\circ$ $a \sim b$ and $b \sim c \Longrightarrow a \sim c$
       \end{tabular}
 
-      \item An \udefine{order relation}, typically denoted $<$ on a set $S$ has the properties:\\
+      \item An \udefine{order relation}, typically denoted $\hspace{0.1em}<$, on a set $S$ has the properties:\\
       \begin{tabular}{l}
-         $\circ$ $\forall x, y \in S$, exactly one of the following is true: $x < y$, $y < x$, or $x = y$.\\
-         $\circ$ $x < y$ and $y < z$ implies that $x < z$.
+         $\circ$ $\forall a, b \in S$, exactly one of the following is true: $a < b$, $b < a$, or $a = b$.\\
+         $\circ$ $a < b$ and $b < c$ implies that $a < c$.\retTwo
       \end{tabular}
    \end{itemize}
+
+   Given a set $S$, an equivalence relation $\sim$, and an element $a \in S$, we define the\\ \udefine{equivalence class} of $a$ with respect to $\sim$ to be the set $[a]_\sim = \{b \in S \mid a \sim b\}$.\\ Also, we define the quotient of $S$ with respect to the equivalence relation $\sim$ as\\ the set of equivalence classes with respect to $\sim$.
+
+   {\centering $S/{\sim} = \{[a]_\sim \mid a \in S\}$\retTwo\par}
+
+   \mySepTwo
+
+   Given any function $f: A \longrightarrow B$, define $a \sim b \Longleftrightarrow f(a) = f(b)$.
+
+   {\begin{myIndent} \hTwo
+      Proposition \propCount: Every function $f$ can be decomposed as follows:
+      % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiKEEvXFxzaW0pIl0sWzQsMCwiXFxtYXRocm17aW19ZiJdLFs2LDAsIkIiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwyLCJcXHNpbSJdLFsyLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiXFx3aWRldGlsZGV7Zn0iLDJdLFswLDMsImYiLDAseyJjdXJ2ZSI6LTR9XV0=
+      \[\begin{tikzcd}
+         A && {(A/{\sim})} && {\mathrm{im}f} && B
+         \arrow["g"', two heads, from=1-1, to=1-3]
+         \arrow[hook, "h"', from=1-5, to=1-7]
+         \arrow["{\widetilde{f}}"', "\sim", from=1-3, to=1-5]
+         \arrow["f", curve={height=-44pt}, from=1-1, to=1-7]
+      \end{tikzcd}\]
+      {\begin{myTindent}\begin{myTindent}\begin{myTindent} \hFour
+         \phantom{.}\\ [-20pt] (in other words, $f = h \circ \widetilde{f} \circ g$)\retTwo
+      \end{myTindent}\end{myTindent}\end{myTindent}}
+      ...where $g$ is the surjection mapping $a$ to $[a]_\sim$ for all $a \in A$, $h$ is the inclusion function (which is injective) mapping the image of $f$ to $B$, and $\widetilde{f}$ is the function mapping $[a]_\sim$ to $f(a)$ where $a \in [a]_\sim$.
+
+   \end{myIndent}}
 
 \end{document}
 
