@@ -94,7 +94,11 @@
    \color{RawerSienna}%
    \fontsize{12}{14}\selectfont%
 }
-\newcommand{\teachComment}{
+\newcommand{\pracOne}{
+   \color{BrickRed}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\pracTwo}{
    \color{Orange}%
    \fontsize{12}{14}\selectfont%
 }
@@ -162,6 +166,12 @@
 \newcommand{\myHS}{ \hspace{0.5em}}
 
 \newcommand{\myId}{\mathrm{Id}}
+\newcommand{\myIm}{\mathrm{im}}
+\newcommand{\myObj}{\mathrm{Obj}}
+\newcommand{\myHom}{\mathrm{Hom}}
+\newcommand{\myEnd}{\mathrm{End}}
+
+\newcommand{\mcateg}[1]{\mathsf{#1}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -203,6 +213,7 @@
 
 \begin{document}
    \maketitle{}
+   \setul{0.14em}{0.07em}
    \calibri
 
    \markDate{1/7/2024}
@@ -213,15 +224,15 @@
    contain duplicate elements.
    
    \begin{myIndent}
-      \hTwo
+      \exOne
       One way to define a multiset is as a function
       \( f: A\rightarrow\mathbb{N} \) such that each
       \(\alpha \in A \)\\ is mapped to the number of times that 
-      \(\alpha\) appears in the multiset. Then, given the\\ multisets 
+      \(\alpha\) appears in the multiset. Then, given\\ the multisets 
       \(f_{1}: A\rightarrow \mathbb{N}\) and \(f_{2}: 
-      B \rightarrow \mathbb{N}\), we can define the following
+      B \rightarrow \mathbb{N}\), we can define the following\\
       operations:
-      \hThree
+      \exTwo
       \begin{itemize}
          \item \(\alpha \in f_{1} \Longleftrightarrow \alpha \in A\)\\ [-10pt]
 
@@ -402,21 +413,246 @@
 
    {\begin{myIndent} \hTwo
       Proposition \propCount: Every function $f$ can be decomposed as follows:
-      % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiKEEvXFxzaW0pIl0sWzQsMCwiXFxtYXRocm17aW19ZiJdLFs2LDAsIkIiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwyLCJcXHNpbSJdLFsyLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiXFx3aWRldGlsZGV7Zn0iLDJdLFswLDMsImYiLDAseyJjdXJ2ZSI6LTR9XV0=
-      \[\begin{tikzcd}
-         A && {(A/{\sim})} && {\mathrm{im}f} && B
-         \arrow["g"', two heads, from=1-1, to=1-3]
-         \arrow[hook, "h"', from=1-5, to=1-7]
-         \arrow["{\widetilde{f}}"', "\sim", from=1-3, to=1-5]
-         \arrow["f", curve={height=-44pt}, from=1-1, to=1-7]
+      % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzEsMCwiKEEvXFxzaW0pIl0sWzIsMCwiXFxtYXRocm17aW19ZiJdLFszLDAsIkIiXSxbMCwxLCJnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEsMiwiXFxzaW0iXSxbMiwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDMsImYiLDAseyJjdXJ2ZSI6LTN9XV0=
+      \[\begin{tikzcd}[column sep=2.25em]
+         A & {(A/\sim)} & {\mathrm{im}f} & B
+         \arrow["g"', two heads, from=1-1, to=1-2]
+         \arrow["\widetilde{f}"', "\sim", from=1-2, to=1-3]
+         \arrow["h"', hook, from=1-3, to=1-4]
+         \arrow["f", curve={height=-32pt}, from=1-1, to=1-4]
       \end{tikzcd}\]
       {\begin{myTindent}\begin{myTindent}\begin{myTindent} \hFour
          \phantom{.}\\ [-20pt] (in other words, $f = h \circ \widetilde{f} \circ g$)\retTwo
       \end{myTindent}\end{myTindent}\end{myTindent}}
-      ...where $g$ is the surjection mapping $a$ to $[a]_\sim$ for all $a \in A$, $h$ is the inclusion function (which is injective) mapping the image of $f$ to $B$, and $\widetilde{f}$ is the function mapping $[a]_\sim$ to $f(a)$ where $a \in [a]_\sim$.
+      ...where $g$ is the surjection mapping $a$ to $[a]_\sim$ for all $a \in A$, $h$ is the inclusion function\\ (which is injective) from the  image of $f$ to $B$, and $\widetilde{f}$ is a bijective function defined\\ as the mapping $[a]_\sim$ to $f(a)$ where $a \in [a]_\sim$.\retTwo
 
+      {\begin{myIndent} \hThree
+         Proof:\\
+         $(A/{\sim})$ is defined as the range of $g$. So $g$ is automatically surjective. Also,\\ inclusion functions like $h$ are always injective.\retTwo
+
+         Now we show $\widetilde{f}$ is well defined and bijective.
+         {\begin{myIndent} \hFour
+            \begin{enumerate}
+               \item Assume $a^\prime, a^\pprime \in A$ such that $[a^\prime] = [a^\pprime]$. Then by how we defined $\sim$,\\ $f(a^\prime) = f(a^\pprime)$. So $[a^\prime] = [a^\pprime] \Longrightarrow \widetilde{f}([a^\prime]) = \widetilde{f}([a^\pprime])$, meaning $\widetilde{f}$ is well\\ defined.
+               
+               \newpage
+
+               \item Assume $\widetilde{f}([a^\prime]) = \widetilde{f}([a^\pprime])$. Then $f(a^\prime) = f(a^\pprime)$, meaning $a' \sim a^\pprime$.\\ Hence $[a^\prime] = [a^\pprime]$, meaning  $\widetilde{f}$ is injective.\\
+               
+               \item Given any $b \in \myIm f$, there exists $a \in A$ such that $f(a) = b$. Then\\ $\widetilde{f}([a]_\sim) = f(a) = b$. So $\widetilde{f}$ is surjective.\retTwo
+            \end{enumerate}
+         \end{myIndent}}
+
+         Finally, it's clear that $f = h \circ \widetilde{f} \circ g$. So we're done.
+      \end{myIndent}}
    \end{myIndent}}
 
-\end{document}
+   \mySepTwo
 
-(also\\ written as \(f: A \xlongrightarrow{\sim} B\))
+   \markDate{3/25/2024}
+
+   A \udefine{category} $\mcateg{C}$ consists of a class $\myObj(\mcateg{C})$ of \udefine{objects} of the category, and for every\\ two objects $A, B$ of $\mcateg{C}$, a set $\myHom_\mcateg{C}(A, B)$ of \udefine{morphisms} with the following\\ properties:
+   \begin{itemize}
+      \item For every object $A$ of $\mcateg{C}$, there exists a morphism $1_A \in \myHom_\mcateg{C}(A, A)$ called\\ the identity on $A$.
+      \item Morphisms can be composed, meaning $f \in \myHom_\mcateg{C}(A, B)$ and $g \in \myHom_\mcateg{C}(B, C)$\\ means that $gf \in \myHom_\mcateg{C}(A, C)$
+      \item Composition is associative, meaning if $f \in \myHom_\mcateg{C}(A, B)$, $g \in \myHom_\mcateg{C}(B, C)$,\\ and $h \in \myHom_\mcateg{C}(C, D)$, then $(hg)f = h(gf)$.
+      \item The identity morphisms are identities with respect to composition, meaning\\ for all $f \in \myHom_\mcateg{C}(A, B)$, $f1_A = f$ and $1_Bf = f$.
+      \item $\myHom_\mcateg{C}(A, B)$ and $\myHom_\mcateg{C}(C, D)$ are disjoint unless $A = C$ and $B = D$.
+      
+      {\begin{myIndent} \hTwo
+         We use the word "class" because by Russell's paradox, there are many sets\\ which aren't well defined. For example, there is no set of sets. So we instead\\ make a class of all sets. \retTwo
+         Also, we write category names in sans-serif font to better distinguish them.
+      \end{myIndent}}
+   \end{itemize}
+
+   A morphism of an object $A$ of a category $\mcateg{C}$ to itself is called an \udefine{endomorphism}.\\ Thus we denote $\myHom_\mcateg{C}(A, A)$ as $\myEnd_\mcateg{C}(A)$.
+   {\begin{myIndent} \hTwo
+      Note that by the composition rules of a category, if $f, g \in \myEnd_\mcateg{C}(A)$,\\ then $fg, gf \in \myEnd_\mcateg{C}(A)$.\retTwo
+   \end{myIndent}}
+
+   We can denote a morphism $f \in \myHom_\mcateg{C}(A, B)$ as $f: A \rightarrow B$.\retTwo
+
+   \exOne
+   Examples of Categories:
+   \begin{myIndent} \exTwo
+      \begin{itemize}
+         \item We define the category of sets: $\mcateg{Set}$, such that $\myObj(\mcateg{Set})$ is the class of all sets\\ and for $A$ and $B$ in $\myObj(\mcateg{Set})$, $\myHom_\mcateg{Set}(A, B)$ is the set of all functions from $A$\\ to $B$ (abbreviated as $B^A$).\newpage
+         
+         \item If $S$ is a set and $\sim$ is an equivalence relation on $S$, then we can define a\\ category whose objects are the elements of $S$, and for $a, b \in S$, $\myHom(a, b)$\\ equals $\{a, b\}$ when $a \sim b$ and $\emptyset$ otherwise.
+         {\begin{myIndent} \exP
+            Note that for this category, we need to define what it means to compose\\ morphisms. So let's say that if $f = \{a, b\}$ and $g = \{b, c\}$, then $gf = \{a, c\}$.\retTwo
+         \end{myIndent}}
+
+         \item Let $\mcateg{C}$ be a category and let $A$ be an object of $\mcateg{C}$. Then we can define a category $\mcateg{C}_A$ as follows:
+         \begin{itemize}
+            \item[$\circ$] $\myObj(\mcateg{C}_A) =$ all morphisms from any object of $\mcateg{C}$ to $A$
+            \item[$\circ$] If $f_1: Z_1 \longrightarrow A$ and $f_2: Z_2 \longrightarrow A$ are objects of $\mcateg{C}_A$, then $\myHom_{\mcateg{C}_A}(f, g)$\\ is the set of morphisms $\sigma: Z_1 \rightarrow Z_2$ such that $f_1 = f_2\sigma$.
+         \end{itemize}
+         {\begin{myDindent} \exP
+            Thus the morphisms of $\mcateg{C}_A$ are \ul{commutative diagrams} with the\\ objects $Z_1$, $Z_2$, and $A$.\\ [-12pt]
+
+            \begin{tabular}{p{2.7in} p{2in}}
+               \raisebox{-1em}{
+               \begin{tabular}{p{2.5in}}
+                  To prove that this is a category,\newline first consider that each object\newline $f: Z\longrightarrow A$ has an identity\newline morphism:\newline
+               \end{tabular}}
+               &
+               % https://q.uiver.app/#q=WzAsMyxbMSwyLCJBIl0sWzAsMCwiWiJdLFsyLDAsIloiXSxbMSwwLCJmXzEiLDJdLFsyLDAsImZfMSJdLFsxLDIsIjFfWiJdXQ==
+               {\begin{tikzcd}[column sep=tiny]
+                  Z && Z \\
+                  \\
+                  & A
+                  \arrow["{f}"', from=1-1, to=3-2]
+                  \arrow["{f}", from=1-3, to=3-2]
+                  \arrow["{1_Z}", from=1-1, to=1-3]
+               \end{tikzcd}}
+            \end{tabular}\retTwo
+            \begin{tabular}{p{4.5in}}
+               \begin{tabular}{p{4.3in}}
+                  Also, the morphisms of $\mcateg{C}_A$ compose. If the diagram with $\sigma$ is\newline in $\myHom_{\mcateg{C}_A}(f_1, f_2)$ and the diagram with $\tau$ is in $\myHom_{\mcateg{C}_A}(f_2, f_3)$,\newline then we define their composition in $\myHom_{\mcateg{C_A}}(f_2, f_3)$ as the\newline diagram with $\tau\sigma$.\retTwo
+   
+                  % https://q.uiver.app/#q=WzAsNCxbMiwyLCJBIl0sWzIsMCwiWl8yIl0sWzAsMCwiWl8xIl0sWzQsMCwiWl8zIl0sWzIsMCwiZl8xIiwyXSxbMSwwLCJmXzIiLDJdLFszLDAsImZfMyJdLFsyLDEsIlxcc2lnbWEiXSxbMSwzLCJcXHRhdSJdXQ==
+                  {\begin{tikzcd}[column sep=tiny]
+                     {Z_1} && {Z_2} && {Z_3} \\
+                     \\
+                     && A
+                     \arrow["{f_1}"', from=1-1, to=3-3]
+                     \arrow["{f_2}"', from=1-3, to=3-3]
+                     \arrow["{f_3}", from=1-5, to=3-3]
+                     \arrow["\sigma", from=1-1, to=1-3]
+                     \arrow["\tau", from=1-3, to=1-5]
+                  \end{tikzcd}
+                  $\xRightarrow{\phantom{aaaaaaaaaaaaaaa}}$
+                  % https://q.uiver.app/#q=WzAsMyxbMiwyLCJBIl0sWzAsMCwiWl8xIl0sWzQsMCwiWl8zIl0sWzEsMCwiZl8xIiwyXSxbMiwwLCJmXzMiXSxbMSwyLCJcXHRhdVxcc2lnbWEiXV0=
+                  \begin{tikzcd}[column sep=tiny]
+                     {Z_1} &&&& {Z_3} \\
+                     \\
+                     && A
+                     \arrow["{f_1}"', from=1-1, to=3-3]
+                     \arrow["{f_3}", from=1-5, to=3-3]
+                     \arrow["\tau\sigma", from=1-1, to=1-5]
+                  \end{tikzcd}}\retTwo
+                  
+                  As is hopefully apparent, the identity morphisms compose as is required for $\mcateg{C}_A$ to be a category.\retTwo
+
+                  Finally, composing morphisms of $\mcateg{C}_A$ is associative.
+                  
+                  \begin{center}
+                     % https://q.uiver.app/#q=WzAsNSxbMywzLCJBIl0sWzAsMCwiWl8xIl0sWzIsMCwiWl8yIl0sWzQsMCwiWl8zIl0sWzYsMCwiWl80Il0sWzEsMCwiZl8xIiwyXSxbMiwwLCJmXzIiLDJdLFszLDAsImZfMyJdLFs0LDAsImZfNCJdLFsxLDIsIlxcc2lnbWEiLDFdLFsyLDMsIlxcdGF1IiwxXSxbMyw0LCJcXHVwc2lsb24iLDFdLFsxLDMsIlxcdGF1XFxzaWdtYSIsMCx7ImN1cnZlIjotM31dLFsyLDQsIlxcdGF1XFx1cHNpbG9uIiwwLHsiY3VydmUiOi0zfV0sWzEsNCwiXFx1cHNpbG9uXFx0YXVcXHNpZ21hIiwwLHsiY3VydmUiOi01fV1d
+                     \begin{tikzcd}[column sep=small]
+                        {Z_1} && {Z_2} && {Z_3} && {Z_4} \\
+                        \\
+                        \\
+                        &&& A
+                        \arrow["{f_1}"', from=1-1, to=4-4]
+                        \arrow["{f_2}", from=1-3, to=4-4]
+                        \arrow["{f_3}"', from=1-5, to=4-4]
+                        \arrow["{f_4}", from=1-7, to=4-4]
+                        \arrow["\sigma", from=1-1, to=1-3]
+                        \arrow["\tau", from=1-3, to=1-5]
+                        \arrow["\upsilon", from=1-5, to=1-7]
+                        \arrow["\tau\sigma", curve={height=-18pt}, from=1-1, to=1-5]
+                        \arrow["\upsilon\tau", curve={height=-18pt}, from=1-3, to=1-7]
+                        \arrow["\upsilon\tau\sigma", curve={height=-50pt}, from=1-1, to=1-7]
+                     \end{tikzcd}
+                  \end{center}
+               \end{tabular}
+            \end{tabular}\retTwo
+         \end{myDindent}}
+
+         \newpage
+
+         \item Categories like the one in the previous example are called \ul{slice categories}. We\\ can similarly define \ul{coslice categories} as follows:
+         \begin{myIndent}
+            Let $\mcateg{C}$ be a category and let $A$ be an object of $\mcateg{C}$. Then we can define\\ a category $\mcateg{C}^A$ such that:
+            \begin{itemize}
+               \item[$\circ$] $\myObj(\mcateg{C}^A) =$ all morphisms from $A$ to any object of $\mcateg{C}$
+               \item[$\circ$] If $f_1: A \longrightarrow Z_1$ and $f_2: A \longrightarrow Z_2$ are objects of $\mcateg{C}^A$, then $\myHom_{\mcateg{C}^A}(f, g)$\\ is the set of morphisms $\sigma: Z_1 \rightarrow Z_2$ such that $\sigma f_1 = f_2$.
+            \end{itemize}
+            {\begin{myDindent}\exP
+               In other words, we're now considering commutative diagrams\\ of the form:
+               
+               \begin{center}
+                  % https://q.uiver.app/#q=WzAsMyxbMSwwLCIgQSJdLFswLDIsIlpfMSJdLFsyLDIsIlpfMiJdLFswLDEsImZfMSIsMl0sWzAsMiwiZl8yIl0sWzEsMiwiXFxzaWdtYSIsMl1d
+                  \begin{tikzcd}
+                     & { A} \\
+                     \\
+                     {Z_1} && {Z_2}
+                     \arrow["{f_1}"', from=1-2, to=3-1]
+                     \arrow["{f_2}", from=1-2, to=3-3]
+                     \arrow["\sigma"', from=3-1, to=3-3]
+                  \end{tikzcd}
+               \end{center}
+
+            \end{myDindent}}
+         \end{myIndent}
+      \end{itemize}
+   \end{myIndent}\retTwo
+
+\hOne
+\mySepTwo
+{\pracOne\retTwo
+   \textbf{Problem 3.8}: A \ul{subcategory} $\mcateg{C}^\prime$ of a category $\mcateg{C}$ consists of a collection of objects of $\mcateg{C}$ with\\ morphisms $\myHom_{\mcateg{C}^\prime}(A, B) \subseteq \myHom_{\mcateg{C}}(A, B)$ for all objects $A, B$ in $\myObj(\mcateg{C^\prime})$ such that $\mcateg{C}^\prime$ has\\ all the necessary identities and compositions to be a category. A subcategory $\mcateg{C}^\prime$ is \ul{full} if\\ $\myHom_{\mcateg{C}^\prime}(A, B) = \myHom_{\mcateg{C}}(A, B)$ for all $A, B$ in $\myObj(\mcateg{C}^\prime)$.\retTwo
+
+   \begin{myIndent}
+      \pracTwo
+      Let $\mcateg{Set}^\prime$ be the category of infinite sets.
+      \begin{itemize}
+         \item $\myObj(\mcateg{Set}^\prime)$ is the class of all infinite sets.
+         \item For all $A, B$ in $\myObj(\mcateg{Set}^\prime)$, $\myHom_{\mcateg{Set}^\prime}(A, B)$ is the set of all functions from $A$ to $B$.\retTwo
+      \end{itemize}
+   
+      Now given the infinite sets $A$ and $B$, any morphism $f \in \myHom_{\mcateg{Set}}(A, B)$ is also a\\ morphism of $\myHom_{\mcateg{Set^\prime}}(A, B)$. So $\mcateg{Set^\prime}$ is a full subcategory of $\mcateg{Set}$.\retTwo
+   \end{myIndent}
+
+   \pracOne\textbf{Problem 3.1}: Let $\mcateg{C}$ be a category. Then consider $\mcateg{C}^{op}$ with
+   \begin{itemize}
+      \item $\myObj(\mcateg{C}^{op}) = \myObj(\mcateg{C})$
+      \item for $A, B$ in $\myObj(\mcateg{C}^{op})$, $\myHom_{\mcateg{C}^{op}}(A, B) = \myHom_{\mcateg{C}}(B, A)$.\\
+   \end{itemize}
+
+   \begin{myIndent}
+      \pracTwo Let $A$, $B$, and $C$ be objects of $\mcateg{C}^{op}$. Given $g \in \myHom_{\mcateg{C}^{op}}(A, B)$ and $h \in \myHom_{\mcateg{C}^{op}}(B, C)$, define the composition $hg \in \myHom_{\mcateg{C}^{op}}(A, C)$ to be the morphism $gh \in \myHom_{\mcateg{C}}(C, A)$.\retTwo
+
+      To see why this is well defined note that if $g \in \myHom_{\mcateg{C}^{op}}(A, B)$, then $g \in \myHom_{\mcateg{C}}(B, A)$.\\ Similarly, if $h \in \myHom_{\mcateg{C}^{op}}(B, C)$, then $h \in \myHom_{\mcateg{C}}(C, B)$. As $\mcateg{C}$ is a category, there must\\ exist a  morphism $gh \in \myHom_{\mcateg{C}}(C, A)$, which in turn means that the morphism we\\ defined as the composition $hg \in \myHom_{\mcateg{C^{op}}}(A, C)$ exists.
+      % https://q.uiver.app/#q=WzAsMyxbMCwxLCJDIl0sWzIsMCwiQiJdLFs0LDAsIkEiXSxbMCwxLCJoIl0sWzEsMiwiZyJdLFswLDIsImdoIiwyLHsiY3VydmUiOjJ9XV0=
+      \[\begin{tikzcd}
+         && B && A \\
+         C
+         \arrow["h", from=2-1, to=1-3]
+         \arrow["g", from=1-3, to=1-5]
+         \arrow["gh"', curve={height=12pt}, from=2-1, to=1-5]
+      \end{tikzcd}\]
+      
+      \newpage
+
+      So by how we defined composition of morphisms in $\mcateg{C}^{op}$, we know $\mcateg{C}^{op}$ satisfies the\\ composition property of a category. Now what's left to show is that $\mcateg{C}^{op}$ has the\\ other properties of a category. \retTwo
+      
+      For any object $A$ in $\myObj(\mcateg{C}^{op})$, $\myEnd_{\mcateg{C}^{op}}(A) = \myEnd_{\mcateg{C}}(A)$. So, $A$ inherits a morphism $1_A$\\ from $\mcateg{C}$.
+      \begin{myIndent}
+         Consider $g \in \myHom_{\mcateg{C}^{op}}(A, B)$. Then $g1_A$ in $\myHom_{\mcateg{C}^{op}}(A, B)$ is equal to $1_A g = g$ in\\ $\myHom_{\mcateg{C}}(B, A)$. So in $\mcateg{C}^{op}$, we have that $g1_A = g$.\retTwo
+
+         Similarly, consider $h \in \myHom_{\mcateg{C}^{op}}(B, A)$. Then $1_Ah \in \myHom_{\mcateg{C}^{op}}(B, A)$ is equal\\ to $h1_A = h$ in $\myHom_{\mcateg{C}}(A, B)$. So in $\mcateg{C}^{op}$, we have that $1_Ah = h$.\retTwo
+      \end{myIndent}
+
+      Finally, observe that given the morphisms $f \in \myHom_{\mcateg{C}^{op}}(A, B)$, $g \in \myHom_{\mcateg{C}^{op}}(B, C)$, and $h \in \myHom_{\mcateg{C}^{op}}(C, D)$, we know that in $\mcateg{C}$:
+      % https://q.uiver.app/#q=WzAsNCxbMCwxLCJEIl0sWzIsMCwiQyJdLFs0LDEsIkIiXSxbNiwwLCJBIl0sWzAsMSwiaCJdLFsxLDIsImciXSxbMiwzLCJmIl0sWzAsMiwiZ2giLDAseyJjdXJ2ZSI6M31dLFsxLDMsImZnIiwwLHsiY3VydmUiOi0zfV1d
+      \[\begin{tikzcd}
+         && C &&&& A \\
+         D &&&& B
+         \arrow["h", from=2-1, to=1-3]
+         \arrow["g", from=1-3, to=2-5]
+         \arrow["f", from=2-5, to=1-7]
+         \arrow["gh", curve={height=18pt}, from=2-1, to=2-5]
+         \arrow["fg", curve={height=-18pt}, from=1-3, to=1-7]
+      \end{tikzcd}\]
+
+      $(gf) \in \myHom_{\mcateg{C}^{op}}(A, C)$ refers to the morphism $fg \in \myHom_{\mcateg{C}}(C, A)$. So,\\ $h(gf)\in \myHom_{\mcateg{C}^{op}}(A, D)$ refers to the morphism $(fg)h \in \myHom_{\mcateg{C}}(D, A)$. At the\\ same time, $(hg) \in \myHom_{\mcateg{C}^{op}}(B, D)$ refers to the morphism $gh \in \myHom_{\mcateg{C}}(D, B)$. So,\\ $(hg)f \in \myHom_{\mcateg{C}}(D, A)$ refers to the morphism $f(gh) \in \myHom_{\mcateg{C}}(D, A)$. Thus as\\ $(fg)h = f(gh)$ in $\mcateg{C}$, we have that $(hg)f = h(gf)$ in $\mcateg{C}^{op}$.
+   \end{myIndent}
+}
+
+\mySepTwo
+
+\markDate{3/26/2024}
+
+\end{document}
