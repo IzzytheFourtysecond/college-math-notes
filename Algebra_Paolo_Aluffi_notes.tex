@@ -374,8 +374,14 @@
 
          Next, assume $f$ is not surjective.
          \begin{myIndent}
-            Then there exists $\beta \in B$ such that for all $\alpha \in A$, we have that\\ $f(\alpha) \neq \beta$. Importantly, as $f(\alpha) \in B$, we know $|B| \neq 1$. So set $b^\prime$\\ equal to $\myId_B$ and define $b^\pprime$ as a function mapping each element\\ of $B \setminus \{\beta \}$ to itself and $\beta$ to any of the other elements in $B$. Now,\\
-            $b^\prime \circ f = f = b^\pprime \circ f$ but $b^\prime \neq b^\pprime$. So $f$ is not an epimorphism. $\blacksquare$\retTwo
+            Then there exists $\beta \in B$ such that for all $\alpha \in A$, we have that\\ $f(\alpha) \neq \beta$. Notably, this mean $|B| \geq 1$.\retTwo
+            
+            If $A = \emptyset$, then define $b^\prime$ to be the function from $B$ to $\{0\}$ and $b^\pprime$ to be\\ the function from $B$ to $\{1\}$. Then, $b^\prime \circ f = f = b^\pprime \circ f$ but $b^\prime \neq b^\pprime$.\retTwo
+            
+            Meanwhile if $A \neq \emptyset$, then there exists $f(\alpha) \in B \setminus \{\beta\}$. So, $|B| \geq 2$,\\ meaning we can set $b^\prime$ equal to $\myId_B$ and define $b^\pprime$ as a function mapping\\ each element of $B \setminus \{\beta \}$ to itself and $\beta$ to any of the other elements in\\ $B$. Now,
+            $b^\prime \circ f = f = b^\pprime \circ f$ but $b^\prime \neq b^\pprime$.\retTwo
+            
+            Hence, we have shown that $f$ is not an epimorphism.\retTwo
          \end{myIndent}
       \end{myIndent}
    \end{myIndent}
@@ -507,10 +513,10 @@
                   \arrow["{f}", from=1-3, to=3-2]
                   \arrow["{1_Z}", from=1-1, to=1-3]
                \end{tikzcd}}
-            \end{tabular}\retTwo
+            \end{tabular}\\
             \begin{tabular}{p{4.5in}}
                \begin{tabular}{p{4.3in}}
-                  Also, the morphisms of $\mcateg{C}_A$ compose. If the diagram with $\sigma$ is\newline in $\myHom_{\mcateg{C}_A}(f_1, f_2)$ and the diagram with $\tau$ is in $\myHom_{\mcateg{C}_A}(f_2, f_3)$,\newline then we define their composition in $\myHom_{\mcateg{C_A}}(f_2, f_3)$ as the\newline diagram with $\tau\sigma$.\retTwo
+                  Also, the morphisms of $\mcateg{C}_A$ compose. If the diagram with $\sigma$ is\newline in $\myHom_{\mcateg{C}_A}(f_1, f_2)$ and the diagram with $\tau$ is in $\myHom_{\mcateg{C}_A}(f_2, f_3)$,\newline then we define their composition in $\myHom_{\mcateg{C_A}}(f_2, f_3)$ as the\newline diagram with the composed morphism $\tau\sigma$ in $\mcateg{C}$.\\ [6pt]
    
                   % https://q.uiver.app/#q=WzAsNCxbMiwyLCJBIl0sWzIsMCwiWl8yIl0sWzAsMCwiWl8xIl0sWzQsMCwiWl8zIl0sWzIsMCwiZl8xIiwyXSxbMSwwLCJmXzIiLDJdLFszLDAsImZfMyJdLFsyLDEsIlxcc2lnbWEiXSxbMSwzLCJcXHRhdSJdXQ==
                   {\begin{tikzcd}[column sep=tiny]
@@ -534,9 +540,9 @@
                      \arrow["\tau\sigma", from=1-1, to=1-5]
                   \end{tikzcd}}\retTwo
                   
-                  As is hopefully apparent, the identity morphisms compose as is required for $\mcateg{C}_A$ to be a category.\retTwo
+                  As is hopefully apparent, the identity morphisms compose as is\\ required for $\mcateg{C}_A$ to be a category.\\ [6pt]
 
-                  Finally, composing morphisms of $\mcateg{C}_A$ is associative.
+                  Finally, composing morphisms of $\mcateg{C}_A$ is associative because\\ $(\upsilon\tau)\sigma = \upsilon(\tau\sigma)$ in the category $\mcateg{C}$.
                   
                   \begin{center}
                      % https://q.uiver.app/#q=WzAsNSxbMywzLCJBIl0sWzAsMCwiWl8xIl0sWzIsMCwiWl8yIl0sWzQsMCwiWl8zIl0sWzYsMCwiWl80Il0sWzEsMCwiZl8xIiwyXSxbMiwwLCJmXzIiLDJdLFszLDAsImZfMyJdLFs0LDAsImZfNCJdLFsxLDIsIlxcc2lnbWEiLDFdLFsyLDMsIlxcdGF1IiwxXSxbMyw0LCJcXHVwc2lsb24iLDFdLFsxLDMsIlxcdGF1XFxzaWdtYSIsMCx7ImN1cnZlIjotM31dLFsyLDQsIlxcdGF1XFx1cHNpbG9uIiwwLHsiY3VydmUiOi0zfV0sWzEsNCwiXFx1cHNpbG9uXFx0YXVcXHNpZ21hIiwwLHsiY3VydmUiOi01fV1d
@@ -730,7 +736,7 @@ Let $\mcateg{C}$ be a category and $f: A \rightarrow B$ a morphism.
 \exOne\mySepTwo
 
 $f$ being both a monomorphism and epimorphism does not necessarily imply that\\ $f$ is isomorphism.
-\begin{myIndent} \exTwo
+{\begin{myIndent} \exTwo
    For example, consider a category whose objects are all the elements of $\mathbb{Z}$, and\\ where for $a, b \in \mathbb{Z}$, $\myHom(a, b)$ equals $\{(a, b)\}$ if $a \leq b$ and $\emptyset$ otherwise.
    {\begin{myIndent}\exP
       Also we define the composition of $\{(a, b)\}$ and $\{(b, c)\}$ to be $\{(a, c)\}$.
@@ -738,7 +744,108 @@ $f$ being both a monomorphism and epimorphism does not necessarily imply that\\ 
 
    \newpage
 
+   Let $f: a \longrightarrow b$ be a morphism and consider any object $z$ of the category. Since\\ there is only at most one morphism possible in $\myHom(z, a)$, $f$ is automatically a\\ monomorphism. Similarly, $f$ is automatically an epimorphism because there is\\ only at most one morphism possible in $\myHom(b, z)$. That said, the only isomorphisms\\ are the morphisms: $(a, a) \in \myEnd(a)$ for each $a \in \mathbb{Z}$.\retTwo
+\end{myIndent}}
+
+Another thing the above category demonstrates is that monomorphisms don't\\ necessarily have left-hand inverses and epimorphisms don't necessarily have\\ right-hand inverses.
+
+\mySepTwo
+
+\pracOne
+\textbf{Problem 4.3}: Let $\mcateg{C}$ be a category and $f \in \myHom_\mcateg{C}(A, B)$ be a morphism. Prove that if $f$\\ has a right-inverse, then $f$ is an epimorphism.\retTwo
+
+{\begin{myIndent} \pracTwo
+   Assume $f$ has a right-inverse $g: B \longrightarrow A$. Then consider two morphisms\\ $\beta^\prime, \beta^\pprime: B \longrightarrow Z$ such that $\beta^\prime f = \beta^\pprime f$. Thus:
+
+   {\center $ \beta^\prime = \beta^\prime1_B = (\beta^\prime f) g = (\beta^\pprime f) g = \beta^\pprime 1_B = \beta^\pprime$ \retTwo\par}
+
    
+   \begin{myTindent}\begin{myTindent}
+      \begin{myClosureOne}{3.35}
+         \\ [-22pt] By similar reasoning, we can show that $f$ having a\\ left-inverse implies that $f$ is a monomorphism.\\ [-10pt]
+      \end{myClosureOne}
+   \end{myTindent}\end{myTindent}
+\end{myIndent}}
+
+\textbf{Problem 4.4}:
+\begin{itemize}
+   \item Prove that the composition of two monomorphisms is a monomorphism.
+   {\begin{myIndent}\pracTwo
+      Let $f: A \longrightarrow B$ and $g: B \longrightarrow C$ be monomorphisms. Then consider two\\ morphisms $\alpha^\prime, \alpha^\pprime: Z \longrightarrow A$ such that $(gf)\alpha^\prime = (gf)\alpha^\pprime$.
+      \begin{myIndent}
+         Since $g$ is a monomorphism, $g(f\alpha^\prime) = g(f\alpha^\pprime) \Longrightarrow f\alpha^\prime = f\alpha^\pprime$.\\
+         Then as $f$ is a monomorphism, $f\alpha^\prime = f\alpha^\pprime \Longrightarrow \alpha^\prime = \alpha^\pprime$.\\
+         So $gf$ is a monomorphism.
+      \end{myIndent}
+      \begin{myDindent}\begin{myTindent}
+         \begin{myClosureOne}{3.35}
+            \\ [-22pt] By similar reasoning, we can show that the\\ composition of two epimorphisms is an\\ epimorphism.\\ [-10pt]
+         \end{myClosureOne}\\
+      \end{myTindent}\end{myDindent}
+   \end{myIndent}}
+
+   \item Deduce that we can define a subcategory $\mcateg{C}_{\mathrm{mono}}$ of a category $\mcateg{C}$ such that:
+   \begin{itemize}
+      \item[$\circ$] $\myObj(\mcateg{C_{\mathrm{mono}}}) = \myObj(\mcateg{C})$
+      \item[$\circ$] For each $A, B$ in $\myObj(\mcateg{C_{\mathrm{mono}}}), \myHS \myHom_{\mcateg{C_{\mathrm{mono}}}}(A, B)$ is the subset of $\myHom_{\mcateg{C}}(A, B)$\\ consisting of only monomorphisms.
+   \end{itemize}
+
+   {\begin{myIndent}\pracTwo
+      Having followed the recipe above for making $\mcateg{C}_{\mathrm{mono}}$, we need to show that $\mcateg{C}_{\mathrm{mono}}$\\ satisfies the properties of a category.\retTwo
+
+      By the previous part of the problem, we know that all morphisms in $C_{\mathrm{mono}}$ compose\\ with each other to give other morphisms in $C_{\mathrm{mono}}$. Also, because morphism\\ composition in $\mcateg{C}$ is associative, we also have that morphism composition in $\mcateg{C}_{\mathrm{mono}}$\\ is associative. So, what we have left to show is that each object in $\mcateg{C}_{\mathrm{mono}}$ has an\\ identity morphism.
+
+      \newpage
+
+      By problem 4.3, we know that isomorphisms are automatically both monomorphisms\\ and epimorphisms because they have both a right-inverse and a left-inverse. This\\ means that since the identity morphisms of $\mcateg{C}$ are isomorphisms, we know that they\\ are also morphisms in $\mcateg{C}_{\mathrm{mono}}$. So each object $A$ in $\myObj(\mcateg{C}_{\mathrm{mono}})$ has an identity\\ morphism $1_A$. Additionally, for every morphism $f: A \longrightarrow B$ in $\mcateg{C}_{\mathrm{mono}}$, we have that\\ $1_B f = f$ and $f 1_A = f$ because that's how those morphisms would compose in $\mcateg{C}$.\retTwo
+
+      So $\mcateg{C}_{\mathrm{mono}}$ satisfies the properties of a category. Hence we conclude that we can define\\ it as a subcategory of $\mcateg{C}$.
+   \end{myIndent}}
+\end{itemize}
+
+\hOne\mySepTwo
+
+Let $\mcateg{C}$ be a category. We say that an object $I$ of $\mcateg{C}$ is \udefine{initial} in $\mcateg{C}$ if for every object\\ $A$ of $\mcateg{C}$, there exists exactly one morphism $I \longrightarrow A$ in $\mcateg{C}$. Meanwhile, we say that an\\ object $F$ of $\mcateg{C}$ is \udefine{final} in $\mcateg{C}$ if for every object $A$ of $\mcateg{C}$, there exists exactly one morphism\\ $A \longrightarrow F$ in $\mcateg{C}$.
+\begin{myIndent}
+   One can use the word \udefine{terminal} to describe either $I$ or $F$.
 \end{myIndent}
+
+{\begin{center}\exOne
+   \begin{myClosureOne}{5}
+      \\ [-24pt]
+      Examples:
+      \begin{myIndent} \exTwo
+         In the category $\mcateg{Set}$, $\emptyset$ is initial because there is a single\newline morphism: the empty function $\emptyset$, going from $\emptyset$ to every\newline other set. Also, every other object of $\mcateg{Set}$ is not initial since\newline they all have at least two morphisms towards any set of\newline size 2.\retTwo
+
+         Meanwhile, every singleton $\{a\}$ in the category of $\mcateg{Set}$ is\newline final since for every other set $S$, there is exactly one\newline morphism from $S$ to $\{a\}$. Specifically, that morphism is\newline the function assigning all elements of $S$ to $a$.
+      \end{myIndent}
+      \\ [-16.4pt]
+   \end{myClosureOne}\retTwo
+\end{center}}
+
+{\begin{myIndent} \hTwo
+   Proposition \propCount: Let $\mcateg{C}$ be a category.
+   \begin{itemize}
+      \item If $I_1$ and $I_2$ are both initial objects in $\mcateg{C}$, then $I_1 \cong I_2$.
+      \item If $F_1$ and $F_2$ are both final objects in $\mcateg{C}$, then $F_1 \cong F_2$.
+   \end{itemize}
+   Furthermore, these isomorphisms are uniquely determined.
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      By the definition of a category, all objects have an identity morphism. So if $F$\\ is final, then the unique morphism $F \longrightarrow F$ must be the identity morphism\\ $1_F$.\retTwo
+
+      Now assume $F_1$ and $F_2$ are both final in $\mcateg{C}$. Then there is a unique morphism\\ $f: F_1 \longrightarrow F_2$ and a unique morphism $g: F_2 \longrightarrow F_1$. Now, $gf$ is a morphism\\ from $F_1$ to $F_1$. So, $gf$ must equal $1_{F_1}$. By similar reasoning, $fg = 1_{F_2}$. This\\ tells us that $g = f^{-1}$ and $f$ is an isomorphism. So $F_1 \cong F_2$.
+
+      \newpage
+
+      The proof for initial objects is entirely analogous. \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\markDate{3/27/2024}
+
+
+
 
 \end{document}
