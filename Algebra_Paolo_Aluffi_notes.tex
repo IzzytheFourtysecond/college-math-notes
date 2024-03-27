@@ -170,6 +170,7 @@
 \newcommand{\myObj}{\mathrm{Obj}}
 \newcommand{\myHom}{\mathrm{Hom}}
 \newcommand{\myEnd}{\mathrm{End}}
+\newcommand{\myAut}{\mathrm{Aut}}
 
 \newcommand{\mcateg}[1]{\mathsf{#1}}
 
@@ -346,10 +347,10 @@
 
    \hOne
    A function $f: A \rightarrow B$ is an \udefine{epimorphism} 
-   (a.k.a an \udefine{epi}) if for all sets $Z$ and all\\ functions $a^{\prime}$
-   and $a^{\pprime}: B \rightarrow Z$, we have that 
-   $a^{\prime} \circ f = a^{\pprime} \circ f \Rightarrow 
-   a^{\prime} = a^{\pprime}$.
+   (a.k.a an \udefine{epi}) if for all sets $Z$ and all\\ functions $b^{\prime}$
+   and $b^{\pprime}: B \rightarrow Z$, we have that 
+   $b^{\prime} \circ f = b^{\pprime} \circ f \Rightarrow 
+   b^{\prime} = b^{\pprime}$.
 
    
    \begin{myIndent}
@@ -364,17 +365,17 @@
 
          First, let us assume $f$ is surjective.
          \begin{myIndent}
-               Then let's assume we have two functions $a^\prime$ and $a^\pprime$ from $B$ to some\\ set $Z$ such that $a^\prime \circ f = a^\pprime \circ f$. Because $f$ is surjective, we know it\\ has a right-hand inverse $h: B \rightarrow A$ such that $f \circ h = \myId_B$. Composing\\ $h$ with the previous equation, we get that:
+               Then let's assume we have two functions $b^\prime$ and $b^\pprime$ from $B$ to some\\ set $Z$ such that $b^\prime \circ f = b^\pprime \circ f$. Because $f$ is surjective, we know it\\ has a right-hand inverse $h: B \rightarrow A$ such that $f \circ h = \myId_B$. Composing\\ $h$ with the previous equation, we get that:
 
-               {\center $a^{\prime} = a^{\prime} \circ \myId_B = (a^\prime \circ f) \circ h = (a^\pprime \circ f) \circ h = a^\pprime \circ \myId_B = a^\pprime$\retTwo\par}
+               {\center $b^{\prime} = b^{\prime} \circ \myId_B = (b^\prime \circ f) \circ h = (b^\pprime \circ f) \circ h = b^\pprime \circ \myId_B = b^\pprime$\retTwo\par}
 
                So $f$ is an epimorphism.\retTwo
          \end{myIndent}
 
          Next, assume $f$ is not surjective.
          \begin{myIndent}
-            Then there exists $\beta \in B$ such that for all $\alpha \in A$, we have that\\ $f(\alpha) \neq \beta$. Importantly, as $f(\alpha) \in B$, we know $|B| \neq 1$. So set $a^\prime$\\ equal to $\myId_B$ and define $a^\pprime$ as a function mapping each element\\ of $B \setminus \{\beta \}$ to itself and $\beta$ to any of the other elements in $B$. Now,\\
-            $a^\prime \circ f = f = a^\pprime \circ f$ but $a^\prime \neq a^\pprime$. So $f$ is not epimorphic. $\blacksquare$\retTwo
+            Then there exists $\beta \in B$ such that for all $\alpha \in A$, we have that\\ $f(\alpha) \neq \beta$. Importantly, as $f(\alpha) \in B$, we know $|B| \neq 1$. So set $b^\prime$\\ equal to $\myId_B$ and define $b^\pprime$ as a function mapping each element\\ of $B \setminus \{\beta \}$ to itself and $\beta$ to any of the other elements in $B$. Now,\\
+            $b^\prime \circ f = f = b^\pprime \circ f$ but $b^\prime \neq b^\pprime$. So $f$ is not an epimorphism. $\blacksquare$\retTwo
          \end{myIndent}
       \end{myIndent}
    \end{myIndent}
@@ -478,9 +479,9 @@
       \begin{itemize}
          \item We define the category of sets: $\mcateg{Set}$, such that $\myObj(\mcateg{Set})$ is the class of all sets\\ and for $A$ and $B$ in $\myObj(\mcateg{Set})$, $\myHom_\mcateg{Set}(A, B)$ is the set of all functions from $A$\\ to $B$ (abbreviated as $B^A$).\newpage
          
-         \item If $S$ is a set and $\sim$ is an equivalence relation on $S$, then we can define a\\ category whose objects are the elements of $S$, and for $a, b \in S$, $\myHom(a, b)$\\ equals $\{a, b\}$ when $a \sim b$ and $\emptyset$ otherwise.
+         \item If $S$ is a set and $\sim$ is an equivalence relation on $S$, then we can define a\\ category whose objects are the elements of $S$, and for $a, b \in S$, $\myHom(a, b)$\\ equals $\{(a, b)\}$ when $a \sim b$ and $\emptyset$ otherwise.
          {\begin{myIndent} \exP
-            Note that for this category, we need to define what it means to compose\\ morphisms. So let's say that if $f = \{a, b\}$ and $g = \{b, c\}$, then $gf = \{a, c\}$.\retTwo
+            Note that for this category, we need to define what it means to compose\\ morphisms. So let's say that if $f = \{(a, b)\}$ and $g = \{(b, c)\}$, then\\ $gf = \{(a, c)\}$.\retTwo
          \end{myIndent}}
 
          \item Let $\mcateg{C}$ be a category and let $A$ be an object of $\mcateg{C}$. Then we can define a category $\mcateg{C}_A$ as follows:
@@ -539,7 +540,7 @@
                   
                   \begin{center}
                      % https://q.uiver.app/#q=WzAsNSxbMywzLCJBIl0sWzAsMCwiWl8xIl0sWzIsMCwiWl8yIl0sWzQsMCwiWl8zIl0sWzYsMCwiWl80Il0sWzEsMCwiZl8xIiwyXSxbMiwwLCJmXzIiLDJdLFszLDAsImZfMyJdLFs0LDAsImZfNCJdLFsxLDIsIlxcc2lnbWEiLDFdLFsyLDMsIlxcdGF1IiwxXSxbMyw0LCJcXHVwc2lsb24iLDFdLFsxLDMsIlxcdGF1XFxzaWdtYSIsMCx7ImN1cnZlIjotM31dLFsyLDQsIlxcdGF1XFx1cHNpbG9uIiwwLHsiY3VydmUiOi0zfV0sWzEsNCwiXFx1cHNpbG9uXFx0YXVcXHNpZ21hIiwwLHsiY3VydmUiOi01fV1d
-                     \begin{tikzcd}[column sep=small]
+                     \begin{tikzcd}[column sep=small, row sep=scriptsize]
                         {Z_1} && {Z_2} && {Z_3} && {Z_4} \\
                         \\
                         \\
@@ -647,12 +648,97 @@
          \arrow["fg", curve={height=-18pt}, from=1-3, to=1-7]
       \end{tikzcd}\]
 
-      $(gf) \in \myHom_{\mcateg{C}^{op}}(A, C)$ refers to the morphism $fg \in \myHom_{\mcateg{C}}(C, A)$. So,\\ $h(gf)\in \myHom_{\mcateg{C}^{op}}(A, D)$ refers to the morphism $(fg)h \in \myHom_{\mcateg{C}}(D, A)$. At the\\ same time, $(hg) \in \myHom_{\mcateg{C}^{op}}(B, D)$ refers to the morphism $gh \in \myHom_{\mcateg{C}}(D, B)$. So,\\ $(hg)f \in \myHom_{\mcateg{C}}(D, A)$ refers to the morphism $f(gh) \in \myHom_{\mcateg{C}}(D, A)$. Thus as\\ $(fg)h = f(gh)$ in $\mcateg{C}$, we have that $(hg)f = h(gf)$ in $\mcateg{C}^{op}$.
+      $(gf) \in \myHom_{\mcateg{C}^{op}}(A, C)$ refers to the morphism $fg \in \myHom_{\mcateg{C}}(C, A)$. So,\\ $h(gf)\in \myHom_{\mcateg{C}^{op}}(A, D)$ refers to the morphism $(fg)h \in \myHom_{\mcateg{C}}(D, A)$. At the\\ same time, $(hg) \in \myHom_{\mcateg{C}^{op}}(B, D)$ refers to the morphism $gh \in \myHom_{\mcateg{C}}(D, B)$. So,\\ $(hg)f \in \myHom_{\mcateg{C}}(D, A)$ refers to the morphism $f(gh) \in \myHom_{\mcateg{C}}(D, A)$. Thus as\\ $(fg)h = f(gh)$ in $\mcateg{C}$, we have that $h(gf) = (hg)f$ in $\mcateg{C}^{op}$.
    \end{myIndent}
 }
 
 \mySepTwo
 
 \markDate{3/26/2024}
+
+A morphism $f \in \myHom_{\mcateg{C}}(A, B)$ is an \udefine{isomorphism} if it has a two sided inverse under\\ composition (i.e. $\exists g \in \myHom_\mcateg{C}(B, A)$ such that $gf = 1_A$ and $fg = 1_B$).\retTwo
+
+
+{\begin{myIndent} \hTwo
+   Proposition \propCount: The inverse of an isomorphism is unique.
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Suppose $g_1, g_2: B \longrightarrow A$ both act as inverses of $f: A \longrightarrow B$. Then:
+
+      {\centering $ g_1 = g_1 1_B = g_1 (fg_2) = (g_1 f)g_2 = 1_A g_2 = g_2$\retTwo \par}
+
+      
+      \begin{myDindent}\hFour
+         \begin{myClosureOne}{4.5}
+            Corollary: If $f$ has a left-hand inverse $g_1$ and a righthand inverse $g_2$,\\ then $f$ must be an isomorphism and $g_1 = g_2$ must be the unique\\ inverse of $f$.
+            \begin{myDindent}
+               (Our proof from before also shows this.)
+            \end{myDindent}
+         \end{myClosureOne}\\ [3pt]
+      \end{myDindent}
+   \end{myIndent}}
+
+   Since the inverse of $f$ is unique, we denote it $f^{-1}$.
+
+   \newpage
+
+   Proposition \propCount:
+   \begin{itemize}
+      \item[(A)] Each identity $1_A$ is an isomorphism with itself being its own inverse.
+      \item[(B)] If $f$ is an isomorphism, then $f^{-1}$ is an isomorphism and $(f^{-1})^{-1} = f$.
+      \item[(C)] If $f \in \myHom_\mcateg{C}(A, B)$ and $g \in \myHom_\mcateg{C}(B, C)$ are isomorphisms, then the\\ composition $gf$ is an isomorphism and $(gf)^{-1} = f^{-1}g^{-1}$.
+      
+      {\begin{myIndent} \hThree
+         To prove any of these, just show that the proposed inverses are in fact\\ an inverse. For example:
+         \begin{itemize}
+            \item[$\circ$] $1_A 1_A = 1_A$
+            \item[$\circ$] $(gf)(f^{-1}g^{-1}) = g(ff^{-1})g^{-1} = g 1_B g^{-1} = g g^{-1} = 1_C$\retTwo
+         \end{itemize}
+      \end{myIndent}}
+   \end{itemize}
+\end{myIndent}}
+
+Two objects $A$ and $B$ of a category are \udefine{isomorphic} if there is an isomorphism\\ $f: A \longrightarrow B$. We denote this by writing $A \cong B$.\retTwo
+
+An \udefine{automorphism} of an object $A$ of a category $\mcateg{C}$ is an isomorphism from $A$ to itself. The set of automorphisms of $A$ is denoted $\myAut_\mcateg{C}(A)$.
+\begin{myIndent}
+   \hTwo
+   Note:
+   \begin{itemize}
+      \item $\myAut_\mcateg{C}(A) \subseteq \myEnd_\mcateg{C}(A)$
+      \item If $f, g \in \myAut_\mcateg{C}(A)$, then $fg$ and $gf$ are in $\myAut_\mcateg{C}(A)$.
+      \item $1_A \in \myAut_\mcateg{C}(A)$
+      \item For each $f \in \myAut_\mcateg{C}(A)$, there exists $f^{-1} \in \myAut_\mcateg{C}(A)$.
+      
+      {\begin{myTindent}\hFour
+         Spoiler: The last three points mean that $\myAut_\mcateg{C}(A)$ forms a group.\retTwo
+      \end{myTindent}}
+   \end{itemize}
+\end{myIndent}
+
+The definitions of surjections and injections don't translate into category theory\\ because the objects of a category don't necessarily have elements. However, the\\ definitions of monomorphisms and epimorphisms do hold in category theory.\retTwo
+
+Let $\mcateg{C}$ be a category and $f: A \rightarrow B$ a morphism.
+\begin{myIndent}
+   \begin{itemize}
+      \item $f$ is a \udefine{monomorphism} if for any object $Z$ of $\mcateg{C}$ and morphisms\\ $\alpha^\prime, \alpha^\pprime \in \myHom_\mcateg{C}(Z, A)$, we have that $f\alpha^\prime = f\alpha^\pprime \Longrightarrow \alpha^\prime = \alpha^\pprime$.\retTwo
+      
+      \item $f$ is a \udefine{epimorphism} if for any object $Z$ of $\mcateg{C}$ and morphisms\\ $\beta^\prime, \beta^\pprime \in \myHom_\mcateg{C}(B, Z)$, we have that $\beta^\prime f = \beta^\pprime f \Longrightarrow \beta^\prime = \beta^\pprime$.\retTwo
+   \end{itemize}
+\end{myIndent}
+
+\exOne\mySepTwo
+
+$f$ being both a monomorphism and epimorphism does not necessarily imply that\\ $f$ is isomorphism.
+\begin{myIndent} \exTwo
+   For example, consider a category whose objects are all the elements of $\mathbb{Z}$, and\\ where for $a, b \in \mathbb{Z}$, $\myHom(a, b)$ equals $\{(a, b)\}$ if $a \leq b$ and $\emptyset$ otherwise.
+   {\begin{myIndent}\exP
+      Also we define the composition of $\{(a, b)\}$ and $\{(b, c)\}$ to be $\{(a, c)\}$.
+   \end{myIndent}}
+
+   \newpage
+
+   
+\end{myIndent}
 
 \end{document}
