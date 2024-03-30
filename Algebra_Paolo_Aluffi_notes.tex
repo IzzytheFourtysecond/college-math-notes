@@ -843,7 +843,61 @@ Let $\mcateg{C}$ be a category. We say that an object $I$ of $\mcateg{C}$ is \ud
    \end{myIndent}}
 \end{myIndent}}
 
-\markDate{3/27/2024}
+\markDate{3/30/2024}
+
+A big reason we care about category theory is that it allows us to characterize\\ concepts at "satisfying a universal property" or "being the solution to a universal\\ problem" without worrying about the specifics of how we construct that concept.\retTwo
+
+We say a construction satisfies a universal property if it may be viewed as a terminal\\ object of a category. A general outline for what might be said is:
+{\begin{myIndent}\hTwo
+   "Object $X$ is univeral with respect to the following property: for any $Y$ such that\dots, there exists a unique morphism $Y \rightarrow X$ such that\dots."\retTwo
+\end{myIndent}}
+
+Notably, the above statement doesn't say what the category is that $X$ and $Y$ are in.\\ This is normal because category theorists are fucking lazy. In fact, category theorists\\ actually often write even less because they think it's other people's responsibility to\\ try and decode whatever cryptic, terse statements they write.\retTwo
+
+\exOne
+Example:\\
+Let $\sim$ be an equivalence relation defined on a set $A$. Then "the quotient $A/{\sim}$ is\\ universal with respect to the property of mapping $A$ to a set in such a way that\\ equivalent elements have the same image."\retTwo
+\begin{myIndent}\exTwo
+   In this statement, the other objects in the category are functions $\varphi: A \longrightarrow S$\\ satisfying that $a^\prime \sim a^\pprime \Longrightarrow \varphi(a^\prime) = \varphi(a^\pprime)$. Thus, we can conclude that the object\\ satisfying the universal property is not literally the quotient $A/{\sim}$ but instead some\\ function from $A$ to $A/{\sim}$.\retTwo
+
+   Now, the objects of the category in above statement are morphisms of the category\\ $\mcateg{Set}$ which are coming out of a specific object $A$ in $\mcateg{Set}$ and satisfying an additional\\ property. Thus, (according to Aluffi) the only category that our above statement\\ could reasonably be alluding to is a subcategory of $\mcateg{C}^A$ (see page 7). Letting $\mcateg{C}$ be\\ the category of the statement above, we have that:
+   \begin{itemize}
+      \item $\myObj(\mcateg{C}) = $ all functions / morphisms $\varphi$ from $A$ to any object of $\mcateg{Set}$ satisfying\\ that $a^\prime \sim a^\pprime \Longrightarrow \varphi(a^\prime) = \varphi(a^\pprime)$.
+      
+      \item For $f_1: A \rightarrow S_1$ and $f_2: A \rightarrow S_2$ in $\myObj(\mcateg{C}), \myHS \myHom_{\mcateg{C}}(f_1, f_2) = $ the set of\\ morphisms $\sigma: S_1 \rightarrow S_2$ such that $\sigma \circ f_1 = f_2$.\retTwo
+   \end{itemize}
+
+   Finally, what function from $A$ to $A / {\sim}$ could the above statement possibly care about\\ other than the canonical projection $\pi$ mapping $a$ to $[a]_\sim$? So, to prove this statement\\ we now prove that $\pi$ is a terminal object of $\mcateg{C}$.
+
+   \newpage
+
+   {\begin{myIndent}\exP
+      Firstly, unless ${\sim} = A \times A$, we do not have that $\pi$ is a final object of $\mcateg{C}$. This is\\ because all the final objects of $\mcateg{C}$ are functions mapping $A$ to a singleton. So, we\\ instead want to show that $\pi$ is an initial object of $\mcateg{C}$. \\ [-2pt]
+
+      Let $\varphi: A \longrightarrow S$ be an object of $\mcateg{C}$. If there is a function $\overbar{\varphi}$ such that $\overbar{\varphi} \circ \pi = \varphi$,\\ [-2pt] then $\overbar{\varphi}([a]_\sim) = \varphi(a)$ for all $[a]_\sim \in A/ {\sim}$. Thus $\overbar{\varphi}$ must be unique if it exists.\\ [-2pt] Meanwhile, $[a_1]_\sim = [a_2]_\sim \Longrightarrow a_1 \sim a_2 \Longrightarrow \varphi(a_1) = \varphi(a_2)$. Hence $\overbar{\varphi}$ is well-\\defined.\retTwo
+
+      So, $\pi$ is an initial object of $\mcateg{C}$.\retTwo
+   \end{myIndent}}
+\end{myIndent}
+
+As for how the previous statement can be useful, consider a function $f: A \rightarrow B$\\ and equivalence relation $\sim$ defined such that $a_1 \sim a_2 \Longleftrightarrow f(a_1) = f(a_2)$. We can\\ show that the function from $A$ to $\myIm f$ mapping $a$ to $f(a)$ also satisfies the same\\ universal property as the canonical projection from $A$ to $A/{\sim}$. So the two functions\\ must be isomorphic in the category of the statement.
+\begin{myTindent}\exP
+   In turn, this gives us another proof for proposition 3 on pages 4 and 5.
+   % https://q.uiver.app/#q=WzAsNCxbMSwyLCJBIl0sWzAsMCwiQS97XFxzaW19Il0sWzIsMCwiXFxtYXRocm17aW19ZiJdLFs0LDAsIkIiXSxbMCwxLCJcXHBpIl0sWzAsMl0sWzEsMiwiXFx3aWRldGlsZGV7Zn0iLDAseyJjdXJ2ZSI6LTF9XSxbMiwxLCJcXHdpZGV0aWxkZXtmfV57LTF9IiwwLHsiY3VydmUiOi0xfV0sWzIsM11d
+   \[\begin{tikzcd}
+      {A/{\sim}} && {\mathrm{im}f} && B \\
+      \\
+      & A
+      \arrow[from=3-2, to=1-1]
+      \arrow[from=3-2, to=1-3]
+      \arrow["{\widetilde{f}}", curve={height=-6pt}, from=1-1, to=1-3]
+      \arrow["{\widetilde{f}^{-1}}", curve={height=-6pt}, from=1-3, to=1-1]
+      \arrow[from=1-3, to=1-5]
+   \end{tikzcd}\]\retTwo
+\end{myTindent}
+
+\hOne
+\mySepTwo
 
 
 
