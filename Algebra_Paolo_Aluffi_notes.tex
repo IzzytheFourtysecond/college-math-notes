@@ -22,6 +22,10 @@
 
 \usepackage{mathtools}
 \usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
+
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage{xfrac}
 \usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
@@ -172,7 +176,7 @@
 \newcommand{\myEnd}{\mathrm{End}}
 \newcommand{\myAut}{\mathrm{Aut}}
 
-\newcommand{\mcateg}[1]{\mathsf{#1}}
+\newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -467,7 +471,7 @@
       \item $\myHom_\mcateg{C}(A, B)$ and $\myHom_\mcateg{C}(C, D)$ are disjoint unless $A = C$ and $B = D$.
       
       {\begin{myIndent} \hTwo
-         We use the word "class" because by Russell's paradox, there are many sets\\ which aren't well defined. For example, there is no set of sets. So we instead\\ make a class of all sets. \retTwo
+         We use the word "class" because by Russell's paradox, there are many sets\\ which aren't well defined. For example, there can be no set of all sets. So we\\ instead define a class of all sets. \retTwo
          Also, we write category names in sans-serif font to better distinguish them.
       \end{myIndent}}
    \end{itemize}
@@ -739,7 +743,7 @@ $f$ being both a monomorphism and epimorphism does not necessarily imply that\\ 
 {\begin{myIndent} \exTwo
    For example, consider a category whose objects are all the elements of $\mathbb{Z}$, and\\ where for $a, b \in \mathbb{Z}$, $\myHom(a, b)$ equals $\{(a, b)\}$ if $a \leq b$ and $\emptyset$ otherwise.
    {\begin{myIndent}\exP
-      Also we define the composition of $\{(a, b)\}$ and $\{(b, c)\}$ to be $\{(a, c)\}$.
+      Also we define the composition of $(a, b)$ and $(b, c)$ to be $(a, c)$.
    \end{myIndent}}
 
    \newpage
@@ -805,7 +809,7 @@ Another thing the above category demonstrates is that monomorphisms don't\\ nece
 
 \hOne\mySepTwo
 
-Let $\mcateg{C}$ be a category. We say that an object $I$ of $\mcateg{C}$ is \udefine{initial} in $\mcateg{C}$ if for every object\\ $A$ of $\mcateg{C}$, there exists exactly one morphism $I \longrightarrow A$ in $\mcateg{C}$. Meanwhile, we say that an\\ object $F$ of $\mcateg{C}$ is \udefine{final} in $\mcateg{C}$ if for every object $A$ of $\mcateg{C}$, there exists exactly one morphism\\ $A \longrightarrow F$ in $\mcateg{C}$.
+Let $\mcateg{C}$ be a category. We say that an object $I$ of $\mcateg{C}$ is \udefine{initial} in $\mcateg{C}$ if for every object\\ $A$ of $\mcateg{C}$, there exists exactly one morphism $I \longrightarrow A$ in $\mcateg{C}$. Meanwhile, we say that\\ an object $F$ of $\mcateg{C}$ is \udefine{final} in $\mcateg{C}$ if for every object $A$ of $\mcateg{C}$, there exists exactly one\\ morphism $A \longrightarrow F$ in $\mcateg{C}$.
 \begin{myIndent}
    One can use the word \udefine{terminal} to describe either $I$ or $F$.
 \end{myIndent}
@@ -822,6 +826,8 @@ Let $\mcateg{C}$ be a category. We say that an object $I$ of $\mcateg{C}$ is \ud
       \\ [-16.4pt]
    \end{myClosureOne}\retTwo
 \end{center}}
+
+$\vphantom{|}$\\ [-38pt]
 
 {\begin{myIndent} \hTwo
    Proposition \propCount: Let $\mcateg{C}$ be a category.
@@ -899,7 +905,306 @@ As for how the previous statement can be useful, consider a function $f: A \righ
 \hOne
 \mySepTwo
 
+\uuline{Products and Coproducts of Categories}:\retTwo
 
+Let $\mcateg{C}$ be a category and $A$ and $B$ be objects in $\mcateg{C}$. Similar to how we defined $\mcateg{C}_A$ and\\ $\mcateg{C}^A$ earlier, we can define $\mcateg{C}_{A,B}$ and $\mcateg{C}^{A,B}$ as follows:\\ [-14pt]
+\begin{myIndent}\hTwo
+   {\begin{tabular}{ p{5.8in} }
+      \\\hline
+      \\
+      {\centering $\mcateg{C}_{A,B}$ \par}\\ [-54pt]
+      \hThree
+      \begin{tabular}{ p{3.75in}p{1.85in}}
+         \raisebox{-4.7em}{\begin{tabular}{p{3.7in}}
+            $\myObj(\mcateg{C}_{A,B}) = $ all diagrams of the form to the  right\newline where $Z$ is an object in $\mcateg{C}$, $f \in \myHom_\mcateg{C}(Z, A)$ and\newline $g \in \myHom_\mcateg{C}(Z, B)$.\newline
+         \end{tabular}}
+         &
+         % https://q.uiver.app/#q=WzAsMyxbMCwxLCJaIl0sWzIsMiwiIEEiXSxbMiwwLCJCIl0sWzAsMSwiZiIsMl0sWzAsMiwiZyJdXQ==
+         \[\begin{tikzcd}[row sep=small]
+            && A \\
+            Z \\
+            && { B}
+            \arrow["g"', from=2-1, to=3-3]
+            \arrow["f", from=2-1, to=1-3]
+         \end{tikzcd}\]
+      \end{tabular}
+      \\ [-24pt]
+      \hThree
+      \begin{tabular}{ p{5.6in}}
+         \begin{tabular}{ p{5.5in}}
+            A morphism from 
+            % https://q.uiver.app/#q=WzAsMyxbMCwxLCJaXzEiXSxbMiwyLCIgQSJdLFsyLDAsIkIiXSxbMCwxLCJmXzEiLDJdLFswLDIsImdfMSJdXQ==
+            \begin{tikzcd}[row sep=small]
+               && A \\
+               {Z_1} \\
+               && { B}
+               \arrow["{g_1}"', from=2-1, to=3-3]
+               \arrow["{f_1}", from=2-1, to=1-3]
+            \end{tikzcd}
+            to 
+            \begin{tikzcd}[row sep=small]
+               && A \\
+               {Z_2} \\
+               && { B}
+               \arrow["{g_2}"', from=2-1, to=3-3]
+               \arrow["{f_2}", from=2-1, to=1-3]
+            \end{tikzcd}\\ [48pt]
+            is a morphism $\sigma \in \myHom_\mcateg{C}(Z_1, Z_2)$ such that $f_2 \sigma = f_1$ and $g_2 \sigma = g_1$.
+         \end{tabular}
+      \end{tabular}
+   \end{tabular}}
+   \newpage
+   {\begin{tabular}{ p{5.8in} }
+      \hThree
+      \begin{tabular}{ p{5.6in}}
+         \begin{tabular}{ p{5.5in}}
+            In other words, a morphism of $\mcateg{C}_{A,B}$ is a commutative diagram:
+
+            {\center
+            % https://q.uiver.app/#q=WzAsNCxbMiwxLCJaXzIiXSxbNCwyLCIgQSJdLFs0LDAsIkIiXSxbMCwxLCJaXzEiXSxbMCwxLCJmXzIiXSxbMCwyLCJnXzIiLDJdLFszLDEsImZfMSIsMix7ImN1cnZlIjoxfV0sWzMsMiwiZ18xIiwwLHsiY3VydmUiOi0xfV0sWzMsMCwiXFxzaWdtYSJdXQ==
+            \begin{tikzcd}
+               &&&& A \\
+               {Z_1} && {Z_2} \\
+               &&&& { B}
+               \arrow["{g_2}", from=2-3, to=3-5]
+               \arrow["{f_2}"', from=2-3, to=1-5]
+               \arrow["{g_1}"', curve={height=6pt}, from=2-1, to=3-5]
+               \arrow["{f_1}", curve={height=-6pt}, from=2-1, to=1-5]
+               \arrow["\sigma", from=2-1, to=2-3]
+            \end{tikzcd}\par}
+         \end{tabular}
+      \end{tabular}
+
+      \\ \hline
+      \\
+      {\centering $\mcateg{C}^{A,B}$ \par}\\ [-24pt]
+      \hThree
+      \begin{tabular}{ p{3.75in}p{1.85in}}
+         \raisebox{-1.6em}{\begin{tabular}{p{3.7in}}
+            $\myObj(\mcateg{C}^{A,B}) = $ all diagrams of the form to the  right\newline where $Z$ is an object in $\mcateg{C}$, $f \in \myHom_\mcateg{C}(A, Z)$ and\newline $g \in \myHom_\mcateg{C}(B, Z)$.\newline
+         \end{tabular}}
+         &
+         % https://q.uiver.app/#q=WzAsMyxbMiwxLCJaIl0sWzAsMiwiIEEiXSxbMCwwLCJCIl0sWzEsMCwiZiIsMl0sWzIsMCwiZyJdXQ==
+         \begin{tikzcd}[row sep=small]
+            A \\
+            && Z \\
+            { B}
+            \arrow["g"', from=3-1, to=2-3]
+            \arrow["f", from=1-1, to=2-3]
+         \end{tikzcd}
+      \end{tabular}
+      \\ [-12pt]
+      \hThree
+      \begin{tabular}{ p{5.6in}}
+         \begin{tabular}{ p{5.5in}}
+            A morphism from 
+            % https://q.uiver.app/#q=WzAsMyxbMiwxLCJaXzEiXSxbMCwyLCIgQSJdLFswLDAsIkIiXSxbMSwwLCJmXzEiLDJdLFsyLDAsImdfMSJdXQ==
+            \begin{tikzcd}[row sep=small]
+               A \\
+               && {Z_1} \\
+               {B}
+               \arrow["{g_1}"', from=3-1, to=2-3]
+               \arrow["{f_1}", from=1-1, to=2-3]
+            \end{tikzcd}
+            to 
+            \begin{tikzcd}[row sep=small]
+               A \\
+               && {Z_2} \\
+               {B}
+               \arrow["{g_2}"', from=3-1, to=2-3]
+               \arrow["{f_2}", from=1-1, to=2-3]
+            \end{tikzcd}\\ [48pt]
+            is a morphism $\sigma \in \myHom_\mcateg{C}(Z_1, Z_2)$ such that $f_2 = \sigma f_1$ and $g_2 = \sigma g_1$.\retTwo
+
+            In other words, a morphism of $\mcateg{C}^{A,B}$ is a commutative diagram:
+
+            {\center
+            % https://q.uiver.app/#q=WzAsNCxbMiwxLCJaXzEiXSxbMCwyLCIgQSJdLFswLDAsIkIiXSxbNCwxLCJaXzIiXSxbMSwwLCJmXzEiXSxbMiwwLCJnXzEiLDJdLFsxLDMsImZfMiIsMix7ImN1cnZlIjoxfV0sWzIsMywiZ18yIiwwLHsiY3VydmUiOi0xfV0sWzAsMywiXFxzaWdtYSIsMl1d
+            \begin{tikzcd}
+               A \\
+               && {Z_1} && {Z_2} \\
+               {B}
+               \arrow["{g_1}", from=3-1, to=2-3]
+               \arrow["{f_1}"', from=1-1, to=2-3]
+               \arrow["{g_2}"', curve={height=6pt}, from=3-1, to=2-5]
+               \arrow["{f_2}", curve={height=-6pt}, from=1-1, to=2-5]
+               \arrow["\sigma"', from=2-3, to=2-5]
+            \end{tikzcd}\par}
+         \end{tabular}
+         
+         {\begin{myTindent} \hFour
+            The proof that these are valid categories is similar to the proof that $C_A$ and $C^A$ are valid categories.
+         \end{myTindent}}
+      \end{tabular}
+
+      \\ \hline
+   \end{tabular}}
+\end{myIndent}
+
+\retTwo
+
+We say a category $\mcateg{C}$ \udefine{has (finite) products} if for all objects $A$ and $B$ in $\mcateg{C}$, the category\\ $\mcateg{C}_{A,B}$ has final objects. Such a final object consists of an object of $\mcateg{C}$ which is called\\ a \udefine{product} of $A$ and $B$ and usually denoted $A \times B$, and two morphisms: $A \times B \longrightarrow A$\\ and $A \times B \longrightarrow B$.
+
+\newpage
+\exOne
+Examples of products in categories:
+\begin{enumerate}
+   \item We define the \udefine{product} of two sets $A$ and $B$ as:
+
+   {\centering $A \times B = \{(a, b) \mid a \in A, b \in B\} $ \retTwo\par}
+
+   Having done that, we can then define the \udefine{natural projection functions}:
+   \begin{itemize}
+      \item $\pi_A: A \times B \longrightarrow A$ with the correspondence rule: $(a, b) \mapsto a$
+      \item $\pi_B: A \times B \longrightarrow B$ with the correspondence rule: $(a, b) \mapsto b$\retTwo
+   \end{itemize}
+
+   Claim: In the category $\mcateg{Set}$, the diagram below is a final object of $\mcateg{Set}_{A,B}$:
+   
+   {\centering % https://q.uiver.app/#q=WzAsMyxbMCwxLCJBXFx0aW1lcyBCIl0sWzIsMiwiIEIiXSxbMiwwLCJBIl0sWzAsMSwiXFxwaV9CIiwyXSxbMCwyLCJcXHBpX0EiXV0=
+   \begin{tikzcd}[row sep=small]
+      && A \\
+      {A\times B} \\
+      && { B}
+      \arrow["{\pi_B}"', from=2-1, to=3-3]
+      \arrow["{\pi_A}", from=2-1, to=1-3]
+   \end{tikzcd}\par}
+   
+   {\begin{myIndent} \exTwo
+      Proof:\\
+      For any set $Z$ and morphisms $f_A: Z \longrightarrow A$ and $f_B: Z \longrightarrow B$, define\\ $\sigma(z) = (f_A(z), f_B(z))$ for all $z \in Z$. Then the diagram below commutes:
+
+      {\center
+      % https://q.uiver.app/#q=WzAsNCxbMiwxLCJaXzIiXSxbNCwyLCIgQSJdLFs0LDAsIkIiXSxbMCwxLCJaXzEiXSxbMCwxLCJmXzIiXSxbMCwyLCJnXzIiLDJdLFszLDEsImZfMSIsMix7ImN1cnZlIjoxfV0sWzMsMiwiZ18xIiwwLHsiY3VydmUiOi0xfV0sWzMsMCwiXFxzaWdtYSJdXQ==
+      \begin{tikzcd}
+         &&&& A \\
+         {Z} && {A\times B} \\
+         &&&& { B}
+         \arrow["{\pi_B}", from=2-3, to=3-5]
+         \arrow["{\pi_A}"', from=2-3, to=1-5]
+         \arrow["{f_B}"', curve={height=6pt}, from=2-1, to=3-5]
+         \arrow["{f_A}", curve={height=-6pt}, from=2-1, to=1-5]
+         \arrow["\sigma", from=2-1, to=2-3]
+      \end{tikzcd}\par}
+
+      Furthermore, $\sigma$ is the only morphism that works to make the above diagram\\ commute because if any element of $Z$ is mapped to $A \times B$ differently, then\\ the above diagram won't commute.\retTwo
+   \end{myIndent}}
+
+   \item Define a category as follows:
+   \begin{myIndent}
+      Let $\myObj(\mcateg{C}) = \mathbb{Z}$ and for all $a, b \in \mathbb{Z}$, let $\myHom_\mcateg{C}(a, b) = \{(a, b)\}$ if\\ $a \leq b$ and $\emptyset$ otherwise. Also define the composition of $(a, b)$ and\\ $(b, c)$ to be $(a, c)$.
+      {\begin{myDindent}\exP
+         (Recall pages 9 and 10)\retTwo
+      \end{myDindent}}
+   \end{myIndent}
+
+   For any two integers $a$ and $b$, the unique final object of $\mcateg{C}_{a,b}$ is the integer\\ $\min(a, b)$ along with the morphisms: $(\min(a, b), a)$ and $(\min(a, b), b)$.
+\end{enumerate}
+
+\hOne
+\newpage
+
+The prefix "co-" in category theory usually indicates that we are reversing arrows.\\ Hence, given a category $\mcateg{C}$ and objects $A$ and $B$ in $\mcateg{C}$, we define a \udefine{coproduct}\\ of $A$ and $B$: denoted $A \amalg B$, as an object of $\mcateg{C}$ endowed with two morphisms:\\ $i_A: A \longrightarrow A \amalg B$ and $i_B: B \longrightarrow A \amalg B$, such that the below diagram is an initial object of $\mcateg{C}^{A, B}$:
+
+{\centering
+% https://q.uiver.app/#q=WzAsMyxbMiwxLCJaIl0sWzAsMiwiIEEiXSxbMCwwLCJCIl0sWzEsMCwiZiIsMl0sWzIsMCwiZyJdXQ==
+\begin{tikzcd}[row sep=small]
+   A \\
+   && A \amalg B \\
+   { B}
+   \arrow["i_B"', from=3-1, to=2-3]
+   \arrow["i_A", from=1-1, to=2-3]
+\end{tikzcd}\retTwo\par}
+
+We say a category $\mcateg{C}$ \udefine{has coproducts} if for all objects $A$ and $B$ of $\mcateg{C}$, $\mcateg{C}^{A,B}$ has initial\\ objects.\retTwo
+
+\exOne
+Examples of coproducts in categories:
+
+\begin{enumerate}
+   \item We define the \udefine{disjoint union} of two sets $A$ and $B$ as a set $A \amalg B$ obtained by\\ first producing copies $A^\prime$ and $B^\prime$ of the sets $A$ and $B$ such that $A^\prime \cap B^\prime = \emptyset$ and\\ then taking the union of $A^\prime$ and $B^\prime$.\\ [-20pt]
+   {\begin{myIndent} \exTwo
+      One way we can implement this is by defining $A^\prime = \{0\} \times A$ and $B^\prime = \{1\} \times B$.
+      \retTwo
+   \end{myIndent}}
+
+   Having done that, we can then define the natural injection functions:
+   \begin{itemize}
+      \item $i_A: A \longrightarrow A \amalg B$ which maps each $a \in A$ to its corresponding element\\ of $A \amalg B$
+      \item $i_B: B \longrightarrow A \amalg B$ which maps each $b \in B$ to its corresponding element\\ of $A \amalg B$.
+      {\begin{myDindent} \exTwo
+         If $A^\prime = \{0\}\times A$ and $B^\prime = \{1\} \times B$, then $i_A(a) = (0, a)$ and\\ $i_B(b) = (1, b)$ for each $a \in A$ and $b \in B$.\retTwo
+      \end{myDindent}}
+   \end{itemize}
+
+   Claim: The disjoint union is a coproduct of $\mcateg{Set}$.
+   {\begin{myIndent} \exTwo
+      Proof:\\
+      Consider two arbitrary morphisms $f_A: A \longrightarrow Z$ and $f_B: B \longrightarrow Z$ going to\\ a common target. Then if we define $\sigma: A \amalg B \Longrightarrow Z$ such that $\forall c \in A \amalg B$:\\
+
+      {\center $\sigma(c) = \left\{
+      \begin{matrix}
+         f_A(c) & \text{ if } c \text{ came from } A \\
+         f_B(c) & \text{ if } c \text{ came from } B
+      \end{matrix}\right.$\retTwo \par}
+
+      then the diagram at the top of the next page commutes:
+
+      \newpage
+
+      {\centering
+      % https://q.uiver.app/#q=WzAsNCxbMiwxLCJaXzEiXSxbMCwyLCIgQSJdLFswLDAsIkIiXSxbNCwxLCJaXzIiXSxbMSwwLCJmXzEiXSxbMiwwLCJnXzEiLDJdLFsxLDMsImZfMiIsMix7ImN1cnZlIjoxfV0sWzIsMywiZ18yIiwwLHsiY3VydmUiOi0xfV0sWzAsMywiXFxzaWdtYSIsMl1d
+      \begin{tikzcd}
+         A \\
+         && {A \amalg B} && {Z} \\
+         {B}
+         \arrow["{i_B}", from=3-1, to=2-3]
+         \arrow["{i_A}"', from=1-1, to=2-3]
+         \arrow["{f_B}"', curve={height=6pt}, from=3-1, to=2-5]
+         \arrow["{f_A}", curve={height=-6pt}, from=1-1, to=2-5]
+         \arrow["\sigma"', from=2-3, to=2-5]
+      \end{tikzcd}\par}
+
+      Furthermore, $\sigma$ is the only morphism that works to make the above diagram\\ commute because if any element of $A \amalg B$ is mapped to $Z$ differently, then\\ the above diagram won't commute.\retTwo
+   \end{myIndent}}
+
+   \item Define a category as follows:
+   \begin{myIndent}
+      Let $\myObj(\mcateg{C}) = \mathbb{Z}$ and for all $a, b \in \mathbb{Z}$, let $\myHom_\mcateg{C}(a, b) = \{(a, b)\}$ if\\ $a \leq b$ and $\emptyset$ otherwise. Also define the composition of $(a, b)$ and\\ $(b, c)$ to be $(a, c)$.
+      {\begin{myDindent}\exP
+         (Recall pages 9-10, 15)\retTwo
+      \end{myDindent}}
+   \end{myIndent}
+
+   For any two integers $a$ and $b$, the unique initial object of $\mcateg{C}^{a,b}$ is the integer\\ $\max(a, b)$ along with the morphisms: $(a, \max(a, b))$ and $(b, \max(a, b))$.
+\end{enumerate}
+
+\hOne
+\mySepTwo
+
+\markDate{3/31/2024}
 
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Exercise Problem if I feel like it...
+
+More generally, if $\mathscr{S}$ is a set of sets, then we can define:
+
+{\centering ${\displaystyle \prod\limits_{S \in \mathscr{S}}S}$ and ${\displaystyle \coprod\limits_{S \in \mathscr{S}}S}$ \par}
+
+as the product and disjoint union respectively of all sets in $\mathscr{S}$.
