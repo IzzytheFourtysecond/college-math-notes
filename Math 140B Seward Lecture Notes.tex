@@ -72,9 +72,6 @@
   \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
 }
 
-
-
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newcommand{\hOne}{%
@@ -168,6 +165,7 @@
 \newcommand{\comp}{\mathsf{C}}
 \newcommand{\myHS}{ \hspace{0.5em}}
 \newcommand{\diam}[1]{\mathrm{diam}(#1)}
+\newcommand{\domain}[1]{\mathrm{dom}(#1)}
 
 
 \newcounter{PropNumber}
@@ -267,6 +265,112 @@
 \calibri
 
 \hOne
+\markLecture{4/1/2024}
+
+Let $f: E \longrightarrow \mathbb{R}$ where $E \subseteq \mathbb{R}$.
+
+\begin{myIndent}\hTwo
+   Since $E$ is the domain of $f$, we shall also refer to it as $\domain{f}$.\retTwo
+\end{myIndent}
+
+Fix a point $x \in E \cap E^\prime$. Then consider the function $\frac{f(t)-f(x)}{t-x}$ for $t \in \domain{f}\setminus\{x\}$\\[2pt] and define the \udefine{derivative} of $f$ at $x$ to be $f^\prime(x) = \lim\limits_{t\rightarrow x}\left(\frac{f(t)-f(x)}{t-x}\right)$ provided that this\\[2pt] limit exists. When the above limit exists, we say $f$ is differentiable at $x$. \\ [2pt]
+
+We say $f$ is differentiable on $D \subseteq E$ if $f$ is differentiable at every point in $D$,\\ and if $f$ is differentiable on its entire domain, then we call $f$ \udefine{differentiable}.\retTwo
+
+The function $f^\prime(x) = \lim\limits_{t\rightarrow x}\left(\frac{f(t)-f(x)}{t-x}\right)$ is called the \udefine{derivative} of $f$.\retTwo
+
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: If $f$ is differentiable at $x$, then $f$ is continuous at $x$.\\ [-10pt]
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      Note that $\lim\limits_{t\rightarrow x}\left(f(t)\right) = \lim\limits_{t\rightarrow x}\left((t-x)\frac{f(t)-f(x)}{t-x} + f(x)\right)$.\\
+
+      Now $\lim\limits_{t\rightarrow x}(t-x) = 0$ and we know $\lim\limits_{t\rightarrow x}\frac{f(t)-f(x)}{t-x} = f^\prime(x)$ exists because $f$ is\\ [3pt] differentiable at $x$. Also, obviously $\lim\limits_{t\rightarrow x}f(x) = f(x)$.\retTwo
+      
+      Thus by proposition 66 {\color{RawerSienna}(check 140A notes)}, we know that:\\
+      
+      \begin{tabular}{l}
+         $\lim\limits_{t\rightarrow x}\left((t-x)\frac{f(t)-f(x)}{t-x} + f(x)\right) = \lim\limits_{t\rightarrow x}(t-x)\lim\limits_{t\rightarrow x}\left(\frac{f(t)-f(x)}{t-x}\right) + \lim\limits_{t\rightarrow x}f(x)$\\ [3pt]
+
+         $\phantom{\lim\limits_{t\rightarrow x}\left((t-x)\frac{f(t)-f(x)}{t-x} + f(x)\right)} = 0\cdot f^\prime(x) + f(x)$ \\ [-4pt]
+         $\phantom{\lim\limits_{t\rightarrow x}\left((t-x)\frac{f(t)-f(x)}{t-x} + f(x)\right)} = f(x)$
+      \end{tabular}\retTwo
+
+      Thus, $f$ is continuous at $x$.\retTwo
+   \end{myIndent}
+\end{myIndent}}
+
+
+{\begin{center} \teachComment
+   \begin{myClosureOne}{5}
+      Notes:
+      \begin{enumerate}
+         \item The above proposition says that differentiability is stronger than\newline continuity.
+         \item The converse of this proposition is false. For example, the function\newline $f(x) = |x|$ is continuous at $x = 0$ but not differentiable at\newline $x = 0$.
+      \end{enumerate}
+   \end{myClosureOne}
+\end{center}}
+
+\newpage
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Suppose $f$ and $g$ are real valued functions with\\ $\domain{f}, \domain{g} \subseteq \mathbb{R}$. Also suppose $f$ and $g$ are differentiable at $x$. Then\\ $f + g$, $fg$, and (when $g(x) \neq 0$) $\frac{f}{g}$ are differentiable at $x$ with:\\
+   
+   \begin{tabular}{l c c c c c}
+      (A)\quad\quad $(f + g)^\prime(x) = f^\prime(x) + g^\prime(x)$ & &&&&{\hFour(sum rule)} \\ [4pt]
+      (B)\quad\quad $(fg)^\prime(x) = f^\prime(x)g(x) + f(x)g^\prime(x)$ & &&&& {\hFour(product rule)} \\ [4pt]
+      (C)\quad\quad $\left(\dfrac{f}{g}\right)^\prime\hspace{-0.3em}(x) = \dfrac{f^\prime(x)g(x) - f(x)g^\prime(x)}{(g(x))^2}$ & &&&& {\hFour(quotient rule)}
+   \end{tabular}\retTwo
+
+   \begin{myIndent}\hThree
+      Proof:
+      \begin{myIndent}
+         \begin{itemize}
+            \item[(A)] Since both $f$ and $g$ are differentiable, we know that both\\ $f^\prime(x) = \lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x}$ and $g^\prime(x) = \lim\limits_{t\rightarrow x}\frac{g(t) - g(x)}{t - x}$ exist. So\\ by proposition 66:\\
+            
+            \hspace{-1.5em}${(f + g)^\prime(x) = \lim\limits_{t\rightarrow x}\frac{f(t) + g(t) - f(x) - g(x)}{t-x} = \lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x} + \lim\limits_{t\rightarrow x}\frac{g(t) - g(x)}{t - x}}$\\
+
+            This means $(f + g)^\prime(x) = f^\prime(x) + g^\prime(x)$.\retTwo \retTwo
+
+            \item[(B)] Note that:\\
+            \begin{tabular}{l}
+               $(fg)^\prime(x) = \lim\limits_{t\rightarrow x}\frac{f(t)g(t) - f(x)g(x)}{t-x}$ \\
+
+               $\phantom{(fg)^\prime(x)} = \lim\limits_{t\rightarrow x}\frac{f(t)g(t) \cyPen{\vphantom{.} - f(x)g(t) + f(x)g(t)} - f(x)g(x)}{t-x}$ \\
+
+               $\phantom{(fg)^\prime(x)} = \lim\limits_{t\rightarrow x}\left( g(t)\frac{f(t) - f(x)}{t - x} + f(x)\frac{g(t) - g(x)}{t-x} \right)$
+            \end{tabular}\\
+
+            By proposition 83, $g(t) \rightarrow g(x)$ as $t \rightarrow x$. Also, since both $f$\\ and $g$ are differentiable, we know $f^\prime(x) = \lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x}$ and\\[-2pt] $g^\prime(x) = \lim\limits_{t\rightarrow x}\frac{g(t) - g(x)}{t - x}$ exist. So by proposition 66:\\
+
+            \hspace{-0.5em}$\lim\limits_{t\rightarrow x}\left( g(t)\frac{f(t) - f(x)}{t - x} + f(x)\frac{g(t) - g(x)}{t-x} \right) = f^\prime(x)g(x) + f(x)g^\prime(x)$.\retTwo\retTwo
+
+            \item[(C)] Note that:\\
+            \begin{tabular}{l}
+               $\left(\frac{f}{g}\right)^\prime\hspace{-0.3em}(x) = \lim\limits_{t\rightarrow x}\frac{\frac{f(t)}{g(t)} - \frac{f(x)}{g(x)}}{t - x}$ \\
+
+               $\hphantom{\left(\frac{f}{g}\right)^\prime\hspace{-0.3em}(x)} = \lim\limits_{t\rightarrow x}\left(\frac{1}{g(x)g(t)}\frac{f(t)g(x) - f(x)g(t)}{t - x}\right)$ \\
+
+               $\hphantom{\left(\frac{f}{g}\right)^\prime\hspace{-0.3em}(x)} = \lim\limits_{t\rightarrow x}\left(\frac{1}{g(x)g(t)}\frac{f(t)g(x) - f(x)g(t)}{t - x}\right)$ \\
+            \end{tabular}\\
+         \end{itemize}
+      \end{myIndent}
+   \end{myIndent}
+
+\end{myIndent}}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -280,7 +384,7 @@
    \begin{tabular}{ c|c||c|c }
       Proposition Number & Label in Textbook & Proposition Number & Label in Textbook \\ \hline
       
-      \myVS 83 & & 84 & \\ \hdashline[10pt/3pt]
+      \myVS 83 & 5.2 & 84 & 5.3 \\ \hdashline[10pt/3pt]
    \end{tabular}
 
 \end{allowTableDashes}
