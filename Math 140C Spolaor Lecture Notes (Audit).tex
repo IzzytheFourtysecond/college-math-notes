@@ -1,0 +1,462 @@
+% Note for any github stalkers. I am currently in the process
+% of learning LaTeX. I don't know what I'm doing yet. Sorry
+% if my code absolutely sucks.
+
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage[scr=rsfs, scrscaled=.96]{mathalpha}
+
+\usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+\graphicspath{{./158_Images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
+
+\usepackage{quiver} %commutative diagrams
+
+
+\newfontfamily{\calibri}{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Arrow Commands:
+
+% Thank you Bernard, gernot, and Sigur who I copied this from:
+% https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+
+% Thank you egreg who I copied from:
+% https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
+\newcommand{\longrightarrowdbl}{\longrightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\longleftarrowdbl}{\leftarrow\mathrel{\mkern-14mu}\longleftarrow}
+
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+\newcommand{\xleftarrowdbl}[2][]{%
+  \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwo}{%
+   \color{MidnightBlue}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hThree}{%
+   \color{PineGreen!85!Orange}
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hFour}{%
+   \color{Cerulean}
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+% \newcommand{\pracOne}{
+%    \color{BrickRed}%
+%    \fontsize{13}{15}\selectfont%
+% }
+\newcommand{\teachComment}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{VioletRed}%
+   \fontsize{12}{14}\selectfont%
+}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{{%
+   \setulcolor{Red}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1}%
+}}
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcommand*{\markDate}[1]{%
+   {\huge \color{Black} \textbf{#1} \newline}%
+}
+
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\myHS}{ \hspace{0.5em}}
+\newcommand{\diam}[1]{\mathrm{diam}(#1)}
+\newcommand{\domain}[1]{\mathrm{dom}(#1)}
+\newcommand{\mySpan}{\mathrm{span}}
+\newcommand{\myDim}[1]{\mathrm{dim}(#1)}
+
+\newcommand{\rank}[1]{\mathrm{rk}(#1)}
+\newcommand{\nullity}[1]{\mathrm{null}(#1)}
+\newcommand{\rangeSp}[1]{\mathscr{R}(#1)}
+\newcommand{\nullSp}[1]{\mathscr{N}(#1)}
+
+
+\newcounter{PropNumber}
+\setcounter{PropNumber}{82}
+\newcommand{\propCount}[1][1]{%
+   \addtocounter{PropNumber}{#1}%
+   \thePropNumber%
+}
+\newcounter{SubPropNumber}
+\newcommand{\subPropCount}[1][1]{%
+   \addtocounter{SubPropNumber}{1}%
+   \theSubPropNumber%
+}
+\newcommand{\resetSubPropCount}{%
+   \setcounter{SubPropNumber}{0}%
+}
+
+\newcommand{\myId}{\mathrm{Id}}
+\newcommand{\myIm}{\mathrm{im}}
+\newcommand{\myObj}{\mathrm{Obj}}
+\newcommand{\myHom}{\mathrm{Hom}}
+\newcommand{\myEnd}{\mathrm{End}}
+\newcommand{\myAut}{\mathrm{Aut}}
+
+\newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
+
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
+
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
+\newcommand{\fillInBlank}[2][.]{{%
+   \color{#1}%
+   \rule[-0.12em]{#2em}{0.06em}\rule[-0.12em]{#2em}{0.06em}%
+   \rule[-0.12em]{#2em}{0.06em}
+}}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
+
+\newcounter{LectureNumber}
+\newcommand*{\markLecture}[1]{%
+   \stepcounter{LectureNumber}%
+   {\huge \color{Black} \textbf{Lecture \theLectureNumber: #1} \newline}%
+}
+
+\newcommand{\myVS}{\vphantom{$\int_a^b$}}
+
+% Overarrow stuff:
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\NewOverArrowCommand{myVector}{%
+   start = {{\smallermathstyle\relbar}},
+   middle = {{\smallermathstyle\relbareda}},
+   end={{\rightharpoonup}}, space before arrow=0.15em,
+   space after arrow=-0.045em,
+}
+
+\NewOverArrowCommand{myBar}{%
+   start = {{\relbar}},
+   middle = {{\relbar}},
+   end={{\relbar}}, space before arrow=0.15em,
+   space after arrow=-0.025em,
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\mVec}[1]{\myVector{#1}}
+\newcommand{\mVecAst}[1]{\myVector*{#1}}
+\newcommand{\mMat}[1]{\mathbf{#1}}
+
+\title{(Audit) Math 140C Lecture Notes (Professor: Luca Spolaor)}
+\author{Isabelle Mills}
+
+\begin{document}
+\maketitle{}
+\setul{0.14em}{0.07em}
+\calibri
+
+\hOne
+\markLecture{4/2/2024}
+
+A set $X \subseteq \mathbb{R}^n$ where $X \neq \emptyset$ is a \udefine{vector space} if:\\ [-20pt]
+\begin{itemize}
+   \item $\mVec{x}, \mVec{y} \in X \Longrightarrow \mVec{x} + \mVec{y} \in X$\\ [-20pt]
+   \item $\mVec{x} \in X$ and $c \in \mathbb{R} \Longrightarrow c\mVec{x} \in X$.\retTwo
+\end{itemize}
+
+If $\phi = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\} \subset \mathbb{R}^{n}$, then we define:
+
+{\centering $\mySpan\hspace{0.2em}\phi = \mySpan\{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\} = \left\{ c_1\mVecAst{x}_1 + \ldots + c_k\mVecAst{x}_k \mid c_1, \ldots, c_k \in \mathbb{R} \right\}$.\retTwo\par}
+
+If $E \subseteq \mathbb{R}^n$ and $E = \mySpan\hspace{0.2em}\phi$, then we say $\phi$ \udefine{generates} $E$.\retTwo
+
+{\begin{myIndent}\exOne
+   Note that $\mySpan\{\mVecAst{x}_1, \ldots, \mVecAst{x}_2\}$ forms a vector space (this is trivial to check).\retTwo
+\end{myIndent}}
+
+$\{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\} \subseteq \mathbb{R}^n$ is called \udefine{linearly independent} if:
+
+{\centering $\sum\limits_{i=1}^{k}{c_i\mVecAst{x}_i} = 0 \Longrightarrow \forall i \in \{1, \ldots, k\},\myHS c_i = 0$.\retTwo\par}
+
+If the above implication does not hold, then we call the set \udefine{linearly dependent}.\retTwo
+
+If $X \subseteq \mathbb{R}^n$ is a vector space, then we define the \udefine{dimension} of $X$ as: 
+
+{\centering ${\myDim{X} = \sup\{k \in \mathbb{N} \cup \{0\} \mid \exists \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}\subset X \text{ which is linearly independent}\}\text{.}}$\par}
+
+{\begin{myDindent} \teachComment
+   Also, we define any set containing $\mVec{0}$ to be automatically linearly dependent.\\
+   This includes the singleton: $\{\mVec{0}\}$.\retTwo
+\end{myDindent}}
+
+$Q = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a \udefine{basis} for $X$ if:\\ [-18pt]
+\begin{itemize}
+   \item $Q$ is linearly independent.\\ [-20pt]
+   \item $\mySpan\hspace{0.2em}Q = X$\retTwo
+\end{itemize}
+
+\begin{myIndent}\exOne
+   As an example of a basis, for $\mathbb{R}^n$ we define \udefine{the standard basis} as the set\\ $\{e_1, e_2, \ldots, e_n\}$ where $e_i$ is the vector whose $i$th element is $1$ and whose\\ other elements are $0$. It is pretty trivial to check that this set is in fact a\\ basis of $\mathbb{R}^n$.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Proposition}: If $B = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a basis of a vector space $X$, then:\\ [-14pt]
+   \begin{enumerate}
+      \item $\forall \mVec{v} \in X,\myHS c_1, \ldots, c_k \in \mathbb{R} \suchthat \mVec{v} = \sum\limits_{i=1}^{k}{c_i\mVecAst{x}_i}$
+      
+      {\begin{myIndent} \hThree
+         This is true because $X = \mySpan\hspace{0.2em}B$. So by definition of a span, $\mVec{v}$ can\\ be expressed as a linear combination of the vectors of $B$.
+      \end{myIndent}}
+
+      \newpage
+
+      \item The $c_i$ such that $\mVec{v} = \sum\limits_{i=1}^{k}{c_i\mVecAst{x}_i}$ are unique.
+      
+      {\begin{myIndent}\hThree
+         Suppose that $\mVec{v} = \sum c_i\mVecAst{x}_i = \sum \alpha_i\mVecAst{x}_i$. Then $\mVec{0} = \sum(c_i - \alpha_i)\mVecAst{x}_i$.\\ Then since $\{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ are linearly independent, we know for all $i$\\ that $c_i - \alpha_i = 0$. Hence, $c_i = \alpha_i$ for each $i$.\\
+      \end{myIndent}}
+   \end{enumerate}
+
+   \uuline{Theorem 9.2}: Let $k \in \mathbb{N} \cup \{0\}$. If $X = \mySpan\{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$, then $\myDim{X} \leq k$.\retTwo
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Suppose for the sake of contradiction that there exists a linearly\\ independent set $Q = \{\mVecAst{y}_1, \ldots, \mVecAst{y}_{k+1}\} \subset X$ which spans $X$. Then,\\ define $S_0 = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ and note that $S_0$ spans $X$.\retTwo
+
+      Now by induction, assume for $i \in \{0, 1, \ldots, k-1\}$, that $S_i$ contains the\\ first $i$ vectors of $Q$ in addition to $k - i$ vectors of $S_0$, and that $\mySpan\hspace{0.2em}{S_i} = X$.\\
+      Then since $S_i$ spans $X$, we know that $y_{i+1} \in X$ is in the span of $S_i$. So,\\ letting $\mVecAst{x}_{n_1}, \ldots, \mVecAst{x}_{n_{k-i}}$ be the elements from $S_0$ in $S_i$, we know that there\\ exists scalars $a_1, \ldots, a_{i+1}, b_1, \ldots, b_{k-i} \in \mathbb{R}$ where $a_{i+1} = 1$ such that:
+
+      {\centering $\sum\limits_{j=1}^{i+1}a_j\mVecAst{y}_j +  \sum\limits_{j=1}^{k-i}b_j\mVecAst{x}_{n_j} = \mVec{0}$ \retTwo\par}
+
+      If all $b_j = 0$, then we have a contradiction. This is because $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_{k+1}\}$\\ is assumed to be linearly independent. So, having all $b_j = 0$ implies that:
+      
+      {\centering $\sum\limits_{j=1}^{i+1}a_j\mVecAst{y}_j = \sum\limits_{j=1}^{i+1}a_j\mVecAst{y}_j + \sum\limits_{j=i+2}^{k+1}0\cdot\mVecAst{y}_j = \mVec{0}$\par}
+      
+      In turn this means that all $a_j = 0$, which contradicts that $a_{i+1} = 1$.\retTwo
+
+      So, not all $b_j = 0$. This means that for some $j$ we must have that $\mVecAst{x}_{n_{j}}$ is in\\ the span of $(S_i \setminus \{\mVecAst{x}_{n_{j}}\}) \cup \{\mVecAst{y}_{i+1}\}$. Call this set $S_{i+1}$. Clearly, $S_{i+1}$ contains\\ the first $i + 1$ vectors of $Q$. Also:
+      
+      {\centering$\mySpan\hspace{0.2em}{S_{i+1}} = \mySpan\hspace{0.2em}(S_{i} \cup \{\mVecAst{y}_{i+1}\}) = \mySpan\hspace{0.2em}S_i = X$.\retTwo\par}
+
+      So $S_{i+1}$ satisfies the same conditions $S_i$ did.\retTwo
+
+      Now we get to the contradiction. Using the above reasoning, we will\\ eventually construct $S_k = \{\mVecAst{y}_1, \ldots, \mVecAst{y}_k\}$ which still spans $X$. However, since\\ $\mVecAst{y}_{k+1} \in X$, that means that $\mVecAst{y}_{k+1}$ equals some linear combination of the other\\ $\mVec{y}$ in $Q$. This contradicts that $Q$ is linearly independent. $\blacksquare$\retTwo
+   \end{myIndent}}
+
+   \uuline{Corollary}: If $B = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a basis for $X$, then $\myDim{X} = k$.\retTwo
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Since $B$ is linearly independent, by definition $\myDim{X} \geq k$. Meanwhile,\\ since $B$ spans $X$, we know by the above theorem that $\myDim{X} \leq k$.\\ So $\myDim{X} = k$.
+   \end{myIndent}}
+
+   \newpage
+
+   \uuline{Theorem 9.3}: Suppose $X$ is a vector space and $\myDim{X} = n$. Then:
+   \begin{itemize}
+      \item[(A)] For $E = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_n\} \subset X$, we have that $X = \mySpan\hspace{0.2em}E$ implies that $E$ is\\ linearly independent.
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         First, assume $E$ is linearly independent. Then, note that for any\\ $\mVecAst{y} \in X$, we must have that $E \cup \{\mVecAst{y}^{\phantom{|}}\}$ is linearly dependent because\\ $|E \cup \{\mVecAst{y}^{\phantom{|}}\}| > \myDim{X}$. So, there exists $c_1, \ldots, c_n, c_{n+1} \in \mathbb{R}$ such\\ that at least one $c_i$ is nonzero and:
+
+         {\centering $\sum\limits_{i=1}^n{c_i\mVecAst{x}_i} + c_{n+1}\mVecAst{y} = \mVec{0}$\retTwo\par}
+
+         Now if $c_{n+1} = 0$, we have a contradiction because $E$ is linearly\\ independent. So, we conclude that $c_{n+1} \neq 0$. Thus, by rearranging\\ terms we can express $y$ as a linear combination of the vectors of $E$.\\ Therefore, $\mySpan\hspace{0.2em}E = X$ since $y$ can be any vector in $X$.\retTwo
+
+         Secondly, assume $E$ is not linearly independent. Then for some $\mVecAst{x}_i \in E$, we have that $\mySpan\hspace{0.2em}E = \mySpan(E \setminus \{\mVecAst{x}_i\})$. However, $|E \setminus \{\mVecAst{x}_i\}| = n-1$.\\ So if $X = \mySpan\hspace{0.2em}E$, then $\myDim{X} \leq |E \setminus \{\mVecAst{x}_i\}| = n-1$, which contradicts\\ our assumption that $\myDim{X} = n$. Hence, $X \neq \mySpan\hspace{0.2em}E$.\\
+      \end{myIndent}}
+
+      \item[(B)] $X$ has a basis and every basis of $X$ consists of $n$ vectors.
+      {\begin{myIndent}\hThree
+         Proof:\\
+         By the definition of $\myDim{X}$, we know that there exists a linearly\\ independent set of $n$ vectors. By the previous part of this theorem,\\ we also know that that set spans $X$. So, it is a basis of $X$. Meanwhile, by\\ the corollary to theorem 9.2, we know that the number of vectors in a\\ basis of $X$ equals the dimension of $X$. Hence, all bases of $X$ must have $n$ vectors.\\
+      \end{myIndent}}
+
+      \item[(C)] If $1 \leq m \leq n$ and $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_m\} \subset X$ is linearly independent, then $X$ has a\\ basis that contains $\mVecAst{y}_1, \ldots, \mVecAst{y}_m$.
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Let $S_0 = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_n\}$ be a basis of $X$ and $Q = \{\mVecAst{y}_1, \ldots, \mVecAst{y}_m\}$. Then\\ by the same induction which we used to prove theorem 9.2, we can\\ construct a basis:  $S_m$, of $X$ which contains $\mVecAst{y}_1, \ldots, \mVecAst{y}_m$.
+      \end{myIndent}}
+   \end{itemize}
+\end{myIndent}}
+
+\mySepTwo
+
+Let $X$ and $Y$ be vector spaces. A map $\mMat{A}: X \longrightarrow Y$ is \udefine{linear} if\\ $\mMat{A}(c_1\mVecAst{x}_1 + c_2\mVecAst{x}_2) = c_1\mMat{A}(\mVecAst{x}_1) + c_2\mMat{A}(\mVecAst{x}_2)$ for all $\mVecAst{x}_1, \mVecAst{x}_2 \in X$ and $c_1, c_2 \in \mathbb{R}$.
+
+\newpage
+
+{\begin{myIndent}\exOne
+   Observations:
+   \begin{enumerate}
+      \item A linear map sends $\mVec{0}$ to $\mVec{0}$. This is because: 
+      
+      {\centering$\mMat{A}(\mVec{0}) = \mMat{A}(\mVec{v} - \mVec{v}) = \mMat{A}(\mVec{v}) - \mMat{A}(\mVec{v}) = \mVec{0}$.\retTwo\par}
+
+      \item If $\mMat{A}: X \longrightarrow Y$ is a linear map and $B = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a basis of $X$,\\
+      then $\mMat{A}\left(\sum\limits_{i=1}^k(c_i\mVecAst{x}_i)\right) = \sum\limits_{i=1}^kc_i\mMat{A}(\mVecAst{x}_i)$ for all $c_1, \ldots, c_k \in \mathbb{R}$.\retTwo
+   \end{enumerate}
+\end{myIndent}}
+
+Given two vector spaces $X$ and $Y$, we define $L(X, Y)$ to be the set of all linear transformations from $X$ into $Y$. Also, we shall abbreviate $L(X, X)$ as $L(X)$.\retTwo
+
+$\nullSp{\mMat{A}} = $ "\udefine{null space} of $\mMat{A}$" $ = \{\mVec{x} \in X \mid \mMat{A}(\mVec{x}) = \mVec{0}\}$.\retTwo
+
+$\rangeSp{\mMat{A}} =$ "range of $\mMat{A}$" $ = \{\mVec{y} \in Y \mid \exists \mVec{x} \in X \suchthat \mMat{A}\mVec{x} = \mVec{y}\}$.\retTwo
+
+{\begin{myIndent}\hTwo
+   \uuline{Proposition}: For any linear map $\mMat{A}: X \longrightarrow Y$, $\nullSp{\mMat{A}}$ and $\rangeSp{\mMat{A}}$ are vector spaces.\\
+   \begin{myIndent}\hThree
+      Proof:
+      \begin{itemize}
+         \item Assume $\mVecAst{x}_1, \mVecAst{x}_2 \in \nullSp{\mMat{A}} \subset X$ and $c \in \mathbb{R}$. Then:
+         \begin{itemize}
+            \item[$\circ$] $\mMat{A}(\mVecAst{x}_1 + \mVecAst{x}_2) = \mMat{A}(\mVecAst{x}_1) + \mMat{A}(\mVecAst{x}_2) = \mVec{0} + \mVec{0} = \mVec{0}$, which means\\ that $\mVecAst{x}_1 + \mVecAst{x}_2 \in \nullSp{\mMat{A}}$.
+            
+            \item[$\circ$] $\mMat{A}(c\mVecAst{x}_1) = c\mMat{A}(\mVecAst{x}_1) = c\mVec{0} = \mVec{0}$. So $c\mVecAst{x}_1 \in \nullSp{\mMat{A}}$.
+         \end{itemize}
+         This shows that $\nullSp{\mMat{A}}$ is a vector space.\retTwo
+
+         \item Assume $\mVecAst{y}_1, \mVecAst{y}_2 \in \rangeSp{\mMat{A}} \subset Y$ and $c \in \mathbb{R}$. Then:
+         \begin{itemize}
+            \item[$\circ$] We know there exists $\mVecAst{x}_1, \mVecAst{x}_2 \in X$ such that $\mMat{A}(\mVecAst{x}_1) = \mVecAst{y}_1$ and\\ $\mMat{A}(\mVecAst{x}_2) = \mVecAst{y}_2$. In turn, $\mMat{A}(\mVecAst{x}_1 + \mVecAst{x}_2) = \mMat{A}(\mVecAst{x}_1) + \mMat{A}(\mVecAst{x}_2) = \mVecAst{y}_1 + \mVecAst{y}_2$.\\
+            So $\mVecAst{y}_1 + \mVecAst{y}_2 \in \rangeSp{\mMat{A}}$.
+
+            \item[$\circ$] Now continue letting $\mVecAst{x}_1 \in X$ be a vector such that $\mMat{A}(\mVecAst{x}_1) = \mVecAst{y}_1$.\\ Then $\mMat{A}(c\mVecAst{x}_1) = c\mMat{A}(\mVecAst{x}_1) = c\mVecAst{y}_1$. So $c\mVecAst{y}_1 \in \rangeSp{\mMat{A}}$.
+         \end{itemize}
+         This shows that $\rangeSp{\mMat{A}}$ is a vector space. \retTwo
+      \end{itemize}
+   \end{myIndent}
+\end{myIndent}}
+
+$\rank{\mMat{A}} = $ "\udefine{rank} of $\mMat{A}$" $ = \myDim{\rangeSp{\mMat{A}}}$.\retTwo
+
+$\nullity{\mMat{A}} = $ "\udefine{nullity} of $\mMat{A}$" $ = \myDim{\nullSp{\mMat{A}}}$.\retTwo
+
+{\begin{myIndent}\hTwo
+   \uuline{Rank-Nullity Theorem}: Given any $\mMat{A} \in L(X, Y)$, we have that
+   
+   {\centering $\myDim{X} = \rank{\mMat{A}} + \nullity{\mMat{A}}$. \par}
+\end{myIndent}}
+
+
+\end{document}
