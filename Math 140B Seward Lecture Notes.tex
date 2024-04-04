@@ -37,7 +37,7 @@
 \newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
 
 \usepackage{graphicx}
-\graphicspath{{./158_Images/}}
+\graphicspath{{./140B_images/}}
 
 \usepackage{tikz}
    \usetikzlibrary{arrows.meta}
@@ -94,10 +94,14 @@
    \color{RawerSienna}%
    \fontsize{12}{14}\selectfont%
 }
-% \newcommand{\pracOne}{
-%    \color{BrickRed}%
-%    \fontsize{13}{15}\selectfont%
-% }
+\newcommand{\pracOne}{
+   \color{BrickRed}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\pracTwo}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
 \newcommand{\teachComment}{
    \color{Orange}%
    \fontsize{12}{14}\selectfont%
@@ -117,6 +121,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+\newcommand{\pinkPen}[1]{{\vphantom{.}\color{VioletRed}#1}}
 
 \newenvironment{myIndent}{%
    \begin{adjustwidth}{2.5em}{0em}%
@@ -371,7 +376,7 @@ The function $f^\prime(x) = \lim\limits_{t\rightarrow x}\left(\frac{f(t)-f(x)}{t
 
 If $f(x) = \alpha$ where $\alpha \in \mathbb{R}$ is constant, then trivially $f^\prime(x) = 0$ for all $x$.\\ Meanwhile, if $f(x) = x$, then we can trivially find that $f^\prime(x) = 1$.\retTwo
 
-Claim: for all $n \in \mathbb{Z}^+$, if $f(x) = x^n$, then $f^\prime(x) = nx^{n-1}$.\\ [-10pt]
+Claim 1: For all $n \in \mathbb{Z}^+$, if $f(x) = x^n$, then $f^\prime(x) = nx^{n-1}$.\\ [-15pt]
 
 {\begin{myIndent}\exTwo
    Proof: (we proceed by induction)\retTwo
@@ -389,24 +394,191 @@ Claim: for all $n \in \mathbb{Z}^+$, if $f(x) = x^n$, then $f^\prime(x) = nx^{n-
    \end{myIndent}}
 \end{myIndent}}
 
-This combined with proposition 84 tells us that both polynomials and\\ rational functions are differentiable over their domains.
+Claim 2: If $f$ is differentiable at $x$ and $\alpha \in \mathbb{R}$, then $(\alpha f)^\prime(x) = \alpha f^\prime(x)$.\\ [-15pt]
+
+{\begin{myIndent}\exTwo
+   Proof:\\ By the product rule: $(\alpha f)^\prime(x) = \alpha f^\prime + (\alpha)^\prime f = \alpha f^\prime + 0\cdot f = \alpha f^\prime$.\retTwo
+\end{myIndent}}
+
+These combined with proposition 84 tells us that both polynomials and rational\\ functions are differentiable over their domains.
 
 \mySepTwo
 
 \hOne
 {\begin{myIndent}\hTwo
    Proposition \propCount: (chain rule)\\
-   Let $f$ and $g$ be real-valued functions with $\domain{f}, \domain{g} \subseteq \mathbb{R}$. Let $x \in \mathbb{R}$.\\ Suppose that $f$ is differentiable at $x$ and that $g$ is differentiable at $f(x)$. Then\\ $g \circ f$ is differentiable at $x$ and $(g \circ f)^\prime(x) = g^\prime(f(x))f^\prime(x)$.
+   Let $f$ and $g$ be real-valued functions with $\domain{f}, \domain{g} \subseteq \mathbb{R}$. Let $x \in \mathbb{R}$.\\ Suppose that $f$ is differentiable at $x$ and that $g$ is differentiable at $f(x)$. Then\\ $g \circ f$ is differentiable at $x$ and $(g \circ f)^\prime(x) = g^\prime(f(x))f^\prime(x)$.\\
+   
+   {\begin{center}\exTwo
+      \begin{myClosureOne}{4.5}
+         $\hphantom{.}$\\[-24pt] \ul{Intuition}:
+         \begin{myIndent}
+            $\lim\limits_{t\rightarrow x}\left(\frac{g(f(t)) - g(f(x))}{\pinkPen{f(t) - f(x)}}\cdot \frac{\pinkPen{f(t)-f(x)}}{t-x}\right) = g^\prime(f(t))\cdot f^\prime(t)$.\newline
+         \end{myIndent}
+
+         That said, the issue with this intuition is that we need to\\ address the possibility that $f(t) - f(x) = 0$.\\ [-8pt]
+      \end{myClosureOne}\retTwo
+   \end{center}}
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Set $y = f(x)$ and define $v(s) = \left\{
+      \begin{matrix}
+         \frac{g(s) - g(y)}{s-y} - g^\prime(y) & \text{ if } s \neq y \\
+         0 & \text{ if } s = y
+      \end{matrix}\right.$\retTwo
+
+      Note that $v$ is continuous at $y$. This is because $g$ being differentiable\\ at $f(x) = y$ means that:
+      
+      {\centering $\lim\limits_{s\rightarrow y}v(s) = \lim\limits_{s\rightarrow y}\left(\frac{g(s) - g(y)}{s-y} - g^\prime(y)\right) = g^\prime(y) - g^\prime(y) = 0 = v(y)$.\retTwo\par}
+
+      \newpage
+
+      Also, since $f$ is differentiable at $x$, we know that $f$ is continuous at $x$.\\ Therefore, $v \circ f$ is continuous at $x$ by proposition 68. Additionally, setting\\ $s = f(t)$, we know that $s \rightarrow y$ as $t \rightarrow x$ because $f$ is continuous at $x$. Thus:
+
+      {\center $ \lim\limits_{t\rightarrow x}v(f(t)) = \lim\limits_{s\rightarrow y}v(s) = 0$ \retTwo\par}
+      
+      Finally, note that $g(s) - g(y) = (s-y)(g^\prime(y) + v(s))$ for all $s$. Thus by\\ substituting that into our limit:\\ [-8pt]
+      \begin{myIndent}
+         \begin{tabular}{l}
+            $(g \circ f)^\prime(x) = \lim\limits_{t\rightarrow x}\frac{g(f(t)) - g(f(x))}{t - x}$ \\ [8pt]
+            $\phantom{(g \circ f)^\prime(x) } = \lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x}(g^\prime(f(x)) + v(f(t)))$ \\ [8pt]
+            $\phantom{(g \circ f)^\prime(x) } = f^\prime(x)\left(g^\prime(f(x)) + 0\right)$\quad\quad (by proposition 66)
+         \end{tabular}\retTwo
+      \end{myIndent}
+   \end{myIndent}}
 \end{myIndent}}
 
+\markLecture{4/3/2024}
+\exOne\mySepTwo\\ [-12pt]
+To start off lecture, here is some intuition about the behavior of derivatives. We'll\\ formally define sine and cosine later (on page \_\_) but for this section please take\\ for granted that $(\sin(x))^\prime = \cos(x)$. Additionally, please take for granted that the\\ power rule holds for non-positive integer exponents.\retTwo
 
+{\begin{myIndent}\exTwo
+   \begin{enumerate}
+      \item Define $f(x) = \left\{
+      \begin{matrix}
+         x\sin(\frac{1}{x}) & \text{ if } x \neq 0 \\
+         0 & \text{ if } x = 0
+      \end{matrix}\right.$\\
 
+      When $x \neq 0$, we have by chain rule that $f^\prime(x) = \sin(\frac{1}{x}) - \frac{1}{x}\cos(\frac{1}{x})$.\\ Meanwhile if $x = 0$, then $\frac{f(t) - f(0)}{t - 0} = \frac{t\sin(\frac{1}{t})}{t} = \sin(\frac{1}{t})$ when $t \neq 0$.\\ So $\lim\limits_{t\rightarrow 0}\left(\frac{f(t) - f(0)}{t - 0}\right)$ does not exist, meaning $f$ is not differentiable at $x$.\\
 
+      This shows that $\domain{f^\prime}$ can be a proper subset of $\domain{f}$.\\
 
+      \item Define $g(x) = \left\{
+      \begin{matrix}
+         x^2\sin(\frac{1}{x}) & \text{ if } x \neq 0 \\
+         0 & \text{ if } x = 0
+      \end{matrix}\right.$\\
+      
+      When $x \neq 0$, we have by chain rule that $g^\prime(x) = 2x\sin(\frac{1}{x}) - \cos(\frac{1}{x})$.\\ Meanwhile when $t \neq 0$:
 
+      {\center $\left|\frac{g(t) - g(0)}{t - 0}\right| = \left|\frac{t^2\sin(\frac{1}{t})}{t}\right| = \left|t\sin(\frac{1}{t})\right| \leq |t|$. \retTwo\par}
 
+      Thus $0 = \lim\limits_{t\rightarrow 0}(-t) \leq \lim\limits_{t\rightarrow 0}\left(\frac{g(t) - g(0)}{t - 0}\right) \leq \lim\limits_{t\rightarrow 0}(t) = 0$, meaning $g^\prime(0) = 0$.\\ [2pt] So $\domain{g^\prime} = \domain{g}$. That said, note that $g^\prime$ has a discontinuity of the\\ [2pt] second kind at $0$. Therefore, because $g$ is continuous, this shows that the\\ [2pt] derivative of a continuous function does not have to be continuous.
+   \end{enumerate}
+\end{myIndent}}
 
+\mySepTwo
 
+\newpage
+
+\hOne Let $X$ be a metric space. A function $f: X \longrightarrow \mathbb{R}$ has a \udefine{local maximum} at $p \in X$\\ if $\exists \delta > 0 \suchthat \forall x \in B_\delta(p),\myHS f(x) \leq f(p)$. Similarly, $f$ has a \udefine{local minimum} if\\ $\exists \delta > 0 \suchthat \forall x \in B_\delta(p),\myHS f(x) \geq f(p)$.\retTwo
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Let $f: (a, b) \longrightarrow \mathbb{R}$. If $f$ has a local maximum at $x$ and $f$ is\\ differentiable at $x$, then $f^\prime(x) = 0$.\retTwo
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Let $\delta > 0$ so that $\forall t \in B_\delta(x),\myHS f(t) \leq f(x)$. Then for all $t \in (x-\delta, x)$,\\ $\frac{f(t) - f(x)}{t-x} \geq 0$. So $f^\prime(x) \geq 0$. Similarly for all $t \in (x, x+\delta)$, we have\\ $\frac{f(t) - f(x)}{t - x} \leq 0$. Thus $f^\prime(x) \leq 0$.\retTwo
+
+      Hence $f^\prime(x) = 0$.\retTwo
+
+      
+      {\begin{myTindent} \hFour
+         Note that analogous reasoning can show that if $f$ has a local\\ minimum at $x$ and $f$ is differentiable at $x$, then $f^\prime(x) = 0$.\retTwo
+      \end{myTindent}}
+   \end{myIndent}}
+
+   Proposition \propCount: If $f, g: [a, b] \longrightarrow \mathbb{R}$ are continuous on $[a, b]$ and differentiable\\ on $(a, b)$, then there exists $x \in (a, b)$ with:
+   
+   {\centering$(f(b) - f(a))g^\prime(x) = (g(b) - g(a))f^\prime(x)$.\retTwo\par}
+
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Define $h: [a, b] \longrightarrow \mathbb{R}$ by $h(x) = (f(b) - f(a))g(x) - (g(b) - g(a))f(x)$.\\ Then $h(a) = f(b)g(a) - g(b)f(a) = h(b)$.\retTwo
+
+      Notice that $h$ is continuous on $[a, b]$ and differentiable on $(a, b)$ because of\\ propositions 70 and 84. Since $h^\prime(x) = (f(b) - f(a))g^\prime(x) - (g(b) - g(a))f^\prime(x)$,\\ for all $x \in (a, b)$ it now suffices to show that there exists $x \in (a, b)$ with\\ $h^\prime(x) = 0$.\\
+      
+      Since $h$ is continuous on a compact set $[a, b]$, we know that $h$ attains a\\ maximum value and a minimum value over the interval $[a, b]$.
+      \begin{myDindent}
+         \begin{itemize}
+            \item[Case 1:] If $h$ is constant on $[a, b]$, then $h^\prime(x) = 0$ for all $x \in (a, b)$.\\ [-8pt]
+            \item[Case 2:] If there is $t \in (a, b)$ with $h(t) > h(a) = h(b)$, then $h(a)$ and\\ $h(b)$ can't be the max. value that $h$ attains on $[a, b]$. So $h$ has a maximum at some point $x \in (a, b)$. Then by the last theorem,\\ $h^\prime(x) = 0$.
+            \item[Case 3:] If there is $t \in (a, b)$ with $h(t) < h(a) = h(b)$, then $h(a)$ and\\ $h(b)$ can't be the min. value that $h$ attains on $[a, b]$. So $h$ has a minimum at some point $x \in (a, b)$. Then by the last theorem,\\ $h^\prime(x) = 0$.
+         \end{itemize}
+      \end{myDindent}
+   \end{myIndent}}
+
+   \newpage
+
+   Proposition \propCount: (Mean Value Theorem)\\
+   If $f: [a, b] \longrightarrow \mathbb{R}$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then there is\\ $x \in (a, b)$ with $f(b) - f(a) = (b - a)f^\prime(x)$.\retTwo
+   
+   {\begin{myIndent} \hThree
+      To prove this, apply the previous proposition with $g(x) = x$.\retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: Suppose $f (a, b) \longrightarrow \mathbb{R}$ is differentiable. Then:
+   \begin{itemize}
+      \item If $f^\prime(x) \geq 0$ for all $x \in (a, b)$, then $f$ is monotone increasing.
+      \item If $f^\prime(x) \leq 0$ for all $x \in (a, b)$, then $f$ is monotone decreasing.
+      \item If $f^\prime(x) = 0$ for all $x \in (a, b)$, then $f$ is constant.\retTwo
+   \end{itemize}
+
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      For all $a < x_1 < x_2 < b$, we know by the mean value theorem that there\\ exists $t \in (x_1, x_2)$ with $f(x_2) - f(x_1) = (x_2 - x_1)f^\prime(t)$. Then since\\ $x_2 - x_1 > 0$, the sign of $f(x_2) - f(x_1)$ depends entirely on $f^\prime(t)$.\retTwo
+   \end{myIndent}
+\end{myIndent}}
+
+\mySepTwo\pracOne
+
+\textbf{Exercise 5.2} Let $f: (a, b) \longrightarrow \mathbb{R}$ be differentiable with $f^\prime(x) > 0$. Then $f$ is strictly\\ increasing.
+
+{\begin{myIndent}\pracTwo
+   For all $a < x_1 < x_2 < b$, we know by the mean value theorem that there exists\\ $t \in (x_1, x_2)$ with $f(x_2) - f(x_1) = (x_2 - x_1)f^\prime(t)$. Since $(x_2 - x_1)$ and $f^\prime(t)$ are\\ positive, we thus have that $f(x_2) - f(x_1) > 0$.\retTwo
+\end{myIndent}}
+
+As a consequence of $f$ being strictly increasing, we know $f$ is injective. Thus if we\\ restrict the codomain of $f$ to $f((a, b))$, then $f$ is bijective, meaning there exists a\\ function $g = f^{-1}$ such that $(g \circ f)(x) = x = (f \circ g)(x)$.% We shall show that the\\ domain of $g$ is some open interval $(c, d)$.
+
+% {\begin{myIndent}\pracTwo
+%    Since $f$ is differentiable, we know $f$ is continuous. Thus as $(a, b)$ is also connected, by\\ proposition 78 we know that $f((a, b))$ is connected. Thus, $f((a, b)) \subseteq \left[c, d\right]$ where\\ $c = \inf f((a,b))$ and ${d = \sup f((a,b))\text{.}}$\retTwo
+
+%    If $c \in f((a, b))$, then $\exists\hspace{0.05em} x \in (a, b) \suchthat f(x) = c$. However, because $(a, b)$ is open, we\\ know that $x$ is an interior point of $(a, b)$. So for some $\delta > 0, \myHS x - \delta \in (a, b)$. Now\\ $f(x - \delta) \in f((a, b))$. But since $f$ is strictly increasing, we have $f(x - \delta) < f(x) = c$.\\ This contradicts that $c = \inf f((a,b))$. So we conclude that $c \notin f((a,b))$. By similar\\ reasoning, we can also conclude that $d \notin f((a,b))$.\retTwo
+
+%    As a result, we know $f((a, b))$ is the open interval $(c, d)$ meaning $g$ is a function from\\ $(c, d)$ to $(a, b)$.\retTwo
+% \end{myIndent}}
+
+% Next, we will show that $g$ is continuous.
+
+% {\begin{myIndent}\pracTwo
+%    Consider any $y \in \domain{g} = (c, d)$. Because $y \in f((a, b))$, there exists\\ $x \in \domain{f} = (a,b)$ such that $f(x) = y$. Then, as $x$ is an interior point of\\ $(a, b)$, there exists $\delta > 0$ such that $[x - \delta, x + \delta]$ is a closed subset of $(a, b)$.
+   
+%    \newpage
+   
+%    Let $\hat{f}$ be the restriction of $f$ whose domain is $[x - \delta, x + \delta]$ and whose codomain is\\ the image of $[x - \delta, x + \delta]$ with respect to $f$. Note that since $f$ is continuous, $\hat{f}$ is\\ continuous. So by proposition 75, since $\hat{f}$ is a continuous bijection with a compact\\ domain, $\hat{f}^{-1}$ is continuous.\retTwo
+
+%    Next observe that $\hat{f}$ being continuous and $[x - \delta, x + \delta]$ being connected means\\ that $\hat{f}([x - \delta, x + \delta]) = \domain{\hat{f}^{-1}}$ is also connected by proposition 78. Thus,\\ $\domain{\hat{f}^{-1}}\subseteq \mathbb{R}$ is an interval. But since $\hat{f}(x-\delta), \hat{f}(x+\delta) \in \domain{\hat{f}^{-1}}$ and\\ $\hat{f}(x-\delta) = f(x-\delta) < y < f(x + \delta) = \hat{f}(x + \delta)$, we know $y$ is an interior\\ point of that interval. Hence:
+%    \begin{itemize}
+%       \item $\lim\limits_{t\rightarrow y}\hat{f}^{-1}(t) = \hat{f}^{-1}(y)$ since $y$ is a limit point of $\domain{\hat{f}^{-1}}$
+%       \item $\lim\limits_{t\rightarrow y}\hat{f}^{-1}(t) = \lim\limits_{t\rightarrow y}g(t)$ since $y$ is an interior point of $\domain{\hat{f}^{-1}}$.
+%    \end{itemize}\retTwo
+
+%    Thus, we finally conclude that $\lim\limits_{t \rightarrow y}\left( f^{-1}(y)\right) = \lim\limits_{t \rightarrow y}\left(\hat{f}^{-1}(y)\right)$
+
+   
+% \end{myIndent}}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
@@ -419,9 +591,9 @@ This combined with proposition 84 tells us that both polynomials and\\ rational 
       Proposition Number & Label in Textbook & Proposition Number & Label in Textbook \\ \hline
       
       \myVS 83 & 5.2 & 84 & 5.3 \\ \hdashline[10pt/3pt]
-      \myVS 85 & 5.5 & 86 &  \\ \hdashline[10pt/3pt]
-      \myVS 87 &  & 88 &  \\ \hdashline[10pt/3pt]
-      \myVS 89 &  & 90 &  \\ \hdashline[10pt/3pt]
+      \myVS 85 & 5.5 & 86 & 5.8 \\ \hdashline[10pt/3pt]
+      \myVS 87 & 5.9  & 88 & 5.10 \\ \hdashline[10pt/3pt]
+      \myVS 89 & 5.11 & 90 &  \\ \hdashline[10pt/3pt]
       \myVS 91 &  & 92 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
 
