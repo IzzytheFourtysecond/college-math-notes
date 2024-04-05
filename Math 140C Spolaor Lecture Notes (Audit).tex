@@ -734,11 +734,49 @@ Before moving on, here is another corollary of the above statements.
       \item[(B)] $\Omega$ is an open subset of $L(\mathbb{R}^n)$, and the mapping over $\Omega$ with the rule:\\ $\mMat{A} \mapsto \mMat{A}^{-1}$, is continuous.\\ [-10pt]
       {\begin{myIndent}\hThree
          Proof:\\
-         Firstly, by the previous theorem we know that for any $\mMat{A} \in \Omega$,\\ if $r = \frac{1}{\|\mMat{A}^{-1}\|}$, then $B_r(\mMat{A}) \subseteq \Omega$. So $\Omega$ is an open set in the metric\\ space $L(\mathbb{R}^n)$.
+         Firstly, by part A we know that for any $\mMat{A} \in \Omega$, if $r = \frac{1}{\|\mMat{A}^{-1}\|}$, then\\ [1pt] $B_r(\mMat{A}) \subseteq \Omega$. So, $\Omega$ is an open set in the metric space $L(\mathbb{R}^n)$.\retTwo
+
+         Now let $\mMat{A}, \mMat{B} \in \Omega$ and recall from part A that:
+         
+         {\centering $\left(\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|\right)\|\mVec{x}\| \leq \|\mMat{B}(\mVec{x})\|$.\retTwo\par}
+
+         Since we know $\mMat{B}^{-1}$ exists, set $\mVec{x} = \mMat{B}^{-1}(\mVec{y})$. Then the above\\ [1pt] expression becomes: $\left(\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|\right)\|\mMat{B}^{-1}(\mVec{y})\| \leq \|\mVec{y}\|$.\\ [1pt] Because we are interested in $\mMat{B}$ close to $\mMat{A}$, we can assume that\\ [4pt] $\|\mMat{B} - \mMat{A}\| < \frac{1}{\|\mMat{A}^{-1}\|}$. Thus it is safe to divide by $\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|$.\\ [2pt] So, setting $\mVec{y} \in \mathbb{R}^n$ to be the vector satisfying $\|\mVec{y}\| \leq 1$ and\\ [4pt] $\|\mMat{B}^{-1}(\mVec{y})\| = \|\mMat{B}^{-1}\|$, we have that:
+
+         {\center $ \|\mMat{B}^{-1}\| = \|\mMat{B}^{-1}(\mVec{y})\| \leq \frac{\|\mVec{y}\|}{\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|} \leq \frac{1}{\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|} = \frac{\|\mMat{A}^{-1}\|}{1 - \|\mMat{A}^{-1}\|\|\mMat{B} - \mMat{A}\|}$ \retTwo\par}
+
+         \uuline{Lemma}: Given $\mMat{A} \in L(Z, W)$, $\myHS\mMat{B}, \mMat{C} \in L(Y, Z)$, and $\mMat{D} \in L(X, Y)$,\\ we have that $\mMat{A}(\mMat{B} + \mMat{C}) = \mMat{A}\mMat{B} + \mMat{A}\mMat{C}$ and $(\mMat{B} + \mMat{C})\mMat{D} = \mMat{B}\mMat{D} + \mMat{C}\mMat{D}$.
+         {\begin{myIndent}\hFour
+            Proof:
+            \begin{itemize}
+               \item[$\circ$] $\mMat{A}((\mMat{B} + \mMat{C})(\mVec{v})) = \mMat{A}(\mMat{B}(\mVec{v}) + \mMat{C}(\mVec{v})) = \mMat{A}(\mMat{B}(\mVec{v})) + \mMat{A}(\mMat{C}(\mVec{v}))$
+               \item[$\circ$] $ (\mMat{B} + \mMat{C})(\mMat{D}(\mVec{v})) =  \mMat{B}(\mMat{D}(\mVec{v})) + \mMat{C}(\mMat{D}(\mVec{v}))$\\
+            \end{itemize}
+         \end{myIndent}}
+
+         Based on the above lemma, we have that $\mMat{B}^{-1} - \mMat{A}^{-1} = \mMat{B}^{-1}(\mMat{A} - \mMat{B})\mMat{A}^{-1}$.\\ So:\\ [-26pt]
+         \begin{center}
+            \begin{tabular}{l}
+               $0 \leq \|\mMat{B}^{-1} - \mMat{A}^{-1}\| = \|\mMat{B}^{-1}(\mMat{A} - \mMat{B})\mMat{A}^{-1}\|$ \\
+               $\phantom{0 \leq \|\mMat{B}^{-1} - \mMat{A}^{-1}\|} \leq \|\mMat{B}^{-1}\|\|(\mMat{A} - \mMat{B})\|\|\mMat{A}^{-1}\| \leq \frac{\|\mMat{A}^{-1}\|^2}{1 - \|\mMat{A}^{-1}\|\|\mMat{B} - \mMat{A}\|}\|\mMat{B} - \mMat{A}\|$
+            \end{tabular}\retTwo
+         \end{center}
+
+         Finally, assume $\mMat{A} \in \Omega^\prime$. This is fine because the mapping is automatically\\ continuous at $\mMat{A}$ if $\mMat{A} \notin \Omega^\prime$. Then we have that:
+         
+         {\centering $\lim\limits_{\|\mMat{B} - \mMat{A}\| \rightarrow 0}\left(\frac{\|\mMat{A}^{-1}\|^2}{1 - \|\mMat{A}^{-1}\|\|\mMat{B} - \mMat{A}\|}\|\mMat{B} - \mMat{A}\|\right) = \|\mMat{A}^{-1}\|^2 \cdot 0 = 0$.\retTwo\par}
+
+         So, $0 \leq \hspace{-0.8em} \lim\limits_{\vphantom{\int^{b}}\|\mMat{B} - \mMat{A}\| \rightarrow 0}\hspace{-0.6em}(\|\mMat{B}^{-1} - \mMat{A}^{-1}\|) \leq 0$.
+         
+         \newpage
+         
+         This means that $\|\mMat{B}^{-1} - \mMat{A}^{-1}\| \rightarrow 0$ as $\|\mMat{B} - \mMat{A}\| \rightarrow 0$. Or in other words:
+
+         {\center $\phantom{\blacksquare\text{.}}$ $\lim\limits_{\mMat{B} \rightarrow \mMat{A}}(\mMat{B}^{-1}) = \mMat{A}^{-1}$. $\blacksquare$ \retTwo\par}
       \end{myIndent}}
-      
    \end{itemize}
 \end{myIndent}}
+
+\markLecture{4/9/2024}
 
 \end{document}
 
