@@ -372,7 +372,7 @@ $Q = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a \udefine{basis} for $X$ if:\
 
    \uuline{Theorem 9.3}: Suppose $X$ is a vector space and $\myDim{X} = n$. Then:
    \begin{itemize}
-      \item[(A)] For $E = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_n\} \subset X$, we have that $X = \mySpan\hspace{0.2em}E$ implies that $E$ is\\ linearly independent.
+      \item[(A)] For $E = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_n\} \subset X$, we have that $X = \mySpan\hspace{0.2em}E$ if and only if $E$ is\\ linearly independent.
       
       {\begin{myIndent}\hThree
          Proof:\\
@@ -419,7 +419,7 @@ Let $X$ and $Y$ be vector spaces. A map $\mMat{A}: X \longrightarrow Y$ is \udef
 
 Given two vector spaces $X$ and $Y$, we define $L(X, Y)$ to be the set of all linear transformations from $X$ into $Y$. Also, we shall abbreviate $L(X, X)$ as $L(X)$.\retTwo
 
-$\nullSp{\mMat{A}} = $ "\udefine{null space} of $\mMat{A}$" $ = \{\mVec{x} \in X \mid \mMat{A}(\mVec{x}) = \mVec{0}\}$.\retTwo
+$\nullSp{\mMat{A}} = $ "\udefine{null space / kernel} of $\mMat{A}$" $ = \{\mVec{x} \in X \mid \mMat{A}(\mVec{x}) = \mVec{0}\}$.\retTwo
 
 $\rangeSp{\mMat{A}} =$ "range of $\mMat{A}$" $ = \{\mVec{y} \in Y \mid \exists \mVec{x} \in X \suchthat \mMat{A}\mVec{x} = \mVec{y}\}$.\retTwo
 
@@ -459,10 +459,261 @@ $\nullity{\mMat{A}} = $ "\udefine{nullity} of $\mMat{A}$" $ = \myDim{\nullSp{\mM
 
    {\begin{myIndent} \hThree
       Proof:\\
+      Let $\myDim{X} = n$.\retTwo
+
+      $\nullSp{\mMat{A}} \subseteq X$ is a vector space. So pick a basis $\{\mVecAst{v}_1, \ldots, \mVecAst{v}_k\}$ for $\nullSp{\mMat{A}}$ where\\ $k = \nullity{\mMat{A}} \leq \myDim{X}$. Then by theorem 9.3, choose $\mVecAst{w}_1, \ldots, \mVecAst{w}_{m-k}$ such\\ that $\{\mVecAst{v}_1, \ldots, \mVecAst{v}_k, \mVecAst{w}_1, \ldots, \mVecAst{w}_{n-k}\}$ is a basis of $X$. Note that $\myDim{X} = n$.
+
+      \newpage
+
+      Claim: $B = \{\mMat{A}(\mVecAst{w}_1), \ldots, \mMat{A}(\mVecAst{w}_{n-k})\}$ is a basis of $\rangeSp{\mMat{A}}$.
+      \begin{itemize}
+         \item $\mMat{A}(\mVecAst{v}_i) = \mVec{0}$ for all $i \in \{1, \ldots, k\}$. So:\\
+         
+         \begin{tabular}{l}
+            $ \rangeSp{\mMat{A}} = \mySpan\{\mMat{A}(\mVecAst{v}_1), \ldots,\mMat{A}(\mVecAst{v}_{k}), \mMat{A}(\mVecAst{w}_1), \ldots, \mMat{A}(\mVecAst{w}_{n-k})\}$\\
+            $\phantom{\rangeSp{\mMat{A}}} = \mySpan\{\mMat{A}(\mVecAst{w}_1), \ldots, \mMat{A}(\mVecAst{w}_{n-k})\} = \mySpan\hspace{0.2em}B$
+         \end{tabular}\retTwo
+
+         \item $B$ is linearly independent.\\
+         To see this, note that: $ \sum\limits_{i=1}^{n-k}\left(c_i\mMat{A}(\mVecAst{w}_i)\right) = \mVec{0} \Longrightarrow \mMat{A}\left(\sum\limits_{i=1}^{n-k}c_i\mVecAst{w}_i\right) = \mVec{0}$\retTwo
+
+         Since we picked each $\mVecAst{w}_1, \ldots, \mVecAst{w}_{n-k} \in B$ so that they were not in\\ $\nullSp{A}$,  we know that any vector in the span of $B$ is not mapped to $0$\\ by $\mMat{A}$ unless it is the zero vector. So
+
+         {\center $\sum\limits_{i=1}^{n-k}c_i\mVecAst{w}_i = \mVec{0}$\retTwo\par}
+
+         And since all the $\mVecAst{w}_i$ are linearly independent, all constants $c_i$ equal $0$.\retTwo
+      \end{itemize}
+      So $\rank{\mMat{A}} = n - k = \myDim{X} - \nullity{\mMat{A}}$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\markLecture{4/4/2024}
+   
+{\begin{myIndent}\hTwo
+   \uuline{Proposition}: Given $\mMat{A} \in L(X, Y)$, then:
+   \begin{itemize}
+      \item $\mMat{A}$ is injective if and only if $\nullity{\mMat{A}} = 0$.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         ($\Longrightarrow$) If $\mMat{A}$ is injective, then since $\mMat{A}(\mVec{0}) = \mVec{0}$, we have that any vector\\ $\mVec{v} \neq \mVec{0}$ is not in $\nullSp{\mMat{A}}$. So $\nullSp{\mMat{A}} = \{\mVec{0}\}$, meaning $\nullity{\mMat{A}} = 0$.\retTwo
+
+         ($\Longleftarrow$) If $\nullity{\mMat{A}} = 0$, then $\mMat{A}(\mVecAst{v}\phantom{|}) = \mVec{0} \Longrightarrow \mVec{v} = \mVec{0}$. So now assume\\ $ \mMat{A}(\mVec{v}\phantom{|}) = \mMat{A}(\mVec{u}\phantom{|})$. Then $\mMat{A}(\mVec{v} - \mVec{u}\phantom{|}) = \mVec{0}$, meaning $\mVec{v} = \mVec{u}$. Hence $\mMat{A}$\\ is injective.\\
+      \end{myIndent}}
+
+      \item $\mMat{A}$ is surjective if and only if $\rank{\mMat{A}} = \dim{Y}$.
+      
+      {\begin{myIndent} \hThree
+         Proof:\\
+         ($\Longrightarrow$) If $\mMat{A}$ is surjective then $\rangeSp{\mMat{A}} = Y$. So we automatically have\\ that $\rank{\mMat{A}} = \myDim{Y}$\retTwo
+
+         ($\Longleftarrow$) If $\rank{\mMat{A}} = \myDim{Y}$, then there exists a linearly independent set of\\ vectors $B \subset \rangeSp{\mMat{A}}$ containing $\myDim{y}$ many vectors and spanning $\rangeSp{\mMat{A}}$.\\ Then by theorem 9.3, since $B \subset \rangeSp{\mMat{A}} \subseteq Y$, we know $\mySpan\hspace{.2em}{B} = Y$.\\ So, $\rangeSp{\mMat{A}} = Y$, meaning $\mMat{A}$ is surjective.
+      \end{myIndent}}
+   \end{itemize}
+
+
+   \newpage
+
+   \uuline{Corollary}: Let $\mMat{A} \in L(X)$. Then $\mMat{A}$ is bijective  if and only if $\nullity{\mMat{A}} = 0$.\retTwo
+   
+   {\begin{myIndent}\hThree
+      Proof: (let $\mMat{A}: X \longrightarrow X$ be a linear map)\retTwo
+      ($\Longrightarrow$) If $\mMat{A}$ is bijective, then automatically $\mMat{A}$ is injective. So $\nullity{\mMat{A}} = 0$ by\\ the previous proposition.\retTwo
+
+      ($\Longleftarrow$) If $\nullity{\mMat{A}} = 0$, then by the rank-nullity theorem, we know that\\ $\rank{\mMat{A}} = \myDim{X}$. Thus $\mMat{A}$ is both injective and surjective, meaning $\mMat{A}$\\  is bijective.\retTwo
       
    \end{myIndent}}
 \end{myIndent}}
 
+For $\mMat{A} \in L(X)$, when $\nullity{\mMat{A}} = 0$, we call $\mMat{\mMat{A}}$ \udefine{invertible} and define $\mMat{A}^{-1}: X \longrightarrow X$\\ by $\mMat{A}^{-1}(\mMat{A}(\mVec{x})) = \mVec{x}$ for all $\mVec{x} \in X$.\retTwo
+
+{\begin{myIndent}\exOne
+   Because $\mMat{A}$ must be a bijective set function, we know that $\mMat{A}^{-1}$ must also be\\ a right-inverse of $\mMat{A}$, meaning $\mMat{A}(\mMat{A}^{-1}(\mVec{x})) = \mVec{x}$.\retTwo
+
+   Additionally, consider any $\mVecAst{x}_1, \mVecAst{x}_2 \in X$. Then let $\mVecAst{x}^{\hphantom{|}\prime}_1 = \mMat{A}^{-1}(\mVecAst{x}_1)$ and\\ $\mVecAst{x}^{\hphantom{|}\prime}_2 = \mMat{A}^{-1}(\mVecAst{x}_2)$. Then since $\mMat{A}$ is a linear mapping, we know that for\\ any $c_1, c_2 \in \mathbb{R}$:
+
+   {\centering $\mMat{A}(c_1\mVecAst{x}^{\hphantom{|}\prime}_1 + c_2\mVecAst{x}^{\hphantom{|}\prime}_2) = c_1\mMat{A}(\mMat{A}^{-1}(\mVecAst{x}_1)) + c_2\mMat{A}(\mMat{A}^{-1}(\mVecAst{x}_2)) = c_1\mVecAst{x}_1 + c_2\mVecAst{x}_2$\retTwo\par}
+
+   So: $\mMat{A}^{-1}(c_1\mVecAst{x}_1 + c_2\mVecAst{x}_2) = c_1\mVecAst{x}^{\hphantom{|}\prime}_1 + c_2\mVecAst{x}^{\hphantom{|}\prime}_2 = c_1\mMat{A}^{-1}(\mVecAst{x}_1) + c_2\mMat{A}^{-1}(\mVecAst{x}_2)$. Hence,\\ we've shown that $\mMat{A}^{-1}$ is a linear mapping, meaning that $\mMat{A}^{-1} \in L(X)$.\retTwo 
+\end{myIndent}}
+
+Let $\mMat{A} \in L(X, Y)$ and $\mMat{B} \in L(Y, Z)$. Then we define $\mMat{BA}: X \longrightarrow Z$ by the rule\\ that $\mVec{x} \mapsto \mMat{B}(\mMat{A}(\mVec{x}))$.\retTwo
+
+{\begin{myIndent}\exOne
+   We can trivially show that $\mMat{B}\mMat{A}$ is a linear mapping. Consider any\\ $\mVecAst{x}_1, \mVecAst{x}_2 \in X$ and $c_1, c_2 \in \mathbb{R}$. Then:\\ [-6pt]
+   \begin{center}
+      \begin{tabular}{l}
+         $\mMat{BA}(c_1\mVecAst{x}_1 + c_2\mVecAst{x}_2) = \mMat{B}(c_1\mMat{A}(\mVecAst{x}_1) + c_2\mMat{A}(\mVecAst{x}_2))$ \\ [2pt]
+         $\phantom{\mMat{BA}(c_1\mVecAst{x}_1 + c_2\mVecAst{x}_2)} = c_1\mMat{B}(\mMat{A}(\mVecAst{x}_1)) + c_2\mMat{B}(\mMat{A}(\mVecAst{x}_2))$\\ [2pt]
+         $\phantom{\mMat{BA}(c_1\mVecAst{x}_1 + c_2\mVecAst{x}_2)} = c_1\mMat{B}\mMat{A}(\mVecAst{x}_1) + c_2\mMat{B}\mMat{A}(\mVecAst{x}_2)$
+      \end{tabular}\retTwo
+   \end{center}
+
+   This means that $\mMat{BA} \in L(X, Z)$.\retTwo
+\end{myIndent}}
+
+Let $\mMat{A}, \mMat{B} \in L(X, Y)$ and $c_1, c_2 \in \mathbb{R}$. Then we define $(c_1\mMat{A} + c_2\mMat{B}) : X \longrightarrow Y$ by the\\ rule: $\mVec{x} \mapsto c_1\mMat{A}(\mVec{x}) + c_2\mMat{B}(\mVec{x})$.\retTwo
+
+{\begin{myIndent} \exOne
+   It is even more trivial to show that $(c_1\mMat{A} + c_2\mMat{B})$ is a linear map.
+\end{myIndent}}
+
+\newpage
+
+Let $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$. We define the \udefine{norm} of $\mMat{A}$ as: 
+
+{\centering $\|\mMat{A}\| = \sup\left\{\|\mMat{A}(\mVec{x})\| \mid \mVec{x} \in \mathbb{R}^n \text{ and } \|\mVec{x}\| \leq 1\right\}$. \retTwo\par}
+
+\mySepTwo
+
+Throughout this section, we shall prove that $\|\cdot\| : L(\mathbb{R}^n, \mathbb{R}^m) \longrightarrow \mathbb{R}$ is\\ well-defined and fulfills the properties of a general norm function.\retTwo
+
+{\begin{myIndent}\hTwo
+
+   \uuline{Proposition}: If $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$, then $\|\mMat{A}\|$ exists and is finite.\\ [-6pt]
+      
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $\{e_1, \ldots, e_n\}$ be the standard basis in $\mathbb{R}^n$. Then for any $\mVec{x} \in \mathbb{R}^n$, there\\ are unique $c_1, \ldots, c_n \in \mathbb{R}$ such that $\mVec{x} = c_1e_1 + \ldots + c_ne_n $.\retTwo
+
+      Since we are working with the standard basis, we know: {\fontsize{12}{14}\selectfont$\|\mVec{x}\| = \sqrt{\sum\limits_{i=1}^nc_i^2}$}.\retTwo
+      
+      Thus, for $\|\mVec{x}\| \leq 1$, we must have that $|c_i| \leq 1$ for each $c_i$. This means:
+
+      {\center\fontsize{12}{14}\selectfont $\|\mMat{A}(\mVec{x})\| = \left\|\sum\limits_{i=1}^n{c_i\mMat{A}(e_i)}\right\| \leq \sum\limits_{i=1}^n\|c_i\mMat{A}(e_i)\| = \sum\limits_{i=1}^n|c_i|\|\mMat{A}(e_i)\| \leq \sum\limits_{i=1}^n\|\mMat{A}(e_i)\|$ \retTwo\par}
+
+      Importantly, we must have that {\fontsize{12}{14}\selectfont$\sum\limits_{i=1}^n\|\mMat{A}(e_i)\|$} is finite. Additionally, it is an\\ upper bound to the set: $\left\{\|\mMat{A}(\mVec{x})\| \mid \mVec{x} \in \mathbb{R}^n \text{ and } \|\mVec{x}\| \leq 1\right\} \subseteq \mathbb{R}$.\retTwo
+      
+      So, we showed that the above set is bounded above. Also, the above set\\ is nonempty because it must contain $\|\mVec{0}\| = 0$. Thus by the least upper bound\\ property of $\mathbb{R}$, we know that the supremum of this set exists in $\mathbb{R}$.\retTwo
+
+      Hence, $\|\mMat{A}\|$ exists and is finite.\retTwo
+
+      \begin{myTindent}\hFour
+         Side note, the above proof also shows that $\|\mMat{A}\| \geq 0$.\retTwo 
+      \end{myTindent}
+   \end{myIndent}}
+
+   \uuline{Lemma}: For $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ and $\mVec{x} \in \mathbb{R}^n$, we have that $\|\mMat{A}(\mVec{x})\| \leq \|\mMat{A}\|\|\mVec{x}\|$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Case 1: $\mVec{x} \neq \mVec{0}$.
+      \begin{myIndent}
+         Then since $\|\mVec{x}\| \neq 0$, we can say that:
+         
+         {\centering $\|\mMat{A}(\mVec{x})\| = \left\|\mMat{A}\left(\|\mVec{x}\|\frac{\mVec{x}}{\|\mVec{x}\|}\right)\right\| = \left\|\|\mVec{x}\|\mMat{A}\left(\frac{\mVec{x}}{\|\mVec{x}\|}\right)\right\| = \left\|\mMat{A}\left(\frac{\mVec{x}}{\|\mVec{x}\|}\right)\right\|\|\mVec{x}\|$\retTwo\par}
+
+         Now $\frac{\mVec{x}}{\|\mVec{x}\|} \in \mathbb{R}^n$ and $\left\|\frac{\mVec{x}}{\|\mVec{x}\|}\right\| = 1$. So, $\left\|\mMat{A}\left(\frac{\mVec{x}}{\|\mVec{x}\|}\right)\right\|\|\mVec{x}\| \leq \|\mMat{A}\|\|\mVec{x}\|$\retTwo
+      \end{myIndent}
+
+      Case 2: $\mVec{x} = \mVec{0}$.
+      \begin{myIndent}
+         Then trivially $\|\mMat{A}(\mVec{x})\| = \|\mMat{A}(\mVec{0})\| = 0 = \|\mMat{A}\|\|\mVec{0}\| = \|\mMat{A}\|\|\mVec{x}\|$\retTwo
+      \end{myIndent}
+   \end{myIndent}}
+
+   \newpage
+
+   \uuline{Proposition}: If $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$, then $0 \leq \|\mMat{A}\|$. Also $\|\mMat{A}\| = 0$ if and only if $\mMat{A}$ is the unique function mapping all of $\mathbb{R}^n$ to $\mVec{0}$.\\ [-6pt]
+   {\begin{myIndent}\hThree
+      Proof:\\
+      We already showed previously that $\|\mMat{A}\| \geq 0$. So, it now suffices to\\ show that $\|\mMat{A}\| = 0 \Longleftrightarrow \nullSp{\mMat{A}} = \mathbb{R}^n$.\retTwo
+
+      ($\Longrightarrow$) Assume that $\nullSp{\mMat{A}} \neq \mathbb{R}^n$. Then there exists $\mVec{x} \in \mathbb{R}^n$ such\\ that $\mMat{A}(\mVec{x}) \neq \mVec{0}$. Since $\mVec{x}$ can't be $\mVec{0}$, consider the vector $\widehat{x} = \frac{\mVec{x}}{\|\mVec{x}\|}$.\\ [-3pt] By the linearity of $\mMat{A}$, we know $\mMat{A}\left(\widehat{x}\right) = \frac{1}{\|\mVec{x}\|}\mMat{A}(\mVec{x}) \neq \mVec{0}$. So,\\ $\|\mMat{A}(\widehat{x})\| > 0$. But $\|\mMat{A}(\widehat{x})\|$ is in the set that $\|\mMat{A}\|$ is a supremum of,\\ which means that $\|\mMat{A}\| \geq \|\mMat{A}(\widehat{x})\| > 0$. Or in other words, $\|\mMat{A}\| \neq 0$.\retTwo
+
+      ($\Longleftarrow$) Assume that $\nullSp{\mMat{A}} = \mathbb{R}^n$. Then,
+      
+      {\centering $\sup\left\{\|\mMat{A}(\mVec{x})\| \mid \mVec{x} \in \mathbb{R}^n \text{ and } \|\mVec{x}\| \leq 1\right\} = \sup\{0\} =  0$\retTwo\par}
+   \end{myIndent}}
+
+   \uuline{Corollary}: Given $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we have that $\mMat{A}$ is uniformly continuous.\\ [-6pt]
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Case 1: $\|\mMat{A}\| \neq 0$, meaning we can divide by $\|\mMat{A}\|$.
+      \begin{myIndent}
+         By the previous proposition, $\|\mMat{A}(\mVec{x}) - \mMat{A}(\mVec{y})\| \leq \|\mMat{A}\|\|\mVec{x} - \mVec{y}\|$ for\\ all $\mVec{x}, \mVec{y} \in \mathbb{R}^n$. Hence, for any $\varepsilon > 0$, if we make $\|\mVec{x} - \mVec{y}\| < \frac{\varepsilon}{\|\mMat{A}\|}$,\\ [-2pt] then $\|\mMat{A}(\mVec{x}) - \mMat{A}(\mVec{y})\| < \varepsilon$.\retTwo
+      \end{myIndent}
+
+      Case 2: $\|\mMat{A}\| = 0$.
+      \begin{myIndent}
+         Then $\mMat{A}$ is a constant function, making it automatically uniformly\\ continuous.\retTwo
+      \end{myIndent}
+   \end{myIndent}}
+
+   \uuline{Subcorollary}: Given $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$. there exists $\mVec{x} \in \mathbb{R}^n$ with $\|\mVec{x}\| \leq 1$ such\\ that $\|\mMat{A}(\mVec{x})\| = \|\mMat{A}\|$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $S = \{\mVec{x} \in \mathbb{R}^n \mid \|\mVec{x}\| \leq 1\}$ and consider the restriction $\mMat{A}|_{S}$.\retTwo
+
+      Since $S$ is a closed and bounded subset of $\mathbb{R}^n$, we know that $S$ is compact\\ by the Heine-Borel theorem (see proposition 28 in Math 140A notes).\\ This combined with the fact that $\mMat{A}|_{S}$ is still continuous means that by the\\ extreme value theorem, there is $\mVec{x} \in S$ with: 
+      
+      {\center $\mMat{A}(\mVec{x}) = \mMat{A}|_{S}(\mVec{x}) = \sup\left\{\|\mMat{A}(\mVec{x})\| \mid \mVec{x} \in \mathbb{R}^n \text{ and } \|\mVec{x}\| \leq 1\right\}$.\retTwo\par}
+   \end{myIndent}}
+
+   \uuline{Proposition}: If $\mMat{A}, \mMat{B} \in L(\mathbb{R}^n, \mathbb{R}^m)$, then $\|\mMat{A} + \mMat{B}\| \leq \|\mMat{A}\| + \|\mMat{B}\|$.\\[-6pt]
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $\mVec{x} \in \mathbb{R}^n$ be a vector such that $\|\mVec{x}\| \leq 1$ and $\|\mMat{A}(\mVec{x})\| = \|\mMat{A}\|$. Then:
+
+      \begin{center}
+         \begin{tabular}{l}
+            $\|\mMat{A} + \mMat{B}\| = \|(\mMat{A} + \mMat{B})(\mVec{x})\| = \|\mMat{A}(\mVec{x}) + \mMat{B}(\mVec{x})\|$ \\
+            $\phantom{\|\mMat{A} + \mMat{B}\| = \|(\mMat{A} + \mMat{B})(\mVec{x})\|} \leq \|\mMat{A}(\mVec{x})\| + \|\mMat{B}(\mVec{x})\| \leq \|\mMat{A}\| + \|\mMat{B}\|$
+         \end{tabular}
+      \end{center}
+   \end{myIndent}}
+
+   \newpage
+
+   \uuline{Proposition}: If $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ and $c \in \mathbb{R}$, then $\|c\mMat{A}\| = |c|\|\mMat{A}\|$.\\ [-6pt]
+   
+   {\begin{myIndent} \hThree
+      Proof:\\
+      Pick $\mVec{x} \in \mathbb{R}^n$ satisfying $\|\mVec{x}\| \leq 1$ and $\|\mMat{A}(\mVec{x})\| = \|\mMat{A}\|$. Then:
+      \begin{center}
+         $|c|\|\mMat{A}\| = |c|\|\mMat{A}(\mVec{x})\| = \|c\mMat{A}(\mVec{x})\| = \|(c\mMat{A})(\mVec{x})\| \leq \|c\mMat{A}\|$.\retTwo
+      \end{center}
+
+      Next, pick $\mVec{y} \in \mathbb{R}^n$ satisfying $\|\mVec{y}\| \leq 1$ and $\|(c\mMat{A})(\mVec{x})\| = \|c\mMat{A}\|$. Then:
+      \begin{center}
+         $\|c\mMat{A}\| = \|(c\mMat{A})(\mVec{y})\| = \|c\mMat{A}(\mVec{y})\| = |c|\|\mMat{A}\mVec{y}\| \leq |c|\|\mMat{A}\|$.\retTwo
+      \end{center}
+   \end{myIndent}}
+\end{myIndent}}
+
+Specifically because of the four propositions above, we have shown that\\  $\|\cdot\| : L(\mathbb{R}^n, \mathbb{R}^m) \longrightarrow \mathbb{R}$ is well-defined and a valid norm. Consequently, by\\ defining $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\|$ for all $\mMat{A}, \mMat{B} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we can say that $L(\mathbb{R}^n, \mathbb{R}^m)$\\ is a metric space.\retTwo
+
+Before moving on, here is another corollary of the above statements.
+{\begin{myIndent} \hTwo
+   \uuline{Corollary}: If $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ and $\mMat{B} \in L(\mathbb{R}^m, \mathbb{R}^k)$, then $\|\mMat{AB}\| \leq \|\mMat{A}\|\|\mMat{B}\|$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Pick $\mVec{x} \in \mathbb{R}^n$ satisfying $\|\mVec{x}\| \leq 1$ and $\|(\mMat{BA})(\mVec{x})\| = \|\mMat{BA}\|$. Then:
+      \begin{center}
+         $\|\mMat{BA}\| = \|(\mMat{BA})(\mVec{x})\| = \|\mMat{B}(\mMat{A}(\mVec{x}))\| \leq \|\mMat{B}\|\|\mMat{A}(\mVec{x})\| \leq \|\mMat{B}\|\|\mMat{A}\|$.\retTwo
+      \end{center}
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+{\begin{myIndent} \hTwo
+   \uuline{Theorem 9.8}: Let $\Omega \subset L(\mathbb{R}^n)$ be the set of all invertible linear mappings on $\mathbb{R}^n$.
+   \begin{itemize}
+      \item[(A)] If $\mMat{A} \in \Omega$, $\mMat{B} \in L(\mathbb{R}^n)$, and $\|\mMat{B} - \mMat{A}\|\|\mMat{A}^{-1}\| < 1$, then $\mMat{B} \in \Omega$.\\
+      
+      \item[(B)] $\Omega$ is an open subset of $L(\mathbb{R}^n)$, and the mapping over $\Omega$ with the rule:\\ $\mMat{A} \mapsto \mMat{A}^{-1}$, is continuous.
+   \end{itemize}
+\end{myIndent}}
 
 \end{document}
 
+
+
+
+Set $\Omega$ equals set of invertible $\mMat{A}$
+
+At the end he's trying to show $B \rightarrow A$ impleis that $B^{-1} \rightarrow A^{-1}$.
