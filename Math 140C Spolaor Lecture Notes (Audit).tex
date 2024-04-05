@@ -703,9 +703,40 @@ Before moving on, here is another corollary of the above statements.
 {\begin{myIndent} \hTwo
    \uuline{Theorem 9.8}: Let $\Omega \subset L(\mathbb{R}^n)$ be the set of all invertible linear mappings on $\mathbb{R}^n$.
    \begin{itemize}
-      \item[(A)] If $\mMat{A} \in \Omega$, $\mMat{B} \in L(\mathbb{R}^n)$, and $\|\mMat{B} - \mMat{A}\|\|\mMat{A}^{-1}\| < 1$, then $\mMat{B} \in \Omega$.\\
+      \item[(A)] If $\mMat{A} \in \Omega$, $\mMat{B} \in L(\mathbb{R}^n)$, and $\|\mMat{B} - \mMat{A}\| < \dfrac{1}{\|\mMat{A}^{-1}\|}$, then $\mMat{B} \in \Omega$.\\ [-10pt]
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Pick $\mVec{x} \in \mathbb{R}^n$ such that $\|\mVec{x}\| \leq 1$. Then:
+         
+         \begin{center}
+            \begin{tabular}{l}
+               $\|\mMat{A}(\mVec{x})\| = \|(\mMat{A} - \mMat{B} + \mMat{B})(\mVec{x})\|$\\
+               $\phantom{\|\mMat{A}(\mVec{x})\|} \leq \|(\mMat{A} - \mMat{B})(\mVec{x})\| + \|\mMat{B}(\mVec{x})\|$\\
+               $\phantom{\|\mMat{A}(\mVec{x})\|} \leq \|\mMat{A} - \mMat{B}\|\|\mVec{x}\| + \|\mMat{B}(\mVec{x})\| = \|\mMat{B} - \mMat{A}\|\|\mVec{x}\| + \|\mMat{B}(\mVec{x})\|$
+            \end{tabular}\retTwo
+         \end{center}
+
+         Meanwhile, note that $\|\mMat{A}^{-1}\| \neq 0$. We know this because $\mMat{A}^{-1}$ must be\\ invertible (because $\nullSp{\mMat{A}^{-1}} = \{\mVec{0}\}$) and the one linear transformation\\ in $L(\mathbb{R}^n)$ with norm $0$ is not invertible. So:
+
+         \begin{center}
+            \begin{tabular}{l}
+               $\frac{\|\mVec{x}\|}{\|\mMat{A}^{-1}\|} = \frac{\|\mMat{A}^{-1}\mMat{A}(\mVec{x})\|}{\|\mMat{A}^{-1}\|} \leq \frac{\|\mMat{A}^{-1}\|\|\mMat{A}(\mVec{x})\|}{\|\mMat{A}^{-1}\|} = \|\mMat{A}(\mVec{x})\|$
+            \end{tabular}\retTwo
+         \end{center}
+
+         Hence, $\frac{\|\mVec{x}\|}{\|\mMat{A}^{-1}\|} \leq \|\mMat{B} - \mMat{A}\|\|\mVec{x}\| + \|\mMat{B}(\mVec{x})\|$. By rearranging terms, we get\\ this expression: $\left(\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|\right)\|\mVec{x}\| \leq \|\mMat{B}(\mVec{x})\|$.
+
+         \newpage
+
+         Now, note that if $\|\mMat{B}(\mVec{x})\| = 0$ but $\mVec{x} \neq \mVec{0}$, then we must have that:\\ $\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\| \leq 0$. Or in other words, $\|\mMat{B} - \mMat{A}\| \geq \frac{1}{\|\mMat{A}^{-1}\|}$. So,\\ if $\|\mMat{B} - \mMat{A}\| < \frac{1}{\|\mMat{A}^{-1}\|}$, then $\|\mMat{B}(\mVec{x})\| = 0$ only when $\mVec{x} = \mVec{0}$.\\ [2pt] Hence, $\nullity{\mMat{B}} = 0$ and $\mMat{B}$ is invertible.\retTwo
+      \end{myIndent}}
       
-      \item[(B)] $\Omega$ is an open subset of $L(\mathbb{R}^n)$, and the mapping over $\Omega$ with the rule:\\ $\mMat{A} \mapsto \mMat{A}^{-1}$, is continuous.
+      \item[(B)] $\Omega$ is an open subset of $L(\mathbb{R}^n)$, and the mapping over $\Omega$ with the rule:\\ $\mMat{A} \mapsto \mMat{A}^{-1}$, is continuous.\\ [-10pt]
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Firstly, by the previous theorem we know that for any $\mMat{A} \in \Omega$,\\ if $r = \frac{1}{\|\mMat{A}^{-1}\|}$, then $B_r(\mMat{A}) \subseteq \Omega$. So $\Omega$ is an open set in the metric\\ space $L(\mathbb{R}^n)$.
+      \end{myIndent}}
+      
    \end{itemize}
 \end{myIndent}}
 
