@@ -163,6 +163,10 @@
    {\huge \color{Black} \textbf{#1} \newline}%
 }
 
+\newcommand*{\markHW}[1]{%
+   {\huge \color{Black} \textbf{#1} \newline}%
+}
+
 \newcommand{\pprime}{{\prime\prime}}
 \newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.5em}}
 \newcommand{\rea}[1]{\mathrm{Re}(#1)}
@@ -542,52 +546,78 @@ To start off lecture, here is some intuition about the behavior of derivatives. 
    \end{myIndent}
 \end{myIndent}}
 
-\mySepTwo\pracOne
+\mySepTwo
 
-\textbf{Exercise 5.2} Let $f: (a, b) \longrightarrow \mathbb{R}$ be differentiable with $f^\prime(x) > 0$. Then $f$ is strictly\\ increasing.
+\markLecture{4/5/2024}
 
-{\begin{myIndent}\pracTwo
-   For all $a < x_1 < x_2 < b$, we know by the mean value theorem that there exists\\ $t \in (x_1, x_2)$ with $f(x_2) - f(x_1) = (x_2 - x_1)f^\prime(t)$. Since $(x_2 - x_1)$ and $f^\prime(t)$ are\\ positive, we thus have that $f(x_2) - f(x_1) > 0$.\retTwo
+Even though derivatives are not necessarily continuous, we can show they always\\ satisfy the conclusion of the intermediate value theorem.
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Suppose $f: [a, b] \rightarrow \mathbb{R}$ is differentiable and $\lambda \in \mathbb{R}$ satisfies\\ that $f^\prime(a) < \lambda < f^\prime(b)$. Then there is $x \in (a, b)$ with $f^\prime(x) = \lambda$.\\
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Define $g: [a, b] \rightarrow \mathbb{R}$ by the rule $g(t) = f(t) - \lambda t$. Then $g$ is\\ differentiable with $g^\prime(t) = f^\prime(t) - \lambda$. So, it suffices to find\\ $x \in (a, b)$ with $g^\prime(x) = 0$\retTwo
+
+      Since $g$ is differentiable, we know that $g$ is continuous. Adding in\\ the fact that $[a, b]$ is compact, we know that $g$ achieves a minimum\\ value. So, let $x \in [a, b]$ be such that $g(x)$ is the minimum value of $g$.\retTwo
+
+      Now consider that $f^\prime(a) < \lambda < f^\prime(b) \Longrightarrow g^\prime(a) < 0 < g^\prime(b)$. Since\\ $g^\prime(a) < 0$, there is some $t_1 > a$ near $a$ such that $g(x) \leq g(t_1) < g(a)$.\\ [-11pt]
+      {\begin{myIndent}\hFour
+         Explanation:\\
+         Set $\varepsilon = |g^\prime(a)|$. Then by the definition of limits:
+         
+         {\centering $\exists \delta > 0 \suchthat \forall t \in (a, a + \delta), \myHS \left|\frac{g(t)- g(a)}{t - a} - g^\prime(a)\right| < \varepsilon$.\retTwo\par}
+
+         Then because $g^\prime(a)$ is negative, we must have that $\frac{g(t)- g(a)}{t - a} < 0$.\\ But as $t - a > 0$, we must have that $g(t)- g(a) < 0$.
+         {\begin{myTindent}\begin{myIndent}\teachComment
+            This will be a common trick so get used to it.
+         \end{myIndent}\end{myTindent}}
+      \end{myIndent}}
+
+      \newpage
+
+      Similarly, since $g^\prime(b) > 0$, there is some $t_2 < b$ near $b$ such that\\ $g(x) \leq g(t_2) < g(b)$. Hence, we have shown that $x \neq a$ and $x \neq b$,\\ meaning that $x \in (a, b)$. Then, by applying proposition 86 we know\\ that $g^\prime(x) = 0$.\retTwo
+
+
+      \begin{myDindent} \teachComment
+         We can prove an analogous theorem for when $f^\prime(b) < \lambda < f^\prime(a)$.\retTwo
+      \end{myDindent}
+   \end{myIndent}}
+
+   \uuline{Corollary}: If $f: [a, b] \longrightarrow \mathbb{R}$ is differentiable, then $f^\prime$ has no simple discontinuities.\\
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Assume that $x \in [a, b)$ and $f^\prime(x+)$ exists. Then let $\varepsilon > 0$. By the definition\\ of $f(x+)$:
+      
+      {\centering$\exists \delta > 0 \suchthat \forall t \in (x, x + \delta),\myHS |f^\prime(t) - f^\prime(x+)| < \sfrac{\varepsilon}{2}$.\retTwo\par}
+      
+      If $f^\prime(t) = f^\prime(x)$ for all $t \in (x, x+\delta)$, then we automatically have that\\ $f^\prime(x+) = f^\prime(x)$. So assume there exists $t \in (x, x+\delta)$ such that\\ $f^\prime(t) \neq f^\prime(x)$. Then by the previous proposition, there exists $s \in (x, t)$\\ such that $f^\prime(s)$ is between $f^\prime(x)$ and $f^\prime(t)$, and that $|f^\prime(s) - f^\prime(x)| < \sfrac{\varepsilon}{2}$.\\ Finally:
+
+      {\centering $|f^\prime(x) - f^\prime(x+)| \leq |f^\prime(x) - f^\prime(s)| + |f^\prime(s) - f^\prime(x+)| < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$.\retTwo\par}
+
+      So $f^\prime(x)$ must equal $f^\prime(x+)$. Similarly, we can show that if $x \in (a, b]$ and\\ $f^\prime(x-)$ exists, then $f^\prime(x) = f^\prime(x-)$. Thus, it is impossible for $f^\prime$ to have a\\ simple discontinuity.\retTwo
+
+      {\begin{myDindent}\teachComment
+         However, we already saw that $f^\prime$ can have discontinuities of the\\ second kind.\retTwo
+      \end{myDindent}}
+   \end{myIndent}}
+
+   Propositon \propCount: (L'Hôpital's rule)
 \end{myIndent}}
 
-As a consequence of $f$ being strictly increasing, we know $f$ is injective. Thus if we\\ restrict the codomain of $f$ to $f((a, b))$, then $f$ is bijective, meaning there exists a\\ function $g = f^{-1}$ such that $(g \circ f)(x) = x = (f \circ g)(x)$. Now we show that $g$ is\\ continuous.
-
-{\begin{myIndent}\pracTwo
-   Let $y \in \domain{g}$. Then there exists $x \in \domain{f}$ such that $f(x) = y$. But, since $\domain{f}$\\ is an open interval, we know that there exists $\delta$ such that $[x - \delta, x + \delta] \subseteq \domain{f}$.\\ [-2pt] If we let $\hat{f}$ be the restriction of $f$ whose domain is $[x - \delta, x + \delta]$ and whose codomain\\ is the image of $[x - \delta, x + \delta]$
-\end{myIndent}}
 
 
 
 
-% We shall show that the\\ domain of $g$ is some open interval $(c, d)$.
 
-% {\begin{myIndent}\pracTwo
-%    Since $f$ is differentiable, we know $f$ is continuous. Thus as $(a, b)$ is also connected, by\\ proposition 78 we know that $f((a, b))$ is connected. Thus, $f((a, b)) \subseteq \left[c, d\right]$ where\\ $c = \inf f((a,b))$ and ${d = \sup f((a,b))\text{.}}$\retTwo
 
-%    If $c \in f((a, b))$, then $\exists\hspace{0.05em} x \in (a, b) \suchthat f(x) = c$. However, because $(a, b)$ is open, we\\ know that $x$ is an interior point of $(a, b)$. So for some $\delta > 0, \myHS x - \delta \in (a, b)$. Now\\ $f(x - \delta) \in f((a, b))$. But since $f$ is strictly increasing, we have $f(x - \delta) < f(x) = c$.\\ This contradicts that $c = \inf f((a,b))$. So we conclude that $c \notin f((a,b))$. By similar\\ reasoning, we can also conclude that $d \notin f((a,b))$.\retTwo
 
-%    As a result, we know $f((a, b))$ is the open interval $(c, d)$ meaning $g$ is a function from\\ $(c, d)$ to $(a, b)$.\retTwo
-% \end{myIndent}}
 
-% Next, we will show that $g$ is continuous.
 
-% {\begin{myIndent}\pracTwo
-%    Consider any $y \in \domain{g} = (c, d)$. Because $y \in f((a, b))$, there exists\\ $x \in \domain{f} = (a,b)$ such that $f(x) = y$. Then, as $x$ is an interior point of\\ $(a, b)$, there exists $\delta > 0$ such that $[x - \delta, x + \delta]$ is a closed subset of $(a, b)$.
-   
-%    \newpage
-   
-%    Let $\hat{f}$ be the restriction of $f$ whose domain is $[x - \delta, x + \delta]$ and whose codomain is\\ the image of $[x - \delta, x + \delta]$ with respect to $f$. Note that since $f$ is continuous, $\hat{f}$ is\\ continuous. So by proposition 75, since $\hat{f}$ is a continuous bijection with a compact\\ domain, $\hat{f}^{-1}$ is continuous.\retTwo
 
-%    Next observe that $\hat{f}$ being continuous and $[x - \delta, x + \delta]$ being connected means\\ that $\hat{f}([x - \delta, x + \delta]) = \domain{\hat{f}^{-1}}$ is also connected by proposition 78. Thus,\\ $\domain{\hat{f}^{-1}}\subseteq \mathbb{R}$ is an interval. But since $\hat{f}(x-\delta), \hat{f}(x+\delta) \in \domain{\hat{f}^{-1}}$ and\\ $\hat{f}(x-\delta) = f(x-\delta) < y < f(x + \delta) = \hat{f}(x + \delta)$, we know $y$ is an interior\\ point of that interval. Hence:
-%    \begin{itemize}
-%       \item $\lim\limits_{t\rightarrow y}\hat{f}^{-1}(t) = \hat{f}^{-1}(y)$ since $y$ is a limit point of $\domain{\hat{f}^{-1}}$
-%       \item $\lim\limits_{t\rightarrow y}\hat{f}^{-1}(t) = \lim\limits_{t\rightarrow y}g(t)$ since $y$ is an interior point of $\domain{\hat{f}^{-1}}$.
-%    \end{itemize}\retTwo
 
-%    Thus, we finally conclude that $\lim\limits_{t \rightarrow y}\left( f^{-1}(y)\right) = \lim\limits_{t \rightarrow y}\left(\hat{f}^{-1}(y)\right)$
 
-   
-% \end{myIndent}}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
@@ -602,8 +632,8 @@ As a consequence of $f$ being strictly increasing, we know $f$ is injective. Thu
       \myVS 83 & 5.2 & 84 & 5.3 \\ \hdashline[10pt/3pt]
       \myVS 85 & 5.5 & 86 & 5.8 \\ \hdashline[10pt/3pt]
       \myVS 87 & 5.9  & 88 & 5.10 \\ \hdashline[10pt/3pt]
-      \myVS 89 & 5.11 & 90 &  \\ \hdashline[10pt/3pt]
-      \myVS 91 &  & 92 &  \\ \hdashline[10pt/3pt]
+      \myVS 89 & 5.11 & 90 & 5.12 \\ \hdashline[10pt/3pt]
+      \myVS 91 & 5.13 & 92 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
 
 \end{allowTableDashes}
@@ -611,4 +641,65 @@ As a consequence of $f$ being strictly increasing, we know $f$ is injective. Thu
 \retTwo
 
 Our textbook is \textit{Principles of Mathematical Analysis} by Walter Rudin.
+
+\newpage
+\pracOne
+
+\markHW{Homework 1:}
+
+\textbf{Exercise 5.2}: Let $f: (a, b) \longrightarrow \mathbb{R}$ be differentiable with $f^\prime(x) > 0$. Then $f$ is strictly\\ increasing.
+
+{\begin{myIndent}\pracTwo
+   For all $a < x_1 < x_2 < b$, we know by the mean value theorem that there exists\\ $t \in (x_1, x_2)$ with $f(x_2) - f(x_1) = (x_2 - x_1)f^\prime(t)$. Since $(x_2 - x_1)$ and $f^\prime(t)$ are\\ positive, we thus have that $f(x_2) - f(x_1) > 0$.\retTwo
+\end{myIndent}}
+
+As a consequence of $f$ being strictly increasing, we know $f$ is injective. Thus if we\\ restrict the codomain of $f$ to its image, then $f$ is bijective, meaning there exists a\\ function $g = f^{-1}$ such that $(g \circ f)(x) = x = (f \circ g)(x)$. Now we show that\\ for all $y \in \domain{g},\myHS y \in \domain{g}^\prime$ and $g(z) \rightarrow g(y)$ as $z \rightarrow y$.
+
+{\begin{myIndent}\pracTwo
+   Let $y \in \domain{g}$. Then there exists $x \in \domain{f}$ such that $f(x) = y$ and $g(y) = x$. But,\\ since $\domain{f}$ is an open set, we know that $x$ is an interior point of $\domain{f}$. Hence, there\\ [-2pt] exists $r$ such that $[x - r, x + r] \subseteq \domain{f}$. Let $\widehat{f}$ be the restriction of $f$ whose domain is\\ $[x - r, x + r]$ and whose codomain is the image of $[x - r, x + r]$ with respect to $f$.\retTwo
+   
+   Because $f$ is differentiable, we know $f$ is continuous. Then, note that\\ $\forall x_0 \in \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right) \cap \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right)\hspace{-0.2em}{\displaystyle\vphantom{a}^{\prime}}, \myHS \lim\limits_{t \rightarrow x_0}\widehat{f}(t) = \lim\limits_{t \rightarrow x_0}f(t) = f(x_0) = f(x_0) = \widehat{f}(x_0)$.\\ [-5pt] So, $\widehat{f}$ is a continuous function over its domain. Also, note that $\widehat{f}$ is still bijective.\retTwo
+
+   Meanwhile $[x - r, x + r] = \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right)$ is compact and connected. Firstly, this means\\ [-2pt] that $\widehat{f}^{-1}$ is continuous. Secondly, this tells us that the image of $[x - r, x + r]$ is\\ [2pt]     connected. Because $f$ and thus $\widehat{f}$ is strictly increasing, we know that:\\ [2pt] $\widehat{f}(x - r) < \widehat{f}(x) = f(x) = y < \widehat{f}(x + r)$. So, $[\widehat{f}(x - r), \widehat{f}(x + r)]$ is a subset of the domain of $\widehat{f}^{-1}$ and $y$ is an interior point of that subset of the domain.\\ [6pt]
+
+   $[\widehat{f}(x - r), \widehat{f}(x + r)]$ is perfect, meaning $y$ is a limit point of $[\widehat{f}(x - r), \widehat{f}(x + r)]$.\\ In turn, this means $y$ is a limit point of $\mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right)$ and $\domain{g}$ because:
+   
+   {\centering $[\widehat{f}(x - r), \widehat{f}(x + r)] \subseteq \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right) \subseteq \domain{g}$.\retTwo\par}
+   
+   Then as $\widehat{f}^{-1}$ is continuous, we know that $\lim\limits_{z\rightarrow y}\widehat{f}^{-1}(z) = \widehat{f}^{-1}(y)$. Additionally, because\\ [-3pt] $y$ is an interior point of ${[\widehat{f}(x - r), \widehat{f}(x + r)]\text{,}}$ there exists $R > 0$ so that\\ [4pt] $B_R(y) \subset [\widehat{f}(x - r), \widehat{f}(x + r)]$.\\ [6pt]
+   
+   Finally, we show that $g(z) \rightarrow g(y)$ as $z \rightarrow y$.\\ Let $\varepsilon > 0$. Then there exists $\delta > 0$ such that ${|z - y| < \delta \Longrightarrow |\widehat{f}^{-1}(z) - \widehat{f}^{-1}(y)| < \varepsilon\text{.}}$\\ Set $\delta^\prime = \min(\delta, R)$. Then $|z - y| < \delta^\prime \Longrightarrow |g(z) - g(y)| = |\widehat{f}^{-1}(z) - \widehat{f}^{-1}(y)| \leq \varepsilon$.
+\end{myIndent}}
+
+\newpage
+
+Finally, we show that $g$ is differentiable. 
+{\begin{myIndent}\pracTwo
+   Note that $z = f(g(z))$ and $y = f(g(y))$. So, we can write that:
+   
+   {\centering $\lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{z - y}} = \lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{f(g(z)) - f(g(y))}}$.\retTwo\par}
+
+   Now let $(z_n)$ be any sequence in the domain of $g$ converging to $y$ such that $z_n \neq y$\\ for any $y$. Since $\lim\limits_{z \rightarrow y}g(z) = g(y)$ for all $y \in \domain{g}$, we know that $g(z_n) \rightarrow g(y)$.\retTwo
+
+   Meanwhile, note that since $f^\prime(x) \neq 0$ for all $x \in \domain{f}$, we can evaluate that:
+   
+   {\centering $\lim\limits_{t \rightarrow g(y)}{\frac{t - g(y)}{f(t) - f(g(y))}} = \frac{1}{f^\prime(g(y))}$.\retTwo\par}
+
+   So, given any sequence $(t_n)$ in the domain of $f$ converging to $g(y)$, we have\\ that $\frac{t_n - g(y)}{f(t_n) - f(g(y))} \rightarrow \frac{1}{f^\prime(g(y))}$. $(g(z_n))$ is one such sequence. Hence:
+   
+   {\centering $\frac{g(z_n) - g(y)}{f(g(z_n)) - f(g(y))} \rightarrow \frac{1}{f^\prime(g(y))}$. \retTwo\par}
+
+   Since this is true for all relevant $(z_n)$, we conclude that:
+   
+   {\centering $\lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{z - y}} = \lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{f(g(z)) - f(g(y))}} = \frac{1}{f^\prime(g(y))}$\retTwo\par}
+
+   Thus, $g^\prime(y)$ exists and equals $\frac{1}{f^\prime(g(y))}$.\retTwo
+   
+   \begin{myDindent}\begin{myDindent}
+      \begin{myClosureOne}{3.5}
+         \\ [-20pt] Plugging in $y = f(x)$, we get that $g^\prime(f(x)) = \frac{1}{f^\prime(x)}$.\\ [-8pt]
+      \end{myClosureOne}\retTwo
+   \end{myDindent}\end{myDindent}
+\end{myIndent}}
+
 \end{document}
