@@ -683,7 +683,16 @@ Throughout this section, we shall prove that $\|\cdot\| : L(\mathbb{R}^n, \mathb
    \end{myIndent}}
 \end{myIndent}}
 
-Specifically because of the four propositions above, we have shown that\\  $\|\cdot\| : L(\mathbb{R}^n, \mathbb{R}^m) \longrightarrow \mathbb{R}$ is well-defined and a valid norm. Consequently, by\\ defining $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\|$ for all $\mMat{A}, \mMat{B} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we can say that $L(\mathbb{R}^n, \mathbb{R}^m)$\\ is a metric space.\retTwo
+Specifically because of the four propositions above, we have shown that\\  $\|\cdot\| : L(\mathbb{R}^n, \mathbb{R}^m) \longrightarrow \mathbb{R}$ is well-defined and a valid norm. Consequently, by\\ defining $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\|$ for all $\mMat{A}, \mMat{B} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we naturally get that\\ $L(\mathbb{R}^n, \mathbb{R}^m)$ is a metric space.
+
+\begin{myIndent}\exOne
+   Given any $\mMat{A}, \mMat{B}, \mMat{C} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we have:
+   \begin{itemize}
+      \item $d(\mMat{A}, \mMat{B}) \geq 0$ with $d(\mMat{A}, \mMat{B}) = 0$ if and only if $\mMat{A} = \mMat{B}$.
+      \item $d(\mMat{A}, \mMat{B}) = d(\mMat{B}, \mMat{A})$.
+      \item $d(\mMat{A}, \mMat{C}) \leq d(\mMat{A}, \mMat{B}) + d(\mMat{B}, \mMat{C})$.\retTwo
+   \end{itemize}
+\end{myIndent}
 
 Before moving on, here is another corollary of the above statements.
 {\begin{myIndent} \hTwo
@@ -724,9 +733,9 @@ Before moving on, here is another corollary of the above statements.
             \end{tabular}\retTwo
          \end{center}
 
-         Hence, $\frac{\|\mVec{x}\|}{\|\mMat{A}^{-1}\|} \leq \|\mMat{B} - \mMat{A}\|\|\mVec{x}\| + \|\mMat{B}(\mVec{x})\|$. By rearranging terms, we get\\ this expression: $\left(\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|\right)\|\mVec{x}\| \leq \|\mMat{B}(\mVec{x})\|$.
-
          \newpage
+
+         Hence, $\frac{\|\mVec{x}\|}{\|\mMat{A}^{-1}\|} \leq \|\mMat{B} - \mMat{A}\|\|\mVec{x}\| + \|\mMat{B}(\mVec{x})\|$. By rearranging terms, we get\\ this expression: $\left(\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\|\right)\|\mVec{x}\| \leq \|\mMat{B}(\mVec{x})\|$.\retTwo
 
          Now, note that if $\|\mMat{B}(\mVec{x})\| = 0$ but $\mVec{x} \neq \mVec{0}$, then we must have that:\\ $\frac{1}{\|\mMat{A}^{-1}\|} - \|\mMat{B} - \mMat{A}\| \leq 0$. Or in other words, $\|\mMat{B} - \mMat{A}\| \geq \frac{1}{\|\mMat{A}^{-1}\|}$. So,\\ if $\|\mMat{B} - \mMat{A}\| < \frac{1}{\|\mMat{A}^{-1}\|}$, then $\|\mMat{B}(\mVec{x})\| = 0$ only when $\mVec{x} = \mVec{0}$.\\ [2pt] Hence, $\nullity{\mMat{B}} = 0$ and $\mMat{B}$ is invertible.\retTwo
       \end{myIndent}}
@@ -758,20 +767,20 @@ Before moving on, here is another corollary of the above statements.
             \begin{tabular}{l}
                $0 \leq \|\mMat{B}^{-1} - \mMat{A}^{-1}\| = \|\mMat{B}^{-1}(\mMat{A} - \mMat{B})\mMat{A}^{-1}\|$ \\
                $\phantom{0 \leq \|\mMat{B}^{-1} - \mMat{A}^{-1}\|} \leq \|\mMat{B}^{-1}\|\|(\mMat{A} - \mMat{B})\|\|\mMat{A}^{-1}\| \leq \frac{\|\mMat{A}^{-1}\|^2}{1 - \|\mMat{A}^{-1}\|\|\mMat{B} - \mMat{A}\|}\|\mMat{B} - \mMat{A}\|$
-            \end{tabular}\retTwo
+            \end{tabular}
          \end{center}
+
+         \newpage
 
          Finally, assume $\mMat{A} \in \Omega^\prime$. This is fine because the mapping is automatically\\ continuous at $\mMat{A}$ if $\mMat{A} \notin \Omega^\prime$. Then we have that:
          
-         {\centering $\lim\limits_{\|\mMat{B} - \mMat{A}\| \rightarrow 0}\left(\frac{\|\mMat{A}^{-1}\|^2}{1 - \|\mMat{A}^{-1}\|\|\mMat{B} - \mMat{A}\|}\|\mMat{B} - \mMat{A}\|\right) = \|\mMat{A}^{-1}\|^2 \cdot 0 = 0$.\retTwo\par}
+         {\centering $\lim\limits_{\mMat{B} \rightarrow \mMat{A}}\left(\frac{\|\mMat{A}^{-1}\|^2}{1 - \|\mMat{A}^{-1}\|\|\mMat{B} - \mMat{A}\|}\|\mMat{B} - \mMat{A}\|\right) = \|\mMat{A}^{-1}\|^2 \cdot 0 = 0$.\retTwo\par}
 
-         So, $0 \leq \hspace{-0.8em} \lim\limits_{\vphantom{\int^{b}}\|\mMat{B} - \mMat{A}\| \rightarrow 0}\hspace{-0.6em}(\|\mMat{B}^{-1} - \mMat{A}^{-1}\|) \leq 0$.
+         So, $0 \leq \lim\limits_{\vphantom{\int^{b}}\mMat{B} \rightarrow \mMat{A}}(\|\mMat{B}^{-1} - \mMat{A}^{-1}\|) \leq 0$.\retTwo
          
-         \newpage
-         
-         This means that $\|\mMat{B}^{-1} - \mMat{A}^{-1}\| \rightarrow 0$ as $\|\mMat{B} - \mMat{A}\| \rightarrow 0$. Or in other words:
+         This means that $d(\mMat{B}^{-1}, \hspace{0.2em} \mMat{A}^{-1}) = \|\mMat{B}^{-1} - \mMat{A}^{-1}\| \rightarrow 0$ as $\mMat{B} \rightarrow \mMat{A}$.\\ Or in other words:
 
-         {\center $\phantom{\blacksquare\text{.}}$ $\lim\limits_{\mMat{B} \rightarrow \mMat{A}}(\mMat{B}^{-1}) = \mMat{A}^{-1}$. $\blacksquare$ \retTwo\par}
+         {\centering $\phantom{\blacksquare\text{.}}$ $\lim\limits_{\mMat{B} \rightarrow \mMat{A}}(\mMat{B}^{-1}) = \mMat{A}^{-1}$. $\blacksquare$ \retTwo\par}
       \end{myIndent}}
    \end{itemize}
 \end{myIndent}}
