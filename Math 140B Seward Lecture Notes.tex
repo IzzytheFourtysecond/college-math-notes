@@ -326,7 +326,7 @@ The function $f^\prime(x) = \lim\limits_{t\rightarrow x}\left(\frac{f(t)-f(x)}{t
 \newpage
 
 {\begin{myIndent}\hTwo
-   Proposition \propCount: Suppose $f$ and $g$ are real valued functions with\\ $\domain{f}, \domain{g} \subseteq \mathbb{R}$. Also suppose $f$ and $g$ are differentiable at $x$. Then\\ $f + g$, $fg$, and (when $g(x) \neq 0$) $\frac{f}{g}$ are differentiable at $x$ with:\\
+   Proposition \propCount: Suppose $f$ and $g$ are real-valued functions with\\ $\domain{f}, \domain{g} \subseteq \mathbb{R}$. Also suppose $f$ and $g$ are differentiable at $x$. Then\\ $f + g$, $fg$, and (when $g(x) \neq 0$) $\frac{f}{g}$ are differentiable at $x$ with:\\
    
    \begin{tabular}{l c c c c c}
       (A)\quad\quad $(f + g)^\prime(x) = f^\prime(x) + g^\prime(x)$ & &&&&{\hFour(sum rule)} \\ [4pt]
@@ -658,19 +658,88 @@ Even though derivatives are not necessarily continuous, we can show they always\
    \end{myIndent}}
 \end{myIndent}}
 
-Let $f$ be a real-valued function with $\domain{f} \subseteq \mathbb{R}$. If $f^\prime$ is defined and is itself\\ differentiable, then the derivative of $f^\prime$ is denoted $f^\pprime$ and called the \udefine{second\\ derivative} of $f$. We similarly define $f^{\ppprime}, f^{(4)}, \ldots, f^{(n)}$.
+Let $f$ be a real-valued function with $\domain{f} \subseteq \mathbb{R}$. If $f^\prime$ is defined and is itself\\ differentiable, then the derivative of $f^\prime$ is denoted $f^\pprime$ and called the \udefine{second\\ derivative} of $f$. We similarly define $f^{\ppprime}, f^{(4)}, \ldots, f^{(n)}$.\retTwo
+
+Also, we shall sometimes use $f^{(0)}$ to refer to the original function $f$.
 
 \newpage
 
 \markLecture{4/8/2024}
 
+{\begin{myIndent}\hTwo
+   Proposition \propCount: (Taylor's Theorem)\\
+   Suppose that $f: [a, b] \longrightarrow \mathbb{R}$, that $f^{(n-1)}$ is continuous on $[a, b]$, and that $f^{(n)}$ is\\ defined on $(a, b)$. Then pick $\alpha \in [a, b]$ and define:
 
+   {\centering $P(t) = \sum\limits_{k=0}^{n-1}\frac{f^{(k)}(\alpha)}{k!}(t - \alpha)^k$\retTwo\par}
 
+   Then for every $\beta \in [a, b] \setminus \{\alpha\}$, there is some $x$ between $\alpha$ and $\beta$ such that\\ $f(\beta) = P(\beta) + \frac{f^{(n)}(x)}{n!}(\beta - \alpha)^n$.\\ [-6pt]
 
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Set $M = \frac{f(\beta) - P(\beta)}{(\beta - \alpha)^n}$ so that $f(\beta) = P(\beta) + M(\beta - \alpha)^n$. Having done that,\\ [-5pt] our goal is now to find an $x$ between $\alpha$ and $\beta$ such that $\frac{f^{(n)}(x)}{n!} = M$. \retTwo
 
+      Define $g(t) = f(t) - P(t) - M(t - \alpha)^n$. Then, since $P$ is a polynomial\\ of degree $n - 1$, we have that $P^{(n)}(t) = 0$ for all $t$. So:
+      
+      {\centering $g^{(n)}(t) = f^{(n)}(t) - Mn!$\retTwo\par}
 
+      Thus, it suffices to find an $x$ between $\alpha$ and $\beta$ such that $g^{(n)}(x) = 0$.\retTwo
 
+      Importantly, $P$ is the unique polynomial of degree $n - 1$ satisfying for all\\ $0 \leq k \in \leq k-1$ that $P^{(k)}(\alpha) = f^{(k)}(\alpha)$. Thus, for all $0 \leq k \in \leq k-1$, we\\ have that:
+      
+      {\centering$g^{(k)}(\alpha) = f^{(k)}(\alpha) - P^{(k)}(\alpha) - M\frac{n!}{(n-k)!}(\alpha - \alpha)^{n-k} = 0$.\retTwo\par}
+      
+      At the same time, for all $0 \leq k \leq n-1$, we know that $g^{(k)}$ is continuous\\ on $[\alpha, \beta]$ and differentiable on $(\alpha, \beta)$. So, we shall proceed by repeatedly\\ applying the mean value theorem.
+      \begin{myIndent}
+         \begin{itemize}
+            \item $g(\beta) = 0$ and $g(\alpha) = 0$. So, there is $x_1$ between $\alpha$ and $\beta$\\ with $g^\prime(x_1) = 0$.
+            \item $g^\prime(x_1) = 0$ and $g^\prime(\alpha) = 0$. So, there is $x_2$ between $\alpha$ and $x_1$\\ with $g^\pprime(x_2) = 0$.
+            
+            {\centering\fontsize{18}{0}\selectfont $\vdots\phantom{aaaaaaa}$ \retTwo\par}
+         \end{itemize}
+      \end{myIndent}
 
+      Eventually, you will get an $x_n$ between $\alpha$ and $x_{n-1}$ with $g^{(n)}(x_n) = 0$. $\blacksquare$\retTwo
+
+      \begin{myTindent}\teachComment
+         Note that this can be interpretted as a higher order analog\\ of the mean value theorem. In fact, if $n = 1$ then this is\\ just the mean value theorem.
+      \end{myTindent}
+   \end{myIndent}}
+\end{myIndent}}
+
+\newpage
+
+The limit definition of the derivative still makes sense and can be applied to\\ situations where $f$ is a $\mathbb{C}$-valued or $\mathbb{R}^k$-valued function. Although, because\\ this class is called "real" analysis, we shall always require that $\domain{f} \subseteq \mathbb{R}$.
+{\begin{myTindent}\begin{myTindent}\teachComment
+   (We will talk in 140C about when $\domain{f} \subseteq \mathbb{R}^k$)\retTwo
+\end{myTindent}\end{myTindent}}
+
+If $f$ is a $\mathbb{C}$-valued function, then we can write that $f = f_1 + if_2$ where $f_1$ and\\ $f_2$ are real-valued. Then, $f$ is differentiable if and only if $f_1$ and $f_2$ are\\ differentiable. Also, $f^\prime(x) = f_1^\prime(x) + if_2^\prime(x)$.\retTwo
+
+{\begin{myIndent}\exTwo\color{Purple}
+   Assume $f^\prime(x)$ exists. Then:
+   {\begin{itemize}\exP\color{RedViolet}
+      \item $f_1^\prime(x) = \lim\limits_{t\rightarrow x}{\frac{f_1(t) - f_1(x)}{t - x}} = \lim\limits_{t\rightarrow x}{\frac{\rea{f(t)} - \rea{f(x)}}{t - x}} = \lim\limits_{t\rightarrow x}\left(\mathrm{Re}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right)$
+      \item $f_2^\prime(x) = \lim\limits_{t\rightarrow x}{\frac{f_2(t) - f_2(x)}{t - x}} = \lim\limits_{t\rightarrow x}{\frac{\ima{f(t)} - \ima{f(x)}}{t - x}} = \lim\limits_{t\rightarrow x}\left(\mathrm{Im}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right)$\\
+   \end{itemize}}
+
+   Now $\lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x} = f^\prime(x)$, $\lim\limits_{t\rightarrow f^\prime(x)}\hspace{-0.6em}\rea{t} = \rea{f^\prime(x)}$, and $\hspace{-0.4em}\lim\limits_{t\rightarrow f^\prime(x)}\hspace{-0.6em}\ima{t} = \ima{f^\prime(x)}$.\\ Thus, $\lim\limits_{t\rightarrow x}\left(\mathrm{Im}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right) = \rea{f^\prime(x)}$ and $\lim\limits_{t\rightarrow x}\left(\mathrm{Im}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right) = \ima{f^\prime(x)}$.
+   
+   
+   {\begin{myIndent}\begin{myTindent}\exP
+      You can double check this by considering sequences $(t_n)$ which converge to $x$ but never equal $x$. \\ [14pt]
+   \end{myTindent}\end{myIndent}}
+
+   Meanwhile, if $f_1$ and $f_2$ are differentiable, then:\\ [-8pt]
+
+   {\centering\exP\color{RedViolet} 
+   \begin{tabular}{l}
+      $f^\prime(x) = \lim\limits_{t\rightarrow x}\left(\frac{f_1(t) + if_2(t) - f_1(x) - if_2(x)}{t - x}\right)$\\ [3pt]
+      $\phantom{f^\prime(x) } = \lim\limits_{t\rightarrow x}\left(\frac{f_1(t) - f_1(x)}{t - x} + i\frac{f_2(t) - f_2(x)}{t-x}\right) =   f_1^\prime(x) + if_2^\prime(x)$.
+   \end{tabular}
+   \retTwo\par}
+\end{myIndent}}
+
+Similarly, if $\mVec{f}$ is $\mathbb{R}^k$-valued, then we can write $\mVec{f} = (f_1, f_2, \ldots, f_k)$ where\\ $f_1, f_2, \ldots, f_k$ are real-valued. Then $\mVec{f}$ is differentiable if and only if $f_1, f_2, \ldots, f_k$\\ are all differentiable. Also, $\mVec{f}^\prime(x) = (f_1^\prime(x), f_2^\prime(x), \ldots, f^\prime_k(x))$.
 
 
 
@@ -747,6 +816,8 @@ Finally, we show that $g$ is differentiable.
    Meanwhile, note that since $f^\prime(x) \neq 0$ for all $x \in \domain{f}$, we can evaluate that:
    
    {\centering $\lim\limits_{t \rightarrow g(y)}{\frac{t - g(y)}{f(t) - f(g(y))}} = \frac{1}{f^\prime(g(y))}$.\retTwo\par}
+
+   [PROBLEM PROBLEM PROBLEM]\retTwo
 
    So, given any sequence $(t_n)$ in the domain of $f$ converging to $g(y)$, we have\\ that $\frac{t_n - g(y)}{f(t_n) - f(g(y))} \rightarrow \frac{1}{f^\prime(g(y))}$. $(g(z_n))$ is one such sequence. Hence:
    
@@ -864,7 +935,7 @@ An analogous theorem holds for any vector-valued function $\mVec{f}: [a, b] \lon
 
    {\center $P(t) = f(0) + f^\prime(0)t + \frac{f^\pprime(0)}{2}t^2 = \frac{f^\pprime(0)}{2}t^2$ \retTwo\par}
 
-   Then by theorem 9.15 (proposition 92), we know that $\exists s \in (0, 1)$ such that\\ [2pt] $f(1) = P(1) + \frac{f^\ppprime(s)}{6}x^3 = \frac{f^\pprime(0)}{2} + \frac{f^\ppprime(s)}{6}$. Similarly, we know that $\exists t \in (-1, 0)$\\ [2pt] such that $f(-1) = \frac{f^\pprime(0)}{2} - \frac{f^\ppprime(t)}{6}$.\retTwo
+   Then by Taylor's theorem, we know that there exists $s \in (0, 1)$ such\\ [2pt] that $f(1) = P(1) + \frac{f^\ppprime(s)}{6}x^3 = \frac{f^\pprime(0)}{2} + \frac{f^\ppprime(s)}{6}$. Similarly, we know that\\ [2pt] there exists $t \in (-1, 0)$ such that $f(-1) = \frac{f^\pprime(0)}{2} - \frac{f^\ppprime(t)}{6}$.\retTwo
 
    Thus, $\frac{f^\ppprime(s)}{6} + \frac{f^\ppprime(t)}{6} = f(1) - f(-1) = 1$, which in turn means that\\ [2pt] $f^\ppprime(s) + f^\ppprime(t) = 6$. If both $f^\ppprime(s)$ and $f^\ppprime(t)$ are less than $3$, then this\\ [2pt] is impossible. So, either $s$ or $t$ must be greater than or equal to $3$.
 \end{myIndent}}
