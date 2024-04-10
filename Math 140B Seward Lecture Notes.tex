@@ -716,20 +716,21 @@ The limit definition of the derivative still makes sense and can be applied to\\
 If $f$ is a $\mathbb{C}$-valued function, then we can write that $f = f_1 + if_2$ where $f_1$ and\\ $f_2$ are real-valued. Then, $f$ is differentiable if and only if $f_1$ and $f_2$ are\\ differentiable. Also, $f^\prime(x) = f_1^\prime(x) + if_2^\prime(x)$.\retTwo
 
 {\begin{myIndent}\exTwo\color{Purple}
-   Assume $f^\prime(x)$ exists. Then:
+   Proof:\\
+   Firstly consider any sequence $(x_n)$ such that $x_n \rightarrow x$ as $n \rightarrow \infty$ but $x_n \neq x$ for\\ any $n$. Then assuming  $f^\prime(x)$ exists, we know that:
+
+   {\centering $\lim\limits_{n\rightarrow\infty}\left|\frac{f(x_n) - f(x)}{x_n-x} - f^\prime(x)\right| = 0$ \retTwo\par}
+
+   Now importantly:
    {\begin{itemize}\exP\color{RedViolet}
-      \item $f_1^\prime(x) = \lim\limits_{t\rightarrow x}{\frac{f_1(t) - f_1(x)}{t - x}} = \lim\limits_{t\rightarrow x}{\frac{\rea{f(t)} - \rea{f(x)}}{t - x}} = \lim\limits_{t\rightarrow x}\left(\mathrm{Re}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right)$
-      \item $f_2^\prime(x) = \lim\limits_{t\rightarrow x}{\frac{f_2(t) - f_2(x)}{t - x}} = \lim\limits_{t\rightarrow x}{\frac{\ima{f(t)} - \ima{f(x)}}{t - x}} = \lim\limits_{t\rightarrow x}\left(\mathrm{Im}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right)$\\
+      \item $0 \leq \left|\frac{f_1(x_n) - f_1(x)}{x_n - x} - \rea{f^\prime(t)}\right| = \left|\mathrm{Re}\hspace{-0.24em}\left(\frac{f(x_n) - f(x)}{x_n - x} - f^\prime(x) \right)\right| \leq \left|\frac{f(x_n) - f(x)}{x_n-x} - f^\prime(x)\right|$
+      \item $0 \leq \left|\frac{f_2(x_n) - f_2(x)}{x_n - x} - \ima{f^\prime(t)}\right| = \left|\mathrm{Im}\hspace{-0.24em}\left(\frac{f(x_n) - f(x)}{x_n - x} - f^\prime(x) \right)\right| \leq \left|\frac{f(x_n) - f(x)}{x_n-x} - f^\prime(x)\right|$\\
    \end{itemize}}
 
-   Now $\lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x} = f^\prime(x)$, $\lim\limits_{t\rightarrow f^\prime(x)}\hspace{-0.6em}\rea{t} = \rea{f^\prime(x)}$, and $\hspace{-0.4em}\lim\limits_{t\rightarrow f^\prime(x)}\hspace{-0.6em}\ima{t} = \ima{f^\prime(x)}$.\\ Thus, $\lim\limits_{t\rightarrow x}\left(\mathrm{Im}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right) = \rea{f^\prime(x)}$ and $\lim\limits_{t\rightarrow x}\left(\mathrm{Im}\hspace{-0.24em}\left(\frac{f(t) - f(x)}{t - x}\right)\right) = \ima{f^\prime(x)}$.
-   
-   
-   {\begin{myIndent}\begin{myTindent}\exP
-      You can double check this by considering sequences $(t_n)$ which converge to $x$ but never equal $x$. \\ [14pt]
-   \end{myTindent}\end{myIndent}}
+   So, ${\fontsize{12}{14}\selectfont\lim\limits_{n\rightarrow\infty}\left|\frac{f_1(x_n) - f_1(x)}{x_n-x} - \rea{f^\prime(x)}\right| = 0}$ and ${\fontsize{12}{14}\selectfont\lim\limits_{n\rightarrow\infty}\left|\frac{f_2(x_n) - f_2(x)}{x_n-x} - \ima{f^\prime(x)}\right| = 0}$.\\ [2pt]
+   This means $f_1^\prime(x)$ and $f_2^\prime(x)$ exist with $f_1^\prime(x) = \rea{f^\prime(x)}$ and $f_2^\prime(x) = \ima{f^\prime(x)}$.\retTwo
 
-   Meanwhile, if $f_1$ and $f_2$ are differentiable, then:\\ [-8pt]
+   Meanwhile, assume that $f_1^\prime(x)$ and $f_2^\prime(x)$ exist. Then:
 
    {\centering\exP\color{RedViolet} 
    \begin{tabular}{l}
@@ -739,10 +740,26 @@ If $f$ is a $\mathbb{C}$-valued function, then we can write that $f = f_1 + if_2
    \retTwo\par}
 \end{myIndent}}
 
-Similarly, if $\mVec{f}$ is $\mathbb{R}^k$-valued, then we can write $\mVec{f} = (f_1, f_2, \ldots, f_k)$ where\\ $f_1, f_2, \ldots, f_k$ are real-valued. Then $\mVec{f}$ is differentiable if and only if $f_1, f_2, \ldots, f_k$\\ are all differentiable. Also, $\mVec{f}^\prime(x) = (f_1^\prime(x), f_2^\prime(x), \ldots, f^\prime_k(x))$.
 
+Similarly, if $\mVec{f}$ is $\mathbb{R}^k$-valued, then we can write $\mVec{f} = (f_1, f_2, \ldots, f_k)$ where\\ $f_1, f_2, \ldots, f_k$ are real-valued. Then $\mVec{f}$ is differentiable if and only if $f_1, f_2, \ldots, f_k$\\ are all differentiable. Also, $\mVec{f}^\prime(x) = (f_1^\prime(x), f_2^\prime(x), \ldots, f^\prime_k(x))$.\retTwo
 
+{\begin{myIndent}\exOne
+   This follows from the fact that given any sequence $(x_n)$ such that $x_n \rightarrow x$\\ as $n \rightarrow \infty$ but $x_n \neq x$ for any $n$, we have by proposition 34 that:\\ $\left(\frac{\mVec{f}(x_n) - \mVec{f}(x)}{x_n-x}\right)$ converges if and only if $\left(\frac{f_i(x_n) - f_i(x)}{x_n-x}\right)$ for each $i$.\retTwo
+\end{myIndent}}
 
+For $\mathbb{C}$-valued functions, the addition, product, and quotient rules still hold.\\ For $\mathbb{R}^k$-valued functions, the addition and (dot) product rules still hold.\retTwo But, the mean value theorem and L'hôpital's rule fail in these situations.
+{\begin{myDindent}\teachComment
+   For intuition on why this is, if $f$ is $\mathbb{R}^k$ or $\mathbb{C}$-valued, then it is possible for $|f^\prime|$\\ to be arbitrarily large over some interval of the domain while having $f$\\ change as little as you want. To do this, make $f$ "spin" in $\mathbb{R}^k$ or $\mathbb{C}$.
+\end{myDindent}}
+
+\newpage
+
+At least, we can still make the following theorem which is both similar to the\\ mean value theorem and holds even for vector valued functions.
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Let $\mVec{f}: [a, b] \longrightarrow \mathbb{R}^k$. Assume $\mVec{f}$ is continuous on $[a, b]$ and\\ differentiable on $(a, b)$. Then there is $x \in (a, b)$ such that:
+
+   {\centering $\|\mVec{f}(b) - \mVec{f}(a)\| \leq (b-a)\|\mVec{f}^\prime(x)\|$ \par}
+\end{myIndent}}
 
 
 
@@ -760,7 +777,7 @@ Similarly, if $\mVec{f}$ is $\mathbb{R}^k$-valued, then we can write $\mVec{f} =
       \myVS 87 & 5.9  & 88 & 5.10 \\ \hdashline[10pt/3pt]
       \myVS 89 & 5.11 & 90 & 5.12 \\ \hdashline[10pt/3pt]
       \myVS 91 & 5.13 & 92 & 5.15 \\ \hdashline[10pt/3pt]
-      \myVS 93 &  & 94 &  \\ \hdashline[10pt/3pt]
+      \myVS 93 & 5.19 & 94 &  \\ \hdashline[10pt/3pt]
       \myVS 95 &  & 96 &  \\ \hdashline[10pt/3pt]
       \myVS 97 &  & 98 &  \\ \hdashline[10pt/3pt]
       \myVS 99 &  & 100 &  \\ \hdashline[10pt/3pt]
