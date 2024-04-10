@@ -339,7 +339,7 @@ $Q = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a \udefine{basis} for $X$ if:\
    
    {\begin{myIndent}\hThree
       Proof:\\
-      Suppose for the sake of contradiction that there exists a linearly\\ independent set $Q = \{\mVecAst{y}_1, \ldots, \mVecAst{y}_{k+1}\} \subset X$ which spans $X$. Then,\\ define $S_0 = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ and note that $S_0$ spans $X$.\retTwo
+      Suppose for the sake of contradiction that for any $m \in \mathbb{Z}^+$ , there exists\\ a linearly independent set $Q = \{\mVecAst{y}_1, \ldots, \mVecAst{y}_{k+m}\} \subset X$ which spans $X$.\\ Then, define $S_0 = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ and note that $S_0$ spans $X$.\retTwo
 
       Now by induction, assume for $i \in \{0, 1, \ldots, k-1\}$, that $S_i$ contains the\\ first $i$ vectors of $Q$ in addition to $k - i$ vectors of $S_0$, and that $\mySpan\hspace{0.2em}{S_i} = X$.\\
       Then since $S_i$ spans $X$, we know that $y_{i+1} \in X$ is in the span of $S_i$. So,\\ letting $\mVecAst{x}_{n_1}, \ldots, \mVecAst{x}_{n_{k-i}}$ be the elements from $S_0$ in $S_i$, we know that there\\ exists scalars $a_1, \ldots, a_{i+1}, b_1, \ldots, b_{k-i} \in \mathbb{R}$ where $a_{i+1} = 1$ such that:
@@ -501,13 +501,13 @@ $\nullity{\mMat{A}} = $ "\udefine{nullity} of $\mMat{A}$" $ = \myDim{\nullSp{\mM
          ($\Longleftarrow$) If $\nullity{\mMat{A}} = 0$, then $\mMat{A}(\mVecAst{v}\phantom{|}) = \mVec{0} \Longrightarrow \mVec{v} = \mVec{0}$. So now assume\\ $ \mMat{A}(\mVec{v}\phantom{|}) = \mMat{A}(\mVec{u}\phantom{|})$. Then $\mMat{A}(\mVec{v} - \mVec{u}\phantom{|}) = \mVec{0}$, meaning $\mVec{v} = \mVec{u}$. Hence $\mMat{A}$\\ is injective.\\
       \end{myIndent}}
 
-      \item $\mMat{A}$ is surjective if and only if $\rank{\mMat{A}} = \dim{Y}$.
+      \item $\mMat{A}$ is surjective if and only if $\rank{\mMat{A}} = \myDim{Y}$.
       
       {\begin{myIndent} \hThree
          Proof:\\
          ($\Longrightarrow$) If $\mMat{A}$ is surjective then $\rangeSp{\mMat{A}} = Y$. So we automatically have\\ that $\rank{\mMat{A}} = \myDim{Y}$\retTwo
 
-         ($\Longleftarrow$) If $\rank{\mMat{A}} = \myDim{Y}$, then there exists a linearly independent set of\\ vectors $B \subset \rangeSp{\mMat{A}}$ containing $\myDim{y}$ many vectors and spanning $\rangeSp{\mMat{A}}$.\\ Then by theorem 9.3, since $B \subset \rangeSp{\mMat{A}} \subseteq Y$, we know $\mySpan\hspace{.2em}{B} = Y$.\\ So, $\rangeSp{\mMat{A}} = Y$, meaning $\mMat{A}$ is surjective.
+         ($\Longleftarrow$) If $\rank{\mMat{A}} = \myDim{Y}$, then there exists a linearly independent set of\\ vectors $B \subset \rangeSp{\mMat{A}}$ containing $\myDim{Y}$ many vectors and spanning $\rangeSp{\mMat{A}}$.\\ Then by theorem 9.3, since $B \subset \rangeSp{\mMat{A}} \subseteq Y$, we know $\mySpan\hspace{.2em}{B} = Y$.\\ So, $\rangeSp{\mMat{A}} = Y$, meaning $\mMat{A}$ is surjective.
       \end{myIndent}}
    \end{itemize}
 
@@ -619,7 +619,7 @@ Throughout this section, we shall prove that $\|\cdot\| : L(\mathbb{R}^n, \mathb
       Proof:\\
       We already showed previously that $\|\mMat{A}\| \geq 0$. So, it now suffices to\\ show that $\|\mMat{A}\| = 0 \Longleftrightarrow \nullSp{\mMat{A}} = \mathbb{R}^n$.\retTwo
 
-      ($\Longrightarrow$) Assume that $\nullSp{\mMat{A}} \neq \mathbb{R}^n$. Then there exists $\mVec{x} \in \mathbb{R}^n$ such\\ that $\mMat{A}(\mVec{x}) \neq \mVec{0}$. Since $\mVec{x}$ can't be $\mVec{0}$, consider the vector $\widehat{x} = \frac{\mVec{x}}{\|\mVec{x}\|}$.\\ [-3pt] By the linearity of $\mMat{A}$, we know $\mMat{A}\left(\widehat{x}\right) = \frac{1}{\|\mVec{x}\|}\mMat{A}(\mVec{x}) \neq \mVec{0}$. So,\\ $\|\mMat{A}(\widehat{x})\| > 0$. But $\|\mMat{A}(\widehat{x})\|$ is in the set that $\|\mMat{A}\|$ is a supremum of,\\ which means that $\|\mMat{A}\| \geq \|\mMat{A}(\widehat{x})\| > 0$. Or in other words, $\|\mMat{A}\| \neq 0$.\retTwo
+      ($\Longrightarrow$) Assume that $\nullSp{\mMat{A}} \neq \mathbb{R}^n$. Then there exists $\mVec{x} \in \mathbb{R}^n$ such\\ that $\mMat{A}(\mVec{x}) \neq \mVec{0}$. Since $\mVec{x}$ can't be $\mVec{0}$, consider the vector $\hat{x} = \frac{\mVec{x}}{\|\mVec{x}\|}$.\\ [-3pt] By the linearity of $\mMat{A}$, we know $\mMat{A}\left(\hat{x}\right) = \frac{1}{\|\mVec{x}\|}\mMat{A}(\mVec{x}) \neq \mVec{0}$. So,\\ $\|\mMat{A}(\hat{x})\| > 0$. But $\|\mMat{A}(\hat{x})\|$ is in the set that $\|\mMat{A}\|$ is a supremum of,\\ which means that $\|\mMat{A}\| \geq \|\mMat{A}(\hat{x})\| > 0$. Or in other words, $\|\mMat{A}\| \neq 0$.\retTwo
 
       ($\Longleftarrow$) Assume that $\nullSp{\mMat{A}} = \mathbb{R}^n$. Then,
       
@@ -683,7 +683,7 @@ Throughout this section, we shall prove that $\|\cdot\| : L(\mathbb{R}^n, \mathb
    \end{myIndent}}
 \end{myIndent}}
 
-Specifically because of the four propositions above, we have shown that\\  $\|\cdot\| : L(\mathbb{R}^n, \mathbb{R}^m) \longrightarrow \mathbb{R}$ is well-defined and a valid norm. Consequently, by\\ defining $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\|$ for all $\mMat{A}, \mMat{B} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we naturally get that\\ $L(\mathbb{R}^n, \mathbb{R}^m)$ is a metric space.
+Specifically because of the four propositions above, we have shown that\\  $\|\cdot\| : L(\mathbb{R}^n, \mathbb{R}^m) \longrightarrow \mathbb{R}$ is well-defined and a valid norm. Consequently, by\\ defining $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\|$ for all $\mMat{A}, \mMat{B} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we naturally get that\\ $L(\mathbb{R}^n, \mathbb{R}^m)$ is a metric space.\\ [-6pt]
 
 \begin{myIndent}\exOne
    Given any $\mMat{A}, \mMat{B}, \mMat{C} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we have:
@@ -776,7 +776,7 @@ Before moving on, here is another corollary of the above statements.
 
          \newpage
 
-         Finally, assume $\mMat{A} \in \Omega^\prime$. This is fine because the mapping is automatically\\ continuous at $\mMat{A}$ if $\mMat{A} \notin \Omega^\prime$. Then we have that:
+         Finally, assume $\mMat{A} \in \Omega^\prime$. This is fine because the mapping is\\ automatically continuous at $\mMat{A}$ if $\mMat{A} \notin \Omega^\prime$. Then we have that:
          
          {\centering $\lim\limits_{\mMat{B} \rightarrow \mMat{A}}\left(\frac{\|\mMat{A}^{-1}\|^2}{1 - \|\mMat{A}^{-1}\|\|\mMat{B} - \mMat{A}\|}\|\mMat{B} - \mMat{A}\|\right) = \|\mMat{A}^{-1}\|^2 \cdot 0 = 0$.\retTwo\par}
 
@@ -789,13 +789,48 @@ Before moving on, here is another corollary of the above statements.
    \end{itemize}
 \end{myIndent}}
 
+\mySepTwo
+
 \markLecture{4/9/2024}
 
+Suppose $\{\mVecAst{x}_1, \ldots, \mVecAst{x}_n\}$ and $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_m\}$ are bases of the vector spaces $X$ and\\ $Y$ respectively, and let $\mMat{A} \in L(X, Y)$. Then for each $j \in \{1, \ldots, n\}$, since\\ $\mMat{A}(\mVecAst{x}_j) \in Y$, there are unique coefficients $a_{i,j}$ such that:\\ [-10pt]
+
+{\centering $\mMat{A}(\mVecAst{x}_j) = \sum\limits_{i=1}^m a_{i,j}\mVecAst{y}_i$\retTwo\par}
+
+For convenience, we visualize these numbers in an \udefine{$m\times n$ matrix}:\\ [-8pt]
+
+{\centering $[\mMat{A}] = 
+\begin{bmatrix}
+   a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+   a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
+   \vdots & \vdots & \ddots & \vdots \\
+   a_{m,1} & a_{m,2} & \cdots & a_{m,n}
+\end{bmatrix} $\retTwo\par}
+
+Note that for each $j \in \{1,\ldots,n\}$, we have that the $j$th column of $[\mMat{A}]$ gives\\ the coordinates of $\mMat{A}(\mVecAst{x}_j)$ with respect to the basis $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_m\}$. Thus, we call\\ the vectors $\mMat{A}(\mVecAst{x}_j)$ the \udefine{column vectors} of $[\mMat{A}]$.\retTwo
+
+{\begin{myIndent}\hTwo
+   \uuline{Fact}: There is a one-to-one correspondence between the set of $m\times n$ real\\ matrices and $L(X, Y)$.\\ [-8pt]
+   
+   {\begin{myIndent}\hThree
+      Firstly, let $\mMat{A} \in L(X, Y)$. Then we already saw above how to construct\\ a matrix $[\mMat{A}]$ from the linear mapping $\mMat{A}$.\retTwo
+      
+      Now observe if $\mVec{x} \in X$, then $\mVec{x} = \sum\limits_{j=1}^n c_j\mVecAst{x}_j$. Thus, because $\mMat{A}$ is linear:
+
+      {\centering\fontsize{12}{14}\selectfont 
+      \begin{tabular}{l}
+         $\mMat{A}(\mVec{x}) = \mMat{A}\left(\sum\limits_{j=1}^n c_j\mVecAst{x}_j\right) = \sum\limits_{j=1}^n c_j\mMat{A}(\mVecAst{x}_j)$ \\ [2pt]
+         $\phantom{\mMat{A}(\mVec{x}) = \mMat{A}\left(\sum\limits_{j=1}^n c_j\mVecAst{x}_j\right)} = \sum\limits_{j=1}^n c_j \left(\sum\limits_{i=1}^{m}a_{i,j}\mVecAst{y}_i\right) = \sum\limits_{i=1}^m\left(\sum\limits_{j=1}^n c_ja_{i,j}\right)\hspace{-0.2em}\mVecAst{y}_i$
+      \end{tabular}\par}
+
+      \newpage
+
+      Thus, we have an equation for $\mMat{A}(\mVec{x})$ in terms of the components of $[\mMat{A}]$.\\ Needless to say, if we were instead starting out with an $m \times n$ real\\ matrix $[\mMat{B}] \in \mathcal{M}_{m\times n}(\mathbb{R})$ with components $b_{i,j}$, then we could define the\\ linear map $\mMat{B} \in (L(X, Y))$ given by the rule:
+
+      {\centering $\mMat{B}(\mVec{x}) = \sum\limits_{i=1}^m\left(\sum\limits_{j=1}^n c_jb_{i,j}\right)\hspace{-0.2em}\mVecAst{y}_i$.\retTwo\par}
+   \end{myIndent}}
+
+
+\end{myIndent}}
+
 \end{document}
-
-
-
-
-Set $\Omega$ equals set of invertible $\mMat{A}$
-
-At the end he's trying to show $B \rightarrow A$ impleis that $B^{-1} \rightarrow A^{-1}$.
