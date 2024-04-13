@@ -23,7 +23,7 @@
 \usepackage{amsfonts}
 \usepackage{bm}
 
-\usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
+\usepackage[scr=rsfs, scrscaled=.96]{mathalpha}
 
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage{xfrac}
@@ -647,9 +647,9 @@ Even though derivatives are not necessarily continuous, we can show they always\
 
         Note that $\frac{f(y) - f(x)}{g(y) - g(x)}\cdot\frac{g(x) - g(y)}{g(x)} = \frac{f(x) - f(y)}{g(x)} = \frac{f(x)}{g(x)} - \frac{f(y)}{g(x)}$ and\\ $\frac{g(x) - g(y)}{g(x)} = 1 - \frac{g(y)}{g(x)}$. Thus, we can rearrange terms to get that:\\ [-8pt]
 
-         {\center $ \frac{f(x)}{g(x)} < \left(1 - \frac{g(y)}{g(x)}\right)r + \frac{f(y)}{f(x)}$ \retTwo\par}
+         {\center $ \frac{f(x)}{g(x)} < \left(1 - \frac{g(y)}{g(x)}\right)r + \frac{f(y)}{g(x)}$ \retTwo\par}
 
-         Now, $\lim\limits_{x\rightarrow a}\left(\left(1 - \frac{g(y)}{g(x)}\right)r + \frac{f(y)}{f(x)}\right) = (1 - 0)r + 0 = r$. So, there is\\ $c_3 \in (a, c_2)$ such that $\forall x \in (a, c_3), \myHS \left(1 - \frac{g(y)}{g(x)}\right)r + \frac{f(y)}{f(x)} < q$.\retTwo
+         Now, $\lim\limits_{x\rightarrow a}\left(\left(1 - \frac{g(y)}{g(x)}\right)r + \frac{f(y)}{g(x)}\right) = (1 - 0)r + 0 = r$. So, there is\\ $c_3 \in (a, c_2)$ such that $\forall x \in (a, c_3), \myHS \left(1 - \frac{g(y)}{g(x)}\right)r + \frac{f(y)}{g(x)} < q$.\retTwo
 
          Hence, $\forall x \in (a, c_3)$, $\frac{f(x)}{g(x)} < q$.\retTwo
       \end{myIndent}}
@@ -758,10 +758,89 @@ At least, we can still make the following theorem which is both similar to the\\
 {\begin{myIndent}\hTwo
    Proposition \propCount: Let $\mVec{f}: [a, b] \longrightarrow \mathbb{R}^k$. Assume $\mVec{f}$ is continuous on $[a, b]$ and\\ differentiable on $(a, b)$. Then there is $x \in (a, b)$ such that:
 
-   {\centering $\|\mVec{f}(b) - \mVec{f}(a)\| \leq (b-a)\|\mVec{f}^\prime(x)\|$ \par}
+   {\centering $\|\mVec{f}(b) - \mVec{f}(a)\| \leq (b-a)\|\mVec{f}^\prime(x)\|$\retTwo\par}
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Define $g: [a, b] \longrightarrow \mathbb{R}$ by $g(x) = (\mVec{f}(b) - \mVec{f}(a)) \cdot \mVec{f}(x)$. Then $g$ is\\ continuous on $[a, b]$ and differentiable on $(a, b)$. So by the mean value\\ theorem there is $x \in (a, b)$ with $g(b) - g(a) = (b-a)g^\prime(x)$.\retTwo
+
+      Now note that:\\
+      \begin{tabular}{l}
+         $\left|g(b) - g(a)\right| = \left|\left(\mVec{f}(b) - \mVec{f}(a)\right)\cdot\mVec{f}(b) - \left(\mVec{f}(b) - \mVec{f}(a)\right)\cdot\mVec{f}(a)\right|$\\ [10pt]
+         $\phantom{\left|g(b) - g(a)\right|} = \left|\left(\mVec{f}(b) - \mVec{f}(a)\right)\cdot\left(\mVec{f}(b) - \mVec{f}(a)\right)\right|$\\ [8pt]
+         $\phantom{\left|g(b) - g(a)\right|} = \left\|\mVec{f}(b) - \mVec{f}(a)\right\|^2$
+      \end{tabular}\retTwo
+
+      Meanwhile, we also have that:
+      
+      {\centering $|g^\prime(x)| = \left|\left(\mVec{f}(b) - \mVec{f}(a)\right)\cdot\mVec{f}^\prime(x)\right| \leq \left\|\mVec{f}(b) - \mVec{f}(a)\right\|\left\|\mVec{f}^\prime(x)\right\| $ \retTwo\par}
+
+      Therefore, we can combine equations to get that:
+
+      {\centering 
+      \begin{tabular}{l}
+         $\|\mVec{f}(b) - \mVec{f}(a)\|^2 = |g(b) - g(a)|$\\
+         $\phantom{\|\mVec{f}(b) - \mVec{f}(a)\|^2} = |b-a||g^\prime(x) \leq |b-a|\|\mVec{f}(b) - \mVec{f}(a)\|\|f^\prime(x)\|$
+      \end{tabular}\retTwo\par}
+
+      Now if $\mVec{f}(b) - \mVec{f}(a) = \mVec{0}$, then this proposition is true trivially. So, it is\\ safe to assume that $\|\mVec{f}(b) - \mVec{f}(a)\| \neq 0$. Then after canceling that, we get:\\ [-8pt]
+
+      {\centering $\|\mVec{f}(b) - \mVec{f}(a)\| \leq |b-a|\|f^\prime(x)\|$\retTwo\par}
+   \end{myIndent}}
 \end{myIndent}}
 
+\mySepTwo
 
+\markLecture{4/10/2024}
+
+Now we move on to integrals\dots\retTwo
+
+To start, we define a \udefine{partition} of $[a, b]$ as a finite ordered set $P = \{x_0, x_1, \ldots, x_n\}$\\ with $a = x_0 < x_1 < \ldots < x_{n-1} < x_{n} = b$.
+
+{\begin{myTindent}\begin{myTindent}\teachComment
+   Note that in almost any other mathematical\\ context, a partition means something else.\retTwo
+\end{myTindent}\end{myTindent}}
+
+\newpage
+Here is how we define \uuline{Riemann integrals}:
+
+\begin{myIndent}
+   Firstly, given a partition $P$ with $n + 1$ points, we write $\Delta x_i = x_i - x_{i-1}$\\ for each $i \in \{1, \ldots, n\}$.\retTwo
+   
+   Now let $f: [a, b] \longrightarrow \mathbb{R}$ be a bounded function and $P = \{x_0, \ldots, x_n\}$\\ be a partition of $[a, b]$. Then, we define for each $i \in \{1, \ldots, n\}$: \\ [-18pt]
+   
+   \begin{itemize}
+      \item $m_i = \inf\{f(x) \mid x_{i-1} \leq x \leq x_i\}$
+      \item $M_i = \sup\{f(x) \mid x_{i-1} \leq x \leq x_i\}$
+   \end{itemize}
+   
+   Next, we define the \udefine{lower estimate}: $L(P, f) = \sum\limits_{i=1}^n m_i\Delta x_i$.\\
+   Simiarly, we define the \udefine{upper estimate}: $U(P, f) = \sum\limits_{i=1}^n M_i\Delta x_i$\retTwo
+   
+   Finally, letting $\mathcal{P}$ be the set of all partitions of $[a, b]$, we define:
+   {\begin{myDindent}\begin{myIndent}\myComment 
+      ($\mathcal{P}$ is not standard notation for that set. I just now made it up.)
+   \end{myIndent}\end{myDindent}}
+   
+   \begin{itemize}
+      \item the \udefine{lower Riemann integral} as $\underline{\displaystyle\int_a^b}fdx = \sup\limits_{P \in \mathcal{P}}L(P, f)$
+      \item the \udefine{upper Riemann integral} as $\overline{\displaystyle\int_a^b}fdx = \inf\limits_{P \in \mathcal{P}}U(P, f)$\\
+   \end{itemize}
+   
+   And if $\underline{\int_a^b}fdx = \overline{\int_a^b}fdx$, then we denote the common value $\int_a^bfdx$ and call\\ it the \udefine{Riemann integral} of $f$ on $[a, b]$. Also, we call $f$ \udefine{Riemann integrable}\\ on $[a, b]$.\retTwo
+\end{myIndent}
+
+\exOne
+Some notes:
+\begin{myIndent}\exTwo
+   We write $\mathscr{R}_a^b$ to refer to the set of all functions that are Riemann\\ integrable on $[a, b]$.\retTwo
+
+   Also, since $f$ is bounded, there are $m$ and $M$ with $\forall x \in [a, b],$\\ $m \leq f(x) \leq M$. Therefore, for every partition $P$:
+   
+   {\centering $m(b - a) \leq L(P, f) \leq U(P, f) \leq M(b-a)$.\retTwo\par}
+
+   So, $\underline{\int_a^b}fdx$ and $\overline{\int_a^b}fdx$ are always defined.
+\end{myIndent}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
@@ -802,55 +881,38 @@ Our textbook is \textit{Principles of Mathematical Analysis} by Walter Rudin.
    For all $a < x_1 < x_2 < b$, we know by the mean value theorem that there exists\\ $t \in (x_1, x_2)$ with $f(x_2) - f(x_1) = (x_2 - x_1)f^\prime(t)$. Since $(x_2 - x_1)$ and $f^\prime(t)$ are\\ positive, we thus have that $f(x_2) - f(x_1) > 0$.\retTwo
 \end{myIndent}}
 
-As a consequence of $f$ being strictly increasing, we know $f$ is injective. Thus if we\\ restrict the codomain of $f$ to its image, then $f$ is bijective, meaning there exists a\\ function $g = f^{-1}$ such that $(g \circ f)(x) = x = (f \circ g)(x)$. Now we show that\\ for all $y \in \domain{g},\myHS y \in \domain{g}^\prime$ and $g(z) \rightarrow g(y)$ as $z \rightarrow y$.
+As a consequence of $f$ being strictly increasing, we know $f$ is injective. Thus, if we\\ restrict the codomain of $f$ to its image, then $f$ is bijective, meaning there exists a\\ function $g = f^{-1}$ such that $(g \circ f)(x) = x = (f \circ g)(x)$. Now we show that\\ $g$ is differentiable at $f(x)$ for all $x \in \domain{f}$.
 
-{\begin{myIndent}\pracTwo
-   Let $y \in \domain{g}$. Then there exists $x \in \domain{f}$ such that $f(x) = y$ and $g(y) = x$. But,\\ since $\domain{f}$ is an open set, we know that $x$ is an interior point of $\domain{f}$. Hence, there\\ [-2pt] exists $r$ such that $[x - r, x + r] \subseteq \domain{f}$. Let $\widehat{f}$ be the restriction of $f$ whose domain is\\ $[x - r, x + r]$ and whose codomain is the image of $[x - r, x + r]$ with respect to $f$.\retTwo
-   
-   Because $f$ is differentiable, we know $f$ is continuous. Then, note that\\ $\forall x_0 \in \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right) \cap \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right)\hspace{-0.2em}{\displaystyle\vphantom{a}^{\prime}}, \myHS \lim\limits_{t \rightarrow x_0}\widehat{f}(t) = \lim\limits_{t \rightarrow x_0}f(t) = f(x_0) = f(x_0) = \widehat{f}(x_0)$.\\ [-5pt] So, $\widehat{f}$ is a continuous function over its domain. Also, note that $\widehat{f}$ is still bijective.\retTwo
+{\begin{myIndent} \pracTwo
+   Fix $x \in \domain{f}$. Then letting $\varepsilon > 0$, $x_1 = \max(a, x-\varepsilon)$, and $x_2 = \min(b, x+\varepsilon)$,\\ define $c = \hspace{-0.9em}\inf\limits_{x_1 < t < x_2}\hspace{-0.8em}f(t)$ and $d = \hspace{-0.7em}\sup\limits_{x_1 < t < x_2}\hspace{-0.7em}f(t)$.\retTwo
 
-   Meanwhile $[x - r, x + r] = \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right)$ is compact and connected. Firstly, this means\\ [-2pt] that $\widehat{f}^{-1}$ is continuous. Secondly, this tells us that the image of $[x - r, x + r]$ is\\ [2pt]     connected. Because $f$ and thus $\widehat{f}$ is strictly increasing, we know that:\\ [2pt] $\widehat{f}(x - r) < \widehat{f}(x) = f(x) = y < \widehat{f}(x + r)$. So, $[\widehat{f}(x - r), \widehat{f}(x + r)]$ is a subset of the domain of $\widehat{f}^{-1}$ and $y$ is an interior point of that subset of the domain.\\ [6pt]
+   Now suppose $s \in (a, b)$ such that $s \leq x_1$. Then because $f$ is strictly increasing,\\ we have that $f(s) < f(t)$ for all $t \in (x_1, x_2)$. Hence, $f(s) \leq c$. Similarly, if $s \geq x_2$,\\ then $f$ being strictly increasing means that $f(s) > f(t)$ for all $t \in (x_1, x_2)$. That\\ in turn would mean that $f(s) \geq d$. So, we've proven by contrapositive that:
 
-   $[\widehat{f}(x - r), \widehat{f}(x + r)]$ is perfect, meaning $y$ is a limit point of $[\widehat{f}(x - r), \widehat{f}(x + r)]$.\\ In turn, this means $y$ is a limit point of $\mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right)$ and $\domain{g}$ because:
+   {\centering $f(s) \in (c, d) \Longrightarrow s \in (x_1, x_2)$\retTwo\par}
+
+   Meanwhile because $x$ can't equal $a$ or $b$ we know that $x_1 < x < x_2$. So pick $t_1$ and $t_2$\\ such that $x_1 < t_1 < x < t_2 < x_2$. Then by the definition of supremums and infimums\\ and because $f$ is strictly increasing, we know that $c \leq f(t_1) < f(t_2) \leq d$. Also, because\\ $[t_1, t_2]$ is a connected subset of $\domain{f}$ and $f$ is continuous, we know that at least the\\ connected interval $[f(t_1), f(t_2)] \subseteq [c, d]$ is a subset of $\domain{g}$. At the same time, also\\ because $f$ is strictly increasing, $f(t_1) < f(x) < f(t_2)$.\retTwo
+
+   Therefore, set $\delta = \min(f(x) - f(t_1), \myHS f(t_2) - f(x))$. Then firstly, because\\ $B_\delta(f(x)) \subset \domain{g}$, and $f(x) \in B_\delta(f(x))^\prime$, we know that $f(x)$ is a limit point\\ of $\domain{g}$. Secondly, for any $z \in \domain{g}$, we have that:
    
-   {\centering $[\widehat{f}(x - r), \widehat{f}(x + r)] \subseteq \mathrm{dom}\hspace{-0.2em}\left(\widehat{f}\hspace{0.09em}\right) \subseteq \domain{g}$.\retTwo\par}
+   {\centering $z = f(s) \in B_\delta(f(x)) \subseteq (c, d) \Longrightarrow g(z) = s \in (x_1, x_2) \subseteq B_\varepsilon(x)$.\retTwo\par}
+
+   Hence, $g(z) \rightarrow x$ as $z \rightarrow f(x)$.\retTwo
+
+   Finally, consider the limit: $\hspace{-0.4em}\lim\limits_{z \rightarrow f(x)}\hspace{-0.4em}{\frac{g(z) - g(f(x))}{z - f(x)}}$ which we can rewrite as $\hspace{-0.4em}\lim\limits_{z \rightarrow f(x)}\hspace{-0.2em}{\frac{g(z) - x}{f(g(z)) - f(x)}}$.\retTwo
+
+   Since $f^\prime(x) \neq 0$ for all $x \in \domain{f}$, we can evaluate that $\lim\limits_{t \rightarrow x}\frac{t-x}{f(t) - f(x)} = \frac{1}{f^\prime(x)}$. So, given\\ any sequence $(t_n) \subset \domain{f}$ such that $t_n \rightarrow x$ and $t_n \neq x$ for any $n$, we have that:
    
-   Then as $\widehat{f}^{-1}$ is continuous, we know that $\lim\limits_{z\rightarrow y}\widehat{f}^{-1}(z) = \widehat{f}^{-1}(y)$. Additionally, because\\ [-3pt] $y$ is an interior point of ${[\widehat{f}(x - r), \widehat{f}(x + r)]\text{,}}$ there exists $R > 0$ so that\\ [4pt] $B_R(y) \subset [\widehat{f}(x - r), \widehat{f}(x + r)]$.\\ [6pt]
-   
-   Finally, we show that $g(z) \rightarrow g(y)$ as $z \rightarrow y$.\\ Let $\varepsilon > 0$. Then there exists $\delta > 0$ such that ${|z - y| < \delta \Longrightarrow |\widehat{f}^{-1}(z) - \widehat{f}^{-1}(y)| < \varepsilon\text{.}}$\\ Set $\delta^\prime = \min(\delta, R)$. Then $|z - y| < \delta^\prime \Longrightarrow |g(z) - g(y)| = |\widehat{f}^{-1}(z) - \widehat{f}^{-1}(y)| \leq \varepsilon$.
+   {\centering $\frac{t_n - x}{f(t_n) - f(x)} \rightarrow \frac{1}{f^\prime(g(y))}$ as $n \rightarrow \infty$. \retTwo\par}
+
+   Meanwhile, given any sequence $(z_n) \subset \domain{g}$ such that $z_n \rightarrow f(x)$ and $z_n \neq f(x)$\\ for all $n$, because $g$ is injective and $g(z) \rightarrow x$ as $z \rightarrow f(x)$, we know that $(g(z_n)) \rightarrow x$\\ as $n \rightarrow \infty$ and $g(z_n) \neq x$ for all $n$.
+
+   \newpage
+
+   So for all relevant sequences $(z_n)$, we have that $\frac{g(z_n) - x}{f(g(z_n)) - f(x)} \rightarrow \frac{1}{f^\prime(x)}$. Hence,\\ $g^\prime(f(x))$ exists with:
+
+   {\centering $g^\prime(f(x)) = \hspace{-0.4em}\lim\limits_{z \rightarrow f(x)}\hspace{-0.4em}{\frac{g(z) - g(f(x))}{z - f(x)}} = \hspace{-0.4em}\lim\limits_{z \rightarrow f(x)}\hspace{-0.2em}{\frac{g(z) - x}{f(g(z)) - f(x)}} = \frac{1}{f^\prime(x)}$\retTwo\par}
 \end{myIndent}}
-
-\newpage
-
-Finally, we show that $g$ is differentiable. 
-{\begin{myIndent}\pracTwo
-   Note that $z = f(g(z))$ and $y = f(g(y))$. So, we can write that:
    
-   {\centering $\lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{z - y}} = \lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{f(g(z)) - f(g(y))}}$.\retTwo\par}
-
-   Now let $(z_n)$ be any sequence in the domain of $g$ converging to $y$ such that $z_n \neq y$\\ for any $n$. Since $\lim\limits_{z \rightarrow y}g(z) = g(y)$ for all $y \in \domain{g}$, we know that $g(z_n) \rightarrow g(y)$.\retTwo
-
-   Meanwhile, note that since $f^\prime(x) \neq 0$ for all $x \in \domain{f}$, we can evaluate that:
-   
-   {\centering $\lim\limits_{t \rightarrow g(y)}{\frac{t - g(y)}{f(t) - f(g(y))}} = \frac{1}{f^\prime(g(y))}$.\retTwo\par}
-
-   So, given any sequence $(t_n)$ in the domain of $f$ converging to $g(y)$ such that $t_n \neq g(y)$\\ for any $n$, we have that $\frac{t_n - g(y)}{f(t_n) - f(g(y))} \rightarrow \frac{1}{f^\prime(g(y))}$. Since $g$ is injective and $z_n \neq y$ for any $n$,\\ $(g(z_n))$ is one such sequence. Hence:
-   
-   {\centering $\frac{g(z_n) - g(y)}{f(g(z_n)) - f(g(y))} \rightarrow \frac{1}{f^\prime(g(y))}$. \retTwo\par}
-
-   Since this is true for all relevant $(z_n)$, we conclude that:
-   
-   {\centering $\lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{z - y}} = \lim\limits_{z \rightarrow y}{\frac{g(z) - g(y)}{f(g(z)) - f(g(y))}} = \frac{1}{f^\prime(g(y))}$\retTwo\par}
-
-   Thus, $g^\prime(y)$ exists and equals $\frac{1}{f^\prime(g(y))}$.\retTwo
-   
-   \begin{myDindent}\begin{myDindent}
-      \begin{myClosureOne}{3.5}
-         \\ [-20pt] Plugging in $y = f(x)$, we get that $g^\prime(f(x)) = \frac{1}{f^\prime(x)}$.\\ [-8pt]
-      \end{myClosureOne}\retTwo
-   \end{myDindent}\end{myDindent}
-\end{myIndent}}
-
 \mySepTwo[Black]
 
 \textbf{Exercise 5.4}: If $C_0 + \frac{C_1}{2} + \ldots + \frac{C_{n-1}}{n} + \frac{C_n}{n+1} = 0$ and $C_0, C_1, \ldots, C_n \in \mathbb{R}$, then we\\  shall prove that the equation $C_0 + C_1x + \ldots + C_{n-1}x^{n-1} + C_n x^n= 0$ has at least\\ [2pt] one real root between $0$ and $1$.
@@ -862,9 +924,11 @@ Finally, we show that $g$ is differentiable.
       $F(x) = C_0x + \frac{C_1}{2}x + \ldots + \frac{C_{n-1}}{n}x^n + \frac{C_n}{n+1}x^{n+1}$\retTwo
    \end{myIndent}
 
-   Note that $F(0) = 0$ and $F(1) = C_0 + \frac{C_1}{2} + \ldots + \frac{C_{n-1}}{n} + \frac{C_n}{n+1} = 0$ At the same time,\\ $F$ is differentiable with $F^\prime(x) = f(x)$. Therefore, by the mean value theorem there\\ [1pt] exists $t \in (0, 1)$ such that $0 = F^\prime(t) = f(t)$. Thus, that $t$ is a real root between $0$ and\\ [1pt] $1$ for the equation $C_0 + C_1x + \ldots + C_{n-1}x^{n-1} + C_n x^n= 0$.
+   Note that $F(0) = 0$ and $F(1) = C_0 + \frac{C_1}{2} + \ldots + \frac{C_{n-1}}{n} + \frac{C_n}{n+1} = 0$ At the same time,\\ $F$ is differentiable with $F^\prime(x) = f(x)$. Therefore, by the mean value theorem there\\ [1pt] exists $t \in (0, 1)$ such that $0 = F^\prime(t) = f(t)$. Thus, that $t$ is a real root between $0$ and\\ [1pt] $1$ for the equation $C_0 + C_1x + \ldots + C_{n-1}x^{n-1} + C_n x^n= 0$.\retTwo
 \end{myIndent}}
-\newpage
+
+\mySepTwo[Black]
+
 \textbf{Exercise 5.6}: Suppose the following conditions on $f$:\\ [-22pt]
 \begin{itemize}
    \item[(A)] $f$ is continuous for $x \geq 0$\\[-20pt]
@@ -886,10 +950,10 @@ Putting $g(x) = \frac{f(x)}{x}$ for $x > 0$, we shall prove that $g$ is monotoni
 
    Pick $t > 0$ such that $t < s$ and $\frac{f(s)}{s} = f^\prime(t)$. Then $g^\prime(s) = \frac{1}{s}\left(f^\prime(s) - f^\prime(t)\right)$. But,\\ because of condition D, we know that $f^\prime(s) \geq f^\prime(t)$. Hence, $g^\prime(s) \geq 0$.\retTwo
 
-   Therefore, $g(b) - g(a) \geq 0$, meaning $g$ is monotonically increasing.\retTwo
+   Therefore, $g(b) - g(a) \geq 0$, meaning $g$ is monotonically increasing.
 \end{myIndent}}
 
-\mySepTwo[Black]
+\newpage
 
 \textbf{Exercise 5.8}: Consider any real-valued function $f$ which is differentiable on $[a, b]$ with\\ $f^\prime$ being continuous on $[a, b]$. Then we shall prove that:
 
@@ -909,9 +973,7 @@ Putting $g(x) = \frac{f(x)}{x}$ for $x > 0$, we shall prove that $g$ is monotoni
 An analogous theorem holds for any vector-valued function $\mVec{f}: [a, b] \longrightarrow \mathbb{R}^k$\\ [-2pt] that is differentiable on $[a, b]$ with $\mVec{f}^\prime$ being continuous on $[a, b]$.\\ [-12pt]
 
 \begin{myIndent}\pracTwo
-   Let $\mVec{f}(x) = (f_1(x), f_2(x), \ldots, f_k(x))$. Since $\mVec{f}$ is differentiable on $[a, b]$ and $\mVec{f}^\prime$ is\\ continuous on $[a, b]$, we have for each $i \in \{1, \ldots, k\}$ that $f_i$ is differentiable on $[a, b]$\\ and $f_i^\prime$ is continuous on $[a, b]$.
-
-   \newpage
+   Let $\mVec{f}(x) = (f_1(x), f_2(x), \ldots, f_k(x))$. Since $\mVec{f}$ is differentiable on $[a, b]$ and $\mVec{f}^\prime$ is\\ continuous on $[a, b]$, we have for each $i \in \{1, \ldots, k\}$ that $f_i$ is differentiable on $[a, b]$\\ and $f_i^\prime$ is continuous on $[a, b]$.\retTwo
 
    Thus, given any $\varepsilon > 0$, we already proved that for each $i \in \{1, \ldots, k\}$, there exists\\ $\delta_i > 0$ such that $\forall t, x \in [a, b], \myHS |t - x| < \delta_i \Longrightarrow \left|\frac{f_i(t) - f_i(x)}{t - x} - f_i^\prime(x)\right| < \frac{1}{\sqrt{k}}\cdot \varepsilon$.\\ Then setting $\delta = \min(\delta_1, \ldots, \delta_k)$, we have that if $0 < |t - x| < \delta$, then:
    \begin{center}
@@ -932,12 +994,17 @@ An analogous theorem holds for any vector-valued function $\mVec{f}: [a, b] \lon
 
    Importantly, both $g$ and $h$ are differentiable everywhere on $(a, b)\setminus \{x_0\}$. Also,\\ [3pt] $h^\prime(t) \neq 0$ for all $t \in (a, b)$. Thus, we can apply L'hôpital's rule to get that:
 
-   {\center $ \lim\limits_{t\rightarrow x_0}\frac{f(t) - f(x_0)}{t - x_0} = \lim\limits_{t\rightarrow x_0}\frac{g(t)}{h(t)} = \lim\limits_{t\rightarrow x_0}\frac{g^\prime(t)}{h^\prime(t)} = \lim\limits_{t\rightarrow x_0}f^\prime(t) = L$ \retTwo\par}
+   {\center $ \lim\limits_{t\rightarrow x_0}\frac{f(t) - f(x_0)}{t - x_0} = \lim\limits_{t\rightarrow x_0}\frac{g(t)}{h(t)} = \lim\limits_{t\rightarrow x_0}\frac{g^\prime(t)}{h^\prime(t)} = \lim\limits_{t\rightarrow x_0}f^\prime(t) = L$\par}
+
+   \newpage
 
    Hence $f^\prime(x_0)$ exists and equals $L$.
    
    \begin{myTindent}\begin{myTindent}
-      To answer what's actually asked in the book,\\ set $a = -\infty$, $b = +\infty$, $x_0 = 0$ and $L = 3$.\retTwo
+      
+      \begin{myClosureOne}{3}
+         \\ [-24pt] To answer what's actually asked in the book,\\ set $a = -\infty$, $b = +\infty$, $x_0 = 0$ and $L = 3$.\\ [-12pt]
+      \end{myClosureOne}\retTwo
    \end{myTindent}\end{myTindent}
 \end{myIndent}}
 
@@ -952,10 +1019,10 @@ An analogous theorem holds for any vector-valued function $\mVec{f}: [a, b] \lon
 
    Then by Taylor's theorem, we know that there exists $s \in (0, 1)$ such\\ [2pt] that $f(1) = P(1) + \frac{f^\ppprime(s)}{6}x^3 = \frac{f^\pprime(0)}{2} + \frac{f^\ppprime(s)}{6}$. Similarly, we know that\\ [2pt] there exists $t \in (-1, 0)$ such that $f(-1) = \frac{f^\pprime(0)}{2} - \frac{f^\ppprime(t)}{6}$.\retTwo
 
-   Thus, $\frac{f^\ppprime(s)}{6} + \frac{f^\ppprime(t)}{6} = f(1) - f(-1) = 1$, which in turn means that\\ [2pt] $f^\ppprime(s) + f^\ppprime(t) = 6$. If both $f^\ppprime(s)$ and $f^\ppprime(t)$ are less than $3$, then this\\ [2pt] is impossible. So, either $s$ or $t$ must be greater than or equal to $3$.
+   Thus, $\frac{f^\ppprime(s)}{6} + \frac{f^\ppprime(t)}{6} = f(1) - f(-1) = 1$, which in turn means that\\ [2pt] $f^\ppprime(s) + f^\ppprime(t) = 6$. If both $f^\ppprime(s)$ and $f^\ppprime(t)$ are less than $3$, then this\\ [2pt] is impossible. So, either $s$ or $t$ must be greater than or equal to $3$.\retTwo
 \end{myIndent}}
 
-\newpage
+\mySepTwo[Black]
 
 \textbf{Exercise 5.26}: Suppose $f$ is differentiable on $[a, b]$, $f(a) = 0$, and there is a real number\\ $A$ such that $|f^\prime(x)| \leq A|f(x)|$ for $x \in [a, b]$. Then $f(x) = 0$ for all $x \in [a, b]$.\\ [-8pt]
 
@@ -972,13 +1039,16 @@ An analogous theorem holds for any vector-valued function $\mVec{f}: [a, b] \lon
 
       Now importantly, since $f$ is continuous on $[\gamma, x_0]$, and $g(x) = |x|$ is continuous\\ on all of $\mathbb{R}$, we know that $(g\circ f)(x) = |f(x)|$ is continuous on $[\gamma, x_0]$. That\\ combined with the fact that $[\gamma, x_0]$ is compact means that we can fix $x \in [\gamma, x_0]$\\ such that $|f(x)| = M$. Then:
       \begin{itemize}
-         \item[$\circ$] If $x = \gamma$, then $M = |f(\gamma)| = 0$.\\ [-14pt]
+         \item[$\circ$] If $x = \gamma$, then $M = |f(\gamma)| = 0$.
+         
+         \newpage
+
          \item[$\circ$] If $x \neq \gamma$, then $M = |f(x)| \leq A(x_0 - \gamma)M$. Crucially, if $\gamma < x_0 < \gamma + \frac{1}{A}$\\ [1pt] then $0 < A(x_0 - \gamma) < 1$. Therefore, the only way for $M \leq A(x_0 - \gamma)M$ is\\ [2pt] if $M = 0$.\retTwo
       \end{itemize}
 
-      Thus, for $x_0 \in [\gamma, \gamma + \frac{1}{A}) \cap [\gamma, b]$, we have that $\hspace{-1.6em}\sup\limits_{\gamma\leq x\leq \min(x_0, b)}\hspace{-1.6em}|f(x)| = 0$.\retTwo
+      Thus, for $x_0 \in [\gamma, \gamma + \frac{1}{A}) \cap [\gamma, b]$, we have that $\hspace{-0.5em}\sup\limits_{\gamma\leq x\leq x_0}\hspace{-0.5em}|f(x)| = 0$.\retTwo
 
-      In other words, $f(x) = 0$ for all $x \in [\gamma, \gamma + \frac{1}{A}) \cap [\gamma, b]$.\retTwo
+      Or in other words, $f(x) = 0$ for all $x \in [\gamma, \gamma + \frac{1}{A}) \cap [\gamma, b]$.\retTwo
    \end{myIndent}
 
    Still assuming $A > 0$, we have that $0 < \frac{1}{2A} < \frac{1}{A}$. So for any $\gamma \in [a, b]$, we know\\ [2pt] that $[\gamma, \gamma + \frac{1}{2A}) \cap [\gamma, b] \subseteq [\gamma, \gamma + \frac{1}{A}) \cap [\gamma, b]$. Hence, we now proceed by the\\ [2pt] following inductive process:
@@ -992,7 +1062,7 @@ An analogous theorem holds for any vector-valued function $\mVec{f}: [a, b] \lon
       \end{myIndent}
    \end{myIndent}
 
-   This algorithm will terminate in $\left\lceil \frac{b - a}{\frac{1}{A}}\right\rceil$ iterations, thus showing that $f(x) = 0$\\ for all $x \in [a, b]$.
+   This process will terminate after $\left\lceil \frac{b - a}{\frac{1}{A}}\right\rceil$ iterations, thus showing that $f(x) = 0$\\ for all $x \in [a, b]$.
    \retTwo
 \end{myIndent}}
 
