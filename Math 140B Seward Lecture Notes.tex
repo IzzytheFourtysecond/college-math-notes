@@ -805,7 +805,7 @@ To start, we define a \udefine{partition} of $[a, b]$ as a finite ordered set $P
 Here is how we define \uuline{Riemann integrals}:
 
 \begin{myIndent}
-   Firstly, given a partition $P$ with $n + 1$ points, we write $\Delta x_i = x_i - x_{i-1}$\\ for each $i \in \{1, \ldots, n\}$.\retTwo
+   Firstly, given a partition $P = \{x_0, x_1, \ldots, x_n\}$, we write $\Delta x_i = x_i - x_{i-1}$\\ for each $i \in \{1, \ldots, n\}$.\retTwo
    
    Now let $f: [a, b] \longrightarrow \mathbb{R}$ be a bounded function and $P = \{x_0, \ldots, x_n\}$\\ be a partition of $[a, b]$. Then, we define for each $i \in \{1, \ldots, n\}$: \\ [-18pt]
    
@@ -839,8 +839,160 @@ Some notes:
    
    {\centering $m(b - a) \leq L(P, f) \leq U(P, f) \leq M(b-a)$.\retTwo\par}
 
-   So, $\underline{\int_a^b}fdx$ and $\overline{\int_a^b}fdx$ are always defined.
+   So, $\underline{\int_a^b}fdx$ and $\overline{\int_a^b}fdx$ are always defined.\retTwo
 \end{myIndent}
+
+\newpage
+
+\hOne
+Meanwhile, here is how we define \uuline{Riemann-Stieltjes integrals}:
+\begin{myIndent}
+   Let $\alpha: [a, b] \longrightarrow \mathbb{R}$ be monotone increasing. Then given a partition\\ $P = \{x_0, x_1, \ldots, x_n\}$, we write $\Delta \alpha_i = \alpha(x_i) - \alpha(x_{i-1})$ for each\\ $i \in \{1, \ldots, n\}$.\retTwo
+
+   Now let $f: [a, b] \longrightarrow \mathbb{R}$ be a bounded function and $P = \{x_0, \ldots, x_n\}$\\ be a partition of $[a, b]$. After defining  $m_i$ and $M_i$ like before, we\\ then define:\\ [-22pt]
+   \begin{itemize}
+      \item the \udefine{lower estimate}: $L(P, f, \alpha) = \sum\limits_{i=1}^n m_i\Delta \alpha_i$
+      \item the \udefine{upper estimate}: $U(P, f, \alpha) = \sum\limits_{i=1}^n M_i\Delta \alpha_i$\retTwo
+   \end{itemize}
+
+   Finally, we define:
+   
+   \begin{itemize}
+      \item the \udefine{lower Riemann-Stieltjes integral} as $\underline{\displaystyle\int_a^b}fd\alpha = \sup\limits_{P \in \mathcal{P}}L(P, f, \alpha)$
+      \item the \udefine{upper Riemann-Stieltjes integral} as $\overline{\displaystyle\int_a^b}fd\alpha = \inf\limits_{P \in \mathcal{P}}U(P, f, \alpha)$\\
+   \end{itemize}
+   
+   And if $\underline{\int_a^b}fd\alpha = \overline{\int_a^b}fd\alpha$, then we denote the common value $\int_a^bfd\alpha$ and call\\ it the \udefine{Riemann-Stieltjes integral} of $f$ on $[a, b]$ with respect to $\alpha$. Also, we call\\ $f$ \udefine{Riemann-Stieltjes integrable} on $[a, b]$ with respect to $\alpha$.\retTwo
+\end{myIndent}
+
+\exOne
+Some notes:
+\begin{myIndent}\exTwo
+   We write $\mathscr{R}_a^b(\alpha)$ to refer to the set of all functions that are Riemann\\ integrable on $[a, b]$ with respect to $\alpha$.\retTwo
+
+   Also, by defining $\alpha(x) = x$, we can see that the Riemann-Stieltjes integral\\ is strictly more general than the Riemann integral.\retTwo
+\end{myIndent}
+
+\hOne
+\mySepTwo
+
+\markLecture{4/12/2024}
+
+Let $P_1$ and $P_2$ be partitions of $[a, b]$. We say $P_2$ \udefine{refines} $P_1$ if $P_1 \subset P_2$.\retTwo
+
+Also, given two partitions $P_1$ and $P_2$ of $[a, b]$, their \udefine{common refinement} is\\ $P_1 \cup P_2$ (reordered so that $x_i < x_{i+1}$ for all $i$).
+
+\newpage
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: If $P^*$ is a refinement of $P$, then for all bounded $f$ and all\\ monotone increasing $\alpha$: 
+   
+   {\centering$L(P, f, \alpha) \leq L(P^*, f, \alpha)$ and $U(P, f, \alpha) \geq U(P^*, f, \alpha)$.\retTwo\par}
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Firstly, since partitions are finite by definition, let's assume $P^* \setminus P$ consists\\ of a single point $x^*$. After all, we can use induction to extend this result to\\ when $|P^* \setminus P| > 1$. Also, let's focus on the lower estimate of $P^*$ and $P$\\ because the proof of this proposition for the upper estimate is mostly\\ identical.\retTwo
+
+      Say $P = \{x_0, x_1, \ldots, x_n\}$ and $x_{j-1} < x^* < x_j$ for some $j \in \{1,\ldots, n\}$.\\ Then define $m_i = \inf\{f(x) \mid x_{i-1} \leq x \leq x_i\}$ for each $i \in \{1, \ldots, n\}$,\\ $h_1 = \inf\{f(x) \mid x_{j-1} \leq x \leq x^*\}$, and $h_2 = \inf\{f(x) \mid x^* \leq x \leq x_j\}$.\retTwo
+
+      Notice that $h_1, h_2 \geq m_j$. Also, we have that:
+      
+      {\centering$\alpha(x_j) - \alpha(x_{j-1}) = (\alpha(x_j) - \alpha(x^*)) + (\alpha(x^*) - \alpha(x_{j-1}))$.\retTwo\par}
+
+      Thus after canceling out many dupicate terms, we have that:
+      \end{myIndent}}\end{myIndent}}
+      {\begin{center}\hThree\fontsize{11}{13}\selectfont
+         \begin{tabular}{l}
+            $L(P^*, f, \alpha) - L(P, f, \alpha) = h_2(\alpha(x_j) - \alpha(x^*)) + h_1(\alpha(x^*) - \alpha(x_{j-1})) - m_j(\alpha(x_j) - \alpha(x_{j-1}))$\\ [3pt]
+            $\phantom{L(P^*, f, \alpha) - L(P, f, \alpha)} = (h_1 - m_j)(\alpha(x^*) - \alpha(x_{j-1})) + (h_2 - m_j)(\alpha(x_j) - \alpha(x^*))$\\ [3pt]
+            $\phantom{L(P^*, f, \alpha) - L(P, f, \alpha)} \geq 0$ (because $\alpha$ is monotone increasing and $h_1, h_2 \geq m_j$)
+         \end{tabular}
+      \end{center}}
+      {\begin{myIndent}\hTwo{\begin{myIndent}\hThree
+
+      So $L(P^*, f, \alpha) \geq L(P, f, \alpha)$.\retTwo\retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: For every bounded $f$ and monotone increasing $\alpha$:\\ [-23pt]
+   
+   \[\underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha\]
+
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      If $P_1$ and $P_2$ are any partitions of $[a, b]$, then let $P^*$ be their common\\ refinement. Now obviously we have that $L(P^*, f, \alpha) \leq U(P^*, f, \alpha)$\\ because $m_i \leq M_i$ for each $i$. Combining that with the previous\\ proposition, we have that:
+
+      {\centering $L(P_1, f, \alpha) \leq L(P^*, f, \alpha) \leq U(P^*, f, \alpha) \leq U(P_2, f, \alpha)$\retTwo\par}
+
+      Therefore, taking the supremum over all $P_1$, we get that: 
+
+      {\centering$\underline{\int_a^b}fd\alpha \leq U(P_2, f, \alpha)$ for all $P_2$.\retTwo\par}
+
+      Then, taking the infimum over all $P_2$, we get that: $\underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha$.
+   \end{myIndent}}
+
+   \newpage
+
+   Proposition \propCount: Let $f$ be bounded and $\alpha$ monotone increasing. Then:
+   
+   {\centering $f \in \mathscr{R}_a^b(\alpha) \Longleftrightarrow \forall \varepsilon > 0,\myHS \exists P \suchthat U(P, f, \alpha) - L(P, f, \alpha) < \varepsilon$.\retTwo\par}
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      ($\Longleftarrow$) For any partition $P$, we have that:
+      
+      {\centering$L(P, f, \alpha) \leq \underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha \leq U(P, f, \alpha)$.\retTwo\par}
+
+      Thus, if $U(P, f, \alpha) - L(P, f, \alpha) < \varepsilon$, we have that:
+      
+      {\center$0 \leq \overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha \leq U(P, f, \alpha) - L(P, f, \alpha) < \varepsilon$.\retTwo\par}
+
+      Thus, from the right-hand hypothesis we get that $\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha = 0$,\\ [-4pt] which means that $f \in \mathscr{R}_a^b(\alpha)$.\retTwo
+
+      ($\Longrightarrow$) Assuming $f$ is integrable gives us that $\underline{\int_a^b}fd\alpha = \int_a^bfd\alpha = \overline{\int_a^b}fd\alpha$.\retTwo
+      
+      So, let $\varepsilon > 0$ and pick two partitions $P_1$ and $P_2$ such that:
+      \begin{itemize}
+         \item $L(P_1, f, \alpha) > \underline{\int_a^b}fd\alpha - \sfrac{\varepsilon}{2} = \int_a^bfd\alpha - \sfrac{\varepsilon}{2}$
+         \item $U(P_2, f, \alpha) < \overline{\int_a^b}fd\alpha + \sfrac{\varepsilon}{2} = \int_a^bfd\alpha + \sfrac{\varepsilon}{2}$\\
+      \end{itemize}
+
+      Then let $P^*$ be the common refinement of $P_1$ and $P_2$. That way,\\ when abbreviating $\int_a^bfd\alpha$ as the constant $c$, we have that:\\ [-8pt]
+
+      {\centering\fontsize{12}{14}\selectfont $c - \sfrac{\varepsilon}{2} < L(P_1, f, \alpha) \leq L(P^*, f, \alpha) \leq U(P^*, f, \alpha) \leq U(P_2, f, \alpha) < c + \sfrac{\varepsilon}{2}$.\retTwo\par}
+
+      So $U(P^*, f, \alpha) - L(P^*, f, \alpha) < \varepsilon$.\retTwo\retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: Let $f$ be bounded and $\alpha$ monotone increasing.
+   \begin{itemize}
+      \item[(A)] If $P^*$ refines $P$, then $U(P^*, f, \alpha) - L(P^*, f, \alpha) \leq U(P, f, \alpha) - L(P, f, \alpha)$.
+      
+      {\begin{myIndent}\hThree
+         Proof: This is just restating proposition 94.\retTwo
+      \end{myIndent}}
+   \end{itemize}
+   Consider any partition $P = \{x_0, \ldots, x_n\}$ and for each $i \in \{1, \ldots, n\}$,\\ pick $s_i, t_i \in [x_{i-1}, x_i]$.
+   \begin{itemize}
+      \item[(B)] $\sum\limits_{i=1}^n\left|f(s_i) - f(t_i)\right|\Delta \alpha_i \leq U(P, f, \alpha) - L(P, f, \alpha)$
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         \retTwo
+      \end{myIndent}}
+
+      \newpage
+
+      \item[(C)] If $f \in \mathscr{R}_a^b(\alpha)$, then $\left|\sum\limits_{i=1}^n f(s_i)\Delta \alpha_i - \int_a^b fd\alpha\right| \leq U(P, f, \alpha) - L(P, f, \alpha)$.
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         \retTwo
+      \end{myIndent}}
+   \end{itemize}
+
+\end{myIndent}}
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
@@ -856,9 +1008,9 @@ Some notes:
       \myVS 87 & 5.9  & 88 & 5.10 \\ \hdashline[10pt/3pt]
       \myVS 89 & 5.11 & 90 & 5.12 \\ \hdashline[10pt/3pt]
       \myVS 91 & 5.13 & 92 & 5.15 \\ \hdashline[10pt/3pt]
-      \myVS 93 & 5.19 & 94 &  \\ \hdashline[10pt/3pt]
-      \myVS 95 &  & 96 &  \\ \hdashline[10pt/3pt]
-      \myVS 97 &  & 98 &  \\ \hdashline[10pt/3pt]
+      \myVS 93 & 5.19 & 94 & 6.4  \\ \hdashline[10pt/3pt]
+      \myVS 95 & 6.5 & 96 & 6.6 \\ \hdashline[10pt/3pt]
+      \myVS 97 & 6.7 & 98 &  \\ \hdashline[10pt/3pt]
       \myVS 99 &  & 100 &  \\ \hdashline[10pt/3pt]
       \myVS 101 &  & 102 &  \\ \hdashline[10pt/3pt]
       \myVS 103 &  & 104 &  \\ \hdashline[10pt/3pt]
@@ -869,6 +1021,12 @@ Some notes:
 \retTwo
 
 Our textbook is \textit{Principles of Mathematical Analysis} by Walter Rudin.
+
+
+
+
+
+
 
 \newpage
 \pracOne
