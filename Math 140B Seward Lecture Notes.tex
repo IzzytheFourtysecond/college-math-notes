@@ -604,7 +604,7 @@ Even though derivatives are not necessarily continuous, we can show they always\
       \end{myDindent}}
    \end{myIndent}}
 
-   Propositon \propCount: (L'Hôpital's rule)\\
+   Proposition \propCount: (L'Hôpital's rule)\\
    Suppose $-\infty \leq a \leq b \leq +\infty$, that $f, g: (a, b) \longrightarrow \mathbb{R}$ are differentiable, and that\\ $\forall x \in (a, b), \myHS g^\prime(x) \neq 0$. Then suppose that $\lim\limits_{x\rightarrow a}\frac{f^\prime(x)}{g^\prime(x)} = A \in \mathbb{R} \cup \{-\infty, \infty\}$.\\ If either:
    \begin{itemize}
       \item both $f(x) \rightarrow 0$ and $g(x) \rightarrow 0$ as $x \rightarrow a$
@@ -947,7 +947,7 @@ Also, given two partitions $P_1$ and $P_2$ of $[a, b]$, their \udefine{common re
       
       {\center$0 \leq \overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha \leq U(P, f, \alpha) - L(P, f, \alpha) < \varepsilon$.\retTwo\par}
 
-      Thus, from the right-hand hypothesis we get that $\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha = 0$,\\ [-4pt] which means that $f \in \mathscr{R}_a^b(\alpha)$.\retTwo
+      So, from the right-hand hypothesis we get that $\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha = 0$,\\ [-4pt] which means that $f \in \mathscr{R}_a^b(\alpha)$.\retTwo
 
       ($\Longrightarrow$) Assuming $f$ is integrable gives us that $\underline{\int_a^b}fd\alpha = \int_a^bfd\alpha = \overline{\int_a^b}fd\alpha$.\retTwo
       
@@ -978,7 +978,9 @@ Also, given two partitions $P_1$ and $P_2$ of $[a, b]$, their \udefine{common re
       
       {\begin{myIndent}\hThree
          Proof:\\
-         \retTwo
+         For each $i$, we have that $f(s_i), f(t_i) \in [m_i, M_i]$. So:
+         
+         {\center{\fontsize{12}{14}\selectfont $\sum\limits_{i=1}^n\left|f(s_i) - f(t_i)\right|\Delta \alpha_i \leq \sum\limits_{i=1}^n\left(M_i - m_i\right)\Delta \alpha_i = U(P, f, \alpha) - L(P, f, \alpha)$} \retTwo\par}
       \end{myIndent}}
 
       \newpage
@@ -987,10 +989,178 @@ Also, given two partitions $P_1$ and $P_2$ of $[a, b]$, their \udefine{common re
       
       {\begin{myIndent}\hThree
          Proof:\\
-         \retTwo
+         Since $m_i \leq f(s_i) \leq M_i$ for every $i$, we have that:
+
+         {\centering $L(P, f, \alpha) \leq \sum\limits_{i=1}^n f(s_i)\Delta\alpha_i \leq U(P, f, \alpha)$.\retTwo\par}
+
+         Also, we know that $L(P, f, \alpha) \leq \int_a^b fd\alpha \leq U(P, f, \alpha)$. Thus,\\ combining these inequalities we get that:
+
+         {\center $\left|\sum\limits_{i=1}^n f(s_i)\Delta \alpha - \int_a^b{fd\alpha}\right| \leq U(P, f, \alpha) - L(P, f, \alpha)$ \retTwo\par}
       \end{myIndent}}
    \end{itemize}
+\end{myIndent}}
 
+\markLecture{4/15/2024}
+
+Before, covering some sufficient conditions for integrability, it's worth going\\ over some intuition for the next propositions.
+
+\begin{center}
+   \includegraphics[scale=0.55]{Integrability_rectangles.png}
+\end{center}
+
+{\begin{myIndent}\exOne
+   Imagine the above parametric graph of $(\alpha(t), f(t))$ for $t \in [a, b]$. An important\\ thing this diagram demonstrates is that both $f$ and $\alpha$ can be discontinuous.\retTwo
+
+   Given some partition, each area surrounded by a red rectangle corresponds\\ to the quantity $(M_i - m_i)\Delta \alpha_i$. Also, the sum of all the areas in the red\\ rectangles is $U(P, f, \alpha) - L(P, f, \alpha)$. So by proposition 96, we know that\\ $f \in \mathscr{R}_a^b(\alpha)$ if and only if it possible to minimize the area inside those\\ rectangles.
+
+   \newpage
+
+   Observation:
+   \begin{myIndent}\exTwo
+      \begin{itemize}
+         \item If $\alpha$ has a discontinuity at a point, then we are forced to have a wide\\ rectangle.
+         \item If $f$ has a discontinuity at a point, then we are forced to have a tall\\ rectangle.
+         \item If both $f$ and $\alpha$ are discontinuous at a point, then we're screwed\\ because we're stuck having a wide and tall rectangle.\retTwo\retTwo
+      \end{itemize}
+   \end{myIndent}
+
+   \hTwo
+   Proposition \propCount: If $f: [a, b] \longrightarrow \mathbb{R}$ is continuous and $\alpha: [a, b] \longrightarrow \mathbb{R}$ is\\ monotonically increasing, then $f \in \mathscr{R}_a^b(\alpha)$.
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Recalling proposition 96, let $\varepsilon > 0$. Since $f$ is continuous on the compact\\ set $[a, b]$, it is uniformly continuous. So, there is $\delta > 0$ such that:
+      
+      {\centering $\forall x, t, \in [a, b],\myHS |x-t|<\delta \Longrightarrow |f(x) - f(t)| < \frac{\varepsilon}{\alpha(b) - \alpha(a) + 1}$\\ [4pt]\par}
+
+      {\begin{myDindent}\begin{myDindent}\teachComment
+         We know that $\alpha(b) - \alpha(a) \geq 0$. So, we add $1$ to the\\ denominator to make sure the denominator can not\\ equal $0$.\retTwo
+      \end{myDindent}\end{myDindent}}
+
+      Now pick a partition $P = \{x_0, \ldots, x_n\}$ such that $\Delta x_i < \delta$ for all $i$. Then,\\ for each $i$ we have that $M_i - m_i \leq \frac{\varepsilon}{\alpha(b) - \alpha(a) + 1}$.\\ [-8pt]
+      
+      {\begin{myDindent}\begin{myDindent}\teachComment
+         Technically, $M_i - m_i$ is strictly less than $\frac{\varepsilon}{\alpha(b) - \alpha(a) + 1}$\\ but we don't need that fact for this proof.\retTwo
+      \end{myDindent}\end{myDindent}}
+
+      Then:\\
+      \begin{tabular}{l}
+         $U(P, f, \alpha) - L(P, f, \alpha) = \sum\limits_{i=1}^n(M_i - m_i)\Delta \alpha_i$\\ [2pt]
+         $\phantom{U(P, f, \alpha) - L(P, f, \alpha)} \leq \frac{\varepsilon}{\alpha(b) - \alpha(a) + 1}\sum\limits_{i=1}^n\Delta \alpha_i$\\ [2pt]
+         $\phantom{U(P, f, \alpha) - L(P, f, \alpha)} =  \frac{\varepsilon}{\alpha(b) - \alpha(a) + 1}(\alpha(b) - \alpha(a)) \leq \varepsilon$.\retTwo\retTwo
+      \end{tabular}
+   \end{myIndent}}
+
+   Proposition \propCount: If $f: [a, b] \longrightarrow \mathbb{R}$ is monotone and $\alpha: [a, b] \longrightarrow \mathbb{R}$ is\\ continuous and monotone increasing, then $f \in \mathscr{R}_a^b(\alpha)$.
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      We'll assume that $f$ is monotonically increasing because the proof for if\\ $f$ is monotonically decreasing is mostly identical.\retTwo
+
+      Let $\varepsilon > 0$ and pick $n \in \mathbb{Z}^+$ big enough that $\frac{\alpha(b) - \alpha(a)}{n}\left(f(b) - f(a)\right) < \varepsilon$.\\ Since $\alpha$ is continuous, by the intermediate value theorem we can find a\\ partition $P = \{x_0, \ldots, x_n\}$ with $x_0 = a$, $x_n = b$, and
+
+      {\centering $\alpha(x_i) = \alpha(a) + \frac{i}{n}(\alpha(b) - \alpha(a))$.\par}
+
+      \newpage
+
+      Note then that $\Delta \alpha_i = \alpha(x_i) - \alpha(x_{i-1}) = \frac{\alpha(b)- \alpha(a)}{n}$ for all $i$. Also,\\ for all $i$ we have that $m_i = f(x_{i-1})$ and $M_i = f(x_i)$ because $f$ is\\ monotonically increasing. Hence:\\
+      \begin{tabular}{l}
+         $U(P, f, \alpha) - L(P, f, \alpha) = \sum\limits_{i=1}^n(M_i - m_i)\Delta \alpha_i$ \\ [4pt]
+         $\phantom{U(P, f, \alpha) - L(P, f, \alpha)} = \frac{\alpha(b) - \alpha(a)}{n}\cdot \sum\limits_{i=1}^n(f(x_{i}) - f(x_{i-1}))$\\ [4pt]
+         $\phantom{U(P, f, \alpha) - L(P, f, \alpha)} = \frac{\alpha(b) - \alpha(a)}{n}\left(f(b) - f(a)\right) < \varepsilon$\retTwo\retTwo
+      \end{tabular}
+   \end{myIndent}}
+
+   Proposition \propCount: Suppose $f: [a, b] \longrightarrow \mathbb{R}$ is bounded and has only finitely\\ many discontinuities, and that $\alpha: [a, b] \longrightarrow \mathbb{R}$ is monotonically increasing and\\ continuous at every point where $f$ is discontinuous. Then $f \in \mathscr{R}_a^b(\alpha)$.
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Assume that $E = \{e_1, \ldots, e_m\}$ consists of all the points where $f$ is\\ discontinuous and define $M = \sup\{|f(x)| \mid a \leq x \leq b\}$. Let $\varepsilon > 0$.\\ Since $\alpha$ is continuous at each $e_j \in E$, we can pick numbers $u_j  < v_j$\\ for each $j \in \{1, \ldots, m\}$ such that:
+      \begin{myIndent}\begin{enumerate}
+            \item $e_j \in [u_j, v_j]$
+            \item $e_j \in (u_j, v_j)$ when $e_j \notin \{a, b\}$
+            \item $\sum\limits_{j=1}^m\left(\alpha(v_j) - \alpha(u_j)\right) < \varepsilon$\retTwo
+      \end{enumerate}\end{myIndent}
+
+      Now set $K = [a, b] \setminus \bigcup\limits_{j=1}^m(u_j, v_j)$.
+      
+      \retTwo
+
+      Importantly, $K$ is a closed and bounded subset of $\mathbb{R}$, meaning it is\\ compact. Also, $f$ is continuous on $K$ because $K$ doesn't include any\\ points where $f$ is discontinuous except possibly $a$ and $b$. But then, if $f$\\ is discontinuous at $a$ or $b$, then $K$ includes $a$ or $b$ as an isolated point.\retTwo
+
+      Therefore, $f$ is uniformly continuous on $K$, meaning there exists $\delta > 0$\\ such that $\forall s, t \in K, \myHS |s-t|<\delta \Longrightarrow |f(s) - f(t)| < \varepsilon$. So, pick any\\ partition $P = \{x_0, \ldots, x_n\}$ of $[a, b]$ such that:
+      \begin{itemize}
+         \item $\{u_1, v_1, u_2, v_2, \ldots, u_m, v_m\} \subseteq P \subseteq K$
+         \item $x_{i-1} \notin \{u_1, u_2, \ldots, u_m\} \Longrightarrow \Delta x_i < \delta$ for all $i \in \{1, \ldots, n\}$\retTwo
+      \end{itemize}
+
+      Also define $M_i, m_i, \Delta \alpha_i$ as usual using $P$ and note that $M_i - m_i \leq 2M$.\\ Additionally because $P \subseteq K$, we know that $[x_{i-1}, x_{i}] \subseteq K$ unless\\ $x_{i-1} = u_j \text{ for some } j$. And if $x_{i-1} = u_j$, then $x_i = v_j$. Putting all of\\ this together, we get that:\\ [-8pt]
+
+      {\center $(M_i - m_i)\Delta \alpha_i \leq \left\{ 
+      \begin{matrix}
+         2M(\alpha(v_j) - \alpha(u_j)) & \quad & \text{ if } x_{i-1} = u_j \text{ for some } j\\
+         \varepsilon \Delta \alpha_i & \quad & \text{ if } x_{i-1} \notin \{u_1, \ldots, u_m\}
+      \end{matrix} \right.$ \par}
+
+      \newpage
+
+      So:\\
+      \begin{tabular}{l}
+         $U(P, f, \alpha) - L(P, f, \alpha) = \sum\limits_{i=1}^n(M_i - m_i)\Delta \alpha_i$ \\ [4pt]
+         $\phantom{U(P, f, \alpha) - L(P, f, \alpha)} \leq 2M \sum\limits_{j=1}^m\left(\alpha(v_j) - \alpha(u_j)\right) + \varepsilon(\alpha(b) - \alpha(a))$ \\ [7pt]
+         $\phantom{U(P, f, \alpha) - L(P, f, \alpha)} < (2M + \alpha(b) - \alpha(a))\varepsilon$.\retTwo
+      \end{tabular}
+
+      $2M + \alpha(b) - \alpha(a)$ is a constant. Hence, it doesn't change the fact that\\ we can make $\varepsilon$ arbitrarily small and still find a partition $P$ such that\\ $U(P, f, \alpha) - L(P, f, \alpha) < \varepsilon$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\markLecture{4/17/2024}
+
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Suppose that $f: [a, b] \longrightarrow [m, M]$ such that $f \in \mathscr{R}_a^b(\alpha)$, and\\ that $\phi: [m, M] \longrightarrow \mathbb{R}$ is continuous. Then $\phi \circ f \in \mathscr{R}_a^b(\alpha)$.
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Since $\phi$ is continuous and $[m, M]$ is compact, $\phi$ is uniformly continuous.\\ So, there exists $\delta > 0$ such that $\delta < \varepsilon$ and:
+      
+      {\centering$\forall s, t \in [m, M],\myHS |s-t| < \delta \Longrightarrow |\phi(s) - \phi(t)| < \varepsilon$.\retTwo\par}
+
+      Meanwhile, since $f \in \mathscr{R}_a^b(\alpha)$, we can pick a partition $P = \{x_0, \ldots, x_n\}$\\ of $[a, b]$ such that $U(P, f, \alpha) - L(P, f, \alpha) < \delta^2$. So, for each $i \in \{1, \ldots, n\}$,\\ define $m_i$ and $M_i$ using $P$ and $f$, as well as $m_i^*$ and $M_i^*$ using $P$ and $\phi \circ f$.\\ Then define $A = \{i \in \{1, \ldots n\} \mid M_i - m_i < \delta\}$ and $B = \{1, \ldots, n\} \setminus A$.\\ [-9pt]
+      
+      {\begin{myTindent}\begin{myIndent}\teachComment
+         $A$ is our "good" set and $B$ is our "bad" set.
+      \end{myIndent}\end{myTindent}}
+
+      Now:
+      
+      \begin{tabular}{l}
+         $\delta \sum\limits_{i \in B}\Delta \alpha_i \leq \sum\limits_{i \in B}(M_i - m_i)\Delta \alpha_i \leq \sum\limits_{i=1}^n(M_i - m_i)\Delta \alpha_i$\\ [4pt]
+         $\phantom{\delta \sum\limits_{i \in B}\Delta \alpha_i \leq \sum\limits_{i \in B}(M_i - m_i)\Delta \alpha_i} = U(P, f, \alpha) - L(P, f, \alpha) < \delta^2$.\retTwo
+      \end{tabular}
+
+      So, $\sum\limits_{i \in B}\Delta \alpha_i < \delta$. At the same time, we have that $i \in A \Longrightarrow M_i^* - m_i^* \leq \varepsilon$.\retTwo Thus:\\ [-30pt]
+      \begin{center}
+         \begin{tabular}{l}
+            $U(P, \phi \circ f, \alpha) - L(P, \phi \circ f, \alpha) = \sum\limits_{i=1}^n(M_i^* - m_i^*)\Delta \alpha_i$\\ [16pt]
+
+            $\phantom{U(P, \phi \circ f, \alpha) - L(P, \phi \circ f, \alpha)} = \sum\limits_{i\in A}(M_i^* - m_i^*)\Delta \alpha_i + \sum\limits_{i\in B}(M_i^* - m_i^*)\Delta \alpha_i$\\ [14pt]
+
+            $\phantom{U(P, \phi \circ f, \alpha) - L(P, \phi \circ f, \alpha)} \leq \varepsilon \sum\limits_{i\in A}\Delta \alpha_i  + 2\hspace{-0.5em}\sup\limits_{m\leq t\leq M}\hspace{-0.7em}|\phi(t)| \cdot \sum\limits_{i\in B} \Delta \alpha_i$\\ [14pt]
+
+            $\phantom{U(P, \phi \circ f, \alpha) - L(P, \phi \circ f, \alpha)} \leq \varepsilon (\alpha(b) - \alpha(a))  + 2\delta \hspace{-0.5em}\sup\limits_{m\leq t\leq M}\hspace{-0.7em}|\phi(t)|$\\ [14pt]
+
+            $\phantom{U(P, \phi \circ f, \alpha) - L(P, \phi \circ f, \alpha)} \leq (\alpha(b) - \alpha(a) + 2\hspace{-0.5em}\sup\limits_{m\leq t\leq M}\hspace{-0.7em}|\phi(t)|)\varepsilon$
+         \end{tabular}
+      \end{center}
+
+      \newpage
+
+      Now $\alpha(b) - \alpha(a) + 2\hspace{-0.5em}\sup\limits_{m\leq t\leq M}\hspace{-0.7em}|\phi(t)|$ is a constant.\retTwo
+      
+      Thus, we've still shown that we can can make $\varepsilon$ arbitrarily small and then\\ find a partition $P$ such that $U(P, f, \alpha) - L(P, f, \alpha) < \varepsilon$.\retTwo
+   \end{myIndent}}
 \end{myIndent}}
 
 
@@ -1010,10 +1180,14 @@ Also, given two partitions $P_1$ and $P_2$ of $[a, b]$, their \udefine{common re
       \myVS 91 & 5.13 & 92 & 5.15 \\ \hdashline[10pt/3pt]
       \myVS 93 & 5.19 & 94 & 6.4  \\ \hdashline[10pt/3pt]
       \myVS 95 & 6.5 & 96 & 6.6 \\ \hdashline[10pt/3pt]
-      \myVS 97 & 6.7 & 98 &  \\ \hdashline[10pt/3pt]
-      \myVS 99 &  & 100 &  \\ \hdashline[10pt/3pt]
-      \myVS 101 &  & 102 &  \\ \hdashline[10pt/3pt]
+      \myVS 97 & 6.7 & 98 & 6.8 \\ \hdashline[10pt/3pt]
+      \myVS 99 & 6.9 & 100 & 6.10 \\ \hdashline[10pt/3pt]
+      \myVS 101 & 6.11 & 102 &  \\ \hdashline[10pt/3pt]
       \myVS 103 &  & 104 &  \\ \hdashline[10pt/3pt]
+      \myVS 105 &  & 106 &  \\ \hdashline[10pt/3pt]
+      \myVS 107 &  & 108 &  \\ \hdashline[10pt/3pt]
+      \myVS 109 &  & 110 &  \\ \hdashline[10pt/3pt]
+      \myVS 111 &  & 112 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
 
 \end{allowTableDashes}
