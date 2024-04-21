@@ -525,7 +525,7 @@ $\nullity{\mMat{A}} = $ "\udefine{nullity} of $\mMat{A}$" $ = \myDim{\nullSp{\mM
    \end{myIndent}}
 \end{myIndent}}
 
-For $\mMat{A} \in L(X)$, when $\nullity{\mMat{A}} = 0$, we call $\mMat{\mMat{A}}$ \udefine{invertible} and define $\mMat{A}^{-1}: X \longrightarrow X$\\ by $\mMat{A}^{-1}(\mMat{A}(\mVec{x})) = \mVec{x}$ for all $\mVec{x} \in X$.\retTwo
+For $\mMat{A} \in L(X)$, when $\nullity{\mMat{A}} = 0$, we call $\mMat{\mMat{A}}$ \udefine{invertible} and define $\mMat{A}^{-1}: X \longrightarrow X$\\ such that $\mMat{A}^{-1}(\mMat{A}(\mVec{x})) = \mVec{x}$ for all $\mVec{x} \in X$.\retTwo
 
 {\begin{myIndent}\exOne
    Because $\mMat{A}$ must be a bijective set function, we know that $\mMat{A}^{-1}$ must also be\\ a right-inverse of $\mMat{A}$, meaning $\mMat{A}(\mMat{A}^{-1}(\mVec{x})) = \mVec{x}$.\retTwo
@@ -641,7 +641,7 @@ Throughout this section, we shall prove that $\|\cdot\| : L(\mathbb{R}^n, \mathb
       \end{myIndent}
    \end{myIndent}}
 
-   \uuline{Subcorollary}: Given $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$. there exists $\mVec{x} \in \mathbb{R}^n$ with $\|\mVec{x}\| \leq 1$ such\\ that $\|\mMat{A}(\mVec{x})\| = \|\mMat{A}\|$.\\ [-6pt]
+   \uuline{Subcorollary}: Given $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$, there exists $\mVec{x} \in \mathbb{R}^n$ with $\|\mVec{x}\| \leq 1$ such\\ that $\|\mMat{A}(\mVec{x})\| = \|\mMat{A}\|$.\\ [-6pt]
 
    {\begin{myIndent}\hThree
       Proof:\\
@@ -688,10 +688,7 @@ Specifically because of the four propositions above, we have shown that\\  $\|\c
 \begin{myIndent}\exOne
    Given any $\mMat{A}, \mMat{B}, \mMat{C} \in L(\mathbb{R}^n, \mathbb{R}^m)$, we have:
    \begin{itemize}
-      \item $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\| \geq 0$ with $d(\mMat{A}, \mMat{B}) = 0$
-      {\begin{myIndent}\exTwo
-         Also $d(\mMat{A}, \mMat{B}) = 0$ if and only if $\mMat{A} = \mMat{B}$.
-      \end{myIndent}}
+      \item $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\| \geq 0$ with $d(\mMat{A}, \mMat{B}) = 0$ if and only if $\mMat{A} = \mMat{B}$.
       \item $d(\mMat{A}, \mMat{B}) = \|\mMat{A} - \mMat{B}\| = |-1|\|\mMat{B} - \mMat{A}\| = d(\mMat{B}, \mMat{A})$
       \item $d(\mMat{A}, \mMat{C}) = \|\mMat{A} - \mMat{C}\| \leq \|\mMat{A} - \mMat{B}\| + \|\mMat{B} - \mMat{C}\| = d(\mMat{A}, \mMat{B}) + d(\mMat{B}, \mMat{C})$\retTwo
    \end{itemize}
@@ -810,19 +807,9 @@ For convenience, we can visualize these numbers in an \udefine{$m\times n$ matri
 Note that for each $j \in \{1,\ldots,n\}$, we have that the $j$th column of $[\mMat{A}]$ gives\\ the coordinates of $\mMat{A}(\mVecAst{x}_j)$ with respect to the basis $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_m\}$. Thus, we call\\ the vectors $\mMat{A}(\mVecAst{x}_j)$ the \udefine{column vectors} of $[\mMat{A}]$.\\ [-6pt]
 
 {\begin{myIndent}\hTwo
-   \uuline{Fact 1}: If $\mVec{x} \in X$, then there are unique scalars $c_1, \ldots, c_n$ such that $\mVec{x} = \sum\limits_{j=1}^n c_j\mVecAst{x}_j$.\\ [-10pt] Then, because $\mMat{A}$ is linear:\\ [-6pt]
-   
-   {\centering\fontsize{12}{14}\selectfont 
-   \begin{tabular}{l}
-      $\mMat{A}(\mVec{x}) = \mMat{A}\left(\sum\limits_{j=1}^n c_j\mVecAst{x}_j\right) = \sum\limits_{j=1}^n c_j\mMat{A}(\mVecAst{x}_j)$ \\ [-5pt]
-      $\phantom{\mMat{A}(\mVec{x}) = \mMat{A}\left(\sum\limits_{j=1}^n c_j\mVecAst{x}_j\right)} = \sum\limits_{j=1}^n c_j \left(\sum\limits_{i=1}^{m}a_{i,j}\mVecAst{y}_i\right) = \sum\limits_{i=1}^m\left(\sum\limits_{j=1}^n c_ja_{i,j}\right)\hspace{-0.2em}\mVecAst{y}_i$
-   \end{tabular}\retTwo\par}
-   
-   \newpage
+   \uuline{Fact 1}: Given any $\mVec{x} \in X$, there are unique scalars $c_1, \ldots, c_n$ such that\\ $\mVec{x} = \sum\limits_{j=1}^n c_j\mVecAst{x}_j$. Then, the coordinates of $\mMat{A}(\mVec{x})$ with respect to our basis of $Y$\\ is given by the commonly defined matrix-vector product:\\ [-6pt]
 
-   Thus, the coordinates of $\mMat{A}(\mVec{x})$ with respect to our basis of $Y$ is given by the\\ commonly defined matrix-vector product:
-
-   {\centering $\begin{bmatrix}
+   {\center $\begin{bmatrix}
       a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
       a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
       \vdots & \vdots & \ddots & \vdots \\
@@ -830,9 +817,21 @@ Note that for each $j \in \{1,\ldots,n\}$, we have that the $j$th column of $[\m
    \end{bmatrix}
    \begin{bmatrix}
       c_1 \\ c_2 \\ \vdots \\ c_n
-   \end{bmatrix}$\retTwo\retTwo\par}
+   \end{bmatrix}$\par}
 
-   \uuline{Fact 2}: When we said how to generate an $m\times n$ matrix $[\mMat{A}]$ for any $A \in L(X, Y)$,\\ we were implicitely creating a mapping $\phi : L(X, Y) \longrightarrow \mathcal{M}_{m\times n}(\mathbb{R})$ (the set\\ of $m\times n$ real matrices). Importantly, this map is one-to-one.\\  [-8pt]
+   \newpage 
+
+   {\begin{myIndent}\hThree
+      This is true because $\mMat{A}$ is linear. Therefore:\\ [-6pt]
+
+      {\centering\fontsize{12}{14}\selectfont 
+      \begin{tabular}{l}
+         $\mMat{A}(\mVec{x}) = \mMat{A}\left(\sum\limits_{j=1}^n c_j\mVecAst{x}_j\right) = \sum\limits_{j=1}^n c_j\mMat{A}(\mVecAst{x}_j)$ \\ [-5pt]
+         $\phantom{\mMat{A}(\mVec{x}) = \mMat{A}\left(\sum\limits_{j=1}^n c_j\mVecAst{x}_j\right)} = \sum\limits_{j=1}^n c_j \left(\sum\limits_{i=1}^{m}a_{i,j}\mVecAst{y}_i\right) = \sum\limits_{i=1}^m\left(\sum\limits_{j=1}^n c_ja_{i,j}\right)\hspace{-0.2em}\mVecAst{y}_i$
+      \end{tabular}\retTwo\par}
+   \end{myIndent}}
+
+   \uuline{Fact 2}: When we said how to generate an $m\times n$ matrix $[\mMat{A}]$ for any $A \in L(X, Y)$,\\ we were implicitely creating a mapping $\phi : L(X, Y) \longrightarrow \mathcal{M}_{m\times n}(\mathbb{R})$ (the set\\ of $m\times n$ real matrices). Importantly, this map is invertible.\\  [-8pt]
    
    {\begin{myIndent}\hThree
       Let us define a mapping $\varphi: \mathcal{M}_{m\times n}(\mathbb{R}) \longrightarrow L(X, Y)$ such that for any\\ $[\mMat{B}] \in \mathcal{M}_{m\times n}(\mathbb{R})$ where
@@ -846,30 +845,48 @@ Note that for each $j \in \{1,\ldots,n\}$, we have that the $j$th column of $[\m
 
       \dots we define $\varphi([\mMat{B}]) \in L(X, Y)$ by $\varphi([\mMat{B}])(\mVec{x}) = \sum\limits_{i=1}^m\left(\sum\limits_{j=1}^n c_jb_{i,j}\right)\hspace{-0.2em}\mVecAst{y}_i$ where\\ [-4pt] $c_1, \ldots, c_n$ are the coefficients such that $\mVec{x} = \sum\limits_{j=1}^n c_j\mVecAst{x}_j$.\retTwo
 
-      Firstly, $\varphi([\mMat{B}])$ is well defined because $c_1, \ldots, c_n$ are unique with respect\\ to our basis of $X$. Also $\varphi([\mMat{B}])$ is in fact linear because sums are linear.\retTwo
+      Firstly, $\varphi([\mMat{B}])$ is well defined because $c_1, \ldots, c_n$ are unique with respect\\ to our basis of $X$. Also, $\varphi([\mMat{B}])$ is linear because sums are linear.\retTwo
 
-      Meanwhile, by fact 1 we know that for any $\mMat{A} \in L(X, Y),\myHS \mMat{A} = \varphi(\phi(\mMat{A}))$.\\ At the same time, you can easily check that for any $[\mMat{B}] \in \mathcal{M}_{m\times n}(\mathbb{R})$,\\ $[\mMat{B}] = \phi(\varphi([\mMat{B}]))$. Hence, $\varphi = \phi^{-1}$.\\ [5pt]
+      Meanwhile, by fact 1 we know that for any $\mMat{A} \in L(X, Y),\myHS \mMat{A} = \varphi(\phi(\mMat{A}))$.\\ At the same time, you can easily check that for any $[\mMat{B}] \in \mathcal{M}_{m\times n}(\mathbb{R})$,\\ $[\mMat{B}] = \phi(\varphi([\mMat{B}]))$. Hence, $\varphi = \phi^{-1}$.\retTwo
+      
+      \begin{myTindent}\hFour
+         Thus, from now on we shall say that the linear map $\mMat{A}$ and\\ matrix $[\mMat{A}]$ are associated with each other if $\phi(\mMat{A}) = [\mMat{A}]$\\ and $\varphi([\mMat{A}]) = \mMat{A}$.\\ [5pt]
+      \end{myTindent}
    \end{myIndent}}
 
-   \uuline{Fact 3}: In addition to our bases for $X$ and $Y$, fix $\{\mVecAst{z}_1, \ldots, \mVecAst{z}_p\}$ as our basis for $Z$. Then given any $\mMat{B} \in L(Y, Z)$, for each $k \in {1, \ldots, m}$ there are unique scalars\\ $b_{k, i}$ making up $[\mMat{B}]$ such that:
-
-   {\centering $\mMat{B}(\mVecAst{y}_i) = \sum\limits_{k=1}^p b_{k,i}\mVecAst{z}_k$ \retTwo\par}
-
-   Therefore, for the linear map $\mMat{BA} \in L(X, Z)$, we have that:
+   \uuline{Fact 3}: In addition to our bases for $X$ and $Y$, fix $\{\mVecAst{z}_1, \ldots, \mVecAst{z}_p\}$ as our basis for\\ [1pt] $Z$. Then, given the linear maps $\mMat{A} \in L(X, Y)$ and $\mMat{B} \in L(Y, Z)$ and their\\ [1pt] associated matrices $[\mMat{A}] \in \mathcal{M}_{m\times n}(\mathbb{R})$ and $[\mMat{B}] \in \mathcal{M}_{p\times m}(\mathbb{R})$, we have that\\ [1pt] the map $\mMat{BA}$ is associated with the matrix $[\mMat{B}][\mMat{A}]$.\\  [-8pt]
    
-   {\centering\begin{tabular}{l}
-      $\mMat{B}(\mMat{A}(\mVec{x_j})) = \mMat{B}\left(\sum\limits_{i=1}^m a_{i,j}\mVecAst{y}_i\right) = \sum\limits_{i=1}^m a_{i,j}\mMat{B}(\mVecAst{y}_i)$ \\ [2pt]
-      $\phantom{\mMat{B}(\mMat{A}(\mVec{x_j})) = \mMat{B}\left(\sum\limits_{i=1}^m a_{i,j}\mVecAst{y}_i\right)} = \sum\limits_{i=1}^m a_{i,j}\hspace{-0.25em}\left(\sum\limits_{k=1}^p b_{k,i}\mVecAst{z}_k\right) = \sum\limits_{k=1}^p\hspace{-0.1em}\left(\sum\limits_{i=1}^m(a_{i,j}b_{k,i})\right)\hspace{-0.25em}\mVecAst{z}_k$
-   \end{tabular}\retTwo\par}
+   {\begin{myIndent}\hThree
+      Let us use $a_{i,j}$ and $b_{k,i}$ to refer to the entries of $[\mMat{A}]$ and $[\mMat{B}]$ respectively.\\ Then note that:
 
-   \newpage
+      {\centering{\fontsize{12}{14}\selectfont \begin{tabular}{l}
+         $\mMat{BA}(\mVec{x_j}) = \mMat{B}(\mMat{A}(\mVec{x_j})) = \mMat{B}\left(\sum\limits_{i=1}^m a_{i,j}\mVecAst{y}_i\right) = \sum\limits_{i=1}^m a_{i,j}\mMat{B}(\mVecAst{y}_i)$ \\ [10pt]
 
-   So, the matrix $[\mMat{BA}]$ generated by the linear map $\mMat{B}\mMat{A} \in L(X, Z)$ is given\\ by the commonly defined matrix-matrix product: $[\mMat{B}][\mMat{A}]$.\retTwo
+         $\phantom{\mMat{BA}(\mVec{x_j}) = \mMat{B}(\mMat{A}(\mVec{x_j}))} = \sum\limits_{i=1}^m a_{i,j}\hspace{-0.25em}\left(\sum\limits_{k=1}^p b_{k,i}\mVecAst{z}_k\right) = \sum\limits_{k=1}^p\hspace{-0.1em}\left(\sum\limits_{i=1}^m(a_{i,j}b_{k,i})\right)\hspace{-0.25em}\mVecAst{z}_k$
+      \end{tabular}}\par}
+
+      \newpage
+
+      So, the $(k, j)$th. entry of the matrix associated with $\mMat{BA}$ is $\sum\limits_{i=1}^m b_{k,i}a_{i,j}$.\retTwo
+
+      Hence, the matrix associated with the map $\mMat{B}\mMat{A}$ is precisely the matrix\\ product $[\mMat{B}][\mMat{A}]$.\\ [5pt]
+   \end{myIndent}}
+
+   \uuline{Fact 4}: Suppose that $\mMat{A}$ and $\mMat{B}$ are linear maps in $L(X, Y)$ and that $c_1$ and $c_2$\\ are scalars. Then the matrix $c_1[\mMat{A}] + c_2[\mMat{B}]$ is associated with the linear map\\ $c_1\mMat{A} + c_2\mMat{B}$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      This is rather trivial to prove compared to the other facts. So, since I'm\\ really behind, I'm just not going to prove it here. Frick you <3.\retTwo
+   \end{myIndent}}
 \end{myIndent}}
 
-Now from a rigor point of view, we'd rather work with linear maps than matrices.\\ This is because the defintion of a matrix depends on our choice of bases, whereas\\ linear maps are defined independently of any bases. That said, matrices are too\\ convenient to not be discussed.\retTwo
+Now from a rigor point of view, we'd rather work with linear maps than matrices.\\ This is because the defintion of a matrix depends on what bases we fix, whereas\\ linear maps are defined independently of any bases. That said, matrices are too\\ convenient to not be discussed.\retTwo
 
-One thing going forward though is that for any $\mMat{A} \in L(X, Y)$ and $\mVec{x} \in X$, we\\ shall abbreviate $\mMat{A}(\mVec{x})$ as $\mMat{A}\mVec{x}$ since it is already standard to do that for matrix-\\vector products.\retTwo
+Going foward, here are three notational things from linear we shall adopt when talking about linear maps:
+\begin{enumerate}
+   \item We shall abbreviate $\mMat{A}(\mVec{x})$ as $\mMat{A}\mVec{x}$.
+   \item We shall denote $\mMat{0} \in L(X, Y)$ as the linear map with $\nullSp{\mMat{0}} = X$. After\\ all, $[\mMat{0}]$ is the zero matrix.
+   \item We shall denote $\mMat{I} \in L(X)$ as the identity map on $X$. After all, $[\mMat{I}]$ is the\\ identity matrix.
+\end{enumerate}
 
 \mySepTwo
 
@@ -887,15 +904,17 @@ Since an $m\times n$ matrix can be thought of as a list of $m\cdot n$ numbers, t
    Also, this is a valid norm for the same reasons that the vector Euclidean\\ norm is a valid norm.\retTwo
 \end{myTindent}}
 
+\newpage
+
 If we define $d([\mMat{B}], [\mMat{A}]) = \|[\mMat{B}] - [\mMat{A}]\|_F$, then we can treat $\mathcal{M}_{m\times n}(\mathbb{R})$ as a\\ metric space with the metric $d$.\retTwo
 
 {\begin{myIndent}\hTwo
-   \uuline{Lemma 1}: Using the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$, we have that for any\\ $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ and its associated matrix $[\mMat{A}] \in \mathcal{M}_{m\times n}(\mathbb{R})$ with coefficients\\ $a_{i,j}$ for $1 \leq i \leq m$ and $1 \leq j \leq n$:
+   \uuline{Proposition}: Using the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$, we have that for any\\ associated linear map $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ and matrix $[\mMat{A}] \in \mathcal{M}_{m\times n}(\mathbb{R})$ with\\ coefficients $a_{i,j}$ for $1 \leq i \leq m$ and $1 \leq j \leq n$:
 
    {\center $\|\mMat{A}\| \leq \|[\mMat{A}]\|_F $\retTwo\par}
-
    
    {\begin{myIndent}\hThree
+      Proof:\\
       Let $\mVec{x} = (x_1, \ldots, x_n) \in \mathbb{R}^n$. Then by the Cauchy-Schwarz inequality:    
       \begin{center}
          \begin{tabular}{l}
@@ -903,48 +922,216 @@ If we define $d([\mMat{B}], [\mMat{A}]) = \|[\mMat{B}] - [\mMat{A}]\|_F$, then w
          \end{tabular}\retTwo
       \end{center}
 
-      So $\|\mMat{A}\mVec{x}\|^2 \leq \|\mVec{x}\|^2\cdot \|[\mMat{A}]\|_F^2$. Or in other words, $\|\mMat{A}\|^2 \leq 1\cdot \|[\mMat{A}]\|_F^2$.
+      So $\|\mMat{A}\mVec{x}\|^2 \leq \|\mVec{x}\|^2\cdot \|[\mMat{A}]\|_F^2$. Or in other words, $\|\mMat{A}\|^2 \leq 1\cdot \|[\mMat{A}]\|_F^2$.\retTwo
    \end{myIndent}}
-\end{myIndent}}
 
-\newpage
-
-{\begin{myIndent}\hTwo
-   \uuline{Lemma 2}: For any map $\mMat{A} \in L(X)$ and associated matrix $[\mMat{A}] \in \mathcal{M}_{n\times n}(\mathbb{R})$,\\ we have that $\mMat{A}$ is invertible if and only if $[\mMat{A}]$ is invertible.\retTwo
-
-   
-   {\begin{myIndent}\hThree
-      This is just applying the fact that the matrix associated with the composition of $\mMat{B}$ with $\mMat{A}$ is equal to the matrix product: $[\mMat{B}][\mMat{A}]$
-   \end{myIndent}}
-\end{myIndent}}
-
-\newpage
-
-{\begin{myIndent}\hTwo
-   \uuline{Proposition}: If $\Omega$ is the set of invertible $m \times n$ matrices, then $\Omega$ is open\\ in $\mathcal{M}_{m\times n}(\mathbb{R})$.\\ [-8pt]
+   \uuline{Corollary 1}: Using the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$, consider any matrix\\ $[\mMat{A}] \in \mathcal{M}_{m\times n}(\mathbb{R})$. Then the mapping $[\mMat{A}] \mapsto \mMat{A}$ is continuous.\retTwo
 
    {\begin{myIndent}\hThree
       Proof:\\
-      Still using the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$, for any $[\mMat{A}] \in \mathcal{M}_{m\times n}(\mathbb{R})$.
+      Pick any matrices $[\mMat{A}], [\mMat{B}] \in \mathcal{M}_{n\times n}(\mathbb{R})$ and let $\varepsilon > 0$. Then if\\ $\|[\mMat{B}] - [\mMat{A}]\|_F < \varepsilon$, we have that $\|\mMat{B} - \mMat{A}\| \leq \|[\mMat{B}] - [\mMat{A}]\|_F < \varepsilon$.\retTwo
    \end{myIndent}}
-\end{myIndent}}
 
-
-\newpage
-
-
-{\begin{myIndent}\hTwo
-
-   \uuline{Corollary}: If $S$ is a matric space, $a_{1,1}, \ldots, a_{m,n}$ are real continuous functions\\ on $S$, and for each $p \in S,\myHS \mMat{A}_p$ is the linear map from $\mathbb{R}^n$ to $\mathbb{R}^m$ whose associated\\ matrix is:
+   \uuline{Corollary 2}: Suppose that $S$ is a matric space, that $a_{1,1}, \ldots, a_{m,n}$ are real\\ continuous functions on $S$, and that for each $p \in S,\myHS \mMat{A}_p$ is the linear map\\ from $\mathbb{R}^n$ to $\mathbb{R}^m$ whose associated matrix is:
    
-   {\centering$[\mMat{A}_p] =\begin{bmatrix}
+   {\center$[\mMat{A}_p] =\begin{bmatrix}
       a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
       a_{2,1} & a_{2,2} & \cdots & a_{2,n} \\
       \vdots & \vdots & \ddots & \vdots \\
       a_{m,1} & a_{m,2} & \cdots & a_{m,n}
    \end{bmatrix}$\retTwo\par}
 
-   \ldots then the mapping $p \mapsto \mMat{A}_p$ is a continuous mapping of $S$ into $L(\mathbb{R}^n, \mathbb{R}^m)$.
+   Then the mapping $p \mapsto \mMat{A}_p$ is a continuous mapping of $S$ into $L(\mathbb{R}^n, \mathbb{R}^m)$.\retTwo
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Firstly, the mapping $p \mapsto [\mMat{A}_p]$ is continuous for the same reason that a\\ vector valued function is continuous if and only if its component functions\\ are all continuous. Additionally, the mapping $[\mMat{B}] \mapsto \mMat{B}$ is continuous. Thus,\\ because the composition of two continuous functions is itself continuous,\\ we have that the mapping $p \mapsto \mMat{A}_p$ is continuous.
+   \end{myIndent}}
 \end{myIndent}}
 
+\newpage
+
+To finish this lecture, here is one last helpful fact:
+
+{\begin{myIndent}\hTwo
+   \uuline{Lemma}: For any associated map $\mMat{A} \in L(X)$ and matrix $[\mMat{A}] \in \mathcal{M}_{n\times n}(\mathbb{R})$,\\ we have that $\mMat{A}$ is invertible if and only if $[\mMat{A}]$ is invertible.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      If $\mMat{B}$ exists such that $\mMat{B}\mMat{A} = \mMat{I}$ and $\mMat{A}\mMat{B} = \mMat{I}$, then we have that\\ $[\mMat{B}][\mMat{A}] = [\mMat{I}]$ and $[\mMat{A}][\mMat{B}] = [\mMat{I}]$. So $[\mMat{B}] = [\mMat{A}]^{-1}$.\retTwo
+      
+      Similarly, if $[\mMat{B}]$ exists such that $[\mMat{B}][\mMat{A}] = [\mMat{I}]$ and $[\mMat{A}][\mMat{B}] = [\mMat{I}]$,\\ then we have that $\mMat{BA} = \mMat{I}$ and $\mMat{AB} = \mMat{I}$. Hence, $\mMat{B} = \mMat{A}^{-1}$.\retTwo
+
+      So, we have that $\mMat{A}^{-1}$ exists if and only if $[\mMat{A}]^{-1}$ exists.\\ Also, $[\mMat{A}^{-1}] = [\mMat{A}]^{-1}$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+\markLecture{4/11/2024}
+
+Suppose that $E$ is an open set in $\mathbb{R}^n$, and that $ f$ is a function from $E$ to $\mathbb{R}^m$.\\ Then consider any $\mVec{x} \in E$. We say that $ f$ is \udefine{differentiable} at $\mVec{x}$ if there exists\\ $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ such that:
+
+{\center$\lim\limits_{\mVec{h} \rightarrow \mVec{0}}\dfrac{\| f(\mVec{x} + \mVec{h}) -  f(\mVec{x}) - \mMat{A}\mVec{h}\|}{\|\mVec{h}\|} = 0$\retTwo\par}
+
+{\begin{myIndent}\hTwo
+   \uuline{Theorem 9.12}: Suppose both $\mMat{A}_1$ and $\mMat{A}_2$ satisfy the above limit. Then $\mMat{A}_1 = \mMat{A}_2$.\\ [-6pt]
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Note that:\\ [-12pt]
+
+      {\fontsize{11}{13}
+      \begin{tabular}{l}
+         $\|\mMat{A}_2\mVec{h} - \mMat{A}_1\mVec{h}\| = \|\mMat{A}_2\mVec{h} +  f(\mVec{x} + \mVec{h}) -  f(\mVec{x} + \mVec{h}) +  f(\mVec{x}) -  f(\mVec{x}) - \mMat{A}_1\mVec{h}\|$\\
+         $\phantom{\|\mMat{A}_2\mVec{h} - \mMat{A}_1\mVec{h}\|} \leq \|\mMat{A}_2\mVec{h} +  f(\mVec{x}) -  f(\mVec{x} + \mVec{h})\| + \| f(\mVec{x} + \mVec{h}) -  f(\mVec{x}) - \mMat{A}_1\mVec{h}\|$\\
+         $\phantom{\|\mMat{A}_2\mVec{h} - \mMat{A}_1\mVec{h}\|}  = \| f(\mVec{x} + \mVec{h}) -  f(\mVec{x}) - \mMat{A}_2\mVec{h}\| + \| f(\mVec{x} + \mVec{h}) -  f(\mVec{x}) - \mMat{A}_1\mVec{h}\|$
+      \end{tabular}}\retTwo
+
+      It then follows that $\lim\limits_{\mVec{h}\rightarrow \mVec{0}}\frac{\|\mMat{A}_2\mVec{h} - \mMat{A}_1\mVec{h}\|}{\|\mVec{h}\|} = 0$.\retTwo
+
+      So, let's fix $\mVecAst{h}_0 \in \mathbb{R}^n \setminus \{\mVec{0}\}$. Then we know that $\lim\limits_{t\rightarrow 0}\frac{\|(\mMat{A}_2 - \mMat{A}_1)t\mVecAst{h}_0\|}{\|t\mVecAst{h}_0\|} = 0$.\\ [3pt]
+      But note that $\frac{\|(\mMat{A}_2 - \mMat{A}_1)t\mVecAst{h}_0\|}{\|t\mVecAst{h}_0\|} = \frac{|t|\|(\mMat{A}_2 - \mMat{A}_1)\mVecAst{h}_0\|}{|t|\|\mVecAst{h}_0\|} = \frac{\|(\mMat{A}_2 - \mMat{A}_1)\mVecAst{h}_0\|}{\|\mVecAst{h}_0\|}$.\\ [3pt]
+      Thus $\lim\limits_{t\rightarrow 0}\frac{\|(\mMat{A}_2 - \mMat{A}_1)t\mVecAst{h}_0\|}{\|t\mVecAst{h}_0\|} = \frac{\|(\mMat{A}_2 - \mMat{A}_1)\mVecAst{h}_0\|}{\|\mVecAst{h}_0\|}$ for all $\mVecAst{h}_0 \in \mathbb{R}^n \setminus \{\mVec{0}\}$.\\ [3pt]
+      Thus we know that $(\mMat{A}_2 - \mMat{A}_1)\mVecAst{h}_0 = \mVec{0}$ for all $\mVec{h_0} \in \mathbb{R}$. Or in other\\ words, $\mMat{A}_2 = \mMat{A}_1$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\newpage
+
+Since any $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ satisfying that $\lim\limits_{\mVec{h} \rightarrow \mVec{0}}\frac{\| f(\mVec{x} + \mVec{h}) -  f(\mVec{x}) - \mMat{A}\mVec{h}\|}{\|\mVec{h}\|} = 0$ is\\ [2pt] unique, we denote $f^\prime(\mVec{x}) = \mMat{A}$ and call $f^\prime(\mVec{x})$ the \udefine{differential} of $f$ at $\mVec{x}$.\retTwo\retTwo
+
+Notes:\\ [-22pt]
+\begin{itemize}
+   \item If $f$ is differentiable on all of $E$, then we say $f$ is "differentiable in" $E$. In that\\ case, note that $f^\prime$ can be interpreted as a function from $E$ to $L(\mathbb{R}^n, \mathbb{R}^m)$.
+   \item If we define $r(\mVec{h}) = f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - f^\prime(\mVec{x})\mVec{h}$, then we\\ [-3pt] can say that $f(\mVec{x} + \mVec{h}) - f(\mVec{x}) = f^\prime(x)\mVec{h} + r(\mVec{h})$ where $\lim\limits_{\mVec{h}\rightarrow\mVec{0}}\frac{\|r(\mVec{h})\|}{\|\mVec{h}\|} = 0$.
+   {\begin{myIndent}\hTwo
+      \begin{itemize}
+         \item[$\circ$] \uuline{Proposition}: If $f$ is differentiable at $\mVec{x}$, then $f$ is continuous at $\mVec{x}$.
+         
+         {\begin{myIndent}\hThree
+            Proof:\\
+            \begin{tabular}{l}
+               $\|f(\mVec{x} + \mVec{h}) - f(\mVec{x})\| = \|f^\prime(x)\mVec{h} + r(\mVec{h})\|$ \\ [3pt]
+               $\phantom{\|f(\mVec{x} + \mVec{h}) - f(\mVec{x})\|} \leq \|f^\prime(x)\mVec{h}\| + \|r(\mVec{h})\|$ \\ [3pt]
+               $\phantom{\|f(\mVec{x} + \mVec{h}) - f(\mVec{x})\|} = \|f^\prime(x)\mVec{h}\| + \|\mVec{h}\|\frac{\|r(\mVec{h})\|}{\|\mVec{h}\|}$
+            \end{tabular}\retTwo
+
+            Now because any $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$ is uniformly continuous, we\\ know that $f^\prime(\mVec{x})\mVec{h} \rightarrow \mVec{0}$ as $\mVec{h} \rightarrow \mVec{0}$. Also, since both $\|\mVec{h}\|$ and\\ $\frac{\|r(\mVec{h})\|}{\|\mVec{h}\|}$ approach $\mVec{0}$ as $\mVec{h} \rightarrow \mVec{0}$, we know their product does as well.\retTwo
+            
+            So by comparison we know that $\lim\limits_{\mVec{h}\rightarrow \mVec{0}}\hspace{-0.3em}\|f(\mVec{x} + \mVec{h}) - f(\mVec{x})\| = 0$.\\ Hence, $f(\mVec{y}) \rightarrow f(\mVec{x})$ as $\mVec{y} \rightarrow \mVec{x}$, which means that $f$ is\\ continuous at $\mVec{x}$.\retTwo
+         \end{myIndent}}
+      \end{itemize}
+   \end{myIndent}}
+\end{itemize}
+
+\mySepTwo
+
+Here are some simple facts whose proofs are trivial.
+{\begin{myIndent}\hTwo
+   \begin{itemize}
+      \item \uuline{Sum Rule}: 
+      \begin{myIndent}
+         Suppose that both $f$ and $g$ are functions going into $\mathbb{R}^m$, and that both\\ are differentiable at $\mVec{x} \in \mathbb{R}^n$. Then $(f + g)^\prime(\mVec{x}) = f^\prime(\mVec{x}) + g^\prime(\mVec{x})$.\retTwo
+      \end{myIndent}
+   
+      \item \uuline{Scalar Multiplication Rule}:
+      \begin{myIndent}
+         Suppose that $f$ is a function going into $\mathbb{R}^m$ that is differentiable at\\ $\mVec{x} \in \mathbb{R}^n$, and that $c \in \mathbb{R}$. Then $(cf)^\prime(\mVec{x}) = cf^\prime(\mVec{x})$.\retTwo
+      \end{myIndent}
+   
+      \item If $\mMat{A} \in L(\mathbb{R}^n, \mathbb{R}^m)$, then for all $\mVec{x} \in \mathbb{R}^n$, $\myHS\mMat{A}^\prime(\mVec{x}) = \mMat{A}$.
+   \end{itemize}
+
+   \newpage
+
+   \uuline{Theorem 9.15 (The Chain Rule)}: Suppose that $E \subseteq \mathbb{R}^m$ is open and that\\ [1pt ]$f: E \longrightarrow \mathbb{R}^m$ is differentiable at $\mVecAst{x}_0 \in E$. Also suppose that $f(\mVecAst{x}_0)$ is in\\ [1pt] an open subset of $f(E)$, and that $g: f(E) \longrightarrow \mathbb{R}^k$ is differentiable at\\ [1pt] $f(\mVec{x}) = \mVecAst{y}_0$. Then $F = g \circ f$ is differentiable at $\mVecAst{x}_0$ and:
+
+   {\center $F^\prime(\mVecAst{x}_0) = g^\prime(f(\mVecAst{x}_0)) f^\prime(\mVecAst{x}_0)$ \retTwo\par}
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Set $\mMat{A} = f^\prime(\mVecAst{x}_0)$ and $\mMat{B} = g^\prime(\mVecAst{y}_0)$. Then define the functions:
+      \begin{itemize}
+         \item $u(\mVec{h}) = f(\mVecAst{x}_0 + \mVec{h}) - f(\mVecAst{x}_0) - \mMat{A}\mVec{h}$
+         \item $v(\mVec{k}) = g(\mVecAst{y}_0 + \mVec{k}) - g(\mVecAst{y}_0) - \mMat{B}\mVec{k}$\\ [-10pt]
+      \end{itemize}
+
+      Next, we define the function $\eta(\mVec{k}) = \left\{
+         \begin{matrix}
+            \frac{\|v(\mVec{k})\|}{\|\mVec{k}\|} & \text{ if } v(\mVec{k}) \neq \mVec{0} \\
+            0 & \text{ if } v(\mVec{k}) = \mVec{0}
+         \end{matrix}\right.$\\ [4pt]
+
+      Then, we always have that $\|\mVec{k}\|\eta(\mVec{k}) = \|v(\mVec{k})\|$. Also, $\eta$ is continuous at\\ $\mVec{k} = 0$. After all $v(\mVec{0}) = \mVec{0}$ and $\frac{\|v(\mVec{k})\|}{\|\mVec{k}\|} \rightarrow 0$ as $\mVec{k} \rightarrow \mVec{0}$.\retTwo
+
+      With all that setup out of the way, we now need to show that:
+      
+      {\centering$\lim\limits_{\mVec{h} \rightarrow \mVec{0}}\frac{\|F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}\|}{\|\mVec{h}\|} = 0$. \retTwo\par}
+
+
+      So, put $\mVec{k} = f(\mVec{x} + \mVec{h}) - f(\mVec{x})$ and note that:
+      \begin{center}
+         \begin{tabular}{l}
+            $F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h} = g(\mVecAst{y}_0 + \mVec{k}) - g(\mVecAst{y}_0) - \mMat{B}(\mMat{A}\mVec{h})$ \\ [1pt]
+            $\phantom{F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}} = \mMat{B}\mVec{k} + v(\mVec{k}) - \mMat{B}(\mMat{A}\mVec{h})$\\ [1pt]
+            $\phantom{F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}} = v(\mVec{k}) + \mMat{B}(\mVec{k} - \mMat{A}\mVec{h})$\\ [1pt]
+         \end{tabular}\retTwo
+      \end{center}
+
+      Meanwhile, notice that $\mVec{k} = \mMat{A}\mVec{h} + u(\mVec{h})$. Therefore, we have that:
+      {\begin{center}\fontsize{12}{14}\selectfont
+         \begin{tabular}{l}
+            $\frac{\|F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}\|}{\|\mVec{h}\|} = \frac{\|v(\mVec{k}) + \mMat{B}(\mVec{k} - \mMat{A}\mVec{h})\|}{\|\mVec{h}\|}$\\ [9pt]
+            
+            $\phantom{\frac{\|F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}\|}{\|\mVec{h}\|}} \leq \frac{\|v(\mMat{A}\mVec{h} + u(\mVec{h}))\|}{\|\mVec{h}\|} + \frac{\|\mMat{B}(u(\mVec{h}))\|}{\|\mVec{h}\|}$\\ [9pt]
+
+            $\phantom{\frac{\|F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}\|}{\|\mVec{h}\|}} \leq \frac{\|\mMat{A}\mVec{h} + u(\mVec{h})\|}{\|\mVec{h}\|}\eta(\mMat{A}\mVec{h} + u(\mVec{h})) + \|\mMat{B}\|\frac{\|u(\mVec{h})\|}{\|\mVec{h}\|}$\\ [9pt]
+
+            $\phantom{\frac{\|F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}\|}{\|\mVec{h}\|}} \leq \left(\frac{\|\mMat{A}\|\|\mVec{h}\|}{\|\mVec{h}\|} + \frac{\|u(\mVec{h})\|}{\|\mVec{h}\|}\right)\eta(\mVec{k}) + \|\mMat{B}\|\frac{\|u(\mVec{h})\|}{\|\mVec{h}\|}$\\ [9pt]
+         \end{tabular}\retTwo
+      \end{center}}
+
+      Now we know $f$ is continuous at $\mVecAst{x}_0$ because $f$ is also differentiable there.\\ So, $\mVec{k} = f(\mVecAst{x}_0 + \mVec{h}) - f(\mVecAst{x}_0) \rightarrow 0$ as $\mVec{h} \rightarrow 0$. That combined with the\\ fact that $\eta$ is continuous at $\mVec{k} = \mVec{0}$ means that $\eta(\mVec{k}) \rightarrow 0$ as $\mVec{h} \rightarrow 0$.
+
+      \newpage
+
+      Combining that with the fact that $\frac{\|u(\mVec{h})\|}{\|\mVec{h}\|} \rightarrow 0$ as $\mVec{h} \rightarrow \mVec{0}$, we know that:
+
+      {\centering $\left(\frac{\|\mMat{A}\|\|\mVec{h}\|}{\|\mVec{h}\|} + \frac{\|u(\mVec{h})\|}{\|\mVec{h}\|}\right)\eta(\mVec{k}) + \|\mMat{B}\|\frac{\|u(\mVec{h})\|}{\|\mVec{h}\|} \rightarrow 0$ as $\mVec{h} \rightarrow 0$.\retTwo\par}
+      
+      Hence, we can conclude by comparison that:
+      
+      {\centering$\lim\limits_{\mVec{h} \rightarrow \mVec{0}}\frac{\|F(\mVecAst{x}_0 + \mVec{h}) - F(\mVecAst{x}_0) - \mMat{BA}\mVec{h}\|}{\|\mVec{h}\|} = 0$. \retTwo\par}
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+Let $E \subseteq \mathbb{R}^n$ be open and consider a function $f: \mathbb{R}^n \longrightarrow \mathbb{R}^m$. Also let\\ $\{e_1, \ldots, e_n\}$ and $\{u_1, \ldots, u_m\}$ be the standard bases of $\mathbb{R}^n$ and $\mathbb{R}^m$\\ respectively. Then, expressing $f$ in terms of its component functions,\\ we have that:
+
+{\centering $f(\mVec{x}) = \sum\limits_{i=1}^mf_{i}(\mVec{x})u_i = (f_1(\mVec{x}), \ldots, f_m(\mVec{x}))$.\retTwo\par}
+
+Equivalently, we can write that $f_i(\mVec{x}) = f(\mVec{x}) \cdot u_i$.\retTwo
+
+Now for each $1 \leq j \leq n$ and $1 \leq i \leq m$, we define:\\ [-26pt]
+
+\[(D_jf_i)(\mVec{x}) = \lim\limits_{t\rightarrow 0}\frac{f_i(\mVec{x} + te_j) - f_i(\mVec{x})}{t}\]
+
+\phantom{.}\\Each of these $D_jf_i$ are called \udefine{partial derivatives}.\retTwo
+
+{\begin{myIndent}\hTwo
+   \uuline{Theorem 9.17}: Suppose $E \subseteq \mathbb{R}^n$ is open and that $f: E \longrightarrow \mathbb{R}^m$ is differentiable\\ [1pt] at a point $\mVec{x} \in E$. Then all partial derivatives $(D_jf_i)(\mVec{x})$ exist and:
+
+   {\center $f^\prime(\mVec{x})e_j = \sum\limits_{i=1}^k(D_jf_i)(x)u_i$.\retTwo\par}
+   
+   {\begin{myIndent}\hThree
+      
+   \end{myIndent}}
+\end{myIndent}}
+
+
+
+
 \end{document}
+
