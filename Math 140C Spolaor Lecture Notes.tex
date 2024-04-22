@@ -1241,5 +1241,35 @@ To finish off lecture, note that if $E \subseteq \mathbb{R}^n$ is open and $f: \
 \newpage
 
 \markLecture{4/16/2024}
+
+A set $E \subseteq \mathbb{R}^k$ is \udefine{convex} if $t\mVec{x} + (1 - t)\mVec{y} \in E$ whenever $x \in E$, $y \in E$,\\ and $0 < t < 1$.\retTwo
+
+{\begin{myIndent}\hTwo
+   \uuline{Theorem 9.19}: Suppose that $E \subseteq \mathbb{R}^n$ is convex and open, that $f: E \longrightarrow \mathbb{R}^m$\\ [4pt] is differentiable, and there is a real number $M$ such that $\|f^\prime(x)\| \leq M$ for\\ [0pt] every $x \in E$. Then $\|f(\mVec{b}) - f(\mVec{a})\| \leq M\|\mVec{b} - \mVec{a}\|$ for all $\mVec{a}, \mVec{b} \in E$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Fix $\mVec{a}, \mVec{b} \in E$ and define $\gamma(t) = (1 - t)\mVec{a} + t\mVec{b}$ for $0 < t < 1$. Next,\\ define $\mVec{g}(t) = f(\gamma(t))$ for $0 < t < 1$. Since $E$ is both convex and\\ differentiable, we know that both $\mVec{g}$ and $\mVec{g}^\prime$ are well defined on the\\ interval $(0, 1)$. So, by the mean value theorem for vector-valued\\ functions (proposition 93 in the Math 140B notes), we know that\\ for some $x \in (0, 1)$:
+
+      {\centering $\|\mVec{g}(1) - \mVec{g}(0)\| \leq |1 - 0|\|\mVec{g}^\prime(x)\|$\retTwo\par}
+
+      Or in other words, $\|f(\mVec{b}) - f(\mVec{a})\| \leq \|f^\prime(\gamma(x))\gamma^\prime(x)\| \leq M\|\mVec{b} - \mVec{a}\|$.\retTwo
+   \end{myIndent}}
+
+   \uuline{Corollary}: If additionally $f^\prime(\mVec{x}) = \mMat{0}$ for all $\mVec{x} \in E$, then $f$ is constant.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      If $f^\prime(\mVec{x}) = \mMat{0}$ for all $\mVec{x}$, then $M = 0$. So $\|f(\mVec{b}) - f(\mVec{a})\| = 0$ for all\\ $\mVec{a}, \mVec{b} \in E$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+Let $E \subseteq \mathbb{R}^n$ be an open set and $f: E \longrightarrow \mathbb{R}^m$ be differentiable. Then $f$ is called\\ \udefine{continuously differentiable} if $f^\prime: E \longrightarrow L(\mathbb{R}^n, \mathbb{R}^m)$ is continuous. Or in other\\ words, $\forall \varepsilon > 0,\myHS \exists \delta > 0\suchthat \|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{y}) - f^\prime(\mVec{x})\| < \varepsilon$ \retTwo
+
+When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and that $f \in \mathscr{C}^1(E)$.
+
+
 \end{document}
 
