@@ -1120,18 +1120,126 @@ Now for each $1 \leq j \leq n$ and $1 \leq i \leq m$, we define:\\ [-26pt]
 
 \phantom{.}\\Each of these $D_jf_i$ are called \udefine{partial derivatives}.\retTwo
 
+
+\begin{myTindent}\teachComment
+   Note that to calculate the partial derivative $(D_jf_i)(\mVec{x})$, all you need to do\\ is treat all the components of $\mVec{x}$ as constant except the $j$th component.\\ Then, the partial derivative is just a single variable limit with respect to\\ that component.\retTwo
+\end{myTindent}
+
 {\begin{myIndent}\hTwo
    \uuline{Theorem 9.17}: Suppose $E \subseteq \mathbb{R}^n$ is open and that $f: E \longrightarrow \mathbb{R}^m$ is differentiable\\ [1pt] at a point $\mVec{x} \in E$. Then all partial derivatives $(D_jf_i)(\mVec{x})$ exist and:
 
-   {\center $f^\prime(\mVec{x})e_j = \sum\limits_{i=1}^k(D_jf_i)(x)u_i$.\retTwo\par}
+   {\center $f^\prime(\mVec{x})e_j = \sum\limits_{i=1}^k(D_jf_i)(x)u_i$.\\[-6pt]\par}
    
    {\begin{myIndent}\hThree
-      
+      Proof:\\
+      Fix $j \in \{1, \ldots, n\}$ and note that since $f$ is differentiable, we have that\\ $f(\mVec{x} + te_j) - f(\mVec{x}) = f^\prime(\mVec{x})(te_j) + r(te_j)$ such that $\frac{\|r(te_j)\|}{\|te_j\|} \rightarrow 0$ as $t \rightarrow 0$.\retTwo
+
+      Then as $\|te_j\| = |t|$, we have that $\left\|\frac{r(te_j)}{t}\right\| = \frac{\|r(te_j)\|}{|t|} = \frac{\|r(te_j)\|}{\|te_j\|} \rightarrow 0$ as\\ [-2pt] $t \rightarrow 0$. Thus, $\frac{r(te_j)}{t} \rightarrow \mVec{0}$ as $t \rightarrow 0$. And since $f^\prime(\mVec{x})(te_j) = tf^\prime(\mVec{x})e_j$,\\ we have that: $\frac{f^\prime(\mVec{x})(te_j)}{t} + \frac{r(te_j)}{t} \rightarrow f^\prime(\mVec{x})e_j$ as $t \rightarrow 0$.\retTwo
+
+      So, we now know that $\lim\limits_{t\rightarrow 0}\frac{f(\mVec{x} + te_j) - f(\mVec{x})}{t} = f^\prime(\mVec{x})(e_j)$.
+
+      \newpage
+
+      Next, consider that:
+      \begin{center}
+         \begin{tabular}{l}
+            $(f^\prime(x)e_j) \cdot u_i = u_i \cdot \lim\limits_{t\rightarrow 0}\frac{f(\mVec{x} + te_j) - f(\mVec{x})}{t}$\\ [7pt]
+            $\phantom{(f^\prime(x)e_j) \cdot u_i} = \lim\limits_{t\rightarrow 0}\left(u_i \cdot \frac{f(\mVec{x} + te_j) - f(\mVec{x})}{t}\right)$\\ [7pt]
+            $\phantom{(f^\prime(x)e_j) \cdot u_i} = \lim\limits_{t\rightarrow 0}\frac{(f(\mVec{x} + te_j) \cdot u_i) - (f(\mVec{x}) \cdot u_i)}{t}$\\ [7pt]
+            $\phantom{(f^\prime(x)e_j) \cdot u_i} = \lim\limits_{t\rightarrow 0}\frac{f_i(\mVec{x} + te_j) - f_i(\mVec{x})}{t} = (D_jf_i)(\mVec{x})$\\ [7pt]
+         \end{tabular}\retTwo
+      \end{center}
+
+      It immediately follows that $f^\prime(\mVec{x})e_j = \sum\limits_{i=1}^k(D_jf_i)(x)u_i$.\retTwo
    \end{myIndent}}
 \end{myIndent}}
 
+As a result of the above theorem, we have that if $f$ is differentiable at $\mVec{x}$, then\\ when using $\{e_1, \ldots, e_n\}$ and $\{u_1, \ldots, u_m\}$ as our bases for $\mathbb{R}^n$ and $\mathbb{R}^m$ respectively,\\ then:
+
+{\centering$[f^\prime(\mVec{x})] = \begin{bmatrix}
+   (D_1f_1)(\mVec{x}) & (D_2f_1)(\mVec{x}) & \cdots & (D_nf_1)(\mVec{x}) \\
+   (D_1f_2)(\mVec{x}) & (D_2f_2)(\mVec{x}) & \cdots & (D_nf_2)(\mVec{x}) \\
+   \vdots & \vdots & \ddots & \vdots \\
+   (D_1f_m)(\mVec{x}) & (D_2f_m)(\mVec{x}) & \cdots & (D_nf_m)(\mVec{x})
+\end{bmatrix}$\retTwo\par}
+
+However, as I'm about to demonstrate, the converse of theorem 9.17 is not true.\\ Thus, we can't automatically rely on calculating the partial derivatives of $f$ to find\\ the differential of $f$ at $\mVec{x}$.\retTwo
 
 
+{\begin{myIndent}\exOne
+   \textbf{Exercise 9.6}: For $(x, y) \in \mathbb{R}^2$, define $f(x, y) = \left\{
+   \begin{matrix}
+      \frac{xy}{x^2 + y^2} & \text{ if } (x, y) \neq (0, 0) \\
+      0 & \text{ if } (x, y) = (0, 0)
+   \end{matrix}\right.$\\ [6pt]
+   Then we can show that the partial derivatives of $f$ exist at every point\\ of $\mathbb{R}^2$.
+   {\begin{myIndent}\exTwo
+      Clearly, we have that $(D_1f)(x, y) = \frac{y(x^2 + y^2)}{(x^2 + y^2)^2}$ and $(D_2f)(x, y) = \frac{x(x^2 + y^2)}{(x^2 + y^2)^2}$\\ when $(x, y) \neq 0$. Meanwhile, at $(x, y) = 0$ we have when $h \neq 0$ that:
+      {\begin{center}\fontsize{12}{14}\selectfont
+         \begin{tabular}{c c c}
+            $\frac{f(h, 0) - f(0, 0)}{h} = \frac{\frac{0}{h^2 + 0} -\hspace{0.1em} 0}{h} = 0$ & and & $\frac{f(0, h) - f(0, 0)}{h} = \frac{\frac{0}{0 + h^2} -\hspace{0.1em}0}{h} = 0$
+         \end{tabular}\retTwo
+      \end{center}}
 
+      Therefore:\\ [-16pt]
+
+      \begin{center}{\fontsize{11.7}{13}\selectfont
+         \begin{tabular}{c c c}
+            $(D_1f)(0, 0) = \lim\limits_{h\rightarrow 0}\frac{f(h, 0) - f(0, 0)}{h} = 0$ & and & $(D_2f)(0, 0) = \lim\limits_{h\rightarrow 0}\frac{f(0, h) - f(0, 0)}{h} = 0$
+         \end{tabular}}\retTwo
+      \end{center}
+   \end{myIndent}}
+
+   That said, $f(x, y)$ isn't even continuous at $(0, 0)$.
+   {\begin{myIndent}\exTwo
+      Whenever $y = x$, we have that $f(x, y) = \frac{1}{2}$. Hence, given the\\ sequence $(x_n, y_n) = (\frac{1}{n}, \frac{1}{n})$, we have that $(x_n, y_n) \rightarrow (0, 0)$ and that\\ $(x_n, y_n) \neq (0, 0)$ for any $n \in \mathbb{Z}^+$. But, $f(x_n, y_n) \not\rightarrow 0$.\retTwo
+      
+      Thus, $\lim\limits_{
+      \begin{smallmatrix}
+         x\rightarrow 0\\ y\rightarrow 0
+      \end{smallmatrix}}f(x, y) \neq f(0, 0)$, which means $f$ is not continuous at $(0, 0)$.\retTwo
+   \end{myIndent}}
+
+   Since continuity is necessary for differentiability, this also demonstrates\\ that the existence of partial derivatives does not imply a function is\\ differentiable.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+Let $\gamma$ be a differentiable mapping from $(a, b) \subset \mathbb{R}$ to $E \subseteq \mathbb{R}^n$ where $E$ is open\\ and $a$ and $b$ are finite. Also let $f: E \longrightarrow \mathbb{R}$ be a differentiable function. Finally,\\ define $g(t) = f(\gamma(t))$ for $a < t < b$. Then we know $g$ is differentiable and that:
+
+{\centering $g^\prime(t) = f^\prime(\gamma(t))\gamma^\prime(t)$. \retTwo\par}
+
+
+Since $g^\prime$ is a real function, letting $\gamma(t) = (\gamma_1(t), \ldots, \gamma_n(t))$ we can rewrite the\\ above expression as:
+
+{\centering $g^\prime(t) = \sum\limits_{i=1}^n D_if(\gamma(t))\gamma^\prime_i(t)$ \retTwo\par}
+
+Now, this situation is so common that we have special notation just for it.\\ Letting $\{e_1, \ldots, e_n\}$ be the standard basis for $\mathbb{R}^n$, we define the \udefine{gradient}\\ of $f$ at $\mVec{x}$ as:
+
+{\centering$\nabla f(\mVec{x}) = \sum\limits_{i=1}^n D_if(\mVec{x})e_i$\retTwo\par}
+
+Thus, $g^\prime(t) = \nabla f(\gamma(t)) \cdot \gamma^\prime(t)$.\retTwo
+
+Now suppose that $\gamma: (a, b) \longrightarrow \mathbb{R}^n$ is defined such that $a < 0 < b$, $\mVec{x} \in E$,\\ and $\gamma(t) = \mVec{x} + t\mVec{u}$ where $\mVec{u}$ is a unit vector. Then we define the \udefine{directional\\ derivative} of $f$ at $\mVec{x}$ in the direction of $\mVec{u}$ as:
+
+{\centering $D_{\mVec{u}}f(\mVec{x}) = \lim\limits_{t\rightarrow 0}f(\gamma(t)) = \nabla f(\mVec{x}) \cdot \mVec{u}$\retTwo\par}
+
+
+{\begin{myIndent}\hTwo
+   From this it is really trivial to see that $|D_uf(\mVec{x})|$ is maximized when $\mVec{u}$ is\\ a scalar multiple of $\nabla f(\mVec{x})$.\retTwo
+\end{myIndent}}
+
+To finish off lecture, note that if $E \subseteq \mathbb{R}^n$ is open and $f: \mathbb{R}^n \longrightarrow \mathbb{R}^m$ is\\ differentiable and written as $f(\mVec{x}) = (f_1(\mVec{x}), \ldots, f_m(\mVec{x}))$, then using\\ the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$, we can abuse notation and say that:
+
+{\center $[f^\prime(x)] = 
+\begin{bmatrix}
+   \nabla f_1(\mVec{x})\\
+   \vdots \\
+   \nabla f_m(\mVec{x})\\
+\end{bmatrix}$ \par}
+
+\newpage
+
+\markLecture{4/16/2024}
 \end{document}
 
