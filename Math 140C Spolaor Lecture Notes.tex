@@ -239,7 +239,7 @@
    {\huge \color{Black} \textbf{Lecture \theLectureNumber: #1} \newline}%
 }
 
-\newcommand{\myVS}{\vphantom{$\int_a^b$}}
+\newcommand{\myVS}{\vphantom{\ensuremath{\int_a^b}}}
 
 % Overarrow stuff:
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1268,7 +1268,152 @@ A set $E \subseteq \mathbb{R}^k$ is \udefine{convex} if $t\mVec{x} + (1 - t)\mVe
 
 Let $E \subseteq \mathbb{R}^n$ be an open set and $f: E \longrightarrow \mathbb{R}^m$ be differentiable. Then $f$ is called\\ \udefine{continuously differentiable} if $f^\prime: E \longrightarrow L(\mathbb{R}^n, \mathbb{R}^m)$ is continuous. Or in other\\ words, $\forall \varepsilon > 0,\myHS \exists \delta > 0\suchthat \|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{y}) - f^\prime(\mVec{x})\| < \varepsilon$ \retTwo
 
-When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and that $f \in \mathscr{C}^1(E)$.
+When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and that $f \in \mathscr{C}^1(E)$.\retTwo
+
+{\begin{myIndent}\hTwo
+   \uuline{Theorem 9.21}: Suppose $f$ is a function from an open set $E \subseteq \mathbb{R}^n$ to $\mathbb{R}^m$. Then\\ [1pt] $f \in \mathscr{C}^1(E)$ if and only if the partial derivatives $D_jf_i$ exist and are continuous\\ [1pt] on $E$ for all $1 \leq i \leq m$ and $1 \leq j \leq n$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $\{e_1, \ldots, e_n\}$ and $\{u_1, \ldots, u_m\}$ be the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$\\ respectively.\retTwo
+
+      ($\Longrightarrow$) Say $f \in \mathscr{C}^1(E)$. Then $f$ is differentiable, which means that\\ $(D_jf_i)(\mVec{x}) = (f^\prime(\mVec{x})e_j) \cdot u_i$ exists for all $1 \leq i \leq m$, $\hspace{0.3em}1 \leq j \leq n$,\\ and $\mVec{x} \in E$.
+
+      \newpage
+
+      Thus for any $\mVec{x}, \mVec{y} \in E$, we have that:\\ [-12pt]
+      \begin{center}
+         \begin{tabular}{l}
+            $|(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})| = |(f^\prime(\mVec{y})e_j) \cdot u_i - (f^\prime(\mVec{x})e_j) \cdot u_i|$\\ [3pt]
+
+            $\phantom{|(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})|} = |((f^\prime(\mVec{x}) - f^\prime(\mVec{x}))e_j) \cdot u_i|$\\ [3pt]
+
+            $\phantom{|(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})|} \leq \|((f^\prime(\mVec{x}) - f^\prime(\mVec{x}))e_j)\|\|u_i\|$\\ [3pt]
+
+            $\phantom{|(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})|} \leq \|f^\prime(\mVec{x}) - f^\prime(\mVec{x})\|\|e_j\|\|u_i\|$\\ [3pt]
+
+            $\phantom{|(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})|} = \|f^\prime(\mVec{x}) - f^\prime(\mVec{x})\|$
+         \end{tabular}\retTwo
+      \end{center}
+
+      Now, since $f \in \mathscr{C}^\prime$, we know that for any $\varepsilon > 0$, there exists $\delta > 0$ such\\ that $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{x}) - f^\prime(\mVec{x})\| < \varepsilon$. Thus, by the above\\ inequality, we also have that:
+      
+      {\centering $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow |(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})| < \varepsilon$.\retTwo\par}
+
+      ($\Longleftarrow$) Firstly, we'll assume that $m = 1$. That way $f$ is a real-valued\\ function.\retTwo
+
+      Fix $\mVec{x} \in E$ and $\varepsilon > 0$. Then because $E$ is open, there exists $r_0 > 0$\\ such that $B_{r_0}(\mVec{x}) \subseteq E$. Additionally, because each partial derivative\\ is continuous, there exists $r_j > 0$ such that:
+      
+      {\centering $\|\mVec{y} - \mVec{x}\| < r_j \Longrightarrow |(D_jf)(\mVec{y}) - (D_jf)(\mVec{x})| < \frac{\varepsilon}{n}$.\retTwo\par}
+
+      Set $R = \min\{r_0, r_1, \ldots, r_n\}$. Then choose $\mVec{h} = (h_1, \ldots, h_n) \in B_R(\mVec{x})$,\\ and define $\mVecAst{v}_j$ such that $v_0 = \mVec{0}$ and $v_j = \mVecAst{v}_{j-1} + h_je_j$ for each\\ $1 \leq j \leq n$. Then note that: 
+      \begin{center}
+         {\fontsize{12}{14}\selectfont
+            $f(\mVec{x} + \mVec{h}) - f(\mVec{x}) = \sum\limits_{j=1}^n\left(\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1})\right)$
+         \retTwo}
+      \end{center}
+
+      Now for each $1 \leq j \leq n$, define $\widetilde{f}_j(t) = f(\mVec{x} + \mVecAst{v}_{j-1} + th_je_j)$. Then\\ firstly, $\widetilde{f}_j$ is well defined on the interval $[0, 1]$ because:
+      \begin{itemize}
+         \item $\widetilde{f}_j(1) = f(\mVec{x} + \mVecAst{v}_j) \in B_R(\mVec{x})$
+         \item $\widetilde{f}_j(0) = f(\mVec{x} + \mVecAst{v}_{j-1}) \in B_R(\mVec{x})$
+         \item $B_R(\mVec{x}) \subseteq E$ is convex.
+      \end{itemize}\retTwo
+
+      Additionally, $\widetilde{f}_j$ is differentiable on $[0, 1]$ with:
+      
+      {\center$\widetilde{f}_j^\prime(t) = h_j(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + th_je_j)$\retTwo\par}
+      
+      Therefore, by the mean value theorem, there exists $\theta \in (0, 1)$ such that:
+      
+      {\center $\widetilde{f}_j(1) - \widetilde{f}_j(0) = \widetilde{f}_j^\prime(\theta) = h_j(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + \theta h_je_j)$\retTwo\par}
+      
+      Importantly, we have that $(\mVec{x} + \mVecAst{v}_{j-1} + \theta h_je_j) \in B_R(\mVec{x})$. Therefore:
+
+      {\center $|(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + \theta h_je_j) - (D_jf)(\mVec{x})| < \frac{\varepsilon}{n}$\retTwo\par}
+
+      In turn, this means that:
+
+      {\center{\fontsize{12}{14}\selectfont
+      \begin{tabular}{l}
+         $|f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1}) - h_j(D_jf)(\mVec{x})|$ \\
+         $\phantom{aaaaaaaaaaa} = |h_j(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + \theta h_je_j) - h_j(D_jf)(\mVec{x})| < |h_j|\frac{\varepsilon}{n}$
+      \end{tabular}}\par}
+
+      \newpage
+
+      So now, we can say that:
+
+      {\center{\fontsize{12}{14}\selectfont
+      \begin{tabular}{l}
+         $\left|f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x})\right|$ \\ [14pt] 
+         $\phantom{aaaaaaaaa} = \left|\sum\limits_{j=1}^n\left(\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1}) - h_j(D_jf)(\mVec{x})\right)\right|$ \\ [14pt]
+         $\phantom{aaaaaaaaa} \leq \sum\limits_{j=1}^n\left|\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1}) - h_j(D_jf)(\mVec{x})\right|$ \\ [14pt]
+         $\phantom{aaaaaaaaaaaaaaaaaaaaaa} < \sum\limits_{j=1}^n|h_j|\frac{\varepsilon}{n} = \varepsilon\sum\limits_{j=1}^n\frac{|h_j|}{n} \leq \varepsilon \|\mVec{h}\|$ \\ [14pt]
+      \end{tabular}}\retTwo\par}
+
+      And thus we have that: $\lim\limits_{\mVec{h} \rightarrow \mVec{0}}\frac{\left|\myVS\right.f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x})\left.\myVS\right|}{\|\mVec{h}\|} = 0$.\retTwo
+
+      Note that $f^\prime(\mVec{x}) = \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x}) \in L(\mathbb{R}^n, \mathbb{R})$, and that $f^\prime(\mVec{x})$ is the\\ [-2pt] sum of a bunch of continuous functions. Thus, $f^\prime(\mVec{x})$ is itself continuous\\ [5pt] at $\mVec{x}$, meaning that $f \in \mathscr{C}^1$.\\ [8pt]
+
+      Now that we've shown this theorem holds when $m = 1$, lets consider\\ when $m > 1$. Let $f(\mVec{x}) = (f_1(\mVec{x}), \ldots, f_m(\mVec{x}))$ and then note that $f$\\ is continuous at $\mVec{x}$ if and only if $f_i$ is continuous at $\mVec{x}$ for each\\ $1 \leq i \leq m$. Luckily, we already showed that all $D_jf_i$ being continuous\\ for each $1 \leq j \leq n$ implies that $f_i$ is continuously differentiable. Hence,\\ having all $D_jf_i$ be continuous for each $1 \leq j \leq n$ and $1 \leq i \leq m$ implies\\ that $f \in \mathscr{C}^{1}$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\exOne
+\mySepTwo
+
+\textbf{Exercise 9.7}: Suppose that $f$ is a real-valued function defined in an open set\\ $E \subseteq \mathbb{R}^n$, and that the partial derivatives $D_1f, \ldots, D_nf$ are defined and bounded\\ in $E$. Then we can prove that $f$ is continuous in $E$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Pick $M > |(D_jf)(\mVec{x})|$ for all $1 \leq j \leq n$ and $\mVec{x} \in E$. Then fix $\mVec{x} \in E$ and $\varepsilon > 0$.\\ [1pt]
+   Next, choose $r > 0$ such that $B_r(\mVec{x}) \subseteq E$ and set $R = \min\{r, \frac{\varepsilon}{nM}\}$.\retTwo
+   
+   Like in the proof above, choose $\mVec{h} = (h_1, \ldots, h_n) \in B_R(\mVec{x})$ and define $\mVecAst{v}_j$\\ [-2pt] such that $v_0 = \mVec{0}$ and $v_j = \mVecAst{v}_{j-1} + h_je_j$ for each $1 \leq j \leq n$. That way:
+   \begin{center}
+      {\fontsize{12}{14}\selectfont
+         $f(\mVec{x} + \mVec{h}) - f(\mVec{x}) = \sum\limits_{j=1}^n\left(\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1})\right)$}
+   \end{center}
+
+   \newpage
+
+   Next, for each $1 \leq j \leq n$, define $\widetilde{f}_j(t) = f(\mVec{x} + \mVecAst{v}_{j-1} + th_je_j)$. Then like\\ before, $\widetilde{f}_j$ is well defined on the interval $[0, 1]$ because:
+   \begin{itemize}
+      \item $\widetilde{f}_j(1) = f(\mVec{x} + \mVecAst{v}_j) \in B_R(\mVec{x})$
+      \item $\widetilde{f}_j(0) = f(\mVec{x} + \mVecAst{v}_{j-1}) \in B_R(\mVec{x})$
+      \item $B_R(\mVec{x}) \subseteq E$ is convex.
+   \end{itemize}\retTwo
+
+   Additionally, $\widetilde{f}_j$ is differentiable on $[0, 1]$ with:
+   
+   {\center$\widetilde{f}_j^\prime(t) = h_j(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + th_je_j)$\retTwo\par}
+   
+   Therefore, by the mean value theorem, there exists $\theta \in (0, 1)$ such that:
+   
+   {\center $\widetilde{f}_j(1) - \widetilde{f}_j(0) = \widetilde{f}_j^\prime(\theta) = h_j(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + \theta h_je_j)$\retTwo\par}
+
+   And then because $|D_jf|$ is bounded by $M$:
+
+   {\center{\fontsize{12}{14}\selectfont
+   \begin{tabular}{l}
+      $|f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1})| = |\widetilde{f}_j(1) - \widetilde{f}_j(0)|$ \\[2pt]
+
+      $\phantom{|f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1})|} = |h_j(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + \theta h_je_j)|$\\ [2pt]
+
+      $\phantom{|f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1})|} = |h_j||(D_jf)(\mVec{x} + \mVecAst{v}_{j-1} + \theta h_je_j)| < |h_j|M$
+   \end{tabular}}\retTwo\par}
+
+   So now:
+
+   {\center{\fontsize{12}{14}\selectfont
+      \begin{tabular}{l}
+         $|f(\mVec{x} + \mVec{h}) - f(\mVec{x})| \leq \sum\limits_{j=1}^n\left|\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1})\right| < \sum\limits_{j=1}^n|h_j|M \leq \|\mVec{h}\|\cdot nM $
+      \end{tabular}}\retTwo\par}
+
+   Hence, since $R = \frac{\varepsilon}{nM}$, we know that for any $\mVec{h} \in B_R(\mVec{x})$, we have that\\ $|f(\mVec{x} + \mVec{h}) - f(\mVec{x})| < \varepsilon$. So, $f$ is continuous.
+\end{myIndent}}
+
+\mySepTwo
 
 
 \end{document}
