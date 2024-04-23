@@ -1268,16 +1268,16 @@ A set $E \subseteq \mathbb{R}^k$ is \udefine{convex} if $t\mVec{x} + (1 - t)\mVe
 
 Let $E \subseteq \mathbb{R}^n$ be an open set and $f: E \longrightarrow \mathbb{R}^m$ be differentiable. Then $f$ is called\\ \udefine{continuously differentiable} if $f^\prime: E \longrightarrow L(\mathbb{R}^n, \mathbb{R}^m)$ is continuous. Or in other\\ words, $\forall \varepsilon > 0,\myHS \exists \delta > 0\suchthat \|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{y}) - f^\prime(\mVec{x})\| < \varepsilon$ \retTwo
 
-When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and that $f \in \mathscr{C}^1(E)$.\retTwo
+When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and that $f \in \mathscr{C}^1(E, \mathbb{R}^m)$.\retTwo
 
 {\begin{myIndent}\hTwo
-   \uuline{Theorem 9.21}: Suppose $f$ is a function from an open set $E \subseteq \mathbb{R}^n$ to $\mathbb{R}^m$. Then\\ [1pt] $f \in \mathscr{C}^1(E)$ if and only if the partial derivatives $D_jf_i$ exist and are continuous\\ [1pt] on $E$ for all $1 \leq i \leq m$ and $1 \leq j \leq n$.\\ [-6pt]
+   \uuline{Theorem 9.21}: Suppose $f$ is a function from an open set $E \subseteq \mathbb{R}^n$ to $\mathbb{R}^m$. Then\\ [1pt] $f \in \mathscr{C}^1(E, \mathbb{R}^m)$ if and only if the partial derivatives $D_jf_i$ exist and are\\ [1pt] continuous on $E$ for all $1 \leq i \leq m$ and $1 \leq j \leq n$.\\ [-6pt]
 
    {\begin{myIndent}\hThree
       Proof:\\
       Let $\{e_1, \ldots, e_n\}$ and $\{u_1, \ldots, u_m\}$ be the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$\\ respectively.\retTwo
 
-      ($\Longrightarrow$) Say $f \in \mathscr{C}^1(E)$. Then $f$ is differentiable, which means that\\ $(D_jf_i)(\mVec{x}) = (f^\prime(\mVec{x})e_j) \cdot u_i$ exists for all $1 \leq i \leq m$, $\hspace{0.3em}1 \leq j \leq n$,\\ and $\mVec{x} \in E$.
+      ($\Longrightarrow$) Say $f \in \mathscr{C}^1(E, \mathbb{R}^m)$. Then $f$ is differentiable, which means that\\ $(D_jf_i)(\mVec{x}) = (f^\prime(\mVec{x})e_j) \cdot u_i$ exists for all $1 \leq i \leq m$, $\hspace{0.3em}1 \leq j \leq n$,\\ and $\mVec{x} \in E$.
 
       \newpage
 
@@ -1296,7 +1296,7 @@ When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and tha
          \end{tabular}\retTwo
       \end{center}
 
-      Now, since $f \in \mathscr{C}^\prime$, we know that for any $\varepsilon > 0$, there exists $\delta > 0$ such\\ that $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{x}) - f^\prime(\mVec{x})\| < \varepsilon$. Thus, by the above\\ inequality, we also have that:
+      Now, since $f \in \mathscr{C}^1$, we know that for any $\varepsilon > 0$, there exists $\delta > 0$ such\\ that $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{x}) - f^\prime(\mVec{x})\| < \varepsilon$. Thus, by the above\\ inequality, we also have that:
       
       {\centering $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow |(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})| < \varepsilon$.\retTwo\par}
 
@@ -1349,7 +1349,7 @@ When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and tha
          $\left|f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x})\right|$ \\ [14pt] 
          $\phantom{aaaaaaaaa} = \left|\sum\limits_{j=1}^n\left(\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1}) - h_j(D_jf)(\mVec{x})\right)\right|$ \\ [14pt]
          $\phantom{aaaaaaaaa} \leq \sum\limits_{j=1}^n\left|\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1}) - h_j(D_jf)(\mVec{x})\right|$ \\ [14pt]
-         $\phantom{aaaaaaaaaaaaaaaaaaaaaa} < \sum\limits_{j=1}^n|h_j|\frac{\varepsilon}{n} = \varepsilon\sum\limits_{j=1}^n\frac{|h_j|}{n} \leq \varepsilon \|\mVec{h}\|$ \\ [14pt]
+         $\phantom{aaaaaaaaaaaaaaaaaaaaaa} < \sum\limits_{j=1}^n|h_j|\frac{\varepsilon}{n} \leq \varepsilon\sum\limits_{j=1}^n\frac{\|\mVec{h}\|}{n} = \varepsilon \|\mVec{h}\|$ \\ [14pt]
       \end{tabular}}\retTwo\par}
 
       And thus we have that: $\lim\limits_{\mVec{h} \rightarrow \mVec{0}}\frac{\left|\myVS\right.f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x})\left.\myVS\right|}{\|\mVec{h}\|} = 0$.\retTwo
@@ -1410,12 +1410,150 @@ When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and tha
          $|f(\mVec{x} + \mVec{h}) - f(\mVec{x})| \leq \sum\limits_{j=1}^n\left|\myVS f(\mVec{x} + \mVecAst{v}_j) - f(\mVec{x} + \mVecAst{v}_{j-1})\right| < \sum\limits_{j=1}^n|h_j|M \leq \|\mVec{h}\|\cdot nM $
       \end{tabular}}\retTwo\par}
 
-   Hence, since $R = \frac{\varepsilon}{nM}$, we know that for any $\mVec{h} \in B_R(\mVec{x})$, we have that\\ $|f(\mVec{x} + \mVec{h}) - f(\mVec{x})| < \varepsilon$. So, $f$ is continuous.
+   Hence, since $R = \frac{\varepsilon}{nM}$, we have that $|f(\mVec{x} + \mVec{h}) - f(\mVec{x})| < \varepsilon$ for any\\ $\mVec{h} \in B_R(\mVec{x})$. So, $f$ is continuous.\retTwo
 \end{myIndent}}
 
 \mySepTwo
 
-Heeeyyyy, I ran out of time. Sorry. Guess you can be happy to not have to grade more stuff.
+\textbf{Exercise 9.8}: Suppose that $f$ is a differentiable real function on an open set\\ $E \subseteq \mathbb{R}^n$, and that $f$ has a local maximum at a point $x \in E$. Then $f^\prime(x) = \mMat{0}$.\retTwo
+
+{\begin{myIndent}\exTwo
+   Proof:\\
+   Let $r > 0$ such that $B_r \subseteq E$ and $\|\mVec{h}\| < r \Longrightarrow f(\mVec{x} + \mVec{h}) \leq f(\mVec{x})$. Then pick\\ [-2pt] any such $\mVec{h} \in B_r$ and define $\gamma: (-1, 1) \longrightarrow \mathbb{R}^n$ by $\gamma(t) = \mVec{x} + t\mVec{h}$. Then note\\ [-2pt] that $(f \circ \gamma)^\prime(t) = f^\prime(\mVec{x} + t\mVec{h})\mVec{h}$.\retTwo
+
+   Crucially, we know that $(f \circ \gamma)^\prime$ reaches a local maximum at $t = 0$. And\\ since $f \circ \gamma$ is a function mapping an interval of $\mathbb{R}$ to $\mathbb{R}$, we know from\\ Math 140B that $(f \circ \gamma)^\prime(0) = f^\prime(\mVec{x})\mVec{h} = 0$. Then as $\mVec{h}$ can be a scalar\\ multiple of any vector, we must have that $f^\prime(\mVec{x}) = \mMat{0}$.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+\hOne
+\newpage
+
+Let $X$ be a metric space with the metric $d$, and consider some $\varphi: X \longrightarrow X$.\\ We call $\varphi$ a \udefine{contraction} if there exists $c < 1$ such that for all $x, y \in X$:
+
+{\centering $d(\varphi(x), \varphi(y)) \leq c\cdot d(x, y)$.\retTwo\par}
+
+
+{\begin{myIndent}\hTwo
+   \uuline{Theorem 9.23 (Banach Fixed Point Theorem)}:\\ [1pt] Let $X$ be a complete metric space with metric $d$, and let $\varphi: X \longrightarrow X$ be a\\ contraction. Then there exists a unique $x \in X$ such that $\varphi(x) = x$\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      We can establish that $x$ is unique if it exists very easily.
+      {\begin{myIndent}\hFour
+         Assume $x, y \in X$ such that $\varphi(x) = x$ and $\varphi(y) = y$. Then:\\ $d(x, y) = d(\varphi(x), \varphi(y)) \leq c\cdot d(x, y)$. Since $c < 1$, the only\\ way that this is possible is if $d(x , y) = 0$. So, $x = y$.\retTwo
+      \end{myIndent}}
+
+      Therefore, we now will focus on showing that $x$ exists.\retTwo
+
+      Pick any $x_0 \in X$ and then recursively define the sequence $(x_n)$ by\\ setting $x_{n+1} = \varphi(x_n)$ for all $n$. Then because $f$ is a contraction, there\\ exists $c < 1$ such that $d(\varphi(a), \varphi(b)) \leq c\cdot d(a, b)$ for all $a, b \in X$.\\ Hence, for all $n \geq 1$, we have that:
+      
+      {\centering $d(x_{n+1}, x_n) = d(\varphi(x_n), \varphi(x_{n-1})) \leq c \cdot d(x_n, x_{n-1})$. \retTwo\par}
+
+      By induction, we thus get that $d(x_{n+1}, x_n) \leq c^nd(x_1, x_0)$ for all $n$\\ (including $0$).\retTwo
+
+      Now consider that for any $m, n \in \mathbb{Z}^+$ such that $m > n \geq 1$, we\\ have that:
+      
+      \begin{center}
+         \begin{tabular}{l}
+            $d(x_m, x_n) \leq \sum\limits_{i=n}^{m-1}d(x_{i+1}, x_{i}) \leq d(x_1, x_0)(c^n + \ldots + c^{m-1})$\\
+
+            $\phantom{d(x_m, x_n) \leq \sum\limits_{i=n}^{m-1}d(x_{i+1}, x_{i})} \leq d(x_1, x_0)c^n{\displaystyle\sum\limits_{i=1}^{m-n-1}}c^i \leq \frac{c^n}{1-c}d(x_1, x_0)$\\
+         \end{tabular}\retTwo
+      \end{center}
+
+      This shows that $(x_n)$ is a Cauchy sequence. After all, for any $\varepsilon > 0$, we\\ can set $N$ such that $\frac{c^N}{1 - c}d(x_1, x_0) < \varepsilon$. That way, for all $m > n > N$\\ we have that $d(x_m, x_n) < \varepsilon$.\retTwo
+      
+      So because $X$ is complete, we know that $(x_n)$ converges. Therefore let\\ $x$ equal the limit of $(x_n)$ and consider any $\varepsilon > 0$.\retTwo
+      
+      Since $x_n \rightarrow x$, we know that there exists $N$ such that $\forall m > N$, we have\\ that $d(x, x_m) < \sfrac{\varepsilon}{2}$. And since $m$ is a contraction, we also know that\\ $d(\varphi(x), \varphi(x_m)) \leq c\frac{\varepsilon}{2} < \sfrac{\varepsilon}{2}$ for all $m > N$. Hence letting $m > N$:
+      
+      {\center $d(\varphi(x), x) \leq d(\varphi(x), \varphi(x_{m})) + d(x_{m+1}, x) < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$ \retTwo\par}
+
+      And as $\varepsilon$ is arbitrary, we thus know that $d(\varphi(x), x) = 0$. So, $\varphi(x) = x$.
+   \end{myIndent}}
+\end{myIndent}}
+
+\newpage
+
+\markLecture{4/18/2024}
+
+{\begin{myIndent}\hTwo
+   \uuline{The Inverse Function Theorem}:\\ [2pt]
+   Suppose that $f \in \mathscr{C}^1(E, \mathbb{R}^n)$ where $E \subseteq \mathbb{R}^n$ is open, that $f^\prime(\mVec{a})$ is invertible\\ for some $\mVec{a} \in E$, and that $\mVec{b} = f(\mVec{a})$. Then:
+   \begin{itemize}
+      \item[(A)] There exist open subsets $U$ and $V$ of $\mathbb{R}^n$ such that $\mVec{a} \in U$,\hspace{0.1em} $\mVec{b} \in V$,\\ $f(U) = V$, and $f$ is one-to-one on $U$.
+      \item[(B)] If $g$ is defined such that $(g \circ f)(\mVec{x}) = \mVec{x}$ for all $x \in U$, then\\ $g \in \mathscr{C}^{1}(V, \mathbb{R}^n)$.\retTwo
+   \end{itemize}
+
+   {\begin{myIndent}\hThree
+      \ul{Proof of part A}:\retTwo
+      
+      Set $\mMat{A} = f^\prime(\mVec{a})$ and set $\lambda = \frac{1}{2\|\mMat{A}\|^{-1}}$. Then since $f \in \mathscr{C}^1(E, \mathbb{R}^n)$, we know \\ that there exists $\delta > 0$ such that $\mVec{x} \in B_\delta(\mVec{a}) \Longrightarrow \|f^\prime(\mVec{x}) - \mMat{A}\| < \lambda$.\retTwo
+      
+      So, for any $r$ satisfying that $0 < r < \delta$ and $B_r \subseteq E$, set $U = B_r(\mVec{a})$.\\ Then let $\mVec{y} \in \mathbb{R}^n$ and consider the function:
+      
+      {\centering $ \varphi(\mVec{x}) = \mVec{x} + \mMat{A}^{-1}(\mVec{y} - f(\mVec{x}))\quad$ (defined for all $\mVec{x} \in E$).\retTwo\par}
+
+      Now firstly, observe that $f(\mVec{x}) = \mVec{y}$ if and only if $\mVec{x}$ is a fixed point of $\varphi$.
+      {\begin{myIndent}\hFour
+         Proof:\\ [-2pt]
+         ($\Longrightarrow$) If $f(\mVec{x}) = \mVec{y}$, then $\varphi(\mVec{x}) = \mVec{x} + \mMat{A}^{-1}(\mVec{0}) = \mVec{x}$.\retTwo
+         ($\Longleftarrow$) If $\varphi(\mVec{x}) = \mVec{x}$, then $\mVec{0} = \mMat{A}^{-1}(\mVec{y} - f(\mVec{x}))$. As $\nullity{\mMat{A}^{-1}} = 0$,\\ we therefore must have that $\mVec{y} - f(\mVec{x}) = \mVec{0}$. So $f(\mVec{x}) = \mVec{y}$.
+         \retTwo
+      \end{myIndent}}
+
+      Secondly, note that $\varphi^\prime(\mVec{x}) = \mMat{I} - \mMat{A}^{-1}f^\prime(\mVec{x}) = \mMat{A}^{-1}\left(\mMat{A} - f^\prime(\mVec{x})\right)$.\\ Therefore, assuming $\mVec{x} \in U$, we know that:
+
+      {\centering $\|\varphi^\prime(\mVec{x})\| \leq \|\mMat{A}^{-1}\|\|\mMat{A} - f^\prime(\mVec{x})\| < \|\mMat{A}^{-1}\|\lambda = \frac{1}{2}$ \retTwo\par}
+
+      In turn, since $U = B_r(\mVec{a})$ is convex, we can apply theorem 9.19 to say\\ that $\|\varphi(\mVecAst{x}_2) - \varphi(\mVecAst{x}_1)\| \leq \frac{1}{2}\|\mVecAst{x}_2 - \mVecAst{x}_1\|$. Now, be aware that this does\\ not imply that $\varphi$ is a contraction because we still don't know where $\varphi$\\ maps $U$ to. However, this is enough information to do the proof on the\\ previous page showing that $\varphi$ has at most one fixed point on $U$.\retTwo
+      
+      Hence, $f$ is one-to-one on $U$ since for any $\mVec{y} \in \mathbb{R}^n$, there can be at most\\ one $\mVec{x} \in U$ such that $\mVec{y} = f(\mVec{x})$\retTwo\retTwo
+
+      Now, we move on to showing that $V = f(U)$ is open.\retTwo
+      
+      Let $\mVecAst{y}_0 \in V$ and note that there exists a unique $\mVecAst{x}_0 \in U$ such that\\ [2pt] $f(\mVecAst{x}_0) = \mVecAst{y}_0$. Also, because $U$ is open, we know there exists $R > 0$\\ [2pt] such that $\overline{B_R(\mVecAst{x}_0)} \subset U$. So let $B$ equal that closed ball.
+
+      \newpage
+
+      Next, fix $\mVec{y}$ such that $\|\mVec{y} - \mVecAst{y}_0\| < \lambda R$ and define $\varphi$ using $\mVec{y}$ as was\\ described on the last page. Then note that:
+      
+      {\center $\|\varphi(\mVecAst{x}_0) - \mVecAst{x}_0\| = \|\mMat{A}^{-1}(\mVec{y} - \mVecAst{y}_0)\| < \|\mMat{A}^{-1}\|\lambda R = \frac{R}{2}$ \retTwo\par}
+
+      Therefore, we have that for all $\mVec{x} \in B$:
+      
+      {\center
+      \begin{tabular}{l}
+         $\|\varphi(\mVec{x}) - \mVecAst{x}_0\| \leq \|\varphi(\mVec{x}) - \varphi(\mVecAst{x_0})\| + \|\varphi(\mVecAst{x}_0) - \mVecAst{x}_0\|$\\ [6pt]
+         $\phantom{\|\varphi(\mVec{x}) - \mVecAst{x}_0\|} < \frac{1}{2}\|\mVec{x} - \mVecAst{x}_0\| + \frac{R}{2} < \frac{R}{2} + \frac{R}{2} = R$
+      \end{tabular}\retTwo\par}
+
+      Or in other words, $\mVec{x} \in B \Longrightarrow \phi(\mVec{x}) \in B$.\retTwo
+      
+      Hence, $\varphi$ is a contraction over $B$ (for real this time). Also, because $B$ is\\ a closed and bounded subset of $\mathbb{R}^n$, we know $B$ is compact and thus\\ complete. So by theorem 9.23, $\varphi$ has a fixed point $\mVec{x} \in B$. It follows\\ then that $\mVec{y} \in V$.\retTwo
+
+      Since $\mVec{y}$ was arbitary, we thus know that $B_{\lambda R}(\mVecAst{y}_0) \subseteq V$. So, $V$ is open.\retTwo\retTwo
+
+      \ul{Proof of part B}:\retTwo
+
+      Based on the previous part, we know that $f$ is a bijective map from $U$\\ to $V$. So, there does exist $g$ such that $(g \circ f)(\mVec{x}) = \mVec{x}$ for all $\mVec{x} \in U$.\retTwo
+
+      Now pick $\mVec{y} \in V$ and $\mVec{y} + \mVec{k} \in V$. Then there exists $\mVec{x} \in U$ and\\ $\mVec{x} + \mVec{h} \in U$ such that $f(\mVec{x}) = \mVec{y}$ and $f(\mVec{x} + \mVec{h}) = \mVec{y} + \mVec{k}$.\retTwo
+
+      Next, having defined $\varphi$ one more time using any $\mVecAst{y}_0 \in \mathbb{R}^n$ we have that:
+
+      {\centering 
+      {\fontsize{11.6}{13.6}\selectfont \begin{tabular}{l}
+         $\varphi(\mVec{x} + \mVec{h}) - \varphi(\mVec{x}) = \mVec{x} + \mVec{h} + \mMat{A}^{-1}(\mVecAst{y}_0 - f(\mVec{x} + \mVec{h})) - \mVec{x} - \mMat{A}^{-1}(\mVecAst{y}_0 - f(\mVec{x}))$\\ [3pt]
+
+         $\phantom{\varphi(\mVec{x} + \mVec{h}) - \varphi(\mVec{x})} = \mVec{h} + \mMat{A}^{-1}(f(\mVec{x}) - f(\mVec{x} + \mVec{h}))$\\ [3pt]
+
+         $\phantom{\varphi(\mVec{x} + \mVec{h}) - \varphi(\mVec{x})} = \mVec{h} - \mMat{A}^{-1}\mVec{k}$
+      \end{tabular}}\retTwo\par}
+
+      At the same, from part A we know that $\|\varphi(\mVec{x} + \mVec{h}) - \varphi(\mVec{x})\| < \frac{1}{2}\|\mVec{h}\|$.\\ Therefore, we have $\|\mVec{h} - \mMat{A}^{-1}\mVec{k}\| \leq \frac{1}{2}\|\mVec{h}\|$.
+   \end{myIndent}}
+\end{myIndent}}
 
 
 \end{document}
