@@ -381,7 +381,7 @@ The function $f^\prime(x) = \lim\limits_{t\rightarrow x}\left(\frac{f(t)-f(x)}{t
 
 If $f(x) = \alpha$ where $\alpha \in \mathbb{R}$ is constant, then trivially $f^\prime(x) = 0$ for all $x$.\\ Meanwhile, if $f(x) = x$, then we can trivially find that $f^\prime(x) = 1$.\retTwo
 
-Claim 1: For all $n \in \mathbb{Z}^+$, if $f(x) = x^n$, then $f^\prime(x) = nx^{n-1}$.\\ [-15pt]
+Claim 1: For all $n \in \mathbb{Z}_+$, if $f(x) = x^n$, then $f^\prime(x) = nx^{n-1}$.\\ [-15pt]
 
 {\begin{myIndent}\exTwo
    Proof: (we proceed by induction)\retTwo
@@ -1057,7 +1057,7 @@ Before, covering some sufficient conditions for integrability, it's worth going\
       Proof:\\
       We'll assume that $f$ is monotonically increasing because the proof for if\\ $f$ is monotonically decreasing is mostly identical.\retTwo
 
-      Let $\varepsilon > 0$ and pick $n \in \mathbb{Z}^+$ big enough that $\frac{\alpha(b) - \alpha(a)}{n}\left(f(b) - f(a)\right) < \varepsilon$.\\ Since $\alpha$ is continuous, by the intermediate value theorem we can find a\\ partition $P = \{x_0, \ldots, x_n\}$ with $x_0 = a$, $x_n = b$, and
+      Let $\varepsilon > 0$ and pick $n \in \mathbb{Z}_+$ big enough that $\frac{\alpha(b) - \alpha(a)}{n}\left(f(b) - f(a)\right) < \varepsilon$.\\ Since $\alpha$ is continuous, by the intermediate value theorem we can find a\\ partition $P = \{x_0, \ldots, x_n\}$ with $x_0 = a$, $x_n = b$, and
 
       {\centering $\alpha(x_i) = \alpha(a) + \frac{i}{n}(\alpha(b) - \alpha(a))$.\par}
 
@@ -1163,6 +1163,300 @@ Before, covering some sufficient conditions for integrability, it's worth going\
    \end{myIndent}}
 \end{myIndent}}
 
+\mySepTwo
+
+Next, we explore the properties of integrals\ldots\retTwo
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Suppose that $c \in \mathbb{R}$, that $f, f_1, f_2 : [a, b] \longrightarrow \mathbb{R}$ are bounded,\\ and that $\alpha, \alpha_1, \alpha_2: [a, b] \longrightarrow \mathbb{R}$ be monotone increasing.
+   
+   \begin{enumerate}
+      \item[(A)] {\fontsize{12.5}{14.5}\selectfont$\underline{\int_a^b}f_1d\alpha + \underline{\int_a^b}f_2d\alpha \leq \underline{\int_a^b}(f_1 + f_2)d\alpha$} \hspace{0.2em}and\hspace{0.2em} {\fontsize{12.5}{14.5}\selectfont$\overline{\int_a^b}f_1d\alpha + \overline{\int_a^b}f_2d\alpha \geq \overline{\int_a^b}(f_1 + f_2)d\alpha$}\\
+      Hence, $f_1, f_2 \in \mathscr{R}_a^b(\alpha) \Longrightarrow (f_1 + f_2) \in \mathscr{R}_a^b(\alpha)$ with:
+      
+      {\centering$\int_a^bf_1d\alpha + \int_a^bf_2d\alpha = \int_a^b(f_1 + f_2)d\alpha$.\retTwo\par}
+
+      {\begin{myIndent}\hThree
+         This follows from the fact that:
+         \begin{myIndent}
+            \begin{itemize}
+               \item $\hspace{-1.2em}\inf\limits_{x_{i-1}\vphantom{\int^b} \leq x \leq x_i}\hspace{-1.1em}f_1(x) + \hspace{-1.1em}\inf\limits_{x_{i-1} \leq\vphantom{\int^b} x \leq x_i}\hspace{-1.1em}f_2(x) \leq \hspace{-1em}\inf\limits_{x_{i-1} \leq x\vphantom{\int^b} \leq x_i}\hspace{-1em}(f_1(x) + f_2(x))$\\
+               
+               \item $\hspace{-1.2em}\sup\limits_{x_{i-1} \leq x \leq x_i}\hspace{-1em}f_1(x) + \hspace{-1em}\sup\limits_{x_{i-1} \leq x \leq x_i}\hspace{-1.1em}f_2(x) \geq \hspace{-1em}\sup\limits_{x_{i-1} \leq x \leq x_i}\hspace{-1em}(f_1(x) + f_2(x))$\\
+            \end{itemize}
+            
+            \begin{myDindent}\hFour
+               We proved this last quarter in a homework assignment.\\ Intuitively though, this is because  $f_1$ and $f_2$ might reach\\ their most extreme values at different points, and in that\\ case you can't maximize or minimize two functions at\\ the same time.\retTwo
+            \end{myDindent}
+         \end{myIndent}
+      \end{myIndent}}
+
+      Also, if $c \geq 0$, then $\underline{\int_a^b}cfd\alpha = c\underline{\int_a^b}fd\alpha$ and $\overline{\int_a^b}cfd\alpha = c\overline{\int_a^b}fd\alpha$. Meanwhile,\\ [-4pt] if $c \leq 0$, then $\underline{\int_a^b}cfd\alpha = c\overline{\int_a^b}fd\alpha$ and $\overline{\int_a^b}cfd\alpha = c\underline{\int_a^b}fd\alpha$. Hence, we have\\ [2pt] that if $f \in \mathscr{R}_a^b(\alpha)$, then:
+
+      {\centering $\int_a^bcfd\alpha = c\int_a^bfd\alpha$. \retTwo\par}
+
+      {\begin{myIndent}\hThree
+         This similarly follows from the fact that:
+         \begin{myIndent}
+            \begin{itemize}
+               \item when $c \geq 0$:
+               
+               \begin{tabular}{c c c}
+                  $\circ\hspace{-1.2em}\inf\limits_{x_{i-1}\vphantom{\int^b} \leq x \leq x_i}\hspace{-1em}(cf(x)) = c\hspace{-1.22em}\inf\limits_{x_{i-1} \leq\vphantom{\int^b} x \leq x_i}\hspace{-1.15em}f(x)$ & $\phantom{a}$ &
+
+                  $\circ\hspace{-0.9em}\sup\limits_{x_{i-1} \leq x \leq x_i}\hspace{-1em}(cf(x)) = c\hspace{-1em}\sup\limits_{x_{i-1} \leq x \leq x_i}\hspace{-1em}f(x)$
+               \end{tabular}\\
+
+               \item when $c \leq 0$:
+               
+               \begin{tabular}{c c c}
+                  $\circ\hspace{-1.2em}\inf\limits_{x_{i-1}\vphantom{\int^b} \leq x \leq x_i}\hspace{-1em}(cf(x)) = c\hspace{-1.0em}\sup\limits_{x_{i-1} \leq x \leq x_i}\hspace{-1em}f(x)$ & $\phantom{a}$ &
+
+                  $\circ\hspace{-0.9em}\sup\limits_{x_{i-1} \leq x \leq x_i}\hspace{-1em}(cf(x)) = c\hspace{-1.1em}\inf\limits_{x_{i-1}\vphantom{\int^a} \leq x \leq x_i}\hspace{-1.2em}f(x)$\retTwo
+               \end{tabular}
+            \end{itemize}
+
+            \begin{myDindent}\hFour
+               This is another past homework question.
+            \end{myDindent}
+         \end{myIndent}
+      \end{myIndent}}
+
+      \newpage
+
+      \item[(B)] {\fontsize{12}{14}\selectfont$\left(\vphantom{\int^b}\forall x \in [a, b], \myHS f_1(x) \leq f_2(x)\right) \Longrightarrow \underline{\int_a^b}f_1d\alpha \leq \underline{\int_a^b}f_2d\alpha$ and $\overline{\int_a^b}f_1d\alpha \leq \overline{\int_a^b}f_2d\alpha$}.\\ [-11pt]
+      
+      {\begin{myIndent}\hThree
+         This is immediate from our definitions.
+         \retTwo
+      \end{myIndent}}
+
+      \item[(C)] If $c \in (a, b)$, then {\fontsize{12}{14}\selectfont$\underline{\int_a^b}fd\alpha = \underline{\int_a^c}fd\alpha + \underline{\int_c^b}fd\alpha$ and $\overline{\int_a^b}fd\alpha = \overline{\int_a^c}fd\alpha + \overline{\int_c^b}fd\alpha$.}
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         We'll focus on the lower integral statement since the proof for the\\ upper integral statement is mostly identical.\retTwo
+
+         By proposition 94, we have that:
+         
+         {\centering$\underline{\int_a^b}fd\alpha = \hspace{-0.2em}\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P, f, \alpha) = \hspace{-0.2em}\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P \cup \{c\}, f, \alpha)$.\retTwo\par}
+
+         Next, setting $P_1 = \left(P \cup \{c\}\right) \cap [a, c]$ and $P_2 = \left(P \cup \{c\}\right) \cap [c, b]$, we\\ have that:
+
+         {\centering
+         \begin{tabular}{l}
+            $\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P \cup \{c\}, f, \alpha) = \hspace{-0.2em}\sup\limits_{
+            \begin{smallmatrix}
+               P_1 \in \mathcal{P}_{a,c}\\
+               P_2 \in \mathcal{P}_{c,b}
+            \end{smallmatrix}}\hspace{-0.4em}\left(L(P_1, f, \alpha) + \hspace{-0.2em}\sup\limits_{P_2 \in \mathcal{P}_{c,b}}\hspace{-0.4em}L(P_2, f, \alpha)\right)$\\ [32pt]
+
+            $\phantom{\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P \cup \{c\}, f, \alpha)} = \hspace{-0.2em}\sup\limits_{P_1 \in \mathcal{P}_{a,c}}\hspace{-0.4em}L(P_1, f, \alpha) + \hspace{-0.2em}\sup\limits_{P_2 \in \mathcal{P}_{c,b}}\hspace{-0.4em}L(P_2, f, \alpha)$\\ [16pt]
+
+            $\phantom{\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P \cup \{c\}, f, \alpha)} = \underline{\int_a^c}fd\alpha + \underline{\int_c^b}fd\alpha$\retTwo
+         \end{tabular}\retTwo\par}
+      \end{myIndent}}
+
+      \item[(D)] $\left|\underline{\int_a^b}fd\alpha\right|, \left|\overline{\int_a^b}fd\alpha\right| \leq (\alpha(b) - \alpha(a))\cdot \sup\limits_{a\leq x \leq b}|f(x)|$.
+      
+      {\begin{myIndent}\hThree
+         This is immediate from our definitions.
+         \retTwo
+      \end{myIndent}}
+
+      \item[(E)] {\fontsize{12}{14}\selectfont$\underline{\int_a^b}fd(\alpha_1 + \alpha_2) = \underline{\int_a^b}fd\alpha_1 + \underline{\int_a^b}fd\alpha_2$ and $\overline{\int_a^b}fd(\alpha_1 + \alpha_2) = \overline{\int_a^b}fd\alpha_1 + \overline{\int_a^b}fd\alpha_2$}\\ 
+      Also, if $c \geq 0$, then $\underline{\int_a^b}cfd\alpha = c\underline{\int_a^b}fd\alpha$ and $\overline{\int_a^b}cfd\alpha = c\overline{\int_a^b}fd\alpha$.\\ [-6pt]
+      
+      \begin{myIndent}\hThree
+         This immediately follows from the fact that\\ $\Delta(\alpha_1 + \alpha_2)_i = \Delta(\alpha_1)_i + \Delta(\alpha_2)_i$ and $\Delta(c\alpha)_i = c\cdot\Delta\alpha_i$.
+      \end{myIndent}
+   \end{enumerate}
+\end{myIndent}}
+
+\markLecture{4/19/2024}
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: If $f, g \in \mathscr{R}_a^b(\alpha)$, then:
+   \begin{enumerate}
+      \item[(A)] $fg \in \mathscr{R}_a^b(\alpha)$.\\[-6pt]
+      {\begin{myIndent}\hThree
+         Proof:\\
+         By propositions 101 and 102, we know that $(f + g)^2 \in \mathscr{R}_a^b(\alpha)$ and\\ $(f - g)^2 \in \mathscr{R}_a^b(\alpha)$.   Therefore {\fontsize{12.8}{14.8}\selectfont$fg = \frac{1}{4}\left((f+g)^2 + (f-g)^2\right) \in \mathscr{R}_a^b(\alpha)$}.
+      \end{myIndent}}
+      
+      \newpage
+
+      \item[(B)] $|f| \in \mathscr{R}_a^b(\alpha)$ and $\left|\int_a^b fd\alpha\right| \leq \int_a^b |f|d\alpha$.\\ [-6pt]
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         We know that $|f| \in \mathscr{R}_a^b(\alpha)$ by proposition 101. Then, because\\ $f(x), -f(x) \leq |f(x)|$ for all $x \in [a, b]$, we know by proposition\\ 102.B that $\int_a^bfd\alpha \leq \int_a^b|f|d\alpha$ and $-\int_a^bfd\alpha \leq \int_a^b|f|d\alpha$. Therefore:
+         
+         {\centering$\left|\int_a^b fd\alpha\right| \leq \int_a^b |f|d\alpha$.\retTwo\retTwo\par}
+      \end{myIndent}}
+   \end{enumerate}
+\end{myIndent}}
+
+The \udefine{unit step function} $I$ is defined by: $I(x) = \left\{
+\begin{matrix}
+   0 & \text{ when } x \leq 0 \\
+   1 & \text{ when } x > 1
+\end{matrix}\right.$\retTwo
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Suppose $s \in [a, b)$ and $f: [a, b] \longrightarrow \mathbb{R}$ be bounded. If\\ $\alpha(x) = I(x - s)$, we have that $f \in \mathscr{R}_a^b(\alpha)$ if and only if $f(s+) = f(s)$.\\ Furthermore, $\int_a^bfd\alpha = f(s)$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Letting $P = \{x_0, \ldots, x_n\}$ be any partition of $[a, b]$, we can assume because\\ of proposition 94 that $s \in P$. So let $j$ be such that $x_j = s$. Then note that\\ $L(P, f, \alpha) = m_{j+1} = \hspace{-1.05em}\inf\limits_{x_j \leq x \vphantom{\int^a}\leq x_{j+1}}\hspace{-1.1em}f(x)$ and $U(P, f, \alpha) = M_{j+1} = \hspace{-1.05em}\sup\limits_{x_j \leq x \leq x_{j+1}}\hspace{-1.1em}f(x)$.\retTwo
+
+      ($\Longrightarrow$) If $f \in \mathscr{R}_a^b$, then for all $\varepsilon > 0$, there exists a partition $P$ such that\\ $U(P, f, \alpha) - L(P, f, \alpha) < \varepsilon$. Then because $f(x), f(t) \in [m_{j+1}, M_{j+1}]$\\ for all $t \in [x_j, x_{j+1}]$, by setting $\delta = x_{j+1} - x_j$ we know that:
+      
+      {\centering$t \in [s, s + \delta] \Longrightarrow |f(t) - f(s)| \leq M_{j+1} - m_{j+1} < \varepsilon$.\retTwo\par}
+
+      So $f(s+) = f(s)$.\retTwo
+
+      ($\Longleftarrow$) Meanwhile if $f(s+) = f(s)$, then for any $\varepsilon > 0$ there exists $\delta > 0$\\ such that $t \in [s, s + \delta] \Longrightarrow |f(t) - f(s)| < \sfrac{\varepsilon}{2}$. So, let $P = \{x_0, \ldots, x_n\}$\\ be a partition of $[a, b]$ such that $x_j = s$ and $x_{j+1} = s + \delta$. Then\\ $m_{j+1} \geq f(s) - \sfrac{\varepsilon}{2}$ and $M_{j+1} \leq f(s) + \sfrac{\varepsilon}{2}$. Hence:
+
+      {\centering $U(P, f, \alpha) - L(P, f, \alpha) = M_{j+1} - m_{j+1} < \varepsilon$ \retTwo\par}
+
+      This means that $f \in \mathscr{R}_a^b(\alpha)$.\retTwo
+
+      Finally, note that for all $\varepsilon > 0$ there exists a partition $P$ such that\\ $U(P, f, \alpha) = M_{j+1} < f(s) + \varepsilon$ and $L(P, f, \alpha) = m_{j+1} > f(s) + \varepsilon$.\\ Thus:
+
+      {\centering $\underline{\int_a^b}fd\alpha = \overline{\int_a^b}fd\alpha = \int_a^bfd\alpha = f(s)$.\retTwo\par}
+   \end{myIndent}}
+
+   \newpage
+
+   Proposition \propCount: Let $(c_n)$ be a sequence of non-negative reals with $\sum c_n < \infty$.\\ Also let $(s_n)$ be a sequence in $[a, b)$ and set $\alpha(x) = \sum\limits_{n=1}^\infty c_nI(x - s_n)$.
+
+   {\begin{myTindent}\begin{myDindent}\hFour
+      Interestingly, this is the same function we made\\ at the bottom of page 63 during math 140A.\retTwo
+   \end{myDindent}\end{myTindent}}
+
+   If $f: [a, b] \longrightarrow \mathbb{R}$ is continuous, then $f \in \mathscr{R}_a^b(\alpha)$  and $\int_a^bfd\alpha = \sum\limits_{n=1}^\infty c_nf(s_n)$.\\ [ -6pt]
+
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Note that $\alpha(x)$ converges absolutely by comparison with $(c_n)$ for all\\ [1pt] $x \in [a, b]$. Also, $\alpha$ is monotonically increasing with $\alpha(b) = \sum c_n$.\retTwo
+
+      Now let $\varepsilon > 0$ and pick $N$ with $\hspace{-0.65em}\sum\limits_{n = N+1}^\infty\hspace{-0.7em} c_n < \varepsilon$. Also set $M = \hspace{-0.3em}\sup\limits_{a\leq x\leq b}\hspace{-0.3em}|f(x)|$\retTwo
+      
+      By proposition 98, we know that $f \in \mathscr{R}_a^b(\alpha)$. So finally, define\\
+      $\beta(x) = \sum\limits_{i=1}^N c_k I(x - s_k)$ and $\gamma(x) = \hspace{-0.65em}\sum\limits_{i=N+1}^\infty\hspace{-0.65em} c_k I(x - s_k)$. Then\\ $\gamma = \alpha - \beta$ and $f \in \mathscr{R}_a^b(\beta), \mathscr{R}_a^b(\gamma)$. So:\\
+      
+      \begin{center}{\fontsize{12}{14}\selectfont
+         \begin{tabular}{l}
+            $\left|\cyPen{\sum\limits_{k=1}^n c_kf(s_k)}\vphantom{.} - \int_a^b fd\alpha\right| = \left| \cyPen{\int_a^b fd\beta}\vphantom{.} - \int_a^b fd\alpha \right|$\\ [8pt]
+            
+            $\phantom{\left|\cyPen{\sum\limits_{k=1}^n c_kf(s_k)}\vphantom{.} - \int_a^b fd\alpha\right|} = \left|\int_a^b fd(\beta - \alpha)\right|$\\ [8pt]
+
+            $\phantom{\left|\cyPen{\sum\limits_{k=1}^n c_kf(s_k)}\vphantom{.} - \int_a^b fd\alpha\right|} = \left|\int_a^b fd\gamma\right| \leq \int_a^b|f|d\gamma$\\ [4pt]
+
+            $\phantom{\left|\cyPen{\sum\limits_{k=1}^n c_kf(s_k)}\vphantom{.} - \int_a^b fd\alpha\right| = \left|\int_a^b fd\gamma\right|} \leq \int_a^bMd\gamma = M(\gamma(b) - \gamma(a))$\\ [4pt]
+
+            $\phantom{\left|\cyPen{\sum\limits_{k=1}^n c_kf(s_k)}\vphantom{.} - \int_a^b fd\alpha\right| = \left|\int_a^b fd\gamma\right| \leq \int_a^bMd\gamma} = M\left(\hspace{0em}\sum\limits_{i=N+1}^\infty\hspace{-0.5em} c_k - 0\right) < M\varepsilon$
+         \end{tabular}}
+      \end{center}
+
+      As $\varepsilon$ is arbitrary, we thus have that $\int_a^bfd\alpha = \sum\limits_{n=1}^\infty c_nf(s_n)$.\\ [-4pt]
+      
+      
+      {\begin{myTindent}\teachComment
+         Note, we assumed $(c_n)$ and $(s_n)$ are infinite sequences\\ because if $(c_n)$ and $(s_n)$ have finitely many elements, then\\ this theorem holds trivially because of proposition 102.
+      \end{myTindent}}
+      \retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: Let $\alpha: [a, b] \longrightarrow \mathbb{R}$ be monotonically increasing and\\ differentiable, and assume $\alpha^\prime \in \mathscr{R}_a^b$. Also let $f: [a, b] \longrightarrow \mathbb{R}$ be bounded.\\ Then $f \in \mathscr{R}_a^b(\alpha) \Longleftrightarrow f\alpha^\prime \in \mathscr{R}_a^b$ with $\int_a^bfd\alpha = \int_a^bf\alpha^\prime dx$.\\ [-6pt]
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      It suffices to show $\underline{\int_a^b}fd\alpha = \underline{\int_a^b}f\alpha^\prime dx$ and $\overline{\int_a^b}fd\alpha = \overline{\int_a^b}f\alpha^\prime dx$.
+
+      \newpage
+
+      We'll focus on proving the lower integral statement because the proof for\\ the upper integral statement is mostly identical. Set $M = \hspace{-0.1em}\sup\limits_{a \leq x \leq b}\hspace{-0.2em}|f(x)|$\\ [-8.5pt] and let $\varepsilon > 0$.\retTwo
+
+      Pick partitions $P_1, P_2, P_3$ such that:
+      \begin{itemize}
+         \item $L(P_1, f, \alpha) > \underline{\int_a^b}fd\alpha - \varepsilon$
+         \item $L(P_2, f\alpha^\prime) > \underline{\int_a^b}f\alpha^\prime dx - \varepsilon$\\ [-10pt]
+         \item $U(P_3, \alpha^\prime) - L(P_3, \alpha^\prime) < \varepsilon$\retTwo
+      \end{itemize}
+
+      Then set $P = P_1 \cup P_2 \cup P_3 = \{x_0, \ldots, x_n\}$ so that $P$ satisfies all of\\ the above inequalities.\retTwo
+      
+      By the mean value theorem, we know there exists $t_i \in [x_{i-1}, x_i]$ with\\ $\Delta \alpha_i = \alpha^\prime(t_i)\Delta x_i$ for each $1 \leq i \leq n$. Also, given any  $s_i \in [x_{i-1}, x_i]$\\ for each $1 \leq i \leq n$, we know by proposition 97.B and because\\ $U(P, \alpha^\prime) - L(P, \alpha^\prime) < \varepsilon$ that:
+
+      {\centering $\sum\limits_{i=1}^n|f(s_i) - f(t_i)|\Delta x_i < \varepsilon$. \retTwo\par}
+
+      Therefore:
+
+      \begin{center}
+         {\fontsize{11.5}{13.5}\selectfont\begin{tabular}{l}
+            $\left|\sum\limits_{i=1}^n\left( f(s_i)\Delta\alpha_i - f(s_i)\alpha^\prime(s_i)\Delta x_i\right)\right| = \left|\sum\limits_{i=1}^n\left( f(s_i)\alpha^\prime(t_i)\Delta x_i -f(s_i)\alpha^\prime(s_i)\Delta x_i\right)\right|$\\ [12pt]
+
+            $\phantom{\left|\sum\limits_{i=1}^n\left( f(s_i)\Delta\alpha_i - f(s_i)\alpha^\prime(s_i)\Delta x_i\right)\right|} \leq M \cdot \left|\sum\limits_{i=1}^n \alpha^\prime(t_i)\Delta x_i - \sum\limits_{i=1}^n \alpha^\prime(s_i)\Delta x_i\right| < M\varepsilon$\\ [4pt]
+         \end{tabular}}\retTwo
+      \end{center}
+
+      Hence, letting $s_i = \hspace{-1.2em}\inf\limits_{x_{i-1}\leq\vphantom{\int^a} x \leq x_i}\hspace{-1.15em}f(x)$ for each $1 \leq i \leq n$,we have that:
+
+      \begin{center}
+         {\fontsize{11.4}{13.4}\selectfont\begin{tabular}{l}
+            $\underline{\int_a^b}fd\alpha \geq L(P, f, \alpha) = \sum\limits_{i=1}^nf(s_i)\Delta\alpha_i > \sum\limits_{i=1}^nf(s_i)\alpha^\prime(s_i)\Delta x_i - M\varepsilon$\\ [8pt]
+
+            $\phantom{\underline{\int_a^b}fd\alpha \geq L(P, f, \alpha) = \sum\limits_{i=1}^nf(s_i)\Delta\alpha_i} = L(P, f\alpha^\prime) - M\varepsilon > \overline{\int_a^b}f\alpha^\prime dx - (M + 1)\varepsilon$
+         \end{tabular}}\retTwo
+      \end{center}
+
+      Similarly, letting $s_i = \hspace{-1.2em}\inf\limits_{x_{i-1}\leq\vphantom{\int^a} x \leq x_i}\hspace{-1.15em}f(x)\alpha^\prime(x)$ for each $1 \leq i \leq n$,we have that:
+
+      \begin{center}
+         {\fontsize{11.4}{13.4}\selectfont\begin{tabular}{l}
+            $\underline{\int_a^b}f\alpha^\prime dx \geq L(P, f\alpha^\prime) = \sum\limits_{i=1}^nf(s_i)\alpha^\prime(s_i)\Delta x_i > \sum\limits_{i=1}^nf(s_i)\Delta\alpha_i - M\varepsilon$\\ [6pt]
+
+            $\phantom{\underline{\int_a^b}f\alpha^\prime dx \geq L(P, f\alpha^\prime) = \sum\limits_{i=1}^nf(s_i)a\alpha^\prime(s_i)\Delta_i} = L(P, f, \alpha) - M\varepsilon$\\ [-4pt]
+
+            $\phantom{\underline{\int_a^b}f\alpha^\prime dx \geq L(P, f\alpha^\prime) = \sum\limits_{i=1}^nf(s_i)a\alpha^\prime(s_i)\Delta_i} > \overline{\int_a^b}f\alpha^\prime dx - (M + 1)\varepsilon$
+         \end{tabular}}\retTwo
+      \end{center}
+
+      Since $\varepsilon > 0$ was arbitrary, we conclude that $\underline{\int_a^b}fd\alpha = \underline{\int_a^b}f\alpha^\prime dx$.
+   \end{myIndent}
+\end{myIndent}}
+
+\newpage
+
+\markLecture{4/22/2024}
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Let $\alpha: [a, b] \longrightarrow \mathbb{R}$ be monotone increasing and let\\ $f: [a, b] \longrightarrow \mathbb{R}$ with $f \in \mathscr{R}_a^b(\alpha)$. If $\phi: [A, B] \longrightarrow [a, b]$ is a strictly\\ increasing continuous bijection, then $\int_A^B \left(f\circ\phi\right) d(\alpha \circ \phi) = \int_a^b fd\alpha$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Note that $\phi$ produces a bijection between partitions of $[A, B]$ and\\ partitions of $[a, b]$. It sends the partition $Q = \{y_0, \ldots, y_n\}$ of $[A, B]$ to\\ $P = \phi(Q) = \{x_0, \ldots, x_n\}$ where $x_i = \phi(y_i)$ for all $1 \leq i \leq n$.\retTwo
+
+      With this notation, we have that:
+      
+      {\centering $\hspace{-1.05em}\inf\limits_{y_{j-1} \vphantom{\int_b}\leq t \leq y_{j}}\hspace{-1.1em}f\circ \phi(t) = \hspace{-1.05em}\inf\limits_{x_{j-1} \vphantom{\int_b}\leq t \leq x_{j}}\hspace{-1.1em}f(t)$ and $\hspace{-1.05em}\sup\limits_{y_{j-1}\leq t \leq y_{j}}\hspace{-0.9em}f\circ \phi(t) = \hspace{-1.05em}\sup\limits_{x_{j-1} \leq t \leq x_{j}}\hspace{-1em}f(t)$.\retTwo\par}
+
+      Also, $\Delta(\alpha \circ \phi)_i = \Delta\alpha_i$. So $U(Q, f\circ \phi, \alpha \circ \phi) = U(P, f, \alpha)$ and\\ $L(Q, f\circ \phi, \alpha \circ \phi) = L(P, f, \alpha)$. Hence, the theorem above\\ follows from taking the $\sup$ and $\inf$ over all $Q$.\retTwo
+      
+      {\begin{myTindent}\teachComment
+         Note: if $\alpha(x) = x$ and $\phi$ is differentiable with $\phi^\prime \in \mathscr{R}_a^b$,\\ then using the previous theorem we have that:
+
+         {\centering $\int_a^bf(x)dx = \int_A^B(f \circ \phi)d\phi = \int_A^B f(\phi(x))\phi^\prime(x)dx$ \retTwo\par}
+      \end{myTindent}}
+   \end{myIndent}}
+
+   Proposition \propCount: (first fundamental theorem of calculus):\\
+   Let $f \in \mathscr{R}_a^b$ and define $F(x) = \int_a^xf(t)dt$ for $a \leq x \leq b$.
+
+\end{myIndent}}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
@@ -1182,10 +1476,10 @@ Before, covering some sufficient conditions for integrability, it's worth going\
       \myVS 95 & 6.5 & 96 & 6.6 \\ \hdashline[10pt/3pt]
       \myVS 97 & 6.7 & 98 & 6.8 \\ \hdashline[10pt/3pt]
       \myVS 99 & 6.9 & 100 & 6.10 \\ \hdashline[10pt/3pt]
-      \myVS 101 & 6.11 & 102 &  \\ \hdashline[10pt/3pt]
-      \myVS 103 &  & 104 &  \\ \hdashline[10pt/3pt]
-      \myVS 105 &  & 106 &  \\ \hdashline[10pt/3pt]
-      \myVS 107 &  & 108 &  \\ \hdashline[10pt/3pt]
+      \myVS 101 & 6.11 & 102 & 6.12 \\ \hdashline[10pt/3pt]
+      \myVS 103 & 6.13 & 104 & 6.15 \\ \hdashline[10pt/3pt]
+      \myVS 105 & 6.16 & 106 & 6.17 \\ \hdashline[10pt/3pt]
+      \myVS 107 & 6.19 & 108 & 6.20 \\ \hdashline[10pt/3pt]
       \myVS 109 &  & 110 &  \\ \hdashline[10pt/3pt]
       \myVS 111 &  & 112 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
@@ -1195,6 +1489,15 @@ Before, covering some sufficient conditions for integrability, it's worth going\
 \retTwo
 
 Our textbook is \textit{Principles of Mathematical Analysis} by Walter Rudin.
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1567,16 +1870,16 @@ Secondly, we shall show that $f(t) = t + (1+e^t)^{-1}$ has no fixed points but t
    \retTwo
 \end{myIndent}}
 
-Thirdly, we show that if there is a constant $A < 1$ such that $|f^\prime(t)| \leq A$ for all real $t$,\\ then $f$ has a fixed point $x$. Furthermore, $x = \lim{x_n}$ where $x_1 \in \mathbb{R}$ and $x_{n+1} = f(x_n)$\\ for all $n \in \mathbb{Z}^+$. \\ [-6pt]
+Thirdly, we show that if there is a constant $A < 1$ such that $|f^\prime(t)| \leq A$ for all real $t$,\\ then $f$ has a fixed point $x$. Furthermore, $x = \lim{x_n}$ where $x_1 \in \mathbb{R}$ and $x_{n+1} = f(x_n)$\\ for all $n \in \mathbb{Z}_+$. \\ [-6pt]
 
 {\begin{myIndent}\pracTwo
-   To start off, note that if $x_n = x_{n+1}$ for any value of $n \in \mathbb{Z}^+$, then $x_n = x_{n+k}$ for all\\ $k \in \mathbb{Z}^+$ and $x_n = f(x_n)$. So, we trivially have that $x_n \rightarrow x$ where $x$ is the fixed point\\ of $f$.\retTwo
+   To start off, note that if $x_n = x_{n+1}$ for any value of $n \in \mathbb{Z}_+$, then $x_n = x_{n+k}$ for all\\ $k \in \mathbb{Z}_+$ and $x_n = f(x_n)$. So, we trivially have that $x_n \rightarrow x$ where $x$ is the fixed point\\ of $f$.\retTwo
    
-   Now we assume that $x_n \neq x_{n+1}$ for any $n \in \mathbb{Z}^+$. Then for any $n \in \mathbb{Z}^+$, we can use\\ the mean value theorem to say that there exists $t \in (x_n, x_{n+1})$ such that:
+   Now we assume that $x_n \neq x_{n+1}$ for any $n \in \mathbb{Z}_+$. Then for any $n \in \mathbb{Z}_+$, we can use\\ the mean value theorem to say that there exists $t \in (x_n, x_{n+1})$ such that:
 
    {\center $x_{n+2} - x_{n+1} = f(x_{n+1}) - f(x_n) = (x_{n+1} - x_n)f^\prime(t) < (x_{n+1} - x_n)A$\retTwo\par}
 
-   So for any $n \in \mathbb{Z}^+ \setminus \{1\}$, we can say that:
+   So for any $n \in \mathbb{Z}_+ \setminus \{1\}$, we can say that:
 
    {\center $|x_{n+1} - x_{n}| < |x_{n} - x_{n-1}|A < \ldots < |x_{2} - x_1|A^{n-1}$.\retTwo\par}
 
@@ -1596,7 +1899,7 @@ Thirdly, we show that if there is a constant $A < 1$ such that $|f^\prime(t)| \l
 
    {\centering $|x - x_m| < \delta \Longrightarrow |f(x) - f(x_m)| < \sfrac{\varepsilon}{2}$.\retTwo\par}
 
-   Meanwhile, since $x_n \rightarrow x$, there exists $N \in \mathbb{Z}^+$ such that:
+   Meanwhile, since $x_n \rightarrow x$, there exists $N \in \mathbb{Z}_+$ such that:
    
    {\centering$n > N \Longrightarrow |x_n - x| < \min(\delta, \sfrac{\varepsilon}{2})$.\retTwo\par}
 
