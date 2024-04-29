@@ -2153,10 +2153,139 @@ However, if $f$ is a bounded real function on $[a, b]$ and $f^3 \in \mathscr{R}_
    
    {\begin{myIndent}\pracTwo
       We will show this by modeling $f$ off of the series $\sum\frac{(-1)^{n-1}}{n}$. After all, we\\ know that that series converges but not absolutely.\retTwo
-   \end{myIndent}}
 
+      Note that $\left(\frac{1}{n} - \frac{1}{n+1}\right)^{-1} = n(n+1)$. Thus $\left(\frac{1}{n} - \frac{1}{n+1}\right)(n+1) = \frac{1}{n}$ for all $n \in \mathbb{Z}_+$.\\ So, let's now define $f(x) = (-1)^{n-1}(n+1)$ where $n$ is the unique integer such\\ that $\frac{1}{n+1} < x \leq \frac{1}{n}$. Then, if $N \in \mathbb{Z}_+$ such that $\frac{1}{N+1} < c \leq \frac{1}{N}$, we have that:
+
+      {\centering $\int_c^1f(x)dx = (\frac{1}{N} - c)(-1)^{N-1}(N+1) + \sum\limits_{k=1}^{N-1}\frac{(-1)^{k-1}}{k}$ \retTwo\par}
+
+      Now $ 0 \leq (\frac{1}{N} - c)(N + 1) < (\frac{1}{N} - \frac{1}{N+1})(N + 1) = \frac{1}{N}$. Therefore, we have that\\ $\left|\frac{1}{N} - c)(-1)^{N-1}(N+1)\right| < \frac{1}{|N|}$. Then because $\frac{1}{|N|} \rightarrow 0$ as $N \rightarrow \infty$ which happens\\ as $c \rightarrow 0$, we know that $(\frac{1}{N} - c)(-1)^{N-1}(N+1) \rightarrow 0$ as $c \rightarrow 0$. Hence:
+
+      {\centering 
+      \begin{tabular}{l}
+         $\lim\limits_{c\rightarrow 0}\int_c^1f(x)dx = \lim\limits_{c\rightarrow 0}\left((\frac{1}{N} - c)(-1)^{N-1}(N+1) + \sum\limits_{k=1}^{N-1}\frac{(-1)^{k-1}}{k}\right)$\\
+         
+         $\phantom{\lim\limits_{c\rightarrow 0}\int_c^1f(x)dx} = 0 + \lim\limits_{c\rightarrow 0}\sum\limits_{k=1}^{N-1}\frac{(-1)^{k-1}}{k} = \sum\limits_{k=1}^\infty \frac{(-1)^{k-1}}{k}$ 
+      \end{tabular}\retTwo\par}
+
+      Meanwhile, $\int_c^1|f(x)|dx = (\frac{1}{N} - c)(N+1) + \sum\limits_{k=1}^{N-1}\frac{1}{k}$. As before, we know that\\ [-6pt] $(\frac{1}{N} - c)(N+1) \rightarrow 0$ as $c \rightarrow 0$. Hence:
+
+      {\centering 
+      \begin{tabular}{l}
+         $\lim\limits_{c\rightarrow 0}\int_c^1|f(x)|dx = \lim\limits_{c\rightarrow 0}\left((\frac{1}{N} - c)(N+1) + \sum\limits_{k=1}^{N-1}\frac{1}{k}\right) = 0 + \lim\limits_{c\rightarrow 0}\sum\limits_{k=1}^{N-1}\frac{1}{k} = \sum\limits_{k=1}^\infty \frac{1}{k}$ 
+      \end{tabular}\retTwo\par}
+
+      Now $\sum\limits_{k=1}^\infty \frac{(-1)^{k-1}}{k}$ converges whereas $\sum\limits_{k=1}^\infty \frac{1}{k}$ does not converge.\retTwo
+
+      Therefore, $\lim\limits_{c\rightarrow 0}\int_c^1 f(x)dx$ exists but not $\lim\limits_{c\rightarrow 0}\int_c^1 |f(x)|dx$.
+   \end{myIndent}}
 \end{itemize}
 
-\end{document}
+\newpage
 
-%Strategy: turn $\frac{1}{n}$ into a function sorta.
+\textbf{Exercise 6.8}: Suppose $f \in \mathscr{R}_a^b$ for every $b > a$ where $a$ is fixed. Then define\\ $\int_a^\infty f(x)dx = \lim\limits_{b \rightarrow \infty}\int_a^bf(x)dx$ when that limit exists and is finite. Also, when that\\ limit exists we say that $\int_a^\infty f(x)dx$ "converges".\retTwo
+
+Now assume that $f(x) \geq 0$ and that $f$ decreases monotonically on $[1, \infty)$. Then:
+
+{\centering $\int_1^\infty f(x)dx$ converges if and only if $\sum\limits_{n=1}^\infty f(n)$ converges. \retTwo\par}
+
+{\begin{myIndent}\pracTwo
+   Let $b \in (1, \infty)$ and set $N \in \mathbb{Z}_+$ such that $N < b \leq N + 1$. Then consider the\\ partition $P = \{1, 2, \ldots, N - 1, N, b\}$. Importantly:
+   
+   {\centering $L(P, f) = \sum\limits_{k=1}^{N-1}f(k+1) + f(b)(b - N)$ and $U(P, f) = \sum\limits_{k=1}^{N-1}f(k) + f(N)(b - N)$.\retTwo\par}
+
+   Also, note that if $F(x) = \int_1^x f(t)dt$, then $F$ is monotone increasing. Plus, the partial\\ [3pt] sums of $\sum f(n)$ are also monotone increasing. Hence, $\lim\limits_{b \rightarrow \infty}F(b) = \int_1^\infty f(t)dt$ exists if\\ [-7pt] and only if $F(b)$ is bounded and $\sum\limits_{n = 1}^\infty f(n)$ exists if and only if the partial sums are\\ bounded.\retTwo
+
+   ($\Longrightarrow$) Suppose $\int_1^\infty f(x)dx$ converges. Then consider that:
+   
+   {\centering $L(P, f) = -f(1) + \sum\limits_{k=1}^{N} f(k) + f(b)(b - N) \leq \int_0^b f(x)dx$\retTwo\par}
+
+   Hence $\sum\limits_{k=1}^N f(k) \leq \int_1^b f(x)dx + f(1) - f(b)(b - N) \leq \int_1^\infty f(x)dx + f(1) - 0$.\retTwo
+
+   This means that the partial sums of $\sum f(n)$ are bounded. So, $\sum\limits_{n=1}^\infty f(n)$ converges.\retTwo
+
+   ($\Longleftarrow$) Now suppose $\sum\limits_{n=1}^\infty f(n)$ converges. Then consider that:
+
+   {\centering $F(b) = \int_0^b f(x)dx \leq U(P, f) = \sum\limits_{k=1}^{N-1}f(k) + f(N)(b - N) \leq \sum\limits_{k=1}^{N}f(K) \leq \sum\limits_{n=1}^\infty f(n)$\retTwo\par}
+
+   This shows that $F$ is bounded above by $\sum\limits_{n=1}^\infty f(n)$. So, $\lim\limits_{b \rightarrow \infty}F(b) = \int_1^\infty f(t)dt$ exists.
+\end{myIndent}}
+
+\newpage
+
+\textbf{Exercise 6.10}: Let $p$ and $q$ be positive real numbers such that $\frac{1}{p} + \frac{1}{q} = 1$.
+
+\begin{itemize}
+   \item[(A)] If $u \geq 0$ and $v \geq 0$, then $uv \leq \frac{u^p}{p} + \frac{v^q}{q}$ with equality holding if and only if $u^p = v^q$.
+   {\begin{myIndent}\pracTwo
+      Firstly, note that because neither $p$ nor $q$ are less than or equal to $0$ and\\ $\frac{1}{p} + \frac{1}{q} = 1$, we know that both $p > 1$ and $q > 1$.\retTwo
+
+      Now fix $v \geq 0$ and define $f(u) = \frac{u^p}{p} + \frac{v^q}{q} - uv$. Putting aside that we haven't\\ yet shown that the power rule applies to non positive integer exponents, note\\ that $f^\prime(u) = u^{p-1} - v$ exists for all $u \geq 0$.\retTwo
+      
+      Importantly, $f^\prime(0) = -v$. Also, because $p - 1 > 0$, we know that $u^{p-1}$ is\\ strictly increasing and unbounded as $u \rightarrow \infty$. As a result, using theorem\\ 5.12 (proposition 90) we know there exists $u_0 \in (0, \infty)$ such that\\ $f^\prime(u_0) = 0$. Furthermore, $f^\prime(u) < 0$ if $u < u_0$ and $f^\prime(u) > 0$ if $u > u_0$.\\ In turn this let's us proof using the mean value theorem that $f$ reaches\\ its minimum value over all $u \geq 0$ precisely when $u = u_0$.\retTwo
+
+      Now, $u_0^{p-1} - v = 0 \Longrightarrow u_0 = v^{\frac{1}{p-1}}$. Therefore:\\ [-14pt]
+
+      {\centering $u_0^p = v^\frac{p}{p-1} = v^{(1 + \frac{1}{p - 1})} = v \cdot v^{\frac{1}{\frac{1}{1 - \frac{1}{q}} - 1}} = v\cdot v^{\frac{1}{\frac{q}{q-1} - 1}} = v \cdot v^{\frac{q-1}{q - q + 1}} = v\cdot v^{q-1} = v^q$ \retTwo\par}
+
+      Also, $u_0 = v^{\frac{1}{p-1}} = v^{\frac{1}{\frac{1}{1 - \frac{1}{q}} - 1}} = v^{\frac{1}{\frac{q}{q-1} - 1}} = v^{\frac{q-1}{q - q + 1}} = v^{q-1}$. So:
+      
+      {\centering $f(u_0) = \frac{v^q}{p} + \frac{v^q}{q} - v^{q-1}\cdot v = v^q\left(\frac{1}{p} + \frac{1}{q} - 1\right) = v^q(0) = 0$. \retTwo\par}
+
+      Thus, we have shown that $f(u) \geq 0$ with $f(u) = 0$ when $u^p = v^q$. Or in other\\ words, $uv \leq \frac{u^p}{p} + \frac{v^q}{q}$ with equality holding if and only if $u^p = v^q$.\retTwo
+   \end{myIndent}}
+
+   \item[(B)] If $f, g \in \mathscr{R}_a^b(\alpha)$, $\myHS f, g \geq 0$ \hspace{0.2em} and $\int_a^b f^pd\alpha = 1 = \int_a^b g^qd\alpha$, then $\int_a^b fgd\alpha \leq 1$. 
+   {\begin{myIndent}\pracTwo
+      Note that $f(x)g(x) \leq \frac{f^p(x)}{p} + \frac{g^q(x)}{q}$ by part A. Importantly, both sides of that\\ inequality are integratable via theorems 6.12 and 6.13 (propositions 102 and\\ 103). Therefore, integrating both sides of the inequality, we know by theorem\\ 6.12 that:
+
+      {\centering $\int_a^b fgd\alpha \leq \int_a^b\left(\frac{f^p}{p} + \frac{g^q}{q}\right)d\alpha = \frac{1}{p} + \frac{1}{q} = 1$ \retTwo\par}
+   \end{myIndent}}
+
+   \item[(C)] If $f, g: [a, b] \longrightarrow \mathbb{C}$ and $f, g \in \mathscr{R}_a^b(\alpha)$, then:
+   
+   {\centering $\left|\displaystyle{\int_a^b}fg d\alpha\right| \leq \left(\displaystyle{\int_a^b}|f|^p d\alpha\right)^{\frac{1}{p}}\left(\displaystyle{\int_a^b}|g|^q d\alpha\right)^{\frac{1}{q}} $ \par}
+
+   \newpage
+
+   {\begin{myIndent}\pracTwo
+      Suppose $\int_a^b|f|^pd\alpha = 0$. Then because $|f| \geq 0$, we must have that $|f(x)| = 0$\\ for all $x \in [a, b]$. But then $f(x)$ and in turn $f(x)g(x)$ equal $0$ over $[a, b]$, which\\ means that $\int_a^b fg d\alpha = 0$. So, the stated inequality is true trivially.\retTwo
+
+      Similarly, if $\int-a^b|g|^qd\alpha = 0$, then the stated inequality is true trivially. So,\\ it is safe to assume that $\left(\int_a^b|f|^p d\alpha\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{p}}$ and $\left(\int_a^b|g|^q d\alpha\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{q}}$ are strictly greater\\ [0pt] than $0$.\retTwo
+
+      Now define $F(x) = \frac{1}{\left(\int_a^b|f|^p d\alpha\right)\hspace{-0.1em}\vphantom{b}^{\frac{1}{p}}}|f(x)|$ and $G(x) = \frac{1}{\left(\int_a^b|g|^q d\alpha\right)\hspace{-0.1em}\vphantom{b}^{\frac{1}{q}}}|g(x)|$.\retTwo
+
+      Clearly, $\int_a^b Fd\alpha = 1 = \int_a^b Gd\alpha$. with $F, G \geq 0$ and $F, G \in \mathscr{R}_a^b$. So by part B,\\ we know that:
+
+      {\center $\int_a^b FGd\alpha = \frac{1}{\left(\int_a^b|f|^p d\alpha\right)\hspace{-0.1em}\vphantom{b}^{\frac{1}{p}}}\cdot \frac{1}{\left(\int_a^b|g|^q d\alpha\right)\hspace{-0.1em}\vphantom{b}^{\frac{1}{q}}} \cdot \int_a^b|f||g|d\alpha \leq 1$ \retTwo\par}
+
+      Then because $\left|\int_a^b fg d\alpha\right| \leq \int_a^b|fg|d\alpha = \int_a^b|f||g|d\alpha$, we can conclude that:
+
+      {\centering $\left|\int_a^bfg d\alpha\right| \leq \left(\int_a^b|f|^p d\alpha\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{p}}\left(\int_a^b|g|^q d\alpha\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{q}}$ \retTwo\par}
+      
+      \begin{myTindent}\begin{myTindent}\pracOne
+         Note: this is called \ul{Hölder's inequality}.\retTwo
+      \end{myTindent}\end{myTindent}
+   \end{myIndent}}
+
+   \item[(D)] Hölder's inequality also holds for the "improper integrals described in exercises 6.7\\ and 6.8.
+   
+   {\begin{myIndent}\pracTwo
+      Firstly, suppose that $f$ and $g$ are real functions on $(a, b]$ and that $f \in \mathscr{R}_c^1$. for every\\ $c > a$. Also, suppose $\lim\limits_{c\rightarrow a}\int_c^b f(x)dx$ and $\lim\limits_{c\rightarrow a}\int_c^b g(x)dx$ exist.\retTwo
+
+      Now we know that $\left|\int_c^b f(x)g(x)dx\right| \leq \left(\int_c^b|f|^p dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{p}}\left(\int_c^b|g|^q dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{q}}$.\\
+
+      Thus, we have that $\lim\limits_{c\rightarrow a}\left|\int_c^b f(x)g(x)dx\right| \leq \lim\limits_{c\rightarrow a}\left(\left(\int_c^b|f(x)|^p dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{p}}\left(\int_c^b|g(x)|^q dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{q}}\right)$\\ when the limits of both sides exist.\retTwo
+
+      Now if $\lim\limits_{c\rightarrow a}\int_c^b f(x)g(x)dx$,   $\lim\limits_{c\rightarrow a}\int_c^b|f(x)|^p dx$, and $\lim\limits_{c\rightarrow a}\int_c^b|g(x)|^p dx$ exist,\\ then we know that $\lim\limits_{c\rightarrow a}\left|\int_c^b f(x)g(x)dx\right| = \left|\lim\limits_{c\rightarrow a}\int_c^b f(x)g(x)dx\right|$ and\\ 
+      {\fontsize{12}{14}$\lim\limits_{c\rightarrow a}\left(\left(\int_c^b|f(x)|^p dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{p}}\left(\int_c^b|g(x)|^q dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{q}}\right) = \left(\lim\limits_{c\rightarrow a}\int_c^b|f(x)|^p dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{p}}\left(\lim\limits_{c\rightarrow a}\int_c^b|g(x)|^q dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{q}}$}\retTwo
+
+      So $\left|\lim\limits_{c\rightarrow a}\int_c^b f(x)g(x)dx\right| \leq \left(\lim\limits_{c\rightarrow a}\int_c^b|f(x)|^p dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{p}}\left(\lim\limits_{c\rightarrow a}\int_c^b|g(x)|^q dx\right)\hspace{-0.2em}\vphantom{b}^{\frac{1}{q}}$.\retTwo
+
+      Now while I exclusively dealt with the improper integrals from exercise 6.7 just now,\\ you can do the same reasoning on the improper integrals from exercise 6.8.
+
+   \end{myIndent}}
+\end{itemize}
+
+\newpage
+
+\end{document}
