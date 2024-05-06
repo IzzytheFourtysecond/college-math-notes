@@ -1296,7 +1296,7 @@ When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and tha
          \end{tabular}\retTwo
       \end{center}
 
-      Now, since $f \in \mathscr{C}^1$, we know that for any $\varepsilon > 0$, there exists $\delta > 0$ such\\ that $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{x}) - f^\prime(\mVec{x})\| < \varepsilon$. Thus, by the above\\ inequality, we also have that:
+      Now, since $f \in \mathscr{C}^1(E, \mathbb{R}^m)$, we know that for any $\varepsilon > 0$, there exists\\ $\delta > 0$ such that $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow \|f^\prime(\mVec{x}) - f^\prime(\mVec{x})\| < \varepsilon$. Thus, by\\ the above inequality, we also have that:
       
       {\centering $\|\mVec{y} - \mVec{x}\| < \delta \Longrightarrow |(D_jf_i)(\mVec{y}) - (D_jf_i)(\mVec{x})| < \varepsilon$.\retTwo\par}
 
@@ -1354,9 +1354,9 @@ When this is the case, we say $f$ is a \udefine{$\mathscr{C}^1$-mapping} and tha
 
       And thus we have that: $\lim\limits_{\mVec{h} \rightarrow \mVec{0}}\frac{\left|\myVS\right.f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x})\left.\myVS\right|}{\|\mVec{h}\|} = 0$.\retTwo
 
-      Note that $f^\prime(\mVec{x}) = \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x}) \in L(\mathbb{R}^n, \mathbb{R})$, and that $f^\prime(\mVec{x})$ is the\\ [-2pt] sum of a bunch of continuous functions. Thus, $f^\prime(\mVec{x})$ is itself continuous\\ [5pt] at $\mVec{x}$, meaning that $f \in \mathscr{C}^1$.\\ [8pt]
+      Note that $f^\prime(\mVec{x}) = \sum\limits_{j=1}^nh_j(D_jf)(\mVec{x}) \in L(\mathbb{R}^n, \mathbb{R})$, and that $f^\prime(\mVec{x})$ is the\\ [-2pt] sum of a bunch of continuous functions. Thus, $f^\prime(\mVec{x})$ is itself continuous\\ [5pt] at $\mVec{x}$, meaning that $f$ is a $\mathscr{C}^1$-mapping.\\ [8pt]
 
-      Now that we've shown this theorem holds when $m = 1$, lets consider\\ when $m > 1$. Let $f(\mVec{x}) = (f_1(\mVec{x}), \ldots, f_m(\mVec{x}))$ and then note that $f$\\ is continuous at $\mVec{x}$ if and only if $f_i$ is continuous at $\mVec{x}$ for each\\ $1 \leq i \leq m$. Luckily, we already showed that all $D_jf_i$ being continuous\\ for each $1 \leq j \leq n$ implies that $f_i$ is continuously differentiable. Hence,\\ having all $D_jf_i$ be continuous for each $1 \leq j \leq n$ and $1 \leq i \leq m$ implies\\ that $f \in \mathscr{C}^{1}$.\retTwo
+      Now that we've shown this theorem holds when $m = 1$, lets consider\\ when $m > 1$. Let $f(\mVec{x}) = (f_1(\mVec{x}), \ldots, f_m(\mVec{x}))$ and then note that $f$\\ is continuous at $\mVec{x}$ if and only if $f_i$ is continuous at $\mVec{x}$ for each\\ $1 \leq i \leq m$. Luckily, we already showed that all $D_jf_i$ being continuous\\ for each $1 \leq j \leq n$ implies that $f_i$ is continuously differentiable. Hence,\\ having all $D_jf_i$ be continuous for each $1 \leq j \leq n$ and $1 \leq i \leq m$ implies\\ that $f \in \mathscr{C}^{1}(E, \mathbb{R}^m)$.\retTwo
    \end{myIndent}}
 \end{myIndent}}
 
@@ -1482,7 +1482,7 @@ Let $X$ be a metric space with the metric $d$, and consider some $\varphi: X \lo
    Suppose that $f \in \mathscr{C}^1(E, \mathbb{R}^n)$ where $E \subseteq \mathbb{R}^n$ is open, that $f^\prime(\mVec{a})$ is invertible\\ for some $\mVec{a} \in E$, and that $\mVec{b} = f(\mVec{a})$. Then:
    \begin{itemize}
       \item[(A)] There exist open subsets $U$ and $V$ of $\mathbb{R}^n$ such that $\mVec{a} \in U$,\hspace{0.1em} $\mVec{b} \in V$,\\ $f(U) = V$, and $f$ is one-to-one on $U$.
-      \item[(B)] If $g$ is defined such that $(g \circ f)(\mVec{x}) = \mVec{x}$ for all $x \in U$, then\\ $g \in \mathscr{C}^{1}(V, \mathbb{R}^n)$.\retTwo
+      \item[(B)] If $g$ is defined such that $(g \circ f)(\mVec{x}) = \mVec{x}$ for all $x \in U$, then\\ $g \in \mathscr{C}^{1}(V, \mathbb{R}^n)$ with $g^\prime(\mVec{y}) = f^\prime(g(\mVec{y}))$ for all $\mVec{y} \in V$.\retTwo
    \end{itemize}
 
    {\begin{myIndent}\hThree
@@ -1551,9 +1551,199 @@ Let $X$ be a metric space with the metric $d$, and consider some $\varphi: X \lo
          $\phantom{\varphi(\mVec{x} + \mVec{h}) - \varphi(\mVec{x})} = \mVec{h} - \mMat{A}^{-1}\mVec{k}$
       \end{tabular}}\retTwo\par}
 
-      At the same, from part A we know that $\|\varphi(\mVec{x} + \mVec{h}) - \varphi(\mVec{x})\| < \frac{1}{2}\|\mVec{h}\|$.\\ Therefore, we have $\|\mVec{h} - \mMat{A}^{-1}\mVec{k}\| \leq \frac{1}{2}\|\mVec{h}\|$.
+      At the same time, we know from part A that {\fontsize{12.25}{14.25}\selectfont$\|\varphi(\mVec{x} + \mVec{h}) - \varphi(\mVec{x})\| < \frac{1}{2}\|\mVec{h}\|$.}\\ [0pt] Therefore, we have that $\|\mVec{h} - \mMat{A}^{-1}\mVec{k}\| \leq \frac{1}{2}\|\mVec{h}\|$, and in turn this means\\ that $\|\mMat{A}^{-1}\mVec{k}\| \geq \frac{1}{2}\|\mVec{h}\|$.
+
+      {\begin{myIndent}\hFour
+         This is because $\|\mVec{h}\| \leq \|\mVec{h} - \mMat{A}^{-1}\mVec{k}\| + \|\mMat{A}^{-1}\mVec{k}\| \leq \frac{1}{2}\|\mVec{h}\| + \|\mMat{A}^{-1}\mVec{k}\|$.\retTwo
+      \end{myIndent}}
+
+      So $\|\mVec{h}\| \leq 2\|\mMat{A}^{-1}\mVec{k}\| \leq 2\|\mMat{A}^{-1}\|\|\mVec{k}\| = \frac{1}{\lambda}\|\mVec{k}\|$.\\ [2pt]
+
+      Then, because $\mVec{x} \in U$, we know that $\|f^\prime(\mVec{x}) - \mMat{A}\| \leq \lambda < \frac{1}{\|\mMat{A}^{-1}\|}$. Thus,\\ $f^\prime(\mVec{x})$ has an inverse which we shall call $\mMat{T}$. Now note that:
+
+      {\center 
+      \begin{tabular}{l}
+         $g(\mVec{y} + \mVec{k}) - g(\mVec{y}) - \mMat{T}\mVec{k} = \mVec{h} - \mMat{T}\mVec{k}$\\
+
+         $\hphantom{g(\mVec{y} + \mVec{k}) - g(\mVec{y}) - \mMat{T}\mVec{k}} = \mMat{T}f^\prime(\mVec{x})\mVec{h} - \mMat{T}(f(\mVec{x} + \mVec{h}) - f(\mVec{x}))$\\
+
+         $\hphantom{g(\mVec{y} + \mVec{k}) - g(\mVec{y}) - \mMat{T}\mVec{k}} = -\mMat{T}(f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - f^\prime(\mVec{x})\mVec{h})$
+      \end{tabular} \par\retTwo}
+
+      \newpage
+
+      Combining that with the fact that $\|\mVec{h}\|\lambda \leq \|\mVec{k}\|$, we know that:
+
+      {\center{$\frac{\|g(\mVec{y} + \mVec{k}) - g(\mVec{y}) - \mMat{T}\mVec{k}\|}{\|\mVec{k}\|} \leq \frac{\|\mMat{T}\|}{\lambda}\cdot \frac{\|f(\mVec{x} + \mVec{h}) - f(\mVec{x}) - f^\prime(\mVec{x})\mVec{h}\|}{\|\mVec{h}\|}$ }\retTwo\par}
+
+      So because $\mVec{h} \rightarrow \mVec{0}$ as $\mVec{k} \rightarrow \mVec{0}$, we know that {\fontsize{12}{14}\selectfont $\hspace{-0.4em}\lim\limits_{\mVec{k} \rightarrow \mVec{0}}\hspace{-0.4em}\frac{\|g(\mVec{y} + \mVec{k}) - g(\mVec{y}) - \mMat{T}\mVec{k}\|}{\|\mVec{k}\|} = 0$}.\\ [-8pt]
+      And thus $g^\prime(\mVec{y}) = \mMat{T} = f^\prime(g(\mVec{y}))^{-1}$.\retTwo
+
+      Importantly, $\mVec{y}$ was arbitrary. So we generally have that $g: V \longrightarrow \mathbb{R}^n$\\ is differentiable with $g^\prime(\mVec{y}) = f^\prime(g(\mVec{y}))^{-1}$. Additionally, note that:
+      \begin{itemize}
+         \item $g$ being differentiable implies that $g$ is continuous.
+         \item $f^\prime$ is continuous by the assumption of this theorem.
+         \item The map $\mMat{A} \mapsto \mMat{A}^{-1}$ is continuous by theorem 9.8.\retTwo
+      \end{itemize}
+
+      Therefore, $g^\prime$ is the composition of three continuous functions, which\\ means that $g^\prime$ is continuous. So $g \in \mathscr{C}^1(V, \mathbb{R}^n)$. $\blacksquare$\retTwo
+   \end{myIndent}}
+
+   \uuline{Corollary}: If $E \subseteq \mathbb{R}^n$ is open and $f \in \mathscr{C}^1(E, \mathbb{R}^n)$ satisfies that $f^\prime(\mVec{x})$ is\\ invertible for every $\mVec{x} \in E$, then for every open $W \subseteq E$, $f(W)$ is open.\retTwo
+
+   \begin{myIndent}\hThree
+      This is a direct result of part A of the previous theorem.\retTwo
+   \end{myIndent}
+\end{myIndent}}
+
+\mySepTwo
+
+\markLecture{4/25/2024}
+
+For the next theorem we need to go over some notation.\retTwo
+
+Given any $\mVec{x} = (x_1, \ldots, x_n) \in \mathbb{R}^n$ and $\mVec{y} = (y_1, \ldots, y_m) \in \mathbb{R}^m$, we shall write\\ $(\mVec{x}, \mVec{y})$ for the vector $(x_1, \ldots, x_n, y_1, \ldots, y_m) \in \mathbb{R}^{n + m}$.\retTwo
+
+Also, given any $\mMat{A} \in L(\mathbb{R}^{n + m}, \mathbb{R}^n)$, we shall define $\mMat{A}_x(\mVec{h}) = \mMat{A}(\mVec{h}, \mVec{0})$ and\\ $\mMat{A}_y(\mVec{k}) = \mMat{A}(\mVec{0}, \mVec{k})$ for all $\mVec{h} \in \mathbb{R}^n$ and $\mVec{k} \in \mathbb{R}^m$. That way, $\mMat{A}_x \in L(\mathbb{R}^n)$,\\ $\mMat{A}_y \in L(\mathbb{R}^m, \mathbb{R}^n)$, and $\mMat{A}(\mVec{h}, \mVec{k}) = \mMat{A}_x\mVec{h} + \mMat{A}_y\mVec{k}$.\retTwo
+
+{\begin{myIndent}\hTwo
+   \uuline{Proposition}: If $\mMat{A} \in L(\mathbb{R}^{n + m}, \mathbb{R}^n)$ and if $\mMat{A}_x$ is invertible, then there corresponds\\ to every $\mVec{k} \in \mathbb{R}^m$ a unique $\mVec{h} \in \mathbb{R}^n$ such that $\mMat{A}(\mVec{h}, \mVec{k}) = \mVec{0}$. Specifically, this $\mVec{h}$\\ is equal to $-\mMat{A}_x^{-1}\mMat{A}_y\mVec{k}$.\\ [-12pt]
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      $\mMat{A}(\mVec{h}, \mVec{k}) = \mVec{0} \Longrightarrow \mMat{A}_x\mVec{h} + \mMat{A}_y\mVec{k} = \mVec{0} \Longrightarrow \mVec{h} = -\mMat{A}_x^{-1}\mMat{A}_y\mVec{k}$\retTwo
+   \end{myIndent}
+\end{myIndent}}
+
+Now what we want to do on the next page is extend this theorem somehow to\\ a more general function $f: E \longrightarrow \mathbb{R}^{n}$ where $E \subseteq \mathbb{R}^{n+m}$ is open.
+
+\newpage
+
+{\begin{myIndent}\hTwo
+   \uuline{Implicit Function Theorem}:\\ [2pt]
+   Suppose that $E \subseteq \mathbb{R}^{n + m}$ is open and that $f \in \mathscr{C}^1(E, \mathbb{R}^n)$ satisfies that\\ [-1pt] $f(\mVec{a}, \mVec{b}) = \mVec{0}$ for some $(\mVec{a}, \mVec{b}) \in E$. Also, set $\mMat{A} = f^\prime(\mVec{a}, \mVec{b})$ and suppose\\ that $\mMat{A}_x$ is invertible. Then:\\ [-16pt]
+   \begin{enumerate}
+      \item[(A)] There exists open sets $U \subseteq \mathbb{R}^{n + m}$ and $W \subseteq \mathbb{R}^m$ such that $(\mVec{a}, \mVec{b}) \in U$,\\$\mVec{b} \in W$, and $\forall \mVec{y} \in W$ there exists a unique $\mVec{x}$ such that $(\mVec{x}, \mVec{y}) \in U$ and\\ $f(\mVec{x}, \mVec{y}) = \mVec{0}$.
+      \item[(B)] If we define $g: W \longrightarrow \mathbb{R}^n$ such that each $\mVec{y} \in W$ is mapped to the unique\\ $\mVec{x}$ described above, then $f(g(\mVec{y}), \mVec{y}) = \mVec{0}$ for all $\mVec{y} \in W$,\hspace{0.3em} $g(\mVec{b}) = \mVec{a}$, and\\ $g \in \mathscr{C}^1(W, \mathbb{R}^m)$ with $g^\prime(\mVec{b}) = -\mMat{A}_x^{-1}\mMat{A}_y$.\retTwo
+   \end{enumerate}
+   
+   {\begin{myIndent}\hThree
+      \ul{Proof of part A}:\retTwo
+
+      Define $F: \mathbb{R}^{n + k} \longrightarrow \mathbb{R}^{n + k}$ by the rule $F(\mVec{x}, \mVec{y}) = (f(\mVec{x}, \mVec{y}), \mVec{y})$.\\ Then, $F \in \mathscr{C}^1(E, \mathbb{R}^{n + m})$.
+      {\begin{myIndent}\hFour
+         (You can check that all the partial derivatives of $F$ are continuous)\retTwo
+      \end{myIndent}}
+
+      So, let us now consider $F^\prime(\mVec{a}, \mVec{b})$. Importantly, you can check that\\ $F^\prime(\mVec{a}, \mVec{b})(\mVec{h}, \mVec{k}) = (f^\prime(\mVec{a}, \mVec{b})(\mVec{h}, \mVec{k}), \hspace{0.4em} \mVec{k})$. Immediately, this means\\ if $F^\prime(\mVec{a}, \mVec{b})(\mVec{h}, \mVec{k}) = \mVec{0}$, we must have that $\mVec{k} = \mVec{0}$. Also note that\\ $f^\prime(\mVec{a}, \mVec{b})(\mVec{h}, \mVec{k}) = \mMat{A}(\mVec{h}, \mVec{k}) = \mMat{A}_x\mVec{h} + \mMat{A}_y\mVec{k}$. Since $\mMat{A}_x$ is invertible\\ and $\mVec{k} = 0$, we know that $\mMat{A}_x\mVec{h} + \mMat{A}_y\mVec{k} = \mVec{0} \Longrightarrow \mVec{h} = \mVec{0}$.\retTwo
+
+      Therefore, we have shown that:
+      
+      {\centering $F^\prime(\mVec{a}, \mVec{b})(\mVec{h}, \mVec{k}) = \mVec{0} \Longrightarrow (\mVec{h}, \mVec{k}) = (\mVec{0}, \mVec{0})$.\retTwo\par}
+
+      Or in other words, $F^\prime(\mVec{a}, \mVec{b})$ is invertible.\retTwo
+
+      Now by the inverse function theorem let $U$ and $V$ be open subsets of\\ $\mathbb{R}^{n + m}$ such that $(\mVec{a}, \mVec{b}) \in U$,\hspace{0.4em} $F(\mVec{a}, \mVec{b}) = (\mVec{0}, \mVec{b}) \in V$, and $F$ is\\ invertible going from $U$ to $V$. Then set $W = \{\mVec{y} \in \mathbb{R}^m \mid (\mVec{0}, \mVec{y}) \in V\}$.\retTwo
+
+      Clearly, $W$ is open since $V$ is open. Also, $\mVec{b} \in W$. Finally, let $\mVec{y} \in W$\\ and consider that $(\mVec{0}, \mVec{y}) \in V$. Therefore there is a unique $(\mVec{x}, \mVec{y}) \in U$\\ such that $F(\mVec{x}, \mVec{y}) = f((\mVec{x}, \mVec{y}), \mVec{y}) = (\mVec{0}, \mVec{y})$. Obviously, this $\mVec{x}$ is also\\ the unique vector satisfying that $(\mVec{x}, \mVec{y}) \in U$ and $f(\mVec{x}, \mVec{y}) = \mVec{0}$.\\ [9pt]
+
+      \ul{Proof of part B}:\retTwo
+
+      Now let $g: W \longrightarrow \mathbb{R}^n$ such that $g(\mVec{y})$ satisfies that $f(g(\mVec{y}), \mVec{y}) = \mVec{0}$\\ and $(g(\mVec{y}), \mVec{y}) \in V$ for all $\mVec{y} \in U$. Also define $G: V \longrightarrow U$ as the\\ function inverting $F$ on $U$.
+
+      \newpage
+
+      By the inverse function theorem, $G \in \mathscr{C}^1(V, \mathbb{R}^{n + m})$. Also, for all $y \in \mVec{W}$\\ we have that $(g(\mVec{y}), \mVec{y}) = G(F(g(\mVec{y}), \mVec{y})) = G(\mVec{0}, \mVec{y})$. Thus, by\\ defining $\Phi: W \longrightarrow V$ such that $\Phi(\mVec{y}) = (g(\mVec{y}), \mVec{y})$, we know that\\ $\Phi \in \mathscr{C}^1(W, \mathbb{R}^{n + m})$. And in turn, this means that $g \in \mathscr{C}^1(W, \mathbb{R}^n)$.\retTwo
+
+      Finally, consider that $g(\mVec{b}) = \mVec{a}$ trivially. At the same time, note that\\ $\Phi^\prime(\mVec{y})\mVec{k} = (g^\prime(\mVec{y})\mVec{k}, \mVec{k})$ for all $\mVec{y} \in W$ and $\mVec{k} \in \mathbb{R}^m$. Thus, because\\ $f(\Phi(\mVec{y})) = \mVec{0}$ for all $\mVec{y} \in W$, we know that $f^\prime(\Phi(\mVec{y}))\Phi^\prime(\mVec{y}) = \mMat{0}$ by\\ chain rule. And when $\mVec{y} = \mVec{b}$, this becomes $\mMat{A}\Phi^\prime(\mVec{b}) = \mMat{0}$. So for all\\ $\mVec{k} \in \mathbb{R}^m$, we have that:
+      
+      {\centering $\mMat{A}_xg^\prime(\mVec{b})\mVec{k} + \mMat{A}_y\mVec{k} = \mMat{A}(g^\prime(\mVec{b})\mVec{k}, \mVec{k}) = \mMat{A}\Phi^\prime(\mVec{b})\mVec{k} = \mVec{0}$.\retTwo\par}
+
+      It follows that $\mMat{A}_xg^\prime(\mVec{b}) + \mMat{A}_y = \mMat{0}$. Or in other words, $g^\prime(\mVec{b}) = -\mMat{A}_x^{-1}\mMat{A}_y$. $\blacksquare$\retTwo\retTwo
+   \end{myIndent}}
+
+   {\begin{myIndent}\teachComment
+      \begin{myClosureOne}{4.9}
+         Note that it is really easy to check if $\mMat{A}_x$ is invertible.\retTwo First, let $e_1, \ldots, e_n$ and $u_1, \ldots, u_m$ be the standard bases of $\mathbb{R}^n$ and $\mathbb{R}^m$\\ respectively. Next, fix $\{(e_1, \mVec{0}), \ldots, (e_n, \mVec{0}), (\mVec{0}, u_1), \ldots, (\mVec{0}, u_m)\}$ as\\ our basis for $\mathbb{R}^{n + m}$ and $\{e_1, \ldots, e_n\}$ as our basis for $\mathbb{R}^n$. Then we have\\ that:
+   
+         {\center $ [\mMat{A}] = 
+         \left[\begin{matrix}
+            & & & & \\ & & [\mMat{A}_x] & & \\ & & & &
+         \end{matrix}\middle|\begin{matrix}
+            & & \\ &[\mMat{A}_y]& \\ & &
+         \end{matrix}\right]$ \retTwo\par}
+   
+         So finally, check if $[\mMat{A}_x]$ is invertible or not.\\ [-4pt]
+      \end{myClosureOne}\retTwo\retTwo
    \end{myIndent}}
 \end{myIndent}}
+
+\mySepTwo
+
+Let $E \subseteq \mathbb{R}^n$ be open and suppose that $f: E \longrightarrow \mathbb{R}$ has the partial derivatives\\ $D_1f, \ldots, D_nf$. Then note that each partial derivative is itself a function from\\ $\mathbb{R}^n$ to $\mathbb{R}$. So, if each $D_jf$ is itself differentiable, then we define the \udefine{second-\\order partial derivatives} of $f$ as $D_{i,j} = D_i(D_jf)$.\retTwo
+
+Additionally, if $D_{i,j}f$ is continuous in $E$ for all $1 \leq i,j \leq n$, then we say that\\ $f \in \mathscr{C}^2(E)$ {\myComment(which is an abbreviation of the notation: $f \in \mathscr{C}^2(E, \mathbb{R})$)}.\retTwo
+
+{\begin{myTindent}\begin{myIndent}\teachComment
+   Note that we're only limiting ourselves to non-vector-valued\\ functions here for the sake of simplicity. Also, hopefully you can\\ guess from this definition how an $n$th-order partial derivative is\\ defined, and what it means for a function to be a $\mathscr{C}^n$-mapping.
+\end{myIndent}\end{myTindent}}
+
+\newpage
+
+{\begin{myIndent}\hTwo
+   \uuline{Theorem}: Let $f: E \longrightarrow \mathbb{R}$ where $E \subseteq \mathbb{R}^n$ is open. If $f \in \mathscr{C}^2(E)$, then\\ $(D_{i,j}f)(\mVec{x}) = (D_{j,i}f)(\mVec{x})$ for all $1 \leq i,j \leq n$ and $\mVec{x} \in E$.\\ [-8pt]
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      Let $e_1, \ldots, e_n$ be the standard basis of $\mathbb{R}^n$ and let $Q \subset E$ be a closed\\ rectangle with opposite vertices at $\mVec{x}$ and $\mVec{x} + he_i + ke_j$ where\\ $h > 0$ and $k > 0$. Then define:
+      
+      {\center $\Delta(f, Q) = f(\mVec{x} + he_i + ke_j) - f(\mVec{x} + he_j) - f(\mVec{x} + ke_j) + f(\mVec{x})$ \retTwo\par} 
+
+      Next, let $u(s) = f(\mVec{x} + se_i + ke_j) - f(\mVec{x} + se_i)$. Importantly, $u$ is real\\ function that is differentiable on $[0, h]$. So:
+
+      \begin{center}
+         \begin{tabular}{l}
+            $\Delta(f, Q) = u(h) - u(0)$ \\ [3pt]
+            $\phantom{\Delta(f, Q)} = hu^\prime(s_1)$ \hspace{0.3em} for some $s_1 \in (0, h)$ \hspace{0.5em} {\hFour (by the mean value theorem)} \\ [3pt]
+            $\phantom{\Delta(f, Q)} = h((D_if)(\mVec{x} + s_1e_i + ke_j) - (D_if)(\mVec{x} + s_1e_i))$
+         \end{tabular}\retTwo
+      \end{center}
+
+      Similarly, define $v(t) = (D_if)(\mVec{x} + s_1e_i + te_j) - (D_if)(\mVec{x} + s_1e_i)$. Then\\ $(D_if)(\mVec{x} + s_1e_i + ke_j) - (D_if)(\mVec{x} + s_1e_i) = v(k) - v(0)$ and $v$ is a real\\ function that is differentiable on $[0, k]$. So:
+
+      \begin{center}
+         \begin{tabular}{l}
+            $\Delta(f, Q) = h(v(k) - v(0))$ \\ [3pt]
+            $\phantom{\Delta(f, Q)} = h(kv^\prime(t_1))$  \hspace{0.3em} for some $t_1 \in (0, k)$ \hspace{0.5em} {\hFour (by the mean value theorem)}\\ [3pt]
+            $\phantom{\Delta(f, Q)} = hk((D_{j,i}f)(\mVec{x} + s_1e_i + t_1e_j))$.
+         \end{tabular}\retTwo
+      \end{center}
+
+      Now importantly,  we can use the exact same reasoning to say that\\ $\Delta(f, Q) = hk((D_{i,j}f)(\mVec{x} + s_2e_i + t_2e_j))$ for some $s_2 \in (0, h)$\\ and $t_2 \in (0, k)$.\retTwo
+
+      So finally, consider that because $D_{j,i}f$ and $D_{i,j}f$ are continuous, we\\ know that for all $\varepsilon > 0$, there exists $\delta_1, \delta_2 > 0$ such that:
+      \begin{itemize}
+         \item {\fontsize{12}{14} $\sqrt{s_1^2 + t_1^2} < \delta_1 \Longrightarrow \left|(D_{j,i}f)(\mVec{x} + s_1e_i + t_1e_j) - (D_{j,i}f)(\mVec{x})\right| < \sfrac{\varepsilon}{2}$}
+         \item {\fontsize{12}{14} $\sqrt{s_2^2 + t_2^2} < \delta_2 \Longrightarrow \left|(D_{i,j}f)(\mVec{x} + s_2e_i + t_2e_j) - (D_{i,j}f)(\mVec{x})\right| < \sfrac{\varepsilon}{2}$}
+      \end{itemize}\retTwo
+
+      Thus, set $\delta = \min(\delta_1, \delta_2)$ and pick any $h, k > 0$ such that $h^2 < \frac{\delta^2}{2}$ and\\ $k^2 < \frac{\delta^2}{2}$. Then as $0 < s_1, s_2 < h$ and $0 < t_1, t_2 < k$, we know that\\ both $\sqrt{s_1^2 + t_1^2} < \delta_1$ and $\sqrt{s_2^2 + t_2^2} < \delta_2$. So:\\ 
+
+      \begin{center}{\fontsize{11}{13}\selectfont}
+         \begin{tabular}{l}
+            $|(D_{j,i}f)(\mVec{x}) - (D_{i,j}f)(\mVec{x})|$\\ [6pt]
+            $\phantom{aaa} \leq \left|\frac{\Delta(f, Q)}{hk} - (D_{j,i}f)(\mVec{x})\right| + \left|\frac{\Delta(f, Q)}{hk} - (D_{i,j}f)(\mVec{x})\right|$\\ [6pt]
+            $\phantom{aaa} = \left|(D_{j,i}f)(\mVec{x} + s_1e_i + t_1e_j) - (D_{j,i}f)(\mVec{x})\right|$\\ [2pt]
+            $\phantom{aaaaaaaaaaaaaaaaa} + \left|(D_{i,j}f)(\mVec{x} + s_2e_i + t_2e_j) - (D_{i,j}f)(\mVec{x})\right|$\\
+            $\phantom{aaa} < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$
+         \end{tabular}\retTwo
+      \end{center}
+
+      And since $\varepsilon$ was arbitary, we conclude that $(D_{j,i}f)(\mVec{x}) = (D_{i,j}f)(\mVec{x})$.
+
+   \end{myIndent}
+\end{myIndent}}
+
 
 
 

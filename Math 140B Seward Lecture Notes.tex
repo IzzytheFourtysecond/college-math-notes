@@ -1253,7 +1253,7 @@ Next, we explore the properties of integrals\ldots\retTwo
 
             $\phantom{\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P \cup \{c\}, f, \alpha)} = \hspace{-0.2em}\sup\limits_{P_1 \in \mathcal{P}_{a,c}}\hspace{-0.4em}L(P_1, f, \alpha) + \hspace{-0.2em}\sup\limits_{P_2 \in \mathcal{P}_{c,b}}\hspace{-0.4em}L(P_2, f, \alpha)$\\ [16pt]
 
-            $\phantom{\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P \cup \{c\}, f, \alpha)} = \underline{\int_a^c}fd\alpha + \underline{\int_c^b}fd\alpha$\retTwo
+            $\phantom{\sup\limits_{P \in \mathcal{P}_{a,b}}\hspace{-0.4em}L(P \cup \{c\}, f, \alpha)} = \underline{\int_a^c}fd\alpha + \underline{\int_c^b}fd\alpha$\\
          \end{tabular}\retTwo\par}
       \end{myIndent}}
 
@@ -1268,7 +1268,7 @@ Next, we explore the properties of integrals\ldots\retTwo
       Also, if $c \geq 0$, then $\underline{\int_a^b}cfd\alpha = c\underline{\int_a^b}fd\alpha$ and $\overline{\int_a^b}cfd\alpha = c\overline{\int_a^b}fd\alpha$.\\ [-6pt]
       
       \begin{myIndent}\hThree
-         This immediately follows from the fact that\\ $\Delta(\alpha_1 + \alpha_2)_i = \Delta(\alpha_1)_i + \Delta(\alpha_2)_i$ and $\Delta(c\alpha)_i = c\cdot\Delta\alpha_i$.
+         This immediately follows from the fact that\\ $\Delta(\alpha_1 + \alpha_2)_i = \Delta(\alpha_1)_i + \Delta(\alpha_2)_i$ and $\Delta(c\alpha)_i = c\cdot\Delta\alpha_i$.\\
       \end{myIndent}
    \end{enumerate}
 \end{myIndent}}
@@ -1524,7 +1524,102 @@ The \udefine{unit step function} $I$ is defined by: $I(x) = \left\{
          \end{tabular}}
       \end{center}
    \end{myIndent}}
+\end{myIndent}}
 
+\newpage
+
+\markLecture{4/26/2024}
+
+If $\mVec{f}: [a, b] \longrightarrow \mathbb{R}^k$ where $\mVec{f} = \left(f_1, \ldots, f_k\right)$ and $\alpha: [a,b] \longrightarrow \mathbb{R}$ is monotone\\ [-2pt] increasing, then we say $\mVec{f} \in \mathscr{R}_a^b(\alpha)$ if $\forall 1 \leq j \leq k, \myHS f_j \in \mathscr{R}_a^b(\alpha)$. Additionally,\\ we define:
+
+{\centering $\int_a^b \mVec{f}d\alpha = \left(\int_a^b f_1d\alpha, \ldots, \int_a^b f_kd\alpha\right)$ \retTwo\par}
+
+\begin{myIndent}\hTwo
+   Note that many of are previous theorems about integrals are immediately true\\ about integrals about vector valued functions. This inclues proposition 102A, C,\\ and E, as well as propositions 106, 108, and 109. To show this, just apply\\ those propositions coordinatite-wise.\retTwo\retTwo
+
+   Proposition \propCount: If $\mVec{f} \in \mathscr{R}_a^b(\alpha)$, then $\|\mVec{f}\| \in \mathscr{R}_a^b(\alpha)$ and $\left\|\int_a^b fd\alpha\right\| \leq \int_a^b \|\mVec{f}\|d\alpha$.\retTwo
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Since $\mVec{f} \in \mathscr{R}_a^b(\alpha)$ where $\mVec{f} = (f_1, \ldots, f_k)$, we know that $f_j \in \mathscr{R}_a^b(\alpha)$ for\\ [-2pt] all $1 \leq j \leq k$. Hence, $\|\mVec{f}\| = (f_1^2 + \ldots + f_k^2)^\frac{1}{2} \in \mathscr{R}_a^b(\alpha)$ by propositions\\ [1pt] 101 and 102.\retTwo
+
+      Now set $\mVec{y} = \int_a^b \mVec{f}d\alpha$ and say that $\mVec{y} = (y_1, \ldots, y_k)$. If $\mVec{y} = \mVec{0}$, there\\ [-2pt] is nothing to prove. So assume $\mVec{y} \neq \mVec{0}$.\retTwo
+
+      Next, by the Cauchy-Schwarz inequality we have that:
+      
+      {\centering $\sum\limits_{j=1}^k y_jf_j(t) = \mVec{y} \cdot \mVec{f}(t) \leq \|\mVec{y}\|\|\mVec{f}(t)\|$ \retTwo\par}
+
+      So:
+
+      {\centering 
+      \begin{tabular}{l}
+         $\|\mVec{y}\|\left\|\int_a^b \mVec{f}d\alpha\right\| = \left\|\int_a^b fd\alpha \right\|^2$ \\ [3pt]
+
+         $\hphantom{\|\mVec{y}\|\left\|\int_a^b \mVec{f}d\alpha\right\|} = \mVec{y} \cdot \int_a^b \mVec{f}d\alpha = \sum\limits_{j=1}^k y_j\int_a^b f_jd\alpha$ \\ [3pt]
+
+         $\hphantom{\|\mVec{y}\|\left\|\int_a^b \mVec{f}d\alpha\right\| = \mVec{y} \cdot \int_a^b \mVec{f}d\alpha} = \int_a^b\sum\limits_{j=1}^k y_jf_jd\alpha \leq \int_a^b \|\mVec{y}\|\|\mVec{f}\|d\alpha$ \\ [3pt]
+
+         $\hphantom{\|\mVec{y}\|\left\|\int_a^b \mVec{f}d\alpha\right\| = \mVec{y} \cdot \int_a^b \mVec{f}d\alpha = \int_a^b\sum\limits_{j=1}^k y_jf_jd\alpha} = \|\mVec{y}\|\int_a^b\|\mVec{f}\|d\alpha$
+      \end{tabular} \retTwo\par}
+
+      Thus, dividing by $\|\mVec{y}\|$ we get that $\left\|\int_a^b fd\alpha\right\| \leq \int_a^b \|\mVec{f}\|d\alpha$.
+   \end{myIndent}}
+\end{myIndent}
+
+\newpage
+
+A \udefine{curve} is a continuous function $\gamma : [a, b] \longrightarrow \mathbb{R}^k$. We say $\gamma$ is a \udefine{closed curve}\\ if $\gamma(b) = \gamma(a)$. Also, we call $\gamma$ a \udefine{simple curve} if $\gamma$ is injective.\retTwo
+
+Given any partition $P = \{x_0, \ldots, x_n\}$ of $[a, b]$, we define:
+
+{\centering $\Lambda(P, \gamma) = \sum\limits_{i=1}^n \| \gamma(x_i) - \gamma(x_{i-1}) \|$. \retTwo\par}
+
+Then, the \udefine{length} of $\gamma$ is $\Lambda(\gamma) = \sup\limits_{P \in \mathcal{P}} \Lambda(P, \gamma)$. When $\Lambda(\gamma)$ is finite, we say that\\ [-8pt] $\gamma$ is \udefine{rectifiable}.\retTwo
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: If $\gamma$ is differentiable and $\gamma^\prime$ is continuous, then $\gamma$ is rectifiable\\ and $\Lambda(\gamma) = \int_a^b \|\gamma^\prime(t)\|dt$.\retTwo
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      To start, note that $\gamma^\prime \in \mathscr{R}_a^b$ since $\gamma^\prime$ is continuous. So by proposition 111,\\ $\|\gamma^\prime\| \in \mathscr{R}_a^b$. Now consider any partition $P = \{x_0, \ldots, x_n\}$ of $[a, b]$. By\\ the fundamental theorem of calculation and proposition 111, we know:
+
+      {\centering $ \|\gamma(x_i) - \gamma(x_{i-1})\| = \left\|\int_{x_{i-1}}^{x_i} \gamma^\prime(t)dt\right\| \leq \int_{x_{i-1}}^{x_i}\|\gamma^\prime(t)\|dt$ \retTwo\par}
+
+      So for all partitions $P$:
+      
+      {\centering $\myHS \Lambda(P, \gamma) = \sum\limits_{i=1}^n\|\gamma(x_i) - \gamma(x_{i-1})\| \leq \sum\limits_{i=1}^n \int_{x_{i-1}}^{x_i}\|\gamma^\prime(t)\|dt = \int_a^b\|\gamma^\prime(t)\|dt$ \retTwo\par}
+
+      Therefore $\Lambda(\gamma) = \sup\limits_{P \in \mathcal{P}} \Lambda(P, \gamma) \leq \int_a^b \|\gamma^\prime(t)\|dt$.\retTwo
+
+      Meanwhile, let $\varepsilon > 0$. Since $\gamma^\prime$ is continuous on $[a, b]$, it is uniformly\\ continuous. So:
+      
+      {\centering $\exists\delta > 0 \suchthat \forall s, t \in [a, b], \myHS |s-t| < \delta \Longrightarrow \|\gamma^\prime(s) - \gamma^\prime(t)\| < \varepsilon$. \retTwo\par}
+
+      Now pick a partition $P = \{x_0, \ldots, x_n\}$ with $\forall 1 \leq i \leq n,\myHS \Delta x_i < \delta$. Then:\\ [-9pt]
+
+      {\center 
+      \begin{tabular}{l}
+         $\int_{x_{i-1}}^{x_i} \|\gamma^\prime(t)\|dt \leq \int_{x_{i-1}}^{x_i} \|\gamma^\prime(x_i)\|dt + \varepsilon \Delta x_{i}$\\ [3pt]
+
+         $\hphantom{\int_{x_{i-1}}^{x_i} \|\gamma^\prime(t)\|dt} = \|\gamma^\prime(x_i)\|\Delta x_i + \varepsilon \Delta x_i$\\ [3pt]
+
+         $\hphantom{\int_{x_{i-1}}^{x_i} \|\gamma^\prime(t)\|dt} = \|\Delta x_i \gamma^\prime(x_i)\| + \varepsilon \Delta x_i$\\ [3pt]
+
+         $\hphantom{\int_{x_{i-1}}^{x_i} \|\gamma^\prime(t)\|dt} = \left\|\int_{x_{i-1}}^{x_i}\gamma^\prime(x_i)dt\right\| + \varepsilon \Delta x_i$\\ [8pt]
+
+         $\hphantom{\int_{x_{i-1}}^{x_i} \|\gamma^\prime(t)\|dt} = \left\|\int_{x_{i-1}}^{x_i}\gamma^\prime(t) + \gamma^\prime(x_i) - \gamma^\prime(t)dt\right\| + \varepsilon \Delta x_i$\\ [8pt]
+
+         $\hphantom{\int_{x_{i-1}}^{x_i} \|\gamma^\prime(t)\|dt} = \left\|\int_{x_{i-1}}^{x_i}\gamma^\prime(t)dt\right\| + \varepsilon \Delta x_i + \varepsilon \Delta x_i$\\ [8pt]
+
+         $\hphantom{\int_{x_{i-1}}^{x_i} \|\gamma^\prime(t)\|dt} = \left\|\gamma(x_i) - \gamma(x_{i-1})\right\| + 2\varepsilon \Delta x_i$
+      \end{tabular} \retTwo\par}
+
+      So summing from $i = 1$ to $n$ we get:
+
+      {\centering $\int_a^b \|\gamma^\prime(t)\|dt \leq \Lambda(P, \gamma) + 2\varepsilon (b - a) \leq \Lambda(\gamma) + 2\varepsilon (b - a)$. \retTwo\par}
+
+      And since $\varepsilon > 0$ was arbitary, we have that $\int_a^b\|\gamma^\prime\|dt \leq \Lambda(\gamma)$.
+   \end{myIndent}}
 \end{myIndent}}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
@@ -1550,7 +1645,14 @@ The \udefine{unit step function} $I$ is defined by: $I(x) = \left\{
       \myVS 105 & 6.16 & 106 & 6.17 \\ \hdashline[10pt/3pt]
       \myVS 107 & 6.19 & 108 & 6.20 \\ \hdashline[10pt/3pt]
       \myVS 109 & 6.21 & 110 & 6.22 \\ \hdashline[10pt/3pt]
-      \myVS 111 &  & 112 &  \\ \hdashline[10pt/3pt]
+      \myVS 111 & 6.25 & 112 & 6.27 \\ \hdashline[10pt/3pt]
+      \myVS 113 &  & 114 &  \\ \hdashline[10pt/3pt]
+      \myVS 115 &  & 116 &  \\ \hdashline[10pt/3pt]
+      \myVS 117 &  & 118 &  \\ \hdashline[10pt/3pt]
+      \myVS 119 &  & 120 &  \\ \hdashline[10pt/3pt]
+      \myVS 121 &  & 122 &  \\ \hdashline[10pt/3pt]
+      \myVS 123 &  & 124 &  \\ \hdashline[10pt/3pt]
+      \myVS 125 &  & 126 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
 
 \end{allowTableDashes}
