@@ -1222,7 +1222,7 @@ Thus, $g^\prime(t) = \nabla f(\gamma(t)) \cdot \gamma^\prime(t)$.\retTwo
 
 Now suppose that $\gamma: (a, b) \longrightarrow \mathbb{R}^n$ is defined such that $a < 0 < b$, $\mVec{x} \in E$,\\ and $\gamma(t) = \mVec{x} + t\mVec{u}$ where $\mVec{u}$ is a unit vector. Then we define the \udefine{directional\\ derivative} of $f$ at $\mVec{x}$ in the direction of $\mVec{u}$ as:
 
-{\centering $D_{\mVec{u}}f(\mVec{x}) = \lim\limits_{t\rightarrow 0}f(\gamma(t)) = \nabla f(\mVec{x}) \cdot \mVec{u}$\retTwo\par}
+{\centering $(D_{\mVec{u}}f)(\mVec{x}) = (f \circ \gamma)^\prime(0) = \nabla f(\mVec{x}) \cdot \mVec{u}$\retTwo\par}
 
 
 {\begin{myIndent}\hTwo
@@ -1740,9 +1740,94 @@ Additionally, if $D_{i,j}f$ is continuous in $E$ for all $1 \leq i,j \leq n$, th
       \end{center}
 
       And since $\varepsilon$ was arbitary, we conclude that $(D_{j,i}f)(\mVec{x}) = (D_{i,j}f)(\mVec{x})$.
-
+      {\begin{myDindent}\myComment
+         (Note that Rudin proves something stronger than this in his book.)
+         \newpage
+      \end{myDindent}}
    \end{myIndent}
 \end{myIndent}}
+
+\exOne
+\mySepTwo
+
+\textbf{Exercise 9.13}: Suppose $f$ is a differentiable mapping of $\mathbb{R}$ into $\mathbb{R}^3$ such that\\ $\|f(t)\| = 1$ for every $t$. Then $f^\prime(t) \cdot f(t) = 0$.\\ [-8pt]
+
+{\begin{myIndent}\exTwo
+   To prove this note that $0 = (1)^\prime = (\|f(t)\|^2)^\prime = (f(t) \cdot f(t))^\prime = 2f^\prime(t) \cdot f(t)$.\\ Hence, $f^\prime(t) \cdot f(t) = 0$. The geometric intution for this is that the path traced\\ out by $f(t)$ must be confined to the unit sphere. Therefore, $f^\prime(t)$ must always\\ be zero or perpendicular to $f(t)$.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\textbf{Exercise 9.14}: Define $f(0, 0) = 0$ and $f(x, y) = \frac{x^3}{x^2 + y^2}$ when $(x, y) \neq 0$.
+\begin{enumerate}
+   \item[(a)] $D_1f$ and $D_2f$ exist and are bounded on $\mathbb{R}^2$.\\ [-14pt]
+   
+   {\begin{myIndent}\exTwo
+      By quotient rule, we know that when $(x, y) \neq (0, 0)$:
+      \begin{center}
+         \begin{tabular}{l c r}
+            $\bullet$ \hspace{0.3em} $(D_1f)(x, y) = \frac{x^4 + 3x^2y^2}{(x^2 + y^2)^2}$
+            & &
+            $\bullet$ \hspace{0.3em} $(D_2f)(x, y) = \frac{-2x^3y}{(x^2 + y^2)^2}$
+         \end{tabular}\retTwo
+      \end{center}
+
+      Therefore $0 \leq (D_1f)(x, y) = \frac{x^4 + 3x^2y^2}{x^4 + 2x^2y^2 + y^4} \leq \frac{x^4}{x^4} + \frac{3x^2y^2}{2x^2y^2} = \frac{5}{2}$\\ [3pt] and $\left|(D_2f)(x, y)\right| = \frac{x^2}{x^2 + y^2} \cdot \frac{2|x||y|}{x^2 + y^2} \leq 1 \cdot \frac{2|x||y|}{(|x| - |y|)^2 + 2|x||y|} \leq 1 \cdot 1 = 1$.\retTwo
+
+      Meanwhile, consider that when $(x, y) = (0, 0)$, we have that:\\
+      {\fontsize{12}{14}\selectfont$(D_1f)(0, 0) = \lim\limits_{x\rightarrow 0}\frac{\frac{x^3}{x^2 + 0} - 0}{x} = \lim\limits_{x\rightarrow 0}\frac{x}{x} = 1$} and {\fontsize{12}{14}\selectfont$(D_2f)(0, 0) = \lim\limits_{x\rightarrow 0}\frac{\frac{0}{0 + y^2} - 0}{y} = 0$}.\retTwo
+   \end{myIndent}}
+
+   \item[(B)] If $\mVec{u}$ is a unit vector in $\mathbb{R}^2$, then the directional derivative $(D_{\mVec{u}}f)(0, 0)$ exists\\ and it's absolute value is at most $1$.\\ [-14pt]
+   
+   {\begin{myIndent}\exTwo
+      Let $\mVec{u} = (u_x + u_y)$.\\ Then {\fontsize{12}{14}\selectfont$(D_{\mVec{u}}f)(0,0) = \lim\limits_{t\rightarrow 0}\frac{\frac{(tu_x)^3}{(tu_x)^2 + (tu_y)^2} \hspace{0.1em}-\hspace{0.1em} 0}{t} = \lim\limits_{t\rightarrow 0}\frac{\frac{t^3}{t^2}\cdot\frac{u_x^3}{u_x^2 + u_y^2}}{t} = \frac{u_x^3}{u_x^2 + u_y^2} = u_x^3$}\\ [-1pt] because $\|\mVec{u}\|^2 = 1$. So, we've shown that $(D_{\mVec{u}}f)(0,0)$ exists.\retTwo
+
+      Also, because $|u_x| \leq 1$ we know that $|(D_{\mVec{u}}f)(0,0)| = |u_x^3| \leq 1$.\retTwo
+   \end{myIndent}}
+
+   \item[(C)] Let $\gamma: \mathbb{R} \longrightarrow \mathbb{R}^2$ be any differentiable mapping with $\gamma(0) = (0, 0)$ and\\ $\|\gamma^\prime(t)\| > 0$ for all $t$. Setting $g(t) = f(\gamma(t))$, we have that $g$ is differentiable\\ at all $t \in \mathbb{R}$. Furthermore, if $\gamma \in \mathscr{C}^1(\mathbb{R}, \mathbb{R}^2)$, then $g \in \mathscr{C}^1(\mathbb{R}, \mathbb{R}^2)$.\\ [-14pt]
+
+   {\begin{myIndent}\exTwo
+
+      Let $\gamma(t) = (x(t), y(t))$. Importantly, because $\gamma(t)$ is differentiable, we\\ know that $x^\prime(t)$ and $y^\prime(t)$ exist for all $t \in \mathbb{R}$. At the same time, because\\ $D_1f$ and $D_2f$ are continuous when $(x, y) \neq (0, 0)$, we know that $f^\prime$ exists\\ and is continuous when $(x, y) \neq (0, 0)$.
+
+      \newpage
+
+      Firstly, let's get the trivial case out of the way. Assume $\gamma(t_0) \neq (0, 0)$.\\ Then by chain rule we know $g^\prime(t_0) = f^\prime(\gamma(t_0))\gamma^\prime(t_0) = \nabla f(\gamma(t_0)) \cdot \gamma^\prime(t_0)$\\ because $f$ is continuously differentiable at $\gamma(t_0)$. Furthermore, if $\gamma^\prime$ is\\ continuous at $t_0$, then the above expression shows that $g^\prime$ is continuous\\ at $t_0$. This is because $f$ is continuous in an open neighborhood around\\ $\gamma(t_0)$,\hspace{0.4em} $\gamma$ is continuous around $t_0$, and $\gamma^\prime(t_0)$ is assumed to be continuous\\ around $t_0$.\retTwo
+
+      Now assume $\gamma(t_0) = (0, 0)$. Then observe that:
+      
+      {\centering{\fontsize{12}{14}\selectfont
+      \begin{tabular}{l}
+         $\frac{f(\gamma(t)) - f(\gamma(t_0))}{t - t_0} = \frac{\frac{x^3(t)}{x^2(t) + y^(t)} - \hspace{0.2em} 0 \hspace{0.2em}}{t - t_0} = \frac{\frac{x^3(t)}{(t-t_0)^3}}{\hspace{0.2em}\frac{x^2(t) + y^2(t)}{(t-t_0)^2}\hspace{0.2em}}$\\ [6pt]
+         $\phantom{aaaaa\frac{\frac{x^3(t)}{x^2(t) + y^(t)} - \hspace{0.2em} 0 \hspace{0.2em}}{t}}  = \frac{\left(\frac{x(t) - 0}{t - t_0}\right)^3}{\left(\frac{x(t) - 0}{t - t_0}\right)^2 + \left(\frac{y(t) - 0}{t - t_0}\right)^2} = \frac{\left(\frac{x(t) - x(t_0)}{t - t_0}\right)^3}{\left(\frac{x(t) - x(t_0)}{t - t_0}\right)^2 + \left(\frac{y(t) - y(t_0)}{t - t_0}\right)^2}$
+      \end{tabular}}\retTwo\par}
+
+      Therefore, since $\|\gamma^\prime(t_0)\| \neq 0$ we know that:
+      
+      {\centering $\lim\limits_{t \rightarrow t_0}\frac{g(t) - g(t_0)}{t - t_0} = \frac{(x^\prime(t_0))^3}{(x^\prime(t_0))^2 + (y^\prime(t_0))^2} = \frac{(x^\prime(t_0))^3}{\|\gamma^\prime(t_0)\|^2}$\retTwo\par}
+
+      So $g$ is differentiable at $t_0$.\retTwo
+
+      Finally, still assuming that $\gamma(t_0) = (0, 0)$, consider that if $\gamma^\prime$ is continuous\\ at $t_0$, then we automatically have that $\frac{(x^\prime(t))^3}{\|\gamma^\prime(t)\|^2} \rightarrow \frac{(x^\prime(t_0))^3}{\|\gamma^\prime(t_0)\|^2} = g(t_0)$ as $t \rightarrow t_0$.\\ At the same time, note that:
+      
+      {\centering 
+      \begin{tabular}{l}
+         $\nabla f(\gamma(t)) \cdot \gamma^\prime(t) = \frac{x^5(t) + 3x^3(t)y^2(t) - 2x^3(t)y^2(t)}{(x^2(t) + y^2(t))^2}$\\ [7pt]
+         $\phantom{\nabla f(\gamma(t)) \cdot \gamma^\prime(t)} = \frac{x^5(t) + x^3(t)y^2(t)}{(x^2(t) + y^2(t))^2} = \frac{x^3(t)}{x^2(t) + y^2(t)}$ when $\gamma(t) \neq (0, 0)$.
+      \end{tabular} \retTwo\par}
+
+      Therefore, if we can only consider $t$ such that $\gamma(t) \neq (0, 0)$, \retTwo\retTwo
+
+
+      AUGGGHHHHH\\
+
+      Sorry I can't figure this out. It's been a lazy unproductive few weeks.
+
+
+   \end{myIndent}}
+\end{enumerate}
 
 
 
