@@ -1622,6 +1622,430 @@ Then, the \udefine{length} of $\gamma$ is $\Lambda(\gamma) = \sup\limits_{P \in 
    \end{myIndent}}
 \end{myIndent}}
 
+\newpage
+
+\markLecture{4/29/2024}
+
+Suppose $f: E \longrightarrow \mathbb{C}$ where $E$ is any set and $(f_n)$ is a sequence of functions such\\ that $f_n: E \longrightarrow \mathbb{C}$ for every $n \in \mathbb{N}$. We say that $(f_n)$ \udefine{converges to $f$ pointwise}\\ on $E$ if $\forall x \in E, \myHS \lim\limits_{n\rightarrow \infty}f_n(x) = f(x)$. Furthermore, in that case we call $f$ the\\ [-6pt] \udefine{limit} of $(f_n)$.\retTwo
+
+Similarly, we write $f = \sum\limits_{n=1}^\infty f_n$\hspace{0.1em} if \hspace{0.1em}$\forall x \in E$,\hspace{0.4em} $f(x) = \sum\limits_{n=1}^\infty f_n(x)$.\retTwo
+
+\exOne
+\mySepTwo
+
+Questions:
+\begin{enumerate}
+   \item If each $f_n$ is continuous, is $f$ continuous? Equivalently, we can ask:\\ [-17pt]
+   
+   {\centering {\fontsize{12}{14}\selectfont$\lim\limits_{t\rightarrow x}\lim\limits_{n\rightarrow \infty}f_n(t) = \lim\limits_{t\rightarrow x}f(t) \stackrel{\text{?}}{=} f(x) = \lim\limits_{n\rightarrow \infty}f_n(x) = \lim\limits_{n\rightarrow \infty}\lim\limits_{t\rightarrow x}f_n(t)$} \retTwo\par}
+
+   \item If each $f_n$ is differentiable, is $f$ differentiable and does $f_n^\prime$ converge to $f^\prime$?\\ Equivalently, we can ask:\\ [-17pt]
+   
+   {\centering {\fontsize{12}{14}\selectfont $\lim\limits_{t\rightarrow x}\lim\limits_{n\rightarrow \infty}\frac{f_n(t) - f_n(x)}{t - x} = \lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x} = f^\prime(x) \stackrel{\text{?}}{=} \lim\limits_{n\rightarrow \infty}f_n^\prime(x) = \lim\limits_{n\rightarrow \infty}\lim\limits_{t\rightarrow x}\frac{f_n(t) - f_n(x)}{t - x}$} \retTwo\par}
+
+   \item If each $f_n \in \mathscr{R}_a^b$, is $f \in \mathscr{R}_a^b$ and does $\int_a^b f_n(x)dx$ converge to $\int_a^b f(x)dx$?\\ Equivalently, we can ask:\\ [-17pt]
+   
+   {\centering {\fontsize{12}{14}\selectfont $ \lim\limits_{n\rightarrow \infty} \int_a^b f_n(x)dx \stackrel{\text{?}}{=} \int_a^b \left(\lim\limits_{n\rightarrow\infty} f_n(x)\right)dx = \int_a^b f(x)dx   $ } \retTwo\par}
+\end{enumerate}
+
+Some answers:
+\begin{enumerate}
+   \item The order of limits generally matter:
+   {\begin{myIndent}\exTwo
+      Set $s_{n,m} = \frac{n}{n + m}$. Then $\lim\limits_{m\rightarrow \infty}\left(\lim\limits_{n\rightarrow \infty} s_{n,m}\right) = \lim\limits_{m\rightarrow \infty} (1) = 1$ but\\ $\lim\limits_{n\rightarrow \infty}\left(\lim\limits_{m\rightarrow \infty} s_{n,m}\right) = \lim\limits_{n\rightarrow \infty} (0) = 0$.\retTwo
+   \end{myIndent}}
+
+   \item We can lose continuity:
+   {\begin{myIndent}\exTwo
+      Set $f_n(x) = \frac{x^2}{(1+x^2)^n}$ and $f(x) = \sum\limits_{n=0}^\infty f_n(x)$. Then for all $n \in \mathbb{N}$,\\ we have that $f_n(0) = 0$. So $f(0) = 0$.\retTwo
+
+      But when $x \neq 0$:
+      \begin{center}
+         \begin{tabular}{l}
+            $f(x) = \sum\limits_{n=0}^\infty f_n(x) = x^2\sum\limits_{n=0}^\infty\frac{1}{(1+x^2)^n} = x^2\sum\limits_{n=0}^\infty\left(\frac{1}{1+x^2}\right)^n$\\
+            $\phantom{f(x) = \sum\limits_{n=0}^\infty f_n(x) = x^2\sum\limits_{n=0}^\infty\frac{1}{(1+x^2)^n}} = x^2\frac{1}{1 - \frac{1}{1 + x^2}} = x^2\cdot\frac{1 + x^2}{x^2} = 1 + x^2$
+         \end{tabular}
+      \end{center}
+
+      \newpage
+
+      So despite every $f_n$ being continuous, $f$ is not continuous at $x = 0$.\retTwo
+   \end{myIndent}}
+
+   \item We can lose differentiability:
+   
+   {\begin{myIndent}\exTwo
+      By the Stone-Weierstrass theorem (proposition 144), every continuous\\ function is the limit of a sequence of polynomials. Therefore, as all\\ polynomials are differentiable but not all continuous functions are\\ differentiable, we know that there are sequences of differentiable\\ functions whose limits are not differentiable.
+      %Proposition number needs correctng. It's just a placeholder
+      \retTwo
+   \end{myIndent}}
+
+   \item We can lose integrability:
+   
+   {\begin{myIndent}\exTwo
+      Set $f_n(x) = \left\{
+      \begin{matrix}
+         1 & \text{ if } x = \frac{p}{q} \text{ where } p, z \in Z \text{ and } |q| \leq n \\
+         0 & \text{ otherwise }
+      \end{matrix}\right.$\\
+      Then $(f_n)$ converges pointwise to $f(x) = \left\{
+      \begin{matrix}
+         1 & \text{ if } x \in \mathbb{Q} \\
+         0 & \text{ otherwise }
+      \end{matrix}\right.$
+      \retTwo
+
+      Also, because each $f_n$ has finite discontinuities on $[-1, 1]$, we know\\ $f_n \in \mathscr{R}_{-1}^1$. But $f \notin \mathscr{R}_{-1}^{1}$ by exercise 6.4.\retTwo
+   \end{myIndent}}
+
+   \item Sometimes the derivatives of a sequence don't converge:
+   
+   {\begin{myIndent}\exTwo
+      Set $f_n(x) = \frac{\sin(nx)}{\sqrt{n}}$. Then $(f_n)$ converges to $f(x) = 0$ and clearly $f^\prime(x) = 0$.\\ However, note that $f_n^\prime(x) = \sqrt{n}\cos(nx)$. So $(f_n^\prime)$ doesn't converge to $f^\prime(x)$.\retTwo
+   \end{myIndent}}
+
+   \item Sometimes the integrals of a sequence don't converge:
+   
+   {\begin{myIndent}\exTwo
+      Set $f_n(x) = nx(1-x^2)^n$ for $x \in [0, 1]$. Then clearly $f_n(0) = f_n(1) = 0$ for\\ all $n \in \mathbb{N}$. Also, note that for any $0 < x < 1$, $\frac{1}{1-x^2} = 1 + \beta$ where $\beta > 0$.\\ Thus by proposition 44.D (see 140A notes), we know that:
+
+      {\centering $ n(1-x^2)^n = n^1 \frac{1}{\left(\frac{1}{1-x^2}\right)\vphantom{{\frac{b}{b^2}}}^n} = \frac{n^1}{(1 + \beta)^n} \rightarrow 0 $ as $n \rightarrow \infty$. \retTwo\par}
+
+      So $f_n(x) \rightarrow 0$ for all $0 < x < 1$. This all shows that $(f_n)$ converges\\ pointwise to $f(x) = 0$, and clearly $\int_0^1 f(x)dx = 0$.\retTwo
+
+      Meanwhile, by the fundamental theorem of calculus we know that:
+      
+      {\centering$\int_0^1 f_n(x)dx = \left[ -\frac{n}{2(n+1)}(1-x^2)^{n+1}\right]^{x=1}_{x=0} = \frac{n}{2(n+1)}$ \retTwo\par}
+
+      Therefore $\lim\limits_{n\rightarrow \infty} \int_a^b f_n(x)dx = \frac{1}{2} \neq 0 = \int_a^b f(x)dx$.
+   \end{myIndent}}
+\end{enumerate}
+
+\newpage
+
+\hOne The take away of the previous examples is that pointwise convergence is\\ annoying to work with. So here's a stronger notion of convergence that is\\ more nice to work to with.\retTwo
+
+Once again suppose $f: E \longrightarrow \mathbb{C}$ where $E$ is any set and $(f_n)$ is a sequence of\\ functions such that $f_n: E \longrightarrow \mathbb{C}$ for every $n \in \mathbb{N}$. We say that $(f_n)$ \udefine{converges\\ to $f$ uniformly} on $E$ if:
+
+{\centering $\forall \varepsilon > 0,\myHS \exists N \in \mathbb{N} \suchthat \forall n \geq N \text{ and } \forall x \in E,\myHS |f_n(x) - f(x)| < \varepsilon$ \retTwo\par}
+
+Similarly, $\sum\limits_{n=1}^\infty f_n$\hspace{0.1em} \udefine{converges uniformly to $f$} on $E$ if:\\ [-10pt]
+
+{\centering $\forall \varepsilon > 0,\myHS \exists N \in \mathbb{N} \suchthat \forall n \geq N \text{ and } \forall x \in E,\myHS |\sum\limits_{k=1}^n f_k(x) - f(x)| < \varepsilon$ \retTwo\par}
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: (Cauchy Criterion)\\
+   $(f_n)$ converges uniformly on $E$ if and only if:
+   
+   {\centering $\forall \varepsilon > 0, \myHS \exists N \in \mathbb{N} \suchthat \forall n,m \geq N,\myHS \forall x \in E, \myHS |f_n(x) - f_m(x)| < \varepsilon$.\retTwo\par} 
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      ($\Longrightarrow$) Suppose $(f_n)$ converges uniformly on $E$ to $f: E \longrightarrow \mathbb{C}$ and let\\ $\varepsilon > 0$. By definition there exists $N$ such that for all $n \geq N$ and $x \in E$,\\ we have that $|f_n(x) - f(x)| < \sfrac{\varepsilon}{2}$. Then whenever $n, m \geq N$, we have\\ that:
+
+      {\centering $|f_n(x) - f_m(x)| \leq |f_n(x) - f(x)| + |f(x) - f_m(x)| < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$ \retTwo\par}
+
+      ($\Longleftarrow$) Suppose for all $\varepsilon > 0$, there exists $N \in \mathbb{N}$ such that for all\\ $n,m \geq N$ and $x \in E$, we have that $|f_n(x) - f_m(x)| < \varepsilon$. Then for\\ every $x \in E$, the sequence $(f_n(x))$ is Cauchy, which means that it\\ converges to some $f(x) \in \mathbb{C}$. In turn, this means that $(f_n)$ converges\\ to a function $f: E \longrightarrow \mathbb{C}$. \retTwo
+
+      Now let $\varepsilon > 0$ and pick $N$ satisfying that for all $n,m \geq N$ and $x \in E$, we\\ have that $|f_n(x) - f_m(x)| < \sfrac{\varepsilon}{2}$. Then for any fixed $n \geq N$, we can take\\ the limit as $m \rightarrow \infty$ in the above expression to get that:
+
+      {\centering $\forall n \geq N,\myHS \forall x \in E, \myHS |f_n(x) - f(x)| \leq \sfrac{\varepsilon}{2} < \varepsilon $ \retTwo\par}
+   \end{myIndent}}
+
+   Similarly, $\sum\limits_{n=1}^\infty f_n$ converges uniformly on $E$ if and only if:\\ [-9pt]
+
+   {\centering $\forall \varepsilon > 0, \myHS \exists N \in \mathbb{N} \suchthat \forall n,m \geq N,\myHS \forall x \in E, \myHS \left|\sum\limits_{k=1}^n f_k(x) - \sum\limits_{k=1}^m f_k(x)\right| < \varepsilon$.\retTwo\par}
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      This is just applying the above proposition to the sequence of\\ functions: 
+      
+      {\centering$\left(\sum\limits_{k=1}^n f_k\right)_{n\in\mathbb{N}}$\par}
+   \end{myIndent}}
+
+   \newpage
+
+   Proposition \propCount: Suppose $(f_n)$ converges to $f: E \longrightarrow \mathbb{C}$. Then $(f_n)$ converges\\ uniformly on $E$ to $f$ if and only if $\lim\limits_{n\rightarrow \infty}M_n = 0$ where $M_n = \sup\limits_{x\in E}|f_n(x) - f(x)|$.
+
+   {\begin{myIndent}\hThree
+      (This is just a restatement of our definition of uniform convergence.)\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\markLecture{5/1/2024}
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: (Weierstrass M-test)\\ [4pt]
+   Let $f_n: E \longrightarrow \mathbb{C}$ be such that for all $n \in \mathbb{N}$, we have that $\forall x \in E$,\\ $|f_n(x)| \leq M_n$. If $\sum\limits_{n=1}^\infty M_n < \infty$, then $\sum\limits_{n=1}^\infty f_n$ converges uniformly on $E$.
+
+   {\begin{myIndent}\hThree
+      Proof:\\ [-5pt]
+      Let $\varepsilon > 0$ and pick $N$ such that $\forall m \geq n \geq N$, we have that $\sum\limits_{i=n}^m M_i < \varepsilon$.\\ [-8pt]
+      Then for all $m \geq n \geq N$ and $x \in E$, we have that: 
+      
+      {\center $\left|\sum\limits_{i=n}^m f_i(x)\right| \leq \sum\limits_{i=n}^m\left|f_i(x)\right| \leq \sum\limits_{i=n}^m M_i < \varepsilon$ \retTwo\par}
+
+      So by proposition 113, $\sum\limits_{n=1}^\infty f_n$ converges uniformly on $E$.\retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: Suppose $X$ is a metric space and $(f_n)$ converges uniformly to\\ $f$ on $E \subseteq X$. Also let $x \in E^\prime$ and assume for each $n$ that $\lim\limits_{t\rightarrow x}f_n(t) = A_n \in \mathbb{C}$.\\ [-6pt] Then $(A_n)$ converges with $\lim\limits_{t \rightarrow x}f(t) = \lim\limits_{n\rightarrow \infty}A_n$.
+
+   {\begin{myIndent}\hThree
+      Proof:\\ %[-5pt]
+      Let $\varepsilon > 0$ and pick $N$ such that for all $m \geq n \geq N$ and $t \in E$, we have\\ that $|f_n(t) - f_m(t)| < \sfrac{\varepsilon}{2}$ (we can do this by proposition 113). Then for\\ any $m \geq n \geq N$ we can take the limit as $t \rightarrow x$ to get that
+      
+      {\centering $|A_n - A_m| = \left|\lim\limits_{t \rightarrow x}f_n(x) - \lim\limits_{t \rightarrow x}f_m(x)\right| \leq \sfrac{\varepsilon}{2} < \varepsilon$\retTwo\par}
+
+      Therefore, $(A_n)$ is Cauchy. And because $\mathbb{C}$ is complete, we thus know that\\ $A_n \rightarrow A$ for some $A \in \mathbb{C}$.\retTwo
+
+      Now let $\varepsilon > 0$. Since $A_n \rightarrow A$ and $(f_n)$ converges uniformly on $E$, we can\\ [2pt] find $N$ such that $|A_N - A| < \sfrac{\varepsilon}{3}$ and $\forall t \in E, \myHS |f_N(t) - f(t)| < \sfrac{\varepsilon}{3}$. At the\\ [2pt] same time, since $A_n = \lim\limits_{t\rightarrow x} f_N(t)$, there exists $\delta > 0$ such that for all\\ [0pt] $t \in (B_\delta(x) \setminus \{x\}) \cap E$, $\myHS |f_N(t) - A_n| < \sfrac{\varepsilon}{3}$.\retTwo
+      
+      So, for all $t \in (B_\delta(x) \setminus \{x\}) \cap E$, we have that:
+
+      {\center $|f(t) - A| \leq |f(t) - f_N(t)| + |f_N(t) - A_n| + |A_n - A| < \varepsilon$ \retTwo\par}
+
+      Hence, $\lim\limits_{t\rightarrow x}f(t) = A$.
+   \end{myIndent}}
+
+   \newpage
+
+   Proposition \propCount: If $X$ is a metric space, $E \subseteq X$, and $f_n: E \longrightarrow \mathbb{C}$ is continuous\\ for each $n \in \mathbb{N}$, then if $(f_n)$ converges uniformly to $f$ on $E$ we have that $f$ is\\ continuous.\\ [-12pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\ [3pt]
+      For any $x \in E$, if $x \notin E^\prime$, then $f$ is automatically continuous at $x$.\\ [3pt] On the other hand, if $x \in E^\prime$, then $f$ is continuous at $x$ if and only\\ [3pt] if $\lim\limits_{t\rightarrow x}f(t) = f(x)$. Luckily, by proposition 116 and because each $f_n$\\ is continuous, we have that:\\ [-12pt]
+
+      \begin{center}
+         \begin{tabular}{l}
+            $\lim\limits_{t\rightarrow x}f(t) = \lim\limits_{t\rightarrow x}\lim\limits_{n\rightarrow \infty} f_n(t) = \lim\limits_{n\rightarrow \infty}\lim\limits_{t\rightarrow x} f_n(t) = \lim\limits_{n\rightarrow \infty}f_n(x) = f(x)$
+         \end{tabular}
+      \end{center}\retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: Suppose that $K$ is a compact metric space, that $f_n: K \longrightarrow \mathbb{R}$\\ are continuous, and that $(f_n)$ converges to $f: K \longrightarrow \mathbb{R}$ pointwise. If $f$ is\\ continuous and $f_n(x) \leq f_{n+1}(x)$ for all $x \in K$ and $n \in \mathbb{N}$, then $(f_n)$ converges\\ uniformly to $f$ on $K$.\\ [-10pt]
+
+   {\begin{myIndent}\hThree
+      Proof:
+      Let $\varepsilon > 0$ and define $K_n = \{x \in K \mid f(x) - f_n(x) \geq \varepsilon\}$ for\\ each $n \in \mathbb{N}$. Since $f$ and $f_n$ are continuous, we know that $K_n$ is closed.
+      {\begin{myIndent}\hFour
+         This is because $K_n = (f - f_n)^{-1}([\varepsilon, +\infty))$ and the preimage of a closed\\ set with respect to a continuous function is always closed.\retTwo
+      \end{myIndent}}
+
+      In turn, by proposition 24 (check 140A notes) we know that $K_n \subseteq K$\\ is compact for every $n \in \mathbb{N}$.\retTwo
+
+      Now consider that because $f_n(x) \leq f_{n+1}(x)$ for all $x \in K$, we know that\\ $K_{n+1} \subseteq K_n$. Additionally, since $(f_n)$ converges to $f$ pointwise, we know\\ that for every $x \in K$ there exists $n \in \mathbb{N}$ such that $x \notin K_n$. This tells\\ us that $\bigcap\limits_{n\in\mathbb{N}}K_n = \emptyset$.\retTwo 
+
+      So by the contrapositive of the finite intersection (check 140A\\ notes), there is a finite collection of $K_n$ such that $\bigcap\limits_{i=1}^m K_{n_i} = \emptyset$.\retTwo
+      
+      But, because $K_{n+1} \subseteq K_n$, for every $n$, this is only possible if one of\\ the $K_{n_i} = \emptyset$. So, there exists $N$ with $K_N = \emptyset$. Then for all $n \geq N$,\\ $K_n = \emptyset$, which means that $\forall x\in K, \myHS |f(x) - f_n(x)| < \varepsilon$. So, $(f_n)$\\ converges uniformly.
+      \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+Let $X$ be a metric space and $\mathscr{C}(X)$ be the the set of all continuous bounded\\ functions from $X$ to $\mathbb{C}$. Then for each $f \in \mathscr{C}(X)$, we define the \udefine{uniform norm} /\\ \udefine{supremum norm} of $f$ as:
+
+{\centering $\|f\| = \sup\limits_{x\in X}|f(x)|$ \par}
+
+\newpage
+
+Importantly, $\|\cdot \|$ satisfies the properties of a norm:\\ [-21pt]
+\begin{itemize}
+   \item $\|f\|$ exists and is finite by the least upper bound property since $|f(x)|$\\ is bounded above and real.\\[-20pt]
+   \item $\|f\|$ is non-negative because $|f(x)| \geq 0$ for all $x \in X$.\\[-20pt]
+   \item $\|f\| = 0 \Longleftrightarrow f(x) = 0$ for all $x \in X$.\\[-20pt]
+   \item $\|f + g\| \leq \|f\| + \|g\|$ because $|f(x) + g(x)| \leq |f(x)| + |g(x)|$ for all\\ $x \in X$.\retTwo
+\end{itemize}
+
+In turn, this means that  $\mathscr{C}(X)$ is a metric space when equipped with the metric:
+
+{\centering$ d(f, g) = \|f - g\| = \sup\limits_{x\in X}|f(x) - g(x)|$ \retTwo\par}
+
+Also note that by proposition 114, a sequence $(f_n)$ converges to $f$ in this\\ metric space if and only if $(f_n)$ converges to $f$ uniformly on $X$.\retTwo
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: $\mathscr{C}(X)$ is a complete metric space.\\ [-12pt]
+   {\begin{myIndent}\hThree
+      Proof:\\
+      If $(f_n)$ is Cauchy in $\mathscr{C}(X)$, then by proposition 113, we know $(f_n)$\\ converges uniformly to some function $f: X \longrightarrow \mathbb{C}$. Additionally,\\ note that $f$ is continuous by proposition 117. And because there is $n$\\ with $\forall x \in X,\myHS |f_n(x) - f(x)| < 1$ and $f_n$ is bounded, we know $f$ is\\ bounded as well. So, $f \in \mathscr{C}(X)$ and $\lim\limits_{n\rightarrow \infty} f_n = f$ in the metric space\\ [-4pt] $\mathscr{C}(X)$.\retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: Let $\alpha: [a, b] \longrightarrow \mathbb{R}$ be monotone increasing and suppose\\ that $f_n \rightarrow f$ uniformly on $[a, b]$ and $f_n \in \mathscr{R}_a^b(\alpha)$ for all $n \in \mathbb{N}$. Then $f \in \mathscr{R}_a^b{\alpha}$\\ and $\int_a^b fd\alpha = \lim\limits_{n\rightarrow \infty}\int_a^b fd\alpha$.\\ [-4pt]
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $\varepsilon > 0$ and pick $N$ such that for all $n \geq N$ and $x \in [a, b]$, we have\\ that $|f_n(x) - f(x)| < \varepsilon$. Then fix any $n \geq N$.\retTwo
+
+      We know that for all $x \in [a, b], \myHS f_n(x) - \varepsilon < f(x) < f_n(x) + \varepsilon$.\\ Therefore, by proposition 102 parts A and B, we have that:
+
+      {\center{\fontsize{12}{14}\selectfont$\int_a^b f_nd\alpha - \varepsilon(\alpha(b) - \alpha(a)) \leq \underline{\int_a^b} fd\alpha \leq \overline{\int_a^b}fd\alpha \leq \int_a^b f_nd\alpha + \varepsilon(\alpha(b) - \alpha(a))$}.\retTwo\par} 
+
+      Firstly, since $\varepsilon > 0$ is arbitrary, this shows that $f \in \mathscr{R}_a^b(\alpha)$. Secondly,\\ we have that $\left|\int_a^b f_nd\alpha - \int_a^b f d\alpha\right| \leq \varepsilon(\alpha(b) - \alpha(a))$ for all $n \geq N$.\\ [-1pt] Therefore, $\int_a^b f_n d\alpha \rightarrow \int_a^b fd\alpha$ as $n \rightarrow \infty$.
+   \end{myIndent}}
+
+   \newpage
+
+   Corollary: If $f_n \in \mathscr{R}_a^b(\alpha)$ and $\sum\limits_{n=1}^\infty f_n$ converges uniformly to $f$ on $[a, b]$, then\\ [-7pt] $\int_a^b fd\alpha = \sum\limits_{n=1}^\infty \int_a^b f_nd\alpha\myHS $ (you can integrate term-by-term).\retTwo
+\end{myIndent}}
+
+\markLecture{5/3/2024}
+
+
+\begin{myIndent}\hTwo
+   Proposition \propCount: Assume $f_n: [a, b] \longrightarrow \mathbb{C}$ is differentiable for every $n \in \mathbb{N}$\\ and that there is a point $x_0 \in [a, b]$ such that $(f_n(x_0))$ converges. If $(f_n^\prime)$\\ converges uniformly on $[a, b]$, then $(f_n)$ converges uniformly on $[a, b]$\\ to some $f$ satisfying that $f^\prime(x) = \lim\limits_{n\rightarrow \infty} f_n^\prime(x)$ for all $x \in [a, b]$.\\
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      We first want to check that $(f_n)$ converges uniformly on $[a, b]$. So let\\ $\varepsilon > 0$ and pick $N$ so that $\forall n, m \geq N$, $\myHS|f_n(x_0) - f_m(x_0)| < \sfrac{\varepsilon}{2}$ and\\ $|f_n^\prime(t) - f_m^\prime(t)| < \frac{\varepsilon}{2(b-a)}$ for all $t \in [a, b]$.\retTwo
+
+      Then for any $n, m \geq N$ and any $x, y \in [a, b]$, we have by the mean value\\ theorem that:\\ [-9pt]
+      
+      {\centering{\fontsize{12.5}{14.5}\selectfont
+      \begin{tabular}{l}
+         $|f_n(x) - f_m(x) - f_n(y) + f_m(y)|$ \\ [3pt]
+         $\phantom{aaaaa} = |((f_n - f_m)(x) - (f_n - f_m)(y))|$\\ [3pt]
+         $\phantom{aaaaaaaaaaaa} = |f^\prime_n(t) - f^\prime_m(t)||x - y|$ \hspace{1em}{\hFour(for some $t$ between $x$ and $y$)}\\ [3pt]
+         $\phantom{aaaaaaaaaaaa} < \frac{\varepsilon}{2(b-a)}|x-y| = \frac{\varepsilon}{2}\cdot\frac{|x-y|}{b-a} < \frac{\varepsilon}{2} \cdot 1$\\
+      \end{tabular}}\retTwo\par}
+
+      Therefore, fixing $y$ as $x_0$, we have that:
+
+      {\center{\fontsize{12}{14}\selectfont
+      \begin{tabular}{l}
+         $|f_n(x) - f_m(x)|$\\ [3pt]
+         $\phantom{aaaaa} \leq |f_n(x) - f_m(x) - f_n(x_0) + f_m(x_0)| + |f_n(x_0) - f_m(x_0)| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon$
+      \end{tabular}}\retTwo\par}
+
+      And so by proposition 113, we know that $(f_n)$ converges uniformly.\\ [5pt]
+
+      Next, we want to show that $f^\prime(x) = \lim\limits_{n\rightarrow \infty}f^\prime_n(x)$ for all $x \in [a, b]$. So,\\ [-5pt] fix any $x \in [a,b]$ and define:
+      
+      {\center $\phi(t) = \frac{f(t) - f(x)}{t - x}$ and $\phi_n(t) = \frac{f_n(t) - f_n(x)}{t - x}$ for all $t \in [a,b]\setminus\{x\}$. \retTwo\par}
+
+      Clearly $(\phi_n)$ converges to $\phi$ pointwise. Also, note that for any $n, m \geq N$:
+
+      {\center {\fontsize{12}{14}\selectfont
+      \begin{tabular}{l}
+         $|\phi_n(t) - \phi_m(t)| = \frac{|f_n(t) - f_n(x) - f_m(t) + f_m(x)|}{|t-x|} < \frac{\varepsilon}{2}\cdot \frac{|t-x|}{b-a}\cdot \frac{1}{|t-x|} = \frac{\varepsilon}{2(b-a)}$
+      \end{tabular}} \retTwo\par}
+
+      Thus we also know by proposition 113 that $(\phi_n)$ converges uniformly\\ to $\phi$ on $[a, b] \setminus \{x\}$. And so by proposition 116, we know that:
+
+      {\center $f^\prime(x) = \lim\limits_{t\rightarrow x}\phi(t) = \lim\limits_{n\rightarrow \infty}\lim\limits_{t\rightarrow x} \phi_n(t) = \lim\limits_{n\rightarrow \infty}f_n^\prime(x)$ \retTwo\par}
+   \end{myIndent}}
+
+   \newpage
+
+   Proposition \propCount: There exists a function $f: \mathbb{R} \longrightarrow \mathbb{R}$ that is continuous but\\ nowhere differentiable.
+
+   {\begin{myIndent}\hThree
+      Proof:\\ [-4pt]
+      Define $f(x) = \sum\limits_{n=0}^\infty \left(\frac{3}{4}\right)^n \phi(4^n x)$ where $\phi(x)$ is the distance from $x$ to\\ [-8pt] \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} the nearest even integer.\retTwo
+
+      As is hopefully visably apparent from the graph below, for all $s, t \in \mathbb{R}$\\ we have that $|\phi(s) - \phi(t)| \leq |s-t|$. Also, $\phi$ is continuous.
+      \begin{center}
+         \includegraphics[scale=0.50]{122_Image.png}
+      \end{center}
+
+      Now note that $\sum\limits_{n=0}^\infty \left(\frac{3}{4}\right)^n \phi(4^n x)$ converges uniformly by the Weierstrass\\ [-5pt] M-test.
+      {\begin{myIndent}\hFour
+         Set $M_n = \left(\frac{3}{4}\right)^n$. Then $\sum\limits_{n=0}^\infty M_n = \frac{1}{1 - \frac{3}{4}} = 4$ and $M_n \geq \left|\left(\frac{3}{4}\right)^n \phi(4^n x)\right|$ for\\ [-6pt] all $x \in \mathbb{R}$.\retTwo
+      \end{myIndent}}
+
+      Thus, since $\sum\limits_{k=1}^n\left(\frac{3}{4}\right)^n \phi(4^n x)$ is continuous for each $n \in \mathbb{N}$, we have by\\ [-7pt] \phantom{aaaaaaaaaaaaaaaaaaaaaaaaa} proposition 117 that $f$ is continuous on $\mathbb{R}$.\retTwo
+
+      Next, fix $x \in \mathbb{R}$ and $m \in \mathbb{N}$. Then set $\delta_m = \pm \frac{1}{2} \cdot 4^{-m}$ (choosing the sign\\ [2pt] so that no integer is stirctly between $4^m x$ and $4^m(x + \delta_m)$). For any\\ $n \in \mathbb{N}$, set $\gamma_n = \frac{\phi(4^n(x + \delta_m)) - \phi(4^n x) }{\delta_m}$.\retTwo
+
+      Then $|\gamma_n| \left\{
+      \begin{matrix}
+         \leq 4^m & \text { if } n < m \\
+         = 4^m & \text{ if } n = m \\
+         = 0^{\phantom{m}} & \text { if } n > m
+      \end{matrix}\right.$\retTwo
+
+      So we have that $\left|\frac{f(x + \delta_m) - f(x)}{\delta_m}\right| = \left|\sum\limits_{n=0}^\infty\left(\frac{3}{4}\right)^n \gamma_n\right| = \left|\sum\limits_{n=0}^m \left(\frac{3}{4}\right)^n \gamma_n\right|$.\retTwo
+
+      Now since $\gamma_m = 4^m$, we have in the absolute worst case that:
+      
+      {\centering 
+      \begin{tabular}{l}
+         $\left|\sum\limits_{n=0}^m \left(\frac{3}{4}\right)^n \gamma_n\right| \geq 3^n - \sum\limits_{n=0}^{m-1}\left|\left(\frac{3}{4}\right)^n \gamma_n\right| \geq 3^n - \sum\limits_{n=0}^{m-1} 3^n$\\
+
+         $\phantom{\left|\sum\limits_{n=0}^m \left(\frac{3}{4}\right)^n \gamma_n\right| aaaa} = 3^m - \frac{3^m - 1}{3 - 1} = 3^m - \frac{1}{2}\left(3^m - 1\right) = \frac{1}{2} 3^m + \frac{1}{2}$
+      \end{tabular} \retTwo\par}
+
+      As $m \rightarrow \infty$, $\delta_m \rightarrow 0$. So this shows that $\lim\limits_{t\rightarrow x}\frac{f(t) - f(x)}{t - x}$ does not exist in $\mathbb{R}$\\ [-5pt] since $\frac{1}{2}3^m + \frac{1}{2} \rightarrow \infty$ as $m \rightarrow \infty$.\retTwo
+
+      Since $x$ was arbitrary, we thus know that $f$ is nowhere differentiable.
+
+      \newpage
+
+      \hFour
+
+      Note:\\
+      Here is what this function looks like in Desmos:\\
+
+      \begin{center}
+         \includegraphics[scale=0.4]{Desmos_how_to.png}\retTwo
+      \end{center}
+
+      Obviously, I can't graph an infinite sum. But hopefully the first 23 terms are\\ enough to give you an idea of what this function looks like.
+   \end{myIndent}}
+\end{myIndent}
+
+\mySepTwo
+
+\markLecture{5/7/2024}
+
+We know that every bounded sequence in $\mathbb{R}$ has a convergent subsequence. But\\ is something similar true of functions?\retTwo
+
+For all $n \in \mathbb{N}$, let $f_n: E \longrightarrow \mathbb{C}$. 
+\begin{itemize}
+   \item We say $(f_n)$ is \udefine{pointwise bounded} on $E$ if for every fixed $x \in E$, the\\ sequence $(f_n(x))$ is bounded. Equivalently, we can say that $f$ is\\ pointwise bounded if there is $\phi: E \longrightarrow \mathbb{R}$ such that for all $x \in E$\\ and $n \in \mathbb{N}$, $\myHS|f_n(x)| \leq \phi(x)$.
+   \item We say $(f_n)$ is \udefine{uniformly bounded} on $E$ if there is $M \geq \mathbb{R}$ with for all\\ $x \in E$ and for all $n \in \mathbb{N}$, $|f_n(x)| \leq M$.\retTwo
+\end{itemize}
+
+Now in really restricted situations, $(f_n)$ is guarenteed to have a convergent\\ subsequence.\\ [-6pt]
+{\begin{myIndent}\hTwo
+   Proposition \propCount: If $E$ is countable, $f_n: E \longrightarrow \mathbb{C}$ for all $n \in \mathbb{N}$, and $(f_n)$ is\\ pointwise bounded, then there is a subsequence $(f_{n_k})$ that converges pointwise\\ on $E$.\\ [-9pt]
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Since $E$ is countable, we can enumerate $E$ as $E = \{x_1, x_2, \ldots\}$. Then,\\ set $I_0 = \mathbb{N}$  and inductively assume that $I_{k-1} \subseteq \mathbb{N}$ has been defined and is\\ infinite.
+
+      \newpage
+
+      Since $(f_n(x_k))_{n \in I_{k-1}}$ is bounded, there is a convergent subsequence.\\ Hence, there is an infinite set $I_k \subseteq I_{k-1}$ so that $(f_n(x_k))_{n\in I_k}$ converges.\\ This defines $I_k$ for all $k \in \mathbb{N}$.\retTwo
+
+      Now, define $n_k$ to be the $k$th element of $I_k$. Importantly, this is a well\\ defined subsequence of $\mathbb{N}$ because $n_k > n_{k-1}$ for every $k \in \mathbb{N}$ (we know\\ this because $I_k \subseteq I_{k-1})$.\retTwo
+
+      We claim $(f_{n_k})_{k\in\mathbb{N}}$ converges pointwise on $E$. Indeed, for any $m \geq 1$,\\ we have that $\forall k \geq m,\myHS n_k \in I_k \subseteq I_m$. So, $(f_{n_k}(x_m))_{k\geq M}$ is a\\ subsequence of the convergent sequence $(f_n(x_m))_{n\in I_m}$ and thus\\ $(f_{n_k}(x_m))$ converges for every $x_m \in E$.\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+Often however, $(f_n)$ has no convergent subsequence.
+
+{\begin{myIndent}\exOne
+   Here is a uniformly bounded sequence with no pointwise convergent\\ subsequence:
+   {\begin{myIndent}\exTwo
+      Set $f_n(x) = \sin(nx)$ and suppose towards a contradiction there is a\\ subsequence $(n_k)$ with $(f_{n_k})_{k\in\mathbb{N}}$ pointwise convergent on $[0, 2\pi]$. Then\\ for all $x \in [0, 2\pi]$, $\myHS (\sin(n_k x) - \sin(n_{k+1}x))^2 \rightarrow 0$. So by theorem 11.32\\ (check 140C notes), $\int_0^{2\pi}(\sin(n_k x) - \sin(n_{k+1}x))^2dx \rightarrow 0$.\retTwo
+
+      However, $\int_0^{2\pi}(\sin(n_k x) - \sin(n_{k+1}x))^2dx = 2\pi$. Thus we have a\\ contradiction.\retTwo
+   \end{myIndent}}
+
+   Here is a uniformly bounded pointwise convergence sequence on a\\ compact set with no uniformly convergent subsequence:
+   {\begin{myIndent}\exTwo
+      Set $f_n(x) = \frac{x^2}{x^2 + (1-nx)^2}$ for $x \in [0, 1]$.\\ [2pt] Then $\forall x, \forall n,\myHS |f_n(x)| \leq 1$. So $(f_n)$ is uniformly bounded.\\ [2pt] Also, $\forall x, \myHS \lim\limits_{n\rightarrow \infty}f_n(x) = 0$. So $(f_n)$ is pointwise convergent.\retTwo
+      
+      However, $f_n(\frac{1}{n}) = 1$ for all $n \in \mathbb{N}$. So, there can't be a uniformly\\ convergent subsequence.
+      \retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+A collection $\mathcal{F}$ of functions $f: E \longrightarrow \mathbb{C}$ is \udefine{equicontinuous} if
+
+{\centering {\fontsize{13.5}{15.5}\selectfont$\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat \forall f \in \mathcal{F},\myHS \forall x, y \in E,\myHS d(x, y) < \delta \Longrightarrow |f(x) - f(y)| < \varepsilon$} \retTwo\par}
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
 {\huge \color{Black} \textbf{A List of How The Proposition Numbering in my Notes Lines up With Our Textbook:} \retTwo}
@@ -1646,12 +2070,12 @@ Then, the \udefine{length} of $\gamma$ is $\Lambda(\gamma) = \sup\limits_{P \in 
       \myVS 107 & 6.19 & 108 & 6.20 \\ \hdashline[10pt/3pt]
       \myVS 109 & 6.21 & 110 & 6.22 \\ \hdashline[10pt/3pt]
       \myVS 111 & 6.25 & 112 & 6.27 \\ \hdashline[10pt/3pt]
-      \myVS 113 &  & 114 &  \\ \hdashline[10pt/3pt]
-      \myVS 115 &  & 116 &  \\ \hdashline[10pt/3pt]
-      \myVS 117 &  & 118 &  \\ \hdashline[10pt/3pt]
-      \myVS 119 &  & 120 &  \\ \hdashline[10pt/3pt]
-      \myVS 121 &  & 122 &  \\ \hdashline[10pt/3pt]
-      \myVS 123 &  & 124 &  \\ \hdashline[10pt/3pt]
+      \myVS 113 & 7.8 & 114 & 7.9 \\ \hdashline[10pt/3pt]
+      \myVS 115 & 7.10 & 116 & 7.11 \\ \hdashline[10pt/3pt]
+      \myVS 117 & 7.12 & 118 & 7.13 \\ \hdashline[10pt/3pt]
+      \myVS 119 & 7.15 & 120 & 7.16 \\ \hdashline[10pt/3pt]
+      \myVS 121 & 7.17 & 122 & 7.18 \\ \hdashline[10pt/3pt]
+      \myVS 123 & 7.23 & 124 &  \\ \hdashline[10pt/3pt]
       \myVS 125 &  & 126 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
 
