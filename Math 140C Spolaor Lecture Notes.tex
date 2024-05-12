@@ -320,7 +320,7 @@ $Q = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a \udefine{basis} for $X$ if:\
 {\begin{myIndent} \hTwo
    \uuline{Proposition}: If $B = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a basis of a vector space $X$, then:\\ [-14pt]
    \begin{enumerate}
-      \item $\forall \mVec{v} \in X,\myHS c_1, \ldots, c_k \in \mathbb{R} \suchthat \mVec{v} = \sum\limits_{i=1}^{k}{c_i\mVecAst{x}_i}$
+      \item $\forall \mVec{v} \in X,\myHS \exists c_1, \ldots, c_k \in \mathbb{R} \suchthat \mVec{v} = \sum\limits_{i=1}^{k}{c_i\mVecAst{x}_i}$
       
       {\begin{myIndent} \hThree
          This is true because $X = \mySpan\hspace{0.2em}B$. So by definition of a span, $\mVec{v}$ can\\ be expressed as a linear combination of the vectors of $B$.
@@ -380,7 +380,7 @@ $Q = \{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a \udefine{basis} for $X$ if:\
 
          {\centering $\sum\limits_{i=1}^n{c_i\mVecAst{x}_i} + c_{n+1}\mVecAst{y} = \mVec{0}$\retTwo\par}
 
-         Now if $c_{n+1} = 0$, we have a contradiction because $E$ is linearly\\ independent. So, we conclude that $c_{n+1} \neq 0$. Thus, by rearranging\\ terms we can express $y$ as a linear combination of the vectors of $E$.\\ Therefore, $\mySpan\hspace{0.2em}E = X$ since $y$ can be any vector in $X$.\retTwo
+         Now if $c_{n+1} = 0$, we have a contradiction because $E$ is linearly\\ independent. So, we conclude that $c_{n+1} \neq 0$. Then, by rearranging\\ terms we can express $y$ as a linear combination of the vectors of $E$.\\ Therefore, $\mySpan\hspace{0.2em}E = X$ since $y$ can be any vector in $X$.\retTwo
 
          Secondly, assume $E$ is not linearly independent. Then for some $\mVecAst{x}_i \in E$, we have that $\mySpan\hspace{0.2em}E = \mySpan(E \setminus \{\mVecAst{x}_i\})$. However, $|E \setminus \{\mVecAst{x}_i\}| = n-1$.\\ So if $X = \mySpan\hspace{0.2em}E$, then $\myDim{X} \leq |E \setminus \{\mVecAst{x}_i\}| = n-1$, which contradicts\\ our assumption that $\myDim{X} = n$. Hence, $X \neq \mySpan\hspace{0.2em}E$.\\
       \end{myIndent}}
@@ -417,7 +417,7 @@ Let $X$ and $Y$ be vector spaces. A map $\mMat{A}: X \longrightarrow Y$ is \udef
    \end{enumerate}
 \end{myIndent}}
 
-Given two vector spaces $X$ and $Y$, we define $L(X, Y)$ to be the set of all linear transformations from $X$ into $Y$. Also, we shall abbreviate $L(X, X)$ as $L(X)$.\retTwo
+Given two vector spaces $X$ and $Y$, we define $L(X, Y)$ to be the set of all linear mappings from $X$ into $Y$. Also, we shall abbreviate $L(X, X)$ as $L(X)$.\retTwo
 
 $\nullSp{\mMat{A}} = $ "\udefine{null space / kernel} of $\mMat{A}$" $ = \{\mVec{x} \in X \mid \mMat{A}(\mVec{x}) = \mVec{0}\}$.\retTwo
 
@@ -726,7 +726,7 @@ Before moving on, here is another corollary of the above statements.
             \end{tabular}\retTwo
          \end{center}
 
-         Meanwhile, note that $\|\mMat{A}^{-1}\| \neq 0$. We know this because $\mMat{A}^{-1}$ must be\\ invertible (because $\nullSp{\mMat{A}^{-1}} = \{\mVec{0}\}$) and the one linear transformation\\ in $L(\mathbb{R}^n)$ with norm $0$ is not invertible. So:
+         Meanwhile, note that $\|\mMat{A}^{-1}\| \neq 0$. We know this because $\mMat{A}^{-1}$ must be\\ invertible (because $\nullSp{\mMat{A}^{-1}} = \{\mVec{0}\}$) and the one linear mapping in\\ $L(\mathbb{R}^n)$ with norm $0$ is not invertible. So:
 
          \begin{center}
             \begin{tabular}{l}
@@ -1231,7 +1231,7 @@ Now suppose that $\gamma: (a, b) \longrightarrow \mathbb{R}^n$ is defined such t
 
 To finish off lecture, note that if $E \subseteq \mathbb{R}^n$ is open and $f: \mathbb{R}^n \longrightarrow \mathbb{R}^m$ is\\ differentiable and written as $f(\mVec{x}) = (f_1(\mVec{x}), \ldots, f_m(\mVec{x}))$, then using\\ the standard bases for $\mathbb{R}^n$ and $\mathbb{R}^m$, we can abuse notation and say that:
 
-{\center $[f^\prime(x)] = 
+{\center $[f^\prime(\mVec{x})] = 
 \begin{bmatrix}
    \nabla f_1(\mVec{x})\\
    \vdots \\
@@ -1245,7 +1245,7 @@ To finish off lecture, note that if $E \subseteq \mathbb{R}^n$ is open and $f: \
 A set $E \subseteq \mathbb{R}^k$ is \udefine{convex} if $t\mVec{x} + (1 - t)\mVec{y} \in E$ whenever $x \in E$, $y \in E$,\\ and $0 < t < 1$.\retTwo
 
 {\begin{myIndent}\hTwo
-   \uuline{Theorem 9.19}: Suppose that $E \subseteq \mathbb{R}^n$ is convex and open, that $f: E \longrightarrow \mathbb{R}^m$\\ [4pt] is differentiable, and there is a real number $M$ such that $\|f^\prime(x)\| \leq M$ for\\ [0pt] every $x \in E$. Then $\|f(\mVec{b}) - f(\mVec{a})\| \leq M\|\mVec{b} - \mVec{a}\|$ for all $\mVec{a}, \mVec{b} \in E$.\\ [-6pt]
+   \uuline{Theorem 9.19}: Suppose that $E \subseteq \mathbb{R}^n$ is convex and open, that $f: E \longrightarrow \mathbb{R}^m$\\ [4pt] is differentiable, and there is a real number $M$ such that $\|f^\prime(\mVec{x})\| \leq M$ for\\ [0pt] every $\mVec{x} \in E$. Then $\|f(\mVec{b}) - f(\mVec{a})\| \leq M\|\mVec{b} - \mVec{a}\|$ for all $\mVec{a}, \mVec{b} \in E$.\\ [-6pt]
 
    {\begin{myIndent}\hThree
       Proof:\\
@@ -1482,7 +1482,7 @@ Let $X$ be a metric space with the metric $d$, and consider some $\varphi: X \lo
    Suppose that $f \in \mathscr{C}^1(E, \mathbb{R}^n)$ where $E \subseteq \mathbb{R}^n$ is open, that $f^\prime(\mVec{a})$ is invertible\\ for some $\mVec{a} \in E$, and that $\mVec{b} = f(\mVec{a})$. Then:
    \begin{itemize}
       \item[(A)] There exist open subsets $U$ and $V$ of $\mathbb{R}^n$ such that $\mVec{a} \in U$,\hspace{0.1em} $\mVec{b} \in V$,\\ $f(U) = V$, and $f$ is one-to-one on $U$.
-      \item[(B)] If $g$ is defined such that $(g \circ f)(\mVec{x}) = \mVec{x}$ for all $x \in U$, then\\ $g \in \mathscr{C}^{1}(V, \mathbb{R}^n)$ with $g^\prime(\mVec{y}) = f^\prime(g(\mVec{y}))$ for all $\mVec{y} \in V$.\retTwo
+      \item[(B)] If $g$ is defined such that $(g \circ f)(\mVec{x}) = \mVec{x}$ for all $x \in U$, then\\ $g \in \mathscr{C}^{1}(V, \mathbb{R}^n)$ with $g^\prime(\mVec{y}) = f^\prime(g(\mVec{y}))^{-1}$ for all $\mVec{y} \in V$.\retTwo
    \end{itemize}
 
    {\begin{myIndent}\hThree
@@ -1742,97 +1742,309 @@ Additionally, if $D_{i,j}f$ is continuous in $E$ for all $1 \leq i,j \leq n$, th
       And since $\varepsilon$ was arbitary, we conclude that $(D_{j,i}f)(\mVec{x}) = (D_{i,j}f)(\mVec{x})$.
       {\begin{myDindent}\myComment
          (Note that Rudin proves something stronger than this in his book.)
-         \newpage
       \end{myDindent}}
    \end{myIndent}
+\end{myIndent}}
+
+\newpage
+
+\exOne
+\mySepTwo 
+
+\textbf{Exercise 9.9} If $f$ is a differentiable mapping of a connected open set $E \subseteq \mathbb{R}^n$\\ into $\mathbb{R}^m$ such that $f^\prime(\mVec{x}) = \mMat{0}$ for every $\mVec{x} \in E$, then $f$ is constant on $E$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+
+   Pick any $\mVecAst{x}_0 \in E$ and define the sets $A = \{\mVec{x} \in E \mid f(\mVec{x}) = f(\mVecAst{x}_0 )\}$, and\\ [1pt] $B = E \setminus A$. Clearly $A \cup B = E$. Also, $A \neq \emptyset$ as $\mVecAst{x}_0 \in A$. Therefore, since $E$\\ [1pt] is connected we know that if $B \neq \emptyset$, then either $\overline{A} \cap B \neq \emptyset$ or $A \cap \overline{B} \neq \emptyset$.\retTwo
+
+   First, assume $A \cap \overline{B} \neq \emptyset$ and let $\mVec{x} \in A \cap \overline{B}$. Because $E$ is open, there exists\\ $r > 0$ such that $B_r(\mVec{x}) \subseteq E$. Additionally, $B_r(\mVec{x})$ is convex. Therefore, we know\\ by the corollary to theorem 9.19 that $\forall \mVec{y} \in B_r(\mVec{x}), \myHS f(\mVec{y}) = f(\mVec{x}) = f(\mVecAst{x}_0)$.\\ [1pt] But then we have a contradiction because $B_r(\mVec{x}) \cap B = \emptyset$ and thus $\mVec{x} \notin \overline{B}$.\\ [1pt] So, we conclude that $A \cap \overline{B} = \emptyset$.\retTwo
+
+   Secondly, assume $\overline{A} \cap B \neq \emptyset$ and let $\mVec{x} \in \overline{A} \cap B$. Once again, there exists $r > 0$\\ such that $B_r(\mVec{x}) \subseteq E$. So, by a similar argument as above, we can show that\\ $B_r(\mVec{x}) \cap A = \emptyset$, thus contradicting that $\mVec{x} \in \overline{A}$. As a result, we conclude\\ [1pt] that $\overline{A} \cap B = \emptyset$.\retTwo
+
+   Hence, by the contrapositive of the definition of connectedness, we conclude\\ that $B = \emptyset$, meaning that $f$ is constant on $E$.\retTwo
+\end{myIndent}}
+
+\mySepTwo\hOne
+
+\markLecture{4/30/2024}
+
+Let $X$ be a vector space. We call $\mMat{P} \in L(X)$ a \udefine{projection} if $\mMat{P}^2 = \mMat{P}$
+\begin{myIndent}
+   i.e: $\forall \mVec{x} \in X,\myHS \mMat{PP}\mVec{x} = \mMat{P}\mVec{x}$\retTwo
+\end{myIndent}
+
+{\begin{myIndent}\hTwo
+   Here are some properties of projections:
+   \begin{itemize}
+      \item[(A)] If $\mMat{P}$ is a projection, then $\forall \mVec{x} \in X,\myHS \exists \mVecAst{x}_1, \mVecAst{x}_2 \in \mMat{X} \suchthat \mVec{x} = \mVecAst{x}_1 + \mVecAst{x}_2$,\\ $\mVecAst{x}_1 \in \rangeSp{\mMat{P}}$, and $\mVecAst{x}_2 \in \nullSp{\mMat{P}}$.
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Obviously, we have that $\mMat{P}\mVec{x} \in \rangeSp{\mMat{P}}$. Meanwhile:\\ $\mMat{P}(\mVec{x} - \mMat{P}\mVec{x}) = \mMat{P}\mVec{x} - \mMat{P}\mMat{P}\mVec{x} = \mMat{P}\mVec{x} - \mMat{P}\mVec{x} = \mVec{0}$. So,\\ $(\mVec{x} - \mMat{P}\mVec{x}) \in \nullSp{\mMat{P}}$ and $\mVec{x} = (\mMat{P}\mVec{x}) + (\mVec{x} - \mMat{P}\mVec{x})$.\retTwo
+      \end{myIndent}}
+
+      \item[(C)] If $\mMat{P}$ is a projection and $\mVec{x} \in \mathscr{R}(\mMat{P})$, then $\mVec{x} = \mMat{P}\mVec{x}$.
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Suppose $\mVec{x} \in \mathscr{R}(\mMat{P})$. Then there exists $\mVec{y}$ such that $\mMat{P}\mVec{y} = \mVec{x}$, and\\ in turn this means that $\mVec{x} = \mMat{P}\mVec{y} = \mMat{PP}\mVec{y} = \mMat{P}\mVec{x}$.\retTwo
+      \end{myIndent}}
+
+      \newpage
+
+      \item[(C)] If $X$ is finite dimensioned and $X_1$ is a vector subspace of $X$, then there\\ exists a projection $\mMat{P}: \mMat{X} \longrightarrow \mMat{X}$ such that $\rangeSp{\mMat{P}} = X_1$.
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Let $\dim{X} = n$. If $X_1 = \{\mVec{0}\}$, this statement is trivial. Just set\\ $\mMat{P} = \mMat{0}$. So now assume that $k = \myDim{X_1} \neq 0$. Then by theorem\\ 9.3.C, we can find a basis $\{\mVecAst{x}_1, \mVecAst{x}_2, \ldots, \mVecAst{x}_n\}$ of $X$ such that\\ $\{\mVecAst{x}_1, \ldots, \mVecAst{x}_k\}$ is a basis of $X_1$.\retTwo
+
+         Having done that, for any $\mVec{y} \in X$ there are unique scalars\\ $c_1, \ldots, c_n$ such that $\mVec{y} = c_1\mVecAst{x}_1 + \ldots + c_k\mVecAst{x}_k + \ldots + c_n\mVecAst{x}_n$.\\ So, assign $\mMat{P}\mVec{y} = c_1\mVecAst{x}_1 + \ldots + c_k\mVecAst{x}_k$.\retTwo
+         
+         Clearly, $\mMat{P}$ is a linear operator with $\rangeSp{\mMat{P}} = \mySpan \{x_1, \ldots, x_k\} = X_1$.\\ Also, $\mVec{y} \in X_1 \Longrightarrow \mVec{y} = \mMat{P}\mVec{y}$. Thus, $\mMat{P}$ is  a projection since\\ $\mMat{P}\mVec{x} = \mMat{P}(\mMat{P}\mVec{x})$ for all $\mVec{x} \in X$.\retTwo
+      \end{myIndent}}
+   \end{itemize}
+\end{myIndent}}
+
+With this background, we now present the following theorem:\\ [-9pt]
+{\begin{myIndent}\hTwo
+   \uuline{The Rank Theorem}:\\ [1pt] Suppose that $m, n, r$ are nonnegative integers with $m, n \geq r$, that $E\subseteq \mathbb{R}^n$ is\\ open, that $F \in \mathscr{C}^1(E, \mathbb{R}^m)$, and that $F^\prime(\mVec{x})$ has rank $r$ for every $\mVec{x} \in E$. Fix\\ $\mVec{a} \in E$, and set $\mMat{A} = F^\prime(\mVec{a})$. Next, having set $Y_1 = \rangeSp{\mMat{A}}$, let $\mMat{P} \in L(\mathbb{R}^m)$\\ be a projection with $\rangeSp{\mMat{P}} = Y_1$ and let $Y_2 = \nullSp{\mMat{P}}$. Then:
+   \begin{itemize}
+      \item[\phantom{.}] There exist open sets $U$ and $V$ in $\mathbb{R}^n$ satisfying that $\mVec{a} \in U \subseteq E$, that\\ $\mMat{A}(V)$ is open relative to $Y_1$, and that there exist $H \in \mathscr{C}^1(V, U)$ with a\\ $\mathscr{C}^1$ inverse and $\varphi \in \mathscr{C}^1(\mMat{A}(V), Y_2)$ such that $F(H(\mVec{x})) = \mMat{A}\mVec{x} + \varphi(\mMat{A}\mVec{x})$.\\[-6pt]
+   \end{itemize}
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      If $r = 0$, then letting $R > 0$ be such that $B_r(\mVec{a}) \subseteq E$, we know that $f$\\ is constant on $B_R(\mVec{a})$. Thus, set $V = U = B_R(\mVec{a})$, $\myHS H(\mVec{x}) = \mVec{x}$, and\\ [-1pt] $\varphi(\mVec{0}) = F(\mVec{a})$. Clearly, $H \in \mathscr{C}^1(V, U)$ and is its own inverse.  Also,\\ while it doesn't make sense to say that $\varphi \in \mathscr{C}^1(\mMat{A}(V), Y_2)$ since\\ [-2pt] $\mMat{A}(V) = \{\mVec{0}\}$ has no limit points, we do have that since $\mMat{A}(V) = Y_1$,\\ trivially $\mMat{A}(V)$ is open relative to $Y_1$. And since $Y_2 = \mathbb{R}^m$, we know\\ [-1pt] that $\phi(\mVec{0}) \in Y_2$. Finally, we have for all $\mVec{x} \in V$ that:
+      
+      {\centering $F(H(\mVec{x})) = F(\mVec{x}) = F(\mVec{a}) = \mVec{0} + \varphi(\mMat{A}\mVec{x}) = \mMat{A}\mVec{x} + \varphi(\mMat{A}\mVec{x})$ \retTwo\par}
+      
+      So, this theorem is "true" trivially when $r = 0$.\\ [8pt]
+
+      Now we shall assume that $r > 0$ for the rest of this proof. Let\\ $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_r\}$ be a basis for $Y_1$ and choose a $\mVecAst{z}_i$ for each $1 \leq i \leq r$\\ such that $\mMat{A}\mVecAst{z}_i = \mVecAst{y}_i$. Then let $\mMat{S} \in L(Y_1, \mathbb{R}^n)$ be the linear map\\ $\mMat{S}(c_1\mVecAst{y}_1 + \ldots + c_r\mVecAst{y}_r) = c_1\mVecAst{z}_1 + \ldots + c_r\mVecAst{z}_r$.
+
+      \newpage
+
+      Note that $\mMat{AS}\mVecAst{y}_i = \mMat{A}\mVecAst{z}_i = \mVecAst{y}_i$ for all $i \in \{1, \ldots, r\}$.\retTwo
+
+      Next, define $G(\mVec{x}) = \mVec{x} + \mMat{SP}(F(\mVec{x}) - \mMat{A}\mVec{x})$ for all $\mVec{x} \in E$. Then note\\ that $G$ is a $\mathscr{C}^1$-map with $G^\prime(\mVec{a}) = \mMat{I} + \mMat{SP}(\mMat{A} - \mMat{A}) = \mMat{I}$. So by the inverse\\ function theorem, there are open sets $U_1$ and $V_1$ in $\mathbb{R}^n$ with a $\mVec{a} \in U$ such\\ that $G$ is a one-to-one mapping of $U_1$ onto $V_1$ whose inverse $H$ is also a\\ $\mathscr{C}^1$-map.
+      
+      \begin{myIndent}
+         (Also note that $H^\prime(\mVec{x}) = G^\prime(H(\mVec{x}))^{-1}$ is invertible for all $\mVec{x} \in V_1$.)\retTwo
+      \end{myIndent}
+
+      Let $\mVec{b} = G(\mVec{a})$ and let $V \subseteq V_1$ be a convex open ball around $\mVec{b}$.\\ By theorem 4.8 (proposition 69 in 140A notes), we know that\\ $U = G^{-1}(V) = H(V)$ is open. Plus, $\mVec{a} \in U$. Thus, restricting\\ $G$ and $H$ to $U$ and $V$, we still have that $U$, $V$, $G$, and $H$ satisfy the\\ properties guarenteed by the inverse function theorem. Only now,\\ $V$ is also convex.\retTwo
+
+      Also, we can show that $\mMat{A}(V)$ is open relative to $Y_1$ as follows:
+      {\begin{myIndent}\hFour
+         Let $\mVecAst{y}_0 \in \mMat{A}(V)$ and pick $\mVecAst{x}_0$ such that $\mMat{A}\mVecAst{x}_0 = \mVecAst{y}_0$. Next pick $\varepsilon > 0$ such\\ [2pt] that $B_\varepsilon(\mVecAst{x}_0) \subseteq V$ and then set $\delta = \frac{\varepsilon}{2\|\mMat{S}\|}$. Now for any $\mVec{y} \in B_\delta(\mVecAst{y}_0) \cap Y_1$,\\ we have that:
+         \begin{itemize}
+            \item $\mVecAst{x}_0 + \mMat{S}(\mVec{y} - \mVecAst{y}_0) \in B_\varepsilon(\mVecAst{x}_0) \subseteq V$
+            \item $\mVec{y} = \mMat{A}(\mVecAst{x}_0 + \mMat{S}(\mVec{y} - \mVecAst{y}_0)) \subseteq \mMat{A}(V)$\retTwo
+         \end{itemize}
+
+         So, $B_\delta(\mVecAst{y}_0) \cap Y_1 \subseteq \mMat{A}(V)$.\retTwo
+      \end{myIndent}}
+
+      Meanwhile, notice that $\mMat{ASP}(\mMat{A}\mVec{x}) = \mMat{AS}(\mMat{A}\mVec{x}) = \mMat{A}\mVec{x}$ for all $\mVec{x} \in \mathbb{R}^n$. So,\\ $\mMat{A}(G(\mVec{x})) = \mMat{P}F(\mVec{x})$ for all $\mVec{x} \in E$ 
+      
+      {\begin{myIndent}\hFour
+         Proof:\\
+         $\mMat{A}(G(\mVec{x})) {=} \mMat{A}\mVec{x} {+} \mMat{ASP}(F(\mVec{x}) {-} \mMat{A}\mVec{x}) {=} \mMat{AS}(\mMat{P}F(\mVec{x})) {+} \mMat{A}\mVec{x} {-} \mMat{A}{\mVec{x}} = \mMat{P}F(\mVec{x})$\retTwo
+      \end{myIndent}}
+
+      In turn, we can then replace $\mVec{x}$ with $H(\mVec{x})$ and say that for all $\mVec{x} \in V$,\\ $\mMat{P}F(H(\mVec{x})) = \mMat{A}(G(H(\mVec{x}))) = \mMat{A}\mVec{x}$.\retTwo
+      
+      Then, having defined $\Psi(\mVec{x}) = F(H(\mVec{x})) - \mMat{A}\mVec{x}$, note that for all $\mVec{x} \in V$,\\ $\mMat{P} \Psi(\mVec{x}) = \mMat{P}F(H(\mVec{x})) - \mMat{A}\mVec{x} = \mVec{0}$. Also, $\Psi^\prime(\mVec{x}) = F^\prime(H(\mVec{x}))H^\prime(\mVec{x}) - \mMat{A}$\\ is continuous. So, $\Psi \in \mathscr{C}^1(V, P_2)$.\\ [8pt]
+
+      Finally, all that's left to do is show the existence of a $\mathscr{C}^1$-mapping $\varphi$ from $\mMat{A}(V)$\\ to $Y_2$ satisfying that $\varphi(\mMat{A}\mVec{x}) = \Psi(\mVec{x})$ for all $\mVec{x} \in V$. To start, we first show\\ that if $\mVecAst{x}_1 \in V$, $\hspace{0.3em}\mVecAst{x}_2 \in V$, and $\mMat{A}\mVecAst{x}_1 = \mMat{A}\mVecAst{x}_2$, then $\Psi(\mVecAst{x}_1) = \Psi(\mVecAst{x}_2)$.
+      {\begin{myIndent}\hFour
+         Put $\Phi(\mVec{x}) = F(H(\mVec{x}))$ for all $\mVec{x} \in V$. Then, $\Phi^\prime(\mVec{x}) = F^\prime(H(\mVec{x}))H^\prime(\mVec{x})$.\\ Also, since $\rangeSp{H^\prime(\mVec{x})} = \mathbb{R}^n$ for all $\mVec{x} \in V$, we know that: 
+         
+         {\centering$\rangeSp{F^\prime(H(\mVec{x}))H^\prime(\mVec{x})} = \rangeSp{F^\prime(H(\mVec{x}))}$.\retTwo\par}
+         
+         Thus, $\rank{\Phi^\prime(\mVec{x})} = \rank{F^\prime(H(\mVec{x}))} = r$  for all $\mVec{x} \in V$.
+
+         \newpage
+
+         Next, fix $\mVec{x} \in V$ and set $M = \rangeSp{\Phi^\prime(\mVec{x})}$. Then because $\mMat{P}\Phi^\prime(\mVec{x})\mVec{v} = \mMat{A}\mVec{v}$\\ for all $\mVec{v} \in \mathbb{R}^m$, we know that $\mMat{P}$ maps $M$ surjectively onto $P_1$. In turn, by\\ the rank-nullity theorem and the fact that $\myDim{M} = \myDim{P_1}$, we know\\ that $\mMat{P}$ restricted to $M$ is injective.\retTwo
+
+         Now suppose $\mMat{A}\mVec{h} = \mVec{0}$. Then we know that $\mMat{P}\Phi^\prime(\mVec{x})\mVec{h} = \mVec{0}$, and since\\ [-2pt]  $\mMat{P}$ is one-to-one on $M$, we have that $\Phi^\prime(\mVec{x})\mVec{h} = \mVec{0}$. This proves that\\ [-2pt]  $\mMat{A}\mVec{h} = \mVec{0}$ implies that for all $\mVec{x} \in V$:
+         
+         {\centering $\Psi^\prime(\mVec{x})\mVec{h} = F^\prime(H(\mVec{x}))H^\prime(\mVec{x})\mVec{h} - \mMat{A}\mVec{h} = \Phi^\prime(\mVec{x})\mVec{h} - \mMat{A}\mVec{h} = \mVec{0}$. \retTwo\par}
+
+         Finally, assume $\mVecAst{x}_1 \in V$, $\hspace{0.3em}\mVecAst{x}_2 \in V$, and $\mMat{A}\mVecAst{x}_1 = \mMat{A}\mVecAst{x}_2$. Then set\\ $\mVec{h} = \mVecAst{x}_2  - \mVecAst{x}_1$ and define $g(t) = \Psi(\mVecAst{x}_1 + t\mVec{h})$ for all $h \in [0, 1]$ (note\\ that $g$ is well defined because $V$ is convex).\retTwo
+
+         Importantly, $\mMat{A}\mVec{h} = \mVec{0}$. So, $g^\prime(t) = \Psi^\prime(\mVecAst{x}_1 + t\mVec{h})\mVec{h} = \mVec{0}$ for all $t$ and\\ that means that $g(0) = g(1)$. But $g(0)= \Psi(\mVecAst{x}_1)$ and $g(1) = \Psi(\mVecAst{x}_2)$.\\ Hence, $\Psi(\mVecAst{x}_1) = \Psi(\mVecAst{x}_2)$.\retTwo
+      \end{myIndent}}
+
+      Therefore, we are able to umambiguously define $\varphi: V(A) \longrightarrow Y_2$ by\\ the expression $\varphi(\mMat{A}\mVec{x}) = \Psi(\mVec{x})$. Furthermore, we can show that $\varphi$ is\\ $\mathscr{C}^1$.
+
+      {\begin{myIndent}\hFour
+         Fix $\mVecAst{y}_0 \in \mMat{A}(V)$ and set $\mVecAst{x}_0 \in V$ such that $\mMat{A}\mVecAst{x}_0 = \mVecAst{y}_0$. Next, let\\ $W \subseteq \mMat{A}(V)$ be open relative to $Y_1$ such that for any $\mVec{y} \in W$,\\ $\mVec{x} = \mVecAst{x}_0 + \mMat{S}(\mVec{y} - \mVecAst{y}_0) \in V$.\retTwo
+
+         Then because $\mVec{y} = \mMat{A}(\mVecAst{x}_0 + \mMat{S}(\mVec{y} - \mVecAst{y}_0))$ for all $\mVec{y} \in W$, we have that\\ $\varphi(\mVec{y}) = \Psi(\mVecAst{x}_0 - \mMat{S}(\mVecAst{y}_0 - \mVec{y}))$. Hence, $\varphi$ is continuously differentiable\\ with respect to $\mVec{y} \in W$. And since $W$ and $\mVecAst{y}_0$ was arbitrary, we have\\ that $\varphi$ is continuously differentiable on $\mMat{A}(V)$. $\blacksquare$
+         \retTwo\retTwo
+      \end{myIndent}}
+   \end{myIndent}}
+
+   \teachComment
+   But what does this mean?
+   
+   \begin{myIndent}
+      Letting $\mVec{y} \in F(U)$, we know there exists $\mVec{x} \in V$ such that $\mVec{y} = F(H(\mVec{x}))$.\\ In turn, we can find that $\mMat{P}\mVec{y} = \mMat{P}\mMat{A}\mVec{x} + \mMat{P}\varphi(\mMat{A}\mVec{x}) = \mMat{A}\mVec{x} + \mVec{0}$ and that\\ [1pt] $\mVec{y} = (\mMat{P}\mVec{y}) + \varphi(\mMat{P}\mVec{y})$.\retTwo
+
+      This essentially means we can view $F(U)$ as the graph $\varphi$ over $\mMat{P}(F(U))$.\retTwo
+   \end{myIndent}
+
+   I'm behind and so am going to avoid going further in depth on this. However, this\\ will be useful if you study differential geometry and manifolds.
+\end{myIndent}}
+
+\newpage
+
+To finish off this chapter (I'm skipping the segment on determinants), here is a\\ theorem about differentiation of integrals.\\ [-6pt]
+
+{\begin{myIndent}\hTwo
+   \uuline{Theorem}: Let $\varphi(x, t)$ be a real-valued function whose partial derivative with\\ respect to $t$ is defined for all $a \leq x \leq b$ and $c \leq t \leq d$. Also, let us define\\ $\varphi^t(x) = \varphi(x, t)$ for each $t \in [c, d]$. Then suppose:
+   \begin{itemize}
+      \item[(A)] $\alpha: [a, b] \longrightarrow \mathbb{R}$ is monotone increasing.
+      \item[(B)] $\varphi^t \in \mathscr{R}_a^b(\alpha)$ for every $t \in [c, d]$
+      \item[(C)] $c < s < d\hspace{0.2em}$ and to every $\varepsilon > 0$, there corresponds $\delta > 0$ such that\\ $|(D_2\varphi)(x, t) - (D_2\varphi)(x, s)| < \varepsilon$ for all $x \in [a, b]$ and $t \in (s - \delta, s + \delta)$.\retTwo
+   \end{itemize}
+
+   Define $f(t) = \int_a^b \varphi(x, t)d\alpha(x)$. Then $(D_2\varphi)(x, s) = (D_2\varphi)^s(x) \in \mathscr{R}_a^b(\alpha)$,\\ $f^\prime(s)$ exists, and $f^\prime(s) = \int_a^b (D_2\varphi)(x, s)d\alpha(x)$. \retTwo
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $\varepsilon > 0$ and pick a corresponding $\delta > 0$ by assumption (C).\retTwo
+
+      Define $\psi(x, t) = \frac{\varphi(x, t) - \varphi(x, s)}{t - s}$ for all $x \in [a, b]$ and $t \in B_\delta(s) \setminus \{s\}$. Then\\ note that by the mean value theorem, for all $t \neq s$ and $x \in [a, b]$ there\\ exists $u$ between $s$ and $t$ such that $\psi(x, t) = (D_2\varphi)(x, u)$. Hence, we\\ have that:
+
+      {\centering $|\psi(x, t) - (D_2\varphi)(x, s)| < \varepsilon$ for all $x \in [a, b]$ and $t \in B_\delta(s) \setminus \{s\}$. \retTwo\par}
+
+      This tells us that $\lim\limits_{t\rightarrow s}\psi(x, t) = (D_2\varphi)(x, s)$ for all $x \in [a, b]$. In fact,\\ [-1pt] $\psi(x, t)$ converges uniformly since the same $\delta$ works for all $x$.\retTwo 
+      
+      So by theorem 7.16 (proposition 120 in the 140B notes), we know that:
+      
+      {\center $\lim\limits_{t\rightarrow s}\int_a^b\psi(x, t)d\alpha(x)  = \int_a^b \lim\limits_{t\rightarrow s}\psi(x, t)d\alpha(x) = \int_a^b (D_2\varphi)(x, s)d\alpha(x)$.\retTwo\par}
+
+      Also, note that $\frac{f(t) - f(s)}{t - s} = \int_a^b \psi(x, t) d\alpha(x)$. Thus:
+      
+      {\center$f^\prime(s) = \int_a^b (D_2\varphi)(x, s)d\alpha(x)$.\retTwo\par}
+   \end{myIndent}}
 \end{myIndent}}
 
 \exOne
 \mySepTwo
 
-\textbf{Exercise 9.13}: Suppose $f$ is a differentiable mapping of $\mathbb{R}$ into $\mathbb{R}^3$ such that\\ $\|f(t)\| = 1$ for every $t$. Then $f^\prime(t) \cdot f(t) = 0$.\\ [-8pt]
+\textbf{Exercise 9.26}: The existence and continuity of $D_{1,2}f$ does not imply the\\ existence of $D_1f$.
 
 {\begin{myIndent}\exTwo
-   To prove this note that $0 = (1)^\prime = (\|f(t)\|^2)^\prime = (f(t) \cdot f(t))^\prime = 2f^\prime(t) \cdot f(t)$.\\ Hence, $f^\prime(t) \cdot f(t) = 0$. The geometric intution for this is that the path traced\\ out by $f(t)$ must be confined to the unit sphere. Therefore, $f^\prime(t)$ must always\\ be zero or perpendicular to $f(t)$.\retTwo
+   Let $g: \mathbb{R} \longrightarrow \mathbb{R}$ be everywhere continuous but nowhere differentiable on $\mathbb{R}$.\\ Then define $f(x, y) = g(x)$ for all $(x, y) \in \mathbb{R}^2$.\retTwo
+
+   Clearly, $D_1f$ doesn't exist because $g^\prime$ doesn't exist. But, $(D_2f)(x, y) = 0$\\ for all $(x, y) \in \mathbb{R}^2$, and in turn that means that $(D_{1,2}f)(x,y) = 0$ for all $\mathbb{R}^2$.
 \end{myIndent}}
 
-\mySepTwo
-
-\textbf{Exercise 9.14}: Define $f(0, 0) = 0$ and $f(x, y) = \frac{x^3}{x^2 + y^2}$ when $(x, y) \neq 0$.
-\begin{enumerate}
-   \item[(a)] $D_1f$ and $D_2f$ exist and are bounded on $\mathbb{R}^2$.\\ [-14pt]
-   
-   {\begin{myIndent}\exTwo
-      By quotient rule, we know that when $(x, y) \neq (0, 0)$:
-      \begin{center}
-         \begin{tabular}{l c r}
-            $\bullet$ \hspace{0.3em} $(D_1f)(x, y) = \frac{x^4 + 3x^2y^2}{(x^2 + y^2)^2}$
-            & &
-            $\bullet$ \hspace{0.3em} $(D_2f)(x, y) = \frac{-2x^3y}{(x^2 + y^2)^2}$
-         \end{tabular}\retTwo
-      \end{center}
-
-      Therefore $0 \leq (D_1f)(x, y) = \frac{x^4 + 3x^2y^2}{x^4 + 2x^2y^2 + y^4} \leq \frac{x^4}{x^4} + \frac{3x^2y^2}{2x^2y^2} = \frac{5}{2}$\\ [3pt] and $\left|(D_2f)(x, y)\right| = \frac{x^2}{x^2 + y^2} \cdot \frac{2|x||y|}{x^2 + y^2} \leq 1 \cdot \frac{2|x||y|}{(|x| - |y|)^2 + 2|x||y|} \leq 1 \cdot 1 = 1$.\retTwo
-
-      Meanwhile, consider that when $(x, y) = (0, 0)$, we have that:\\
-      {\fontsize{12}{14}\selectfont$(D_1f)(0, 0) = \lim\limits_{x\rightarrow 0}\frac{\frac{x^3}{x^2 + 0} - 0}{x} = \lim\limits_{x\rightarrow 0}\frac{x}{x} = 1$} and {\fontsize{12}{14}\selectfont$(D_2f)(0, 0) = \lim\limits_{x\rightarrow 0}\frac{\frac{0}{0 + y^2} - 0}{y} = 0$}.\retTwo
-   \end{myIndent}}
-
-   \item[(B)] If $\mVec{u}$ is a unit vector in $\mathbb{R}^2$, then the directional derivative $(D_{\mVec{u}}f)(0, 0)$ exists\\ and it's absolute value is at most $1$.\\ [-14pt]
-   
-   {\begin{myIndent}\exTwo
-      Let $\mVec{u} = (u_x + u_y)$.\\ Then {\fontsize{12}{14}\selectfont$(D_{\mVec{u}}f)(0,0) = \lim\limits_{t\rightarrow 0}\frac{\frac{(tu_x)^3}{(tu_x)^2 + (tu_y)^2} \hspace{0.1em}-\hspace{0.1em} 0}{t} = \lim\limits_{t\rightarrow 0}\frac{\frac{t^3}{t^2}\cdot\frac{u_x^3}{u_x^2 + u_y^2}}{t} = \frac{u_x^3}{u_x^2 + u_y^2} = u_x^3$}\\ [-1pt] because $\|\mVec{u}\|^2 = 1$. So, we've shown that $(D_{\mVec{u}}f)(0,0)$ exists.\retTwo
-
-      Also, because $|u_x| \leq 1$ we know that $|(D_{\mVec{u}}f)(0,0)| = |u_x^3| \leq 1$.\retTwo
-   \end{myIndent}}
-
-   \item[(C)] Let $\gamma: \mathbb{R} \longrightarrow \mathbb{R}^2$ be any differentiable mapping with $\gamma(0) = (0, 0)$ and\\ $\|\gamma^\prime(t)\| > 0$ for all $t$. Setting $g(t) = f(\gamma(t))$, we have that $g$ is differentiable\\ at all $t \in \mathbb{R}$. Furthermore, if $\gamma \in \mathscr{C}^1(\mathbb{R}, \mathbb{R}^2)$, then $g \in \mathscr{C}^1(\mathbb{R}, \mathbb{R}^2)$.\\ [-14pt]
-
-   {\begin{myIndent}\exTwo
-
-      Let $\gamma(t) = (x(t), y(t))$. Importantly, because $\gamma(t)$ is differentiable, we\\ know that $x^\prime(t)$ and $y^\prime(t)$ exist for all $t \in \mathbb{R}$. At the same time, because\\ $D_1f$ and $D_2f$ are continuous when $(x, y) \neq (0, 0)$, we know that $f^\prime$ exists\\ and is continuous when $(x, y) \neq (0, 0)$.
-
-      \newpage
-
-      Firstly, let's get the trivial case out of the way. Assume $\gamma(t_0) \neq (0, 0)$.\\ Then by chain rule we know $g^\prime(t_0) = f^\prime(\gamma(t_0))\gamma^\prime(t_0) = \nabla f(\gamma(t_0)) \cdot \gamma^\prime(t_0)$\\ because $f$ is continuously differentiable at $\gamma(t_0)$. Furthermore, if $\gamma^\prime$ is\\ continuous at $t_0$, then the above expression shows that $g^\prime$ is continuous\\ at $t_0$. This is because $f$ is continuous in an open neighborhood around\\ $\gamma(t_0)$,\hspace{0.4em} $\gamma$ is continuous around $t_0$, and $\gamma^\prime(t_0)$ is assumed to be continuous\\ around $t_0$.\retTwo
-
-      Now assume $\gamma(t_0) = (0, 0)$. Then observe that:
-      
-      {\centering{\fontsize{12}{14}\selectfont
-      \begin{tabular}{l}
-         $\frac{f(\gamma(t)) - f(\gamma(t_0))}{t - t_0} = \frac{\frac{x^3(t)}{x^2(t) + y^(t)} - \hspace{0.2em} 0 \hspace{0.2em}}{t - t_0} = \frac{\frac{x^3(t)}{(t-t_0)^3}}{\hspace{0.2em}\frac{x^2(t) + y^2(t)}{(t-t_0)^2}\hspace{0.2em}}$\\ [6pt]
-         $\phantom{aaaaa\frac{\frac{x^3(t)}{x^2(t) + y^(t)} - \hspace{0.2em} 0 \hspace{0.2em}}{t}}  = \frac{\left(\frac{x(t) - 0}{t - t_0}\right)^3}{\left(\frac{x(t) - 0}{t - t_0}\right)^2 + \left(\frac{y(t) - 0}{t - t_0}\right)^2} = \frac{\left(\frac{x(t) - x(t_0)}{t - t_0}\right)^3}{\left(\frac{x(t) - x(t_0)}{t - t_0}\right)^2 + \left(\frac{y(t) - y(t_0)}{t - t_0}\right)^2}$
-      \end{tabular}}\retTwo\par}
-
-      Therefore, since $\|\gamma^\prime(t_0)\| \neq 0$ we know that:
-      
-      {\centering $\lim\limits_{t \rightarrow t_0}\frac{g(t) - g(t_0)}{t - t_0} = \frac{(x^\prime(t_0))^3}{(x^\prime(t_0))^2 + (y^\prime(t_0))^2} = \frac{(x^\prime(t_0))^3}{\|\gamma^\prime(t_0)\|^2}$\retTwo\par}
-
-      So $g$ is differentiable at $t_0$.\retTwo
-
-      % Everything below this is wrong I think...
-
-      Finally, still assuming that $\gamma(t_0) = (0, 0)$, consider that if $\gamma^\prime$ is continuous\\ at $t_0$, then we automatically have that $\frac{(x^\prime(t))^3}{\|\gamma^\prime(t)\|^2} \rightarrow \frac{(x^\prime(t_0))^3}{\|\gamma^\prime(t_0)\|^2} = g(t_0)$ as $t \rightarrow t_0$.\\ At the same time, note that:
-      
-      {\centering 
-      \begin{tabular}{l}
-         $\nabla f(\gamma(t)) \cdot \gamma^\prime(t) = \frac{x^5(t) + 3x^3(t)y^2(t) - 2x^3(t)y^2(t)}{(x^2(t) + y^2(t))^2}$\\ [7pt]
-         $\phantom{\nabla f(\gamma(t)) \cdot \gamma^\prime(t)} = \frac{x^5(t) + x^3(t)y^2(t)}{(x^2(t) + y^2(t))^2} = \frac{x^3(t)}{x^2(t) + y^2(t)}$ when $\gamma(t) \neq (0, 0)$.
-      \end{tabular} \retTwo\par}
-
-      Therefore, if we can only consider $t$ such that $\gamma(t) \neq (0, 0)$, \retTwo\retTwo
-
-
-      AUGGGHHHHH\\
-
-      Sorry I can't figure this out. It's been a lazy unproductive few weeks.
-
-
-   \end{myIndent}}
-\end{enumerate}
-
-
-
-
 \end{document}
+
+
+%\markLecture{5/2/2024}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%  I didn't do this homework because I got really behind. A bunch of the stuff in exercise 9.14 that I did is also wrong. I just need to move on. I'm leaving it commented though in case I want to return to it later.
+
+% \exOne
+% \mySepTwo
+
+% \textbf{Exercise 9.13}: Suppose $f$ is a differentiable mapping of $\mathbb{R}$ into $\mathbb{R}^3$ such that\\ $\|f(t)\| = 1$ for every $t$. Then $f^\prime(t) \cdot f(t) = 0$.\\ [-8pt]
+
+% {\begin{myIndent}\exTwo
+%    To prove this note that $0 = (1)^\prime = (\|f(t)\|^2)^\prime = (f(t) \cdot f(t))^\prime = 2f^\prime(t) \cdot f(t)$.\\ Hence, $f^\prime(t) \cdot f(t) = 0$. The geometric intution for this is that the path traced\\ out by $f(t)$ must be confined to the unit sphere. Therefore, $f^\prime(t)$ must always\\ be zero or perpendicular to $f(t)$.\retTwo
+% \end{myIndent}}
+
+% \mySepTwo
+
+% \textbf{Exercise 9.14}: Define $f(0, 0) = 0$ and $f(x, y) = \frac{x^3}{x^2 + y^2}$ when $(x, y) \neq 0$.
+% \begin{enumerate}
+%    \item[(a)] $D_1f$ and $D_2f$ exist and are bounded on $\mathbb{R}^2$.\\ [-14pt]
+   
+%    {\begin{myIndent}\exTwo
+%       By quotient rule, we know that when $(x, y) \neq (0, 0)$:
+%       \begin{center}
+%          \begin{tabular}{l c r}
+%             $\bullet$ \hspace{0.3em} $(D_1f)(x, y) = \frac{x^4 + 3x^2y^2}{(x^2 + y^2)^2}$
+%             & &
+%             $\bullet$ \hspace{0.3em} $(D_2f)(x, y) = \frac{-2x^3y}{(x^2 + y^2)^2}$
+%          \end{tabular}\retTwo
+%       \end{center}
+
+%       Therefore $0 \leq (D_1f)(x, y) = \frac{x^4 + 3x^2y^2}{x^4 + 2x^2y^2 + y^4} \leq \frac{x^4}{x^4} + \frac{3x^2y^2}{2x^2y^2} = \frac{5}{2}$\\ [3pt] and $\left|(D_2f)(x, y)\right| = \frac{x^2}{x^2 + y^2} \cdot \frac{2|x||y|}{x^2 + y^2} \leq 1 \cdot \frac{2|x||y|}{(|x| - |y|)^2 + 2|x||y|} \leq 1 \cdot 1 = 1$.\retTwo
+
+%       Meanwhile, consider that when $(x, y) = (0, 0)$, we have that:\\
+%       {\fontsize{12}{14}\selectfont$(D_1f)(0, 0) = \lim\limits_{x\rightarrow 0}\frac{\frac{x^3}{x^2 + 0} - 0}{x} = \lim\limits_{x\rightarrow 0}\frac{x}{x} = 1$} and {\fontsize{12}{14}\selectfont$(D_2f)(0, 0) = \lim\limits_{x\rightarrow 0}\frac{\frac{0}{0 + y^2} - 0}{y} = 0$}.\retTwo
+%    \end{myIndent}}
+
+%    \item[(B)] If $\mVec{u}$ is a unit vector in $\mathbb{R}^2$, then the directional derivative $(D_{\mVec{u}}f)(0, 0)$ exists\\ and it's absolute value is at most $1$.\\ [-14pt]
+   
+%    {\begin{myIndent}\exTwo
+%       Let $\mVec{u} = (u_x + u_y)$.\\ Then {\fontsize{12}{14}\selectfont$(D_{\mVec{u}}f)(0,0) = \lim\limits_{t\rightarrow 0}\frac{\frac{(tu_x)^3}{(tu_x)^2 + (tu_y)^2} \hspace{0.1em}-\hspace{0.1em} 0}{t} = \lim\limits_{t\rightarrow 0}\frac{\frac{t^3}{t^2}\cdot\frac{u_x^3}{u_x^2 + u_y^2}}{t} = \frac{u_x^3}{u_x^2 + u_y^2} = u_x^3$}\\ [-1pt] because $\|\mVec{u}\|^2 = 1$. So, we've shown that $(D_{\mVec{u}}f)(0,0)$ exists.\retTwo
+
+%       Also, because $|u_x| \leq 1$ we know that $|(D_{\mVec{u}}f)(0,0)| = |u_x^3| \leq 1$.\retTwo
+%    \end{myIndent}}
+
+%    \item[(C)] Let $\gamma: \mathbb{R} \longrightarrow \mathbb{R}^2$ be any differentiable mapping with $\gamma(0) = (0, 0)$ and\\ $\|\gamma^\prime(t)\| > 0$ for all $t$. Setting $g(t) = f(\gamma(t))$, we have that $g$ is differentiable\\ at all $t \in \mathbb{R}$. Furthermore, if $\gamma \in \mathscr{C}^1(\mathbb{R}, \mathbb{R}^2)$, then $g \in \mathscr{C}^1(\mathbb{R}, \mathbb{R}^2)$.\\ [-14pt]
+
+%    {\begin{myIndent}\exTwo
+
+%       Let $\gamma(t) = (x(t), y(t))$. Importantly, because $\gamma(t)$ is differentiable, we\\ know that $x^\prime(t)$ and $y^\prime(t)$ exist for all $t \in \mathbb{R}$. At the same time, because\\ $D_1f$ and $D_2f$ are continuous when $(x, y) \neq (0, 0)$, we know that $f^\prime$ exists\\ and is continuous when $(x, y) \neq (0, 0)$.
+
+%       \newpage
+
+%       Firstly, let's get the trivial case out of the way. Assume $\gamma(t_0) \neq (0, 0)$.\\ Then by chain rule we know $g^\prime(t_0) = f^\prime(\gamma(t_0))\gamma^\prime(t_0) = \nabla f(\gamma(t_0)) \cdot \gamma^\prime(t_0)$\\ because $f$ is continuously differentiable at $\gamma(t_0)$. Furthermore, if $\gamma^\prime$ is\\ continuous at $t_0$, then the above expression shows that $g^\prime$ is continuous\\ at $t_0$. This is because $f$ is continuous in an open neighborhood around\\ $\gamma(t_0)$,\hspace{0.4em} $\gamma$ is continuous around $t_0$, and $\gamma^\prime(t_0)$ is assumed to be continuous\\ around $t_0$.\retTwo
+
+%       Now assume $\gamma(t_0) = (0, 0)$. Then observe that:
+      
+%       {\centering{\fontsize{12}{14}\selectfont
+%       \begin{tabular}{l}
+%          $\frac{f(\gamma(t)) - f(\gamma(t_0))}{t - t_0} = \frac{\frac{x^3(t)}{x^2(t) + y^(t)} - \hspace{0.2em} 0 \hspace{0.2em}}{t - t_0} = \frac{\frac{x^3(t)}{(t-t_0)^3}}{\hspace{0.2em}\frac{x^2(t) + y^2(t)}{(t-t_0)^2}\hspace{0.2em}}$\\ [6pt]
+%          $\phantom{aaaaa\frac{\frac{x^3(t)}{x^2(t) + y^(t)} - \hspace{0.2em} 0 \hspace{0.2em}}{t}}  = \frac{\left(\frac{x(t) - 0}{t - t_0}\right)^3}{\left(\frac{x(t) - 0}{t - t_0}\right)^2 + \left(\frac{y(t) - 0}{t - t_0}\right)^2} = \frac{\left(\frac{x(t) - x(t_0)}{t - t_0}\right)^3}{\left(\frac{x(t) - x(t_0)}{t - t_0}\right)^2 + \left(\frac{y(t) - y(t_0)}{t - t_0}\right)^2}$
+%       \end{tabular}}\retTwo\par}
+
+%       Therefore, since $\|\gamma^\prime(t_0)\| \neq 0$ we know that:
+      
+%       {\centering $\lim\limits_{t \rightarrow t_0}\frac{g(t) - g(t_0)}{t - t_0} = \frac{(x^\prime(t_0))^3}{(x^\prime(t_0))^2 + (y^\prime(t_0))^2} = \frac{(x^\prime(t_0))^3}{\|\gamma^\prime(t_0)\|^2}$\retTwo\par}
+
+%       So $g$ is differentiable at $t_0$.\retTwo
+
+%       % Everything below this is wrong I think...
+
+%       Finally, still assuming that $\gamma(t_0) = (0, 0)$, consider that if $\gamma^\prime$ is continuous\\ at $t_0$, then we automatically have that $\frac{(x^\prime(t))^3}{\|\gamma^\prime(t)\|^2} \rightarrow \frac{(x^\prime(t_0))^3}{\|\gamma^\prime(t_0)\|^2} = g(t_0)$ as $t \rightarrow t_0$.\\ At the same time, note that:
+      
+%       {\centering 
+%       \begin{tabular}{l}
+%          $\nabla f(\gamma(t)) \cdot \gamma^\prime(t) = \frac{x^5(t) + 3x^3(t)y^2(t) - 2x^3(t)y^2(t)}{(x^2(t) + y^2(t))^2}$\\ [7pt]
+%          $\phantom{\nabla f(\gamma(t)) \cdot \gamma^\prime(t)} = \frac{x^5(t) + x^3(t)y^2(t)}{(x^2(t) + y^2(t))^2} = \frac{x^3(t)}{x^2(t) + y^2(t)}$ when $\gamma(t) \neq (0, 0)$.
+%       \end{tabular} \retTwo\par}
+
+%       Therefore, if we can only consider $t$ such that $\gamma(t) \neq (0, 0)$, \retTwo\retTwo
+
+
+%       AUGGGHHHHH\\
+
+%       Sorry I can't figure this out. It's been a lazy unproductive few weeks.
+
+
+%    \end{myIndent}}
+% \end{enumerate}
 
