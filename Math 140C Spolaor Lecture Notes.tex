@@ -1691,7 +1691,7 @@ Additionally, if $D_{i,j}f$ is continuous in $E$ for all $1 \leq i,j \leq n$, th
 \newpage
 
 {\begin{myIndent}\hTwo
-   \uuline{Theorem}: Let $f: E \longrightarrow \mathbb{R}$ where $E \subseteq \mathbb{R}^n$ is open. If $f \in \mathscr{C}^2(E)$, then\\ $(D_{i,j}f)(\mVec{x}) = (D_{j,i}f)(\mVec{x})$ for all $1 \leq i,j \leq n$ and $\mVec{x} \in E$.\\ [-8pt]
+   \uuline{Theorem 9.41}: Let $f: E \longrightarrow \mathbb{R}$ where $E \subseteq \mathbb{R}^n$ is open. If $f \in \mathscr{C}^2(E)$, then\\ $(D_{i,j}f)(\mVec{x}) = (D_{j,i}f)(\mVec{x})$ for all $1 \leq i,j \leq n$ and $\mVec{x} \in E$.\\ [-8pt]
 
    \begin{myIndent}\hThree
       Proof:\\
@@ -1741,7 +1741,7 @@ Additionally, if $D_{i,j}f$ is continuous in $E$ for all $1 \leq i,j \leq n$, th
 
       And since $\varepsilon$ was arbitary, we conclude that $(D_{j,i}f)(\mVec{x}) = (D_{i,j}f)(\mVec{x})$.
       {\begin{myDindent}\myComment
-         (Note that Rudin proves something stronger than this in his book.)
+         (Note that Rudin proves something slightly stronger in his book.)
       \end{myDindent}}
    \end{myIndent}
 \end{myIndent}}
@@ -1947,7 +1947,161 @@ To finish off this chapter (I'm skipping the segment on determinants), here is a
 
 \newpage
 
-\textbf{Exercise 9.27}:
+\textbf{Exercise 9.27}: Put $f(0, 0) = 0$ and $f(x, y) = \frac{xy(x^2-y^2)}{x^2+y^2}$ when $(x, y) \neq (0, 0)$.\\ Then:
+\begin{itemize}
+   \item[(A)] $f$, $D_1f$, and $D_2f$ are all continuous in $\mathbb{R}^2$:
+   
+   {\begin{myIndent}\exTwo
+      When $(x, y) \neq (0, 0)$, we have that:
+      \begin{myIndent}
+         {\begin{tabular}{l c l}
+            $(D_1f)(x, y) = \frac{yx^4 - y^5 + 4x^2y^3}{(x^2 + y^2)^2}$ & \quad\quad & $(D_2f)(x, y) = \frac{-xy^4 + x^5 - 4x^3y^2}{(x^2 + y^2)^2}$
+         \end{tabular}}\retTwo
+      \end{myIndent}
+
+      Meanwhile, when $(x, y) = (0, 0)$, we have that:
+      \begin{myIndent}
+         $(D_1f)(0, 0) = \lim\limits_{x\rightarrow 0}\frac{0}{x} = 0 = \lim\limits_{y\rightarrow 0}\frac{0}{y} = (D_2f)(0, 0)$
+      \end{myIndent}
+
+      Also note that:
+      \begin{myIndent}
+         \begin{tabular}{l}
+            $0 \leq \left|\frac{yx^4 - y^5 + 4x^2y^3}{(x^2 + y^2)^2}\right| = \left|\frac{y(x^4 + 2x^2y^2 - y^4) + 2x^2y^3}{x^4 + 2x^2y^2 + y^4}\right|$\\ [8pt]
+            $\phantom{aaaaaa} \leq |y|\left|\frac{x^4 + 2x^2y^2 - y^4}{x^4 + 2x^2y^2 + y^4} + \frac{2x^2y^2}{x^4 + 2x^2y^2 + y^4}\right|$\\ [8pt]
+            $\phantom{aaaaaa} \leq |y|\left(\left|\frac{x^4 + 2x^2y^2 - y^4}{x^4 + 2x^2y^2 + y^4}\right| + \left|\frac{2x^2y^2}{x^4 + 2x^2y^2 + y^4}\right|\right) \leq |y|(1 + 1) = 2|y|$
+         \end{tabular}\retTwo
+
+
+         \begin{tabular}{l}
+            $0 \leq \left|\frac{-xy^4 + x^5 - 4x^3y^2}{(x^2 + y^2)^2}\right| = \left|\frac{x(x^4 - 2x^2y^2 - y^4  - 2x^2y^2)}{x^4 + 2x^2y^2 + y^4}\right|$\\ [8pt]
+            $\phantom{aaaaaa} \leq |x|\left|\frac{x^4 - 2x^2y^2 - y^4}{x^4 + 2x^2y^2 + y^4} - \frac{2x^2y^2}{x^4 + 2x^2y^2 + y^4}\right|$\\ [8pt]
+            $\phantom{aaaaaa} \leq |x|\left(\left|\frac{x^4 - 2x^2y^2 - y^4}{x^4 + 2x^2y^2 + y^4}\right| + \left|\frac{2x^2y^2}{x^4 + 2x^2y^2 + y^4}\right|\right) \leq |x|(1 + 1) = 2|x|$
+         \end{tabular}\retTwo
+      \end{myIndent}
+
+      Thus, $\hspace{-1em}\lim\limits_{(x,y)\rightarrow(0,0)\vphantom{\int^|}}\hspace{-1em} (D_1f)(x, y) = 0 = \hspace{-1.1em}\lim\limits_{(x,y)\rightarrow(0,0)\vphantom{\int^|}}\hspace{-1em} (D_2f)(x, y)$.\retTwo
+
+      And this means that $D_1f$ and $D_2f$ are both continuous in $\mathbb{R}^2$. Also, since\\ both partial derivatives are continuous, we know that $f \in \mathscr{C}^1(\mathbb{R}^2)$. So, $f$\\ is continuous.\retTwo
+   \end{myIndent}}
+
+   \item[(C)] $(D_{1,2})f(0, 0) = 1$ but $(D_{2,1})f(0, 0) = -1$.
+
+   {\begin{myIndent}\exTwo
+      This is because $(D_1f)(0, y) = -y$ and $D_2f(x, 0) = x$.\retTwo
+   \end{myIndent}}
+
+   \item[(B)] $D_{1,2}f$ and $D_{2,1}f$ are continuous at every point of $\mathbb{R}^2$ except $(0, 0)$.
+
+   {\begin{myIndent}\exTwo
+      When $(x, y) \neq (0, 0)$, we have that:
+      \begin{myIndent}
+         \begin{center}
+            {\begin{tabular}{l}
+               $(D_{1,2}f)(x, y) = \frac{x^6 + 9x^4y^2 - 9x^2y^4 - y^6}{(x^2 + y^2)^3} = (D_{2,1}f)(x, y)$
+            \end{tabular}}\retTwo
+         \end{center}
+      \end{myIndent}
+
+      So clearly, $D_{1,2}f$ and $D_{2,1}f$ are continuous at $(x, y) \neq (0, 0)$. But consider\\ approaching $(0, 0)$ along the path $\gamma(t) = (t, t)$. Then:
+      
+      {\centering $\lim\limits_{t\rightarrow 0}(D_{1,2}f)(\gamma(t)) = \frac{0}{8t^6} = 0 = \lim\limits_{t\rightarrow 0}(D_{2,1}f)(\gamma(t))$.\retTwo\par}
+      
+      This shows that $D_{1,2}f$ and $D_{2,1}f$ have a discontinuity at $(0, 0)$.
+   \end{myIndent}}
+\end{itemize}
+
+\newpage
+
+\mySepTwo
+
+\textbf{Exercise 9.28}: For $t \geq 0$, define $\varphi(x,t) = \left\{
+\begin{matrix}
+   x &  \text{ if } 0 \leq x \leq \sqrt{t} \\
+   -x + 2\sqrt{t} &  \text{ if } \sqrt{t} \leq x \leq 2\sqrt{t} \\
+   0 &  \text{ otherwise }
+\end{matrix}\right.$\\ [2pt] Also let $\varphi(x,t) = -\varphi(x, -t)$ if $t < 0$. Then $(D_2\varphi)(x, 0) = 0$ for all $x$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Fix any $x \neq 0$. Then, there exists $t_0 > 0$ such that $t_0 < \frac{1}{4}x^2$. So, for all $t \in (0, t_0)$,\\ $\varphi(x, t) = 0$. Similarly, for all $t \in (-t_0, 0), \myHS \varphi(x, t) = 0$. Hence, $(D_2\varphi)(x, 0) = 0$.\retTwo
+
+   Meanwhile, if $x = 0$, then $\varphi(x, t) = x = 0$ for all $t \in \mathbb{R}$. So, $(D_2\varphi)(0, 0) = 0$.\retTwo
+\end{myIndent}}
+
+Now define $f(t) = \int_{-1}^1 \varphi(x, t)dx$. Then for $|t| < \frac{1}{4}$, we have that $f(t) = t$.
+
+{\begin{myIndent}\exTwo
+   First, consider any $0 < t < \frac{1}{4}$. Then:
+   \begin{myIndent}
+      \begin{tabular}{l}
+         $f(t) = \int_0^{\sqrt{t}\vphantom{a_{|_|}}}\hspace{-0.3em}xdx + \int_{\sqrt{t}\vphantom{|^{|^|}}}^{2\sqrt{t}\vphantom{a_{|_|}}}{\hspace{-0.3em}(-x + 2\sqrt{t})dx}$\\ [6pt]
+
+         $\phantom{aa} = [\frac{1}{2}x^2]^{\sqrt{t}}_0 + [-\frac{1}{2}x^2 + 2\sqrt{t}x]^{2\sqrt{t}}_{\sqrt{t}} = \frac{1}{2}t + -2t + 4t + \frac{1}{2}t - 2t = t$
+      \end{tabular}\retTwo
+   \end{myIndent}
+
+   Secondly, consider any $-\frac{1}{4} < t < 0$. Then:
+   \begin{myIndent}
+      \begin{tabular}{l}
+         $f(t) = \int_{-\sqrt{t}\vphantom{a^{|^|}}}^0\hspace{-0.1em}-xdx + \int_{-2\sqrt{t}\vphantom{|^{|^|}}}^{-\sqrt{t}\vphantom{a_{|_|}}}{\hspace{-0.1em}(x - 2\sqrt{t})dx}$\\ [6pt]
+
+         $\phantom{aa} = [-\frac{1}{2}x^2]_{\sqrt{t}}^0 + [\frac{1}{2}x^2 - 2\sqrt{t}x]_{-2\sqrt{t}}^{-\sqrt{t}} = \frac{1}{2}t  + \frac{1}{2}t + 2t + 2t -4t = t$
+      \end{tabular}\retTwo
+   \end{myIndent}
+
+   Finally, $f(0) = \int_{-1}^{1}0dx = 0$. So clearly, $f^\prime(0) = 1 \neq 0 = \int_{-1}^1 (D_2\varphi)(x, 0)dx$.\retTwo
+\end{myIndent}}
+
+\mySepTwo 
+
+\textbf{Exercise 9.29}: Let $E$ be an open set in $\mathbb{R}^n$. Inductively, we can say that $f \in \mathscr{C}^k(E)$\\ if all the partial derivatives: $D_1f, \ldots, D_nf$ of $f$ belong to $\mathscr{C}^{k-1}(E)$. Now assume\\ $f \in \mathscr{C}^k(E)$. Then the $k$th-order partial derivative $D_{i_1,i_2,\ldots,i_k}f = D_{i_1}D_{i_2}\ldots D_{i_k}f$\\ is unchanged if the subscripts $i_1,\ldots, i_k$ are permuted.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   By theorem 9.41, we know this is true for $k = 2$. So, we now proceed by\\ induction on $k$.\\
+
+   Assume $f \in \mathscr{C}^k(E)$ and consider any $k$th-order partial derivative $D_{i_1,i_2,\ldots,i_k}f$.\\ Then, consider any permutation $\sigma \in S_k$ and assume the claim of the problem\\ holds for smaller $k$.\retTwo
+   
+   Observation 1: Equality is maintained if the permutation doesn't effect $i_1$.
+   {\begin{myIndent}\exP
+      Suppose $\pi \in S_k$ such that $\pi(1) = 1$. Then:
+
+      {\center $D_{i_1,i_2,\ldots,i_k}f = D_{i_1}\left(D_{i_2,\ldots,i_k}f\right) = D_{i_{\pi(1)}}\left(D_{i_{\pi(2)},\ldots,i_{\pi(k)}}f\right) = D_{i_{\pi(1)}i_{\pi(2)},\ldots,i_{\pi(k)}}f$\par}
+   \end{myIndent}}
+
+   \newpage
+
+   Observation 2: We can definitely swap $i_1$ with $i_j$ so long as $j \neq k$.
+   {\begin{myIndent}\exP
+      If $j \neq 1$ and $j \neq k$, then by induction:\\ [-26pt]
+
+      {\center {\begin{tabular}{l}\hspace{-2em}
+         $D_{i_1,i_2,\ldots,i_k}f = D_{i_1,\ldots,i_j}\left(D_{i_{j+1},\ldots,i_k}f\right) = D_{i_{j}i_2\ldots,i_{j-1}i_1}\left(D_{i_{j+1},\ldots,i_k}f\right) = D_{i_{j}i_{2},\ldots,i_{j-1}i_1i_{j+1}\ldots i_{k}}f$
+      \end{tabular}}\retTwo\par}
+   \end{myIndent}}
+
+   Observation 3: We can definitely swap $i_{k-1}$ and $i_{k}$.
+   {\begin{myIndent}\exP
+      By theorem 9.41:\\ [-26pt]
+
+      {\center {\begin{tabular}{l}\hspace{0em}
+      $D_{i_1,\ldots,i_{k-2}i_{k-1}i_k}f = D_{i_1,\ldots,i_{k-2}}(D_{i_{k-1}i_k}f) =  D_{i_1,\ldots,i_{k-2}}(D_{i_{k}i_{k-1}}f) = D_{i_1,\ldots,i_{k-2}i_{k}i_{k-1}}f$
+      \end{tabular}}\\ [12pt]\par}
+   \end{myIndent}}
+
+   Let $\tau_{i,j}$ be the permutation swapping $i$ and $j$ and leaving everything else the same.\retTwo
+
+   If $\sigma(1) \neq k$, then we can say that $\sigma = \pi \circ \tau_{1,j}$ where $\pi$ is a permutation\\ such that $\pi(1) = 1$.\retTwo
+
+   If $\sigma(1) = k$, then we can say that $\sigma = \pi \circ \tau_{1,k-1} \circ \tau_{k-1,k}$ where $\pi$ is a\\ permutation such that $\pi(1) = 1$.\retTwo
+
+   In either case, by combining the three observations above we can say\\ for any permutation $\sigma \in S_k$ that $D_{i_1,i_2,\ldots,i_k}f = D_{i_{\sigma(1)}i_{\sigma(2)},\ldots,i_{\sigma(k)}}f$.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+
+
+
 
 \end{document}
 
