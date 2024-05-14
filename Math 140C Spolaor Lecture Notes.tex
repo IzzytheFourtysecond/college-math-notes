@@ -2099,7 +2099,68 @@ Now define $f(t) = \int_{-1}^1 \varphi(x, t)dx$. Then for $|t| < \frac{1}{4}$, w
 
 \mySepTwo
 
+\hOne\markLecture{5/2/2024}
 
+A note on notation:\\ [-20pt]
+\begin{itemize}
+   \item If $A$ and $B$ are any two sets, we shall write $A - B$ to mean the set\\ $\{x \in A \mid x \notin B\}$ (which we've previously referred to as $A \setminus B$).
+   \item We call a family of sets $(A_\alpha)_{\alpha \in A}$ \udefine{pointwise disjoint} if $A_\alpha \cap A_\beta = \emptyset$ for all\\ $\alpha, \beta \in A$ such that $\alpha \neq \beta$.\retTwo
+\end{itemize}
+
+A family of sets $\mathcal{R}$ is called a \udefine{ring} if $\forall A, B \in \mathcal{R},\myHS A \cup B \in \mathcal{R}$ and $A - B \in \mathcal{R}$.
+
+{\begin{myIndent}\hTwo
+   Since $A \cap B = A - (A - B)$, we also have that $A \cap B \in \mathcal{R}$.\retTwo
+\end{myIndent}}
+
+A ring $\mathcal{R}$ is called a \udefine{$\sigma$-ring} if whenever $A_n \in \mathcal{R}$ for each $n \in \{1,2,\ldots\}$,\\ then:\\[-22pt]
+
+{\centering $\bigcup\limits_{n=1}^\infty A_n \in \mathcal{R}$. \\ [-8pt]\par}
+
+{\begin{myIndent}\hTwo
+   And since $\bigcap\limits_{n=1}^\infty A_n = A_1 - \bigcap\limits_{n=1}^\infty (A_1 - A_n)$, we know $\bigcap\limits_{n=1}^\infty A_n \in \mathcal{R}$ if $\mathcal{R}$ is a $\sigma$-ring.\retTwo
+\end{myIndent}}
+
+Let $\mathcal{R}$ be a ring and $\phi: \mathcal{R} \longrightarrow \mathbb{R} \cup \{-\infty, \infty\}$. We say $\phi$ is \udefine{additive} if\\ $A \cap B = \emptyset$ implies that $\phi(A \cup B) = \phi(A) + \phi(B)$. Also, if $\mathcal{R}$ is a $\sigma$-ring,\\ we say $\phi$ is \udefine{countably additive} if $A_i \cap A_j = \emptyset$ for all $i \neq j$ implies that:
+
+{\center$\phi\left(\bigcup\limits_{n=1}^\infty A_n\right) = \sum\limits_{n=1}^\infty \phi(A_n)$.\retTwo\par}
+
+\newpage
+
+{\begin{myIndent}\hTwo
+   Some notes:
+   \begin{enumerate}
+      \item While our definition allows for the range of $\phi$ to include $+\infty$ or $-\infty$, we\\ shall always assume that that is not the case.\retTwo
+      
+      \item In the formula $\phi\left(\bigcup\limits_{n=1}^\infty A_n\right) = \sum\limits_{n=1}^\infty \phi(A_n)$, we can arrange the $A_n$ in any\\ order on the left-side. This tells us that $\sum \phi(A_n)$ must converge absolutely\\ [8pt] (if at all) since rearranging terms does not change the series' value.\\ [6pt]
+   \end{enumerate}
+
+   If $\phi$ is additive, then it satisfies the following properties:
+   \begin{itemize}
+      \item $\phi(\emptyset) = 0$.
+      {\begin{myIndent}\hThree
+         Proof:\\ $\phi(A) = \phi(\emptyset \cup A) = \phi(\emptyset) + \phi(A)$ since $\emptyset \cap A = \emptyset$. Thus $\phi(\emptyset) = 0$.\retTwo
+      \end{myIndent}}
+
+      \item $\phi(A_1 \cup \ldots \cup A_n) = \phi(A_1) + \ldots + \phi(A_n)$ if $A_i \cap A_j = \emptyset$ whenever $i \neq j$.\retTwo
+      
+      \item $\phi(A_1 \cup A_2) + \phi(A_1 \cap A_2) = \phi(A_1) + \phi(A_2)$.
+      {\begin{myIndent}\hThree
+         This is true because $\phi(A_1 \cup A_2) = \phi(A_1) + \phi(A_2 - A_1)$ and\\ $\phi(A_2) = \phi(A_2 - A_1) + \phi(A_2 \cap A_1)$.\retTwo
+      \end{myIndent}}
+
+      \item If $\phi(A) \geq 0$ for all $A \in \mathcal{R}$ and $A_1 \subseteq A_2$, then $\phi(A_1) \leq \phi(A_2)$.
+      {\begin{myIndent}\hThree
+         This is true because $\phi(A_2) = \phi(A_1) + \phi(A_2 - A_1) \geq \phi(A_1)$.
+         
+         {\begin{myDindent}\teachComment
+            For this reason we call nonnegative additive $\phi$ \udefine{monotonic}.\retTwo
+         \end{myDindent}}
+      \end{myIndent}}
+
+      \item $\phi(A - B) = \phi(A) - \phi(B)$ if $B \subseteq A$ and $|\phi(B)| < +\infty$.
+   \end{itemize}
+\end{myIndent}}
 
 
 
