@@ -1986,10 +1986,10 @@ Also note that by proposition 114, a sequence $(f_n)$ converges to $f$ in this\\
       Here is what this function looks like in Desmos:\\
 
       \begin{center}
-         \includegraphics[scale=0.4]{Desmos_how_to.png}\retTwo
+         \includegraphics[scale=0.35]{Desmos_how_to.png}\retTwo
       \end{center}
 
-      Obviously, I can't graph an infinite sum. But hopefully the first 23 terms are\\ enough to give you an idea of what this function looks like.
+      Obviously, I can't graph an infinite sum. But hopefully the first 20 terms are\\ enough to give you an idea of what this function looks like.
    \end{myIndent}}
 \end{myIndent}
 
@@ -2046,6 +2046,103 @@ A collection $\mathcal{F}$ of functions $f: E \longrightarrow \mathbb{C}$ is \ud
 
 {\centering {\fontsize{13.5}{15.5}\selectfont$\forall \varepsilon > 0, \myHS \exists \delta > 0 \suchthat \forall f \in \mathcal{F},\myHS \forall x, y \in E,\myHS d(x, y) < \delta \Longrightarrow |f(x) - f(y)| < \varepsilon$} \retTwo\par}
 
+{\begin{myIndent}\hTwo
+   Proposition \propCount: If $K$ is a compact metric space and $f_n \in \mathscr{C}(K)$ for each $n \in \{1,2,\ldots,\}$ such that $(f_n)$ converges uniformly on $K$, then $(f_n)$ is equicontinuous on $K$.
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      Let $\varepsilon > 0$. Then since $(f_n)$ converges uniformly, there is an integer $N$\\ such that $\|f_n - f_N\| < \sfrac{\varepsilon}{3}$ for all $n > N$.
+      {\begin{myIndent}\hFour
+         (This is by the Cauchy Criterion)
+      \end{myIndent}}
+
+      \newpage
+
+      Also, since each $f_n$ is uniformly continuous on $K$, there exists $\delta > 0$ such\\ that $|f_i(x) - f_i(y)| < \sfrac{\varepsilon}{3}$ for each $1 \leq i \leq N$ and $d(x, y) < \delta$.\retTwo
+
+      In turn, for all $n > N$ and $d(x, y) < \delta$, we also have that
+
+      {\centering 
+      \begin{tabular}{l}
+         $|f_n(x) - f_n(y)|$\\ $\phantom{aaa} \leq |f_n(x) - F_N(x)| + |f_N(x) - f_N(y)| + |f_N(y) - f_n(y)| < \varepsilon$
+      \end{tabular} \retTwo\par}
+
+      And thus $(f_n)$ is equicontinuous.\retTwo
+   \end{myIndent}
+\end{myIndent}}
+
+\markLecture{5/8/2024}
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Suppose $K$ is compact, $f_n \in \mathscr{C}(K)$ for each $n \in \mathbb{N}$, and $(f_n)$\\ is pointwise bounded and equicontinuous on $K$. Then:
+   \begin{itemize}
+      \item[(A)] $(f_n)$ is uniformly bounded.
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Pick a $\delta > 0$ using equicontinuity so that for all $n \in N$ when\\ $d(x, y) < \delta$, $\myHS|f_n(x) - f_n(y)| < 1$. Then, since $K$ is compact, we\\ can find $p_1, \ldots, p_m \in K$ with $\bigcup\limits_{i=1}^m B_\delta(p_i) \supseteq K$.\retTwo
+
+         Also, since $(f_n)$ is pointwise bounded, $\forall 1 \leq i \leq m$, we know\\ that $(f_n(p_i))$ is bounded. So there is $M > 0$ with $\forall 1 \leq i \leq m$,\\ $\forall n \in \mathbb{N},\myHS |f_n(p_i)| \leq M$.\retTwo
+
+         Now consider any $x \in K$ and pick $i \in \{1,\ldots,m\}$ with $x \in B_\delta(p_i)$.\\ Then for any $n$ we have:
+         
+         {\centering $|f_n(x)| \leq |f_n(p_i)| + |f_n(p_i) - f_n(k)| < M + 1$ \retTwo\par}
+
+         Therefore, $(f_n)$ is uniformly bounded.
+         \retTwo
+      \end{myIndent}}
+
+      \item[(B)] There is a subsequence $(f_{n_i})$ that converges uniformly on $K$. 
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         To start, we proved in a homework question for 140A that if $K$ is\\ compact, then there exists a countable set $E$ that is dense in $K$.\\ Also, by proposition 123, there is a subsequence $(f_{n_i})$ that\\ converges pointwise on $E$. Now, setting $g_i = f_{n_i}$ we will show\\ that $(g_i)$  converges uniformly on $K$.\retTwo
+
+         Let $\varepsilon > 0$ and pick $\delta > 0$ using equicontinuity such that:
+
+         {\centering $\forall i \in \mathbb{N},\myHS \forall x, t\in K,\myHS d(x, t) < \delta \Longrightarrow (g_i(x) - g_i(t)) < \sfrac{\varepsilon}{3} $\par}
+
+         \newpage
+
+         Since $E$ is dense in $K$ and $K$ is compact, there are $p_1, \ldots, p_m \in E$\\ with $\bigcup\limits_{l=1}^m B_{\delta}(P_l) \supseteq K$.\retTwo
+
+         Also, since $\forall 1 \leq l \leq m$, we have that $(g_i(p_l))$ converges, there is $N$\\ such that $\forall i,j \geq N,\myHS \forall 1 \leq l \leq m,\myHS |g_i(p_l) - g_j(p_l)| < \sfrac{\varepsilon}{3}$. And, for\\ any $x \in K$ and $i,j \geq N$, we can pick $1 \leq l \leq m$ with $x \in B_\delta(p_l)$.\\ Then:
+
+         {\centering 
+         \begin{tabular}{l}
+            $|g_i(x) - g_j(x)|$\\
+            $\phantom{aaaa} \leq |g_i(x) - g_i(p_l)| + |g_i(p_l) - g_j(p_l)| + |g_j(p_l) - g_j(x)| < \varepsilon$
+         \end{tabular} \retTwo\par}
+      \end{myIndent}}
+   \end{itemize}
+\end{myIndent}}
+
+\mySepTwo
+
+\markLecture{5/10/2024}
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: (Weierstrass Theorem)\\
+   If $f: [a, b] \longrightarrow \mathbb{C}$ is continuous, then there is a sequence $P_n$ of polynomials\\ such that $(P_n)$ converges to $f$ uniformly on $[a, b]$. Also, if $f$ is $\mathbb{R}$-valued, each\\ $P_n$ can be chosen to be $\mathbb{R}$-valued.
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      To start, without loss of generality we can assume that $[a, b] = [0, 1]$\\ and $f(0) = f(1) = 0$. 
+      
+      {\begin{myIndent}\hFour
+         This is because given any $f: [a,b] \longrightarrow \mathbb{C}$,  we can define $g:[0,1]\longrightarrow \mathbb{C}$\\ by $g(x) = f(x(b-a)+a) - f(a) - x(f(b) - f(a))$.\retTwo
+   
+         Then, if there exists $(P_n)$ converging uniformly to $g$ on $[0, 1]$, we know\\ that $P_n(\frac{x-a}{b-a}) + f(a) + \frac{x-a}{b-a}(f(b) - f(a))$ converges uniformly on\\ $[a, b]$ to $g(\frac{x-a}{b-a}) + f(a) + \frac{x-a}{b-a}(f(b)-f(a)) = f(x)$
+      \end{myIndent}}
+
+   \end{myIndent}}
+\end{myIndent}}
+
+
+
+
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
 {\huge \color{Black} \textbf{A List of How The Proposition Numbering in my Notes Lines up With Our Textbook:} \retTwo}
@@ -2075,8 +2172,12 @@ A collection $\mathcal{F}$ of functions $f: E \longrightarrow \mathbb{C}$ is \ud
       \myVS 117 & 7.12 & 118 & 7.13 \\ \hdashline[10pt/3pt]
       \myVS 119 & 7.15 & 120 & 7.16 \\ \hdashline[10pt/3pt]
       \myVS 121 & 7.17 & 122 & 7.18 \\ \hdashline[10pt/3pt]
-      \myVS 123 & 7.23 & 124 &  \\ \hdashline[10pt/3pt]
-      \myVS 125 &  & 126 &  \\ \hdashline[10pt/3pt]
+      \myVS 123 & 7.23 & 124 & 7.24 \\ \hdashline[10pt/3pt]
+      \myVS 125 & 7.25 & 126 & 7.26 \\ \hdashline[10pt/3pt]
+      \myVS 127 &  & 128 &  \\ \hdashline[10pt/3pt]
+      \myVS 129 &  & 130 &  \\ \hdashline[10pt/3pt]
+      \myVS 131 &  & 132 &  \\ \hdashline[10pt/3pt]
+      \myVS 133 &  & 134 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
 
 \end{allowTableDashes}
@@ -2084,6 +2185,13 @@ A collection $\mathcal{F}$ of functions $f: E \longrightarrow \mathbb{C}$ is \ud
 \retTwo
 
 Our textbook is \textit{Principles of Mathematical Analysis} by Walter Rudin.
+
+
+
+
+
+
+
 
 
 
