@@ -2123,7 +2123,7 @@ A collection $\mathcal{F}$ of functions $f: E \longrightarrow \mathbb{C}$ is \ud
 
 {\begin{myIndent}\hTwo
    Proposition \propCount: (Weierstrass Theorem)\\
-   If $f: [a, b] \longrightarrow \mathbb{C}$ is continuous, then there is a sequence $P_n$ of polynomials\\ such that $(P_n)$ converges to $f$ uniformly on $[a, b]$. Also, if $f$ is $\mathbb{R}$-valued, each\\ $P_n$ can be chosen to be $\mathbb{R}$-valued.
+   If $f: [a, b] \longrightarrow \mathbb{C}$ is continuous, then there is a sequence $(P_n)$ of polynomials\\ such that $(P_n)$ converges to $f$ uniformly on $[a, b]$. Also, if $f$ is $\mathbb{R}$-valued, each\\ $P_n$ can be chosen to be $\mathbb{R}$-valued.
 
    {\begin{myIndent}\hThree
       Proof:\\
@@ -2132,15 +2132,109 @@ A collection $\mathcal{F}$ of functions $f: E \longrightarrow \mathbb{C}$ is \ud
       {\begin{myIndent}\hFour
          This is because given any $f: [a,b] \longrightarrow \mathbb{C}$,  we can define $g:[0,1]\longrightarrow \mathbb{C}$\\ by $g(x) = f(x(b-a)+a) - f(a) - x(f(b) - f(a))$.\retTwo
    
-         Then, if there exists $(P_n)$ converging uniformly to $g$ on $[0, 1]$, we know\\ that $P_n(\frac{x-a}{b-a}) + f(a) + \frac{x-a}{b-a}(f(b) - f(a))$ converges uniformly on\\ $[a, b]$ to $g(\frac{x-a}{b-a}) + f(a) + \frac{x-a}{b-a}(f(b)-f(a)) = f(x)$
+         Then, if there exists $(P_n)$ converging uniformly to $g$ on $[0, 1]$, we know\\ that $P_n(\frac{x-a}{b-a}) + f(a) + \frac{x-a}{b-a}(f(b) - f(a))$ converges uniformly on\\ $[a, b]$ to $g(\frac{x-a}{b-a}) + f(a) + \frac{x-a}{b-a}(f(b)-f(a)) = f(x)$.\retTwo
       \end{myIndent}}
 
+      So, extend $f$ to all of $\mathbb{R}$ by setting $f(x) = 0$ when $x \in \mathbb{R} \setminus [0, 1]$. Note\\ that $f$ is the uniformly continuous on $\mathbb{R}$.\retTwo
+
+      Claim 1: There exist polynomials $Q_n: [-1, 1] \longrightarrow [0, \infty)$ such that
+      \begin{itemize}
+         \item[(A)] $\int_{-1}^{1} Q_n(t)dt = 1$
+         \item[(B)] $\forall \delta \in (0, 1),\myHS \lim\limits_{n\rightarrow \infty}\left(\int_{-1}^{-\delta}Q_n(t)dt + \int_{\delta}^1 Q_n(t)dt\right) = 0$
+      \end{itemize} 
+
+      {\begin{myIndent}\hFour
+         Proof:\\ [-4pt]
+         Set $Q_n(x) = c_n(1-x^2)^n$ where $c_n = \left(\int_{-1}^1 (1-t^2)^ndt\right)^{-1}$\hspace{-0.9em}.\hspace{0.2em} Then each $Q_n$\\ [-3pt] satisfies claim 1.A.\retTwo
+
+         Also, for each $x \in [-1, 1]$, $\myHS Q_n(x) \geq 0$.\retTwo
+         
+         Additionally, since $(1 - x^2)^n - (1-nx^2)$ is even, zero at $x = 0$, and\\ has a positive derivative on $(0, 1)$, we have that $\forall x \in [-1, 1]$,\\ $(1-x^2)^n \geq 1 - nx^2$.
+
+         \newpage
+
+         So:
+         \begin{center}
+            \begin{tabular}{l}
+               $\int_{-1}^1 (1-x^2)^ndx = 2\int_{0}^1 (1-x^2)^ndx$\\ [3pt]
+               $\phantom{\int_{-1}^1 (1-x^2)^ndx} \geq 2\int_{0}^{\sfrac{1}{\sqrt{n}}}(1-x^2)^ndx$\\ [-2pt]
+               $\phantom{\int_{-1}^1 (1-x^2)^ndx} \geq 2\int_0^{\sfrac{1}{\sqrt{n}}}(1-nx^2)dx = 2\left(\frac{1}{\sqrt{n}} - \frac{n}{3}\left(\frac{1}{\sqrt{n}}\right)^3\right)$\\ [8pt]
+               $\phantom{\int_{-1}^1 (1-x^2)^ndx \geq 2\int_0^{\sfrac{1}{\sqrt{n}}}(1-nx^2)dx} = 2\left(\frac{1}{\sqrt{n}} - \frac{1}{3\sqrt{n}}\right) = \frac{1}{\sqrt{n}}\cdot \frac{4}{3} > \frac{1}{\sqrt{n}}$
+            \end{tabular}\retTwo
+         \end{center}
+
+         This tells us that each $c_n < \sqrt{n}$.\retTwo
+
+         Now finally, let $\delta > 0$. Then for $x \in [-1, -\delta] \cup [\delta, 1]$, we have that\\ $Q_n(x) = |Q_n(x)| < \sqrt{n}(1-\delta^2)^n$. This shows that $Q_n \rightarrow 0$ uniformly\\ as $n \rightarrow \infty$ (see proposition 44.D in math 140A notes). So by proposition\\ 120, claim 1.B holds.\retTwo
+      \end{myIndent}}
+
+      Let $(Q_n)$ be the sequence of polynomials in the claim above. Then define\\ $P_n(x) = \int_{-1}^{1}f(x+t)Q_n(t)dt$ for all $n$.
+      
+      \begin{myTindent}\begin{myIndent}
+         (Note that $P_n$ is $\mathbb{R}$-valued if $f$ is $\mathbb{R}$-valued)\retTwo
+      \end{myIndent}\end{myTindent}
+
+      Claim 2: $(P_n)$ converges uniformly to $f$ on $[0, 1]$.
+      {\begin{myIndent}\hFour
+         Proof:\\
+         Let $\varepsilon > 0$. Then by the uniform continuity of $f$, there is $\delta \in (0, 1)$ such\\ that $\forall s,t \in \mathbb{R},\myHS |s-t|<\delta \Longrightarrow |f(s) - f(t)| < \frac{\varepsilon}{2}$.\retTwo
+
+         Next set $M = \sup\{|f(x)| \mid x \in (0, 1)\}$. By claim 1.B, we can find $N$ so\\ that for all $n \geq N$, $\int_{-1}^{-\delta}Q_n(t)dt + \int_\delta^1Q_n(t)dt < \frac{\varepsilon}{4M}$.\retTwo
+
+         Now, consider any $x \in [0, 1]$ and any $n \geq N$. Then:
+         
+         \begin{center}
+            \begin{tabular}{l}
+               $|P_n(x) - f(x)| = \left|\int_{-1}^1 f(x+t)Q_n(t)dt - f(x)\cdot (1)\right|$\\ [8pt]
+               $\phantom{|P_n(x) - f(x)|} = \left|\int_{-1}^1 f(x+t)Q_n(t)dt - f(x)\int_{-1}^1Q_n(t)dt\right|$\\ [8pt]
+               $\phantom{|P_n(x) - f(x)|} = \left|\int_{-1}^1 (f(x+t) - f(x))Q_n(t)dt\right|$\\ [8pt]
+               $\phantom{|P_n(x) - f(x)|} \leq \int_{-1}^1\left|f(x+t) - f(x)\right|Q_n(t)dt$\\ [4pt]
+               $\phantom{|P_n(x) - f(x)|} \leq 2M\int_{-1}^{-\delta}Q_n(t)dt + \frac{\varepsilon}{2}\int_{-\delta}^{\delta}Q_n(t)dt + 2M\int_{\delta}^{1}Q_n(t)dt$\\ [4pt]
+               $\phantom{|P_n(x) - f(x)|} \leq \frac{\varepsilon}{2}\int_{-1}^{1}Q_n(t)dt + 2M\left(\int_{-1}^{-\delta}Q_n(t)dt + \int_{\delta}^{1}Q_n(t)dt\right)$\\ [4pt]
+               $\phantom{|P_n(x) - f(x)|aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} < \frac{\varepsilon}{2} \cdot 1 + \frac{2M}{4M}\varepsilon = \varepsilon$\\ [4pt]
+            \end{tabular}\retTwo
+         \end{center}
+      \end{myIndent}}
+
+      Claim 3: Each $P_n$ is a polynomial.
+      {\begin{myIndent}\hFour
+         Proof:\\
+         Note that $P_n(x) = \int_{-1}^1 f(x+t)Q_n(t)dt = \int_{-x}^{1-x} f(x+t)Q_n(t)dt$. Then,\\ substituting in $u = x + t$, this becomes $P_n(x) = \int_{0}^1 f(u)Q_n(u-x)du$.
+
+         \newpage
+
+         Since $Q_n(u-x)$ is a polynomial, there are finitely many constants $a_{k,l}$\\ such that $Q_n(u-x) = \sum\limits_{k,l} a_{k,l}u^k x^l$. Therefore:\\ [-6pt]
+
+         {\centering{\fontsize{11.5}{13.5}\selectfont $\int_0^1 f(u)Q_n(u-x)du = \int_{0}^1 \sum\limits_{k,l} a_{k,l}f(u)u^k x^ldu = \sum\limits_{k,l}\left(\int_0^1f(u)u^kdu\right)a_{k,l}x^l$} \retTwo\par}
+      \end{myIndent}}
+
+      And now the theorem is proved. $\blacksquare$\retTwo
+   \end{myIndent}}
+
+   Corollary: For every $a > 0$, there is a sequence $(P_n)$ of real polynomials that\\ converge uniformly to $|x|$ on $[-a, a]$ such that $\forall n,\myHS P_n(0) = 0$.
+
+   
+   {\begin{myIndent}\hThree
+      Proof:\\
+      By the previous proposition, there is a sequence $(P_n^*)$ of real polynomials\\ that converge to $|x|$ uniformly on $[-a, a]$. In particular, $P_n^*(0) \rightarrow 0$. So,\\ set $P_n(x) = P_n^*(x) - P_n^*(0)$.\retTwo
    \end{myIndent}}
 \end{myIndent}}
 
+\mySepTwo
 
+A collection of functions $\mathscr{A}$ from $E$ to $\mathbb{C}$ is an \udefine{algebra} if:
+\begin{enumerate}
+   \item $f, g \in \mathscr{A} \Longrightarrow f + g \in \mathscr{A}$
+   \item $f,g \in \mathscr{A} \Longrightarrow fg \in \mathscr{A}$
+   \item $f \in \mathscr{A} \text{ and } c \in \mathbb{C} \Longrightarrow cf \in \mathscr{A}$
+   {\begin{myIndent}\teachComment
+      In the case we are discussing $\mathbb{R}$-valued functions, we can change requirement\\ 3 to only consider $c \in \mathbb{R}$.\retTwo
+   \end{myIndent}}
+\end{enumerate}
 
+If $f \in \mathscr{A}$ whenever there is a sequence $(f_n) \subset \mathscr{A}$ converging to $f$ uniformly\\ on $E$, we say $\mathscr{A}$ is \udefine{uniformly closed}. Also, the set $\mathscr{B}$ consisting of all functions\\ that are uniform limits of functions on $E$ from $\mathscr{A}$ is called the \udefine{uniform closure}\\ of $\mathscr{A}$.\retTwo
 
+\markLecture{5/6/2024}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
