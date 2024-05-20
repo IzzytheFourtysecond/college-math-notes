@@ -37,7 +37,7 @@
 \newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
 
 \usepackage{graphicx}
-\graphicspath{{./158_Images/}}
+\graphicspath{{./140B_images/}}
 
 \usepackage{tikz}
    \usetikzlibrary{arrows.meta}
@@ -2104,7 +2104,7 @@ Now define $f(t) = \int_{-1}^1 \varphi(x, t)dx$. Then for $|t| < \frac{1}{4}$, w
 A note on notation:\\ [-20pt]
 \begin{itemize}
    \item If $A$ and $B$ are any two sets, we shall write $A - B$ to mean the set\\ $\{x \in A \mid x \notin B\}$ (which we've previously referred to as $A \setminus B$).
-   \item We call a family of sets $(A_\alpha)_{\alpha \in A}$ \udefine{pointwise disjoint} if $A_\alpha \cap A_\beta = \emptyset$ for all\\ $\alpha, \beta \in A$ such that $\alpha \neq \beta$.\retTwo
+   \item We call a family of sets $(A_\alpha)_{\alpha \in A}$ \udefine{pairwise disjoint} if $A_\alpha \cap A_\beta = \emptyset$ for all\\ $\alpha, \beta \in A$ such that $\alpha \neq \beta$.\retTwo
 \end{itemize}
 
 A family of sets $\mathcal{R}$ is called a \udefine{ring} if $\forall A, B \in \mathcal{R},\myHS A \cup B \in \mathcal{R}$ and $A - B \in \mathcal{R}$.
@@ -2183,20 +2183,32 @@ We define an \udefine{interval} $I$ in $\mathbb{R}^p$ as the set:
    Note: we can also makes any of the inequalities in this definition strict. \\ Also, $a_i$ is allowed to be equal to $b_i$.\retTwo
 \end{myDindent}}
 
-Also, if $A \subseteq \mathbb{R}^p$ is the union of a finite number of intervals, we say $A$ is an\\ \udefine{elementary set}.\retTwo
+Also, if $A \subseteq \mathbb{R}^p$ is the union of a finite number of intervals, we say $A$ is an\\ \udefine{elementary set}.\\ [-10pt]
 
 {\begin{myIndent}\exOne
    Lemma: Suppose that $I$ and $J$ are intervals. Then $I - J$ is the union of a\\ finite number of disjoint intervals.
 
    {\begin{myIndent}\exTwo
-      To start, le
+      Proof:\\
+      To start, let's write $I = |a_1, b_1| \times |a_2, b_2| \times \ldots \times |a_n, b_n|\hspace{0.05em}$ and\\ $J = |c_1, d_1| \times |c_2, d_2| \times \ldots \times |c_n, d_n|\hspace{0.05em}$ where "$\mid$" is a placeholder\\ for either "$ \lparen $" or "$ \lbrack $". Also, let's write "$\|$" to flip the strictness of\\ an inequality of an interval.\retTwo
+
+      Now let $\mathcal{I}$ be a list of intervals. Then, for each $i \in \{1,\ldots, j\}$, add\\ the intervals below to $\mathcal{I}$:
+      {\begin{itemize}\fontsize{12}{14}\selectfont
+         \item $|\min(c_1, b_1),\hspace{0.2em} \max(a_1, d_1)|\times\ldots\times |\min(c_{i-1},\hspace{0.2em} b_{i-1}), \max(a_{i-1},\hspace{0.2em} d_{i-1})| \\ \phantom{aaaaaaaaaaaaaaaaaaa}\times  |a_i,\hspace{0.2em} \min(c_i, b_i)\| \times |a_{i+1}, b_{i+1}|\times\ldots\times |a_{j}, b_j|$\\ [-8pt]
+         \item $|\min(c_1, b_1),\hspace{0.2em} \max(a_1, d_1)|\times\ldots\times |\min(c_{i-1},\hspace{0.2em} b_{i-1}), \max(a_{i-1},\hspace{0.2em} d_{i-1})| \\ \phantom{aaaaaaaaaaaaaaaaaaa}\times  \|\max(a_i, d_i),\hspace{0.2em} b_i| \times |a_{i+1}, b_{i+1}|\times\ldots\times |a_{j}, b_j|$\retTwo
+      \end{itemize}}
+      
+      \begin{myTindent}\exP
+         You're hopefully smart enough to figure out what the\\ intervals added to $\mathcal{I}$ in step 1 look like. Also, it's ok if\\ any intervals added to $\mathcal{I}$ are empty. \retTwo
+      \end{myTindent}
+
+      Then $I - J = \bigcup\limits_{l  \in \mathcal{I}} l$ and all the sets in $\mathcal{I}$ are disjoint to each other.\retTwo
    \end{myIndent}}
-   \retTwo
 \end{myIndent}}
 
-Now let $\mathcal{E}$ denote the family of all elementary subsets of $\mathbb{R}^p$.\\ [-10pt]
+Now, let $\mathcal{E}$ denote the family of all elementary subsets of $\mathbb{R}^p$.\\ [-10pt]
 {\begin{myIndent}\exOne
-   Claim: $\mathcal{E}$ is a ring but not a $\sigma$-ring.
+   Claim 1 (homework): $\mathcal{E}$ is a ring but not a $\sigma$-ring.
    
    {\begin{myIndent}\exTwo
       First, let's show that $\mathcal{E}$ is a ring.\\ [-21pt]
@@ -2205,20 +2217,256 @@ Now let $\mathcal{E}$ denote the family of all elementary subsets of $\mathbb{R}
 
          So immediately, $A \cup B = \hspace{-0.2em}\bigcup\limits_{i=1}^{m+n}\hspace{-0.2em} I_i \in \mathcal{E}$.\retTwo
 
-         Meanwhile, to show that $A - B \in \mathcal{E}$, let's first show that the\\ set difference of two intervals . Let $I = [a_1, b_1] \times [a_2, b_2] \times \ldots \times [a_p, b_p]$ and\\ $J = [c_1, d_1] \times [c_2, d_2] \times \ldots \times [c_p, d_p]$.
+         Meanwhile, because $(X \cup Y) - Z = (X - Z) \cup (Y - Z)$ and\\ $X - (Y \cup Z) = (X - Y) - Z$  for all sets $X, Y, Z$, we can apply\\ the prior lemma a bajillion times to get that $A - B$ is the union\\ of $m$ (not necessarily disjoint) unions of bajillions of disjoint\\ intervals. So, $A - B \in \mathcal{E}$.
       \end{myIndent}
-      \retTwo
+
+      \newpage
+
+      Second, let's show that $\mathcal{E}$ is not a $\sigma$-ring.
+      \begin{myIndent}
+
+         For a basic example in $\mathbb{R}$, consider the set  $\bigcup\limits_{n=1}^\infty (2n - 2, 2n]$.\\ [2pt] Clearly, that cannot be rewritten as a finite union of intervals.\\ [6pt]
+
+         For a more interesting original example, consider the set\\ $T = \hspace{-1em}\bigcup\limits_{q \in \mathbb{Q} \cap [0, 1]}\hspace{-0.9em} [0, q) \times [0, 1-q)$\\ [4pt]
+
+         \begin{myIndent}
+            \begin{tabular}{p{2in} p{1.6in}}
+               Then $T$ is the union of\newline countably many intervals.\newline But $T$ also consists of all\newline the points in the triangle to\newline the right minus its longest\newline edge. &
+   
+               {\centering\raisebox{-6.5em}{\includegraphics[scale=0.2]{140C_image_1.png}}\par}
+   
+            \end{tabular}
+         \end{myIndent}
+
+         Now let $\mathcal{I}$ be any set of intervals contained in $T$. By expanding\\ all the intervals when possible, we can assume without loss of\\ generality that all intervals in $\mathcal{I}$ have the form $[0, t)\times [0, 1-t)$.\retTwo
+
+         Then, to show that the sets in $\mathcal{I}$ do not cover all of $T$, note that\\ the union of $\mathcal{I}$ will "look" like a staircase. So, you can find points\\ "between" the steps not covered by any sets in $\mathcal{I}$ but which are\\ in $T$.
+         
+         \begin{myIndent}\exP
+            I'm stressed on time so I'm not going to go into more details.\retTwo
+         \end{myIndent}
+      \end{myIndent}
+   \end{myIndent}}
+
+   Claim 2 (homework): If $A \in \mathcal{E}$, then $A$ is the union of a finite collection of\\ pairwise disjoint intervals.
+   
+   {\begin{myIndent}\exTwo
+      Proof:\\ [-4pt]
+      Since $A \in \mathcal{E}$, we know $A = \bigcup\limits_{i=1}^n I_i$ where each $I_i$ is an interval.\\ [-4pt]
+
+      Then note that $A = \bigcup\limits_{i=1}^n \left(I_i - \hspace{-0.5em}\bigcup\limits_{j=i+1}^n \hspace{-0.5em}I_j\right)$ where each of the $I_i - \hspace{-0.5em}\bigcup\limits_{j=i+1}^n \hspace{-0.5em}I_j$ are\\ [-12pt] pairwise disjoint.\\ [-4pt]
+      
+      Also, by repeatedly applying our prior lemma, $I_i - \hspace{-0.5em}\bigcup\limits_{j=i+1}^n \hspace{-0.5em}I_j$ can be expressed\\ [-10pt] as the union of finitely many disjoint intervals.\retTwo
    \end{myIndent}}
 \end{myIndent}}
 
-Also, given any interval $I \in \mathbb{R}^p$ defined by the constants $a_i, b_i$ for $i \in \{1,\ldots, p\}$,\\ we define:\\ [-18pt]
+Next, given any interval $I = [a_1, b_1]\times \ldots [a_p, b_p]$, let $m(I) = \prod\limits_{i=1}^p(b_i - a_i)$.\\ [-4pt]
+{\begin{myTindent}\begin{myIndent}\teachComment
+   Also, if any of the inequalities defining $I$ are made strict,\\ we still define $m$ the same.\retTwo
+\end{myIndent}\end{myTindent}}
 
-{\centering $m(I) = \prod\limits_{i=1}^p(b_i - a_i)$.\\ [-1pt]\par} 
+\newpage
+
+Then given any $A \in \mathcal{E}$, if $\mathcal{I}$ is a collection of intervals that are pairwise disjoint\\ such that the union of the intervals in $\mathcal{I}$ equals $A$, then we define:
+
+{\center $m(A) = \sum\limits_{I \in \mathcal{I}}m(I)$\retTwo\par}
+
+{\begin{myIndent}\exOne
+   Claim 3 (homework): Let $\mathcal{I}$ and $\mathcal{J}$ both be collections of pairwise disjoint\\ intervals such that $\bigcup\limits_{I \in \mathcal{I}}I = A = \bigcup\limits_{J \in \mathcal{J}}\hspace{-0.2em}J$.\hspace{0.2em} Then $\sum\limits_{I \in \mathcal{I}}m(I) = \sum\limits_{J \in \mathcal{J}}\hspace{-0.15em}m(J)$.\retTwo
+
+   {\begin{myIndent}\exTwo
+      Proof:\\
+      Let $\mathcal{I} = \{I_1, \ldots, I_n\}$ and $\mathcal{J} = \{J_1, \ldots, J_m\}$ Then since $I_i \cap J_j \in \mathcal{E}$ for\\ all $1 \leq i \leq n$ and $1 \leq j \leq m$ and because $I_{i_1} \cap J_{j_1}$ and $I_{i_2} \cap J_{j_2}$ are\\ disjoint whenever $i_1 \neq i_2$ or $j_1 \neq j_2$, we can define a collection $\mathcal{K}$\\ satisfying that:
+      \begin{itemize}
+         \item $\mathcal{K}$ is a collection of pairwise disjoint intervals.
+         \item Each $I_i$ and $J_j$ is the union of a subcollection of $\mathcal{K}$.
+         \item $\bigcup\limits_{l \in \mathcal{K}}l = A$.\retTwo
+      \end{itemize}
+
+      Now if $l_1 \cup \ldots \cup l_k = I_i$, then clearly $m(l_1) + \ldots + m(l_k) = m(I_i)$.
+      {\begin{myIndent}\exP
+         To prove this, you can just use the distributive property.\retTwo
+      \end{myIndent}} 
+      
+      So, by rearranging terms in the sum, we can say that:
+      
+      {\centering $\sum\limits_{I \in \mathcal{I}}m(I) = \sum\limits_{l \in \mathcal{K}}\hspace{-0.04em}m(l) = \sum\limits_{J \in \mathcal{J}}\hspace{-0.15em}m(J)$.\retTwo\par}
+   \end{myIndent}}
+
+   This tells us that $m$ is a well defined function on $\mathcal{E}$.\retTwo
+
+   Claim 4 (homework): $m$ is additive.
+   {\begin{myIndent}\exTwo
+      Proof:\\
+      Suppose $A$ and $B$ are disjoint and $\mathcal{I}$ and $\mathcal{J}$ are collections of pairwise\\ disjoint intervals such that $\bigcup\limits_{I \in \mathcal{I}}I = A$ and  $\bigcup\limits_{J \in \mathcal{J}}\hspace{-0.2em}J = B$.\retTwo
+
+      Then $\mathcal{I} \cap \mathcal{J} = \emptyset$ and $\mathcal{I} \cup \mathcal{J}$ is pairwise disjoint with $\hspace{-0.5em}\bigcup\limits_{l \in \mathcal{I}\cup\mathcal{J}}\hspace{-0.6em}l = A\cup B$.\\ [-8pt] So, we can say that:
+
+      {\centering $m(A \cup B) = \hspace{-0.5em}\sum\limits_{l \in \mathcal{I}\cup\mathcal{J}}\hspace{-0.6em}m(l) = \sum\limits_{I \in \mathcal{I}}m(I) + \sum\limits_{J \in \mathcal{J}}\hspace{-0.15em}m(J) = m(A) + m(B)$ \retTwo\par}
+   \end{myIndent}}
+\end{myIndent}}
+
+\mySepTwo
+
+A nonnegative additive set function $\phi$ defined on $\mathcal{E}$ is said to be \udefine{regular} if:
+
+{\begin{myIndent}
+   For all $A \in \mathcal{E}$ and $\varepsilon > 0$, there exists $F, G \in \mathcal{E}$ such that $F$ is closed,\\ $G$ is open, $F \subseteq A \subseteq G$, and $\phi(G) - \varepsilon \leq \phi(A) \leq \phi(F) + \varepsilon$.\retTwo
+
+   In other words, $\phi(G) \leq \phi(A) + \varepsilon$ and $\phi(F) \geq \phi(A) - \varepsilon$.
+
+   \newpage
+
+   \hTwo
+   Examples:
+   \begin{itemize}
+      \item Hopefully it is obvious to you that $m$ is regular.
+      \item Let $\mathbb{R}^p = \mathbb{R}$ and $\alpha: \mathbb{R} \longrightarrow \mathbb{R}$ be a monotonically increasing function,\\ then put for all intervals in $\mathbb{R}$:
+      
+      {\centering $
+      \begin{matrix}
+         \mu([a, b)) = \alpha(b-) - \alpha(a-) \\
+         \mu([a, b]) = \alpha(b+) - \alpha(a-) \\
+         \mu((a, b]) = \alpha(b+) - \alpha(a+) \\
+         \mu((a, b)) = \alpha(b-) - \alpha(a+)
+      \end{matrix}$ \retTwo\par}
+
+      Also, extend this $\mu$ to all of $\mathcal{E}$ the same way we extended $m$. Then\\ $\mu$ is regular (although we won't prove that).\retTwo
+   \end{itemize}
+\end{myIndent}}
+
+Let $\mu$ be additive, regular, and finite on $\mathcal{E}$. Then for any $E \subset \mathbb{R}^p$ define:
+
+{\centering $\mu^*(E) = \inf\left\{\sum\limits_{n=1}^\infty \mu(A_n) \hspace{0.3em}\middle|\hspace{0.3em} E \subset \bigcup\limits_{n=1}^\infty A_n, \text{ where each } A_n \in \mathcal{E} \text{ and is open}\right\}$ \retTwo\par}
+
+Then, $\mu^*: \mathcal{P}(\mathbb{R}^p)\longrightarrow [0, \infty]$ is called the \udefine{outer measure} of $E$ corresponding\\ to $\mu$ (where $\mathcal{P}(\mathbb{R}^p)$ is the power set of $\mathbb{R}^p$).
 
 
+{\begin{myIndent}\hTwo
+   Remark 1: You can set all but finitely many $A_n = \emptyset$ in order to emulate $E$\\ being a subset of a finite open cover of $A_n$.\\ [6pt]
+   Remark 2: If $E_1 \subset E_2$, then clearly $\mu^*(E_1) \leq \mu^*(E_2)$.\\ [6pt]
 
+   \uuline{Theorem 11.8}:
+   \begin{itemize}
+      \item[(A)] For every $A \in \mathcal{E},\myHS \mu^*(A) = \mu(A)$.
+      
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Let $A \in \mathcal{E}$ and $\varepsilon > 0$. Then because $\mu$ is regular, there exists an open\\ set $G \supseteq A$ such that $\mu(G) \leq \mu(A) + \varepsilon$. Also, $\mu^*(A) \leq \mu(G)$ as\\ $A \subseteq G \cup \emptyset \cup \emptyset \cup \ldots$. Thus, we know that $\mu^*(A) \leq \mu(A) + \varepsilon$.\retTwo
 
+         Meanwhile, since $\mu^*(A)$ is by definition an infimum of a set, there\\ exists a sequence $(A_n)$ of open sets in $\mathcal{E}$ whose union contains $A$\\ such that:
+         
+         {\centering $\sum\limits_{n=1}^\infty \mu(A_n) \leq \mu^*(A) + \varepsilon$.\retTwo\par} 
 
+         Also, by the regularity of $\mu$ there exists a closed set $F$ such that\\ $\mu(F) \geq \mu(A) - \varepsilon$. Importantly, $F$ is compact and $(A_n)$ is an open\\ cover of $F$. So $F \subset A_1 \cup \ldots \cup A_N$ for some $N$ and hence:
+
+         {\centering{\fontsize{12}{14}\selectfont 
+         \begin{tabular}{l}
+            $\mu(A) \leq \mu(F) + \varepsilon \leq \mu(A_1 \cup \ldots \cup A_N) + \varepsilon$\\
+            $\phantom{\mu(A) \leq \mu(F) + \varepsilon} \leq \sum\limits_{n=1}^N \mu(A_n) + \varepsilon \leq \sum\limits_{n=1}^\infty \mu(A_n) + \varepsilon \leq \mu^*(A) + 2\varepsilon $
+         \end{tabular}}\par}
+
+         \newpage
+
+         Since $\varepsilon$ was arbitrary, we thus have that $\mu^*(A) = \mu(A)$.\retTwo
+      \end{myIndent}}
+
+      \item[(B)] If $E = \bigcup\limits_{n=1}^\infty E_n$, then $\mu^*(E) \leq \sum\limits_{n=1}^\infty \mu^*(E_n)$.
+      
+      \begin{myTindent}\teachComment
+         This is called \udefine{$\sigma$-subadditivity}.
+      \end{myTindent}
+
+      {\begin{myIndent}\hThree
+         Proof:\\ [-4pt]
+         Now suppose $E = \bigcup\limits_{n=1}^\infty E_n$.\retTwo
+
+         If $\mu^*(E_n) = +\infty$ for any $n$, then this statement is trivially true. So,\\ assume $\mu^*(E) < +\infty$ for all $n$. Then for any $\varepsilon > 0$, there are coverings\\ $(A_{n,k})$ of $E_n$ by open elementary sets such that:
+
+         {\centering $\sum\limits_{k=1}^\infty \mu(A_{n,k}) \leq \mu^*(E_n) + 2^{-n}\varepsilon $ \retTwo\par}
+
+         Then because all the $(A_{n,k})$'s form an open cover for $E$, we have that:
+         
+         {\centering{\fontsize{12.5}{14.5}\selectfont $\mu^*(E) \leq \sum\limits_{n=1}^\infty\sum\limits_{k=1}^\infty \mu(A_{n,k}) \leq \sum\limits_{n=1}^\infty \mu^*(E_n) + \frac{1}{2}\varepsilon \cdot \frac{1}{1-\frac{1}{2}} = \sum\limits_{n=1}^\infty \mu^*(E_n) + \varepsilon$}\retTwo\par}
+      \end{myIndent}}
+   \end{itemize}
+\end{myIndent}}
+
+\mySepTwo 
+
+\markLecture{5/7/2024}
+
+For any $A, B \subseteq \mathbb{R}^p$, we define:
+\begin{itemize}
+   \item $S(A, B) = (A - B) \cup (B - A)$\quad{\teachComment (This is the \udefine{symmetric difference} of $A$ and $B$.)}
+   \item $d(A, B) = \mu^*(S(A, B))$.\\
+\end{itemize}
+
+Also, given any sequence $(A_n)$ of sets, we write $A_n \rightarrow A$ if $\lim\limits_{n\rightarrow \infty} d(A_n, A) = 0$.\retTwo
+
+If there is a sequence $(A_n)$ of elementary sets such that $A_n \rightarrow A$, then we say $A$\\ is \udefine{finitely $\mu$-measurable} and write $A \in \mathfrak{M}_F(\mu)$.\retTwo 
+
+If $A$ is the union of countably many finitely $\mu$-measurable sets, we say that $A$ is\\ \udefine{$\mu$-measurable} and write $A \in \mathfrak{M}_F(\mu)$.\retTwo
+
+{\begin{myIndent}\hTwo
+   Before covering our next theorem, here are some properties of $S$ and $d$:\retTwo
+
+   \ul{Some properties of $S$}:
+   \begin{itemize}
+      \item[(A)] $S(A, B) = S(B, A)$ and $S(A, A) = \emptyset$.
+      \item[(B)] $S(A, B) \subseteq S(A, C) \cup S(C, B)$.
+      {\begin{myIndent}\hThree
+         This is because $(A - B) \subseteq (A - C) \cup (C - B)$ and\\ $(B - A) \subseteq (C - A) \cup (B - C)$.
+      \end{myIndent}}
+
+      \newpage
+
+      \item[(C)] $S(A^\comp, B^\comp) = S(A, B)$.
+      {\begin{myIndent}\hThree
+         This is because:
+         
+         {\centering{\fontsize{12}{14}\selectfont
+         \begin{tabular}{l}
+            $S(A^\comp, B^\comp) = (A^\comp \cap B) \cup (B^\comp \cap A)$\\$\phantom{S(B^\comp)} = (A^\comp \cup B^\comp) \cap (A \cup B) = (A \cup B) - (A \cap B)$\\$\phantom{\phantom{S(B^\comp)} = (A^\comp \cup B^\comp) \cap (A \cup B)} = (A - B) \cup (B - A) = S(A, B)$
+         \end{tabular}}\retTwo\par}
+      \end{myIndent}}
+
+      \item[(D)] $S(A_1 \cup A_2,\myHS B_1 \cup B_2) \subseteq S(A_1, B_1) \cup S(A_2, B_2)$.
+      {\begin{myIndent}\hThree
+         This is because:
+         
+         {\centering{\fontsize{12}{14}\selectfont
+         \begin{tabular}{l}
+             $(A_1 \cup A_2) - (B_1 \cup B_2) = (A_1 - (B_1 \cup B_2)) \cup (A_2 - (B_1 \cup B_2))$\\$\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} \subseteq (A_1 - B_1) \cup (A_2 - B_2)$
+         \end{tabular}}\retTwo\par}
+      \end{myIndent}}
+
+      \item[(E)] $S(A_1 \cap A_2,\myHS B_1 \cap B_2) \subseteq S(A_1, B_1) \cup S(A_2, B_2)$.
+      {\begin{myIndent}\hThree
+         This is because:
+         
+         {\centering{\fontsize{12}{14}\selectfont
+         \begin{tabular}{l}
+            $S(A_1 \cap A_2,\myHS B_1 \cap B_2) = S(A_1^\comp \cup A_2^\comp,\myHS B_1^\comp \cup B_2^\comp )$\\ [3pt]
+            $\phantom{S(A_1 \cap A_2)m} \subseteq S(A_1^\comp, B_1^\comp) \cup S(A_2^\comp, B_2^\comp) = S(A_1, B_1) \cup S(A_2, B_2)$
+         \end{tabular}}\retTwo\par}
+      \end{myIndent}}
+
+      \item[(F)] $S(A_1 - A_2,\myHS B_1 - B_2) \subseteq S(A_1, B_1) \cup S(A_2, B_2)$.
+      {\begin{myIndent}\hThree
+         This is because:
+         
+         {\centering{\fontsize{12}{14}\selectfont
+         \begin{tabular}{l}
+            $S(A_1 - A_2,\myHS B_1 - B_2) = S(A_1 \cap A_2^\comp,\myHS B_1 \cap B_2^\comp)$\\ $\phantom{S(A_1 - A_2,,)}\subseteq S(A_1, B_1) \cup S(A_2^\comp, B_2^\comp) = S(A_1, B_1) \cup S(A_2, B_2)$
+         \end{tabular}}\retTwo\par}
+      \end{myIndent}}
+
+   \end{itemize}
+   \newpage
+
+   \uuline{Theorem 11.10}: $\mathfrak{M}(\mu)$ is a $\sigma$-ring and $\mu^*$ is countably additive on $\mathfrak{M}(\mu)$.
+\end{myIndent}}
 
 \end{document}
 
