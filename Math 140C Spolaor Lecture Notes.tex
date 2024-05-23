@@ -2186,7 +2186,7 @@ We define an \udefine{interval} $I$ in $\mathbb{R}^p$ as the set:
 Also, if $A \subseteq \mathbb{R}^p$ is the union of a finite number of intervals, we say $A$ is an\\ \udefine{elementary set}.\\ [-10pt]
 
 {\begin{myIndent}\exOne
-   Lemma: Suppose that $I$ and $J$ are intervals. Then $I - J$ is the union of a\\ finite number of disjoint intervals.
+   Lemma: Suppose that $I$ and $J$ are intervals. Then $I - J$ is the union of\\ a finite number of disjoint intervals.
 
    {\begin{myIndent}\exTwo
       Proof:\\
@@ -2396,7 +2396,7 @@ Then, $\mu^*: \mathcal{P}(\mathbb{R}^p)\longrightarrow [0, \infty]$ is called th
 
 \markLecture{5/7/2024}
 
-For any $A, B \subseteq \mathbb{R}^p$, we define:
+For any $A, B \subseteq \mathbb{R}^p$ and $\mu^*$ defined as in last lecture, we define:
 \begin{itemize}
    \item $S(A, B) = (A - B) \cup (B - A)$\quad{\teachComment (This is the \udefine{symmetric difference} of $A$ and $B$.)}
    \item $d(A, B) = \mu^*(S(A, B))$.\\
@@ -2409,11 +2409,13 @@ If there is a sequence $(A_n)$ of elementary sets such that $A_n \rightarrow A$,
 If $A$ is the union of countably many finitely $\mu$-measurable sets, we say that $A$ is\\ \udefine{$\mu$-measurable} and write $A \in \mathfrak{M}_F(\mu)$.\retTwo
 
 {\begin{myIndent}\hTwo
-   Before covering our next theorem, here are some properties of $S$ and $d$:\retTwo
-
    \ul{Some properties of $S$}:
    \begin{itemize}
       \item[(A)] $S(A, B) = S(B, A)$ and $S(A, A) = \emptyset$.
+      {\begin{myIndent}\hThree
+         Hopefully this is just obvious to you.\retTwo
+      \end{myIndent}}
+
       \item[(B)] $S(A, B) \subseteq S(A, C) \cup S(C, B)$.
       {\begin{myIndent}\hThree
          This is because $(A - B) \subseteq (A - C) \cup (C - B)$ and\\ $(B - A) \subseteq (C - A) \cup (B - C)$.
@@ -2459,14 +2461,262 @@ If $A$ is the union of countably many finitely $\mu$-measurable sets, we say tha
          {\centering{\fontsize{12}{14}\selectfont
          \begin{tabular}{l}
             $S(A_1 - A_2,\myHS B_1 - B_2) = S(A_1 \cap A_2^\comp,\myHS B_1 \cap B_2^\comp)$\\ $\phantom{S(A_1 - A_2,,)}\subseteq S(A_1, B_1) \cup S(A_2^\comp, B_2^\comp) = S(A_1, B_1) \cup S(A_2, B_2)$
+         \end{tabular}}\\ [22pt]\par}
+      \end{myIndent}}
+   \end{itemize}
+
+   \ul{Some properties of $d$}:\quad\quad {\exOne(Homework problem 5:2)}
+   \begin{itemize}
+      \item[(1)] $d(A, B) = d(B, A)$ and $d(A, A) = 0$.
+      {\begin{myIndent}\hThree
+         The first identity is true because $S(A, B) = S(B, A)$. So\\ $\mu^*(S(A, B)) = \mu^*(S(B, A))$.\retTwo
+
+         The second identity is true because $S(A, A) = \emptyset$ and $\emptyset \in \mathcal{E}$. So,\\ $d(A, A) = \mu^*(S(A, A)) = \mu^*(\emptyset) = \mu(\emptyset) = 0$.\retTwo
+      \end{myIndent}}
+
+      \item[(2)] $d(A, B) \leq d(A, C) + d(C, B)$
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Because $S(A, B) \subseteq S(A, C) \cup S(C, B)$ and $\mu^*$ is subadditive, we\\ have that:
+
+         {\center{\fontsize{12}{14}\selectfont
+         \begin{tabular}{l}
+            $d(A, B) = \mu^*(S(A, B)) \leq \mu^*(S(A, C) \cup S(C, B))$\\ $\phantom{d(A, B) = aa} \leq \mu^*(S(A,C)) + \mu^*(S(C, B)) = d(A, C) + d(C, B)$
          \end{tabular}}\retTwo\par}
       \end{myIndent}}
 
+      \item[(3)] $d(A_1 \cup A_2, B_1 \cup B_2) \leq d(A_1, B_1) + d(A_2, B_2)$\\ $d(A_1 \cap A_2, B_1 \cap B_2) \leq d(A_1, B_1) + d(A_2, B_2)$\\ $d(A_1 \mathop{-} A_2, B_1 \mathop{-} B_2) \leq d(A_1, B_1) + d(A_2, B_2)$
+      {\begin{myIndent}\hThree
+         The proof of these inequalities are identical to the proof of the\\ previous property. Just use the subadditivity of $\mu^*$ and the fact\\ that:
+         \begin{myIndent}
+            \begin{itemize}
+               \item[$\circ$] $S(A_1 \cup A_2,\myHS B_1 \cup B_2) \subseteq S(A_1, B_1) \cup S(A_2, B_2)$\\ [-16pt]
+               \item[$\circ$] $S(A_1 \cap A_2,\myHS B_1 \cap B_2) \subseteq S(A_1, B_1) \cup S(A_2, B_2)$\\ [-16pt]
+               \item[$\circ$] $S(A_1 \mathop{-} A_2,\myHS B_1 \mathop{-} B_2) \subseteq S(A_1, B_1) \cup S(A_2, B_2)$
+            \end{itemize}
+         \end{myIndent}
+      \end{myIndent}}
+
+      \newpage
+
+      {\centering {\exOne (Not part of homework problem 5:2)} \par}
+
+      \item[(4)] If either $\mu^*(A)$ or $\mu^*(B)$ is finite, then $|\mu^*(A) - \mu^*(B)| \leq d(A, B)$.
+      {\begin{myIndent}\hThree
+         Proof:\\
+         Suppose $0 \leq \mu^*(B) \leq \mu^*(A)$ where $\mu^*(B)$ is finite. Then\\ $\mu^*(A) = d(A, \emptyset) \leq d(A, B) + d(B, \emptyset) = d(A, B) + \mu^*(B)$.\\ So, because $\mu^*(B)$ is finite, we know that:
+         
+         {\centering $\mu^*(A) - \mu^*(B) = |\mu^*(A) - \mu^*(B)| \leq d(A, B)$\retTwo\par}
+         
+         Meanwhile, if $0 \leq \mu^*(A) \leq \mu^*(B)$ and $\mu^*(B)$ is still finite,\\ then note that $d(B, \emptyset) \leq d(B, A) + d(A, \emptyset)$. So, because\\ $d(B, A) = d(A, B)$, we have that:
+         
+         {\centering $\mu^*(B) - \mu^*(A) = |\mu^*(A) - \mu^*(B)| \leq d(A, B)$\retTwo\par}
+
+         So the identity is true if $\mu^*(B)$ is finite. Needless to say, the\\ same reasoning works for when $\mu^*(A)$ is finite.\\ [3pt]
+      \end{myIndent}}
    \end{itemize}
+
+   Now it is worth noting that $d$ isn't quite a metric on $\mathcal{P}(\mathbb{R}^p)$ since $d(A, B) = 0$\\ does not imply that $A = B$.
+   {\begin{myIndent}\hThree
+      To prove this, set $\mu = m$ and suppose that $A \in \mathcal{E}$ and $B = A \cup \{\mVec{p}\}$\\ where $\mVec{p} \in \mathbb{R}^p \setminus A$. Then $d(A, B) = m^*(S(A, B)) = m^*(\{\mVec{p}\}) = 0$.\retTwo
+   \end{myIndent}}
+
+   That said, if we define the equivalence relation: $A \sim B \Longleftrightarrow d(A, B) = 0$, then\\ the set $\mathcal{P}(\mathbb{R}^p)\slash_\sim$ of equivalence classes of $\sim$ is a metric space when equipped\\ with $d$. Then in that metric space, we can view $\mathfrak{M}_F(\mu)$ as the closure of $\mathcal{E}$.\retTwo\retTwo
+
+   \uuline{Theorem 11.10}: $\mathfrak{M}(\mu)$ is a $\sigma$-ring and $\mu^*$ is countably additive on $\mathfrak{M}(\mu)$.\\ [-6pt]
+   {\begin{myIndent}\hThree
+      Proof:
+
+      {\centering \ul{Part 1: Showing $\mathfrak{M}_F(\mu)$ is a ring and $\mu^*$ is additive on $\mathfrak{M}_F(\mu)$}\\[4pt]\par}
+
+      Suppose $A, B \in \mathfrak{M}_F(\mu)$. Then choose sequences $(A_n)$ and $(B_n)$ such\\ that each $A_n, B_n \in \mathcal{E}, \myHS A_n \rightarrow A$, and $B_n \rightarrow B$.\\ [-12pt]
+      
+      
+      \begin{tabular}{p{2in} p{3in}}
+         \raisebox{-6em}{\begin{tabular}{p{1.9in}}
+            Observe that:
+            \begin{itemize}
+               \item $A_n \cup B_n \rightarrow A \cup B$
+               \item $A_n \cap B_n \rightarrow A \cap B$
+               \item $A_n \mathop{-} B_n \rightarrow A \mathop{-} B$\newline\newline\newline\newline
+            \end{itemize}
+         \end{tabular}}
+         &
+         \hFour\raisebox{0em}{\begin{myClosureOne}{2.9}
+            \\ [-24pt]
+            To prove the first statement here, note that:
+            
+            {\centering 
+            \begin{tabular}{l}
+               $0 \leq d(A_n \cup B_n,\myHS A \cup B)$\\
+               $\phantom{aaaaaa} \leq d(A_n, A) + d(B_n, B) \rightarrow 0$
+            \end{tabular}\newline\par}
+   
+            Likewise, the other statements are proven\newline similarly.
+         \end{myClosureOne}}
+      \end{tabular}\\ [-54pt]
+
+      This proves that $A, B \in \mathfrak{M}_F(\mu) \Longrightarrow A \cup B, \myHS A \mathop{-} B \in \mathfrak{M}_F(\mu)$. So,\\ $\mathfrak{M}_F(\mu)$ is a ring.\retTwo
+      
+      \newpage
+
+      Also, since $d(A_n, A) \rightarrow 0$, we must have that $\mu^*(A)$ is finite. So,\\ $\mu^*(A_n) \rightarrow \mu^*(A)$ since $|\mu^*(A_n) - \mu^*(A)| \leq d(A_n, A)$. Similarly, we\\ know that $\mu^*(B_n) \rightarrow \mu^*(B), \myHS\mu^*(A_n \cup B_n) \rightarrow \mu^*(A \cup B)$ and etc.\retTwo
+
+     Thus, because $\mu(A_n) + \mu(B_n) = \mu(A_n \cup B_n) + \mu(A_n \cap B_n)$ for all $n$\\ (see page 41), we can conclude by letting $n \rightarrow \infty$ that:
+
+     {\centering $\mu^*(A) + \mu^*(B) = \mu^*(A \cup B) + \mu^*(A \cap B)$ \retTwo\par}
+
+      In turn, because $\mu^*(\emptyset) = \mu(\emptyset) = 0$, we can conclude that if $A \cap B = \emptyset$,\\ then $\mu^*(A) + \mu^*(B) = \mu^*(A \cup B)$. Hence, $\mu^*$ is additive on $\mathfrak{M}_F(\mu)$.\\ [8pt]
+
+      {\centering \ul{Part 2: Showing that $\mu^*$ is countably additive on $\mathfrak{M}(\mu)$}\\[7pt]\par}
+
+      Lemma 1: If $A = \bigcup\limits_{n=1}^\infty A_n \in \mathfrak{M}(\mu)$ with each $A_n \in \mathfrak{M}_F(\mu)$ and\\ [-14pt]\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaa} pairwise disjoint, then $\mu^*(A) = \sum\limits_{n=1}^\infty \mu^*(A_n)$\\ [-4pt]
+      
+      {\begin{myIndent}\fontsize{12}{14}\selectfont
+         Suppose $A \in \mathfrak{M}(\mu)$. Then, $A$ equals the union of a countable collection\\ $(A_n)$ of sets in $\mathfrak{M}_F(\mu)$. Without loss of generality, we can also assume\\ that $(A_n)$ is pairwise disjoint.
+   
+         {\begin{myIndent}\hFour\fontsize{11}{13}\selectfont
+            To see why this is, assume $A_n^\prime \in \mathfrak{M}_F(\mu)$ for all $n$ and $A = \bigcup\limits_{n=1}^\infty A^\prime_n$.\\ [-9pt] Then set $A_1 = A_1^\prime$ and $A_n = \bigcup\limits_{k=1}^n A_k^\prime - \bigcup\limits_{k=1}^{n-1} A_k^\prime$.\\
+   
+            Then, $(A_n)$ is pairwise disjoint, each $A_n \in \mathfrak{M}_F(\mu)$, and $A = \bigcup\limits_{n=1}^\infty A_n$.\\ [-2pt]
+         \end{myIndent}}
+   
+         By theorem 11.8.B, we know that $\mu^*(A) \leq \sum\limits_{n=1}^\infty \mu^*(A_n)$.\retTwo
+   
+         On the other hand, because $A \supset A_1 \cup \ldots \cup A_n$ for all $n \in \mathbb{N}$ and $\mu^*$ is\\ additive on $\mathfrak{M}_F(\mu)$, we have that for all $n$:
+   
+         {\centering $\mu^*(A) \geq \mu^*(A_1 \cup \ldots \cup A_n) = \mu^*(A_1) + \ldots + \mu^*(A_n)$.\retTwo\par}
+   
+         This means $\mu^*(A) \geq \sum\limits_{n=1}^\infty \mu^*(A_n)$. And so, the lemma is proved.\retTwo
+      \end{myIndent}}
+
+      Lemma 2: $A \in \mathfrak{M}(\mu)$ and $\mu^*(A) < \infty \Longrightarrow A \in \mathfrak{M}_F(\mu)$.\\ [-12pt]
+      
+      {\begin{myIndent}\fontsize{12}{14}\selectfont
+         Continue letting $(A_n)$ be a countable collection of disjoint sets in\\ $\mathfrak{M}_F(\mu)$ such that $A = \bigcup A_n$ and suppose $\mu^*(A)$ is finite. Then\\ define $B_n = A_1 \cup \ldots \cup B_n$ and note that:\\ [-10pt]
+   
+         {\centering $0 \leq d(A, B_n) = \mu^*(\hspace{-0.4em}\bigcup\limits_{i=n+1}^\infty\hspace{-0.5em} A_i) \leq \hspace{-0.4em}\sum\limits_{i=n+1}^\infty\hspace{-0.5em} \mu^*(A_i) \rightarrow 0$ as $n \rightarrow 0$. \retTwo\par}
+   
+         Because $B_n \rightarrow A$ and each $B_n \in \mathfrak{M}_F(\mu)$, we know that $A \in \mathfrak{M}_F(\mu)$.\retTwo
+      \end{myIndent}}
+
+      And now, it is clear that $\mu^*$ is countably additive on $\mathfrak{M}(\mu)$.\\ [-8pt]
+
+      {\begin{myIndent}\fontsize{12}{14}\selectfont
+         Suppose $A = \bigcup A_n$ where $(A_n)$ is a pairwise disjoint sequence of\\ sets in $\mathfrak{M}(\mu)$.
+         
+         \newpage
+         
+         If all $\mu^*(A_n)$ are finite, then each $A_n \in \mathfrak{M}_F(\mu)$ by lemma 2. So,\\ we know by lemma 1 that $\mu^*(A) = \sum\limits_{n=1}^\infty \mu^*(A_n)$.\retTwo
+
+         Meanwhile, if any $\mu^*(A_n)$ is infinite, then we trivially have that\\ $\sum\limits_{n=1}^\infty \mu^*(A_n) = \infty$ and that $\mu^*(A) = \infty$ because $A_n \subseteq A$.\\ [8pt]
+      \end{myIndent}}
+
+      {\centering \ul{Part 3: Showing that $\mathfrak{M}(\mu)$ is a $\sigma$-ring}\\[7pt]\par}
+
+      Suppose $A_n \in \mathfrak{M}(\mu)$ for all $n \in \mathbb{N}$. Then because the union of\\ countably many sets is still countable, we know that:
+
+      {\centering $\bigcup\limits_{n=1}^\infty A_n \in \mathfrak{M}(\mu)$ \retTwo\par}
+
+      Meanwhile, suppose that $A, B \in \mathfrak{M}(\mu)$ and that $(A_n)$ and $(B_n)$ are\\ collections of sets in $\mathfrak{M}_F(\mu)$ such that $A = \bigcup\limits_{n=1}^\infty A_n$ and $B = \bigcup\limits_{n=1}^\infty B_n$.\\ [1pt]
+
+      Since $A_n \cap B = \bigcup\limits_{i=1}^\infty (A_n \cap B_i)$, we  know that $A_n \cap B \in \mathfrak{M}(\mu)$ for all $n$.\retTwo
+      
+      Furthermore, since $A_n \cap B \subseteq A_n$ and $\mu^*(A_n)$ is finite because\\ $A_n \in \mathfrak{M}_F(\mu)$ (we showed this in part 1 of the proof), we know\\ that $\mu^*(A_n \cap B)$ is finite. Hence, $A_n \cap B \in \mathfrak{M}_F(\mu)$.\retTwo
+
+      It follows that $A - B \in \mathfrak{M}_\mu$ because $A - B = \bigcup\limits_{n=1}^\infty(A_n - B)$. $\blacksquare$\retTwo
+   \end{myIndent}}
+\end{myIndent}}
+
+The significance of this theorem is that given any additive, regular, and finite\\ set function $\mu$ defined on $\mathcal{E}$, we know that it's outer measure is a countably\\ additive set function on the $\sigma$-ring: $\mathfrak{M}(\mu)$.\retTwo
+
+More succinctly, we can (and will) just refer to $\mu^*$ as $\mu$ since $\mu^*$ essentially\\ extends the definition of $\mu$ from $\mathcal{E}$ to all of $\mathfrak{M}(\mu)$. This extended set function is\\ called a \udefine{measure}. And when $\mu = m$, then this extended function\\ is  called the \udefine{Lebesgue measure} on $\mathbb{R}^p$.\retTwo
+
+\exOne
+\mySepTwo
+
+Homework 5.3: A $\sigma$-ring $\mathcal{R}$ of subsets of a set $X$ is either finite or has\\ uncountably many elements.
+
+{\begin{myIndent}\exTwo
+   If $X$ is finite, than the largest possible set of subsets of $X$ is also finite. So, we\\ can assume that $X$ is infinite.
+
+   
    \newpage
 
-   \uuline{Theorem 11.10}: $\mathfrak{M}(\mu)$ is a $\sigma$-ring and $\mu^*$ is countably additive on $\mathfrak{M}(\mu)$.
+   Now, assume that $\mathcal{R}$ is countably infinite, meaning that $\mathcal{R} = \{A_1, A_2, \ldots\}$.\\ Then for all $x \in X$, we can say that $B_x = \hspace{-0.2em}\bigcap\limits_{x \in A_i}\hspace{-0.2em}A_i \in \mathcal{R}$. In turn, this means\\ [-8pt] that $\forall x, y \in X$, $\myHS B_x \cap B_y \in \mathcal{R}$.\retTwo
+   
+   Suppose $z \in B_x \cap B_y$. Then $B_z \subseteq B_x \cap B_y$. Also, we can prove by\\ contradiction that $x, y \in B_Z$.
+   {\begin{myIndent}\exP
+      If $x \notin B_z$, then $x \in B_x - B_z$ and $z \in B_x \subseteq (B_x - B_z) \not\ni z$.\\ The same thing happens if $y \notin B_z$.\retTwo
+   \end{myIndent}}
+
+   Therefore, we would have that $B_x, B_y \subseteq B_z$. And so, $B_x = B_z = B_y$.\retTwo
+
+   Finally, let $\mathcal{F} = \{B_x \mid x \in X\}$. Since $\mathcal{F}$ is a subset of $\mathcal{R}$, we know that $\mathcal{F}$\\ can't be uncountable. Meanwhile, we also can't have that $\mathcal{F}$ is finite. This is\\ because for any $A \in \mathcal{R}$, we know that $B_x \subseteq A$ for all $x \in A$ and $A = \bigcup\limits_{x \in A}B_x$.\\ [-8pt] So if $\mathcal{F}$ is finite, then there can only be finitely many $A$ in $\mathcal{R}$.\retTwo
+
+   Thirdly, $\mathcal{F}$ can't be countable. To see why, assume $\mathcal{F} = \{B_{x_1}, B_{x_2}, \ldots\}$.\\ Then for any $S \subseteq \mathbb{N}$, we have that $\bigcup\limits_{i\in S}B_{x_i} \in \mathcal{R}$.\retTwo
+   
+   But also, because $\mathcal{F}$ is pairwise disjoint, if $S \neq T \subseteq \mathbb{N}$, then $\bigcup\limits_{i\in S}B_{x_i}  \neq \bigcup\limits_{i\in T}B_{x_i}$.\\ [-8pt] Hence, there is an injective map from $\mathcal{P}(\mathbb{N})$ to $\mathcal{R}$.\retTwo
+   
+   So, we've shown a contradiction if $\mathcal{R}$ is countable.\retTwo
 \end{myIndent}}
+
+\mySepTwo
+
+Let $\mathcal{E}$ be the family of elementary subsets of $\mathbb{R}$ and denote $m: \mathcal{E} \rightarrow [0, \infty)$\\ the Lebesgue set function and by $\mu^*(A)$ the outer measure of a set $A \subseteq \mathbb{R}$.  \\Also, for a scalar $t \in \mathbb{R}$, let the set $A + t = \{x + t \mid x \in A\}$.
+
+\begin{enumerate}
+   \item If $A \in \mathcal{E}$, then $m(A + t) = m(A)$ for all $t \in \mathbb{R}$.
+   {\begin{myIndent}\exTwo
+      If $A \in \mathcal{E}$, then there exists disjoint intervals $I_1, I_2, \ldots, I_n$ such that\\ $A = I_1 \cup I_2 \cup \ldots \cup I_n$. Then, $m(A) = m(I_1) + m(I_2) + \ldots + m(I_n)$.\retTwo
+
+      Now note that $A + t = (I_1 + t) \cup (I_2 + t) \cup \ldots \cup (I_n + t)$. Also,\\ $(I_i + t) \cap (I_j + t) = \emptyset$ for all $i \neq j$, meaning that:
+      
+      {\centering $m(A + t) = m(I_1 + t) + m(I_2 + t) + \ldots + m(I_n + t)$.\retTwo\par} 
+
+      But clearly, $m(I_i + t) = m(I_i)$ for all $1 \leq i \leq n$. So, we conclude that\\ $m(A) = m(A + t)$.\retTwo
+   \end{myIndent}}
+
+   \item If $A \in \mathbb{R}$, then $\mu^*(A + t) = \mu^*(A)$ for all $t \in \mathbb{R}$.
+   {\begin{myIndent}\exTwo
+      Let $\varepsilon > 0$. Then by the definition of $\mu^*(A)$, there exists a sequence\\ $(A_n)$ of open sets from $\mathcal{E}$ such that:
+      
+      {\centering$A \subseteq \bigcup\limits_{n=1}^\infty A_n$ and $\mu^*(A) \leq \sum\limits_{n=1}^\infty m(A_n) \leq \mu^*(A) + \varepsilon$.\par}
+      
+      \newpage
+
+      Importantly, $(A_n + t)$ is also an open cover of $A + t$. So, we know\\ that:\\ [-20pt]
+      
+      {\centering $\mu^*(A + t) \leq \sum\limits_{n=1}^\infty m(A_n + t) = \sum\limits_{n=1}^\infty m(A_n) \leq \mu^*(A) + \varepsilon$\retTwo\par}
+
+      Meanwhile, by the definition of $\mu^*(A + t)$ there exists a sequence\\ $(B_n)$ of open sets from $\mathcal{E}$ such that:
+
+      {\centering$(A + t) \subseteq \bigcup\limits_{n=1}^\infty B_n$ and $\mu^*(A + t) \leq \sum\limits_{n=1}^\infty m(B_n) \leq \mu^*(A + t) + \varepsilon$.\retTwo\par}
+
+      Then as $(B_n + (-t))$ is also an open cover of $A$, we have that:
+
+      {\centering $\mu^*(A) \leq \sum\limits_{n=1}^\infty m(B_n + (-t)) = \sum\limits_{n=1}^\infty m(B_n) \leq \mu^*(A + t) + \varepsilon$\retTwo\par}
+
+      And as $\varepsilon$ was arbitrary, we're now done.\retTwo
+   \end{myIndent}}
+\end{enumerate}
+
+\mySepTwo\hOne
+
+Some notes:\\ [-18pt]
+\begin{itemize}
+   \item[(a)] Every open set in $\mathbb{R}^p$ is the union of a countable collection of open intervals\\ (look at exercise 3.23 which we did for homework in math 140A). Thus if $A$\\ is open, then $A \in \mathfrak{M}(\mu)$.\retTwo
+   
+   By taking complements, we also get that every closed set is in $\mathfrak{M}(\mu)$. This\\ is because if $A$ is closed, then $A = \mathbb{R}^k - A^\comp \in \mathfrak{M}(\mu)$.\retTwo
+
+   \item[(b)] If $A \in \mathfrak{M}(\mu)$ and $\varepsilon > 0$, then there exists a closed set $F$ and open set $G$\\ such that $F \subseteq A \subseteq G$, $\myHS\mu(G - A) < \varepsilon$, and $\mu(A - F) < \varepsilon$.
+   
+   \begin{myIndent}\hTwo
+      The existence of $G$ satisfying this claim is immediate from our definition\\ of $\mu = \mu^*$
+   \end{myIndent}
+
+\end{itemize}
+
 
 \end{document}
 
