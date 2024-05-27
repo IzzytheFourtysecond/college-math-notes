@@ -2791,10 +2791,54 @@ Let $X$ be a set. We call $X$ a \udefine{measure space} if there exists a $\sigm
 
    {\centering $\int_{E_m} f^-d\mu = -\int_{E_m} fd\mu \leq -\frac{1}{n}\mu(E_m) < 0$\retTwo\par}
 
-   So, we conclude that if $\int_A fd\mu = 0$ for every measurable subset $A$ of a\\ measurable set $E$, then we must have that $\mu(\mathcal{A} \cup \mathcal{B}) = 0$.
+   So, we conclude that if $\int_A fd\mu = 0$ for every measurable subset $A$ of a\\ measurable set $E$, then we must have that $\mu(\mathcal{A} \cup \mathcal{B}) = 0$.\retTwo
+\end{myIndent}}
 
+\mySepTwo
 
+\newpage
+
+\textbf{Exercise 11.3}: If $(f_n)$ is a sequence of measurable functions, then the set of\\ points $x$ such that $(f_n(x))$ converges is measurable.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Let $S$ equal the set of points $x$ such that $(f_n(x))$ converges. Then note that\\ by the Cauchy criterion, if $x \in S$, then for any $\varepsilon > 0$ there must exist $N$ such\\ that $\forall n, m\geq N,\myHS |f_n(x) - f_m(x)| < \varepsilon$. Or in other words:
+
+   {\centering $S = \bigcap\limits_{\varepsilon \in \mathbb{R}_+}\bigcup\limits_{N=1}^\infty\left(\bigcap\limits_{n=N}^\infty \bigcap\limits_{n=N}^\infty \left\{t \mid |f_n(t) - f_m(t)| < \varepsilon \right\}\right)$ \retTwo\par}
+
+   Then since for any $\varepsilon > 0$ there exists $M$ such that $0 < \frac{1}{M} < \varepsilon$, we can say\\ that:
+
+   {\centering $S = \bigcap\limits_{M=1}^\infty\left(\bigcup\limits_{N=1}^\infty\left(\bigcap\limits_{n=N}^\infty \bigcap\limits_{n=N}^\infty \left\{t \mid |f_n(t) - f_m(t)| < \frac{1}{M} \right\}\right)\right)$ \retTwo\par}
+
+   And thus $S$ is measurable since $\mathfrak{M}$ is a $\sigma$-ring.
    \retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\textbf{Exercise 11.5}: Put $g(x) = \left\{
+\begin{matrix}
+   0 & (0 \leq x \leq \frac{1}{2}) \\ 1 & (\frac{1}{2} \leq x \leq 1)
+\end{matrix}\right.$ and $f_{2k}(x) = g(x)$\\ [2pt] and $f_{2k + 1}(x) = g(1-x)$ for all $0 \leq x \leq 1$. Then $\liminf\limits_{n\rightarrow \infty} f_n(x) = 0$\\ for all $0 \leq x \leq 1$ but $\int_0^1 f_n(x)dx = \frac{1}{2}$ for all $n \in \mathbb{N}$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   For $0 \leq x \leq \sfrac{1}{2},\myHS f_{2k}(x) = 0$ for all $k \in \mathbb{N}$. And as $f_n \geq 0$ for all $n$, we thus\\ have that $\liminf\limits_{n\rightarrow \infty} f_n(x) = \lim\limits_{k \rightarrow \infty} f_{2k}(x) = 0$.\retTwo
+
+   Similarly, for $\sfrac{1}{2} \leq x \leq 1,\myHS f_{2k+1}(x) = 0$ for all $k \in \mathbb{N}$. So similarly,\\ $\liminf\limits_{n\rightarrow \infty} f_n(x) = \lim\limits_{k \rightarrow \infty} f_{2k+1}(x) = 0$.\retTwo
+
+   That said, the fact that $\int_0^1 f_n(x)dx = \frac{1}{2}$ for every $n$ is obvious since each $f_n$ is a simple function.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\textbf{Exercise 11.6}: Let $f_n(x) = \left\{
+\begin{matrix}
+   \frac{1}{n} & (|x| \leq n) \\ 0 & (|x| > n)
+\end{matrix}\right.$\\ Then $f_n(x) \rightarrow 0$ uniformly on $\mathbb{R}$ but $\int_{-\infty}^{\infty} f_ndx = 2$ for all $n \in \mathbb{N}$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   (ngl what the heck is the question here?)\retTwo
+
+   The fact that $f_n(x) \rightarrow 0$ uniformly on $\mathbb{R}$ is obvious. Also, each $f_n$ is a simple\\ function. So $\int_{-\infty}^{\infty} f_ndx = 2$ trivially as well.
 \end{myIndent}}
 
 \end{document}
