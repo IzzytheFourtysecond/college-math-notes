@@ -2712,11 +2712,90 @@ Some notes:\\ [-18pt]
    \item[(b)] If $A \in \mathfrak{M}(\mu)$ and $\varepsilon > 0$, then there exists a closed set $F$ and open set $G$\\ such that $F \subseteq A \subseteq G$, $\myHS\mu(G - A) < \varepsilon$, and $\mu(A - F) < \varepsilon$.
    
    \begin{myIndent}\hTwo
-      The existence of $G$ satisfying this claim is immediate from our definition\\ of $\mu = \mu^*$
+      The existence of $G$ satisfying this claim is immediate from our \\definition of $\mu = \mu^*$.
+      {\begin{myIndent}\hThree
+         Let $\varepsilon > 0$. Then we know there exists an open cover of interval $(E_n)$\\ such that $A \subseteq \bigcup\limits_{n=1}^\infty E_n$ and $\sum\limits_{n=1}^\infty \mu(E_n) < \mu(A) + \varepsilon$.\retTwo
+
+         Now, letting $G = \bigcup\limits_{n=1}^\infty E_n$, we know by theorem 11.8.B that\\ [-6pt] $\mu(G) \leq \sum\limits_{n=1}^\infty \mu(E_n) < \mu(A) + \varepsilon$. Also, $G$ is open. So since\\ [1pt] $G, A \in \mathfrak{M}(\mu)$, we can say that:
+         
+         {\centering $\mu(A) + \mu(G - A) = \mu(G) < \mu(A) + \varepsilon$.\par}
+      \end{myIndent}}
+
+      \newpage
+
+      Meanwhile, to get $F$ just take complements of the previous arguement\\ and note that $F^\comp - A^\comp = A - F$.\retTwo
    \end{myIndent}
 
+   \item[(c)] $E$ is a \udefine{Borel set} if $E$ can be obtained by a countable number of operations\\ (unions, intersects, and complements) starting from open sets. The\\ collection $\mathcal{B}$ of all Borel sets in $\mathbb{R}^p$ is a $\sigma$-ring.
+   
+   \begin{myIndent}\hTwo
+      Remarks:\\ [-20pt]
+      \begin{enumerate}
+         \item $\mathcal{B}$ is the smallest $\sigma$-ring which contains all open sets in $\mathbb{R}^p$.
+         \item If $E \in \mathcal{B}$, then $E \in \mathfrak{M}(\mu)$ no matter what $\mu$ is by note (a).\retTwo
+      \end{enumerate}
+   \end{myIndent}
+
+   \item[(d)] If $A \in \mathfrak{M}(\mu)$, then there exist Borel sets $F$ and $G$ such that $F \subseteq A \subseteq G$\\ and $\mu(G - A) = \mu(A - F) = 0$.
+   
+   \begin{myIndent}\hTwo
+      This follows from note (b) if we take $\varepsilon = \sfrac{1}{n}$ and then take the limit\\ as $n \rightarrow \infty$.\retTwo
+   \end{myIndent}
+
+   Then as $A = F \cup (A - F)$, we also know that every set is the union of a\\ Borel set and a set of measure zero.\retTwo
+
+   \item[(e)] The sets of measure zero form a $\sigma$-ring.
+   
+   \item[(f)] In the case of the Lebesgue measure, every countable set has measure\\ zero. But, there are also uncountable sets of measure zero (for example,\\ the Cantor set).
 \end{itemize}
 
+\mySepTwo
+
+\markLecture{5/9/2024}
+
+Let $X$ be a set. We call $X$ a \udefine{measure space} if there exists a $\sigma$-ring $\mathfrak{M}$ of\\ subsets (called \udefine{measurable sets}) of $X$ and a nonnegative countably additive\\ set function $\mu$ (called a \udefine{measure}) defined on $\mathfrak{M}$. If additionally $X \in \mathfrak{M}$, then\\ $X$ is called a \udefine{measurable space}.\retTwo
+
+\newpage
+
+\exOne
+\mySepTwo
+
+\textbf{Exercise 11.1}: If $f \geq 0$ and $\int_E fd\mu = 0$, then $f(x) = 0$ almost everywhere on $E$.\\ [-8pt]
+
+{\begin{myIndent}\exTwo
+   For each $n \in \mathbb{N}$, define $E_n = \{x \mid f(x) > \frac{1}{n}\} \cap E$. Then set $A = \bigcup E_n$.\\ Since $E_n \subseteq A$ for every $n$, we automatically have that $\mu(E_n) \leq \mu(A)$. So,\\ $\mu(A) = 0 \Longrightarrow \mu(E_n) = 0$ for all $n$.\\ [-6pt]
+
+   Meanwhile, set $F_n = E_n - \bigcup\limits_{k=1}^{n-1} E_k$ for all $n$.\\ [-2pt] 
+   
+   Since $F_n \subseteq E_n$, we have that $\mu(F_n) \leq \mu(E_n)$. So, $\mu(E_n) = 0 \Longrightarrow \mu(F_n) = 0$.\\ Also $\bigcup F_n$ = $\bigcup E_n = A$ and $(F_n)$ is a pairwise disjoint sequence of sets. So,\\ $\mu(A) = \sum \mu(F_n)$. In turn, if $\mu(E_n) = 0$ for all $n$, then $\mu(A) = 0$.\retTwo
+
+   Finally, note that $A = \{x \mid f(x) > 0\}$. Also, if $\mu(A) > 0$, then from the\\ prior reasoning we know there exists $N$ such that $\mu(E_N) > 0$. Then as\\ $E_N \subseteq A \subseteq E$, we have that:
+
+   {\centering $\int_E fd\mu \geq \int_{E_N} fd\mu \geq \frac{1}{N}\mu(E_n) > 0$ \retTwo\par}
+
+   So, we conclude that $\int_E fd\mu = 0 \Longrightarrow \mu(A) = 0$.\retTwo
+\end{myIndent}}
+
+\textbf{Exercise 11.2}: If $\int_A fd\mu = 0$ for every measurable subset $A$ of a measurable set\\ $E$, then $f(x) = 0$ almost everywhere on $E$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Set $\mathcal{A} = \{x \mid f^+(x) > 0\}$ and $\mathcal{B} = \{x \mid f^-(x) > 0\}$. Then as $f^+$ and $f^-$\\ are measurable, we know that $\mathcal{A}$ and $\mathcal{B}$ are measurable. Also, $\mathcal{A} \cap \mathcal{B} = \emptyset$.\\ Hence, $\mu(\mathcal{A}) + \mu(\mathcal{B}) = \mu(\mathcal{A} \cup \mathcal{B})$ where $\mathcal{A} \cup \mathcal{B} = \{x \mid f(x) \neq 0\}$.\retTwo
+
+   Now assume $\mu(\mathcal{A} \cup \mathcal{B}) > 0$. Then we know that at least one of $\mu(\mathcal{A})$ or\\ $\mu(\mathcal{B})$ is greater than $0$.\retTwo
+   
+   Consider when $\mu(\mathcal{A}) > 0$. By the previous exercise, there exists some\\ set $E_n = \{x \mid f^+(x) > \frac{1}{n}\}$ such that $\mu(E_n) > 0$. Then $E_n \subseteq E$ and:
+
+   {\centering $\int_{E_n} f^+d\mu = \int_{E_n} fd\mu \geq \frac{1}{n}\mu(E_n) > 0$\retTwo\par}
+
+   Similarly, when $\mu(\mathcal{B}) > 0$, then there exists some $E_m = \{x \mid f^-(x) > \frac{1}{m}\}$\\ such that $\mu(E_m) > 0$. Then $E_m \subseteq E$ and:
+
+   {\centering $\int_{E_m} f^-d\mu = -\int_{E_m} fd\mu \leq -\frac{1}{n}\mu(E_m) < 0$\retTwo\par}
+
+   So, we conclude that if $\int_A fd\mu = 0$ for every measurable subset $A$ of a\\ measurable set $E$, then we must have that $\mu(\mathcal{A} \cup \mathcal{B}) = 0$.
+
+
+   \retTwo
+\end{myIndent}}
 
 \end{document}
 
