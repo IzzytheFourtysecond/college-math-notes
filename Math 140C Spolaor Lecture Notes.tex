@@ -2406,7 +2406,7 @@ Also, given any sequence $(A_n)$ of sets, we write $A_n \rightarrow A$ if $\lim\
 
 If there is a sequence $(A_n)$ of elementary sets such that $A_n \rightarrow A$, then we say $A$\\ is \udefine{finitely $\mu$-measurable} and write $A \in \mathfrak{M}_F(\mu)$.\retTwo 
 
-If $A$ is the union of countably many finitely $\mu$-measurable sets, we say that $A$ is\\ \udefine{$\mu$-measurable} and write $A \in \mathfrak{M}_F(\mu)$.\retTwo
+If $A$ is the union of countably many finitely $\mu$-measurable sets, we say that $A$ is\\ \udefine{$\mu$-measurable} and write $A \in \mathfrak{M}(\mu)$.\retTwo
 
 {\begin{myIndent}\hTwo
    \ul{Some properties of $S$}:
@@ -2838,8 +2838,168 @@ Let $X$ be a set. We call $X$ a \udefine{measure space} if there exists a $\sigm
 {\begin{myIndent}\exTwo
    (ngl what the heck is the question here?)\retTwo
 
-   The fact that $f_n(x) \rightarrow 0$ uniformly on $\mathbb{R}$ is obvious. Also, each $f_n$ is a simple\\ function. So $\int_{-\infty}^{\infty} f_ndx = 2$ trivially as well.
+   The fact that $f_n(x) \rightarrow 0$ uniformly on $\mathbb{R}$ is obvious. Also, each $f_n$ is a simple\\ [2pt] function. So $\int_{-\infty}^{\infty} f_ndx = 2$ trivially as well.
 \end{myIndent}}
+
+\newpage
+
+\mySepTwo
+
+\textbf{Exercise 11.8}: If $f \in \mathscr{R}$ on $[a, b]$ and $F(x) = \int_a^x f(t)dt$, then $F^\prime(x) = f(x)$\\ almost everywhere on $[a, b]$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   In theorem 11.33, we showed that if $f \in \mathscr{R}$, then $f$ is continuous almost\\ everywhere on $[a, b]$. Additionally, by theorem 6.20 (proposition 108 in math\\ 140B notes), we know that if $f$ is continuous at $x_0$, $F$ is differentiable at $x_0$\\ with $F^\prime(x_0) = f(x_0)$. Hence $F^\prime(x) = f(x)$ almost everywhere on $[a, b]$.\retTwo
+\end{myIndent}}
+
+\textbf{Exercise 11.9}: If $f \in \mathscr{L}$ on $[a, b]$ and $F(x) = \int_a^x fdt$, then $F$ is continuous\\ on $[a, b]$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   %By theorem 11.26, we know that $|f| \in \mathscr{L}$ on $[a, b]$.\\
+   For any $x \in [a, b]$, define $K_x(t) = \left\{
+   \begin{matrix}
+      1 & (a \leq t \leq x) \\ 0 & (x < t \leq b)
+   \end{matrix}\right.$\retTwo
+   
+   Then clearly, $|K_x(t) \cdot f(t)| \leq |f(t)|$ for all $x, t \in [a, b]$. Plus, $|f| \in \mathscr{L}$ on\\ $[a, b]$ and $K_x f$ is measurable for all $x$. So, consider any sequence $(x_n)$ of points\\ in $[a, b]$ converging to some $x \in [a, b]$. Then as $fK_{x_n} \rightarrow fK_x$ as $n \rightarrow \infty$, we\\ have by Lebesgue's dominated convergence theorem that: 
+   
+   {\centering$\int_a^b fK_{x_n}dt \rightarrow \int_a^b fK_xdt$ as $n \rightarrow \infty$.\retTwo\par}
+
+   But note that $\int_a^b fK_{x_n}dt = \int_a^{x_n}fdt = F(x_n)$ and $\int_a^b fK_xdt = \int_a^x fdt = F(x)$.\\ [2pt] Thus, since $(x_n)$ is arbitrary, we can conclude that $\lim\limits_{s\rightarrow x}F(s) = F(x)$.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\textbf{Exercise 11.10}: If $\mu(X) < +\infty$ and $f \in \mathscr{L}^2(\mu)$ on $X$, then $f \in \mathscr{L}(\mu)$ on $X$.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Let $A = \{x \mid |f(x)|^2 \geq 1\}$ and $B = \{x \mid |f(x)|^2 < 1\}$.  Then importantly\\[2pt] $A \cup B = X$ but $A \cap B = \emptyset$.\retTwo
+
+   Now $|f(x)| \leq |f(x)|^2$ for all $x \in A$. Therefore $\int_A |f|d\mu \leq \int_A |f|^2d\mu < +\infty$.\\[2pt] Meanwhile, $\int_B |f|d\mu \leq 1 \cdot \mu(B) < +\infty$. Hence, we can conclude that\\[2pt] $\int_X|f|d\mu = \int_A|f|d\mu + \int_B|f|d\mu$ is finite.
+   \retTwo
+\end{myIndent}}
+
+That said, if $\mu(X) = +\infty$, then we can have that $f \in \mathscr{L}^2(\mu)$ on $X$ but $f \notin \mathscr{L}(\mu)$\\ on $X$. For example, consider $f(x) = \frac{1}{1 + |x|}$ on $\mathbb{R}$ using the Lebesgue measure.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Let $s(x) = \frac{1}{2^n}$ when $x \in \left[\left(\sum\limits_{i=1}^n 2^{i-1}\right) - 2^{n-1}, \myHS \sum\limits_{i=1}^n 2^{i-1}\right]$ for all $n \in \mathbb{N}$.
+
+   \newpage
+
+   Then for any $N \in \mathbb{N}$, if $b = \sum\limits_{i=1}^N 2^{i-1}$, we have that $N = \int_0^b sdx \leq \int_0^b fdx$\\ [-7pt] because $s \leq f$.\\ [2pt]
+
+   Now crucially, $N \in \mathbb{N}$ was arbitrary. And since $f(x)$ is nonnegative, we know\\ that $\int_{-\infty}^{\infty} fdx \geq \int_0^b fdx$. So, $\int_{-\infty}^{\infty}fdx = +\infty$, meaning $|f| = f \notin \mathscr{L}$ on $\mathbb{R}$.\retTwo
+
+   Meanwhile, note that $|f(x)|^2 = \frac{1}{1 + 2|x| + x^2} \leq S(x)$ where $S$ is the simple\\ function defined by:
+   
+   {\centering $S(x) = \left\{
+   \begin{matrix}
+      \frac{1}{\lceil x \rceil^{2\vphantom{|}}} & (x \geq 0) \\ \frac{1}{\lfloor x \rfloor^{2\vphantom{|}}} & (x < 0)
+   \end{matrix}\right.$\retTwo\par}
+
+   So, $\int_{-\infty}^\infty |f|^2dx \leq \int_{-\infty}^\infty Sdx = 2\cdot \sum\limits_{n=0}^\infty \frac{1}{2^n} < +\infty$. Hence, $|f|^2 \in \mathscr{L}^2$.
+   \retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\textbf{Exercise 11.11}: If $f, g \in \mathscr{L}(\mu)$ on $X$, then let $d(f, g) = \int_X |f-g|d\mu$. Then if\\ we say $f \sim g$ when $d(f, g) = 0$, we can call ${\mathscr{L}(\mu)}/_\sim$ a metric space when\\ equipped with $d$.\\ [-11pt]
+
+{\begin{myIndent}\exTwo
+   \begin{itemize}
+      \item $d(f, g) = \int_X |f-g|d\mu = \int_X |g-f|d\mu = d(g, f)$.
+      \item
+         $d(f, h) = \int_X |f - h|d\mu \leq \int_X (|f-g| + |g-h|)d\mu$\\ [3pt]
+         $\phantom{aaaaaaaaaaaaaaa} = \int_X |f-g|d\mu + \int_X |g-h|d\mu = d(f, g) + d(g, h)$.\retTwo
+   \end{itemize}
+\end{myIndent}}
+
+We claim $\mathscr{L}(\mu)/_\sim$ is a complete metric space, meaning that if $(f_n)$ is a Cauchy\\ sequence, there exists a function $f \in \mathscr{L}(\mu)$ which $(f_n)$ converges to almost\\ everywhere.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Proof:\\
+   Let $(f_n)$ be a Cauchy sequence in $\mathscr{L}(\mu)$. Then pick a subsequence $(n_k)$ of $\mathbb{N}$\\ such that $d(f_{n_k}, f_{n_{k+1}}) = \int_X |f_{n_k} - f_{n_{k+1}}|d\mu < \frac{1}{2^k}$.\retTwo
+
+   Thus, $\sum\limits_{k=1}^\infty \int_X|f_{n_k} - f_{n_{k+1}}|d\mu \leq 1$. And by theorem 11.30, this is equivalent to\\ [-7pt] saying that $\int_X \sum\limits_{k=1}^\infty|f_{n_k} - f_{n_{k+1}}|d\mu \leq 1$.\retTwo
+
+   Now, since $\sum\limits_{k=1}^\infty |f_{n_k}(x) - f_{n_{k+1}}(x)|d\mu$ is non-negative, we know that\\ [-8pt] $\sum\limits_{k=1}^\infty |f_{n_k}(x) - f_{n_{k+1}}(x)|d\mu$ must be finite almost everywhere on $X$.\retTwo
+
+   This shows that $\sum\limits_{k=1}^\infty \left(f_{n_{k+1}}(x) - f_{n_{1}}(x)\right)$ exists almost everywhere on $X$.
+
+   \newpage
+
+   At the same time, note that $\sum\limits_{k=1}^K f_{n_k} = f_{n_{K+1}}(x) - f_{n_1}(x)$. So:\\ [-10pt]
+   
+   {\centering$\lim\limits_{k\rightarrow 0}f_{n_k}(x) = \sum\limits_{k=1}^\infty \left(f_{n_{k+1}}(x) - f_{n_{1}}(x)\right) + f_{n_1}(x)$ exists almost everywhere on $X$.\retTwo\par}
+
+   Let us define $f(x) = \lim\limits_{k\rightarrow 0}f_{n_k}(x)$ whenever that limit exists. As for when that\\ limit doesn't exist, just assign whatever value you want.\retTwo
+
+   Next, let $\varepsilon > 0$ and pick $N$ such that $\forall n, m \geq N, \myHS \int_X |f_n - f_m|d\mu \leq \varepsilon$. Then\\ if $n_k \geq N$, we have by Fatou's theorem that:
+   
+   {\centering $\varepsilon \geq \liminf\limits_{i\rightarrow \infty} \int_X |f_{n_i} - f_{n_k}|d\mu \geq \int_X \left(\liminf\limits_{i\rightarrow \infty} |f_{n_i} - f_{n_k}|\right)d\mu = \int_X |f - f_{n_k}|d\mu$ \retTwo\par} 
+
+   Thus $(f - f_{n_k}) \in \mathscr{L}(\mu)$ on $X$, which in turn means $f = (f - f_{n_k}) + f_{n_k} \in \mathscr{L}(\mu)$\\ on $X$.\retTwo
+
+   Also, since $f_{n_k} \rightarrow f$ as $k \rightarrow \infty$ and $(f_n)$ is Cauchy, we can say that $f_n \rightarrow f$\\ because $d(f, f_n) \leq d(f, f_{n_k}) + d(f_{n_k} - f_n)$.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\textbf{Exercise 11.12}: Suppose that\\ [-20pt]
+\begin{itemize}
+   \item[(a)] $|f(x, y)| \leq 1$ if $x, y \in [0, 1]$,\\ [-20pt]
+   \item[(b)] if $x$ is fixed, $f(x, y)$ is a continuous function of $y$,\\ [-20pt]
+   \item[(c)] if $y$ is fixed, $f(x, y)$ is a continuous function of $x$. 
+\end{itemize}
+
+Put $g(x) = \int_{0}^{1}f(x,y)dy$ for all $x \in [0, 1]$. Then $g$ is continuous.\\ [-6pt]
+
+{\begin{myIndent}\exTwo
+   Given any $x \in [0, 1]$, consider any sequence $(x_n)$ in $[0, 1]$ converging to $x$.\\ By assumption (b) we know that each $f_{x_n}(y) \coloneq f(x_n, y) \in \mathscr{L}$ on $[0, 1]$. Also,\\ by assumption (c) we know that $(f_{x_n}(y))$ converges to $f(x, y)$ for all $y \in [0, 1]$.\\ Hence, we have that $f_{x_n} \rightarrow f_x$ pointwise where $f_x(y) = f(x, y)$.\retTwo
+
+   Finally, by assumption (a) we can apply Lebesgue's dominated convergence\\ theorem to get that as $n \rightarrow \infty$:
+
+   {\centering $g(x_n) = \int_{0}^1 f(x_n, y)dy = \int_{0}^1 f_{x_n}dy \rightarrow \int_0^1 f_xdy = \int_0^1 f(x, y)dy = g(x)$ \retTwo\par}
+
+   So, $\lim\limits_{t\rightarrow x}g(t) = g(x)$.\retTwo
+\end{myIndent}}
+
+\mySepTwo
+
+\newpage
+
+\textbf{(Homework 7 Problem 1)}\\ [-18pt]
+\begin{itemize}
+   \item If $\alpha \geq 0$, then $f(x) \coloneq x^\alpha \in \mathscr{L}$ on $(0, 1)$.\\ [-14pt]
+   
+   {\begin{myIndent}\exTwo
+      To see why, first note that $f$ is measurable since $f$ is continuous. Also,\\ $0 \leq f(x) \leq 1$ for all $x \in (0, 1)$. So, $\int_0^1 fdx$ is bounded above by $1$ and\\ thus $f \in \mathscr{L}$.\retTwo
+   \end{myIndent}}
+
+   \item If $\alpha \leq -1$, then $f(x) \coloneq x^\alpha \notin \mathscr{L}$ on $(0, 1)$.\\ [-14pt]
+   
+   {\begin{myIndent}\exTwo
+      To see this, first note that $x^\alpha \geq x^{-1} = \frac{1}{x}$. Then, using a similar argument\\ to that of the second part of exercise 11.11, we can show that $\int_0^1 \frac{1}{x}dx \geq n$\\ for all $n \in \mathbb{N}$. Hence, $\int_0^1 x^\alpha dx = +\infty$ and thus $x^\alpha \notin \mathscr{L}$.
+      \retTwo
+   \end{myIndent}}
+
+   \item If $-1 < \alpha < 0$, then $f(x) \coloneq x^\alpha \in \mathscr{L}$ on $(0, 1)$.\\ [-14pt]
+   
+   {\begin{myIndent}\exTwo
+      For each $s \in (0, 1)$ define $K_s(t) = \left\{
+      \begin{matrix}
+         0 & \text{ when } 0 < x < s \\
+         1 & \text{ when } s \leq x < 1
+      \end{matrix}\right.$\retTwo
+
+      Then given any monotonically decreasing sequence $(x_n)$ in $(0, 1)$ converging\\ to $0$, we have that $(K_{x_n}f)$ is a sequence of measurable functions such that\\ $K_{x_1}f(x) \leq K_{x_2}f(x) \leq \ldots$ for all $x \in (0, 1)$. Also, $K_{x_n}f \rightarrow f$ as $n \rightarrow +\infty$.\retTwo
+
+      So, applying Lebesgue's monotone convergence theorem we have that:
+      
+      {\centering $\int_0^1 fdx = \lim\limits_{n\rightarrow \infty}\int_{0}^1 K_{x_n}f dx = \lim\limits_{n\rightarrow \infty} \int_{x_n}^1 fdx = \lim\limits_{n\rightarrow \infty}\frac{1}{\alpha + 1}\left(1 - x_n^{\alpha + 1}\right) = \frac{1}{\alpha + 1}$ \retTwo\par}
+
+      Hence, $x^\alpha \in \mathscr{L}$ on $(0, 1)$.
+   \end{myIndent}}
+\end{itemize}
 
 \end{document}
 
