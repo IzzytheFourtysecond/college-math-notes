@@ -2268,6 +2268,111 @@ Let $\mathscr{A}$ be a set of functions from $E$ to $\mathbb{C}$.\\ [-22pt]
    \end{myIndent}}
 \end{itemize}
 
+{\begin{myIndent}\hTwo
+   Proposition \propCount: Suppose $\mathscr{A}$ is an algebra of functions on $E$ that separates\\ points and vanishes nowhere. Then $\forall x_1 \neq x_2 \in E$ and $\forall c_1, c_2 \in \mathbb{C}$, there exists\\ $f \in \mathscr{A}$ such that $f(x_1) = c_1$ and $f(x_2) = c_2$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Since $\mathscr{A}$ separates points and vanishes nowhere, there exists $g, r, s \in \mathscr{A}$\\ such that:
+      
+      \begin{center}
+         \begin{tabular}{c c c c c}
+            \bullet\hspace{0.3em} $g(x_1) \neq g(x_2)$ &\quad\quad & \bullet\hspace{0.3em} $r(x_1) \neq 0$ &\quad\quad & \bullet\hspace{0.3em} $s(x_2) \neq 0$
+         \end{tabular}\retTwo
+      \end{center}
+
+      Now set $u = gs - g(x_1)s$ and $v = gr - g(x_2)r$. That way, $u, v \in \mathscr{A}$ with\\ $u(x_1) = 0 = v(x_2)$ but $u(x_2) \neq 0 \neq v(x_1)$.\retTwo
+
+      Finally, set $f = \frac{c_1}{v(x_1)}v + \frac{c_2}{u(x_2)}u$. Then $f \in \mathscr{A}$, $f(x_1) = c_1 + 0$, and\\ $f(x_2) = 0 + c_2$.\retTwo
+   \end{myIndent}}
+
+   Proposition \propCount: ($\mathbb{R}$-valued Stone-Weierstrass Theorem):\\ Let $\mathscr{A}$ be an algebra of $\mathbb{R}$-valued continuous functions on a compact set $K$ that\\ separates points and vanishes nowhere. Then the uniform closure of $\mathscr{A}$ is the\\ set of all continuous $\mathbb{R}$-valued functions on $K$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $\mathscr{B}$ be the uniform closure of $\mathscr{A}$.\retTwo
+
+      Claim 1: If $f \in \mathscr{B}$, then $|f| \in \mathscr{B}$.
+      {\begin{myIndent}\hFour
+         Proof:\\
+         Every function in $\mathscr{B}$ is continuous. And since $K$ is compact, every function\\ is bounded. So our $f$ maps $K$ into $[-a, a]$ for some $a > 0$.
+
+         \newpage
+
+         Let $\varepsilon > 0$. Then by the corollary to proposition 126, there are constants\\ $c_1, \ldots c_n \in \mathbb{R}$ such that $\forall y \in [-a, a]$,
+         
+         {\center $\left|\sum\limits_{i=1}^n c_iy^i - |y|\right| < \varepsilon$.\retTwo\par}
+
+         Since $\mathscr{B}$ is an algebra, $g = \sum\limits_{i=1}^n c_if^i \in \mathscr{B}$.\retTwo
+
+         And finally, for any $x \in K$, setting $y = f(x)$ we have $y \in [-a, a]$ and\\ therefore $\|g(x) - |f(x)|\| < \varepsilon$. Since $\mathscr{B}$ is uniformly closed, it follows\\ that $|f| \in \mathscr{B}$.\retTwo
+      \end{myIndent}}
+
+      Claim 2: If $f, g \in \mathscr{B}$, then the functions $\max(f, g)(x) = \max(f(x), g(x))$\\ and $\min(f, g)(x) = \min(f(x), g(x))$ belong to $\mathscr{B}$.
+
+      {\begin{myIndent}\hFour
+         Proof:
+         \begin{itemize}
+            \item $\max(f, g) = \frac{f + g}{2} + \frac{|f - g|}{2} \in \mathscr{B}$
+            \item $\min(f, g) = \frac{f + g}{2} - \frac{|f - g|}{2} \in \mathscr{B}$.\\
+         \end{itemize}
+      \end{myIndent}}
+
+      Note that you can iterate claim 2 to get that for $f_1, \ldots, f_n \in \mathscr{B}$, we\\ have that $\max(f_1, \ldots, f_n) \in \mathscr{B}$ and $\min(f_1, \ldots, f_n) \in \mathscr{B}$.\retTwo
+
+      Claim 3: Let $f: K \longrightarrow \mathbb{R}$ be continuous. Then for every $x \in K$ and $\varepsilon > 0$,\\ there is $g_x \in \mathscr{B}$ such that $g_x(x) = f(x)$ and $\forall t \in K,\myHS g_x(t) > f(t) - \varepsilon$.
+
+      {\begin{myIndent}\hFour
+         Proof:\\
+         For each $y \in K \setminus \{x\}$, by proposition 128 there is $h_y \in \mathscr{B}$ with $h_y(x) = f(x)$\\ and $h_y(y) = f(y)$. Also, because $h_y - f$ is continuous, there is an open set\\ $U_y$ containing $y$ with $\forall t \in U_y, \myHS h_y(t) > f(t) - \varepsilon$.\retTwo
+
+         Since $K$ is compact, there are $y_1, \ldots, y_n \in K$ with $K \subseteq \bigcup\limits_{i=1}^n U_{y_i}$.\retTwo
+
+         Set $g_x = \max(h_{y_1}, \ldots, h_{y_n})$. Then $g_x \in \mathscr{B}$ by claim 2, $g_x(x) = f(x)$, and\\ for all $t \in K$, there is some $y_i$ with $g_x(t) \geq h_{y_i}(t) > f(t) - \varepsilon$.\retTwo
+      \end{myIndent}}
+
+      Claim 4: Let $f: K \longrightarrow \mathbb{R}$ be continuous. Then for every $\varepsilon > 0$, there is\\ $g \in \mathscr{B}$ with $\forall t \in K$, $|g(t) - f(t)| < \varepsilon$.
+
+      {\begin{myIndent}\hFour
+         Proof:\\
+         For each $x \in K$, by claim 3 there is $g_x \in \mathscr{B}$ with $g_x(x) = f(x)$ and\\ $\forall t \in K,\myHS g_x(t) > f(t) - \varepsilon$. Also, because $g_x - f$ is continuous, there is\\ an open set $V_x$ containing $x$ with $\forall t \in V_x,\myHS g_x(t) < f(t) + \varepsilon$.\retTwo
+
+         By compactness, there are $x_1, \ldots x_m \in K$ with $K \subseteq \bigcup\limits_{i=1}^m V_{x_i}$.\retTwo
+
+         Set $g = \min(g_{x_1}, \ldots, g_{x_m})$. Then $g \in \mathscr{B}$ by claim 2. Furthermore, for all\\ $t \in K$ there is an $x_i$ such that $g(t) \leq g_{x_i}(t) < f(t) + \varepsilon$. And since  each\\ $g_{x_i}(t) > f(t) - \varepsilon$, we thus have that $|g(t) - f(t)| < \varepsilon$ for all $t\in K$. $\blacksquare$
+      \end{myIndent}}
+   \end{myIndent}}
+\end{myIndent}}
+
+\newpage
+
+\markLecture{5/15/2024}
+
+Now proposition 129 does not hold for $\mathbb{C}$-valued functions as is demonstrated\\ by homework exercise 7.21. However, we can add an additional assumption to\\ make the theorem hold for $\mathbb{C}$-valued functions.\retTwo
+
+A collection $\mathscr{A}$ of functions from $E$ to $\mathbb{C}$ is \udefine{self-adjoint} if $\forall f \in \mathscr{A}, \myHS \overline{f} \in \mathscr{A}$\\ where $\overline{f}(x) = \overline{f(x)}$.\retTwo
+
+
+{\begin{myIndent}\hTwo
+   Proposition \propCount: ($\mathbb{C}$-valued Stone-Weierstrass Theorem)\\ If $K$ is compact and $\mathscr{A}$ is a self-adjoint algebra of continuous $\mathbb{C}$-valued functions\\ on $K$ that separates points and vanishes nowhere, then the uniform closure of\\ $\mathscr{A}$ is the set of all continuous $\mathbb{C}$-valued functions on $K$.\\ [-6pt]
+
+   {\begin{myIndent}\hThree
+      Proof:\\
+      Let $\mathscr{B}$ be the uniform closure of $\mathscr{A}$, and let $\mathscr{A}_{\mathbb{R}}$ be the set of all $\mathbb{R}$-valued\\ functions in $\mathscr{A}$.\retTwo
+
+      First, note that if $f \in \mathscr{A}$, then $\rea{f} \in \mathscr{A}_{\mathbb{R}}$ because $\rea{f} = \frac{1}{2}(f + \overline{f}) \in \mathscr{A}$. Similarly $\ima{f} \in \mathscr{A}_\mathbb{R}$ because $\ima{f} = \frac{1}{2i}(f - \overline{f})$.\retTwo
+      
+      Next, note that $\mathscr{A}_{\mathbb{R}}$ is an algebra. And we can show that $\mathscr{A}_{\mathbb{R}}$ separates points\\ as follows:
+
+      {\begin{myIndent}\hFour
+         Let $x_1 \neq x_2 \in K$. Then by proposition 128, there is $f \in \mathscr{A}$ with $f(x_1) = 1$ and $f(x_2) = 0$. So $\rea{f} \in \mathscr{A}_{\mathbb{R}}$ and $\rea{f(x_1)} \neq \rea{f(x_2)}$.\retTwo
+      \end{myIndent}}
+
+      Since $x_1$ can be any point in $K$, the above logic also shows that $\mathscr{A}_{\mathbb{R}}$ vanishes nowhere on $K$. 
+
+   \end{myIndent}}
+\end{myIndent}}
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ %
 \newpage
@@ -2300,8 +2405,8 @@ Let $\mathscr{A}$ be a set of functions from $E$ to $\mathbb{C}$.\\ [-22pt]
       \myVS 121 & 7.17 & 122 & 7.18 \\ \hdashline[10pt/3pt]
       \myVS 123 & 7.23 & 124 & 7.24 \\ \hdashline[10pt/3pt]
       \myVS 125 & 7.25 & 126 & 7.26 \\ \hdashline[10pt/3pt]
-      \myVS 127 & 7.29 & 128 &  \\ \hdashline[10pt/3pt]
-      \myVS 129 &  & 130 &  \\ \hdashline[10pt/3pt]
+      \myVS 127 & 7.29 & 128 & 7.31 \\ \hdashline[10pt/3pt]
+      \myVS 129 & 7.32 & 130 & 7.33 \\ \hdashline[10pt/3pt]
       \myVS 131 &  & 132 &  \\ \hdashline[10pt/3pt]
       \myVS 133 &  & 134 &  \\ \hdashline[10pt/3pt]
    \end{tabular}
