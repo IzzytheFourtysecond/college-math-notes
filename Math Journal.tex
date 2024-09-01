@@ -1,0 +1,330 @@
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
+
+\usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+\graphicspath{{./158_Images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
+
+\usepackage{quiver} %commutative diagrams
+
+
+\newfontfamily{\calibri}{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Arrow Commands:
+
+% Thank you Bernard, gernot, and Sigur who I copied this from:
+% https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+
+% Thank you egreg who I copied from:
+% https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
+\newcommand{\longrightarrowdbl}{\longrightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\longleftarrowdbl}{\leftarrow\mathrel{\mkern-14mu}\longleftarrow}
+
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+\newcommand{\xleftarrowdbl}[2][]{%
+  \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
+}
+
+\newcommand{\mRoman}[1]{%
+   \textrm{\MakeUppercase{\romannumeral #1}}%
+}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwo}{%
+\color{Black}%
+   \fontsize{13}{15}\selectfont%
+}
+% \newcommand{\scratchWork}{%
+%    \color{PineGreen!85!Orange}
+%    \fontsize{12}{14}\selectfont%
+% }
+\newcommand{\hThree}{%
+   \color{Black}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+% \newcommand{\pracOne}{
+%    \color{BrickRed}%
+%    \fontsize{13}{15}\selectfont%
+% }
+% \newcommand{\pracTwo}{
+%    \color{Orange}%
+%    \fontsize{12}{14}\selectfont%
+% }
+\newcommand{\pracOne}{%
+   \color{Purple}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\exTwo}{%
+\color{Purple}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{Purple}%
+   \fontsize{12}{14}\selectfont%
+}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+\newcommand{\redPen}[1]{{\vphantom{.}\color{Red}#1}}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{{%
+   \setulcolor{Red}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1}%
+}}
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.3em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\myHS}{ \hspace{0.5em}}
+
+\newcommand{\myId}{\mathrm{Id}}
+\newcommand{\myIm}{\mathrm{im}}
+\newcommand{\myObj}{\mathrm{Obj}}
+\newcommand{\myHom}{\mathrm{Hom}}
+\newcommand{\myEnd}{\mathrm{End}}
+\newcommand{\myAut}{\mathrm{Aut}}
+
+\newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
+
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
+
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
+
+\newcommand{\dispDate}[1]{{
+   \color{Black}%
+   \fontsize{20}{18}\selectfont%
+   #1\retTwo
+}}
+
+
+\title{Math Journal}
+\author{Isabelle Mills}
+
+
+\begin{document}
+   \maketitle{}
+   \setul{0.14em}{0.07em}
+   \calibri\hOne
+   
+   \dispDate{8/31/2024}
+   My goal for today is to work through the appendix to chapter 1 in Baby Rudin. This appendix focuses on constructing the real numbers using Dedikind cuts.\retTwo
+   
+   \hTwo
+   \begin{myIndent}
+      We define a \udefine{cut} to be a set $\alpha \subset \mathbb{Q}$ such that:
+      \begin{enumerate}
+         \item $\alpha \neq \emptyset$
+         \item If $p \in \alpha$,\myHS $q \in \mathbb{Q}$, and $q < p$, then $q \in \alpha$.
+         \item If $p \in \alpha$, then $p < r$ for some $r \in \alpha$\newline
+      \end{enumerate}
+
+      Point 3 tells us that $\alpha$ doesn't have a max element. Also, point 2 directly implies the following facts:
+      \begin{itemize}
+         \item[a.] If $p \in \alpha$,\myHS $q \in \mathbb{Q}$, and $q \notin \alpha$, then $q > p$.
+         \item[b.] If $r \notin \alpha$,\myHS $r, s \in \mathbb{Q}$, and $r < s$, then $s \notin \alpha$.\newline
+      \end{itemize}
+
+      As a shorthand, I shall refer to the set of all cuts as $R$.
+      \begin{myIndent}\myComment
+         An example of a cut would be the set of rational numbers less than $2$.\\
+      \end{myIndent}
+
+      Firstly, we shall assign an ordering to $R$. Specifically, given any $\alpha, \beta \in R$, we say that $\alpha < \beta$ if $\alpha \subset \beta$ (a proper subset).
+
+      \begin{myIndent}\exTwo
+         Here we prove that $<$ satisfies the definition of an ordering.
+         \begin{itemize}
+            \item[\mRoman{1}.] It's obvious from the definition of a proper subset that at most one of the following three things can be true: $\alpha < \beta$,\myHS $\alpha = \beta$, and $\beta < \alpha$.\retTwo
+            
+            Now let's assume that $a \not< \beta$ and $\alpha \not= \beta$. Then $\exists p \in \alpha$ such that $p \notin \beta$. But then for any $q \in \beta$, we must have by fact b. above that $q < p$. Hence $q \in \alpha$, meaning that $\beta \subset \alpha$. This proves that at least one of the following has to be true: $\alpha < \beta$,\myHS $\alpha = \beta$, and $\beta < \alpha$.\retTwo
+
+            \item[\mRoman{2}.] If for $\alpha, \beta, \gamma \in R$ we have that $\alpha < \beta$ and $\beta < \gamma$, then clearly $\alpha < \gamma$ becuase $\alpha \subset \beta \subset \gamma$.\retTwo
+         \end{itemize}
+      \end{myIndent}
+
+      Now we claim that $R$ equipped with $<$ has the least-upper-bound property.
+      \begin{myIndent}\exTwo
+         Proof:\\
+         Let $A \subset R$ be nonempty and $\beta \in R$ be an upper bound of $A$. Then set\\ $\gamma = \hspace{-0.2em}\bigcup\limits_{\alpha \in A}\hspace{-0.2em}\alpha$. Firstly, we want to show that $\gamma \in R$\retTwo
+
+         Since $A \neq \emptyset$, there exists $\alpha_0 \in A$. And as $\alpha_0 \neq \emptyset$ and $\alpha_0 \subseteq \gamma$ by definition, we know that $\gamma \neq \emptyset$. At the same time, we know that $\gamma \subset \beta$ since $\forall \alpha \in A$,\myHS $\alpha \subset \beta$. Hence, $\gamma \neq \mathbb{Q}$, meaning that $\gamma$ satisfies property 1$.$ of cuts.\retTwo
+
+         Next, let $p \in \gamma$ and $q \in \mathbb{Q}$ such that $q < p$. We know that for some $\alpha_1 \in A$, we have that $p \in \alpha_1$. Hence by property 2$.$ of cuts, we know that $q \in \alpha_1 \subset \gamma$, thus showing that $\gamma$ satisfies property 2$.$ of cuts.\newpage
+         
+         Thirdly, by property 3$.$ we can pick $r \in \alpha_1$ such that $p < r$ and $r \in \alpha_1 \subset \gamma$. So, $\gamma$ satisfies property 3$.$ of cuts.\retTwo
+
+         With that, we've now shown that $\gamma \in R$. Clearly, $\gamma$ is an upper bound of $A$ since $\alpha \subset \gamma$ for all $\alpha \in A$. Meanwhile, consider any $\delta < \gamma$. Then $\exists s \in \gamma$ such that $s \notin \delta$. And since $s \in \gamma$, we know that $s \in \alpha$ for some $\alpha \in A$. Hence, $\delta < \alpha$, meaning that $\delta$ is not an upper bound of $A$. This shows that $\gamma = \sup A$.\\ [6pt]
+      \end{myIndent}
+
+      Secondly, we want to assign $+$ and $\hspace{0.1em}\cdot\hspace{0.1em}$ operations to $R$ so that $R$ is an ordered field.\retTwo
+      
+      To start, given any $\alpha, \beta \in R$, we shall define $\alpha + \beta$ to be the set of all sums $r + s$ such that $r \in \alpha$ and $s \in \beta$.
+      \begin{myIndent}\exTwo
+         Here we show that $\alpha + \beta \in R$.
+         \begin{enumerate}
+            \item Clearly, $\alpha + \beta \neq \emptyset$. Also, take $r^\prime \notin \alpha$ and $s^\prime \notin \beta$. Then $r^\prime + s^\prime > r + s$ for all $r \in \alpha$ and $s \in \beta$. Hence, $r^\prime + s^\prime \notin \alpha + \beta$, meaning that $\alpha + \beta \neq \mathbb{Q}$.\\ [-9pt]
+         \end{enumerate}
+
+         Now let $p \in \alpha + \beta$. Thus there exists $r \in \alpha$ and $s \in \beta$ such that $p = r + s$.\\ [-9pt]
+
+         \begin{enumerate}
+            \item[2.] Suppose $q < p$. Then $q - s < r$, meaning that $q - s \in \alpha$. Hence,\\ $q = (q - s) + s \in \alpha + \beta$.\retTwo
+            
+            \item[3.] Let $t \in \alpha$ so that $t > r$. Then $p = r + s < t + s$ and $t + s \in \alpha + \beta$.\retTwo
+         \end{enumerate}
+      \end{myIndent}
+
+      Also, we shall define $0^*$ to be the set of all negative rational numbers. Clearly, $0^*$ is a cut. Furthermore, we claim that $+$ satisfies the addition requirements of a field with $0^*$ as its $0$ element.
+
+      \begin{myIndent}\exTwo
+         Commutativity and associativity of $+$ on $R$ follows directly from the\\ commutativity and associativity of addition on the rational numbers.\retTwo
+
+         Also, for any $\alpha \in R$,\myHS $\alpha + 0^* = \alpha$.
+         \begin{myIndent}
+            If $r \in \alpha$ and $s \in 0^*$, then $r + s < r$. Hence $r + s \in \alpha$, meaning that $\alpha + 0^* \subseteq \alpha$. Meanwhile, if $p \in \alpha$, then we can pick $r \in \alpha$ such that $r > p$. Then, $p - r \in 0^*$ and $p = r + (p - r) \in \alpha + 0^*$. So, $\alpha \subseteq \alpha + 0^*$.\retTwo
+         \end{myIndent}
+
+         Finally, given any $\alpha \in R$, let $\beta = \{p \in \mathbb{Q} \mid \exists\hspace{0.1em} r > 0 \suchthat -p-r \notin \alpha\}$.
+         \begin{myIndent}\myComment
+            To give some intuition on this definition, firstly we want to guarentee that for all $p \in \beta$, $-p$ is greater than all elements of $\alpha$. Secondly, we add the $-r$ term to guarentee that $\beta$ doesn't have a maximum element.\\
+         \end{myIndent}
+
+         We claim that $\beta \in R$ and $\beta + \alpha = 0^*$. Hence we can define $-\alpha = \beta$.
+
+         \begin{myIndent}\exP
+            To start, we'll show that $\beta \in R$:
+            \begin{enumerate}
+               \item For $s \notin \alpha$ and $p = -s - 1$, we have that $-p - 1 \notin \alpha$. Hence, $p \in \beta$, meaning that $\beta \neq \emptyset$. Meanwhile, if $q \in \alpha$, then $-q \notin \beta$ because there does not exist $r > 0$ such that $-(-q) - r = q - r \notin \alpha$. So $\beta \neq \mathbb{Q}$.\\ [-6pt]
+            \end{enumerate}
+
+            Now let $p \in \beta$ and pick $r > 0$ such that $-p -r \notin \alpha$.\newpage
+
+            \begin{enumerate}
+               \item[2.] Suppose $q < p$. Then $-q - r > -p - r$, meaning that $-q - r \notin \alpha$. Hence, $q \in \beta$.\retTwo
+               
+               \item[3.] Let $t = p + \frac{r}{2}$. Then $t > p$ and $-t - \frac{r}{2} = -p - r \notin \alpha$, meaning $t \in \beta$.\retTwo
+            \end{enumerate}
+
+            Now that we've proved $\beta \in R$, we next prove that $\beta$ is the additive inverse of $\alpha$. To start, suppose $r \in \alpha$ and $s \in \beta$. Then $-s \notin \alpha$, meaning that $r < -s$. So $r + s < 0$, thus showing that $\alpha + \beta \subseteq 0^*$.
+         \end{myIndent}
+
+      \end{myIndent}
+
+   \end{myIndent}
+
+   
+
+
+   
+\end{document}
