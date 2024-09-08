@@ -158,7 +158,7 @@
 #2}
 
 \newcommand{\pprime}{{\prime\prime}}
-\newcommand{\suchthat}{ \hspace{0.5em}s.t.\hspace{0.3em}}
+\newcommand{\suchthat}{ \hspace{0.3em}s.t.\hspace{0.3em}}
 \newcommand{\rea}[1]{\mathrm{Re}(#1)}
 \newcommand{\ima}[1]{\mathrm{Im}(#1)}
 \newcommand{\comp}{\mathsf{C}}
@@ -291,16 +291,16 @@
          Commutativity and associativity of $+$ on $R$ follows directly from the\\ commutativity and associativity of addition on the rational numbers.\retTwo
 
          Also, for any $\alpha \in R$,\myHS $\alpha + 0^* = \alpha$.
-         \begin{myIndent}
+         \begin{myIndent}\exP
             If $r \in \alpha$ and $s \in 0^*$, then $r + s < r$. Hence $r + s \in \alpha$, meaning that $\alpha + 0^* \subseteq \alpha$. Meanwhile, if $p \in \alpha$, then we can pick $r \in \alpha$ such that $r > p$. Then, $p - r \in 0^*$ and $p = r + (p - r) \in \alpha + 0^*$. So, $\alpha \subseteq \alpha + 0^*$.\retTwo
          \end{myIndent}
 
-         Finally, given any $\alpha \in R$, let $\beta = \{p \in \mathbb{Q} \mid \exists\hspace{0.1em} r > 0 \suchthat -p-r \notin \alpha\}$.
+         Finally, given any $\alpha \in R$, let $\beta = \{p \in \mathbb{Q} \mid \exists\hspace{0.1em} r \in \mathbb{Q}^+ \suchthat -p-r \notin \alpha\}$.
          \begin{myIndent}\myComment
             To give some intuition on this definition, firstly we want to guarentee that for all $p \in \beta$, $-p$ is greater than all elements of $\alpha$. Secondly, we add the $-r$ term to guarentee that $\beta$ doesn't have a maximum element.\\
          \end{myIndent}
 
-         We claim that $\beta \in R$ and $\beta + \alpha = 0^*$. Hence we can define $-\alpha = \beta$.
+         We claim that $\beta \in R$ and $\beta + \alpha = 0^*$. Hence, we can define $-\alpha = \beta$.
 
          \begin{myIndent}\exP
             To start, we'll show that $\beta \in R$:
@@ -316,15 +316,123 @@
                \item[3.] Let $t = p + \frac{r}{2}$. Then $t > p$ and $-t - \frac{r}{2} = -p - r \notin \alpha$, meaning $t \in \beta$.\retTwo
             \end{enumerate}
 
-            Now that we've proved $\beta \in R$, we next prove that $\beta$ is the additive inverse of $\alpha$. To start, suppose $r \in \alpha$ and $s \in \beta$. Then $-s \notin \alpha$, meaning that $r < -s$. So $r + s < 0$, thus showing that $\alpha + \beta \subseteq 0^*$.
-         \end{myIndent}
+            Now that we've proved $\beta \in R$, we next prove that $\beta$ is the additive inverse of $\alpha$. To start, suppose $r \in \alpha$ and $s \in \beta$. Then $-s \notin \alpha$, meaning that $r < -s$. So $r + s < 0$, thus showing that $\alpha + \beta \subseteq 0^*$.\retTwo
 
+            As for the other inclusion, pick any $v \in 0^*$ and set $w = -\frac{v}{2}$. Then because $w > 0$, we can use the archimedean property of $\mathbb{Q}$ to say that there exists $n \in \mathbb{Z}$ such that $nw \in \alpha$ but $(n+1)w \notin \alpha$. Put $p = -(n + 2)w$. Then $p \in \beta$ because $-p - w = (n+1)w
+            \notin \alpha$. And finally, $v = nw + p \in \alpha + \beta$. Thus, $0^* \subseteq \alpha + \beta$.\retTwo
+         \end{myIndent}
+      \end{myIndent}
+   \end{myIndent}
+   \dispDate{9/1/2024}
+   \begin{myIndent}\hTwo
+      Based on the definition of $+$, it's also hopefully clear that for any $\alpha, \beta, \gamma \in R$ such that $\alpha < \beta$, we have that $\alpha + \gamma < \beta + \gamma$.\retTwo
+
+      Next, we shall define multiplication on $R$. Except, first we're going to limit ourselves to the set $R^+$ of all cuts greater than $0^*$. So, given any $\alpha, \beta \in R^+$, we shall define $\alpha \beta$ to be the set of all $p \in \mathbb{Q}$ such that $p \leq rs$ where $r \in \alpha$,\myHS $s \in \beta$,\myHS $r > 0$, and $s > 0$.
+
+      \begin{myIndent}\exTwo
+         Here we show that $\alpha\beta \in R^+$.
+         \begin{enumerate}
+            \item Clearly $\alpha\beta \neq \emptyset$. Also, take any $r^\prime \notin \alpha$ and $s^\prime \notin \beta$. Then $r^\prime s^\prime > rs$ for all $r \in \alpha \cap \mathbb{Q}^+$ and $s \in \beta \cap \mathbb{Q}^+$ since all four rational numbers are positive. By extension, $r^\prime s^\prime$ is greater than all the elements (both positive and negative) of $\alpha\beta$. So, $r^\prime s^\prime \notin \alpha\beta$, meaning that $\alpha\beta \neq \mathbb{Q}$.\\ [-9pt]
+         \end{enumerate}
+
+         Now let $p \in \alpha\beta$. Based on our definition of $\alpha\beta$, we know that the conditions of a cut trivially hold for any negative $p$. So, we'll assume from now on that $p > 0$. (Also note that a positive choice of $p$ must exist because both $\alpha$ and $\beta$ by assumption have positive elements.)\retTwo
+
+         Since $p \in \alpha\beta \cap \mathbb{Q}^+$, we know there exists $r \in \alpha$ and $s \in \beta$ such that $p = rs$ and $r, s > 0$.
+
+         \begin{enumerate}
+            \item[2.] Suppose $0 < q < p$ (the case where $q \leq 0$ is trivial). Then $\frac{q}{s} < r$, meaning that $\frac{q}{s} \in \alpha$. So, $q = \frac{q}{s} \cdot s \in \alpha\beta$.\retTwo
+            
+            \item[3.] Let $t \in \alpha$ so that $t > r$. Then $p = rs < ts$ and $ts \in \alpha\beta$.\retTwo
+         \end{enumerate}
       \end{myIndent}
 
-   \end{myIndent}
+      Also, we shall define $1^*$ to be the set of all rational numbers less than $1$. Clearly, $1^*$ is a cut. And we claim that $\hspace{0.1em}\cdot\hspace{0.1em}$ satisfies the multiplication requirements of a field with $1^*$ as its $1$ element.\newpage
 
-   
+      \begin{myIndent}\exTwo
+         As before, commutativity and associativity of $\hspace{0.1em}\cdot\hspace{0.1em}$ on $R^+$ follows directly from commutativity and associativity of multiplication on the rational numbers.\retTwo
 
+         Next, for any $\alpha \in R^+$, we have that $\alpha 1^* = \alpha$.
+         \begin{myIndent}\exP
+            It's clear that for any rational number $r \leq 0$, we have that $r \in \alpha 1^*$ and $r \in \alpha$. So we can exclusively focus on positive rational numbers.\retTwo
+            
+            Now suppose $r \in \alpha \cap \mathbb{Q}^+$ and $s \in 1^*$. Then $rs < r$, meaning that $rs \in \alpha$. So $\alpha 1^* \subseteq \alpha$. Meanwhile, if $p \in \alpha \cap \mathbb{Q}^+$, then we can pick $r \in \alpha$ such that $r > p$. Then $\frac{p}{r} \in 1^*$ and $p = \frac{p}{r} \cdot r \in \alpha 1^*$. So, $\alpha \subseteq \alpha 1^*$.\retTwo
+         \end{myIndent}
 
-   
+         Thirdly, given any $\alpha \in R^+$, define:
+
+         \begin{centering}
+            $\beta = \{p \in \mathbb{Q} \mid p \leq 0\} \cup \{p \in \mathbb{Q}^+ \mid \exists r \in \mathbb{Q}^+ \suchthat \frac{1}{q} - r \notin \alpha\}$\retTwo\par
+         \end{centering}
+
+         \begin{myIndent}\exP
+            Here we show that $\beta \in R^+$.
+            \begin{enumerate}
+               \item Clearly $\beta \neq \emptyset$. Also, if $q \in \alpha$, then $\frac{1}{q} \notin \beta$. Hence, $\beta \neq \mathbb{Q}$.\retTwo
+            \end{enumerate}
+
+            Now let $p \in \beta$ and pick $r > 0$ such that $\frac{1}{p} - r \notin \alpha$. Also, assume $p > 0$ because the proof is trivial if $p \leq 0$. (The fact that $p > 0$ in $\beta$ exists is trivial to show.)\retTwo
+
+            \begin{enumerate}
+               \item[2.] If $q \leq 0 < p$, then trivially $q \in \beta$. Meanwhile, if $0 < q < p$, then\\ [2pt] $\frac{1}{q} - r > \frac{1}{p} - r$, meaning that $\frac{1}{q} - r \notin \alpha$. Hence, $q \notin \beta$.\retTwo
+               
+               \item[3.] Let $t = \frac{1}{\frac{1}{p} - \frac{r}{2}}$. Then since $\frac{1}{p} - r \notin \alpha$, we know that $\frac{1}{p} - \frac{r}{2} > 0$. Also since $\frac{1}{t} = \frac{1}{p} - \frac{r}{2} < \frac{1}{p}$, we have that $t > p$. But note that $\frac{1}{t} - \frac{r}{2} = \frac{1}{p} - r \notin \alpha$.\\[2pt] Hence $t \notin \beta$.\retTwo
+            \end{enumerate}
+         \end{myIndent}
+
+         We claim that $\beta\alpha = 1^*$. Hence, we can define $\frac{1}{\alpha} = \beta$.
+
+         \begin{myIndent}\exP
+            To start, suppose $r \in \alpha \cap \mathbb{Q}^+$ and $s \in \beta \cap \mathbb{Q}^+$. Then $\frac{1}{s} \notin \alpha$, meaning that\\ $r < \frac{1}{s}$. So $rs < 1$, thus showing that $\alpha\beta \subseteq 1^*$.\retTwo
+
+            The other inclusion has a more complicated proof. Firstly, take any\\ $v \in 1^* \cap \mathbb{Q}^+$ (the proof is trivial if $v \leq 0$). Then set $w = \frac{1}{v}$, meaning\\ that $w > 1$. Now since $\alpha \in R^+$, we know there exists $n \in \mathbb{Z}$ such that\\ $w^n \in \alpha$ but $w^{n+1} \notin \alpha$. Then as $w^{n+2} > w^{n+1}$, we know that $\frac{1}{w^{n+2}} \in \beta$.\\ Hence, $v^2 = w^n \frac{1}{w^{n+2}} \in \alpha\beta$.\retTwo
+
+            Now that we've shown that the square of every $v \in 1^* \cap \mathbb{Q}^+$ is also in $\alpha\beta$,\\ [2pt] we next show that there exists $z \in 1^* \cap \mathbb{Q}^+$ such that $z^2 > v$. Suppose $v = \frac{p}{q}$ where $p, q \in \mathbb{Z}^+$. Then set $z = \frac{p + q}{2q}$. Importantly, since $p < q$, we still have that $z \in 1^*$. But also note that:
+
+            \begin{centering}
+               $z^2 - v = \frac{p^2 + 2pq + q^2}{4q^2} - \frac{4pq}{4q^2} = \frac{p^2 - 2pq + q^2}{4q^2} = \left(\frac{p - q}{2q}\right)^2 \geq 0$\retTwo\par
+            \end{centering}
+
+            Thus as $v < z^2$ and $z^2 \in \alpha\beta$, we have that $v \in \alpha\beta$ as well. So $1^* \subseteq \alpha\beta$.\newpage
+         \end{myIndent}
+
+         Finally, so long as $\alpha, \beta, \gamma \in R^+$, we have that  $\alpha(\beta + \gamma) = \alpha\beta + \alpha\gamma$ because the rational numbers satisfy the distributive property.\retTwo
+      \end{myIndent}
+
+      Notably, in proving that $\alpha\beta \in R^+$ before, we also guarenteed that for $\alpha, \beta > 0$, we have that $\alpha\beta > 0$.\retTwo
+   \end{myIndent} 
+
+   \dispDate{9/7/2024}
+
+   \begin{myIndent}
+
+      Now we still need to extend our definition of multiplication from $R^+$ to all of $R$. To do this, set $\alpha 0^* = 0^*\alpha = 0^*$ and define:
+
+      {\centering $\alpha \beta = \left\{
+      \begin{matrix}
+         (-\alpha)(-\beta) & \text{ if } \alpha < 0^*, \beta < 0^* \\
+         -((-\alpha)\beta) & \text { if } \alpha < 0^*, \beta > 0^* \\
+         -(\alpha(-\beta)) & \text{ if } \alpha > 0^*, \beta < 0^*
+      \end{matrix}\right.$ \retTwo\par}
+
+      Having done that, reproving those properties of multiplication on all of $R$ just\\ becomes a matter of addressing many cases and using the identity that\\ $(-(-\alpha)) = \alpha$.
+
+      \begin{myIndent}\myComment
+         Note that that identity can be proven just from the addition properties of a field.\retTwo
+      \end{myIndent}
+
+      Because I'm bored with this construction at this point, I'm going to skip reproving those properties.\retTwo
+
+      So now that we've established that $R$ is a field, all we have left to do is to show that all numbers $r, s \in \mathbb{Q}$ are represented by cuts $r^*, s^* \in R$ such that:
+      
+      \begin{itemize}
+         \item $(r + s)^* = r^* + s^*$
+         \item $(rs)^* = r^*s^*$
+         \item $r < s \Longleftrightarrow r^* < s^*$\retTwo
+      \end{itemize}
+
+      Again, I'm super bored and demotivated at this point. So, I'm going to skip showing this.\retTwo
+
+      With all that done, we've now shown that $R$ satisfies all of the properties of real numbers. That concludes the proof of the existence theorem of the real numbers.
+      \newpage
+   \end{myIndent} 
 \end{document}
