@@ -104,7 +104,7 @@
 %    \color{Orange}%
 %    \fontsize{12}{14}\selectfont%
 % }
-\newcommand{\pracOne}{%
+\newcommand{\exOne}{%
    \color{Purple}%
    \fontsize{14}{16}\selectfont%
 }
@@ -150,6 +150,8 @@
    \setul{0.14em}{0.07em}%
    \ul{#1}%
 }}
+
+\newcommand{\blab}[1]{\textbf{#1}}
 
 \newcommand{\uuline}[2][.]{%
 {\vphantom{a}\color{#1}%
@@ -434,5 +436,86 @@
 
       With all that done, we've now shown that $R$ satisfies all of the properties of real numbers. That concludes the proof of the existence theorem of the real numbers.
       \newpage
-   \end{myIndent} 
+   \end{myIndent}
+
+   \dispDate{9/9/2024}
+
+   \hOne
+   Today I'm just looking at James Munkres' book \textit{Topology}. Now while I'm done with the era of my life of taking exhaustive notes on a textbook, I still want to write down some interesting proofs. I also hope to do some exercises.\retTwo
+
+   \blab{Theorem 7.8:} Let $A$ be a nonempty set. There is no injective map $f: \mathcal{P}(A) \longrightarrow A$ and there is no surjective map $g: A \longrightarrow \mathcal{P}(A)$.
+
+   \begin{myDindent}\myComment
+      In other words, the power set of a set has strictly greater cardinality.\retTwo
+   \end{myDindent}
+
+   
+   \begin{myIndent}\hTwo
+      Proof:\\
+      If such an injective $f$ existed, then that would imply a surjective $g$ exists. So, we just need to show that any function $g: A \longrightarrow \mathcal{P}(A)$ isn't surjective.\retTwo
+
+      Let $g: A \longrightarrow \mathcal{P}(A)$ be any function and define $B = \{a \in A \mid a \in A - g(a)\}$.\\ Clearly, $B \subseteq A$. However, $B$ cannot be in the image of $g$. After all, suppose there exists $a_0 \in A$ such that $g(a_0) = B$. Then we get a contradiction because:
+
+      {\centering $a_0 \in B \Longleftrightarrow a_0 \in A - g(a_0) \Longleftrightarrow a_0 \in A - B$ \retTwo\par}
+
+      Hence, $g(A) \neq \mathcal{P}(A)$ and we conclude that $g$ can't be surjective. $\blacksquare$\retTwo\retTwo
+   \end{myIndent}
+
+   \exOne
+   \blab{Exercise 7.3:} Let $X= \{0, 1\}$. Show there is a bijective correspondence between the set $\mathcal{P}(\mathbb{Z}_+)$ and the Cartesian product $X^\omega$.\retTwo
+
+   
+   \begin{myIndent}\exTwo
+      For any set $A \in \mathcal{P}(\mathbb{Z}_+)$, define $f(A)$ to be the $\omega$-tuple $\mathbf{x}$ such that for all $i \in \mathbb{Z}^+$, $\mathbf{x}_i = 1$ if $i \in A$ and $\mathbf{x}_i = 0$ if $i \notin A$. Then clearly $f$ is injective as $\forall A, B \in \mathcal{P}(\mathbb{Z}_+)$, $f(A) = f(B) \Longrightarrow A = B$. Also, given any $\mathbf{x} \in X^\omega$, we know that the set\\ $A = \{i \in \mathbb{Z}_+ \mid \mathbf{x}_i = 1\}$ satisfies that $f(A) = \mathbf{x}$.\retTwo Hence, $f$ is a bijective function between $\mathcal{P}(\mathbb{Z}_+)$ and $X^\omega$.
+      \begin{myTindent}\myComment
+         Note that this construction still works if $\mathbb{Z}_+$ is replaced with any\\ countably infinite set.\retTwo\retTwo
+      \end{myTindent}
+   \end{myIndent}
+
+   \blab{Exercise 7.5:} Determine whether the following sets are countable or not.
+   \begin{itemize}
+      \item[(f)] The set $F$ of all functions $f: \mathbb{Z}_+ \longrightarrow \{0, 1\}$ that are "eventually zero", meaning there is a positive integer $N$ such that $f(n) = 0$ for all $n \geq N$.
+      
+      \begin{myIndent}\exTwo
+         $F$ is countable. To see why, let:
+         
+         {\centering $A_n = \{f: \mathbb{Z}_+ \longrightarrow \{0, 1\}^\omega \mid \forall i \geq n, \myHS f(i) = 0\}$\retTwo\par}
+         
+         Thus each $A_n$ is finite (with $2^n$ elements) and $F = \bigcup\limits_{n = 1}^\infty A_n$.\newpage
+      \end{myIndent}
+
+      \item[(g)] The set $G$ of all functions $f: \mathbb{Z}_+ \longrightarrow \mathbb{Z}_+$ that are eventually $1$.
+      
+      \begin{myIndent}\exTwo
+         $G$ is countable. To see why, let:
+
+         {\centering $A_n = \{f: \mathbb{Z}_+ \longrightarrow \mathbb{Z}_+ \mid \forall i \geq n, \myHS f(i) = 1\}$\retTwo\par}
+
+         Then each $A_n$ has a bijective correspondence with $(\mathbb{Z}_+)^n$, meaning each $A_n$ is countable, and $G = \bigcup\limits_{n = 1}^\infty A_n$.
+         
+         \begin{myTindent}\myComment
+            The same argument applies to all functions $f: \mathbb{Z}_+ \longrightarrow \mathbb{Z}_+$ that are eventually any constant.\retTwo
+         \end{myTindent}
+      \end{myIndent}
+
+      \item[(h)] The set $H$ of all functions $f: \mathbb{Z}_+ \longrightarrow \mathbb{Z}_+$ that are eventually constant.
+      
+      \begin{myIndent}\exTwo
+         $H$ is countable. To see why, let $A_n$ be the set of all functions\\ $f: \mathbb{Z}_+ \longrightarrow \mathbb{Z}_+$ that are eventually $n$. Because of part g of\\ [-6pt] this exercise, we know that each $A_n$ is countable. Also, $H = \bigcup\limits_{n = 1}^\infty A_n$.\retTwo
+      \end{myIndent}
+
+      \item[(i)] The set $I$ of all two-element subsets of $\mathbb{Z}_+$
+      \item[(j)] The set $J$ of all finite subsets of $\mathbb{Z}_+$.
+      
+      \begin{myIndent}\exTwo
+         Both $I$ and $J$ are countably infinite. We know this because we can define\\ surjections from $(\mathbb{Z_+})^2$ to $I$ and $\bigcup\limits_{n = 1}^\infty (\mathbb{Z}_+)^n$ to $J$.
+         
+         \begin{myIndent}
+            (Finite cartesian products of countable sets and unions of countably many countable sets are countable.)\retTwo\retTwo
+         \end{myIndent}
+      \end{myIndent}
+   \end{itemize}
+
+   \blab{Exercise 7.6.a:} Show that if $B \subset A$ and there is an injection $f: A \longrightarrow B$, then $|A| = |B|$.
+
 \end{document}
