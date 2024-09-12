@@ -466,7 +466,9 @@
 
    
    \begin{myIndent}\exTwo
-      For any set $A \in \mathcal{P}(\mathbb{Z}_+)$, define $f(A)$ to be the $\omega$-tuple $\mathbf{x}$ such that for all $i \in \mathbb{Z}^+$, $\mathbf{x}_i = 1$ if $i \in A$ and $\mathbf{x}_i = 0$ if $i \notin A$. Then clearly $f$ is injective as $\forall A, B \in \mathcal{P}(\mathbb{Z}_+)$, $f(A) = f(B) \Longrightarrow A = B$. Also, given any $\mathbf{x} \in X^\omega$, we know that the set\\ $A = \{i \in \mathbb{Z}_+ \mid \mathbf{x}_i = 1\}$ satisfies that $f(A) = \mathbf{x}$.\retTwo Hence, $f$ is a bijective function between $\mathcal{P}(\mathbb{Z}_+)$ and $X^\omega$.
+      For any set $A \in \mathcal{P}(\mathbb{Z}_+)$, define $f(A)$ to be the $\omega$-tuple $\mathbf{x}$ such that for all\\ $i \in \mathbb{Z}^+$, $\mathbf{x}_i = 1$ if $i \in A$ and $\mathbf{x}_i = 0$ if $i \notin A$. Then clearly $f$ is injective as\\ $\forall A, B \in \mathcal{P}(\mathbb{Z}_+)$, $f(A) = f(B) \Longrightarrow A = B$. Also, given any $\mathbf{x} \in X^\omega$, we\\ know that the set $A = \{i \in \mathbb{Z}_+ \mid \mathbf{x}_i = 1\}$ satisfies that $f(A) = \mathbf{x}$,\\ meaning $f$ is surjective.
+      
+      \retTwo Hence, $f$ is a bijective function between $\mathcal{P}(\mathbb{Z}_+)$ and $X^\omega$.
       \begin{myTindent}\myComment
          Note that this construction still works if $\mathbb{Z}_+$ is replaced with any\\ countably infinite set.\retTwo\retTwo
       \end{myTindent}
@@ -479,7 +481,7 @@
       \begin{myIndent}\exTwo
          $F$ is countable. To see why, let:
          
-         {\centering $A_n = \{f: \mathbb{Z}_+ \longrightarrow \{0, 1\}^\omega \mid \forall i \geq n, \myHS f(i) = 0\}$\retTwo\par}
+         {\centering $A_n = \{f: \mathbb{Z}_+ \longrightarrow \{0, 1\} \mid \forall i \geq n, \myHS f(i) = 0\}$\retTwo\par}
          
          Thus each $A_n$ is finite (with $2^n$ elements) and $F = \bigcup\limits_{n = 1}^\infty A_n$.\newpage
       \end{myIndent}
@@ -517,5 +519,157 @@
    \end{itemize}
 
    \blab{Exercise 7.6.a:} Show that if $B \subset A$ and there is an injection $f: A \longrightarrow B$, then $|A| = |B|$.
+   
+   \begin{myIndent}\exTwo
+      According to the hint, we set $A_1 = A$ and $A_n = f(A_{n-1})$ for all $n > 1$. Similarly, we set $B_1 = B$ and $B_n = f(B_{n-1})$ for all $n > 1$.\retTwo
+
+      We can assume $A_2$ is a proper subset of $B_1$ because if $A_2 = B_1$, then we already have that $f$ is a bijection. Also, as $f$ is an injection, we know that $B_2 \subset A_2$. Thus by induction, we can conclude that:
+
+      {\centering $ A_1 \supset B_1 \supset A_2 \supset B_2 \supset A_3 \supset B_3 \supset \cdots $\retTwo\par}
+
+      Now, the textbook recommends defining $h: A \longrightarrow B$ by:
+
+      \begin{center}
+         $h(x) = \left\{
+         \begin{matrix}
+            f(x) & & \text{ if } x \in A_n - B_n \text{ for any } n \in \mathbb{Z}_+ \\
+            x & & \text{ otherwise }
+         \end{matrix}\right.$\newpage
+      \end{center}
+
+      
+      \begin{myIndent}
+         \myComment I want to ask a professor about this definition because it urks me. My issue with\\ this definition of $h$ is that I feel like it should be possible for:
+         $$\bigcap\limits_{n=1}^\infty (A_n \cap B_n) \neq \emptyset.$$
+         
+         However, we wouldn't be able to know that some $x$ is in that intersection and\\ thus falls into case 2 until after an infinite number of steps.\retTwo
+         
+         On the other hand, $S_1 = \bigcup\limits_{n = 1}^\infty (A_n - B_n)$ is a valid definition for a set, as is\\ $S_2 = A - S_1$. So the definition $h$ is valid because it's saying that $h(x) = f(x)$\\ [6pt] if $x \in S_1$ and $h(x) = x$ if $x \in S_2$.\retTwo
+
+         Maybe my issue is just that I have trouble trusting the validity of a function definition if I can't actually evaluate that function myself. Although, there are lots of functions like that that I don't have any problem with. For example, given $g(x) = 0$ if $x$ is rational and $g(x) = 1$ if $x$ is irrational, what is $g(\pi^2)$?\retTwo
+      \end{myIndent}
+
+      Hopefully it is clear that $h$ is in fact a valid function from $A$ to $B$. Now firstly, we shall show that $h$ is injective.
+
+      \begin{myIndent}\exP
+         Let $x, y \in A$ such that $x \neq y$. If there are integers $n$ and $m$ such that $x \in A_n - B_n$ and $y \in A_m - B_m$, then $h(x) \neq h(y)$ because $f$ is injective. Meanwhile, if no such $n$ or $m$ exists, then $h(x) \neq h(y)$ because $x \neq y$.\retTwo
+
+         This leaves the case that there exists $n \in \mathbb{Z}_+$ such that $x \in A_n - B_n$ but for\\ all $m \in \mathbb{Z}_+,\myHS y \notin A_m - B_m$. Then, note that $f(x) \in f(A_{n} - B_{n})$. And since\\ $f$ is injective, we thus have that $f(x) \in f(A_{n}) - f(B_{n}) = A_{n+1} - B_{n+1}$.\\ Therefore, as $y \notin A_{n+1} - B_{n+1}$, we know that $h(x) \neq y = h(y)$.\retTwo
+      \end{myIndent}
+
+      Next, we show $h$ is surjective.
+
+      \begin{myIndent}\exP
+         Let $y \in B$.\retTwo
+         
+         Suppose there exists $n \in \mathbb{Z}_+$ such that $y \in A_n - B_n$. We know that $n \neq 1$ since $y \in B$. Thus, there must exist $x \in A_{n-1}$ such that $y = f(x) \in f(A_{n-1}) = A_n$. Furthermore, this $x$ can't be in $B_{n-1}$ because otherwise $y$ would be in $B_n$ which we know isn't true. So, $x \in A_{n-1} - B_{n-1}$, meaning that $h(x) = f(x) = y$.\retTwo
+
+         Meanwhile, if no such $n$ exists, then we simply have that $h(y) = y$. Hence,\\ $h(A) = B$.\retTwo
+      \end{myIndent}
+
+      Thus, we've shown that $h$ is a bijection, meaning that $|A| = |B|$.\newpage
+   \end{myIndent}
+
+   \blab{Exercise 7.7:} Show that $|\{0, 1\}^\omega| = |(\mathbb{Z}_+)^\omega|$.
+
+   
+   \begin{myIndent}\exTwo
+      Firstly, there's obviously a bijection exists between $\{0, 1\}^\omega$ and $\{1, 2\}^\omega$. Also,\\ $\{1, 2\}^\omega \subset (\mathbb{Z}_+)^\omega$. So, if we can construct an injective function from $(\mathbb{Z}_+)^\omega$ to\\ $\{1, 2\}^\omega$, then we can apply the result of exercise 7.6.a to prove this exercise's\\ claim.\retTwo
+
+      We shall create this injection using a diagonalization argument. Let $x \in (\mathbb{Z}_+)^\omega$.\\ Then we define $f(x) = y \in \{1, 2\}^\omega$ as follows:
+      
+      \begin{center}
+         \begin{tabular}{c}
+            $y(1) = 2$ if $x(1) = 1$. Otherwise $y(1) = 1$.\\ [6pt]
+            $y(2) = 2$ if $x(1) = 2$. Otherwise $y(2) = 1$.\\
+            $y(3) = 2$ if $x(2) = 1$. Otherwise $y(3) = 1$.\\ [6pt]
+            $y(4) = 2$ if $x(1) = 3$. Otherwise $y(4) = 1$.\\
+            $y(5) = 2$ if $x(2) = 2$. Otherwise $y(5) = 1$.\\
+            $y(6) = 2$ if $x(3) = 1$. Otherwise $y(6) = 1$. \\ [6pt]
+
+            $y(7) = 2$ if $x(1) = 4$. Otherwise $y(7) = 1$.\\
+            $\vdots$\\ [12pt]
+         \end{tabular}
+      \end{center}
+
+      Clearly $f$ is an injection since $f(x_1) = f(x_2)$ implies that $x_1$ and $x_2$ have the same integers at all indices.\retTwo\retTwo
+   \end{myIndent}
+
+   \blab{Exercise 7.6.b: (Schroeder-Bernstein theorem)} If there are injections $f: A \longrightarrow C$ and $g: C\longrightarrow A$, then $A$ and $C$ have the same cardinality.\retTwo
+   \myComment
+   I did my work on paper and now it's late and I don't want to write more tonight.\retTwo\retTwo
+
+   \dispDate{9/11/2024}
+
+   \hOne
+
+   Since today's my day off, I'm gonna work through Munkres' textbook \textit{Topology} some more.\retTwo
+
+   \blab{Theorem 8.4 (Principle of recursive definition):} Let $A$ be a set and let $a_0$ be an element of $A$. Suppose $\rho$ is a function assigning an element of $A$ to each function $f$ mapping a nonempty section of the positive integers onto $A$. Then there exists a unique function $h: \mathbb{Z}_+ \longrightarrow A$ such that:
+
+   {\begin{center}
+      \begin{tabular}{l c r}
+         $(*)$ & \phantom{aaaa} & 
+         \begin{tabular}{l r}
+            $h(1) = a_0$ & \\
+            $h(i) = \rho(h|_{\{1, \ldots, i-1\}})$ & $\text{for } i > 1\text{.}$
+         \end{tabular}
+      \end{tabular}\retTwo
+   \end{center}}
+
+   \newpage
+   \begin{myIndent}\hTwo
+      Proof outline:
+
+     \begin{myIndent}\hThree
+       Part 1: Given any $n \in \mathbb{Z}_+$, there exists a function $f: \{1, \ldots, n\} \longrightarrow A$ that\\ satisfies $(*)$.
+ 
+       \begin{myIndent}\myComment
+          This is obvious from induction.\\ [9pt]
+       \end{myIndent}
+
+       Part 2: Suppose that $f: \{1, \ldots, n\} \longrightarrow A$ and $g: \{1, \ldots, m\} \longrightarrow A$ both satisfy $(*)$ for all $i$ in their respective domains. Then $f(i) = g(i)$ for all $i$ in both domains.
+
+      \begin{myIndent}
+         Proof:\\
+         Suppose not. Let $i$ be the smallest integer for which $f(i) \neq g(i)$.\retTwo
+         
+         We know $i \neq 1$ because $f(1) = a_0 = g(1)$. But then note that\\ $f|_{\{1, \ldots, i - 1\}} = g|_{\{1, \ldots, i- 1\}}$. Hence:
+         
+         {\centering $f(i) = \rho(f|_{\{1, \ldots, i - 1\}}) = \rho(g|_{\{1, \ldots, i - 1\}}) = g(i)$.\retTwo\par}
+
+         This contradicts that $i$ is the smallest integer for which $f(i) \neq g(i)$.\\ [9pt]
+      \end{myIndent}
+
+      Part 3: Let $f_n: \{1, \ldots, n\} \longrightarrow A$ be the unique function satisfying  $(*)$\\ (uniqueness was proven in part 2). Then we define:
+
+      {\centering $h = \bigcup\limits_{i = 1}^\infty f_n$ \retTwo\par}
+
+      \begin{myIndent}\myComment
+         Because of part 2, we can fairly easily show that for each $i \in \mathbb{Z}_+$, there is exactly one element in $h$ with $i$ as it's first coordinate. Hence, the set $h$ defines a functions from $\mathbb{Z}_+$ to $A$.\retTwo
+
+         Also, hopefully it's clear that $h$ satisfies $(*)$.\retTwo
+      \end{myIndent}
+     \end{myIndent}
+   \end{myIndent}
+
+   \mySepTwo
+
+   \blab{Axiom of choice}: Given a collection $\mathcal{A}$ of disjoint nonempty sets, there exists a set $C$ consisting of exactly one element from each element of $\mathcal{A}$.
+
+   
+   \begin{myIndent}\myComment
+      A few notes:
+      \begin{enumerate}
+         \item If we restrict $\mathcal{A}$ to being a finite collection, then there is nothing controversial about this axiom. It only becomes controversial when $\mathcal{A}$ is allowed to be infinite.
+         \item There are multiple instances in baby Rudin where we made an infinite number of\\ arbitrary choices. Looking at a lot of those proofs closer, I think many of them could avoid using the axiom of choice by specifying that we had to pick rational numbers in a set. However, being able to pick elements without worrying about a preexisting choice function is way easier.\retTwo
+         
+         My take away from this is that not only does it make proofs cleaner to not worry about using constructed choice functions, but it's also perfectly acceptable now-a-days to use this axiom.\newpage
+      \end{enumerate}
+   \end{myIndent}
+
+   \blab{Lemma 9.2: (Existence of a choice function)} Given a collection $\mathcal{B}$ of nonempty sets (not necessarily disjoint), there exists a function \[c: \mathcal{B} \longrightarrow \bigcup\limits_{B \in \mathcal{B}}B\] such that $c(B)$ is an element of $B$ for each $B \in \mathcal{B}$.
+
+   \newpage
 
 \end{document}
