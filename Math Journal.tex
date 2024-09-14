@@ -683,8 +683,74 @@
       \end{myTindent}\end{myTindent}
    \end{myIndent}
 
+   \mySepTwo
+
+   A set $A$ with an order relation $<$ is said to be \udefine{well-ordered} if every nonempty subset of $A$ has a smallest element.\retTwo
 
    
+   \begin{myIndent}\myComment
+      
+      {\fontsize{13}{15}\selectfont%
+      \blab{Tangent: inductiveness of $\mathbb{Z}_+$ is equivalent to the well-orderedness of $\mathbb{Z}_+$}
+      }
+      
+      \begin{myIndent}
+         This proof is taken from https://math.libretexts.org/ on their page for the\\ well-ordering principle.\retTwo
+
+         ($\Longrightarrow$)\\
+         Suppose $S$ is a nonempty subset of $\mathbb{Z}_+$ with no least element. Then let $R$ be the set of lower bounds of $S$. Since $1$ is the least element of $\mathbb{Z}_+$, we know that $1 \in R$.\retTwo
+         
+         Now given any $k \geq 1$, if $k \in R$, we know that $\{1, \ldots, k\}$ must be a subset of $R$. Also note that $R \cap S = \emptyset$ because if that wasn't true, we'd know that $S$ has a least element. Therefore, $\{1, \ldots, k\} \cap S = \emptyset$. But then that shows that $k + 1 \notin S$ since otherwise $k + 1$ would be the least element of $S$. Furthermore, since no element of $\{1, \ldots, k\}$ is in $S$, we automatically have that $k + 1 \in R$.\retTwo
+
+         By induction, this means that $R = \mathbb{Z}_+$. Hence, we get a contradiction as $S$ must be empty.\newpage
+
+         ($\Longleftarrow$)\\
+         Let $S$ be a subset of $\mathbb{Z}_+$ such that $1 \in S$ and $k \in S \Longrightarrow k + 1 \in S$. Then suppose that $S \neq \mathbb{Z}_+$. In that case, we know that $S^\comp \neq \emptyset$, and since $\mathbb{Z}_+$ is well-ordered, we know there is a least element $\alpha$ of $S^\comp$.\retTwo
+
+         Because $1 \in S$, we know that $\alpha \geq 2$. But then consider that $1 \leq \alpha - 1 < \alpha$. Therefore, $\alpha - 1 \in S$, thus implying that $\alpha \in S$. This contradicts that $\alpha \in S^\comp$.\retTwo
+      \end{myIndent}
+
+      {\fontsize{13}{15}\selectfont%
+      From what I've heard, when defining the positive integers, one usally takes one of the two above properties as an axiom and then proves the other as a theorem. In Munkres' book, he starts with induction and proves well-orderedness.\retTwo\retTwo
+      }
+   \end{myIndent}
+
+   Facts:
+   \begin{itemize}
+      \item If $A$ with the order relation $<$ is well-ordered, then any subset of $A$ is well-\\ordered as well with $<$ restricted to that subset.
+      \item If $A$ has the order relation $<_1$ and $B$ has the order relation $<_2$ and both are well-ordered, then $A \times B$ is well-ordered with the dictionary order.
+      \item Given any countable set $A$, we know there exists a bijection $f$ from $A$ to $\mathbb{Z}_+$. Hence, given $a, b \in A$, we can say that $a < b \Longleftrightarrow f(a) < f(b)$. Then, $A$ is well-ordered by $<$ with the least element of any subset $S$ of $A$ being the element $\alpha \in A$ such that $f(\alpha)$ is the least element in $f(S)$.
+      \item If a set $A$ is well-ordered, then we can make a choice function $c: \mathcal{P}(A) \longrightarrow A$ using that well-ordering.
+      
+      \begin{myIndent}
+         Specifically, given any $B \subseteq A$, assign $c(B) = \beta$ where $\beta$\\ is the least element of $B$.
+
+         
+         \begin{myIndent}\myComment
+            This is why we can pick elements of $\mathbb{Q}$ without worrying about the axiom of choice.\retTwo\retTwo
+         \end{myIndent}
+      \end{myIndent}
+   \end{itemize}
+
+   An important theorem (which I will hopefully prove soon) is:
+   
+   \begin{myIndent}
+      \blab{The Well Ordering Theorem:} If $A$ is a set, there exists an order relation on $A$ that is well-ordering.\retTwo
+   \end{myIndent}
+
+   \exOne\blab{Exercise 10.5:} Show that the well-ordering theorem implies the (infinite) axiom of choice.
+   \begin{myIndent}\exTwo
+      Let $\mathcal{A}$ be a collection of disjoint sets. By the well-ordering theorem, we can pick an order relation on $\bigcup\limits_{A \in \mathcal{A}}A$ that is well-ordering.\newpage
+      
+      \begin{myIndent}\myComment
+         Note that the previous sentence is carefully worded to only make use of the finite axiom of choice. Specifically, the order relation we are picking is an element of some subset of $\bigcup\limits_{A \in \mathcal{A}}A \times \bigcup\limits_{A \in \mathcal{A}}A$.\retTwo
+
+         If we had instead picked a well-ordering for each $A \in \mathcal{A}$, then that would require the axiom of choice as we would be making potentially infinitely many arbitrary choices of order relations.\retTwo
+      \end{myIndent}
+
+      Now let $C = \{a \in \hspace{-0.2em}\bigcup\limits_{A \in \mathcal{A}}\hspace{-0.2em}A \mid \exists A \in \mathcal{A} \suchthat a \in A \text{ and } \forall b \in A,\myHS a \leq b \}$.\retTwo Then $C$ fulfils the properties of the set that the axiom of choice would guarentee exists.
+   \end{myIndent}
+
 
    \newpage
 
