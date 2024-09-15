@@ -665,6 +665,8 @@
          \item There are multiple instances in baby Rudin where we made an infinite number of\\ arbitrary choices. Looking at a lot of those proofs closer, I think many of them could avoid using the axiom of choice by specifying that we had to pick rational numbers in a set. However, being able to pick elements without worrying about a preexisting choice function is way easier.\retTwo
          
          My take away from this is that not only does it make proofs cleaner to not worry about using constructed choice functions, but it's also perfectly acceptable now-a-days to use this axiom.\newpage
+         
+         Plus, some really commonly used theorems require the axiom of choice to prove them. For example, the union of countably many countable sets is countable. This makes it really easy to accidentally use the axiom of choice in a proof.\retTwo
       \end{enumerate}
    \end{myIndent}
 
@@ -735,7 +737,11 @@
    An important theorem (which I will hopefully prove soon) is:
    
    \begin{myIndent}
-      \blab{The Well Ordering Theorem:} If $A$ is a set, there exists an order relation on $A$ that is well-ordering.\retTwo
+      \blab{The Well Ordering Theorem:} If $A$ is a set, there exists an order relation on $A$ that is well-ordering.
+      
+      \begin{myIndent}\myComment
+         Note: this theorem requires the axiom of choice to prove.\retTwo
+      \end{myIndent}
    \end{myIndent}
 
    \exOne\blab{Exercise 10.5:} Show that the well-ordering theorem implies the (infinite) axiom of choice.
@@ -748,9 +754,141 @@
          If we had instead picked a well-ordering for each $A \in \mathcal{A}$, then that would require the axiom of choice as we would be making potentially infinitely many arbitrary choices of order relations.\retTwo
       \end{myIndent}
 
-      Now let $C = \{a \in \hspace{-0.2em}\bigcup\limits_{A \in \mathcal{A}}\hspace{-0.2em}A \mid \exists A \in \mathcal{A} \suchthat a \in A \text{ and } \forall b \in A,\myHS a \leq b \}$.\retTwo Then $C$ fulfils the properties of the set that the axiom of choice would guarentee exists.
+      Now let $C = \{a \in \hspace{-0.2em}\bigcup\limits_{A \in \mathcal{A}}\hspace{-0.2em}A \mid \exists A \in \mathcal{A} \suchthat a \in A \text{ and } \forall b \in A,\myHS a \leq b \}$.\retTwo Then $C$ fulfils the properties of the set that the axiom of choice would guarentee exists.\retTwo
    \end{myIndent}
 
+   \dispDate{9/14/2024}
+
+   \blab{Exercise 10.1:} Show that every well-ordered set has the least-upper-bound\\ property.
+
+   \begin{myIndent}\exTwo
+      Let the set $A$ with the order relation $<$ be well-ordered. Then consider any nonempty $B \subseteq A$ and suppose there exists $\alpha \in A$ such that $b < \alpha$ for all $b \in B$.\retTwo
+
+      Let $U = \{a \in A \mid \forall b \in B, \myHS b \leq a\}$. Since $\alpha \in U$, we know that $U \neq \emptyset$. So, because $A$ is well-ordered, we know that $U$ has a least element $\beta$. This $\beta$ is by definition the least upper bound of $B$. So $\sup{B} = \beta$.\retTwo\retTwo
+   \end{myIndent}
+
+   \hOne
+
+   Let $X$ be a well-ordered set. Given $\alpha \in X$, let $S_\alpha$ denote the set $\{x \in X \mid x < \alpha\}$. We call $S_\alpha$ the \udefine{section} of $X$ by $\alpha$.\retTwo
+
+   \blab{Lemma 10.2:} There exists a well-ordered set $A$ having a largest element $\Omega$ such that $S_\Omega$ is uncountable but every other section of $A$ is countable.
+
+   \begin{myIndent}\hTwo
+      Proof:\\
+      Starting off, let $B$ be an uncountable well-ordered set. Then let $C$ be the well-\\ordered set $\{1, 2\} \times B$ with the dictionary order. Clearly, given any $b \in B$, we have that $S_{(2, b)}$ is uncountable. So the set of $c \in C$ such that $S_c$ is uncountable is not empty.\retTwo
+
+      Let $\Omega$ be the least element of $C$ such that $S_\Omega$ is uncountable. Then define\\ $A = S_\Omega \cup \{\Omega\}$. This is called a \udefine{minimal uncountable well-ordered set}.
+      \retTwo
+      
+      \begin{myIndent}\myComment
+         The reason we are considering $\{1, 2\} \times B$ instead of just $B$ is that if we were just considering $B$, then we wouldn't be able to guarentee that there exists $b \in B$ such that $S_b$ is uncountable.\newpage
+
+         User MJD on https://math.stackexchange.com wrote some good intuition for why\\ this is.
+         \begin{myIndent}
+            While the set $\mathbb{Z}_+$ is countably infinite, all sections $S_x$ of $\mathbb{Z}_+$ are finite.\\ However, when considering $\{1, 2\} \times \mathbb{Z}_+$ with the dictionary order, we\\ have that $S_{(2, 1)}$ is countably infinite. Furthermore, all sections of $S_{(2, 1)}$\\ are finite. Thus, $S_{(2, 1)}$ would be a minimal \textit{countable} well-ordered set.\retTwo
+         \end{myIndent}
+      \end{myIndent}
+   \end{myIndent}
+
+   We call a set described by lemma 10.2 $\overline{S}_\Omega = S_\Omega \cup \{\Omega\}$.\retTwo
+
+   \blab{Theorem 10.3:} If $A$ is a countable subset of $S_\Omega$, then $A$ has an upper bound in $S_\Omega$.
+   
+   \begin{myIndent}\hTwo
+      Proof:\\
+      Let $A$ be a countable subset of $S_\Omega$. For all $a \in A$, we know that $S_a$ is countable. Therefore, $B = \bigcup\limits_{a \in A}S_a$ is also countable, meaning that $S_\Omega - B \neq \emptyset$.\retTwo
+
+      If we pick $x \in S_\Omega - B$, we must have that $x$ is an upper bound to $A$ because if $x < a$ for some $a \in A$, we would have that $x \in S_a \subseteq B$.\retTwo
+      
+      
+      \begin{myIndent}\myComment
+         If you combine this with exercise 10.1, we know that $A$ has a least upper bound.\retTwo
+      \end{myIndent}
+   \end{myIndent}
+
+   \exOne
+   \blab{Exercise 10.6:} Let $S_\Omega$ be a minimal uncountable well-ordered set.
+   
+   \begin{itemize}
+      \item[(a)] Show that $S_\Omega$ has no largest element.
+      \begin{myIndent}\exTwo
+         Suppose $\alpha \in S_\Omega$ is the largest element of $S_\Omega$. In that case, we'd have that\\ $S_\alpha = S_\Omega - \{\alpha\}$. However, by theorem 10.3, we know that $S_\alpha$ is countable. This implies that $S_\Omega = S_\alpha \cup \{\alpha\}$ must also be countable, which is a contradiction.
+         \retTwo
+      \end{myIndent}
+      \item[(b)] Show that for every $\alpha \in S_\Omega$, the subset $\{x \in S_\Omega \mid \alpha < x\}$ is uncountable.
+      \begin{myIndent}\exTwo
+         Let $\alpha \in S_\Omega$. By the law of trichotomy, we know that:
+   
+         {\centering $S_\Omega = \{x \in S_\Omega \mid x < \alpha\} \cup \{\alpha\} \cup \{x \in S_\Omega \mid \alpha < x\}$.\retTwo\par}
+         
+         Now suppose $\{x \in S_\Omega \mid \alpha < x\}$ is countable. Then as both $\{x \in S_\Omega \mid x < \alpha\}$ and $\{\alpha\}$ are countable, we have a contradiction as the three's union must also be countable. But we know $S_\Omega$ isn't.\retTwo
+      \end{myIndent}
+      % \item[(c)] Let $X_0$ be the subset of $S_\Omega$ consisting of all elements $x$ such that $x$ has no immediate predecessor. Show that $X_0$ is uncountable.  
+   \end{itemize}
+
+   \hOne
+   \mySepTwo
+
+   Some definitions I've been lacking:
+   \begin{enumerate}
+      \item Let $A$ be a set and suppose $x, y, z$ are any three different elements of $A$.
+      
+      {\centering\fontsize{11}{13}\selectfont%
+         \begin{tabular}{|l|l|}
+            \udefine{Simple [Default] Order Relation}: ($<$) & \udefine{Strict Partial Order Relation}: ($\prec$) \\ [4pt] \hline &\\ [-9pt]
+   
+            \begin{tabular}{l}
+               Nonreflexitivity: $x \not< x$ \\
+               Associativity: $x < y$ and $y < z \Rightarrow x < z$ \\
+               Comparability: $x < y$ or $y < x$ is true
+            \end{tabular} &
+            \begin{tabular}{l}
+               Nonreflexitivity: $x \not\prec x$ \\
+               Associativity: $x \prec y$ and $y \prec z \Rightarrow x \prec z$\\\phantom{a}
+            \end{tabular}
+         \end{tabular}
+      \par}
+      \newpage
+
+      
+      \begin{myIndent}\myComment
+         Basically, a partial order relation is allowed to not give an order for some pairings of elements. If someone just says a set is ordered, they mean the set is simply ordered.\retTwo
+      \end{myIndent}
+
+      \item Let $A$ and $B$ be sets ordered by $<_A$ and $<_B$ respectively. We say that $A$ and\\ $B$ have the same \udefine{order type} if there exists an order-preserving bijection\\ $f: A \longrightarrow B$, meaning that $\forall a_1, a_2 \in A,\myHS a_1 <_A a_2 \Longrightarrow f(a_1) <_B f(a_2)$.
+      
+      \begin{myIndent}\myComment
+         It is trivial to show that if $f$ is an order-preserving bijection, then $f^{-1}$ is also an order-\\preserving bijection.\retTwo
+      \end{myIndent}
+
+      \item If $A$ is an ordered set and $a$ and $b$ are two different elements, then consider\\ the set $S = \{x \in A \mid a < x < b\}$. If $S = \emptyset$ we say that $b$ is the \udefine{successor} of\\ $a$ and $a$ is the \udefine{predecessor} of $b$.\retTwo\retTwo
+   \end{enumerate}
+
+   \exOne
+   \blab{Exercise 10.2}:  
+   \begin{itemize}
+       \item[(a)] Show that in a well-ordered set, every element except the largest (if one exists) has an immediate successor
+       
+      \begin{myIndent}\exTwo
+         Let $A$ be a well-ordered set and let $\alpha$ be any element in $A$ such that there exists $\beta \in A$ for which $\alpha < \beta$. Then consider the set $S = \{x \in A \mid \alpha < x < \beta\}$. If $S = \emptyset$, then we know $\alpha$ has $\beta$ as its successor. Meanwhile, if $S \neq \emptyset$, then since $A$ is well-ordered, we know that $A$ has a least element $\gamma$. Thus, the set $\{x \in A \mid \alpha < x < \gamma\} = \emptyset$ and we know that $\gamma$ is the successor of $\alpha$.\retTwo
+      \end{myIndent}
+
+       \item[(b)] Find a set in which every element has an immediate successor that is not well-ordered. 
+       \begin{myIndent}\exTwo
+         Consider the set $\mathbb{Z}$ of all integers using the standard ordering. Then for any $n \in \mathbb{Z}$, we know that its successor is $n + 1$. At the same time though, the set of all negative integers has no least element. So $\mathbb{Z}$ is not well-ordered by $<$.\retTwo
+      \end{myIndent}
+   \end{itemize}
+
+   \blab{Exercise 10.6}
+      \begin{itemize}
+         \item[(c)] Let $X_0$ be the subset of $S_\Omega$ consisting of all elements $x$ such that $x$ has no\\ immediate predecessor. Show that $X_0$ is uncountable.
+         
+         \begin{myIndent}\exTwo
+            Suppose $X_0$ is countable. Then by theorem 10.3, we know that $X_0$ is bounded above by some $\alpha \in S_\Omega$. Thus, there is a predecessor $x \in S_\Omega$ for any $y$ in the set $T = \{z \in S_\Omega \mid z > \beta\}$.\newpage
+
+            Now define a function $f: \mathbb{Z}_+ \longrightarrow T$ such that $f(1) =$ the least element of $T$ and $f(n) =$ the successor of $f(n - 1)$ for all $n > 1$. We know this function is well-defined because $S_\Omega$ has no largest element according to exercise 10.6.a. So, all elements of $S_\Omega$ and thus $T$ have a successor by exercises 10.2.a, meaning our recursion formula always uniquely determines an $f(n + 1)$ for all $n \in \mathbb{Z}_+$. Hence, the principle of recursive definition guarentees a unique $f$ exists.
+         \end{myIndent}
+      \end{itemize}
 
    \newpage
 
