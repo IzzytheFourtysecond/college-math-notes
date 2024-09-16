@@ -875,7 +875,7 @@
 
        \item[(b)] Find a set in which every element has an immediate successor that is not well-ordered. 
        \begin{myIndent}\exTwo
-         Consider the set $\mathbb{Z}$ of all integers using the standard ordering. Then for any $n \in \mathbb{Z}$, we know that its successor is $n + 1$. At the same time though, the set of all negative integers has no least element. So $\mathbb{Z}$ is not well-ordered by $<$.\retTwo
+         Consider the set $\mathbb{Z}$ of all integers using the standard ordering. Then for any $n \in \mathbb{Z}$, we know that its successor is $n + 1$. At the same time though, the set of all negative integers has no least element. So $\mathbb{Z}$ is not well-ordered by $<$.\retTwo\retTwo
       \end{myIndent}
    \end{itemize}
 
@@ -884,9 +884,23 @@
          \item[(c)] Let $X_0$ be the subset of $S_\Omega$ consisting of all elements $x$ such that $x$ has no\\ immediate predecessor. Show that $X_0$ is uncountable.
          
          \begin{myIndent}\exTwo
-            Suppose $X_0$ is countable. Then by theorem 10.3, we know that $X_0$ is bounded above by some $\alpha \in S_\Omega$. Thus, there is a predecessor $x \in S_\Omega$ for any $y$ in the set $T = \{z \in S_\Omega \mid z > \beta\}$.\newpage
+            Suppose $X_0$ is bounded above by some $\alpha \in S_\Omega$. Thus, there is a predecessor $x \in S_\Omega$ for any $y$ in the set $T = \{z \in S_\Omega \mid z > \alpha\}$.\newpage
 
-            Now define a function $f: \mathbb{Z}_+ \longrightarrow T$ such that $f(1) =$ the least element of $T$ and $f(n) =$ the successor of $f(n - 1)$ for all $n > 1$. We know this function is well-defined because $S_\Omega$ has no largest element according to exercise 10.6.a. So, all elements of $S_\Omega$ and thus $T$ have a successor by exercises 10.2.a, meaning our recursion formula always uniquely determines an $f(n + 1)$ for all $n \in \mathbb{Z}_+$. Hence, the principle of recursive definition guarentees a unique $f$ exists.
+            Now define a function $f: \mathbb{Z}_+ \longrightarrow T$ such that $f(1) =$ the least element of $T$ and $f(n) =$ the successor of $f(n - 1)$ for all $n > 1$. We know this function is well-defined because $S_\Omega$ has no largest element according to exercise 10.6.a. So, all elements of $S_\Omega$ and thus $T$ have a successor by exercises 10.2.a, meaning our formula for $f(n)$ is always defined no matter what $f(n-1)$ is. Hence, the principle of recursive definition guarentees a unique $f$ exists.\retTwo
+
+            Now it's easy to show that $f$ is injective. For suppose that given some $x, n \in \mathbb{Z}_+$ we had that $f(x) = f(x + n)$. Then that would mean that:
+
+            {\centering $f(x) < f(x + 1) < \cdots < f(x + n - 1) < f(x + n) = f(x) $\retTwo\par}
+
+            Hence we have a contradiction as $f(x) < f(x)$.\retTwo
+
+            Next, we show that $f$ is surjective. Suppose the set $R = T - f(\mathbb{Z}_+) \neq \emptyset$. Then since $S_\Omega$ and hence $T$ is well-ordered, we know that $R$ has a least element $\beta$. But note that $\beta$ has a predecessor $\gamma$ which isn't in $R$. More specifically, since we know that the least element of $T$ is in $f(\mathbb{Z}_+)$, we know that $\gamma$ is at least the least of element of $T$. So $\gamma \in T$.\retTwo
+
+            Thus we conclude that $\gamma \in T - (T - f(\mathbb{Z}_+)) = f(\mathbb{Z}_+)$, meaning there exists $N$ such that $f(N) = \gamma$. But this means that $f(N + 1) = \beta$, which contradicts that $\beta$ is the least element of $R$.\retTwo
+
+            With that, we've now shown that $f: \mathbb{Z}_+ \longrightarrow T$ is a bijection, meaning that $T$ is countable. However, this contradicts exercise 10.6.b. which asserts that $T$ is uncountable.\retTwo
+
+            Therefore, we conclude that $X_0$ cannot be bounded above. And by theorem 10.3, that means that $X_0$ can't be a countable subset of $S_\Omega$.
          \end{myIndent}
       \end{itemize}
 
