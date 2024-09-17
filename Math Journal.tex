@@ -1005,11 +1005,56 @@
 
             Case 2: $J$ has no max element.
             \begin{myIndent}
-               Then $J = \bigcup\limits_{\beta \in J}S_\beta$.\\ And since there exists $h_\beta: S_\beta \longrightarrow C$ satisfying $(*)$ for all $\beta \in J$, we\\ can thus apply part (c) to get a function $h$ from $J = \bigcup\limits_{\beta \in J}S_\beta$ to $C$\\ [-9pt] satisfying $(*)$.
+               Then $J = \bigcup\limits_{\beta \in J}S_\beta$.\\ And since there exists $h_\beta: S_\beta \longrightarrow C$ satisfying $(*)$ for all $\beta \in J$, we\\ can thus apply part (c) to get a function $h$ from $J = \bigcup\limits_{\beta \in J}S_\beta$ to $C$\\ [-9pt] satisfying $(*)$.\retTwo\retTwo
             \end{myIndent}
          \end{myIndent}
       \end{itemize}
    \end{myIndent}
+
+   \hOne
+   \mySepTwo
+
+   \dispDate{9/17/2024}
+
+   \blab{Theorem (The maximum principle)} Let $A$ be a set and let $\prec$ be a strict partial order on $A$. Then there exists a maximal simply ordered subset $B$ of $A$.
+   
+   \begin{myTindent}\hThree
+      In other words, there exists a subset $B$ of $A$ such that $B$ is simply ordered by $\prec$ and no subset of $A$ that properly contains $B$ is simply ordered by $\prec$.\retTwo
+   \end{myTindent}
+   
+   \begin{myIndent}\hTwo
+      Proof:\\
+      To start out, let $J$ be a set well-ordered by $<$ such that the elements of $A$\\ are indexed in a bijective fashion by the elements of $J$. In other words,\\ $A = \{a_\alpha \in A \mid \alpha \in J\}$.
+      \begin{myIndent}\myComment
+         Assuming the well-ordering theorem, we know that $J$ exists. Specifically let $J$ refer to the same set as $A$ but equip $J$ with the well-ordering $<$ that we know exists instead of the partial ordering $\prec$ which we equipped $A$.\retTwo
+      \end{myIndent}
+
+      Now our goal is to construct a function $h: J \longrightarrow \{0, 1\}$ such that $h(\alpha) = 1$ if $a_\alpha$\\ is in our maximal simply ordered subset of $A$ and $h(\alpha) = 0$ otherwise. To do this, we rely on the \textbf{general principle of recursive definition}.\retTwo
+
+      \begin{myIndent}
+         \begin{myClosureOne}{5.1}
+            \\ [-20pt]\textbf{Theorem: (General principle of recursive definition):}
+            
+            \begin{myIndent}
+               Let $J$ be a well-ordered set and $C$ be any set. Given a\newline function $\rho: \mathcal{F} \longrightarrow C$ where $\mathcal{F}$ is the set of all functions\newline mapping sections of $J$ into $C$, we have that there exists a\newline unique functon $h: J \longrightarrow C$ satisfying that $h(\alpha) = \rho(h|_{S_\alpha})$\newline for all $\alpha \in J$.
+               \begin{myIndent}\myComment
+                  The proof for this is supplementary exercise 1. of this\newline chapter. But I'm not going to do it because it's mostly\newline identical to exercise 10.10.
+               \end{myIndent}
+            \end{myIndent}
+         \end{myClosureOne}\retTwo
+      \end{myIndent}
+
+      Given any $\alpha \in J$ and $f: S_\alpha \longrightarrow \{0, 1\}$, define $\rho(\alpha) = 1$ if $a_\alpha \in A$ is comparable to all $a_\beta \in A$ such that $\beta \in f^{-1}(1)$ (the preimage of $1$).
+      \begin{myTindent}\myComment
+         Note that $a_\alpha$ is comparable to $a_\beta$ if either $a_\alpha \prec a_\beta$ or $a_\beta \prec a_\alpha$.\newpage
+      \end{myTindent}
+
+      Then by the general principle of recursive definition, we know a unique function $h: J \longrightarrow \{0, 1\}$ exists such that for all $\alpha \in J$, we have that $h(\alpha) = 1$ only when $a_\alpha$ is comparable to all $a_\beta \in A$ such that $\beta \in S_\alpha$ and $h(\beta) = 1$.\retTwo
+
+      Let $B = \{a_\alpha \in A \mid \alpha \in J \text{ and } h(\alpha) = 1\}$. Then given any $a_\alpha, a_\beta \in B$ such that $\alpha < \beta$, we know that either $a_\alpha \prec a_\beta$ or $a_\beta \prec a_\alpha$. Hence, $B$ is simply ordered by $\prec$. At the same time, if $a_\gamma \notin B$, then we know $h(\gamma) = 0$, meaning there exists $a_\alpha \in B$ such that $\alpha < \gamma$ and  $a_\gamma$ is not comparable to $a_\alpha$. This shows that any set properly containing $B$ is not simply ordered by $\prec$.
+
+   \end{myIndent}
+
    \newpage
 
 \end{document}
