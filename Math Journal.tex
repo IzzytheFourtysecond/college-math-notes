@@ -96,14 +96,14 @@
    \color{RawerSienna}%
    \fontsize{12}{14}\selectfont%
 }
-% \newcommand{\pracOne}{
-%    \color{BrickRed}%
-%    \fontsize{13}{15}\selectfont%
-% }
-% \newcommand{\pracTwo}{
-%    \color{Orange}%
-%    \fontsize{12}{14}\selectfont%
-% }
+\newcommand{\pracOne}{
+   \color{BrickRed}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\pracTwo}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
 \newcommand{\exOne}{%
    \color{Purple}%
    \fontsize{14}{16}\selectfont%
@@ -843,12 +843,12 @@
    
             \begin{tabular}{l}
                Nonreflexitivity: $x \not< x$ \\
-               Associativity: $x < y$ and $y < z \Rightarrow x < z$ \\
+               Transitivity: $x < y$ and $y < z \Rightarrow x < z$ \\
                Comparability: $x < y$ or $y < x$ is true
             \end{tabular} &
             \begin{tabular}{l}
                Nonreflexitivity: $x \not\prec x$ \\
-               Associativity: $x \prec y$ and $y \prec z \Rightarrow x \prec z$\\\phantom{a}
+               Transitivity: $x \prec y$ and $y \prec z \Rightarrow x \prec z$\\\phantom{a}
             \end{tabular}
          \end{tabular}
       \par}
@@ -1059,7 +1059,78 @@
       \end{myIndent}
    \end{myIndent}
 
-   Let $A$ be a set and let $\prec$ be a strict partial order on $A$. If $B$ is a subset of $A$, we say an \udefine{upper bound} on $B$ is an element $c$ of $A$ such that for every $b \in B$, either $b = c$ or $b \prec c$. A \udefine{maximal element} of $A$ is an element $m$ of $A$ such that for no element $a$ of $A$ does the relation $m \prec a$ hold.
+   Let $A$ be a set and let $\prec$ be a strict partial order on $A$. If $B$ is a subset of $A$, we say an \udefine{upper bound} on $B$ is an element $c$ of $A$ such that for every $b \in B$, either $b = c$ or $b \prec c$. A \udefine{maximal element} of $A$ is an element $m$ of $A$ such that for no element $a$ of $A$ does the relation $m \prec a$ hold.\retTwo
+
+   \blab{Zorn's Lemma:} Let $A$ be a set that is strictly partially ordered. If every simply ordered subset of $A$ has an upper bound in $A$, then $A$ has a maximal element.
+
+   \begin{myIndent}\hTwo
+      Proof:\\
+      By the Hausdorff maximum principle, there exists a maximal simply ordered subset $B$ of $A$. Let $c$ be an element of $A$ that is an upperbound to $B$. We claim that $c$ is a maximal element of $A$. For suppose there exists $d \in A$ such that $c \prec d$. Then by the transitivity of $\prec$, we know that $b \preceq c \prec d \Longrightarrow b \prec d$ for all $b \in B$. Hence, $B \cup \{d\}$ is simply ordered by $\prec$. But this contradicts that $B$ is a maximal simply ordered subset of $A$.\retTwo\retTwo
+   \end{myIndent}
+
+   \exOne\blab{Exercise 11.1:} If $a$ and $b$ are real numbers, define $a \prec b$ if $b - a$ is positive and rational. 
+   \begin{itemize}\exTwo
+      \item It's easy to show that $\prec$ is a strict partial order. After all, for all $a \in \mathbb{R}$, we have that $a - a$ is not positive. Also, if $a \prec b$ and $b \prec c$, then we know that $b - a = p$ and $c - b = q$ where $p, q \in \mathbb{Q}_+$. But then $c - a = c - b + b - a = p + q \in \mathbb{Q}_+$. So $a \prec c$.\retTwo
+      \item Clearly, given any $x \in \mathbb{R}$, the maximal simply ordered set containing $x$ is the set\\ $\{x + p \mid p \in \mathbb{Q}\}$.\newpage
+   \end{itemize}
+
+   \pracOne\mySepTwo
+
+   \blab{Tangent:} I never got around to writing this down last quarter. So here's a proof that\\ assuming the axiom of choice, non-Lebesgue measurable sets exist.
+   
+   \begin{myIndent}\pracTwo
+      Let $\mathcal{B}$ be the collection of sets of the form $S_x = [0, 1] \cap \{x + p \mid p \in \mathbb{Q}\}$ where $x$ is any real number. Obviously, all the sets in $\mathcal{B}$ are nonempty. We also claim that all the sets in $\mathcal{B}$ are disjoint. For suppose $S_x, S_y \in \mathcal{B}$ and $S_x \cap S_y \neq \emptyset$. Then fix $c \in S_x \cap S_y$ and consider any $a \in S_x$ and $b \in S_y$.\retTwo
+
+      We know $c - x = p_1$, $a - x = p_2$, $c - y = q_1$, and $b - y = q_2$ where $p_1, p_2, q_1, q_2 \in \mathbb{Q}$. Thus, we have that $a - y = (a - x) + (x - c) + (c - y) = p_2 - p_1 + q_1 \in \mathbb{Q}$. Similarly, we have that $b - x = (b - y) + (y - c) + (c - x) = q_2 - q_1 + p_1 \in \mathbb{Q}$. This tells us that $a \in S_y$ and $b \in S_x$. And since this works for all $a \in S_x$ and $b \in S_y$, we thus must have that $S_x = S_y$.\retTwo
+
+      Now using the axiom of choice, let $V$ be a set containing one element from each set in $\mathcal{B}$.\retTwo
+
+      To show that $V$ is nonmeasurable, we'll reach a contradiction by supposing $V$ is\\ measurable. Let $q_1, q_2, \ldots$ be an enumeration of all the rational numbers in the set $[-1, 1]$. Then having defined $V + q_n = \{v + q_n \mid v \in V\}$, consider the set: $\hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em}(V + q_n)$.\\
+
+      Obviously, since $V \subseteq [0,1]$, we know that $\hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em}(V + q_n) \subseteq [-1, 2]$.\\
+
+      Also, consider any $x \in [0, 1]$ and let $v$ be the element of $V$ which was chosen from the set $S_x \in \mathcal{B}$. Then $v - x = p$ where $p$ is some rational number in $[-1, 1]$. So, we also know that $[0, 1] \subseteq \hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em}(V + q_n)$. This means that $1 \leq \mu(\hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em}(V + q_n)) \leq 3$.\\
+
+      But now note that for any $n, m \in \mathbb{Z}_+$, we have that $n \neq m \Longrightarrow V + q_n \cap V + q_m = \emptyset$. To prove this, assume $V + q_n \cap V + q_m \neq \emptyset$. Thus, there would exist $v, u \in V$ such that $v + q_n = u + q_m$. In turn, we'd have that $v - u = q_m - q_n \in \mathbb{Q}$, which means that\\ $v \in S_u$. However, this contradicts that $V$ has only one element of $S_u$.\\ [-4pt]
+
+      Now since $\mu$ is countably additive, we have that $\mu(\hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em}(V + q_n)) = \sum\limits_{n = 1}^\infty \mu(V + q_n)$.\\
+      
+      Finally, note that $\mu(V) = \mu(V + q_n)$ for all $n$. Thus $\sum\limits_{n = 1}^\infty \mu(V + q_n) = \sum\limits_{n = 1}^\infty \mu(V)$ is either\\ [-6pt] $0$ or $\infty$.\retTwo
+      
+      But this contradicts our earlier finding that the measure was between $1$ and $3$. So, we conclude that $V \notin \mathfrak{M}(\mu)$. $\blacksquare$
+   \end{myIndent}
+
+   \mySepTwo 
+
+   \exOne\blab{Exercise 11.2:} 
+   \begin{itemize}
+      \item[(a)] Let $\prec$ be a strict partial order on the set $A$. Define a (non-strict partial) relation $\preceq$ on $A$ by letting $a \preceq b$ if either $a \prec b$ or $a = b$. Show that this relation has the following properties which are called the \textit{partial order axioms}:\newpage
+      
+      \begin{itemize}\exTwo
+         \item[(i)] $a \preceq a$ for all $a \in A$
+         \begin{myIndent}
+            This is true because $a = a$ for all $x \in A$.
+         \end{myIndent}
+
+         \item[(ii)] $a \preceq b \text{ and } b \preceq a \Longrightarrow a = b$.
+         \begin{myIndent}
+            Given any $a, b\in A$ such that $a \preceq b \text{ and } b \preceq a$, if $a \neq b$, then we'd have that $a \prec b$ and $b \prec a$. This gives a contradiction since $a \prec b \prec a \Longrightarrow a \prec a$ which is not allowed.
+         \end{myIndent}
+
+         \item[(iii)] $a \preceq b \text{ and } b \preceq c \Longrightarrow a \preceq c$
+         \begin{myIndent}
+            Proving this is a matter of considering six rather trivial cases.\retTwo
+         \end{myIndent}
+      \end{itemize}
+
+      \exOne\item[(b)] Let $P$ be a relation on $A$ satisfying the three axioms above. Define a relation $S$ on $A$ by letting $a\mathop{S}b$ if $a\mathop{P}b$ and $a \neq b$. Show that $S$ is a strict partial order on $A$.
+      
+      \begin{myIndent}\exTwo
+         Obviously, $a \hspace{-0.1em}\not{\hspace{-0.24em}\mathop{S}}\hspace{0.2em} a$ for all $a \in A$ since $a = a$ for all $a \in A$. Meanwhile, suppose\\ $a \mathop{S} b$ and $b \mathop{S} c$. Then we know that $a \mathop{P} b$ and $b \mathop{P} c$, meaning that $a \mathop{P} c$. So we just need to show that $a \neq c$ and then we will have proven that $a \mathop{S} c$.
+
+         Suppose $a = c$. Then we know that $c \mathop{P} a$ and $a \mathop{P} b$, meaning that $c \mathop{P} b$. But then since $b \mathop{P} c$, we know that $b = c$. This contradicts that $b \mathop{S} c$.
+      \end{myIndent}
+   \end{itemize}
 
    \newpage
 
