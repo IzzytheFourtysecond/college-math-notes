@@ -109,12 +109,16 @@
    \fontsize{14}{16}\selectfont%
 }
 \newcommand{\exTwo}{%
-\color{Purple}%
+   \color{Purple}%
    \fontsize{13}{15}\selectfont%
 }
 \newcommand{\exP}{%
    \color{Purple}%
    \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exTwoP}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
 }
 \newcommand{\exPP}{%
    \color{RedViolet}%
@@ -1290,12 +1294,49 @@
    
    
    \begin{myIndent}\exTwo\color{RedViolet}
-      Let $J$ be any well-ordered set. By combining part (a) of this exercise with\\ exercise 10.10 (which is a special case of the general principle of recursive\\ definition), we know that there is at most one order preserving map from $J$\\ to $E$ whose image is either $E$ or a section of $E$. Hence, $J$ can only have the\\ same order type as one of either the entirity of $E$ or one section of $E$.\retTwo
+      Let $J$ be any well-ordered set. By combining part (a) of this exercise with\\ exercise 10.10 (which is a special case of the general principle of recursive\\ definition), we know that there is at most one order preserving map from $J$\\ to $E$ whose image is either $E$ or a section of $E$. Hence, $J$ can only have the\\ same order type as one of either the entirety of $E$ or one section of $E$.\retTwo
 
-      Based on that fact, we can get an easy contradiction if we assume that the claim of part (b) is false.
-
+      Based on that fact, we can get an easy contradiction if we assume that the claim of part (b) is false.\newpage
    \end{myIndent}
 \end{itemize}
+
+\hOne
+\dispDate{9/21/2024}
+
+Unfortunately I tested positive for Covid on the two days ago. So I've been really delirious. However, right now I'm in an airport in the process of moving back out to California (great idea). And since my flight just got delayed, I feel like I might as well kill time and try to do some math.\retTwo
+
+\exOne\blab{Exercise 3:} Let $J$ and $E$ be well-ordered sets, and suppose there is an order-preserving map $k: J \longrightarrow E$. Using exercises 1 and 2, show that $J$ has the order type of $E$ or a section of $E$.\retTwo
+
+
+\begin{myIndent}\exTwoP
+   Pick any $e_0 \in E$. Then define $h: J \longrightarrow E$ by the rule: 
+   
+   {\centering$h(\alpha) = \left\{
+   \begin{matrix}
+      \text{smallest}(E - h(S_\alpha)) & \text{ if } h(S_\alpha) \neq E \\
+      e_0 & \text{ otherwise }
+   \end{matrix}\right.$\retTwo\par} 
+
+   Note that the second case of our definition of $h$ is just included to ensure that $h$ is well-defined before we begin the proof in earnest. I mention that because our goal now is to show that the second case will never apply.\retTwo
+
+   Let $J_0 = \{\alpha \in J \mid h(\alpha)\leq k(\alpha)\}$. Then suppose that for some $\alpha \in J$, we have that $S_\alpha \subseteq J_0$. Because $k$ is order preserving, we know that $k(\alpha) > k(\beta) \geq h(\beta)$ for all $\beta \in S_\alpha$. Hence, $k(\alpha) \notin h(S_\alpha)$, meaning that $h(S_\alpha) \neq E$. So, we conclude that $h(\alpha) = \text{smallest}(E - h(S_\alpha))$\retTwo
+   
+   Now note that:
+   
+   {\centering\fontsize{11}{13}\selectfont
+      $k(\alpha) \geq \text{smallest}(E - \hspace{-0.4em}\bigcup\limits_{\beta \in S_\alpha}\hspace{-0.4em}S_{k(\beta)}) \geq \text{smallest}(E - \hspace{-0.4em}\bigcup\limits_{\beta \in S_\alpha}\hspace{-0.4em}S_{h(\beta)}) \geq \text{smallest}(E - h(S_\alpha)) = h(\alpha)$\retTwo\par}
+   
+   Therefore, $\alpha \in J_0$. By transfinite induction, this proves that $J = J_0$. Also, as is hopefully clear from the above proof, $S_\alpha \subseteq J_0 \Longrightarrow E - h(S_\alpha) \neq \emptyset$. So $h(\alpha)$, will never be determined by the second case of our definition above.
+
+
+\end{myIndent}
+
+% Let J and E be well-ordered sets; suppose there is an order-preserving map
+% k : J → E. Using Exercises 1 and 2, show that J has the order type of E or
+% a section of E. [Hint: Choose e0 ∈ E. Define h : J → E by the recursion
+% formula
+% h(α) = smallest [E − h(Sα)] if h(Sα) != E,
+% and h(α) = e0 otherwise
 
 
 \end{document}
