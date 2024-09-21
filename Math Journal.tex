@@ -398,7 +398,7 @@
                $z^2 - v = \frac{p^2 + 2pq + q^2}{4q^2} - \frac{4pq}{4q^2} = \frac{p^2 - 2pq + q^2}{4q^2} = \left(\frac{p - q}{2q}\right)^2 \geq 0$\retTwo\par
             \end{centering}
 
-            Thus as $v < z^2$ and $z^2 \in \alpha\beta$, we have that $v \in \alpha\beta$ as well. So $1^* \subseteq \alpha\beta$.\newpage
+            Thus as $v \leq z^2$ and $z^2 \in \alpha\beta$, we have that $v \in \alpha\beta$ as well. So $1^* \subseteq \alpha\beta$.\newpage
          \end{myIndent}
 
          Finally, so long as $\alpha, \beta, \gamma \in R^+$, we have that  $\alpha(\beta + \gamma) = \alpha\beta + \alpha\gamma$ because the rational numbers satisfy the distributive property.\retTwo
@@ -1065,7 +1065,7 @@
 
    \begin{myIndent}\hTwo
       Proof:\\
-      By the Hausdorff maximum principle, there exists a maximal simply ordered subset $B$ of $A$. Let $c$ be an element of $A$ that is an upperbound to $B$. We claim that $c$ is a maximal element of $A$. For suppose there exists $d \in A$ such that $c \prec d$. Then by the transitivity of $\prec$, we know that $b \preceq c \prec d \Longrightarrow b \prec d$ for all $b \in B$. Hence, $B \cup \{d\}$ is simply ordered by $\prec$. But this contradicts that $B$ is a maximal simply ordered subset of $A$.\retTwo\retTwo
+      By the Hausdorff maximum principle, there exists a maximal simply ordered subset $B$ of $A$. Let $c$ be an element of $A$ that is an upperbound to $B$. We claim that $c$ is a maximal element of $A$. For suppose there exists $d \in A$ such that $c \prec d$. We know $d \notin B$ since that would imply $d \prec c$. But by the transitivity of $\prec$, we know that $b \preceq c \prec d \Longrightarrow b \prec d$ for all $b \in B$. Hence, $B \cup \{d\}$ is simply ordered by $\prec$. This contradicts that $B$ is a maximal simply ordered subset of $A$.\retTwo\retTwo
    \end{myIndent}
 
    \exOne\blab{Exercise 11.1:} If $a$ and $b$ are real numbers, define $a \prec b$ if $b - a$ is positive and rational. 
@@ -1128,10 +1128,174 @@
       \begin{myIndent}\exTwo
          Obviously, $a \hspace{-0.1em}\not{\hspace{-0.24em}\mathop{S}}\hspace{0.2em} a$ for all $a \in A$ since $a = a$ for all $a \in A$. Meanwhile, suppose\\ $a \mathop{S} b$ and $b \mathop{S} c$. Then we know that $a \mathop{P} b$ and $b \mathop{P} c$, meaning that $a \mathop{P} c$. So we just need to show that $a \neq c$ and then we will have proven that $a \mathop{S} c$.
 
-         Suppose $a = c$. Then we know that $c \mathop{P} a$ and $a \mathop{P} b$, meaning that $c \mathop{P} b$. But then since $b \mathop{P} c$, we know that $b = c$. This contradicts that $b \mathop{S} c$.
+         Suppose $a = c$. Then we know that $c \mathop{P} a$ and $a \mathop{P} b$, meaning that $c \mathop{P} b$. But then since $b \mathop{P} c$, we know that $b = c$. This contradicts that $b \mathop{S} c$.\retTwo
       \end{myIndent}
    \end{itemize}
 
-   \newpage
+   {\hOne In the next exercises we will explore some equivalent theorems to the Hausdorff maximum principle and Zorn's lemma.}\retTwo
+   \blab{Exercise 11.5:} Show that Zorn's lemma implies the following:
+   
+   \begin{myIndent}
+      \blab{Kuratowski's Lemma:} Let $\mathcal{A}$ be a collection of sets. Suppose that for every subcollection $\mathcal{B}$ of $\mathcal{A}$ that is simply ordered by proper inclusion, the union of the elements of $\mathcal{B}$ belongs to $\mathcal{A}$. Then $\mathcal{A}$ has an element that is properly contained in no other element of $\mathcal{A}$.\retTwo
+      
+      \begin{myIndent}\exTwo\color{RedViolet}
+         To be clear, given any $A, B \in \mathcal{A}$, we defined above that $A \prec B$ if $A \subset B$. Importantly, our assumption about $\mathcal{A}$ means that every subcollection $\mathcal{B}$ of $\mathcal{A}$ that is simply ordered by $\prec$ has an upper bound in $\mathcal{A}$: $\bigcup\limits_{B \in \mathcal{B}}\hspace{-0.2em}B$.\retTwo
+         
+         Thus by Zorn's lemma, we know that $\mathcal{A}$ has a maximal element $C$. And since there is no element $D \in \mathcal{A}$ such that $C \prec D$, we know that $C$ is properly contained by no sets in $\mathcal{A}$.\retTwo
+      \end{myIndent}
+   \end{myIndent}
+
+   \blab{Exercise 11.6:} A collection $\mathcal{A}$ of subsets of a set $X$ is said to be of \textit{finite type}\\ provided that a subset $B$ of $X$ belongs to $\mathcal{A}$ if and only if every finite subset\\ of $B$ belongs to $\mathcal{A}$. Show that the Kuratowski lemma implies the following:
+
+   
+   \begin{myIndent}
+      \blab{Tukey's Lemma:} Let $\mathcal{A}$ be a collection of sets. If $\mathcal{A}$ is of finite type, then $\mathcal{A}$ has an element that is properly contained in no other element of $\mathcal{A}$.\newpage
+      
+      \begin{myIndent}\exTwo\color{RedViolet}
+         To start off I want to clarify that $\mathcal{A}$ being of finite types means both that:
+         \begin{enumerate}
+            \item[1.] For each $A \in \mathcal{A}$, every finite subset of $A$ belongs to $\mathcal{A}$.
+            \item[2.] If every finite subset of a given set $A$ belongs to $\mathcal{A}$, then $A$ belongs to $\mathcal{A}$.\\
+         \end{enumerate}
+
+         Now let $\mathcal{B}$ be any subcollection of $\mathcal{A}$ that is simply ordered by proper\\ inclusion. Next, consider the set $S = \bigcup\limits_{B \in \mathcal{B}}B$. We want to show that any\\ [-8pt] finite subset of $S$ is in $\mathcal{A}$.\retTwo
+
+         To do this, let $n \in \mathbb{Z}_+$ and consider any subset $\{b_1, b_2, \ldots, b_n\}$ of $S$ with $n$ elements. Note that for each $1 \leq i \leq n$, there exists $B_i \in \mathcal{B}$ such that $b_i \in B_i$. Then since $\{B_1, B_2, \ldots B_n\}$ is a simply ordered finite set, we know that it has a maximum element $B_m$ such that $B_i \subseteq B_m$ for all $i$. Hence, we have that $\{b_1, b_2, \ldots b_n\}$ is contained by some $B_m$ in $\{B_1, B_2, \ldots, B_n\} \subseteq \mathcal{B}$. Because $\mathcal{A}$ is of finite type, this tells us that $\{b_1, b_2, \ldots b_n\} \in \mathcal{A}$.\retTwo
+
+         Since we showed above that any finite subset of $S$ is in $\mathcal{A}$, we can thus conclude because $\mathcal{A}$ is of finite type that $S \in \mathcal{A}$. And so, we have now proven the hypothesis of Kuratowski's lemma, meaning that $\mathcal{A}$ must have a set that is properly contained in other element of $\mathcal{A}$.\retTwo
+      \end{myIndent}
+   \end{myIndent}
+
+   \blab{Exercise 11.7:} Show that the Tukey lemma implies the Hausdorff maximum\\ principle.
+
+   \begin{myIndent}\exTwo\color{RedViolet}
+      Let $A$ be a set with the strict partial order $\prec$. Then let $\mathcal{A}$ be the collection of all subsets of $A$ that are simply ordered by $\prec$. We shall show below that $\mathcal{A}$ is of finite type.
+      
+      \begin{enumerate}
+         \item Suppose $B \in \mathcal{A}$. Then given any subset $C$ of $B$ (finite or not), we know that $C$ is also simply ordered by $\prec$. So $C \in \mathcal{A}$.
+         \item Let $B \subseteq A$ and suppose every finite subset of $B$ is in $\mathcal{A}$. Then given any two different elements $b_1, b_2 \in B$, we know that $\{b_1, b_2\} \in \mathcal{A}$, meaning that either $b_1 \prec b_2$ or $b_2 \prec b_1$. In other words, $B$ is simply ordered by $\prec$, meaning that $B \in \mathcal{A}$.\retTwo
+      \end{enumerate}
+
+      Because $\mathcal{A}$ is of finite type, we know that $\mathcal{A}$ has an element that is properly\\ contained in no other element of $\mathcal{A}$. Or in other words, there exists a subset of $A$ which is simply ordered by $\prec$ and not properly contained in any other subset of $A$ that is simply ordered by $\prec$.\newpage
+   \end{myIndent}
+
+   \hOne
+   \dispDate{9/19/2024}
+   % I realize I have another week before I take my first abstract algebra class. However, the next problem has to do with vector spaces.\newpage
+   % 
+   % If $A$ is a subset of the vector space $V$, we say a vector belongs to the \textit{span} of $A$ if it equals a finite linear combination of elements of $A$.
+   % 
+   %    
+   % \begin{myIndent}\myComment
+   %    In other words, $w \in \mathrm{span}(A)$ if there exists a finite subset $\{v_1, \ldots, v_n\}$ of $A$ and scalars: $c_1, \ldots, c_n$ such that $w = c_1v_1 + \ldots c_nv_n$.\retTwo
+   % 
+   %    I didn't realize before now but we exclude linear combinations of infinite sets of vectors in $A$. Apparently,
+   % \end{myIndent}
+   % 
+   % \exOne
+   % \blab{Exercise 11.8:}
+
+\begin{tabular}{p{2.2in} p{4in}}
+   % In the past 14 pages we've\newline learned a lot about the\newline axiom of choice. All the\newline {\color{blue}blue arrows} in the\newline diagram to the right\newline represent proofs we've\newline already done. Meanwhile,\newline the {\color{red}red arrows} represent\newline proofs that Munkres left\newline to the supplementary\newline exercises of section 1 of\newline his book. We're gonna do\newline those proofs now.
+   &
+   % https://q.uiver.app/#q=WzAsNyxbMCwxLCJcXHRleHR7IEF4aW9tIG9mIENob2ljZSB9Il0sWzAsMiwiXFx0ZXh0e1dlbGwgT3JkZXJpbmcgVGhlb3JlbX0iXSxbMSwwLCJcXHRleHR7Tm9uLW1lYXN1cmFibGUgU2V0c30iXSxbMCwzLCJcXHRleHR7TWF4aW11bSBQcmluY2lwbGV9Il0sWzAsNCwiXFx0ZXh0e1pvcm4ncyBMZW1tYX0iXSxbMSw0LCJcXHRleHR7S3VyYXRvd3NraSdzIExlbW1hfSJdLFsxLDMsIlxcdGV4dHtUdWtleSdzIExlbW1hfSJdLFswLDIsIiIsMix7ImxldmVsIjoyLCJjb2xvdXIiOlsyNDAsNjAsNjBdfV0sWzAsMSwiIiwwLHsib2Zmc2V0IjotNSwibGV2ZWwiOjIsImNvbG91ciI6WzAsNjAsNjBdfV0sWzEsMCwiIiwwLHsib2Zmc2V0IjotNSwibGV2ZWwiOjIsImNvbG91ciI6WzI0MCw2MCw2MF19XSxbMSwzLCIiLDAseyJvZmZzZXQiOi01LCJsZXZlbCI6MiwiY29sb3VyIjpbMjQwLDYwLDYwXX1dLFszLDEsIiIsMCx7Im9mZnNldCI6LTUsImxldmVsIjoyLCJjb2xvdXIiOlswLDYwLDYwXX1dLFszLDQsIiIsMCx7ImxldmVsIjoyLCJjb2xvdXIiOlsyNDAsNjAsNjBdfV0sWzQsNSwiIiwwLHsibGV2ZWwiOjIsImNvbG91ciI6WzI0MCw2MCw2MF19XSxbNSw2LCIiLDAseyJsZXZlbCI6MiwiY29sb3VyIjpbMjQwLDYwLDYwXX1dLFs2LDMsIiIsMCx7ImxldmVsIjoyLCJjb2xvdXIiOlsyNDAsNjAsNjBdfV1d
+   \begin{tikzcd}[sep=scriptsize]
+      & {\text{Non-measurable Sets}} \\
+      {\text{ Axiom of Choice }} \\
+      {\text{Well Ordering Theorem}} \\
+      {\text{Maximum Principle}} & {\text{Tukey's Lemma}} \\
+      {\text{Zorn's Lemma}} & {\text{Kuratowski's Lemma}}
+      \arrow[color={rgb,255:red,92;green,92;blue,214}, Rightarrow, from=2-1, to=1-2]
+      \arrow[shift left=5, color={rgb,255:red,214;green,92;blue,92}, Rightarrow, from=2-1, to=3-1]
+      \arrow[shift left=5, color={rgb,255:red,92;green,92;blue,214}, Rightarrow, from=3-1, to=2-1]
+      \arrow[shift left=5, color={rgb,255:red,92;green,92;blue,214}, Rightarrow, from=3-1, to=4-1]
+      \arrow[shift left=5, color={rgb,255:red,214;green,92;blue,92}, Rightarrow, from=4-1, to=3-1]
+      \arrow[color={rgb,255:red,92;green,92;blue,214}, Rightarrow, from=4-1, to=5-1]
+      \arrow[color={rgb,255:red,92;green,92;blue,214}, Rightarrow, from=5-1, to=5-2]
+      \arrow[color={rgb,255:red,92;green,92;blue,214}, Rightarrow, from=5-2, to=4-2]
+      \arrow[color={rgb,255:red,92;green,92;blue,214}, Rightarrow, from=4-2, to=4-1]
+   \end{tikzcd}
+\end{tabular}
+\\ [-2.6in]
+\begin{tabular}{p{2.2in} p{4in}}
+   In the past 14 pages, we've\newline learned a lot about the\newline axiom of choice. All the\newline {\color{blue}blue arrows} in the\newline diagram to the right\newline represent proofs we've\newline already done. Meanwhile,\newline the {\color{red}red arrows} represent\newline proofs that Munkres left\newline to the supplementary\newline exercises of section 1 of\newline his book. We're gonna do\newline those proofs now.
+   &
+\end{tabular}\retTwo
+
+\exOne
+\blab{Exercise 1: (General principle of recursive definition)}
+\begin{myIndent}\exTwo\color{RedViolet}
+   We already addressed this before. I'm skipping proving this because the proof is mostly identical to exercise 10.10.\retTwo
+\end{myIndent} 
+
+\blab{Exercise 2:} 
+\begin{itemize}
+   \item[(a)] Let $J$ and $E$ be well-ordered sets and let $h: J \longrightarrow E$. Show that the following two statement are equivalent:
+   \begin{enumerate}
+      \item[(i)] $h$ is order preserving and its image is $E$ or a section of $E$.
+      \item[(ii)] $h(\alpha) = \text{smallest}(E - h(S_\alpha))$ for all $\alpha \in J$. 
+      
+      \begin{myIndent}\exTwo\color{RedViolet}
+         (i) $\Longrightarrow$ (ii):\\
+         Given any $\alpha \in J$, we know that $h(\alpha)$ must be an upper bound to $h(S_\alpha)$. Now suppose $\exists \beta \in S_{h(\alpha)}$ such that $\beta \notin h(S_\alpha)$. Because of our assumption about the image of $h$, we know that $\beta \in h(J)$, meaning there exists $\gamma \in J$ such that $h(\gamma) = \beta$. But because $h$ is order-preserving, we must have that $\beta < f(\alpha) \Longrightarrow \gamma < \alpha$. This contradicts that $\beta \notin h(S_\alpha)$.\retTwo
+
+         With that, we've now shown that $h(S_\alpha) = S_{h(\alpha)}$. In turn, this shows that $h(\alpha)$ is the smallest element in $E - h(S_\alpha)$.\retTwo
+
+         (ii) $\Longrightarrow$ (i):\\
+         It's easy to show $h$ is order preserving. Let $\alpha, \beta \in J$ such that $\alpha < \beta$.\\ Then $h(S_\alpha) \subset h(S_\beta)$, meaning that $E - h(S_\beta) \subset E - h(S_\alpha)$. And\\ since the least element of $E - h(S_\alpha)$ is not in $E - h(S_\beta)$, that means that\\ $h(\alpha) = \text{smallest}(E - h(S_\alpha)) < \text{smallest}(E - h(S_\beta)) = h(\beta)$.\newpage
+
+         As for showing the other property of $h$, let $J_0 = \{\alpha \in J \mid h(S_\alpha) = S_{h(\alpha)}\}$. Now suppose that for some $\alpha \in J$, we have that $S_\alpha \subseteq J_0$. Then we can show that $\alpha \in J_0$.
+         
+         \begin{myIndent}\exPP
+            Case 1: $\alpha$ has an immediate predecessor $\beta$.
+            
+            \begin{myIndent}
+               Then $S_\alpha = S_\beta \cup \{\beta\}$, meaning that:
+   
+               {\centering $h(\alpha) = h(S_\beta) \cup \{h(\beta)\} = S_{h(\beta)} \cup h(\beta)$.\retTwo\par}
+               
+               Since $h(\alpha)$ is the least element of $E$ not in $h(S_\alpha)$. We can thus say that $S_{h(\beta)} \cup h(\beta) = S_{h(\alpha)}$.\retTwo
+            \end{myIndent}
+
+            Case 2: $\alpha$ has no immediate predecessor.
+
+            \begin{myIndent}
+               Then we have that $h(S_\alpha) = h(\hspace{-0.2em}\bigcup\limits_{\beta \in S_\alpha}\hspace{-0.4em}S_\beta) = \hspace{-0.2em}\bigcup\limits_{\beta \in S_\alpha}\hspace{-0.4em}h(S_\beta) = \hspace{-0.2em}\bigcup\limits_{\beta \in S_\alpha}\hspace{-0.4em}S_{h(\beta)}$.\retTwo
+
+               Hence, $h(S_\alpha)$ is a section of $E$, and since $h(\alpha)$ is the least element not in that section, we can conclude that $h(S_\alpha) = S_{h(\alpha)}$.\retTwo
+            \end{myIndent}
+         \end{myIndent}
+
+         By transfinite induction, we thus know that $J_0 = J$. So finally, we consider two cases.\retTwo
+
+         \begin{myIndent}\exPP
+            Case 1: $J$ has a max element $\alpha$.
+            
+            \begin{myIndent}
+               Then $h(J) = h(S_\alpha) \cup \{h(\alpha)\} = S_{h(\alpha)} \cup \{h(\alpha)\}$. And since $h(\alpha)$ is the least element not in $S_{h(\alpha)}$, we thus know that $h(J)$ is either a section of or the whole of $E$.
+            \end{myIndent}
+
+            Case 2: $J$ has no max element.
+
+            \begin{myIndent}
+               Then $h(J) = h(\hspace{-0.1em}\bigcup\limits_{\alpha \in J}\hspace{-0.3em}S_\alpha) = \hspace{-0.1em}\bigcup\limits_{\alpha \in J}\hspace{-0.3em}h(S_\alpha) = \hspace{-0.1em}\bigcup\limits_{\alpha \in J}\hspace{-0.3em}S_{h(\alpha)}$.\retTwo
+               
+               So, $h(J)$ is either a section of or the whole of $E$.\retTwo
+            \end{myIndent}
+         \end{myIndent}
+      \end{myIndent}
+   \end{enumerate}
+
+   \item[(b)] If $E$ is a well-ordered set, show that no section of $E$ has the same order type as $E$, nor do any two different sections of $E$ have the same order type.
+   
+   
+   \begin{myIndent}\exTwo\color{RedViolet}
+      Let $J$ be any well-ordered set. By combining part (a) of this exercise with\\ exercise 10.10 (which is a special case of the general principle of recursive\\ definition), we know that there is at most one order preserving map from $J$\\ to $E$ whose image is either $E$ or a section of $E$. Hence, $J$ can only have the\\ same order type as one of either the entirity of $E$ or one section of $E$.\retTwo
+
+      Based on that fact, we can get an easy contradiction if we assume that the claim of part (b) is false.
+
+   \end{myIndent}
+\end{itemize}
+
 
 \end{document}
