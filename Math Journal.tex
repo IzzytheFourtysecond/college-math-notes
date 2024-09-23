@@ -1365,7 +1365,7 @@ Unfortunately I tested positive for Covid on the two days ago. So I've been real
 
       Next, define a well-ordering on $A^\prime \cup B^\prime$ by letting $a^\prime < b^\prime$ if either $a^\prime, b^\prime \in A^\prime$ and $a^\prime <_{A^\prime} b^\prime$, or if $a^\prime, b^\prime \in B^\prime$ and $a^\prime <_{B^\prime} b^\prime$, or if $a^\prime \in A^\prime$ and $b^\prime \in B^\prime$.\retTwo
 
-      Note that the inclusion function from $B^\prime$ to $A^\prime \cup B^\prime$ is an order-preserving\\ map. Thus, by exercise 3, we know that $B^\prime$ has the order type of one of either $A^\prime \cup B^\prime$ or a section of $A^\prime \cup B^\prime$.
+      Note that the inclusion function from $B^\prime$ to $A^\prime \cup B^\prime$ is an order-preserving\\ map. Thus, by exercise 3, we know that $B^\prime$ has the order type of one of either $A^\prime \cup B^\prime$ or one section of $A^\prime \cup B^\prime$.
 
       \begin{myIndent}
          Case 1: $B^\prime$ has the order type of a section $S_\alpha$ of $A^\prime \cup B^\prime$.
@@ -1388,19 +1388,43 @@ Unfortunately I tested positive for Covid on the two days ago. So I've been real
    \end{myIndent}
 
    \item[(b)] Suppose that $A$ and $B$ are well-ordered sets that are uncountable such that every section of $A$ and of $B$ is countable. Show that $A$ and $B$ have the same order type.
-
    
-   
+   \begin{myIndent}\exTwoP
+      If $A$ did not have the same order type as $B$, then by part (a) of this exercise we would know that either $A$ has the order type of a section of $B$ or $B$ has the order type of a section of $A$. However, that would suggest the existence of a bijection between a countable set and an uncountable set, which by definition is not possible.\retTwo
+   \end{myIndent}
 \end{itemize}
 
-% If A and B are well-ordered sets, then exactly one of the following three
-% conditions holds: A and B have the same order type, or A has the order type
-% of a section of B, or B has the order type of a section of A. [Hint: Form
-% a well-ordered set containing both A and B, as in Exercise 8 of §10; then
-% apply the preceding exercise.]
-% (b) Suppose that A and B are well-ordered sets that are uncountable, such that
-% every section of A and of B is countable. Show A and B have the same order
-% type.
+\dispDate{9/23/2024}
+
+\blab{Exercise 5:} Let $X$ be a set and let $\mathcal{A}$ be the collection of all pairs $(A, <)$ where $A$ is a subset of $X$ and $<$ is a well-ordering of $A$. Define:
+
+{\center $(A, <) \prec (A^\prime, <^\prime)$ \retTwo\par}
+
+if $(A, <)$ equals a section of $(A^\prime, <^\prime)$.
+
+\begin{myIndent}\myComment
+   In other words, $A = S_\alpha = \{a \in A^\prime \mid a <^\prime \alpha \}$ where $\alpha \in A^\prime$, and $<$ is the order relation $<^\prime$ restricted to $A$.
+\end{myIndent}
+
+
+\begin{itemize}
+   \item[(a)] Show that $\prec$ is a strict partial order on $\mathcal{A}$.
+   
+   \begin{myIndent}\exTwoP
+      Clearly no $A$ is a section of itself. So $(A, <) \not\prec (A, <)$. Also if $(A, <_A) \prec (B, <_B) \prec (C, <_C)$, then we know that $A$ is a section of a section (which is still a section.) Plus, $<_A$ is just $<_C$ restricted to $<_A$. Hence, $(A, <) \prec (C, <_C)$.\newpage
+   \end{myIndent}
+
+   \item[(b)] Let $\mathcal{B}$ be a subcollection of $\mathcal{A}$ that is simply ordered by $\prec$. Define $B^\prime$ to be the union of the sets $B$ for all $(B, <) \in \mathcal{B}$, and define $<^\prime$ to be the union of the relations $<$ for all $(B, <) \in \mathcal{B}$. Show that $(B^\prime, <^\prime)$ is a well-ordered set.
+   
+   \begin{myIndent}\myComment
+      In other words, we need to show that $B^\prime$ is well-ordered by $<^\prime$.\retTwo
+
+
+      \exTwoP
+      
+   \end{myIndent}
+\end{itemize}
+
 
 
 \end{document}
