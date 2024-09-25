@@ -674,7 +674,7 @@
          
          My take away from this is that not only does it make proofs cleaner to not worry about using constructed choice functions, but it's also perfectly acceptable now-a-days to use this axiom.\newpage
          
-         Plus, some really commonly used theorems require the axiom of choice to prove them. For example, the union of countably many countable sets is countable. This makes it really easy to accidentally use the axiom of choice in a proof.\retTwo
+         Plus, some really commonly used theorems require the axiom of choice to prove them. For example, the union of countably many countable sets being countable. This makes it really easy to accidentally use the axiom of choice in a proof.\retTwo
       \end{enumerate}
    \end{myIndent}
 
@@ -754,7 +754,7 @@
 
    \exOne\blab{Exercise 10.5:} Show that the well-ordering theorem implies the (infinite) axiom of choice.
    \begin{myIndent}\exTwo
-      Let $\mathcal{A}$ be a collection of disjoint sets. By the well-ordering theorem, we can pick an order relation on $\bigcup\limits_{A \in \mathcal{A}}A$ that is well-ordering.\newpage
+      Let $\mathcal{A}$ be a collection of disjoint sets. By the well-ordering theorem, we can pick an order relation on $\bigcup\limits_{A \in \mathcal{A}}\hspace{-0.4em}A$ that is well-ordering.\newpage
       
       \begin{myIndent}\myComment
          Note that the previous sentence is carefully worded to only make use of the finite axiom of choice. Specifically, the order relation we are picking is an element of some subset of $\bigcup\limits_{A \in \mathcal{A}}A \times \bigcup\limits_{A \in \mathcal{A}}A$.\retTwo
@@ -1059,7 +1059,9 @@
 
       
       \begin{myIndent}\myComment
-         Note that the maximal simply ordered subset $B$ is not unique. In fact, choosing a different well-ordering of $J$ is likely to give a completely different maximal simply ordered subset.\retTwo\retTwo
+         Note that the maximal simply ordered subset $B$ is not unique. In fact, choosing a different well-ordering of $J$ is likely to give a completely different maximal simply ordered subset.\retTwo
+         
+         Also, $B$ is not empty because any set with one element is simply ordered by $\prec$.\retTwo\retTwo
       \end{myIndent}
    \end{myIndent}
 
@@ -1229,7 +1231,7 @@
 \exOne
 \blab{Exercise 1: (General principle of recursive definition)}
 \begin{myIndent}\exTwo\color{RedViolet}
-   We already addressed this before. I'm skipping proving this because the proof is mostly identical to exercise 10.10.\retTwo
+   We already addressed this before. I'm skipping proving this because the proof is mostly identical to exercise 10.10. In fact, exercise 10.10 is just this exercise but with a specific $\rho: \mathcal{F} \longrightarrow C$.\retTwo
 \end{myIndent} 
 
 \blab{Exercise 2:} 
@@ -1256,9 +1258,9 @@
             \begin{myIndent}
                Then $S_\alpha = S_\beta \cup \{\beta\}$, meaning that:
    
-               {\centering $h(\alpha) = h(S_\beta) \cup \{h(\beta)\} = S_{h(\beta)} \cup h(\beta)$.\retTwo\par}
+               {\centering $h(S_\alpha) = h(S_\beta) \cup \{h(\beta)\} = S_{h(\beta)} \cup \{h(\beta)\}$.\retTwo\par}
                
-               Since $h(\alpha)$ is the least element of $E$ not in $h(S_\alpha)$. We can thus say that $S_{h(\beta)} \cup h(\beta) = S_{h(\alpha)}$.\retTwo
+               Since $h(\alpha)$ is the least element of $E$ not in $h(S_\alpha)$. We can thus say that $S_{h(\beta)} \cup \{h(\beta)\} = S_{h(\alpha)}$.\retTwo
             \end{myIndent}
 
             Case 2: $\alpha$ has no immediate predecessor.
@@ -1319,14 +1321,9 @@ Unfortunately I tested positive for Covid on the two days ago. So I've been real
 
    Note that the second case of our definition of $h$ is just included to ensure that $h$ is well-defined before we begin the proof in earnest. I mention that because our goal now is to show that the second case will never apply.\retTwo
 
-   Let $J_0 = \{\alpha \in J \mid h(\alpha)\leq k(\alpha)\}$. Then suppose that for some $\alpha \in J$, we have that $S_\alpha \subseteq J_0$. Because $k$ is order preserving, we know that $k(\alpha) > k(\beta) \geq h(\beta)$ for all $\beta \in S_\alpha$. Hence, $k(\alpha) \notin h(S_\alpha)$, meaning that $h(S_\alpha) \neq E$. So, we conclude that $h(\alpha) = \text{smallest}(E - h(S_\alpha))$\retTwo
+   Let $J_0 = \{\alpha \in J \mid h(\alpha)\leq k(\alpha)\}$. Then suppose that for some $\alpha \in J$, we have that $S_\alpha \subseteq J_0$. Because $k$ is order preserving, we know that $k(\alpha) > k(\beta) \geq h(\beta)$ for all $\beta \in S_\alpha$. Hence, $k(\alpha) \notin h(S_\alpha)$, meaning that $h(S_\alpha) \neq E$. So, we conclude that $h(\alpha) = \text{smallest}(E - h(S_\alpha))$. And since $k(\alpha) \in E - h(S_\alpha)$, we thus know that $h(\alpha) \leq k(\alpha)$\retTwo
    
-   Now note that:
-   
-   {\centering\fontsize{11}{13}\selectfont
-      $k(\alpha) \geq \text{smallest}(E - \hspace{-0.4em}\bigcup\limits_{\beta \in S_\alpha}\hspace{-0.4em}S_{k(\beta)}) \geq \text{smallest}(E - \hspace{-0.4em}\bigcup\limits_{\beta \in S_\alpha}\hspace{-0.4em}S_{h(\beta)}) \geq \text{smallest}(E - h(S_\alpha)) = h(\alpha)$\retTwo\par}
-   
-   Therefore, $\alpha \in J_0$. By transfinite induction, this proves that $J = J_0$. Also, as is hopefully clear from the above proof, $S_\alpha \subseteq J_0 \Longrightarrow E - h(S_\alpha) \neq \emptyset$. So $h(\alpha)$, will never be determined by the second case of our definition above.\retTwo
+   Therefore, $\alpha \in J_0$. By transfinite induction, this proves that $J = J_0$. The reason this is relavent is that we can now say that $k(\alpha)$ is never in $h(S_\alpha)$ , meaning that $E - h(S_\alpha) \neq \emptyset$. So $h(\alpha)$, will never be determined by the second case of our definition above.\retTwo
 
    By exercise 2, we know that $h: J \longrightarrow E$ is the unique order-preserving map whose image is either $E$ or a section of $E$. Thus, $J$ has the same order type as exactly one of either the entirety of $E$ or one section of $E$.\retTwo
 \end{myIndent}
@@ -1396,7 +1393,7 @@ Unfortunately I tested positive for Covid on the two days ago. So I've been real
 
 \dispDate{9/23/2024}
 
-\blab{Exercise 5:} Let $X$ be a set and let $\mathcal{A}$ be the collection of all pairs $(A, <)$ where $A$ is a subset of $X$ and $<$ is a well-ordering of $A$. Define:
+\blab{Exercise 5:} Let $X$ be any set and let $\mathcal{A}$ be the collection of all pairs $(A, <)$ where $A$ is a subset of $X$ and $<$ is a well-ordering of $A$. Define:
 
 {\center $(A, <) \prec (A^\prime, <^\prime)$ \retTwo\par}
 
@@ -1411,17 +1408,117 @@ if $(A, <)$ equals a section of $(A^\prime, <^\prime)$.
    \item[(a)] Show that $\prec$ is a strict partial order on $\mathcal{A}$.
    
    \begin{myIndent}\exTwoP
-      Clearly no $A$ is a section of itself. So $(A, <) \not\prec (A, <)$. Also if $(A, <_A) \prec (B, <_B) \prec (C, <_C)$, then we know that $A$ is a section of a section (which is still a section.) Plus, $<_A$ is just $<_C$ restricted to $<_A$. Hence, $(A, <) \prec (C, <_C)$.\newpage
+      Clearly no $A$ is a section of itself. So $(A, <) \not\prec (A, <)$.\retTwo Also if $(A, <_A) \prec (B, <_B) \prec (C, <_C)$, then we know that $A$ is a section of a section of $C$ (which is still a section). Plus, $<_A$ is just $<_C$ restricted to $<_A$. Hence, $(A, <) \prec (C, <_C)$.\newpage
    \end{myIndent}
 
    \item[(b)] Let $\mathcal{B}$ be a subcollection of $\mathcal{A}$ that is simply ordered by $\prec$. Define $B^\prime$ to be the union of the sets $B$ for all $(B, <) \in \mathcal{B}$, and define $<^\prime$ to be the union of the relations $<$ for all $(B, <) \in \mathcal{B}$. Show that $(B^\prime, <^\prime)$ is a well-ordered set.
    
-   \begin{myIndent}\myComment
-      In other words, we need to show that $B^\prime$ is well-ordered by $<^\prime$.\retTwo
-
-
+   \begin{myIndent}
       \exTwoP
+      To start, let's quickly double check that $<^\prime$ is a valid order relation on $B^\prime$.
+      \begin{itemize}
+         \item[(i)] Given any $b \in B^\prime$, if $b \in B$ for any $(B, <) \in \mathcal{B}$, then we know that\\ $(b, b) \notin {<}$. So $(b, b) \notin {<^\prime}$.\\ [-9pt]
+         \item[(ii)] Suppose $a, b \in B^\prime$ such that $(a, b) \notin {<^\prime}$. Then for all $(B, <) \in \mathcal{B}$ such that $a, b \in B$, we know that $(a, b) \notin {<}$, meaning that $(b, a) \in {<}$. So $(b, a) \in {<^\prime}$.\\ [-9pt]
+         \item[(iii)] Given $a, b, c \in B^\prime$, suppose $a <^\prime b <^\prime c$. Then there exists $(B_1, <_1)$ and\\ $(B_2, <_2)$ in $\mathcal{B}$ such that $(a, b) \in {<_1}$ and $(b, c) \in {<_2}$. Now by how we defined $\mathcal{B}$, we know that either ${<_1} \subset {<_2}$ or ${<_2} \subset {<_1}$. Thus, we know $(a, b), (b, c) \in \{<_i\}$ for some $i \in \{1, 2\}$. Hence, $(a, c) \in {<_i}$, meaning that $(a, c) \in {<^\prime}$.\retTwo
+      \end{itemize}
+
+      Next, we show that $B^\prime$ is well-ordered by $<^\prime$.\retTwo
       
+      Let $S \subseteq B^\prime$ be nonempty and pick any element $\beta$ in $S$. Then we know there exists $(B_1, <_1) \in \mathcal{B}$ such that $\beta \in B_1$. Also, $B_1$ is well-ordered by $<$. So let $\alpha$ be the least element (using $<_1$) of $B_1 \cap S$.\retTwo
+
+      We claim that $\alpha$ is the least element (using $<^\prime$) of $S$. To prove this, suppose there exists $c \in S$ such that $c <^\prime a$. Then we know $(c, \alpha) \in {<_2}$ for some\\ $(B_2, <_2) \in \mathcal{B}$. Importantly, $(B_1, <_1) \neq (B_2, <_2)$ since otherwise we'd have chosen $\alpha$ differently. So one must be a section of the other.
+      
+      \begin{itemize}
+         \item[\bullet] If $(B_2, <_2)$ is a section of $(B_1, <_1)$, then we know that ${<_2} \subset {<_1}$ and\\ $c \in B_1 \cap S$. But this contradicts how we chose $\alpha$.\\ [-9pt]
+         
+         \item[\bullet] If $(B_1, <_1)$ is a section of $(B_2, <_2$), then we know there exists $\gamma \in B_2$ such that $B_1 = S_\gamma \subseteq B_2$. If $c <_2 \gamma$, then we know that $c \in B_1$ and thus $B_1 \cap S$. This contradicts how we chose $\alpha$. So we must have that $\gamma <_2 c$. But then this also gives us a contradiction as $\alpha <_2 \gamma <_2 c \Longrightarrow \alpha <_2 c$, meaning that $\alpha <^\prime c$.\retTwo
+      \end{itemize}
+   \end{myIndent}
+
+   \item[(c)] [Not in the book...] Given any $\mathcal{B}$ from part (b) of this problem and defining\\ $(B^\prime, <^\prime)$ as before, we have that $(B, <) \preceq (B^\prime, <^\prime)$ for all $(B, <) \in \mathcal{B}$.
+   \begin{myIndent}
+      \exTwoP
+      Consider any $(B_1, <_1) \in \mathcal{B}$. If $B_1 \neq B^\prime$, then we know there exists $\alpha \in B^\prime - B_1$, thus meaning there exists $(B_2, <_2) \in \mathcal{B}$ such that $\alpha \in B_2$. Since $B_2 \not\prec B_1$, we know that $B_1 \prec B_2$, meaning that $B_1 = S_\beta \subseteq B_2$ for some $\beta \in B_2$.\newpage
+
+      Now we know that $\{b \in B^\prime \mid b <^\prime \beta\} \subseteq \{b \in B_2 \mid b <_2 \beta\}$. For suppose\\ there exists $a$ in the former set but not the latter set. Then there must exist\\ $(B_3, <_3)  \in \mathcal{B}$ such that $(a, b) \in {<_3}$.\retTwo
+
+      If $a \in B_2$, then we'd have that $(b, a) \in <_2$. But that would imply that $(a, b)$ and $(b, a)$ are in $<^\prime$ which we know isn't possible. So we know that $B_3 \not\subseteq B_2$.\retTwo
+
+      Since $\mathcal{B}$ is simply ordered by $\prec$ and we can't have that $B_3 \prec B_2$, we know that $B_2 \prec B_3$. So $B_2 = S_\gamma$ where $\gamma \in S_3$. Now $a <_3 \gamma$ would contradict that\\ $a \notin B_2$. So we must have that $\gamma <_3 a$. However, we also must have that\\ $b <_3 \gamma$, which contradicts that $a <_3 b$.\retTwo
+
+      Hence, we've shown that $(B_1, <_1) \neq (B^\prime, <^\prime)$ implies that $(B_1, <_1) \prec (B^\prime, <^\prime)$.\retTwo
+   \end{myIndent}
+\end{itemize}
+
+\blab{Exercise 6:} Use exercise 5 to prove that the maximum principle implies the well-\\ordering theorem.
+
+\begin{myIndent}\exTwoP
+   Let $X$ be any set and construct $\mathcal{A}$ and $\prec$ as before in exercise 5. By the maximal principle, we know there exists $\mathcal{B} \subseteq \mathcal{A}$ such that $\mathcal{B}$ is simply ordered by $\prec$ and no proper superset of $\mathcal{B}$ is simply ordered by $\prec$.\retTwo
+
+   Next, construct $B^\prime$ and $<^\prime$ as in exercise 5.b. We claim that $B^\prime = X$. To see this, suppose there exists $c \in X - B^\prime$. Then $B^\prime \cup \{c\}$ is well-ordered by the order\\ relation: ${<^\prime}\cup\{(b, c) \mid b \in B^\prime\}$. Hence $(B^\prime \cup \{c\}, {<^\prime}\cup\{(b, c) \mid b \in B^\prime\}) \in \mathcal{A}$.\retTwo
+
+   At the same time, note that $(B^\prime, <^\prime) \prec (B^\prime \cup \{c\}, {<^\prime}\cup\{(b, c) \mid b \in B^\prime\})$. And since we have that $(B, <) \preceq (B^\prime, <^\prime)$ for all $(B, <) \in \mathcal{B}$, we thus know that for any $(B, <) \in \mathcal{B}$:
+
+   {\centering $(B, <) \prec (B^\prime \cup \{c\}, {<^\prime}\cup\{(b, c) \mid b \in B^\prime\})$.\retTwo\par}
+
+   This tells us both that $(B^\prime \cup \{c\}, {<^\prime}\cup\{(b, c) \mid b \in B^\prime\}) \notin \mathcal{B}$ and that\\ $(B^\prime \cup \{c\}, {<^\prime}\cup\{(b, c) \mid b \in B^\prime\})$ is comparable with all elements of $\mathcal{B}$. But\\ that contradicts that $\mathcal{B}$ is a maximal simply ordered subset of $\mathcal{A}$.\retTwo
+
+   So we must have that $B^\prime = X$. And thus by exercise 5.b, we know that a well-ordering of $X$ exists.\newpage
+\end{myIndent}
+
+\dispDate{9/24/2024}
+
+\blab{Exercise 7:} Use exercises 1-5 to prove that the choice axiom implies the well-ordering theorem.\retTwo
+
+Let $X$ be a set and $c$ be a fixed choice function for the nonempty subsets of $X$. If $T$ is a subset of $X$ and $<$ is a relation on $T$, we say that $(T, <)$ is a \udefine{tower} in $X$ if $<$ is a well-ordering of $T$ and if for each $x \in T$, $x = c(X - S_x(T))$ where $S_x(T)$ is the section of $T$ by $x$.
+\begin{myTindent}\myComment
+   Well, shit. I wish I was given that notation for specifying which set I was\\ taking a section of before I did exercise 2. $h(S_x(J)) = S_{h(x)}(E)$ is a lot\\ clearer notation than just $h(S_x) = S_{h(x)}$\retTwo
+\end{myTindent}
+
+\begin{itemize}
+   \item[(a)] Let $(T_1, <_1)$ and $(T_2, <_2)$ be two towers in $X$. Show that either these two\\ ordered sets are the same or one equals a section of the other.
+   
+   \begin{myIndent}\exTwoP
+      By applying exercise 4 and switching indices if necessary, we know that $T_1$ has the order type of one of either $T_2$ or one section of $T_2$. In other words, there exists an order preserving map $h: T_1 \longrightarrow T_2$ such that $h(T_1)$ equals $T_2$ or a section of $T_2$.\retTwo
+
+      Now we assert that given any $x \in T_1$,\myHS $h(x) = x$. To prove this, first note\\ that because of transfinite induction, we can assume that $h(x) = x$ for all $x$ in $S_x(T_1)$. This means that we can assume $h(S_x(T_1)) = S_x(T_1)$. Also, as part of doing exercise 2, we proved that $h$ must satisfy that $h(S_x(T_1)) = S_{h(x)}(T_2)$.\\ Hence, $S_x(T_1) = S_{h(x)}(T_2)$. This let's us conclude that:
+
+      {\centering $x = c(X - S_x(T_1)) = c(X - S_{h(x)}(T_2)) = h(x)$.\retTwo\par}
+
+      With that we now know that $h(T_1) = T_1$. So $T_1$ equals either $T_2$ or a section of $T_2$.\retTwo
+   \end{myIndent}
+
+   \item[(b)] If $(T, <)$ is a tower in $X$ and $T \neq X$, then there is a tower in $X$ of which $(T, <)$ is a section.
+   
+   \begin{myIndent}\exTwoP
+      Since $T \neq X$, let $y = c(X - T)$. Then define $T^\prime = T \cup \{y\}$ and\\ ${<^\prime} = {<} \cup \{(x, y) \mid x \in T\}$. Clearly, $(T^\prime, <^\prime)$ is a tower which contains\\ $(T, <)$ as a section.\retTwo
+
+      % 
+      % 
+      % 
+
+
+
+
+
+
+
+
+      
+   \end{myIndent}
+
+   \item[(c)] Let $\{(T_k, <_k) \mid k \in K\}$ be the collection of all towers in $X$. Then define:
+   
+   {\centering $ T = \bigcup\limits_{k \in K}T_k$\hspace{0.2em} and \hspace{0.2em}${<} = \bigcup\limits_{k \in K}\hspace{-0.2em}{<_k}$. \newpage\par}
+
+   Show that $(T, <)$ is a tower in $X$. Conclude that $T = X$.
+
+   \begin{myIndent}\exTwoP
+      If we define $\mathcal{A}$ and $\prec$ from $X$ as we did in exercise 5, we can see from part (a) of this problem that $\{(T_k, <_k) \mid k \in K\}$ is a subset of $\mathcal{A}$ that is simply ordered by $\prec$. Thus, from part (b) of exercise 5, we know that $T$ is well-ordered by $<$.\retTwo
+
+
+
+      Suppose $x 
    \end{myIndent}
 \end{itemize}
 
