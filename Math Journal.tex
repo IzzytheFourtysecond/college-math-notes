@@ -1493,35 +1493,127 @@ Let $X$ be a set and $c$ be a fixed choice function for the nonempty subsets of 
    \begin{myIndent}\exTwoP
       Since $T \neq X$, let $y = c(X - T)$. Then define $T^\prime = T \cup \{y\}$ and\\ ${<^\prime} = {<} \cup \{(x, y) \mid x \in T\}$. Clearly, $(T^\prime, <^\prime)$ is a tower which contains\\ $(T, <)$ as a section.\retTwo
 
-      % 
-      % 
-      % 
-
-
-
-
-
-
-
-
       
+      \begin{myIndent}\exPP
+         Clearly $T^\prime$ is well-ordered by $<^\prime$.\retTwo
+         
+         Also, if $x \in T^\prime - \{y\}$, then we have that $c(X - S_x(T^\prime)) = c(X - S_x(T)) = x$.\\ Plus, we know that $c(X - S_y(T^\prime)) = c(X - T) = y$.\newpage
+      \end{myIndent}
    \end{myIndent}
 
    \item[(c)] Let $\{(T_k, <_k) \mid k \in K\}$ be the collection of all towers in $X$. Then define:
    
-   {\centering $ T = \bigcup\limits_{k \in K}T_k$\hspace{0.2em} and \hspace{0.2em}${<} = \bigcup\limits_{k \in K}\hspace{-0.2em}{<_k}$. \newpage\par}
+   {\centering $ T = \bigcup\limits_{k \in K}T_k$\hspace{0.2em} and \hspace{0.2em}${<} = \bigcup\limits_{k \in K}\hspace{-0.2em}{<_k}$. \retTwo\par}
 
    Show that $(T, <)$ is a tower in $X$. Conclude that $T = X$.
 
    \begin{myIndent}\exTwoP
       If we define $\mathcal{A}$ and $\prec$ from $X$ as we did in exercise 5, we can see from part (a) of this problem that $\{(T_k, <_k) \mid k \in K\}$ is a subset of $\mathcal{A}$ that is simply ordered by $\prec$. Thus, from part (b) of exercise 5, we know that $T$ is well-ordered by $<$.\retTwo
 
+      To prove that $T$ is a tower, consider any $y \in T$. Then we know there exists $k \in K$ such that $y \in T_k$. Furthermore, we know that $y = c(X - S_y(T_k))$. By, part (c) of exercise 5, we know that $T_k$ is either a section of $T$ or all of $T$. Hence, $S_y(T) = S_y(T_k)$. And thus we have that $y = c(X - S_y(T))$.\retTwo
 
+      Now that we have shown $(T, <)$ is a tower in $X$, we get an easy contradiction if $T \neq X$. This is because $T$ must contain all towers, but $T$ not equalling $X$ would imply the existence of a tower not contained by $T$ due to part (b) of this exercise.\retTwo
 
-      Suppose $x 
+      And since $T = X$, we thus have that $<$ is a well-ordering of $X$. $\blacksquare$\retTwo
    \end{myIndent}
 \end{itemize}
 
+\hOne
+I'm gonna skip doing exercise 8 of the supplementary exercise. Basically it shows that you can construct a well-ordered set with higher cardinality than an arbitrary well-ordered set, all without using the axiom of choice. Also, while that does mean we can construct a minimal uncountable well-ordered set without using the axiom of choice, theorem 10.3 requires the axiom of choice to prove. So almost nothing we discovered about a minimal uncountable well-ordered set can be proven without the axiom of choice.\retTwo
+
+\mySepTwo
+
+\dispDate{9/25/2024}
+
+I'm gonna try to cram as much topology as I can today before class starts tomorrow. After all, I suspect and fear that a bunch of this will be necessary at some point in 240. As before, I'm shamelessly ripping off James Munkres' book.\retTwo
+
+A \udefine{Topology} on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$ having the properties:
+\begin{enumerate}
+   \item $\emptyset$ and $X$ are in $\mathcal{T}$.
+   \item The union of the elements of any subcollection of $\mathcal{T}$ is in $\mathcal{T}$.
+   \item The intersection of the elements of any finite subcollection of $\mathcal{T}$ is in $\mathcal{T}$.\newpage
+\end{enumerate}
+
+Technically, a topological space is an ordered pair $(X, \mathcal{T})$ consisting of a set $X$ and a topology $\mathcal{T}$ on $X$. But when no confusion will arise, we usually omit mentioning $\mathcal{T}$ and just call $X$ a topological space.\retTwo
+
+Given a topological space $(X, \mathcal{T})$, we say that a subset $U$ of $X$ is an \udefine{open set} if $U \in \mathcal{T}$.\retTwo
+
+Suppose $\mathcal{T}$ and $\mathcal{T}^\prime$ are topologies on $X$ Such that $\mathcal{T} \subseteq \mathcal{T}^\prime$. Then we say $\mathcal{T}^\prime$ is \udefine{finer} or \udefine{larger} than $\mathcal{T}$ Also, we say $\mathcal{T}$ is \udefine{coarser} or \udefine{smaller} than $\mathcal{T}^\prime$. And we say both are \udefine{comparable} with each other.
+
+\begin{myIndent}\hThree
+   If $\mathcal{T}$ is properly contained by $\mathcal{T}^\prime$, then we add the word \textit{strictly} before those adjectives.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+If $X$ is a set, a \udefine{basis} for a topology on $X$ is a collection $\mathcal{B}$ of subsets of $X$ (called \udefine{basis elements}) such that:
+\begin{enumerate}
+   \item For each $x \in X$, there is at least one basis element $B$ containing $x$.
+   \item If $x$ belongs to the intersection of two basis elements $B_1$ and $B_2$, then there is a basis element $B_3$ containing $x$ such that $B_3 \subseteq B_1 \cap B_2$.\retTwo
+\end{enumerate}
+
+If $\mathcal{B}$ satisfies these two conditions, then we define the \udefine{topology $\mathcal{T}$ generated by $\mathcal{B}$} as follows:
+\begin{myIndent}
+   $U \subseteq X$ is open if for each $x \in U$, there is a basis element $B \in \mathcal{B}$ such that $x \in B$ and $B \subseteq U$.\retTwo
+\end{myIndent}
+
+\blab{Proof that the $\mathcal{T}$ generated by $\mathcal{B}$ is a topology:}
+\begin{myIndent}\hTwo
+   We fairly trivially have that $\emptyset$ and $X$ are included in $\mathcal{T}$.\retTwo
+
+   Let $\{U_\alpha\}_{\alpha \in J}$ be an indexed family of elements of $\mathcal{T}$ and define $U = \bigcup\limits_{\alpha \in J}U_\alpha$.\\ [-8pt] Given any $x \in U$, we know there exists $\alpha \in J$ such that $x \in U_\alpha$.\\ And since $U_\alpha$ is open, there exists $B \in \mathcal{B}$ such that $x \in B$ and\\ $B \subseteq U_\alpha \subseteq U$. So, we conclude that $U$ is also open.\retTwo
+
+   Finally, we shall prove by induction that given $U_1, \ldots U_n \in \mathcal{T}$, we have that\\ $U_1 \cap \ldots \cap U_n \in \mathcal{T}$.
+
+   
+   \begin{myIndent}\hThree
+      Firstly, consider any $U_1, U_2 \in \mathcal{T}$. Then, given any $x \in U_1 \cap U_2$, choose\\ basis elements $B_1, B_2 \in \mathcal{B}$ such that $x \in B_1 \subseteq U_1$ and $x \in B_2 \subseteq U_2$. \\Since $x \in B_1 \cap B_2$, we know there is a basis element $B_3 \in \mathcal{B}$ such that\\ $x \in B_3 \subseteq B_1 \cap B_2$. Then $x \in B_3 \subseteq U$.\retTwo
+
+      With that, we've now shown that the intersection of any two elements of $\mathcal{T}$\\ is also in $\mathcal{T}$. So, we can proceed by induction.\retTwo
+
+      Suppose for $i < n$ that $(U_1 \cap \ldots \cap U_i) \in \mathcal{T}$. Then we know that\\ $(U_1 \cap \ldots \cap U_i) \cap U_{i+1} \in \mathcal{T}$.\newpage
+   \end{myIndent}
+\end{myIndent}
+
+\blab{Lemma 13.1:} Let $X$ be a set and $\mathcal{B}$ be a basis for a topology $\mathcal{T}$ on $X$. Then $\mathcal{T}$ equals the collection of all unions of elements of $\mathcal{B}$.
+
+\begin{myIndent}\hTwo
+   Proof:\\
+   Let $\mathcal{T}^\prime$ be the collection of all unions of elements of $\mathcal{B}$.\retTwo
+
+   Since every $B \in \mathcal{B}$ is an element of $\mathcal{T}$, we trivially have that $\mathcal{T}^\prime \subseteq \mathcal{T}$. Meanwhile, given any $U \in \mathcal{T}$, choose for each $x \in U$ an element $B_x$ of $\mathcal{B}$ such that $x \in B_x \subseteq U$. Then $U = \bigcup\limits_{x \in U}B_x$, meaning $U \in \mathcal{T}^\prime$.\\ [-12pt]
+   \begin{myTindent}\begin{myTindent}
+   \begin{myIndent}
+      \color{Red}\fontsize{12}{14}\selectfont
+         (Axiom of Choice usage alert!!)\retTwo\retTwo
+   \end{myIndent}
+   \end{myTindent}\end{myTindent}
+\end{myIndent}
+
+\blab{Lemma 13.2}: Let $X$ be a topological space. Suppose that $\mathcal{C}$ is a collection of open sets of $X$ such that for each open set $U$ of $X$ and each $x \in U$, there is an element $C \in \mathcal{C}$ such that $x \in C \subseteq U$. Then $\mathcal{C}$ is a basis for the topology of $X$.
+
+\begin{myIndent}\hTwo
+   Proof:\\
+   Firstly, we need to show that $\mathcal{C}$ is a basis.
+   \begin{myIndent}\hThree
+      Since $X$ is an open set, we know by hypothesis that for all $x \in X$, there is $C \in \mathcal{C}$ such that $x \in C$. As for the second condition of a basis, suppose $x \in C_1 \cap C_2$\\ where $C_1, C_2 \in \mathcal{C}$. Since $C_1$ and $C_2$ are open, we know that $C_1 \cap C_2$ is open. So\\ by hypothesis, there is $C_3 \in \mathcal{C}$ such that $x \in C_3 \subseteq (C_1 \cap C_2)$.\retTwo
+   \end{myIndent}
+
+   Secondly, we need to show that $\mathcal{C}$ is a basis for the topology of $X$.
+   \begin{myIndent}\hThree
+      Let $\mathcal{T}$ be the collection of open sets of $X$, and let $\mathcal{T}^\prime$ be the topology generated\\ by $\mathcal{C}$. Firstly, if $U \in \mathcal{T}$ and $x \in U$, there is by hypothesis $c \in \mathcal{C}$ such that $x \in C$ and $C \subseteq U$. So $U \subseteq \mathcal{T}^\prime$. Meanwhile, if $W \in \mathcal{T}^\prime$, then $W$ equals a union of elements of $\mathcal{C}$ by lemma 13.1. Since each element of $\mathcal{C}$ is in $\mathcal{T}$, we know $W$ is the union of elements of $\mathcal{T}$, meaning $W \in \mathcal{T}$. So, we've shown that $\mathcal{T} \subseteq \mathcal{T}^\prime \subseteq \mathcal{T}$.\retTwo\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+\blab{Lemma 13.3:} Let $\mathcal{B}$ and $\mathcal{B}^\prime$ be bases for the topologies $\mathcal{T}$ and $\mathcal{T}^\prime$ respectively on $X$. Then $\mathcal{T}^\prime$ is finer than $\mathcal{T}$ if and only if for each $x \in X$ and each basis element $B \in \mathcal{B}$ containing $x$, there is a basis element $B^\prime \in \mathcal{B}^\prime$ such that $x \in B^\prime \subseteq B$.
+
+\begin{myIndent}\hTwo
+   Proof:\\
+   ($\Longrightarrow$) Let $x \in X$ and $B \in \mathcal{B}$ such that $x \in B$. Since $B \in \mathcal{T}$ and we are assuming $\mathcal{T} \subseteq \mathcal{T}^\prime$, we know that $B \in \mathcal{T}^\prime$. Then since $\mathcal{B}^\prime$ generated $\mathcal{T}^\prime$, we know there is $B^\prime \in \mathcal{B}^\prime$ such that $x \in B^\prime \subseteq B$.\retTwo
+
+   ($\Longleftarrow$)\\
+   Given an element $U$ of $\mathcal{T}$, we need to show that $U \in \mathcal{T}^\prime$. To do this, consider any $x \in U$. Since $\mathcal{B}$ generates $\mathcal{T}$, there is an element $B \in \mathcal{B}$ such that $x \in B \subseteq U$. Now by hypothesis, there exists $B^\prime \in \mathcal{B}^\prime$ such that $x \in B^\prime \subseteq B$. So $x \in B^\prime \subseteq U$. Hence, $U \in \mathcal{T}^\prime$.\newpage
+\end{myIndent}
 
 
 \end{document}
