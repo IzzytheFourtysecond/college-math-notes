@@ -1,0 +1,335 @@
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
+
+\usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+\graphicspath{{./158_Images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
+
+\usepackage{quiver} %commutative diagrams
+
+
+\newfontfamily{\calibri}{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Arrow Commands:
+
+% Thank you Bernard, gernot, and Sigur who I copied this from:
+% https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+
+% Thank you egreg who I copied from:
+% https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
+\newcommand{\longrightarrowdbl}{\longrightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\longleftarrowdbl}{\leftarrow\mathrel{\mkern-14mu}\longleftarrow}
+
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+\newcommand{\xleftarrowdbl}[2][]{%
+  \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
+}
+
+\newcommand{\MRoman}[1]{%
+   \textrm{\MakeUppercase{\romannumeral #1}}%
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\learnToSpot}[1]{{\color{Red}#1}}
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwo}{%
+\color{MidnightBlue}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hThree}{%
+   \color{PineGreen!85!Orange}
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\teachComment}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{Purple}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{Purple}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exTwoP}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exPP}{%
+   \color{RedViolet}%
+   \fontsize{12}{14}\selectfont%
+}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+\newcommand{\redPen}[1]{{\vphantom{.}\color{Red}#1}}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{{%
+   \setulcolor{Red}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1}%
+}}
+
+\newcommand{\blab}[1]{\textbf{#1}}
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.3em}s.t.\hspace{0.3em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\card}{\mathrm{card}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\myHS}{ \hspace{0.5em}}
+
+\newcommand{\myId}{\mathrm{Id}}
+\newcommand{\myIm}{\mathrm{im}}
+\newcommand{\myObj}{\mathrm{Obj}}
+\newcommand{\myHom}{\mathrm{Hom}}
+\newcommand{\myEnd}{\mathrm{End}}
+\newcommand{\myAut}{\mathrm{Aut}}
+
+\newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
+
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
+
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
+
+\newcommand{\mHeader}[1]{{
+   \color{Black}%
+   \fontsize{20}{18}\selectfont%
+   #1\retTwo
+}}
+
+
+\title{Math 240A Notes (Professor: Luca Spolaor)}
+\author{Isabelle Mills}
+
+\begin{document}
+\maketitle{}
+\setul{0.14em}{0.07em}
+\calibri
+
+\hOne
+\mHeader{Lecture 1 Notes: 9/26/2024}
+
+Given an indexed family of sets $\{X_\alpha\}_{\alpha \in A}$, we define its \udefine{Cartesian Product} to be:
+
+{\center $\prod\limits_{\alpha \in A}X_\alpha = \{f: A \longrightarrow \bigcup\limits_{\alpha \in A}X_\alpha \mid f(\alpha \in X_\alpha)\}$ \retTwo\par}
+
+A projection is a function $\pi_\alpha : \prod\limits_{\alpha \in A}X_\alpha \longrightarrow X_\alpha$ satisfying that $f \mapsto f(\alpha)$.\retTwo
+
+If $X, Y$ are sets, we define:
+\begin{itemize}
+	\item $\card(X) \leq \card(Y)$ if there exists an injection $f: X \longrightarrow Y$.
+	\item  $\card(X) \geq \card(Y)$ if there exists a surjection $f: X \longrightarrow Y$.
+	\item $\card(X) = \card(Y)$ if there exists a bijection $f: X \longrightarrow Y$.
+	
+	\begin{myIndent}\hTwo
+		Note that $\card(X) \leq \card(Y) \Longleftrightarrow \card(Y) \geq \card(X)$. After all, given an injection in one direction, we can easily make a surjection in the other direction. Or given a surjection in one direction, we can \learnToSpot{(using A.O.C (axiom of choice))} easily make an injection in the other direction.\retTwo
+
+		Also, if $\card(X) \leq \card(Y)$ and $\card(Y) \leq \card(X)$, then we know that\\ $\card(Y) = \card(X)$.
+		
+		\begin{myIndent}\hThree
+			Proof:\\
+			We know there exists $f: X \longrightarrow Y$ and $g: Y \longrightarrow X$ which are both\\ injective. Hence, $g \circ f$ is an injection from $X$ to $g(Y) \subseteq X$. By an exercise done in my math journal on page 8, we thus there exists a bijection $h$ from $X$ to $g(Y)$. And letting $g^{-1}$ be any left-inverse of $g$, we then have that $g^{-1} \circ h$ is a bijection from $X$ to $Y$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{itemize}
+
+We say $X$ has the \udefine{cardinality of the continuum} if $\card(X) = \card(\mathbb{R})$.
+
+\begin{myIndent}\hTwo
+	Proposition: $\card(\mathcal{P}(\mathbb{N})) = \card(\mathbb{R})$.
+	\begin{myIndent}\hThree
+		Our textbook goes about proving this by constructing two functions: an injection and a surjection, from $\mathcal{P}(\mathbb{N})$ to $\mathbb{R}$ based on the binary expansion of any real number. That way, we know that $\card(\mathcal{P}(\mathbb{N})) \leq \card(\mathbb{R})$ and $\card(\mathcal{P}(\mathbb{N})) \geq \card(\mathbb{R})$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+Given a sequence $\{x_n\}$ in $\mathbb{R}$ we know there exists: $\limsup x_n = \inf\limits_{k \geq 1}(\sup\limits_{n \geq k} x_n)$ and\\ [-10pt] $\liminf x_n = \sup\limits_{k \geq 1}(\inf\limits_{n \geq k} x_n)$.\retTwo
+
+Also, given a function $f: \mathbb{R} \longrightarrow \overline{\mathbb{R}}$, we can define:
+
+{\centering $\limsup\limits_{x \rightarrow a}f(x) = \inf\limits_{\delta > 0}\left(\sup\limits_{0 < |x-a|<\delta}\hspace{-1em}f(x)\right)$.\newpage\par}
+
+If $X$ is an arbitrary set and $f: X \longrightarrow [0, \infty]$, we define:
+
+{\centering $\sum\limits_{x \in X}f(x) = \sup\left\{\sum\limits_{x \in F}f(x) \mid F \subseteq X \suchthat F \text{ is finite}\right\}$.\retTwo\par}
+
+\begin{myIndent}\hTwo
+	Cool Proposition from textbook (not covered in lecture):
+	\begin{myIndent}\hTwo
+		Let $A = \{x \in X \mid f(x) > 0\}$. If $A$ is uncountable, then $\sum\limits_{x \in X}f(x) = \infty$.\retTwo If $A$ is countably infinite and $g:\mathbb{N} \longrightarrow A$ is a bijection, then\\ $\sum\limits_{x \in X}f(x) = \sum\limits_{n = 1}^\infty f(g(n))$.\retTwo
+		
+		\begin{myIndent}\hThree
+			Proof of first statement:\\
+			$A = \bigcup\limits_{n \in \mathbb{N}}A_n$ where $A_n = \{x \in X \mid f(x) > \frac{1}{n}\}$.\retTwo
+
+			If $A$ is uncountable, we must have that some $A_n$ is uncountable. But then for any finite set $F \subseteq X$, we have that $\sum\limits_{x \in F}f(x) > \frac{\card(F)}{n}$. So $\sum\limits_{x \in X}f(x)$ is\\ [-7pt] unbounded.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+A metric space $(X, \rho)$ is a set $X$ equipped with a distance function\\ $\rho: X \times X \longrightarrow [0, \infty)$. We denote the open ball of radius $r$ about $x$ to be\\ $B(r, x) = \{y \in X \mid \rho(x, y) < r\}$. And you remember our definitions from\\ 140A... right?\retTwo
+
+
+\begin{myIndent}\hTwo
+	\blab{Proposition 0.21:} Every open set in $\mathbb{R}$ is a countable union of disjoint open intervals.
+		
+	\begin{myIndent}\myComment
+		We proved this as part of a homework exercise in Math 140A.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exOne Given a metric space $(X, \rho)$, an element $x \in X$, and sets $F, E \subseteq X$, we can define:
+\begin{itemize}
+	\item $\rho(x, E) = \rho_E(x) = \inf\{\rho(x, y) \mid y \in E\}$.
+	\item $\rho(F, E) = \inf\{\rho_E(y) \mid y \in F\}$.
+\end{itemize}
+
+
+\begin{myIndent}\exTwoP
+	\blab{Exercise:} $g(x, E) = 0 \Longleftrightarrow x \in \overline{E}$.
+	
+	\begin{myIndent}\exPP
+		Proof:\\
+		If $\inf\{\rho(x, y) \mid y \in E\} = 0$, then there exists a sequence $\{y_n\}$ in $E$ such that\\ $\rho(x, y_n) \rightarrow 0$. This implies $x \in \overline{E}$. Similarly, if $x \in \overline{E}$, we can construct a sequence $\{y_n\}$ such that $\rho(x, y_n) < \frac{1}{n}$ for all $n$. Then:
+		
+		{\centering $0 \leq \inf\{\rho(x, y) \mid y \in E\} \leq \inf\{\rho(x, y_n) \mid n \in \mathbb{N}\} = 0$.\retTwo\par}
+	\end{myIndent}
+\end{myIndent}
+
+\hOne
+Given a subset $E$ of a metric space $(X, \rho)$, we define:
+
+{\centering$\diam(E) = \sup\{\rho(x, y)\mid x, y \in E\}$.\retTwo\par}
+
+If $\diam(E) < \infty$, we say $E$ is \udefine{bounded}. If $\forall \varepsilon > 0$, $E$ can be covered by finitely many balls of radius $\varepsilon$, then we say $E$ is \udefine{totally bounded}.\newpage
+
+\begin{myIndent}\exTwo
+	\blab{Exercise:} $E$ being totally bounded implies $E$ is bounded.
+	\begin{myIndent}\exPP
+		Pick $\varepsilon > 0$ and let $\{z_1, \ldots, z_n\}$ be the set of points such that $E \subseteq \bigcup\limits_{k = 1}^n B(\varepsilon, z_n)$.\retTwo
+
+		Then given any $x, y \in E$, we can assume that $x \in B(\varepsilon, z_i)$ and $y \in B(\varepsilon, z_j)$. So, $\rho(x, y) \leq \rho(x, z_i) + \rho(z_i, z_j) + \rho(z_j, y) < 2\varepsilon + \max\{\rho(z_i, z_j) \mid 1 \leq i, j \leq n\}$.\retTwo
+	\end{myIndent}
+
+	The converse is not generally true. For instance, if you use the discrete metric, then any set with more than one element will have a diameter of $1$. But if $0 < \varepsilon < 1$, then it will be impossible to cover an infinite set with finitely many balls.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\mHeader{Lecture 2 Notes: 10/1/2024}
+
+
+\end{document}
