@@ -240,7 +240,7 @@ We define $\Sym(\mathcal{F})$ to be the set of symmetries of $\mathcal{F}$.
 		\begin{myIndent}\hThree
 			I realize we haven't yet shown that every $f \in \Sym(\mathcal{F})$ is a bijection. Given such an $f$, it's easy to see that $f$ must be injective. After all, the distance\\ preserving property of $f$ means that $f(P) = f(Q) \Longrightarrow P = Q$. Showing that $f$ is surjective is harder. By assumption, we know that $f$ is surjective when restricted to $\mathcal{F}$. More complicatedly, we can show that $f$ must have a certain form which happens to be surjective. Perhaps I'll prove that later.\retTwo
 
-			Once, you've accepted that $f^{-1}$ exists, then it's clearly true that $f^{-1}$ is also order-preserving with $f^{-1}(\mathcal{F}) = \mathcal{F}$.
+			Once, you've accepted that $f^{-1}$ exists, then it's clearly true that $f^{-1}$ is also distance preserving with $f^{-1}(\mathcal{F}) = \mathcal{F}$.
 		\end{myIndent}
 		\item If $f_1, f_2 \in \Sym(\mathcal{F})$, then $f_1 \circ f_2 \in \Sym(\mathcal{F})$ and $f_2 \circ f_1 \in \Sym(\mathcal{F})$.
 		\begin{myIndent}\hThree
@@ -253,7 +253,9 @@ Now while it's all good that we have a concrete way of describing the symmetries
 
 \mySepTwo
 
-\blab{Proof that all symmetries are surjective (from our textbook)}:\\
+Aside start\dots\retTwo
+
+\blab{Proof that all symmetries are surjective (taken from our textbook)}:\\
 \begin{myIndent}\myComment
 	Note:\\ [-18pt]
 	\begin{itemize}
@@ -277,12 +279,68 @@ Now while it's all good that we have a concrete way of describing the symmetries
 
 		\item[(c)] The composition of isometries is an isometry.
 		\begin{myIndent}\hThree
-			If $f_1, f_2$ are isometries, then for all $u, v \in \mathbb{R}^n$, we have that\\ $|f_1(f_2(u)) - f_1(f_2(v))| = |f_2(u) - f_2(v)| = |u - v|$.
+			If $f_1, f_2$ are isometries, then for all $u, v \in \mathbb{R}^n$, we have that\\ $|f_1(f_2(u)) - f_1(f_2(v))| = |f_2(u) - f_2(v)| = |u - v|$.\retTwo
 		\end{myIndent}
 	\end{itemize}
 
+	\blab{Theorem 6.2.3:} The following conditions on a map $\varphi: \mathbb{R}^n \longrightarrow \mathbb{R}^n$ are equivalent:
+	\begin{itemize}
+		\item[(a)] $\varphi$ is an isometry such that $\varphi(0) = 0$.
+		\item[(b)] $\varphi$ preserves dot products: $\varphi(u) \cdot \varphi(w) = u \cdot w$ for all $u, w \in \mathbb{R}^n$.
+		\item[(c)] $\varphi$ is an orthogonal linear operator.
+		
+		\begin{myIndent}\hThree
+			Proof:\\
+			(c) $\Longrightarrow$ (a)\\
+			This comes both from the first fact on this page plus the fact that all linear\\ operators map $0$ to $0$.\retTwo
+
+			(b) $\Longrightarrow$ (c)\\
+			Our challenge here is to show that such a $\varphi$ has to be linear operator.\retTwo
+
+			\blab{Lemma:} For $x, y \in \mathbb{R}^n$, if $(x \cdot x) = (x \cdot y) = (y \cdot y)$, then $x = y$.
+			
+			\begin{myIndent}\hThree
+				Proof: $|x - y|^2 = (x - y) \cdot (x - y) = (x \cdot x) - 2(x \cdot y) + (y \cdot y)$.\retTwo
+			\end{myIndent}
+
+			Consider any $u, v \in \mathbb{R}^n$ and set $w = u + v$. Then set $u^\prime = \varphi(u)$,\\ $v^\prime = \varphi(v)$, and $w^\prime = \varphi(w)$. To show that $w^\prime = v^\prime + u^\prime$, we shall show\\ that $(w^\prime \cdot w^\prime) = (w^\prime \cdot (u^\prime + v^\prime)) = ((u^\prime + v^\prime) \cdot (u^\prime + v^\prime))$.\retTwo
+
+			Firstly, simplify our equation to:
+
+			{\centering $(w^\prime \cdot w^\prime) = (w^\prime \cdot u^\prime) + (w^\prime \cdot v^\prime) = (u^\prime \cdot u^\prime) + 2(u^\prime \cdot v^\prime) + (v^\prime \cdot v^\prime)$ \retTwo\par}
+
+			Next, since $\varphi$ is assumed to preserve dot products, we can thus simplify our\\ equation to:
+
+			{\centering $(w \cdot w) = (w \cdot u) + (w \cdot v) = (u \cdot u) + 2(u\cdot v) + (v \cdot v)$ \retTwo\par}
+
+			And since $w = u + b$, all of those equalities are true. Hence, we know by our lemma above that $w^\prime = u^\prime + v^\prime$.\newpage
+
+			Meanwhile, let $v \in \mathbb{R}^n$ and set $u = cv$ where $c$ is a constant. Then define $u^\prime$ and $v^\prime$ as before. Then we can do a few trivial simplications to show that $(u^\prime \cdot u^\prime)$, $(u^\prime \cdot cv^\prime)$ and $(cv^\prime \cdot cv^\prime)$ are all equal to $c^2(v \cdot v)$. So, $u^\prime = cv^\prime$.\retTwo
+
+			(a) $\Longrightarrow$ (b)\\
+			Since $\varphi$ is distance preserving, we know that $\forall u, v \in \mathbb{R}^n$, 
+
+			{\centering$(\varphi(u) - \varphi(v)) \cdot (\varphi(u) - \varphi(v)) = (u - v) \cdot (u -v)|$.\retTwo\par}
+
+			By plugging in $v = 0$, this simplifies to $(\varphi(u) \cdot \varphi(u)) = (u \cdot u)$. Similarly, by plugging in $u = 0$, we can get that $(\varphi(v) \cdot \varphi(v)) = (v \cdot v)$. So, by expanding and canceling out parts of our above expression, we get that:
+
+			{\centering$-2(\varphi(u) \cdot \varphi(v)) = - 2(u \cdot v)$.\retTwo\par}
+		\end{myIndent}
+	\end{itemize}
+
+	\blab{Corollary 6.2.7:} Every isometry $f$ of $\mathbb{R}^n$ is the composition of an orthogonal linear operator and a translation. Specifically, if $f(0) = a$, then $f = t_a\varphi$ where $t_a$ is a translation and $\varphi$ is an orthogonal linear operator.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		Let $f$ be an isometry, let $a = f(0)$, and define $\varphi = t_{-a}f$. Then clearly $t_a\varphi = f$. So, we just need to show that $\varphi$ is an orthogonal linear operator. To prove this, first note that $\varphi$ is the composition of two isometries, and is thus an isometry itself. Also, $\varphi(0) = -a + f(0) = -a + a = 0$. So applying theorem 6.2.3, we know that $\varphi$ is an orthogonal linear operator.\retTwo
+	\end{myIndent}
 \end{myIndent}
 
+Now we've proven in other classes that both translations and linear orthogonal\\ operators on $\mathbb{R}^n$ are surjective. So, all isometries are the composition of surjections, meaning they are surjective themselves. And since we also previously proved that all isometries are injective, we know they are bijective and have inverses.\retTwo
+
+Aside over\dots
+
+\mySepTwo
 \newpage
 
 \exOne Our textbook is \textit{Algebra, Second Edition} by Michael Artin.
