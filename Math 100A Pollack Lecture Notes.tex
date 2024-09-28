@@ -1,0 +1,292 @@
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
+
+\usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+\graphicspath{{./158_Images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
+
+\usepackage{quiver} %commutative diagrams
+
+
+\newfontfamily{\calibri}{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Arrow Commands:
+
+% Thank you Bernard, gernot, and Sigur who I copied this from:
+% https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+
+% Thank you egreg who I copied from:
+% https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
+\newcommand{\longrightarrowdbl}{\longrightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\longleftarrowdbl}{\leftarrow\mathrel{\mkern-14mu}\longleftarrow}
+
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+\newcommand{\xleftarrowdbl}[2][]{%
+  \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
+}
+
+\newcommand{\MRoman}[1]{%
+   \textrm{\MakeUppercase{\romannumeral #1}}%
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\learnToSpot}[1]{{\color{Red}#1}}
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwo}{%
+\color{MidnightBlue}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\hThree}{%
+   \color{PineGreen!85!Orange}
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\teachComment}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{Purple}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{Purple}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exTwoP}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exPP}{%
+   \color{RedViolet}%
+   \fontsize{12}{14}\selectfont%
+}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+\newcommand{\redPen}[1]{{\vphantom{.}\color{Red}#1}}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{{%
+   \setulcolor{Red}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1}%
+}}
+
+\newcommand{\blab}[1]{\textbf{#1}}
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.3em}s.t.\hspace{0.3em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\card}{\mathrm{card}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\Sym}{\mathrm{Sym}}
+\newcommand{\myHS}{ \hspace{0.5em}}
+
+\newcommand{\myId}{\mathrm{Id}}
+\newcommand{\myIm}{\mathrm{im}}
+\newcommand{\myObj}{\mathrm{Obj}}
+\newcommand{\myHom}{\mathrm{Hom}}
+\newcommand{\myEnd}{\mathrm{End}}
+\newcommand{\myAut}{\mathrm{Aut}}
+
+\newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
+
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
+
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
+
+\newcommand{\mHeader}[1]{{
+   \color{Black}%
+   \fontsize{20}{18}\selectfont%
+   #1\retTwo
+}}
+
+
+\title{Math 100A Notes (Professor: Aaron Pollack)}
+\author{Isabelle Mills}
+
+\begin{document}
+\maketitle{}
+\setul{0.14em}{0.07em}
+\calibri
+
+\hOne
+\mHeader{Lecture 1 Notes: 9/27/2024}
+
+\blab{Motivation for this class:}
+
+Let $\mathcal{F}$ be any figure in $\mathbb{R}^2$. We want some way of talking about the symmetries of $\mathcal{F}$.\retTwo
+
+Letting $d$ be the standard metric for $\mathbb{R}^2$, we say $f: \mathbb{R}^2 \longrightarrow \mathbb{R}^2$ is \udefine{distance preserving}\\ if $d(P, Q) = d(f(P), f(Q))$ for all $P, Q \in \mathbb{R}^2$. If $f$ is distance-preserving and\\ $f(\mathcal{F}) = \mathcal{F}$, then we call $f$ a \udefine{symmetry} of $\mathcal{F}$.\retTwo
+
+We define $\Sym(\mathcal{F})$ to be the set of symmetries of $\mathcal{F}$.
+\begin{myIndent}\hTwo
+	Lemma 2: The set $\Sym(\mathcal{F})$ has the following properties:
+	
+	\begin{enumerate}
+		\item The identity map $\myId$ is in $\Sym(\mathcal{F})$
+		\item If $f \in \Sym(\mathcal{F})$, then $f^{-1} \in \Sym(\mathcal{F})$.
+		\begin{myIndent}\hThree
+			I realize we haven't yet shown that every $f \in \Sym(\mathcal{F})$ is a bijection. Given such an $f$, it's easy to see that $f$ must be injective. After all, the distance\\ preserving property of $f$ means that $f(P) = f(Q) \Longrightarrow P = Q$. Showing that $f$ is surjective is harder. By assumption, we know that $f$ is surjective when restricted to $\mathcal{F}$. More complicatedly, we can show that $f$ must have a certain form which happens to be surjective. Perhaps I'll prove that later.\retTwo
+
+			Once, you've accepted that $f^{-1}$ exists, then it's clearly true that $f^{-1}$ is also order-preserving with $f^{-1}(\mathcal{F}) = \mathcal{F}$.
+		\end{myIndent}
+		\item If $f_1, f_2 \in \Sym(\mathcal{F})$, then $f_1 \circ f_2 \in \Sym(\mathcal{F})$ and $f_2 \circ f_1 \in \Sym(\mathcal{F})$.
+		\begin{myIndent}\hThree
+			This is pretty trivial to show.\retTwo
+		\end{myIndent}
+	\end{enumerate}
+\end{myIndent}
+
+Now while it's all good that we have a concrete way of describing the symmetries of a figure, our current terminology is not the most useful. After all, suppose $\mathcal{S}$ and $\mathcal{S}^\prime$ are two squares such that $\mathcal{S}$ is centered at the origin and $\mathcal{S}^\prime$ is centered at the point $(5, 5)$. Then even though we know both $\mathcal{S}$ and $\mathcal{S}^\prime$ have symmetries in the form of rotating and reflecting, the particular functions in $\Sym(\mathcal{S})$ and $\Sym(\mathcal{S})$ will be different (except for $\myId$). So, how do we compare the symmetries of those two squares?\retTwo
+
+\mySepTwo
+
+\blab{Proof that all symmetries are surjective (from our textbook)}:\\
+\begin{myIndent}\myComment
+	Note:\\ [-18pt]
+	\begin{itemize}
+		\item Our textbook calls a distance-preserving function $f: \mathbb{R}^n \longrightarrow \mathbb{R}^n$ an \udefine{isometry}.
+		\item Rather than writing $f_1 \circ f_2$ to represent function composition, our textbook just\\ writes $f_1f_2$.\newpage
+	\end{itemize}
+
+	\hTwo
+	\blab{Some Facts:}
+	\begin{itemize}
+		\item[(a)] Orthogonal linear operators are isometries.
+		
+		\begin{myIndent}\hThree
+			Let $\varphi$ be n orthogonal linear map. $\varphi$ being linear means that\\ $\varphi(u) - \varphi(v) = \varphi(u - v)$. Meanwhile, $\varphi$ being orthogonal means that\\ $|\varphi(u - v)| = \sqrt{\varphi(u - v) \cdot \varphi(u -v)} = \sqrt{(u - v) \cdot (u - v)} = |u - v|$.\\ So, for any $u, v \in \mathbb{R}^n$, we have that $|\varphi(u) - \varphi(v)| = |u - v|$.\retTwo
+		\end{myIndent}
+
+		\item[(b)] The translation $t_a$ by a vector $a$ defined by $t_a(x) = x + a$ is an isometry.
+		\begin{myIndent}\hThree
+			For any $u, v \in \mathbb{R}^n$, we have $|t_a(u) - t_a(v)| = |u + a - v - a| = |u - v|$.\retTwo
+		\end{myIndent}
+
+		\item[(c)] The composition of isometries is an isometry.
+		\begin{myIndent}\hThree
+			If $f_1, f_2$ are isometries, then for all $u, v \in \mathbb{R}^n$, we have that\\ $|f_1(f_2(u)) - f_1(f_2(v))| = |f_2(u) - f_2(v)| = |u - v|$.
+		\end{myIndent}
+	\end{itemize}
+
+\end{myIndent}
+
+\newpage
+
+\exOne Our textbook is \textit{Algebra, Second Edition} by Michael Artin.
+
+
+
+\end{document}
