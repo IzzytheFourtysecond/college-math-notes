@@ -173,6 +173,7 @@
 \newcommand{\ima}[1]{\mathrm{Im}(#1)}
 \newcommand{\comp}{\mathsf{C}}
 \newcommand{\myHS}{ \hspace{0.5em}}
+\newcommand{\gap}{\phantom{2}}
 
 \newcommand{\myId}{\mathrm{Id}}
 \newcommand{\myIm}{\mathrm{im}}
@@ -1771,6 +1772,130 @@ Let $\mathcal{S}$ be the set of open rays: $(a, +\infty)$ and $(-\infty, a)$. Th
 
 \mySepTwo
 
+\dispDate{9/29/2024}
+
+Today I'm going to be studying from Michael Artin's textbook \textit{Algebra, second\\ edition}. My reasoning is that I need to learn more group theory in order to be ready for 188.\retTwo
+
+A \udefine{law of compositon} on a set $S$ is map from $S \times S$ to $S$. Given the ordered pair $(a, b) \in S \times S$, we denote the element the pair is mapped to as either $ab$, $a \times b$, $a \circ b$, $a + b$, or etc. 
+
+\begin{myIndent}
+   Typically, $+$ is used if the composition is commutative. Meanwhile, the\\ multiplicative symbols don't imply commutativity.\retTwo
+\end{myIndent}
+
+\blab{Proposition 2.1.4:} Let an associative law of composition be given on $S$. Then we can uniquely define for all $n \in \mathbb{N}$ a product of $n$ elements $a_1, \ldots, a_n$ of $S$, temporarily denoted by $[a_1\cdots a_n]$, with the following properties:
+\begin{itemize}
+   \item[(i)] The product $[a_1]$ of one element is $a_1$.
+   \item[(ii)] The product $[a_1a_2] $ of two elements is given by the law of composition.
+   \item[(iii)] For any integer $i$ in the range $1 \leq i < n$, $[a_1\cdots a_n] = [a_1\cdots a_i][a_{i+1}\cdots a_n]$. 
+   
+   \begin{myIndent}\hTwo
+      Proof:\\
+      We proceed by induction on $n$.\retTwo
+
+      Let us define $[a_1\cdots a_n] = [a_1\cdots a_{n-1}][a_n]$ and suppose that the analogous definition of $[a_1\cdots a_r]$ satisfies our properties for all $1 < r < n$. Then for any $1 \leq i < n - 1$, we have that:
+
+      {\centering 
+      \begin{tabular}{l l}
+         $[a_1\cdots a_n] = [a_1\cdots a_{n-1}][a_n]$ & (by definition) \\
+         $\phantom{[a_1\cdots a_n] }= ([a_1\cdots a_i][a_{i+1}\cdots a_{n-1}])[a_n]$ & (by inductive hypothesis) \\
+         $\phantom{[a_1\cdots a_n] }= [a_1\cdots a_i]([a_{i+1}\cdots a_{n-1}][a_n])$ & (by associativity)\\
+         $\phantom{[a_1\cdots a_n] }= [a_1\cdots a_i][a_{i+1}\cdots a_{n-1} a_n]$
+      \end{tabular} \newpage\par}
+   \end{myIndent}
+\end{itemize}
+
+Based on the previous proposition, it's safe to just denote the product of $a_1, \ldots, a_n$ as $a_1\cdots a_n$.\retTwo
+
+An identity for a law of composition is an element $e$ of $S$ satisfying that:
+
+{\centering $ea = a$ and $ae = a$ for all $a \in S$. \retTwo\par}
+
+We denote the identity of a law of composition as $0$ or $1$ (depending on whether we are using multiplicative or additive notation). We can only have one identity element.
+
+\begin{myIndent}\hTwo
+   Proof:\\
+   Suppose $e$ and $e^\prime$ are both identity elements. Then $e = ee^\prime = e^\prime$.\retTwo
+\end{myIndent}
+
+An element $a$ of $S$ is \udefine{invertible} if there is another element $b \in S$ such that $ab = 1$ and $ba = 1$. We call $b$ the \udefine{inverse} of $a$ and denote $b$ as $-a$ or $a^{-1}$ depending on whether additive or multiplicative notation is being used.\retTwo
+
+\exOne
+
+\blab{Exercise 1.2:}
+\begin{itemize}
+   \item If an element $a$ has both a left inverse $l$ and a right inverse $r$, then $l = r$, $a$ is invertible, and $r$ is its inverse.
+   
+   \begin{myIndent}\exTwoP
+      Suppose $l a = 1$ and $a r = 1$. Then we have that:
+
+      {\centering $r = 1r = (la)r = l(ar) = l1 = l$\par}
+   \end{myIndent}
+
+   \item If $a$ is invertible, its inverse is unique.
+   \begin{myIndent}\exTwoP
+      Suppose $b$ and $b^\prime$ are both inverses of $a$. Then:
+
+      {\centering $b = 1b = (b^\prime a)b = b^\prime(ab) = b^\prime1 = b^\prime$\par}
+   \end{myIndent}
+
+   \item If $a$ and $b$ are invertible, then $ab$ is invertible with $(ab)^{-1} = b^{-1}a^{-1}$.
+   
+   \begin{myIndent}\exTwoP
+      Proof:
+
+      {\centering$abb^{-1}a^{-1} = a1a^{-1} = aa^{-1} = 1$ and $b^{-1}a^{-1}ab = b^{-1}1b = b^{-1}b = 1$\retTwo\par}
+   \end{myIndent}
+\end{itemize}
+
+\hOne
+
+\mySepTwo
+
+A \udefine{group} is a set $G$ together with a law of composition such that:
+\begin{enumerate}
+   \item The law of composition is associative.
+   \item $G$ has an identity element.
+   \item Every element of $G$ has an inverse.
+\end{enumerate}
+
+An \udefine{abelian group} is a group whose law of composition is commutative.\retTwo
+
+The \udefine{order} of a group $G$ is the number of elements it contains. We denote the order $|G|$. If $|G|$ is finite, we say $G$ is a \udefine{finite group}. Otherwise, we say $G$ is an \udefine{infinite group}.\newpage
+
+The \udefine{$n\times n$ general linear group} is the group of all invertible $n\times n$ matrices. It's denoted $GL_n$. If we want to specify whether we are working with real or complex matrices, we write $GL_n(\mathbb{R})$ or $GL_n(\mathbb{C})$.\retTwo
+
+The \udefine{symmetric group} of a set is the set of permutations of the set (with the law of composition being function composition). We denote $S_n$ the group of permutations of the indices $1, 2, \ldots n$.
+
+\exOne\mySepTwo
+
+$S_3$ has order $6$ (this is an easy fact from combinatorics). Now let $x = (1\gap 2\gap 3)$ and $y = (1\gap 2)(3)$ (this is using cyclic notation). Then we can express all the elements of $S_3$ as products of $x$ and $y$.
+
+{\centering\begin{tabular}{l l l}
+   $1 = (1)(2)(3)$ & $x = (1\gap 2\gap 3) $ & $x^2 = (1\gap 3\gap 2)$ \\
+   $y = (1\gap 2)(3)$ & $xy = (1\gap 3)(2)$ & $x^2y = (1)(2\gap 3)$
+\end{tabular}\par\retTwo}
+
+Also note that $x^3 = 1$, $y^2 = 1$, and $yx = x^2 y$.\retTwo
+
+\blab{Exercise 2.1:} Make a multiplication table for the symmetric group $S_3$.
+
+\begin{myIndent}\exTwoP
+   Just to clarify, to read this table, take the row element to be on the left side of the product and the column element to be on the right side of the product.
+
+   {\center\begin{tabular}{c||c|c|c|c|c|c}
+      $\times$ & $1$ & $x$ & $x^2$ & $y$ & $xy$ & $x^2y$ \\ \hline &&&&&&\\ [-13pt]\hline &&&&&&\\ [-13pt]
+      $1$ & $1$ & $ x$ & $x^2 $ & $y $ & $xy $ & $x^2y $ \\\hline &&&&&&\\ [-13pt]
+      $x$ & $x$ & $ x^2$ & $1 $ & $xy $ & $x^2y $ & $y $ \\ \hline &&&&&&\\ [-13pt]
+      $x^2$ & $x^2$ & $1 $ & $x $ & $x^2y $ & $y $ & $xy $ \\ \hline &&&&&&\\ [-13pt]
+      $y$ & $y$ & $x^2y $ & $xy $ & $1 $ & $ x^2$ & $x$ \\ \hline &&&&&&\\ [-13pt]
+      $xy$ & $xy$ & $y$ & $ x^2y$ & $x $ & $1$ & $x^2$ \\ \hline &&&&&&\\ [-13pt]
+      $x^2y$ & $x^2y$ & $xy$ & $y$ & $ x^2$ & $x$ & $1$
+   \end{tabular}\retTwo\par}
+\end{myIndent}
+
+\mySepTwo
+
+\hOne
 
 
 
