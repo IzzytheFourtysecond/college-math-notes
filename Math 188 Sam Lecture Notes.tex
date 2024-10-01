@@ -329,6 +329,86 @@ Now backing up, why does the above method work?\\
 
 \mHeader{Lecture 2: 9/30/2024}
 
+\begin{myIndent}\hTwo
+   \blab{Approach 3: (Matrices)}\\
+   If $a_n = c_1a_{n-1} + c_2a_{n-2}$, then we can say that: $\begin{bmatrix}c_1 & c_2 \\ 1 & 0\end{bmatrix}\begin{bmatrix}a_{n-1} \\ a_{n-2}\end{bmatrix} = \begin{bmatrix}a_n \\ a_{n-1}\end{bmatrix}$\retTwo
+
+   Letting $\bm{C} = 
+   \begin{bmatrix}
+      c_1 & c_2 \\ 1 & 0
+   \end{bmatrix}$, we thus know that: $\bm{C}^n \begin{bmatrix}a_1 \\ a_0\end{bmatrix} = \begin{bmatrix}a_{n+1} \\ a_{n}\end{bmatrix}$\retTwo
+
+   Notably, the characteristic polynomial of $\bm{C}$ is $t^2 - c_1t - c_2$. So the eigenvalues of $\bm{C}$ are $r_1$ and $r_2$. Because we assumed $r_1$ and $r_2$ are distinct, we know $\bm{C}$  is\\ diagonalizable. Hence there exists an invertible matrix $\bm{B}$ such that:
+   
+   {\center$\bm{B}
+   \begin{bmatrix}
+      r_1 & 0 \\ 0 & r_2
+   \end{bmatrix}\bm{B}^{-1} = \bm{C}$\retTwo\par}
+
+   Now set $\begin{bmatrix} x \\ y\end{bmatrix} = \bm{B}^{-1}\begin{bmatrix} a_1 \\ a_0\end{bmatrix}$. Then we can see that:
+
+   {\center $\begin{bmatrix}
+      a_{n+1} \\ a_n
+   \end{bmatrix} =
+   \bm{C}^n\begin{bmatrix}
+      a_1 \\ a_0
+   \end{bmatrix} = \bm{B}\bm{D}^n\begin{bmatrix}
+      x \\ y
+   \end{bmatrix} = \bm{B}\begin{bmatrix}
+      r_1^{\vphantom{|}n}x \\ r_2^{\vphantom{|}n}y
+   \end{bmatrix} = \begin{bmatrix}
+     b_{1,1} r_1^{\vphantom{|}n}x + b_{1,2}r_2^{\vphantom{|}n}y \\ b_{2,1} r_1^{\vphantom{|}n}x + b_{2,2}r_2^{\vphantom{|}n}y
+   \end{bmatrix}$ \retTwo\par}
+
+   Setting $\alpha_1 = b_{2,1}x$ and $\alpha_2 = b_{2,2}y$, we have thus found constants $\alpha_1$ and $\alpha_2$ such that $a_n = \alpha_1r_1^{\vphantom{|}n} + \alpha_2r_2^{\vphantom{|}n}$.\retTwo\retTwo
+\end{myIndent}
+
+\hOne
+Now some further questions to ask about recurrence relations are:
+\begin{enumerate}
+   \item What if $r_1 = r_2$?
+   \item What if $d \geq 3$?
+   \item What if the recurrence relation is non-homogeneous or non-linear?\retTwo
+\end{enumerate}
+
+To start, let's answer question 1.
+\begin{myIndent}\hTwo
+   \blab{Theorem:} Suppose $r_1$ and $r_2$ are the roots of $t^2 - c_1t - c_2$ with $r_1 = r_2$. Then there exists $\alpha_1, \alpha_2$ such that $a_n = \alpha_1r_1^{\vphantom{|}n} + \alpha_2 n r_1^{\vphantom{|}n}$ for all $n \geq 0$.\retTwo
+
+   As was true when $r_1 \neq r_2$, you can solve for $\alpha_1$ and $\alpha_2$ by plugging in different values of $n$ into the equation in order to get a linear system of equations.\retTwo
+\end{myIndent}
+
+To explain why this is, let's revisit two of our previous approaches.\retTwo
+
+\begin{myIndent}\hTwo
+   \blab{The Formal Power Series Approach Revisited:}\\
+   Before, we were able to show that $A(x) = \dfrac{a_0 + (a_1 - a_0c_1)x}{(1 - r_1x)(1 - r_2x)}$ without assuming\\ [-7pt] anything about $r_1$ and $r_2$.\newpage
+
+   But when we assume $r_1 = r_2$, we then get a different partial fraction decomposition for $A(x)$. Specifically, we have that there exists constants $\beta_1, \beta_2$ such that:
+
+   {\centering $A(x) = \dfrac{\beta_1}{1 - r_1x} + \dfrac{\beta_2}{(1 - r_1x)^2} $ \retTwo\par}
+
+   Now we'll go into more rigor later. But for now, accept that:
+
+   {\centering $\frac{1}{(1 - y)^2} = \frac{d}{dy}\left(\frac{1}{1 - y}\right) = \frac{d}{dy}\left(\sum\limits_{n\geq 0}y^n\right) = \sum\limits_{n \geq 1}ny^{n-1} = \sum\limits_{n \geq 0}(n+1)y^n$\par}
+
+   
+   \begin{myTindent}\myComment
+      From the perspective of real analysis, this should make sense because derivatives of power series behave nicely when the power series\\ converges.\retTwo
+   \end{myTindent}
+
+   Hence, we can write $A(x) = \sum\limits_{n \geq 0}a_n x^n = (\beta_1 + \beta_2) \sum\limits_{n \geq 0}r_1^{\vphantom{|}n}x^n + \beta_2 \sum\limits_{n \geq 0}nr_1^{\vphantom{|}n}x^n$.\retTwo
+
+   Or in other words, setting $\alpha_1 = \beta_1 + \beta_2$ and $\alpha_2 = \beta_2$, we have that:
+
+   {\centering $a_n = \alpha_1r_1^{\vphantom{|}n} + \alpha_2 n r_1^{\vphantom{|}n}$\\ [20pt]\par}
+
+   \blab{The Matrix Approach Revisited:}\\
+   
+
+\end{myIndent}
+
+
 
 
 
