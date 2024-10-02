@@ -404,12 +404,79 @@ To explain why this is, let's revisit two of our previous approaches.\retTwo
    {\centering $a_n = \alpha_1r_1^{\vphantom{|}n} + \alpha_2 n r_1^{\vphantom{|}n}$\\ [20pt]\par}
 
    \blab{The Matrix Approach Revisited:}\\
-   
 
+   If $r_1 = r_2$, then we must hav ethat the matrix $\bm{C}$ is not diagonalizable. For suppose it was, meaning there exists an invertible matrix $\bm{B}$ such that:
+   
+   {\centering$\bm{C} = \bm{B}
+   \begin{bmatrix}
+      r_1 & 0\\ 0 & r_1
+   \end{bmatrix}\bm{B}^{-1}$\retTwo\par}
+
+   Then we'd have to have that $\bm{C} = r_1\bm{B}\bm{B}^{-1} = 
+   \begin{bmatrix}
+      r_1 & 0 \\ 0 & r_1
+   \end{bmatrix}$. But we know $\bm{C}$ isn't that.\retTwo
+
+   Since we know $\bm{C}$ Is not diagonalizable, we will instead use the \textit{Jordan-normal form} of $\bm{C}$. Specifically, we know there exists an invertible matrix $\bm{B}$ such that:
+
+   {\centering $\bm{C} = \bm{B}
+   \begin{bmatrix}
+      r_1 & 1 \\ 0 & r_1
+   \end{bmatrix}\bm{B}^{-1}$\par}
+   
+   \begin{myDindent}\begin{myDindent}\myComment
+      Don't worry for the time being about how to prove the Jordan-normal form of a matrix always exists.\retTwo
+   \end{myDindent}\end{myDindent}
+
+   This tells us that $\bm{C}^n = 
+   \bm{B}\begin{bmatrix}
+      r_1 & 1 \\ 0 & r_1
+   \end{bmatrix}^n\bm{B}^{-1}$.\retTwo Also, you can show by induction that $\begin{bmatrix}
+      r_1 & 1 \\ 0 & r_1
+   \end{bmatrix}^n = \begin{bmatrix}
+      r_1^n & nr_1^{n-1} \\ 0 & r_1^n
+   \end{bmatrix}$.
+
+   So finally, defining $
+   \begin{bmatrix}
+      x \\ y
+   \end{bmatrix}$ as before and expanding out the expression, you can get\\ [-8pt] \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} an explicit equation for $a_n$.\newpage
 \end{myIndent}
 
+As for answering question 2, if $d \geq 3$, then our characteristic polynomial becomes $t^d - c_1t^{d-1} - \ldots - c_d$. We'll assume this polynomial has distinct roots $r_1, \ldots, r_m$ with multiplicities $s_1, \ldots, s_m$ respectively.\retTwo
 
 
+\begin{myIndent}\hTwo
+   \blab{Theorem:} There exists constants $\alpha_1, \ldots, \alpha_d$ such that:
+
+   {\center $a_n = \sum\limits_{i = 1}^{s_1} \alpha_i n^{\vphantom{|}i-1} r_1^{\vphantom{|}n} + \ldots + \hspace{-2em}\sum\limits_{i = s_1 + \ldots + s_{m-1} + 1}^{s_1 + \ldots + s_m}\hspace{-2em} \alpha_i n^{\vphantom{|}i-1}r_m^{\vphantom{|}n}$ \retTwo\par}
+
+   As before, to solve for $\alpha_1$ through $\alpha_d$, you can plug in values of $n$ and solve a linear system of equations.\retTwo
+
+   \begin{myIndent}\hThree
+      The approaches to prove this are the same as when $d = 2$. However, there are just more terms floating around that need to be dealt with.\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+Special case: suppose the characteristic polynomial is $(t - 1)^d$.
+
+\begin{myIndent}\hTwo
+   In that case, because the root of the polynomial $r$ is $1$, there exists $\alpha_1, \ldots, \alpha_d$\\ such that 
+   
+   {\centering $a_n = \alpha_1 + n\alpha_2 + n^2\alpha_3 + \ldots + n^{d-1}\alpha_d$. \retTwo\par}
+   
+   In other words, the formula for $a_n$ is a polynomial in $n$.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\blab{Another perspective on the characteristic polynomial}:\\
+
+Let $V$ be the vector space of sequences $(a_n)_{n\geq 0}$, and define the \udefine{translation operator} $T: V \longrightarrow V$ such that $(a_n)_{n \geq 0} \mapsto (a_{n+1})_{n\geq 0}$. Now, given $\bm{a} \in V$ and the recurrence relation $a_n = c_1a_{n-1} + \ldots + c_da_{n-d}$ for all $n \geq d$, we have that $\bm{a}$ satisfies our recurrence relation if and only if:
+
+{\centering $T^d\bm{a} = c_1T^{d-1}\bm{a} + c_2T^{d-2}\bm{a} + \ldots + c_d\bm{A}$ \retTwo\par}
+
+In other words, we must have that $\bm{a} \in \ker(T^d - c_1T^{d-1} - \ldots - c_d)$.
 
 
 
