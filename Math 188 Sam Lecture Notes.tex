@@ -388,13 +388,13 @@ To explain why this is, let's revisit two of our previous approaches.\retTwo
 
    {\centering $A(x) = \dfrac{\beta_1}{1 - r_1x} + \dfrac{\beta_2}{(1 - r_1x)^2} $ \retTwo\par}
 
-   Now we'll go into more rigor later. But for now, accept that:
+   Now we'll go into more rigor later. But for now, note that:
 
    {\centering $\frac{1}{(1 - y)^2} = \frac{d}{dy}\left(\frac{1}{1 - y}\right) = \frac{d}{dy}\left(\sum\limits_{n\geq 0}y^n\right) = \sum\limits_{n \geq 1}ny^{n-1} = \sum\limits_{n \geq 0}(n+1)y^n$\par}
 
    
    \begin{myTindent}\myComment
-      From the perspective of real analysis, this should make sense because derivatives of power series behave nicely when the power series\\ converges.\retTwo
+      Comment from the future: this explanation actually is completely\\ incorrect because $x$ isn't a variable that we can plug in at all (we'll get to that in the next lecture). The professor just mentioned this explanation cause it's a cool connection.  \retTwo
    \end{myTindent}
 
    Hence, we can write $A(x) = \sum\limits_{n \geq 0}a_n x^n = (\beta_1 + \beta_2) \sum\limits_{n \geq 0}r_1^{\vphantom{|}n}x^n + \beta_2 \sum\limits_{n \geq 0}nr_1^{\vphantom{|}n}x^n$.\retTwo
@@ -476,8 +476,27 @@ Let $V$ be the vector space of sequences $(a_n)_{n\geq 0}$, and define the \udef
 
 {\centering $T^d\bm{a} = c_1T^{d-1}\bm{a} + c_2T^{d-2}\bm{a} + \ldots + c_d\bm{A}$ \retTwo\par}
 
-In other words, we must have that $\bm{a} \in \ker(T^d - c_1T^{d-1} - \ldots - c_d)$.
+In other words, we must have that $\bm{a} \in \ker(T^d - c_1T^{d-1} - \ldots - c_d)$.\retTwo
 
+If $r_1, \ldots, r_d$ are the roots of the characteristic polynomial $t^d - c_1T^{d-1} - \ldots - c_d$, then we can rewrite this as:
+
+{\centering $(T - r_1)\cdots(T - r_d)\bm{a} = \bm{0}$ \retTwo\par}
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} Given a sequence $\bm{a} = (a_n)_{n \geq 0}$, there exists a polynomial $p(n)$ of\\ degree at most $d - 1$ such that $a_n = p(n)$ if and only if $(T - 1)^d\bm{a} = \bm{0}$.
+
+   \begin{myIndent}\hThree
+      We already saw in the special case above one direction of this statement. As for the other direction, suppose $p(n) = \alpha_d n^{d-1} + \alpha_{d-1}n^{d-2} + \ldots + \alpha_1$. Then $(T - 1)$ applied to the sequence $(p(n))_{n\geq 0}$ is the sequence $(p(n + 1) - p(n))_{n \geq 0}$ Importantly, $p(n + 1)$ is also a polynomial of degree $d - 1$ with $\alpha_d$ as the coefficient in front of $n^{d - 1}$. So the difference is a polynomial of degree at most $d - 2$.\newpage
+
+      Proceeding by induction, we know that $(T - 1)^d(p(n))_{n\geq 0} = \bm{0}$.\retTwo
+   \end{myIndent}   
+\end{myIndent}
+
+Note that the operator $(T - 1)$ can be thought of as the taking the "derivative" of a sequence $\bm{a}$. Going by that analogy, the previous proposition is saying that a sequence $\bm{a}$ is given by a polynomial if and only if a derivative of some order of the sequence is zero. Interestingly, the same is true of differential equations.\retTwo
+
+\mySepTwo
+
+\mHeader{Lecture 3: 10/2/2024}
 
 
 

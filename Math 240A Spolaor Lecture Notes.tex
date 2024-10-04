@@ -88,6 +88,10 @@
    \color{PineGreen!85!Orange}
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\hFour}{%
+   \color{Cyan}
+   \fontsize{12}{14}\selectfont%
+}
 \newcommand{\myComment}{%
    \color{RawerSienna}%
    \fontsize{12}{14}\selectfont%
@@ -256,7 +260,7 @@ We say $X$ has the \udefine{cardinality of the continuum} if $\card(X) = \card(\
 	\end{myIndent}
 \end{myIndent}
 
-Given a sequence $\{x_n\}$ in $\mathbb{R}$ we know there exists: $\limsup x_n = \inf\limits_{k \geq 1}(\sup\limits_{n \geq k} x_n)$ and\\ [-10pt] $\liminf x_n = \sup\limits_{k \geq 1}(\inf\limits_{n \geq k} x_n)$.\retTwo
+Given a sequence $(x_n)_{n \in \mathbb{N}}$ in $\mathbb{R}$ we know there exists: $\limsup x_n = \inf\limits_{k \geq 1}(\sup\limits_{n \geq k} x_n)$ and\\ [-10pt] $\liminf x_n = \sup\limits_{k \geq 1}(\inf\limits_{n \geq k} x_n)$.\retTwo
 
 Also, given a function $f: \mathbb{R} \longrightarrow \overline{\mathbb{R}}$, we can define:
 
@@ -333,7 +337,116 @@ If $\diam(E) < \infty$, we say $E$ is \udefine{bounded}. If $\forall \varepsilon
 
 \begin{myIndent}\hTwo
    \blab{Proposition:} Suppose $E$ is a subset of a metric space $(X, \rho)$. Then the following are equivalent.
+   
+   \begin{enumerate}
+      \item $E$ is complete and totally bounded
+      \item All sequences $(x_n) \subseteq E$, have a convergent subsequence.
+      \item For all open covers $\{V_\alpha\}_{\alpha \in A}$ of $E$, there exists $V_{\alpha_1}, \ldots, V_{\alpha_n}$ such that\\ $E \subseteq \bigcup\limits_{i=1}^n V_{\alpha_i}$.\retTwo
+   \end{enumerate}
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      (1) $\Longrightarrow$ (2):
+      \begin{myIndent}
+         Lemma:\\
+         If $E$ is totally bounded and $F \subseteq E$, then $F$ is totally bounded.
+         \begin{myIndent}\hFour
+            Given any $\varepsilon > 0$, let $\{x_1, \ldots, x_n\}$ be a subset of $E$ such that\\ $E \subseteq \bigcup\limits_{i = 1}^n B(\sfrac{\varepsilon}{2}, x_i)$. Then consider the collection of sets:\\ [-8pt] \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} $\{F \cap B(\sfrac{\varepsilon}{2}, x_i)\} - \{\emptyset\}$.\retTwo
+
+            We know the diameter of each $F \cap B(\sfrac{\varepsilon}{2}, x_i)$ is at most $\varepsilon$. So in each set, pick $y_i \in F \cap B(\sfrac{\varepsilon}{2}, x_i)$. Then for some $m \leq n$:
+
+            {\centering $F \subseteq \bigcup\limits_{i=1}^m B(\varepsilon, y_i)$ \retTwo\par}
+         \end{myIndent}
+
+         Let $A_1 = E$. Then for $k \geq 2$ we recursively define $A_k$ as follows:\retTwo
+         
+         Assuming $A_{k-1} \cap (x_n)_{n\in \mathbb{N}}$ is infinite and $A_{k-1}$ is totally bounded, choose\\ [-2pt] $\{y_1, \ldots, y_m\}$ in $A_k$ such that $A_k \subseteq \bigcup\limits_{i = 1}^m B(2^{-n}, y_i)$. Importantly, since\\ $(x_n)_{n\in \mathbb{N}} \cap A_{k-1}$ is infinite, we know one of those open balls contains\\ [4pt] infinitely many points in our sequence. So set $A_{k}$ equal to that ball\\ [4pt] intersected with $E$. Note that by our lemma, $A_k$ is totally bounded.\newpage
+
+         Now pick any $x_{n_1}$ and then for all $k \geq 2$ pick $x_{n_k} \in A_k$ such that\\ $n_k > n_{k - 1}$. That way, $(x_{n_k})_{k \in \mathbb{Z}_+}$ is a subsequence of $(x_{n})_{n \in \mathbb{Z}_+}$. Also,\\ we know that $(x_{n_k})_{k \in \mathbb{Z}_+}$ is Cauchy. Hence, since $E$ is complete, we know\\ that it converges to some $x$ in $E$.\retTwo
+      \end{myIndent}
+
+      (2) $\Longrightarrow$ (1):
+      \begin{myIndent}
+         Firstly, suppose $E$ is not complete. Then there exists a sequence $(x_n)_{n \in \mathbb{N}}$ that is Cauchy but does not converge in $E$. Importantly, because $(x_n)_{n \in \mathbb{N}}$ is Cauchy, if there was a convergent subsequence, we know the limit of that subsequence would have to be the limit of the whole sequence. But that doesn't exist. So, we know (2) can't be true.\retTwo
+
+         Secondly, suppose $E$ is not totally bounded. Then there exists $\varepsilon > 0$ such that it is impossible to cover $E$ in balls of radius $\varepsilon$. So, we can recursively define a sequence $(x_n)_{n \in \mathbb{N}}$ in $E$ satisfying that:
+         
+         {\centering$x_n \in E - \bigcup\limits_{i = 1}^{n-1}B(\varepsilon, x_{i})$.\retTwo\par}
+
+         Importantly, for all natural numbers $n \neq m$, we have that $\rho(x_n, x_m) \geq \varepsilon$. So, it is impossible to find a convergent subsequence of $(x_n)$, meaning (2) is false.\retTwo
+      \end{myIndent}
+
+      (1) and (2) $\Longrightarrow$ (3):
+      \begin{myIndent}
+         Let $\{V_\alpha\}_{\alpha \in A}$ be an open cover of $E$.\retTwo
+
+         Suppose for the sake of contradiction that for all $n \in \mathbb{N}$, there is a ball $B_n$ of radius $2^{-n}$ centered in $E$ such that $B_n \cap E \neq \emptyset$ but $B_n \not\subseteq V_\alpha$ for all $\alpha \in A$. Then we can construct a sequence $(x_n)_{n \in \mathbb{N}}$ in $E$ such that $x_n \in B_n \cap E$\\ for all $n \in \mathbb{N}$. By (2), we know there is a subsequence that converges to some $x \in E$. Importantly, we know $x \in V_\alpha$ for some $\alpha \in A$, and because $V_\alpha$ is open, there is $\varepsilon > 0$ such that $B(\varepsilon, x) \subseteq V_\alpha$. But now we get a contradiction because by picking $n$ such that $2^{-n} < \sfrac{\varepsilon}{3}$ and $\rho(x, x_n) < \sfrac{\varepsilon}{3}$, we have for all $y \in B_n$ that:
+
+         {\centering $\rho(x, y) \leq \rho(x, x_n) + \rho(x_n, y) < 2^{-n} + 2^{-n+1} < \varepsilon$ \retTwo\par}
+
+         So $B_n \subseteq B(\varepsilon, x) \subseteq V_\alpha$.\retTwo
+
+         We've thus shown that for some $n \in N$, all balls of radius $2^{-n}$ centered\\ in $E$ are contained by some $V_\alpha$. And assuming (1), we can cover $E$ with finitely many balls of radius $2^{-n}$ It follows that by picking a $V_\alpha$ containing a ball for each ball covering $E$, we've found a finite covering $E$ using the sets in $\{V_\alpha\}_{\alpha \in A}$.\retTwo
+      \end{myIndent}
+
+      (3) $\Longrightarrow$ (2):
+      \begin{myIndent}
+         Suppose $(x_n)_{n \in \mathbb{N}}$ is a sequence in $E$ with no convergent subsequence. Then for each $x \in E$, there must exist $\varepsilon_x > 0$ such that $B(\varepsilon_x, x) \cap (x_n)_{n \in \mathbb{N}}$ is finite. (If $\varepsilon_x$ didn't exist, we could construct a Cauchy subsequence converging to $x$).\newpage
+
+         But now $\{B(\varepsilon_x, x)\}_{x \in E}$ is an open cover of $E$ with no finite subcover of $E$ because it will take an infinite cover to cover all of $(x_n)_{n \in \mathbb{N}}$.\retTwo
+      \end{myIndent}
+   \end{myIndent}
+
+   If $E$ satisfies all three of the above properties, we say $E$ is \udefine{compact}.\retTwo
+
+   \blab{Corollary}: $K \subseteq \mathbb{R}^n$ is compact iff it's closed and bounded.
+\end{myIndent}
+
+\mySepTwo
+
+Roughly speaking, we want a measure to be a function $\mu: \mathcal{P}(\mathbb{R}^n) \longrightarrow [0, \infty)$ such that $E \mapsto \mu(E) =$ "the area of $E$". Also, we would like it if:
+\begin{enumerate}
+   \item[(i)] $\mu([0, 1)^n) = 1$
+   \item[(ii)] $\mu(\text{rotation, translation, or reflection of } A) = \mu(A)$
+   \item[(iii)] $\mu(\bigcup\limits_{i=1}^\infty A_i) = \sum\limits_{i = 1}^\infty \mu(A_i)$ if $A_i \cap A_j \neq \emptyset \Longrightarrow i = j$.
+\end{enumerate}
+
+Unfortunately, the properties as written above are inconsistent.
+
+\begin{myIndent}\hTwo
+   \blab{Vitali Sets:}\\
+   Defining $x \sim y$ iff $x - y \in \mathbb{Q}$, let $N \subseteq [0, 1)$ be a set such that $N \cap [x]$ has precisely one element for all $x \in \mathbb{R}$. Next let $R = [0, 1) \cap \mathbb{Q}$, and for all $r \in R$ define:
+   
+   {\centering$N_r = \{x + r \mid x \in N \cap [0, 1-r)\}\cup \{x + r - 1 \mid x \in N \cap [1 - r, 1)\} $.\retTwo\par}
+
+   Importantly, note that $N_r \subseteq [0, 1)$. Plus, the two sets being unioned over to make $N_r$ are both disjoint and can be translated around so that they are still disjoint but their union forms $N$. Hence assuming $\mu : \mathcal{P}(\mathbb{R}^n) \longrightarrow [0, \infty)$ satisfying (ii) and (iii), we know $\mu(N_r) = \mu(N)$.\retTwo
+
+   Also, for all $y \in [0, 1)$, if $x \in N \cap [y]$, we know that $y \in N_r$ where $r = x - y$ if $x \geq y$, or $r = x - y + 1$ if $x < y$. Hence, $[0, 1) = \bigcup\limits_{r \in R}N_r$.\retTwo
+
+   Also, given any $N_r$ and $N_s$, if $x \in N_r \cap N_s$, then we'd be able to show that both $x - r$ or $x - r + 1$ and $x - s$ or $x - s + 1$ are distinct elements of $N$ in the same equivalence class, which contradicts how we defined $N$.
+   \begin{myTindent}\begin{myTindent}\myComment
+      You work through the scratch work of the different cases on your own! :P\retTwo
+   \end{myTindent}\end{myTindent}
+
+   So supposing $\mu$ satisfies (i) and (iii) and because $R$ is countable, we have that:
+   
+   {\centering $1 = \sum\limits_{r \in R}\mu(N_r) = \sum\limits_{r \in R}(N) = 0 \text{ or } \infty$.\retTwo\par}
+
+   This is a contradiction.
 \end{myIndent}
 
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+% $\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha = \{\pi^{-1}_\alpha(E_\alpha) \mid E_\alpha \in \mathcal{M}_\alpha, \alpha \in A\}$
