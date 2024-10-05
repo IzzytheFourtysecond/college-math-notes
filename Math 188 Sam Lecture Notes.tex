@@ -88,6 +88,10 @@
    \color{PineGreen!85!Orange}
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\hFour}{%
+   \color{Cyan}
+   \fontsize{12}{14}\selectfont%
+}
 \newcommand{\myComment}{%
    \color{RawerSienna}%
    \fontsize{12}{14}\selectfont%
@@ -176,6 +180,8 @@
 \newcommand{\myAut}{\mathrm{Aut}}
 
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+\newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -390,11 +396,11 @@ To explain why this is, let's revisit two of our previous approaches.\retTwo
 
    Now we'll go into more rigor later. But for now, note that:
 
-   {\centering $\frac{1}{(1 - y)^2} = \frac{d}{dy}\left(\frac{1}{1 - y}\right) = \frac{d}{dy}\left(\sum\limits_{n\geq 0}y^n\right) = \sum\limits_{n \geq 1}ny^{n-1} = \sum\limits_{n \geq 0}(n+1)y^n$\par}
+   {\centering $\frac{1}{(1 - y)^2} = \left(\frac{1}{1 - y}\right)^\prime = \left(\sum\limits_{n\geq 0}y^n\right)^\prime = \sum\limits_{n \geq 1}ny^{n-1} = \sum\limits_{n \geq 0}(n+1)y^n$\par}
 
    
    \begin{myTindent}\myComment
-      Comment from the future: this explanation actually is completely\\ incorrect because $x$ isn't a variable that we can plug in at all (we'll get to that in the next lecture). The professor just mentioned this explanation cause it's a cool connection.  \retTwo
+      Comment from the future: as we'll cover two lectures from now, the definition of a derivative of a formal power series is different from the analysis definition we're familiar with.\retTwo
    \end{myTindent}
 
    Hence, we can write $A(x) = \sum\limits_{n \geq 0}a_n x^n = (\beta_1 + \beta_2) \sum\limits_{n \geq 0}r_1^{\vphantom{|}n}x^n + \beta_2 \sum\limits_{n \geq 0}nr_1^{\vphantom{|}n}x^n$.\retTwo
@@ -498,20 +504,374 @@ Note that the operator $(T - 1)$ can be thought of as the taking the "derivative
 
 \mHeader{Lecture 3: 10/2/2024}
 
+To quickly address question 3, in general there is no unified approach to dealing with nonlinear recurrence relations. However, we can often solve non-homogeneous\\ linear recurrence relations.
+\begin{myIndent}\exOne
+   This will be addressed by the homework (see HW 1: Exercise (2)).\retTwo
+\end{myIndent}
+
+\blab{Formal Power Series:}
+
+A \udefine{formal power series} in the variable $x$ is an expression of the form $A(x) = \sum\limits_{n \geq 0} a_n x^n$\\ [-8pt] where $a_n$ is a sequence of elements of a field.
+
+\begin{myTindent}\teachComment
+   Technically, we can go more general to a commutative ring (but we won't).\retTwo
+\end{myTindent}
+
+We call $A(x)$ the \udefine{generating function} of $(a_n)_{n \geq 0}$.\retTwo
+
+If $A(x)$ and $B(x)$ are the generating functions of $(a_n)_{n \geq 0}$ and $(b_n)_{n \geq 0}$ respectively, then:
+\begin{itemize}
+   \item $A(x) = B(x)$ iff $a_n = b_n$ for all $n$.
+   \item $A(x) + B(x) \coloneq \sum\limits_{n \geq 0}(a_n + b_n)x^n$.\\ [-16pt]
+   \item $A(x)B(x) \coloneq \sum\limits_{n \geq 0}c_nx^n$ where $c_n = \sum\limits_{i = 0}^n a_ib_{n-i}$.\\ [-12pt]
+    
+    \begin{myTindent}\myComment
+      (in other words this is the Cauchy Product of $A(x)$ and $B(x)$)\retTwo
+    \end{myTindent}
+\end{itemize}
+
+Note that polynomials and constants are special cases of formal power series with the sequence generating that function being eventually zero.\retTwo
+
+Also, sums and products of formal power series satisfy the commutative, associative, and distributive properties of a field.
+
+\begin{myIndent}\myComment
+   The only one of those properties that's non-trivial to show is the associativity of products. One way that you can prove this property is to show that :
+
+   {\center $\sum\limits_{i = 0}^n \sum\limits_{j = 0}^i a_jb_{i-j}c_{n-i} = \hspace{-0.8em}\sum\limits_{(p, q, r) \in I}\hspace{-0.8em}a_p b_q c_r = \sum\limits_{i = 0}^n \sum\limits_{j = 0}^i a_{n-i}b_{j}c_{i - j}$,\par}
+
+   where $I = \{(p, q, r) \in \mathbb{Z}^3 \mid p + q + r = n \text{ and } p, q, r \geq 0\}$.\newpage
+\end{myIndent}
+
+Plus, letting $0 + 0x + \ldots$\phantom{a}  be the additive identity, then given any formal power series $A(x) = \sum\limits_{n \geq 0}a_n x^n$, we have that:
+
+{\centering $-A(x) = (-1 + 0x + \ldots)\sum\limits_{n \geq 0}a_nx^n = \sum\limits_{n \geq 0}(-a_n)x^n$ is the additive inverse of $A(x)$.\retTwo\par}
+
+Finally, we clearly have that $1 + 0x + 0x^2 + \ldots$\phantom{a} is a multiplicative identity of the set of formal power series.\retTwo
+
+Therefore, to make this perfectly clear, the set of formal power series is not actually a set of functions. Rather, given a field (or commutative ring) $F$, the set of formal power series with coefficients in that ring is a commutative ring on the set $F^{\omega}$ of infinite sequences of elements of $F$ using the $+$ and $\cdot$ operations defined above.
+
+\begin{myIndent}\myComment
+   In other words, it doesn't make sense to plug values of $x$ into formal power series. Rather, the power series notation is just to make it clearer where the definitions of different\\ operations are coming from.\retTwo
+
+   Also, since the set of formal power series on a commutative ring is itself a commutative ring, you can define the set of formal power series on the set of formal power series on that commutative ring. Spoiler: this is a way to define multivariate formal power series.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+A formal power series $A(x)$ is \udefine{invertible} if there exists a formal power series $B(x)$ such that $A(x)B(x) = 1$. We write $B(x) = A(x)^{-1} = \frac{1}{A(x)}$, and call $B(x)$ the\\ [-2pt] \udefine{inverse} of $A(x)$.\retTwo
+
+\begin{myIndent}\hTwo
+   \blab{Example:} If $A(x) = \sum\limits_{n \geq 0} x^n$, then $A(x)$ is invertible with inverse $B(x) = 1 - x$.
+
+   \begin{myIndent}\hThree
+      Proof:\\ [-10pt]
+
+      \begin{tabular}{l}
+         $A(x)B(x) = (1 + x +x^2 + \ldots)(1 - x)$ \\ $\phantom{A(x)B(x)} = 1 + x - x + x^2 - x^2 + x^3 - x^3 + \ldots = 1$
+      \end{tabular}\\
+
+      So $\sum\limits_{n \geq 0} x^n = \frac{1}{1 - x}$.\retTwo
+   \end{myIndent}
+
+   \blab{Theorem:} $A(x) = \sum\limits_{n \geq 0}a_n$ is invertible if and only if $a_0$ has a multiplicative inverse.
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      If there exists $B(x)$ such that $A(x)B(x) = 1$, then we must have that:
+      \begin{myIndent}
+         \begin{tabular}{l}
+            $a_0 b_0 = 1$ \\
+            $a_0 b_1 + a_1 b_0 = 0$ \\
+            $a_0 b_2 + a_1 b_1 + a_2 b_0 = 0$ \\
+            $\phantom{a_0b_2 + a_1b_1 +} \vdots $
+         \end{tabular}\newpage
+      \end{myIndent}
+
+      If $\frac{1}{a_0}$ exists then we can inductively solve for each $b_n$. Specifically, $b_0 = \frac{1}{a_0}$ and\\ [-3pt] $b_n = -\frac{1}{a_0}\sum\limits_{i=1}^n a_i b_{n - i}$. Then $B(x) = \sum\limits_{n \geq 0}b_n x^n$ satisfies that $A(x)B(x) = 1$.\retTwo
+
+      If $\frac{1}{a_0}$ doesn't exist, then there is no choice of $b_0$ such that $A(x) (\sum\limits_{n \geq 0}b_n x^n) = 1$.\\ [-6pt] So $A(x)$ has no inverse.\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+\mHeader{Lecture 4: 10/4/2024}
+
+If $A(x)$ is a power series and $n \geq 0$, then $[x^n]A(x)$ refers to the coefficient $a_n$ in front of $x^n$.\retTwo
+
+Let $A_0(x), A_1(x), \ldots$ be a sequence of formal power series. We say the sequence \udefine{formally converges} to $A(x)$ if:
+
+{\centering $\forall n \geq 0, \exists N \geq 0 \suchthat i \geq N \Longrightarrow [x^n]A_i(x) = [x^n]A(x)$ \retTwo\par}
+
+We also write this as $\lim\limits_{i \rightarrow \infty}A_i(x) = A(x)$
+
+\begin{myTindent}\teachComment
+   Note that this definition is different from the familiar definition of\\ convergence in 140. For instance, the sequence $A_i(x) = \frac{1}{i + 1}$ doesn't\\ formally converge.\retTwo
+\end{myTindent}
+
+\begin{myIndent}\hTwo
+   \blab{Lemma:} Suppose $\lim\limits_{i \rightarrow \infty} A_i(x) = A(x)$ and $\lim\limits_{i \rightarrow \infty} B_i(x) = B(x)$. Then:
+   \begin{itemize}
+      \item $\lim\limits_{i \rightarrow \infty} (A_i(x) + B_i(x)) = A(x) + B(x)$
+      \item $\lim\limits_{i \rightarrow \infty} (A_i(x)B_i(x)) = A(x)B(x)$
+   \end{itemize}
+   \begin{myIndent}\hThree
+      The proof for this is rather trivial. So do it yourself. :P\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+Continuing to let $A_0(x), A_1(x), \ldots$, be a sequence of formal power series, we define:
+
+\begin{myIndent}
+   $\sum\limits_{i \geq 0} A_i(x) \coloneq \lim\limits_{i \rightarrow \infty} (\sum\limits_{j = 0}^i A_j(x))$\\
+
+   $\prod\limits_{i \geq 0} A_i(x) \coloneq \lim\limits_{i \rightarrow \infty}(\prod\limits_{j = 0}^i A_j(x))$\retTwo
+
+   \hTwo\blab{Lemma:} {\hThree (This is just reapplying the previous lemma for sequences and using the\\ \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} commutative property\dots)}
+   \begin{itemize}
+      \item If $\sum\limits_{i \geq 0}A_i(x)$ and $\sum\limits_{i \geq 0}B_i(x)$ exist, then:
+      
+      {\centering $\sum\limits_{i \geq 0}(A_i(x) + B_i(x)) = \sum\limits_{i \geq 0}A_i(x) + \sum\limits_{i \geq 0}B_i(x)$.\retTwo\par}
+   
+      \item If $\prod\limits_{i \geq 0}A_i(x)$ and $\prod\limits_{i \geq 0}B_i(x)$ exist, then:\\ [-13pt]
+      
+      {\centering$\prod\limits_{i \geq 0}(A_i(x)B_i(x)) = \left(\prod\limits_{i \geq 0}A_i(x)\right)\hspace{-0.4em}\left(\prod\limits_{i \geq 0}B_i(x)\right)$.\newpage\par}
+   \end{itemize}
+\end{myIndent}
+
+Given a formal power series $A(x)$, we define:
+
+{\centering $\mdeg A(x) \coloneq \inf(\{n \in \mathbb{Z}_+ \cup \{0\} \mid [x^n]A(x) \neq 0\} \cup \{\infty\})$.\retTwo\par}
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} Suppose $A_0(x), A_1(x), \ldots$ is a sequence of formal power series.
+   \begin{itemize}
+      \item $\sum\limits_{i \geq 0} A_i(x)$ exists if and only if $\lim\limits_{i \rightarrow \infty} \mdeg A_i(x) = \infty$.
+      
+      \begin{myIndent}\hThree
+         Proof: {\myComment(The professor skipped this because he thinks it's boring.)}
+
+         ($\Longleftarrow$)\\ [2pt]
+         Suppose $\lim\limits_{j \rightarrow \infty} \mdeg A_j(x) = \infty$. Then for all $n \geq 0$, there exists $N \geq 0$ such that $\mdeg A_j(x) > n$ for all $j > N$. So:
+         
+         {\centering $[x^n]\left(\sum\limits_{j = 0}^i A_j(x)\right) = [x^n]\left(\sum\limits_{j = 0}^N A_j(x)\right)$ for all $i > N$.\retTwo\par}
+
+         ($\Longrightarrow$)\\ [2pt]
+         Suppose that $\lim\limits_{j \rightarrow \infty} \mdeg A_j(x)$ either doesn't exist or doesn't equal infinity if\\ [-1pt] it does exist. Then we know there must exist $N$ such that $\mdeg A_j(x) < N$\\ [3pt] for infinitely many $j \geq 0$. In turn, for some $n \in \{0, 1, \ldots, N - 1\}$, there\\ [3pt] must be infinitely many $j \geq 0$ such that $\mdeg A_j(x) = n$. Thus, there does\\ [3pt] not exist $M \geq 0$ such that:
+
+         {\centering $[x^n]\left(\sum\limits_{j = 0}^i A_j(x)\right)$ is the same for all $i \geq M$.  \retTwo\par}
+      \end{myIndent}
+      
+      \item Assume $A_i$ has no constant term. Then $\prod\limits_{i \geq 0}(1 + A_i(x))$ exists if and only if\\ [-8pt] $\lim\limits_{i \rightarrow \infty} \mdeg A_i(x) = \infty$.
+      
+      \begin{myIndent}\hThree
+         Proof: {\myComment (btw I'm having to figure this all out without any outside help)}\\
+         \blab{Lemma:} Suppose $B(x)$ and $C(x)$ are formal power series such that\\ $[x^0]B(x) = 1$ and $\mdeg C(x) = n$. Then $\mdeg B(x)C(x) = n$ with\\ $[x^n](B(x)C(x)) = [x^n](C(x))$.\retTwo
+
+         \blab{Corollary 1:} Given $B(x)$ and $C(x)$ defined as before, for all $0 \leq i < n$:
+         
+         {\centering $[x^i](B(x)(1 + C(x))) = [x^i](B(x) + B(x)C(x)) = [x^i](B(x))$.\retTwo\par}
+
+         \blab{Corollary 2:} $[x^0]\left(\prod\limits_{j = 0}^i (1 + A_j)\right) = 1$ for all $i \geq 0$.\retTwo
+
+         ($\Longleftarrow$)\\
+         Suppose $\lim\limits_{j \rightarrow \infty} \mdeg A_j(x) = \infty$. Then for any $n \geq 0$, there exists $N \geq 0$\\ [-1pt] such that $\mdeg A_j(x) > n$ for all $j > N$. So given any $i > N$, we can\\ [3pt] inductively show using the above lemma and corollaries that:\newpage
+
+         {\centering 
+         \begin{tabular}{l}
+            $[x^n]\left(\prod\limits_{j = 0}^{i}(1 + A_j(x))\right) = [x^n]\left(\prod\limits_{j = 0}^{i - 1}(1 + A_j(x))\right)$ \\ $\phantom{aaaaaaaaaaaaaaaaaa} = \cdots = [x^n]\left(\prod\limits_{j = 0}^N(1 + A_j(x))\right)$
+         \end{tabular} \retTwo\par}
+
+         ($\Longrightarrow$)\\
+         As before, we can show there must be infinitely many $i \geq 0$ such that\\ $\mdeg A_i(x) = n$ for some $n$. And for any such $i$, we have by the above\\ lemma that:
+
+         {\centering 
+         \begin{tabular}{l}
+            $[x^n]\left(\prod\limits_{j = 0}^i (1 + A_j(x))\right)$ \\ $\phantom{aaaaa} = [x^n]\left(\prod\limits_{j = 0}^{i -1}(1 + A_j(x)) + \left(\prod\limits_{j = 0}^{i -1}(1 + A_j(x))\right)A_i(x)\right)$ \\ [8pt]
+            $\phantom{aaaaaaaaaa} = [x^n]\left(\prod\limits_{j = 0}^{i -1}(1 + A_j(x))\right) + [x^n]A_i(x) $\\ [8pt]
+            $\phantom{aaaaaaaaaaaaaaa} \neq [x^n]\left(\prod\limits_{j = 0}^{i -1}(1 + A_j(x))\right)$
+         \end{tabular}\retTwo\par}
+
+         So there is no $N \geq 0$ such that:
+
+         {\centering $[x^n]\left(\prod\limits_{j = 0}^i(1 + A_j(x))\right)$ is the same for all $i \geq N$.  \retTwo\par}
+      \end{myIndent}
+   \end{itemize}
+\end{myIndent}
+
+\mySepTwo
+
+Suppose $A(x)$ and $B(x)$ are formal power series such that $A(x)$ has no constant term and $B(x) = \sum\limits_{n \geq 0}b_n x^n$. Then we define their \udefine{composition}: \\ [-12pt]
+
+{\centering $\phantom{aaaaaaa}(B \circ A)(x) = B(A(x)) \coloneq \sum\limits_{n \geq 0}b_n A(x)^n$ \retTwo\par}
+
+\begin{myIndent}\hTwo
+   This is well defined because $\mdeg A(x) \geq 1 \Longrightarrow \mdeg A(x)^n \geq n$. Therefore,\\ $\lim\limits_{n \rightarrow \infty} b_n A(x)^n = \infty$, meaning we can apply the previous proposition.\retTwo
+
+   Special Case: If $A(x) = 0$, then $(B \circ A)(x) = b_0$.\retTwo
+
+   \exOne\blab{Proposition:} If $A(x)$, $B(x)$, and $C(x)$ are power series generated by $(a_n)_{n \geq 0}$, $(b_n)_{n \geq 0}$, and $(c_n)_{n \geq 0}$ respectively such that $(B \circ A)(x)$ and $(C \circ A)(x)$ are defined, then:
+   
+   \begin{itemize}
+      \item $((B + C) \circ A)(x) = (B \circ A)(x) + (C \circ A)(x)$
+      
+      \begin{myIndent}\exTwoP
+         Proof:\\
+         By the second lemma on page 9, we know that:\\\exPP
+         $\sum\limits_{n \geq 0}(b_n + c_n)A(x)^n  = \sum\limits_{n \geq 0}(b_n A(x)^n + c_n A(x)^n) = \sum\limits_{n \geq 0}b_n A(x)^n + \sum\limits_{n \geq 0}c_n A(x)^n$
+         \retTwo
+      \end{myIndent}
+
+      \item $((BC) \circ A)(x) = (B \circ A)(x)(C \circ A)(x)$\newpage
+      
+      \begin{myIndent}\exTwoP
+         Proof:\\
+         By the first lemma on page 9, we know that:
+
+         {\centering\exPP 
+         \begin{tabular}{l}
+            $(B \circ A)(x)(C \circ A(x)) = \left(\lim\limits_{n \rightarrow \infty}\left(\sum\limits_{i = 0}^n b_i A(x)^i\right)\right)\left(\lim\limits_{n \rightarrow \infty}\left(\sum\limits_{i = 0}^n c_i A(x)^i\right)\right)$\\ [10pt] $\phantom{(B \circ A)(x)(C \circ A(x))} = \lim\limits_{n \rightarrow \infty}\left(\left(\sum\limits_{i = 0}^n b_iA(x)^i\right)\left(\sum\limits_{i = 0}^n c_iA(x)^i\right)\right)$
+         \end{tabular} \retTwo\par}
+
+         Next note that given any $n \geq 0$, there exists a formal power series $R_n(x)$ with $\mdeg R_n(x) > n$ such that:
+         
+         {\centering$\left(\sum\limits_{i = 0}^n b_iA(x)^i\right)\hspace{-0.3em}\left(\sum\limits_{i = 0}^n c_iA(x)^i\right) = \sum\limits_{i = 0}^n \left(\sum\limits_{j = 0}^i b_jc_{i-j}\right)\hspace{-0.1em}A(x)^i + R_n(x)$\retTwo\par}
+
+         Since $\lim\limits_{n \rightarrow \infty}\left(\sum\limits_{i = 0}^n \left(\sum\limits_{j = 0}^i b_jc_{i-j}\right)\hspace{-0.1em}A(x)^i\right) = ((BC) \circ A)(x)$ and\\ $\lim\limits_{n \rightarrow \infty}(R_n(x)) = 0$, we can thus apply the first lemma on page 9\\ [4pt] again to get that:
+
+         {\centering\exPP 
+         \begin{tabular}{l}
+            $\lim\limits_{n \rightarrow \infty}\left(\left(\sum\limits_{i = 0}^n b_iA(x)^i\right)\left(\sum\limits_{i = 0}^n c_iA(x)^i\right)\right)$ \\ [12pt]
+            $\phantom{aaaaaaaa} = \lim\limits_{n \rightarrow \infty}\left(\sum\limits_{i = 0}^n \left(\sum\limits_{j = 0}^i b_jc_{i-j}\right)\hspace{-0.1em}A(x)^i\right) + \lim\limits_{n \rightarrow \infty}(R_n(x))$\\ [16pt]
+            $\phantom{aaaaaaaa} = ((BC) \circ A)(x) + 0$
+         \end{tabular} \retTwo\par}
+      \end{myIndent}
+   \end{itemize}
+\end{myIndent}
+
+\mySepTwo
+
+Suppose $A(x)$ is a formal power series. We define its \udefine{derivative}:
+
+{\centering $(DA)(x) = A^\prime(x) \coloneq \sum\limits_{n \geq 1}n a_n x^{n - 1} = \sum\limits_{n \geq 0}(n + 1)a_{n + 1}x^n $\par}
+
+\begin{myTindent}\teachComment
+   Note that for $n \in \mathbb{Z}^+$ and $a_n \in F$, we define $n a_n$ via repeated addition.\retTwo
+\end{myTindent}
 
 
+\begin{myIndent}\hTwo
+   \blab{Proposition:} The following rules hold for any two formal power series $A(x)$ and $B(x)$:
+   \begin{itemize}
+      \item Sum Rule: $(A + B)^\prime(x) = A^\prime(x) + B^\prime(x)$
+      \begin{myIndent}\hThree
+         This identity is hopefully obvious.\\ [-12pt]
+      \end{myIndent}
+      \item Product Rule: $(AB)^\prime(x) = A^\prime(x) B(x) + A(x) B^\prime(x)$
+      \begin{myIndent}\hThree
+         The proof for this identity requires rearranging sums strategically.\\ [-12pt]
+      \end{myIndent}
+      \item Power Rule: $(A^n)^\prime(x) = n A^{n-1}(x) A^\prime(x)$ if $n > 0$ and $(A^n)^\prime(x) = 0$ if $n = 0$.
+      \begin{myIndent}\hThree
+         To prove this, do induction on $n$ using the product rule.\newpage
+      \end{myIndent}
+   \end{itemize}
+   
+   Also if $[x^0]A(x) = 0$, then:
+   \begin{itemize}
+      \item Chain Rule: $(B \circ A)^\prime(x) = A^\prime(x) B^\prime(A(x))$
+      
+      \begin{myIndent}\hThree
+         Proof: {\myComment(seriously I'm doing this proof on my own\dots I order you to give me pity.)}\\ [-6pt]
 
+         \blab{Lemma:} If $A_0(x), A_1(x), \ldots$ are a sequence of formal power series that\\ converges to $A(x)$, then $\lim\limits_{n \rightarrow \infty} A_n^\prime(x) = A^\prime(x)$.
 
+         \begin{myIndent}\hFour
+            The proof for this is rather trivial. However, this is notably different from convergence of sequences of functions in math 140.\retTwo
+         \end{myIndent}
 
+         Now suppose $B(x) = \sum\limits_{n \geq 0}b_nx^n$, and for each $n$, set $B_n(x) = \sum\limits_{i = 0}^n b_i x^i$.\\ [2pt]
+         By definition, we know that:\\ [-18pt]
+         
+         {\centering $\lim\limits_{n \rightarrow \infty}( (B_n \circ A)(x)) = \lim\limits_{n \rightarrow \infty}\left( \sum\limits_{i = 0}^n b_i A(x)^i\right) = (B \circ A)(x)$.\retTwo\par}
 
+         Hence, applying the previous lemma, we know that:
+         
+         {\centering$\lim\limits_{n\rightarrow \infty}((B_n \circ A)^\prime(x)) = (B \circ A)^\prime(x)$.\retTwo\par}
 
+         But now note that by the sum and power rules:
 
+         {\centering
+         \begin{tabular}{l}
+            $(B_n \circ A)^\prime(x) = \sum\limits_{i = 0}^n b_i (A^i)^\prime(x)$\\ [4pt]
+            $\phantom{(B_n \circ A)^\prime(x)} = \sum\limits_{i = 1}^{n}ib_i A(x)^{i-1}A^\prime(x) = A^\prime(x) \sum\limits_{i = 0}^{n-1}(i + 1)b_{i + 1} A(x)^i$\\ [4pt]
+            $\phantom{(B_n \circ A)^\prime(x) = \sum\limits_{i = 1}^{n}ib_i A(x)^{i-1}A^\prime(x)} = A^\prime(x)(B_{n}^\prime \circ A)(x)$
+         \end{tabular}\retTwo\par}
 
+         Finally, by definition we know that:\\ [-16pt]
+
+         {\centering $\lim\limits_{n \rightarrow \infty}( (B_{n}^\prime \circ A)(x)) = \lim\limits_{n \rightarrow \infty}\left( \sum\limits_{i = 0}^{n - 1} (i + 1) b_{i + 1} A(x)^i\right) = (B^\prime \circ A)(x)$.\retTwo\par}
+
+         So by applying the first lemma on page 9, we know that:
+         
+         {\centering$\lim\limits_{n\rightarrow \infty}((B_n \circ A)^\prime(x)) = \lim\limits_{n\rightarrow \infty}(A^\prime(x)(B_{n}^\prime \circ A)(x)) = A^\prime(x)(B^\prime \circ A)(x)$\retTwo\par}
+      \end{myIndent}
+   \end{itemize}
+
+   Meanwhile, if $A(x)$ is invertible, then:
+   \begin{itemize}
+      \item Multiplicative inverse rule: $(\frac{1}{A(x)})^\prime = \frac{-A^\prime(x)}{A(x)^2}$
+      \begin{myIndent}\hThree
+         To prove this, just apply product rule to the expression $A(x)(\frac{1}{A(x)}) = 1$.\retTwo
+      \end{myIndent}
+   \end{itemize}
+\end{myIndent}
+
+\exOne\mySepTwo
+
+Examples of proving identities:\\ [-10pt]
+
+\exPP
+\begin{enumerate}
+   \item Since $\frac{1}{1-x} = \sum\limits_{n \geq 0}x^n$, we know $-\frac{-1}{(1-x)^2} = (\frac{1}{1-x})^\prime = \left(\sum\limits_{n \geq 0}x^n\right)^\prime = \sum\limits_{n \geq 0}(n + 1)x^n$.
+   \item $\sum\limits_{n \geq 0}nx^n = \sum\limits_{n \geq 0}(n + 1)x^n - \sum\limits_{n \geq 0}x^n = \frac{1}{(1-x)^2} - \frac{1}{1-x}\left(\frac{1-x}{1-x}\right) = \frac{x}{(1 + x)^2}$\newpage
+\end{enumerate}
+
+\hOne
+Let $F$ be the field or commutative ring that our formal power series are defined over.\retTwo
+
+Note that given $n, m \in \mathbb{Z}_+$, we define $n, m \in F$ by repeatedly adding $1 \in F$ to itself $n$ and $m$ times respectively. Then, we can define $nm = mn \in F$ by doing repeated addition of $n$ or $m$ with itself. With that in mind, defining $n! \in F$ in a similar fashion and assuming that there exists $\frac{1}{n!} \in F$, we have that:
+
+{\centering $[x^n]A(x) = \frac{(D^nA)(0)}{n!} = \frac{(D^nA)(0 + 0x + 0x^2 + \ldots)}{n!}$.\retTwo\par}
+
+\exOne\mySepTwo
+
+This is a random thought I had outside of lecture and wanted to write down:
+
+\begin{myIndent}\exTwoP
+   Note: For the sake of clarity, I looked this up on wikipedia. If $R$ is a commutative ring, then the set of formal power series in the variable $x$ over $R$ is written: $R[[x]]$.\retTwo
+
+   Now given $A(x), B(x) \in R[[x]]$, we can define a metric $\rho(A(x), B(x)) = 2^{-n}$ where the $n$th coefficients of $A(x)$ and $B(x)$ are the first to differ, or if no such $n$ exists, then we define $\rho(A(x), B(x)) = 0$. This somewhat trivially satisfies that:
+   \begin{itemize}
+      \item $\rho(A(x), B(x)) = 0 \Longleftrightarrow A(x) = B(x)$.
+      \item $\rho(A(x), B(x)) = \rho(B(x), A(x))$ for all $A(x), B(x) \in R[[x]]$.
+      \item $\rho(A(x), B(x)) \leq \rho(A(x), C(x)) + \rho(C(x), B(x))$.\retTwo
+   \end{itemize}
+
+   Also, we clearly have from of our definition of convergence that a sequence\\ $(A_n(x))_{n \geq 0}$ in $R[[x]]$ converges if it is Cauchy. So this metric space is complete.\retTwo
+
+   If I think of anything more to do with this, I'll add it to my notes.
+\end{myIndent}
+
+\mySepTwo
+
+\hOne
+
+\mHeader{10/7/2024}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newpage
 
+\hOne
 \mHeader{Homework 1:}
 
 (1) Find a closed formula for the following recurrence relation:
