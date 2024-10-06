@@ -178,6 +178,11 @@
 
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
+\newcommand{\divides}{\mathop{\mid}}
+
+
+\DeclareMathOperator{\lcm}{lcm}
+
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
 \newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
@@ -341,6 +346,175 @@ Now we've proven in other classes that both translations and linear orthogonal\\
 Aside over\dots
 
 \mySepTwo
+
+\mHeader{Lecture 2 Notes: 9/30/2024}
+
+I already covered everything from this lecture in my math journal (pages 40-42).\\
+
+\mySepTwo
+
+\mHeader{Lecture 3 Notes: 10/2/2024}
+
+Suppose $G_1$ and $G_2$ are groups. A map $\rho: G_1 \longrightarrow G_2$ is called a \udefine{group\\ homomorphism} if $\rho(xy) = \rho(x)\rho(y)$ for all $x, y \in G_1$. If $\rho$ is bijective, we say that\\ $\rho$ is an \udefine{isomorphism}, and that $G_1$ and $G_2$ are \udefine{isormophic.} Also if $\rho$ is bijective, we\\ have that $\rho^{-1}$ is also a group homomorphism.\newpage
+
+If two groups are isomorphic, then we can say they are in a sense equivalent.\retTwo
+
+Suppose $G$ is a group and $H \subseteq G$. Then $H$ equipped with the law of composition of $G$ restricted to $H \times H$ is a \udefine{subgroup} if:\\ [-20pt]
+\begin{itemize}
+	\item $1 \in H$\\ [-20pt]
+	\item $x \in H \Longrightarrow x^{-1} \in H$\\ [-20pt]
+	\item $x, y \in H \Longrightarrow xy \in H$\retTwo
+\end{itemize}
+
+\exOne
+
+Example: If $\mathbb{R}^\times = (\mathbb{R} - \{0\}, \times)$, then some non-trivial subgroups of $\mathbb{R}^x$ are:\\ [-20pt]
+
+\begin{itemize}
+	\item $M_2 = \{1, -1\}$\\ [-20pt]
+	\item $\mathbb{Z}^x = \mathbb{Z} - \{0\}$\\ [-20pt]
+	\item $\mathbb{Q}^x = \mathbb{Q} - \{0\}$\\ [-20pt]
+	\item $H = \{a^n \in \mathbb{R} \mid n \in \mathbb{Z}\}$.
+\end{itemize}
+
+\begin{myIndent}\hTwo
+	\blab{Theorem:} Let $S$ be a subgroup of $(\mathbb{Z}, +)$ (the set of integers equipped with integer addition). Then either $S = \{0\}$ or $S = \mathbb{Z}a = \{na \mid n \in \mathbb{Z}\}$ where $a$ is the least positive element of $S$.
+
+	
+	\begin{myIndent}\hThree
+		Proof:\\
+		We clearly have that $\{0\}$ and $\mathbb{Z}a$ are groups under addition for any $a \in \mathbb{Z}_+$.\\ Meanwhile, suppose $S \neq \{0\}$ is a subgroup of $(\mathbb{Z}, +)$. Then, by taking inverses if necessary, we know $S \cap \mathbb{Z}_+$ is nonempty. Since $\mathbb{Z}_+$ is well-ordered, there exists a least element in $S \cap \mathbb{Z}_+$ which we'll call $a$.\retTwo
+
+		Trivially, we have that $\mathbb{Z}a \subseteq S$. Meanwhile consider any $n \in S$. Then $n = qa + r$ for some $q \in \mathbb{Z}$ and $r \in \{0, 1, \ldots, a - 1\}$. However, since $r = n - qa$ and $n, -qa \in S$, we must have that $r \in S$. And, the only allowed value for $r$ such that $r \in S$ is $r = 0$. Thus, $n \in \mathbb{Z}a$, meaning we've shown that $S \subseteq \mathbb{Z}_a$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hOne\mySepTwo
+
+\mHeader{Lecture 4 Notes: 10/4/2024}
+
+As an immediate application of the above theorem, note that $S = \mathbb{Z}a + \mathbb{Z}b = \{ma + nb \mid m, n \in \mathbb{Z}\}$ is subgroup of $\mathbb{Z}$ under addition.
+\begin{myTindent}\myComment
+	This is trivial to prove.\retTwo
+\end{myTindent}
+
+By our previous theorem, we know that $S = \mathbb{Z}d$ for some unique positive integer $d$. So, we define the \udefine{greatest common divisor} of $a$ and $b$ to be $\gcd(a, b) \coloneq d$.
+
+\begin{myIndent}\hTwo
+	\blab{Proposition:} Let $a, b \in \mathbb{Z}$ be not both $0$ and $d = \gcd(a, b)$.
+	\begin{enumerate}
+		\item There exists $r, s \in \mathbb{Z}$ such that $d = ra + sb$
+		\item $d$ divides $a$ and $b$ (written $d \divides a$ and $d \divides b$).
+		\begin{myIndent}\hThree
+			Both of these claims are trivially true by our definition of $S$.\newpage
+		\end{myIndent}
+		\item If $e \in \mathbb{Z}$ and $e$ divides $a$ and $b$, then $e$ divides $d$. This is why $d$ is called the\\ "greatest common divisor" of $a$ and $b$.
+		\begin{myIndent}\hThree
+			Let $r, s \in \mathbb{Z}$ such that $d = ra + sb$. Then letting $a = en$ and $b = em$, we have that $d = (rn + sm)e$, meaning $e \divides d$.\retTwo
+		\end{myIndent}
+	\end{enumerate}
+\end{myIndent}
+
+An algorithm for finding $\gcd(a, b)$ is given as follows:
+\begin{enumerate}
+	\item Assume without loss of generality that $a \geq b \geq 0$ and $a \neq 0$.
+	\item If $b = 0$, then $\gcd(a, b) = \gcd(b, a) = a$
+	\item Else, there exists $q, r \in \mathbb{Z}$ with $0 \leq r < b$ and $a = qb + r$. We claim\\ that $\gcd(a, b) = \gcd(b, r)$.
+	
+	\begin{myIndent}\hTwo
+		This is because if $d \divides a$ and $d \divides b$, then we know $d \divides (qb + r)$ and $d \divides qb$,\\ meaning that $d \divides (qb + r - qb) = r$. On the other hand, if $e \divides r$ and $e \divides b$,\\ then $e \divides (qb + r) = a$. So $a$ and $b$ have the same common factors as $b$ and $c$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+Suppose $a, b \in \mathbb{Z}$. We say $a$ and $b$ are \udefine{relatively prime} iff $\gcd(a, b) = 1$.
+
+\begin{myIndent}\hTwo
+	\blab{Corollary:} $\gcd(a, b) = 1$ if and only if there exists $r, s \in \mathbb{Z}$ such that $ra + sb = 1$.
+	\begin{myIndent}\hThree
+		Proof:\\
+		($\Longrightarrow$) By definition, $\gcd(a, b) \in \mathbb{Z}a + \mathbb{Z}b$.\\
+		($\Longleftarrow$) If $ra + sb = 1$, then $1$ must be the least positive element of $\mathbb{Z}a + \mathbb{Z}b$.\\ So $\gcd(a, b) = 1$.\retTwo
+	\end{myIndent}
+
+	\blab{Lemma:} Suppose $\gcd(a, b) = 1$ and $a \divides bc$. Then $a \divides c$.
+	\begin{myIndent}\hThree
+		Proof:\\
+		Let $1 = ra + sb$ where $r, s \in \mathbb{Z}$. Then $c = rac + sbc = (rc + s\frac{bc}{a})a$ where $\frac{bc}{a}$\\ [-2pt] is an integer. So $a \divides c$.\retTwo
+	\end{myIndent}
+
+	\blab{Corollary:} Suppose $p$ is a prime integer. If $a, b \in \mathbb{Z}$ and $p \divides ab$, then either $p \divides a$\\ or $p \divides b$.
+	\begin{myIndent}\hThree
+		Proof:\\
+		Suppose $p {\not\divides a}$. Then $\gcd(p, a) = 1$ because the only positive divisor of $p$ other\\ than $p$ is $1$. So there exists $r, s \in \mathbb{Z}$ such that $1 = rp + sa$. In turn, since $\frac{ab}{p}$ is an\\ [-3pt] integer, we have $b = rpb + sab = p(rb +s\frac{ab}{p})$, meaning $p \divides b$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exOne\mySepTwo
+
+\blab{Problem:} Suppose $p$ is prime and that $a \in \mathbb{Z}$ is not a multiple of $p$. Then there exists $x \in \mathbb{Z}$ so that $ax$ is one more than some multiple of $p$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Like before, we must have that $\gcd(a, p) = 1$, meaning that there exists $r, s \in \mathbb{Z}$\\ such that $rp + sa = 1$. So, if we set $x = s$, we'd be done cause $xa = (-r)p + 1$.\retTwo
+
+	More interestingly, we can guarentee that $xa$ is one more than a nonnegative multiple of $p$ as follows:\newpage
+	\begin{myIndent}
+		Note that $sa = -rp + 1 \Longrightarrow (s^2a)a = (r^2p - 2r)p + 1 = r(rp - 2)p + 1$.\\ Since $p \geq 2$, we have that $r \geq 1 \Longrightarrow (rp - 2) > 0$, meaning $r(rp - 2) > 0$.\\ Meanwhile, we have that $r \leq 0 \Longrightarrow (rp - 2) < 0$, which in turn means $r(rp - 2) \geq 0$.\retTwo
+
+		Setting $x = s^2a$ and $n = r^2p - 2r$, we thus have that $xa = np + 1$ where\\ $np$ is a nonnegative multiple of $p$.
+	\end{myIndent}
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo
+\blab{Lemma:} Suppose $G$ is a group and $H_1, H_2$ are subgroups of $G$. Then $H_1 \cap H_2$ is a subgroup of $G$.
+\begin{myIndent}\hThree
+	This is rather trivial to prove. So do it yourself! :3\retTwo
+\end{myIndent}
+
+\hOne
+
+Because of the above lemma, given $a, b \in \mathbb{Z}$, we have that $\mathbb{Z}a \cap \mathbb{Z}b = \mathbb{Z}m$ for some integer $m \geq 0$. We call $m$ the \udefine{least common multiple} of $a$ and $b$, and we denote $\lcm(a, b) \coloneq m$.
+
+\begin{myIndent}\hTwo
+	\blab{Proposition:} Let $a$ and $b$ be nonzero integers and $m = \lcm(a, b)$.
+	\begin{enumerate}
+		\item $m$ is nonzero.
+		\item $m$ is divisible by both $a$ and $b$
+		\begin{myIndent}\hThree
+			Both of these points are trivial from the fact that $\mathbb{Z}a \cap \mathbb{Z}b = \mathbb{Z}m$ and\\ $ab \in \mathbb{Z}m$, meaning that $\mathbb{Z}m - \{0\} \neq \emptyset$.
+		\end{myIndent}
+		\item If $n \in \mathbb{Z}$ such that $a \divides n$ and $b \divides n$, then $m \divides n$.
+		\begin{myIndent}\hThree
+			This comes trivially from the fact that $n \in \mathbb{Z}a$ and $n \in \mathbb{Z}b$ means that\\ $n \in \mathbb{Z}a \cap \mathbb{Z}b = \mathbb{Z}m$\retTwo
+		\end{myIndent}
+	\end{enumerate}
+\end{myIndent}
+
+
+Suppose $G$ is a group and $x \in G$. Then let $H = \{x^k \mid k \in \mathbb{Z}\} \subseteq G$. We clearly have that $H$ is a subgroup of $G$. We call it the \udefine{cyclic subgroup} of $G$ generated by $x$, and denote it $H = \langle x \rangle$.
+
+\begin{myIndent}\hTwo
+	\blab{Proposition:} Let $S = \{k \in \mathbb{Z} \mid x^k = 1\}$
+	\begin{enumerate}
+		\item $S$ is a subgroup of $(\mathbb{Z}, +)$.
+		\begin{myIndent}\hThree
+			This is rather trivial to show. So do it yourself!!
+		\end{myIndent}
+		\item Suppose $S \neq \{0\}$, meaning $S = \mathbb{Z}n$ for some positive integer $n$. Then\\ $1, x, \ldots, x^{n-1}$ are the distinct elements of $\langle x \rangle$, meaning the order of $\langle x \rangle$ is $n$.
+		
+		\begin{myIndent}\hThree
+			Proof:\\
+			$x^{k} = x^{l} \Longleftrightarrow x^{k-l} = 1$. Hence, since $n$ is the minimum positive integer such that $x^n = 1$, we know that $1, x, \ldots, x^{n-1}$ are distinct. On the other hand, if $k = qn + r$ for any $q, r \in \mathbb{Z}$ with $0 \leq r < n$, then $x^k = (x^n)^qx^r = x^r$. So the only elements of $\langle x \rangle$ are $1, x, \ldots, x^{n-1}$.\retTwo
+		\end{myIndent}
+	\end{enumerate}
+\end{myIndent}
+
+\newpage
+
+
+
 \newpage
 
 \exOne Our textbook is \textit{Algebra, Second Edition} by Michael Artin.
