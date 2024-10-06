@@ -882,6 +882,36 @@ $\begin{matrix}
    a_n = 5a_{n-1} - 8a_{n-2} + 4a_{n-3} & \text{for } n \geq 3
 \end{matrix}$ \retTwo\par}
 
+\begin{myIndent}\exOne
+   The characteristic polynomial of this relation is $t^3 - 5t^2 + 8t - 4$.\retTwo
+
+   Because I wanted to trust that the professor wouldn't give us a messy polynomial, I used the rational theorem to get a list of candidate roots to test. Those candidates are $\pm 1$, $\pm 2$, and $\pm 4$.\retTwo
+
+   After testing, I found that $(t - 1)(t - 2) = t^2 - 3t + 2$ is a factor of the characteristic\\ polynomial. Doing polynomial long division, I then get that the other factor is\\ $(t - 2)$. So, our characteristic polynomial equals $(t - 1)(t - 2)^2$.\retTwo
+
+   With that, we now know that $a_n = \beta_1 + \beta_2 2^n + \beta_3 n 2^n$. Plugging in $n = 0$, $1$, and $2$ respectively, we get the following system of equations:
+   
+   {\center $
+   \begin{bmatrix}
+      1 & 1 & 0 \\ 1 & 2 & 2 \\ 1 & 4 & 8
+   \end{bmatrix}
+   \begin{bmatrix}
+      \beta_1 \\ \beta_2 \\ \beta_2
+   \end{bmatrix} = 
+   \begin{bmatrix}
+      1 \\ 0 \\ 2
+   \end{bmatrix}$ \retTwo\par}
+
+   To solve this, I wrote the following code:
+
+   {\centering\includegraphics[scale=0.6]{188-HW1_Q1.png}\retTwo\par}
+
+   So, $a_n = 6 - (5 + 2n)2^n$.\retTwo
+\end{myIndent}
+
+
+
+
 
 
 \end{document}

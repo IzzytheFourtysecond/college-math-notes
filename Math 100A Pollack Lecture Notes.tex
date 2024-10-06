@@ -513,6 +513,81 @@ Suppose $G$ is a group and $x \in G$. Then let $H = \{x^k \mid k \in \mathbb{Z}\
 
 \newpage
 
+\hOne
+\mHeader{Homework 1:}
+
+\begin{enumerate}
+	\item Let $S$ be a set with an associative law of composition and with an identity\\ element. Let $G = \{x \in S \mid x \text{ has an inverse}\}$. Prove that $G$ is a group with the law of composition from $S$.
+	
+	\begin{myIndent}\exOne
+		I'll be using multiplicative notation for composition on $S$. Firstly, to prove that the law of composition on $S$ is closed over $G$, suppose $a, b \in G$, meaning there exists $a^{-1}, b^{-1} \in S$ which are inverses of $a$ and $b$ respectively. Then since $\cdot$ is associative on $S$, we know that $(b^{-1}a^{-1})ab = 1 = ab(b^{-1}a^{-1})$. So $ab$ also has an inverse, meaning $ab$.\retTwo
+		
+		Next, since $1$ is its own inverse, we know $1 \in G$. Also, if $x \in G$, meaning that there exists $x^{-1} \in S$, then $(x^{-1})^{-1} = x$. So $x^{-1} \in G$ as well. Finally, we know\\ that the law of composition on $G$ is associative because we assumed it was associative on $S$. Hence, we've shown that $(G, \cdot)$ is a group.\retTwo
+	\end{myIndent}
+
+	\item Let $\mathrm{SL}_2(\mathbb{Z}) = \left\{\gamma = 
+	\left[\begin{smallmatrix}
+		a & b \\ c & d
+	\end{smallmatrix}\right] \mid a, b, c, d \in \mathbb{Z} \text{ and } \det(\gamma) = 1\right\}$. Prove that\\ multiplication of matrices makes $\mathrm{SL}_2(\mathbb{Z})$ a group.
+
+	\begin{myIndent}\exOne
+		To start, let's show that $\mathrm{SL}_2(\mathbb{Z})$ is closed under matrix multiplication.
+		
+		
+		\begin{myIndent}\exPP
+			Suppose $\gamma_1 = \left[
+			\begin{smallmatrix}
+				a & b \\ c & d
+			\end{smallmatrix}\right]$ and $\gamma_2 = \left[
+			\begin{smallmatrix}
+				e & f \\ g & h
+			\end{smallmatrix}\right]$ are elements of $\mathrm{SL}_2(\mathbb{Z})$. Then\\ $\gamma_1\gamma_2 = \left[
+				\begin{smallmatrix}
+					ae + bg & af + bh \\ ce + dg & cf + dh
+				\end{smallmatrix}\right]$. Since the integers are closed under addition and\\ [2pt] multiplication, we know that all the elements of $\gamma_1\gamma_2$ are integers. Also,\\ [3pt] a fact from linear algebra is that $\det(\gamma_1\gamma_2) = \det(\gamma_1)\det(\gamma_2) = 1^2 = 1$.\\ [3pt] Hence $\gamma_1 \gamma_2 \in \mathrm{SL}_2(\mathbb{Z})$.\retTwo
+
+				If you don't trust that fact about determinants, then you can expand out\\ the expression $(ae + bg)(cf + dh) - (ce + dg)(af + bh)$ yourself.\\ Four of the terms cancel out and the other four can be factored as\\ $(ad - bc)(eh - gf) = \det(\gamma_1)\det(\gamma_2)$.\retTwo
+		\end{myIndent}
+
+		Next, observe that $\mathrm{SL}_2(\mathbb{Z})$ satisfies the rules of a group.
+		\begin{enumerate}
+			\item[1.] $\bm{1} = \left[
+				\begin{smallmatrix}
+					1 & 0 \\ 0 & 1
+				\end{smallmatrix}\right]$ is a multiplicative identity element in $\mathrm{SL}_2(\mathbb{Z})$ since $\det(\bm{1}) = 1$.\\ [-10pt]
+			\item[2.]  If $\gamma \in \mathrm{SL}_2(\mathbb{Z})$, then $\gamma^{-1}$ exists and is in $\mathrm{SL}_2(\mathbb{Z})$.
+			\begin{myIndent}\exTwoP
+				To start, we know that the matrix $\gamma^{-1}$ exists because $\det(\gamma) \neq 0$.\\ Also, note that:
+				
+				{\centering $1 = \det(\bm{1}) = \det(\gamma\gamma^{-1}) = \det(\gamma)\det(\gamma^{-1}) = 1\cdot \det(\gamma^{-1})$\retTwo\par}
+
+				Finally, if $\gamma = \left[
+				\begin{smallmatrix}
+					a & b \\ c & d
+				\end{smallmatrix}\right]$, then we know that $\gamma^{-1} = \frac{1}{\det(\gamma)}\left[
+					\begin{smallmatrix}
+						d & -b \\ -c & a
+					\end{smallmatrix}\right]$. Since $\det(\gamma) = 1$ and $a, b, c, d \in \mathbb{Z}$, this tells us that all the elements of $\gamma^{-1}$ are integers.\retTwo
+
+					We conclude that $\gamma^{-1} \in \mathrm{SL}_2(\mathbb{Z})$.\\ [-10pt]
+			\end{myIndent}
+
+			\item[3.] Matrix multiplication is associative on $\mathrm{SL}_2(\mathbb{Z})$ because it's associative on $\mathcal{M}(2, \mathbb{R})$.\retTwo
+		\end{enumerate}
+	\end{myIndent}
+
+	\item A group homomorphism $\rho: G_1 \longrightarrow G_2$ is said to be \textit{trivial} if $\rho(g) = 1$ for all $g \in G_1$. Otherwise, the homomorphism is said to be \textit{nontrivial}. If $\mathbb{R}$ is the group of real numbers under addition and $\mathbb{R}^{\times}$ is the group of nonzero real numbers under multiplication, then find a non-trivial homomorphism $\rho: \mathbb{R} \longrightarrow \mathbb{R}^{\times}$.
+
+	\begin{myIndent}\exOne
+		Given any $\alpha \in \mathbb{R}$ such that $\alpha > 0$, define $\rho(x) = \alpha^x$ for all $x \in \mathbb{R}$. Note that $\rho(x) \neq 0$ for all $x \in \mathbb{R}$, meaing $\rho(x) \in \mathbb{R}^{\times}$ for all $x \in \mathbb{R}$. Then for all $x, y \in \mathbb{R}$, we have that:
+
+		{\centering $\rho(x + y) = \alpha^{x + y} = \alpha^x\alpha^y = \rho(x)\rho(y)$ \retTwo\par}
+	\end{myIndent}
+\end{enumerate}
+
+\mySepTwo
+
+\mHeader{Homework 2:}
 
 
 \newpage
