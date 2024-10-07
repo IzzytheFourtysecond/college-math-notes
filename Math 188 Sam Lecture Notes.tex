@@ -230,14 +230,11 @@
 \mHeader{Lecture 1 Notes: 9/27/2024}
 
 \blab{Linear Recurrence Relations:}\\
-A sequence $(a_n)_{n \geq 0}$ satisfies a \udefine{linear recurrence relation of order $d$} if there exists\\ $c_1, \ldots, c_d$ with $c_d \neq 0$ such that for all $n \geq d$:
+A sequence $(a_n)_{n \geq 0}$ satisfies a \udefine{linear recurrence relation of order $d$} if there exists\\ $c_1, \ldots, c_d$ with $c_d \neq 0$ so that $a_n = c_1a_{n-1} + c_2a_{n-2} + \ldots + c_da_{n-d}$ for all $n \geq d$.
 
-{\centering $a_n = c_1a_{n-1} + c_2a_{n-2} + \ldots + c_da_{n-d}$\par}
-
-
-\begin{myTindent}\begin{myTindent}\myComment
-   (For $0 \leq n < d$, we usually explicitely specify $a_n$.)\retTwo
-\end{myTindent}\end{myTindent}
+\begin{myTindent}\myComment
+   (For $0 \leq n < d$, we usually explicitely specify $a_n$. Also, it seems like we are\\ assuming all $a_n$ and $c_n$ are complex numbers right now)\retTwo
+\end{myTindent}
 
 To start this course, we're gonna discuss finding explicit (non-recursive) solutions.\retTwo
 
@@ -874,7 +871,7 @@ This is a random thought I had outside of lecture and wanted to write down:
 \hOne
 \mHeader{Homework 1:}
 
-(1) Find a closed formula for the following recurrence relation:
+\blab{(1)} Find a closed formula for the following recurrence relation:
 
 {\centering 
 $\begin{matrix}
@@ -885,9 +882,9 @@ $\begin{matrix}
 \begin{myIndent}\exOne
    The characteristic polynomial of this relation is $t^3 - 5t^2 + 8t - 4$.\retTwo
 
-   Because I wanted to trust that the professor wouldn't give us a messy polynomial, I used the rational theorem to get a list of candidate roots to test. Those candidates are $\pm 1$, $\pm 2$, and $\pm 4$.\retTwo
+   Because I wanted to trust that the professor wouldn't give us a messy polynomial, I used the rational root theorem to get a list of candidate roots to test. Those\\ candidates are $\pm 1$, $\pm 2$, and $\pm 4$.\retTwo
 
-   After testing, I found that $(t - 1)(t - 2) = t^2 - 3t + 2$ is a factor of the characteristic\\ polynomial. Doing polynomial long division, I then get that the other factor is\\ $(t - 2)$. So, our characteristic polynomial equals $(t - 1)(t - 2)^2$.\retTwo
+   After testing, I found that $(t - 1)(t - 2) = t^2 - 3t + 2$ is a factor of the characteristic\\ polynomial. Doing polynomial long division, I then got that the other factor is\\ $(t - 2)$. So, our characteristic polynomial equals $(t - 1)(t - 2)^2$.\retTwo
 
    With that, we now know that $a_n = \beta_1 + \beta_2 2^n + \beta_3 n 2^n$. Plugging in $n = 0$, $1$, and $2$ respectively, we get the following system of equations:
    
@@ -909,7 +906,175 @@ $\begin{matrix}
    So, $a_n = 6 - (5 + 2n)2^n$.\retTwo
 \end{myIndent}
 
+\blab{(2)} Let $(a_n)_{n\geq 0}$ and $(b_n)_{n \geq 0}$ be sequences. Assume that $(b_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $e$. Then let $c_1, \ldots, c_d$ be scalars with $c_d \neq 0$ and assume that $(a_n)_{n \geq 0}$ satisfies:
 
+{\centering $a_n = c_1a_{n-1} + \ldots + c_da_{n-d} + b_n$ for all $n \geq d$\retTwo\par}
+
+Prove that $(a_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $d + e$.
+
+\begin{myIndent}\exOne
+   To start, let's show some smaller facts:\retTwo
+
+   \blab{Observation 1:} Suppose $a_n = c_1a_{n-1} + \ldots + c_da_{n-d} + p_m(n)r^n + F(n)$ where $F$ is some arbitrary function, $p_m$ is a polynomial of degree $m$ and $r$ is a nonzero constant. Then $a_n$ satisfies a recurrence relation of degree $e = d + m + 1$ where $F^\prime(n)$ is an arbitrary function $F(n)$ determined by $m$, $r$, and $F(n)$, and:
+   
+   {\centering $a_n = c^\prime_1 a_{n-1} + \ldots + c^\prime_e a_{n-e} + F^\prime(n)$ for all $n \geq e$.\newpage\par}
+   
+   \begin{myIndent}\exPP
+         Proof by induction:\retTwo
+
+         \blab{Lemma}: If $p_m(n)$ is a polynomial of degree $m > 0$, then $p_m(n) - p_m(n-1)$ is a\\ polynomial of degree $m - 1$.
+         
+         \begin{myIndent}\color{VioletRed}
+            This is because for all $N > 0$ and coefficients $b$, we have that:\\ $bn^N - b(n - 1)^N = bn^N - bn^N + q(n)$ where $q$ is a polynomial\\ of degree $N - 1$. Meanwhile, the case where $N = 0$ is trivial.\retTwo
+         \end{myIndent}
+
+         \blab{Base Case:} If $m = 0$, meaning $p_m(n) = b$ where $b$ is a constant, then by taking the difference of $a_n$ and $r a_{n-1}$ for all $n \geq d + 1$, we get that:
+
+         {\centering 
+         \begin{tabular}{l}
+            $a_n = (c_1 + r)a_{n-1} + (c_2 - rc_1)a_{n-2} + \ldots + (c_d - rc_{d-1})a_{n-d} - rc_da_{n-d-1}$\\ [4pt] $\phantom{Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} + F(n) - rF(n-1)$.
+         \end{tabular} \retTwo\par}
+
+         Setting $c_1^\prime = c_1 + 1, c_2^\prime = c_2 - rc_1,\phantom{.} \ldots,\phantom{.} c_d^\prime = c_d - rc_{d-1}, c_{d+1}^\prime = -rc_d$, and $F^\prime(n) = F(n) - rF(n - 1)$, we thus get that:
+
+         {\centering$a_n = c_1^\prime a_{n-1} + \ldots + c_{d+1}^\prime a_{n-d-1} + F^\prime(n)$ for all $n \geq d + 1$.\par}
+         
+         \begin{myTindent}\begin{myDindent}\color{VioletRed}
+            Also $c_{d+1}^\prime \neq 0$ because neither $r$ nor $c_d$ equal $0$.\retTwo
+         \end{myDindent}\end{myTindent}
+
+         
+         \blab{Induction on $m$:} If $m > 0$, then by taking the difference of $a_n$ and $ra_{n-1}$ for all $n \geq d + 1$, since $r^n(p(n)) - rr^n(p(n-1)) = r^n(p(n) - p(n-1))$, we get by our lemma above that:\\ [-12pt]
+
+         {\center
+         \begin{tabular}{l}
+            $a_n = (c_1 + r)a_{n-1} + (c_2 - rc_1)a_{n-2} + \ldots + (c_d - rc_{d-1})a_{n-d}$ \\ $\phantom{a_n = (c_1 + r)a_{n-1} + (c_2 - rc_1)a_{n-2}} - rc_da_{n-d-1} + q(n)r^n + F^\prime(n)$
+         \end{tabular}\\ [6pt]\par}
+
+         where $q$ is a polynomial of degree $m - 1$ and $F^\prime(n) = F(n) - rF(n-1)$.
+         
+         \begin{myDindent}\begin{myIndent}\color{VioletRed}
+            And same as before, $-r c_d \neq 0$ because $r \neq 0$ and $c_d \neq 0$.\retTwo
+         \end{myIndent}\end{myDindent}
+
+         But now we can conclude by induction that $a_n$ satisfies a (possibly inhomogeneous) recurrence relation of order $e = (d + 1) + ((m - 1) + 1) = d + m + 1$ such that $F^\pprime(n)$ is some function determined by $m$, $r$ and $F(n)$, and:
+         
+         {\centering$a_n = c_1^\pprime a_{n-1} + \ldots + c_{e}^\pprime a_{n-e} + F^\pprime(n)$ for all $n \geq e$.\\ [26pt]\par}
+   \end{myIndent}
+
+   One important observation from above is that if $F(n) = 0$, then $F^\prime(n) = 0$. In some other situations, $F^\prime(n)$ also behaves nicely.\retTwo
+
+   \blab{Observation 2:} Let $p_1(n), \ldots, p_k(n)$ be polynomials of degree $m_1, \ldots, m_k$ respectively. Also let $r_1, \ldots r_k$ be distinct nonzero constants. If:
+   
+   {\centering $a_n = c_1a_{n-1} + \ldots + c_da_{n-d} + p_1(n)r_1^n + F(n)$\\ \par}
+
+   where $F(n) = \sum\limits_{i=2}^k p_i(n)r_i^n$, then part 1 will make  $F^\prime(n) = \sum\limits_{i = 2}^k q_i(n)r_i^n$ where\\ $q_2(n), \ldots, q_k(n)$ are also polynomials of degree $m_2, \ldots, m_k$ respectively.\\ [-6pt]
+
+   \begin{myIndent}\exPP
+      To see why, note that:
+      
+      {\centering $F(n) - r_1F(n -1) = \sum\limits_{i =2}^k p_i(n)r_i^n - \sum\limits_{i = 2}^k p_i(n - 1)r_1r_i^{n-1}$ \\
+      $\phantom{F(n) - r_1F(n -1) = \sum\limits_{i =2}^k p_i(n)r_i^n} = \sum\limits_{i = 2}^k (p_i(n) - \frac{r_1}{r_i}p_i(n - 1))r_i^n$ \newpage\par}
+
+      Because $r_i \neq r_1$, we know $\frac{r_1}{r_i} \neq 1$, meaning that the degree $m$ term of\\ $p_i(n) - \frac{r_1}{r_i}p_i(n - 1)$ doesn't cancel. So $q_i(n) \coloneq p_i(n) - \frac{r_1}{r_i}p_i(n - 1)$\\ is still a degree $m$ polynomial. If the process in part 1 takes more steps, then\\ we can just repeat this reasoning.\\ [6pt]
+   \end{myIndent}
+
+   Combining observations 1 and 2 together, we can inductively show that if
+   
+   {\centering $a_n = c_1a_{n-1} + \ldots + c_da_{n-d} + \sum\limits_{i = 1}^k p_i(n)r_i^n$\par}
+
+   where $r_1, \ldots, r_k$ are distinct nonzero constants and $p_1(n), \ldots, p_k(n)$\\ [-6pt] are polynomials of degree $m_1, \ldots, m_k$ respectively, then letting $e = \sum\limits_{i=1}^k(m_i + 1)$,\\ [-6pt] there exists constants $c_1^\prime, \ldots c_{d + e}^\prime$ such that:
+
+   {\centering $a_n = c_1^\prime a_{n-1} + \ldots + c_{e+d}^\prime a_{n-d-e}$ \retTwo\par}
+
+   But now note that if $(b_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $e$, we\\ [-2pt] can write $b_n = \sum\limits_{i = 1}^k p_i(n)r_i^n$ for some polynomials $p_1(n),\ldots p_k(n)$ with degrees\\ [-2pt] $m_1, \ldots, m_k$, as well as some distinct nonzero constants $r_1, \ldots, r_k$.
+   
+   \begin{myTindent}\exPP
+      We know that each $r_i$ is nonzero because the constant term in the characteristic polynomial for $(b_n)$'s recurrence relation must be nonzero.\retTwo
+   \end{myTindent}
+
+   Also, as we showed in class, $\sum\limits_{i = 1}^k(m_i + 1) = e =$ the order of the recurrence relation\\ [-6pt] of $(b_n)_{n \geq 0}$.\retTwo
+
+   So, we've shown that $a_n = c_1a_{n-1} + \ldots + c_da_{n-d} + b_n$ can be rewritten as a\\ homogenous linear recurrence relation of order $(d + e)$.\retTwo
+\end{myIndent}
+
+\blab{(3)} Let $(f_n)_{n \geq 0}$ be the Fibonacci numbers, and define $a_n = \sum\limits_{i = 0}^n f_i$.
+\begin{itemize}
+   \item[(a)] Find a linear recurrence relation of order $3$ that $(a_n)_{n \geq 0}$ satisfies.
+   
+   \begin{myIndent}\exOne
+      Note that $(a_n)_{n \geq 0}$ satisfies the relation $a_n = a_{n - 1} + f_n$ for all $a_n$. Also, we showed in the first lecture that:
+
+      {\centering $f_n = \frac{1}{\sqrt{5}}\left(\frac{1 + \sqrt{5}}{2}\right)^n - \frac{1}{\sqrt{5}}\left(\frac{1 - \sqrt{5}}{2}\right)^n $ \retTwo\par}
+
+      So we know that: $a_n = a_{n-1} + \frac{1}{\sqrt{5}}\left(\frac{1 + \sqrt{5}}{2}\right)^n - \frac{1}{\sqrt{5}}\left(\frac{1 - \sqrt{5}}{2}\right)^n$\hspace{-0.4em}.
+
+      Firstly, taking the difference of $a_n$ and $\frac{1 + \sqrt{5}}{2}a_{n-1}$, after a lot of simplifying we have that:
+      
+      \begin{myIndent}\exPP
+         \begin{tabular}{l}
+            $a_n = (1 + \frac{1 + \sqrt{5}}{2})a_{n-1} - \frac{1 + \sqrt{5}}{2}a_{n-2} + \left(-\frac{1}{\sqrt{5}} + \frac{1 + \sqrt{5}}{2\sqrt{5}}\cdot\frac{2}{1 - \sqrt{5}}\right)\left(\frac{1 - \sqrt{5}}{2}\right)^{n}$\\ [8pt]
+            $\phantom{a_n} = \frac{3 + \sqrt{5}}{2}a_{n-1} - \frac{1 + \sqrt{5}}{2}a_{n-2} + \left(\frac{1 - \sqrt{5}}{2}\right)^{n-1}$
+         \end{tabular}\newpage
+      \end{myIndent}
+
+      Secondly, we take the difference of $a_n$ and $\frac{1 - \sqrt{5}}{2}a_{n-1}$, and after a lot more\\ simplifying get:
+
+      \begin{myIndent}\exPP
+         \begin{tabular}{l}
+            $a_n = \left(\frac{3 + \sqrt{5}}{2} + \frac{1-\sqrt{5}}{2}\right)a_{n-1} - \left(\frac{1 + \sqrt{5}}{2} + \frac{1-\sqrt{5}}{2}\cdot \frac{3+\sqrt{5}}{2}\right)a_{n-2} + \left(\frac{1-\sqrt{5}}{2}\cdot\frac{1 + \sqrt{5}}{2}\right)a_{n-3}$ \\ [8pt]
+            $\phantom{a_n} = 2a_{n-1} + 0a_{n-2} - a_{n-3}$
+         \end{tabular}\retTwo
+      \end{myIndent}
+   \end{myIndent}
+
+   \item[(b)] Find a closed formula for $a_n$. 
+   
+   \begin{myIndent}\exOne
+      \blab{Method 1:}\\
+      The characteristic polynomial of $a_n = 2a_{n-1} - a_{n-3}$ is $t^3 - 2t^2 + 1$. Just by looking at it, I can already see that $(t - 1)$ is a factor of that polynomial. So after doing polynomial long division, we have that $(t - 1)(t^2 - t - 1) = t^3 - 2t^2 + 1$.\retTwo
+
+      By quadratic formula, the remaining roots are $\frac{1 + \sqrt{5}}{2}$ and $\frac{1 - \sqrt{5}}{2}$ (a.k.a the same roots as with the Fibonacci recurrence relation).\retTwo
+
+      Finally, we get a system of linear equations:
+      
+      {\centering$
+      \begin{bmatrix}
+         1 & 1 & 1 \\ 1 & \frac{1 + \sqrt{5}}{2} & \frac{1 - \sqrt{5}}{2} \\  1 & \left(\frac{1 + \sqrt{5}}{2}\right)^2 & \left(\frac{1 - \sqrt{5}}{2}\right)^2
+      \end{bmatrix}
+      \begin{bmatrix}
+         \beta_1 \\ \beta_2 \\ \beta_3
+      \end{bmatrix} = 
+      \begin{bmatrix}
+         0 \\ 1 \\ 2
+      \end{bmatrix}$\retTwo\par}
+
+      To solve this, I finally started learning sympy:
+
+      {\centering\includegraphics[scale=0.58]{188-HW1_Q3.png}\newpage\par}
+
+      So, assuming I've not made a silly error somewhere, we should have that:
+
+      {\centering $a_n = -1 + \left(\frac{5 + 3\sqrt{5}}{10}\right)\left(\frac{1 + \sqrt{5}}{2}\right)^n + \left(\frac{5 - 3\sqrt{5}}{10}\right)\left(\frac{1 - \sqrt{5}}{2}\right)^n$ \retTwo\par}
+
+      \blab{Method 2: (The hinted route)}\\
+      Note that $\frac{1 - r^{n+1}}{1-r} = \sum\limits_{i=0}^n r^i$. Using this fact, we can see that:
+
+      {\centering\exPP
+      \begin{tabular}{l}
+         $a_n = \sum\limits_{i = 0}^n f_i = \frac{1}{\sqrt{5}}\sum\limits_{i = 0}^n\left(\frac{1 + \sqrt{5}}{2}\right)^i - \frac{1}{\sqrt{5}}\sum\limits_{i = 0}^n\left(\frac{1 - \sqrt{5}}{2}\right)^i$ \\ [10pt]
+         $\phantom{a_n = \sum\limits_{i = 0}^n f_i} = \frac{1}{\sqrt{5}}\cdot \frac{1}{1 - \frac{1 + \sqrt{5}}{2}}\left(1 - (\frac{1 + \sqrt{5}}{2})^{n + 1}\right) - \frac{1}{\sqrt{5}}\cdot \frac{1}{1 - \frac{1 - \sqrt{5}}{2}}\left(1 - (\frac{1 - \sqrt{5}}{2})^{n + 1}\right)$
+      \end{tabular}\retTwo\par}
+
+      Now technically we are done since that is a closed formula for $a_n$. However, it looks ugly. So I'm going to learn more sympy so it can symplify this:
+
+      {\centering\includegraphics[scale=0.58]{188-HW1_Q3B.png}\retTwo\par}
+
+      Hence we get the same answer as before:
+
+      {\centering $a_n = -1 + \left(\frac{5 + 3\sqrt{5}}{10}\right)\left(\frac{1 + \sqrt{5}}{2}\right)^n + \left(\frac{5 - 3\sqrt{5}}{10}\right)\left(\frac{1 - \sqrt{5}}{2}\right)^n $ \retTwo\par}
+   \end{myIndent}
+\end{itemize}
 
 
 
