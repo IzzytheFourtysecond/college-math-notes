@@ -120,6 +120,10 @@
    \color{RedViolet}%
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\exPPP}{%
+   \color{VioletRed}%
+   \fontsize{12}{14}\selectfont%
+}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
@@ -432,8 +436,238 @@ Unfortunately, the properties as written above are inconsistent.
    
    {\centering $1 = \sum\limits_{r \in R}\mu(N_r) = \sum\limits_{r \in R}(N) = 0 \text{ or } \infty$.\retTwo\par}
 
-   This is a contradiction.
+   This is a contradiction.\retTwo
 \end{myIndent}
+
+Furthermore, the problem is not the countable union property as is demonstrated by the Banach-Tarsky paradox:\newpage
+
+
+\begin{myIndent}
+   \hTwo
+   \blab{Theorem:} Let $U$ and $V$ be arbitrary bounded sets in $\mathbb{R}^n$ where $n \geq 3$. Then there exists $E_1,\ldots, E_N, F_1, \ldots, F_N$ in $\mathbb{R}^n$ such that:
+   \begin{itemize}
+      \item $E_i \cap E_j = \emptyset$ for all $i \neq j$ and $\bigcup\limits_{i = 1}^NE_i = U$
+      \item $F_i \cap F_j = \emptyset$ for all $i \neq j$ and $\bigcup\limits_{i = 1}^NF_i = V$
+      \item $E_i$ and $F_i$ are congruent for all $i \in \{1, \ldots, N\}$.\retTwo
+   \end{itemize}
+
+   Supposing that $\mu(E_j)$ and $\mu(F_j)$ exists for all $j$ and that $\mu$ satisfies (i), (ii), and (iii) except only for finite unions, then that would suggest all sets have the same "area", which we know doesn't make sense.
+\end{myIndent}
+
+What we will do to fix this issue is only define $\mu$ on a subset of $\mathcal{P}(\mathbb{R}^n)$.\retTwo
+
+\mySepTwo 
+
+Let $X \neq \emptyset$. An \udefine{algebra of sets} in $X$ is a collection $\mathcal{A} \subseteq \mathcal{P}(X)$ which is closed under finite unions and complements. If is $\mathcal{A}$ is also closed under countable unions, we say $\mathcal{A}$ is a $\sigma$-algebra.
+
+\begin{myIndent}\hTwo
+   Observations:
+   \begin{enumerate}
+      \item Algebras of sets are closed under finite intersections and $\sigma$-algebras are\\ closed under countable intersection.
+      
+      \begin{myIndent}\hThree
+         This is because $\bigcap\limits_{n \in \mathbb{N}}\hspace{-0.2em}A_n = \left(\bigcup\limits_{n \in \mathbb{N}}\hspace{-0.2em}A_n^\comp\right)^\comp$\hspace{-0.4em}.
+      \end{myIndent}
+
+      \item If $\mathcal{A}$ is closed under disjoint countable union, then it's closed under arbitrary countable unions.
+      
+      \begin{myIndent}\hThree
+         This is because $\bigcup\limits_{n \in \mathbb{N}}\hspace{-0.2em}A_n = A_1 \cup \bigcup\limits_{n \geq 2}\left(A_n \cap \left(\bigcup\limits_{i = 1}^{n-1} A_i\right)^{\hspace{-0.2em}\comp}\right)$
+      \end{myIndent}
+
+      \item If $\{\mathcal{E}_\alpha\}_{\alpha \in A}$ is a collection of $\sigma$-algebras, then $\bigcap\limits_{\alpha \in A}\mathcal{E}_\alpha$ is a $\sigma$-algebra.
+      
+      \begin{myIndent}\hThree
+         This is pretty trivial to prove. It should remind you of topologies.\retTwo 
+      \end{myIndent}
+   \end{enumerate}
+\end{myIndent}
+
+\exOne
+
+\blab{Exercise 1.1:} A family of sets $\mathcal{R} \subseteq \mathcal{P}(X)$ is called a \udefine{ring} if it is closed under finite unions and difference. If $\mathcal{R}$ is also closed under countable unions, it is called a $\sigma$-ring.
+\begin{enumerate}
+   \item[(a)] Rings are closed under finite intersections and $\sigma$-rings are closed under countable intersections.
+   
+   \begin{myIndent}\exTwoP
+      If $\mathcal{R}$ is a ring and $A_1, \ldots, A_n \in \mathcal{R}$, then:\\ [-18pt]
+      
+      {\centering $\bigcap\limits_{i = 1}^n A_n = A_1 - \bigcup\limits_{i = 2}^n(A_1 - A_i) \in \mathcal{R}$ \retTwo\par}
+
+      This is because each $A_1 - A_i \in \mathcal{R}$, meaning $\bigcup\limits_{i = 2}^n(A_1 - A_i) \in \mathcal{R}$, and so finally\\ [-10pt] $A_1 - \bigcup\limits_{i = 2}^n(A_1 - A_i) \in \mathcal{R}$.\retTwo
+
+      If $\mathcal{R}$ is a $\sigma$-algebra, we can replace the finite intersection and union used in the prior reasoning with a countable intersection and union.\retTwo
+   \end{myIndent}
+   \item[(b)] If $\mathcal{R}$ is a ring (or $\sigma$-ring), then $\mathcal{R}$ is an algebra (or $\sigma$-algebra) iff $X \in \mathbb{R}$.
+   
+   \begin{myIndent}\exTwoP
+      To start, while this is pedantic, technically if $\mathcal{R}$ is empty, then it is trivially an algebra and a ring despite not containing $X$. So, let's assume $\mathcal{R} \neq \emptyset$.\retTwo
+
+      ($\Longrightarrow$) Suppose $\mathcal{R}$ is an algebra. Then note that $\emptyset \in \mathcal{R}$ because for any $A \in \mathcal{R}$, $A - A \in \mathcal{R}$. So taking complements, we get that $X \in \mathcal{R}$.\retTwo
+
+      ($\Longleftarrow$) Suppose $X \in \mathcal{R}$. Then for any $A \in \mathcal{R}$, we know that $A^\comp = X - A \in \mathcal{R}$. So $\mathcal{R}$ is an algebra (or $\sigma$-algebra).\retTwo
+   \end{myIndent}
+
+   \item[(c)] If $\mathcal{R}$ is a $\sigma$-ring, then $\mathcal{A} = \{E \subseteq X \mid E \in \mathcal{R} \text{ or } E^\comp \in \mathcal{R}\}$ is a $\sigma$-algebra.
+   
+   \begin{myIndent}\exTwoP
+      To start, we know that $\mathcal{A}$ is closed under complements because for any $A \in \mathcal{A}$,
+      \begin{myIndent}
+         $A \in \mathcal{R} \Longrightarrow (A^\comp)^\comp \in \mathcal{R} \Longrightarrow A^\comp \in \mathcal{A}$\\
+         $A \notin \mathcal{R} \Longrightarrow A^\comp \in \mathcal{R} \Longrightarrow A^\comp \in \mathcal{A}$\retTwo
+      \end{myIndent}
+
+      Also, let $(E_n)_{n \in \mathbb{N}}$ be a countable collection of sets in $\mathcal{A}$. Then define\\ $A = \{n \in \mathbb{N} \mid E_n^\comp \notin \mathcal{R}\}$ and $B = \{n \in \mathbb{N} \mid E_n^\comp \in \mathcal{R}\}$. Clearly, we have that:
+
+      {\centering $\bigcup\limits_{n \in \mathbb{N}}E_n = \bigcup\limits_{n \in A}E_n \cup \bigcup\limits_{n \in B}E_n = \bigcup\limits_{n \in A}E_n \cup \bigcup\limits_{n \in B}(E_n^\comp)^{\comp}$\\ [2pt]\par}
+
+      Also $\bigcup\limits_{n \in B}(E_n^\comp)^\comp = \left(\bigcap\limits_{n \in B}\hspace{-0.3em}E_n^\comp\right)^{\hspace{-0.3em}\comp}$\hspace{-0.3em}, and by part (a), we know that $E_B \coloneq \bigcap\limits_{n \in B}\hspace{-0.3em}E_n^\comp \in \mathcal{R}$.\retTwo
+
+      Similarly, we know $E_A \coloneq \bigcup\limits_{n \in A}\hspace{-0.3em} E_n \in \mathcal{R}$. So, we've shown that $\bigcup\limits_{n \in \mathbb{N}}E_n = E_A \cup E_B^\comp$\\ [-8pt] where $E_A, E_B \in \mathcal{R}$.\retTwo
+
+      Finally, note that $E_A \cup E_B^\comp = (E_B - E_A)^\comp$. Since $E_B - E_A \in \mathcal{R}$, we know that $(E_B - E_A)^\comp \in \mathcal{A}$. \retTwo
+   \end{myIndent}
+
+   \item[(d)] If $\mathcal{R}$ is a $\sigma$-ring, then $\mathcal{A} = \{E \subseteq X \mid E \cap F \in \mathcal{R} \text{ for all } F \in \mathcal{R}\}$ is a $\sigma$-algebra.
+   
+   \begin{myIndent}\exTwoP
+      To start if $E \in \mathcal{A}$, then $E^\comp \in \mathcal{A}$ because for all $F \in \mathcal{R}$ we have that:
+      
+      {\centering$E^\comp \cap F = F - E = F - (E \cap F) \in \mathcal{R}$.\retTwo\par}
+
+      Also, let $(E_n)_{n \in \mathbb{N}}$ be a countable collection of sets in $\mathcal{A}$. Then for all $F \in \mathcal{R}$, we have that $\left(\bigcup\limits_{n \in \mathbb{N}}E_n\right) \cap F = \bigcup\limits_{n \in \mathbb{N}}(E_n \cap F) \in \mathcal{R}$. So $\mathcal{A}$ is closed under countable union.\newpage
+   \end{myIndent}
+\end{enumerate}
+
+\hOne Let $\mathcal{E} \subseteq \mathcal{P}(X)$ be a collection of sets. Since the intersection of $\sigma$-algebras is still a $\sigma$-algebra, we define $\mathcal{M}(\mathcal{E})$ to be the smallest $\sigma$-algebra that contains $\mathcal{E}$. In other words, $\mathcal{M}(\mathcal{E})$ is the intersection of all $\sigma$-algebras that contain $\mathcal{E}$.\retTwo
+
+We call $\mathcal{M}(\mathcal{E})$ the $\sigma$-algebra generated by $\mathcal{E}$.
+
+
+\begin{myIndent}\hTwo
+   \blab{Lemma:} if $\mathcal{E} \in \mathcal{M}(\mathcal{F})$, then $\mathcal{M}(\mathcal{E}) \subseteq \mathcal{M}(\mathcal{F})$.
+\end{myIndent}
+
+\mySepTwo
+
+Let $(X, \rho)$ be a metric space. We define the \udefine{Borel $\sigma$-algebra} on $X$: $\mathcal{B}_X$, to be the $\sigma$-algebra generated by the collection of all open sets, or equivalently the collection of all closed sets.
+
+\begin{itemize}
+   \item A set is $G_\delta$ if it is a countable intersection of open sets.
+   \item A set is $F_\sigma$ if it is a countable union of closed sets.
+   \item A set is $G_{\delta\sigma}$ if it is a countable union of $G_\delta$ sets.
+   \item A set is $F_{\sigma\delta}$ if it is a countable intersection of $F_\sigma$ sets.
+   \begin{myTindent}\myComment
+      You can hopefully see the pattern. Also the professor isn't sure how much we'll use this $\delta$ and $\sigma$ notation in class.
+   \end{myTindent}
+\end{itemize}
+
+\exOne\blab{Exercise 1.2:} $\mathcal{B}_\mathbb{R}$ is generated by each of the following:
+\begin{itemize}
+   \item [(a)] the set of open intervals: $\mathcal{E}_1 = \{(a, b) \mid a < b\}$
+   \item [(b)] the set of closed intervals: $\mathcal{E}_2 = \{[a, b] \mid a < b\}$
+   \item [(c)] the set of half-open intervals:
+   \begin{itemize}
+      \item[(i)] $\mathcal{E}_3 = \{(a, b] \mid a < b\}$
+      \item[(ii)] $\mathcal{E}_4 = \{[a, b) \mid a < b\}$
+   \end{itemize}
+   \item [(c)] the set of open rays:
+   \begin{itemize}
+      \item[(i)] $\mathcal{E}_5 = \{(a, \infty) \mid a \in \mathbb{R}\}$
+      \item[(ii)] $\mathcal{E}_6 = \{(-\infty, a) \mid a \in \mathbb{R}\}$
+   \end{itemize}
+   \item [(d)] the set of closed rays:
+   \begin{itemize}
+      \item[(i)] $\mathcal{E}_7 = \{[a, \infty) \mid a \in \mathbb{R}\}$
+      \item[(ii)] $\mathcal{E}_8 = \{(-\infty, a] \mid a \in \mathbb{R}\}$\retTwo
+   \end{itemize}
+\end{itemize}
+
+\begin{myIndent}\exTwoP
+   Proof:\\
+   We trivially have that $\mathcal{M}(\mathcal{E}_1), \mathcal{M}(\mathcal{E}_2), \mathcal{M}(\mathcal{E}_5), \mathcal{M}(\mathcal{E}_6), \mathcal{M}(\mathcal{E}_7), \mathcal{M}(\mathcal{E}_8) \subseteq \mathcal{B}_{\mathbb{R}}$ since each of them contain either only open sets or only closed sets. As for the other inclusions, we must do more work.\newpage
+
+   \begin{itemize}
+      \item[(a)] Note that $\mathbb{Q}$ is a countable dense subset of $\mathbb{R}$. Hence, a countable base of $\mathbb{R}$ is the set: $\mathcal{F} = \{(p - q, p + q) \subset \mathbb{R} \mid p, q \in \mathbb{Q} \text{ and } q \neq 0\}$. In other words, given any open set $E \subseteq \mathbb{R}$, there is a countable subcollection of $\mathcal{F}$ whose union is $E$.
+      \begin{myIndent}\exPPP
+         To see why, let $x \in E$. Since $E$ is open, there exists $r > 0$ with $B(r, x) \subseteq E$.\\ Next, pick $p \in (x, x + \frac{r}{2}) \cap \mathbb{Q}$, followed by $q \in (p - x, r - p) \cap \mathbb{Q}$. Then $x \in (p - q, p + q) \in \mathcal{F}$ and $(p - q, p + q) \subseteq (x - r, x + r)$.\retTwo
+   
+         With that, we've now shown that for all $x \in E$, there exists $F \in \mathcal{F}$ such\\ that $x \in F \subseteq E$. If we choose such an $F_x$ for all $x \in E$, we then get\\ that $E = \bigcup\limits_{x \in E}F_x$. So $E$ is the union of a subcollection of $\mathcal{F}$. But since $\mathcal{F}$ is\\ [-9pt]\phantom{aaaaaaaaaaaaaaa} countable, the set $\{F_x \in \mathcal{F} \mid x \in E\}$ is also countable.\retTwo
+      \end{myIndent}
+   
+      Importantly, $\mathcal{F} \subset \mathcal{E}_1$. So $\mathcal{M}(\mathcal{F}) \subseteq \mathcal{M}(\mathcal{E}_1)$. However as shown above, we\\ must have that $\mathcal{M}(\mathcal{F})$ includes all open sets. So by our lemma on the previous page, $\mathcal{B}_{\mathbb{R}} \subseteq \mathcal{M}(\mathcal{F}) \subseteq \mathcal{M}(\mathcal{E}_1)$.\retTwo
+
+      \item[(b)] Given any $E = (a, b) \in \mathcal{E}_1$, we can write that $E = \hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em} [a+\frac{1}{n}, b - \frac{1}{n}]$. Thus,\\ [-10pt] $\mathcal{E}_1 \subseteq \mathcal{M}(\mathcal{E}_2)$, meaning $\mathcal{B}_\mathbb{R} = \mathcal{M}(\mathcal{E}_1) \subseteq \mathcal{M}(\mathcal{E}_2)$.\retTwo
+      
+      \item[(c)] Remember that for these two, we still need to show that $\mathcal{M}(\mathcal{E}_1), \mathcal{M}(\mathcal{E}_2) \in \mathcal{B}_\mathbb{R}$.
+      \begin{itemize}
+         \item[(i)] Firstly note that if $F = (a, b] \in \mathcal{E}_3$, then $ = \hspace{-0.3em}\bigcap\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em} (a, b+\frac{1}{n})$. So $\mathcal{E}_3 \subseteq \mathcal{M}(\mathcal{E}_1)$.\\
+         On the other hand, if $E = (a, b) \in \mathcal{E}_1$, we have that $E = \hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em} (a, b-\frac{1}{n}]$.\\ [-9pt] So $\mathcal{E}_1 \subseteq \mathcal{M}(\mathcal{E}_3)$.\retTwo
+         
+         By our lemma on the previous page, we thus have that:
+         
+         {\centering $\mathcal{B}_\mathbb{R} = \mathcal{M}(\mathcal{E}_1) \subseteq \mathcal{M}(\mathcal{E}_3) \subseteq \mathcal{M}(\mathcal{E}_1) = \mathcal{B}_\mathbb{R}$. \retTwo\par}
+
+         \item[(ii)] Mostly identical reasoning as with $\mathcal{E}_3$ shows that:
+         
+         {\centering $\mathcal{B}_\mathbb{R} = \mathcal{M}(\mathcal{E}_1) \subseteq \mathcal{M}(\mathcal{E}_4) \subseteq \mathcal{M}(\mathcal{E}_1) = \mathcal{B}_\mathbb{R}$\retTwo\par}
+      \end{itemize}
+
+      \item[(d)] \phantom{a}\\ [-10pt]
+      \begin{itemize}
+         \item[(i)] If $E = (a, b) \in \mathcal{E}_1$, then we know that:
+         
+         {\centering$E  = (a, \infty) \cap (\hspace{-0.3em}\bigcap\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em} (b - \frac{1}{n}, \infty))^\comp \in \mathcal{M}(\mathcal{E}_5)$.\\\par}
+
+         So $\mathcal{E}_1 \subseteq \mathcal{M}(\mathcal{E}_5)$, meaning $\mathcal{B}_\mathbb{R} = \mathcal{M}(\mathcal{E}_1) \subseteq \mathcal{M}(\mathcal{E}_5)$.\retTwo
+
+         \item[(ii)] Analogous reasoning to that with $\mathcal{E}_5$ shows that $\mathcal{B}_\mathbb{R} = \mathcal{M}(\mathcal{E}_1) \subseteq \mathcal{M}(\mathcal{E}_6)$.\retTwo
+      \end{itemize}
+
+      \item[(e)] \phantom{a}\\ [-10pt]
+      \begin{itemize}
+         \item[(i)] If $E = (a, \infty) \in \mathcal{E}_6$, then we have that $E = \hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em} [a + \frac{1}{n}, \infty)$. So $\mathcal{E}_5 \subseteq \mathcal{M}(\mathcal{E}_7)$,\\ [-10pt] meaning that $\mathcal{B}_\mathbb{R} = \mathcal{M}(\mathcal{E}_5) \subseteq \mathcal{M}(\mathcal{E}_7)$.\retTwo
+
+         \item[(ii)] Analogous reasoning as with $\mathcal{E}_7$ shows that $\mathcal{B}_\mathbb{R} = \mathcal{M}(\mathcal{E}_6) \subseteq \mathcal{M}(\mathcal{E}_8)$.\newpage
+      \end{itemize}
+   \end{itemize}
+\end{myIndent}
+
+\blab{Exercise 1.3:} Let $\mathcal{A}$ be an infinite $\sigma$-algebra on $X$.
+\begin{itemize}
+   \item[(a)] $\mathcal{A}$ contains an infinite sequence of disjoint sets.
+   
+   \begin{myIndent}\exTwoP
+      By the Hausdorff maximum principle, we know there is a subcollection $\mathcal{S}$\\ of $\mathcal{A}$ which is simply ordered by proper subset and is not contained in any other collection of $\mathcal{A}$ which is simply ordered by proper subset.\retTwo
+      
+      We claim $\mathcal{S}$ can't be finite. For suppose $\mathcal{S} = \{A_1, \ldots, A_n\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset which are indexed such that:
+      \begin{itemize}
+         \item[\bullet] $A_1 = \emptyset$
+         \item[\bullet] $A_i \subset A_{i + 1}$ for all $i \in \{1, \ldots, n-1\}$
+         \item[\bullet] $A_n = X$.
+         
+         \begin{myTindent}\exPPP
+            (If $\mathcal{S}$ is maximal, we know $\emptyset, X \in \mathcal{S}$)\retTwo
+         \end{myTindent}
+      \end{itemize} 
+      
+      Then choose $B \notin \mathcal{A} - \mathcal{M}(\{A_1, \ldots, A_n\})$. We know we can do this because $\mathcal{M}(\{A_1, \ldots, A_n\})$ is finite while $\mathcal{A}$ is infinite.\retTwo
+      
+      Next let $k = \min\{i \in \{1, \ldots, n\} \mid B \subset A_i\}$. In other words, let $k$ be such that $B \subset A_k$ but $B \not\subset A_{k-1}$. If $A_{k-1} \cap B \neq \emptyset$, then because $B \not\subseteq A_{k-1}$, we know that $A_{k-1} \subset A_{k-1} \cup B \subset A_{k}$. Meanwhile, if $A_{k-1} \cap B = \emptyset$, then note that:\\ $A_{k-1} \cup B = A_k \Longrightarrow B = A_k - A_{k-1} \in \mathcal{M}(\{A_1, \ldots, A_n\})$. So we know\\ that $A_{k-1} \cup B \neq A_k$. At the same time, since $B \neq \emptyset$, we know that\\ $A_{k-1} \subset A_{k-1} \cup B \subset A_k$.\retTwo
+
+      By transitivity, we know that $A_{k-1} \cup B$ is comparable via proper subset with $A_i$ for all $i \in \{1, \ldots, n\}$. Hence, we've shown that $\mathcal{S} \cup \{A_{k-1} \cup B\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset. But this contradicts that $\mathcal{S}$ is maximal.\retTwo
+
+      Now that we know $\mathcal{S}$ is infinite, let $(E_n)_{n \in \mathbb{Z}_+}$ be a sequence of sets in $\mathcal{S}$\\ satisfying that $E_n \subset E_{n + 1}$. Then we have that $(E_{n+1} - E_n)_{n \in \mathbb{Z}_+}$ is an infinite\\ sequence of disjoint sets in $\mathcal{A}$.\retTwo
+   \end{myIndent}
+
+   \item[(b)] Show that $\card(\mathcal{A}) \geq \mathfrak{c}$.
+   
+   \begin{myIndent}\exTwoP
+      Let $(E_n)_{n \in \mathbb{N}}$ be a sequence of disjoint sets in $\mathcal{A}$. Then if we define the map\\ [2pt] $f: [0, 1]^\mathbb{N} \longrightarrow \mathcal{A}$ such that $(a_0, a_1, a_2, \ldots)$ is mapped to the union of all $E_n$\\ [2pt] such that $a_n = 1$, we have that $f$ is an injection.\retTwo
+
+      Hence, $\card(\mathcal{A}) \geq \card([0, 1]^{\mathbb{N}})$. And since there is a trivial bijection\\ from $[0, 1]^{\mathbb{N}}$ and $\mathcal{P}(\mathbb{N})$, plus the fact that we proved early on in the class\\ that $\card(\mathcal{P}(\mathbb{N})) = \card(\mathbb{R})$, we thus know that $\card(\mathcal{A}) \geq \mathfrak{c}$.\retTwo
+   \end{myIndent}
+\end{itemize}
 
 
 \end{document}
