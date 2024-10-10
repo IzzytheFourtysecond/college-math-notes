@@ -998,18 +998,12 @@ With that, we've now proven we can raise certain formal power series to rational
 If $m \in \mathbb{Q}$ and $k > 0$ is an integer, then we define:
 
 {\centering $
-\begin{pmatrix}
-   m \\ 0
-\end{pmatrix} \coloneq 1$ and $
-\begin{pmatrix}
-   m \\ k
-\end{pmatrix} \coloneq \dfrac{m(m-1)\ldots(m-k+1)}{k!}$\retTwo\par}
+\binom{m}{0} \coloneq 1$ and $
+\binom{m}{k} \coloneq \frac{m(m-1)\ldots(m-k+1)}{k!}$\retTwo\par}
 
 \begin{myIndent}\hTwo
-   \blab{Theorem:} Suppose $m \in \mathbb{Q}$. Then $(1 + x)^m = {\displaystyle\sum\limits_{n \geq 0}}
-   \begin{pmatrix}
-      m \\ n
-   \end{pmatrix}x^n$.\\
+   \blab{Binomial Theorem:} Suppose $m \in \mathbb{Q}$. Then $(1 + x)^m = \sum\limits_{n \geq 0}
+   \binom{m}{n}x^n$.\\
 \end{myIndent}
 
 Before proving this theorem, here are some special uses of this theorem:
@@ -1018,29 +1012,106 @@ Before proving this theorem, here are some special uses of this theorem:
    \begin{enumerate}
       \item Suppose $A(x)$ is a formal power series with $a_0 = 1$. Then substituting $x$ with $A(x) - 1$ in our above theorem, we get that:\\ [-15pt]
       
-      {\centering $A(x)^m = (1 + (A(x) - 1))^m = {\displaystyle\sum\limits_{n \geq 0}}
-      \begin{pmatrix}
-         m \\ n
-      \end{pmatrix}(A(x) - 1)^n$. \retTwo\par}
+      {\centering $A(x)^m = (1 + (A(x) - 1))^m = \sum\limits_{n \geq 0}
+      \binom{m}{n}(A(x) - 1)^n$. \retTwo\par}
 
       While this still is not the most wieldy formula ever, it does give us a way to calculate rational powers of formal power series without struggling to calculate a root.\retTwo
 
       \item Suppose $m \in \mathbb{Z}_{\geq 0}$. If $n > m$, then $
-      \begin{pmatrix}
-         m \\ n
-      \end{pmatrix} = 0$. So, $(1 + x)^m = {\displaystyle\sum\limits_{n = 0}^m}
-      \begin{pmatrix}
-         m \\ n
-      \end{pmatrix}x^n$\\ [-3pt]
+      \binom{m}{n} = 0$. So, $(1 + x)^m = \sum\limits_{n = 0}^m
+      \binom{m}{n}x^n$\\ [-3pt]
 
-      Also, when $m$ is an integer and $0 \leq k \leq m$, we have $\begin{pmatrix}
-         m \\ k
-      \end{pmatrix} = \dfrac{m!}{(m-k)!k!}$
+      Also, when $m$ is an integer and $0 \leq k \leq m$, we have $\binom{m}{k} = \frac{m!}{(m-k)!k!}$\retTwo
+
+      \item Note that $
+      \binom{-1}{n} = \frac{(-1)(-2)\ldots(-n)}{n!} = (-1)^n$. Hence, applying the binomial\\ theorem we get that: $(1 + x)^{-1} = \sum\limits_{n \geq 0 }(-x)^n$. This should make sense to you\\ [-8pt] because:
+      
+      {\centering$(1 -x)^{-1} = (1 + (-x))^{-1} = \sum\limits_{n \geq 0 }(-(-x))^n = \sum\limits_{n \geq 0 }(x)^n$.\newpage\par}
+
+      \item Suppose $d$ is a positive integer. Then:
+      
+      {\centering 
+      \begin{tabular}{l}
+         $\binom{-d}{n} = \frac{-d(-d-1)\ldots(-d-n+2)(-d-n+1)}{n!}$\\ [8pt]$\phantom{\binom{-d}{n}} = (-1)^n\frac{(d+n-1)(d+n-2)\cdots(d-1)(d)}{n!}$\\ [8pt] $\phantom{\binom{-d}{n}} = (-1)^n\frac{(d+n-1)!}{((d+n-1)-n)!n!} = (-1)^n\binom{d+n-1}{n}$
+      \end{tabular}\retTwo\par}
+
+      It follows that $(1 + x)^{-d} = \sum\limits_{n \geq 0}(-1)^n\binom{d+n-1}{n}x^n$.\retTwo
+
+      In turn, we can conclude that: $(1 - x)^{-d} = \sum\limits_{n \geq 0}\binom{d+n-1}{n}x^n$.\retTwo
+
+      \item We define $\sqrt{1 + x} \coloneq (1 + x)^{\sfrac{1}{2}} = \sum\limits_{n \geq 0}\binom{\sfrac{1}{2}}{n}x^n$.\retTwo
+      
+      Now note that for $n \geq 2$,
+      
+      {\centering$\binom{\sfrac{1}{2}}{n} = \frac{(\sfrac{1}{2})(-\sfrac{1}{2})(-\sfrac{3}{2})\cdots(\frac{1}{2} - n + 1)}{n!} = \frac{(-1)^{n-1}}{2^n}\frac{(2n-3)(2n - 5)\cdots(3)(1)}{n!}$\retTwo\par}
+
+      To make this neater, we define the double factorial $k!! = k(k-2)(k-4)\cdots$. If $k$ is even, then $k!!$ is the product of all even positive integers at most $k$. If $k$ is odd, then $k!!$ is the product of all odd positive integers at most $k$.\retTwo
+
+      Thus, $(1 + x)^{\sfrac{1}{2}}  = \sum\limits_{n \geq 0}\binom{\sfrac{1}{2}}{n}x^n = 1 + \frac{x}{2} + \sum\limits_{n \geq 2}\frac{(-1)^{n-1}(2n-3)!!}{2^nn!}x^n$\retTwo
    \end{enumerate}
+
+   \hTwo
+   \blab{Proof of the Binomial Theorem:}
+   \begin{myIndent}\hThree
+      \blab{Lemma:} If $m \in \mathbb{Q}$ and $A(0) = 1$, then $D(A^m(x)) = mD(A(x)) A(x)^{m-1}$.
+      
+      \begin{myIndent}\hFour
+         Proof:\\
+         We know there exists integers $p$ and $q$ with $m = \sfrac{p}{q}$.  Then:
+         
+         {\centering$D(A(x)^p) = pA(x)^{p-1}DA(x)$.\retTwo\par}
+         
+         But also, $D(A(x)^p) = D((A(x)^m)^q) = q(A(x)^m)^{q-1}D(A(x)^m)$.\\ So combining these expressions, we get that:
+
+         {\centering 
+         \begin{tabular}{l}
+            $D(A(x)^m) = \frac{pA(x)^{p-1}}{q(A(x)^m)^{q-1}}DA(x)$\\ [6pt] $\phantom{D(A(x)^m)} = m\frac{A(x)^{p-1}}{A(x)^pA(x)^{-m}}DA(x) = mA(x)^{m-1}DA(x)$ 
+         \end{tabular}\retTwo\par}
+      \end{myIndent}
+
+      Now recall that $[x^n](1 + x)^m = \frac{D^n((1+x)^m)(0)}{n!}$.\retTwo
+      Also, because of our above lemma, we know that:
+      
+      {\centering
+      \begin{tabular}{c}
+          $D((1 + x)^m) = m(1+x)^{m-1}$\\
+          $\Downarrow$\\
+          $D^2((1 + x)^m) = m(m-1)(1+x^{m-2})$\\
+          $\Downarrow$\\
+          $\vdots$\\
+          $\Downarrow$\\
+          $D^n((1+x)^m) = m(m-1)\cdots(m-n+1)(1 + x)^{m-n}$
+      \end{tabular} \newpage\par}
+
+      Thus: 
+      
+      {\centering 
+      \begin{tabular}{l}
+         $[x^n](1 + x)^m = \frac{D^n((1+x)^m)(0)}{n!} = \frac{m(m-1)\cdots(m-n+1)(1 + (0))^{m-n}}{n!}$\\ $\phantom{aaaaaaaaaa[x^n](1 + x)^m = \frac{D^n((1+x)^m)(0)}{n!}} = \frac{m(m-1)\cdots(m-n+1)}{n!} = \binom{m}{n}$.
+      \end{tabular}\retTwo\par}
+   \end{myIndent}
+
+   
+   \begin{myIndent}
+      \teachComment
+      One more note given at the end of class:
+      \begin{myIndent}
+         We will not prove it in this class, but if we have a quadratic equation:\\ $A(x)t^2 + B(x)t + C(x) = 0$, where $A(x)$, $B(x)$, and $C(x)$ are formal\\ power series, then there are at most $2$ formal power series solutions to this\\ quadratic.\retTwo
+   
+         Also, any solution formal power series $t$ will satisfy that:
+   
+         {\centering $2A(x)t = -B(x) \pm \sqrt{B(x)^2 - 4A(x)C(x)}$ \retTwo\par}
+   
+         Finally, this doesn't contradict the lemma on the bottom of page 16 because that lemma guarentees a unique root that has a constant term of $1$.
+
+         Because of this, $A^{\sfrac{1}{2}}(x)$ and $-A^{\sfrac{1}{2}}(x)$ are the only formal power series whose square can be $A(x)$.
+      \end{myIndent}
+   \end{myIndent}
 \end{myIndent}
 
+\mySepTwo
 
-
+\mHeader{Lecture 6: 10/9/2024}
 
 
 

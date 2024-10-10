@@ -463,7 +463,7 @@ Let $X \neq \emptyset$. An \udefine{algebra of sets} in $X$ is a nonempty collec
 \begin{myIndent}\hTwo
    Observations:
    \begin{enumerate}
-      \item Algebras of sets are closed under finite intersections and $\sigma$-algebras are\\ closed under countable intersection.
+      \item Algebras of sets are closed under finite intersections and $\sigma$-algebras are\\ closed under countable intersection. (This also means algebras of sets are closed under set differences.)
       
       \begin{myIndent}\hThree
          This is because $\bigcap\limits_{n \in \mathbb{N}}\hspace{-0.2em}A_n = \left(\bigcup\limits_{n \in \mathbb{N}}\hspace{-0.2em}A_n^\comp\right)^\comp$\hspace{-0.4em}.
@@ -837,15 +837,94 @@ An \udefine{elementary family} is a collection $\mathcal{E}$ of subsets of a set
 
       Since $\mathcal{F}_n \subseteq \mathcal{F}^\prime$ for all $n$, we know that $\mathcal{M}(\mathcal{F}_n) \subseteq \mathcal{M}(\mathcal{F}^\prime)$ for all $n$. So, $\{E_n\}_{n \in \mathbb{N}}$\\ is contained in $\mathcal{M}(\mathcal{F}^\prime)$. It follows that $\bigcup\limits_{n \in \mathbb{N}}E_n \in \mathcal{M}(\mathcal{F}^\prime) \subseteq \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$.\retTwo
    \end{myIndent}
-
-   \mySepTwo
-   
-   \newpage\hOne
-
-
-
-
 \end{myIndent}
+
+\mySepTwo
+   
+\newpage\hOne
+
+Let $X \neq \emptyset$ and $\mathcal{M}$ be a $\sigma$-algebra on $X$. A \udefine{measure} $\mu: \mathcal{M} \longrightarrow [0, \infty]$ is a function satisfying that:
+\begin{itemize}
+   \item $\mu(\emptyset) = 0$
+   \item $\mu(\bigcup\limits_{j=1}^\infty E_j) = \sum\limits_{j=1}^\infty \mu(E_j)$ if $E_j \in \mathcal{M}$ for all $j$ and $E_j \cap E_i = \emptyset$ for all $i \neq j$\retTwo
+\end{itemize}
+
+$(X, \mathcal{M})$ is called a \udefine{measurable space} and $(X, \mathcal{M}, \mu)$ is called a \udefine{measure space}.\retTwo
+
+Let $(X, \mathcal{M}, \mu)$ be a measure space.
+\begin{itemize}
+   \item $\mu$ is called \udefine{finite} if $\mu(X) < \infty$.
+   
+   \begin{myIndent}\teachComment
+      It follows if $\mu$ is finite that $\mu(E) < \infty$ for all $E \in \mathcal{M}$ since $E \subseteq X$.\\
+      In probability theory, most measure spaces are finite.\retTwo
+   \end{myIndent}
+
+   \item $\mu$ is called \udefine{$\sigma$-finite} if $X = \bigcup\limits_{j=1}^\infty E_j$, such that $E_j \in \mathcal{M}$ and $\mu(E_j) < \infty$ for all $j$.\retTwo
+   
+   \item $\mu$ is called \udefine{semifinite} if $\forall E \in \mathcal{M}$ with $\mu(E) = \infty$, there exists $F \subseteq E$ such that $F \in \mathcal{M}$, and $\mu(F) < \infty$.\retTwo
+\end{itemize}
+
+
+\begin{myIndent}\exOne
+   Example: Let $X \neq \emptyset$ and $\mathcal{M} = \mathcal{P}(X)$. Then given a function $\rho: X \longrightarrow [0, \infty]$,\\ $\mu(E) = \sum\limits_{x \in E}\rho(x)$ is a measure.
+   
+   \begin{itemize}
+      \item $\mu$ is semifinite if and only if $f(x) < \infty$ for all $x \in X$.
+      \item $\mu$ is $\sigma$-finite if and only if it is semifinite and $\{x \in X \mid f(x) > 0\}$ is countable.
+   \end{itemize}
+
+   If $\rho(x) = 1$ for all $x$, then $\mu$ is called the \udefine{counting measure}.\\
+   If $\rho(x) = \left\{
+   \begin{matrix}
+      1 & \text{ if } x = x_0 \\
+      0 & \text{ if } x \neq x_0,
+   \end{matrix}\right.$ then $\mu$ is called the \udefine{Dirac measure} at $x_0$: $\delta_{x_0}$.\retTwo
+
+   \hTwo 
+   \blab{Theorem:} Let $(X, \mathcal{M}, \mu)$ be a measure space. Then:
+   \begin{enumerate}
+      \item If $E, F \in \mathcal{M}$ with $E \subseteq F$, then $\mu(E) \leq \mu(F)$.
+      \item If $(E_j)_{j\in\mathbb{N}} \subseteq \mathcal{M}$, then $\mu(\bigcup\limits_{j=1}^\infty E_j) \leq \sum\limits_{j = 1}^\infty \mu(E_j)$.\\ [-10pt]
+      \item If $(E_j)_{j \in \mathbb{N}} \subseteq \mathcal{M}$ with $E_j \subseteq E_{j+1}$ for all $j \in \mathbb{N}$, then $\mu(\bigcup\limits_{j=1}^\infty E_j) = \lim\limits_{j \rightarrow \infty}\mu(E_j)$.
+      \item If $(E_j)_{j \in \mathbb{N}} \subseteq \mathcal{M}$ and $\mu(E_1) < \infty$ and $E_{j+1} \subseteq E_j$ for all\\ [-6pt] \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} $j \in \mathbb{N}$, then $\mu(\bigcap\limits_{j=1}^\infty E_j) = \lim\limits_{j\rightarrow \infty}\mu(E_j)$.
+      
+      \begin{myIndent}\hThree
+         Proofs:\\
+         (1) Suppose $E, F \in \mathcal{M}$ with $E \subseteq F$. Then $F = (F - E) \cup E$ is a disjoint union of sets in $\mathcal{M}$, meaning $\mu(F) = \mu(F - E) + \mu(E) \geq \mu(E)$.\newpage
+
+         (2) Set $F_1 = E_1$ and $F_m = E_m - \bigcup\limits_{i=1}^{m-1}E_i$ for all $m > 1$. Then $(F_i)_{i \in \mathbb{N}}$ is\\ [-6pt] pairwise disjoint and $\bigcup\limits_{i=1}^\infty F_i = \bigcup\limits_{i=1}^\infty E_i$. So $\mu(\bigcup\limits_{i=1}^\infty E_i) = \sum\limits_{i=1}^\infty\mu(F_i)$. On the other hand, $F_i \subseteq E_i$ for all $i$. So $\sum\limits_{i=1}^\infty\mu(F_i) \leq \sum\limits_{i=1}^\infty\mu(E_i)$\retTwo\retTwo
+
+         (3) Setting $E_0 = \emptyset$, we have that $\mu(\bigcup\limits_{i=1}^\infty E_i) = \sum\limits_{i=1}^\infty\mu(E_i - E_{i-1})$. Also,\\ [-6pt] $\mu(E_n) = \sum\limits_{i=1}^n\mu(E_i - E_{i-1})$. So:\\ [-8pt]
+         
+         {\centering$\lim\limits_{n \rightarrow \infty}{\mu(E_n)} = \lim\limits_{n \rightarrow \infty}{\sum\limits_{i=1}^n\mu(E_i - E_{i-1})} = \sum\limits_{i=1}^\infty \mu(E_i - E_{i-1}) = \mu(\bigcup\limits_{i=1}^\infty E_i)$.\retTwo\retTwo\par}
+
+         (4) Let $F_j = E_1 - E_j$ for all $j \in \mathbb{N}$. Then for all $j \in \mathbb{N}$,\myHS $F_j \subseteq F_{j+1}$,\\ $\mu(E_1) = \mu(F_j) + \mu(E_j)$, and $\bigcup\limits_{j=1}^\infty F_j = E_1 - \bigcap\limits_{j = 1}^\infty E_j$. We can thus\\ conclude that:
+
+         {\centering\begin{tabular}{l}
+            $\mu(E_1) = \mu(\bigcap\limits_{j=1}^\infty E_j) + \mu(\bigcup\limits_{j=1}^\infty F_j)$\\ [6pt]
+            $\phantom{\mu(E_1)} = \mu(\bigcap\limits_{j=1}^\infty E_j) + \lim\limits_{j \rightarrow \infty}(F_j) = \mu(\bigcap\limits_{j=1}^\infty E_j) + \lim\limits_{j \rightarrow \infty}(\mu(E_1) - \mu(E_j))$
+         \end{tabular} \retTwo\par}
+
+         Since $\mu(E_1) < \infty$, we can subtract it out of the expression to get:\\ [4pt] $\mu(\bigcap\limits_{j=1}^\infty E_j) - \lim\limits_{j\rightarrow\infty}(\mu(E_j)) = 0$. Also, we know $\mu(\bigcap\limits_{j=1}^\infty E_j) < \infty$ since\\ [0pt] it's a subset of $E_j$. So, we can rearrange to get: $\mu(\bigcap\limits_{j=1}^\infty E_j) = \lim\limits_{j\rightarrow\infty}(\mu(E_j))$.
+      \end{myIndent}
+   \end{enumerate}
+\end{myIndent}
+
+\exOne\mySepTwo
+
+\blab{Exercise 1.9:} If $(X, \mathcal{M}, \mu)$ is a measure space and $E, F \in \mathcal{M}$, then we have that\\ $\mu(E) + \mu(F) = \mu(E \cup F) + \mu(E \cap F)$.
+
+\begin{myIndent}\exTwoP
+   We know $\mu(E) = \mu(E - f) + \mu(E \cap F)$ and $\mu(F) = \mu(F - E) + \mu(F \cap E)$.\\ Adding those equations together we get that:
+
+   {\centering
+   \begin{tabular}{l}
+       $\mu(E) + \mu(F) = (\mu(E - F) + \mu(E \cap F) + \mu(F - E)) + \mu(E \cap F)$\\ $\phantom{\mu(E) + \mu(F) = (\mu(E - F) + \mu(E \cap F)) + a} = \mu(E \cup F) + \mu(E \cap F)$.
+   \end{tabular}\retTwo\par}
+\end{myIndent}
+
+\blab{Exercise 1.14:}
 
 \end{document}
 
