@@ -458,7 +458,7 @@ What we will do to fix this issue is only define $\mu$ on a subset of $\mathcal{
 
 \mySepTwo 
 
-Let $X \neq \emptyset$. An \udefine{algebra of sets} in $X$ is a collection $\mathcal{A} \subseteq \mathcal{P}(X)$ which is closed under finite unions and complements. If is $\mathcal{A}$ is also closed under countable unions, we say $\mathcal{A}$ is a $\sigma$-algebra.
+Let $X \neq \emptyset$. An \udefine{algebra of sets} in $X$ is a nonempty collection $\mathcal{A} \subseteq \mathcal{P}(X)$ which is closed under finite unions and complements. If is $\mathcal{A}$ is also closed under countable unions, we say $\mathcal{A}$ is a $\sigma$-algebra.
 
 \begin{myIndent}\hTwo
    Observations:
@@ -501,8 +501,6 @@ Let $X \neq \emptyset$. An \udefine{algebra of sets} in $X$ is a collection $\ma
    \item[(b)] If $\mathcal{R}$ is a ring (or $\sigma$-ring), then $\mathcal{R}$ is an algebra (or $\sigma$-algebra) iff $X \in \mathbb{R}$.
    
    \begin{myIndent}\exTwoP
-      To start, while this is pedantic, technically if $\mathcal{R}$ is empty, then it is trivially an algebra and a ring despite not containing $X$. So, let's assume $\mathcal{R} \neq \emptyset$.\retTwo
-
       ($\Longrightarrow$) Suppose $\mathcal{R}$ is an algebra. Then note that $\emptyset \in \mathcal{R}$ because for any $A \in \mathcal{R}$, $A - A \in \mathcal{R}$. So taking complements, we get that $X \in \mathcal{R}$.\retTwo
 
       ($\Longleftarrow$) Suppose $X \in \mathcal{R}$. Then for any $A \in \mathcal{R}$, we know that $A^\comp = X - A \in \mathcal{R}$. So $\mathcal{R}$ is an algebra (or $\sigma$-algebra).\retTwo
@@ -588,7 +586,7 @@ Let $(X, \rho)$ be a metric space. We define the \udefine{Borel $\sigma$-algebra
    We trivially have that $\mathcal{M}(\mathcal{E}_1), \mathcal{M}(\mathcal{E}_2), \mathcal{M}(\mathcal{E}_5), \mathcal{M}(\mathcal{E}_6), \mathcal{M}(\mathcal{E}_7), \mathcal{M}(\mathcal{E}_8) \subseteq \mathcal{B}_{\mathbb{R}}$ since each of them contain either only open sets or only closed sets. As for the other inclusions, we must do more work.\newpage
 
    \begin{itemize}
-      \item[(a)] Note that $\mathbb{Q}$ is a countable dense subset of $\mathbb{R}$. Hence, a countable base of $\mathbb{R}$ is the set: $\mathcal{F} = \{(p - q, p + q) \subset \mathbb{R} \mid p, q \in \mathbb{Q} \text{ and } q \neq 0\}$. In other words, given any open set $E \subseteq \mathbb{R}$, there is a countable subcollection of $\mathcal{F}$ whose union is $E$.
+      \item[(a)] Note that $\mathbb{Q}$ is a countable dense subset of $\mathbb{R}$. Hence, a countable base of $\mathbb{R}$ is the set: $\mathcal{F} = \{(p - q, p + q) \subset \mathbb{R} \mid p, q \in \mathbb{Q} \text{ and } q > 0\}$. In other words, given any open set $E \subseteq \mathbb{R}$, there is a countable subcollection of $\mathcal{F}$ whose union is $E$.
       \begin{myIndent}\exPPP
          To see why, let $x \in E$. Since $E$ is open, there exists $r > 0$ with $B(r, x) \subseteq E$.\\ Next, pick $p \in (x, x + \frac{r}{2}) \cap \mathbb{Q}$, followed by $q \in (p - x, r - p) \cap \mathbb{Q}$. Then $x \in (p - q, p + q) \in \mathcal{F}$ and $(p - q, p + q) \subseteq (x - r, x + r)$.\retTwo
    
@@ -665,10 +663,189 @@ Let $(X, \rho)$ be a metric space. We define the \udefine{Borel $\sigma$-algebra
    \begin{myIndent}\exTwoP
       Let $(E_n)_{n \in \mathbb{N}}$ be a sequence of disjoint sets in $\mathcal{A}$. Then if we define the map\\ [2pt] $f: [0, 1]^\mathbb{N} \longrightarrow \mathcal{A}$ such that $(a_0, a_1, a_2, \ldots)$ is mapped to the union of all $E_n$\\ [2pt] such that $a_n = 1$, we have that $f$ is an injection.\retTwo
 
-      Hence, $\card(\mathcal{A}) \geq \card([0, 1]^{\mathbb{N}})$. And since there is a trivial bijection\\ from $[0, 1]^{\mathbb{N}}$ and $\mathcal{P}(\mathbb{N})$, plus the fact that we proved early on in the class\\ that $\card(\mathcal{P}(\mathbb{N})) = \card(\mathbb{R})$, we thus know that $\card(\mathcal{A}) \geq \mathfrak{c}$.\retTwo
+      Hence, $\card(\mathcal{A}) \geq \card([0, 1]^{\mathbb{N}})$. And since there is a trivial bijection\\ from $[0, 1]^{\mathbb{N}}$ and $\mathcal{P}(\mathbb{N})$, plus the fact that we proved early on in the class\\ that $\card(\mathcal{P}(\mathbb{N})) = \card(\mathbb{R})$, we thus know that $\card(\mathcal{A}) \geq \mathfrak{c}$.\newpage
    \end{myIndent}
 \end{itemize}
 
+\blab{Exercise 1.4}: An algebra $\mathcal{A}$ is a $\sigma$-algebra if and only if $\mathcal{A}$ is closed under countable\\ increasing unions (meaning $E_1 \subseteq E_2 \subseteq \ldots$).
+
+\begin{myIndent}\exTwoP
+   The rightward implication is true since $\mathcal{A}$ being a $\sigma$-algebra means that $\mathcal{A}$ is\\ closed under all countable unions. As for showing the leftward implication,\\ suppose $\{A_n\}_{n \in \mathbb{Z}_+}$ is a countable collection of sets in $\mathcal{A}$. Then for all $n \in \mathbb{Z}_+$,\\ define $E_n = A_1 \cup \ldots \cup A_n$.\retTwo
+   
+   Since each $E_n$ are finite unions of sets in $\mathcal{A}$, we know that each $E_n$ is in $\mathcal{A}$. Also,\\ we clearly have that $E_1 \subseteq E_2 \subseteq E_3 \subseteq \ldots$\phantom{a} In order to make the sets strictly\\ increasing, let $S = \{1\} \cup \{k \in \mathbb{Z} \mid k > 1 \text{ and } E_{k} - E_{k-1} \neq \emptyset \}$. Then for\\ any $n, m \in S$, we know that $n < m \Longrightarrow E_n \subset E_m$.\retTwo
+
+   Finally, $\hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em} A_n = \hspace{-0.3em}\bigcup\limits_{n \in \mathbb{Z}_+}\hspace{-0.3em} E_n = \bigcup\limits_{n \in S}E_n$.\retTwo Importantly, $S$ is either finite or countably infinite, and $S$ consists of strictly\\ increasing sets. So by the right hypothesis, we know $\bigcup\limits_{n \in S}E_n \in \mathcal{A}$. Hence,\\ [-9pt] the union over $\{A_n\}_{n \in \mathbb{Z}_+}$ is in $\mathcal{A}$. \retTwo
+\end{myIndent}
+
+\hOne
+\mySepTwo
+
+Let $\{X_\alpha\}_{\alpha \in A}$ be a collection of nonempty sets, and define $X = \prod\limits_{\alpha \in A}X_\alpha$.\\ If $\mathcal{M}_\alpha$ is a $\sigma$-algebra in $X_\alpha$ for all $\alpha \in A$, then we define the \udefine{product $\sigma$-algebra}\\ on $X$ to be: $\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha = \mathcal{M}(\{\pi_\alpha^{-1}(E_\alpha) \mid E_\alpha \in \mathcal{M}_\alpha \text{ and } \alpha \in A\})$.\retTwo
+
+
+\begin{myIndent}\myComment
+   To get a better geometric intuition for this definition, consider if $A = \{1, 2\}$. Then:\\ [-8pt]
+
+   {\centering 
+   \begin{tabular}{l}
+      $\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha = \{\pi_1^{-1}(E_1) \mid E_1 \in \mathcal{M}_1\} \cup \{\pi_2^{-1}(E_2) \mid E_2 \in \mathcal{M}_2\}$ \\ [-4pt]$\hphantom{\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha} = \{E_1 \times X_2 \mid E_1 \in \mathcal{M}_1\} \cup \{X_1 \times E_2 \mid E_2 \in \mathcal{M}_2\}$
+   \end{tabular} \retTwo\par}
+
+   Also, the motivation for this definition is that $\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha$ is the smallest $\sigma$-algebra\\ [-2pt] where $\pi_\alpha$ is "measurable" for all $\alpha$. We'll learn what that means shortly...\retTwo
+
+   \hTwo
+   \blab{Proposition:}
+   \begin{itemize}
+      \item[(i)] $A$ is countable implies $\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha = \mathcal{M}(\{\prod\limits_{\alpha \in A}E_\alpha \mid \forall \alpha \in A, \myHS E_\alpha \in \mathcal{M}_\alpha\})$
+      
+      \begin{myIndent}\hThree
+         Proof:\\
+         If $E_\alpha \in \mathcal{M}_\alpha$, then $\pi_\alpha^{-1}(E_\alpha) = \prod\limits_{\beta \in A}E_\beta$ where $E_\beta = X_\beta$ if $\beta \neq \alpha$ (and\\ [-8pt] $E_\beta = E_\alpha$ if $\beta = \alpha$).\retTwo
+         
+         So $\pi_\alpha^{-1}(E_\alpha) \in \mathcal{M}(\{\prod\limits_{\alpha \in A}E_\alpha \mid \forall \alpha \in A,\myHS E_\alpha \in \mathcal{M}_\alpha\})$
+
+         On the other hand, $\prod\limits_{\alpha \in A}E_\alpha = \bigcap\limits_{\alpha \in A}\pi_\alpha^{-1}(E_\alpha)$.\retTwo
+         
+         Since $A$ is countable, we thus know that if $E_\alpha \in \mathcal{M}_\alpha$ for all $\alpha \in A$, then\\ $\prod\limits_{\alpha \in A}E_\alpha  \in \bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha$.\newpage
+      \end{myIndent}
+
+      \item[(ii)] Suppose $\mathcal{M}_\alpha = \mathcal{M}(\mathcal{E}_\alpha)$ for all $\alpha \in A$. Then $\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha$ is generated by\\ [-8pt] $\mathcal{F} = \{\pi^{-1}_\alpha(E_\alpha) \mid E_\alpha \in \mathcal{E}_\alpha \text{ and } \alpha \in A\}$.
+      
+      \begin{myIndent}\hThree
+         Proof:\\
+         Since $\mathcal{F} \subseteq \{\pi_\alpha^{-1}(E_\alpha) \mid E_\alpha \in \mathcal{M}_\alpha \text{ and } \alpha \in A\}$, we trivially have that\\ $\mathcal{M}(\mathcal{F}) \subseteq \bigotimes\limits_{\alpha \in A} \mathcal{M}_\alpha$.\\ [-2pt]
+
+         As for showing the other inclusion, define for each $\alpha \in A$:
+
+         {\centering$\mathcal{F}_\alpha = \{E \subseteq X_\alpha \mid \pi_\alpha^{-1}(E) \in \mathcal{M}(\mathcal{F})\}$.\retTwo\par}
+
+         Note that $\mathcal{F}_\alpha$ is a $\sigma$-algebra on $X_\alpha$ that contains $\mathcal{E}_\alpha$.
+         \begin{myIndent}\hFour
+            This is because for any $F \in \mathcal{F}_\alpha$ and $(E_n)_{n \in \mathbb{N}} \subseteq \mathcal{F}_\alpha$, we know that:
+            \begin{myIndent}
+               \begin{itemize}
+                  \item[\bullet] $\left(\pi_{\alpha}^{-1}(F)\right)^\comp = \pi_{\alpha}^{-1}(F^\comp)$
+                  \item[\bullet] $\bigcup\limits_{n \in \mathbb{N}}\pi_{\alpha}^{-1}(E_n) = \left(\pi_{\alpha}^{-1}(\bigcup\limits_{n \in \mathbb{N}}E_n)\right)$\retTwo
+               \end{itemize}
+            \end{myIndent}
+
+            Also, for any $E \subseteq X_\alpha$, $E \in \mathcal{E}_\alpha \Longrightarrow \pi_\alpha^{-1}(E) \in \mathcal{M}(\mathcal{F})$.\retTwo
+         \end{myIndent}
+
+         By definition, we thus know that $\mathcal{M}_\alpha \subseteq \mathcal{F}_\alpha$. So for all $\alpha \in A$ and $E_\alpha \in \mathcal{M}_\alpha$, we know that $E_\alpha \in \mathcal{F}_\alpha$, which means that $\pi_\alpha^{-1}(E_\alpha) \in \mathcal{M}(\mathcal{F})$. So\\ $\bigotimes\limits_{\alpha \in A} \mathcal{M}_\alpha \subseteq \mathcal{M}(\mathcal{F})$.\retTwo
+      \end{myIndent}
+
+      (iii) We can also combine the first two parts of this proposition. If $A$ is countable and $\mathcal{M}_\alpha = \mathcal{M}(\mathcal{E}_\alpha)$ for all $\alpha \in A$, then $\bigotimes\limits_{\alpha \in A}\mathcal{M}_\alpha$ is generated by:
+      
+      {\centering $\{\prod\limits_{\alpha \in A}E_\alpha \mid \forall \alpha \in A, \myHS E_\alpha \in \mathcal{E}_\alpha\}$\retTwo\par}
+   \end{itemize}
+\end{myIndent}
+
+\mHeader{Lecture 3 Notes: 10/3/2024}
+
+\begin{myIndent}\hTwo
+   \blab{Proposition}: Let $X_1, \ldots, X_n$ be metric spaces, and define $X = \prod\limits_{i=1}^n X_i$ to be the\\ [-8pt] metric space equipped with the product metric.
+   
+   \begin{myIndent}\myComment
+      The product metric defines the distance between any $\bm{x}, \bm{y} \in \prod\limits_{i = 1}^n$ to be the max\\ distance between a coordinate of $\bm{x}$ and the corresponding coordinate in $\bm{y}$.\retTwo
+   \end{myIndent}
+
+   \begin{itemize}
+      \item $\bigotimes\limits_{i = 1}^n \mathcal{B}_{X_i} \subseteq \mathcal{B}_X$.\\ [-10pt]
+      \begin{myIndent}\hThree
+         Proof:\\
+         By the previous proposition: $\bigotimes\limits_{i = 1}^n \mathcal{B}_{X_i}$ is generated by the collection:
+         
+         {\centering $\{\pi_{i}^{-1}(U_i) \mid i \in \{1, \ldots, n\} \text{ and } U_i \subseteq X_i \text{ is open}\}$.\retTwo\par}
+
+         Also, by the definition of a product topology, we know that each $\pi_{i}^{-1}(U_i)$ is\\ open in $X$. So by the lemma on page 9, we know that $\bigotimes\limits_{i = 1}^n \mathcal{B}_{X_i} \subseteq \mathcal{B}_X$.\newpage 
+      \end{myIndent}
+
+      \item If each $X_i$ is separable, then $\bigotimes\limits_{i = 1}^n \mathcal{B}_{X_i} = \mathcal{B}_X$.\\ [-10pt]
+      
+      \begin{myIndent}\hThree
+         Proof:\\
+         Let $C_i \subseteq X_i$ be countable with $\overline{C_i} = X_i$ for all $i \in \{1, \ldots, n\}$. Then define $\mathcal{E}_i = \{B(p, x) \mid x \in C_i \text{ and } p \in \mathbb{Q}_+\}$ for each $i$. Since $\mathcal{E}_i$ is countable and all open sets in $X_i$ are the union of a subcollection of $\mathcal{E}_i$, we know that any open set in $X_i$ is also in $\mathcal{M}(\mathcal{E}_i)$. So, $\mathcal{B}_{X_i} \subseteq \mathcal{M}(\mathcal{E}_i)$.  And since $\mathcal{E}_i$ contains only open sets of $X_i$, the reverse inclusion holds too.\retTwo
+
+         Also, $C = \prod\limits_{i=1}^n C_i$ is a countable dense subset of $X$.\retTwo Defining $\mathcal{E} = \{B(p, \bm{x}) \mid \bm{x} \in C \text{ and } p \in \mathbb{Q}_+\}$, we have that $\mathcal{E}$ is countable and any open set in $X$ is also in $\mathcal{M}(\mathcal{E})$. So, $\mathcal{B}_{X} \subseteq \mathcal{M}(\mathcal{E})$. And like before since $\mathcal{E}$ contains only open sets of $X$, the reverse inclusion holds too. \retTwo
+
+         But now note that given, $B(p, (x_1, \ldots, x_n)) \in \mathcal{E}$, we know that\\ $B(p, (x_1, \ldots, x_n)) = \prod\limits_{i = 1}^n B(p, x_i)$ where $(p, x_i) \in \mathcal{E}_i$ for all $i$.\retTwo
+         
+         So applying part 3 of the previous proposition and the lemma on page 9:
+
+         {\centering\fontsize{12}{14}\selectfont $\mathcal{B}_X = \mathcal{M}(\mathcal{E}) \subseteq \mathcal{M}\left(\prod\limits_{i = 1}^n E_i \mid E_i \in \mathcal{E}_i \text{ for all } i\right) = \bigotimes\limits_{i=1}^n \mathcal{M}(\mathcal{E}_i) = \bigotimes\limits_{i = 1}^n \mathcal{B}_{X_i}$ \retTwo\par}
+      \end{myIndent}
+   \end{itemize}
+
+   \blab{Corollary:} $\mathcal{B}_{\mathbb{R}^n} = \bigotimes\limits_{i = 1}^n \mathcal{B}_\mathbb{R}$.
+
+   \begin{myIndent}\hThree
+      This is because the product metric $\rho_1$ of $\prod\limits_{i=1}^n \mathbb{R}$ is \udefine{equivalent} to the standard metric\\ [-8pt] $\rho_2$ of $\mathbb{R}^n$, meaning that: 
+      
+      {\centering $\exists C, C^\prime > 0$ such that $C\rho_1 \leq \rho_2 \leq C^\prime\rho_1$.\retTwo\par}
+
+      
+      \begin{myIndent}\hFour
+         In the specific case of this corollary, set $C = \sqrt{\sfrac{1}{n}}\hspace{0.2em}$ and $C^\prime = 1$.\retTwo
+      \end{myIndent}
+
+      The fact relevant here is that given the metrics $\rho_1, \rho_2$ on a set $X$, if $\rho_1$\\ is equivalent to $\rho_2$, then $(X, \rho_1)$ and $(X, \rho_2)$ have the same open sets (this\\ is really trivial to prove).\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+\mySepTwo
+
+An \udefine{elementary family} is a collection $\mathcal{E}$ of subsets of a set $X$ such that:
+
+\begin{itemize}
+   \item $\emptyset \in \mathcal{E}$
+   \item If $E, F \in \mathcal{E}$, then $E \cap F \in \mathcal{E}$.
+   \item If $E \in \mathcal{E}$, then $E^\comp$ is a finite disjoint union of members of $\mathcal{E}$.
+\end{itemize}
+
+\newpage
+
+\begin{myIndent}\hTwo
+   If $\mathcal{E}$ is an elementary collection, then $\mathcal{A}$ equal to the collection of finite disjoint\\ unions of $\mathcal{E}$ is an algebra.\retTwo
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      Firstly, given any $A, B \in \mathcal{E}$, we have that $A \cup B = (A \cap B^\comp) \cup B$. Also,\\ $(B - A) = (A \cap \bigcup\limits_{i=1}^k C_i)$ where each $C_i$ is disjoint. This shows that $A - B \in \mathcal{E}$. So $A \cup B$ is a finite union of disjoint sets in $\mathcal{E}$.  \retTwo
+
+      By induction, we get that for any $A_1, \ldots, A_n \in \mathcal{E}$,\myHS $A_1 \cup \ldots \cup A_n$ is a finite\\ union of disjoint sets in $\mathcal{E}$. So $\mathcal{A}$ actually equals the set of all finite unions of $\mathcal{E}$. It\\ follows that $\mathcal{A}$ is closed under finite unions.\retTwo
+
+      I really don't want to write down the proof that $\mathcal{A}$ is closed under complements. It's what you would expect but just heavy on notation.
+   \end{myIndent}
+\end{myIndent}
+
+\exOne\mySepTwo 
+
+\blab{Exercise 1.5:} If $\mathcal{M}$ is the $\sigma$-algebra generated by $\mathcal{E}$, then $\mathcal{M}$ is the union of the $\sigma$-algebras generated by $\mathcal{F}$ as $\mathcal{F}$ ranges over all countable subsets of $\mathcal{E}$.
+
+\begin{myIndent}\exTwoP
+   For the sake of convenience, I will write the union of $\sigma$-algebras generated by\\ countable subsets of $\mathcal{E}$ as: $\bigcup_\mathcal{F} \mathcal{M}(\mathcal{F})$.\retTwo
+
+   To start, since each $\mathcal{M}(\mathcal{F}) \subseteq \mathcal{M}(\mathcal{E})$, we trivially know $\bigcup_\mathcal{F}\mathcal{M}(\mathcal{F}) \subseteq \mathcal{M}(\mathcal{E}) = \mathcal{M}$.\\ On the other hand, $\mathcal{E} \subseteq \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$ since each countable $\mathcal{F} \subseteq \mathcal{E}$ is contained in\\ $\mathcal{M}(\mathcal{F}) \subseteq \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$. So, if we can show that $\bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$ is a $\sigma$-algebra, then we will know that: $\mathcal{M} = \mathcal{M}(\mathcal{E}) \subseteq \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$.\retTwo
+
+   Fortunately, it's trivial to show that $\bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$ is closed under complements.\\ Given any $E \in \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$, we know there exists $\mathcal{M}(\mathcal{F})$ with $E \in \mathcal{M}(\mathcal{F})$.\\ Then $E^\comp \in \mathcal{M}(\mathcal{F}) \subseteq \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$. \retTwo
+   
+   Meanwhile, the proof that $\bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$ is closed under countable unions is\\ more involved:\\ [-9pt]
+   \begin{myIndent}\exPPP
+      Suppose $\{E_n\}_{n \in \mathbb{N}}$ is a countable collection of sets in $\bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$. Then for each\\ $n \in \mathbb{N}$, there exists $\mathcal{F}_n$ such that $E_n \in \mathcal{M}(\mathcal{F}_n)$. Importantly, $\bigcup\limits_{n \in \mathbb{N}}\mathcal{F}_n$ is still\\ [-7pt] countable. So, setting $\mathcal{F}^\prime = \bigcup\limits_{n \in \mathbb{N}}\mathcal{F}_n$, we have that:
+
+      {\centering $\mathcal{M}(\mathcal{F}^\prime) \subseteq \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$ \retTwo\par}
+
+      Since $\mathcal{F}_n \subseteq \mathcal{F}^\prime$ for all $n$, we know that $\mathcal{M}(\mathcal{F}_n) \subseteq \mathcal{M}(\mathcal{F}^\prime)$ for all $n$. So, $\{E_n\}_{n \in \mathbb{N}}$\\ is contained in $\mathcal{M}(\mathcal{F}^\prime)$. It follows that $\bigcup\limits_{n \in \mathbb{N}}E_n \in \mathcal{M}(\mathcal{F}^\prime) \subseteq \bigcup_\mathcal{F}\mathcal{M}(\mathcal{F})$.\retTwo
+   \end{myIndent}
+
+   \mySepTwo
+   
+   \newpage\hOne
+
+
+
+
+\end{myIndent}
 
 \end{document}
 
