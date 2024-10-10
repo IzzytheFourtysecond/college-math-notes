@@ -924,11 +924,30 @@ Let $(X, \mathcal{M}, \mu)$ be a measure space.
    \end{tabular}\retTwo\par}
 \end{myIndent}
 
-\blab{Exercise 1.14:} If $\mu$ is a semifinite measure and $\mu(E) = \infty$, then for any $C > 0$ there exists $F \subset E$ with $C < \mu(F) < \infty$.
+\blab{Exercise 1.14:} If $\mu$ is a semifinite measure and $\mu(E) = \infty$, then for any $C > 0$ there exists $F \subset E$ in $\mathcal{M}$ with $C < \mu(F) < \infty$.
 
 
 \begin{myIndent}\exTwoP
-   
+   Let $S$ be the set of $C > 0$ for which there exists $F \subset E$ in $\mathcal{M}$ with $C < \mu(F) < \infty$. By the definition of semifiniteness, we know $S$ isn't empty. Meanwhile, if for some $C$ we had that there didn't exist a set $F \subset E$ in $\mathcal{M}$ with $C < \mu(F) < \infty$, then we'd know that $S$ is bounded above. Hence, we'd know there exists $\alpha = \sup(S)$.\newpage
+
+   Now firstly, for all $n \in \mathbb{N}$, choose $G_n \subset E$ in $\mathcal{M}$ such that $\alpha - \frac{1}{n} < \mu(G_n) < \infty$. After that, define $F_n = \bigcup\limits_{i=1}^n G_i$ for all $n \in \mathbb{N}$. Since $\mathcal{M}$ is closed under finite unions,\\ [1pt] we know each $F_n$ is in  $\mathcal{M}$. So then observe:
+   \begin{enumerate}
+      \item $F_n \subseteq F_{n + 1}$ for all $n \in \mathbb{N}$
+      \item For each $n \in \mathbb{N}$,\myHS $\alpha - \frac{1}{n} < \mu(F_n) \leq \alpha$
+      \begin{myIndent}\exPPP
+         This is because for each $n \in \mathbb{N}$,\myHS  $\mu(F_n) < \sum\limits_{i = 1}^n \mu(G_i)$ which is a finite sum of\\ [-2pt] finite quantities. So $\mu(F_n) < \infty$. At the same time, $F_n \subset E$ since each $G_i$ is\\ [5pt] a subset of $E$ (we know it is a proper subset because it has a different measure\\ [5pt] than $E$). So, if $\mu(F_n) > \alpha$, then $\frac{1}{2}(\mu(F_n) + \alpha)$ would be an element of\\ [5pt] $S$ greater than $\alpha$, thus contradicting that $\alpha = \sup(S)$. As for the other\\ [5pt] inequality, note that $G_n \subseteq F_n$. Thus $\mu(F_n) \geq \mu(G_n) > \alpha - \frac{1}{n}$.\retTwo
+      \end{myIndent}
+
+      Now $\bigcup\limits_{n = 1}^\infty F_n \in \mathcal{M}$ due to $\mathcal{M}$ being closed under countable sums. Also, by\\ [-6pt] the two observations above, we know $\mu(\bigcup\limits_{n = 1}^\infty F_n) = \lim\limits_{n \rightarrow \infty}\mu(F_n) = \alpha$. And finally,\\ [-6pt] note that $\bigcup\limits_{n = 1}^\infty F_n$ is a proper subset of $E$ (we know this because each $F_n \subset E$\\ [-6pt] and $\bigcup\limits_{n = 1}^\infty F_n$ can't equal $E$ since their measures are different).\retTwo
+
+      So, we have now proven the existence of a set $F \in \mathcal{M}$ such that $F \subset E$ and\\ $\mu(F) = \alpha$. But now note that $\mu(E - F)$ must be infinite since:
+      
+      {\centering $\mu(E - F) + \alpha = \mu(E - F) + \mu(F) = \mu(E) = \infty$.\retTwo\par}
+
+      Because $\mu$ is semifinite, there exists $F^\prime \subset F - E$ in $\mathcal{M}$ with $0 < \mu(F^\prime) < \infty$.\\ But then because $F$ and $F^\prime$ are disjoint subsets of $E$ in $\mathcal{M}$, we know $F \cup F^\prime \in \mathcal{M}$ and $\mu(F \cup F^\prime) = \mu(F) + \mu(F^\prime) > \alpha$. Plus $F \cup F^\prime$ is a proper subset of $E$. (It can't equal $E$ because it's measure isn't equal to $E$. But, both $F$ and $F^\prime$ individually are subsets of $E$.)
+
+      Hence, we have that $\frac{1}{2}(\alpha, \mu(F) + \mu(F)^\prime)$ is an element of $S$ greater than $\alpha$, thus contradicting that $\alpha$ was the supremum of $S$. We conclude therefore that $\alpha$ does not exist, meaning $S$ is unbounded. 
+   \end{enumerate}
 \end{myIndent}
 
 \end{document}
