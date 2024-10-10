@@ -638,22 +638,23 @@ Let $(X, \rho)$ be a metric space. We define the \udefine{Borel $\sigma$-algebra
    \begin{myIndent}\exTwoP
       By the Hausdorff maximum principle, we know there is a subcollection $\mathcal{S}$\\ of $\mathcal{A}$ which is simply ordered by proper subset and is not contained in any other collection of $\mathcal{A}$ which is simply ordered by proper subset.\retTwo
       
-      We claim $\mathcal{S}$ can't be finite. For suppose $\mathcal{S} = \{A_1, \ldots, A_n\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset which are indexed such that:
-      \begin{itemize}
-         \item[\bullet] $A_1 = \emptyset$
-         \item[\bullet] $A_i \subset A_{i + 1}$ for all $i \in \{1, \ldots, n-1\}$
-         \item[\bullet] $A_n = X$.
-         
-         \begin{myTindent}\exPPP
-            (If $\mathcal{S}$ is maximal, we know $\emptyset, X \in \mathcal{S}$)\retTwo
-         \end{myTindent}
-      \end{itemize} 
+      We claim $\mathcal{S}$ can't be finite. For suppose $\mathcal{S} = \{E_1, \ldots, E_n\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset which are indexed such that $E_i \subset E_{i + 1}$ for all $i \in \{1, \ldots, n-1\}$.
+      \begin{myDindent}\exPPP
+         (Note: if $\mathcal{S}$ is maximal, then we must have $E_1 = \emptyset$ and $E_n = X$.)\retTwo
+      \end{myDindent}
       
-      Then choose $B \notin \mathcal{A} - \mathcal{M}(\{A_1, \ldots, A_n\})$. We know we can do this because $\mathcal{M}(\{A_1, \ldots, A_n\})$ is finite while $\mathcal{A}$ is infinite.\retTwo
+      We can partition $\mathcal{A}$ into collections $\mathcal{A}_1, \ldots \mathcal{A}_n$ such that $A \in \mathcal{A}_i$ iff $i$ is the least integer for which $A \subseteq E_i$. Importantly, all sets in $\mathcal{A}$ will fall into a partition because all sets from $\mathcal{A}$ are contained in $E_n$. Also note that while there are infinitely many $A \in \mathcal{A}$, there are only $n$ many partitions. So, there must be a least integer $k$ such that $A_k$ contains infinitely many $A \in \mathcal{A}$.\\ [-14pt]
       
-      Next let $k = \min\{i \in \{1, \ldots, n\} \mid B \subset A_i\}$. In other words, let $k$ be such that $B \subset A_k$ but $B \not\subset A_{k-1}$. If $A_{k-1} \cap B \neq \emptyset$, then because $B \not\subseteq A_{k-1}$, we know that $A_{k-1} \subset A_{k-1} \cup B \subset A_{k}$. Meanwhile, if $A_{k-1} \cap B = \emptyset$, then note that:\\ $A_{k-1} \cup B = A_k \Longrightarrow B = A_k - A_{k-1} \in \mathcal{M}(\{A_1, \ldots, A_n\})$. So we know\\ that $A_{k-1} \cup B \neq A_k$. At the same time, since $B \neq \emptyset$, we know that\\ $A_{k-1} \subset A_{k-1} \cup B \subset A_k$.\retTwo
+      \begin{myTindent}\begin{myTindent}\exPPP
+         And since $\mathcal{A}_1 = \{\emptyset\}$, we know $k \geq 2$.\retTwo
+      \end{myTindent}\end{myTindent}
 
-      By transitivity, we know that $A_{k-1} \cup B$ is comparable via proper subset with $A_i$ for all $i \in \{1, \ldots, n\}$. Hence, we've shown that $\mathcal{S} \cup \{A_{k-1} \cup B\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset. But this contradicts that $\mathcal{S}$ is maximal.\retTwo
+      The fact that $\mathcal{A}_i$ is finite for all $i < k$ means that there are only finitely many sets from $\mathcal{A}$ contained in $E_{k-1}$. Thus, we can pick a set $B \in \mathcal{A}_k$ such that $B \neq (E_k - E_{k-1}) \cup A$ for any $A \in \mathcal{A}$ that is a subset of $E_{k-1}$.\retTwo
+
+      Note that since $E_{k-1} \cap B$ is a set in $\mathcal{A}$, we must have that $(E_k - E_{k-1}) \not\subseteq B$ or else $B$ would be the union of $(E_k - E_{k-1})$ and a set from $\mathcal{A}$. Thus, we know $E_k$ contains points that neither $B$ nor $E_{k-1}$ have. At the same time, we know $B$ has points that $E_{k-1}$ doesn't have. It follows that: $E_{k-1} \subset E_{k-1} \cup B \subset E_k$. \retTwo
+
+
+      Via transitivity, $E_{k-1} \cup B$ is comparable via proper subset with $E_i$ for all $i \in \{1, \ldots, n\}$. Hence, we've shown that $\mathcal{S} \cup \{E_{k-1} \cup B\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset. But this contradicts that $\mathcal{S}$ is maximal.\retTwo
 
       Now that we know $\mathcal{S}$ is infinite, let $(E_n)_{n \in \mathbb{Z}_+}$ be a sequence of sets in $\mathcal{S}$\\ satisfying that $E_n \subset E_{n + 1}$. Then we have that $(E_{n+1} - E_n)_{n \in \mathbb{Z}_+}$ is an infinite\\ sequence of disjoint sets in $\mathcal{A}$.\retTwo
    \end{myIndent}
@@ -944,11 +945,21 @@ Let $(X, \mathcal{M}, \mu)$ be a measure space.
       
       {\centering $\mu(E - F) + \alpha = \mu(E - F) + \mu(F) = \mu(E) = \infty$.\retTwo\par}
 
-      Because $\mu$ is semifinite, there exists $F^\prime \subset F - E$ in $\mathcal{M}$ with $0 < \mu(F^\prime) < \infty$.\\ But then because $F$ and $F^\prime$ are disjoint subsets of $E$ in $\mathcal{M}$, we know $F \cup F^\prime \in \mathcal{M}$ and $\mu(F \cup F^\prime) = \mu(F) + \mu(F^\prime) > \alpha$. Plus $F \cup F^\prime$ is a proper subset of $E$. (It can't equal $E$ because it's measure isn't equal to $E$. But, both $F$ and $F^\prime$ individually are subsets of $E$.)
+      Because $\mu$ is semifinite, there exists $F^\prime \subset F - E$ in $\mathcal{M}$ with $0 < \mu(F^\prime) < \infty$.\\ But then because $F$ and $F^\prime$ are disjoint subsets of $E$ in $\mathcal{M}$, we know $F \cup F^\prime \in \mathcal{M}$ and $\mu(F \cup F^\prime) = \mu(F) + \mu(F^\prime) > \alpha$. Plus $F \cup F^\prime$ is a proper subset of $E$. (It can't equal $E$ because it's measure isn't equal to $E$. But, both $F$ and $F^\prime$ individually are subsets of $E$.)\retTwo
 
       Hence, we have that $\frac{1}{2}(\alpha, \mu(F) + \mu(F)^\prime)$ is an element of $S$ greater than $\alpha$, thus contradicting that $\alpha$ was the supremum of $S$. We conclude therefore that $\alpha$ does not exist, meaning $S$ is unbounded. 
    \end{enumerate}
 \end{myIndent}
+
+\mySepTwo
+
+\hOne Given a measure space $(X, \mathcal{M}, \mu)$, a set $E \in \mathcal{M}$ satisfying that $\mu(E) = 0$ is called a \udefine{null set} (or $\mu$-null set if we want more precision).\retTwo
+
+By subadditivity (a.k.a. the fact that for all $(E_j)_{j \in \mathbb{N}} \subset\mathcal{M},\myHS \mu(\bigcup\limits_{j=1}^\infty E_j) \leq \sum\limits_{j = 1}^\infty \mu(E_j)$),\\ [-8pt] we know countable unions of null sets are also null sets.\newpage
+
+Given a proposition $P(x)$, if there exists a null set $E \in \mathcal{M}$ satisfying that $P(x)$ is true for all $x \in X - E$, then we say $P$ is true \udefine{almost everywhere} (abbreviated as $\mu$-a.e. or just a.e. if the measure being used is clear).\retTwo
+
+A measure space is \udefine{complete} if given any $E \subseteq X$, we have that $N \in \mathcal{M}$ with\\ $\mu(N) = 0$ and $E \subseteq N$ implies that $E \in \mathcal{M}$.
 
 \end{document}
 
