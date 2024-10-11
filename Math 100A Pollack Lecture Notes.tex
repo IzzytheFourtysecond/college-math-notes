@@ -170,7 +170,6 @@
 \newcommand{\myHS}{ \hspace{0.5em}}
 
 \newcommand{\myId}{\mathrm{Id}}
-\newcommand{\myIm}{\mathrm{im}}
 \newcommand{\myObj}{\mathrm{Obj}}
 \newcommand{\myHom}{\mathrm{Hom}}
 \newcommand{\myEnd}{\mathrm{End}}
@@ -183,6 +182,8 @@
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\sgn}{sgn}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -565,6 +566,166 @@ If $G$ is a group and $U \subseteq G$, one can form the subgroup $H = \langle U\
 
 \mySepTwo
 
+\begin{myIndent}\hTwo
+	\blab{Proposition}: Suppose $\varphi: G \longrightarrow G^\prime$ is a group homomorphism. Then:
+	\begin{enumerate}
+		\item If $a_1, \cdots, a_k \in G_1$, then $\varphi(a_1\cdots a_k)=\varphi(a_1)\cdots\varphi(a_2)$.
+		\item $\varphi(1_G) = 1_{G^\prime}$
+		\item $\varphi(a^{-1}) = \varphi(a)^{-1}$
+		
+		\begin{myIndent}\hThree
+			Proof:\\
+			(1) This is true by induction. For example:
+			
+			{\centering $\varphi(a_1a_2a_3) = \varphi(a_1a_2)\varphi(a_3) = \varphi(a_1)\varphi(a_2)\varphi(a_3)$.\retTwo\par}
+
+			(2) $\varphi(1_G) = \varphi(1_{G}1_{G}) = \varphi(1_G)\varphi(1_G)$. By multiplying $\varphi(1_G)^{-1}$ to both\\ sides, we  get that $\varphi(1_G) = 1_{G^\prime}$.\retTwo
+
+			(3) $1_{G^\prime} = \varphi(1_G) = \varphi(aa^{-1}) = \varphi(a)\varphi(a^{-1})$. By multiplying $\varphi(a)^{-1}$ to both\\ sides, we get that $\varphi(a)^{-1} = \varphi(a^{-1})$.\newpage
+		\end{myIndent}
+	\end{enumerate}
+\end{myIndent}
+
+Suppose $\varphi: G \longrightarrow G^\prime$ is a group homomorphism. 
+\begin{itemize}
+	\item The \udefine{image} of $\varphi$ is: $\im(\varphi) = \varphi(G) = \{x \in G^\prime \mid x = \varphi(a) \text{ for some } a \in G\}$.
+	\item The \udefine{kernel} of $\varphi$ is $\ker(\varphi) = \{x \in G \mid \varphi(x) = 1_{G^\prime}\}$.\retTwo
+\end{itemize}
+
+
+\begin{myIndent}\hTwo
+	\blab{Proposition:} Let $\varphi: G \longrightarrow G^\prime$ be a group homomorphism. Then $\ker(\varphi) \subseteq G$ is a subgroup and $\im(\varphi)$ is a subgroup.
+	
+	\begin{myIndent}\hThree
+		The kernel is a subgroup because if $\varphi(a) = 1_{G^\prime} = \varphi(b)$, then $\varphi(ab) = 1_{G^\prime}$. Also, if\\ $\varphi(a) = 1_{G^\prime}$, then $\varphi(a^{-1}) = \varphi(a)^{-1} = 1_{G^\prime}$. And finally, $\varphi(1_G) = 1_{G^\prime}$ as we showed earlier.\retTwo
+
+		The image is subgroup because if $a^\prime, b^\prime \in \im(\varphi)$, then there exists $a, b \in G$ with $\varphi(a) = a^\prime$ and $\varphi(b) = b^\prime$. Then $\varphi(ab) = a^\prime b^\prime$, meaning $a^\prime b^\prime \in \im(\varphi)$. Also,\\ $\varphi(a^{-1}) = (a^\prime)^{-1}$, meaning $(a^\prime)^{-1} \in \im(\varphi)$. Finally, we know $1_{G^\prime} \in \im(\varphi)$\\ because $\varphi(1_G) = 1_{G^\prime}$.\retTwo
+	\end{myIndent}
+
+	\blab{Proposition:} If $\rho_1: G_1 \longrightarrow G_2$ and $\rho_2: G_2 \longrightarrow G_3$ are group homomorphisms,\\ then $\rho_2 \circ \rho_1: G_1 \longrightarrow G_3$ is a group homomorphism.
+\end{myIndent}
+
+\mySepTwo
+
+\mHeader{Lecture 6: 10/9/2024}
+
+Let $b_1, \ldots, b_n$ be the standard basis of $\mathbb{R}^n$. Given any $\sigma \in S_n$, define a linear map $\rho(\sigma)$ on $\mathbb{R}^n$ such that $\rho(\sigma)(b_i) = b_{\sigma(i)}$. Or equivalently:
+
+{\centering $\rho(\sigma)(\alpha_1b_1 + \ldots + \alpha_nb_n) = \alpha_{\sigma^{-1}(1)}b(1) + \ldots + \alpha_{\sigma^{-1}(n)}b(n)$ \retTwo\par}
+
+Then $\rho$ is a group homomorphism from $S_n$ to $GL_n(\mathbb{R})$.
+\begin{myIndent}\hTwo
+	The proof for this is hopefully obvious.\retTwo
+\end{myIndent}
+
+Noting that $\det: GL_n(\mathbb{R}) \longrightarrow \mathbb{R}^{\times}$ is a group homomorphism, given any $\sigma \in S_n$\\ we define the \udefine{sign} of the permutation: $\sgn(\sigma) = \det(\rho(\sigma))$. Note that by the\\ proposition at the end of the last lecture, we know $\sgn$ is a group homomorphism.
+
+\begin{myIndent}\hTwo
+	\blab{Claim:} $\im(\sgn) = \{1, -1\}$.
+	
+	\begin{myIndent}\hThree
+		Proof:\\
+		Because $S_n$ is finite, we know all $\sigma \in S_n$ have finite order. Thus, consider any\\ $\sigma \in S_n$ with order $k$. Then we have that:
+		
+		{\centering $\sigma^k = 1 \Longrightarrow \rho(\sigma^k) = \rho(\sigma)^k = \rho(1)$.\retTwo\par}
+		
+		In turn, $\det(\rho(\sigma)^k) = \det(\rho(\sigma))^k = \det(\rho(1))$. So $\sgn(\sigma)^k = 1$. But since\\ $\sgn(\sigma) \in \mathbb{R}$, we must have that $\sgn(\sigma) = \pm 1$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+The kernel of the determinant homomorphism: $\det: GL_n(\mathbb{R}) \longrightarrow \mathbb{R}^\times$ is called the \udefine{special linear group} $SL_n(\mathbb{R})$.\retTwo
+
+The kernel of the sign homomorphism $\sgn: S_n \longrightarrow \{-1, 1\}$ is called the \udefine{alternating group}: $A_n$. Also, we call the elements of $A_n$ \udefine{even permutations}.\newpage
+
+Suppose $H \subseteq G$ is a subgroup and $a \in G$. Then:\\ [-12pt]
+
+{\centering$aH = \{g \in G \mid \exists h \in H \suchthat g = ah\}$,\\ [4pt]\par}
+
+is called a \udefine{left coset} of $H$ in $G$. One can similarly define a \udefine{right coset} $Ha$.\retTwo
+
+
+\begin{myIndent}\hTwo
+	\blab{Proposition}: Suppose $\varphi: G \longrightarrow G^\prime$ is a group homomorphism, and let\\ $K = \ker(\varphi)$. Then the following statements are equivalent for all $a, b \in G$:
+	\begin{itemize}
+		\item[$1$.] $\varphi(a) = \varphi(b)$
+		\item[$2$.] $a^{-1}b \in K$
+		\item[$3$.] $b \in aK$
+		\item[$4$.] $aK = bK$
+	\end{itemize}
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		($1 \Longrightarrow 2$) If $\varphi(a) = \varphi(b)$, then:
+
+		{\centering $\varphi(a^{-1}b) = \varphi(a^{-1})\varphi(b) = \varphi(a^{-1})\varphi(a) = \varphi(a^{-1}a) = 1$.\retTwo\par}
+		
+		So $a^{-1}b \in K$.\retTwo
+
+		($2 \Longrightarrow 3$) If $a^{-1}b \in K$, then $b = a(a^{-1}b) \in aK$.\retTwo
+
+		($3 \Longrightarrow 4$) Suppose $b = ak$ for some $k \in K$. Then firstly, note that for all $c \in aK$, if $h \in K$ satisfies $c = ah$, then $c = akk^{-1}h = b(k^{-1}h)$. This shows that $aK \subseteq bK$. As for the other inclusion, note that $b = ak \Longrightarrow a = bk^{-1}$. So $a \in bK$ and we can repeat the same reasoning as before.
+		
+		\begin{myTindent}\teachComment
+			This is actually a special case of the first corollary below.\retTwo
+		\end{myTindent}
+
+		$(4 \Longrightarrow 1)$ If $aK = bK$, then we know there exists constants $k_1, k_2 \in K$ such that $ak_1 = bk_2$. In turn, $\varphi(a) = \varphi(ak_1) = \varphi(bk_2) = \varphi(b)$.\retTwo
+	\end{myIndent}
+
+	\blab{Lemma:} Suppose $H \subseteq G$ is a subgroup, $x \in G$, and $g \in xH$. Then $xH = gH$.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		Let $g = xh^\prime$ where $h_1 \in H$. Then $gh = xh^\prime h \in xH$ for all $h \in H$. Hence,\\ $gH \subseteq xH$. Conversely $x = g(h^\prime)^{-1}$. So $x \in gH$ and we can do the same\\ reasoning as before to show that $xH \subseteq gH$.\retTwo
+	\end{myIndent}
+
+	\blab{Corollary:} Suppose $H \subseteq G$ is a subgroup and $x, y \in G$. If $xH \cap yH \neq \emptyset$, then $xH = yH$.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		Suppose $xh_1 = g = yh_2$ with $h_1, h_2 \in H$. Then $xH = gH = yH$ by the previous lemma.\retTwo
+	\end{myIndent}
+
+	\blab{Corollary:} A group homomorphism $\varphi: G \longrightarrow G^\prime$ is injective if and only if its kernel is trivial (i.e. $\ker(\varphi) = \{1\})$.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		The forward implication is trivial by the definition of injectivity. As for the reverse\\ implication, suppose $\ker(\varphi) = \{1\}$. Then:
+		
+		{\centering $\varphi(a) = \varphi(b) \Longrightarrow a^{-1}b \in \ker(\varphi) = \{1\} \Longrightarrow a^{-1}b = 1$.\retTwo\par} It follows that $a = b$.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+Suppose $G$ is a group and $a, g \in G$. Then $gag^{-1}$ is called the \udefine{conjugate} of $a$ by $g$.\retTwo
+
+Suppose $G$ is a group and $N \subseteq G$ is a subgroup. The subgroup $N$ is \udefine{normal} if $gng^{-1} \in N$ for all $n \in N$ and $g \in G$.
+
+\begin{myIndent}\hTwo
+	\blab{Proposition:} Suppose $\varphi: G \longrightarrow G^\prime$ is a group homomorphism. Then $\ker(\varphi) \subseteq G$ is a normal subgroup.
+	
+	\begin{myIndent}\hThree
+		Proof:\\
+		Suppose $a \in \ker(\varphi)$ and $g \in G$. Then $gag^{-1} \in \ker(\varphi)$ because:
+
+		{\center $\varphi(gag^{-1}) = \varphi(g)\varphi(a)\varphi(g)^{-1} = \varphi(g)\varphi(g)^{-1} = 1$ \retTwo\par}
+	\end{myIndent}
+\end{myIndent}
+
+\mySepTwo
+
+\mHeader{Lecture 7: 10/11/2024}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -649,6 +810,25 @@ If $G$ is a group and $U \subseteq G$, one can form the subgroup $H = \langle U\
 \mySepTwo
 
 \mHeader{Homework 2:}
+
+
+\begin{enumerate}
+	\item (Chapter 2, Problem 4.1) Let $a$ and $b$ be elements of a group $G$. Suppose that $a$ has order $7$ and $a^3b = ba^3$. Prove that $ab = ba$.
+	
+	\begin{myIndent}\exOne
+		Since $ba^3 = a^3b$ and $a^7 = 1$, we have that:
+		
+		{\centering $b = a^3ba^4 = a^3(ba^3)a = a^3(a^3b)a = a^6ba$. \retTwo\par}
+
+		Composing both sides by $a$ on the left, we get that $ab = 1ba = ba$.\retTwo
+	\end{myIndent}
+	
+	\item (Chapter 2, Problem 4.3) Let $a$ and $b$ be elements of a group $G$. Prove that $ab$ and $ba$ have the same order.
+	
+	\begin{myIndent}\exOne
+		Suppose $(ab)^n = 1$ where $n$ is a positive integer.
+	\end{myIndent}
+\end{enumerate}
 
 
 \newpage
