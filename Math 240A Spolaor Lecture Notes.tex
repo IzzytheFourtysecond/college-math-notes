@@ -89,7 +89,7 @@
    \fontsize{12}{14}\selectfont%
 }
 \newcommand{\hFour}{%
-   \color{Cyan}
+   \color{Cyan!80!black}
    \fontsize{12}{14}\selectfont%
 }
 \newcommand{\myComment}{%
@@ -631,40 +631,39 @@ Let $(X, \rho)$ be a metric space. We define the \udefine{Borel $\sigma$-algebra
    \end{itemize}
 \end{myIndent}
 
-\blab{Exercise 1.3:} Let $\mathcal{A}$ be an infinite $\sigma$-algebra on $X$.
+\blab{Exercise 1.3:} Let $\mathcal{M}$ be an infinite $\sigma$-algebra on $X$.
 \begin{itemize}
-   \item[(a)] $\mathcal{A}$ contains an infinite sequence of disjoint sets.
+   \item[(a)] $\mathcal{M}$ contains an infinite sequence of disjoint sets.
    
    \begin{myIndent}\exTwoP
-      By the Hausdorff maximum principle, we know there is a subcollection $\mathcal{S}$\\ of $\mathcal{A}$ which is simply ordered by proper subset and is not contained in any other collection of $\mathcal{A}$ which is simply ordered by proper subset.\retTwo
+      By the Hausdorff maximum principle, we know there is a subcollection $\mathcal{S}$\\ of $\mathcal{M}$ which is simply ordered by proper subset and is not contained in any other collection of $\mathcal{M}$ which is simply ordered by proper subset.\retTwo
       
-      We claim $\mathcal{S}$ can't be finite. For suppose $\mathcal{S} = \{E_1, \ldots, E_n\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset which are indexed such that $E_i \subset E_{i + 1}$ for all $i \in \{1, \ldots, n-1\}$.
+      We claim $\mathcal{S}$ can't be finite. For suppose $\mathcal{S} = \{E_1, \ldots, E_n\}$ is a sequence of sets in $\mathcal{M}$ simply ordered by proper subset which are indexed such that $E_i \subset E_{i + 1}$ for all $i \in \{1, \ldots, n-1\}$.
       \begin{myDindent}\exPPP
          (Note: if $\mathcal{S}$ is maximal, then we must have $E_1 = \emptyset$ and $E_n = X$.)\retTwo
       \end{myDindent}
       
-      We can partition $\mathcal{A}$ into collections $\mathcal{A}_1, \ldots \mathcal{A}_n$ such that $A \in \mathcal{A}_i$ iff $i$ is the least integer for which $A \subseteq E_i$. Importantly, all sets in $\mathcal{A}$ will fall into a partition because all sets from $\mathcal{A}$ are contained in $E_n$. Also note that while there are infinitely many $A \in \mathcal{A}$, there are only $n$ many partitions. So, there must be a least integer $k$ such that $A_k$ contains infinitely many $A \in \mathcal{A}$.\\ [-14pt]
+      We can partition $\mathcal{M}$ into collections $\mathcal{M}_1, \ldots \mathcal{M}_n$ such that $A \in \mathcal{M}_i$ iff $i$ is the least integer for which $A \subseteq E_i$. Importantly, all sets in $\mathcal{M}$ will fall into a\\ partition because all sets from $\mathcal{M}$ are contained in $E_n$. Also note that while there are infinitely many $A \in \mathcal{M}$, there are only $n$ many partitions. So, there must be a least integer $k$ such that $\mathcal{M}_k$ contains infinitely many $A \in \mathcal{M}$.\\ [-14pt]
       
       \begin{myTindent}\begin{myTindent}\exPPP
-         And since $\mathcal{A}_1 = \{\emptyset\}$, we know $k \geq 2$.\retTwo
+         And since $\mathcal{M}_1 = \{\emptyset\}$, we know $k \geq 2$.\retTwo
       \end{myTindent}\end{myTindent}
 
-      The fact that $\mathcal{A}_i$ is finite for all $i < k$ means that there are only finitely many sets from $\mathcal{A}$ contained in $E_{k-1}$. Thus, we can pick a set $B \in \mathcal{A}_k$ such that $B \neq (E_k - E_{k-1}) \cup A$ for any $A \in \mathcal{A}$ that is a subset of $E_{k-1}$.\retTwo
+      The fact that $\mathcal{M}_i$ is finite for all $i < k$ means that there are only finitely many sets from $\mathcal{M}$ contained in $E_{k-1}$. Thus, we can pick a set $B \in \mathcal{A}_k$ such that $B \neq (E_k - E_{k-1}) \cup A$ for any $A \in \mathcal{M}$ that is a subset of $E_{k-1}$.\retTwo
 
-      Note that since $E_{k-1} \cap B$ is a set in $\mathcal{A}$, we must have that $(E_k - E_{k-1}) \not\subseteq B$ or else $B$ would be the union of $(E_k - E_{k-1})$ and a set from $\mathcal{A}$. Thus, we know $E_k$ contains points that neither $B$ nor $E_{k-1}$ have. At the same time, we know $B$ has points that $E_{k-1}$ doesn't have. It follows that: $E_{k-1} \subset E_{k-1} \cup B \subset E_k$. \retTwo
+      Note that since $E_{k-1} \cap B$ is a set in $\mathcal{M}$, we must have that $(E_k - E_{k-1}) \not\subseteq B$ or else $B$ would be the union of $(E_k - E_{k-1})$ and a set from $\mathcal{M}$. Thus, we know $E_k$ contains points that neither $B$ nor $E_{k-1}$ have. At the same time, we know $B$ has points that $E_{k-1}$ doesn't have. It follows that: $E_{k-1} \subset E_{k-1} \cup B \subset E_k$. \retTwo
 
+      Via transitivity, $E_{k-1} \cup B$ is comparable via proper subset with $E_i$ for all\\ $i \in \{1, \ldots, n\}$. Hence, we've shown that $\mathcal{S} \cup \{E_{k-1} \cup B\}$ is a sequence of sets in $\mathcal{M}$ simply ordered by proper subset. But this contradicts that $\mathcal{S}$ is maximal.\retTwo
 
-      Via transitivity, $E_{k-1} \cup B$ is comparable via proper subset with $E_i$ for all $i \in \{1, \ldots, n\}$. Hence, we've shown that $\mathcal{S} \cup \{E_{k-1} \cup B\}$ is a sequence of sets in $\mathcal{A}$ simply ordered by proper subset. But this contradicts that $\mathcal{S}$ is maximal.\retTwo
-
-      Now that we know $\mathcal{S}$ is infinite, let $(E_n)_{n \in \mathbb{Z}_+}$ be a sequence of sets in $\mathcal{S}$\\ satisfying that $E_n \subset E_{n + 1}$. Then we have that $(E_{n+1} - E_n)_{n \in \mathbb{Z}_+}$ is an infinite\\ sequence of disjoint sets in $\mathcal{A}$.\retTwo
+      Now that we know $\mathcal{S}$ is infinite, let $(E_n)_{n \in \mathbb{Z}_+}$ be a sequence of sets in $\mathcal{S}$\\ satisfying that $E_n \subset E_{n + 1}$. Then we have that $(E_{n+1} - E_n)_{n \in \mathbb{Z}_+}$ is an infinite\\ sequence of disjoint sets in $\mathcal{M}$.\retTwo
    \end{myIndent}
 
-   \item[(b)] Show that $\card(\mathcal{A}) \geq \mathfrak{c}$.
+   \item[(b)] Show that $\card(\mathcal{M}) \geq \mathfrak{c}$.
    
    \begin{myIndent}\exTwoP
-      Let $(E_n)_{n \in \mathbb{N}}$ be a sequence of disjoint sets in $\mathcal{A}$. Then if we define the map\\ [2pt] $f: [0, 1]^\mathbb{N} \longrightarrow \mathcal{A}$ such that $(a_0, a_1, a_2, \ldots)$ is mapped to the union of all $E_n$\\ [2pt] such that $a_n = 1$, we have that $f$ is an injection.\retTwo
+      Let $(E_n)_{n \in \mathbb{N}}$ be a sequence of disjoint sets in $\mathcal{M}$. Then if we define the map\\ [2pt] $f: [0, 1]^\mathbb{N} \longrightarrow \mathcal{M}$ such that $(a_0, a_1, a_2, \ldots)$ is mapped to the union of all $E_n$\\ [2pt] such that $a_n = 1$, we have that $f$ is an injection.\retTwo
 
-      Hence, $\card(\mathcal{A}) \geq \card([0, 1]^{\mathbb{N}})$. And since there is a trivial bijection\\ from $[0, 1]^{\mathbb{N}}$ and $\mathcal{P}(\mathbb{N})$, plus the fact that we proved early on in the class\\ that $\card(\mathcal{P}(\mathbb{N})) = \card(\mathbb{R})$, we thus know that $\card(\mathcal{A}) \geq \mathfrak{c}$.\newpage
+      Hence, $\card(\mathcal{M}) \geq \card([0, 1]^{\mathbb{N}})$. And since there is a trivial bijection\\ from $[0, 1]^{\mathbb{N}}$ and $\mathcal{P}(\mathbb{N})$, plus the fact that we proved early on in the class\\ that $\card(\mathcal{P}(\mathbb{N})) = \card(\mathbb{R})$, we thus know that $\card(\mathcal{M}) \geq \mathfrak{c}$.\newpage
    \end{myIndent}
 \end{itemize}
 
@@ -798,11 +797,11 @@ Let $\{X_\alpha\}_{\alpha \in A}$ be a collection of nonempty sets, and define $
 
 An \udefine{elementary family} is a collection $\mathcal{E}$ of subsets of a set $X$ such that:
 
-\begin{itemize}
+\begin{enumerate}
    \item $\emptyset \in \mathcal{E}$
    \item If $E, F \in \mathcal{E}$, then $E \cap F \in \mathcal{E}$.
    \item If $E \in \mathcal{E}$, then $E^\comp$ is a finite disjoint union of members of $\mathcal{E}$.
-\end{itemize}
+\end{enumerate}
 
 \newpage
 
@@ -811,7 +810,7 @@ An \udefine{elementary family} is a collection $\mathcal{E}$ of subsets of a set
 
    \begin{myIndent}\hThree
       Proof:\\
-      Firstly, given any $A, B \in \mathcal{E}$, we have that $A \cup B = (A \cap B^\comp) \cup B$. Also,\\ $(B - A) = (A \cap \bigcup\limits_{i=1}^k C_i)$ where each $C_i$ is disjoint. This shows that $A - B \in \mathcal{E}$. So $A \cup B$ is a finite union of disjoint sets in $\mathcal{E}$.  \retTwo
+      Firstly, given any $A, B \in \mathcal{E}$, we have that $A \cup B = (A - B) \cup B$. Also,\\ [-2pt] by property 3 of elementary families, $(A - B) = (A \cap B^\comp) = (A \cap \bigcup\limits_{i=1}^k C_i)$\\ where each $C_i \in \mathcal{E}$ and disjoint. By property 2 of elementary families, we thus\\ [4pt] know $A \cap C_i \in \mathcal{E}$ for all $i$. So $(A - B)$ is a finite union of disjoint sets in $\mathcal{E}$. In turn,\\ [4pt] so is $(A - B) \cup B$. Hence, $A \cup B \in \mathcal{A}$.\retTwo
 
       By induction, we get that for any $A_1, \ldots, A_n \in \mathcal{E}$,\myHS $A_1 \cup \ldots \cup A_n$ is a finite\\ union of disjoint sets in $\mathcal{E}$. So $\mathcal{A}$ actually equals the set of all finite unions of $\mathcal{E}$. It\\ follows that $\mathcal{A}$ is closed under finite unions.\retTwo
 
@@ -960,6 +959,202 @@ By subadditivity (a.k.a. the fact that for all $(E_j)_{j \in \mathbb{N}} \subset
 Given a proposition $P(x)$, if there exists a null set $E \in \mathcal{M}$ satisfying that $P(x)$ is true for all $x \in X - E$, then we say $P$ is true \udefine{almost everywhere} (abbreviated as $\mu$-a.e. or just a.e. if the measure being used is clear).\retTwo
 
 A measure space is \udefine{complete} if given any $E \subseteq X$, we have that $N \in \mathcal{M}$ with\\ $\mu(N) = 0$ and $E \subseteq N$ implies that $E \in \mathcal{M}$.
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} Suppose $(X, \mathcal{M}, \mu)$ is a measure space. Let:
+   \begin{itemize}
+      \item $\mathcal{N} = \{N \in \mathcal{M} \mid \mu(N) = 0\}$
+      \item $\overline{\mathcal{M}} = \{E \cup F \mid E \in \mathcal{M} \text{ and } F \subseteq N \text{ where } N \in \mathcal{N}\}$.\retTwo
+   \end{itemize}
+
+   Then $\overline{\mathcal{M}}$ is a $\sigma$-algebra and there is a unique extension $\overline{\mu}$ of $\mu$ to a complete measure on $\overline{\mathcal{M}}$.
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      Claim 1: $\overline{\mathcal{M}}$ is a $\sigma$-algebra.
+      \begin{myIndent}\hFour
+         To see that $\overline{\mathcal{M}}$ is closed under countable union, let $(E_i \cup F_i)_{i \in \mathbb{N}}$ be a sequence of sets in $\overline{\mathcal{M}}$ with each $E_i \in \mathcal{M}$ and $F_i \subseteq N_i$ for some $N_i \in \mathcal{N}$. Then\\ $\bigcup\limits_{i \in \mathbb{N}}(E_i \cup F_i) = \bigcup\limits_{i \in \mathbb{N}}E_i \cup \bigcup\limits_{i \in \mathbb{N}}F_i$.\retTwo
+
+         Importantly, since $\mathcal{M}$ and $\mathcal{N}$ are closed under countable union, we know that $\bigcup\limits_{i \in \mathbb{N}}E_i \in \mathcal{M}$ and $\bigcup\limits_{i \in \mathbb{N}}F_i \subseteq \bigcup\limits_{i \in \mathbb{N}}N_i \in \mathcal{N}$. So, $\bigcup\limits_{i \in \mathbb{N}}(E_i \cup F_i) \in \overline{\mathcal{M}}$.\retTwo
+
+         To show that $\overline{\mathcal{M}}$ is closed under complements, let $E \cup F \in \overline{\mathcal{M}}$ with\\ $E \in \mathcal{M}$ and $F \subseteq N$ for some $N \in \mathcal{N}$. Also note that we can assume\\ $E \cap N = \emptyset$. After all, if $E \cap N \neq \emptyset$, then define $N^\prime = N - E$ and\\ $F^\prime = F - E$. Since $N^\prime \subseteq N$ and $N^\prime \in \mathcal{M}$, we know that $\mu(N^\prime) = 0$. Also, $E \cup F = E \cup F^\prime$ with $F^\prime \subseteq N^\prime$. So, $E$, $F^\prime$, and $N^\prime$ fulfil the same properties we picked $E$, $F$, and $N$ for having. But also $E \cap N^\prime = \emptyset$.\retTwo
+
+         Now, $(E \cup F)^\comp = (E \cup N)^\comp \cup (N - F)$ where $(E \cup N)^\comp \in \mathcal{M}$ and\\ $(N - F) \subset N$. So $(E \cup F)^\comp \in \overline{\mathcal{M}}$.\retTwo
+      \end{myIndent}
+
+      Now given any $E \cup F \in \overline{\mathcal{M}}$ with $E \in \mathcal{M}$ and $F \subset N$ for some $N \in \mathcal{N}$, define $\overline{\mu}(E \cup F) = \mu(E)$.\retTwo
+      Claim 2: $\overline{\mu}$ is well-defined.
+      \begin{myIndent}\hFour
+         Suppose $E_1 \cup F_1 = E_2 \cup F_2$ where for $j \in \{1, 2\}$ we have $E_j \in \mathcal{M}$\\ and $F_j \subset N_j$ for some $N_j \in \mathcal{N}$. Then $E_1 \subseteq E_2 \cup N_2$, meaning that\\ $\mu(E_1) \leq \mu(E_2) + \mu(N_2) = \mu(E_2)$. By similar reasoning, we can say that $\mu(E_2) \leq \mu(E_1)$. So $\overline{\mu}(E_1 \cup F_1) = \overline{\mu}(E_2 \cup F_2)$.
+         \retTwo
+      \end{myIndent}
+
+      \exP (The rest is exercise 1.6:)\\
+      Claim 3: $\overline{\mu}$ is a complete measure on $\overline{\mathcal{M}}$.
+      \begin{myIndent}\exPP
+         It's easy to show that $\overline{\mu}$ is a measure. After all, $\emptyset \in \mathcal{M} \cap \mathcal{N}$. So,\\ $\overline{\mu}(\emptyset) = \overline{\mu}(\emptyset \cup \emptyset) = \mu(\emptyset) = 0$. Also, suppose $(E_i \cup F_i)_{i \in \mathbb{N}}$ is a\\ sequence of disjoint sets in $\overline{\mathcal{M}}$ with $E_i \in \mathcal{M}$ and $F_i \subset N_i$ for some $N_i \in \mathcal{N}$.\newpage
+
+         Then $\bigcup\limits_{i \in \mathbb{N}}E_i \in \mathcal{M}$ where each $E_i$ is disjoint and $\bigcup\limits_{i \in \mathbb{N}}F_i \subseteq \bigcup\limits_{i \in \mathbb{N}}N_i \in \mathcal{N}$. So:
+
+         {\center 
+         \begin{tabular}{l}
+            $\overline{\mu}(\bigcup\limits_{i \in \mathbb{N}}(E_i \cup F_i)) = \overline{\mu}(\bigcup\limits_{i \in \mathbb{N}}E_i \cup \bigcup\limits_{i \in \mathbb{N}}F_i)$\\ [12pt]
+             $\phantom{\overline{\mu}(\bigcup\limits_{i \in \mathbb{N}}(E_i \cup F_i))} = \mu(\bigcup\limits_{i \in \mathbb{N}}E_i) = \sum\limits_{i = 1}^\infty\mu(E_i) = \sum\limits_{i = 1}^\infty\overline{\mu}(E_i \cup F_i)$
+         \end{tabular}\retTwo\par}
+
+         Finally, to show that $(X, \overline{\mathcal{M}}, \overline{\mu})$ is complete, suppose $A \subseteq X$ and $N_1 \in \overline{\mathcal{M}}$ with $\overline{\mu}(N_1) = 0$ and $A \subseteq N_1$. By definition, we know $N_1 = E \cup F$ where $E \in \mathcal{M}$ and $F \subseteq N_2$ for some $N_2 \in \mathcal{N}$. However, we can also assume $E = \emptyset$. For if $E \neq \emptyset$, then because $\mu(E \cup N_2) \leq \mu(E) + \mu(N_2) \leq 0$, we can define $N_2^\prime = E \cup N_2$ and $F^\prime = E \cup F$. Then $N_1 = \emptyset \cup F^\prime$ and\\ $F^\prime \subseteq N_2^\prime$ where $N_2^\prime \in \mathcal{N}$.\retTwo
+
+         So $A \subset F \subset N_2$ where $N_2 \in \mathcal{N}$. It follows that $A = \emptyset \cup A \in \overline{\mathcal{M}}$.\retTwo
+      \end{myIndent}
+
+      Claim 4: $\overline{\mu}$ is the unique measure on $\overline{\mathcal{M}}$ that extends $\mu$.\\ [-9pt]
+      \begin{myIndent}\exPP
+         Suppose $\overline{\overline{\mu}}$ is another measure on $\overline{\mathcal{M}}$ such that $\overline{\overline{\mu}}|_\mathcal{M} = \mu$. Then consider any $E \cup F \in \overline{M}$ such that $E \in \mathcal{M}$ and $F \subseteq N$ for some $N \in \mathcal{N}$. As shown before, we can assume without loss of generality that $E \cap N = \emptyset$ and thus also $E \cap F = \emptyset$. So, we have that:
+
+         {\centering $\overline{\overline{\mu}}(E \cup F) = \overline{\overline{\mu}}(E) + \overline{\overline{\mu}}(F)$\retTwo\par}
+
+         Next, note that:
+
+         {\centering\fontsize{11}{13}\selectfont $\mu(E) = \overline{\overline{\mu}}(E) \leq \overline{\overline{\mu}}(E) + \overline{\overline{\mu}}(F) \leq \overline{\overline{\mu}}(E) + \overline{\overline{\mu}}(N) = \mu(E) + \mu(N) = \mu(E)$ \retTwo\par}
+
+         Hence, we know that $\overline{\overline{\mu}}(E \cup F) = \mu(E)$. But also $\overline{\mu}(E \cup F) = \mu(E)$. So $\overline{\overline{\mu}}(E \cup F) = \overline{\mu}(E \cup F)$ for all $E \cup F \in \overline{\mathcal{M}}$.\retTwo
+      \end{myIndent}
+   \end{myIndent}
+
+   Note: We call $\overline{\mu}$ the \udefine{completion} of $\mu$ and $\overline{\mathcal{M}}$ the \udefine{completion} of $\mathcal{M}$ with respect\\ to $\mu$.
+\end{myIndent}
+
+\mySepTwo
+
+\mHeader{Lecture 4 Notes: 10/8/2024}
+
+An \udefine{outer measure} on a nonempty set $X$ is a function $\mu^*: \mathcal{P}(X) \longrightarrow [0, \infty]$\\ satisfying that:
+\begin{enumerate}
+   \item $\mu^*(\emptyset) = 0$.
+   \item $\mu^*(A) \leq \mu^*(B)$ if $A \subseteq B$.
+   \item $\mu^*(\bigcup\limits_{j = 1}^\infty A_j) \leq \sum\limits_{j=1}^\infty \mu^*(A_j)$. {\teachComment (this property is called subadditivity)}\newpage
+\end{enumerate}
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} Let $\mathcal{E} \subseteq \mathcal{P}(X)$ be a collection of elementary sets and $\mu: \mathcal{E} \longrightarrow [0, \infty]$ be a function satisfying that $\mu(\emptyset) = 0$.
+   \begin{myIndent}\teachComment
+      The textbook only assumes that $\emptyset$ and $X$ are in $\mathcal{E}$.
+   \end{myIndent}
+
+   Then define $\mu^*(A) = \inf\left\{\sum\limits_{j = 1}^\infty \mu(E_j)\hspace{0.2em} \middle| \hspace{0.2em} E_j \in \mathcal{E} \text{ and } A \subseteq \bigcup\limits_{j = 1}^\infty E_j\right\}$. This is an outer\\ [-9pt] measure.\retTwo
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      Given any set $A \subseteq \mathcal{P}(X)$, define $A^* = \left\{\sum\limits_{j = 1}^\infty \mu(E_j)\hspace{0.2em} \middle| \hspace{0.2em} E_j \in \mathcal{E} \text{ and } A \subseteq \bigcup\limits_{j = 1}^\infty E_j\right\}$.\\ [-9pt] That way $\mu^*(A) = \inf(A^*)$.
+      \begin{enumerate}
+         \item $\mu^*(A)$ is well defined because $\mu(X) \in A^*$ and $\mu(\emptyset) = 0$ is a lower bound\\ of $A^*$.\\[ -8pt]
+         \item Since $0 \in \emptyset^*$, we know that $\mu^*(\emptyset) = \inf(\emptyset^*) = 0$.\\ [-8pt]
+         \item Suppose $A \subseteq B$. Then given any $(E_j)_{j \in \mathbb{N}}$ of sets in $\mathcal{E}$ covering $B$, we know\\ that they will also cover $A$. So, $A^* \subseteq B^*$, meaning $\mu^*(A) \leq \mu^*(B)$.\\ [-8pt]
+         \item Suppose $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{P}(X)$. Then fix $\varepsilon > 0$. For all $j \in \mathbb{N}$, let $(E_j^{(k)})_{k \in \mathbb{N}}$ be a sequence of sets in $\mathcal{E}$ such that $A_j \subseteq \bigcup\limits_{k \in \mathbb{N}}E_j^{(k)}$ and:
+         
+         {\centering$\mu^*(A_j) \leq \sum\limits_{k = 1}^\infty \mu(E_j^{(k)}) \leq \mu^*(A_j) + \sfrac{\varepsilon}{2^j}$.\retTwo\par}
+
+         Note that $\bigcup\limits_{j \in \mathbb{N}}A_j \subseteq \bigcup\limits_{j \in \mathbb{N}}(\bigcup\limits_{k \in \mathbb{N}}E_j^{(k)})$.\retTwo
+         
+         So, $(\bigcup\limits_{j \in \mathbb{N}}A_j)^* \ni \sum\limits_{j = 1}^\infty \sum\limits_{k = 1}^\infty\mu(E_j^{(k)}) \leq \sum\limits_{j = 1}^\infty (\mu^*(A_j) + \sfrac{\varepsilon}{2^j}) = \varepsilon + \sum\limits_{j = 1}^\infty \mu^*(A_j)$.\retTwo
+
+         Since $\varepsilon$ was arbitrary, we thus know that:
+         
+         {\centering $\mu^*(\bigcup\limits_{j \in \mathbb{N}}A_j) = \inf (\bigcup\limits_{j \in \mathbb{N}}A_j)^* \leq \sum\limits_{j = 1}^\infty \mu^*(A_j)$.\retTwo\par}
+      \end{enumerate}
+   \end{myIndent}
+\end{myIndent}
+
+Let $\mu^*$ be an outer measure on a nonempty set $X$. Then $A \subseteq X$ is called\\ \udefine{$\mu^*$-measurable} if $\mu^*(E) = \mu^*(E \cap A) + \mu^*(E - A)$ for all $E \subseteq X$.
+\begin{myIndent}\teachComment
+   Note that $\mu^*(E) \leq \mu^*(E \cap A) + \mu^*(E - A)$ for all $E \in \mathcal{P}(X)$. So $\mu^*$-measurability just means that the other inequality holds.\retTwo
+
+   \hTwo\blab{Carathéodory's Theorem:} If $\mu^*$ is an outer measure on $X$, then the collection $\mathcal{M}$ of $\mu^*$-measurable sets is a $\sigma$-algebra and the restriction of $\mu^*$ to $\mathcal{M}$ is a complete measure.
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      Part 1: $\mathcal{M}$ is an algebra and $\mu^*$ is additive on $\mathcal{M}$ (meaning $A, B \in \mathcal{M}$ with\\ $A \cap B = \emptyset$ implies that $\mu^*(A \cup B) = \mu^*(A) + \mu^*(B))$.
+      
+      \begin{myIndent}\hFour
+         We know $\mathcal{M}$ is an algebra because:
+         \begin{itemize}
+            \item $\emptyset \in \mathcal{M}$ because $\mu^*(E) = \mu^*(E \cap \emptyset) + \mu^*(E - \emptyset) = 0 + \mu^*(\emptyset)$ for\\ all $E \subseteq X$.\newpage
+            \item Both $A^\comp \in \mathcal{M}$ $A \in \mathcal{M}$ are equivalent to us having for all $E \subseteq X$ that $\mu^*(E) = \mu^*(E \cap A) + \mu^*(E \cap A^\comp)$.\\ [-6pt]
+            \item Suppose $A$ and $B$ are sets in $\mathcal{M}$. Then given $E \subseteq X$, we have:
+            
+            {\centering 
+            \begin{tabular}{l}
+               $\mu^*(E) = \mu^*(E \cap A) + \mu^*(E - A)$\\
+               $\phantom{\mu^*(E)} = \mu^*((E \cap A) \cap B) + \mu^*((E \cap A) - B)$\\ $\phantom{aaaaaaaaaaaaaaaaaa} + \mu^*((E - A) \cap B) + \mu^*((E - A) - B)$
+            \end{tabular} \retTwo\par}
+
+            Now $(E - A) - B = E \cap A^\comp \cap B^\comp = E \cap (A \cup B)^\comp$. Meanwhile,\\ $(E \cap A) - B = E \cap (A - B)$ and $(E - A) \cap B = E \cap (B - A)$.\\ So, by subadditivity, we have that:
+
+            {\centering\begin{tabular}{l}
+               $\mu^*(E \cap (A \cup B)) + \mu(E - (A \cup B))$\\
+               $\phantom{aaaaaaaaaaaaa} \leq \mu^*((E \cap A) \cap B) + \mu^*((E \cap A) - B)$\\ $\phantom{aaaaaaaaaaaaaaaa} + \mu^*((E - A) \cap B) + \mu^*((E - A) - B)$
+            \end{tabular} \retTwo\par}
+
+            Hence, $\mu^*(E \cap (A \cup B)) + \mu^*(E - (A \cup B)) \leq \mu^*(E)$. So,\\ $A \cup B \in \mathcal{M}$.\retTwo
+         \end{itemize}
+
+         Next, to show that $\mu$ is additive on $\mathcal{M}$, consider any $A, B \in \mathcal{M}$ with\\ $A \cap B = \emptyset$. Then:
+
+         {\centering\fontsize{11}{13}\selectfont $\mu^*(A \cup B) = \mu^*((A \cup B) \cap A) + \mu^*((A \cup B) - A) = \mu^*(A) + \mu^*(B) $ \retTwo\par}
+      \end{myIndent}
+
+      Part 2: $\mathcal{M}$ is a $\sigma$-algebra and $\mu^*$ is $\sigma$-additive (think countably additive) on $X$.
+
+      \begin{myIndent}\hFour
+         To show that $\mathcal{M}$ is a $\sigma$-algebra, it suffices to show that $\mathcal{M}$ is closed under countable disjoint unions. So let $(A_j)_{j \in \mathbb{N}}$ be a sequence of disjoint sets in $\mathcal{M}$. If $E$ is any set in $X$ and $m > 1$, then:
+
+         {\centering $\mu^*(E) = \mu^*(E \cap (\bigcup\limits_{j=1}^mA_j)) + \mu^*(E - (\bigcup\limits_{j=1}^mA_j))$  \retTwo\par}
+
+         But then note that because $\mathcal{M}$ is an algebra, we know $\bigcup\limits_{j=1}^mA_j \in \mathcal{M}$. So:
+         
+         {\centering\fontsize{11.5}{13.5}\selectfont 
+         \begin{tabular}{l}
+            $\mu^*(E \cap (\bigcup\limits_{j=1}^mA_j)) = \mu^*(E \cap (\bigcup\limits_{j=1}^mA_j) \cap A_m) + \mu^*(E \cap (\bigcup\limits_{j=1}^mA_j) \cap A_m^\comp)$ \\ [-2pt]
+            $\phantom{\mu^*(E \cap (\bigcup\limits_{j=1}^mA_j))} = \mu^*(E \cap A_m) + \mu^*(E \cap (\bigcup\limits_{j = 1}^{m-1}\hspace{-0.2em} A_j))$
+         \end{tabular} \retTwo\par}
+
+         By induction, we thus have that $\mu^*(E \cap \bigcup\limits_{j=1}^mA_j) = \sum\limits_{j=1}^m \mu^*(E \cap A_j)$. Also, since\\ [-9pt] $E - (\bigcup\limits_{j=1}^mA_j) \supset E - (\bigcup\limits_{j\in\mathbb{N}} A_j)$, we thus know that:
+
+         {\centering $\mu^*(E) \geq \sum\limits_{j=1}^m \mu^*(E \cap A_j) + \mu^*(E - \bigcup\limits_{j\in\mathbb{N}}A_j)$ \retTwo\par}
+
+         Taking the limit as $m \rightarrow \infty$, we thus get that:
+         
+         {\centering
+         \begin{tabular}{l}
+             $\mu^*(E) \geq \sum\limits_{j=1}^\infty \mu^*(E \cap A_j) + \mu^*(E - \bigcup\limits_{j \in \mathbb{N}}A_j)$\\ $\phantom{aaaaaaaaaaaaaaa} \geq \mu^*(E \cap (\bigcup\limits_{j\in \mathbb{N}}A_j)) + \mu^*(E - \bigcup\limits_{j \in \mathbb{N}}A_j)\phantom{aaa}$
+         \end{tabular}\newpage\par}
+
+         So, $\bigcup\limits_{j \in \mathbb{N}}A_j$ is $\mu^*$-measurable. Hence, $\mathcal{M}$ is a $\sigma$-algebra.\retTwo
+
+         Also, in order to show that $\mu^*(\bigcup\limits_{j \in \mathbb{N}}A_j) = \sum\limits_{j=1}^\infty\mu^*(A_j)$, just substitute\\ $E = \hspace{-0.2em}\bigcup\limits_{j \in \mathbb{N}}\hspace{-0.2em}A_j$ into the expression at the bottom of the last page.\retTwo
+      \end{myIndent}
+
+      Part 3: $(X, \mathcal{M}, \mu^*)$ is a complete measure space.
+      \begin{myIndent}\hFour
+         Suppose $\mu^*(A) = 0$. Then given $E \subseteq X$, we have that:
+
+         {\centering $\mu^*(E) = \mu^*(E \cap A) + \mu^*(E - A) \leq \mu^*(A) + \mu^*(E) \leq 0 + \mu^*(E)$ \retTwo\par}
+
+         It follows that $\mu^*(E) = \mu^*(E \cap A) + \mu^*(E - A)$ for all $E$. So $A \in \mathcal{M}$.\retTwo
+
+         Now if $\mu^*(A) = 0$, then $\mu^*(E) = 0$ for all $E \subseteq A$. It follows that all subsets of $\mu^*$-null sets are in $\mathcal{M}$.\retTwo
+
+         
+         \begin{myTindent}\teachComment
+            The moral of the story is that we'll just call $\mu^*$ a measure because it is when restricted to the right $\sigma$-algebra.
+         \end{myTindent}
+      \end{myIndent}
+   \end{myIndent}
+\end{myIndent}
+
+\mySepTwo
+
+A \udefine{premeasure} $\mu_0 : \mathcal{A} \Longrightarrow [0, \infty]$
 
 \end{document}
 
