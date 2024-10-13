@@ -1385,14 +1385,33 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
 
       To start, let $(C_i)_{i \in \mathbb{N}}$ satisfy that $\mu_0(C_i) < \infty$ and $\bigcup\limits_{i = 1}^\infty C_i = X$.\newpage
       
-      Next for all $j, i \in \mathbb{N}$, pick $A_j^{(i)} \in \mathcal{A}_\sigma$ satisfying that $E \cap C_i \subseteq A_j^{(i)}$ and\\ $\mu^*(E) \leq \mu^*(A_j^{(i)}) \leq \mu^*(E) + \sfrac{\varepsilon}{j2^{i}}$. Since $\mu^*(E \cap C_i)$ is finite, we can use the same reasoning as in part (b) to say that $\mu^*(A_j^{(i)} - (E \cap C_i)) < \sfrac{\varepsilon}{j2^i}$.\retTwo
+      Next for all $j, i \in \mathbb{N}$, pick $A_j^{(i)} \in \mathcal{A}_\sigma$ satisfying that $E \cap C_i \subseteq A_j^{(i)}$ and\\ $\mu^*(E) \leq \mu^*(A_j^{(i)}) \leq \mu^*(E) + \sfrac{1}{j2^{i}}$. Since $\mu^*(E \cap C_i)$ is finite, we can use the same reasoning as in part (b) to say that $\mu^*(A_j^{(i)} - (E \cap C_i)) \leq \sfrac{1}{j2^i}$.\retTwo
 
-      Importantly, $A_j^{(i)} 
+      Importantly, $A_j^{(i)} - E \subseteq A_j^{(i)} - (E \cap C_i)$. for all $i$. Therefore:
+      
+      {\centering
+      \begin{tabular}{l}
+         $\mu^*((\bigcup\limits_{i\in\mathbb{N}}A_j^{(i)}) - E) = \mu^*(\bigcup\limits_{i\in\mathbb{N}}(A_j^{(i)} - E))$\\ [6pt]
+         
+         $\phantom{\mu^*((\bigcup\limits_{i\in\mathbb{N}}A_j^{(i)}) - E) } \leq \mu^*(\bigcup\limits_{i\in\mathbb{N}}(A_j^{(i)} - (E \cap C_i)))$\\
+         
+         $\phantom{\mu^*((\bigcup\limits_{i\in\mathbb{N}}A_j^{(i)}) - E) } \leq \sum\limits_{i \in \mathbb{N}}\mu^*(A_j^{(i)} - (E \cap C_i)) \leq \sum\limits_{i \in \mathbb{N}}\frac{1}{j2^i} = \frac{1}{j}$
+      \end{tabular} \retTwo\par}
 
-      Finally, note that $\bigcup\limits_{i\in \mathbb{N}}A_{j}^{(i)} \in \mathcal{A}_{\sigma}$ and $\bigcup\limits_{i\in\mathbb{N}}(A_j^{(i)} - (E \cap C_i))$
+      Since $E \subseteq \bigcup\limits_{i \in \mathbb{N}}A_j^{(i)} \in \mathcal{A}_\sigma$, we've thus shown for all $j \in \mathbb{N}$ that there exists a set\\ [-8pt]\phantom{Aaaaaaaaaaaaaaaaaa} $A_j \in \mathcal{A}_\sigma$ satisfying that $\mu^*(A_j - E) \leq \sfrac{1}{j}$ and $E \subseteq A_j$.\retTwo
+
+      Finally, intersecting all those $A_j$ like in part (b), we get our set satisfying the right-side of the implication.\retTwo
    \end{myIndent}
-   
 \end{enumerate}
+
+\mySepTwo
+
+\blab{Exercise 1.19:} Let $\mu^*$ be an outer measure on $X$ induced from a finite premeasure $\mu_0$. If $E \subseteq X$, define the \udefine{inner measure} of $E$ to be $\mu_*(E) = \mu_0(X) - \mu^*(E^\comp)$. Then $E$ is $\mu^*$-measurable if and only if $\mu^*(E) = \mu_*(E)$.
+
+\begin{myIndent}\exTwo
+   
+   
+\end{myIndent}
 
 
 \end{document}
