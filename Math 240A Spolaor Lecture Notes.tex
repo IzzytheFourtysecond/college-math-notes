@@ -870,8 +870,8 @@ Let $(X, \mathcal{M}, \mu)$ be a measure space.
    Example: Let $X \neq \emptyset$ and $\mathcal{M} = \mathcal{P}(X)$. Then given a function $\rho: X \longrightarrow [0, \infty]$,\\ $\mu(E) = \sum\limits_{x \in E}\rho(x)$ is a measure.
    
    \begin{itemize}
-      \item $\mu$ is semifinite if and only if $f(x) < \infty$ for all $x \in X$.
-      \item $\mu$ is $\sigma$-finite if and only if it is semifinite and $\{x \in X \mid f(x) > 0\}$ is countable.
+      \item $\mu$ is semifinite if and only if $\rho(x) < \infty$ for all $x \in X$.
+      \item $\mu$ is $\sigma$-finite if and only if it is semifinite and $\{x \in X \mid \rho(x) > 0\}$ is countable.
    \end{itemize}
 
    If $\rho(x) = 1$ for all $x$, then $\mu$ is called the \udefine{counting measure}.\\
@@ -1154,7 +1154,246 @@ Let $\mu^*$ be an outer measure on a nonempty set $X$. Then $A \subseteq X$ is c
 
 \mySepTwo
 
-A \udefine{premeasure} $\mu_0 : \mathcal{A} \Longrightarrow [0, \infty]$
+A \udefine{premeasure} $\mu_0 : \mathcal{A} \longrightarrow [0, \infty]$ is a function on an algebra satisfying that:
+\begin{itemize}
+   \item $\mu_0(\emptyset) = 0$
+   \item if $(A_j)_{j \in \mathbb{N}}$ is a sequence of disjoint sets in $\mathcal{A}$ with $\bigcup\limits_{j \in \mathbb{N}}A_j \in \mathcal{A}$, then\\ [-14pt] $\mu_0(\bigcup\limits_{j \in \mathbb{N}}A_j) = \sum\limits_{j=1}^\infty \mu_0(A_j)$.
+\end{itemize}
+
+
+\begin{myTindent}\teachComment
+   By setting all but finitely many $A_j$ to the emptyset, we can show that $\mu_0$ must be finitely additive. In turn, this is enough to show that $\mu_0(A) \leq \mu_0(B)$ if $A \subseteq B$ for any $A, B \in \mathcal{A}$.
+\end{myTindent}
+
+We say $\mu^*$ is \udefine{induced by} $\mu_0$ if $\mu^*(A) = \inf\left\{\sum\limits_{j = 1}^\infty \mu_0(E_j)\hspace{0.2em} \middle| \hspace{0.2em} E_j \in \mathcal{A} \text{ and } A \subseteq \bigcup\limits_{j = 1}^\infty E_j\right\}$.\retTwo
+
+Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} In this situation:
+   \begin{enumerate}
+      \item $\mu^*|_\mathcal{A} = \mu_0$
+      \begin{myIndent}\hThree
+         Proof:\\
+         Suppose $E \in \mathcal{A}$ and let $(A_j)_{j \in \mathbb{N}}$ be a sequence of sets of in $\mathcal{A}$ covering $E$. It's trivial that $\mu^*(E) \leq \mu_0(E)$ because we could just let $A_1 = E$ and $A_n = \emptyset$ for all $n \geq 2$.\newpage
+         
+         On the other hand, letting $B_m = E \cap A_1$ and $B_m = E \cap A_m - \bigcup\limits_{j = 1}^{m-1}A_j$, we have\\ that $(B_j)_{j \in \mathbb{N}}$ is a sequence of disjoint sets in $\mathcal{A}$ whose union is $E$. It follows\\ [5pt] from the second property of a premeasure and the fact that $B_j \subseteq A_j$ for all\\ [5pt] $j$ that:
+         
+         {\centering$\mu_0(E) = \sum\limits_{j=1}^\infty \mu_0(B_j) \leq \sum\limits_{j=1}^\infty \mu_0(A_j)$\retTwo\par}
+         
+         Since $(A_j)_{j \in \mathbb{N}}$ was not specified, it follows that $\mu_0(E) \leq \mu^*(E)$.\retTwo
+      \end{myIndent}
+
+      \item Every set in $\mathcal{A}$ is $\mu^*$-measurable.
+      \begin{myIndent}\hThree
+         Proof:\\
+         Suppose $A \in \mathcal{A}, E \subseteq X$, and $\varepsilon > 0$. Then there is a sequence $(B_j)_{j \in \mathbb{N}}$ of sets in $\mathcal{A}$ with $E \subseteq \bigcup\limits_{j=1}^\infty B_j$ and $\sum\limits_{j=1}^\infty \mu_0(B_j) \leq \mu^*(E) + \varepsilon$. Since $\mu_0$ is additive on $\mathcal{A}$, $(B_j \cap A)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ covers $E \cap A$, and $(B_j - A)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ covers $E - A$, we have\\ [5pt] that:
+
+         {\centering 
+         \begin{tabular}{l}
+            $\mu^*(E) + \varepsilon \geq \sum\limits_{j = 1}^\infty \mu_0(B_j) = \sum\limits_{j = 1}^\infty \mu_0(B_j \cap A) + \sum\limits_{j = 1}^\infty \mu_0(B_j - A)$\\
+            $\phantom{\mu^*(E) + \varepsilon \geq \sum\limits_{j = 1}^\infty \mu_0(B_j)} \geq \mu^*(E \cap A) + \mu^*(E - A) $
+         \end{tabular} \retTwo\par}
+
+         Taking $\varepsilon \rightarrow 0$, we get that $\mu^*(E) \geq \mu^*(E \cap A) + \mu^*(E - A)$.\retTwo
+      \end{myIndent}
+   \end{enumerate}
+
+   \blab{Theorem:} Suppose $\mathcal{A} \subseteq \mathcal{P}(X)$ is an algebra and $\mu_0: \mathcal{A} \longrightarrow [0, \infty]$ is a premeasure. Then there exists $\mu: \mathcal{M}(\mathcal{A}) \longrightarrow [0, \infty]$ such that:
+   \begin{itemize}
+      \item $\mu|_\mathcal{A} = \mu_0$
+      \item if $\nu: \mathcal{M}(\mathcal{A}) \longrightarrow [0, \infty]$ is a measure with $\nu|_\mathcal{A} = \mu|_\mathcal{A}$, then $\nu \leq \mu$ (with equality if $\mu(E) < \infty$).
+      \item If $\mu_0$ is $\sigma$-finite, then $\mu$ is the unique extension of $\mu_0$ to a measure on $\mathcal{M}$.
+   \end{itemize}
+
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      
+      \begin{enumerate}
+         \item The first claim is true by Carathéodory's Theorem and the last proposition.\\ Specifically, define $\mu = \mu^*|_{\mathcal{M}(\mathcal{A})}$ where $\mu^*$ is the outer measure induced by\\ $\mu_0$. Since $\mathcal{A}$ is a subset of the $\sigma$-algebra $\mathcal{M}$ of $\mu^*$ measurable sets, we know\\ that $\mathcal{M}(\mathcal{A}) \subseteq \mathcal{M}$. So $\mu$ is a measure over $\mathcal{M}(\mathcal{A})$. Also, we know that\\ $\mu(A) = \mu^*(A) = \mu_0(A)$ for all $A \in \mathcal{A}$ by the last proposition.\retTwo
+   
+         \item To show the second claim, let $E \in \mathcal{M}(\mathcal{A})$ and $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ be a covering of $E$ such that $\sum\limits_{j=1}^\infty \mu_0(A_j) \leq \mu(E) + \varepsilon$ for a given $\varepsilon > 0$. Then:
+         
+         {\centering$\nu(E) \leq \sum\limits_{j=1}^\infty \nu(A_j) = \sum\limits_{j=1}^\infty \mu_0(A_j) \leq  \mu(E) + \varepsilon$.\retTwo\par}
+   
+         Taking $\varepsilon \rightarrow 0$, we get that $\nu(E) \leq \mu(E)$.\newpage
+   
+         As for the other inequality, consider that for any $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{A}$, we know by part\\ 3 of the theorem on page 16 and the fact that $\nu(A_j) = \mu(A_j)$ for all $j$ that if\\ $A = \bigcup\limits_{j\in\mathbb{N}}A_j$, then:\\ [-17pt]
+         
+         {\centering $ \nu(A) = \lim\limits_{m\rightarrow \infty}(\nu(\bigcup\limits_{j=1}^m A_j)) = \lim\limits_{m\rightarrow \infty}(\mu(\bigcup\limits_{j=1}^m A_j)) = \mu(A)$. \retTwo\par}
+   
+         Also, if $\mu(E)$ is finite, then we can choose the covering $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ of $E$ so that all $A_j$ are disjoint and $A$ satisfies for a given $\varepsilon > 0$ that:
+   
+         {\centering $\mu(E) \leq \mu(A) = \sum\limits_{j=1}^\infty \mu(A_j) < \mu(E) + \varepsilon$ \retTwo\par}
+   
+         It follows that $\mu(A - E) < \varepsilon$. So:
+         
+         {\centering $\mu(E) \leq \mu(A) = \nu(A) = \nu(E) + \nu(A - E) \leq \nu(E) + \mu(A - E) \leq \nu(E) + \varepsilon$.\retTwo\par}
+   
+         Taking $\varepsilon \rightarrow 0$, we get that $\mu(E) \leq \nu(E)$.\retTwo
+
+         \item For the third claim, suppose $X = \bigcup\limits_{j \in \mathbb{N}}A_j$ with $\mu_0(A_j) < \infty$ and all $A_j$ being\\ disjoint. Then for any $E \in \mathcal{M}(\mathcal{A})$:
+         
+         {\centering $\mu(E) = \sum\limits_{j=1}^\infty \mu(E \cap A_j) = \sum\limits_{j=1}^\infty \nu(E \cap A_j) = \nu(E) $ \retTwo\par}
+      \end{enumerate}
+   \end{myIndent}
+\end{myIndent}
+
+\exOne
+
+\mySepTwo
+
+\blab{Exercise 1.16:} Let $(X, \mathcal{M}, \mu)$ be a measure space. A set $E \subseteq X$ is called \udefine{locally\\ measurable} if $E \cap A \in \mathcal{M}$ for all $A \in \mathcal{M}$ such that $\mu(A) < \infty$. Let $\widetilde{\mathcal{M}}$ be the\\ collection of all locally measurable sets. Trivially, we know $\mathcal{M} \subseteq \widetilde{\mathcal{M}}$. If $\mathcal{M} = \widetilde{\mathcal{M}}$,\\ then $\mu$ is called \udefine{saturated}.
+
+\begin{enumerate}
+   \item[(a)] If $\mu$ is $\sigma$-finite, then $\mu$ is saturated.
+   
+   \begin{myIndent}\exTwoP
+      Let $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{M}$ satisfy that $\mu(A_j) < \infty$ for all $j$, and that $X = \bigcup\limits_{j\in\mathbb{N}}A_j$. Then\\ [-8pt] if $E$ is locally measurable, we know: $E = \bigcup\limits_{j \in \mathbb{N}}(E \cap A_j) \in \mathcal{M}$. 
+   \end{myIndent}
+
+   \item[(b)] $\widetilde{\mathcal{M}}$ is a $\sigma$-algebra.
+   \begin{myIndent}\exTwoP
+      \begin{itemize}
+         \item If $E \in \widetilde{\mathcal{M}}$, then given any $A \in \mathcal{M}$ with $\mu(A) < \infty$, we know $E \cap A \in \mathcal{M}$. It follows that $E^\comp \cap A = A - E = A - (E \cap A) \in \mathcal{M}$. So $E^\comp \in \widetilde{\mathcal{M}}$.\\ [-8pt]
+         \item Suppose $(E_j)_{j \in \mathbb{N}}$ is a sequence of sets in $\widetilde{\mathcal{M}}$ and $A \in \mathcal{M}$ satisfies that\\ $\mu(A) < \infty$. Then: $(\bigcup\limits_{j \in \mathbb{N}}E_j) \cap A = \bigcup\limits_{j \in \mathbb{N}}(E_j \cap A) \in \mathcal{M}$.\retTwo
+
+         So, $\bigcup\limits_{j \in \mathbb{N}}E_j \in \widetilde{\mathcal{M}}$
+      \end{itemize}
+   \end{myIndent}
+
+   \item[(c)] Define $\widetilde{\mu}$ on $\widetilde{\mathcal{M}}$ by $\widetilde{\mu}(E) = \mu(E)$ if $E \in \mathcal{M}$ and $\widetilde{\mu}(E) = \infty$ otherwise. Then $\widetilde{\mu}$ is a saturated measure on $\mathcal{M}$ called the \udefine{saturation} of $\mu$.
+   
+   \begin{myIndent}\exTwoP
+      Since $\emptyset \in \mathcal{M}$, we know $\widetilde{\mu}(\emptyset) = \mu(\emptyset) = 0$.\newpage 
+
+      Note that if $A, B \in \widetilde{\mathcal{M}}$ with $A \subseteq B$ and $A \notin \mathcal{M}$ but $B \in \mathcal{M}$, then we\\ immediately get a contradiction since that would suggest $A = A \cap B \in \mathcal{M}$. As a result, supposing $(E_j)_{j \in \mathbb{N}}$ is a sequence of disjoint sets in $\widetilde{\mathcal{M}}$, we have that if any $E_j \notin \mathcal{M}$, then:\\ [-22pt]
+      
+      {\centering$\widetilde{\mu}(\bigcup\limits_{j \in \mathbb{N}}E_j) = \infty = \sum\limits_{j =1}^\infty \widetilde{\mu}(E_j)$.\retTwo\par}
+
+      Meanwhile, if all sets of $(E_j)_{j \in \mathbb{N}}$ are in $\mathcal{M}$, then:\\ [-16pt]
+
+      {\centering$\widetilde{\mu}(\bigcup\limits_{j \in \mathbb{N}}E_j) = \mu(\bigcup\limits_{j \in \mathbb{N}}E_j) = \sum\limits_{j =1}^\infty \mu(E_j) = \sum\limits_{j =1}^\infty \widetilde{\mu}(E_j)$.\retTwo\par}
+   \end{myIndent}
+
+   \item[(d)] If $\mu$ is complete, then so is $\widetilde{\mu}$.
+   
+   \begin{myIndent}\exTwoP
+      This fact is obvious because by the way we defined $\widetilde{\mu}$, we know a set is $\widetilde{\mu}$-null if and only if it is $\mu$-null.\retTwo
+   \end{myIndent}
+
+   \item[(e)] Suppose that $\mu$ is semifinite. For $E \in \widetilde{\mathcal{M}}$, define:
+   
+   {\centering $\underline{\mu}(E) = \sup \{\mu(A) \mid A \in \mathcal{M} \text{ and } A \subseteq E \}$.\par}
+
+   This is well defined because $\mu(\emptyset)$ is always in the above set and $\mu(X)$ is an upper-\\bound. Then $\underline{\mu}$ is a saturated measure on $\widetilde{\mathcal{M}}$ that extends $\mu$.\\ [-16pt]
+
+   \begin{myIndent}\exTwoP
+      Firstly, we show $\underline{\mu}$ is a measure. To start, it's trivial to see that $\underline{\mu}(\emptyset) = \mu(\emptyset) = 0$.\retTwo
+
+      Lemma: If $E \in \widetilde{\mathcal{M}}$ and $\underline{\mu}(E) = \infty$, then there exists a set $A \in \mathcal{M}$ such that $A \subseteq E$ and $\mu(A) = \infty$. 
+      \begin{myIndent}\exPPP
+         To show this, construct a sequence of "increasing" sets $(A_j)_{j \in \mathbb{N}}$ satisfying\\ that $A_j \subseteq E$ and $\mu(A_j) \geq j$. Then the union $A$ of that sequence will satisfy\\ that $A \in \mathcal{M}$, that $A \subseteq E$, and that $\mu(A) = \infty$.\retTwo
+      \end{myIndent}
+
+      Because of that lemma, we don't need to deal with the edge case that a least upper bound equaling infinity doesn't mean a set contains infinity. So, let $(E_j)_{j \in \mathbb{N}}$ be a sequence of disjoint sets in $\widetilde{\mathcal{M}}$ with $E = \bigcup\limits_{j \in \mathbb{N}} E_j$. Then let $\varepsilon > 0$.\retTwo
+
+      To show one inequality, pick a sequence $(A_j)_{j \in \mathbb{N}}$ of sets in $\mathcal{M}$ satisfying that $A_j \subseteq E_j$ and $\underline{\mu}(E_j) - \sfrac{\varepsilon}{2^j} \leq \mu(A_j)$. Since $A = \bigcup\limits_{j \in \mathbb{N}}A_j \subseteq E$, and each $A_j$ is\\ [-10pt] disjoint, we thus have:
+
+      {\centering $-\varepsilon + \sum\limits_{j=1}^\infty \underline{\mu}(E_j) \leq \sum\limits_{j=1}^\infty \mu(A_j) = \mu(A) \leq \underline{\mu}(E)$ \newpage\par}
+
+      To show the other inequality, pick $B \in \mathcal{M}$ satisfying that $B \subseteq E$ and\\ [1pt] $\underline{\mu}(E) - \varepsilon < \mu(B)$. Because $E, E_j \in \widetilde{\mathcal{M}}$ for each $j$, we know that $B \cap E$ and\\ [3pt] $B \cap E_j$ are in $\mathcal{M}$ for each $j$. So:
+
+      {\centering $\underline{\mu}(E) - \varepsilon < \mu(B) = \mu(B \cap E) = \sum\limits_{j=1}^\infty \mu(B \cap E_j) \leq \sum\limits_{j=1}^\infty\underline{\mu}(E_j)$\\ [1pt]\par}
+
+      Taking $\varepsilon \rightarrow 0$, we thus get that $\underline{\mu}(E) = \sum\limits_{j=1}^\infty \underline{\mu}(E_j)$.\retTwo
+
+      Proving that $\mu(E) = \underline{\mu}(E)$ when $E \in \mathcal{M}$ is trivial. Obviously, $\mu(E) \leq \underline{\mu}(E)$.\\ [2pt] Meanwhile for any $F \in \mathcal{M}$ satisfying that $F \subseteq E$, we know that $\mu(F) \leq \mu(E)$.\\ [2pt] So, there does not exists a subset of $E$ in $\mathcal{M}$ with greater measure than $\mu(E)$.\retTwo
+   \end{myIndent}
+
+   Note that $\widetilde{\mu}$ and $\underline{\mu}$ are not necessarily equal. Part (f) of this problem gives a relatively\\ [2pt] simple counterexample.
+
+\end{enumerate}
+
+\mySepTwo
+
+\blab{Exercise 1.17:} If $\mu^*$ is an outer measure on $X$ and $(A_j)_{j\in \mathbb{N}}$ is a sequence of disjoint\\ $\mu^*$-measurable sets, then:
+
+{\centering $\mu^*(E \cap \bigcup\limits_{j \in \mathbb{N}}A_j) = \sum\limits_{j=1}^\infty \mu^*(E \cap A_j)$ for any $E \subseteq X$.\retTwo\par}
+
+
+\begin{myIndent}\exTwoP
+   Note that by induction, we can show that for any $n \in \mathbb{N}$:
+
+   {\centering\exPP
+   \begin{tabular}{l}
+      $\mu^*(E \cap \bigcup\limits_{j=1}^\infty A_j) = \mu^*(E \cap \bigcup\limits_{j=1}^\infty A_j \cap A_1) + \mu^*(E \cap \bigcup\limits_{j=1}^\infty A_j - A_1)$\\ [4pt]
+      $\phantom{\mu^*(E \cap \bigcup\limits_{j=1}^\infty A_j)} = \mu^*(E \cap A_1) + \mu^*(E \cap \bigcup\limits_{j=2}^\infty A_j)$\\ [4pt]
+      $\phantom{\mu^*(E \cap \bigcup\limits_{j=1}^\infty A_j)} = \sum\limits_{j=1}^2\mu^*(E \cap A_j) + \mu^*(E \cap \bigcup\limits_{j=3}^\infty A_j)$\\ [4pt]
+      $\phantom{\mu^*(E \cap \bigcup\limits_{j=1}^\infty A_j)} = \cdots = \sum\limits_{j=1}^n \mu^*(E \cap A_j) + \mu^*(E \cap \hspace{-0.5em}\bigcup\limits_{j=n+1}^\infty\hspace{-0.5em} A_j)$
+   \end{tabular} \retTwo\par}
+
+   Thus, we clearly have for all $n$ that $\sum\limits_{j=1}^n \mu^*(E \cap A_j) \leq \mu^*(E \cap \bigcup\limits_{j=1}^\infty A_j)$.\\ [-6pt]
+
+   Taking the limit as $n \rightarrow \infty$, we thus know $\sum\limits_{j=1}^\infty \mu^*(E \cap A_j) \leq \mu^*(E \cap \bigcup\limits_{j \in \mathbb{N}}A_j)$.\retTwo
+
+   The other inequality is obvious from the subadditivity property of outer measures.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\blab{Exercise 1.18:} Let $\mathcal{A} \subseteq \mathcal{P}(X)$ be an algebra, $\mathcal{A}_\sigma$ be be the collection of countable unions of sets in $\mathcal{A}$, and $\mathcal{A}_{\sigma\delta}$ be the collection of countable intersections of sets in $\mathcal{A}_{\sigma}$. Let $\mu_0$ be a premeasure on $\mathcal{A}$ and $\mu^*$ the induced outer measure.\newpage
+
+\begin{enumerate}
+   \item[(a)] For any $E \subseteq X$ and $\varepsilon > 0$, there exists $A \in \mathcal{A}_\delta$ with $E \subseteq A$ and $\mu^*(A) \leq \mu^*(E) + \varepsilon$.
+   
+   \begin{myIndent}\exTwoP
+      Let $(A_j)_{j \in \mathbb{N}}$ be a sequence of sets in $\mathcal{A}$ which cover $E$ and satisfy that\\ $\sum\limits_{j=1}^\infty \mu_0(A_j) \leq \mu^*(E) + \varepsilon$. In turn, by the subadditivity of outer measures, and\\ [1pt] the fact that $\mu^*(A) = \mu_0(A)$ for all $A \in \mathcal{A}$, we know that:
+
+      {\centering $E \subseteq \bigcup\limits_{j \in \mathbb{N}}A_j \in \mathcal{A}_{\sigma}$ and $\mu^*(\bigcup\limits_{j \in \mathbb{N}}A_j) \leq \sum\limits_{j=1}^\infty \mu^*(A_j) = \sum\limits_{j=1}^\infty \mu_0(A_j) \leq \mu^*(E) + \varepsilon$ \retTwo\par}
+   \end{myIndent}
+   
+   \item[(b)] If $\mu^*(E) < \infty$, then $E$ is $\mu^*$-measurable if and only if there exists $B \in \mathcal{A}_{\sigma\delta}$ with $E \subseteq B$ and $\mu^*(B - E) = 0$.
+   
+   \begin{myIndent}\exTwoP
+      Suppose $E$ is $\mu^*$-measurable. Then for all $j \in \mathbb{N}$, pick $A_j \in \mathcal{A}_{\sigma}$ satisfying that\\ $E \subseteq A_j$ and $\mu^*(E) \leq \mu^*(A_j) \leq \mu^*(E) + \sfrac{1}{j}$. Since $E$ is $\mu^*$-measurable, we\\ know that for all $j \in \mathbb{N}$:
+
+      {\centering $\mu^*(A_j) = \mu^*(A_j \cap E) + \mu^*(A_j - E) = \mu^*(E) + \mu^*(A_j - E)$ \retTwo\par}
+
+      In turn, because $\mu^*(E) < \infty$, this tell us that $\mu^*(A_j - E) \leq \sfrac{1}{j}$. Also, because $\bigcap\limits_{j \in \mathbb{N}}A_j \subseteq A_n$ for all $n \in \mathbb{N}$, we know that $\mu^*(\bigcap\limits_{j\in\mathbb{N}}A_j - E) < \sfrac{1}{n}$ for all $n \in \mathbb{N}$.\retTwo
+
+      As a result, we know that $\bigcap\limits_{j \in \mathbb{N}}A_j \in \mathcal{A}_{\sigma\delta}$, $E \subseteq \bigcap\limits_{j \in \mathbb{N}}A_j$, and $\mu^*(\bigcap\limits_{j\in\mathbb{N}}A_j - E) = 0$.\retTwo
+
+      To prove the reverse implication, suppose there exists a $\mu^*$-separable set $B$\\ satisfying that $E \subseteq B$ and $\mu^*(B - E) = 0$ (any set in $\mathcal{A}_{\sigma\delta}$ will be $\mu^*$-separable). Then given any set $F$, we have that:
+
+      {\centering 
+      \begin{tabular}{l}
+         $\mu^*(F - E) = \mu^*(F \cap E^\comp \cap B) + \mu^*(F \cap E^\comp \cap B^\comp)$\\ [2pt]
+         $\phantom{\mu^*(F - E)} = \mu^*(F \cap (B - E)) + \mu^*(F - B) = \mu^*(F - B)$
+      \end{tabular} \retTwo\par}
+
+      Also, since $F \cap E \subseteq F \cap B$, we know that $\mu^*(F \cap E) \leq \mu^*(F \cap B)$.\retTwo
+
+      So, $\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(F \cap B) + \mu^*(F - B)  = \mu^*(F)$. Hence, $E$ is $\mu^*$-measurable.\retTwo      
+   \end{myIndent}
+
+   \item[(c)] If $\mu_0$ is $\sigma$-finite, we can remove the requirement in part (b) that $\mu^*(E) < \infty$.
+   
+   \begin{myIndent}\exTwoP
+      Because the backwards implication proof never required $\mu^*(E)$ to be finite, it suffices to show that $E$ being $\mu^*$-measurable implies there exists $B \in A_{\sigma\delta}$ with $E \subseteq B$ and $\mu^*(B - E) = 0$.\retTwo
+
+      To start, let $(C_i)_{i \in \mathbb{N}}$ satisfy that $\mu_0(C_i) < \infty$ and $\bigcup\limits_{i = 1}^\infty C_i = X$.\newpage
+      
+      Next for all $j, i \in \mathbb{N}$, pick $A_j^{(i)} \in \mathcal{A}_\sigma$ satisfying that $E \cap C_i \subseteq A_j^{(i)}$ and\\ $\mu^*(E) \leq \mu^*(A_j^{(i)}) \leq \mu^*(E) + \sfrac{\varepsilon}{j2^{i}}$. Since $\mu^*(E \cap C_i)$ is finite, we can use the same reasoning as in part (b) to say that $\mu^*(A_j^{(i)} - (E \cap C_i)) < \sfrac{\varepsilon}{j2^i}$.\retTwo
+
+      Importantly, $A_j^{(i)} 
+
+      Finally, note that $\bigcup\limits_{i\in \mathbb{N}}A_{j}^{(i)} \in \mathcal{A}_{\sigma}$ and $\bigcup\limits_{i\in\mathbb{N}}(A_j^{(i)} - (E \cap C_i))$
+   \end{myIndent}
+   
+\end{enumerate}
+
 
 \end{document}
 
