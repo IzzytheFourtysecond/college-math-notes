@@ -655,13 +655,13 @@ Let $(X, \rho)$ be a metric space. We define the \udefine{Borel $\sigma$-algebra
 
       Via transitivity, $E_{k-1} \cup B$ is comparable via proper subset with $E_i$ for all\\ $i \in \{1, \ldots, n\}$. Hence, we've shown that $\mathcal{S} \cup \{E_{k-1} \cup B\}$ is a sequence of sets in $\mathcal{M}$ simply ordered by proper subset. But this contradicts that $\mathcal{S}$ is maximal.\retTwo
 
-      Now that we know $\mathcal{S}$ is infinite, let $(E_n)_{n \in \mathbb{Z}_+}$ be a sequence of sets in $\mathcal{S}$\\ satisfying that $E_n \subset E_{n + 1}$. Then we have that $(E_{n+1} - E_n)_{n \in \mathbb{Z}_+}$ is an infinite\\ sequence of disjoint sets in $\mathcal{M}$.\retTwo
+      Now that we know $\mathcal{S}$ is infinite, let $(E_n)_{n \in \mathbb{Z}_+}$ be a sequence of sets in $\mathcal{S}$\\ satisfying that $E_n \subset E_{n + 1}$. Then we have that $(E_{n+1} - E_n)_{n \in \mathbb{Z}_+}$ is an infinite\\ sequence of nonempty disjoint sets in $\mathcal{M}$.\retTwo
    \end{myIndent}
 
    \item[(b)] Show that $\card(\mathcal{M}) \geq \mathfrak{c}$.
    
    \begin{myIndent}\exTwoP
-      Let $(E_n)_{n \in \mathbb{N}}$ be a sequence of disjoint sets in $\mathcal{M}$. Then if we define the map\\ [2pt] $f: [0, 1]^\mathbb{N} \longrightarrow \mathcal{M}$ such that $(a_0, a_1, a_2, \ldots)$ is mapped to the union of all $E_n$\\ [2pt] such that $a_n = 1$, we have that $f$ is an injection.\retTwo
+      Let $(E_n)_{n \in \mathbb{N}}$ be a sequence of nonempty disjoint sets in $\mathcal{M}$. Then if we\\ [2pt] define the map $f: [0, 1]^\mathbb{N} \longrightarrow \mathcal{M}$ such that $(a_0, a_1, a_2, \ldots)$ is mapped to the\\ [2pt]  union of all $E_n$ such that $a_n = 1$, we have that $f$ is an injection.\retTwo
 
       Hence, $\card(\mathcal{M}) \geq \card([0, 1]^{\mathbb{N}})$. And since there is a trivial bijection\\ from $[0, 1]^{\mathbb{N}}$ and $\mathcal{P}(\mathbb{N})$, plus the fact that we proved early on in the class\\ that $\card(\mathcal{P}(\mathbb{N})) = \card(\mathbb{R})$, we thus know that $\card(\mathcal{M}) \geq \mathfrak{c}$.\newpage
    \end{myIndent}
@@ -1067,7 +1067,7 @@ An \udefine{outer measure} on a nonempty set $X$ is a function $\mu^*: \mathcal{
 
 Let $\mu^*$ be an outer measure on a nonempty set $X$. Then $A \subseteq X$ is called\\ \udefine{$\mu^*$-measurable} if $\mu^*(E) = \mu^*(E \cap A) + \mu^*(E - A)$ for all $E \subseteq X$.
 \begin{myIndent}\teachComment
-   Note that $\mu^*(E) \leq \mu^*(E \cap A) + \mu^*(E - A)$ for all $E \in \mathcal{P}(X)$. So $\mu^*$-measurability just means that the other inequality holds.\retTwo
+   Note that we trivially have $\mu^*(E) \leq \mu^*(E \cap A) + \mu^*(E - A)$ for all $E \in \mathcal{P}(X)$. Also, $\mu^*(E \cap A) + \mu^*(E - A) \leq \mu^*(E)$ holds trivially if $\mu^*(E)$. So $\mu^*$-measurability just means that $\mu^*(E \cap A) + \mu^*(E - A) \leq \mu^*(E)$ holds even if $\mu^*(E) < \infty$\retTwo
 
    \hTwo\blab{Carathéodory's Theorem:} If $\mu^*$ is an outer measure on $X$, then the collection $\mathcal{M}$ of $\mu^*$-measurable sets is a $\sigma$-algebra and the restriction of $\mu^*$ to $\mathcal{M}$ is a complete measure.
    
@@ -1223,9 +1223,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
          
          {\centering $ \nu(A) = \lim\limits_{m\rightarrow \infty}(\nu(\bigcup\limits_{j=1}^m A_j)) = \lim\limits_{m\rightarrow \infty}(\mu(\bigcup\limits_{j=1}^m A_j)) = \mu(A)$. \retTwo\par}
    
-         Also, if $\mu(E)$ is finite, then we can choose the covering $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ of $E$ so that all $A_j$ are disjoint and $A$ satisfies for a given $\varepsilon > 0$ that:
-   
-         {\centering $\mu(E) \leq \mu(A) = \sum\limits_{j=1}^\infty \mu(A_j) < \mu(E) + \varepsilon$ \retTwo\par}
+         Also, if $\mu(E)$ is finite, then we can choose the covering $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ of $E$ so that all $A_j$ are disjoint and $A = \bigcup\limits_{j \in \mathbb{N}}A_j$ satisfies for a given $\varepsilon > 0$ that:\\ [-9pt]\phantom{Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}$\mu(E) \leq \mu(A) = \sum\limits_{j = 1}^\infty \mu(A_j) \leq \mu(E) + \varepsilon$\retTwo
    
          It follows that $\mu(A - E) < \varepsilon$. So:
          
@@ -1346,7 +1344,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
 \blab{Exercise 1.18:} Let $\mathcal{A} \subseteq \mathcal{P}(X)$ be an algebra, $\mathcal{A}_\sigma$ be be the collection of countable unions of sets in $\mathcal{A}$, and $\mathcal{A}_{\sigma\delta}$ be the collection of countable intersections of sets in $\mathcal{A}_{\sigma}$. Let $\mu_0$ be a premeasure on $\mathcal{A}$ and $\mu^*$ the induced outer measure.\newpage
 
 \begin{enumerate}
-   \item[(a)] For any $E \subseteq X$ and $\varepsilon > 0$, there exists $A \in \mathcal{A}_\delta$ with $E \subseteq A$ and $\mu^*(A) \leq \mu^*(E) + \varepsilon$.
+   \item[(a)] For any $E \subseteq X$ and $\varepsilon > 0$, there exists $A \in \mathcal{A}_\sigma$ with $E \subseteq A$ and $\mu^*(A) \leq \mu^*(E) + \varepsilon$.
    
    \begin{myIndent}\exTwoP
       Let $(A_j)_{j \in \mathbb{N}}$ be a sequence of sets in $\mathcal{A}$ which cover $E$ and satisfy that\\ $\sum\limits_{j=1}^\infty \mu_0(A_j) \leq \mu^*(E) + \varepsilon$. In turn, by the subadditivity of outer measures, and\\ [1pt] the fact that $\mu^*(A) = \mu_0(A)$ for all $A \in \mathcal{A}$, we know that:
@@ -1361,11 +1359,11 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
 
       {\centering $\mu^*(A_j) = \mu^*(A_j \cap E) + \mu^*(A_j - E) = \mu^*(E) + \mu^*(A_j - E)$ \retTwo\par}
 
-      In turn, because $\mu^*(E) < \infty$, this tell us that $\mu^*(A_j - E) \leq \sfrac{1}{j}$. Also, because $\bigcap\limits_{j \in \mathbb{N}}A_j \subseteq A_n$ for all $n \in \mathbb{N}$, we know that $\mu^*(\bigcap\limits_{j\in\mathbb{N}}A_j - E) < \sfrac{1}{n}$ for all $n \in \mathbb{N}$.\retTwo
+      In turn, because $\mu^*(E) < \infty$, this tell us that $\mu^*(A_j - E) \leq \sfrac{1}{j}$. Also, because $\bigcap\limits_{j \in \mathbb{N}}A_j \subseteq A_n$ for all $n \in \mathbb{N}$, we know that $\mu^*(\bigcap\limits_{j\in\mathbb{N}}A_j - E) \leq \sfrac{1}{n}$ for all $n \in \mathbb{N}$.\retTwo
 
       As a result, we know that $\bigcap\limits_{j \in \mathbb{N}}A_j \in \mathcal{A}_{\sigma\delta}$, $E \subseteq \bigcap\limits_{j \in \mathbb{N}}A_j$, and $\mu^*(\bigcap\limits_{j\in\mathbb{N}}A_j - E) = 0$.\retTwo
 
-      To prove the reverse implication, suppose there exists a $\mu^*$-separable set $B$\\ satisfying that $E \subseteq B$ and $\mu^*(B - E) = 0$ (any set in $\mathcal{A}_{\sigma\delta}$ will be $\mu^*$-separable). Then given any set $F$, we have that:
+      To prove the reverse implication, suppose there exists a $\mu^*$-separable set $B$\\ satisfying that $E \subseteq B$ and $\mu^*(B - E) = 0$ (any set in $\mathcal{A}_{\sigma\delta}$ will be $\mu^*$-separable because $\mathcal{A}_{\sigma\delta} \subseteq \mathcal{M}(\mathcal{A})$). Then given any set $F$, we have that:
 
       {\centering 
       \begin{tabular}{l}
@@ -1406,13 +1404,42 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
 
 \mySepTwo
 
-\blab{Exercise 1.19:} Let $\mu^*$ be an outer measure on $X$ induced from a finite premeasure $\mu_0$. If $E \subseteq X$, define the \udefine{inner measure} of $E$ to be $\mu_*(E) = \mu_0(X) - \mu^*(E^\comp)$. Then $E$ is $\mu^*$-measurable if and only if $\mu^*(E) = \mu_*(E)$.
+\blab{Exercise 1.19:} Let $\mu^*$ be an outer measure on $X$ induced from a finite premeasure\\ $\mu_0$ defined on an algebra $\mathcal{A}$. If $E \subseteq X$, define the \udefine{inner measure} of $E$ to be\\ $\mu_*(E) = \mu_0(X) - \mu^*(E^\comp)$. Then $E$ is $\mu^*$-measurable if and only if $\mu^*(E) = \mu_*(E)$.\\ [-9pt]
 
-\begin{myIndent}\exTwo
+\begin{myIndent}\exTwoP
+   ($\Longrightarrow$)\\
+   If $E$ is $\mu^*$-measurable, then we have $\mu^*(X \cap E) + \mu^*(X - E) = \mu^*(X)$. Because $\mu^*(X) = \mu_0(X)$, we thus have that $\mu_*(E) = \mu_0(X) - \mu^*(X - E) = \mu_*(E)$.\retTwo
+
+   ($\Longleftarrow$)\\
+   By part (a) of the previous exercise, we know there exists $A_j \in \mathcal{A}_\sigma$ satisfying that\\ $E \subseteq A_j$ and $\mu^*(A_j) \leq \mu^*(E) + \sfrac{1}{j}$.\retTwo
+
+   Note that $A_j$ is $\mu^*$-measurable because $\mathcal{A}_\sigma \subseteq \mathcal{M}(\mathcal{A})$. This means that:
+   \begin{itemize}
+      \item $\mu_0(X) = \mu^*(X) = \mu^*(X \cap A_j) + \mu^*(X - A_j) = \mu^*(A_j) + \mu^*(A_j^\comp)$.
+      \item $\mu^*(E^\comp) = \mu^*(E^\comp \cap A_j) + \mu^*(A^\comp_j \cap E^\comp) = \mu^*(A_j - E) + \mu^*(A^\comp_j)$.\retTwo
+   \end{itemize}
+
+   Supposing that $\mu^*(E) = \mu_*(E) = \mu_0(X) + \mu^*(X - E)$ and plugging in the first bullet-pointed identity, we get that:
    
-   
+   {\centering $\mu^*(E^\comp) = \mu^*(A_j) + \mu^*(A_j^\comp) - \mu^*(E)$.\retTwo\par}
+
+   Substituting that into the second bullet-pointed identity, we have:
+
+   {\centering $\mu^*(A_j) - \mu^*(E) = \mu^*(A_j - E)$.\newpage\par}
+
+   And finally, using the inequality: $\mu^*(A_j) \leq \mu^*(E) + \sfrac{1}{j}$, we get $\mu^*(A_j - E) \leq \sfrac{1}{j}$.\retTwo
+
+   Hence, we've shown that there exists a set $A_j \in \mathcal{A}_\sigma$ such that $E \subseteq A_j$ and\\ $\mu^*(A_j - E) < \sfrac{1}{j}$ for all $j \in \mathbb{N}$. From there, we can proceed exactly like in part\\ (b) of exercise 1.18. Pick such an $A_j$ for all $j \in \mathbb{N}$ and then intersect them together. The result will be a set $B \in \mathcal{A}_{\sigma\delta}$ satisfying that $E \subseteq B$ and $\mu^*(B - E) = 0$. Since such a set exists, we know by the conclusion of part (b) of exercise 1.18 that $E$ is $\mu^*$-measurable.
 \end{myIndent}
 
+\mySepTwo
+
+\blab{Exercise 1.21:} Let $\mu^*$ be an outer measure induced from a premeasure and $\overline{\mu}$ be the\\ restriction of $\mu^*$ to the $\mu^*$-measurable sets. Then $\overline{\mu}$ is saturated.
+
+
+\begin{myIndent}\exTwoP
+   
+\end{myIndent}
 
 \end{document}
 
