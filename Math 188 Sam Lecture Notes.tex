@@ -1113,10 +1113,123 @@ Before proving this theorem, here are some special uses of this theorem:
 
 \mHeader{Lecture 6: 10/9/2024}
 
+\blab{Choice problems:} (where we finally start applying power series)\retTwo
+
+Example: Given $n \in \mathbb{Z}_{\geq 0}$, denote $[n] = \{1, \ldots, n\}$. Suppose we want to count\\ the $k$-element subsets of $[n]$.
+
+\begin{myIndent}\hTwo
+   \blab{Trick:} Consider the expansion of $(1+x)^n = (1+x)(1+x)\cdots(1+x)$.\retTwo
+
+   Given a subset $S \subseteq [n]$, we can think of it as a term in the above expansion\\ as follows:
+   
+   \begin{myIndent}\hThree
+      At the $i$th step of multiplying $x$ or $1$, choose $x$ if $i \in S$ and $1$ if $i \notin S$.\retTwo
+   \end{myIndent}
+
+   Thus, we have that:
+
+   {\centering $(1 + x)^n = \sum\limits_{S \subseteq [n]}x^{|S|} = \sum\limits_{i=0}^n (\text{\# of subsets of size } i)x^i$ \retTwo\par}
+
+   Applying the binomial theorem, we thus know that $\binom{n}{i}$ equals the number of\\ subsets of $[n]$ with $i$ elements.\retTwo
+
+   \blab{Corollary:} The total number of subsets of $[n]$ of any size is:
+
+   {\centering $\sum\limits_{i=0}^n \binom{n}{i} = \sum\limits_{i=0}^n \binom{n}{i}1^i = (1 + (1))^n = 2^n$ \retTwo\par}
+\end{myIndent}
+
+Many identities can be proved by manipulating power series.\\ Example: \udefine{Pascal's identity}
+
+\begin{myIndent}\hTwo
+   Note that $(1 + x)^n = (1+x)(1+x)^{n-1} = (1+x)^{n-1} + x(1+x)^{n-1}$. Thus, we\\ have that:
+
+   {\center $\binom{n}{k} = [x^k](1+x)^n = [x^k](1+x)^{n-1}+[x^{k-1}](1+x)^{n-1} = \binom{n-1}{k} + \binom{n-1}{k-1}$ \newpage\par}
+\end{myIndent}
+
+By adding more variables, we can store more information about a problem.\\ Example: For $S \subseteq [n]$, define $\sum(S) = \sum\limits_{i \in S}i$.
+
+\begin{myIndent}\hTwo
+   Consider the expansion of $(1 + yx)(1 + y^2x)\cdots(1 + y^nx)$.\retTwo
+
+   Any subset $S \subseteq [n]$, can be matched to a term in the above expression the same way as before. Specifically, $S$ will be matched to $y^Nx^M$ where $N = \sum(S)$ and $M = |S|$.\retTwo
+
+   Thus, $(1+yx)(1+y^2x)\cdots(1+y^nx) = \sum a_{i,j}x^iy^j$ where $a_{i,j}$ is the number of subsets of $[n]$ with size $i$ whose sum adds up to $j$.\retTwo
+\end{myIndent}
+
+\mySepTwo 
+
+An equivalent form of the binomial theorem can be gotten as follows:
+
+\begin{myIndent}\hTwo
+   Given $(1+x)^n = \sum\limits_{i=0}^n \binom{n}{i}x^i$ where $n$ is a positive integer, substitute $\frac{x}{y}$ for $x$.\retTwo
+   
+   Then the expression becomes $(1 + \frac{x}{y})^n = \sum\limits_{i=0}^n \binom{n}{i}x^iy^{-i}$. And, if we multiply this\\ [-7pt] all by $y^n$, we thus get:
+
+   {\center $(y+x)^n = \sum\limits_{i=0}^n x^iy^{n-i}$ \retTwo\par}
+\end{myIndent}
+
+To further generalize this, let $k_1, \ldots, k_d \geq 0$ be integers and $n = k_1 + \ldots + k_d$. We define:
+
+{\centering $\displaystyle \binom{n}{k_1, \ldots, k_d} \coloneq \frac{n!}{k_1!\cdots k_d!}$ \retTwo\par}
 
 
+\begin{myIndent}\hTwo
+   \blab{Multinomial Theorem:} Let $x_1, \ldots, x_d$ be variables. Then:
 
+   {\centering $(x_1 + \ldots + x_d)^n = \hspace{-1.5em}\sum\limits_{
+   \begin{smallmatrix}
+      \\
+      k_1, \ldots, k_d \in \mathbb{Z}_{\geq 0} \\
+      k_1 + \ldots + k_d = n
+   \end{smallmatrix}}\hspace{-1.5em}\binom{n}{k_1, \ldots, k_d}x_1^{k_1}\cdots x_d^{k_d}$ \retTwo\par}
 
+   \begin{myIndent}\hThree
+      Proof:\\
+      If $d = 1$, then this theorem holds because $\binom{n}{n}x_1^n = x_1^n$.\retTwo
+
+      Now assume the theorem is known for $d - 1$ variable. Then substitute \\ $x = x_1 + \ldots + x_{d-1}$ and $y = x_d$ into our rewrite of the binomial theorem\\ above to get that:
+
+      {\centering 
+      \begin{tabular}{l}
+         $((x_1 + \ldots + x_{d-1}) + x_d)^n = \sum\limits_{i=1}^n \binom{n}{i}(x_1 + \ldots + x_{d-1})^ix_d^{n-i} $\\ [13pt]
+         $\phantom{((x_1 + \ldots + x_{d-1}) + x_d)^n} =  \sum\limits_{i=1}^n \binom{n}{i} \left(\vphantom{\int_|^|}\right. \hspace{-1.5em}\sum\limits_{
+            \begin{smallmatrix}
+               \\
+               k_1, \ldots, k_{d-1} \in \mathbb{Z}_{\geq 0} \\
+               k_1 + \ldots + k_{d-1} = i
+            \end{smallmatrix}}\hspace{-1.75em}\binom{i}{k_1, \ldots, k_{d-1}}x_1^{k_1}\cdots x_{d-1}^{k_{d-1}} \left.\vphantom{\int_|^|}\right) x_d^{n-i} $
+      \end{tabular} \newpage\par}
+
+      If we set $k_d = n - i$, this expression becomes:
+
+      {\centering $(x_1 + \ldots + x_{d-1} + x_d)^n = \hspace{-1.5em}\sum\limits_{\begin{smallmatrix}
+               \\
+               k_1, \ldots, k_{d} \in \mathbb{Z}_{\geq 0} \\
+               k_1 + \ldots + k_{d} = n
+            \end{smallmatrix}}\hspace{-1.5em}\binom{n}{k_1, \ldots, k_{d}}x_1^{k_1}\cdots x_{d}^{k_{d}}$\retTwo\par}
+   \end{myIndent}
+\end{myIndent}
+
+One choice problem we can model with the multinomial theorem is as follows:
+
+\begin{myIndent}\hTwo
+   Suppose we have $d$ types of objects. Then $\binom{n}{k_1, \ldots, k_d}$ is the number of ways to arrange $n$ objects such that exactly $k_i$ of them have the $i$th type.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+Consider the problem of picking multisets of $[n]$.
+\begin{myIndent}\hTwo
+   Consider the expansion of the formal power series $(1 + x + x^2 + \ldots)^n$. Given any multiset $S$ of $[n]$, we can associate it with a term in that expansion as follows:
+   \begin{myIndent}\hThree
+      At the $i$th step of multiplying in a term, choose $x^k$ where $k$ is the number of times $i$ appears in $S$.\retTwo
+   \end{myIndent}
+
+   Thus, $(1 + x + x^2 + \ldots)^n = \sum\limits_{k\geq0}(\text{\# of multisets of }[n]\text{ of size }k)x^k$.\retTwo
+
+   But note that $(1 + x + x^2 + \ldots) = \frac{1}{1-x}$. So, $(1 + x + x^2 + \ldots)^n = (1 - x)^{-n}$,\\ meaning that:
+
+   {\centering $[x^k](1 + x + x^2 + \ldots)^n = \binom{n + k - 1}{k}$\retTwo\par}
+\end{myIndent}
 
 
 
@@ -1454,6 +1567,48 @@ Prove that $(a_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $d
 
 \mySepTwo
 
+\newpage
 
+\mHeader{Homework 2:}
+
+\blab{(1)} Let $A(x)$ be a formal power series with $A(0) = 0$.
+\begin{enumerate}
+   \item[(a)] Show that there exists a formal power series $B(x)$ with $B(0) = 0$ such that\\ $A(B(x)) = x$ if and only if $[x^1]A(x) \neq 0$.
+   
+   \begin{myIndent}\exOne
+      Let us write $A(x) = \sum\limits_{n \geq 1}a_nx^n$ and $B(x) = \sum\limits_{n \geq 1}b_nx^n$.\\ [-6pt]
+      
+      \begin{myTindent}\exPP
+         We start indexing at $1$ because we know from the problem\\ statement that $a_0 = 0$, and $A(B(x))$ is not defined unless\\ $b_0 = 0$.\retTwo
+      \end{myTindent}
+
+      Note that $[x^1]A(B(x)) = a_1b_1$. So if $a_1 = [x^1]A(x) = 0$, then we can't solve for $b_1$ such that $a_1b_1 = 1$. On the other hand, if $a_1 \neq 0$ (a.k.a it has a multiplicative inverse), then we can uniquely fix $b_1 = \sfrac{1}{a_1}$.\retTwo
+
+      After that, note that for any $n \in \mathbb{Z}_{\geq 2}$, we have that:
+      
+      {\centering $[x^n]A(B(x)) = a_1b_n + f_{a_2, \ldots, a_{n}, b_1,\ldots, b_{n-1}}$\par}
+      
+      where the end term is some expression of given coefficients and coefficients which we can calculate by induction. So, forcing $[x^n]A(B(x)) = 0$, we can\\ uniquely determine $b_n$ to be:
+
+      {\centering $b_n = -\frac{1}{a_1}f_{a_2, \ldots, a_{n}, b_1,\ldots, b_{n-1}}$ \retTwo\par}
+
+      \begin{myIndent}\exPP
+         To better explain why the coefficients of $A(B(x))$ take on the form above,\\ note that $\mdeg A(x) = 1 \Longrightarrow \mdeg A(x)^n \geq n$. Also, if $B(x)$ with\\ $B(0) = 0$ is raised to a power $m \geq 2$, then the first coefficient which $[x^n]B(x)$ will affect in $[x^n]B(x)^m$ is $[x^{m + n - 1}]B(x)^m$.\retTwo
+      \end{myIndent}
+
+      It follows that by induction, there exists a unique formal power series $B(x)$ such that $A(B(x)) = x$.\retTwo
+   \end{myIndent}
+
+   \item[(b)] Assuming $[x^1]A(x) \neq 0$, show that $B(x)$ is unique and also satisfies\\ $B(A(x)) = x$. You may use without proof that composition of formal\\ power series is associative.
+   
+   \begin{myIndent}\exOne
+      We know from before that $B(x)$ is unique.\retTwo
+
+      Meanwhile, note that if $(A \circ B)(x) = x$ and composition is associative, then:
+      
+      {\centering $(A \circ B)(A(x)) = A(x) \Longrightarrow A((B \circ A)(x)) = A(x) \Longrightarrow (B \circ A)(x) = x$ \retTwo\par}
+   \end{myIndent}
+\end{enumerate}
 
 \end{document}
+
