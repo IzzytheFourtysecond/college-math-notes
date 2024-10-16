@@ -976,19 +976,13 @@ In this section, we'll assume that the coefficients of all power series are comp
 Thus, we've shown that given a formal power series $A(x)$ with $a_0 = 1$, we know $A(x)^c$ and $A(x)^{\sfrac{1}{d}}$ are well defined for all $c \in \mathbb{Z}$ and $d \in \mathbb{Z}_+$. The next obvious question is, can we define $A(x)^q$ for any nonzero rational number $q$?
 
 \begin{myIndent}\hTwo
-   Firstly, given integers $c$ and $d$ with $d \neq 0$, we need to sort out whether we want to define $A(x)^{\sfrac{c}{d}} = (A(x)^c)^{\sfrac{1}{d}}$ or $A(x)^{\sfrac{c}{d}} = (A(x)^{\sfrac{1}{d}})^{c}$. Luckily the choice doesn't actually matter because both are equivalent.\\
+   Firstly, given integers $c$ and $d$ with $d \neq 0$, we need to sort out whether we want to define $A(x)^{\sfrac{c}{d}} = (A(x)^c)^{\sfrac{1}{d}}$ or $A(x)^{\sfrac{c}{d}} = (A(x)^{\sfrac{1}{d}})^{c}$ (both are defined because taking powers of $A(x)$ or $A(x)^{\sfrac{1}{d}}$ won't change the fact that it's constant term is $1$). Luckily the choice doesn't actually matter because both are equivalent.\\
    
    \begin{myIndent}\hThree
       $((A(x)^{\sfrac{1}{d}})^c)^d = ((A(x)^{\sfrac{1}{d}})^d)^c = A(x)^c$. So $(A(x)^{\sfrac{1}{d}})^c = (A(x)^c)^{\sfrac{1}{d}}$.\retTwo
    \end{myIndent}
 
-   Secondly, we need to check that for any nonzero integer $b$: $A(x)^{\sfrac{c}{d}} = A(x)^{\sfrac{bc}{bd}}$.
-
-   \begin{myIndent}\hThree
-      To prove this, note that:
-
-      {\centering  $(A(x)^{\sfrac{1}{bd}})^{bc} = (((A(x)^{\sfrac{1}{bd}})^{bc})^d)^{\sfrac{1}{d}} = (((A(x)^{\sfrac{1}{bd}})^{bd})^c)^{\sfrac{1}{d}} = (A(x)^c)^{\sfrac{1}{d}}$\retTwo\par}
-   \end{myIndent}
+   The rest of the checks we need to do are in exercise 5.(a) in homework 2.\retTwo
 \end{myIndent}
 
 With that, we've now proven we can raise certain formal power series to rational powers. Although notably, we don't have an easy way right now of calculating those rational powers.\retTwo
@@ -1606,9 +1600,202 @@ Prove that $(a_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $d
 
       Meanwhile, note that if $(A \circ B)(x) = x$ and composition is associative, then:
       
-      {\centering $(A \circ B)(A(x)) = A(x) \Longrightarrow A((B \circ A)(x)) = A(x) \Longrightarrow (B \circ A)(x) = x$ \retTwo\par}
+      {\centering $(A \circ B)(A(x)) = A(x) \Longrightarrow A((B \circ A)(x)) = A(x) \Longrightarrow (B \circ A)(x) = x$ \newpage\par}
    \end{myIndent}
 \end{enumerate}
+
+\blab{(2)} 
+\begin{enumerate}
+   \item[(a)] Prove that $\hspace{-0.25em}\sum\limits_{m,n \geq 0}\hspace{-0.25em}\min(m,n)x^my^n = \frac{xy}{(1-x)(1-y)(1-xy)}$.
+   
+   \begin{myIndent}\exOne
+      Firstly, note that $\hspace{-0.25em}\sum\limits_{m,n \geq 0}\hspace{-0.25em}\min(m,n)x^my^n = \sum\limits_{m \geq 0}\left(\sum\limits_{n=0}^{m}ny^n + \sum\limits_{n > m}my^n\right)x^m$.\retTwo
+
+      Also, we have that:
+      \begin{itemize}
+         \item $\sum\limits_{n > m}m y^n = my^{m + 1} \sum\limits_{n \geq 0}y^n = \frac{my^{m+1}}{1 - y}$.
+         \item $\sum\limits_{n=0}^m ny^n = y\sum\limits_{n=0}^{m-1} (n+1)y^{n}$\\
+         $\phantom{\sum\limits_{n=0}^m ny^n } = yD\hspace{-0.2em}\left(\sum\limits_{n=0}^m y^n\right) = yD\left(\frac{1 - y^{m+1}}{1- y}\right)$\\
+         $\phantom{\sum\limits_{n=0}^m ny^n = yD\hspace{-0.2em}\left(\sum\limits_{n=0}^m y^n\right)} = y\left(\frac{-(m + 1)y^m}{1 - y} + \frac{1 - y^{m+1}}{(1-y)^2}\right) = \frac{-my^{m+1} - y^{m+1}+my^{m+2}+y}{(1-y)^2}$\retTwo
+      \end{itemize}
+
+      Thus, $\sum\limits_{n=0}^{m}ny^n + \sum\limits_{n > m}my^n = \frac{y - y^{m+1}}{(1-y)^2}$.\retTwo
+
+      And therefore:
+      
+      {\centering 
+      \begin{tabular}{l}
+         $\sum\limits_{m,n \geq 0}\hspace{-0.25em}\min(m,n)x^my^n = \frac{y}{(1-y)^2}\sum\limits_{m \geq 0}(1 - y^m)x^m$\\ [14pt]
+         $\phantom{\sum\limits_{m,n \geq 0}\hspace{-0.25em}\min(m,n)x^my^n} = \frac{y}{(1-y)^2}\sum\limits_{m \geq 0}x^m - \frac{y}{(1-y)^2}\sum\limits_{m \geq 0}x^my^m$\\ [14pt]
+         $\phantom{\sum\limits_{m,n \geq 0}\hspace{-0.25em}\min(m,n)x^my^n} = \frac{y}{(1-y)^2}\cdot\frac{1}{1-x} - \frac{y}{(1-y)^2}\cdot\frac{1}{1-xy}$\\ [2pt]
+         $\phantom{\sum\limits_{m,n \geq 0}\hspace{-0.25em}\min(m,n)x^my^n} = \frac{-xy^2 + xy}{(1-y)^2(1-x)(1-xy)} = \frac{xy}{(1-y)(1-x)(1-xy)}$
+      \end{tabular}\retTwo\par}
+   \end{myIndent}
+   
+   \item[(b)] Let $a_{m,n}$ be the number of paths in $\mathbb{R}^2$ from $(0, 0)$ to $(m, n)$ using steps of the form $\overrightarrow{(1, 0)}$, $\overrightarrow{(0, 1)}$, and $\overrightarrow{(2, 1)}$. Prove that:
+   
+   {\centering $\sum\limits_{m,n\geq 0}\hspace{-0.25em}a_{m,n}x^my^n = \frac{1}{1-x-y-x^2y}$ \retTwo\par}
+
+   
+   \begin{myIndent}\exOne
+      Note that for $m \geq 2$ and $n \geq 1$, we have that:
+      
+      {\centering $a_{m,n} = a_{m-1, n} + a_{m, n-1} + a_{m-2, n-1} $ \retTwo\par}
+   
+      Also, we can somewhat trivially calculate that $a_{m, 0} = 1 = a_{0, n}$ if $m, n > 0$, that $a_{1, n} = n+1$ if $n \geq 0$, and that $a_{0,0} = 1$ (the empty path). Thus:
+      \begin{itemize}
+         \item $m \geq 1 \Longrightarrow [x^m](1 - x - y - x^2y)A(x) = a_{m,0} - a_{m-1, 0} = 0$
+         \item $n \geq 1 \Longrightarrow [y^n](1 - x - y - x^2y)A(x) = a_{0,n} - a_{0, {n-1}} = 0$
+         \item $n \geq 1 \Longrightarrow [xy^n](1 - x - y - x^2y)A(x) = a_{1, n} - a_{0, n} - a_{1, n-1} = 0$\newpage
+         \item $[x^0y^0](1 - x - y - x^2y)A(x) = a_{0,0} = 1$.
+      \end{itemize}
+
+      Thus,  $(1 - x - y - x^2y)A(x) = 1$. And so $A(x) = \frac{1}{1 - x - y - x^2y}$.\retTwo
+   \end{myIndent}
+\end{enumerate}
+
+\blab{(3)} Let $n \geq 2$ be an integer. Evaluate the following sums:
+
+\begin{enumerate}
+   \item[(a)] $\sum\limits_{i=0}^n i^2\binom{n}{i}$
+   
+   \begin{myIndent}\exOne
+      Note that by taking derivatives of the binomial theorem, we get that:\\ [-18pt]
+      {\exTwo\begin{itemize}
+         \item $n(x+1)^{n-1} = \sum\limits_{i=1}^{n} i\binom{n}{i}x^{i-1}$
+         \item $ n(n-1)(x+1)^{n-2} = \sum\limits_{i=2}^{n} i(i-1)\binom{n}{i} x^{i-2} = \sum\limits_{i=2}^ni^2\binom{n}{i}x^{i-2} - \sum\limits_{i=2}^ni\binom{n}{i}x^{i-2}$\retTwo
+      \end{itemize}}
+
+      So, since $i\binom{n}{i}x^{i} = i^2\binom{n}{i}x^{i}$ when $i = 0$ or $i = 1$, we can multiply everything by $x^2$ rearrange terms, and then add the missing terms to both sides to get that:
+      
+      {\centering 
+      \begin{tabular}{l}
+         $\sum\limits_{i=0}^n i^2\binom{n}{i}x^i = n(n-1)x^2(x+1)^{n-2} + x\sum\limits_{i=0}^n i\binom{n}{i}x^{i-1}$\\ $\phantom{\sum\limits_{i=0}^n i^2\binom{n}{i}x^i}= n(n-1)x^2(x+1)^{n-2} + nx(x+1)^{n-1}$
+      \end{tabular}\retTwo\par}
+
+      Subbing in $x = 1$, we thus get that:
+      
+      {\centering $\sum\limits_{i=0}^n i^2\binom{n}{i} = (n(n-1) + 2n)2^{n-2} = (n^2 + n)2^{n-2}$.\retTwo\par}
+   \end{myIndent}
+
+   \item[(b)] $\sum\limits_{i=0}^n i^2\binom{n}{i}(-1)^i$
+   
+   \begin{myIndent}\exOne
+      Starting back off with the expression for $\sum\limits_{i=0}^n i^2\binom{n}{i}x^i$ we found last time, we instead sub in $x = -1$ to get that:
+
+      {\centering $\sum\limits_{i=0}^n i^2\binom{n}{i}x^i = n(n-1)x^2(1-x)^{n-2} - nx(1-x)^{n-1}$ \retTwo\par}
+
+
+
+      Interestingly, if $n > 2$, then when we plug in $x = 1$, everything cancels and we get $\sum\limits_{i=0}^n i^2\binom{n}{i}(-1)^i = 0$. Meanwhile, if $n = 2$, then $(1 - x)^{n-2}$ doesn't equal zero and we get that:
+
+      {\centering $\sum\limits_{i=0}^n i^2\binom{n}{i}(-1)^i = 2$ \newpage\par}
+   \end{myIndent}
+
+   \item[(c)] $\sum\limits_{
+   \begin{smallmatrix}
+      0 \leq i \leq n \\
+      i \text{ is even}
+   \end{smallmatrix}} \hspace{-0.6em}i^2\binom{n}{i}$
+
+   \begin{myIndent}\exOne
+      Combining the two previous sums, we get that:
+
+      {\centering $\sum\limits_{
+   \begin{smallmatrix}
+      0 \leq i \leq n \\
+      i \text{ is even}
+   \end{smallmatrix}} \hspace{-0.6em}i^2\binom{n}{i} = \frac{1}{2}\sum\limits_{i=0}^n i^2\binom{n}{i} + \frac{1}{2}\sum\limits_{i=0}^n i^2\binom{n}{i}(-1)^i = \left\{
+   \begin{matrix}
+      (n^2 + n)2^{n-3} & \text{ if } n > 2 \\
+      4 & \text{ if } n = 2
+   \end{matrix}\right.$\retTwo\par}
+   \end{myIndent}
+
+   \item[(d)] $\sum\limits_{\begin{smallmatrix}
+      0 \leq i \leq n \\
+      i \text{ is odd}
+   \end{smallmatrix}} \hspace{-0.6em}i^2\binom{n}{i}$
+
+   \begin{myIndent}\exOne
+      Combining the sum in part (a) and the sum in part (c), we get that:
+
+      {\centering $\sum\limits_{
+   \begin{smallmatrix}
+      0 \leq i \leq n \\
+      i \text{ is odd}
+   \end{smallmatrix}} \hspace{-0.6em}i^2\binom{n}{i} = \sum\limits_{i=0}^n i^2\binom{n}{i} - \hspace{-0.6em} \sum\limits_{
+      \begin{smallmatrix}
+         0 \leq i \leq n \\
+         i \text{ is even}
+      \end{smallmatrix}} \hspace{-0.6em}i^2\binom{n}{i} = \left\{
+   \begin{matrix}
+      (n^2 + n)2^{n-3} & \text{ if } n > 2 \\
+      2 & \text{ if } n = 2
+   \end{matrix}\right.$\retTwo\par}
+   \end{myIndent}
+\end{enumerate}
+
+\blab{(4)}
+\begin{enumerate}
+   \item[(a)] How many ways can we rearrange the letters of the word "SASSAFRAS"?
+   
+   \begin{myIndent}\exOne
+      Something I'd briefly like to note is that an obvious upper bound for this\\ number is $9! = 362880$. Now this is overcounting (by quite a lot) since it isn't taking into account having repeat letters. However, it is a small enough\\ number that you could write a snippet of code to manually count up this\\ quantity. In fact, I did write some code to do that and got back that the answer is 2520.\retTwo
+
+      {\centering\includegraphics[scale=0.75]{188-HW2_Q4a.png}\retTwo\par}
+
+      Now, consider the expansion of the polynomial: $(s + a + f + r)^9$. Given any string of nine letters: 's', 'a', 'f', 'r', we can associate that string with the term in the expansion gained by choosing to multiply in the $i$th letter of the string at step $i$.\retTwo
+
+      It follows that $[s^4a^3fr](s + a + f + r)^9$ equals the number terms in the expansion associated with strings which rearrange the letters of "SASSAFRAS". And, we know that:
+
+      {\centering\exP $[s^4a^3fr](s + a + f + r)^9 = \binom{9}{4, 3, 1, 1} = \frac{9!}{4!3!} = \frac{9\cdot 8 \cdot 7 \cdot 6 \cdot 5}{3 \cdot 2} = 9\cdot 8\cdot 7 \cdot 5 = 2520$ \newpage\par}
+   \end{myIndent}
+
+   \item[(b)] How many ways can this be done if we also require that the 3 A's all appear consecutively?
+   
+   \begin{myIndent}\exOne
+      After modifying my code from before, I preemptively know that the right\\ answer is $210$. So, whatever we do next, our final answer should match that.\retTwo
+
+      Now forcing all three A's to be next to each other means that whenever we choose A from among our bank of possible letters, we have to add A three times. The generating function that models this pattern of choosing letters is:
+      
+      {\centering $(s + (a^3) + f + r)^7 = \sum \binom{7}{k_1, k_2, k_3, k_4}s^{k_1}(a^3)^{k_2}f^{k_3}r^{k_4}$  \retTwo\par}
+
+      Importantly, $[s^4a^3fr](s + a^3 + f + r)^7$ will still give the number of ways to arrange the letters of "SASSAFRAS". However, now:
+
+      {\centering $[s^4a^3fr](s + a^3 + f + r)^7 = \binom{7}{4, 1, 1, 1} = 7\cdot6\cdot 5 = 210$\retTwo\par}
+   \end{myIndent}
+\end{enumerate}
+
+\blab{(5)}
+\begin{enumerate}
+   \item[(a)] Let $a, b$ be rational numbers. Show that for any formal power series $A(x)$ with $A(0) = 1$, we have $A(x)^aA(x)^b = A(x)^{a + b}$.
+   
+   \begin{myIndent}\exOne
+      To start, here's the proof that if $n,m, c$ are integers with $c \neq 0$, then\\ $A(x)^{\frac{m}{n}} = A(x)^{\frac{cm}{cn}}$:
+
+      {\centering\exP  $(A(x)^{\sfrac{1}{cn}})^{cm} = (((A(x)^{\sfrac{1}{cn}})^{cm})^n)^{\sfrac{1}{n}} = (((A(x)^{\sfrac{1}{cn}})^{cn})^m)^{\sfrac{1}{n}} = (A(x)^m)^{\sfrac{1}{n}}$\retTwo\par}
+
+      Now, suppose $a = \frac{m}{n}$ and $b = \frac{p}{q}$ where $m,n,p,q \in \mathbb{Z}$. Then:
+
+      {\centering\exP 
+      \begin{tabular}{l}
+         $A(x)^{a}A(x)^b = (A(x)^{\sfrac{1}{n}})^m(A(x)^{\sfrac{1}{q}})^p$\\
+         $\phantom{A(x)^{a}A(x)^b} = (A(x)^{\sfrac{1}{nq}})^{mq}(A(x)^{\sfrac{1}{qn}})^{pn} = (A(x)^{\sfrac{1}{nq}})^{mq + pn} = A(x)^{a + b}$
+      \end{tabular} \retTwo\par}
+   \end{myIndent}
+
+   \item[(b)] Deduce from (a) that $\binom{a+b}{n} = \sum\limits_{i=0}^n \binom{a}{i}\binom{b}{n-i}$ for all nonnegative integers $n$.
+   
+   \begin{myIndent}\exOne
+      Note that:
+      
+      {\centering $\sum\limits_{n \geq 0}\binom{a + b}{n} x^n = (1 + x)^{a + b} = (1 + x)^a(1 + x)^b = \left(\vphantom{\int_|^|}\right.\sum\limits_{i \geq 0}\binom{a}{i} x^i\left.\vphantom{\int_|^|}\right)\left(\vphantom{\int_|^|}\right.\sum\limits_{j \geq 0}\binom{b}{j} x^j\left.\vphantom{\int_|^|}\right)$\retTwo\par}
+
+      By applying the definition of Cauchy products, we thus get the desired identity.
+   \end{myIndent}
+\end{enumerate}
+
 
 \end{document}
 
