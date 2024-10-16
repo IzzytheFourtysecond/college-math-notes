@@ -1229,6 +1229,72 @@ Consider the problem of picking multisets of $[n]$.
    {\centering $[x^k](1 + x + x^2 + \ldots)^n = \binom{n + k - 1}{k}$\retTwo\par}
 \end{myIndent}
 
+\mySepTwo
+
+\mHeader{Lecture 7:}
+
+\blab{Rational Generating Functions:}
+
+A formal power series $F(x)$ is a \udefine{rational function} if there exists polynomials $P(x)$ and $Q(x)$ with $Q(x) \neq 0$ such that $Q(x)F(x) = P(x)$.
+
+\begin{myIndent}\teachComment
+   Note that $P(x)$ and $Q(x)$ are not unique because we can multiply and divide them by common polynomials and the relation still holds. However, a fact that's beyond the scope of this class is that because polynomials have unique factorizations, we know that any other $P^\prime(x)$ and $Q^\prime(x)$ will be off of $P(x)$ by $Q(x)$ only by some factor $R(x)$.\retTwo
+\end{myIndent}
+
+Define $\deg F(x) = \deg P(x) - \deg Q(x)$\retTwo
+
+\begin{myIndent}\hTwo
+   \blab{Theorem:} Suppose $F(x) = \sum\limits_{n \geq 0 }a_n x^n$.\\ Write $Q(x) = 1 + c_1x + \ldots + c_rx^r = (1 - \gamma_1x)^{m_1}\cdots(1 - \gamma_sx)^{m_s}$ where $\gamma_1^{-1}, \ldots, \gamma_s^{-1}$ are the roots of $Q(x)$. (We can do this because we know $0$ isn't a root of $Q$ on account of $Q$ having a nonzero constant term). Then given $N \geq 0$ the following are equivalent:
+   \begin{enumerate}
+      \item[(a)] For all $n \geq N,\myHS a_{n+r} + c_1a_{n+r-1} + \ldots + c_ra_1 = 0$.\newpage
+      \item[(b)] $Q(x)F(x)$ is a polynomial of degree less than $N + r$.\\ [-18pt]
+      \item[(c)] There exists polynomials $f_1, \ldots, f_s$ with $\deg f_i < m_i$ such that $a_n = \sum\limits_{i=1}^s f_i(n)\gamma_i^n$.\retTwo
+   \end{enumerate}
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      (a) $\Longleftrightarrow$ (b)
+      \begin{myIndent}
+         For any $n \geq N$, note that:
+         
+         {\centering $[x^{n+r}]Q(x)F(x) = a_{n+r}+c_1a_{n+r-1} + \ldots + c_ra_n$.\retTwo\par}
+
+         Thus, assuming (a), we'd have that $[x^{n+r}]Q(x)F(x) = 0$ for all $n \geq N$. So, $Q(x)F(x)$ is a polynomial of degree less than $N + r$.\retTwo
+
+         Conversely, assuming (b), then we know that $[x^{n+r}]Q(x)F(x) = 0$ for all $n \geq N$. This is equivalent to (a).\retTwo      
+      \end{myIndent}
+
+      (b) $\Longrightarrow$ (c)
+      \begin{myIndent}
+         Assume that (b) holds and write $F(x) = \frac{P(x)}{Q(x)}$ where $\deg P(x) < N + r$. Then, doing polynomial long division, we can find polynomials $g(x)$ and $P_0(x)$ where $g(x)$ is a polynomial of degree less than $N$, $P_0(x)$ is a polynomial of degree less than $r$, and $F(x) = g(x) + \frac{P_0(x)}{Q(x)}$.\retTwo
+
+         Doing partial fractions, we get that: $\frac{P_0(x)}{Q(x)} = \sum\limits_{i=1}^s \frac{p_i(x)}{(1-\gamma_i x)^{m_i}}$.\retTwo
+
+         Also note that by the binomial theorem, if $d$ is an integer less than $m$, then:
+
+         {\centering
+         \begin{tabular}{l}
+            $\frac{x^d}{(1-\gamma x)^m} = x^d\sum\limits_{n \geq 0}\binom{m + n - 1}{n}\gamma^n x^n$\\ [12pt]
+            $\phantom{\frac{x^d}{(1-\gamma x)^m}} = \sum\limits_{n \geq 0}\binom{m + n - 1}{n}\gamma^nx^{n+d} = \sum\limits_{n \geq d}\binom{m+n-d-1}{n-d}\gamma^{n-d}x^n$
+         \end{tabular}\retTwo\par}
+
+         But then note that $\gamma^{-d}\binom{m+n-d-1}{n-d} = \frac{1}{\gamma^{d}(m-1)!}(m+n-d-1)\cdots(n-d+2)(n-d+1)$ is a polynomial of degreem less than $m - 1$.
+
+
+
+         % But note that $\binom{n+m-d-1}{n-d} = \frac{(m+n-d-1)\cdots(n-d+2)(n-d+1)}{(m-1)!}$.\retTwo
+
+         % Thus, if $n\in \{d-1, d-2, \ldots, d-m+1\}$, then $\binom{n+m-d-1}{n-d} = 0$.\retTwo
+
+         % Thus, we can conclude that:
+         
+         % {\centering $\frac{x^d}{(1-\gamma x)^m} = \sum\limits_{n \geq 0}\binom{n+m-d-1}{n-d} \gamma^{n-d}x^n = \gamma^{-d}\sum\limits_{n \geq 0}\binom{n+m-d-1}{n-d}\gamma^n x^n$\retTwo\par}
+
+         % And importantly, $\binom{n+m-d-1}{n-d} = \frac{(m+n-d-1)\cdots(n-d+2)(n-d+1)}{(m-1)!}$ is a polynomial of degree 
+
+      \end{myIndent}
+   \end{myIndent}
+\end{myIndent}
 
 
 
@@ -1238,10 +1304,7 @@ Consider the problem of picking multisets of $[n]$.
 
 
 
-
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
