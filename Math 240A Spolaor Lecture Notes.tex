@@ -903,7 +903,7 @@ Let $(X, \mathcal{M}, \mu)$ be a measure space.
 
          {\centering\begin{tabular}{l}
             $\mu(E_1) = \mu(\bigcap\limits_{j=1}^\infty E_j) + \mu(\bigcup\limits_{j=1}^\infty F_j)$\\ [6pt]
-            $\phantom{\mu(E_1)} = \mu(\bigcap\limits_{j=1}^\infty E_j) + \lim\limits_{j \rightarrow \infty}(F_j) = \mu(\bigcap\limits_{j=1}^\infty E_j) + \lim\limits_{j \rightarrow \infty}(\mu(E_1) - \mu(E_j))$
+            $\phantom{\mu(E_1)} = \mu(\bigcap\limits_{j=1}^\infty E_j) + \lim\limits_{j \rightarrow \infty}(\mu(F_j)) = \mu(\bigcap\limits_{j=1}^\infty E_j) + \lim\limits_{j \rightarrow \infty}(\mu(E_1) - \mu(E_j))$
          \end{tabular} \retTwo\par}
 
          Since $\mu(E_1) < \infty$, we can subtract it out of the expression to get:\\ [4pt] $\mu(\bigcap\limits_{j=1}^\infty E_j) - \lim\limits_{j\rightarrow\infty}(\mu(E_j)) = 0$. Also, we know $\mu(\bigcap\limits_{j=1}^\infty E_j) < \infty$ since\\ [0pt] it's a subset of $E_j$. So, we can rearrange to get: $\mu(\bigcap\limits_{j=1}^\infty E_j) = \lim\limits_{j\rightarrow\infty}(\mu(E_j))$.
@@ -1419,7 +1419,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
       \item $\mu^*(E^\comp) = \mu^*(E^\comp \cap A_j) + \mu^*(A^\comp_j \cap E^\comp) = \mu^*(A_j - E) + \mu^*(A^\comp_j)$.\retTwo
    \end{itemize}
 
-   Supposing that $\mu^*(E) = \mu_*(E) = \mu_0(X) + \mu^*(X - E)$ and plugging in the first bullet-pointed identity, we get that:
+   Supposing that $\mu^*(E) = \mu_*(E) = \mu_0(X) - \mu^*(X - E)$ and plugging in the first bullet-pointed identity, we get that:
    
    {\centering $\mu^*(E^\comp) = \mu^*(A_j) + \mu^*(A_j^\comp) - \mu^*(E)$.\retTwo\par}
 
@@ -1459,14 +1459,134 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
    {\centering$\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(F) + \varepsilon$.\retTwo\par}
 
    Taking $\varepsilon \rightarrow 0$, we get that $\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(F)$ So, $E$ is\\ $\mu^*$-measurable, meaning $E \in \mathcal{M}$.
-
 \end{myIndent}
 
+\hOne\mySepTwo
+
+Consider the collection $H = \{\emptyset, (a, b], (a, \infty) \mid -\infty \leq a < b < \infty\}$ of "half-open-intervals" of $\mathbb{R}$.
+
+\begin{myIndent}\hTwo
+   This forms an elementary family.
+   \begin{itemize}
+      \item We specified in the definition that $\emptyset \in H$.
+      \item If $x \in (a, b] \cap (c, d] \neq \emptyset$, then we know $a < x < d$ and $c < x< b$. So\\ $(a, b] \cap (c, d] = (\max(a, c), \min(b, d)] \in H$.\newpage
+      \item Given $(a, b] \in H$, we have that $(a , b]^\comp = (-\infty, a] \cup (b, \infty)$.
+      \begin{myIndent}\myComment
+         For the sake of time, I'm ignoring edge cases of a right bound of infinity since they are still trivial.\retTwo
+      \end{myIndent}
+   \end{itemize}
+\end{myIndent}
+
+By exercise 1.2, we know that $\mathcal{M}(H) = \mathcal{B}_{\mathbb{R}}$. And, by a previous proposition, we know that $\mathcal{A}$ equal to the collection of finite disjoint unions of $H$ is an algebra.\retTwo
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} Let $F: \mathbb{R} \longrightarrow \mathbb{R}$ be a monotonically increasing and right continuous function (meaning $\lim\limits_{t\rightarrow x^+}F(t) = F(x)$ for all $x \in \mathbb{R}$). Also, define $F(-\infty)$ and $F(\infty)$\\ [-6pt]\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} respecting the monotonicity of $F$.\retTwo If $(a_j, b_j]$ for $j = 1,\ldots, n$ are disjoint intervals in $H$, define:
+
+   {\centering $\mu_0(\bigcup\limits_{j=1}^n (a_j, b_j]) = \sum\limits_{j=1}^n F(b_j) - F(a_j)$ \\[-2pt]\par}
+
+   Also let $\mu_0(\emptyset) = 0$. Then this is a premeasure.
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      \begin{enumerate}
+         \item $\mu_0$ is well defined.
+         \begin{myIndent}\hFour
+            Suppose $(a_j, b_j]$ for $j = 1, \ldots, n$ are disjoint intervals in $H$ satisfying that $(a, b] = \bigcup\limits_{j=1}^n (a_j b_j] = (a, b]$. Then after indexing those half intervals in a\\ certain way, we must have that:\\ [-10pt]
+
+            {\centering $a = a_1 < b_1 = a_2 < \ldots < b_{n-1} = a_{n} < b_{n-1} = b $ \retTwo\par}
+
+            It follows that:
+            
+            {\centering$F(b) - F(a) = \mu_0(\bigcup\limits_{j=1}^n(a_j, b_j]) = \sum\limits_{j=1}^n \mu_0((a_j, b_j]) = \sum\limits_{j=1}^n F(b_j) - F(a_j) $ \retTwo\par}
+
+            In other words, $\mu_0$ is well defined for individual intervals.\retTwo
+
+            Now suppose $I_i$ and $J_j$ for $i = 1,\ldots,m$ and $j = 1, \ldots, n$ are disjoint intervals in $H$ satisfying that $\bigcup\limits_{i=1}^m I_i = \bigcup\limits_{j=1}^n J_j$.\retTwo
+            
+            For each $I_i$, we can repeat the same reasoning as above with the collection of sets $I_i \cap J_j$ for $j = 1, \ldots, n$ in order to get that:
+
+            {\centering $\mu_0(I_i) = \sum\limits_{j=1}^n \mu_0(I_i \cap J_j)$ \retTwo\par}
+
+            Similarly, we can show for each $J_j$ that:
+
+            {\centering $\mu_0(J_j) = \sum\limits_{i=1}^m \mu_0(I_i \cap J_j)$ \retTwo\par}
+
+            Thus: $\sum\limits_{i=1}^m \mu_0(I_i) = \sum\limits_{i=1}^m\sum\limits_{j=1}^n \mu_0(I_i \cap J_j) = \sum\limits_{j=1}^n \mu(J_j)$.\newpage
+         \end{myIndent}
+
+         \item If $(I_j)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ is a disjoint sequence satisfying that $\bigcup\limits_{j\in\mathbb{N}}I_j \in \mathcal{A}$, then:\\ [-8pt]
+         
+         {\centering$\mu_0(\bigcup\limits_{j\in\mathbb{N}}I_j) = \sum\limits_{j=1}^\infty \mu_0(I_j)$.\retTwo\par}
+
+         \begin{myIndent}\hFour
+            Since $\bigcup\limits_{j\in\mathbb{N}}I_j \in \mathcal{A}$, we know it is equal to a finite union of disjoint intervals of $H$. By considering those intervals separately, we can thus assume without\\ [6pt] loss of generality that $\bigcup\limits_{j \in \mathbb{N}}I_j = (a, b]$.\retTwo
+
+            Now it's obvious from the construction of $\mu_0$ that $\mu_0$ is additive. And since $(a, b] - \bigcup\limits_{j=1}^m I_j \in \mathcal{A}$ for all $m$, we thus know that:
+
+            {\centering $\mu_0((a, b]) = \mu_0(\bigcup\limits_{j=1}^m I_j) + \mu_0((a, b] - \bigcup\limits_{j=1}^m I_j) \geq \mu_0(\bigcup\limits_{j=1}^m I_j) = \sum\limits_{j=1}^m \mu_0(I_j)$ \retTwo\par}
+
+            Taking the limit as $m \rightarrow \infty$, we get that: $\sum\limits_{j=1}^\infty \mu_0(I_j) \leq \mu_0(\bigcup\limits_{j\in \mathbb{N}} I_j)$.\retTwo
+         \end{myIndent}
+      \end{enumerate}
+   \end{myIndent}
+\end{myIndent}
+
+\mHeader{Lecture 6 Notes: 10/15/2024}
+
+\begin{myIndent}\hTwo
+   \begin{myIndent}\hFour
+      To show the reverse inequality, suppose $a, b \in \mathbb{R}$ (a.k.a. finite), and let $\varepsilon > 0$. Since\\ $F$ is right-continuous, there exists $\delta > 0$ such that $F(a + \delta) - F(a) < \varepsilon$. Similarly, given that $I_j = (a_j, b_j]$, there exists $\delta_j > 0$ such that $F(b_j + \delta_j) - F(b_j) < \frac{\varepsilon}{2^j}$ for all $j \in \mathbb{N}$.\retTwo
+
+      Next, note that the collection $\{ (a_j, b_j + \delta_j) \}_{j \in \mathbb{N}}$ of open intervals covers the set\\ $[a + \delta, b]$. Thus by compactness, there is a finite subcover. In other words,
+      
+      {\centering $(a_1, b_1 + \delta_1),\ldots,(a_N, b_N + \delta_N)$ cover $[a + \delta, b]$ \retTwo\par}
+      
+      Furthermore, by removing intervals in that finite subcover which are subsets of other intervals and by reindexing, we can assume that:
+
+      {\centering $b_j + \delta_j \in (a_{j+1}, b_{j+1} + \delta_{j+1})$ for all $j = 1, \ldots, N - 1$. \retTwo\par}
+
+      Then:
+
+      {\centering 
+      \begin{tabular}{l}
+         $\mu_0((a, b]) = F(b) - F(a)$\\
+         $\phantom{\mu_0((a, b])} < F(b) - F(a + \delta) + \varepsilon$\\
+         $\phantom{\mu_0((a, b])} \leq F(b_N + \delta_N) - F(a_1) + \varepsilon$\phantom{aaaaaaa} {\teachComment(since $F$ is monotone increasing)}\\ [6pt]
+
+         $\phantom{\mu_0((a, b])} = F(b_N + \delta_N) - f(a_N) + \sum\limits_{j=1}^{N-1}(F(a_{j+1}) - F(a_j)) + \varepsilon$\\ [14pt]
+
+         $\phantom{\mu_0((a, b])} \leq F(b_N + \delta_N) - f(a_N) + \sum\limits_{j=1}^{N-1}(F(b_j + \delta_j) - F(a_j)) + \varepsilon$\\ [-6pt]
+         \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {\teachComment(again since $F$ is monotone increasing)}\\ [6pt]
+
+         $\phantom{\mu_0((a, b])} = \sum\limits_{j=1}^N (F(b_j + \delta_j) - F(a_j)) + \varepsilon$\\ [14pt]
+         
+         $\phantom{\mu_0((a, b])} < \sum\limits_{j=1}^N(F(b_j) + \frac{\varepsilon}{2^j} - F(a_j)) + \varepsilon < \sum\limits_{j=1}^\infty \mu(I_j) + 2\varepsilon$
+      \end{tabular} \retTwo\par}
+
+      Since $\varepsilon$ is arbitrary, we've now shown the reverse inequality when $a$ and $b$ are finite. To extend this result to when $a = -\infty$ or $b = \infty$, note that the invervals $(a_j, b_j + \delta_j)$ cover $[-M  + \delta, b]$ or $[a + \delta, M]$.\retTwo
+      
+      So, doing the same manipulations as before, since $\sum\limits_{j=1}^\infty \mu(I_j) + 2\varepsilon$ is an upper bound of $\mu_0((-M, b])$ or $\mu_0((a, M])$, we know that the limit of $\mu_0((-M, b])$ or $\mu_0((a, M])$ as\\ [6pt] $M \rightarrow \infty$ will not exceed that upper bound. Then taking $\varepsilon \rightarrow 0$, we get the same\\ [6pt] result as before.\retTwo
+   \end{myIndent}
+
+   \blab{Theorem:} 
+   \begin{enumerate}
+      \item If $F$ is a monotone increasing and right-continuous, there is a unique Borel\\ measure $\mu_F$ on $\mathcal{B}_\mathbb{R}$ such that $\mu_F((a, b]) = F(b) - F(a)$ for all $a < b$.
+      \item If $G$ is another monotone increasing and right-continuous, then $\mu_G = \mu_F$ if and only if $F - G$ is a constant.
+      \item If $\mu$ is a $\mathcal{B}_{\mathbb{R}}$ measure that is finite on all bounded sets, then we can define:
+      
+      {\centering $F(x) = \left\{
+      \begin{matrix}
+         \mu((0, x]) & \text{ if } x > 0 \\
+         0 & \text{ if } x = 0 \\
+         -\mu((x, 0]) & \text{ if } x < 0
+      \end{matrix}\right.$ \retTwo\par}
+
+      Then $F$ is monotone increasing and right-continuous with $\mu = \mu_F$.
+   \end{enumerate}
+\end{myIndent}
+
+
 \end{document}
-
-
-
-$\phantom{\mu^*(F \cap E) + \mu^*(F - E)} \leq \mu^*(A \cap (A \cap E)) + \mu^*(A \cap A^\comp ) $
 
 
 
