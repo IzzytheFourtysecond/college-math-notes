@@ -1231,7 +1231,7 @@ Consider the problem of picking multisets of $[n]$.
 
 \mySepTwo
 
-\mHeader{Lecture 7:}
+\mHeader{Lecture 7: 10/11/2024}
 
 \blab{Rational Generating Functions:}
 
@@ -1244,11 +1244,11 @@ A formal power series $F(x)$ is a \udefine{rational function} if there exists po
 Define $\deg F(x) = \deg P(x) - \deg Q(x)$\retTwo
 
 \begin{myIndent}\hTwo
-   \blab{Theorem:} Suppose $F(x) = \sum\limits_{n \geq 0 }a_n x^n$.\\ Write $Q(x) = 1 + c_1x + \ldots + c_rx^r = (1 - \gamma_1x)^{m_1}\cdots(1 - \gamma_sx)^{m_s}$ where $\gamma_1^{-1}, \ldots, \gamma_s^{-1}$ are the roots of $Q(x)$. (We can do this because we know $0$ isn't a root of $Q$ on account of $Q$ having a nonzero constant term). Then given $N \geq 0$ the following are equivalent:
+   \blab{Theorem:} Suppose $F(x) = \sum\limits_{n \geq 0 }a_n x^n$.\\ Write $Q(x) = 1 + c_1x + \ldots + c_rx^r = (1 - \gamma_1x)^{m_1}\cdots(1 - \gamma_sx)^{m_s}$ where $\gamma_1^{-1}, \ldots, \gamma_s^{-1}$ are the roots of $Q(x)$. (We can do this because we know $0$ isn't a root of $Q(x)$ on account of $Q(x)$ having a nonzero constant term). Then given $N \geq 0$ the following are equivalent:
    \begin{enumerate}
-      \item[(a)] For all $n \geq N,\myHS a_{n+r} + c_1a_{n+r-1} + \ldots + c_ra_1 = 0$.\newpage
+      \item[(a)] For all $n \geq N,\myHS a_{n+r} + c_1a_{n+r-1} + \ldots + c_ra_n = 0$.\newpage
       \item[(b)] $Q(x)F(x)$ is a polynomial of degree less than $N + r$.\\ [-18pt]
-      \item[(c)] There exists polynomials $f_1, \ldots, f_s$ with $\deg f_i < m_i$ such that $a_n = \sum\limits_{i=1}^s f_i(n)\gamma_i^n$.\retTwo
+      \item[(c)] There exists polynomials $f_1, \ldots, f_s$ with $\deg f_i < m_i$ such that $a_n = \sum\limits_{i=1}^s f_i(n)\gamma_i^n$.\\ [-6pt] for all $n \geq N$.\retTwo
    \end{enumerate}
 
    \begin{myIndent}\hThree
@@ -1268,41 +1268,187 @@ Define $\deg F(x) = \deg P(x) - \deg Q(x)$\retTwo
       \begin{myIndent}
          Assume that (b) holds and write $F(x) = \frac{P(x)}{Q(x)}$ where $\deg P(x) < N + r$. Then, doing polynomial long division, we can find polynomials $g(x)$ and $P_0(x)$ where $g(x)$ is a polynomial of degree less than $N$, $P_0(x)$ is a polynomial of degree less than $r$, and $F(x) = g(x) + \frac{P_0(x)}{Q(x)}$.\retTwo
 
-         Doing partial fractions, we get that: $\frac{P_0(x)}{Q(x)} = \sum\limits_{i=1}^s \frac{p_i(x)}{(1-\gamma_i x)^{m_i}}$.\retTwo
+         Doing partial fractions, we get that: $\frac{P_0(x)}{Q(x)} = \sum\limits_{i=1}^s \frac{p_i(x)}{(1-\gamma_i x)^{m_i}}$ where\\ [-8pt] $\deg p_i(x) < m_i$.\retTwo
 
-         Also note that by the binomial theorem, if $d$ is an integer less than $m$, then:
+         Now for the next bit of the proof, consider any term in $\frac{p_i(x)}{(1-\gamma_i x)^{m_i}}$ of the\\ [-5pt] form $\frac{ax^d}{(1 - \gamma x)^m}$.\retTwo
+
+         By the binomial theorem, if $d$ is an integer less than $m$, then:
 
          {\centering
          \begin{tabular}{l}
-            $\frac{x^d}{(1-\gamma x)^m} = x^d\sum\limits_{n \geq 0}\binom{m + n - 1}{n}\gamma^n x^n$\\ [12pt]
-            $\phantom{\frac{x^d}{(1-\gamma x)^m}} = \sum\limits_{n \geq 0}\binom{m + n - 1}{n}\gamma^nx^{n+d} = \sum\limits_{n \geq d}\binom{m+n-d-1}{n-d}\gamma^{n-d}x^n$
+            $\frac{ax^d}{(1-\gamma x)^m} = ax^d\sum\limits_{n \geq 0}\binom{m + n - 1}{n}\gamma^n x^n$\\ [12pt]
+            $\phantom{\frac{x^d}{(1-\gamma x)^m}} = a\sum\limits_{n \geq 0}\binom{m + n - 1}{n}\gamma^nx^{n+d} = a\sum\limits_{n \geq d}\binom{m+n-d-1}{n-d}\gamma^{n-d}x^n$
          \end{tabular}\retTwo\par}
 
-         But then note that $\gamma^{-d}\binom{m+n-d-1}{n-d} = \frac{1}{\gamma^{d}(m-1)!}(m+n-d-1)\cdots(n-d+2)(n-d+1)$ is a polynomial of degreem less than $m - 1$.
-
-
-
-         % But note that $\binom{n+m-d-1}{n-d} = \frac{(m+n-d-1)\cdots(n-d+2)(n-d+1)}{(m-1)!}$.\retTwo
-
-         % Thus, if $n\in \{d-1, d-2, \ldots, d-m+1\}$, then $\binom{n+m-d-1}{n-d} = 0$.\retTwo
-
-         % Thus, we can conclude that:
+         But note that when $n \geq d$, then:\\ [-10pt]
          
-         % {\centering $\frac{x^d}{(1-\gamma x)^m} = \sum\limits_{n \geq 0}\binom{n+m-d-1}{n-d} \gamma^{n-d}x^n = \gamma^{-d}\sum\limits_{n \geq 0}\binom{n+m-d-1}{n-d}\gamma^n x^n$\retTwo\par}
+         {\centering $\binom{m+n-d-1}{n-d} = \frac{1}{(m-1)!}(m+n-d-1)\cdots(n-d+2)(n-d+1)$\\ [4pt]\par} 
+         
+         is a polynomial in $n$ of degree less than or equal to $m - 1$.\retTwo
 
-         % And importantly, $\binom{n+m-d-1}{n-d} = \frac{(m+n-d-1)\cdots(n-d+2)(n-d+1)}{(m-1)!}$ is a polynomial of degree 
+         Also, if $n\in \{d-1, d-2, \ldots, d-m+1\}$, then this polynomial equals $0$. Thus, since $d \leq m - 1$, we can say that:\\ [-8pt]
+         
+         {\centering $\frac{ax^d}{(1-\gamma x)^m} = \sum\limits_{n \geq 0}f(n)\gamma^nx^n$ \\ [2pt]\par}
 
+         where $f(n) = \frac{a}{\gamma^{d}(m-1)!}(m+n-d-1)\cdots(n-d+2)(n-d+1)$ is a polynomial of degree at most $m - 1$.\newpage
+
+         Doing this for every term in $\frac{p_i(x)}{(1-\gamma_i x)^{m_i}}$ and adding the polynomials together, we\\ [2pt] thus can show that $\frac{p_i(x)}{(1-\gamma_i x)^{m_i}} = \sum\limits_{n \geq 0} f_i(n)\gamma^nx^n$ where $f_i(n)$ is a polynomial\\ [3pt] of degree less than $m_i$.\retTwo
+
+         In turn, we have that $\frac{P_0(x)}{Q(x)} = \sum\limits_{n \geq 0}\left(\sum\limits_{i=1}^s f_i(n)\gamma_i^n\right)x^n$ where each $f_i$ is a\\ [6pt] polynomial of degree less than $m_i$. Thus the conclusion of (c) holds for all $n \geq N$\\ [6pt] since $[x^n]g(x) = 0$ for all $n \geq N$.\retTwo
       \end{myIndent}
+
+      (c) $\Longrightarrow$ (b)
+      \begin{myIndent}
+         Assume there exists polynomials $f_1, \ldots, f_s$ with $\deg f_i < m_i$ such that\\ $a_n = \sum\limits_{i=1}^s f_i(n)\gamma_i^n$ for all $n \geq N$.\retTwo
+
+         Then firstly, define $g_0(x) = F(x) - \sum\limits_{n \geq 0}\left(\sum\limits_{i=1}^s f_i(n)\gamma_i^n\right)x^n$. Note that $g_0$ will\\ [1pt] be a polynomial of degree less than $N$ satisfying that:
+
+         {\center $F(x) = g_0(x) + \sum\limits_{n \geq 0}\left(\sum\limits_{i=1}^s f_i(n)\gamma_i^n\right)x^n$ \retTwo\par}
+
+         Next, observe that $a_n = \sum\limits_{i=1}^s f_i(n)\gamma_i^n$ satisfies the relation: 
+         
+         {\centering $a_{n+r} + c_1a_{n+r-1} + \ldots + c_ra_n$ for all $n \geq 0$. \retTwo\par}
+
+         This is because by manipulating $Q(x)$, we can see that the characteristic\\ polynomial of the above recurrence relation has $\gamma_1$ throught $\gamma_s$ as its roots with multiplicities $m_1$ through $m_s$ respectively.\retTwo
+
+         Since we already showed that (a) implies (b), we thus know that\\ $Q(x)\sum\limits_{n \geq 0}\left(\sum\limits_{i=1}^s f_i(n)\gamma_i^n\right)x^n$ is a polynomial $P_0(x)$ of order less than $r$.\retTwo
+
+         Finally, we now have the expression $F(x) = g_0(x) = \frac{P_0(x)}{Q(x)}$. Multiplying both sides by $Q(x)$, we get that $Q(x)F(x) = g_0(x)Q(x) + P_0(x)$ which is a polynomial of degree less than $N + r$.\retTwo
+      \end{myIndent}
+   \end{myIndent}
+
+   \blab{Special Case:} Let $Q(x) = (1 - x)^r = \sum\limits_{i=0}^r \binom{r}{i}(-1)^i x^i$. Then pick an integer $N \geq 0$.\\ [-8pt] The following are equivalent:
+  \begin{enumerate}
+      \item[(a)] $\forall n \geq N, \myHS \sum\limits_{i=0}^r(-1)^{r-i}\binom{r}{i}a_{n+i} = 0$
+      \item[(b)] $(1 - x)^rF(x)$ is a polynomial of degree less than $N + r$. 
+      \item[(c)] There exists a polynomial $f$ with degree less than $r$ such that $a_n = f(n)$ for all $n \geq N$.\newpage 
+   \end{enumerate} 
+\end{myIndent}
+
+\exOne
+
+\blab{Example:} Given $a = (a_1, a_2, a_3), b = (b_1, b_2, b_3) \in (\mathbb{Z}_{\geq 0})^3$, let us write $a \leq b$ if $a_i \leq b_i$\\ for $i = 1,2,3$. Fixing $a$ and letting $|b| = b_1 + b_2 + b_3$, we define:
+
+{\centering $F_a(x) = \sum\limits_{b \geq a}x^{|b|} = \frac{x^{|a|}}{(1-x)^3}$ \retTwo\par}
+
+
+\begin{myIndent}\exTwoP
+   The second equality comes from the fact that the generating function representing how we are choosing $b \geq a$ is:
+
+   {\centering $(x^{a_1}(1 + x + x^2 + \ldots))(x^{a_2}(1 + x + x^2 + \ldots))(x^{a_3}(1 + x + x^2 + \ldots))$ \retTwo\par}
+\end{myIndent}
+
+Applying the previous special case, if $N = |a| - 2$, then we've shown that $(1 - x)^4F_a(x)$ is a polynomial of degree less than $N + r$. Thus, there exists a quadratic in $n$ which equals the number of $b \in (\mathbb{Z}_{\geq 0})^3$ satisfying that $b \geq a$ and $|b| = n$ given some $n \geq |a| - 2$. \retTwo
+
+Now suppose we are given another $a^\prime = (a_1^\prime, a_2^\prime, a_3^\prime) \in (\mathbb{Z}_{\geq 0})^3$, and fix\\ $a^\pprime = (\max(a_1, a_1^\prime), \max(a_2, a_2^\prime), \max(a_3, a_3^\prime))$. Then:\\ [-6pt]
+
+{\centering $\sum\limits_{
+\begin{smallmatrix}
+   b \in (\mathbb{Z}_{\geq 0})^3 \\ b \geq a \text{ or } b \geq a^\prime
+\end{smallmatrix}}\hspace{-1.25em} x^{|b|} = F_a(x) + F_{a^\prime}(x) - F_{a^\pprime}(x)$\retTwo\par}
+
+\hOne\mySepTwo
+
+\mHeader{Lecture 8: 10/14/2024}
+
+\blab{Catalan Numbers}
+
+We define the $n$th Catalan number $C_n$ to be equal to the number of ways to list $n$ pairs of parentheses such that they are \udefine{balanced}.
+
+\begin{myIndent}
+   A string of pairs of parentheses are balanced if for all $i \leq 2n$, the number of open parentheses: "(", in the first $i$ positions is greater than or equal to the number of closed parentheses: ")" in the first $i$ positions.\retTwo
+\end{myIndent}
+
+Define $C(x) = \sum\limits_{ n \geq 0}C_n x^n$.
+
+
+\begin{myIndent}\hTwo
+   \blab{Lemma:} If $n > 0$, then $C_n = \sum\limits_{i=0}^{n-1}C_iC_{n-1-i}$.
+
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      Every balanced set starts with "(". Consider it's matching ")". Between them is\\ another set of balanced parentheses (which could be empty). Also, to the right of the "\rparen" there is another set of balanced parentheses (which could be empty).\retTwo
+
+      If the set of inside parentheses has $i$ pairs, then the set of parentheses to the right will have $(n-1-i)$ pairs. And since we can choose any $i \in \{1, \ldots, n-1\}$ and also since both the inside and right sets can be chosen independently, it follows that:
+
+      {\centering $C_n = \sum\limits_{i=0}^{n-1}C_iC_{n-1-i}$ \newpage\par}
+   \end{myIndent}
+
+   Note that $[x^{n-1}]C(x)^2 = \sum\limits_{i=0}^{n-1} C_iC_{n-1-i}$. Thus:\\ [6pt]
+
+   {\centering 
+   \begin{tabular}{l}
+      $C(x) = 1 + \sum\limits_{n \geq 1}\left(\sum\limits_{i=0}^{n-1}C_iC_{n-1-i}\right)x^n$\\ [14pt]
+      $\phantom{C(x)} = 1 + x\sum\limits_{n \geq 1}\left(\sum\limits_{i=0}^{n-1}C_iC_{n-1-i}\right)x^{n-1} = 1 + xC(x)^2$
+   \end{tabular} \retTwo\par}
+
+   Hence, we know $C(x)$ is a solution to the quadratic polynomial $xt^2 - t + 1 = 0$. Using the quadratic formula, we deduce that $C(x)$ is a solution to $2xt = 1 \pm \sqrt{1 - 4x}$.
+
+   \begin{myTindent}\begin{myIndent}\teachComment
+      Note that $2x$ doesn't have a multiplicative inverse. So we can't technically divide by it.\retTwo
+   \end{myIndent}\end{myTindent}
+
+   To figure out which solution $C(x)$ equals, let's plug in values of $x$. Note that when $x = 0$, the left side equals $0$ while the right side equals $1 \pm 1$. Thus, it follows that:
+
+   {\centering $2xC(x) = 1 - \sqrt{1 - 4x}$ \retTwo\par}
+
+   Next, we can apply the binomial theorem to get that:
+   
+   {\centering $1 - (1 - 4x)^{\sfrac{1}{2}} = 1 - \sum\limits_{n \geq 0}\binom{\sfrac{1}{2}}{n} (-4x)^n = -\sum\limits_{n \geq 1}\binom{\sfrac{1}{2}}{n} (-1)^n4^nx^n$.\retTwo\par}
+
+   Note that:
+
+   {\centering $-(-1)^n4^n\binom{\sfrac{1}{2}}{n} = -(-1)^n4^n\frac{\frac{1}{2}\cdot\frac{-1}{2}\cdots\frac{-(2n - 3)}{2}}{n!} = 2^{2n}\frac{\frac{1}{2}\frac{1}{2}\cdot\frac{3}{2}\cdots\frac{(2n - 3)}{2}}{n!} = 2^n\frac{(2n-3)!!}{n!}$ \retTwo\par}
+
+   Then note that $(2n - 2)!!(2n - 3)!! = (2n - 2)!$ and $2^{n-1}\frac{1}{(2(n-1))!!} = \frac{1}{(n-1)!}$.\\ Therefore,
+
+   {\centering $2^n\frac{(2n-3)!!}{n!} = 2\frac{(2n-2)!}{n!(n-1)!} = \frac{2}{n} \cdot \frac{(2n-2)!}{(n-1)!(n-1)!} = \frac{2}{n}\binom{2n-2}{n-1}$ \retTwo\par}
+
+   Hence, $2xC(x) = \sum\limits_{n \geq 1}\frac{2}{n}\binom{2n-2}{n-1}x^n$. This implies:
+
+   {\centering $C(x) = \sum\limits_{n\geq 1}\frac{1}{n} \binom{2n-2}{n-1} x^{n-1} = \sum\limits_{n \geq 0}\frac{1}{n+1}\binom{2n}{n}x^{n}$ \retTwo\par}
+
+   So we conclude that:\\
+   \blab{Theorem:} $C(x) = \sum\limits_{n \geq 0}\frac{1}{n+1}\binom{2n}{n}x^n$.
+   \begin{myIndent}\teachComment
+      \blab{Remarks:}
+      \begin{enumerate}
+         \item In the last lecture, we showed that the coefficients of a formal power series eventually satisfy a linear reccurence relation if and only if the formal power series is a rational function. However, it's possible to show that  $C(x)$ is not a rational formal power series. Therefore, the coeffiecients of $C(x)$ do not ever eventually satisfy a linear recurrence relation.
+         
+         \begin{myIndent}\myComment
+            A brief proof that $C(x)$ is irrational goes as follows:\\
+            Suppose $Q(x)C(x) = P(x)$ where $Q(x)$ and $P(x)$ are polynomials. Then:
+            
+            {\centering $Q(x) - Q(x)\sqrt{1 - 4x} = 2xP(x)$.\newpage\par}
+
+            Rearranging terms and squaring everything, we thus get that:
+
+            {\centering $\left(Q(x) - 2xP(x)\right)^2 = Q^2(x)(1 - 4x) $ \retTwo\par}
+
+            But now we have a contradiction because the polynomial on the left side will have even degree and the polynomial on the right side will have odd degree.\retTwo
+         \end{myIndent}
+
+         \item Since $C(x)$ is the root of a polynomial, we say $C(x)$ is an \udefine{algebraic function}.\retTwo
+      \end{enumerate}
    \end{myIndent}
 \end{myIndent}
 
+\exOne
 
+% I don't know what to do with this yet?
 
+% \blab{Example:} Can we find an action of a cyclic group $\mathbb{Z}/_{n+1}$ on this set?
 
+\blab{Other examples of usages of Catalan numbers:}
+\begin{itemize}
+   \item[(a)] The number of ways to apply a binary operation $*$ to $n + 1$ arguments.
+   \item[(b)] The number of rooted binary trees with $n + 1$ leaves.\retTwo
+\end{itemize}
 
+\mySepTwo
 
-
-
+\mHeader{Lecture 9: 10/16/2024}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
