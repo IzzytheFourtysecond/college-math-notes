@@ -1203,7 +1203,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
    \begin{itemize}
       \item $\mu|_\mathcal{A} = \mu_0$
       \item if $\nu: \mathcal{M}(\mathcal{A}) \longrightarrow [0, \infty]$ is a measure with $\nu|_\mathcal{A} = \mu|_\mathcal{A}$, then $\nu \leq \mu$ (with equality if $\mu(E) < \infty$).
-      \item If $\mu_0$ is $\sigma$-finite, then $\mu$ is the unique extension of $\mu_0$ to a measure on $\mathcal{M}$.
+      \item If $\mu_0$ is $\sigma$-finite, then $\mu$ is the unique extension of $\mu_0$ to a measure on $\mathcal{M}(\mathcal{A})$.
    \end{itemize}
 
    
@@ -1480,14 +1480,14 @@ Consider the collection $H = \{\emptyset, (a, b], (a, \infty) \mid -\infty \leq 
 By exercise 1.2, we know that $\mathcal{M}(H) = \mathcal{B}_{\mathbb{R}}$. And, by a previous proposition, we know that $\mathcal{A}$ equal to the collection of finite disjoint unions of $H$ is an algebra.\retTwo
 
 \begin{myIndent}\hTwo
-   \blab{Proposition:} Let $F: \mathbb{R} \longrightarrow \mathbb{R}$ be a monotonically increasing and right continuous function (meaning $\lim\limits_{t\rightarrow x^+}F(t) = F(x)$ for all $x \in \mathbb{R}$). Also, define $F(-\infty)$ and $F(\infty)$\\ [-6pt]\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} respecting the monotonicity of $F$.\retTwo If $(a_j, b_j]$ for $j = 1,\ldots, n$ are disjoint intervals in $H$, define:
+   \blab{Proposition:} Let $F: \mathbb{R} \longrightarrow \mathbb{R}$ be a monotonically increasing and right continuous function (meaning $\lim\limits_{t\rightarrow x^+}F(t) = F(x)$ for all $x \in \mathbb{R}$). Also, define:\\ [-6pt]\phantom{aaaaaaaaaaaaaaaaaaaaaaaa} $F(-\infty) = \lim\limits_{t\rightarrow -\infty}F(t)$ and $F(\infty) = \lim\limits_{t\rightarrow \infty}F(t)$.\retTwo If $(a_j, b_j]$ for $j = 1,\ldots, n$ are disjoint intervals in $H$, define:
 
-   {\centering $\mu_0(\bigcup\limits_{j=1}^n (a_j, b_j]) = \sum\limits_{j=1}^n F(b_j) - F(a_j)$ \\[-2pt]\par}
+   {\centering $\mu_0(\bigcup\limits_{j=1}^n (a_j, b_j]) = \sum\limits_{j=1}^n F(b_j) - F(a_j)$ \\ [1pt]\par}
 
-   Also let $\mu_0(\emptyset) = 0$. Then this is a premeasure.
+   Also let $\mu_0(\emptyset) = 0$. And if $F(\infty) = \infty$ and $F(-\infty) = -\infty$, define $\mu_0(\mathbb{R}) = \infty$. Then this is a premeasure.
    
    \begin{myIndent}\hThree
-      Proof:\\
+      Proof:
       \begin{enumerate}
          \item $\mu_0$ is well defined.
          \begin{myIndent}\hFour
@@ -1519,13 +1519,15 @@ By exercise 1.2, we know that $\mathcal{M}(H) = \mathcal{B}_{\mathbb{R}}$. And, 
          {\centering$\mu_0(\bigcup\limits_{j\in\mathbb{N}}I_j) = \sum\limits_{j=1}^\infty \mu_0(I_j)$.\retTwo\par}
 
          \begin{myIndent}\hFour
-            Since $\bigcup\limits_{j\in\mathbb{N}}I_j \in \mathcal{A}$, we know it is equal to a finite union of disjoint intervals of $H$. By considering those intervals separately, we can thus assume without\\ [6pt] loss of generality that $\bigcup\limits_{j \in \mathbb{N}}I_j = (a, b]$.\retTwo
+            Since $\bigcup\limits_{j\in\mathbb{N}}I_j \in \mathcal{A}$, we know it is equal to a finite union of disjoint intervals of $H$. By considering those intervals separately, we can thus assume without\\ [6pt] loss of generality that $\bigcup\limits_{j \in \mathbb{N}}I_j = (a, b]$ where not both $a = -\infty$ and $b = \infty$.\retTwo
 
-            Now it's obvious from the construction of $\mu_0$ that $\mu_0$ is additive. And since $(a, b] - \bigcup\limits_{j=1}^m I_j \in \mathcal{A}$ for all $m$, we thus know that:
+            Also, without loss of generality we can assume each $I_j$ is one interval.\retTwo
 
-            {\centering $\mu_0((a, b]) = \mu_0(\bigcup\limits_{j=1}^m I_j) + \mu_0((a, b] - \bigcup\limits_{j=1}^m I_j) \geq \mu_0(\bigcup\limits_{j=1}^m I_j) = \sum\limits_{j=1}^m \mu_0(I_j)$ \retTwo\par}
+            Now it's obvious from the construction of $\mu_0$ that $\mu_0$ is additive. And since $(a, b] - \bigcup\limits_{j=1}^m I_j \in \mathcal{A}$ for all $m$, we thus know that:\\ [-5pt]
 
-            Taking the limit as $m \rightarrow \infty$, we get that: $\sum\limits_{j=1}^\infty \mu_0(I_j) \leq \mu_0(\bigcup\limits_{j\in \mathbb{N}} I_j)$.\retTwo
+            {\centering $\mu_0((a, b]) = \mu_0(\bigcup\limits_{j=1}^m I_j) + \mu_0((a, b] - \bigcup\limits_{j=1}^m I_j) \geq \mu_0(\bigcup\limits_{j=1}^m I_j) = \sum\limits_{j=1}^m \mu_0(I_j)$ \\\par}
+
+            Taking the limit as $m \rightarrow \infty$, we get that: $\sum\limits_{j=1}^\infty \mu_0(I_j) \leq \mu_0(\bigcup\limits_{j\in \mathbb{N}} I_j)$.\\ [-6pt]
          \end{myIndent}
       \end{enumerate}
    \end{myIndent}
@@ -1556,22 +1558,24 @@ By exercise 1.2, we know that $\mathcal{M}(H) = \mathcal{B}_{\mathbb{R}}$. And, 
          $\phantom{\mu_0((a, b])} = F(b_N + \delta_N) - f(a_N) + \sum\limits_{j=1}^{N-1}(F(a_{j+1}) - F(a_j)) + \varepsilon$\\ [14pt]
 
          $\phantom{\mu_0((a, b])} \leq F(b_N + \delta_N) - f(a_N) + \sum\limits_{j=1}^{N-1}(F(b_j + \delta_j) - F(a_j)) + \varepsilon$\\ [-6pt]
-         \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {\teachComment(again since $F$ is monotone increasing)}\\ [6pt]
+         \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {\teachComment(again since $F$ is monotone increasing)}\\ [0pt]
 
          $\phantom{\mu_0((a, b])} = \sum\limits_{j=1}^N (F(b_j + \delta_j) - F(a_j)) + \varepsilon$\\ [14pt]
          
          $\phantom{\mu_0((a, b])} < \sum\limits_{j=1}^N(F(b_j) + \frac{\varepsilon}{2^j} - F(a_j)) + \varepsilon < \sum\limits_{j=1}^\infty \mu(I_j) + 2\varepsilon$
       \end{tabular} \retTwo\par}
 
-      Since $\varepsilon$ is arbitrary, we've now shown the reverse inequality when $a$ and $b$ are finite. To extend this result to when $a = -\infty$ or $b = \infty$, note that the invervals $(a_j, b_j + \delta_j)$ cover $[-M  + \delta, b]$ or $[a + \delta, M]$.\retTwo
+      Since $\varepsilon$ is arbitrary, we've now shown the reverse inequality when $a$ and $b$ are finite. To extend this result to when $a = -\infty$ or $b = \infty$, note that the invervals $(a_j, b_j + \delta_j)$ cover $[-M  + \delta, b]$ or $[a + \delta, M]$ for all $M$ in either $(-\infty, b]$ or $(a , \infty)$.\retTwo
       
       So, doing the same manipulations as before, since $\sum\limits_{j=1}^\infty \mu(I_j) + 2\varepsilon$ is an upper bound of $\mu_0((-M, b])$ or $\mu_0((a, M])$, we know that the limit of $\mu_0((-M, b])$ or $\mu_0((a, M])$ as\\ [6pt] $M \rightarrow \infty$ will not exceed that upper bound. Then taking $\varepsilon \rightarrow 0$, we get the same\\ [6pt] result as before.\retTwo
-   \end{myIndent}
+
+      Plus, based on how we defined $F(\infty)$ and $F(-\infty)$, we know that\\ $\lim\limits_{M \rightarrow \infty}\mu_0((-M, b]) = \mu_0((-\infty, b])$ and $\lim\limits_{M \rightarrow \infty}\mu_0((a, M]) = \mu_0((a, \infty))$.\retTwo
+      \end{myIndent}
 
    \blab{Theorem:} 
    \begin{enumerate}
-      \item If $F$ is a monotone increasing and right-continuous, there is a unique Borel\\ measure $\mu_F$ on $\mathcal{B}_\mathbb{R}$ such that $\mu_F((a, b]) = F(b) - F(a)$ for all $a < b$.
-      \item If $G$ is another monotone increasing and right-continuous, then $\mu_G = \mu_F$ if and only if $F - G$ is a constant.
+      \item If $F$ is a monotone increasing and right-continuous like above, there is a unique\\ Borel measure $\mu_F$ on $\mathcal{B}_\mathbb{R}$ such that $\mu_F((a, b]) = F(b) - F(a)$ for all $a < b$.
+      \item If $G$ is another such monotone increasing and right-continuous, then $\mu_G = \mu_F$ if and only if $F - G$ is a constant.
       \item If $\mu$ is a $\mathcal{B}_{\mathbb{R}}$ measure that is finite on all bounded sets, then we can define:
       
       {\centering $F(x) = \left\{
@@ -1581,9 +1585,338 @@ By exercise 1.2, we know that $\mathcal{M}(H) = \mathcal{B}_{\mathbb{R}}$. And, 
          -\mu((x, 0]) & \text{ if } x < 0
       \end{matrix}\right.$ \retTwo\par}
 
-      Then $F$ is monotone increasing and right-continuous with $\mu = \mu_F$.
+      Then $F$ is a monotone increasing and right-continuous like above with $\mu = \mu_F$.
    \end{enumerate}
+   
+   \begin{myIndent}\hThree
+      Proof:
+      \begin{enumerate}
+         \item By the previous proposition, we know $F$ induces a premeasure $\mu_F$. Also, $\mu_F$ is a\\ $\sigma$-finite premeasure. Thus, by the theorem on page 24, we know $\mu_F$ induces a unique measure on $\mathcal{M}(H) = \mathcal{B}_{\mathbb{R}}$.\retTwo
+   
+         \item Clearly, if $G(b) - G(a) = F(b) - F(a)$ for all $-\infty \leq a < b \leq \infty$, then we must have that $G - F$ is constant.\retTwo
+   
+         \item Finally, by the theorem at the bottom of page 16, we can fairly easily show that $F$ is right-continuous and monotone increasing.\retTwo
+      \end{enumerate}
+   \end{myIndent}
 \end{myIndent}
+
+Given a monotone increasing and right-continuous function $F$, we call $\mu_F$ the\\ \udefine{Lesbesgue-Stieltjes measure}. If $F(x) = x$, we just write $m$ and call it the\\ \udefine{Lesbesgue measure}.\retTwo
+
+Also, we'll almost always use $\mu_F$ to refer to the completion of $(\mathbb{R}, \mathcal{B}_{\mathbb{R}}, \mu_F)$. So, this measure is actually defined on more than just $\mathcal{B}_{\mathbb{R}}$.\newpage
+
+Let $\mu$ be a Lesbesgue-Stieltjes measure associated with a monotone increasing, right-continuous function $F$, and let $\mathcal{M}_{\mu}$ be the set of $\mu$-measureable sets. Here are some nice properties of $\mu$:
+
+\begin{myIndent}\hTwo
+   \blab{Lemma:} Suppose $\nu(E) = \inf(\{\sum\limits_{j=1}^\infty \mu((a_j, b_j)) \mid E \subseteq \bigcup\limits_{j=1}^\infty (a_j, b_j)\})$. Then\\ [-8pt] $\nu(E) = \mu(E)$ for all $E \in \mathcal{M}_{\mu}$.\retTwo
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      Fix $\varepsilon > 0$. Then, there exists $((a_j, b_j])_{j \in \mathbb{N}}$ such that $E \subseteq \bigcup\limits_{j \in \mathbb{N}}(a_j, b_j]$ and\\ [-9pt] $\sum\limits_{j=1}^\infty \mu((a_j, b_j]) \leq \mu(E) + \varepsilon$.\retTwo
+
+      Then for all $j \in \mathbb{N}$, pick $\delta_j > 0$ such that $F(b_j + \delta_j) - F(b_j) \leq \sfrac{\varepsilon}{2^j}$. Thus:
+
+      {\centering
+      \begin{tabular}{l}
+          $\nu(E) \leq \sum\limits_{j=1}^\infty \mu((a_j, b_j + \delta_j)) \leq \sum\limits_{j=1}^\infty \mu((a_j, b_j + \delta_j])$\\ [10pt] $\phantom{\nu(E) \leq \sum\limits_{j=1}^\infty \mu((a_j, b_j + \delta_j))} \leq \sum\limits_{j=1}^\infty \mu((a_j, b_j]) + \varepsilon \leq \mu(E) + 2\varepsilon$ 
+      \end{tabular}\retTwo\par}
+
+      Taking $\varepsilon \rightarrow 0$, we get that $\nu(E) \leq \mu(E)$.\retTwo
+
+      To get the reverse inequality, note that we can write any open interval as the\\ countable union of a sequence of disjoint half-open-intervals. It follows that\\ $\mu(E) \leq \nu(E)$.\retTwo
+   \end{myIndent}
+
+   \blab{Theorem:} If $E \subseteq \mathcal{M}_\mu$, then:
+   \begin{itemize}
+      \item $\mu(E) = \inf(\{\mu(U) \mid E \subseteq U \text{ and } U \text{ is open}\})$
+      \item $\mu(E) = \sup(\{\mu(K) \mid K \subseteq E \text{ and } K \text{ is compact}\})$
+      
+      \begin{myIndent}\hThree
+         Proof:\\
+         The first bullet point follows almost immediately from the previous lemma\\ because unions of open sets are open.\retTwo
+
+         To show the second bullet point, first suppose $E$ is bounded. If $E$ is closed, then the equality is trivial. So suppose $\overline{E} - E \neq \emptyset$. Then given any $\varepsilon > 0$, let $U$ be an open set such that $\overline{E} - E \subseteq U$ and $\mu(U) \leq \mu(\overline{E} - E) + \varepsilon$. (Note that $\overline{E} \in \mathcal{B}_\mathbb{R}$ and so $\overline{E} - E \in \mathcal{M}_\mu$.)\retTwo
+
+         We have that $K = \overline{E} - U$ is a closed bounded set satisfying that $K \subseteq E$ and:
+
+         {\centering 
+         \begin{tabular}{l}
+            $\mu(K) = \mu(E) - \mu(E \cap U) = \mu(E) - (\mu(U) - \mu(U - E))$\\ $\phantom{\mu(K) = \mu(E) - \mu(E \cap U)} \geq \mu(E) - \mu(U) + \mu(\overline{E} - E) \geq \mu(E) - \varepsilon$
+         \end{tabular} \retTwo\par}
+
+         If $E$ is unbounded, then consider $E_j \cap (j, j+1]$ for all $j \in \mathbb{Z}$. By the previous reasoning, given any $\varepsilon > 0$ there exists a compact set $K_j$ such that $K_j \subseteq E_j$ and $\mu(K_j) \geq \mu(E) - \sfrac{\varepsilon}{2^{|j|}}$.\newpage
+
+         Now define $H_n = \bigcup\limits_{j=-n}^nK_j$. That way $H_n$ is a compact subset of $E$ and:\\ [-10pt]
+         
+         {\centering $\mu(H_n) \geq \mu(\hspace{-0.2em}\bigcup\limits_{j=-n}^n\hspace{-0.4em} E_j) - 3\varepsilon$.\\ [2pt]\par}
+
+         Since $\mu(E) = \lim\limits_{n \rightarrow \infty}(\mu(\hspace{-0.2em}\bigcup\limits_{j=-n}^n\hspace{-0.4em} E_j)) \leq \lim\limits_{n \rightarrow \infty}(\mu(H_n)) + 3\varepsilon$, the bulllet pointed claim\\ [-8pt] follows.\retTwo
+      \end{myIndent}
+   \end{itemize}
+
+   \blab{Theorem:} If $E \subseteq \mathbb{R}$, then the following are equivalent:
+   \begin{itemize}
+      \item[(a)] $E \in \mathcal{M}_\mu$.
+      \item[(b)] $E = V - N_1$ where $V$ is a $G_\delta$ set and $\mu(N_1) = 0$.
+      \item[(c)] $E = H \cup N_2$ where $H$ is an $F_\sigma$ set and $\mu(N_2) = 0$.\retTwo
+      
+      \begin{myIndent}\hThree
+         Proof:\\
+         We trivially have that (b) $\Longrightarrow$ (a) and (c) $\Longrightarrow$ (a) because $V, H \in \mathcal{B}_\mathbb{R}$ and\\ $N_1, N_2 \in \mathcal{M}_\mu$.\retTwo
+
+         To show the other direction, suppose $E \subseteq \mathcal{M}_{\mu}$. Firstly, we'll suppose\\ $\mu(E) < \infty$. Then for all $j \in \mathbb{N}$, we can choose an open set $U_j \supseteq E$ and\\ a compact set $K_j \subseteq E$ such that:
+
+         {\centering $\mu(U_j) - \sfrac{1}{2^j} \leq \mu(E) \leq \mu(K_j) + \sfrac{1}{2^j}$ \retTwo\par}
+
+         Define $V = \bigcap\limits_{j\in\mathbb{N}}U_j$ and $H = \bigcup\limits_{j \in \mathbb{N}}K_j$.\retTwo
+         
+         Then $H \subseteq E \subseteq V$ and $\mu(H) = \mu(E) = \mu(V)$. It follows since $\mu(E) < \infty$ that:
+         
+         \begin{itemize}
+            \item[\bullet] Letting $N_1 = V - E$, we have that $E = V - N_1$ and
+            
+            {\centering $\mu(V) = \mu(N_1) + \mu(E) \Longrightarrow 0 = \mu(V) - \mu(E) = \mu(N_1)$.\par}
+
+            \item[\bullet] Letting $N_2 = E - H$, we have that $E = H \cup N_2$ and
+            
+            {\centering $\mu(E) = \mu(H) + \mu(N_2) \Longrightarrow 0 = \mu(E) - \mu(H) =\mu(N_2)$. \retTwo\par}
+         \end{itemize}
+
+         \exP The rest is \blab{Exercise 1.25}.\\\exPP
+         Now suppose $\mu(E) = \infty$.\retTwo
+         
+         For all $j \in \mathbb{Z}$, define $E_j = E \cap (j, j+1]$. That way $E$ is the disjoint union of all $E_j$. Importantly, each $\mu(E_j) \leq \mu((j, j+1]) < \infty$. So, using the previous logic, for all $j$ we can find an $F_\sigma$ set $H_j$ satisfying that $H_j \subseteq E_j$ and:
+
+         \begin{itemize}
+            \item[\bullet] Letting $N_2^{(j)} = E_j - H_j$, we have that $E_j = H_j \cup N_2^{(j)}$ and $\mu(N_2^{(j)}) = 0$.\retTwo
+         \end{itemize}
+
+         Setting $H = \bigcup\limits_{j \in \mathbb{Z}} H_j$, we have that $H$ is a countable union of countable unions of closed sets. Thus, $H$ is an $F_\sigma$ set.\retTwo
+         
+         Also $N_2 = \bigcup\limits_{j \in \mathbb{Z}}N_2^{(j)}$ is still a null set since the set of null sets is closed under\\ [-8pt] \phantom{aaaaaaaaaaaaaaaa} countable union. And finally, $H \cup N_2 = E$ becuase\\ \phantom{aaaaaaaaaaaaaaaa} each $E_j = H_j \cup N_2^{(j)}$. Thus, we've shown (c).\newpage
+
+         Meanwhile, to show (b), consider that if $E \in \mathcal{M}_\mu$, then $E^\comp \in \mathcal{M}_\mu$. So, we can find an $F_\sigma$ set $H$ and null set $N_1$ such that $E^\comp = H \cup N_1$. Taking complements of both sides, we get that $E = H^\comp - N_1$. And importantly, the complement of a union of sets is equivalent to the intersection of the complements of those sets. So, since the complement of a closed set is open,  $H^\comp$ is a $G_\delta$ set.\retTwo
+      \end{myIndent}
+   \end{itemize}
+\end{myIndent}
+
+Note that we call measures with the property described in the above two theorems \udefine{regular}.\retTwo
+
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} If $E \in \mathcal{M}_\mu$ and $\mu(E) < \infty$, then for all $\varepsilon > 0$, there is a set $A$ that is a finite union of open intervals such that $\mu(E \mathop{\Delta} A) < \varepsilon$.
+   
+   \begin{myIndent}\hThree
+      Note that $E \mathop(\Delta) A = (E - A) \cup (A - E) = (E \cup A) - (E \cap A)$.\retTwo
+      
+      \exP The proof is \blab{Exercise 1.26}\\
+      \exPP Let $U$ be an open set satisfying that $E \subseteq U$ and $\mu(U) \leq \mu(E) + \sfrac{\varepsilon}{2}$. Then, a fact about the standard metric space of $\mathbb{R}$ is that any open set is a countable union of disjoint open intervals.
+
+      
+      \begin{myIndent}\exPPP
+         (writing this so I have it in my notes)\\
+         To see this, given the open set $U \subseteq \mathbb{R}$, and any $x \in U$, define $I_x = (a, b)$\\ where $a = \inf({\alpha \in \overline{\mathbb{R}}} \mid (\alpha, x) \subset U)$ and $b = \sup({\beta \in \overline{\mathbb{R}}} \mid (x, \beta) \subset U)$.\retTwo
+
+         Then consider the collection $\{I_x\}_{x \in U}$. Given $I_x = (a_x, b_x)$ and $I_y = (a_y, b_y)$, supposing $t \in I_x \cap I_y$, we must have that:
+         
+         {\centering $(\min(a_x, a_y), t] \cup [t, \max(b_x, b_y)) = (\min(a_x, a_y), \max(b_x, b_y)) \subseteq U$. \retTwo\par}
+
+         Because of how we defined $a_x, b_x, a_y, b_y$, and the fact that obviously\\ $I_x, I_y \subseteq (\min(a_x, a_y), \max(b_x, b_y))$, we must have that $a_x = \min(a_x, a_y) = a_y$ and $b_x = \min(b_x, b_y) = b_y$. So, $I_x = I_y$.\retTwo
+
+         Hence, $\{I_x\}_{x \in U}$ is a disjoint collection of intervals. Also, because each interval can be injectively mapped to a rational number inside that interval, we know this collection is countable.\retTwo
+      \end{myIndent}
+
+      So, let $(I_j)_{j \in \mathbb{N}}$ be a sequence of disjoint open intervals whose union is $U$. Then observe that $\lim\limits_{n \rightarrow \infty}(\mu(\bigcup\limits_{j=1}^n)I_j) = \mu(U)$. So, we can pick $n$ large enough that for\\ [-9pt] $A = \bigcup\limits_{j=1}^n I_j$, we have that $A$ is a finite union of open intervals and:
+
+      {\centering $\mu(U) - \sfrac{\varepsilon}{2} \leq \mu(A) \leq \mu(U) + \sfrac{\varepsilon}{2}$ \retTwo\par}
+
+      Now since $A \subseteq U$ and $E \subseteq U$, we know that $E - A \subseteq U - A$ and $A - E \subseteq U - A$. So:
+      \begin{itemize}
+         \item $\mu(E) + \mu(A - E) \leq \mu(E) + \mu(U - E) = \mu(U) \leq \mu(E) + \sfrac{\varepsilon}{2}$.
+         \item $\mu(E - A) \leq \mu(U - A) = \mu(U) - \mu(A) \leq \mu(U) - \mu(U) + \sfrac{\varepsilon}{2} = \sfrac{\varepsilon}{2}$\\ \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} {\exPPP (because $\mu(U) \leq \mu(E) + \sfrac{\varepsilon}{2}$ is finite)}\retTwo
+      \end{itemize}
+
+      Since $\mu(E)$ is finite, we can subtract it out of the first bulleted inequality and add it to the second to get:
+
+      {\centering $\mu(A \mathop{\Delta} E) = \mu(A - E) + \mu(E - A) \leq \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$ \newpage\par}
+
+   \end{myIndent}
+\end{myIndent}
+
+\exOne
+\blab{Exercise 1.28:} Let $F$ be increasing and right continuous, and let $\mu_F$ be the associated\\ measure. Then:
+
+\begin{itemize}
+   \item[(a)] $\mu_F({a}) = F(a) - F(a-)$ {\exPPP (Note that this is a special case of (c))}
+   \item[(b)] $\mu_F([a, b)) = F(b-) - F(a-)$
+   \item[(c)] $\mu_F([a, b]) = F(b) - F(a-)$
+   \item[(d)] $\mu_F((a, b)) = F(b-) - F(a)$
+\end{itemize}
+
+
+\begin{myIndent}\exTwoP
+   To start let's show (c).\\ Note that $[a, b] = \bigcap\limits_{n \in \mathbb{N}}(a - \frac{1}{n}, b]$ and $((a - \frac{1}{n}, b])_{n \in \mathbb{N}}$ is a decreasing sequence of sets.\\ [-8pt] So:
+
+   {\centering\exPP $\mu_F([a, b]) = \lim\limits_{n \rightarrow \infty}(\mu_F((a - \frac{1}{n}, b])) = \lim\limits_{n \rightarrow \infty}(F(b) - F(a - \frac{1}{n})) = F(b) - F(a-)$\retTwo\par}
+
+   Next, let's show (b).\\
+   Note that $[a, b) = \bigcup\limits_{n \in \mathbb{N}}[a, b - \frac{1}{n}]$ and $([a, b- \frac{1}{n}])_{n \in \mathbb{N}}$ is an increasing sequence of sets.\\ [-8pt] So:
+
+   {\centering\exPP $\mu_F([a, b)) = \lim\limits_{n \rightarrow \infty}(\mu_F([a, b-\frac{1}{n}])) = \lim\limits_{n \rightarrow \infty}(F(b - \frac{1}{n}) - F(a-)) = F(b-) - F(a-)$\retTwo\par}
+
+   Finally, let's show (d).\\
+   Note that $(a, b) = \bigcup\limits_{n \in \mathbb{N}}(a, b-\frac{1}{n}]$ and $((a, b- \frac{1}{n}])_{n \in \mathbb{N}}$ is an increasing sequence of sets.\\ [-8pt] So:
+
+   {\centering\exPP $\mu_F((a, b)) = \lim\limits_{n \rightarrow \infty}(\mu_F((a, b-\frac{1}{n}])) = \lim\limits_{n \rightarrow \infty}(F(b - \frac{1}{n}) - F(a)) = F(b-) - F(a)$\retTwo\par}
+\end{myIndent}
+
+\mySepTwo\hOne
+
+If $\mu = m$ is the Lesbesgue measure (a.k.a when $F(x) = x$), we denote the collection of Lesbesgue measurable sets $\mathcal{L}$ to be the closure of $\mathcal{B}_\mathbb{R}$.\retTwo
+
+\begin{myIndent}\hTwo
+   \blab{Theorem:} If $E \in \mathcal{L}$ and $s, r \in \mathbb{R}$, we define:
+
+   {\centering 
+   \begin{tabular}{l c l}
+      $E + s = \{x + s \mid x \in E\}$, & \phantom{a} & $rE = \{rx \mid x \in E\}$.
+   \end{tabular} \retTwo\par}
+
+   Then $E + s, rE \in \mathcal{L}$, $m(E + s) = m(E)$ and $m(rE) = |r|m(E)$.
+
+   
+   \begin{myIndent}\hThree
+      Proof: {\myComment(the professor skipped doing this proof and the book doesn't seem to prove this well. So I'm going on my own here.)}\retTwo
+
+      Supposing $E + s \in \mathcal{L}$, define $m_s(E) = m(E + s)$. Similarly define $m^r(E) = m(rE)$ if $rE \in \mathcal{L}$.\retTwo
+
+      Let $\mathcal{A}$ be the collection of disjoint unions of half-open-intervals, and define $m^*$ as the outer measure induced by $m|_{\mathcal{A}}$. Then you can fairly trivially (albeit with a lot of notation) show that $m^*(E + s) = m^*(E)$ and $m^*(rE) = |r|m^*(E)$. Also, we know that $m^*(E)$ must equal $m(E)$ for all $E \in \mathcal{B}_{\mathbb{R}}$ since any measure on $\mathcal{B}_{\mathbb{R}}$ is uniquely determined by it's restriction to $\mathcal{A}$ and $m^*$ is a measure on $\mathcal{B}_{\mathbb{R}}$ (see the theorem on the bottom of page 24).\newpage
+
+      Next, note that $E \in \mathcal{B}_\mathbb{R} \Longrightarrow E + s, rE \in \mathcal{B}_\mathbb{R}$. The reason why is that as seen in a bonus proposition below, we have that a set $E \in \mathcal{B}_\mathbb{R}$ if and only if\\ it can be gained by taking a countable amount of countable unions, countable\\ intersections, and complements of sets of $\mathcal{A}$. But note that given any $A \in \mathbb{R}$:
+      \begin{itemize}
+         \item $(A + s)^\comp = A^\comp + s$ and $(rA)^\comp = rA^\comp$
+         \item $\bigcup\limits_{j \in \mathbb{N}}(A_j + s) = (\bigcup\limits_{j \in \mathbb{N}}A_j) + s$ and $\bigcup\limits_{j \in \mathbb{N}}(rA_j) = r(\bigcup\limits_{j \in \mathbb{N}}A_j)$
+         \item $\bigcap\limits_{j \in \mathbb{N}}(A_j + s) = (\bigcap\limits_{j \in \mathbb{N}}A_j) + s$ and $\bigcap\limits_{j \in \mathbb{N}}(rA_j) = r(\bigcap\limits_{j \in \mathbb{N}}A_j)$\retTwo
+      \end{itemize}
+
+      So, by replacing all the sets from $\mathcal{A}$ in our expression for $E$ with their translated or scaled sets which are also in $\mathcal{A}$, we can show that $E + s$ or $rE$ is also in $\mathcal{B}_\mathbb{R}$.\retTwo
+
+      Combining that with the reasoning on the previous page, we know that\\ $m(E) = m(E + s)$ and $m(rE) = |r|m(E)$ for all $E \in \mathcal{B}_\mathbb{R}$. What's left to show now is that for all sets in the completion $\mathcal{L}$ of $\mathcal{B}_{\mathbb{R}}$, we have that $E \in \mathcal{L} \Longrightarrow E + s, rE \in \mathcal{L}$, $m(E + s) = m(E)$, and $m(rE) = |r|m(E)$.\retTwo
+
+      \myComment This is not hard to show and I'm bored of this. So do it yourself.\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+{\teachComment
+Some fairly trivial observations:
+\begin{enumerate}
+   \item $m(\{x\}) = 0$ for all $x \in \mathbb{R}$.
+   \item All countable sets have a Lesbesgue measure of zero (this includes $\mathbb{Q}$).
+   \item There exists uncountable sets with a Lesbesgue measure of zero (example: the Cantor Set).
+\end{enumerate}}
+
+\mySepTwo
+
+Given a collection of sets: $\mathcal{A}$, here is how to actually construct $\mathcal{M}(\mathcal{A})$.\retTwo
+
+\begin{myIndent}\hTwo
+   \blab{Bonus Proposition:} Let $\Omega$ be a minimal uncountable well-ordered set. Denoting $0$ as the least element of $\Omega$, define $\mathcal{E}_0 = \mathcal{A}$. Then for all $\alpha \in \Omega - \{0\}$, if $\alpha$ has an immediate predecessor $\beta$, define $\mathcal{E}_\alpha$ as the collection of all countable unions of sets and complements of sets in $\mathcal{E}_\beta$. Otherwise, define $\mathcal{E}_\alpha = \bigcup\limits_{\beta \in S_\alpha} \mathcal{E}_\beta$ {\myComment(where $S_\alpha$ is the set\\ [-9pt] $\{\beta \in \Omega \mid \beta < \alpha\}$)}.\retTwo
+
+   Then $\mathcal{M} = \mathcal{M}(\mathcal{A}) = \bigcup\limits_{\alpha \in \Omega}\mathcal{E}_\alpha$.
+   
+   \begin{myIndent}\hThree
+      Proof:\\
+      Suppose for all $\beta \in S_\alpha$, we have that $\mathcal{E}_\beta \subseteq \mathcal{M}$.
+      \begin{itemize}
+         \item Suppose $\alpha$ has no immediate predecessor. If $S_\alpha = \emptyset$, then we know that\\ $\mathcal{E} = \mathcal{A} \subseteq \mathcal{M}$. Otherwise, we trivially have that:
+         
+         {\centering $\mathcal{E}_\alpha = \bigcup\limits_{\beta \in S_\alpha}\mathcal{E}_\beta \subseteq \mathcal{M}$.\\ [0pt]\par}
+
+         \item If $\alpha$ has a predecessor $\beta^\prime$, then because $\mathcal{M}$ is closed under countable unions and complements and $\mathcal{E}_{\beta^\prime} \subseteq \mathcal{M}$, we know that $\mathcal{E}_\alpha \subseteq \mathcal{M}$.\retTwo
+      \end{itemize}
+
+      It follows by transfinite induction that $\mathcal{E}_\alpha \subseteq \mathcal{M}$ for all $\alpha \in \Omega$. So, we've shown that $\bigcup\limits_{\alpha \in \Omega}\mathcal{E}_\alpha \subseteq \mathcal{M}$.\newpage
+
+      To show the other inclusion, it suffices to show that $\bigcup\limits_{\alpha \in \Omega}\mathcal{E}_\alpha$ is a $\sigma$-algebra (we\\ [-6pt] know it contains $\mathcal{A}$ since $\mathcal{E}_0 = \mathcal{A}$).\retTwo
+
+      Firstly, note that if $A \in \mathcal{E}_\alpha$ for any $\alpha \in \Omega$, then denoting $\beta$ be the immediate\\ successor of $\alpha$, we have that $A^\comp \in \mathcal{E}_\beta$.\retTwo
+
+      Next, suppose $(A_j)_{j \in \mathbb{N}}$ is a sequence of sets in $\bigcup\limits_{\alpha \in \Omega}\mathcal{E}_\alpha$ satisfying that $A_j \in \mathcal{E}_{\alpha_j}$ and\\ [-6pt] $\alpha_j \in \Omega$ for all $j \in \mathbb{N}$.\retTwo
+
+      Now every countable sequence in $\Omega$ has a supremum. So let $\alpha^\prime$ be the supremum of the sequence $(\alpha_j)_{j \in \mathbb{N}}$. Next, let $\beta^\prime$ be the least element of $\Omega$ which is both greater than $\alpha^\prime$ and has no immediate successor. That way $\mathcal{E}_{\alpha_j} \subseteq \mathcal{E}_{\beta^\prime}$ for all $j \in \mathbb{N}$. Finally, let $\gamma^\prime$ be the successor of $\beta^\prime$. Then:
+
+      {\centering $\bigcup\limits_{j \in \mathbb{N}}A_j \in \mathcal{E}_{\gamma^\prime} \subseteq \bigcup\limits_{\alpha \in \Omega}\mathcal{E}_\alpha$ \retTwo\par}
+
+      So, we've shown that $\bigcup\limits_{\alpha \in \Omega}\mathcal{E}_\alpha$ is a $\sigma$-algebra containing $\mathcal{A}$.\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+It follows from this proposition that if a set is in $\mathcal{M}(\mathcal{A})$, then it can be gained through a procedure of countably many steps of taking countable unions, intersections, and complements of sets in $\mathcal{A}$.
+
+\mySepTwo 
+
+\blab{Measurable Functions:}\\
+
+$f: (X, \mathcal{M}) \longrightarrow (Y, \mathcal{N})$ is called \udefine{$(\mathcal{M}, \mathcal{N})$ measurable} if $f^{-1}(E) \in \mathcal{M}$ for all $E \in \mathcal{N}$.\retTwo
+
+
+\begin{myIndent}\hTwo
+   \blab{Proposition:} If $\mathcal{N}$ is generated by $\mathcal{E}$, then $f: (X, \mathcal{M}) \longrightarrow (Y, \mathcal{M})$ is $(\mathcal{M}, \mathcal{N})$ measurable if and only if $f^{-1}(E) \in \mathcal{M}$ for all $E \in \mathcal{E}$.
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      The rightward implication is trivial. Meanwhile suppose the right statement holds. Then consider the collection $\{E \subseteq Y \mid f^{-1}(E) \in \mathcal{M} \}$. By assumption we know it contains $\mathcal{E}$.\retTwo
+
+      Firstly, this collection is closed under countable unions because:
+      
+      {\centering $f^{-1}(\bigcup\limits_{j \in \mathbb{N}}A_j) = \bigcup\limits_{j \in \mathbb{N}}f^{-1}(A_j)$.\retTwo\par}
+
+      Secondly, this collection is closed under complements. To prove this, first note that since $\emptyset \in \mathcal{E}$, we have that $Y - \emptyset = Y$ is a finite union of sets in $\mathcal{E}$. It follows then that $F^{-1}(Y) \in \mathcal{M}$. Next consider any $E \subseteq Y$ satisfying that $f^{-1}(E) \in \mathcal{M}$. Then $f^{-1}(E^\comp) = f^{-1}(Y) - f^{-1}(E) \in \mathcal{M}$.\retTwo
+
+      So, we've shown that the collection $\{E \subseteq Y \mid f^{-1}(E) \in \mathcal{M} \}$ is a $\sigma$-algebra\\ containing $\mathcal{E}$. It follows that it contains $\mathcal{N} = \mathcal{M}(\mathcal{E})$.\newpage
+   \end{myIndent}
+
+   \blab{Corollary:} If $X, Y$ are topological spaces, then every continuous function\\ $f: X \longrightarrow Y$ is $(\mathcal{B}_X, \mathcal{B}_y)$ measurable.\retTwo
+\end{myIndent}
+
+We say a function $f: (X, \mathcal{M}) \longrightarrow \mathbb{R}$ (or $\mathbb{C}$ or $\mathbb{R}^n$) is \udefine{$\mathcal{M}$-measurable} if it is\\ $(\mathcal{M}, \mathcal{B}_{\mathbb{R}}$ (or $\mathcal{B}_{\mathbb{C}}$ or $\mathcal{B}_{\mathbb{R}^n}$)$)$ measurable. If it's obvious what $\mathcal{M}$ is, we can omit\\ saying it.
+\begin{myIndent}
+   In other words, the measurable sets of the range of a real or complex function is assumed to be the collection of Borel sets.\retTwo
+\end{myIndent}
+
+A function $f: \mathbb{R} \longrightarrow \mathbb{R}$ is \udefine{Lesbesgue measurable} if $f$ is $(\mathcal{L}, \mathcal{B}_\mathbb{R})$ measurable.\retTwo
+
+Meanwhile, $f: \mathbb{R} \longrightarrow \mathbb{R}$ is \udefine{Borel measurable} if $f$ is $(\mathcal{B}_{\mathbb{R}}, \mathcal{B}_\mathbb{R})$ measurable.\retTwo
+
+\mHeader{Lecture 7 Notes: 10/17/2024}
+
+\begin{myIndent}\exTwo
+   \blab{Exercise:} Suppose $f: (X, \mathcal{M}) \longrightarrow (Y, \mathcal{N})$ is $(\mathcal{M}, \mathcal{N})$ measurable and\\ $g: (Y, \mathcal{N}) \longrightarrow (Z, \mathcal{O})$ is $(\mathcal{N}, \mathcal{O})$ measurable. Then $g \circ f$ is $(\mathcal{M}, \mathcal{O})$ measurable.
+
+   \begin{myIndent}
+      \exPP Proof:\\
+      Given any $E \in \mathcal{O}$, because $g$ is measurable, we know that $g^{-1}(E) \in \mathcal{N}$. Therefore, because $f$ is measurable, we know $f^{-1}(g^{-1}(E)) = (g \circ f)^{-1}(E) \in \mathcal{M}$.\retTwo
+   \end{myIndent}
+
+   \hTwo\blab{Proposition:} Suppose $(X, \mathcal{M})$ is a measurable space. Given $f: X \longrightarrow \mathbb{R}$, the following are equivalent:
+   \begin{itemize}
+      \item $f$ is measurable.
+      \item $f^{-1}((a, \infty)) \in \mathcal{M}$ for all $a \in \mathbb{R}$.
+      \item $f^{-1}([a, \infty)) \in \mathcal{M}$ for all $a \in \mathbb{R}$.
+      \item $f^{-1}((-\infty, a)) \in \mathcal{M}$ for all $a \in \mathbb{R}$.
+      \item $f^{-1}((-\infty, a]) \in \mathcal{M}$ for all $a \in \mathbb{R}$.\retTwo
+   \end{itemize}
+
+   \begin{myIndent}\hThree
+      Proof:\\
+      It's obvious that the first bullet point implies the others. Meanwhile, to go from any other bullet point back to the first, recall exercise 1.2 and the proposition on the bottom of page 39.\retTwo
+   \end{myIndent}\retTwo
+\end{myIndent}
+
+Suppose $(Y_\alpha, \mathcal{N}_\alpha)_{\alpha \in A}$ is a collection of measurable spaces. Then given a set $X$ and functions $f_\alpha: X \longrightarrow Y_\alpha$ for all $\alpha \in A$, there exists a smallest $\sigma$-algebra $\mathcal{M}$ on $X$ such that each $f_\alpha$ is measurable. Specifically:
+
+{\centering $\mathcal{M} = \mathcal{M}(\{f^{-1}(E_\alpha) \mid \alpha \in A \text{ and } E_\alpha \in \mathcal{N}_\alpha\})$.\retTwo\par}
+
+Note that if $X = \prod\limits_{\alpha \in A}Y_\alpha$ and $f_\alpha = \pi_\alpha$ for all $\alpha \in A$, then the $\mathcal{M}$ defined above is\\ [-8pt] equal to $\bigotimes\limits_{\alpha \in A} \mathcal{N}_\alpha$.
 
 
 \end{document}
