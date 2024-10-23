@@ -88,6 +88,10 @@
    \color{PineGreen!85!Orange}
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\hFour}{%
+   \color{Cyan!80!black}
+   \fontsize{12}{14}\selectfont%
+}
 \newcommand{\myComment}{%
    \color{RawerSienna}%
    \fontsize{12}{14}\selectfont%
@@ -176,6 +180,8 @@
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
 \newcommand{\divides}{\mathop{\mid}}
+
+\newcommand{\iso}{\cong}
 
 
 \DeclareMathOperator{\ima}{Im}
@@ -773,7 +779,7 @@ Fix a positive integer $n$ and let $a$ be an integer with $\gcd(a, n) = 1$. Then
 \end{myIndent}
 
 \hOne
-If two groups are \udefine{isomorphic}, we write $G \approx G^\prime$.\retTwo
+If two groups are \udefine{isomorphic}, we write $G \iso G^\prime$.\retTwo
 
 An isomorphism from a group $G$ to itself is called an \udefine{automorphism}.\retTwo
 
@@ -1039,16 +1045,123 @@ Let $(\mathbb{Z}/n\mathbb{Z})^\times$ be the set of all $x \in \mathbb{Z}/n\math
 		This is a special case of homework 1 problem 1.\newpage
 	\end{myIndent}
 
-	\blab{Corollary 3w22:} If $p$ is a prime number, the size of $(\mathbb{Z}/p\mathbb{Z})^\times$ is $p - 1$. Consequently if $p \hspace{-0.1em}\not\divides a$, then $a^{p-1} \equiv 1 \mod{p}$.
+	\blab{Corollary 3w22:} If $p$ is a prime number, the size of $(\mathbb{Z}/p\mathbb{Z})^\times$ is $p - 1$. Consequently if $p \hspace{-0.1em}\not\divides a$, then $a^{p-1} \equiv 1 \mMod{p}$.
 
 	\begin{myIndent}\hThree
 		Proof:\\
-		The first part is just applying lemma 3w20. 
+		The first part is just applying lemma 3w20. To get the second part, note that the order of $a$ must divide $p - 1$. If $|\langle a \rangle| = \frac{p - 1}{d}$, then it follows that:
+		
+		{\centering $(a^{\frac{p - 1}{d}})^d \equiv a^{p-1} \equiv 1 \mMod{p}$.\retTwo\par}
+
+		Hence, $a^{p-1} \equiv 1 \mMod{p}$ for all $a \in (\mathbb{Z}/p\mathbb{Z})^{\times}$.\retTwo
 	\end{myIndent}
 \end{myIndent}}
 
+More generally, we define $\varphi(n) = |\left\{x \in \mathbb{Z} \mid 1 \leq x < n \text{ and } \gcd(x, n) = 1\right\}|$. This is called \udefine{Euler's totient function}. Then:
 
+\begin{myIndent}\hTwo
+	\blab{Corollary 3w23:} Suppose $\gcd(a, n) = 1$. Then the size of $(\mathbb{Z}/n\mathbb{Z})^\times$ is $\varphi(n)$ and\\ $a^{\varphi(n)} \equiv 1 \mMod{n}$.\retTwo
+\end{myIndent}
 
+\mySepTwo
+
+Now if you are paying attention, the group of integers under addition module $n$ can be thought of as a special case of the more general theory below.\retTwo
+
+Suppose $G$ is a group and $N$ is a normal subgroup. we define $\overline{G} = G / N$. And if $a \in G$, we define $\overline{a} = aN \in G / N$.\retTwo
+
+Let $\pi: G \longrightarrow \overline{G}$ denote the surjective map $\pi(a) = \overline{a}$ (this is the \udefine{canonical map}).
+
+\begin{myIndent}\hTwo
+	\blab{Theorem 3w24:} There is a law of composition on $\overline{G}$ that makes it into a group such that $\pi: G \longrightarrow \overline{G}$ is a surjective group homomorphism whose kernel is $N$.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		\blab{Lemma 3w25:} The formula $(aN)\cdot(bN) = (abN)$ is a well-defined law of composition\\ on $\overline{G}$.
+		
+		\begin{myIndent}\hFour
+			Proof:
+			Suppose $a^\prime = an_1$ and $b^\prime = bn_2$. Then:
+
+			{\centering $a^\prime b^\prime = an_1bn_2 = a(bb^{-1})n_1bn_2 = ab(b^{-1}n_1b)n_2 \in abN$ \retTwo\par}
+
+			This works because $b^{-1}n_1b \in N$ since $N$ is normal.\retTwo
+		\end{myIndent}
+
+		\blab{Lemma 3w26:} Given the law of composition defined above and the set $\overline{G}$, we have the following:
+		\begin{enumerate}
+			\item The set $1N = N$ is an identity for the law of composition on $\overline{G}$.
+			\item The inverse of $aN$ is $a^{-1}N$.
+			\item The law of composition on $\overline{G}$ is associative.
+		\end{enumerate}
+
+		\begin{myIndent}\hFour
+			Proof:\\
+			All of these follow directly from the the fact that $G$ is a group.\retTwo
+		\end{myIndent}
+
+		Now that we know that $\overline{G}$ is a group when equipped with the above law of\\ composition, it's pretty clear that $\pi$ is a surjective group homomorphism. All that's left to do now is show that $\ker(\pi) = N$. To do this, note that $\pi(a) = aN = 1N$ if and only if $a \in N$.\newpage
+	\end{myIndent}
+
+	\blab{First Isomorphism Theorem:} Let $\varphi: G \longrightarrow G^\prime$ be a group homomorphism with kernel $N$, and let $\pi: G \longrightarrow \overline{G}$ be the canonical map. Then there is a unique group homomorphism $\overline{\varphi}: \overline{G} \longrightarrow G^\prime$ for which $\varphi = \overline{\varphi} \circ \pi$. The map $\overline{\varphi}: \overline{G} \longrightarrow \varphi(G)$ is an isomorphism.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		Note that by a proposition on page 11, we know that $N$ is normal.\retTwo
+		\begin{itemize}
+			\item \blab{Uniqueness:} In order for $\varphi = \overline{\varphi} \circ \pi$, we must have that $\overline{\varphi}(\overline{a}) = \varphi(a)$. Thus, if\\ $\overline{\varphi}$ exists, then it is unique.
+			\item \blab{Well-defined:} Define $\overline{\varphi}(aN) = \varphi(a)$. THis is well-defined as $\varphi(an) = \varphi(a)$ due to $n \in \ker(\varphi)$.
+			\item \blab{Group homomorphism:}
+			
+			{\centering$\overline{\varphi}((aN)(bN)) = \overline{\varphi}(abN) = \varphi(ab) = \varphi(a)\varphi(b) = \overline{\varphi}(aN)\overline{\varphi}(bN)$.\par}
+
+			\item \blab{Isomorphism:} $\overline{\varphi}$ is injective because $\overline{\varphi}(aN) = \varphi(a) = 1$ implies that $a \in N$. So the kernel is trivial. Also, the image of $\overline{\varphi}$ is $\varphi(G)$.\retTwo
+		\end{itemize}
+	\end{myIndent}
+\end{myIndent}
+
+\exOne
+Some applications of the above theorem:
+
+\begin{itemize}
+	\item The quotient of $GL_n(\mathbb{R})$ by the normal subgroup $SL_n(\mathbb{R})$ is isomorphic to $\mathbb{R}^\times$.
+	
+	\item There's a longer problem here that I'm skipping for now. Maybe I'll cover it on\\ page \_\_\_.
+\end{itemize}
+
+\hOne\mySepTwo
+
+Suppose $G, H$ are groups. One can define a law of composition on $G \times H$ as\\ $(g_1, h_1)(g_2, h_2) = (g_1g_2, h_1h_2)$.\\ [-10pt]
+\begin{myIndent}\hTwo
+	\blab{Proposition 3w28:} This makes $G \times H$ a group. The identity is $(1, 1)$ and the inverse of $(g, h) = (g^{-1}, h^{-1})$.\retTwo
+\end{myIndent}
+
+If $R$ is a group and $\varphi_1: R \longrightarrow G$ and $\varphi_2: R \longrightarrow G$ are group homomorphisms, then $\varphi: R \longrightarrow G \times H$ given by $\varphi(r) = (\varphi_1(r), \varphi_2(r))$ is a group homomorphism.
+
+\begin{myTindent}\begin{myTindent}\myComment
+	Hopefully this is obvious. So I'm not proving this.\retTwo
+\end{myTindent}\end{myTindent}
+
+\begin{myIndent}\hTwo
+	\blab{Lemma 3w29:} Suppose $m, n$ are positive integers with $m$ dividing $n$. Then the map $\mathbb{Z} / n\mathbb{Z} \longrightarrow \mathbb{Z}/m\mathbb{Z}$ sending $a + n\mathbb{Z}$ to $a + m\mathbb{Z}$ is a well-defined surjective group homomorphism.
+	
+	\begin{myIndent}\hThree
+		Proof:\\
+		To start, note that this is well defined because if $a \in b + n\mathbb{Z}$, then we know\\ $a = b + nr$ for some $r \in \mathbb{Z}$. Then since $n = md$ for some $d \in \mathbb{Z}$, it follows that\\ $a = b + m(dr) \in b + m\mathbb{Z}$. In other words, $a \in b + n\mathbb{Z} \Longrightarrow a + m\mathbb{Z} = b + m\mathbb{Z}$.\retTwo
+
+		To see that this is a group homomorphism, just note that:
+
+		{\centering\fontsize{11.5}{13.5} $(a + nr) + (b + ns) = (a + m(dr)) + (b + m(ds)) = (a + b) + m(dr + ds) = (a + b) + n(r + s)$ \retTwo\par}
+
+		Finally, it's pretty trivial to see that this is surjective.\newpage
+	\end{myIndent}
+
+	\blab{Chinese Remainder Theorem:} Suppose $r, s$ are coprime positive integers. Then the map $\mathbb{Z} / (rs)\mathbb{Z} \longrightarrow (\mathbb{Z} / r\mathbb{Z}) \times (\mathbb{Z} / s\mathbb{Z})$ given by $a + rs\mathbb{Z} \mapsto (a + r\mathbb{Z}, a + s\mathbb{Z})$ is an isomorphism.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		
+	\end{myIndent}
+\end{myIndent}
 
 
 
