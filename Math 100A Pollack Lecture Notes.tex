@@ -161,10 +161,7 @@
 
 \newcommand{\pprime}{{\prime\prime}}
 \newcommand{\suchthat}{ \hspace{0.3em}s.t.\hspace{0.3em}}
-\newcommand{\rea}[1]{\mathrm{Re}(#1)}
-\newcommand{\ima}[1]{\mathrm{Im}(#1)}
 \newcommand{\comp}{\mathsf{C}}
-\newcommand{\card}{\mathrm{card}}
 \newcommand{\diam}{\mathrm{diam}}
 \newcommand{\Sym}{\mathrm{Sym}}
 \newcommand{\myHS}{ \hspace{0.5em}}
@@ -174,14 +171,18 @@
 \newcommand{\myHom}{\mathrm{Hom}}
 \newcommand{\myEnd}{\mathrm{End}}
 \newcommand{\myAut}{\mathrm{Aut}}
+\newcommand{\mMod}[1]{\phantom{a}(\mathrel{\mathrm{mod}} #1)}
 
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
 \newcommand{\divides}{\mathop{\mid}}
 
 
+\DeclareMathOperator{\ima}{Im}
+\DeclareMathOperator{\rea}{Re}
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\card}{card}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\sgn}{sgn}
 
@@ -641,7 +642,7 @@ Suppose $H \subseteq G$ is a subgroup and $a \in G$. Then:\\ [-12pt]
 
 {\centering$aH = \{g \in G \mid \exists h \in H \suchthat g = ah\}$,\\ [4pt]\par}
 
-is called a \udefine{left coset} of $H$ in $G$. One can similarly define a \udefine{right coset} $Ha$.\retTwo
+is called a \udefine{left coset} of $H$ in $G$. One can similarly define a \udefine{right coset} $Ha$. Then analogous theorems can be proven.\retTwo
 
 
 \begin{myIndent}\hTwo
@@ -692,7 +693,9 @@ is called a \udefine{left coset} of $H$ in $G$. One can similarly define a \udef
 		Proof:\\
 		The forward implication is trivial by the definition of injectivity. As for the reverse\\ implication, suppose $\ker(\varphi) = \{1\}$. Then:
 		
-		{\centering $\varphi(a) = \varphi(b) \Longrightarrow a^{-1}b \in \ker(\varphi) = \{1\} \Longrightarrow a^{-1}b = 1$.\retTwo\par} It follows that $a = b$.\newpage
+		{\centering $\varphi(a) = \varphi(b) \Longrightarrow a^{-1}b \in \ker(\varphi) = \{1\} \Longrightarrow a^{-1}b = 1$.\newpage\par}
+		
+		It follows that $a = b$.\retTwo
 	\end{myIndent}
 \end{myIndent}
 
@@ -896,7 +899,153 @@ Given a group $G$ and subgroup $H$, we denote $G/H$ for the set of cosets of $H$
 
 \mHeader{Lecture 9 Notes: 10/16/2024}
 
+\begin{myIndent}\hTwo
+	\blab{Lemma 3w10:} Suppose $\varphi: G \longrightarrow G^\prime$ is a group homomorphism. Then\\ $|\im(\varphi)| = [G: \ker{\varphi}]$.
+	
+	\begin{myIndent}\hThree
+		Proof:\\
+		Let $K = \ker(\varphi)$. Then $\varphi(a) = \varphi(b)$ if and only if $aK = bK$. So, there is a\\ bijective correspondance between the left cosets of $K$ and $\im(\varphi)$.\retTwo
+	\end{myIndent}
 
+	\blab{Corollary 3w11:} Let $\varphi: G \longrightarrow G^\prime$ be a homomorphism of finite groups. Then:
+	\begin{enumerate}
+		\item $|G| = |\ker(\varphi)|\cdot |\im(\varphi)|$
+		\item $|\ker(\varphi)|$ divides $|G|$.
+		\item $|\im(\varphi)|$ divides $|G|$ and $|G^\prime|$.
+	\end{enumerate}
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		Substituting in $[G: \ker(\varphi)] = |\im(\varphi)|$ into theorem 3w6, we get that\\ $|G| = |\im(\varphi)|\cdot |\ker(\varphi)|$. The rest follows trivially from and Lagrange's theorem.\newpage
+	\end{myIndent}
+
+	\blab{Theorem 3w12:} Suppose $G \subseteq H \subseteq K$ with $G$ being a finite group, $H$ being a subgroup of $G$, and $K$ being a subgroup of $H$. Then $[G:K] = [G:H][H:K]$.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		Suppose $[G:H] = m$ and $[H:K] = n$. Then there exists $g_i \in G$ and $h_j \in H$ satisfying that $G = g_1H \cup \ldots \cup g_mH$ and $H = h_1K \cup \ldots \cup h_mK$ where each union is of disjoint sets.\retTwo
+
+		Now note that $\{g_ih_jK \mid j \in \{1, \ldots, n\}\}$ is a partition of $g_iH$. To prove this, note that given any $x \in g_iH$, there exists $h \in H$ such that $x = g_ih$. But note that for some $h_j$ and $k \in K$, we have that $h = h_j k$. So $x \in g_ih_j k$ for some $h_j \in K$. At the same time, we can fairly trivially see that $g_ih_jK \subseteq g_iH$ for all $j$. And, we already showed that nonequal cosets are disjoint.\retTwo
+
+		So, $G = \bigcup\limits_{i=1}^m \bigcup\limits_{j=1}^n g_ih_j K$.\retTwo
+	\end{myIndent}
+
+	\blab{Proposition 3w13:} Let $H$ be a subgroup of a group $G$. The following are equivalent.
+	\begin{enumerate}
+		\item $H$ is normal.
+		\item $gHg^{-1} = H$ for all $g \in G$
+		\begin{myTindent}
+			{\myComment (It's fairly trivial to see that $(aH)b = a(Hb)$ for all $a, b\in G$).}
+		\end{myTindent}
+		\item $gH = Hg$ for all $g \in G$.
+		\item Every left coset of $G$ is a right coset of $G$ (and vice versa)
+	\end{enumerate}
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		(1) $\Longrightarrow$ (2) 
+		\begin{myIndent}
+			If $H$ is normal, then by definition $gHg^{-1}, g^{-1}Hg \subseteq H$. In turn,\\ $H = g^{-1}(gHg^{-1})g \subseteq g^{-1}(H)g$. So $gHg^{-1} = H$.\retTwo
+		\end{myIndent}
+
+		(2) $\Longrightarrow$ (1)\\
+		(2) $\Longleftrightarrow$ (3)\\
+		(3) $\Longrightarrow$ (4)
+		\begin{myIndent}
+			These are trivial.\retTwo
+		\end{myIndent}
+
+		(4) $\Longrightarrow$ (1)
+		\begin{myIndent}
+			Suppose $gH = Hg^\prime$. Then $g \in Hg^\prime$ because $g = g1 \in gH$. So,\\ $Hg = Hg^\prime = gH$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\blab{Proposition 3w14:} Suppose $G$ is a group.
+	\begin{enumerate}
+		\item If $g \in G$ and $H$ is a subgroup of $G$, then $gHg^{-1}$ is a subgroup of $G$.
+		\item If $G$ has one subgroup of order $r$, that subgroup is normal.
+	\end{enumerate}
+
+	\begin{myIndent}\hThree
+		Conjugation by $g$ is a group automorphism. So the image (which equals $gHg^{-1}$) of that homomorphism restricted to $H$ is a subgroup of $G$.\retTwo
+
+		The other claim comes from the fact that if $|H| = |gHg^{-1}|$. So if $G$ only has one subgroup of order $r$ and $H$ is a subgroup of order $r$, then $|gHg^{-1}| = r$ implies that $gHg^{-1} = H$.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+\blab{Modular Arithmetic}\retTwo
+
+One says two integers $a, b$ are \udefine{equivalent modulo $n$} if $a + n\mathbb{Z} = b + n\mathbb{Z}$. This is the same as saying $a - b \in n\mathbb{Z}$. One writes $a \equiv b \mMod{n}$.
+
+\begin{myIndent}\hTwo
+	\blab{Proposition 3w16:} Suppose $a_1 \equiv b_1 \mMod{n}$ and $a_2 \equiv b_2 \mMod{n}$. Then:
+	
+	\begin{itemize}
+		\item $a_1 + a_2 \equiv b_1 + b_2 \mMod{n}$
+		\item $a_1a_2 \equiv b_1b_2 \mMod{n}$
+	\end{itemize}
+
+	\begin{myIndent}\hThree
+			Proof:\\
+			We know $b_1 = a_1 + k_1n$ and $b_2 = a_2 K k_2n$ for some integers $k_1, k_2$. Thus:\fontsize{11.5}{13.5}\selectfont
+			\begin{itemize}
+				\item $b_1 + b_2 = a_1 + a_2 + (k_1 + k_2)n$
+				\item $b_1b_2 = a_1a_2 + a_1k_2n + a_2k_1n + k_1k_2n^2 = a_1a_2 + (a_1k_2 + a_2k_1 + k_1k_2n)n$\retTwo
+			\end{itemize}
+	\end{myIndent}
+\end{myIndent}
+
+Fixing $n$, then given $a \in \mathbb{Z}$, we denote it's equivalence class $\overline{a} = a + n\mathbb{Z}$.\\ (specifically $a + n\mathbb{Z}$ is a coset of $n\mathbb{Z}$). Note that $\mathbb{Z}/n\mathbb{Z} = \{\overline{0}, \overline{1}, \ldots, \overline{n-1}\}$.\retTwo
+
+Given $\overline{a}$ and $\overline{b}$ in $\mathbb{Z}/n\mathbb{Z}$, we define $\overline{a} + \overline{b} = \overline{a + b}$ and $\overline{a} \cdot \overline{b} = \overline{ab}$. This is well defined by the previous proposition.\retTwo
+
+\begin{myIndent}\hTwo
+	\blab{Proposition 3w17:} Fix a positive integer $n$,
+	\begin{itemize}
+		\item Addition and multiplication in $\mathbb{Z}/n\mathbb{Z}$ is commutative and associative.
+		\item Multiplication in $\mathbb{Z}/n\mathbb{Z}$ distributes over addition.
+		\item The class $\overline{0}$ is an identity for addition, and every element of $\mathbb{Z}/n\mathbb{Z}$ has an\\ additive inverse.
+		\item The class $\overline{1}$ is an identity for multiplication.
+	\end{itemize}
+	
+	\begin{myIndent}\hThree
+		This all follows from the fact that $\mathbb{Z}$ has these properties.\retTwo
+	\end{myIndent}
+
+	\blab{Proposition 3w18:} The set $\mathbb{Z}/n\mathbb{Z}$ with law of composition being addition is a group. It is cyclic of order $n$.
+	
+	\begin{myIndent}\hThree
+		This is because it is generated by $\overline{1}$.
+	\end{myIndent}
+\end{myIndent}
+
+Note that the map $\rho: \mathbb{Z}/n\mathbb{Z} \longrightarrow \mu_0$ given by $\rho(a + n\mathbb{Z}) = e^{\frac{2\pi i a}{n}}$ is an isomorphism.\retTwo
+
+Let $(\mathbb{Z}/n\mathbb{Z})^\times$ be the set of all $x \in \mathbb{Z}/n\mathbb{Z}$ with multiplicative inverses.\retTwo
+
+{\begin{myIndent}\hTwo
+	\blab{Lemma 3w20:} Suppose $n \in \mathbb{Z}$ is nonzero and $a \in \mathbb{Z}$. Then there exists $b \in \mathbb{Z}$ so that $ab \equiv 1 \mMod{n}$ if and only if $\gcd(a, n) = 1$.
+	
+	\begin{myIndent}\hThree
+		Proof:\\
+		If $b$ exists, then $ab = 1 + kn$ for some $k \in \mathbb{Z}$. So, $ab - kn = 1$, meaning\\ $\gcd(a, n) = 1$. You can just flip that reasoning to get the other direction\\ implication.\retTwo
+	\end{myIndent}
+
+	\blab{Proposition 3w21:} The set $(\mathbb{Z}/n\mathbb{Z})^\times$ is a group under multiplication.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		This is a special case of homework 1 problem 1.\newpage
+	\end{myIndent}
+
+	\blab{Corollary 3w22:} If $p$ is a prime number, the size of $(\mathbb{Z}/p\mathbb{Z})^\times$ is $p - 1$. Consequently if $p \hspace{-0.1em}\not\divides a$, then $a^{p-1} \equiv 1 \mod{p}$.
+
+	\begin{myIndent}\hThree
+		Proof:\\
+		The first part is just applying lemma 3w20. 
+	\end{myIndent}
+\end{myIndent}}
 
 
 
@@ -1101,6 +1250,58 @@ Given a group $G$ and subgroup $H$, we denote $G/H$ for the set of cosets of $H$
 \end{enumerate}
 
 \mySepTwo
+
+\mHeader{Homework 3:}
+
+
+\begin{enumerate}
+	\item (Chapter 2, Problem 8.3) Suppose $p$ is a prime number and $G$ is a group with order $p^n$ for a positive integer $n$. Prove that $G$ contains an element of order $p$.
+	
+	\begin{myIndent}\exOne
+		Since the order of any element of $G$ must divide $|G|$, we have that if $|G| = p$ where $p$ is prime, then the cyclic group of any non-identity element must have order $p$ as well. Hence, this problem holds true when $n = 1$.\retTwo
+		
+		Now suppose $|G| = p^N$ and assume the problem holds true for $n < N$. Choose $a$ not equal to $1$ in $G$, and consider the cyclic group $\langle a \rangle$. We know that $|\langle a \rangle|$ must divide $p^N$. And since the only factors of $p^N$ have the form $p^k$ where $k$ is a nonnegative integer at most $N$, we know that $|\langle a \rangle| = p^k$ for some integer $0 \leq k \leq N$.\retTwo
+		
+		If $k < N$, then we can apply our inductive hypothesis to say that there is an element of order $p$ in $\langle a \rangle$ and thus in $G$.\retTwo
+
+		Ìf $k = N$, then consider the cyclic group $\langle a^{(p^{N-1})} \rangle$ Note that\\ $(a^{(p^{N-1})})^p = a^{(p^N)} = 1$. Also, for any integer $k \in \{1, \ldots, p-1\}$, we\\ know that $0 < kp^{N-1} < p^N$, meaning $(p^{N-1})^k - 0$ is not a multiple of\\ $p^N$. So, $a^{(p^{N-1})} \in G$ has order $p$.\newpage
+	\end{myIndent}
+
+	\item (Chapter 2, Problem 8.5) Suppose $G$ is a finite group and that $G$ contains an element of order 10 and an element of order 6. Prove that $|G|$ is a multiple of $30$.
+	
+	\begin{myIndent}\exOne
+		Since the order of any element of $G$ must divide $|G|$, we know that both $10$ and $6$ must divide $|G|$. Importantly, letting $m = \lcm(6, 10)$, we know from a proposition in class that for any $n$ satisfying that $10 \divides n$ and $6 \divides n$, we know that $m \divides n$. So $m$ must divide $|G|$. And it just so happens that $m = \lcm(6, 10) = 30$.
+		\retTwo
+	\end{myIndent}
+	
+	\item (Chapter 2, Problem 8.6) Suppose $\varphi: G \longrightarrow G^\prime$ is a group homomorphism, $|G| = 18$ and $|G^\prime| = 15$. Assume that $\varphi$ is not the trivial homomorphism. What is the order of $\ker(\varphi)$.
+	
+	\begin{myIndent}\exOne
+		We know that $|\ker(\varphi)|\cdot|\im(\varphi)| = |G^\prime|$, and that $|\im(\varphi)| \neq 1$. As a result we know one of the following cases is true:
+		\begin{itemize}
+			\item $|\ker(\varphi)| = 1$ and $|\im(\varphi)| = 18$
+			\item $|\ker(\varphi)| = 2$ and $|\im(\varphi)| = 9$
+			\item $|\ker(\varphi)| = 3$ and $|\im(\varphi)| = 6$
+			\item $|\ker(\varphi)| = 6$ and $|\im(\varphi)| = 3$
+			\item $|\ker(\varphi)| = 9$ and $|\im(\varphi)| = 2$\retTwo
+		\end{itemize}
+		
+		But then note that taking into account that $|G^\prime| = 16$, there is only one option above that satisfies that $|\im(\varphi)|$ divides $16$. Hence, we know that:
+
+		{\center $|\ker(\varphi)| = 9$ and $|\im(\varphi)| = 2$ \retTwo\par}
+	\end{myIndent}
+	
+	\item (Chapter 2, Problem 8.10) Suppose $G$ is a group and $N$ is a subgroup of $G$ of index $2$. Prove that $N$ is normal.
+	
+	\begin{myIndent}\exOne
+		Note that since $[G:N] = 2$ and $N = 1N$ is a coset of $N$, we know that the other coset must be $G \setminus N$.\retTwo
+
+		Now I'm running out of time and thus didn't have time to show this. But to be fully accurate, since we defined the index of a group to be based on the number of left cosets, we need to show that there are the same number of right and left cosets. At least if $G$ is finite, then this is trivial (because all the reasoning we've done in class could just as easily have been done using right-cosets)\retTwo
+
+		So assuming that $[G:N]$ also gives the number of right cosets, then note that as before, we have that the right cosets of $G$ are $N$ and $G \setminus N$. So, every left coset of $N$ is a right coset of $N$ and vice versa. It follows that $N$ is normal.
+		\retTwo
+	\end{myIndent}
+\end{enumerate}
 
 
 
