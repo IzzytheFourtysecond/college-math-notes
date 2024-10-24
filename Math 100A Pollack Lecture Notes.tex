@@ -1102,7 +1102,7 @@ Let $\pi: G \longrightarrow \overline{G}$ denote the surjective map $\pi(a) = \o
 		Now that we know that $\overline{G}$ is a group when equipped with the above law of\\ composition, it's pretty clear that $\pi$ is a surjective group homomorphism. All that's left to do now is show that $\ker(\pi) = N$. To do this, note that $\pi(a) = aN = 1N$ if and only if $a \in N$.\newpage
 	\end{myIndent}
 
-	\blab{First Isomorphism Theorem:} Let $\varphi: G \longrightarrow G^\prime$ be a group homomorphism with kernel $N$, and let $\pi: G \longrightarrow \overline{G}$ be the canonical map. Then there is a unique group homomorphism $\overline{\varphi}: \overline{G} \longrightarrow G^\prime$ for which $\varphi = \overline{\varphi} \circ \pi$. The map $\overline{\varphi}: \overline{G} \longrightarrow \varphi(G)$ is an isomorphism.
+	\blab{First Isomorphism Theorem:} Let $\varphi: G \longrightarrow G^\prime$ be a group homomorphism with kernel $N$, and let $\pi: G \longrightarrow \overline{G} = G / N$ be the canonical map. Then there is a unique group homomorphism $\overline{\varphi}: \overline{G} \longrightarrow G^\prime$ for which $\varphi = \overline{\varphi} \circ \pi$. The map $\overline{\varphi}: \overline{G} \longrightarrow \varphi(G)$ is an isomorphism.
 
 	\begin{myIndent}\hThree
 		Proof:\\
@@ -1154,14 +1154,65 @@ If $R$ is a group and $\varphi_1: R \longrightarrow G$ and $\varphi_2: R \longri
 
 		Finally, it's pretty trivial to see that this is surjective.\newpage
 	\end{myIndent}
+\end{myIndent}
 
-	\blab{Chinese Remainder Theorem:} Suppose $r, s$ are coprime positive integers. Then the map $\mathbb{Z} / (rs)\mathbb{Z} \longrightarrow (\mathbb{Z} / r\mathbb{Z}) \times (\mathbb{Z} / s\mathbb{Z})$ given by $a + rs\mathbb{Z} \mapsto (a + r\mathbb{Z}, a + s\mathbb{Z})$ is an isomorphism.
+\mHeader{Lecture 11 Notes: 10/21/2024}
+
+\begin{myIndent}\hTwo
+	\blab{Chinese Remainder Theorem:} Suppose $r, s$ are coprime positive integers. Then the map $\mathbb{Z} / (rs)\mathbb{Z} \longrightarrow (\mathbb{Z} / r\mathbb{Z}) \times (\mathbb{Z} / s\mathbb{Z})$ given by $n + rs\mathbb{Z} \mapsto (n + r\mathbb{Z}, n + s\mathbb{Z})$ is an isomorphism.
 
 	\begin{myIndent}\hThree
 		Proof:\\
+		Here is an equivalent statement: Suppose $r, s$ are coprime positive integers. Then the map $\mathbb{Z} \longrightarrow (\mathbb{Z} / r\mathbb{Z}) \times (\mathbb{Z} / s\mathbb{Z})$ sending $n \in \mathbb{Z}$ to $(n + r\mathbb{Z}, n + s\mathbb{Z})$ is surjective with $(rs)\mathbb{Z}$ as it's kernel.
+
 		
+		\begin{myIndent}\hFour
+			Proof:\\
+			To start, note that the maps $\mathbb{Z} \longrightarrow \mathbb{Z} / r\mathbb{Z}$ and $\mathbb{Z} \longrightarrow \mathbb{Z} / s\mathbb{Z}$ such that\\ $a \mapsto a + r\mathbb{Z}$ and $a \mapsto a + s\mathbb{Z}$ respectively are both group homomorphisms.      Combining this with what was discussed on the last page, we know that the map sending $n \in \mathbb{Z}$ to $(n + r\mathbb{Z}, n + s\mathbb{Z})$ is a group homomorphism.\retTwo
+
+			
+			\begin{myTindent}\myComment
+				Side note: under additive notation, the law of composition of the product $G \times H$ of two groups $G$ and $H$ is:
+				
+				{\centering$(g_1, h_1) + (g_2, h_2) = (g_1 + g_2, h_1 + h_2)$.\retTwo\par}
+			\end{myTindent}
+			
+			Now since $\gcd(r, s) = 1$, there exists $a, b \in \mathbb{Z}$ such that $ar + bs = 1$. Now set $u = bs$ and $v = ar$. Then note that $u \mapsto (1, 0)$ and $v \mapsto (0, 1)$. It follows that $xu + yv = (x + r\mathbb{Z}, y + s\mathbb{Z})$. So the map is surjective.\retTwo
+
+			Meanwhile, note that if $r \divides n$ and $s \divides n$, then we can say that $s \divides r(\frac{n}{r})$. But now note that since $\gcd(s, r) = 1$, we must have that $s \divides \frac{n}{r}$. So, $rs \divides n$. Similarly, if $rs \divides n$, we obviously have that $r \divides n$ and $s \divides n$. So it follows that the kernel of this map is $(rs)\mathbb{Z}$.\retTwo
+		\end{myIndent}
+
+		Now the reason why this statement is equivalent to the original is that we can now use the first isomorphism theorem to state that our original map from $\mathbb{Z} / (rs)\mathbb{Z}$ to\\ $(\mathbb{Z} / r\mathbb{Z}) \times (\mathbb{Z} / s\mathbb{Z})$ is an isomorphism.\retTwo
 	\end{myIndent}
+
+	\blab{Lemma 4w4:} Suppose $\varphi: G \longrightarrow G^\prime$ is a group homomorphism, and let $H^\prime \subseteq G^\prime$ be a subgroup. Let $H = \varphi^{-1}(H^\prime)$. Then:
+	\begin{enumerate}
+		\item $H$ is a subgroup of $G$ that contains $\ker(\varphi)$.
+		\begin{myIndent}\hThree
+			Proof:\\
+			We know $1 \in H$. Also, if $h \in H$, then $\varphi(h^{-1}) = \varphi(h)^{-1} \in H^\prime$. So $h^{-1} \in H$. Finally, if $h_1, h_2 \in H$, then $\varphi(h_1h_2) = \varphi(h_1)\varphi(h_2) \in H^\prime$. So, $h_1h_2 \in H$.\retTwo
+
+			Also, the fact that $\ker(\varphi) \subseteq H$ is just because $1 \in H^\prime$.\retTwo
+		\end{myIndent}
+
+		\item If $H^\prime$ is normal, then so is $H$.
+		\begin{myIndent}\hThree
+			Proof:\\
+			We know that $\varphi(ghg^{-1}) = \varphi(g)\varphi(h)\varphi(g)^{-1} \in H^\prime$ for all $h \in H$ and $g \in G$. So, $ghg^{-1} \in H$ for all $h \in H$ and $g \in G$.\newpage
+		\end{myIndent}
+
+		\item If $H$ is normal and $\varphi$ is surjective, then $H^\prime$ is normal.
+		\begin{myIndent}\hThree
+			Fuck you, do this proof yourself. It's not that hard.\retTwo
+		\end{myIndent}
+	\end{enumerate}
+
+	\blab{Theorem 4w5:} Let $\varphi: G \longrightarrow G^\prime$ be a surjective group homomorphism with\\ kernel $K$.
+	\begin{enumerate}
+		\item There is a bijective correspondance between subgroups of $G^\prime$ and subgroups of $G$ containing $K$. The correspondence is $H \mapsto \varphi(H)$ for $H \subseteq G$ and\\ $H^\prime \mapsto \varphi^{-1}(H^\prime)$ for $H^\prime \subseteq G^\prime$.
+	\end{enumerate}
 \end{myIndent}
+
 
 
 
