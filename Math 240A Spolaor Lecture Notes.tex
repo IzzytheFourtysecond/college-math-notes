@@ -1813,7 +1813,7 @@ Some fairly trivial observations:
 \begin{enumerate}
    \item $m(\{x\}) = 0$ for all $x \in \mathbb{R}$.
    \item All countable sets have a Lesbesgue measure of zero (this includes $\mathbb{Q}$).
-   \item There exists uncountable sets with a Lesbesgue measure of zero (example: the Cantor Set).
+   \item There exists uncountable sets with a Lesbesgue measure of zero (example: the Cantor set).
 \end{enumerate}}
 
 \mySepTwo
@@ -2152,7 +2152,133 @@ We've mostly been working without regard to a particular measure. Here are some 
 
 \mHeader{Lecture 8 Notes: 10/22/2024}
 
+\newpage
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Homework Dungeon
+
+\begin{myIndent}\hTwo 
+   \blab{Proposition:} If $f \in L^+$ and $\int f < \infty$, then $\{x \mid f(x) = \infty\}$ is a null set and\\ $\{x \mid f(x) > 0\}$ is $\sigma$-finite.
+   \begin{myIndent}\exTwo
+      The proof is \blab{Exercise 2.12}:\exTwoP\\
+      Firstly, suppose $\mu(\{x \mid f(x) = \infty\}) = \alpha > 0$. Then for all $n \in \mathbb{N}$, we can\\ define: $\phi_n = n\chi_{\{x \mid f(x) = \infty\}}$. Thus, $(\phi_n)$ is an increasing sequence of simple functions less than $f$ satisfying that $\int f \geq \int \phi_n = n\alpha$ for all $n$. It follows that $\int f \geq \lim\limits_{n \rightarrow \infty} (n\alpha) = \infty$, meaning that $\int f = \infty$.\retTwo
+      
+      Hence, we've shown that $\int f < \infty \Longrightarrow \mu(\{x \mid f(x) = \infty\}) = 0$.\retTwo
+
+      Next, suppose that for some $\beta > 0$, we have that $\mu(\{x \mid f(x) > \beta\}) = \infty$. Then $\phi = \beta \chi_{\{x \mid f(x) > \beta\}}$ is a simple function less than $f$ satisfying that:
+       
+      {\centering $\infty = \beta\infty = \int \phi \leq \int f$.\retTwo\par}
+
+      It follows that $\int f < \infty \Longrightarrow \mu(\{x \mid f(x) > \beta\}) < \infty$ for all $\beta > 0$.\retTwo
+
+      Finally, note that $\{x \mid f(x) > 0\} = \bigcup\limits_{n \in \mathbb{N}}\{x \mid f(x) > \frac{1}{n}\}$ where each\\ [-8pt] $\mu(\{x \mid f(x) > \frac{1}{n}\}) < \infty$.\retTwo
+
+      So, $\{x \mid f(x) > 0\}$ is $\sigma$-finite.\retTwo
+   \end{myIndent}
+\end{myIndent}
+
+
+\retTwo
+
+
+\exOne
+\blab{Exercise 2.13:} Suppose $(f_n)_{n \in \mathbb{N}} \subset L^+$, $f_n \rightarrow f$ pointwise, and $\int f = \lim\limits_{n \rightarrow \infty} \int f_n < \infty$.\\ [-3pt] Then $\int_E f = \lim\limits_{n \rightarrow \infty} \int_E f_n$ for all $E \in \mathcal{M}$.\\ [-8pt]
+
+
+\begin{myIndent}\exTwoP
+   Firstly let $E \in \mathcal{M}$. Then $\int f\chi_E + \int f \chi_{E^\comp} = \int f$ and $\int f_n\chi_E + \int f_n\chi_{E^\comp} = \int f_n$ for all $n \in \mathbb{N}$. Based on that, we can show:
+
+   {\centering $\limsup\limits_{n \rightarrow \infty} \int f_n\chi_E + \liminf\limits_{n \rightarrow \infty} \int f_n\chi_{E^\comp} = \lim\limits_{n \rightarrow \infty} \int f_n = \int f$ \retTwo\par}
+
+   \begin{myIndent}\exPPP
+      To see this, consider any subsequence $(\int f_{n_k}\chi_E)_{k \in \mathbb{N}}$ converging to $\limsup\limits_{n \rightarrow \infty} \int f_n\chi_E$.\retTwo
+
+      Because $\int f$ is finite, we know there is $N_1 \in \mathbb{N}$ such that $\int f_n < \infty$ for all $n > N_1$.\\ In turn, we know that $\int f_n\chi_E < \infty$ for all $n > N_1$ and thus $\limsup\limits_{n \rightarrow \infty} \int f_n\chi_E < \infty$.\retTwo
+
+      Now since $(\int f_{n_k}\chi_E)_{k \in \mathbb{N}}$ and $(\int f_n)_{n \in \mathbb{N}}$ have finite limits, given any $\varepsilon > 0$, we can pick $N_2 \in \mathbb{N}$ greater than $N_1$ such that for all $k \geq N_2$, we have that:
+
+      {\centering $|\int f_{n_k}\chi_E - \limsup\limits_{n \rightarrow \infty} \int f_n\chi_E| < \sfrac{\varepsilon}{2}$ and $|\int f_{n_k} - \int f| < \sfrac{\varepsilon}{2}$ \retTwo\par}
+
+      It follows that because $\int f_{n_k} - \int f_{n_k}\chi_E = \int f_{n_k}\chi_{E^\comp}$, we have that:\\ [-10pt]
+
+      {\centering $(\int f - \limsup\limits_{n \rightarrow \infty} \int f_n\chi_E) - \varepsilon < \int f_{n_k}\chi_{E^\comp} < (\int f - \limsup\limits_{n \rightarrow \infty} \int f_n\chi_E) + \varepsilon$ \retTwo\par}
+
+      So $\lim\limits_{k \rightarrow \infty} \int f_{n_k}\chi_{E^\comp}$ exists and:
+
+      {\centering $\liminf\limits_{n \rightarrow \infty} \int f_n\chi_{E^\comp} \leq \lim\limits_{k \rightarrow \infty} \int f_{n_k}\chi_{E^\comp} = \int f - \limsup\limits_{n \rightarrow \infty} \int f_n\chi_E$.\newpage\par}
+
+      Meanwhile, consider any subsequence $(\int f_{n_j}\chi_{E^\comp})_{j \in \mathbb{N}}$ converging to $\liminf\limits_{n \rightarrow \infty} \int f_n\chi_{E^\comp}$.\retTwo
+
+      By analogous reasoning to before, we know that $\liminf\limits_{n \rightarrow \infty} \int f_n\chi_{E^\comp}$ is finte.\retTwo
+      
+      Also similarly to before, we can show that $\lim\limits_{j \rightarrow \infty} \int f_{n_j}\chi_{E}$ exists and:\\ [-8pt]
+
+      {\centering $ \int f - \liminf\limits_{n \rightarrow \infty} \int f_n\chi_{E^\comp} = \lim\limits_{j \rightarrow \infty} \int f_{n_j}\chi_{E} \leq \limsup\limits_{n \rightarrow \infty} \int f_n\chi_{E}$ \retTwo\par}
+
+      Finally, by rearranging terms, we get that:
+      
+      {\centering $\int f \leq \limsup\limits_{n \rightarrow \infty} \int f_n\chi_{E} + \liminf\limits_{n \rightarrow \infty} \int f_n\chi_{E^\comp} \leq \int f$.\retTwo\par}
+   \end{myIndent}
+
+   Next, note that $f_n\chi_E \rightarrow f\chi_E$ and $f_n \chi_{E^\comp} \rightarrow f\chi_{E^\comp}$ pointwise as $n \rightarrow \infty$. Thus by Fatou's lemma, we immediately have that:
+
+   {\centering $\int f\chi_E = \int \lim\limits_{n \rightarrow \infty}(f_n\chi_E) \leq \liminf\limits_{n\rightarrow \infty} \int f_n\chi_E$  \retTwo\par}
+
+   Also, more round-aboutly we get that:
+
+   {\centering
+   \begin{tabular}{l}
+      $\int f \chi_E = \int f - \int f \chi_{E^\comp} = \int f - \int \lim\limits_{n \rightarrow \infty} f_n\chi_{E^\comp}$\\ [9pt]
+      $\phantom{\int f \chi_E = \int f - \int f \chi_{E^\comp}} \geq \int f - \liminf\limits_{n \rightarrow \infty} \int f_n\chi_{E^\comp} = \limsup\limits_{n \rightarrow \infty} \int f_n\chi_E$
+   \end{tabular}\retTwo\par}
+
+   Thus, $\int f\chi_E \leq \liminf\limits_{n\rightarrow \infty} f_n\chi_E \leq \limsup\limits_{n\rightarrow \infty} f_n\chi_E \leq \int f\chi_E$.\retTwo And so, we have shown that $\lim\limits_{n \rightarrow \infty} \int f_n\chi_E$ exists and that $\int f\chi_E = \lim\limits_{n \rightarrow \infty} \int f_n\chi_E$
+\end{myIndent}
+
+\retTwo
+
+However, this need not be true if $\int f = \lim\limits_{n \rightarrow \infty} \int f_n = \infty$.
+
+
+\begin{myIndent}\exTwoP
+   Suppose $(X, \mathcal{M}, \mu) = (\mathbb{R}, \mathcal{L}, m)$ and then define $f_n = \chi_{(-\infty, 0)} + \chi_{(n, n+1]}$ for all\\ $n \in \mathbb{N}$ and $f = \chi_{(-\infty, 0)}$. Then note that $f_n \rightarrow f$ pointwise as $n \rightarrow \infty$. Also, for\\ all $n \in \mathbb{N}$ we have that $\int f = \infty = \int f_n$. However, $E = [0, \infty) \in \mathcal{L}$ and $\int_E f = 0$\\ while $\int_E f_n = 1$ for all $n$. So, $\int_E f \neq \lim\limits_{n \rightarrow \infty} \int_E f_n$.\retTwo
+\end{myIndent}
+
+\retTwo
+
+\blab{Exercise 2.14:} If $f \in L^+$, let $\lambda(E) = \int_E fd\mu$ for $E \in \mathcal{M}$. Then $\lambda$ is a measure on $\mathcal{M}$ and for any $g \in L^+$, $\int g d\lambda = \int fgd\mu$.
+
+\begin{myIndent}\exTwoP
+   To start, we show $\lambda$ is measure. Clearly, $\lambda(\emptyset) = \int_\emptyset fd\mu = \int f\chi_{\emptyset}d\mu = \int 0d\mu = 0$.\\ Meanwhile, suppose $(E_n)_{n \in \mathbb{N}}$ is a sequence of disjoint sets in $\mathcal{M}$ whose union is $E$.\retTwo
+   
+   Note that $\chi_E = \sum\limits_{n = 0}^\infty \chi_{E_n}$. So:\\ [-10pt]
+   
+   {\centering $\lambda(E) = \int_{E} fd\mu = \int f\chi_E d\mu = \int \left(\sum\limits_{n = 0}^\infty f\chi_{E_n}\right)d\mu = \sum\limits_{n=0}^\infty \int f\chi_{E_n}d\mu = \sum\limits_{n = 0}^\infty \lambda(E_n)$\retTwo\par}
+
+   Hence, we've shown that $\lambda$ is a measure on $\mathcal{M}$.\newpage
+
+   Now, in order to show that $\int g d\lambda = \int fgd\mu$ for all $g \in L^+$, let's first consider a\\ simple function $\phi \in L^+$.
+\end{myIndent}
 
 
 
