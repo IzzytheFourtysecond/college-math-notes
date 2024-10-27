@@ -2293,13 +2293,106 @@ However, this need not be true if $\int f = \lim\limits_{n \rightarrow \infty} \
    To extend this to any function $g \in L^+$, let $(\phi_n)_{n \in \mathbb{N}}$ be an increasing sequence of simple functions such that $\phi_n \rightarrow g$ pointwise as $n \rightarrow \infty$. Importantly, we also have that $f\phi_n \rightarrow fg$ pointwise as $n \rightarrow \infty$ with $f\phi_{n} \leq f\phi_{n + 1}$ for all $n \in \mathbb{N}$. So, applying the monotone convergence theorem, we have that:
 
    {\centering $\int gd\lambda = \lim\limits_{n \rightarrow \infty}(\int \phi_nd\lambda) = \lim\limits_{n \rightarrow \infty}(\int \phi_nfd\mu) = \int fg d\mu$ \retTwo\par}
-   
 \end{myIndent}
 
+\newpage
 
+\blab{Exercise 2.25:} Let $f(x) = x^{-\sfrac{1}{2}}$ if $0 < x < 1$ and $f(x) = 0$ otherwise. Let $(r_n)_{n \in \mathbb{N}}$ be an enumeration of the rational numbers, and set $g(x) = \sum\limits_{n = 1}^\infty 2^{-n}f(x - r_n)$. \\ [-14pt]
+\begin{enumerate}
+   \item[(a)] $g \in L^1(m)$ and in particular $g < \infty$ a.e.
+   
+   \begin{myIndent}\exTwoP
+      Note that $\int |2^{-n}f(x - r_n)|dm = 2^{-n}\int |f(x - r_n)|dm$ since $2^{-n} > 0$. Next, note that by the monotone convergence theorem, if $(a_k)_{k \in \mathbb{N}}$ is any decreasing sequence of numbers converging to $r_n$, then:
 
+      {\centering 
+      \begin{tabular}{l}
+         $\int |f(x - r_n)|dm = \lim\limits_{k \rightarrow \infty}\int |f(x - r_n)|\chi_{\{x \mid x > a_k\}}dm$\\
+         
+         $\phantom{\int |f(x - r_n)|dm} = \lim\limits_{k \rightarrow \infty}\int_{a_k}^{r_n + 1}|f(x - r_n)|dx$\\
 
+         $\phantom{\int |f(x - r_n)|dm} = \lim\limits_{a \rightarrow r_n+}\int_{a}^{r_n + 1}f(x - r_n)dx$\\
 
+         $\phantom{\int |f(x - r_n)|dm} = \lim\limits_{a \rightarrow 0+}\int_{a}^{1}f(x)dx = \lim\limits_{a \rightarrow 0+}\int_{a}^{1}x^{-\sfrac{1}{2}}dx = \lim\limits_{a \rightarrow 0+} (2x|_a^1) = 2$\\
+      \end{tabular} \retTwo\par}
+
+      It follows that:
+      
+      {\centering $\int \sum\limits_{n = 1}^\infty |2^{-n}f(x - r_n)|dm = \sum\limits_{n = 1}^\infty \int |2^{-n}f(x - r_n)|dm = \sum\limits_{n = 1}^\infty 2^{-n} \cdot 2 = 1$.\retTwo\par}
+
+      So by theorem 2.25, we know that $\sum\limits_{n = 1}^\infty 2^{-n} f(x - r_n) \in L^1(m)$.\retTwo
+
+      By an earlier exercise, since $\sum\limits_{n = 1}^\infty 2^{-n} f(x - r_n) \geq 0$ for all $x$, we know that it has a finite integral if and only if it equals infinity on a null set. Hence, it follows\\ [5pt] that:
+
+      {\centering $g(x) = \sum\limits_{n = 1}^\infty 2^{-n} f(x - r_n) < \infty$ almost everywhere.\retTwo\par}
+   \end{myIndent}
+
+   \item[(b)] $g$ is discontinuous at every point and unbounded on every interval, and it remains so after any modification on a Lesbesgue null set.
+   
+   \begin{myIndent}\exTwoP
+      To start, let's fix $x \in \mathbb{R}$ and $\delta \in (0, 1)$. Then consider any $N > 0$.\retTwo
+
+      Note that there exists $r_n \in (r_n)_{n \in \mathbb{N}}$ such that $x < r_n < x + \delta$. Then, note that if $r_n < x < \min(r_n + \frac{1}{N^2}2^{-2n} ,r_n + 1)$, we have that $2^{-n}f(x - r_n) > N$. Since $x + \delta < r_n + 1$, we thus know that $g(s) > N$ for all $s$ in
+      
+      {\centering $(r_n, \min(x + \delta, r_n + \frac{1}{N^2}2^{-2n})) \subseteq (x, x + \delta)$.\retTwo\par}
+
+      Also note that we can pick $s$ in that interval such that $g(s)$ is finite. Furthermore, if we change $g$ on a null set $N$, then we can also select $s$ to be not in $N$.
+      \begin{myIndent}\exPPP
+         To see this, first note that $m(r_n, \min(r_n + N^22^{2n}, x + \delta))$ is an open interval and thus has positive measure. Also, by the completeness of $m$, we know that $\{x \mid g(x) = \infty\}$ is a subset of a null set and thus itself a null set.\newpage Finally, suppose we have another null set $N$. Then taking the difference of the interval with the two null sets sets must give a set with the positive measure of the original interval. And thus the difference can't be the empty set which has a measure of zero.\retTwo
+      \end{myIndent}
+
+      It immediately follows that even after modifying $g$ on a null set, we still have that $g$ is unbounded on all non-singleton intervals since we can fix $x$ to be any interior point of the interval and $\delta$ such that $(x, x + \delta)$ is a subset of that interval.\retTwo
+
+      Also, if $g(x)$ is finite and $\varepsilon > 0$. Then we've shown that even if we modify\\ $g$, we still have that for all $\delta > 0$, there exists $s \in (x - \delta, x + \delta)$ with\\ $g(x) + \varepsilon < g(s) < \infty$. So $g$ is not continuous at $x$.\retTwo
+
+      
+      \begin{myTindent}\myComment
+         We haven't defined continuity yet for when $g$ can equal $\infty$ on an interval. But here's my current intuition on what being continuous at $x$ when $g(x)  = \infty$ should mean.
+      \end{myTindent}
+      Finally if $g(x) = \infty$, then by the previous reasoning, even if we modify $g$ on a null set, we can still find $s$ in any neighborhood of $x$ such that $g(s) < \infty$. Thus, $g$ is not continuous at $x$.\retTwo
+   \end{myIndent}
+
+   \item[(c)] $g^2 < \infty$ a.e. but $g^2$ is not integrable on any interval.  
+
+   \begin{myIndent}\exTwoP
+      We know $g^2 < \infty$ a.e. because $g < \infty$ a.e.\retTwo
+
+      Now note that since $2^{-n}f(x - r_n) \geq 0$ for all $n \in \mathbb{N}$, we can say that for all\\ $N \in \mathbb{N}$:\\ [-20pt]
+
+      {\centering $\sum\limits_{n = 1}^N (2^{-n}f(x - r_n))^2 \leq \left(\sum\limits_{n = 1}^N 2^{-n}f(x - r_n)\right)^2$ \retTwo\par}
+
+      Taking $N \rightarrow \infty$, we thus get that $\sum\limits_{n = 1}^\infty (2^{-n}f(x - r_n))^2 \leq (g(x))^2$.\retTwo
+
+      Also, given any interval $I$, we can multiply our above inequality by $\chi_I$ and it won't flip because $\chi_I \geq 0$. Then as $(2^{-n}f(x - r_n))^2\chi_I \geq 0$ for all $n \in \mathbb{N}$, we can thus conclude that:
+
+      {\centering $\sum\limits_{n = 1}^\infty \int_I (2^{-n}f(x - r_n))^2dm = \int_I \sum\limits_{n = 1}^\infty (2^{-n}f(x - r_n))^2 dm \leq \int_I (g(x))^2dm$\retTwo\par}
+
+      But now fix $n$ such that there exists $\varepsilon \in (0, 1)$ with $[r_n - \varepsilon, r_n + \varepsilon] \subseteq I$. Then note that:
+
+      {\centering 
+      \begin{tabular}{l}
+         $\int_I (2^{-n}f(x - r_n))^2 dm \geq 2^{-2n}\cdot \lim\limits_{a \rightarrow r_n+}\int_{a}^{r_n + \varepsilon} (f(x - r_n))^2dx$ \\
+         $\phantom{\int_I (2^{-n}f(x - r_n))^2 dm} = 2^{-2n} \cdot \lim\limits_{a \rightarrow r_n+}\int_{a}^{r_n + \varepsilon} \frac{1}{x - r_n}dx$\\
+         $\phantom{\int_I (2^{-n}f(x - r_n))^2 dm} = 2^{-2n}\cdot\lim\limits_{a \rightarrow r_n^+}(\log(\varepsilon) - \log(a - r_n)) = \infty$
+      \end{tabular} \newpage\par}
+      
+      So $\int_I (2^{-n}f(x - r_n))^2 dm = \infty$. Hence, so does $\int_I(g(x))^2dm = \infty$. And thus, $(g(x))^2$ is not integrable on the interval $I$.
+      \retTwo
+   \end{myIndent}
+\end{enumerate}
+
+\retTwo
+
+\blab{Exercise 2.26:} If $f \in L^1(m)$ and $F(x) = \int_{-\infty}^x f(t)dt$, then $F$ is continuous on $\mathbb{R}$.
+
+\begin{myIndent}\exTwoP
+   Let $(x_k)_{k \in \mathbb{N}}$ be any sequence of points converging to a given point $x$. Importantly, $f \in L^1(m)$ implies that $\int |f| < \infty$. Also,  we have that $|f\chi_{(-\infty, x_k)}| \leq |f|$ for all $k \in \mathbb{N}$. Plus, $f\chi_{(-\infty, x_k)} \rightarrow f\chi_{(-\infty, x)}$ as $k \rightarrow \infty$.\retTwo
+
+   So, by applying the dominated convergence theorem, we have that:
+
+   {\centering $\lim\limits_{k \rightarrow \infty}(F(x_k)) = \lim\limits_{k\rightarrow \infty} (\int f\chi_{(-\infty, x_k)}) = \int f\chi_{(-\infty, x)} = F(x)$\retTwo\par}
+
+   Hence, $\lim\limits_{t \rightarrow x}(F(t)) = F(x)$ and thus $F$ is continuous at $x$.
+\end{myIndent}
 
 
 
