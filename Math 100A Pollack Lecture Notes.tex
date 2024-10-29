@@ -1463,10 +1463,88 @@ If $R$ is a group and $\varphi_1: R \longrightarrow G$ and $\varphi_2: R \longri
 		Now I'm running out of time and thus didn't have time to show this. But to be fully accurate, since we defined the index of a group to be based on the number of left cosets, we need to show that there are the same number of right and left cosets. At least if $G$ is finite, then this is trivial (because all the reasoning we've done in class could just as easily have been done using right-cosets)\retTwo
 
 		So assuming that $[G:N]$ also gives the number of right cosets, then note that as before, we have that the right cosets of $G$ are $N$ and $G \setminus N$. So, every left coset of $N$ is a right coset of $N$ and vice versa. It follows that $N$ is normal.
-		\retTwo
+		\newpage
 	\end{myIndent}
 \end{enumerate}
 
+\mHeader{Homework 4:}
+
+
+\begin{enumerate}
+	\item Suppose $r_1, \ldots, r_n$ are positive integers. Say that the $r_j$ are \udefine{pairwise coprime}\\ if $\gcd(r_i, r_j) = 1$ for all $i \neq j$. Prove the following generalization of the\\ Chinese Remainder Theorem: Assume the positive integers $r_1, \ldots, r_n$ are\\ pairwise coprime. Then the canonical map:
+	
+	{\centering $\mathbb{Z} / (r_1\cdots r_n)\mathbb{Z} \longrightarrow (\mathbb{Z} / r_1\mathbb{Z}) \times \cdots \times (\mathbb{Z} / r_n\mathbb{Z})$\par}
+
+	given by $a + r_1\cdots r_n\mathbb{Z} \mapsto (a + r_1\mathbb{Z}, \ldots, a + r_n\mathbb{Z})$ is an isomorphism.
+
+	\begin{myIndent}\exOne
+		We already proved the case where $n = 2$ in class. So, let's now proceed by induction.\retTwo
+
+		Firstly, observe that if $r_n$ is coprime with $r_1, \ldots, r_{n-1}$, then we have that $r_n$ is coprime with $r_1 \cdots r_{n-1}$. To see this, assume for the sake of contradiction that there exists $d \neq 1$ which divides both $r_n$ and $r_1, \ldots, r_{n-1}$. Since $r_n$ and $r_1$ are coprime, we know that $d \not\divides r_1$. Thus, $d \divides r_1 (r_2\cdots r_{n-1}) \Longrightarrow d \divides r_2 \cdots r_{n-1}$.\\ Repeating this reasoning, we will eventually get that $d \divides r_{n-1}$. This contradicts that $r_{n-1}$ and $r_n$ are coprime.\retTwo
+
+		Thus, using the Chinese Remainder theorem, we know the canonical map\\ $a + r_1\cdots r_{n}\mathbb{Z} \mapsto (a + r_1\cdots r_{n-1}\mathbb{Z}, a + r_n\mathbb{Z})$ is an isomorphism.\retTwo
+
+		By induction, we can say that the canonical map\\ $a + r_1\cdots r_{n-1}\mathbb{Z} \mapsto (a + r_1\mathbb{Z}, \ldots, a + r_{n-1}\mathbb{Z})$ is an isomorphism.\retTwo
+		
+		It follows that the map below is an isomorphism:
+
+		{\centering $(a + r_1\cdots r_{n-1}\mathbb{Z}, a + r_n\mathbb{Z}) \mapsto (a + r_1\mathbb{Z}, \ldots, a + r_{n-1}\mathbb{Z}, a + r_n\mathbb{Z})$ \retTwo\par}
+
+		And finally, since the composition of two group isomorphisms is itself a group isomorphism, we thus know that the map given by the problem is an\\ isomorphism.\retTwo
+	\end{myIndent}
+
+	\item Suppose $p$ is a prime number. Prove \udefine{Wilson's Theorem}: $(p - 1)! \equiv -1 \mMod{p}$.
+	
+	\begin{myIndent}\exOne
+		Consider that if $a^2 \equiv 1 \mMod{p}$, then we must have that\\ $a^2 - 1 = (a + 1)(a - 1) \equiv 0 \mMod{p}$. As a result, we know that $p$ divides either $(a + 1)$ or $(a - 1)$. In the first case, we'd have that $a \equiv p - 1 \mMod{p}$. In the other case, we'd have that $a \equiv 1 \mMod{p}$.\retTwo
+
+		Now if $p = 2$, then the theorem is true because $(p - 1)! = 1 \equiv -1 \mMod{2}$. So, we can now assume that $p - 1 \not\equiv 1 \mMod{p}$. Then note that\\ $(p - 1)! = (p-1)(p-2)\cdots(2) \equiv -1\cdot(p-2)\cdots(2)$.\newpage
+
+		Now $(p-2)\cdots(2)$ consists of $p - 3$ terms distinct from $1$ and $p - 1$. This is importantly an even number of terms. Also, each term  will be the unique inverse of precisely one other term in that expansion because we've already shown that none of those terms are their own inverses. Hence, we can replace half of them with the inverses of the other half. And since $(\mathbb{Z} / p\mathbb{Z})^\times$ is abelian, we can rearrange terms to show their product is equivalent to $1$ modulo $p$.\retTwo
+		
+		Thus, we conclude that $(p - 1)! \equiv -1\cdot(p-2)\cdots(2) \equiv -1$.\retTwo
+	\end{myIndent}
+
+	\item Suppose $n$ is an integer and $n \equiv 3 \mMod{4}$. Prove that there does not exist integers $x, y$ with $x^2 + y^2 = n$.
+	
+	\begin{myIndent}\exOne
+		To see why this is, consider the table below where each entry gives the equivalence class of $x^2 + y^2$ modulo $4$ depending on the equivalence class of $x$ and $y$ module $4$.
+		
+		{\center\begin{tabular}{c | c c c c}
+			& $x \equiv 0$ & $x \equiv 1$ & $x \equiv 2$ & $x \equiv 3$ \\\hline \\ [-12pt]
+			$y \equiv 0$ & $0$ & $1$ & $0$ & $1$ \\
+			$y \equiv 1$ & $1$ & $2$ & $1$ & $2$ \\
+			$y \equiv 2$ & $0$ & $1$ & $0$ & $1$ \\
+			$y \equiv 3$ & $1$ & $2$ & $1$ & $2$
+		\end{tabular}\retTwo\par}
+
+		Notice that in none of the above entries do we have that $x^2 + y^2 \equiv 3 \mMod{4}$. Thus, given any integers $x$ and $y$, it is impossible for $x^2 + y^2$ to be in the set\\ $3 + 4\mathbb{Z}$ which contains $n$.\retTwo
+	\end{myIndent}
+
+	\item Suppose $p$ is a prime number and $p \equiv 1 \mMod{4}$. Then there exists $x \in \mathbb{Z}$ with $x^2 + 1 \equiv 0 \mMod{p}$.
+	
+	\begin{myIndent}\exOne
+		By Wilson's theorem, we know that $(p - 1)(p - 2)\ldots (2)(1) \equiv -1 \mMod{p}$. We can rewrite this as follows:
+
+		{\centering
+		\begin{tabular}{r l}
+			& $(p-1)(p-2)\ldots(\frac{p+1}{2})(\frac{p-1}{2})\ldots(2)(1) \equiv -1$ \\ [4pt]
+			$\Longrightarrow$ & $(-1)(-2)\ldots(-\frac{p-1}{2})(\frac{p-1}{2})\ldots(2)(1) \equiv -1$ \\ [4pt]
+			$ \Longrightarrow $ & $(-1)^{\frac{p-1}{2}}((\frac{p-1}{2})!)^2 \equiv -1$
+		\end{tabular}\retTwo\par}
+
+		
+		\begin{myIndent}\exPP
+			We know that $p + 1 \equiv -p + 1 = -(p - 1) \mMod{p}$. And since $2$ has a unique inverse in $\mathbb{Z} / p\mathbb{Z}$, we can thus say that $\frac{p+1}{2} \equiv -\frac{p-1}{2} \mMod{p}$.\retTwo
+		\end{myIndent}
+
+		Since $p \equiv 1 \mMod{4}$, we know that $p - 1$ is a multiple of $4$. It follows that\\ $\frac{p-1}{2}$ is a multiple of $2$. Thus $(-1)^{\frac{p-1}{2}} = 1$. And hence, $((\frac{p-1}{2})!)^2 \equiv -1 \mMod{p}$. Setting $x = (\frac{p-1}{2})!$, we thus have that $x^2 + 1 \equiv 0 \mMod{p}$.
+
+		\retTwo
+	\end{myIndent}
+
+
+\end{enumerate}
 
 
 \newpage
