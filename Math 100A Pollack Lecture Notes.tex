@@ -1542,14 +1542,182 @@ If $R$ is a group and $\varphi_1: R \longrightarrow G$ and $\varphi_2: R \longri
 
 		\retTwo
 	\end{myIndent}
+\end{enumerate}
 
+\newpage
 
+\mHeader{Homework 6:}
+
+\begin{enumerate}
+	\item Prove that $\mathrm{GL}_2(\mathbb{R})$ acts transitively on $S \coloneq \mathbb{R}^2 - \{(0, 0)\}$.
+	
+	\begin{myIndent}\exOne
+		Let $s \coloneq (1, 0) \in S$. Then given any $x = (a, c) \in S$ (meaning we don't have that $a = b = 0$), first pick $y = (b, d) \neq (0, 0)$ such that $y$ is not a scalar multiple of $x$. Then set $g = \left(
+		\begin{smallmatrix}
+			a & b \\ c & d
+		\end{smallmatrix}\right)$. Note that $\det(g) \neq 0$, meaning $g \in \mathrm{GL}_2(\mathbb{R})$. Also $g(s) = x$.\retTwo
+
+		Thus, we've shown that all $x \in S$ are in the orbit of $s$. So $\mathrm{GL}_2(\mathbb{R})$ acts\\ transitively on $S$ since it has only one orbit in $S$.\retTwo
+	\end{myIndent}
+
+	\item Defining $S$ as before, what is the stabilizer of the vector $(0, 1)$ for the action of $\mathrm{GL}_2(\mathbb{R})$ on $S$?
+	
+	\begin{myIndent}\exOne
+		The stabilizer of $(0, 1)$ will be the set of all matrices $\left(
+		\begin{smallmatrix}
+			a & 0 \\ c & 1
+		\end{smallmatrix}\right)$ which are invertible (i.e. in $\mathrm{GL}_2(\mathbb{R})$). The reason why is that $\left(
+		\begin{smallmatrix}
+			a & b \\ c & d
+		\end{smallmatrix}\right)\left(
+		\begin{smallmatrix}
+			0 \\ 1
+		\end{smallmatrix}\right) = \left(
+			\begin{smallmatrix}
+				b \\ d
+			\end{smallmatrix}\right)$. So an element in the stabilizer must have $b = 0$ and $d = 1$.\retTwo
+
+		Now note that $\left(
+		\begin{smallmatrix}
+			a & 0 \\ c & 1
+		\end{smallmatrix}\right)$ is triangular and thus invertible so long as $a \neq 0$. Hence, the stabilizer of $(0, 1)$ is the set $\{\left(\begin{smallmatrix}
+			a & 0 \\ c & 1
+		\end{smallmatrix}\right) | a, c \in \mathbb{R}, a \neq 0 \}$.
+		\retTwo
+	\end{myIndent}
+
+	\item Suppose $z = x + iy \in \mathbb{C}$ with $y > 0$, and $g = \left(
+	\begin{smallmatrix}
+		a & b \\ c & d
+	\end{smallmatrix}\right) \in \mathrm{SL}_2(\mathbb{R})$.
+	\begin{enumerate}
+		\item[(a)] Check that $cz + d \neq 0$.
+		
+		\begin{myIndent}\exOne
+			Note that $cz + d = (cx + d) + i(cy)$ since $c$ and $d$ are real. Thus if $cz + d = 0$, we must have that $cy = 0$, meaning that $c = 0$ since $y \neq 0$. But then $cz + d = 0 \Rightarrow d = 0$. So $c = 0 = d$. But this implies that $\det\left(
+				\begin{smallmatrix}
+					a & b \\ c & d
+				\end{smallmatrix}\right) = 0$, contradicting that $\left(
+					\begin{smallmatrix}
+						a & b \\ c & d
+					\end{smallmatrix}\right) \in \mathrm{SL}_2(\mathbb{R})$.
+			\retTwo
+		\end{myIndent}
+
+		\item[(b)] Let $g \cdot z = \frac{az+b}{cz+d}$ which is defined because $cz + d \neq 0$. Prove that\\ $\ima(g \cdot z) = \frac{y}{|cz + d|^2}$.
+		\begin{myIndent}\exOne
+			Observe:
+
+			{\centering $\frac{az + b}{cz + d} = \frac{(az + b)(c\overline{z} + d)}{|cz + d|^2} = \frac{(acx^2 + acy^2 + adx + bcx + bd) + i((ad-bc)y)}{|cz + d|^2}$\retTwo\par}
+
+			Now $ad - bc = \det\left(
+				\begin{smallmatrix}
+					a & b \\ c & d
+				\end{smallmatrix}\right) = 1$ by assumption. So $i\frac{(ad-bc)y}{|cz + d|^2} = i\frac{y}{|cz + d|^2}$.\retTwo
+
+			Also note that because $y > 0$ and $|cz + d|^2 > 0$, we know that\\ $\ima(\frac{az + b}{cz + d}) = \frac{y}{|cz + d|^2} > 0$.
+			\retTwo
+		\end{myIndent}
+		\item[(c)] Let $\mathcal{H} = \{z \in \mathbb{C} \mid \ima(z) > 0\}$. If $g \in \mathrm{SL}_2(\mathbb{R})$ and $z \in \mathcal{H}$, the previous part shows $g \cdot z \in \mathcal{H}$. Prove that $(g, z) \mapsto g \cdot z$ gives an action of $\mathrm{SL}_2(\mathbb{R})$ on $\mathcal{H}$.  
+		\begin{myIndent}\exOne
+			Firstly, $\left(
+			\begin{smallmatrix}
+				1 & 0 \\ 0 & 1
+			\end{smallmatrix}\right) \cdot z = \frac{1z + 0}{0z + 1} = z$.
+			\newpage
+			Secondly, let $g = \left(
+			\begin{smallmatrix}
+				a & b \\ c & d
+			\end{smallmatrix}\right)$ and $h = \left(
+				\begin{smallmatrix}
+					a^\prime & b^\prime \\ c^\prime & d^\prime
+			\end{smallmatrix}\right)$. Then note that $gh = \left(
+				\begin{smallmatrix}
+					aa^\prime + bc^\prime & ab^\prime + bd^\prime \\ ca^\prime + dc^\prime & cb^\prime + dd^\prime
+			\end{smallmatrix}\right)$.\retTwo
+
+			So:
+			\begin{itemize}
+				\item $gh \cdot z = \frac{(aa^\prime + bc^\prime)z + ab^\prime + bd^\prime }{(ca^\prime + dc^\prime)z + cb^\prime + dd^\prime}$.
+				
+				\item $g \cdot (h \cdot z) = g \cdot \frac{a^\prime z + b^\prime}{c^\prime z + d^\prime} = \frac{a\frac{a^\prime z + b^\prime}{c^\prime z + d^\prime} + b}{c\frac{a^\prime z + b^\prime}{c^\prime z + d^\prime} + d} = \frac{aa^\prime z + ab^\prime + bc^\prime z + bd^\prime}{ca^\prime z + cb^\prime + dc^\prime z + dd^\prime} = \frac{(aa^\prime + bc^\prime)z + ab^\prime + bd^\prime }{(ca^\prime + dc^\prime)z + cb^\prime + dd^\prime}$.
+			\end{itemize}
+			\retTwo
+		\end{myIndent}
+	\end{enumerate}
+
+	\item Let $K = \mathrm{SO}(2) \subseteq \mathrm{SL}_2(\mathbb{R})$ and let $B \subseteq \mathrm{SL}_2(\mathbb{R})$ be the subgroup of upper triangular matrices.
+	
+	\begin{enumerate}
+		\item[(a)] Defining $\mathcal{H}$ as before, prove that $B$ acts transitively on $\mathcal{H}$ and consequently so does $\mathrm{SL}_2(\mathbb{R})$.
+		
+		\begin{myIndent}\exOne
+			To start, if $g \in B$ if and only if $g = \left(
+			\begin{smallmatrix}
+				a & b \\ 0 & \sfrac{1}{a}
+			\end{smallmatrix}\right)$ where $a, b \in \mathbb{R}$ with $a \neq 0$. This is because the matrix must be upper triangular and $\det \left(
+				\begin{smallmatrix}
+					a & b \\ 0 & d
+				\end{smallmatrix}\right) = ad = 1$ implies $d = \frac{1}{a}$.\retTwo
+
+			Now let $z = x + iy \in \mathcal{H}$. Since $y > 0$, we can set $a = \sqrt{y} \neq 0$. Then set $b = \sfrac{x}{a}$. Having done that, note that $\left(\begin{smallmatrix}
+				a & b \\ 0 & \sfrac{1}{a}
+			\end{smallmatrix}\right) \in B$ with:
+			
+			{\centering$\left(\begin{smallmatrix}
+				a & b \\ 0 & \sfrac{1}{a}
+			\end{smallmatrix}\right) \cdot i = \frac{ai + b}{\sfrac{1}{a}} = a^2 i + ab = yi + x = z$.\retTwo\par}
+
+			Since $z$ was arbitrary, the orbit of $i$ under $B$ is all of $\mathcal{H}$. So, there is only one orbit, meaning $B$ acts transitively on $\mathcal{H}$. Since $b \subseteq \mathrm{SL}_2(\mathbb{R})$, this also means that $\mathrm{SL}_2(\mathbb{R})$ acts transitively on $\mathcal{H}$.\retTwo
+		\end{myIndent}
+
+		\item[(b)] Prove that the stabilizer of $i \in \mathcal{H}$ is $\mathrm{SO}(2)$.
+		
+		
+		\begin{myIndent}\exOne
+			Consider that for $g = \left(\begin{smallmatrix}
+				a & b \\ c & d
+			\end{smallmatrix}\right)  \in \mathrm{SL}_2(\mathbb{R})$, we have that:
+
+			{\centering $g \cdot i = \frac{ai + b}{ci + d} = \frac{(ai + b)(d - ci)}{c^2 + d^2} = \frac{ac+bd}{c^2 + d^2} + i\frac{ad - bc}{c^2 + d^2} = \frac{ac+bd}{c^2 + d^2} + i\frac{1}{c^2 + d^2}$ \retTwo\par}
+
+			Thus if $g \cdot i = i$, we must have that $c^2 + d^2 = 1$ and $ac + bd = 0$.\retTwo
+
+			Now if $g$ is also orthogonal, then we know by definition that:
+			
+			{\centering $gg^T = \left(\begin{smallmatrix}
+				a & b \\ c & d
+			\end{smallmatrix}\right)\left(\begin{smallmatrix}
+				a & c \\ b & d
+			\end{smallmatrix}\right) = \left(\begin{smallmatrix}
+				a^2 + b^2 & ac + bd \\ ac + bd & c^2 + d^2
+			\end{smallmatrix}\right) = \left(\begin{smallmatrix}
+				1 & 0 \\ 0 & 1
+			\end{smallmatrix}\right)$\retTwo\par}
+
+			So it's clear that $g$ being orthogonal means that $g \cdot i = i$. On the other hand, suppose $g \cdot i = i$, meaning $c^2 + d^2 = 1$ and $ac + bd = 0$.\retTwo
+			
+			Note that the stabilizer of $i$ is a subgroup of $\mathrm{SL}_2(\mathbb{R})$. Thus we know that $g^{-1} = \frac{1}{ad-bc}\left(
+			\begin{smallmatrix}
+				d & -b \\ -c & a
+			\end{smallmatrix}\right) = \left(
+				\begin{smallmatrix}
+					d & -b \\ -c & a
+				\end{smallmatrix}\right)$ also satisfies that $g^{-1} \cdot i = i$. This tells us that we also must have that $c^2 + a^2 = 1$ and $ab + cd = 0$.
+			\retTwo
+		\end{myIndent}
+
+		\newpage
+
+		\item[(c)] Deduce that if $g \in \mathrm{SL}_2(\mathbb{R})$, there exists $b \in B$ and $k \in \mathrm{SO}(2)$ so that $g = bk$.
+	\end{enumerate}
 \end{enumerate}
 
 
 \newpage
 
 \exOne Our textbook is \textit{Algebra, Second Edition} by Michael Artin.
+
 
 
 
