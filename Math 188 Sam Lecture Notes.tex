@@ -183,6 +183,8 @@
 \newcommand{\myEnd}{\mathrm{End}}
 \newcommand{\myAut}{\mathrm{Aut}}
 
+\newcommand{\qbinom}{\genfrac{[}{]}{0pt}{}}
+
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
 \newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
@@ -2035,6 +2037,62 @@ Prove that $(a_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $d
 \end{myIndent}
 
 \mySepTwo
+
+\newpage
+
+\mHeader{Homework 5:}
+
+\blab{(1)} Pick integers satisfying $1 \leq k_1 < \cdots < k_r \leq n$. Let $X$ be the set of subspaces $W_1, \ldots, W_r$ of $\bm{F}_q^n$ such that $\dim W_i = k_i$ for all $i$ and $W_i \subseteq W_{i+1}$. Find a formula for $|X|$.
+
+\begin{myIndent}\exOne
+   I claim that $|X| = \qbinom{n}{n - k_{r},\phantom{.} \ldots\phantom{.},\phantom{.} k_2 - k_1,\phantom{.} k_1}_q$.\retTwo
+
+   To prove this, we proceed by induction. Firstly, when $r = 1$, then our problem just becomes counting the number of $k_1$ dimensioned subspaces of $\bm{F}_q^n$. We already showed in class that this quantity is given by:
+   
+   {\centering $\frac{[n]_q!}{[k_1]_q![n - k_1]_q!} = \qbinom{n}{n - k_1, k_1}_q$\hspace{-0.2em}.\retTwo\par}
+
+   Next, suppose $r \geq 2$. Then there are $\frac{[n]_q!}{[k_r]_q![n - k_r]_q!} = \qbinom{n}{n - k_r, k_r}_q$ many different\\ $k_r$-dimensioned subspaces of $\bm{F}_q^n$. Letting $W_r$ be any one of those subspaces, we\\ [2pt] then must have that $1 \leq k_1 < \cdot < k_{r-1} < k_r$ and $W_1, \ldots, W_{r-1}$ are subspaces of\\ [2pt] $W_r$ such that $\dim W_i = k_i$ for all $i$ and $W_i \subseteq W_{i+1}$. Since $W_r \cong F_q^{k_r}$, we can apply our inductive hypothesis to say that there are $\qbinom{k_r}{k_r - k_{r-1},\phantom{.} \ldots\phantom{.},\phantom{.} k_2 - k_1,\phantom{.} k_1}_q$ many choices of $W_1, \ldots, W_{r-1}$ we can make.\retTwo
+
+   Thus:
+
+   {\centering\begin{tabular}{l}
+      $|X| = \qbinom{n}{n - k_r, k_r}_q\qbinom{k_r}{k_r - k_{r-1},\phantom{.} \ldots\phantom{.},\phantom{.} k_2 - k_1,\phantom{.} k_1}_q$ \\ [8pt] $\phantom{|X|} = \frac{[n]_q!}{[n-k_r]_q![k_r]_q!} \cdot \frac{[k_r]_q!}{[k_r - k_{r-1}]_q! \cdots [k_2 - k_1]_q![k_1]_q!} = \frac{[n]_q!}{[n-k_r]-q![k_r - k_{r-1}]_q! \cdots [k_2 - k_1]_q![k_1]_q!}$\\ [8pt] $\phantom{|X| = \frac{[n]_q!}{[n-k_r]_q![k_r]_q!} \cdot \frac{[k_r]_q!}{[k_r - k_{r-1}]_q! \cdots [k_2 - k_1]_q![k_1]_q!}} = \qbinom{n}{n - k_{r},\phantom{.} \ldots\phantom{.},\phantom{.} k_2 - k_1,\phantom{.} k_1}_q$.
+   \end{tabular}\retTwo\par}
+\end{myIndent}
+
+\blab{(2)}
+\begin{enumerate}
+   \item[(a)] Use the following $q$-analogue of Pascal's identity (you don't need to prove it):
+   
+   {\centering$\qbinom{n}{k}_q = q^k\qbinom{n-1}{k}_q + \qbinom{n-1}{k-1}_q \text{ for } n \geq k > 0$\retTwo\par}
+
+   \dots to show that if $d$ is a nonnegative integer, then:
+
+   {\centering$\sum\limits_{n\geq 0}\qbinom{n+d}{n}_q x^n = \prod\limits_{i = 0}^d (1 - q^i x)^{-1} = \frac{1}{(1-x)(1-qx)\cdots(1-q^dx)}$\retTwo\par}
+
+   \begin{myIndent}\exOne
+      We shall do induction on $d$. If $d = 0$, then $\qbinom{n+d}{n}_q = \qbinom{n}{n}_q = 1$ for all $n$. So we have that:\\ [-24pt]
+      
+      {\centering $\sum\limits_{n\geq 0}\qbinom{n+d}{n}_q x^n = \sum\limits_{n \geq 0} x^n = \frac{1}{1 - x} = \prod\limits_{i=0}^d(1-q^ix)^{-1}$ \retTwo\par}
+
+      Now let $d \geq 1$. Then note that:\newpage
+
+      {\centering 
+      \begin{tabular}{l}
+         $\sum\limits_{n \geq 0}\qbinom{n+d}{n}_q x^n = 1 + \sum\limits_{n \geq 1}\qbinom{n+d}{n}_q x^n$ \\ [12pt]
+         $\phantom{\sum\limits_{n \geq 0}\qbinom{n+d}{n}_q x^n} = 1 + \sum\limits_{n \geq 1}\qbinom{n+d-1}{n}_q(qx)^n + \sum\limits_{n \geq 1}\qbinom{n+d-1}{n-1}_qx^n$\\ [12pt]
+         $\phantom{\sum\limits_{n \geq 0}\qbinom{n+d}{n}_q x^n} = \sum\limits_{n \geq 0}\qbinom{n+d-1}{n}_q(qx)^n + \sum\limits_{n \geq 0}\qbinom{n+d}{n}_qx^{n+1}$\\ [12pt]
+         $\phantom{\sum\limits_{n \geq 0}\qbinom{n+d}{n}_q x^n} = \prod\limits_{i = 0}^{d-1}(1-q^i(qx))^{-1} + x\sum\limits_{n \geq 0}\qbinom{n+d}{n}_qx^{n}$
+      \end{tabular}\retTwo\par}
+
+      So, $(1 - x)\sum\limits_{n \geq 0}\binom{n+d}{n}_q x^n = \prod\limits_{i = 1}^d(q - q^i x)^{-1}$.\retTwo
+
+      Dividing both sides by $(1 - x)$, we get: $\sum\limits_{n \geq 0}\binom{n+d}{n}_q x^n = \prod\limits_{i = 0}^d(q - q^i x)^{-1}$.\retTwo
+   \end{myIndent}
+
+   \item[(b)] Give an explanation for why the coefficient of $x^n$ on the right side is the sum $\sum_\lambda q^|\lambda|$ over all integer partitions $\gamma$ whose Young diagram fits in the $n \times d$ rectangle.
+\end{enumerate}
+
 
 \end{document}
 
