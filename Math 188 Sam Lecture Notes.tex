@@ -183,6 +183,8 @@
 \newcommand{\myEnd}{\mathrm{End}}
 \newcommand{\myAut}{\mathrm{Aut}}
 
+\newcommand{\brm}[1]{\bm{\mathrm{#1}}}
+
 \newcommand{\qbinom}{\genfrac{[}{]}{0pt}{}}
 
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
@@ -2042,16 +2044,16 @@ Prove that $(a_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $d
 
 \mHeader{Homework 5:}
 
-\blab{(1)} Pick integers satisfying $1 \leq k_1 < \cdots < k_r \leq n$. Let $X$ be the set of subspaces $W_1, \ldots, W_r$ of $\bm{F}_q^n$ such that $\dim W_i = k_i$ for all $i$ and $W_i \subseteq W_{i+1}$. Find a formula for $|X|$.
+\blab{(1)} Pick integers satisfying $1 \leq k_1 < \cdots < k_r \leq n$. Let $X$ be the set of subspaces $W_1, \ldots, W_r$ of $\brm{F}_q^n$ such that $\dim W_i = k_i$ for all $i$ and $W_i \subseteq W_{i+1}$. Find a formula for $|X|$.
 
 \begin{myIndent}\exOne
    I claim that $|X| = \qbinom{n}{n - k_{r},\phantom{.} \ldots\phantom{.},\phantom{.} k_2 - k_1,\phantom{.} k_1}_q$.\retTwo
 
-   To prove this, we proceed by induction. Firstly, when $r = 1$, then our problem just becomes counting the number of $k_1$ dimensioned subspaces of $\bm{F}_q^n$. We already showed in class that this quantity is given by:
+   To prove this, we proceed by induction. Firstly, when $r = 1$, then our problem just becomes counting the number of $k_1$ dimensioned subspaces of $\brm{F}_q^n$. We already showed in class that this quantity is given by:
    
    {\centering $\frac{[n]_q!}{[k_1]_q![n - k_1]_q!} = \qbinom{n}{n - k_1, k_1}_q$\hspace{-0.2em}.\retTwo\par}
 
-   Next, suppose $r \geq 2$. Then there are $\frac{[n]_q!}{[k_r]_q![n - k_r]_q!} = \qbinom{n}{n - k_r, k_r}_q$ many different\\ $k_r$-dimensioned subspaces of $\bm{F}_q^n$. Letting $W_r$ be any one of those subspaces, we\\ [2pt] then must have that $1 \leq k_1 < \cdot < k_{r-1} < k_r$ and $W_1, \ldots, W_{r-1}$ are subspaces of\\ [2pt] $W_r$ such that $\dim W_i = k_i$ for all $i$ and $W_i \subseteq W_{i+1}$. Since $W_r \cong F_q^{k_r}$, we can apply our inductive hypothesis to say that there are $\qbinom{k_r}{k_r - k_{r-1},\phantom{.} \ldots\phantom{.},\phantom{.} k_2 - k_1,\phantom{.} k_1}_q$ many choices of $W_1, \ldots, W_{r-1}$ we can make.\retTwo
+   Next, suppose $r \geq 2$. Then there are $\frac{[n]_q!}{[k_r]_q![n - k_r]_q!} = \qbinom{n}{n - k_r, k_r}_q$ many different\\ $k_r$-dimensioned subspaces of $\brm{F}_q^n$. Letting $W_r$ be any one of those subspaces, we\\ [2pt] then must have that $1 \leq k_1 < \cdot < k_{r-1} < k_r$ and $W_1, \ldots, W_{r-1}$ are subspaces of\\ [2pt] $W_r$ such that $\dim W_i = k_i$ for all $i$ and $W_i \subseteq W_{i+1}$. Since $W_r \cong F_q^{k_r}$, we can apply our inductive hypothesis to say that there are $\qbinom{k_r}{k_r - k_{r-1},\phantom{.} \ldots\phantom{.},\phantom{.} k_2 - k_1,\phantom{.} k_1}_q$ many choices of $W_1, \ldots, W_{r-1}$ we can make.\retTwo
 
    Thus:
 
@@ -2090,9 +2092,190 @@ Prove that $(a_n)_{n \geq 0}$ satisfies a linear recurrence relation of order $d
       Dividing both sides by $(1 - x)$, we get: $\sum\limits_{n \geq 0}\binom{n+d}{n}_q x^n = \prod\limits_{i = 0}^d(q - q^i x)^{-1}$.\retTwo
    \end{myIndent}
 
-   \item[(b)] Give an explanation for why the coefficient of $x^n$ on the right side is the sum $\sum_\lambda q^|\lambda|$ over all integer partitions $\gamma$ whose Young diagram fits in the $n \times d$ rectangle.
+   \item[(b)] Give an explanation for why the coefficient of $x^n$ on the right side is the sum $\sum_\lambda q^{|\lambda|}$ over all integer partitions $\lambda$ whose Young diagram fits in the $n \times d$\\ rectangle.
+   
+   \begin{myIndent}\exOne
+      We already established in class that $\qbinom{n+d}{n}_q$ gives the number of $n$-dimensional\\ [-1pt] subspaces of $\brm{F}_q^{n + d}$. Additionally, it was also established that there is a bijective correspondance between $n$-dimensional subspaces of $\brm{F}_q^{n + d}$ and $n \times (n + d)$\\ [3pt] full rank rref-matrices.\retTwo
+
+      Next, the set of $n \times (n + d)$ full rank rref-matrices can be split $\binom{n+d}{n}$ types where the type of a matrix is determined by the indices $s_1 < \cdots < s_n$ of its pivot columns.\retTwo
+
+      Given a type with pivot column indices $s_1 < \cdots < s_n$, the $i$th row will have $(n + d) - s_i - (n - i) = d - s_i + i$ components not forced to be anything.\\ $i \leq s_i \leq d + i$. So, $0 \leq d - (s_i - i) \leq d$. Also $s_i - i$ monotonically increases as $i$ increases. So, we can associate the type of matrix with a Young diagram whose $i$th row is the number of undetermined components in the $i$th row of that type of matrix. This Young diagram fits in an $n \times d$ box whose size is the number of undetermined components in the original matrix type.\retTwo
+      
+      Also, this association betweeen types of full rank rref matrices and young\\ diagrams fitting in an $n \times d$ rectangle. We know this because we can invert it.
+      \begin{myIndent}\exTwoP
+         Given a young diagram with $r_1, \ldots, r_n$ being the number of boxes in row $i$, define $s_i = d - r_i + i$. Then $s_1 < \cdots < s_n$ determines a type of rref-matrix whose pivot rows are $s_1, \ldots, s_n$.\newpage
+      \end{myIndent}
+      
+      There are $q^{|\lambda|}$ many rref-matrices of the type associated with the young diagram given by $\lambda$ since that type of matrix has $|\lambda|$ many arbitrary components.\retTwo
+
+      So $\qbinom{n + d}{n}_q = \sum_\lambda q^{|\lambda|}$ over all integer partitions $\lambda$ whose Young diagram fits in the $n \times d$ rectangle.
+      \retTwo
+   \end{myIndent}
 \end{enumerate}
 
+\blab{(3)} Let $A$ be the adjacency matrix of the following directed graph:\\ [-44pt] \phantom{Let $A$ be the adjacency matrix of the following directed graph:aaa} \includegraphics[scale=0.3]{188-HW5_Q3.png}\\ [-44pt]
+
+Compute the rational function $P_{A;1,3}(x)$.
+
+\begin{myIndent}\exOne
+   Note that $A = \left[
+   \begin{matrix}
+      0 & 1 & 2 \\ 1 & 1 & 1 \\ 0 & 1 & 0
+   \end{matrix}\right]$.\retTwo
+
+   So: 
+   \begin{center}
+      \begin{tabular}{l}
+         $P_{A;1,3}(x) = (-1)^{1 + 3}\frac{\det((\myId - xA); 3, 1)}{\det(\myId - xA)}$\\ [14pt]
+         
+         $\phantom{P_{A;1,3}(x)} = \frac{\det(\left[
+         \begin{smallmatrix}
+             -x & -2x \\ 1-x & -x
+         \end{smallmatrix}\right])}{\det(\left[\begin{smallmatrix}
+            1 & -x & -2x \\ -x & 1-x & -x \\ 0 & -x & 1
+        \end{smallmatrix}\right])} = \frac{x^2 +2x - 2x^2}{1(1-x -x^2) + x(-x) -2x(x^2)} = \frac{x - x^2}{1 - x -2x^2 + 2x^3}$
+      \end{tabular}
+   \end{center}
+   \retTwo\retTwo
+\end{myIndent}
+
+\blab{(4)} Construct a directed graph for which walks between certain vertices can be\\ interpreted as binary strings in which no symbol ever appears $3$ times in a row.
+
+\begin{myIndent}\exOne
+   Let $V = \{\text{binary strings of length } 2\} = \{00, 10, 01, 11\}$. Then given the words\\ $v = a_1a_2, u = b_1b_2 \in V$, we say there is an edge from $v$ to $u$ if $a_2 = b_1$ and\\ $a_1, a_2, b_1, b_2$ are not all equal. In other words, $(v, w)$ is an edge if $v$ and $w$ are\\ overlapping substrings of a word fulfilling our requirements.\retTwo
+
+   This graph will look like: \phantom{aaaaaa}
+   % https://q.uiver.app/#q=WzAsNCxbMCwwLCIwMCJdLFsxLDAsIjEwIl0sWzAsMSwiMDEiXSxbMSwxLCIxMSJdLFswLDJdLFsyLDNdLFszLDFdLFsxLDBdLFsxLDIsIiIsMSx7Im9mZnNldCI6MX1dLFsyLDEsIiIsMSx7Im9mZnNldCI6MX1dXQ==
+   \begin{tikzcd}
+   	00 & 10 \\
+   	01 & 11
+   	\arrow[from=1-1, to=2-1]
+   	\arrow[from=2-1, to=2-2]
+   	\arrow[from=2-2, to=1-2]
+   	\arrow[from=1-2, to=1-1]
+   	\arrow[shift right, from=1-2, to=2-1]
+   	\arrow[shift right, from=2-1, to=1-2]
+   \end{tikzcd}\retTwo
+
+   There is a bijective correspondance between walks of length $k$ in the above graph and words of length $k + 2$. Specifically suppose $a_1 \cdots a_{k} a_{k+1} a_{k+2}$ is a binary word of length $k + 2$ where no symbol appears $3$ times in a rows. For $0 \leq i \leq k$, define $v_i = a_{i+1}a_{i+2}$. Then $v_0, v_1, \cdots, v_k$ is a walk of length $k$ in our graph.\retTwo
+
+   To invert this process, if $v_0 = a_0b_0, v_1 = a_1b_1, \ldots, v_k = a_kb_k$ and $v_0, v_1, \ldots, v_n$ is a walk in our graph, then the word $a_0 b_0 b_1 \cdots b_k$ will be a binary word of length $k + 2$ with no symbol appearing $3$ times in a row.\newpage
+\end{myIndent}
+
+\blab{(5)} Let $A$ be a finite alphabet. We say that $\bm{w} = w_1\cdots w_k$ is a subword of\\ $\bm{v} = v_1\cdots v_n$ if there exists indices $1 \leq i_1 < i_2 < \cdots < i_k \leq n$ such that $v_{i_j} = w_j$ for all $j = 1, \ldots, n$. Define $a_{\bm{w}}(n)$ to be the number of words of length $n$ that have $\bm{w}$ as a subword. Prove that $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n$ is a rational function of $x$.
+
+\begin{myIndent}\exOne
+   We shall proceed by induction on the length of $\bm{w}$.\retTwo
+
+   To start, assume $\bm{w} = w_1$ is just a single symbol. Then there are $|A|^n$ many word of length $n$ and $(|A| - 1)^n$ of those don't have $\bm{w}$ as a substring (meaning that they don't contain the symbol $w_1$ and so are words of the alphabet $A - \{w_1\}$). So:\\ [-9pt]
+
+   {\center 
+   \begin{tabular}{l}
+      $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \sum\limits_{n \geq 0}(|A|x)^n - \sum\limits_{n \geq 0}((|A| - 1)x)^n$\\ [12pt]
+      $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = \frac{1}{1 - |A|x} + \frac{1}{1 - |A|x + x} = \frac{2 - 2|A|x + x}{(1 - |A|x)(1 - |A|x + x)} = \frac{2 + (1 - 2|A|)x}{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2}$
+   \end{tabular} \retTwo\par}
+
+   Now assume that $\sum\limits_{n \geq 0}a_{\bm{w}^\prime}(n)x^n$ is a rational function of $x$ for all words $\bm{w}^\prime$ of length\\ [-8pt] less than $k$.\retTwo
+
+   Note that we can split the words $\bm{v}$ of length $n > 1$ with $\bm{w}$ as a subword into two types.
+   \begin{itemize}
+      \item Type 1: Suppose $w_1$ is not the first character of $\bm{v}$.
+      
+      \begin{myIndent}
+         Then we must have that $\bm{w}$ is a substring of $v_2\cdots v_n$. Also, $v_1$ can be\\ any symbol in $A - \{w_1\}$. Concatting these substrings since they can be\\ chosen independently, there are $(|A| - 1)a_{\bm{w}}(n - 1)$ many words of this type.
+      \end{myIndent}
+
+      \item Type 2: Suppose $w_1 = v_1$.
+      \begin{myIndent}
+         Let $\bm{w}^\prime = w_2\cdots w_k$. Then we know that $\bm{w}^\prime$ is a substring $v_2 \cdots v_n$. So, the number of words of this type is $a_{\bm{w}^\prime}(n - 1)$.\retTwo
+      \end{myIndent}
+   \end{itemize}
+
+   Clearly, if $n < 2 \leq k$, then $a_{\bm{w}}(n) = 0$. Also $a_{\bm{w}^\prime}(0) = 0$. So:\\ [-8pt]
+   
+   {\center
+   \begin{tabular}{l}
+      $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \sum\limits_{n \geq 2}a_{\bm{w}}(n)x^n = \sum\limits_{n \geq 2}(|A| - 1)a_{\bm{w}}(n - 1)x^n + \sum\limits_{n \geq 2}a_{\bm{w}^\prime}(n-1)x^n$\\ [18pt]
+
+      $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \sum\limits_{n \geq 2}a_{\bm{w}}(n)x^n} = (|A| - 1)x\sum\limits_{n \geq 1}a_{\bm{w}}(n)x^n + x\sum\limits_{n \geq 1}a_{\bm{w}^\prime}(n)x^n$\\ [18pt]
+
+      $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \sum\limits_{n \geq 2}a_{\bm{w}}(n)x^n} = (|A| - 1)x\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n + x\sum\limits_{n \geq 0}a_{\bm{w}^\prime}(n)x^n$
+   \end{tabular}\retTwo\par}
+
+   By induction, we know that there are polynomials $P(x)$ and $Q(x)$ such that:
+   
+   {\centering $\sum\limits_{n \geq 0}a_{\bm{w}^\prime}(n)x^n = \frac{P(x)}{Q(x)}$.\retTwo\par}
+
+   So, $(1 - (|A| - 1)x)\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \frac{xP(x)}{Q(x)}$.\newpage
+   
+   Hence, $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n$ is the rational function $\frac{xP(x)}{(1 - (|A| - 1)x)Q(x)}$.\retTwo
+   
+   Now while that was all I was required to do, for the sake of fun I'm gonna also find an explicit formula for $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n$.\retTwo
+
+   Define $\bm{w}^{(i)} = w_i \cdots w_k$.\retTwo
+
+   From before, we know that whenever $\bm{w}$ has length greater than $2$, we have that:
+   
+   {\centering $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \frac{x}{1 - (|A| - 1)x} \cdot \sum\limits_{n \geq 0}a_{\bm{w}^\prime}(n)x^n$ \retTwo\par}
+
+   So:\\ [-10pt]
+
+   {\centering  
+   \begin{tabular}{l}
+      $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \frac{x}{1 - (|A| - 1)x} \cdot \sum\limits_{n \geq 0}a_{\bm{w}^{(2)}}(n)x^n$\\ [18pt]
+      
+      $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = \left(\frac{x}{1 - (|A| - 1)x}\right)^2 \cdot \sum\limits_{n \geq 0}a_{\bm{w}^{(3)}}(n)x^n = \cdots = \left(\frac{x}{1 - (|A| - 1)x}\right)^{k-1} \sum\limits_{n \geq 0}a_{\bm{w}^{(k)}}(n)x^n$
+   \end{tabular}\retTwo\par}
+
+   Since $\bm{w}^{(n)}$ is a word of length 1, we know that $\sum\limits_{n \geq 0}a_{\bm{w}^{(n)}}(n)x^n = \frac{2 + (1 - 2|A|)x}{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2}$.\retTwo
+
+   So $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \frac{x^{k-1}}{(1 - (|A| - 1)x)^{k-1}} \cdot \frac{2 + (1 - 2|A|)x}{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2}$.\retTwo
+
+   We can simplify this further. Note that:
+   
+   {\centering $(1 - 2|A|)^2 - 4(|A|^2 - |A|) = 1 - 4|A| + 4|A|^2 - 4|A|^2 + 4|A| = 1$.\retTwo\par}
+
+   So by quadratic formula there is a scalar $c$ such that:
+   
+   {\centering 
+   \begin{tabular}{l}
+      $1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2 = c(x - \frac{2|A| - 2}{2|A|^2 - 2|A|})(x - \frac{2|A|}{2|A|^2 - 2|A|})$\\ [8pt]
+      $\phantom{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2} = c(x - \frac{1}{|A|})(x - \frac{1}{|A| - 1})$
+   \end{tabular}\retTwo\par}
+
+   By matching the $x^2$ terms, we know that $c = (|A|^2 - |A|)$. Thus, rearranging terms we get that:
+
+   {\centering 
+   \begin{tabular}{l}
+      $1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2 = (|A|x - 1)((|A| - 1)x - 1)$\\
+      $\phantom{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2} = (1 - |A|x)(1 - (|A| - 1)x)$.
+   \end{tabular} \retTwo\par}
+
+   Therefore $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \frac{2x^{k-1} + (1 - 2|A|)x^k}{(1 - (|A| - 1)x)^k(1 - |A|x)}$.\retTwo
+
+   By our theorem on rational generating functions, we know there are constants\\ $c_1, \ldots, c_{k+1}$ such that if $N + k + 1 > k$, then for all $n \geq N$ we have that:
+
+   {\centering $a_{\bm{w}}(n) = (c_1 + c_2n + \ldots + c_k n^{k-1})(|A| - 1)^n + c_{k+1}|A|^n$ \retTwo\par}
+
+   $N = 0$ works for this. So for all $n \geq 0$ we have that:
+   
+   {\centering $a_{\bm{w}}(n) = (c_1 + c_2n + \ldots + c_k n^{k-1})(|A| - 1)^n + c_{k+1}|A|^n$\retTwo\par}
+   
+   To solve for each constant, use the initial conditions $a_{\bm{w}}(n) = 0$ when $n < k$ and $a_{\bm{w}}(k) = 1$. Unfortunately, I've run out of ideas for simplifying this more and it's 11:49PM.
+
+
+   % {\centering 
+   % \begin{tabular}{l}
+   %    $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = (2x^{k-1} + (1 - 2|A|)x^k)\frac{1}{(1 - (|A| - 1)x)^k(1 - |A|x)}$\\
+      
+   %    $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = (x^k + 2x^{k-1}(1 - |A|x)) \frac{1}{(1 - (|A| - 1)x)^k(1 - |A|x)}$\\ 
+      
+   %    $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = \frac{x^k}{(1 - (|A| - 1)x)^k(1 - |A|x)} + \frac{2x^{k-1}}{(1 - (|A| - 1)x)^k}$\\
+
+   %    $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = x^k(\sum\limits_{n \geq 0}\binom{k + n - 1}{n}(|A| - 1)^nx^n) + \frac{2x^{k-1}}{(1 - (|A| - 1)x)^k}$
+
+   % \end{tabular}\retTwo\par}
+\end{myIndent}
 
 \end{document}
 
