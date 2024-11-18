@@ -2227,7 +2227,7 @@ Compute the rational function $P_{A;1,3}(x)$.
       $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = \left(\frac{x}{1 - (|A| - 1)x}\right)^2 \cdot \sum\limits_{n \geq 0}a_{\bm{w}^{(3)}}(n)x^n = \cdots = \left(\frac{x}{1 - (|A| - 1)x}\right)^{k-1} \sum\limits_{n \geq 0}a_{\bm{w}^{(k)}}(n)x^n$
    \end{tabular}\retTwo\par}
 
-   Since $\bm{w}^{(n)}$ is a word of length 1, we know that $\sum\limits_{n \geq 0}a_{\bm{w}^{(n)}}(n)x^n = \frac{2 + (1 - 2|A|)x}{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2}$.\retTwo
+   Since $\bm{w}^{(k)}$ is a word of length 1, we know that $\sum\limits_{n \geq 0}a_{\bm{w}^{(k)}}(n)x^n = \frac{2 + (1 - 2|A|)x}{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2}$.\retTwo
 
    So $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = \frac{x^{k-1}}{(1 - (|A| - 1)x)^{k-1}} \cdot \frac{2 + (1 - 2|A|)x}{1 + (1 - 2|A|)x+ (|A|^2 - |A|)x^2}$.\retTwo
 
@@ -2261,20 +2261,44 @@ Compute the rational function $P_{A;1,3}(x)$.
    
    {\centering $a_{\bm{w}}(n) = (c_1 + c_2n + \ldots + c_k n^{k-1})(|A| - 1)^n + c_{k+1}|A|^n$\retTwo\par}
    
-   To solve for each constant, use the initial conditions $a_{\bm{w}}(n) = 0$ when $n < k$ and $a_{\bm{w}}(k) = 1$. Unfortunately, I've run out of ideas for simplifying this more and it's 11:49PM.
+   To solve for each constant, use the initial conditions $a_{\bm{w}}(n) = 0$ when $n < k$ and $a_{\bm{w}}(k) = 1$. Unfortunately, I've run out of ideas for simplifying this more and it's 11:49PM.\retTwo
+
+   \mySepTwo
+
+   Here's a different approach. Given any word $\bm{v} = v_1\cdots v_n$ containing $\bm{w} = w_1\cdots w_k$ as a subword, we can injectively map it to a sequence $(\bm{u}_0, \bm{u}_1 \ldots, \bm{u}_{k-1}, \bm{u}_k)$ of $k+1$ many words via the following procedure:
+
+   \begin{itemize}
+      \item $\bm{u}_0$ is the sequence of characters before the first instance of $w_1$ in $\bm{v}$.
+      \item For $i < n$, $\bm{u}_i$ is the sequence of characters in $\bm{v}$ following $\bm{u}_1w_1\bm{u}_2w_2\cdots\bm{u}_{i-1}w_i$ but before the first instance of $w_{i + 1}$ in $\bm{v}$ after $\bm{u}_1w_1\bm{u}_2w_2\cdots\bm{u}_{i-1}w_i$.
+      \item $\bm{u}_n$ is the rest of $\bm{v}$ after $\bm{u}_0w_1\bm{u}_1w_2\cdots\bm{u}_{k-1}w_k$.\retTwo
+   \end{itemize}
+
+   Note that the $(\bm{u}_0, \bm{u}_1 \ldots, \bm{u}_{k-1}, \bm{u}_k)$ we get above has the three properties that:
+   
+   \begin{itemize}
+      \item $\bm{u}_i$ does not contain $w_{i + 1}$ for all $0 \leq i < k$.
+      \item $\bm{u}_k$ can contain all symbols of $A$
+      \item The lengths of $\bm{u}_0$, \dots, $\bm{u}_k$ add up to $n - k$.\retTwo
+   \end{itemize}
+
+   Importantly, given any sequence $(\bm{u}^\prime_0, \bm{u}^\prime_1 \ldots, \bm{u}^\prime_{k-1}, \bm{u}^\prime_k)$ also satisfying the above three properties, we know that the word $\bm{u}^\prime_0w_1\bm{u}^\prime_1w_2\cdots\bm{u}^\prime_{k-1}w_k\bm{u}^\prime_k$ will get mapped to $(\bm{u}^\prime_0, \bm{u}^\prime_1 \ldots, \bm{u}^\prime_{k-1}, \bm{u}^\prime_k)$. So our previous map is also surjective onto sequences with the above three properties.\retTwo
+
+   So, we have now found a bijective correspondance between words $\bm{v}$ containing $\bm{w}$ and sequences of smaller words satisfying certain properties. We now move onto counting these sequences.\retTwo
+
+   The collection of sequences will split into types determined by the lengths\\ $r_0, r_1, \ldots, r_{k-1}, r_k$ of the words $\bm{u}_0, \bm{u}_1, \ldots, \bm{u}_{k-1}, \bm{u}_k$ in a given sequence. By\\ our third known property, the number of types is given by the number of weak\\ compositions of $n - k$ into $k + 1$ parts.\retTwo
+
+   Next, given a type determined by the lengths $r_0, r_1, \ldots, r_{k-1}, r_k$, we have that the number of sequences of that type is:
+   
+   {\centering $(|A| - 1)^{r_0}(|A| - 1)^{r_1}\cdots(|A| - 1)^{r_{k-1}}|A|^{r_k} = (|A| - 1)^{n-k-r_k}|A|^{r_k}$\retTwo\par}
+
+   Also, the number of types with $r_k = i$ is the equal to the number of weak-compositions of $n - k - i$ into $k$ parts. I.e. there are $\binom{n - k - i + k - 1}{k - 1} = \binom{n - i -1}{k - 1}$ many types with $r_k = i$.\retTwo
+
+   Finally, $0 \leq r_k \leq n - k$. So, we get that $a_{\bm{w}}(n) = \sum\limits_{i = 0}^{n - k}\binom{n - i -1}{k - 1}(|A| - 1)^{n - k - i}|A|^i$.\newpage
+
+   
 
 
-   % {\centering 
-   % \begin{tabular}{l}
-   %    $\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n = (2x^{k-1} + (1 - 2|A|)x^k)\frac{1}{(1 - (|A| - 1)x)^k(1 - |A|x)}$\\
-      
-   %    $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = (x^k + 2x^{k-1}(1 - |A|x)) \frac{1}{(1 - (|A| - 1)x)^k(1 - |A|x)}$\\ 
-      
-   %    $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = \frac{x^k}{(1 - (|A| - 1)x)^k(1 - |A|x)} + \frac{2x^{k-1}}{(1 - (|A| - 1)x)^k}$\\
-
-   %    $\phantom{\sum\limits_{n \geq 0}a_{\bm{w}}(n)x^n} = x^k(\sum\limits_{n \geq 0}\binom{k + n - 1}{n}(|A| - 1)^nx^n) + \frac{2x^{k-1}}{(1 - (|A| - 1)x)^k}$
-
-   % \end{tabular}\retTwo\par}
+   
 \end{myIndent}
 
 \end{document}
