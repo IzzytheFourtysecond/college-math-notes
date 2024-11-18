@@ -2832,16 +2832,165 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 	\item[(b)] If $f \in L^1(\mu)$ and $g \in L^1(\nu)$, then $h \in L^1(\mu \times \nu)$ and $\int h d(\mu \times \nu) = [\int f d\mu][\int g d\nu]$.
 	
 	\begin{myIndent}\exTwoP
-		The simplest case is when $f$ and $g$ are both nonnegative real-valued functions. Then we can find increasing sequences of simple functions $(\phi_n)$ and $(\varphi_n)$ such that $\phi_n \rightarrow f$ and $\varphi_n \rightarrow g$.\retTwo
-
-		Now for all $n$, define $\psi_n(x, y) = \phi_n(x)\varphi_n(y)$. It's clear that $\psi_n$ can only equal a finite amount of values (at most the number of values $\phi_n$ can take on times the number of values $\varphi_n$ can take on). Also by part (a), we know that $\psi_n$ is measurable for all $n$.\newpage
+		To start, if $f$ and $g$ are nonnegative simple functions, then this is true. To see this, write $\phi_n = \sum\limits_{i = 1}^n a_i\chi_{E_i}$ and $\varphi_n = \sum\limits_{j = 1}^m b_j \chi_{F_j}$ where all $a_i, b_j$ are complex numbers, all $E_i \subseteq X$, and all $F_i \subseteq Y$. Then:
 		
-		Thirdly, note that $(\psi_n)$ is an increasing sequence of functions converging\\ pointwise to $h$. \retTwo
+		{\centering $fg = \sum\limits_{i = 1}^n \sum\limits_{j = 1}^m a_ib_j\chi_{E_i}(x)\chi_{F_j}(y) = \sum\limits_{i=1}^n\sum\limits_{j=1}^m a_i b_j \chi_{E_i \times F_j}((x, y))$ \retTwo\par}
 
+		\newpage
 
+		So, $\int fg d(\mu \times \nu) = \sum\limits_{i=1}^n \sum\limits_{j=1}^m a_i b_j \mu \times \nu(E_i \times F_j) = \sum\limits_{i=1}^n \sum\limits_{j=1}^m a_i b_j \mu(E_i)\nu(F_j)$.\retTwo
+
+		But at the same time, 
+		
+		{\centering $(\int f d\mu)(\int g d\nu) = (\sum\limits_{i=1}^n a_i\mu(E_i))(\sum\limits_{j=1}^m b_i\nu(F_j)) = \sum\limits_{i=1}^n \sum\limits_{j=1}^m a_i b_j \mu(E_i)\nu(F_j)$.\retTwo\par}
+
+		To extend this to nonnegative real-valued functions, let $(\phi_n)$ and $(\varphi_n)$ be increasing sequences of nonnegative simple functions converging pointwise to $f$ and $g$ respectively. Then by M.C.T., we know that $\int \phi_n d\mu \rightarrow \int f d\mu$ and $\int \varphi_n d\nu \rightarrow \int gd\nu$ as $n \rightarrow \infty$.\retTwo
+
+		Next, note that $\phi_n\varphi_n \rightarrow fg$ pointwise as $n \rightarrow \infty$. Also, each $\phi_n\varphi_n$ is a simple function as is demontrated on the previous line, and $\phi_n(x)\varphi_n(y)$ monotonically increases as $n \rightarrow \infty$. So by applying M.C.T., we know that:
+
+		{\centering $\int \phi_n \varphi_n d(\mu \times \nu) \rightarrow \int fg d(\mu \times \nu) = \int h d(\mu \times \nu)$ \retTwo\par}
+
+		Thus, we can say that:
+
+		{\centering $\int f d\mu \int g d\nu = \lim\limits_{n \rightarrow \infty} (\int \phi_n d\mu \int \varphi_n d\nu) = \lim\limits_{n \rightarrow \infty} (\int \phi_n \varphi_n d(\mu \times \nu)) = \int h d(\mu \times \nu)$. \retTwo\par}
+
+		Now consider if $f, g$ are real-valued functions. Then $|h(x, y)| = |f(x)||g(y)|$ and so from before: $\int |h| d(\mu \times \nu) = (\int |f| d\mu)(\int |g|d\nu)$. If $f \in L^1(\mu)$ and $g \in L^1(\nu)$, then the right side of that expression is finite. So $\int |h| < \infty$ and thus $h \in L^1(\mu \times \nu)$.\retTwo
+
+		Assuming $f, g$ are integrable, then note that $h^+ = f^+g^+ + f^-g^-$ and $h^- = f^+g^- + f^-g^+$. So applying our prior reasoning to those parts:
+
+		{\centering\exPP
+		\begin{tabular}{l}
+			 $\int h d(\mu \times \nu) = \int h^+ d(\mu \times \nu) - \int h^- d(\mu \times \nu)$\\ [4pt]
+
+			 $\phantom{\int h d(\mu \times \nu) } = \int f^+ d\mu \int g^+ d\nu + \int f^- d\mu \int g^- d\nu - \int f^+ d\mu \int g^- d\nu - \int f^- d\mu \int g^+ d\nu$\\ [4pt]
+
+			 $\phantom{\int h d(\mu \times \nu) } = \int f^+ d\mu(\int g^+d\nu - \int g^- d\nu) - \int f^-d\mu (\int g^+ d\nu - \int g^- d\nu)$\\ [4pt]
+
+			 $\phantom{\int h d(\mu \times \nu) } = (\int f^+d\mu - \int f^-d\mu)(\int g^+ d\nu - \int g^- d\nu) = (\int fd\mu)(\int gd\nu)$
+		\end{tabular}\retTwo\par}
+
+		Finally, we consider when $f, g$ are complex valued functions. Like before, we have that $|h(x, y)| = |f(x)||g(y)|$ and so by the same reasoning as when $f, g$ were real valued, if $f \in L^1(\mu)$ and $g \in L^1(\nu)$, then $\int |h|d(\mu \times \nu) < \infty$ and thus $h \in L^1(\mu \times \nu)$.
+
+		Finally, supposing that $f, g$ are integrable one last time, note that:
+		
+		{\centering\exPP $\rea(h) = \rea(f)\rea(g) - \ima(f)\ima(g)$ and $\ima(h) = \rea(f)\ima(g) + \ima(f)\rea(g)$.\retTwo\par}
+
+		By doing a bunch of similar manipulations to the real-valued case, you can then show that:
+		
+		{\centering\exPP $\int \rea(h) d(\mu \times \nu) + i \int \ima(h) d(\mu \times \nu) = (\int \rea(f)d\mu + i \int \ima(f)d\mu)(\int \rea(g)d\mu + i \int \ima(g)d\mu)$.\retTwo\par}
+
+		But I'm out of time so do them yourself :P.
 		\retTwo
 	\end{myIndent}
 \end{enumerate}
+
+\blab{Exercise 2.55}: Let $E = [0, 1] \times [0, 1]$. Investigate the existence and equality of $\int_E fdm^2$, $\int_0^1 \int_0^1 f(x, y)dxdy$, and $\int_0^1 \int_0^1 f(x, y)dydx$ for the following $f$.
+\begin{enumerate}
+	\item[(a)] $f(x, y) = (x^2 - y^2)(x^2 + y^2)^{-2}$
+
+	\begin{myIndent}\exTwoP
+		Note that:
+
+		{\centering 
+		\begin{tabular}{l l}
+			$\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx = \int_0^{\tan^{-1}(1/y)} \frac{y^3(\tan^2(\theta) - 1)\sec^2(\theta)}{(y^2(\tan^2(\theta) + 1))^2}d\theta$ & {\exPPP (substituting $x = y\tan(\theta)$)} \\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{1}{y}\int_0^{\tan^{-1}(1/y)} \frac{(\tan^2(\theta) - 1)\sec^2(\theta)}{\sec^4(\theta)}d\theta$\\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{1}{y}\int_0^{\tan^{-1}(1/y)} \frac{\tan^2(\theta) - 1}{\sec^2(\theta)}d\theta$\\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{1}{y}\int_0^{\tan^{-1}(1/y)} \sin^2(\theta) - \cos^2(\theta)d\theta$\\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{1}{y}\int_0^{\tan^{-1}(1/y)} -\cos(2\theta)d\theta$\\ [8pt]
+			
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{-1}{2y}(\sin(2\tan^{-1}(1/y)) - 0)$\\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{-1}{y}\sin(\tan^{-1}(1/y))\cos(\tan^{-1}(1/y))$ & {\exPPP (getting rid of the 2)}\\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{-1}{y}\tan(\tan^{-1}(1/y))\cos^2(\tan^{-1}(1/y))$\\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{-1}{y^2}\frac{1}{1 + \tan^2(\tan^{-1}(1/y))}$ & {\exPPP ($\cos^2 = \frac{1}{\sec^2} = \frac{1}{1 + \tan^2}$)}\\ [8pt]
+
+			$\phantom{\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dx} = \frac{-1}{y^2} \cdot \frac{1}{1 + y^{-2}} = \frac{-1}{y^2 + 1}$
+		\end{tabular} \retTwo\par}
+
+		Luckily we don't need to do that again because:
+		
+		{\centering $\int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dy = -\int_0^1 \frac{y^2 - x^2}{(x^2 + y^2)^2}dy = \frac{1}{x^2 + 1}$.\retTwo\par}
+
+		Next note that $\int_0^1 \frac{-1}{y^2 + 1}dy = -\tan^{-1}(1) + \tan^{-1}(0) = -\sfrac{\pi}{4}$. In turn this means that $\int_0^1 \frac{1}{x^2 + 1}dx = \sfrac{\pi}{4}$.\retTwo
+
+		So, we've shown that $\int_0^1 \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dydx \neq \int_0^1 \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dxdy$\retTwo
+
+		The reason why is that $\frac{x^2 - y^2}{(x^2 + y^2)^2} \notin L^1(m^2)$.\newpage
+		
+		To see why, note that:
+		
+		{\centering\exPP
+		\begin{tabular}{l}
+			$\int_0^1 \left|\frac{x^2 - y^2}{(x^2 + y^2)^2}\right|dx = -\int_0^y \frac{x^2 - y^2}{(x^2 + y^2)^2}dx + \int_y^1\frac{x^2 - y^2}{(x^2 + y^2)^2}$\\ [8pt]
+
+			$\phantom{\int_0^1 \left|\frac{x^2 - y^2}{(x^2 + y^2)^2}\right|dx} = -\frac{-1}{2y}\sin(2\tan^{-1}(1)) + \frac{-1}{2y}\sin(2\tan^{-1}(1/y)) -\frac{-1}{2y}\sin(2\tan^{-1}(1))$\\ [8pt]
+
+			$\phantom{\int_0^1 \left|\frac{x^2 - y^2}{(x^2 + y^2)^2}\right|dx} = \frac{1}{y} - \frac{1}{1 + y^2}$\\ [8pt]
+		\end{tabular}\retTwo\par}
+
+		But then $\int_0^1 \frac{1}{y} - \frac{1}{1 + y^2}dy = \ln(1) - \ln(0) - \tan^{-1}(1) + \tan^{-1}(0) = \infty$.\retTwo
+
+		Assuming $\left|\frac{x^2 - y^2}{(x^2 + y^2)^2}\right| \in L^+$, we know by Tonelli-theorem that:
+		
+		{\centering $\int_E \left|\frac{x^2 - y^2}{(x^2 + y^2)^2}\right|dm^2 = \int_0^1\int_0^1\left|\frac{x^2 - y^2}{(x^2 + y^2)^2}\right|dxdy$.\retTwo\par}
+
+		So, our function is not integrable with respect to $m^2$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] $f(x, y) = (1 - xy)^{-a}$ with $a > 0$.
+	
+	\begin{myIndent}\exTwoP
+		$(1 - xy)^{-a}$ is nonnegative for all $x, y \in [0, 1]$ and continuous almost everywhere, we know $(1 - xy)^{-a} \in L^+(E)$. By Tonelli's theorem, we thus know that the following three integrals exist and:
+
+		{\centering $\int (1-xy)^{-a}dm^2 = \int_0^1 \int_0^1 (1-xy)^{-a}dxdy = \int_0^1 \int_0^1 (1-xy)^{-a}dydx$ \retTwo\par}
+
+		That said, it could be that they are all infinite.\retTwo
+	\end{myIndent}
+
+	\item[(c)] $f(x, y) = (x - \frac{1}{2})^{-3}$ if $0 < y < |x - \frac{1}{2}|$ and $f(x, y) = 0$ otherwise.  
+	
+	\begin{myIndent}\exTwoP
+		Note that when $y \leq \frac{1}{2}$, then:
+		
+		{\centering 
+		\begin{tabular}{l}
+			$\int_0^1 f(x, y)dx = \int_0^{\frac{1}{2}-y}(x-\frac{1}{2})^{-3}dx + \int_{\frac{1}{2} + y}^1(x-\frac{1}{2})^{-3}dx$\\
+
+			$\phantom{\int_0^1 f(x, y)dx} = \frac{1}{-2}(x-\frac{1}{2})^{-2}\left.\right|_0^{\sfrac{1}{2}-y} + \frac{1}{-2}(x-\frac{1}{2})^{-2}\left.\right|_{y+\sfrac{1}{2}}^{1} = \frac{-1}{2y^2} + 2 - 2 - \frac{-1}{2y^2} = 0$
+		\end{tabular}\retTwo\par}
+
+		Also, when $y \geq \frac{1}{2}$, then we trivially have that $\int_0^1 f(x, y)dx = \int_0^1 0dx = 0$. So $\int_0^1 \int_0^1 f(x, y)dxdy = 0$.
+		\retTwo
+
+		On the other hand, note that $\int_0^1 f(x, y)dy = \int_0^{|x - \sfrac{1}{2}|} (x - \frac{1}{2})^{-3}dy = \frac{|x-\frac{1}{2}|}{(x-\frac{1}{2})^3}$.\retTwo
+
+		I didn't have time to do the calculations but plugging it into an online calculator: $\int_0^1 \frac{|x-\frac{1}{2}|}{(x-\frac{1}{2})^3}dx = \infty$
+
+		So $\int_0^1\int_0^1 f(x, y)dxdy \neq \int_0^1\int_0^1 f(x, y)dydx$ and $f(x, y) \notin L^1(m^2)$
+
+		\newpage
+
+	\end{myIndent}
+
+\end{enumerate}
+
+\retTwo
+
+\blab{Exercise 2.59}: Let $f(x) = x^{-1}\sin(x)$.
+
+\begin{enumerate}
+	\item[(a)] Show that $\int_0^\infty |f(x)|dx = \infty$
+	\item[(b)] Show that $\lim\limits_{b \rightarrow \infty} \int_0^b f(x)dx = \frac{1}{2}\pi$ by integrating $e^{-xy}\sin(x)$ with respect to $x$ and $y$. 
+\end{enumerate}
+
+\blab{Exercise 2.60}: Show that $\Gamma(x)\Gamma(y) / \Gamma(x + y) = \int_0^1 t^{x-1}(1 - t)^{y-1}dt$ for $x, y > 0$.
 
 
 
