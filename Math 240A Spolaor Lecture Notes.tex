@@ -2817,7 +2817,7 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 	\end{myIndent}
 \end{enumerate}
 
-\blab{Exercise 51:} Let $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ be arbitrary measure spaces (not necessarily $\sigma$-finite).
+\blab{Exercise 2.51:} Let $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ be arbitrary measure spaces (not necessarily $\sigma$-finite).
 
 \begin{enumerate}
 	\item[(a)] If $f: X \rightarrow \mathbb{C}$ is $\mathcal{M}$-measurable, $g: Y \rightarrow \mathbb{C}$ is $\mathcal{N}$-measurable, and\\ $h(x, y) = f(x)g(y)$, then $h$ is $\mathcal{M} \otimes \mathcal{N}$-measurable.
@@ -2990,7 +2990,354 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 	\item[(b)] Show that $\lim\limits_{b \rightarrow \infty} \int_0^b f(x)dx = \frac{1}{2}\pi$ by integrating $e^{-xy}\sin(x)$ with respect to $x$ and $y$. 
 \end{enumerate}
 
-\blab{Exercise 2.60}: Show that $\Gamma(x)\Gamma(y) / \Gamma(x + y) = \int_0^1 t^{x-1}(1 - t)^{y-1}dt$ for $x, y > 0$.
+\newpage
+
+
+
+
+
+
+
+
+{\hOne\mHeader{Homework 5}}
+
+\blab{Exercise 3.8}: Given a signed measure $\nu$ and positive measure $\mu$ on the measurable space $(X, \mathcal{M})$, we have that: $\nu \ll \mu$ iff $|\nu| \ll \mu$ iff $\nu^+ \ll \mu$ and $\nu^- \ll \mu$.
+
+\begin{myIndent}\exTwoP
+	Let $\nu^+$ and $\nu^-$ be the positive and negative variations of $\nu$. Also let $P$ and $N$ be a Hahn decomposition for $\nu$. Finally, let $E \in \mathcal{M}$ be such that $\mu(E) = 0$.\retTwo
+
+	Suppose $\nu \ll \mu$. Thus $\nu(E) = 0$. Then consider if $\nu^+(E) \neq 0$. Since\\ $\nu(E) = \nu^+(E) - \nu^-(E)$ and either $\nu^+$ or $\nu^-$ is finite, we have that\\ $\nu^+(E) = M = \nu^-(E)$ where $0 < M < \infty$. But $\nu^+(E) = \nu(E \cap P)$ and\\ $\nu^-(E) = \nu(E \cap N)$. So $\nu(E \cap P) = m \neq 0$ and $\nu(E \cap N) = m \neq 0$. But at the same time, $\mu(E \cap P) = \mu(E \cap N) = 0$ since $E \cap P \subseteq E$ and $E \cap N \subseteq N$. This contradicts that $\nu \ll \mu$. So, $\nu \ll \mu \Longrightarrow \nu^+ \ll \mu$ and $\nu^- \ll \mu$.\retTwo
+
+	Next, suppose $\mu(E) = 0 \Longrightarrow |\nu|(E) = 0$. Then since $\nu^+(E) \geq 0$, $\nu^-(E) \geq 0$,\\ and $|\nu|(E) = \nu^+(E) + \nu^-(E)$, we must have that $\nu^+(E) = 0 \nu^-(E)$. So\\ $|\nu|(E) \ll \mu \Longrightarrow \nu^+ \ll \mu$ and $\nu^- \ll \mu$.\retTwo
+
+	Finally, it's trivial that $\nu^+ \ll \mu$ and $\nu^- \ll \mu \Longrightarrow |\nu| \ll \mu$ because:
+	
+	{\centering $\mu(E) \Longrightarrow \nu^+(E) = 0 = \nu^-(E) \Longrightarrow |\nu|(E) = \nu^+(E) + \nu^-(E) = 0 + 0$.\retTwo\par}
+
+	Similarly, $\nu^+ \ll \mu$ and $\nu^- \ll \mu \Longrightarrow \nu \ll \mu$ because:
+
+	{\centering $\mu(E) \Longrightarrow \nu^+(E) = 0 = \nu^-(E) \Longrightarrow \nu(E) = \nu^+(E) - \nu^-(E) = 0 - 0$.\retTwo\par}
+\end{myIndent}
+
+\blab{Exercise 3.9}: Let $(X, \mathcal{M})$ be a measurable space and suppose $\mu$ is a signed measure and $(\nu_j)_{j \in \mathbb{N}}$ is a sequence of of positive measures.\\ [2pt] If $\nu_j \perp \mu$ for all $j$, then $\sum\limits_{j=1}^\infty \nu_j \perp \mu$, and if $\nu_j \ll \mu$ for all $j$, then $\sum\limits_{j=1}^\infty v_j \ll \mu$.\\ [2pt]
+
+\begin{myIndent}\exTwoP
+	First let's consider if $\nu_j \perp \mu$ for all $j$.
+	
+	\begin{myIndent}\exPP
+		For each $j \in \mathbb{N}$, let $E_j$ and $F_j$ be such that $E_j \cup F_j = X$,\phantom{a} $E_j \cap F_j = \emptyset$,\\ $\nu_j(F_j) = 0$, and $E_j$ is a $\mu$-null set.\retTwo
+	
+		Define $E \coloneq \bigcup\limits_{j \in \mathbb{N}} E_j$. Then $E$ is a $\mu$-null set.\retTwo
+	
+		Also, $F \coloneq X - E = X - \bigcup\limits_{j \in \mathbb{N}} E_j = \bigcap\limits_{j \in \mathbb{N}}X - E_j = \bigcap\limits_{j \in \mathbb{N}} F_j$.\retTwo
+	
+		Importantly, $E \cap F = \emptyset$, $E \cup F = X$ and $F \subseteq F_j$ for all $j \in \mathbb{N}$. Thus $\nu_j(F) = 0$ for all $j \in \mathbb{N}$, and so $\sum\limits_{j = 1}^\infty \nu_j(F) = 0$. We've thus shown that $\sum\limits_{j = 1}^\infty \nu_j \perp \mu$.\retTwo
+	\end{myIndent}
+
+	Next, let's consider if $\nu_j \ll \mu$ for all $j$.
+	
+	\begin{myIndent}\exPP
+		Then $\mu(E) = 0 \Longrightarrow \nu_j(E) = 0$ for all $j \in \mathbb{N} \Longrightarrow \sum\limits_{j=1}^\infty \nu_j(E) = 0$. So $\sum\limits_{j=1}^\infty \nu_j \ll \mu$.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+\blab{Exercise 3.3}: Let $\nu$ be a signed measure on $(X, \mathcal{M})$. Show the following:
+\begin{enumerate}
+	\item[(a)] $L^1(\nu) = L^1(|\nu|)$
+	
+	\begin{myIndent}\exTwoP
+		Let $\nu^+$ and $\nu^-$ be the positive and negative variations of $\nu$. Recall that\\ $f \in L^1(\nu)$ iff $\int f d\nu = \int f d\nu^+ - \int fd\nu^-$ exists and is finite. The latter\\ statement is true if and only if $f \in L^1(\nu^+) \cap L^1(\nu^-)$.\retTwo
+
+		Meanwhile $|\nu| = \nu^+ + \nu^-$. As a result, when $f = \chi_E$, then:
+		
+		{\centering$\int f d|\nu| = |\nu|(E) = \nu^+(E) + \nu^-(E) = \int f d\nu^+ + \int fd\nu^-$.\retTwo\par}
+
+		By linearity, we thus conclude that $\int f d|\nu| = \int f d\nu^+ + \int f d\nu^-$ when $f$ is\\ a simple function. And by considering increasing sequences of simple functions and using the M.C.T, we can conclude that $\int f d|\nu| = \int f d\nu^+ + \int f d\nu^-$ holds for all nonnegative $f$.\retTwo
+
+		Now suppose $f$ is a real-valued function. If all the terms below are finite, then we have that:
+
+		{\centering\exPP\begin{tabular}{l}
+			$\int fd|\nu| = \int f^+d|\nu| - \int f^-d|\nu| = (\int f^+d\nu^+ + \int f^+d\nu^-) - (\int f^-d\nu^+ + \int f^-d\nu^-) $\\ [6pt]
+
+			$\phantom{\int fd|\nu| = \int f^+d|\nu| - \int f^-d|\nu|} =  (\int f^+ d\nu^+ - \int f^-d\nu^+) + (\int f^+ d\nu^- - \int f^-d\nu^-)$\\ [6pt]
+
+			$\phantom{\int fd|\nu| = \int f^+d|\nu| - \int f^-d|\nu|} = \int f d\nu^+ + \int fd\nu^-$
+		\end{tabular}\retTwo\par}
+
+		Importantly, $\int f^+ d|\nu| < \infty$ if and only if $\int f^+ d\nu^+ < \infty$ and $\int f^+ d\nu^- < \infty$. Similarly, $\int f^- d|\nu| < \infty$ if and only if $\int f^- d\nu^+ < \infty$ and $\int f^- d\nu^- < \infty$.\\ Thus:
+
+		{\centering\exPP\begin{tabular}{l}
+			$f \in L^1(|\nu|) \Longleftrightarrow \int f^+ d|\nu| < \infty$ and $\int f^- d|\nu| < \infty$ \\ [6pt]
+
+			$\phantom{f \in L^1(|\nu|)} \Longleftrightarrow \int f^+ d\nu^+ < \infty$, $\int f^+ d\nu^- < \infty$, $\int f^- d\nu^+ < \infty$, and $\int f^- d\nu^- < \infty$\\ [6pt]
+
+			$\phantom{f \in L^1(|\nu|)} \Longleftrightarrow f \in L^1(\nu^+)$ and $f \in L^1(\nu^-) \Longleftrightarrow f \in L^1(\nu^+) \cap L^1(\nu^-)$.
+		\end{tabular} \retTwo\par}
+
+		Finally, note that if $f$ is complex-valued, then assuming none of the integrals below are infinite:
+
+		{\centering\exPP\begin{tabular}{l}
+			$\int fd|\nu| = \int \rea(f)d|\nu| + i\int \ima(f)d|\nu|$\\ [6pt]
+			
+			$\phantom{\int fd|\nu|} = (\int \rea(f)d\nu^+ + \int \rea(f)d\nu^-) + i(\int \ima(f)d\nu^+ + \int \ima(f)d\nu^-) $\\ [6pt]
+
+			$\phantom{\int fd|\nu|} =  (\int \rea(f) d\nu^+ + i\int \ima(f)d\nu^+) + (\int \rea(f) d\nu^- + i\int \ima(f)d\nu^-)$\\ [6pt]
+
+			$\phantom{\int fd|\nu|} = \int f d\nu^+ + \int fd\nu^-$
+		\end{tabular}\retTwo\par}
+
+		Importantly:
+
+		{\centering\exPP\begin{tabular}{l}
+			$f \in L^1(|\nu|) \Longleftrightarrow \int \rea(f) d|\nu| < \infty$ and $\int \ima(f) d|\nu| < \infty$ \\ [6pt]
+
+			$\phantom{f \in L^1(|\nu|)} \Longleftrightarrow \int \rea(f) d\nu^+ < \infty$, $\int \rea(f) d\nu^- < \infty$, $\int \ima(f) d\nu^+ < \infty$,\\
+			
+			\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} and $\int \ima(f) d\nu^- < \infty$\\ [6pt]
+
+			$\phantom{f \in L^1(|\nu|)} \Longleftrightarrow f \in L^1(\nu^+)$ and $f \in L^1(\nu^-) \Longleftrightarrow f \in L^1(\nu^+) \cap L^1(\nu^-)$.
+		\end{tabular} \newpage\par}
+
+		So $L^1(|\nu|) = L^1(\nu^+) \cap L^1(\nu^-) = L^1(\nu)$ and if $f \in L^1(|\nu|)$, then\\ $\int f d|\nu| = \int f d\nu^+ + \int f d\nu^-$. \retTwo
+	\end{myIndent}
+
+	\item[(b)] If $f \in L^1(\nu)$, then $| \int f d\nu | \leq \int |f| d|\nu|$.
+	
+	\begin{myIndent}\exTwoP
+		If $f \in L^1(\nu)$, then from before we know $f \in L^1(|\nu|)$. So:
+
+		{\centering \begin{tabular}{l}
+			$|\int f d\nu| = |\int f d\nu^+ - \int f d\nu^-| \leq |\int f d\nu^+ - 0| + |\int f d\nu^- - 0|$\\ [6pt]
+			
+			$\phantom{|\int f d\nu| = |\int f d\nu^+ - \int f d\nu^-|} = \int f d\nu^+ + \int f d\nu^- = \int f d|\nu|$
+		\end{tabular}\retTwo\par}
+
+		Next, from our theorems on integrals using positive measure, we know that $|f| \in L^1(|\nu|)$ and $\left|\int f d|\nu|\right| \leq \int |f| d|\nu|$. So:
+		
+		{\centering$|\int f d\nu| \leq \int f d|\nu| \leq \left|\int f d|\nu|\right| \leq \int |f| d|\nu|$\retTwo\par}
+	\end{myIndent}
+
+	\item[(c)] If $E \in \mathcal{M}$, $|\nu|(E) = \sup\{\int_E f d\nu : |f| \leq 1\}$.  
+	
+	\begin{myIndent}\exTwoP
+		Let $P$ and $N$ give a Hahn decomposition for $\nu$ on $X$ with $P$ being positive and\\ $N$ being negative. Then define $f = \chi_P - \chi_N$. Importantly, $|f| \leq 1$ and\\ $\int_E fd\nu = \nu(E \cap P) - \nu(E \cap N) = \nu^+(E) + \nu^-(E) = |\nu|(E)$.\retTwo
+
+		Hence, $|\nu|(E) \leq \sup\{\int_E f d\nu : |f| \leq 1\}$\retTwo
+
+		On the other hand, if $|f| \leq 0$, then by part (b) we know:
+
+		{\centering $\int_E f d\nu \leq |\int_E f d\nu| \leq \int_E |f|d|\nu| \leq \int_E 1\cdot d|\nu| = |\nu|(E)$ \retTwo\par}
+
+		So $\sup\{\int_E f d\nu : |f| \leq 1\} \leq |\nu|(E)$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Exercise 3.6}: Suppose $\nu(E) = \int_E f d\mu$ where $\mu$ is a positive measure on $(X, \mathcal{M})$ and $f$ is an extended $\mu$-integrable function. Describe the Hahn decompositions of $\nu$ and the positive, negative, and total variations of $\nu$ in terms of $f$ and $\nu$.
+
+\begin{myIndent}\exTwoP
+	Recall that $\int_E f d\mu = \int_E f^+ d\mu - \int_E f^-d\mu$. Thus, defining $\nu^+(E) = \int_E f^+ d\mu$ and\\ [2pt] $\nu^-(E) = \int_E f^-d\mu$, we have that $\nu^+$ and $\nu^-$ are positive measures such that\\ $\nu = \nu^+ - \nu^-$.\retTwo
+	
+	Additionally, let $P = f^{-1}( [0, \infty])$ and $N = f^{-1}( [-\infty, 0))$. Since $f$ is\\ measurable, we know both $P$ and $N$ are in $\mathcal{M}$. Also, $P \cap N = \emptyset$ and\\ $P \cup N = \mathrm{domain}(f) = X$. And thirdly, $f^+ = 0$ on $N$ and $f^- = 0$ on $P$.\\ Thus, if $E \subseteq N$, then $\nu^+(E) = \int_E f^+d\mu = \int 0 d\mu = 0$.  Similarly, if $E \subseteq P$,\\ then $\nu^-(E) = \int_E f^-d\mu = \int 0 d\mu = 0$.\retTwo
+
+	Hence, we've shown that $\nu^+(E) = \int_E f^+ d\mu$ and $\nu^-(E) = \int_E f^-d\mu$ are positive measures such that $\nu = \nu^+ - \nu^-$ and $\nu^+ \perp \nu^-$. By the Jordan decomposition theorem, we thus know that $\nu^+$ and $\nu^-$ give the unique Jordan decomposition of $\nu$. In other words, the positive variation of $\nu$ is given by $\int_E f^+ d\mu$ and the negative variation of $\nu$ is given by $\int_E f^- d\mu$.\newpage
+
+	In turn, the total variation of $\nu$ is $\int_E f^+ d\mu + \int_E f^- d\mu = \int_E |f|d\mu$\retTwo
+
+	Now we turn to describing the Hahn decompositions for $\nu$.
+	\begin{myIndent}
+		Claim: $E$ is positive iff $\mu(E \cap f^{-1}([-\infty, 0))) = 0$.
+		
+		\begin{myIndent}\exPPP
+			Proof:\\
+			Suppose $\mu(E \cap f^{-1}([-\infty, 0))) = 0$. Then given any $F \in \mathcal{M}$ with $F \subseteq E$, we have that $\int_F fd\mu = \int_F f^+d\mu - \int_F f^- d\mu \geq 0 - \int_E f^-d\mu = 0$ since $f^- = 0$ a.e. on $E$. So $\nu(F) \geq 0$. Since $F$ was arbitrary, we've shown $E$ is positive.\retTwo
+
+			Conversely, suppose $\mu(E \cap f^{-1}([-\infty, 0))) > 0$. Then because $f$ is measurable, we can fix $F = E \cap f^{-1}([-\infty, 0))$ and have that $F \in \mathcal{M}$ and $F \subseteq E$. But now note that $\nu(F) = \int_F fd\mu = 0 - \int_F f^{-1}d\mu$. And since $f^- > 0$ on all of $F$ (with $F$ not being null), we do not have that $f^{-1} = 0$ a.e. on $F$. That combined with the fact that $f^{-1} \in L^+$ means that $\int_F f^{-1}d\mu > 0$ and thus $\nu(F) < 0$. So, $E$ isn't positive.\retTwo
+		\end{myIndent}
+
+		Analogously, we can show that $E$ is negative iff $\mu(E \cap f^{-1}((0, \infty])) = 0$.\retTwo
+
+		So two subsets $P$ and $N$ of $X$ will be a Hahn decomposition for $\nu$ if and only if $P = A_1 \cup f^{-1}((0, \infty]) \cup B_2 - B_1$ and $N = A_2 \cup f^{-1}([-\infty, 0))  \cup B_1 - B_2$\\ where $B_1$ and $B_2$ are null-subsets of $f^{-1}((0, \infty])$ and $f^{-1}([-\infty, 0))$\\ respectively and $A_1$ and $A_2$ are disjoint sets in $\mathcal{M}$ partitioning $f^{-1}(\{0\})$.\retTwo
+
+		
+		\begin{myIndent}
+			Recall that earlier in this problem, we defined $P = f^{-1}([0, \infty])$ and $N = f^{-1}([-\infty, 0))$. We know from before that $P \cap N = \emptyset$ and\\ $P \cup N = X$. Also, we know that $P$ is positive and $N$ is negative due to our claims right above. So, $f^{-1}([0, \infty])$ and $f^{-1}([-\infty, 0))$ give a Hahn decomposition for $\nu$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+\blab{Exercise 2.60}: Show that $\frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)} = \int_0^1 t^{x-1}(1 - t)^{y-1}dt$ for $x, y > 0$.
+
+\begin{myIndent}\exTwoP
+	As a consequence of exercise 2.51, we can rewrite:
+	
+	{\center \begin{tabular}{l}
+		$\Gamma(x)\Gamma(y) = \int_0^\infty s^{x-1}e^{-s}\mathrm{d}s \int_0^\infty s^{y-1}e^{-s}\mathrm{d}s = \int_0^\infty \int_0^\infty t^{x-1}e^{-t}s^{y-1}e^{-s}\mathrm{d}s\mathrm{d}t$\\ [6pt]
+
+		$\phantom{\Gamma(x)\Gamma(y) = \int_0^\infty s^{x-1}e^{-s}\mathrm{d}s \int_0^\infty s^{y-1}e^{-s}\mathrm{d}s} = \int_0^\infty \int_0^\infty t^{x-1}s^{y-1}e^{-(s + t)}\mathrm{d}s\mathrm{d}t$
+	\end{tabular}\retTwo\par}
+
+	Now we want to do a change of variables. The clues to focus on is that we want to consolidate the exponential by making $(t + s) = u$, and we want to have the term $(1 - w)^{y-1}$ in our final integral (meaning $s$ is a multiple of $1 - w$).\retTwo
+
+	Define $G(u, w) = (uw, u(1 - w))$. Then $D_{(u,w)}G = \left[
+	\begin{smallmatrix}
+		w & u \\ 1-w & -u
+	\end{smallmatrix}\right]$. Thus, $G$ is $\mathcal{C}^1$\\ continuous and $|\det(D_{(u,w)}G)| = |{-}uw -u + uw| = |u|$.\retTwo
+
+	Also, $G$ is injective when $u \neq 0$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Suppose $uw = u^\prime w^\prime$ and $u(1 - w) = u^\prime(1 - w^\prime)$.\newpage
+		
+		If $w = 0$, then $u^\prime w^\prime = 0 = uw$. So $u(1 - w) = u^\prime(1 - w^\prime)$ becomes $u = u^\prime$ and in turn $u^\prime w^\prime = uw \Longrightarrow w^\prime = w$.\retTwo
+
+		Meanwhile, if $w \neq 0$, then $u = \frac{u^\prime w^\prime}{w}$. So:
+		
+		{\centering $u^\prime - u^\prime w^\prime = u^\prime(1 - w^\prime) = u(1 - w) = \frac{u^\prime w^\prime}{w}(1 - w) = \frac{u^\prime w^\prime}{w} - u^\prime w^\prime$.\retTwo\par}
+
+		This says that $u^\prime w = u^\prime w^\prime$. By assumption, $u^\prime \neq 0$. So, canceling $u^\prime$ we get that $w = w^\prime$. Then since $w \neq 0$, $uw = u^\prime w^\prime \Longrightarrow u = u^\prime$.\retTwo
+	\end{myIndent}
+
+	Finally, $G$ maps $(0, \infty) \times (0, 1)$ to $(0, \infty) \times (0, \infty)$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Given $(t, s) \in (0, \infty) \times (0, \infty)$, let $u = t + s$ and $w = \frac{t}{t + s}$. Then $u \in (0, \infty)$, $v \in (0, 1)$, and $g(u, v) = ((t + s)\frac{t}{t + s}, (t + s)(1 - \frac{t}{t + s})) = (t, t + s - t) = (t, s)$.\retTwo
+	\end{myIndent}
+
+	So:
+
+	{\centering
+	\begin{tabular}{l}
+		$\int_0^\infty \int_0^\infty t^{x-1}s^{y-1}e^{-(s + t)}dsdt = \int_0^1 \int_0^\infty u^{x-1}w^{x-1}u^{y-1}(1-w)^{y-1}e^{-u}|u|\mathrm{d}u\mathrm{d}w$\\ [6pt]
+
+		$\phantom{\int_0^\infty \int_0^\infty t^{x-1}s^{y-1}e^{-(s + t)}dsdt} = \int_0^1 w^{x-1}(1-w)^{y-1}\mathrm{d}w\int_0^\infty u^xu^{y-1} e^{-u}\mathrm{d}u$\\ [6pt]
+
+		$\phantom{\int_0^\infty \int_0^\infty t^{x-1}s^{y-1}e^{-(s + t)}dsdt} = \int_0^1 w^{x-1}(1-w)^{y-1}\mathrm{d}w \cdot \Gamma(x + y)$
+	\end{tabular} \retTwo\par}
+\end{myIndent}
+
+\blab{Exercise 2.63}: The technique used to prove proposition 2.54 can also be used to integrate any polynomial over $S^{n-1}$. Suppose $f(x) = \prod\limits_{j=1}^n x_j^{\alpha_j}$. Then $\int f d\sigma = 0$ if any $\alpha_j$ is odd, and\\ [-2pt] if all $\alpha_j$'s are even, then:
+
+{\centering ${\displaystyle\int_{S_n} f d\sigma = \frac{2\Gamma(\beta_1)\cdots\Gamma(\beta_n)}{\Gamma(\beta_1 + \ldots + \beta_n)}}$ where ${\displaystyle \beta_j = \frac{\alpha_j + 1}{2}}$.\retTwo\par}
+
+\begin{myIndent}\exTwoP
+	Note that $\int_{\mathbb{R}^n} f(x)e^{-|x|^2}dx = \int_{\mathbb{R}^n} x_1^{\alpha_1}\cdots x_n^{\alpha_n}e^{-x_1^2 - \cdots - x_n^2}dx$.\retTwo
+
+	If we use the Fubini-Tonelli theorem, we can simplify the above expression a lot. But first we need to prove that $f(x)e^{-|x|^2}$ is integrable on $\mathbb{R}^n$.\retTwo
+
+	One way to do this is show that $|t|^\alpha e^{-t^2} \in L^1$ for all integers $\alpha \in \mathbb{N} \cup \{0\}$.
+	
+	\begin{myIndent}\exPPP
+		If $\alpha = 2\beta - 1$, meaning that $\beta = \frac{\alpha + 1}{2}$, then:
+		
+		{\centering $\int_{-\infty}^\infty |t|^\alpha e^{-t^2}dt = \int_{-\infty}^\infty |t|^{2\beta - 1} e^{-t^2}dt = 2\int_0^\infty t^{2\beta - 1}e^{-t^2}dt$.\retTwo\par}
+		
+		Now subsitute in $s = t^2$. Then our expression becomes $\frac{2}{2}\int_0^\infty t^{2\beta - 2}e^{-s}ds = \int_0^\infty s^{\beta - 1}e^{-s}ds$. When $\alpha \geq 0$, then $\beta \geq \frac{1}{2} > 0$. So $\int_0^\infty s^{\beta - 1}e^{-s}ds = \Gamma(\beta) < \infty$.\retTwo
+	\end{myIndent}
+
+	Then by exercise 2.51, since $x_1^{\alpha_1} e^{-x_1^2} \in L^1(m)$ and $x_2^{\alpha_2} e^{-x_2^2} \in L^1(m)$, we have that $\left(x_1^{\alpha_1} e^{-x_1^2}\right)\left(x_2^{\alpha_2} e^{-x_2^2}\right) = x_1^{\alpha_1}x_2^{\alpha_2}e^{-x_1^2 - x_2^2} \in L^1(m \times m)$. Additionally, since $x_3^{\alpha_3} e^{-x_3^2} \in L^1(m)$, we thus have that:
+	
+	{\centering $\left(x_1^{\alpha_1}x_2^{\alpha_2}e^{-x_1^2 - x_2^2}\right)\left(x_3^{\alpha_3} e^{-x_3^2}\right) = x_1^{\alpha_1}x_2^{\alpha_2}x_3^{\alpha_3}e^{-x_1^2 - x_2^2 - x_3^2} \in L^1((m \times m) \times m)$.
+	\newpage\par}
+	
+	Because $m$ is $\sigma$-finite, if we equate $(A \times B) \times C$ and $A \times B \times C$, we have that $(m \times m) \times m = m \times m \times m$. Thus $x_1^{\alpha_1}x_2^{\alpha_2}x_3^{\alpha_3}e^{-x_1^2 - x_2^2 - x_3^2} \in L^1(m \times m \times m)$.\retTwo
+	
+	Continuing likewise, we get that $f(x)e^{-|x|^2} \in L^1(m \times \ldots \times m) \subseteq L^1(m^n)$.\retTwo
+
+	With that, we can now apply Fubini's theorem to get that:
+
+	{\centering $\int_{\mathbb{R}^n} x_1^{\alpha_1}\cdots x_n^{\alpha_n}e^{-x_1^2 - \cdots - x_n^2}dx = \prod\limits_{j=1}^n \int_{-\infty}^\infty x_j^{\alpha_j}e^{-x_j^2}dx_j$ \retTwo\par}
+
+	If some $\alpha_j$ is odd, then for that $j$ we have $\int_{-\infty}^\infty x_j^{\alpha_j}e^{-x_j^2}dx_j = 0$. So the entire product cancels.\retTwo
+
+	Meanwhile, if $\alpha_j$ is even, then $x_j^{\alpha_j} = |x_j|^{\alpha_j}$ and so from before we know that $\int_{-\infty}^\infty x_j^{\alpha_j}e^{-x_j^2}dx_j = \Gamma(\beta_j)$ where $\beta_j = \frac{\alpha_j + 1}{2}$. Hence, if all $\alpha_j$ are even, then our\\ [2pt] original integral evaluates to $\Gamma(\beta_1)\cdots\Gamma(\beta_n)$.\retTwo
+	
+	Next, we integrate $f(x)e^{-|x|^2}$ with respect to polar coordinates. To start, note that if $x^\prime = (x^\prime_1, \ldots, x^\prime_n)$, then:
+
+	{\centering $f(rx^\prime) = r^{\alpha_1}(x^\prime_1)^{\alpha_1}\cdots r^{\alpha_n}(x^\prime_n)^{\alpha_n} = r^{\alpha_1 + \cdots + \alpha_n}(x^\prime_1)^{\alpha_1}\cdots (x^\prime_n)^{\alpha_n}$ \retTwo\par}
+
+	Therefore: 
+	
+	{\centering 
+	\begin{tabular}{l}
+		$\Gamma(\beta_1)\cdots\Gamma(\beta_n) = \int_{S^{n-1}} \int_0^\infty r^{\alpha_1 + \cdots + \alpha_n}(x^\prime_1)^{\alpha_1}\cdots (x^\prime_n)^{\alpha_n} r^{n-1} e^{-r^2}drd\sigma(x^\prime)$\\ [6pt]
+
+		$\phantom{\Gamma(\beta_1)\cdots\Gamma(\beta_n)} = \int_{S^{n-1}} (x^\prime_1)^{\alpha_1}\cdots (x^\prime_n)^{\alpha_n} d\sigma(x^\prime) \cdot \int_0^\infty r^{\alpha_1 + \cdots + \alpha_n} r^{n-1} e^{-r^2}dr$\\ [6pt]
+
+		$\phantom{\Gamma(\beta_1)\cdots\Gamma(\beta_n)} = \int_{S^{n-1}} f d\sigma \cdot \int_0^\infty r^{(\alpha_1 + 1) + \cdots + (\alpha_n + 1) - 1} e^{-r^2}dr$\\ [6pt]
+
+		$\phantom{\Gamma(\beta_1)\cdots\Gamma(\beta_n)} = \int_{S^{n-1}} f d\sigma \cdot \int_0^\infty r^{2(\beta_1 + \cdots + \beta_n) - 1} e^{-r^2}dr$\\ [6pt]
+
+		$\phantom{\Gamma(\beta_1)\cdots\Gamma(\beta_n)} = \frac{1}{2}\int_{S^{n-1}} f d\sigma \cdot \int_0^\infty r^{2(\beta_1 + \cdots + \beta_n) - 2} e^{-s}ds$\\ [6pt]
+
+		$\phantom{\Gamma(\beta_1)\cdots\Gamma(\beta_n)} = \frac{1}{2}\int_{S^{n-1}} f d\sigma \cdot \int_0^\infty s^{(\beta_1 + \cdots + \beta_n) - 1} e^{-s}ds$\\ [6pt]
+		
+		$\phantom{\Gamma(\beta_1)\cdots\Gamma(\beta_n)} = \frac{1}{2}\int_{S^{n-1}} f d\sigma \cdot \Gamma(\beta_1 + \ldots + \beta_n)$\\ [6pt]
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\blab{Exercise 2.64:} For which real values of $a$ and $b$ is $\left|x\right|^a \left|\log\left|x\right|\right|^b$ integrable over\\ $\{x \in \mathbb{R}^n : |x| < \frac{1}{2}\}$ or over $\{x \in \mathbb{R}^n : |x| > 2\}$.
+
+\begin{myIndent}\exTwoP
+	Let $B_1 = \{x \in \mathbb{R}^n : |x| < \frac{1}{2}\}$ and $B_2 = \{x \in \mathbb{R}^n : |x| > 2\}$. Note that\\ $|\log|x|| > \log(2)$ for all $x \in B_1 \cup B_2$. As a consequence, when $b > 0$, we\\ have that $|\log|x||^b > (\log(2))^b > 0$. Meanwhile, when $b \leq 0$, we have that\\ $0 \leq |\log|x||^b < (\log(2))^b$\retTwo
+
+	As a result, assuming $a > -n$ and $b > 0$, then:
+	
+	{\centering $|x|^a|\log|x||^b \geq |x|^a(\log(2))^b \geq |x|^{-n}(\log(2))^b$ for all $x \in B_1$.\retTwo\par}
+	
+	So by corollary 2.52, $|x|^a|\log|x||^b$ wouldn't be integrable on $B_1$.\retTwo
+
+	Similarly, assuming $a > -n$ and $b \leq 0$, we have:
+	
+	{\centering $|x|^a\left|\log|x|\right|^b \leq (\log(2))^b|x|^a$ for all $x \in B^1$.\newpage\par}
+
+	So by the same corollary, $|x|^a|\log|x||^b$ would be integrable on $B_1$.\retTwo
+
+	Next suppose $a \leq -n$. If $b > 0$. Then $|x|^a|\log|x||^b \geq |x|^a(\log(2))^b$. But\\ $\int_0^{\sfrac{1}{2}} r^a(\log(2))^br^{n-1}dr = (\log(2))^b\int_0^{\sfrac{1}{2}} r^{a + n-1}dr \leq (\log(2))^b\int_0^{\sfrac{1}{2}} r^{-1}dr = +\infty$.\\ So $|x|^a|\log|x||^b$ wouldn't be integrable on $B_1$.\retTwo
+
+	Fourthly, if $a \leq -n$ and $b \leq 0$ then:
+	
+	{\centering 
+	\begin{tabular}{l}
+		$\int_{\mathbb{R}^n} |x|^a|\log|x||^b dx = \sigma(S^{n-1})\int_{0}^{\sfrac{1}{2}}r^{a}|\log(r)|^b r^{n-1}dr$\\ [4pt]
+
+		$\phantom{\int_{\mathbb{R}^n} |x|^a|\log|x||^b dx} = \sigma(S^{n-1})\int_{0}^{\sfrac{1}{2}}r^{a+n-1}(\log(r^{-1}))^b dr$\\ [4pt]
+
+		$\phantom{\int_{\mathbb{R}^n} |x|^a|\log|x||^b dx} = \sigma(S^{n-1})\int_{2}^{\infty}y^{-a-n+1}(\log(y))^b \frac{1}{y^2}dy$ (substituting $r = \frac{1}{y^2}$)\\ [4pt]
+
+		$\phantom{\int_{\mathbb{R}^n} |x|^a|\log|x||^b dx} = \sigma(S^{n-1})\int_{2}^{\infty}y^{-a-n-1}(\log(y))^bdy$\\ [4pt]
+
+		$\phantom{\int_{\mathbb{R}^n} |x|^a|\log|x||^b dx} \leq (\log(2))^b\sigma(S^{n-1})\int_{2}^{\infty}y^{-a-n-1}dy$ (since $b \leq 0$)
+	\end{tabular}\retTwo\par}
+
+	But $-a \geq n$ and so $y^{-a-n-1} \geq y^{-1}$ for all $y > 2$. Hence, $\int_{2}^{\infty}y^{-a-n-1}dy \geq \int_{2}^{\infty}y^{-1}dy = \infty$.  Thus, if $a \leq -n$ and $b \leq 0$, then $|x|^a|\log|x||^b$ is not integrable on $B_1$.\retTwo
+
+	We conclude that $|x|^a|\log|x||^b$ is integrable on $B_1$ if and only if $a > -n$ and $b \leq 0$.\retTwo
+
+	Finally, note that:
+
+	{\centering 
+	\begin{tabular}{l}
+		$\int_{B_2}|x|^a|\log|x||^bdx = \sigma(S^{n-1})\int_2^\infty r^a (\log(r))^b r^{n-1}dr$\\ [4pt]
+
+		$\phantom{\int_{B_2}|x|^a|\log|x||^bdx} = \sigma(S^{n-1})\int_0^{\sfrac{1}{2}} y^{-a} (\log(y^{-1}))^b y^{-n+1}\frac{1}{y^2}dr$\\ [4pt]
+
+		$\phantom{\int_{B_2}|x|^a|\log|x||^bdx} = \sigma(S^{n-1})\int_0^{\sfrac{1}{2}} y^{-a} (\log(y^{-1}))^b y^{-n-1}dr$\\ [4pt]
+
+		$\phantom{\int_{B_2}|x|^a|\log|x||^bdx} = \sigma(S^{n-1})\int_0^{\sfrac{1}{2}} y^{-a - 2n} (\log(y^{-1}))^b y^{-n+2n-1}dr$\\ [4pt]
+
+		$\phantom{\int_{B_2}|x|^a|\log|x||^bdx} = \sigma(S^{n-1})\int_0^{\sfrac{1}{2}} y^{-a - 2n} (\log(y^{-1}))^b y^{n-1}dr$\\ [4pt]
+
+		$\phantom{\int_{B_2}|x|^a|\log|x||^bdx} = \int_{B_1} |x|^{-a-2n}|\log|x||^bdx$\\ [4pt]
+	\end{tabular}\retTwo\par}
+
+	So $|x|^a|\log|x||^b$ on $B_2$ if and only if $|x|^{-a-2n}|\log|x||^b$ on $B_1$, and that happens when $b \leq 0$ and $-a-2n > -n \Longrightarrow -a > n \Longrightarrow a < -n$.\retTwo
+
+	Thus, $|x|^a|\log|x||^b$ is integrable on $B_1$ if and only if $a > -n$ and $b \leq 0$. Also, $|x|^a|\log|x||^b$ is integrable on $B_2$ if and only if $a < -n$ and $b \leq 0$.
+\end{myIndent}
+
+
+
+
 
 
 
