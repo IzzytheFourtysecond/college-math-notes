@@ -187,6 +187,8 @@
 
 \newcommand{\qbinom}{\genfrac{[}{]}{0pt}{}}
 
+\newcommand{\divides}{\mathop{\mid}}
+
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
 \newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
@@ -2293,13 +2295,249 @@ Compute the rational function $P_{A;1,3}(x)$.
 
    Also, the number of types with $r_k = i$ is the equal to the number of weak-compositions of $n - k - i$ into $k$ parts. I.e. there are $\binom{n - k - i + k - 1}{k - 1} = \binom{n - i -1}{k - 1}$ many types with $r_k = i$.\retTwo
 
-   Finally, $0 \leq r_k \leq n - k$. So, we get that $a_{\bm{w}}(n) = \sum\limits_{i = 0}^{n - k}\binom{n - i -1}{k - 1}(|A| - 1)^{n - k - i}|A|^i$.\newpage
-
-   
-
-
-   
+   Finally, $0 \leq r_k \leq n - k$. So, we get that $a_{\bm{w}}(n) = \sum\limits_{i = 0}^{n - k}\binom{n - i -1}{k - 1}(|A| - 1)^{n - k - i}|A|^i$.\newpage   
 \end{myIndent}
+
+\mHeader{Homework 6:}
+
+\blab{(1)} Let $b_{n,k}$ be the number of set partitions of $[n]$ with $k$ blocks such that every block has an even (and positive) number of elements and let $b_n$ be the same, but with no restrictions on the number of blocks.
+\begin{enumerate}
+	\item[(a)] Find a formula for the EGF $B_k(x) = \sum\limits_{n \geq 0}b_{n,k}\frac{x^n}{n!}$.
+	
+	\begin{myIndent}\exOne
+		Define the structure $\alpha$ such that $\alpha(S) = 1$ if $|S|$ is positive and even, and $\alpha(S) = 0$ otherwise. That way, $\alpha$ selects sets which would be allowed to be blocks in a larger set partition. Also, we have:
+
+		{\centering\exTwo
+		\begin{tabular}{l}
+			$\sum\limits_{n \geq 0}|\alpha([n])|\frac{x^n}{n!} = \sum\limits_{n \geq 1}\frac{x^{2n}}{(2n)!} = \sum\limits_{n \geq 1}\frac{x^n}{2(n!)} + \sum\limits_{n \geq 1}\frac{(-x)^n}{2(n!)}$ \\ [14pt]
+
+			$\phantom{\sum\limits_{n \geq 0}|\alpha([n])|\frac{x^n}{n!} = \sum\limits_{n \geq 1}\frac{x^{2n}}{(2n)!}} = \frac{1}{2}(\sum\limits_{n \geq 0}\frac{x^n}{n!} + \sum\limits_{n \geq 0}\frac{(-x)^n}{n!}) - 2\frac{1}{2} = \frac{1}{2}(e^x + e^{-x}) - 1$
+		\end{tabular} \retTwo\par}
+
+		Next, $|\alpha^k(S)|$ will give the number of ordered set partitions of $S$ into $k$ blocks with even positive sizes. And importantly:
+		
+		{\centering\exTwo
+		\begin{tabular}{l}
+			$\sum\limits_{n \geq 0}|\alpha^k([n])|\frac{x^n}{n!} = \left(\sum\limits_{n \geq 0}|\alpha([n])|\frac{x^n}{n!}\right)^k = (\frac{1}{2}(e^x + e^{-x}) - 1)^k$
+		\end{tabular} \retTwo\par}
+		
+		Now $|\alpha^k([n])| = k! b_{n,k}$. So $B_k(x) = \frac{1}{k!}\sum\limits_{n \geq 0}|\alpha^k([n])|\frac{x^n}{n!} = \frac{1}{k!}(\frac{1}{2}(e^x + e^{-x}) - 1)^k$.\retTwo
+
+		I hate how unsimplified this is but I've spent an hour and a half unable to\\ simplify it further.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Find a formula for the EGF $B(x) = \sum\limits_{n \geq 0}b_{n}\frac{x^n}{n!}$.
+	
+	\begin{myIndent}\exOne
+		Keeping $\alpha$ as defined in part (a), $b_{n} = |e^{\alpha}([n])|$.\retTwo
+
+		Then as $\alpha(\emptyset) = 0$, we have that:
+
+		{\centering\begin{tabular}{l}
+			$\sum\limits_{n \geq 0}b_{n}\frac{x^n}{n!} = E_{e^\alpha}(x) = \exp(E_\alpha(x)) = \sum\limits_{k\geq 0} \frac{(\frac{1}{2}(e^x + e^{-x}) - 1)^k}{k!}$.
+		\end{tabular}\retTwo\par}
+		\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{(2)} For $n > 0$, let $h_n$ be the number of permuations of size $n$ that only have cycles of even length and define $h_0 = 1$. (go to next page\dots)\newpage
+
+\begin{enumerate}
+	\item[(a)] Find a structure $\alpha$ so that $h_n = |e^\alpha([n])|$
+	
+	\begin{myIndent}\exOne
+		Let $\alpha(S)$ equal the number of ways to cyclically order $S$ if $|S|$ is even and\\ positive and otherwise equal the emptyset.\retTwo
+
+		Then $|\alpha(S)| = (|S| - 1)!$ if $|S|$ is even and nonzero, and otherwise\\ $|\alpha(S)| = 0$. Hence, we can say that $|e^\alpha([n])|$ is well defined and equals\\ the number of permutations of $[n]$ with only even cycles.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Apply the derivative identity (Proposition 5.2.6) to get a recurrence relation for $h_n$. What initial conditions do you need to add to determine the sequence.
+	
+	\begin{myIndent}\exOne
+		Now define:
+		
+		{\centering\begin{tabular}{l}
+			$A(x) = \sum\limits_{n \geq 0}a_n \frac{x^n}{n!} \coloneq E_\alpha(x)$\\
+			$H(x) = \sum\limits_{n \geq 0} h_n\frac{x^n}{n!} \coloneq E_{e^\alpha}(x) = \exp(E_\alpha(x)) = \exp(A(x))$
+		\end{tabular}\retTwo\par}
+
+		Then note $A(x) = \sum\limits_{n \geq 0}|\alpha([n])|\frac{x^n}{n!} = \sum\limits_{n \geq 1}(2n - 1)!\frac{x^{2n}}{(2n)!} = \sum\limits_{n \geq 1}\frac{1}{2n}x^{2n}$.\retTwo
+
+		It follows that $A^\prime(x) = \sum\limits_{n \geq 1}x^{2n-1} = \sum\limits_{n \geq 0}\frac{1}{2}(1 - (-1)^{n})x^n$\retTwo
+
+		Then because $H^\prime(x) = H(x)A^\prime(x)$, we have $\frac{h_{n+1}}{n!} = \sum\limits_{i=0}^n \frac{h_i}{i!}\cdot\frac{1 - (-1)^{n-i}}{2}$ and\\ [-8pt] $\frac{h_{n+3}}{(n+2)!} = \sum\limits_{i=0}^{n+2} \frac{h_i}{i!}\cdot\frac{1 - (-1)^{n+2-i}}{2} = \sum\limits_{i=0}^{n+2} \frac{h_i}{i!}\cdot\frac{1 - (-1)^{n-i}}{2}$ for $n \geq 0$.\retTwo
+
+		So $\frac{h_{n+3}}{(n+2)!} - \frac{h_{n+1}}{n!} = \frac{h_{n+2}}{(n+2)!}\cdot\frac{1-1}{2} + \frac{h_{n+1}}{(n+1)!}\cdot\frac{1+1}{2} = \frac{h_{n+1}}{(n+1)!}$.\retTwo
+
+		After some rearranging, this becomes:
+		
+		{\centering $h_{n+3} = ((n+2)(n+1) + (n+2))h_{n+1} = (n+2)^2h_{n+1}$\retTwo\par}
+
+		And we can shift indices to say that for $n \geq 3$, we have $h_{n} = (n-1)^2 h_{n-2}$.\retTwo
+
+		And now we have the desired recursive formula. This is enough to recursively calculate out all $h_n$ since we know that $h_0 = 1$, $h_1 = 0$, and $h_2 = 1$. Also, quick inspection shows that this recurrence relation thus works for $n = 2$.\retTwo
+		
+		Also just for kicks and giggles, it's obvious $h_{2n+1} = 0$ for all $n$ and we can show by induction that $h_{2n} = ((2n-1)!!)^2$ when $n > 0$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{(3)} In this problem, we will consider labeled simple graphs such that every vertex has degree $2$ (i.e., is contained in exactly $2$ edges). For $n \geq 1$, let $h_n$ be the number of such graphs with vertex set $[n]$ and set $h_0 = 1$.
+\begin{myIndent}
+	You may use this fact without proving it: every graph satisfying this condition is a disjoint union of cycle graphs, each one consisting of $3$ or more vertices.
+\end{myIndent}
+\begin{enumerate}
+	\item[(a)] Find a structure $\alpha$ so that $h_n = |e^{\alpha}([n])|$.
+	
+	\begin{myIndent}\exOne
+		Let $\alpha(S)$ be the set of all cycles one can draw on a labeled graph whose vertex set is $S$ such that the cycle contains all vertices (if $S = \emptyset$, then define\\ $\alpha(S) = \emptyset$).
+		\retTwo
+
+		Then $|\alpha(S)| = 0$ when $|S| \leq 2$. Meanwhile, for $|S| > 2$, every cyclic ordering of $S$ will give an element of $\alpha(S)$ and each graph will be associated with two cyclic orderings (a reversed and nonreversed ordering). So $|\alpha(S)| = \frac{1}{2}(|S| - 1)!$ when $|S| \geq 3$.\retTwo
+
+		Hence, $|e^{\alpha}(S)|$ is well defined and by the provided fact, $h_n = |e^{\alpha}([n])|$.
+	\end{myIndent}
+
+	\item[(b)] Apply the derivative identity (Proposition 5.2.6) to get a recurrence relation for $h_n$. As in the previous problem, give relevant initial conditions.
+	
+	\begin{myIndent}\exOne
+		As in problem (2), define the F.P.S. $A(x)$ and $H(x)$, although this time using the $\alpha$ defined in this problem's part (a).\retTwo
+
+		Then note $A(x) = \sum\limits_{n \geq 0}|\alpha([n])|\frac{x^n}{n!} = \sum\limits_{n \geq 3}(n-1)!\frac{x^n}{2n!} = \sum\limits_{n \geq 3}\frac{x^n}{2n}$.\\ [-2pt]
+
+		In turn, $A^\prime(x) = \sum\limits_{n \geq 3}\frac{1}{2}x^{n-1} = \sum\limits_{n \geq 2}\frac{1}{2}x^n$.\\ [-6pt]
+
+		So, applying the $H^\prime(x) = H(x)A^\prime(x)$ identity, we get that $\frac{h_{n+1}}{n!} = \sum\limits_{i=0}^{n-2} \frac{h_i}{i!} \cdot \frac{1}{2}$\\ [-8pt] when $n \geq 2$.\\ [-8pt]
+
+		And thus $\frac{h_{n+2}}{(n+1)!} - \frac{h_{n+1}}{n!} = \sum\limits_{i=0}^{n-1} \frac{h_i}{i!} - \sum\limits_{i=0}^{n-2} \frac{h_i}{i!} = \frac{h_{n-1}}{2(n-1)!}$ Or in other words:
+
+		{\centering $h_n = (n-1)h_{n-1} + \frac{1}{2}(n-1)(n-2)h_{n-3}$ for $n \geq 4$.\retTwo\par}
+
+		I have no idea how'd you simplify that further. Luckily I'm not required to because this a recurrence relation.\retTwo
+
+		The relevant initial conditions are $h_0 = 1$, $h_1 = 0$, $h_2 = 0$, $h_3 = 1$. Also, based on those conditions we can recurrence relation also holds when $n = 3$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{(4)} Let $n \geq 2$ be an integer. We have $n$ married couples ($2n$ people in total).
+\begin{enumerate}
+	\item[(a)] How many ways can we have the $2n$ people stand in a line so that no person is standing next to their spouse? (go to next page\dots)
+	
+	\begin{myIndent}\exOne
+		There are $(2n)!$ possible arrangements. Also, for $i \in \{1, \ldots, n\}$ define $A_i$ to be the set of all arrangements with the $i$th couple next to each other. Thus, the quantity we want is:
+
+		{\centering $|A_1^{\comp} \cap \cdots \cap A_n^\comp| = (2n)! - |A_1 \cup \cdots \cup A_n|$ \retTwo\par}
+
+		By inclusion-exclusion formula, we thus need to calculate:
+
+		{\centering 
+		\begin{tabular}{l}
+			$(2n)! - \sum\limits_{j=1}^n(-1)^{j-1}\hspace{-1.8em}\sum\limits_{1 \leq i_1 < \cdots < i_j \leq n}\hspace{-1.8em}|A_{i_1} \cap \cdots \cap A_{i_j}|$
+		\end{tabular}\retTwo\par}
+
+		Now by symmetry, no matter which $j$-many couples we pick, we'll get the same size intersection. So since there are $\binom{n}{j}$ to choose $j$ couples, we can simplifying our expression to:\\ [-24pt]
+
+		{\centering $(2n)! + \sum\limits_{j=1}^n (-1)^j \binom{n}{j}|\bigcap\limits_{i=1}^j A_i|$ \retTwo\par}
+
+		And now to calculate $|\bigcap\limits_{i=1}^j A_i|$:
+		
+		\begin{myIndent}\exTwoP
+			\begin{itemize}
+				\item Each couple forced together will take up a block of $2$ spots, and in each block we have a choice of who will be on the lower index spot. This gives $2^j$ many choices.
+				\item If the blocks are indistinct, then we have the same number of ways to position those indistinct blocks in a line as there are weak compositions of $2n-2j$ with $j + 1$ parts. This gives:
+				
+				{\centering $\binom{2n - 2j + j + 1 - 1}{2n - 2j} = \binom{2n - j}{2n - 2j} = \frac{(2n-j)!}{(2n-2j)!j!}$ choices.\par}
+
+				\item We can order the blocks in $j!$ many ways.
+				\item There are $(2n-2j)$ many people left over who can get placed in any remaining spot. This gives $(2n-2j)!$ choices.
+			\end{itemize}
+
+			Thus we get that: $|\bigcap\limits_{i=1}^j A_i| = 2^j j!(2n-2j)!\frac{(2n-j)!}{(2n-2j)!j!} = 2^j(2n-j)!$
+		\end{myIndent}
+
+		So our final total is:
+
+		{\centering
+		\begin{tabular}{l}
+			$(2n)! + \sum\limits_{j=1}^n(-1)^j \binom{n}{j} 2^j(2n - j)!$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+	\item[(b)] Same as (a) but replace "line" by "circle".
+	
+	\begin{myIndent}\exOne
+		Imagining all the people sat around a table, I'm going to consider two arrangements equal if the former is just the latter rotated around several seats. Note that I'm assuming mirrored seating arrangements are not equivalent.\newpage
+
+		Now note that arranging people in a circle with a marked first position is\\ equivalent to arranging people on a line while now caring if a couple\\ occupies the first and last positions. To get the number of arrangement classes (i.e. where we don't have a marked first position in the circle), we can can count the number of arrangements with a marked first position and then divide by $2n$ (i.e. the number of ways to rotate an arrangement with a marked first position).\retTwo
+
+		Other than that the total number of equivalent arrangements is\\ [-4pt] $(2n - 1)!$, we proceed identically as in part (a) until we get to  calculating $|\bigcap\limits_{i=1}^j A_i|$.\retTwo
+
+		\begin{myIndent}\exTwoP
+			The arrangements of $n$ couples around a circle with a marked first\\ position will split into two cases.
+			\begin{enumerate}
+				\item[1.] There is no couple occupying the first and last position in the circle. Then the choices we make are identical to that of part (a). There are $2^j(2n -j)!$ arrangements in this case.
+				\item[2.] There is a couple occupying the first and last position in the circle.
+				\begin{myIndent}\exPPP
+					\begin{itemize}
+						\item Then we still have the $j$ couples we're forcing together occupying $j$ blocks. And in each block we can choose which person is first. This gives $2^j$ choices.
+						\item If the blocks are indistinct, then we have the same number of ways of positioning these indistinct blocks as there are weak compositions of $2n - 2j$ with $j$ parts. This gives:
+						
+						{\centering $\binom{2n - 2j + j - 1}{2n - 2j} = \binom{2n - j}{2n - 2j} = \frac{(2n-j-1)!}{(2n-2j)!(j-1)!}$ choices.\par}
+
+						\item We can assign the $j$ couples to the $j$ blocks in $j!$ many ways.
+						\item There are $(2n-2j)$ people left over who can be positioned however.
+					\end{itemize}
+
+					This gives $j!(2n-2j)!2^j\frac{(2n-j-1)!}{(2n-2j)!(j-1)!} = j2^j(2n-j-1)!$ many arrangements in this case.\retTwo
+				\end{myIndent}
+			\end{enumerate}
+
+			So our number of equivalence classes of arrangements is:
+
+			{\centering\begin{tabular}{l}
+				$|\bigcap\limits_{i=1}^j A_i| = \frac{1}{2n}\left( 2^j(2n-j)! + j2^j(2n-j-1)!\right)$ \\ [-8pt]
+				$\phantom{|\bigcap\limits_{i=1}^j A_i|} = \frac{1}{2n}\cdot 2^j \cdot (2n -j - 1)!\cdot(2n - j + j) = 2^j(2n-j-1)!$
+			\end{tabular} \retTwo\par}
+		\end{myIndent}
+
+		By inclusion-exclusion, our desired total is thus:
+
+		{\centering\begin{tabular}{l}
+			$(2n-1)! + \sum\limits_{j=1}^{n} (-1)^j\binom{n}{j}2^j(2n-j-1)!$
+		\end{tabular}\newpage\par}
+	\end{myIndent}
+\end{enumerate}
+
+\blab{(5)} Let $q$ be a prime power. For this problem, we consider polynomials with\\ coefficients in $\bm{F}_q$. A polynomial $f(x)$ of degree $d$ is \udefine{monic} if the coefficient of $x^d$ is $1$. It is \udefine{irreducible} if it is not possible to factor it as $g_1(x)g_2(x)$ where both $g_1, g_2$ have degree $< d$. For this problem, you can assume without proof that all polynomials satisfy \textit{unique factorization}: every monic polynomial can be written uniquely (up to rearranging the order of the factors) as a product of monic irreducible polynomials.
+
+\begin{enumerate}
+	\item[(a)] Let $N_n$ be the number of monic irreducible polynomials of degree $n$ with\\ coefficients in $\bm{F}_q$. Prove that:
+	
+	{\centering $(1 - qx)^{-1} = \prod\limits_{d \geq 1}(1 - x^d)^{-N_d}$ \retTwo\par}
+
+	\begin{myIndent}\exOne
+	
+		\retTwo
+	\end{myIndent}
+
+	\item[(b)] By taking the logarithmic derivative of (a), we get the following identity:
+	
+	{\centering $\frac{1}{1 -qx} = \sum\limits_{d \geq 1}N_d\frac{dx^{d-1}}{1 - x^d}$ \retTwo\par}
+
+	(The logarithmic derivative of $A$ is $A^\prime / A$ and takes products to sums. You don't need to derive this.) Use this to prove that $q^n = \sum\limits_{d \divides n}dN_d$.
+
+	\begin{myIndent}\exOne
+	
+		\retTwo
+	\end{myIndent}
+
+	\item[(c)] Use Möbius inversion to get a formula for $N_n$.
+	
+	\begin{myIndent}\exOne
+	
+		\retTwo
+	\end{myIndent}
+\end{enumerate}
+
 
 \end{document}
 

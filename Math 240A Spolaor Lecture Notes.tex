@@ -174,12 +174,16 @@
 \newcommand{\diam}{\mathrm{diam}}
 \newcommand{\myHS}{ \hspace{0.5em}}
 
+\newcommand{\df}{\mathrm{d}}
+
 \newcommand{\myId}{\mathrm{Id}}
 \newcommand{\myIm}{\mathrm{im}}
 \newcommand{\myObj}{\mathrm{Obj}}
 \newcommand{\myHom}{\mathrm{Hom}}
 \newcommand{\myEnd}{\mathrm{End}}
 \newcommand{\myAut}{\mathrm{Aut}}
+
+\newcommand{\loc}{\mathsf{loc}}
 
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
@@ -3335,12 +3339,223 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 	Thus, $|x|^a|\log|x||^b$ is integrable on $B_1$ if and only if $a > -n$ and $b \leq 0$. Also, $|x|^a|\log|x||^b$ is integrable on $B_2$ if and only if $a < -n$ and $b \leq 0$.
 \end{myIndent}
 
+\newpage
+\exOne
+\mHeader{Homework 6}
 
+\blab{Exercise 3.13}: Let $X = [0, 1]$, $\mathcal{M} = \mathcal{B}_{[0, 1]}$, $m = \text{Lebesgue measure}$ and $\mu = \text{ counting measure}$ on $\mathcal{M}$.
+\begin{enumerate}
+	\item[(a)] $m \ll \mu$ but $\df m \neq f\df\mu$ for any $f$.
+	
+	\begin{myIndent}\exTwoP
+		The only null set of $\mu$ is the emptyset and the empty set has measure zero in all measures. So all measures are absolutely continuous with respect to $\mu$.\retTwo
 
+		Next, assume such an $f$ as in the prompt exists. Then for all $x_0 \in X$, we have:
 
+		{\centering\begin{tabular}{l}
+			 $0 = m(\{x_0\}) = \int_{\{x_0\}}f\df\mu = \int f\chi_{\{x_0\}}\df \mu$\\
+			 $\phantom{0 = m(\{x_0\}) = \int_{\{x_0\}}f\df\mu} = \int f(x_0)\chi_{\{x_0\}}\df \mu = f(x_0)\mu(\{x_0\}) = f(x_0)$
+		\end{tabular} \retTwo\par}
 
+		The second line of those manipulations follows because $f(x_0)\chi_{\{x_0\}}$ is a simple function.\retTwo
 
+		So we've shown that we must have $f = 0$. In turn, for all $E \in \mathcal{M}$ we have that:
 
+		{\centering $\int_E f \df\mu = \sup\left\{\sum\limits_{x \in F}f(x) : F\subseteq E \text{ with } F \text{ finite}\right\} = 0$.\retTwo\par}
+
+		But if $E = X$, then $m(E) = 1 \neq 0$ (a contradiction).\retTwo
+	\end{myIndent}
+
+	\item[(b)] $\mu$ has no Lebesgue decomposition with respect to $m$.
+	
+	\begin{myIndent}\exTwoP
+		Suppose $\lambda$ and $\rho$ are signed measures with $\mu = \lambda + \rho$,\myHS $\lambda \perp m$, and $\rho \ll m$.\retTwo
+
+		Since $m(E) = 0$ for all at most finite sets $F$, we must have that $\rho(F) = 0$ as well. In turn for any finite set $F$ we know:
+
+		{\centering $\mu(F) = \lambda(F) + \rho(F) \Longrightarrow \mu(F) = \lambda(F) + 0 \Longrightarrow \mu(F) = \lambda(F)$ \retTwo\par}
+
+		In turn, we've shown that the only set $\lambda$ is null on is the emptyset, because given any nonempty set $E \in \mathcal{M}$, if we consider a finite nonempty subset of $E$, then $\lambda$ will be positive on that subset (and defined since all finite subsets are closed and thus in $\mathcal{B}_{[0, 1]} = \mathcal{M}$). So, $\lambda \perp m$ implies $m$ is null on $X$. But this contradicts that $m(X) = m([0, 1]) = 1$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Exercise 3.16:} Suppose that $\mu, \nu$ are measures on $(X, \mathcal{M})$ with $\nu \ll \mu$, and let $\lambda = \mu + \nu$. If $f = \frac{\df \nu}{ \df \lambda}$, then $0 \leq f < 1$ $\mu$-a.e. and $\frac{\df \nu}{ \df \mu} = \frac{f}{ (1 - f)}$.\\ [-8pt]
+
+\begin{myIndent}\exTwoP
+	To start, here's a quick sanity test:
+	\begin{myIndent}\exPPP
+		If $g = \chi_E$ where $E \in \mathcal{M}$, then:
+		
+		{\centering $\int g \df(\mu + \nu) = \mu + \nu(E) = \mu(E)  + \nu(E) = \int g \df \mu + \int g \df \nu$.\retTwo\par}
+
+		By linearity this extends to all simple functions. Then by M.C.T. this extends to all measurable nonnegative extended-real-valued functions.\newpage
+
+		Next note that if $g$ is $\mathbb{C}$-valued or $\overline{\mathbb{R}}$-valued, then by the previous reasoning:\\ $\int |g|\df(\mu + \nu)= \int |g|\df\mu + \int |g|\df\nu$. This tells us that $L^1(\mu + \nu) = L^1(\mu) \cap L^1(\nu)$.\\ So assuming $g \in L^1(\mu)$ and $g \in L^1(\nu)$, by splitting into positive / negative and\\ real / imaginary components, we can show that $\int g \df(\mu + \nu) = \int g \df\mu + \int g \df \nu$.\retTwo
+	\end{myIndent}
+
+	Now note $\nu(E) = \int_E f d\lambda$. This tells us that $\int_E f d\lambda$ is nonnegative for all $E \in \mathcal{M}$ since $\nu(E)$ is nonnegative for all $E \in \mathcal{M}$. In turn, this means that $f \geq 0$ $\lambda$-a.e.
+	
+	\begin{myIndent}\exPPP
+		Suppose $f < 0$ on a set $E$ with $\lambda(E) > 0$. Then define $A_1 = \{x \in E : f^-(x) \geq 1\}$ and $A_n = \{x \in E : \frac{1}{n-1} > f^-(x) \geq \frac{1}{n}\}$ for all $n > 1$.\\
+		
+		Then $\lambda(E) = \sum\limits_{n = 1}^\infty \lambda(A_n) > 0$. So there exists $A_n$ with $\lambda(A_n) > 0$.\\
+		
+		But then $\int_E f \df\lambda = -\int_E f^- \df\lambda \leq -\int_{A_n} f\df\lambda \leq \frac{-1}{n} \lambda(A_n) < 0$, thus contradicting that $\int_E f\df\lambda$ is nonnegative for all $E \in \mathcal{M}$.\retTwo
+	\end{myIndent}
+
+	Also observe that if $\mathcal{N}(\lambda)$, $\mathcal{N}(\mu)$, $\mathcal{N}(\nu)$ are the collections of null sets of $\lambda$, $\mu$, and $\nu$ respectively, then $\mathcal{N}(\lambda) = \mathcal{N}(\mu) \cap \mathcal{N}(\nu)$. Thus, we've shown that something being true $\lambda$-a.e. implies it is true $\mu$-a.e. and $\nu$-a.e.\retTwo
+
+	So $f \geq 0$ $\mu$-a.e. and this means that for any $E \in \mathcal{M}$:
+
+	{\centering\begin{tabular}{l}
+		$\int_E d\nu = \nu(E) = \int_E f\df\lambda = \int_E f \df\mu + \int_E f \df\nu \Longrightarrow \int_E(1 - f)\df\nu = \int_E f \df\mu \geq 0$
+	\end{tabular}\retTwo\par}
+
+	In turn, we have $1 - f \geq 0$\phantom{..}$\nu$-a.e. But from before we know $f \geq 0$\phantom{..}$\nu$-a.e. Hence, $0 \leq f \leq 1$ $\nu$-a.e.\retTwo
+
+	Then, let $A = \{x \in X : f(x) = 1\}$, $B = \{x \in X : f(x) > 1\}$. We can show:
+	\begin{itemize}
+		\item $0 = 0 \cdot \nu(A) = \int_A(1 - f)\df\nu = \int_A f\df \mu = \int_A \df\mu = \mu(E)$
+		\item $0 = \int_B (1-f)\df\nu = \int_B f \df \mu \geq \int_B 1\df\mu = \mu(B) \geq 0$\\
+	\end{itemize}
+
+	Hence $0 \leq f < 1$\phantom{..}$\mu$-a.e.\retTwo
+
+	Now by similar logic to how we showed $f \geq 0$ $\lambda$-a.e., we can show $\frac{\df \nu}{\df \mu} \geq 0$ $\mu$-a.e. Also, we must have $\int (1 - f)\frac{\df \nu}{\df \mu}\df \mu = \int f \df \mu$. And since the integrands are all nonnegative (after redefining on a $\mu$-null set), we thus know: $(1 - f)\frac{\df \nu}{\df \mu} = f$\phantom{..}$\mu$-a.e.\retTwo
+
+	Therefore, $\frac{\df \nu}{\df \mu}$ is given by the equivalence class of $\frac{f}{1 - f}$ with respect to $\mu$.\retTwo
+\end{myIndent}
+
+\blab{Exercise 3.17:} Let $(X, \mathcal{M}, \mu)$ be a $\sigma$-finite measure space, $\mathcal{N}$ a sub-$\sigma$-algebra of $\mathcal{M}$,\\ and $\nu = \mu|_{\mathcal{N}}$. If $f \in L^1(\mu)$, there exists $g \in L^1(\nu)$ (thus $g$ is $\mathcal{N}$-measurable) such that\\ $\int_E f\df\mu = \int_E g \df\nu$ for all $E \in \mathcal{N}$; if $g^\prime$ is another such function then $g = g^\prime$ $\nu$-a.e.\\ (In probability theory, $g$ is called the \udefine{conditional expectation} of $f$ on $\mathcal{N}$.)\\ [-8pt]
+
+\begin{myIndent}\exTwoP
+	If $f \in L^1(\mu)$, then we know that $\rho(E) = \int_E f \df \mu$ is a finite signed measure on $\mathcal{M}$. Also set $\lambda(E) = \rho(E)|_{\mathcal{N}}$. Importantly, $\lambda(X) = \rho(X) < \infty$. So $\lambda$ is finite.\newpage
+
+	Also if we know $\nu$ is $\sigma$-finite, then we know there exists a Radon-Nikodym derivative of $\lambda$ with respect to $\nu$. So we define $g = \frac{\df \lambda}{\df \nu}$. Then $g \in L^1(\nu)$ and for all $E \in \mathcal{N}$ we have $\int_E f\df\mu = \lambda(E) = \int_E g\df\nu$. Additionally, the Lebesgue-Radon-Nikodym guarentees that given another function $g^\prime$ satisfying this, $g^\prime = g$\phantom{..}$\nu$-a.e.\retTwo
+	
+	\begin{myIndent}\exPPP
+		But you see, here Folland is a dumb idiot who doesn't proof-read his own writing. And hell there's nothing in the book's errata either to address this.\retTwo
+
+		Firstly, we can't prove that $\nu$ is $\sigma$-finite based on the information given.
+		\begin{myIndent}
+			Let $\mathcal{N} = \{X, \emptyset\}$ be our sub-$\sigma$-algebra of $\mathcal{M}$. If $\mu$ is finite, then we\\ still have that $\nu$ is finite. But if $\mu(X) = \infty$, then $\nu(X) = \infty$ and there is no\\ sequence of sets of finite measure in $\mathcal{N}$ whose union is $X$. Hence $\nu$ is\\ not $\sigma$-finite.\retTwo
+		\end{myIndent}
+
+		Secondly, if don't restrict $\nu$ in some way (such as demanding it's $\sigma$-finite), then the prompt is false.
+		\begin{myIndent}
+			Keeping $\mathcal{N} = \{X, \emptyset\}$, note that the only $\mathcal{N}$-measurable functions are constant functions. After all, if $x$ and $y$ are two distinct points in $X$ and $h(x) = a$ and\\ $h(y) = b \neq a$, then $\emptyset \subset \{y\} \subseteq h^{-1}(\{b\}) \subseteq X - \{x\} \subset X$. Hence, $h$ is not $\mathcal{N}$-measurable since $h^{-1}(\{b\}) \notin \mathcal{N}$.\retTwo
+
+			As a consequence, the only function $g \in L^1(\nu)$ is $g = 0$. Thus we must have $\int g d\nu = 0$. However, this gives a contradiction since it's possible $\int f d\mu \neq 0$.\retTwo
+		\end{myIndent}
+
+		Finally, I think Folland overlooked this issue because he was blinded by the\\ probability application. After all in probability $\nu$ will be finite because $\mu$ is finite\\ and then we don't have any issues.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\blab{Exercise 3.22} If $f \in L^1(\mathbb{R}^n)$, $f \neq 0$, there exists $C, R > 0$ such that $Hf(x) \geq C|x|^{-n}$ for $|x| > R$. Hence $m(\{x : Hf(x) > \alpha\}) \geq \frac{C^\prime}{\alpha}$ when $\alpha$ is small, so the estimate in the maximal theorem is essentially sharp.
+
+\begin{myIndent}\exTwoP
+	I'm going to asssume Folland means $f \neq 0$ a.e. cause otherwise the problem doesn't make sense. Plus, I really should be getting use to thinking about equivalence classes of functions.\retTwo
+
+	Since $f \neq 0$ a.e., there exists $R > 1$ such that $\int_{B(R, 0)} |f(y)|dy > c > 0$ for some $c$ in $\mathbb{R}^n$. Then when $|x| > R$, because $B(R, 0) \subseteq B(2|x|, x)$, we have:\\ [-8pt]
+
+	{\centering\begin{tabular}{l}
+		$Hf(x) \geq \frac{1}{m(B(2|x|, x))}\int_{B(2|x|, x)}|f(y)|\df y$\\ [12pt]
+		$\phantom{Hf(x)} \geq \frac{1}{m(B(2|x|, x))}\int_{B(R, 0)}|f(y)|\df y$\\ [12pt]
+		$\phantom{Hf(x)} = \frac{1}{2^n|x|^n m(B(1, 0))}\int_{B(R, 0)}|f(y)|\df y > \frac{c}{2^n m(B(1, 0))}|x|^{-n}$
+	\end{tabular}\retTwo\par}
+
+	Setting $C = \frac{c}{2^n m(B(1, 0))}$, we've thus shown the first claim.\newpage
+
+	Next, consider when $\alpha < \frac{C}{2R^n} < \frac{C}{R^n}$. Then since $R > 1$, we know that $\sqrt[n]{\sfrac{C}{\alpha}} > R$. So for $R < |x| < \sqrt[n]{\sfrac{C}{\alpha}}$, we have:
+	
+	{\centering $Hf(x) > C|x|^{-n} > C\left(\sqrt[n]{\sfrac{C}{\alpha}}\right)^{-n} = C\frac{\alpha}{C} = \alpha$ \retTwo\par}
+
+	In turn:
+	
+	{\centering\begin{tabular}{l}
+		$m(\{x: Hf(x) > \alpha\}) \geq m(R < |x| < \sqrt[n]{\sfrac{C}{\alpha}})$\\
+		$\phantom{m(\{x: Hf(x) > \alpha\})} = m(\sqrt[n]{\sfrac{C}{\alpha}}, 0) - m(R, 0) = (\frac{C}{\alpha} - R^n)m(B(1,0))$
+	\end{tabular}\retTwo\par}
+	
+	Now $\alpha < \frac{C}{2R^n} \Longrightarrow R^n < \frac{C}{2\alpha}$. So finally we have that:
+
+	{\centering $(\frac{C}{\alpha} - R^n)m(B(1,0)) \geq (\frac{C}{\alpha} - \frac{C}{2\alpha})m(B(1,0)) = \frac{1}{\alpha}\frac{Cm(B(1,0))}{2}$ \retTwo\par}
+
+	Set $C^\prime = \frac{Cm(B(1,0))}{2}$ and we are done.\retTwo
+\end{myIndent}
+
+\blab{Exercise 3.23:} A useful variant of the Hardy-Littlewood maximal function is:
+
+{\centering $H^*f(x) = \sup\left\{\frac{1}{m(B)}\int_B |f(y)|dy : B \text{ is a ball and } x \in B\right\}$ \retTwo\par}
+
+Show that $Hf \leq H^*f \leq 2^n Hf$.
+
+\begin{myIndent}\exTwoP
+	It's trivial that $Hf(x) \leq H^*f(x)$ because all the balls $Hf(x)$ is taking a sup over are included in the set of balls that $H^*f(x)$ is taking a sup over.\retTwo
+
+	Meanwhile, given any ball $B(R, z)$ containing $x$, we know $B(R, z)\subseteq B(2R, x)$, and thus:
+
+	{\centering\begin{tabular}{l}
+		$ \frac{1}{m(B(R, z))}\int_{B(R, z)}|f(y)|\df y = \frac{1}{m(B(R, x))}\int_{B(R, z)}|f(y)|\df y $\\ [8pt]
+		$\phantom{ \frac{1}{m(B(R, z))}\int_{B(R, z)}|f(y)|\df y} \leq \frac{1}{m(B(R, x))}\int_{B(2R, x)}|f(y)|\df y $
+		\\ [8pt]
+		$\phantom{ \frac{1}{m(B(R, z))}\int_{B(R, z)}|f(y)|\df y} = \frac{2^n}{m(B(2R, x))}\int_{B(2R, x)}|f(y)|\df y \leq 2^n Hf(x)$
+	\end{tabular}\retTwo\par}
+
+	So $H^*f(x) \leq 2^nHf(x)$.\retTwo
+\end{myIndent}
+
+\blab{Exercise 3.25:} If $E$ is a Borel set in $\mathbb{R}^n$, the \udefine{density} $D_E(x)$ of $E$ at $x$ is defined (whenever the limit exists) as:
+
+{\centering $D_E(x) = \lim\limits_{r \rightarrow 0} \frac{m(E \cap B(r, x))}{m(B(r, x))}$\par}
+
+\begin{enumerate}
+	\item[(a)] Show that $D_E(x) = 1$ for a.e. $x \in E$ and $D_E(x)$ for a.e. $x \in E^\comp$.
+	
+	\begin{myIndent}\exTwoP
+		Define the measure $\nu(F) = m(E \cap F)$. Importantly, $\nu$ is still $\sigma$-finite and also $m(F) = 0 \Longrightarrow m(E \cap F) = \nu(F) = 0$, meaning $\nu \ll m$. Thus by the Radon-Nikodym Theorem (and the fact that $\nu$ is positive), there exists $f \in L^+$ such that $\df\nu = f \df m$.\retTwo
+
+		We also have $f \in L^1_{\loc}$. After all, if $K$ is a bounded measurable set, then\\ $0 \leq \int_K f \df m = \nu(K) < m(K) < \infty$. 
+		\newpage
+
+		Thus, by a result in the book $\nu$ is regular, and in turn by theorem 3.22, we know that:
+		
+		{\centering $\lim\limits_{r \rightarrow 0}\frac{\nu(B(r,x))}{m(B(r,x))} = \lim\limits_{r \rightarrow 0}\frac{m(E \cap B(r,x))}{m(B(r,x))} = f(x)$ for $m$-a.e. $x$.\retTwo\par}
+
+		As for what $f(x)$ is, note:
+		\begin{itemize}
+			\item $\int_{E^\comp}f\df m = \nu(E^\comp) = 0$. Thus $f = 0$ m-a.e. on $E^\comp$.
+			\item Let $\{V_n\}_n$ be a sequence of subsets of $E$ with finite measure such that\\ $E = \bigcup_{n \in \mathbb{N}} V_n$. Then for any measurable $F \subseteq V_n$, we can say that:\\ [-8pt]
+			
+			{\centering $\int_{F}|f - 1|\df m = \int_{F}f \df m - \int_{F}\df m = \nu(V_n) - m(V_n) = 0$.\\ [4pt]\par}
+
+			This tells us that $f - 1 = 0$ $m$-a.e. on $V_n$. So $f = 1$ $m$-a.e. on $V_n$. Then repeating this for all $V_n$ tells us that $f = 1$ $m$-a.e. on $E$.
+		\end{itemize}
+		\retTwo
+	\end{myIndent}
+
+	\item[(b)] Find examples of $E$ and $x$ such that $D_E(x)$ is a given number $\alpha \in (0, 1)$, or such that $D_E(x)$ does not exist.
+	
+	\begin{myIndent}\exTwoP
+		
+		\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Exercise 3.26:} If $\lambda$ and $\mu$ are positive, mutually singular Borel measures on $\mathbb{R}^n$ and $\lambda + \mu$ is regular, then so are $\lambda$ and $\mu$.
+
+\begin{myIndent}\exTwoP
+	Let $K$ be a compact subset of $E \in \mathcal{B}_{\mathbb{R}^n}$. Thus we know that $\lambda(K) + \mu(K) < \infty$. And because $0 \leq \lambda(K)$ and $0 \leq \mu(K)$, we thus must have that:
+	
+	{\centering $\lambda(K), \mu(K) \leq \lambda(K) + \mu(K) <\infty$.\retTwo\par}
+
+	Thus the requirement of regularity is satisfied. Technically this is enough because the first requirement implies the second according to the textbook. However, we haven't proven that yet. So I'm going to try and prove the second requirement.\retTwo
+
+	Let $E, F \in \mathcal{B}_{\mathbb{R}^n}$ be such that $E \cap F = \emptyset$, $E \cup F = \mathbb{R}^n$, $\lambda(E) = 0$ and $\mu(E) = 0$.\retTwo
+
+	\dots actually nevermind I don't have time to prove this before my extended deadline runs out\dots
+\end{myIndent}
 
 
 

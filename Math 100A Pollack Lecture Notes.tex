@@ -191,6 +191,8 @@
 \DeclareMathOperator{\card}{card}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\tr}{tr}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -1735,6 +1737,94 @@ If $R$ is a group and $\varphi_1: R \longrightarrow G$ and $\varphi_2: R \longri
 		\end{myIndent}
 	\end{enumerate}
 \end{enumerate}
+
+\mySepTwo
+
+\mHeader{Homework 8:} 
+
+\blab{Problem 1}: Suppose $X, Y \in M_n(\mathbb{C})$ are $n\times n$ matrices and $S \in \mathrm{GL}_n(\mathbb{C})$.
+
+\begin{enumerate}
+	\item[(a)] Prove that $\tr(XY) = \tr(YX)$.
+	\begin{myIndent}\exOne
+		Proof: $\tr(XY) = \sum\limits_{i=1}^{n}\left(\sum\limits_{j=1}^n x_{i,j}y_{j,i}\right) = \sum\limits_{j=1}^{n}\left(\sum\limits_{i=1}^n y_{j,i}x_{i,j}\right) = \tr(YX)$\retTwo 
+
+	\end{myIndent}
+	\item[(b)] Deduce that $\tr(SXS^{-1}) = \tr(X)$. 
+	\begin{myIndent}\exOne
+		Because of part (a), we have that $\tr(SXS^{-1}) = \tr((SX)S^{-1}) = \tr(S^{-1}(SX)) = \tr(S^{-1}SX) = \tr(X)$.
+		\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Problem 2}: Suppose $G$ Is a finite group, $V$ is a finite dimensional $\mathbb{C}$ vector space, and $\rho: G \longrightarrow \mathrm{GL}(V)$ is a representation. For $v \in V$, define:
+
+{\centering $\mathbb{C}[G](v) = \Span_{g \in G}\{g \cdot v\} \coloneq \left\{\sum\limits_{g \in G}a_g \rho(g)(v) \colon a_g \in \mathbb{C}\right\}$ \retTwo\par}
+
+Prove that $V$ is irreducible iff $\mathbb{C}[G](v) = V$ for all $v \neq 0$ in $V$.\newpage
+
+
+\begin{myIndent}\exOne
+	($\Longleftarrow$)\\
+	Suppose $W$ is a nontrivial (i.e. $\neq \{0\}$) $G$-invariant subspace of $V$. Then pick $v \neq 0$ in $W$. Since $W$ is $G$-invariant, we know that $\rho(g)(y) \in W$ for all $g \in G$. Since $W$ is a subspace, it follows that $\mathbb{C}[G](v) \subseteq W \subseteq V$. But by hypothesis, $\mathbb{C}[G](v) = V$. So the only $G$-invariant subspaces of $V$ are $V$ and $\{0\}$.\retTwo
+
+	($\Longrightarrow$)\\
+	Fix $v$ in $V$. We claim that $\mathbb{C}[G](v)$ is a $G$-invariant subspace of $V$.
+	\begin{myIndent}\exTwoP
+		If $v = 0$, then because $\rho(g)(v) = 0$ for all $g \in G$, we have that\\ $\Span_{g \in G}\{g \cdot v\} = \{0\}$ and that is trivially irreducible.\retTwo
+
+		If $v \neq 0$, then let $g^\prime \in G$ and $v^\prime \in \mathbb{C}[G](v) = \Span_{g \in G}\{g \cdot v\}$, meaning there\\ [2pt] exists $a_g \in \mathbb{C}$ for all $g \in G$ such that $v^\prime = \sum\limits_{g \in G} a_g \rho(g)(v)$. But note:
+
+		{\centering
+		\begin{tabular}{l}
+			$\rho(g^\prime)(v^\prime) = \rho(g^\prime)(\sum\limits_{g \in G} a_g \rho(g)(v)) = \sum\limits_{g \in G} a_g \rho(g^\prime)(\rho(g)(v))$\\ [14pt]
+
+			$\phantom{\rho(g^\prime)(v^\prime) = \rho(g^\prime)(\sum\limits_{g \in G} a_g \rho(g)(v))} = \sum\limits_{g \in G} a_g \rho(g^\prime g)(v) = \sum\limits_{h \in G} a_{(g^\prime)^{-1}h}\rho(h)(v)$
+		\end{tabular} \retTwo\par}
+
+		So $\rho(g^\prime)(v^\prime) \in \Span_{g \in G}\{g \cdot v\} = \mathbb{C}[G](v)$. And since $v^\prime$ and $g^\prime$ were arbitrary,\\ [2pt] we've shown that $\mathbb{C}[G](v)$ is $G$-invariant.\retTwo
+	\end{myIndent}
+
+	It follows that if $V$ is irreducible, we must that $\mathbb{C}[G](v) = \{0\}$ or $V$ for all $v \in V$. If $v \neq 0$, then the former cannot be the case since $v = 1\rho(1_G)(v) \in \mathbb{C}[G](v)$. So, $\mathbb{C}[G](v) = V$ for all $v \in V - \{0\}$.\retTwo
+\end{myIndent}
+
+\blab{Problem 3}: The standard representation of the symmetric group $S_n$ is defined as follows: Let $S_n$ act on $\mathbb{C}^n$ by permutations, $\sigma(v_1, \ldots, v_n) = (v_{\sigma^{-1}(1)}, \ldots, v_{\sigma^{-1}(n)})$. Set $W \subseteq \mathbb{C}^n$ to be the subspace of elements whose coordinates sum to $0$ so that $W$ is $n-1$ dimensional. We let $S_n$ act on $W$ by the restriction of the $S_n$ action on $\mathbb{C}^n$.\retTwo
+
+Prove that this is irreducible.
+
+\begin{myIndent}\exOne
+	To start, we know that $W$ is $S_n$-invariant because if $v_1 + \ldots + v_n = 0$, then so does $v_{\sigma^{-1}(1)} + \ldots + v_{\sigma^{-1}(n)} = 0$. In turn, this means that $\mathbb{C}[S_n](v) \subseteq W$ for all $v \in W$ since $W$ is a subspace and $\sigma \cdot v \in W$ for all $\sigma \in S_n$.\retTwo
+
+	Suppose $w = (w_1, \ldots, w_n) \in W$ is not zero. Then there exists $i,j \in \{1, \ldots, n\}$ with $i \neq j$ so that $w_i \neq w_j$. Let $\tau$ be the permutation of $S_n$ that exchanges $i$ and $j$ and leaves the rest of the indices fixed. Then letting $\alpha = (w_j - w_i) \neq 0$ and $e_k$ be the $k$th standard basis vector of $\mathbb{C}^n$, we have:
+	
+	{\centering $(\tau \cdot w) - w = (0, \ldots, w_j - w_i, \ldots, w_i - w_j, \ldots, 0) = \alpha(e_i - e_j)$.\retTwo\par}
+
+	Now $e_i - e_j \in W$ and so similar to before, we know that $\mathbb{C}[S_n](e_i - e_j) \subseteq W$. At the same time, we know that $W$ is spanned by the set of vectors $\{e_1 - e_k \colon 2 \leq k \leq n\}$. If $k \neq j$, then letting $\sigma \in S_n$ have the cycles $(j, k)$ and $(1, i)$, we have that $\sigma \cdot (e_i - e_j) = e_1 - e_k$. Meanwhile, if $i = k$, then letting $\sigma \in S_n$ have the cycle the $(j, i, 1)$ we then have that $\sigma \cdot (e_i - e_j) = e_1 - e_i$.\newpage
+
+	So $W = \Span\{e_1 - e_k \colon 2 \leq k \leq n\} \subseteq \Span_{g \in G}\{g \cdot (e_i - e_j)\} \subseteq W$. Hence, $\mathbb{C}[S_n](e_i - e_j) = W$.\retTwo
+
+	Now, note that for $v \in \mathbb{C}[S_n](e_i - e_j) = W$:
+
+	{\center
+	\begin{tabular}{l}
+		$v = \sum\limits_{\sigma \in S_n} a_{\sigma}(\sigma \cdot (e_i - e_j)) = \sum\limits_{\sigma \in S_n} \frac{a_{\sigma}}{\alpha}(\sigma \cdot (\tau \cdot w - w))$\\ [14pt]
+
+		$\phantom{v = \sum\limits_{\sigma \in S_n} a_{\sigma}(\sigma \cdot (e_i - e_j))} = \sum\limits_{\sigma \in S_n} \frac{a_{\sigma}}{\alpha}(\sigma \cdot (\tau \cdot w) - \sigma \cdot w)$\\ [14pt]
+
+		$\phantom{v = \sum\limits_{\sigma \in S_n} a_{\sigma}(\sigma \cdot (e_i - e_j))} = \sum\limits_{\sigma \in S_n} \frac{a_{\sigma}}{\alpha}(\sigma\tau \cdot w - \sigma \cdot w)$\\ [14pt]
+
+		$\phantom{v = \sum\limits_{\sigma \in S_n} a_{\sigma}(\sigma \cdot (e_i - e_j))} = \sum\limits_{\sigma \in S_n} \left(\frac{a_{(\sigma\tau)}}{\alpha} - \frac{a_\sigma}{\alpha}\right)\sigma \cdot w \in \Span_{g \in G}\{g \cdot w\} = \mathbb{C}[S_n](w)$
+	\end{tabular} \retTwo\par}
+
+	Hence $W \subseteq \mathbb{C}[S_n](w)$. And from before we know that $\mathbb{C}[S_n](w) \subseteq W$.\\ So $\mathbb{C}[S_n](w) = W$. By the conclusion of problem 2, this shows that $W$ is irreducible.
+
+
+
+
+
+
+\end{myIndent}
+
 
 
 \newpage

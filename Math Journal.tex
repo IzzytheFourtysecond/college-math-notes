@@ -182,7 +182,12 @@
 \newcommand{\myEnd}{\mathrm{End}}
 \newcommand{\myAut}{\mathrm{Aut}}
 
+\newcommand{\df}{\mathrm{d}}
+\newcommand{\Df}{\mathrm{D}}
+
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+\newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -1893,12 +1898,144 @@ Also note that $x^3 = 1$, $y^2 = 1$, and $yx = x^2 y$.\retTwo
    \end{tabular}\retTwo\par}
 \end{myIndent}
 
-\mySepTwo
-
 \hOne
 
+\mySepTwo
 
+\dispDate{12/14/2024}
 
+My goal for while I'm flying home and can't work on grading is to go prove the\\ following extra exercise of homework 2 in my math 188 class.\retTwo
+
+Let $V = \{F(x) \in \mathbb{C}[[x]] : F(0) = 0\}$ and $W = \{F(x) \in \mathbb{C}[[x]] : G(0) = 1\}$.
+
+\begin{enumerate}
+	\item[(a)] Given $F(x) \in V$, show that $\bm{E}(F(x)) = \sum_{n \geq 0} \frac{F(x)^n}{n!}$ is the \textit{unique} formal power\\ [2pt] series $G(x) \in W$ such that $\Df G(x) = \Df F(x)\cdot G(x)$. This defines a function\\ [2pt] $\bm{E}: V \longrightarrow W$. 
+	\begin{myIndent}
+		Note that we use the convention $F(x)^0 = 1$ even if $F(x) = 0$.\newpage
+
+		\exTwo
+		Firstly, note that we have $G(x) \coloneq \bm{E}(F(x)) = \exp(F(x))$ where\\ $\exp(x) \coloneq \sum_{n \geq 0}\frac{x^n}{n!}$. Also, you can check $\exp(x)$ is it's own derivative.\\ Thus by chain rule:
+
+		{\centering $G(x) = \Df F(x) \cdot \Df (\exp)(F(x)) = \Df F(x) \cdot \exp(F(x)) = \Df F(x) \cdot G(x)$ \retTwo\par}
+
+		Next, suppose $H(x)$ is another formal power series in $W$ satisfying that\\ $\Df H(x) = \Df F(x) \cdot H(x)$. Note that since $H(0) \neq 0 \neq G(0)$, we can write that\\ $\frac{\Df H(x)}{H(x)} = \Df F(x) = \frac{\Df G(x)}{G(x)}$. Therefore, we get that:
+
+		{\centering 
+		\begin{tabular}{l l}
+			\redPen{($*$)} & $\Df H(x) \cdot G(x) = \Df G(x) = H(x)$
+		\end{tabular} \retTwo\par}
+
+		Let $H(x) = \sum_{n \geq 0}h_nx^n$ and $G(x) = \sum_{n \geq 0}g_nx^n$. Since we assumed that\\ $H(x), G(x) \in W$, we know that $h_0 = g_0 = 1$. Then, proceeding by induction (assuming that $h_i = g_i$ for all $0 \leq i \leq n$), when we take the $n$th. coefficient of \redPen{($*$)} we get:
+
+		{\centering\exP\begin{tabular}{l}
+			$(n+1)h_{n+1} + \sum\limits_{i=0}^{n-1}(i+1)h_{i+1}g_{n-i}$\\
+			$\phantom{aaaaaaaaaa} = \sum\limits_{i=0}^n (i+1)h_{i+1}g_{n-i} = \sum\limits_{i = 0}^n (i+1)g_{i+1}h_{n-i}$\\
+			$\phantom{\phantom{aaaaaaaaaa} = \sum\limits_{i=0}^n (i+1)h_{i+1}g_{n-i}} = (n+1)g_{n+1} + \sum\limits_{i=0}^{n-1}(i+1)g_{i+1}h_{n-i}$
+		\end{tabular}\retTwo\par}
+
+		But by induction we have $\sum\limits_{i = 0}^{n-1}(i+1)g_{i+1}h_{n-i} = \sum\limits_{i=1}^{n-1}(i+1)h_{i+1}g_{n-i}$.\retTwo
+
+		So subtracting out the sum from $i = 0$ to $n - 1$ and then dividing by $n + 1$ which is crucially nonzero, we then have that $h_{n+1} = g_{n+1}$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Given $G(x) \in W$, show that there is a \textit{unique} formal power series $F(x) \in V$ such that $\Df F(x) = \frac{\Df G(x)}{G(x)}$. This let's us define the function $\bm{L}: W \longrightarrow V$ by $\bm{L}(G(x)) = F(x)$.
+	
+	\begin{myIndent}\exTwo
+		Since $G(0) = 1$, we know that $G(x)$ is invertible. So there is a unique formal power series $A(x) = \sum_{n \geq 0}a_n x^n$ such that $A(x) = \frac{\Df G(x)}{G(x)}$.\retTwo
+
+		Then if $F(x) = \sum_{n \geq 0}f_nx^n$ satisfies that $\Df F(x) = \frac{\Df G(x)}{G(x)}$, then we can solve that $f_n = \frac{a_{n-1}}{n}$. This shows that $f_n$ is uniquely determined for all $n \geq 1$. Also, since we are forcing $F(0) = 0$, we know that $f_0 = 0$. So $F(x)$ is a unique power series.\retTwo
+
+		From this it's also hopefully clear to see how one can solve for $F(x)$ in order to show that $F(x)$ exists.\newpage
+	\end{myIndent}
+
+	\item[(c)] Show that $\bm{E}$ and $\bm{L}$ are inverses of each other.
+	
+	\begin{myIndent}\exTwo
+		Firstly, we'll show $\bm{L}(\bm{E}(F(x))) = F(x)$ for all $F(x) \in V$.
+		\begin{myIndent}\exTwoP
+			Let $F(x) \in V$, $G(x) = \bm{E}(F(x))$, and $H(x) = \bm{L}(G(x))$. Then we have that:
+
+			{\centering $\Df H(x) = \frac{\Df G(x)}{G(x)} = \frac{\Df F(x) \cdot G(x)}{G(x)} = \Df F(x)$ \retTwo\par}
+
+			This proves that $[x^n]H(x) = [x^n]F(x)$ for all $n \geq 1$. And since both $H(x), F(x) \in V$, we know that $H(0) = F(0).$ so $H(x) = F(x)$.\retTwo
+		\end{myIndent}
+
+		Secondly, we'll show $\bm{E}(\bm{L}(F(x))) = F(x)$ for all $F(x) \in W$.
+		\begin{myIndent}\exTwoP
+			Let $F(x) \in V$, $G(x) = \bm{L}(F(x))$, and $H(x) = \bm{E}(G(x))$. Then we have that:
+
+			{\centering $\Df H(x) = \Df G(x) \cdot H(x) = \frac{\Df F(x)}{F(x)} \cdot H(x)$ \retTwo\par}
+
+			Thus we know that $\Df H(x) \cdot F(x) = \Df F(x) \cdot H(x)$. Since both $H(x)$ and $F(x)$ are in $W$, we can employ identical logic as that of part (a) to show that $H(x) = F(x)$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(d)] Show that $\bm{E}(F_1(x) + F_2(x)) = \bm{E}(F_1(x))\bm{E}(F_2(x))$ for all $F_1(x), F_2(x) \in V$.
+	
+	
+	\begin{myIndent}\exTwo
+		Note that:
+
+		{\centering
+		\begin{tabular}{l}
+			$\bm{E}(F_1(x) + F_2(x)) = \lim\limits_{m \rightarrow \infty} \sum\limits_{n=0}^m \frac{(F_1(x) + F_2(x))^n}{n!}$\\ [12pt]
+
+			$\phantom{\bm{E}(F_1(x) + F_2(x))} = \lim\limits_{m \rightarrow \infty}\sum\limits_{n=0}^m \frac{1}{n!}\sum\limits_{i=0}^n \frac{n!}{i!(n-i)!}F_1(x)^i F_2(x)^{n-i}$\\ [12pt]
+
+			$\phantom{\bm{E}(F_1(x) + F_2(x))} = \lim\limits_{m \rightarrow \infty}\sum\limits_{n=0}^m \sum\limits_{i=0}^n \frac{F_1(x)^i}{i!} \cdot \frac{F_2(x)^{n-i}}{(n-i)!}$\\ [12pt]
+
+			$\phantom{\bm{E}(F_1(x) + F_2(x))} = \lim\limits_{m \rightarrow \infty}\left((\sum\limits_{n=0}^m \frac{F_1(x)^n}{n!})(\sum\limits_{n=0}^m \frac{F_2(x)^n}{n!}) + R_m(x)\right)$\\ [12pt]
+		\end{tabular} \retTwo\par}
+
+		In the above manipulations $R_m(x)$ is the formal power series negating all the terms which are in $(\sum\limits_{n=0}^m \frac{F_1(x)^n}{n!})(\sum\limits_{n=0}^m \frac{F_2(x)^n}{n!})$ but aren't in $\sum\limits_{n=0}^m \sum\limits_{i=0}^n \frac{F_1(x)^i}{i!} \cdot \frac{F_2(x)^{n-i}}{(n-i)!}$.\retTwo
+
+		In other words, $R_m(x)$ contains all the terms of the form $\frac{1}{i!j!}F_1(x)^iF_2(x)^j$\\ where $i + j > m$. Importantly, because $F_1(0) = 0 = F_2(0)$, we know that\\ $\mdeg R(x) > m$. So, $R_m(x) \rightarrow 0$ as $m \rightarrow \infty$.\retTwo
+		
+		In turn:
+
+		{\centering\exP
+		\begin{tabular}{l}
+			$\lim\limits_{m \rightarrow \infty}\left((\sum\limits_{n=0}^m \frac{F_1(x)^n}{n!})(\sum\limits_{n=0}^m \frac{F_2(x)^n}{n!}) + R_m(x)\right)$\\ [12pt]
+			
+			$\phantom{aaaa} = \lim\limits_{m \rightarrow \infty}\sum\limits_{n=0}^m \frac{F_1(x)^n}{n!} \cdot \lim\limits_{m \rightarrow \infty}\sum\limits_{n=0}^m \frac{F_2(x)^n}{n!} + \lim\limits_{m \rightarrow \infty}R_m(x) = \bm{E}(F_1(x))\bm{E}(F_2(x))$
+		\end{tabular}\newpage\par}
+	\end{myIndent}
+
+	\item[(e)] Show that $\bm{L}(F_1(x)F_2(x)) = \bm{L}(F_1(x)) + \bm{L}(F_2(x))$ for all $F_1(x), F_2(x) \in W$.
+	
+	\begin{myIndent}\exTwo
+		By part (d), we know that:
+		\begin{itemize}
+			\item $\bm{E}(\bm{L}(F_1(x)) + \bm{L}(F_2(x))) = \bm{E}(\bm{L}(F_1(x)))\bm{E}(\bm{L}(F_2(x)))$\retTwo
+		\end{itemize}
+		
+		Meanwhile, by part (c) we know that:
+		\begin{itemize}
+			\item $\bm{E}(\bm{L}(F_1(x)F_2(x))) = F_1(x)F_2(x)$
+			\item $\bm{E}(\bm{L}(F_1(x)))\bm{E}(\bm{L}(F_2(x))) = F_1(x)F_2(x)$\retTwo
+		\end{itemize}
+
+		Hence, we've shown that $\bm{E}$ maps the left- and right-hand sides of the above claimed equation to the same formal power series. But from part (c) we know that $\bm{E}$ is an injective map. So we must have that the two sides of the equation are in fact equal.
+	\end{myIndent}
+
+	\item[(f)] If $m$ is a positive integer and $G(x) \in W$, show that $\bm{E}(\frac{\bm{L}(G(x))}{m})$ is an $m$th{.} root of $G(x)$.
+	
+	
+	\begin{myIndent}\exTwo
+		Let $F(x) = \bm{E}(\frac{\bm{L}(G(x))}{m})$. This implies $m \cdot \bm{L}(F(x)) = \bm{L}(G(x))$. Then by part\\ [3pt] (e), we know that $\bm{L}(F(x)^m) = \bm{L}(G(x))$. And finally, plugging both sides into\\ [3pt] $\bm{E}$ we get $F(x)^m = G(x)$.\retTwo
+
+		Also, $F(0) = 1$. So $F(x)$ is the unique $m$th{.} root of $G(x)$ with $1$ as its constant coefficient.\retTwo
+	\end{myIndent}
+
+	Because of part (f), we can now extend our definition of the $z$th{.}\hspace{-0.1em} power of a\\ formal power series $G(x) \in W$ to any complex number $z$. Specifically, for any\\ $G(x) \in W$ we define $G(x)^z \coloneq \bm{E}(z\cdot \bm{L}(G(x)))$. Crucially, this definition agrees with our more restricted definition from class.\retTwo
+
+	Question: Does $G(x)^zG(x)^w = G(x)^{z + w}$?
+	
+	{\centering\exTwo
+	\begin{tabular}{l}
+		$G(x)^zG(x)^w = \bm{E}(z\cdot \bm{L}(G(x)))$
+	\end{tabular}\retTwo\par}
+\end{enumerate}
 
 
 
