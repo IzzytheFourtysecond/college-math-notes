@@ -1943,7 +1943,7 @@ Let $V = \{F(x) \in \mathbb{C}[[x]] : F(0) = 0\}$ and $W = \{F(x) \in \mathbb{C}
 	\begin{myIndent}\exTwo
 		Since $G(0) = 1$, we know that $G(x)$ is invertible. So there is a unique formal power series $A(x) = \sum_{n \geq 0}a_n x^n$ such that $A(x) = \frac{\Df G(x)}{G(x)}$.\retTwo
 
-		Then if $F(x) = \sum_{n \geq 0}f_nx^n$ satisfies that $\Df F(x) = \frac{\Df G(x)}{G(x)}$, then we can solve that $f_n = \frac{a_{n-1}}{n}$. This shows that $f_n$ is uniquely determined for all $n \geq 1$. Also, since we are forcing $F(0) = 0$, we know that $f_0 = 0$. So $F(x)$ is a unique power series.\retTwo
+		Then if $F(x) = \sum_{n \geq 0}f_nx^n$ satisfies that $\Df F(x) = \frac{\Df G(x)}{G(x)}$, then we can solve that $f_n = \frac{a_{n-1}}{n}$ for all $n \geq 1$. This shows that $f_n$ is uniquely determined for all $n \geq 1$. Also, since we are forcing $F(0) = 0$, we know that $f_0 = 0$. So $F(x)$ is a unique power series.\retTwo
 
 		From this it's also hopefully clear to see how one can solve for $F(x)$ in order to show that $F(x)$ exists.\newpage
 	\end{myIndent}
@@ -2027,15 +2027,233 @@ Let $V = \{F(x) \in \mathbb{C}[[x]] : F(0) = 0\}$ and $W = \{F(x) \in \mathbb{C}
 		Also, $F(0) = 1$. So $F(x)$ is the unique $m$th{.} root of $G(x)$ with $1$ as its constant coefficient.\retTwo
 	\end{myIndent}
 
-	Because of part (f), we can now extend our definition of the $z$th{.}\hspace{-0.1em} power of a\\ formal power series $G(x) \in W$ to any complex number $z$. Specifically, for any\\ $G(x) \in W$ we define $G(x)^z \coloneq \bm{E}(z\cdot \bm{L}(G(x)))$. Crucially, this definition agrees with our more restricted definition from class.\retTwo
+	Because of part (f), we can now extend our definition of the $z$th{.}\hspace{-0.1em} power of a\\ formal power series $G(x) \in W$ to any complex number $z$. Specifically, for any\\ $G(x) \in W$ we define $G(x)^z \coloneq \bm{E}(z\cdot \bm{L}(G(x)))$. Then, we've shown in part (f) that this definition agrees with our more restricted definition from math 188 on at least the positive rational numbers.\retTwo
 
-	Question: Does $G(x)^zG(x)^w = G(x)^{z + w}$?
+	Two important identities (where $G(x) \in W$ and $z, w \in \mathbb{C}$):
+	\begin{itemize}		
+		\item $G(x)^zG(x)^w = G(x)^{z + w}$?
+		
+		\begin{myIndent}
+			\exTwo Proof:
+
+			{\centering
+			\begin{tabular}{l}
+				$G(x)^zG(x)^w = \bm{E}(z\cdot \bm{L}(G(x)))\bm{E}(w \cdot \bm{L}(G(x)))$\\
+				$\phantom{G(x)^zG(x)^w} = \bm{E}(z\cdot \bm{L}(G(x)) + w \cdot \bm{L}(G(x))) = \bm{E}((z + w)\cdot \bm{L}(G(x)))$\\ 
+				$\phantom{G(x)^zG(x)^w = \bm{E}(z\cdot \bm{L}(G(x)) + w \cdot \bm{L}(G(x)))} = G(x)^{z + w}$
+			\end{tabular}\retTwo\par}
+		\end{myIndent}
+
+		\item $\left(G(x)^z\right)^{w} = G(x)^{zw}$
+		
+		\begin{myIndent}
+			\exTwo Proof:
+
+			{\centering
+			\begin{tabular}{l}
+				$\left(G(x)^z\right)^{w} = \left(\bm{E}(z \cdot \bm{L}(G(x)))\right)^{w}$\\
+				
+				$\phantom{\left(G(x)^z\right)^{w}} = \bm{E}(w\cdot \bm{L}(\bm{E}(z \cdot \bm{L}(G(x))))) = \bm{E}(w \cdot (z \cdot \bm{L}(G(x))))$\\ 
+
+				$\phantom{\left(G(x)^z\right)^{w} = \bm{E}(w\cdot \bm{L}(\bm{E}(z \cdot \bm{L}(G(x)))))} = \bm{E}(wz \cdot \bm{L}(G(x))) = G(x)^{zw}$
+			\end{tabular}\retTwo\par}
+		\end{myIndent}
+	\end{itemize}
+
+	Using those identities, here are some corollaries:\newpage
+
+	\begin{itemize}		
+		\item $G(x)^{-a}$ gives the multiplicative inverse of $G(x)^a$ 
+		\begin{myDindent}\myComment
+			(this proves that this definition of exponentiation agrees with our more restricted definition from math 188 on all rational numbers).
+		\end{myDindent}
+		
+		\begin{myIndent}\exTwo
+			Proof:\\
+			Firstly note that:
+			
+			{\centering $G(x)^{-a}G(x)^a = G(x)^{-a + a} = G(x)^0 = \bm{E}(0 \cdot \bm{L}(G(x))) = \bm{E}(0)$\retTwo\par}
+
+			Seconly, note that $\bm{E}(0) = \sum_{n \geq 0} \frac{0^n}{n!} = \frac{0^0}{0!} = 1$ (as a reminder we are using the convention that $0^0 = 1$). Therefore, $G(x)^{-a}G(x)^a = 1$, meaning $G(x)^{-a}$ is the multiplicative inverse of $G(x)^a$.\retTwo
+		\end{myIndent}
+
+		\item $V$ is a subgroup of $\mathbb{C}[[x]]$ under addition, $W$ is a group under multiplication, and $\bm{E}$ is a group isomorphism between $(V, +)$ and $(W, \cdot)$.
+		
+		\begin{myIndent}\exTwo
+			Proof:\\
+			One can easily see without our prior reasoning that $(V, +)$ is subgroup of $\mathbb{C}[[x]]$ under addition (with $0$ as it's identity). \retTwo
+
+			Meanwhile, by our previous corollary we can see that all $G(x) \in W$ have a multiplicative inverse in $W$. Specifically since $G(x) = G(x)^{1}$, we know by the previous corollary that $G(x)$ has the inverse $G(x)^{-1}$ inside $W$.\\ Combining that with the fact that $1 \in W$ and $G(x)H(x) \in W$ when\\ $G(x), H(x) \in W$, we know now that $W$ is a group under multiplcation.\retTwo
+
+			Finally, we know $\bm{E}$ is a group isomorphism because of part (c) of this\\ exercise as well as the fact that $\bm{E}(0) = 1$.\retTwo
+		\end{myIndent}
+
+		\item Power Rule: Given $G(x) \in W$, if $H(x) = G(x)^z$, then
+		
+		{\centering $\Df H(x) = z\Df G(x) G(x)^{z-1}$.\\ [-16pt]\par}
+		
+		\begin{myIndent}\exTwo
+			Proof:
+
+			{\centering
+			\begin{tabular}{l}
+				$\Df H(x) = \Df (\bm{E}(z \cdot \bm{L}(G(x))))(x)$\\ [4pt]
+
+				$\phantom{\Df H(x)} = \Df(z \cdot \bm{L}(G(x)))(x)\cdot \bm{E}(z \cdot \bm{L}(G(x)))$\\ [4pt]
+
+				$\phantom{\Df H(x)} = z\cdot\Df(\bm{L}(G(x)))(x)\cdot G(x)^z = z\frac{\Df G(x)}{G(x)}G(x)^z$\\ [4pt]
+
+				$\phantom{\Df H(x) = z\cdot\Df(\bm{L}(G(x)))(x)\cdot G(x)^z} = z\Df G(x) G(x)^{-1} G(x)^z$\\ [4pt]
+
+				$\phantom{\Df H(x) = z\cdot\Df(\bm{L}(G(x)))(x)\cdot G(x)^z} = z\Df G(x)G(x)^{z-1}$
+			\end{tabular}\retTwo\par}
+		\end{myIndent}
+
+		\item Binomial Theorem: Given $z \in \mathbb{C}$, we have that:
+		
+		{\centering $(1 + x)^{z} = \sum\limits_{n \geq 0}\binom{z}{n}x^n$ where $\binom{z}{n} = \frac{z(z-1)\cdots(z-n+1)}{n!}$ when $n > 0$ and $1$\\ [-12pt] \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}when $n = 0$.\retTwo\par}
+
+		\begin{myIndent}\exTwo
+			Proof:\\
+			Note that $[x^n](1 + x)^z = \frac{1}{n!}\Df^n((1+x)^z)(0)$. Also, by induction using the power rule we can say for $n > 0$ that:\newpage
+
+			{\centering\begin{tabular}{l}
+				$\Df^n((1+x)^z)(x) = z\Df^{n-1}((1+x)^z)(x)$\\
+				
+				$\phantom{\Df^n((1+x)^z)(x)} = z(z-1)\Df^{n-2}((1+x)^z)$\\
+				
+				$\phantom{\Df^n((1+x)^z)(x)} = \cdots = z(z-1)\cdots(z-n+1)(1+x)$
+			\end{tabular}\retTwo\par}
+
+			Therefore $\Df^n((1+x)^z)(0) = z(z-1)\cdots(z-n+1)(1+0)$ and we thus have that for $n > 0$.
+
+			{\centering$[x^n](1 + x)^z = \frac{1}{n!}z(z-1)\cdots(z-n+1) = \binom{z}{n}$.\retTwo\par}
+
+			Meanwhile, if $n = 0$, then obviously $[x^0](1 + x)^z = 1^z = 1 = \binom{z}{n}$.
+		\end{myIndent}
+	\end{itemize}
+
+	Before going on to parts (g) and (h), here are two more identities (where\\ $F(x) \in V$, $G(x) \in W$, and $z \in \mathbb{C}$):
+	\begin{itemize}
+		\item $\left(\bm{E}(F(x))\right)^z = \bm{E}(z \cdot \bm{L}(\bm{E}(F(x)))) = \bm{E}(zF(x))$
+		\item $\bm{L}(G(x)^z) = \bm{L}(\bm{E}(z \cdot \bm{L}(G(x)))) = z\bm{L}(G(x))$\retTwo
+	\end{itemize}
+
+	\item[(g)] Show that if $\sum_{i \geq 0}F_i(x)$ converges to $F(x)$, then $\prod_{i \geq 0}\bm{E}(F_i(x))$ converges to $\bm{E}(F(x))$.
 	
-	{\centering\exTwo
-	\begin{tabular}{l}
-		$G(x)^zG(x)^w = \bm{E}(z\cdot \bm{L}(G(x)))$
-	\end{tabular}\retTwo\par}
+	\begin{myIndent}\exTwo
+		We start by proving the following lemma: If $A(x) \in \mathbb{C}[[x]]$ and $(B_i(x))_{i \in \mathbb{N}}$ is a\\ sequence in $\mathbb{C}[[x]]$ converging to $B(x)$ as $i \rightarrow \infty$ and satisfying that $B_i(0) = 0$\\ for all $i$, then $A(B_i(x)) \rightarrow A(B(x))$ as $i \rightarrow \infty$.
+
+		\begin{myIndent}\exPP
+			Proof:\\
+			For notation, we'll denote:
+
+			{\centering $A(x) = \sum_{n \geq 0}a_nx^n$,\phantom{..} $B_i(x) = \sum_{n \geq 0}b_n^{(i)}x^n$, and $B(x) = \sum_{n \geq 0}b_nx^n$\retTwo\par}
+
+			To start, note that for all integers $m \geq 0$, we have that $B_i(x)^m \rightarrow B(x)^m$. Also, since $B_i(0) = 0$ for all $i$, we know that $\mdeg B_i(x)^m \geq m$ for all\\ integers $i$ and $m$, and also that $\mdeg B(x)^m \geq m$ for all integers $m$. Thus, fixing $n \geq 0$ we can say that:
+
+			{\centering{\fontsize{11}{13}\selectfont $ [x^n]A(B_i(x)) = [x^n]\sum\limits_{m = 0}^n a_mB_i(x)^m$} and {\fontsize{11}{13}\selectfont $[x^n]A(B(x)) = [x^n]\sum\limits_{m = 0}^n a_mB(x)^m$ }\retTwo\par}
+
+			Next, let $I_m$ be large enough that $[x^n]B_i(x)^m = [x^n]B(x)^m$ for all $i \geq I_m$. Then set $I = \max(I_0, I_1, \ldots, I_m)$ and note that for all $i \geq I$, we have:
+			
+			{\centering\fontsize{11}{13}\selectfont
+			\begin{tabular}{l}
+				$[x^n]\sum\limits_{m = 0}^n a_mB_i(x)^m = \sum\limits_{m = 0}^n a_m[x^n](B_i(x)^m)$\\ [11pt]
+				$\phantom{[x^n]\sum\limits_{m = 0}^n a_mB_i(x)^m} = \sum\limits_{m = 0}^n a_m[x^n](B(x)^m) = [x^n]\sum\limits_{m = 0}^n a_mB(x)^m$ 
+			\end{tabular}\retTwo\par}
+
+			So for all $i \geq I$, we have that $[x^n]A(B_i(x)) = [x^n]A(B(x))$. This proves $A(B_i(x)) \rightarrow A(B(x))$.
+			
+			\begin{myDindent}\myComment
+				I should have proved this in my math 188 notes when I was\\ showing that $((A + B) \circ C)(x) = (A \circ C)(x) + (B \circ C)(x)$\\ and $(AB \circ C)(x) = (A \circ C)(x)(B \circ C)(x)$. But in my defense the professor didn't mention any of these three facts in his notes.\newpage
+			\end{myDindent}
+		\end{myIndent}
+
+		As a reminder: $\bm{E}(F(x)) = \exp(F(x))$ where $\exp = \sum_{n \geq 0}\frac{1}{n!}x^n$. Also, by our\\ previous lemma, we know that:\\ [-20pt]
+
+		{\centering $\exp(F(x)) = \exp(\lim\limits_{n \rightarrow \infty}\sum\limits_{i = 0}^n F_i(x)) = \lim\limits_{n \rightarrow \infty}\exp(\sum\limits_{i = 0}^n F_i(x))$ \\ [4pt]\par}
+
+		But then $\exp(\sum\limits_{i = 0}^n F_i(x)) = \bm{E}(\sum\limits_{i = 0}^n F_i(x)) = \prod\limits_{i=0}^n \bm{E}(F_i(x))$.\\
+		
+		So, we have shown that $\bm{E}(F(x)) = \lim\limits_{n \rightarrow \infty}\prod\limits_{i=0}^n \bm{E}(F_i(x)) = \prod\limits_{i\geq 0} \bm{E}(F_i(x))$\\ [-2pt]
+	\end{myIndent}
+
+	Side note: The lemma we proved in this part also tells us that if $(B_i(x))_{i \in \mathbb{N}}$ is a sequence in $V$ converging to $B(x)$, then $\bm{E}(B_i(x)) \rightarrow \bm{E}(B(x))$ as $i \rightarrow \infty$. In other words, $\bm{E}$ is a continuous map.
+	
+	\begin{myDindent}\myComment
+		(If $\rho(A(x), B(x)) = \frac{1}{\mdeg (A - B)(x)}$, then $(\mathbb{C}[[x]], \rho)$ is a metric space in\\ which formal power series convergence is equivalent to convergence in\\ this metric space.)
+	\end{myDindent}
+
+	\item[(h)] Show that if $\prod_{i \geq 0}G_i(x)$ converges to $G(x)$, then $\sum_{i \geq 0}\bm{L}(G_i(x))$ converges to $\bm{L}(G(x))$.
+	
+	\begin{myIndent}\exTwo
+		Unfortunately, unlike with $\bm{E}$ we do not (currently) have a formal power\\ series $A(x)$ for which we can generally say $\bm{L}(B(x)) = A(B(x))$. Thus, we\\ can't move the limit from inside $\bm{L}$ to outside $\bm{L}$ as easily as we did in part (g)\\ for $\bm{E}$.\\ [-12pt] 
+
+		However, consider that $\lim\limits_{n \rightarrow \infty}\bm{E}(\sum\limits_{i = 0}^n \bm{L}(G_i(x)))$ exists. Specifically:
+		
+		{\centering\exP\begin{tabular}{l}
+			$\lim\limits_{n \rightarrow \infty}\bm{E}(\sum\limits_{i = 0}^n \bm{L}(G_i(x))) = \lim\limits_{n \rightarrow \infty}\bm{E}(\sum\limits_{i = 0}^n \bm{L}(G_i(x)))$\\ [11pt]
+			
+			$\phantom{\lim\limits_{n \rightarrow \infty}\bm{E}(\sum\limits_{i = 0}^n \bm{L}(G_i(x)))} = \lim\limits_{n \rightarrow \infty} \prod\limits_{i=0}^n\bm{E}(\bm{L}(G_i(x))) = \lim\limits_{n \rightarrow \infty} \prod\limits_{i=0}^n G_i(x) = G(x)$
+		\end{tabular}\retTwo\par}
+
+		Thus, if we can show $\sum_{i\geq 0} \bm{L}(G_i(x))$ converges, then we can use the lemma from part (g) to see that:\\ [-14pt]
+
+		{\centering $\bm{E}(\lim\limits_{n \rightarrow \infty}\sum\limits_{i = 0}^n \bm{L}(G_i(x))) = \lim\limits_{n \rightarrow \infty}\bm{E}(\sum\limits_{i = 0}^n \bm{L}(G_i(x))) = G(x)$,\\ [6pt]\par}
+
+		and then by applying $\bm{L}$ to the left and right sides of this equation, we will get our desired result.\retTwo
+		
+		\begin{myIndent}\exTwoP
+			We now show that $\sum_{i \geq 0}\bm{L}(G_i(x))$ converges. Firstly, note that after\\ [2pt] fixing $n \geq 1$, we have that:
+
+			{\centering$[x^n](\bm{L}(G_i(x)))(x) = \frac{1}{n}[x^{n-1}]\frac{\Df G_i(x)}{G_i(x)}$.\newpage\par}
+			
+			
+			Secondly, note that $\prod_{i \geq 0}G_i(x)$ converging to $G(x)$ and $G_i(0) = 1$\\ [2pt] for all $i$ implies that $\mdeg (G_i(x) - 1) \rightarrow \infty$ as $i \rightarrow \infty$ and\\ [2pt] thus $\mdeg \Df G_i(x) = \mdeg (G_i(x) - 1) - 1 \rightarrow \infty$ as $i \rightarrow \infty$.\retTwo
+			
+			
+			Hence, there exists $I_n \geq 0$ such that $i \geq I_n$ implies that $[x^0]\Df G_i(x),$\\ $[x^1]\Df G_i(x), \ldots, [x^{n-1}]\Df G_i(x)$ are all $0$. In turn, we have for all $i \geq I_n$ that $[x^{n-1}](\Df G_i(x) \cdot \frac{1}{G_i(x)}) = 0$ and $[x^n](\bm{L}(G_i(x)))(x) = \frac{1}{n}\cdot 0 = 0$.\retTwo
+
+			Since we also have by the definition of $\bm{L}$ that $(\bm{L}(G_i(x)))(0) = 0$ for all\\ $i$, we can thus conclude that: $\lim\limits_{i \rightarrow \infty} \mdeg(\bm{L}(G_i(x))) = 0$.\\ [0pt]
+
+			This proves that $\sum_{i \geq 0}\bm{L}(G_i(x))$ converges.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	To finish off, here is an identity: If $z, \alpha \in \mathbb{C}$ and $G(x) = (1-\alpha x)^z$, then\\ $\bm{L}(G(x)) = \sum\limits_{n \geq 1}\frac{-z}{n}\alpha^nx^n$.
+
+	\begin{myIndent}\exTwo
+		Proof:\\
+		We already showed that $\bm{L}((1 - \alpha x)^z) = z\cdot \bm{L}(1 - \alpha x)$. Also:
+
+		{\centering $\Df(\bm{L}(1-\alpha x))(x) = \frac{\Df(1 - \alpha x)}{1 - \alpha x} = -\alpha \sum\limits_{n \geq 0} \alpha^n x^n = \sum\limits_{n \geq 0}-\alpha^{n+1}x^n$ \\ [9pt]\par}
+
+		Thus, we have that $z \cdot \bm{L}(1 - \alpha x) = z \cdot \sum\limits_{n \geq 1}\frac{-1}{n}\alpha^{(n+1)-1}x^n = \sum\limits_{n \geq 1}\frac{-z}{n}\alpha^n x^n$.\retTwo
+	\end{myIndent}
+
+	Some thoughts on this:
+	\begin{itemize}
+		\item $\bm{L}(\frac{1}{1-x}) = \sum_{n \geq 1}\frac{+1}{n}(1)^n x^n = \sum_{n \geq 1}\frac{1}{n}x^n$ which is importantly the same\\ as what we found in class.
+		
+		\item Given that $G(x)$ is a polynomial with constant coefficient $1$, we can combine this identity with part (e) to calculate $\bm{L}(G(x))$.
+		\begin{myIndent}\exTwo
+			Specifically, let $G(x) = (1 - \frac{1}{\gamma_1}x)\cdots(1-\frac{1}{\gamma_k}x)$ where $\gamma_1, \ldots, \gamma_k$ are the roots of $G(x)$. Since $G(0) = 1$ by assumption, we know that $\gamma_j \neq 0$ for all $j$. Then we have that:
+
+			{\centering
+			\begin{tabular}{l}
+				$\bm{L}(G(x)) = \bm{L}((1 - \frac{1}{\gamma_1}x)\cdots(1-\frac{1}{\gamma_k}x))$\\ [6pt]
+
+				$\phantom{\bm{L}(G(x))} = \bm{L}(1 - \frac{1}{\gamma_1}x) + \ldots + \bm{L}(1 - \frac{1}{\gamma_k}x)$\\ [-2pt]
+
+				$\phantom{\bm{L}(G(x))} = \sum\limits_{n \geq 1}\frac{-1}{n}\gamma_1^{-n}x^n + \ldots + \sum\limits_{n \geq 1}\frac{-1}{n}\gamma_k^{-n}x^n = \sum\limits_{n \geq 1}\frac{-1}{n}\left(\vphantom{\int}\right.\hspace{-0.2em}\sum\limits_{j=1}^k \gamma_j^{-n}\hspace{-0.2em}\left.\vphantom{\int}\right)x^n$
+			\end{tabular}\retTwo\par}
+		\end{myIndent}
+	\end{itemize}
+
+	And now I'm out of ideas of what else to do with this homework problem.
 \end{enumerate}
+\newpage
+
 
 
 
