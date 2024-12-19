@@ -1607,7 +1607,7 @@ If $\mathcal{B}$ satisfies these two conditions, then we define the \udefine{top
 
    Secondly, we need to show that $\mathcal{C}$ is a basis for the topology of $X$.
    \begin{myIndent}\hThree
-      Let $\mathcal{T}$ be the collection of open sets of $X$, and let $\mathcal{T}^\prime$ be the topology generated\\ by $\mathcal{C}$. Firstly, if $U \in \mathcal{T}$ and $x \in U$, there is by hypothesis $c \in \mathcal{C}$ such that $x \in C$ and $C \subseteq U$. So $U \subseteq \mathcal{T}^\prime$. Meanwhile, if $W \in \mathcal{T}^\prime$, then $W$ equals a union of elements of $\mathcal{C}$ by lemma 13.1. Since each element of $\mathcal{C}$ is in $\mathcal{T}$, we know $W$ is the union of elements of $\mathcal{T}$, meaning $W \in \mathcal{T}$. So, we've shown that $\mathcal{T} \subseteq \mathcal{T}^\prime \subseteq \mathcal{T}$.\retTwo\retTwo
+      Let $\mathcal{T}$ be the collection of open sets of $X$, and let $\mathcal{T}^\prime$ be the topology generated\\ by $\mathcal{C}$. Firstly, if $U \in \mathcal{T}$ and $x \in U$, there is by hypothesis $C \in \mathcal{C}$ such that $x \in C$ and $C \subseteq U$. So $U \subseteq \mathcal{T}^\prime$. Meanwhile, if $W \in \mathcal{T}^\prime$, then $W$ equals a union of elements of $\mathcal{C}$ by lemma 13.1. Since each element of $\mathcal{C}$ is in $\mathcal{T}$, we know $W$ is the union of elements of $\mathcal{T}$, meaning $W \in \mathcal{T}$. So, we've shown that $\mathcal{T} \subseteq \mathcal{T}^\prime \subseteq \mathcal{T}$.\retTwo\retTwo
    \end{myIndent}
 \end{myIndent}
 
@@ -1637,7 +1637,7 @@ Letting $K = \{\frac{1}{n} \mid n \in \mathbb{Z}_+\}$, if $\mathcal{B}^\pprime$ 
    When $\mathbb{R}$ has this topology, we denote it $\mathbb{R}_K$.\retTwo\retTwo
 \end{myDindent}
 
-\blab{Lemma 13.4:} The topologies of $\mathbb{R}_l$ and $\mathbb{R}_K$ are strictly finer than the standard topology on $\mathbb{R}$. But, they aren't comparable with one another.
+\blab{Lemma 13.4:} The topologies of $\mathbb{R}_l$ and $\mathbb{R}_K$ are strictly finer than the standard\\ topology on $\mathbb{R}$. But, they aren't comparable with one another.
 
 \begin{myIndent}\hTwo
    Proof:\\
@@ -2129,7 +2129,7 @@ Let $V = \{F(x) \in \mathbb{C}[[x]] : F(0) = 0\}$ and $W = \{F(x) \in \mathbb{C}
 
 			{\centering$[x^n](1 + x)^z = \frac{1}{n!}z(z-1)\cdots(z-n+1) = \binom{z}{n}$.\retTwo\par}
 
-			Meanwhile, if $n = 0$, then obviously $[x^0](1 + x)^z = 1^z = 1 = \binom{z}{n}$.
+			Meanwhile, if $n = 0$, then $[x^0](1 + x)^z = 1 = \binom{z}{n}$ (because $(1 + x)^z \in W$).
 		\end{myIndent}
 	\end{itemize}
 
@@ -2254,7 +2254,34 @@ Let $V = \{F(x) \in \mathbb{C}[[x]] : F(0) = 0\}$ and $W = \{F(x) \in \mathbb{C}
 \end{enumerate}
 \newpage
 
+\dispDate{12/19/2024}
 
+Today and tomorrow I want to work through some of the exercises in Folland's \textit{Real Analysis} about the Cantor set and Cantor function. Assume for this section that $\mathbb{R}$\\ is equipped with the standard metric $\rho$ and that we are using the complete Lebesgue measure space $(\mathbb{R}, \mathcal{L}, m)$. \retTwo
+
+If $I$ is a bounded interval and $\alpha \in (0, 1)$, then call the open interval with the same\\ midpoint as $I$ and length equal to $\alpha$ times the length of $I$ the "open middle $\alpha$th"\\ of $I$. If $(\alpha_j)_{j \in \mathbb{N}}$ is a sequence of numbers in $(0, 1)$, then we can define a decreasing\\ sequence $(K_j)_{j \in \mathbb{N}}$ of closed sets by setting $K_0 = [0, 1]$ and obtaining $K_j$ by\\ removing the open middle $\alpha_j$th from the intervals that make up $K_{j-1}$. Then\\ $K = \bigcap\limits_{j \in \mathbb{N}} K_j$ is called a \udefine{generalized Cantor set}.\\ [-16pt]
+
+\begin{myTindent}\hThree
+	The ordinary \udefine{Cantor set} $C$ is obtained by setting all $\alpha_j$ equal to $\sfrac{1}{3}$.\retTwo
+\end{myTindent}
+
+\exOne
+\blab{Exercise 2.27:} Let $K = \bigcap K_j$ be a generalized Cantor set created using the\\ sequence $(\alpha_j)_{j \in \mathbb{N}}$ in $(0, 1)$. Prove that $K$ is compact, perfect (i.e. closed and\\ has no isolated points), nowhere dense (i.e. not dense in any nonempty open\\ set), and totally disconnected (i.e. the only connected subsets of $K$ are single\\ points).
+
+\begin{myIndent}\exTwoP
+	\begin{itemize}
+		\item $K$ is closed because it is an intersection of closed sets. Also, $K$ is a bounded set in $\mathbb{R}$ because it is a subset of $[0, 1]$. Thus, $K$ is compact.\retTwo
+		
+		\item Let $x \in K$. Then for any $\varepsilon > 0$, pick $J \in \mathbb{N}$ with $2^{-J} < \varepsilon$. Note that all intervals of $K_j$ have a length less than $2^{-j}$. After all, when going from $K_{j - 1}$ to $K_j$, we split all the intervals of $K_{j-1}$ in half and then remove an additional amount of length determined by $\alpha_j$. So, let $I$ be the interval of $K_J$ containing $x$. Then both endpoints of $I$ are in $K$ and also in $B(\varepsilon, x)$. And, at least one of those endpoints is not $x$. So $x$ is a limit point of $K$. Since $K$ is also closed, we have that $K$ is perfect.\retTwo
+		
+		\item Let $x, y \in K$ and without loss of generality assume $x < y$. Then we know there must exist some integer $J \in \mathbb{N}$ such that $x$ and $y$ are in different intervals of $K_J$. Afterall, as previously mentioned, points in the same interval of $K_j$ are within $2^{-j}$ distance of each other. So if no such $J$ exists, then $\rho(x, y) < 2^{-j}$ for all $j$, meaning $x = y$.\retTwo
+		
+		We can specifically choose $J$ to be the least integer such that $x$ and $y$ are in two different intervals of $K_J$.
+	
+	
+	\end{itemize}
+	
+	
+\end{myIndent}
 
 
 \end{document}
