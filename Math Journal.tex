@@ -124,6 +124,10 @@
    \color{RedViolet}%
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\exPPP}{%
+   \color{VioletRed}%
+   \fontsize{12}{14}\selectfont%
+}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
@@ -188,6 +192,8 @@
 \newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
 
 \newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
+
+\newcommand{\card}{\mathrm{card}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -2256,7 +2262,7 @@ Let $V = \{F(x) \in \mathbb{C}[[x]] : F(0) = 0\}$ and $W = \{F(x) \in \mathbb{C}
 
 \dispDate{12/19/2024}
 
-Today and tomorrow I want to work through some of the exercises in Folland's \textit{Real Analysis} about the Cantor set and Cantor function. Assume for this section that $\mathbb{R}$\\ is equipped with the standard metric $\rho$ and that we are using the complete Lebesgue measure space $(\mathbb{R}, \mathcal{L}, m)$. \retTwo
+For the next while I want to work through some of the exercises in Folland's \textit{Real Analysis} about the Cantor set and Cantor function. Assume for this section that $\mathbb{R}$\\ is equipped with the standard metric $\rho$ and that we are using the complete Lebesgue measure space $(\mathbb{R}, \mathcal{L}, m)$. \retTwo
 
 If $I$ is a bounded interval and $\alpha \in (0, 1)$, then call the open interval with the same\\ midpoint as $I$ and length equal to $\alpha$ times the length of $I$ the "open middle $\alpha$th"\\ of $I$. If $(\alpha_j)_{j \in \mathbb{N}}$ is a sequence of numbers in $(0, 1)$, then we can define a decreasing\\ sequence $(K_j)_{j \in \mathbb{N}}$ of closed sets by setting $K_0 = [0, 1]$ and obtaining $K_j$ by\\ removing the open middle $\alpha_j$th from the intervals that make up $K_{j-1}$. Then\\ $K = \bigcap\limits_{j \in \mathbb{N}} K_j$ is called a \udefine{generalized Cantor set}.\\ [-16pt]
 
@@ -2271,17 +2277,130 @@ If $I$ is a bounded interval and $\alpha \in (0, 1)$, then call the open interva
 	\begin{itemize}
 		\item $K$ is closed because it is an intersection of closed sets. Also, $K$ is a bounded set in $\mathbb{R}$ because it is a subset of $[0, 1]$. Thus, $K$ is compact.\retTwo
 		
-		\item Let $x \in K$. Then for any $\varepsilon > 0$, pick $J \in \mathbb{N}$ with $2^{-J} < \varepsilon$. Note that all intervals of $K_j$ have a length less than $2^{-j}$. After all, when going from $K_{j - 1}$ to $K_j$, we split all the intervals of $K_{j-1}$ in half and then remove an additional amount of length determined by $\alpha_j$. So, let $I$ be the interval of $K_J$ containing $x$. Then both endpoints of $I$ are in $K$ and also in $B(\varepsilon, x)$. And, at least one of those endpoints is not $x$. So $x$ is a limit point of $K$. Since $K$ is also closed, we have that $K$ is perfect.\retTwo
+		\item Let $x \in K$. Then for any $\varepsilon > 0$, pick $J \in \mathbb{N}$ with $2^{-J} < \varepsilon$. Note that all intervals of $K_j$ have a length at most $2^{-j}$. After all, when going from $K_{j - 1}$ to $K_j$, we split all the intervals of $K_{j-1}$ in half and then remove an additional amount of length determined by $\alpha_j$. So, let $I$ be the interval of $K_J$ containing $x$. Then both endpoints of $I$ are in $K$ and also in $B(\varepsilon, x)$. And, at least one of those endpoints is not $x$. So $x$ is a limit point of $K$. Since $K$ is also closed, we have that $K$ is perfect.\retTwo
 		
 		\item Let $x, y \in K$ and without loss of generality assume $x < y$. Then we know there must exist some integer $J \in \mathbb{N}$ such that $x$ and $y$ are in different intervals of $K_J$. Afterall, as previously mentioned, points in the same interval of $K_j$ are within $2^{-j}$ distance of each other. So if no such $J$ exists, then $\rho(x, y) < 2^{-j}$ for all $j$, meaning $x = y$.\retTwo
 		
-		We can specifically choose $J$ to be the least integer such that $x$ and $y$ are in two different intervals of $K_J$.
-	
-	
+		We can specifically choose $J$ to be the least integer such that $x$ and $y$ are in two different intervals of $K_J$. Then both $x$ and $y$ are in the same interval $I$ of $K_{J-1}$, but the midpoint of that interval $z$ is not in $K_J \subseteq K$ and $x < z < y$. By a theorem in 140A, this proves that $K$ is totally disconnected since for all $x, y \in K$, $[x, y] \not\subseteq K$ unless $x = y$.\newpage
+
+		\item Since $K$ is perfect, we know that $K$ is only dense on subsets of $K$. However, since all open sets in $\mathbb{R}$ are countable unions of open intervals and $K$ contains no nonempty open intervals since $K$ is totally disconnected, we know that $K$ has no nonempty open subsets.\retTwo
 	\end{itemize}
-	
-	
 \end{myIndent}
+
+\hOne
+Trying to explicitely write out the bijection between $[0, 1]$ and a generalized Cantor set $K = \bigcap K_j$ would be really time consuming and awkward. So I'm going to be more handwavey
+
+\begin{myIndent}\hTwo
+	We can define an injection from $\{0, 1\}^\omega$ to $K$ as follows:
+	
+	\begin{myIndent}\hThree
+		Given $\bm{x} \in \{0, 1\}^\omega$, we can define a convergent subsequence in $K$. Specifically, set $a_0 = 0$. Then recursively for $j > 0$, we know $a_{j-1}$ falls into some interval $I$ of $K_{j-1}$. Futhermore, we know that $I$ gets split into two disjoint intervals $I_0$ and $I_1$ when going from $K_{j-1}$ to $K_j$ (take $I_0$ to be the lower interval). Then, let $a_j$ be the left bound on $I_n$ where $n$ is the value at the $j$th index of $\bm{x}$.\retTwo
+
+		Since the endpoints of the intervals in each $K_j$ are all in the final intersection,\\ we know that $(a_j)_{j \in \mathbb{N}}$ is a sequence contained in $K$. Also, $\rho(a_j, a_{j+1}) < 2^{-j}$ for all $j \geq 0$. From that you can easily work out that $(a_j)_{j \in \mathbb{N}}$ is Cauchy. Thus, since $K$ is closed, we know that $(a_j)_{j \in \mathbb{N}}$ converges to some number $y \in K$.\retTwo
+
+		The mapping $\bm{x} \mapsto y$ is injective because $\bm{x}$ uniquely determines which interval\\ of $K_j$ that $y$ is in for all $j$ (specifically the same interval as $a_j$ for each $j$). If $\bm{x}^\prime$ is\\ another sequence of $0$s and $1$s mapped to $y^\prime$, and $\bm{x}$ and $\bm{x}^\prime$ differ at position $J$,\\ then $y$ and $y^\prime$ will be in two different intervals of $K_J$. Since those intervals are\\ disjoint, we know that $y \neq y^\prime$.\retTwo
+	\end{myIndent}
+
+	It is possible to show that our above injection is also surjective. However, it's quicker to just say $\mathfrak{c} = \card(\{0, 1\}^{\omega}) \leq \card(K) \leq \card(\mathbb{R}) = \mathfrak{c}$. Thus generalized Cantor sets have the cardinality of the continuum.\retTwo
+\end{myIndent}
+
+Finally, note that given a generalized Cantor set $K = \bigcap K_j$, because $m(K_1) < 1$ and $(K_j)_{j \in \mathbb{N}}$ is a decreasing sequence of sets, we know that:
+
+{\centering $m(K) = \lim\limits_{j \rightarrow \infty}m(K_j) = \lim\limits_{j \rightarrow \infty} 2^j\prod\limits_{i=1}^{j}\frac{(1 - \alpha_i)}{2} = \prod\limits_{j=1}^\infty (1-a_j)$ \retTwo\par}
+
+\exOne\blab{Exercise 2.32}:
+\begin{enumerate}
+	\item[(a)] Suppose $(a_j)_{j \in \mathbb{N}}$ is a sequence in $(0, 1)$. $\prod_{j=1}^\infty(1 - a_j) > 0$ if and only if\\ $\sum_{j=1}^\infty a_j < \infty$.
+	\begin{myIndent}\exTwoP
+		To start, note that for all $x > 0$, we have that $0 \leq x \leq -\log(1-x)$. After all, $x+\log(1-x)$ equals $0$ at $x = 0$. Also, it's derivative: $1 - \frac{1}{1-x}$, is negative for all $x > 0$. This tells us that $x + \log(1-x)$ is strictly decreasing as $x$ increases, meaning that the difference of $x$ and $-\log(1-x)$ is less than $0$ for all $x > 0$.\newpage
+
+		This lets us conclude that if $\sum_{j=1}^\infty -\log(1-a_j)$ converges, then by comparison test we must also have that $\sum_{j=1}^\infty a_j$ converges.\retTwo
+		
+		Meanwhile, for all $x \in [0, \sfrac{1}{2})$ we have that $0 \leq -\log(1-x) \leq 2x$. To see this, note that $2x +\log(1-x)$ also equals $0$ at $x = 0$. But it's derivative: $2 - \frac{1}{1-x}$, is positive for $x < \sfrac{1}{2}$. This tells us that $2x + \log(1-x)$ is strictly increasing for $x \in (0, \sfrac{1}{2})$. So, the difference of $2x$ and $-\log(1-x)$ is greater than $0$ for all $x \in (0, \sfrac{1}{2})$.\retTwo
+
+		Importantly, if $\sum_{j=1}^\infty a_j$ converges, then we know that all $a_j$ after a certain index $J$ will be in the interval $(0, \sfrac{1}{2})$. Then, since the sum of the $-\log(1 - a_j)$ for $j \leq J$ will be finite and since we can use comparison test on the remaining terms, we know that $\sum_{j=1}^\infty -\log(1-a_j)$ also converges.\retTwo
+
+		In other words, we've shown that:
+		
+		{\centering $\sum\limits_{j=1}^\infty a_j < \infty$ if and only if $\sum\limits_{j=1}^\infty -\log(1 - a_j) < \infty$.\retTwo\par}
+
+		Next, note that $\sum_{j=1}^\infty -\log(1 - a_j)$ converges if and only $\sum_{j=1}^\infty \log(1 - a_j)$ converges.\retTwo
+
+		Finally, consider that $\prod_{j=1}^\infty (1-a_j) > 0$ if and only if $\sum_{j=1}^\infty \log(1 - a_j) > -\infty$.
+
+		\begin{myIndent}\exPP
+			If $\prod_{j=1}^\infty (1-a_j) = \alpha > 0$, then we know that $\log(\alpha)$ is a finite negative value. And because $\log$ is a continuous function, we know:
+
+			{\centering\fontsize{11}{13}\selectfont
+			\begin{tabular}{l}
+				$\log(\alpha) = \log(\lim\limits_{N \rightarrow \infty}\prod_{j=1}^N (1 - a_j))$\\ [6pt]
+				$\phantom{\log(\alpha)} = \lim\limits_{N \rightarrow \infty}\log(\prod_{j=1}^N(1-a_j)) = \lim\limits_{N \rightarrow \infty}\sum\limits_{j=1}^N \log(1 -a_j) = \sum\limits_{j=1}^\infty\log(1 - a_j)$
+			\end{tabular} \retTwo\par}
+
+			Meanwhile, if $\prod_{j=1}^\infty (1 - a_j) = \lim\limits_{N \rightarrow \infty} \prod_{j=1}^N(1 - a_j) = 0$, then we know that:
+
+			{\centering $\sum\limits_{j=1}^\infty \log(1 - a_j) = \lim\limits_{N\rightarrow \infty}\sum\limits_{j=1}^N \log(1 - a_j) = \lim\limits_{N \rightarrow \infty} \log(\prod\limits_{j=1}^N (1-a_j)) = -\infty$ \retTwo\par}
+
+			
+			\begin{myDindent}\myComment
+				Note that we always have that $\prod_{j=1}^\infty (1 -a_j) \in [0, 1)$.\retTwo
+			\end{myDindent}
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] Given $\beta \in (0, 1)$, there exists a sequence $(a_j)_{j \in \mathbb{N}}$ in $(0, 1)$ such that\\ $\prod_{j = 1}^\infty(1 - a_j) = \beta$.
+	
+	\begin{myIndent}\exTwoP
+		Let $c_j = \frac{1}{2^j}(1 - \beta) + \beta$ for all $j \in \mathbb{N}$. That way $(c_j)_{j \in \mathbb{N}}$ is a strictly decreasing sequence in $(0, 1)$ converging to $\beta$. Then, we want to make $\prod_{i=1}^j(1 - a_j) = c_j$ for all $j$. To do this, set $a_j = 1 - \frac{c_j}{c_{j-1}}$ for all $j$. Because $0 < c_j < c_{j-1}$, we know that $\frac{c_j}{c_{j-1}} \in (0, 1)$. And thus, $a_j \in (0, 1)$ for all $j$ as well and $\prod_{j=1}^\infty(1 - a_j) = \beta$.\newpage
+	\end{myIndent}
+\end{enumerate}
+
+\hOne
+Letting $C = \bigcap C_j$ be the standard Cantor set (i.e. where all $\alpha_j = \sfrac{1}{3}$), we now define the Cantor function:
+
+\begin{myIndent}\hTwo
+	Note that if $x \in C$, then there exists a unique sequence $(a_j)_{j \in \mathbb{N}}$ with $x = \sum_{j=1}^\infty a_j\frac{1}{3^j}$ and all $a_j$ equal to either $0$ or $2$. (This is because each choice of $a_j$ as either $0$ or $2$ corresponds to which subinterval of $C_j$ that $x$ is in.) Let $f(x) = \sum_{j=1}^\infty b_j2^{-j}$ where $b_j = \frac{a_j}{2}$. Note that $f(x)$ is the binary expansion of a number in $[0, 1]$.\retTwo
+\end{myIndent}
+
+Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also, for $x_1, x_2 \in C$ with $x_1 < x_2$, we have that $f(x_1) \leq f(x_2)$ with equality if and only if $x_1$ and $x_2$ are the end points of a removed interval (thus making $x_1$ and $x_2$ correspond to the binary expansions $0.b_1b_2\ldots 0\overline{1}$ and $0.b_1b_2\ldots 1\overline{0}$). This allows us to continuously extend $f$ to all $[0, 1]$ by making $f$ constant on all the intervals between points of $C$.\retTwo
+
+\exOne\blab{Exercise 2.9b:} Let $f: [0, 1] \longrightarrow [0, 1]$ be the Cantor function, and let\\ $g(x) = f(x) + x$.
+
+\begin{itemize}
+	\item[(a)] $g$ is a bijection from $[0, 1]$ to $[0, 2]$, and $h = g^{-1}$ is continuous from $[0, 2]$ to $[0, 1]$.
+	
+	\begin{myIndent}\exTwoP
+		To start, note that $g$ is easily checked to be a strictly increasing function. This proves both that $g$ is injective and that $g$ has a range of $[0, 2]$ since $g(0) = 0$ and $g(1) = 2$. Also, note that $g$ is continuous since both $f(x)$ and $x$ are continuous. Thus, by applying I.V.T, we can say that $g$ is surjective from $[0, 1]$ to $[0, 2]$. This proves that $g$ is a bijection.\retTwo
+
+		The proof that $h = g^{-1}$ is continuous works for any strictly increasing\\ continuous function.
+		\begin{myIndent}\exPPP
+			Given $y \in [0, 2]$ there exists $x \in [0, 1]$ such that $g(x) = y$.\retTwo
+
+			Now let $\varepsilon > 0$ and set $\alpha = \max(0, x - \varepsilon)$ and $\beta = \min(1, x + \varepsilon)$. Then\\ for all $y^\prime \in (g(\alpha), g(\beta))$, we have that $h(y^\prime) \in B(\varepsilon, x)$. So we can set\\ $\delta = \min(|g(\alpha) - y|, |g(\beta) - y|)$. This fulfills the definition of continuity.
+			\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+   \item[(b)] $m(g(C)) = 1$ where $C = \bigcap C_j$ is the Cantor set.
+   
+	\begin{myIndent}\exTwoP
+		Because $g^{-1}$ is continuous, we know that $g(C)$ and $g(C_j)$ are measurable\\ for all $j$ since $C$ and each $C_j$ are Borel sets. Also $(g(C_j))_{j \in \mathbb{N}}$ is a decreasing\\ sequence of sets with $m(g(C_1)) \leq 2$ and $\bigcap_{j \in \mathbb{N}} g(C_j) = g(C)$. Thus\\ $m(g(C)) = \lim\limits_{j \rightarrow \infty} m(g(C_j))$.\retTwo
+
+		Next note that $C_j$ has $2^j$ many intervals, each with width $3^{-j}$. Also, if\\ $[\alpha, \alpha + 3^{-j}]$ is one of those intervals, then:
+		
+		{\centering 
+		\begin{tabular}{l}
+			$g(\alpha + 3^{-j}) - g(\alpha) = f(\alpha + 3^{-j}) + \alpha + 3^{-j} - f(\alpha) - 3^{-j}$\\ [6pt]
+			$\phantom{g(\alpha + 3^{-j}) - g(\alpha)} = \sum_{i=1}^j(b_i2^{-i}) + 2^{-j} + \alpha + 3^{-j} - \sum_{i=1}^j(b_i2^{-i}) - \alpha$\\ [6pt]
+			$\phantom{g(\alpha + 3^{-j}) - g(\alpha)} = 2^{-j} + 3^{-j}$
+		\end{tabular}\newpage\par}
+
+		Thus $m(g(C_j)) = 2^{j}(2^{-j} + 3^{-j}) = 1 + (\frac{2}{3})^j$. Taking $j \to \infty$ we get the desired result.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+
+
 
 
 \end{document}
