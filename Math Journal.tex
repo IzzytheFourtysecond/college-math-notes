@@ -2364,7 +2364,7 @@ Letting $C = \bigcap C_j$ be the standard Cantor set (i.e. where all $\alpha_j =
 
 Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also, for $x_1, x_2 \in C$ with $x_1 < x_2$, we have that $f(x_1) \leq f(x_2)$ with equality if and only if $x_1$ and $x_2$ are the end points of a removed interval (thus making $x_1$ and $x_2$ correspond to the binary expansions $0.b_1b_2\ldots 0\overline{1}$ and $0.b_1b_2\ldots 1\overline{0}$). This allows us to continuously extend $f$ to all $[0, 1]$ by making $f$ constant on all the intervals between points of $C$.\retTwo
 
-\exOne\blab{Exercise 2.9b:} Let $f: [0, 1] \longrightarrow [0, 1]$ be the Cantor function, and let\\ $g(x) = f(x) + x$.
+\exOne\blab{Exercise 2.9:} Let $f: [0, 1] \longrightarrow [0, 1]$ be the Cantor function, and let\\ $g(x) = f(x) + x$.
 
 \begin{itemize}
 	\item[(a)] $g$ is a bijection from $[0, 1]$ to $[0, 2]$, and $h = g^{-1}$ is continuous from $[0, 2]$ to $[0, 1]$.
@@ -2399,8 +2399,143 @@ Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also
 	\end{myIndent}
 \end{itemize}
 
+\hOne To do the next parts of that exercise, we first need to do a different exercise.\retTwo
+
+\exOne\blab{Exercise 1.29:}
+
+\begin{itemize}
+	\item[(a)] Suppose $E \subseteq V$ where $V$ is a Vitali set (see the tangent on page 22) and $E \in \mathcal{L}$. Prove that $m(E) = 0$.
+	
+	\begin{myIndent}\exTwoP
+		For all $r \in \mathbb{Q} \cap [-1, 1]$, define $E_r = \{v + r : v \in E\}$. By translation invariance, we know that $E_r$ is measurable with $m(E_r) = m(E)$ for all $r$. Also each $E_r$ is disjoint and $\bigcup_{r \in \mathbb{Q}}E_r \subseteq [-1, 2]$. It follows that $\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r$ is measurable and:
+
+		{\centering $3 \geq m(\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r) = \sum_{r \in \mathbb{Q} \cap [-1, 1]} m(E_r) = \sum_{r \in \mathbb{Q} \cap [-1, 1]} m(E)$\retTwo\par}
+
+		The only way this is possible is if $m(E) = 0$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] If $m(E) > 0$, then there exists a nonmeasurable set $N \subseteq E$. 
+	
+	\begin{myIndent}\exTwoP
+		\begin{myTindent}\myComment
+			Sidenote: the converse of this statement is trivially true because $(\mathbb{R}, \mathcal{L}, m)$ is complete.\retTwo
+		\end{myTindent}
+
+		To start, it suffices to show this for $E \subseteq [0, 1]$. After all, we can use the\\ translation invariance of the Lebesgue measure to move $N$ from $[0, 1]$ to where ever $E$ is (we can't have that $N + r$ is measurable because that would imply $(N + r) - r = N$ is measurable).\retTwo
+
+		Now, let $V$ be a Vitali set and $V_r = \{v + r : v \in V\}$ for all $r \in [-1, 1] \cap \mathbb{Q}$. If $E \cap V_r$ is not measurable for some $r$, then we are done. So, suppose $E \cap V_r$ is measurable for all $r$.  Then note that $\bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(E \cap V_r) = E \cap \bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r)$. Since $[0, 1]$ is a subset of $\bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r)$ and $E \subseteq [0, 1]$, we thus know that $E \cap \bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r) = E$. Additionally, since each $E \cap V_r$ is disjoint, we know that:
+
+		{\centering $m(E) = \sum_{r \in [-1, 1] \cap \mathbb{Q}}m(E \cap V_r)$ \retTwo\par}
+
+		Now hopefully it's clear how part (a) of this exercise extends to each\\ nonmeasurable set $V_r$. Thus, since we assumed each $E \cap V_r$ is a measurable set, we know that $m(E \cap V_r) = 0$. It follows that $m(E) = 0$, a contradiction of our problem.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hOne Now we return to exercise 2.9.\newpage
+
+\exOne
+
+\begin{itemize}
+	\item[(c)] $g(C)$ contains a Lebesgue nonmeasurable set $A$ by exercise 1.29. Let\\ $B = g^{-1}(A)$. Then $B$ is Lebesgue measurable but not Borel.
+	
+	\begin{myIndent}\exTwoP
+		Since $C$ is a measurable null set in the complete measure space $(\mathbb{R}, \mathcal{L}, m)$, we have that all subsets of $C$ including $B$ must be measurable. So $B \in \mathcal{L}$.
+		
+		
+		\begin{myIndent}\myComment
+			Side note: since $\card(C) = \card(\mathbb{R})$, we know that: 
+			
+			{\centering $\card(\mathcal{P}(\mathbb{R})) = \card(\mathcal{P}(C)) \leq \card(\mathcal{L}) \leq \card(\mathcal{P}(\mathbb{R}))$.\retTwo\par} 
+		\end{myIndent}
+
+		However, because $g^{-1}$ is continuous, we know that $g^{-1}$ is a Borel measurable function. Hence, if $B$ was borel, then we would have to have that $g(B) = A$ is also Borel, thus contradicting that $A$ is not measurable. So, we know $B$ is measurable but not Borel.\retTwo
+	\end{myIndent}
+
+	\item[(d)] There exists a Lebesgue measurable function $F$ and continuous function $G$ on $\mathbb{R}$ such that $F \circ G$ is not Lebesgue measurable.
+	
+	\begin{myIndent}\exTwoP
+		Define $G$ by continuously extending $g(x)$ to all $\mathbb{R}$ (One way to do this would be to set $G(x) = 2x$ when $x \notin [0, 1]$). Then set $F = \chi_B$ where $B$ is the the set found in part $c$. Then $(F \circ G)^{-1}(\{1\}) = A$ is not Lebesgue measurable. So $F \circ G$ is not a Lebesgue measurable function. \retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hOne
+One more interesting observation Folland makes is that the collection of Borel sets $\mathcal{B}_\mathbb{R}$ only has the cardinality of the continuum, meaning that most measurable sets are not Borel.
 
 
+\begin{myIndent}\hTwo
+	To prove this, firstly note that by exercise 1.3 in my LaTeX math 240A notes (page 11), we know that $\card(\mathcal{B}_{\mathbb{R}}) \geq \mathfrak{c}$.\retTwo
+
+	Also, consider the following lemmas:
+	\begin{enumerate}
+		\item \blab{Proposition 0.14:}
+			
+		\begin{itemize}
+			\item[(a)] If $\card(X) \leq \mathfrak{c}$ and $\card(Y) \leq \mathfrak{c}$, then $\card(X \times Y) \leq \mathfrak{c}$.
+			\begin{myIndent}
+				Proof:\\
+				It suffices to take $X = Y = \mathcal{P}(\mathbb{N})$ since then both $X$ and $Y$ have the largest cardinality we are allowing. Next, define $\psi, \phi: \mathbb{N} \rightarrow \mathbb{N}$ by $\psi(n) = 2n$ and $\phi(n) = 2n - 1$. Then $f: \mathcal{P}(\mathbb{N}) \times \mathcal{P}(\mathbb{N}) \rightarrow \mathcal{P}(\mathbb{N})$ given by $f(A, B) = \psi(A) \cup \phi(B)$ is a bijection.
+				\retTwo
+			\end{myIndent}
+
+			\item[(b)] If $\card(A) \leq \mathfrak{c}$ and $\card(\mathcal{E}_\alpha) \leq \mathfrak{c}$ for all $\alpha \in A$, then $\card(\bigcup_{\alpha \in A}\mathcal{E}_\alpha) \leq \mathfrak{c}$.
+			\begin{myIndent}
+				Proof:\\
+				For each $\alpha \in A$ there is a surjection $f_\alpha: \mathbb{R} \longrightarrow \mathcal{E}_\alpha$. So define the function $f: \mathbb{R} \times A \longrightarrow \bigcup_{\alpha \in A}\mathcal{E}_\alpha$ by $f(x, \alpha) = f_\alpha(x)$. This is a surjection. So, we know that $\card(\bigcup_{\alpha \in A}\mathcal{E}_\alpha) \leq \card(\mathbb{R} \times A)$ and the latter set by part (a) has no greater than the cardinality of the continuum.\newpage
+			\end{myIndent}
+		\end{itemize}
+
+		\item If $\card(\mathcal{E}) \leq \mathfrak{c}$, then $\card(\mathcal{E}^{\omega}) \leq \mathfrak{c}$.
+		
+		\begin{myIndent}\hThree
+			To see this, we can assume $\mathcal{E} = \{0, 1\}^\omega$ since then $\card(\mathcal{E}) = \mathfrak{c}$. Then note that we can use a diagonalization argument to create a bijection between\\ between $\mathcal{E}$ and $\mathcal{E}^{\omega}$. Writing it out would be a pain so do it yourself.\retTwo
+		\end{myIndent}
+	\end{enumerate}
+	
+	Now recall from Folland's proposition 1.23 (the bonus proposition written on page 38 of my LaTeX notes for math 240A) the following construction of $\mathcal{B}_{\mathbb{R}}$.
+
+	\begin{myIndent}
+		Let $S_\Omega$ be a minimal uncountable set (by constructing $S_\Omega$ from $\mathbb{R}$ using the construction I copied from Munkres on page 14 of this pdf, we can guarentee that $S_\Omega \subseteq \mathbb{R}$ and thus $\card(S_\Omega) \leq \mathfrak{c}$).\retTwo
+
+		Next, using $0$ to refer to the least element of $S_\Omega$, let $\mathcal{E}_0$ be the set of all rays of the form $[a, \infty)$ where $a \in \mathbb{R}$. Then for all other $\alpha \in S_\Omega$:
+		\begin{itemize}
+			\item If $\alpha$ has a direct predecessor $\beta$, then let $\mathcal{E}_\alpha$ be the collection of all\\ countable unions of  and complements of sets from $\mathcal{E}_\beta$.
+			\item If $\alpha$ does not have a direct predecessor, then set $\mathcal{E}_\alpha = \bigcup_{\beta \in S_{\alpha}}\mathcal{E}_\alpha$.
+		\end{itemize}
+
+		Finally, $\mathcal{B}_\mathbb{R} = \bigcup_{\alpha \in S_{\Omega}}\mathcal{E}_\alpha$.\retTwo
+	\end{myIndent}
+
+	We obviously have that $\card(\mathcal{E}_0) = \mathfrak{c}$. Then using transfinite induction along with our two previously mentioned lemmas, we can conclude that $\card(\mathcal{E}_\alpha) \leq \mathfrak{c}$ for all $\alpha \in S_{\Omega}$. So by part (b) of proposition 0.14, we conclude that:
+	
+	{\centering $\card(\mathcal{B}_\mathbb{R}) = \card(\bigcup_{\alpha \in S_{\Omega}}\mathcal{E}_\alpha) \leq \mathfrak{c}$.\retTwo\par}
+
+	Since $\mathfrak{c} \leq \card(\mathcal{B}_\mathbb{R}) \leq \mathfrak{c}$, we know that $\card(\mathcal{B}_\mathbb{R}) = \mathfrak{c}$.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\dispDate{1/5/2024}
+
+I thought it'd be fun to do this exercise from Folland's \textit{Real Analysis} tonight.\retTwo
+
+\exOne\blab{Exercise 2.61} If $f$ is continuous on $[0, \infty)$ for $\alpha > 0$ and $x \geq 0$, let:
+
+{\center $I_\alpha f(x) = \frac{1}{\Gamma(\alpha)} \int_0^x (x-t)^{\alpha-1}f(t)\df t$ \retTwo\par}
+
+$I_\alpha f$ is called the $\alpha$th \udefine{fractional integral} of $f$.
+\begin{itemize}
+	\item[(a)] $I_{\alpha + \beta}f = I_\alpha(I_\beta f)$ for all $\alpha, \beta > 0$.
+	
+	\begin{myIndent}\exTwoP
+		The book hints to use the identity $\frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)} = \int_0^1 t^{x-1}(1-t)^{y-1}\df t$ for $x, y > 0$. Proving this was exercise 2.60 and I solved out this exercise on pages 69 and 70 of my math 240A LaTeX document.\retTwo
+
+
+	\end{myIndent}
+
+	\item[(b)] If $n \in \mathbb{N}$, then $I_n f$ is the $n$th-order antiderivative of $f$. 
+\end{itemize}
+
+\newpage
 
 
 \end{document}
