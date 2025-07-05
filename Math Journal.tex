@@ -104,6 +104,11 @@
    \color{Orange}%
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\why}{%
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+	Why:
+}
 \newcommand{\exOne}{%
    \color{Purple}%
    \fontsize{14}{16}\selectfont%
@@ -163,6 +168,12 @@
    \ul{#1}%
 }}
 
+\newcommand{\uprop}[1]{{%
+   \setulcolor{Purple}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1} 
+}}
+
 \newcommand{\blab}[1]{\textbf{#1}}
 
 \newcommand{\uuline}[2][.]{%
@@ -194,6 +205,8 @@
 \newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
 
 \newcommand{\card}{\mathrm{card}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\opnorm}{\mathrm{op}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -2514,28 +2527,76 @@ One more interesting observation Folland makes is that the collection of Borel s
 
 \mySepTwo
 
-\dispDate{1/5/2024}
+\dispDate{7/5/2025}
 
-I thought it'd be fun to do this exercise from Folland's \textit{Real Analysis} tonight.\retTwo
+I'm going to be taking more analysis notes from Folland. I'm starting with the\\ section: \ul{The Dual of $C_0(X)$}.
 
-\exOne\blab{Exercise 2.61} If $f$ is continuous on $[0, \infty)$ for $\alpha > 0$ and $x \geq 0$, let:
-
-{\center $I_\alpha f(x) = \frac{1}{\Gamma(\alpha)} \int_0^x (x-t)^{\alpha-1}f(t)\df t$ \retTwo\par}
-
-$I_\alpha f$ is called the $\alpha$th \udefine{fractional integral} of $f$.
-\begin{itemize}
-	\item[(a)] $I_{\alpha + \beta}f = I_\alpha(I_\beta f)$ for all $\alpha, \beta > 0$.
+\begin{myIndent}\hTwo
+	To start out, we shall identify all positive bounded linear functionals on $C_0(X)$. Note that if $I$ is such a functional on $C_0(X)$, then we know it is also a positive bounded linear functional on the subspace $C_c(X)$. Meanwhile going in reverse, we have that if $I(f) = \int f \df \mu$ is a positive linear function on $C_c(X)$ that is bounded, then we can uniquely extend it to a positive bounded linear functional on $C_0(X)$ by defining $I(f) = \lim_{n\to \infty}I(f_n)$ for any $f \in C_0(X)$ where $\{f_n\}_{n \in \mathbb{N}}$ is any sequence in $C_c(X)$ converging to $f$ uniformly. So, given any Radon measure $\mu$, we need to determine when $I(f) = \int f \df \mu$ is bounded.\retTwo
 	
-	\begin{myIndent}\exTwoP
-		The book hints to use the identity $\frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)} = \int_0^1 t^{x-1}(1-t)^{y-1}\df t$ for $x, y > 0$. Proving this was exercise 2.60 and I solved out this exercise on pages 69 and 70 of my math 240A LaTeX document.\retTwo
 
+	Since $X$ is open and $\mu$ is Radon, by the Riesz Representation theorem:
+	
+	{\centering $\mu(X) = \sup\{I(f) : f \in C_c(X),\hspace{0.2em} \supp(f) \subseteq X,\hspace{0.2em} 0 \leq f \leq 1\}$. \retTwo\par}
 
+	The second condition is redundant and $I(f) = \int f \df \mu$. So we can rewrite this as $\mu(X) = \sup\{\int f \df \mu : f \in C_c(X), \hspace{0.2em} 0 \leq f \leq 1\}$. We now claim $I$ is bounded iff $\mu(X) < \infty$, and that when $I$ is bounded, $\|I\|_{\opnorm} = \mu(X)$.
+	
+	\begin{myIndent}\exTwo
+		$(\Longrightarrow)$\\
+		Suppose $\mu(X) = \infty$. Then for any $N > 0$, there is a function $f \in C_c(X)$ with $0 \leq f \leq 1$ such that $\int f \df \mu \geq N$. And since $\|f\|_u \leq 1$, we know that if $|I(f)| \leq C\|f\|_u$, then $N \leq |\int f \df \mu| = |I(f)| \leq C$. This proves no finite $C$ works for all $f \in C_c(X)$, and thus $I$ is unbounded.\retTwo
+
+		$(\Longleftarrow)$\\
+		Suppose $\mu(X) < \infty$ and then consider any $f \in C_c(X)$ with $\|f\|_u = 1$. Note that $|I(f)| = |\int f \df \mu| \leq \int |f|\df \mu$. Then since $0 \leq |f| \leq 1$, we know that $\int |f|\df \mu \leq \mu(X)$. So $\|I\|_\opnorm$ exists and is at most $\mu(X)$.\retTwo
+		
+		To prove that $\mu(X) = \|I\|_\opnorm$, let $\varepsilon > 0$ and pick $f \in C_c(X)$ with $0 \leq f \leq 1$ such that $\int f \df \mu > \mu(X) - \varepsilon$. Thus we have that $\|I\|_\opnorm \|f\|_u > \mu(X) - \varepsilon$. Then since $\|f\|_u \leq 1$, we have that $\|I\|_\opnorm > \mu(X) - \varepsilon$. Taking $\varepsilon \to 0$ finishes the proof.\retTwo
 	\end{myIndent}
 
-	\item[(b)] If $n \in \mathbb{N}$, then $I_n f$ is the $n$th-order antiderivative of $f$. 
-\end{itemize}
+	So, the positive bounded linear functionals on $C_0(X)$ are precisely given by\\ integration against finite Radon measures.\retTwo
 
-\newpage
+	\exOne\uprop{Lemma 7.15:}  If $I \in C_0(X, \mathbb{R})^*$, there exists positive functionals $I^{\pm} \in C_0(X, \mathbb{R})^*$ such that $I = I^+ - I^-$.
 
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		If $f \in C_0(X, [0, \infty))$, define:
+		
+		{\centering$I^+(f) = \sup\{I(g) : g \in C_0(X, \mathbb{R}),\hspace{0.2em} 0 \leq g \leq f\}$.\retTwo\par}
+
+		% Since $|I(g)| \leq \|I\|\|g\|_u \leq \|I\|\|f\|_u$ for all $0 \leq g \leq f$ and $I(0) = 0$, we have $0 \leq I^+(f) \leq \|I\|\|f\|_u$. We claim $I^+$ is the restriction to $C_0(X, [0, \infty))$ of a linear functional in $C_0(X, \mathbb{R})^*$.\retTwo
+
+		If $c \geq 0$, then clearly $I^+(cf) = cI^+(f)$. Meanwhile, let $f_1, f_2 \in C_0(X, [0, \infty))$. To show that $I^+(f_1 + f_2) = I^+(f_1) + I^+(f_2)$, first suppose $0 \leq g_1 \leq f_1$ and $0 \leq g_2 \leq f_2$. Then $0 \leq g_1 + g_2 \leq f_1 + f_2$. So, $I^+(f_1 + f_2) \geq I(g_1 + g_2) = I(g_1) + I(g_2)$. By taking $I(g_1) \to I^+(f_1)$ and $I(g_2) \to I^+(f_2)$, we then get that $I^+(f_1 + f_2) \geq I^+(f_1) + I^+(f_2)$.\retTwo
+		
+		On the other hand, if $0 \leq g \leq f_1 + f_2$, let $g_1 = \min(g, f_1)$ and $g_2 = g - g_1$.\\ Thus $0 \leq g_1 \leq f_1$, $0 \leq g_2 \leq f_2$, and $g_1, g_2$ are continuous. This guarentees $g_1, g_2 \in C_0(X, [0, \infty))$. So, $I(g) = I(g_1) + I(g_2) \leq I^+(f_1) + I^+(f_2)$. And, taking $I(g) \to I^+(f_1 + f_2)$ gets us $I^+(f_1 + f_2) \leq I^+(f_1) + I^+(f_2)$.\retTwo
+
+		Now, we extend $I^+$ to a positive linear functional in $C_0(X, \mathbb{R})^*$. Given\\ $f \in C_0(X, \mathbb{R})$, let $f^+$ and $f^-$ be the positive and negative parts of $f$. Then, $f^+, f^- \in C_0(X, [0, \infty))$. So, define $I^+(f) = I^+(f^+) - I^+(f^-)$.
+	\end{myIndent}
+
+
+	
+\end{myIndent}
 
 \end{document}
+
+
+
+% I thought it'd be fun to do this exercise from Folland's \textit{Real Analysis} tonight.\retTwo
+
+% \exOne\blab{Exercise 2.61} If $f$ is continuous on $[0, \infty)$ for $\alpha > 0$ and $x \geq 0$, let:
+
+% {\center $I_\alpha f(x) = \frac{1}{\Gamma(\alpha)} \int_0^x (x-t)^{\alpha-1}f(t)\df t$ \retTwo\par}
+
+% $I_\alpha f$ is called the $\alpha$th \udefine{fractional integral} of $f$.
+% \begin{itemize}
+% 	\item[(a)] $I_{\alpha + \beta}f = I_\alpha(I_\beta f)$ for all $\alpha, \beta > 0$.
+	
+% 	\begin{myIndent}\exTwoP
+% 		The book hints to use the identity $\frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)} = \int_0^1 t^{x-1}(1-t)^{y-1}\df t$ for $x, y > 0$. Proving this was exercise 2.60 and I solved out this exercise on pages 69 and 70 of my math 240A LaTeX document.\retTwo
+
+
+% 	\end{myIndent}
+
+% 	\item[(b)] If $n \in \mathbb{N}$, then $I_n f$ is the $n$th-order antiderivative of $f$. 
+% \end{itemize}
+
+% \newpage
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
