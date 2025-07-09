@@ -133,6 +133,26 @@
    \color{VioletRed}%
    \fontsize{12}{14}\selectfont%
 }
+
+% Homework standard below (God the bloat in the header is absurd...)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\newcommand{\Hstatement}{%
+   \color{MidnightBlue!90!Black}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexOne}{%
+   \color{Purple}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexTwoP}{%
+   \color{RedViolet}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexPPP}{%
+   \color{VioletRed}%
+   \fontsize{11}{12}\selectfont%
+}
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
@@ -2730,14 +2750,18 @@ A thing that Folland neglected to show is that while it's clear that $\mu_1 - \m
 
 \dispDate{7/8/2025}
 
-Firstly, I'm going to finish describing $C_0(X)^*$.\retTwo
+Firstly, I'm going to finish describing $C_0(X)^*$.
 
 \begin{myIndent}\exOne
 	\ul{Proposition 7.17 (The Riesz Representation Theorem):} Let $X$ be an LCH space, and for $\mu \in M(X)$ and $f \in C_0(X)$, let $I_\mu(f) = \int f \df \mu$. Then the map $\mu \mapsto I_\mu$ is an isometric isomorphism from $M(X)$ to $C_0(X)^*$.
 
 	\begin{myIndent}\exTwoP
 		Proof:\\
-		We already have shown that every $I \in C_0(X)^*$ is of the form $I_\mu$ for some $\mu \in M(X)$. On the other hand, if $\mu \in M(X)$, then we already know that $I_\mu$ is a linear function. Also, by proposition 3.13: $|\int f \df \mu| \leq \int |f|\df |\mu| \leq \|f\|_u\|\mu\|$. So, $I_\mu$ is bounded with $\|I_\mu\| \leq \|\mu\|$.\retTwo
+		We already have shown that every $I \in C_0(X)^*$ is of the form $I_\mu$ for some\\ $\mu \in M(X)$. On the other hand, if $\mu \in M(X)$, then we already know that $I_\mu$ is a linear function. Also, by proposition 3.13:
+		
+		{\centering $|\int f \df \mu| \leq \int |f|\df |\mu| \leq \|f\|_u\|\mu\|$.\retTwo\par}
+		
+		So, $I_\mu$ is bounded with $\|I_\mu\| \leq \|\mu\|$.\retTwo
 
 		All we have left to do is show $\|\mu\| \leq \|I_\mu\|$. So let $h = \frac{\df \mu}{\df |\mu|}$. Then since $|h| = 1$ by proposition 3.13 and $|\mu|$ is a finite Radon measure, we know\\ [2pt] by Lusin's theorem that for any $\varepsilon > 0$  there exists $f \in C_c(X)$ such that\\ [2pt] $\|f\|_u \leq \|h\|_u$ and $f = \overline{h}$ except on a set $E$ with $|\mu|(E) < \sfrac{\varepsilon}{2}$. (Note that\\ [2pt] since $|\overline{h}| = 1$ almost everywhere, we have that $\|f\|_u = 1$.)\retTwo
 		
@@ -2753,12 +2777,66 @@ Firstly, I'm going to finish describing $C_0(X)^*$.\retTwo
 		Thus $\|\mu\| \leq \|I_\mu\|$ and we are done. \blacksquare\retTwo
 	\end{myIndent}
 
-	\ul{Corollary 7.18:} If $X$ is a compact Hausdorff space, then $C(X)^*$ is isometrically isomorphic to $M(X)$.
+	\ul{Corollary 7.18:} If $X$ is a compact Hausdorff space, then $C(X)^*$ is isometrically isomorphic to $M(X)$.\newpage
 \end{myIndent}
 
+Next, I plan on taking a break from Folland chapter 7 in order to do some of the section 8.3 exercises in Folland that I never started or finished during the past Spring quarter.\retTwo
 
-\newpage
+\Hstatement\blab{Exercise 8.14 (Wirtinger's Inequality)} If $f \in C^1([a, b])$ and $f(a) = f(b) = 0$, then:
+
+$$\int_a^b |f(x)|^2\df x \leq \left(\frac{b-a}{\pi}\right)^2 \int_a^b |f^\prime(x)|^2\df x$$
+
+Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2}$. Extend $f$ To $[-\frac{1}{2}, \frac{1}{2}]$ by setting $f(-x) = -f(x)$, and then extend $f$ to be periodic on $\mathbb{R}$. Check that $f$, thus extended, is in $C^1(\mathbb{T})$ and apply the Parseval identity.\retTwo
+
+\begin{myIndent}\HexOne
+	Given our $f$, we can define $g(x) \coloneq f(a + 2x(b - a))$. Then $g \in C^1([0, \frac{1}{2}])$ with\\ $g(0) = g(\frac{1}{2}) = 0$ and $f(x) = g(\frac{x-a}{2(b-a)})$. Now suppose we prove the inequality for $g$.\\ I.e., we show $\int_0^{1/2} |g(x)|^2\df x \leq (\frac{1}{2\pi})^2 \int_0^{1/2} |g^\prime(x)|^2\df x$. Then:
+
+	\begin{itemize}
+		\item $\int_0^{1/2}|g(x)|^2 \df x = \int_0^{1/2}|f(a+2x(b-a))|^2 \df x = 2(b-a)\int_a^b |f(y)|^2\df y$,
+		\item $(\frac{1}{2\pi})^2\int_0^{1/2}|g^\prime(x)|^2\df x = (\frac{1}{2\pi})^2\int_0^{1/2}|2(b-a)f^\prime(a + 2x(b-a))|^2\df x$\\
+		$\phantom{(\frac{1}{2\pi})^2\int_0^{1/2}|g^\prime(x)|^2\df x} = (\frac{1}{2\pi})^2 (2(b-a))^3\int_a^{b}|f^\prime(y)|^2\df y = 2(b-a)(\frac{b-a}{\pi})^2\int_a^{b}|f^\prime(y)|^2\df y$.\retTwo
+	\end{itemize}
+
+	By canceling out the $2(b-a)$ term (which is positive since $b > a$), we see the result still holds for $f$ if it held for $g$.\retTwo
+
+	But now we need to actually prove the result for $g$. To do this, extend out $g$ to all of $\mathbb{R}$ by first setting $g(-x) \coloneq -g(x)$ for $x \in [0, \frac{1}{2}]$, and then extending $g$ to be periodic on $\mathbb{R}$. Note that this is well defined specifically because $g(0) = g(\frac{1}{2}) = 0$.\retTwo
 	
+	To see that $g$ is in $C^1(\mathbb{T})$, note that since $g(x) = -g(-x)$ for $x \in (-\frac{1}{2}, 0)$ we have that $g^\prime(x) = g^\prime(-x)$ on $(-\frac{1}{2}, 0)$. Thus $g$ is continuously differentiable on $(-\frac{1}{2}, 0)$ since we already know $g$ is continuously differentiable on $(0, \frac{1}{2})$.\retTwo
+	
+	As for at $x = 0$, note that:
+	
+	{\centering $\lim\limits_{h \to 0^-}\frac{g(h) - g(0)}{h} = \lim\limits_{h \to 0^-}\frac{g(h)}{h} = \lim\limits_{h \to 0^-}\frac{-g(-h)}{h} = \lim\limits_{h \to 0^+}\frac{-g(h)}{-h} = \lim\limits_{h \to 0^+}\frac{g(h)}{h} = \lim\limits_{h \to 0^+}\frac{g(h) - g(0)}{h}$\retTwo\par}
+
+	Thus $g^\prime(0)$ still exists on the extended domain. Also, since $\lim_{x \to 0^+}g^\prime(x) = g^\prime(0)$, we know that $\lim_{x \to 0^-}g^\prime(x) = \lim_{x \to 0^-}g^\prime(-x) = \lim_{x \to 0^+}g^\prime(x) = g^\prime(0)$. So, $g^\prime$ is continuous at $t = 0$. Similar reasoning also works at $x = \frac{1}{2}$, although the looping structure of $\mathbb{T}$ makes the expressions slightly messier.\retTwo
+
+	Now since $\mathbb{T}$ is compact, we know that $C(\mathbb{T}) \subseteq L^p$ for all $p$ (and in particular, for $p = 2$). Thus both $g$ and $g^\prime$ are in $L^2$. Applying Parseval's identity to $g$ we get that:
+
+	{\centering $\int_{-1/2}^{1/2} |g(x)|^2dx = \|g\|_{L^2(\mathbb{T})}^2 = \sum\limits_{k \in \mathbb{Z}}|\widehat{g}(k)|^2 = \sum\limits_{k \in \mathbb{Z}}|\int_{-1/2}^{1/2} g(x)e^{-2\pi i kx}\df x|^2$ \retTwo\par}
+
+	If we do integration by parts, then since $g(\frac{1}{2}) = g(-\frac{1}{2}) = 0$, we get for all $k \neq 0$ that:
+
+	{\centering $\widehat{g}(k) = \int_{-1/2}^{1/2} g(x)e^{-2\pi i kx}\df x = \frac{1}{2\pi i k}\int_{-1/2}^{1/2} g^\prime(x)e^{-2\pi i kx}\df x = \frac{1}{2\pi i k}\widehat{g^\prime}(k)$ \newpage\par}
+
+	Meanwhile, because of the way we extended $g$, we know $g$ is an odd function. Thus,\\ $\widehat{g}(0) = \int_{-1/2}^{1/2} g(x)\df x = 0$ and we've thus shown that:
+	
+	{\centering$\int_{-1/2}^{1/2} |g(x)|^2dx \leq \sum\limits_{\begin{smallmatrix}
+	k \in \mathbb{Z}\\ k \neq 0
+\end{smallmatrix}} \left|\frac{1}{2\pi i k}\widehat{g^\prime}(k)\right|^2 = \frac{1}{4\pi^2}\sum\limits_{\begin{smallmatrix}
+	k \in \mathbb{Z}\\ k \neq 0
+\end{smallmatrix}} \frac{1}{k^2}\left|\widehat{g^\prime}(k)\right|^2$\retTwo\par}
+
+	Now $\sum\limits_{\begin{smallmatrix}
+	k \in \mathbb{Z}\\ k \neq 0
+	\end{smallmatrix}} \frac{1}{k^2}\left|\widehat{g^\prime}(k)\right|^2 \leq \sum\limits_{k \in \mathbb{Z}} 1\cdot \left|\widehat{g^\prime}(k)\right|^2$ and the latter is equal to $\|g^\prime\|_{L^2(\mathbb{T})}^2 = \int_{-1/2}^{1/2} |g^\prime(x)|^2 \df x$.\retTwo
+
+	Hence, we've proven that $\int_{-1/2}^{1/2} |g(x)|^2dx \leq \left(\frac{1}{2\pi}\right)^2\int_{-1/2}^{1/2} |g^\prime(x)|^2 \df x$.\retTwo
+
+	Finally, since $|g(x)|^2$ and $|g^\prime(x)|^2$ are both even on account of $g$ being odd, we know that $\int_{-1/2}^{1/2} |g(x)|^2dx = 2\int_{0}^{1/2} |g(x)|^2dx$ and $\int_{-1/2}^{1/2} |g^\prime(x)|^2 \df x = 2\int_{0}^{1/2} |g^\prime(x)|^2 \df$. After\\ canceling out the factor of $2$, we've thus proven our desired inequality. $\blacksquare$\retTwo
+	
+
+
+
+\end{myIndent}
 
 
 \end{document}
