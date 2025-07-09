@@ -207,6 +207,7 @@
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\supp}{\mathrm{supp}}
 \newcommand{\opnorm}{\mathrm{op}}
+\newcommand{\sgn}{\mathrm{sgn}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -2529,7 +2530,7 @@ One more interesting observation Folland makes is that the collection of Borel s
 
 \dispDate{7/5/2025}
 
-I'm going to be taking more analysis notes from Folland. I'm starting with the\\ section: \ul{The Dual of $C_0(X)$}.
+I'm going to be taking more analysis notes from Folland. I'm starting with the\\ section: \ul{The Dual of $C_0(X)$}. Here, $X$ refers to an LCH space.
 
 \begin{myIndent}\hTwo
 	To start out, we shall identify all positive bounded linear functionals on $C_0(X)$. Note that if $I$ is such a functional on $C_0(X)$, then we know it is also a positive bounded linear functional on the subspace $C_c(X)$. Meanwhile going in reverse, we have that if $I(f) = \int f \df \mu$ is a positive linear function on $C_c(X)$ that is bounded, then we can uniquely extend it to a positive bounded linear functional on $C_0(X)$ by defining $I(f) = \lim_{n\to \infty}I(f_n)$ for any $f \in C_0(X)$ where $\{f_n\}_{n \in \mathbb{N}}$ is any sequence in $C_c(X)$ converging to $f$ uniformly. So, given any Radon measure $\mu$, we need to determine when $I(f) = \int f \df \mu$ is bounded.\retTwo
@@ -2551,7 +2552,7 @@ I'm going to be taking more analysis notes from Folland. I'm starting with the\\
 		To prove that $\mu(X) = \|I\|_\opnorm$, let $\varepsilon > 0$ and pick $f \in C_c(X)$ with $0 \leq f \leq 1$ such that $\int f \df \mu > \mu(X) - \varepsilon$. Thus we have that $\|I\|_\opnorm \|f\|_u > \mu(X) - \varepsilon$. Then since $\|f\|_u \leq 1$, we have that $\|I\|_\opnorm > \mu(X) - \varepsilon$. Taking $\varepsilon \to 0$ finishes the proof.\retTwo
 	\end{myIndent}
 
-	So, the positive bounded linear functionals on $C_0(X)$ are precisely given by\\ integration against finite Radon measures.\retTwo
+	So, the positive bounded linear functionals on $C_0(X)$ are precisely given by\\ integration against finite Radon measures (and this correspondence is one-to-one by the Riesz Representation theorem). Next, we identify the other linear\\ functionals on $C_0(X)$.\retTwo
 
 	\exOne\uprop{Lemma 7.15:}  If $I \in C_0(X, \mathbb{R})^*$, there exists positive functionals $I^{\pm} \in C_0(X, \mathbb{R})^*$ such that $I = I^+ - I^-$.
 
@@ -2561,18 +2562,204 @@ I'm going to be taking more analysis notes from Folland. I'm starting with the\\
 		
 		{\centering$I^+(f) = \sup\{I(g) : g \in C_0(X, \mathbb{R}),\hspace{0.2em} 0 \leq g \leq f\}$.\retTwo\par}
 
-		% Since $|I(g)| \leq \|I\|\|g\|_u \leq \|I\|\|f\|_u$ for all $0 \leq g \leq f$ and $I(0) = 0$, we have $0 \leq I^+(f) \leq \|I\|\|f\|_u$. We claim $I^+$ is the restriction to $C_0(X, [0, \infty))$ of a linear functional in $C_0(X, \mathbb{R})^*$.\retTwo
-
 		If $c \geq 0$, then clearly $I^+(cf) = cI^+(f)$. Meanwhile, let $f_1, f_2 \in C_0(X, [0, \infty))$. To show that $I^+(f_1 + f_2) = I^+(f_1) + I^+(f_2)$, first suppose $0 \leq g_1 \leq f_1$ and $0 \leq g_2 \leq f_2$. Then $0 \leq g_1 + g_2 \leq f_1 + f_2$. So, $I^+(f_1 + f_2) \geq I(g_1 + g_2) = I(g_1) + I(g_2)$. By taking $I(g_1) \to I^+(f_1)$ and $I(g_2) \to I^+(f_2)$, we then get that $I^+(f_1 + f_2) \geq I^+(f_1) + I^+(f_2)$.\retTwo
 		
 		On the other hand, if $0 \leq g \leq f_1 + f_2$, let $g_1 = \min(g, f_1)$ and $g_2 = g - g_1$.\\ Thus $0 \leq g_1 \leq f_1$, $0 \leq g_2 \leq f_2$, and $g_1, g_2$ are continuous. This guarentees $g_1, g_2 \in C_0(X, [0, \infty))$. So, $I(g) = I(g_1) + I(g_2) \leq I^+(f_1) + I^+(f_2)$. And, taking $I(g) \to I^+(f_1 + f_2)$ gets us $I^+(f_1 + f_2) \leq I^+(f_1) + I^+(f_2)$.\retTwo
 
-		Now, we extend $I^+$ to a positive linear functional in $C_0(X, \mathbb{R})^*$. Given\\ $f \in C_0(X, \mathbb{R})$, let $f^+$ and $f^-$ be the positive and negative parts of $f$. Then, $f^+, f^- \in C_0(X, [0, \infty))$. So, define $I^+(f) = I^+(f^+) - I^+(f^-)$.
+		Now, we extend $I^+$ to a positive linear functional in $C_0(X, \mathbb{R})^*$. Given\\ $f \in C_0(X, \mathbb{R})$, let $f^+$ and $f^-$ be the positive and negative parts of $f$. Then, $f^+, f^- \in C_0(X, [0, \infty))$. So, define $I^+(f) = I^+(f^+) - I^+(f^-)$. This is linear because if $c \in \mathbb{R}$, then ignoring the trivial edge case where $c = 0$:\newpage
+		
+		{\centering\begin{tabular}{l}
+		$I^+(cf) = \sgn(c)\left(I^+(|c|f^+) - I^+(|c|f^{-})\right)$\\
+		$\phantom{I^+(cf)} = \sgn(c)|c|\left(I^+(f^+) - I^+(f^-)\right) = cI^+(f)$.
+		\end{tabular}\retTwo\par}
+
+		Also, suppose $f = g + h$ where $g, h \in C_0(X, \mathbb{R})$. Then $f^+ + g^- + h^- = f^- + g^+ + h^+$ where all the functions in that expression are in $C_0(X, [0, \infty))$. So, we know from our earlier work that:
+
+		{\centering\fontsize{11}{13}\selectfont \begin{tabular}{l}
+			$I^+(f^+) + I^+(g^-) + I^+(h^-) = I^+(f^+ + g^- + h^-)$\\
+			$\phantom{I^+(f^+) + I^+(g^-) + I^+(h^-) } = I^+(f^- + g^+ + h^+) = I^+(f^-) + I^+(g^+) + I^+(h^+)$
+		\end{tabular} \retTwo\par}
+
+		Or in other words:
+
+		{\centering\fontsize{11}{13}\selectfont $I^+(f) = I^+(f^+) - I^+(f^-) = I^+(g^+) - I^+(g^-) + I^+(h^+) - I^+(h^-) = I^+(g) + I^+(h)$\retTwo\par}
+
+		To show that $I^+$ is bounded, first note that if $f \in C_0(X, [0, \infty))$, then since $|I(g)| \leq \|I\|\|g\|_u \leq \|I\|\|f\|_u$ for all $0 \leq g \leq f$ and $I(0) = 0$, we have $0 \leq I^+(f) \leq \|I\|\|f\|_u$. (Note, this also proves $I^+$ is positive). Meanwhile, if $f \in C_0(X, \mathbb{R})$, then $I^+(f) = I^+(f^+) - I^+(f^-)$ where both terms in that difference are positive. Hence, we can say that:
+
+		{\centering $|I^+(f)| \leq \max(I^+(f^+), I^-(f^-)) \leq \|I\|\max(\|f^+\|_u, \|f^-\|_u) = \|I\|\|f\|_u$ \retTwo\par}
+
+		Thus, we've finished constructing $I^+$. So now define $I^-(f) = I^+(f) - I(f)$. Then we know $I^- \in C_0(X, \mathbb{R})^*$ because $C_0(X, \mathbb{R})^*$ is a real vector space. Also, $I^-$ is positive because if $f \geq 0$, then you can see from our definition of $I^+(f)$ on $C_0(X, [0, \infty))$ that $I^+(f) \geq I(f)$. Hence, $I^-(f) = I^+(f) - I(f)$ is also nonnegative. $\blacksquare$\retTwo
 	\end{myIndent}
 
+	\hOne Now any $I \in C_0(X)^*$ is uniquely determined by its restriction $J$ to $C_0(X, \mathbb{R})$.
 
+	\begin{myIndent}\why
+
+		{\centering $I(f) = I(\rea{f} + i\ima{f}) = I(\rea{f}) + iI(\ima{f}) = J(\rea{f}) + iJ(\ima{f})$.\retTwo\par}
+	\end{myIndent}
+
+	Next, there are two real linear functionals $J_1, J_2 \in C_0(X, \mathbb{R})^*$ such that\\ $J = J_1 + iJ_2$. Specifically, set $J_1(f) = \rea{J(f)}$ and $J_2 = \ima{J(f)}$. Then clearly $J_1$ and $J_2$ are real linear functionals and they are bounded with\\ $\|J_i\| \leq \|I\|$.\retTwo
+
+
+	Using our lemma, we can decompose $J_1$ and $J_2$ into differences of positive bounded linear real functionals. I.e., we write $J = J_1^+ - J_1^- + i(J_2^+ - j_2^-)$.\retTwo
+
+	Finally, define $I_1^+, I_1^-, I_2^+, I_2^-$ such that $I_1^+(f) = J_1^+(\rea{f}) + iJ_1^+(\ima{f})$ and the others have analogous definitions. Then all of our $I_i^\pm$ are well-defined complex linear functionals on $C_0(X)$ that are bounded since:
 	
+	{\centering $|I_i^\pm(f)| \leq \|J_i^\pm\|(\|\rea{f}\|_u + \|\ima{f}\|_u) \leq 2\|J_i^\pm\|\|f\|_u$. \retTwo\par}
+	
+	Also, all the $I_i^\pm$ are positive since if $f$ is nonnegative, then $I_i^\pm(f) = J_i^\pm(f)$. This means that there are finite Radon measures $\mu_1, \mu_2, \mu_3, \mu_4$ such that\\ $I_1^+(f) = \int f \df \mu_1$, $I_1^-(f) = \int f \df \mu_2$, $I_2^+(f) = \int f \df \mu_3$. and $I_2^-(f) = \int f \df \mu_4$.\newpage
+
+	Additionally:
+
+	{\centering \begin{tabular}{l}
+		$I(f) = J(\rea{f}) + iJ(\ima{f})$\\ [4pt]
+		$\phantom{I(f)} = J_1(\rea{f}) + iJ_2(\rea{f}) + iJ_1(\ima{f}) + i^2J_2(\ima{f})$\\ [4pt]
+		$\phantom{I(f)} = J_1^+(\rea{f}) - J_1^-(\rea{f}) + iJ_2^+(\rea{f}) - iJ_2^-(\rea{f})$\\
+		$\phantom{I(f) +} + iJ_1^+(\ima{f}) - iJ_1^-(\ima{f}) + i^2J_2^+(\ima{f}) - i^2J_2^-(\ima{f})$\\ [4pt]
+		$\phantom{I(f)} = I_1^+(f) - I_2^-(f) + iI_2^+(f) - iI_2^-(f)$\\ [4pt]
+	\end{tabular} \retTwo\par}
+
+	So for any $I \in C_0(X)^*$, there are finite Radon measures $\mu_1, \mu_2, \mu_3, \mu_4$ such that $I(f) = \int f \df \mu$ where $\mu = \mu_1 - \mu_2 + i\mu_3 - i\mu_4$.\retTwo
 \end{myIndent}
+
+\dispDate{7/6/2025}
+
+I'm continuing on in Folland where I left off.
+
+\begin{myIndent}\hTwo
+	A \udefine{signed Radon measure} is a signed Borel measure such that it's positive and\\ negative variations are Radon.\retTwo
+
+	A \udefine{complex Radon measure} is a complex Borel measure such that it's real and\\ imaginary variations are signed Radon measures.
+	\begin{myIndent}
+		\pracTwo Side note: Complex Borel measures are always finite on compact sets. Thus if $X$ is an LCH space in which every open set is $\sigma$-compact, we know by theorem 7.8 that all complex Borel measures are Radon. In particular, if $X$ is a second countable LCH space, then all complex Borel measures are Radon.\retTwo
+	\end{myIndent}
+
+	We denote the space of complex Radon measures on $(X, \mathcal{B}_X)$ as $M(X)$ and for $\mu \in M(X)$ we define $\|\mu\| = |\mu|(X)$ where $|\mu|$ is the total variation of $\mu$.\retTwo
+
+	\exOne \ul{Proposition 7.16:} If $\mu$ is a complex Borel measure, then $\mu$ is Radon iff $|\mu|$ is Radon. Moreover, $M(X)$ is a vector space and $\mu \mapsto \|\mu\|$ is a norm on that space.
+
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		By proposition 7.5 (which says that Radon measures are inner regular on all their $\sigma$-finite sets), we know that a finite positive measure $|\mu|$ is Radon iff for any Borel set $E$ and $\varepsilon > 0$ there is an open set $U$ and a compact set $K$ with $K \subseteq E \subseteq U$ and $\mu(U - K) < \varepsilon$. From this we show the first assertion as follows. If $\mu = \mu_1 - \mu_2 + i\mu_3 - i\mu_4$ where all the $\mu_j$ are finite positive measures, and $|\mu|(U - K) < \varepsilon$, then $\mu_j(U - K) < \varepsilon$ for all $j$.
+		
+		\begin{myIndent}
+			\why (Also I'm going into more detail cause I am having trouble remembering how to work with the total variation of a complex measure.) Let $\nu$ be some positive measure with $\mu \ll \nu$. Then $\mu_j \ll \nu$ for each $j$, so for each $j$ there are functions $f_j$ with $\df \mu_j = f_j \df \nu$. Also, $\df \mu = (f_1 - f_2 + i(f_3 - f_4))\df \nu$ and $\df |\mu| = |f_1 - f_2 + i(f_3 - f_4)|\df \nu$.\newpage
+
+			Now since all the $f_j$ are real-valued, we have:
+			
+			{\centering $|f_1 - f_2 + i(f_3 - f_4)| \geq \max(|f_1 - f_2|, |f_3 - f_4|)$.\retTwo\par}
+
+			Next, since $\mu_1 \perp \mu_2$ and $\mu_3 \perp \mu_4$ and all the measures are positive, we know that $\min(f_1, f_2) = 0$ and $\min(f_3, f_4) = 0$ $\nu$-a.e. Hence,
+
+			{\centering $\max(|f_1 - f_2|, |f_3 - f_4|) \geq \max(f_1, f_2, f_3, f_4)$ a.e.\retTwo\par}
+
+			And so, we get $|\mu|(E) \geq \max(\mu_1(E), \mu_2(E), \mu_3(E), \mu_4(E))$ for all\\ $E \in \mathcal{B}_X$.\retTwo
+		\end{myIndent}
+		
+		Meanwhile if we can pick $U_j, K_j$ for all $j$ such that $\mu_j(U_j - K_j) < \sfrac{\varepsilon}{4}$, then set $U = \bigcap U_j$ and $K = \bigcup K_j$. Now, $|\mu|(U - K) < 4 \cdot \sfrac{\varepsilon}{4} = \varepsilon$.
+
+		\begin{myIndent}
+			\why By proposition 3.14,
+			
+			{\centering\begin{tabular}{l}
+				$|\mu| = |\mu_1 - \mu_2 + i\mu_3 - i\mu_4| \leq |\mu_1| + |-\mu_2| + |i\mu_3| + |-i\mu_4|$\\
+				$\phantom{|\mu| = |\mu_1 - \mu_2 + i\mu_3 - i\mu_4|} = \mu_1 + \mu_2 + \mu_3 + \mu_4$.
+			\end{tabular}\retTwo\par}
+
+			Then since $\mu_j(U) \leq \mu_j(U_j)$ and $\mu_j(K) \geq \mu(K_j)$ for all $j$, the claim holds.\retTwo
+		\end{myIndent}
+
+		Similar reasoning to that right above can show that $M(X)$ is closed under addition, and that $\|\mu_1 + \mu_2\| \leq \|\mu_1\| + \|\mu_2\|$. Also if $\df \mu = f \df \nu$ for some positive measure $\nu$, then $c \df \mu = c f \df \nu$. So $|c \df \mu| = |c| \df |\mu|$, and from that it is clear that $|\mu|$ being Radon implies $|c \df \mu|$ is Radon. So, $M(X)$ is closed under scalar multiplication. Note this also shows that $\|c\mu\| = |c|\|\mu\|$ for all $c \in \mathbb{C}$ and $\mu \in M(X)$.\retTwo
+
+		Finally, suppose $\mu \in M(X)$ with $\mu \neq 0$. Then there is some set $E \in \mathcal{B}_X$ such that $\mu(E) \neq 0$. Next $0 < |\mu(E)| \leq |\mu|(E)$ (see proposition 3.13). And since $|\mu|$ is Radon, we know that:
+		
+		{\centering $0 < |\mu|(E) = \inf\{|\mu|(U) : E \subseteq U \text{ where } U \text{ is open}\} \leq |\mu|(X) = \|\mu\|$.\retTwo\par}
+
+		This proves, $M(X)$ is a normed vector space when equipped with $\|\cdot\|$. \blacksquare\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\dispDate{7/7/2025}
+
+Before getting to the next theorem, I'd like to return to when I showed that for any $I \in C_0(X)^*$, there are finite Radon measures $\mu_1, \mu_2, \mu_3, \mu_4$ such that $I(f) = \int f \df \mu$ where $\mu = \mu_1 - \mu_2 + i\mu_3 - i\mu_4$.\retTwo
+
+A thing that Folland neglected to show is that while it's clear that $\mu_1 - \mu_2$ and $\mu_3 - \mu_4$ are the real and imaginary variations of $\mu$ respectively, it's not necessarily clear that $\mu_1$ and $\mu_2$ are the positive and negative variations respectively of $(\mu_1 - \mu_2)$ and likewise for $\mu_3$ and $\mu_4$ with respect to $(\mu_3 - \mu_4)$. So, I want to show that today since this will be relevant to the next propositions that Folland covers.\retTwo
+
+\begin{myIndent}\pracOne
+	\ul{Lemma (Riesz Representation theorem on $C_0(X, \mathbb{R})^*$):} There is a one-to-one\\ correspondance between positive linear functionals in $C_0(X, \mathbb{R})^*$ and finite Radon measures on $(X, \mathcal{B}_X)$.
+
+	\begin{myIndent}\pracTwo
+	To start out, if $I \in C_0(X, \mathbb{R})^*$, then recall that there is a unique $J \in C_0(X)^*$ such that $J|_{C_0(x, \mathbb{R})} = I$. Namely, $J(f) = I(\rea{f}) + iI(\ima{f})$. Then $I$ being positive means that $J$ is positive. So by the Riesz Representation theorem, there is a unique finite Radon measure $\mu$ on $(X, \mathcal{B}_X)$ such that $J(f) = \int f \df \mu$. Then since $C_0(X, \mathbb{R}) \subseteq C_0(X)$, we have that $I(f) = \int f \df \mu$ for all $f \in C_0(X, \mathbb{R})$. At the same time, for any finite Radon measure $\mu$, $f \mapsto \int f \df \mu$ is in $C_0(X, \mathbb{R})^*$. So, there is a bijective correspondence between finite Radon measures on $X$ and $\{f \in C_0(X, \mathbb{R})^* : f \text{ is positive}\}$.\retTwo
+	\end{myIndent}
+	
+	Now suppose $I \in C_0(X, \mathbb{R})^*$ and let $I = I^+ - I^-$ where $I^\pm \in C_0(X, \mathbb{R})^*$ are as we constructed in Lemma 7.15. As we just demonstrated, there are finite Radon measures $\mu_1$ and $\mu_2$ such that $I^+(f) = \int f \df \mu_1$ and $I^-(f) = \int f \df \mu_2$. In turn, setting $\mu = \mu_1 - \mu_2$ we have that $I(f) = \int f \df \mu$.\retTwo
+
+	\pracOne\ul{Exercise 7.16:} The positive and negative variations of $\mu$ are the Radon measures $\mu_1$ and $\mu_2$ respectively.
+
+	\begin{myIndent}\pracTwo
+		Let $\mu^+$ and $\mu^-$ be the positive and negative variations of $\mu$, and let $E \in \mathcal{B}_X$ be a set such that $\mu^+(E) = 0$ and $\mu^-(E^\comp) = 0$.\retTwo
+		
+		Fixing $f \in C_0(X, [0, \infty))$, note that:
+
+		{\centering\begin{tabular}{l}
+			$I^+(f) = \sup\{I(g) : g \in C_0(X, \mathbb{R}), 0 \leq g \leq f\}$\\ [6pt]
+			$\phantom{I^+(f)} = \sup\{\int g \df \mu^+ - \int g \df \mu^- : g \in C_0(X, \mathbb{R}), 0 \leq g \leq f\}$ \\ [6pt]
+			$\phantom{I^+(f)} \leq \sup\{\int g \df \mu^+ : g \in C_0(X, \mathbb{R}), 0 \leq g \leq f\} = \int f \df \mu^+ $
+		\end{tabular}\retTwo\par}
+
+		On the other hand, since $\mu_1, \mu_2$ are finite Radon measures and I showed yesterday that $M(X)$ is a vector space, I know that $\mu = \mu_1 - \mu_2$ is also a finite Radon measure. Also from yesterday, I know that that is equivalent to saying that $|\mu| = \mu^+ + \mu^-$ is Radon. Plus, $\mu$ being finite implies $|\mu|$ is finite. Hence, $f$ vanishes outside of a set with finite measure (that set being all of $X$). So, for any $\varepsilon > 0$ we can apply Lusin's theorem to get a function $\phi \in C_c(X)$ with $\phi = f\chi_{E^\comp}$ except on a set $F \in \mathcal{B}_X$ with $|\mu|(F) < \varepsilon$.\retTwo
+		
+		If we then set $\psi = \min(\rea{\phi}^+, f)$, we still have that $\psi = f\chi_{E^\comp}$ except on $F$. But then also $\psi \in C_C(X, \mathbb{R}) \subseteq C_0(X, \mathbb{R})$ with $0 \leq \psi \leq f$. So:
+
+		{\centering\begin{tabular}{l}
+			$I^+(f) \geq \int \psi \df \mu = \int \psi \df \mu^+ - \int \psi \df \mu^-$\\ [6pt]
+			$\phantom{I^+(f) \geq \int \psi \df \mu} = \int_F \psi \df \mu^+ + \int_{F^\comp} f\chi_{E^\comp}\df \mu^+ - \int_F \psi \df \mu^- - \int_{F^\comp} f\chi_{E^\comp}\df \mu^-$\\ [6pt]
+			$\phantom{I^+(f) \geq \int \psi \df \mu } \geq 0 + \int_{F^\comp} f\chi_{E^\comp}\df \mu^+ - \int_F \psi \df \mu^- - \int_{F^\comp} f\chi_{E^\comp}\df \mu^-$\\ [6pt]
+			$\phantom{I^+(f) \geq \int \psi \df \mu} = \int_{F^\comp} f\df \mu^+ - \int_F \psi \df \mu^- - 0$\\ [6pt]
+			$\phantom{I^+(f) \geq \int \psi \df \mu} = \int f \df \mu^+ - \int_{F} f\df \mu^+ - \int_F \psi \df \mu^- - 0$\\ [6pt]
+			$\phantom{I^+(f) \geq \int \psi \df \mu} \geq \int f \df\mu^+ - 2\|f\|_u\mu(F) > \int f \df \mu^+ - 2\varepsilon\|f\|_u$\\ [6pt]
+		\end{tabular}\newpage\par}
+
+		Since $f$ was fixed, by taking $\varepsilon \to 0$ we have thus proven that $I^+(f) = \int f \df \mu^+$ for all $f \in C_0(X, [0, \infty))$. Then by considering positive and negative parts and making use of the linearity of both sides, we can easily see $I^+(f) = \int f \df \mu^+$ for all $f \in C_0(x, \mathbb{R})$. This proves that $\mu^+$ is the unique Radon measure associated with $I^+$. Hence, $\mu^+ = \mu_1$.\retTwo
+
+		Also, since $I^-(f) = I^+(f) - I(f) = \int f \df \mu^+ - (\int f \df \mu^+ - \int f \df \mu^-)$, we have $I^-(f) = \int f \df \mu^-$ for all $f \in C_0(X, \mathbb{R})$. So $\mu^- = \mu_2$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	Now as seen in the first lemma I showed today, if we extend $I^\pm \in C_0(X, \mathbb{R})^*$ to be a linear functional in $C_0(X)^*$, it doesn't change the measure $\mu$ at all. So, I'm done.\retTwo
+\end{myIndent}
+
+\dispDate{7/8/2025}
+
+Firstly, I'm going to finish describing $C_0(X)^*$.\retTwo
+
+\begin{myIndent}\exOne
+	\ul{Proposition 7.17 (The Riesz Representation Theorem):} Let $X$ be an LCH space, and for $\mu \in M(X)$ and $f \in C_0(X)$, let $I_\mu(f) = \int f \df \mu$. Then the map $\mu \mapsto I_\mu$ is an isometric isomorphism from $M(X)$ to $C_0(X)^*$.
+
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		We already have shown that every $I \in C_0(X)^*$ is of the form $I_\mu$ for some $\mu \in M(X)$. On the other hand, if $\mu \in M(X)$, then we already know that $I_\mu$ is a linear function. Also, by proposition 3.13: $|\int f \df \mu| \leq \int |f|\df |\mu| \leq \|f\|_u\|\mu\|$. So, $I_\mu$ is bounded with $\|I_\mu\| \leq \|\mu\|$.\retTwo
+
+		All we have left to do is show $\|\mu\| \leq \|I_\mu\|$. So let $h = \frac{\df \mu}{\df |\mu|}$. Then since $|h| = 1$ by proposition 3.13 and $|\mu|$ is a finite Radon measure, we know\\ [2pt] by Lusin's theorem that for any $\varepsilon > 0$  there exists $f \in C_c(X)$ such that\\ [2pt] $\|f\|_u \leq \|h\|_u$ and $f = \overline{h}$ except on a set $E$ with $|\mu|(E) < \sfrac{\varepsilon}{2}$. (Note that\\ [2pt] since $|\overline{h}| = 1$ almost everywhere, we have that $\|f\|_u = 1$.)\retTwo
+		
+		Now:
+
+		{\centering \begin{tabular}{l}
+			$\|\mu\| = \int 1\df |\mu| = \int |h|^2 \df |\mu|$\\ [4pt]
+			$\phantom{\|\mu\| = \int 1\df |\mu|} = \int \overline{h} \df \mu \leq |\int f \df \mu| + |\int (f - \overline{h})\df \mu|$\\ [4pt]
+			$\phantom{\|\mu\| = \int 1\df |\mu| = \int \overline{h} \df \mu}\leq |I_\mu(f)| + \int |f - \overline{h}|\df |\mu| \leq \|I_\mu\| + 2|\mu|(E)$\\ [4pt]
+			$\phantom{\|\mu\| = \int 1\df |\mu| = \int \overline{h} \df \mu \leq |I_\mu(f)| + \int |f - \overline{h}|\df |\mu|} < \|I_\mu\| + \varepsilon$\\ [4pt]
+		\end{tabular}\retTwo\par}
+
+		Thus $\|\mu\| \leq \|I_\mu\|$ and we are done. \blacksquare\retTwo
+	\end{myIndent}
+
+	\ul{Corollary 7.18:} If $X$ is a compact Hausdorff space, then $C(X)^*$ is isometrically isomorphic to $M(X)$.
+\end{myIndent}
+
+
+\newpage
+	
+
 
 \end{document}
 
