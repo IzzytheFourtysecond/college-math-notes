@@ -2827,16 +2827,155 @@ Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2
 
 	Now $\sum\limits_{\begin{smallmatrix}
 	k \in \mathbb{Z}\\ k \neq 0
-	\end{smallmatrix}} \frac{1}{k^2}\left|\widehat{g^\prime}(k)\right|^2 \leq \sum\limits_{k \in \mathbb{Z}} 1\cdot \left|\widehat{g^\prime}(k)\right|^2$ and the latter is equal to $\|g^\prime\|_{L^2(\mathbb{T})}^2 = \int_{-1/2}^{1/2} |g^\prime(x)|^2 \df x$.\retTwo
+	\end{smallmatrix}} \frac{1}{k^2}\left|\widehat{g^\prime}(k)\right|^2 \leq \sum\limits_{k \in \mathbb{Z}} 1\cdot \left|\widehat{g^\prime}(k)\right|^2$ and the latter is equal to $\|g^\prime\|_{L^2(\mathbb{T})}^2 = \int_{-1/2}^{1/2} |g^\prime(x)|^2 \df x$\\ [-12pt]\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} by Parseval's identity.\retTwo
 
 	Hence, we've proven that $\int_{-1/2}^{1/2} |g(x)|^2dx \leq \left(\frac{1}{2\pi}\right)^2\int_{-1/2}^{1/2} |g^\prime(x)|^2 \df x$.\retTwo
 
 	Finally, since $|g(x)|^2$ and $|g^\prime(x)|^2$ are both even on account of $g$ being odd, we know that $\int_{-1/2}^{1/2} |g(x)|^2dx = 2\int_{0}^{1/2} |g(x)|^2dx$ and $\int_{-1/2}^{1/2} |g^\prime(x)|^2 \df x = 2\int_{0}^{1/2} |g^\prime(x)|^2 \df$. After\\ canceling out the factor of $2$, we've thus proven our desired inequality. $\blacksquare$\retTwo
-	
-
-
-
 \end{myIndent}
+
+\blab{Exercise 8.16:} Let $f_k = \chi_{[-1, 1]} * \chi_{[-k, k]}$. (Also assume $k \in \mathbb{N}$ with $k > 0$).
+\begin{enumerate}
+	\item[(a)] Compute $f_k(x)$ explicitely and show that $\|f\|_u = 2$.
+	\begin{myIndent}\HexOne
+		You can fairly easily see that for any $x \in \mathbb{R}$, $f_k(x) = \int_{-k}^k \chi_{[-1, 1]}(x - y)\df y$. Evaluating that gives the formula:
+
+		{\centering $f_k(x) = \left\{\begin{matrix}
+			2 & \text{if } |x| \leq k - 1 \phantom{<--k + 1} \\
+			k - x + 1 & \text{if } k - 1 \leq x \leq k + 1\phantom{aaw.}\\
+			x + 1 + k & \text{if } -k - 1 \leq x \leq -k + 1\\
+			0 &  \text{if } |x| \geq k + 1\phantom{<--k + 1} \\
+		\end{matrix}\right.$ \retTwo\par}
+
+		From that it is hopefully clear that $\|f\|_u = 2$. After all, $f_k(0) = 2$. Also,\\ $f_k(x) = \int_{-k}^k \chi_{[-1, 1]}(x - y)\df y \leq \int \chi_{[-1, 1]}(x - y)\df y = 2$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Show $f_k^\vee(x) = (\pi x)^{-2}\sin(2\pi x)\sin(2 \pi k x)$, and $\|f_K^\vee\|_1 \to \infty$ as $k \to \infty$.
+	\begin{myIndent}\HexOne
+		Recall from the homework that $\chi_{[-a , a]}^\wedge = \chi_{[-a , a]}^\vee = 2a\frac{\sin(2a\pi x)}{2\pi a x} = \frac{\sin(2\pi a x)}{\pi x}$.\\ [-2pt]
+		
+		Also, for any $f, g \in L^1$, by identical reasoning as we used to show $\widehat{f * g} = \widehat{f}\widehat{g}$, we know that $(f * g)^\vee = f^\vee g^\vee$. Therefore:\\ [-14pt]
+
+		{\centering \begin{tabular}{l}
+	$f_k^\vee(x) = \chi_{[-1, 1]}^\vee(x) \chi_{[-k, k]}^\vee(x) = \left(\frac{\sin(2\pi x)}{\pi x}\right)\left(\frac{\sin(2\pi k x)}{\pi x}\right)$\\ [6pt]
+	$\phantom{f_k^\vee(x) = \chi_{[-1, 1]}^\vee(x) \chi_{[-k, k]}^\vee(x)} = (\pi x)^{-2}\sin(2\pi x)\sin(2 \pi k x)$.
+\end{tabular} \retTwo\par}
+
+		Next, let $y = 2\pi k x$. Then:
+		
+		{\centering \begin{tabular}{l}
+			$\int |f_k^\vee(x)|\df x = \int_{-\infty}^\infty |(\pi x)^{-2}\sin(2\pi x)\sin(2\pi k x)|\df x$\\ [6pt]
+			$\phantom{\int |f_k^\vee(x)|\df x} = \frac{1}{2\pi k}\int_{-\infty}^\infty |\frac{4k^2}{y^2}\sin(\frac{y}{k})\sin(y)|\df y = \frac{2}{\pi}\int_{-\infty}^\infty |\frac{\sin(y/k)}{y/k} \cdot \frac{\sin(y)}{y}|\df y$\\ [6pt]
+			$\phantom{\int |f_k^\vee(x)|\df x = \frac{1}{2\pi k}\int_{-\infty}^\infty |\frac{4k^2}{y^2}\sin(\frac{y}{k})\sin(y)|\df y} = \frac{4}{\pi}\int_{0}^\infty |\frac{\sin(y/k)}{y/k} \cdot \frac{\sin(y)}{y}|\df y$.
+		\end{tabular}\retTwo\par}
+
+		(the last equality holds because the integrand is even)\newpage
+
+		Now, because $\frac{\sin(x)}{x} \to 1$ as $x \to 0$, we know that $|\frac{\sin(y/k)}{y/k} \cdot \frac{\sin(y)}{y}|$ converges pointwise\\ [-3pt] to $|\frac{\sin(y)}{y}|$ as $k \to \infty$. Also, observe that $|\frac{\sin(x)}{x}| \leq 1$ for all $x > 0$.
+
+		\begin{myIndent}\exTwoP
+			Proof:\\
+			Let $g(x) = \frac{\sin(x)}{x}$. Then clearly $|g(x)| \leq \frac{1}{x} \leq 1$ when $x \geq 1$.\retTwo
+			
+			Meanwhile, if $x < 1$, note that $g^\prime(x) = \frac{x\cos(x) - \sin(x)}{x^2}$. Since $x^2 > 0$, it suffices to show that the numerator: $h(x) = x\cos(x) - \sin(x)$, is negative when $x < 1$ in order to prove that $g^\prime(x)$ is not positive when $x < 1$, Luckily, note that $h(0) = 0$ and $h^\prime(x) = -x\sin(x)$. Since $\sin(x) \geq 0$ for $x \leq \pi \approx 3.14$, we thus know that $h^\prime(x) \leq 0$ for all $x \in [0, 1]$. In turn, we know that $h(x) \leq h(0) = 0$ for all $x \in [0, 1]$. So, we've proven that $g^\prime(x)$ is not positive on $(0, 1]$.\retTwo
+
+			This proves that $g(x)$ is monotonically decreasing on $(0, 1)$. And since $\lim_{x \to 0} g(x) = 1$, this proves that $g(x) \leq 1$ for all $x \in (0, 1]$. Also, since $\sin(x) > 0$ when $0 < x < \pi \approx 3.14$, we know that $g(x) > 0$ for all\\ $x \in (0, 1]$. So, $|g(x)| \leq 1$ for all $x > 0$.\retTwo
+		\end{myIndent}
+
+		If we fix a constant $b > 0$, we have that: $|\frac{\sin(y/k)}{y/k} \cdot \frac{\sin(y)}{y}\cdot \chi_{[0, b]}(y)| \leq 1 \cdot 1 \cdot \chi_{[0, b]}(y)$ for all $k \in \mathbb{N}$. Hence by the dominated convergence theorem:
+
+		{\centering $\liminf\limits_{k \to \infty}\frac{4}{\pi}\int_0^\infty |\frac{\sin(y/k)}{y/k} \cdot \frac{\sin(y)}{y}| \df y \geq \lim\limits_{k \to \infty}\frac{4}{\pi}\int_0^b |\frac{\sin(y/k)}{y/k} \cdot \frac{\sin(y)}{y}| \df y = \frac{4}{\pi}\int_0^b |\frac{\sin(y)}{y}| \df y$  \retTwo\par}
+		
+		But now note that $\int_0^\infty |\frac{\sin(y)}{y}| \df y = \infty$.\\ [-20pt]
+		\begin{myIndent}\HexTwoP
+			{\centering \begin{tabular}{l}
+				$\int_0^\infty |\frac{\sin(y)}{y}| \df y \geq \sum\limits_{n = 0}^\infty\int_{n\pi +\frac{\pi}{6}}^{n\pi + \frac{5\pi}{6}}|\frac{\sin(y)}{y}| \df y = \sum\limits_{n = 0}^\infty\int_{n\pi +\frac{\pi}{6}}^{n\pi + \frac{5\pi}{6}} \frac{1}{2y} \df y$\\ [14pt]
+
+				$\phantom{\int_0^\infty |\frac{\sin(y)}{y}| \df y \geq \sum\limits_{n = 0}^\infty\int_{n\pi +\frac{\pi}{6}}^{n\pi + \frac{5\pi}{6}}|\frac{\sin(y)}{y}| \df y} \geq \frac{1}{2}\sum\limits_{n=0}^\infty \int_{n\pi +\frac{\pi}{6}}^{n\pi + \frac{5\pi}{6}}\frac{1}{n\pi + \frac{5\pi}{6}}\df y$\\ [14pt]
+
+				$\phantom{\int_0^\infty |\frac{\sin(y)}{y}| \df y \geq \sum\limits_{n = 0}^\infty\int_{n\pi +\frac{\pi}{6}}^{n\pi + \frac{5\pi}{6}}|\frac{\sin(y)}{y}| \df y} = \frac{\pi}{3}\sum\limits_{n=0}^\infty \frac{1}{n\pi + \frac{5\pi}{6}} \geq \frac{\pi}{3}\sum\limits_{n=1}^\infty \frac{1}{n\pi} = \frac{1}{3}\sum\limits_{n=1}^\infty \frac{1}{n} = \infty$\\ [14pt]
+			\end{tabular}\retTwo\par}
+		\end{myIndent}
+
+		Thus, we can make $\int_0^b |\frac{\sin(y)}{y}|\df y$ arbitrarily big by making $b$ big enough. Hence, we've\\ [-2pt] proven that $\lim_{k \to \infty} \|f_k^\vee\|_1 = \lim_{k \to \infty} \frac{4}{\pi}\int_0^b |\frac{\sin(y)}{y}| \df y = \infty$.
+
+		\begin{myIndent}\pracTwo\fontsize{11}{13}
+			Side note: while $\int_0^\infty \frac{\sin(y)}{y} \df y$ is not defined as a Lebesgue integral, it is defined as an improper Riemann integral and we can calculate that integral as follows.\retTwo
+
+			Let $s > 0$. Then note that $\frac{\sin(y)}{y}$ and $e^{-sy}\chi_{[0, \infty)}$ are both in $L^2$. After all,\\ $|\frac{\sin(y)}{y}|^2 \leq \chi_{[-1, 1]}(y) + \frac{1}{y^2}\chi_{[-1, 1]^\comp}(y)$ and the right side is in $L^2$. Meanwhile,\\ [2pt] $\|e^{-sy}\|_2 = \frac{1}{2s}$. Thus by the Plancharel theorem, we know:
+			
+			{\centering $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y = \int_{-\infty}^\infty \mathcal{F}(\frac{\sin(y)}{y})\overline{\mathcal{F}(e^{-sy})} \df y$\newpage\par}
+
+			Now since $\chi_{[-a , a]}^\vee = \frac{\sin(2\pi a x)}{\pi x}$ for any $a \geq 0$, we can see that: $\mathcal{F}(\frac{\sin(y)}{y}) = \pi \chi_{[-\frac{1}{2\pi}, \frac{1}{2\pi}]}(\xi)$. Meanwhile:
+			
+			{\centering $\mathcal{F}(e^{-sy}\chi_{[0, \infty)}) = \int_0^\infty e^{-(s + 2\pi i \xi )y }\df y = \frac{-1}{s + 2\pi i \xi}\left(0 - 1\right) = \frac{1}{s + 2\pi i \xi}$\retTwo\par}
+
+			Hence, we've shown that:
+
+			{\centering $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y = \pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \overline{\left(\frac{1}{s + 2\pi i \xi}\right)} \df \xi = \pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{s + 2\pi i \xi}{s^2 + 4\pi^2 \xi^2} \df \xi = \pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{s}{s^2 + 4\pi^2 \xi^2} \df \xi$ \retTwo\par}
+
+			(Note, the last equality follows because we know that the imaginary part of the integral has to cancel since $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y$ is purely real-valued.)\retTwo
+
+			Now:
+			
+			{\centering \begin{tabular}{l}
+				$\pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{s}{s^2 + 4\pi^2 \xi^2} \df \xi = \frac{s\pi}{4\pi^2}\int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{1}{(\frac{s}{2\pi})^2 + \xi^2} \df \xi$\\ [8pt]
+
+				$\phantom{\pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{s}{s^2 + 4\pi^2 \xi^2} \df \xi} = \frac{s}{4\pi}\left(\frac{2\pi}{s}\right)\left[\arctan(\frac{2\pi}{s}\xi)\right]^{\xi = \frac{1}{2\pi}}_{\xi = -\frac{1}{2\pi}} = \frac{1}{2}\left(\arctan(\frac{1}{s}) - \arctan(\frac{1}{s})\right) = \arctan(\frac{1}{s})$
+			\end{tabular}\retTwo\par}
+
+			Thus, we've proven that $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y = \arctan(\frac{1}{s})$ for all $s > 0$.\retTwo
+			
+			Taking the limit as $s \to 0$, we get that $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y \to \frac{\pi}{2}$. That said, some care is needed since $\int_0^\infty \frac{\sin(y)}{y} \df y$ and $\lim_{s \to 0} \int_0^\infty\frac{\sin(y)}{y}e^{-sy}\df y$ are defined differently. In fact, we still have not showed that the former which is equal to $\lim_{b \to \infty}\int_0^b \frac{\sin(y)}{y} \df y$\\ [2pt] exists. So, let's do that now.\retTwo
+
+			Note that for any $b \in (0, \infty)$, there are unique $n \in \mathbb{Z}_{\geq 0}$ and $\alpha \in [0, \pi)$ such that $b = n\pi + \alpha$. Then for all $s \geq 0$, we have that: 
+			
+			{\centering $\int_0^{b} \frac{\sin(y)}{y}e^{-sy}\df y = \sum\limits_{j=0}^{n-1} (-1)^j\int_{j\pi}^{(j+1)\pi} |\frac{\sin(y)}{y} e^{-sy}|\df y + \int_{n\pi}^{n\pi + \alpha} |\frac{\sin(y)}{y} e^{-sy}|\df y$ \retTwo\par}
+
+			Now, the leftover term will approach $0$ as $b \to \infty$ since it is at most $\frac{\alpha}{n\pi}$ when $b \geq 1$ and $n \to \infty$ as $b \to \infty$. Hence, letting $c_n = \int_{j\pi}^{(j+1)\pi} |\frac{\sin(y)}{y} e^{-sy}|\df y$, we know that:\\ [-2pt] $\lim_{b \to \infty} \int_0^b \frac{\sin(y)}{y} e^{-sy} \df y = \sum_{n=0}^\infty (-1)^n c_n$. It's easily verified using the alternating series test that the series converges. This proves that our improper Riemann integral exists for all $s \geq 0$ (including $s = 0$).\retTwo
+
+			Importantly, this series also converges uniformly over all $s \in (0, \infty)$. To see why, observe that since $(c_n)_{n \in \mathbb{N}}$ is a strictly decreasing sequence, for any $N \geq 0$ we have that: $c_N \geq \left|\sum_{n = N}^\infty (-1)^n a_n \right|$. This can be proven via induction fairly easily. Next, making $s$ larger makes all the $c_n$ strictly smaller. So, by picking $N$ large enough so that $c_N < \varepsilon$ when $s = 0$, we can guarentee that $c_N < \varepsilon$ for all $s$. It then follows that the error from the limit point: $\left|\sum_{n = N}^\infty (-1)^n c_n\right|$, is also less than $\varepsilon$ for all $s$.\retTwo
+			
+			With that, we know there is some $b > 0$ such that:
+			
+			{\centering $\left|\int_0^\infty \frac{\sin(y)}{y} e^{-sy} \df y - \int_0^b \frac{\sin(y)}{y} e^{-sy} \df y\right| < \sfrac{\varepsilon}{4}$ for all $s \geq 0$.\newpage\par}
+
+			Also, by dominated convergence theorem (its 4am and I don't want to type out verifications for all the conditions), we know that $\int_0^b \frac{\sin(y)}{y} e^{-sy} \df y \to \int_0^b \frac{\sin(y)}{y} \df y$ as $s \to 0$. So, there is some $s > 0$ such that:
+
+			{\centering $\left|\int_0^b \frac{\sin(y)}{y} \df y - \int_0^b \frac{\sin(y)}{y} e^{-sy} \df y\right| < \sfrac{\varepsilon}{4}$.\retTwo\par}
+
+			Also, by making $s$ potentially smaller, we can also guarentee that:
+
+			{\centering $\left|\frac{\pi}{2} - \int_0^\infty \frac{\sin(y)}{y} e^{-sy} \df y\right| < \sfrac{\varepsilon}{4}$.\retTwo\par}
+
+			And chaining those together, we get that:
+
+			{\centering\fontsize{10}{12}\selectfont \begin{tabular}{l}
+				$\left|\int_0^\infty \frac{\sin(y)}{y} \df y - \frac{\pi}{2}\right| \leq \left|\int_0^\infty \frac{\sin(y)}{y} \df y - \int_0^b \frac{\sin(y)}{y} \df y\right| + \left|\int_0^b \frac{\sin(y)}{y} \df y - \int_0^b \frac{\sin(y)}{y}e^{-sy} \df y\right|$\\
+				$\phantom{\left|\int_0^\infty \frac{\sin(y)}{y} \df y - \frac{\pi}{2}\right| aaaa} + \left|\int_0^b \frac{\sin(y)}{y}e^{-sy} \df y - \int_0^\infty \frac{\sin(y)}{y}e^{-sy} \df y\right| + \left|\int_0^\infty \frac{\sin(y)}{y}e^{-sy} - \frac{\pi}{2}\right|$\\ [8pt]
+				$\phantom{\left|\int_0^\infty \frac{\sin(y)}{y} \df y - \frac{\pi}{2}\right|} < \sfrac{\varepsilon}{4} + \sfrac{\varepsilon}{4}+ \sfrac{\varepsilon}{4}+ \sfrac{\varepsilon}{4} = \varepsilon$
+			\end{tabular} \retTwo\par}
+
+			Taking $\varepsilon \to 0$, we've finally shown that $\lim\limits_{b \to \infty}\int_0^b \frac{\sin(y)}{y} \df y = \frac{\pi}{2}$.
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(c)] Prove that $\mathcal{F}(L^1)$ is a proper subset of $C_0$.
+	
+	\begin{myIndent}\HexOne
+		To start off with, recall that if $f \in L^1$ and $\widehat{f} = 0$, then $f = 0$ a.e. As a corollary to this, we have that if $f, g \in L^1$ and $\widehat{f} = \widehat{g}$, then $f = g$ a.e. This is because $(f - g)^\wedge = 0$\\ [2pt] implies that $f - g = 0$ a.e. So, we know that $\mathcal{F}$ is an injective map from $L^1$ to $C_0$. If\\ [2pt] $\mathcal{F}$ was also surjective, then we would know that $\mathcal{F}$ is a bijection, and that therefore a\\ [2pt] function $\mathcal{F}^{-1}: C_0 \to L^1$ exists. Also, by the open map theorem, we would know that\\ [2pt] $\mathcal{F}^{-1}$ is bounded.\retTwo
+
+		However, in part (b) we found that $\|f_k\|_u = 2$ for all $k \in \mathbb{N}$ but $\|f^\vee_k\|_1 \to \infty$ as\\ [2pt] $k \to \infty$. Importantly, we can see from our work earlier that $f^\wedge_k = f^\vee_k$ and\\ $\|f^\vee_k\|_1 < \infty$ for all $k$. After all, $f^\vee_k(y)$ is bounded by $1$ when $|y| \leq 1$ and by $\frac{k}{y^2}$\\ when $|y| \geq 1$. So by the Fourier inversion theorem, we know that $(f_k^\vee)^\wedge = f_k$ (with\\ [2pt] equality holding everywhere since both sides are continuous). And so, $\mathcal{F}^{-1}(f_k) = f_k^\vee$.\retTwo
+
+		This proves that $\mathcal{F}^{-1}$ is not bounded since $\|\mathcal{F}^{-1}(f_k)\|_1$ can be made arbitrarily large even while $\|f_k\|_u = 2$ for all $k$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hOne
+
+\dispDate{7/10/2024}
+
+Today I'm gonna do more problems from chapter 8 of Folland.
 
 
 \end{document}
