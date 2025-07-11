@@ -2904,7 +2904,7 @@ Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2
 
 			Let $s > 0$. Then note that $\frac{\sin(y)}{y}$ and $e^{-sy}\chi_{[0, \infty)}$ are both in $L^2$. After all,\\ $|\frac{\sin(y)}{y}|^2 \leq \chi_{[-1, 1]}(y) + \frac{1}{y^2}\chi_{[-1, 1]^\comp}(y)$ and the right side is in $L^2$. Meanwhile,\\ [2pt] $\|e^{-sy}\|_2 = \frac{1}{2s}$. Thus by the Plancharel theorem, we know:
 			
-			{\centering $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y = \int_{-\infty}^\infty \mathcal{F}(\frac{\sin(y)}{y})\overline{\mathcal{F}(e^{-sy})} \df y$\newpage\par}
+			{\centering $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y = \int_{-\infty}^\infty \mathcal{F}(\frac{\sin(y)}{y})\overline{\mathcal{F}(e^{-sy}\chi_{[0, \infty)}(y))} \df y$\newpage\par}
 
 			Now since $\chi_{[-a , a]}^\vee = \frac{\sin(2\pi a x)}{\pi x}$ for any $a \geq 0$, we can see that: $\mathcal{F}(\frac{\sin(y)}{y}) = \pi \chi_{[-\frac{1}{2\pi}, \frac{1}{2\pi}]}(\xi)$. Meanwhile:
 			
@@ -2921,7 +2921,7 @@ Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2
 			{\centering \begin{tabular}{l}
 				$\pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{s}{s^2 + 4\pi^2 \xi^2} \df \xi = \frac{s\pi}{4\pi^2}\int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{1}{(\frac{s}{2\pi})^2 + \xi^2} \df \xi$\\ [8pt]
 
-				$\phantom{\pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{s}{s^2 + 4\pi^2 \xi^2} \df \xi} = \frac{s}{4\pi}\left(\frac{2\pi}{s}\right)\left[\arctan(\frac{2\pi}{s}\xi)\right]^{\xi = \frac{1}{2\pi}}_{\xi = -\frac{1}{2\pi}} = \frac{1}{2}\left(\arctan(\frac{1}{s}) - \arctan(\frac{1}{s})\right) = \arctan(\frac{1}{s})$
+				$\phantom{\pi \int_{-\frac{1}{2\pi}}^{\frac{1}{2\pi}} \frac{s}{s^2 + 4\pi^2 \xi^2} \df \xi} = \frac{s}{4\pi}\left(\frac{2\pi}{s}\right)\left[\arctan(\frac{2\pi}{s}\xi)\right]^{\xi = \frac{1}{2\pi}}_{\xi = -\frac{1}{2\pi}} = \frac{1}{2}\left(\arctan(\frac{1}{s}) - \arctan(-\frac{1}{s})\right) = \arctan(\frac{1}{s})$
 			\end{tabular}\retTwo\par}
 
 			Thus, we've proven that $\int_0^\infty \frac{\sin(y)}{y}e^{-sy}\df y = \arctan(\frac{1}{s})$ for all $s > 0$.\retTwo
@@ -2934,7 +2934,7 @@ Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2
 
 			Now, the leftover term will approach $0$ as $b \to \infty$ since it is at most $\frac{\alpha}{n\pi}$ when $b \geq 1$ and $n \to \infty$ as $b \to \infty$. Hence, letting $c_n = \int_{j\pi}^{(j+1)\pi} |\frac{\sin(y)}{y} e^{-sy}|\df y$, we know that:\\ [-2pt] $\lim_{b \to \infty} \int_0^b \frac{\sin(y)}{y} e^{-sy} \df y = \sum_{n=0}^\infty (-1)^n c_n$. It's easily verified using the alternating series test that the series converges. This proves that our improper Riemann integral exists for all $s \geq 0$ (including $s = 0$).\retTwo
 
-			Importantly, this series also converges uniformly over all $s \in (0, \infty)$. To see why, observe that since $(c_n)_{n \in \mathbb{N}}$ is a strictly decreasing sequence, for any $N \geq 0$ we have that: $c_N \geq \left|\sum_{n = N}^\infty (-1)^n a_n \right|$. This can be proven via induction fairly easily. Next, making $s$ larger makes all the $c_n$ strictly smaller. So, by picking $N$ large enough so that $c_N < \varepsilon$ when $s = 0$, we can guarentee that $c_N < \varepsilon$ for all $s$. It then follows that the error from the limit point: $\left|\sum_{n = N}^\infty (-1)^n c_n\right|$, is also less than $\varepsilon$ for all $s$.\retTwo
+			Importantly, this series also converges uniformly over all $s \in [0, \infty)$. To see why, observe that since $(c_n)_{n \in \mathbb{N}}$ is a strictly decreasing sequence, for any $N \geq 0$ we have that: $c_N \geq \left|\sum_{n = N}^\infty (-1)^n a_n \right|$. This can be proven via induction fairly easily. Next, making $s$ larger makes all the $c_n$ strictly smaller. So, by picking $N$ large enough so that $c_N < \varepsilon$ when $s = 0$, we can guarentee that $c_N < \varepsilon$ for all $s$. It then follows that the error from the limit point: $\left|\sum_{n = N}^\infty (-1)^n c_n\right|$, is also less than $\varepsilon$ for all $s$.\retTwo
 			
 			With that, we know there is some $b > 0$ such that:
 			
@@ -2975,7 +2975,68 @@ Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2
 
 \dispDate{7/10/2024}
 
-Today I'm gonna do more problems from chapter 8 of Folland.
+Today I'm gonna do more problems from chapter 8 of Folland.\retTwo
+
+\Hstatement
+Recall that for $f \in L^p(\mathbb{R})$, If there exists $h \in L^p(\mathbb{R})$ such that $\lim_{y \to 0}\|y^{-1}(\tau_{-y}f - f) - h\|_p = 0$, we call $h$ the \udefine{(strong) $L^p$ derivative} of $f$. If $f \in L^p(\mathbb{R}^n)$, $L^p$ partial derivatives of $f$ are defined similarly. (Also, the notation $\tau_{y}f(x)$ refers to $f(x - y)$.)\retTwo
+
+\blab{Exercise 8.8:} Suppose that $p$ and $q$ are conjugate exponents, $f \in L^p$, $g \in L^q$, and the $L^p$\\ derivative $\partial_j f$ exists. Then $\partial_j(f * g)$ exists (in the ordinary sense) and equals $(\partial_j f) * g$.
+
+\begin{myIndent}\HexOne 
+	Note that:
+	
+	{\centering\begin{tabular}{l}
+		$\lim\limits_{t \to 0}\frac{(f * g)(x + te_j) - (f * g)(x)}{t} = ((\partial_j f) * g)(x)$ iff $\lim\limits_{t \to 0} \left|\frac{(f * g)(x + te_j) - (f * g)(x)}{t} - ((\partial_j f) * g)(x)\right| = 0$.
+	\end{tabular}\newpage\par}
+
+	Now for all $t \neq 0$:
+
+	{\centering \begin{tabular}{l}
+		$0 \leq \left|\frac{(f * g)(x + te_j) - (f * g)(x)}{t} - ((\partial_j f) * g)(x)\right|$\\ [10pt]
+		$\phantom{0} = \left|t^{-1}\int \left(f(x + te_j - y) - f(x - y)\right)g(y)\df y - \int \partial_j f(x - y)g(y)\df y \right|$\\ [10pt]
+		$\phantom{0} = \left|\int t^{-1}(\tau_{-te_j}f - f)(x- y)g(y)\df y - \int \partial_j f(x - y)g(y)\df y \right|$\\ [10pt]
+		$\phantom{0} \leq \int |t^{-1}(\tau_{-te_j}f - f)(x- y) - \partial_j f(x - y)||g(y)|\df y$\\ [10pt]
+		$\phantom{0} \leq \|t^{-1}(\tau_{-te_j}f - f) - \partial_j f\|_p\|g\|_q$\\ [10pt]
+	\end{tabular}\retTwo\par}
+
+	Since $\|g\|_q$ is fixed and $\|t^{-1}(\tau_{-te_j}f - f) - \partial_j f\|_p \to 0$ as $t \to 0$, we've thus shown that $\left|\frac{(f * g)(x + te_j) - (f * g)(x)}{t} - ((\partial_j f) * g)(x)\right| \to 0$ as $t \to 0$.\retTwo
+\end{myIndent}
+
+\blab{Exercise 8.9:} Let $1 \leq p < \infty$. If $f \in L^p(\mathbb{R})$, the $L^p$ derivative of $f$ (call it $h$; see Exercise 8) exists iff $f$ is absolutely continuous on every bounded interval (perhaps after modification on a null set) and its pointwise derivative $f^\prime$ is in $L^p$, in which case $h = f^\prime$ a.e.
+
+\begin{myIndent}\HexOne
+	($\Longrightarrow$)\\
+	Suppose $f$ has an $L^p$ derivative $h$. Then setting $\varphi(x) = (1 - |x|)\chi_{[-1, 1]}$, note that\\ $\int \varphi(x) \df x = 1$ and $0 \leq \varphi \leq 1 \leq \frac{4}{(1 + |x|)^2}$. Thus, $\varphi$ satisfies the hypothesis of theorem 8.15 (see page 31 of my paper notes) and so we know that:
+
+	\begin{itemize}
+		\item $(f \ast \varphi_{1/n})(x) = \int f(x - y) \cdot n\varphi(ny) \df y \to f(x)$ as $n \to \infty$ for all $x \in L_f$,
+		\item $(h \ast \varphi_{1/n})(x) = \int h(x - y) \cdot n\varphi(ny) \df y \to h(x)$ as $n \to \infty$ for all $x \in L_h$
+	\end{itemize}
+
+	(where $L_f$ and $L_h$ are the Lebesgue sets of $f$ and $h$ respectively).
+	\begin{myIndent}\pracTwo\fontsize{11}{13}\selectfont
+		Side note: If $g \in L^1_{\mathsf{loc}}$, then we know that $(L_g)^\comp$ has measure zero. Now while it's obvious that $L^1, L^\infty \subseteq L^1_{\mathsf{loc}}$, I'm currently realizing I've never justified to myself why $L^p \subseteq L^1_{\mathsf{loc}}$ for all $1 < p < \infty$.\retTwo
+
+		If $E$ is a measurable set with finite measure, then the measure restricted to $E$ does not have any sets of arbitrarily large measure. Thus for any $p, q \in (0, \infty)$ with $p < q$, we have that $L^q(E) \subseteq L^p(E)$. Specifically, this means that for any $1 < p < \infty$, $L^p(E) \subseteq L^1(E)$. It follows that $L^p \subseteq L^1_{\mathsf{loc}}$ for all $1 < p < \infty$.\retTwo
+	\end{myIndent}
+
+	Also, if $q$ is the conjugate exponent of $p$, we know that $\phi_{1/n} \in L^q$. Therefore, by the previous exercise we know that $(f \ast \phi_{1/n})^\prime = h \ast \varphi_{1/n}$. Additionally:
+
+	{\centering \begin{tabular}{l}
+		$|h \ast \varphi_{1/n}(x)| \leq \int |h(x - y)\varphi_{1/n}(y)| \df y \leq \|h\|_p \left(\int_{-1/n}^{1/n} |n(1 - |nx|)|^q \df x \right)^{1/q}$\\ [5pt]
+		$\phantom{|h \ast \varphi_{1/n}(x)| \leq \int |h(x - y)\phi_{1/n}(y)| \df y} \leq n\|h\|_p \left(\int_{-1/n}^{1/n} 1 \df x \right)^{1/q} = n\left(\frac{2}{n}\right)^{\sfrac{1}{q}}\|h\|_p$
+	\end{tabular} \retTwo\par}
+
+	This tells us that for all $n \in \mathbb{N}$, $f \ast \varphi_{1/n}$ has a bounded derivative. It then follows by the mean value theorem that $f \ast \varphi_{1/n}$ is absolutely continuous. So for any $a, b \in \mathbb{R}$ with $a < b$, we have that:
+
+	{\centering $(f * \varphi_{1/n})(b) - (f * \varphi_{1/n})(a) = \int_a^b (f * \varphi_{1/n})^\prime(x) \df x = \int_a^b (h * \varphi_{1/n})(x) \df x$ \retTwo\par}
+
+
+\end{myIndent}
+
+
+
+
 
 
 \end{document}
