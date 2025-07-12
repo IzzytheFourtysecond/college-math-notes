@@ -2973,12 +2973,12 @@ Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2
 
 \hOne
 
-\dispDate{7/10/2024}
+\dispDate{7/10/2025}
 
 Today I'm gonna do more problems from chapter 8 of Folland.\retTwo
 
 \Hstatement
-Recall that for $f \in L^p(\mathbb{R})$, If there exists $h \in L^p(\mathbb{R})$ such that $\lim_{y \to 0}\|y^{-1}(\tau_{-y}f - f) - h\|_p = 0$, we call $h$ the \udefine{(strong) $L^p$ derivative} of $f$. If $f \in L^p(\mathbb{R}^n)$, $L^p$ partial derivatives of $f$ are defined similarly. (Also, the notation $\tau_{y}f(x)$ refers to $f(x - y)$.)\retTwo
+Recall that for $f \in L^p(\mathbb{R})$, if there exists $h \in L^p(\mathbb{R})$ such that $\lim_{y \to 0}\|y^{-1}(\tau_{-y}f - f) - h\|_p = 0$, we call $h$ the \udefine{(strong) $L^p$ derivative} of $f$. If $f \in L^p(\mathbb{R}^n)$, $L^p$ partial derivatives of $f$ are defined similarly. (Also, the notation $\tau_{y}f(x)$ refers to $f(x - y)$.)\retTwo
 
 \blab{Exercise 8.8:} Suppose that $p$ and $q$ are conjugate exponents, $f \in L^p$, $g \in L^q$, and the $L^p$\\ derivative $\partial_j f$ exists. Then $\partial_j(f * g)$ exists (in the ordinary sense) and equals $(\partial_j f) * g$.
 
@@ -3024,17 +3024,119 @@ Recall that for $f \in L^p(\mathbb{R})$, If there exists $h \in L^p(\mathbb{R})$
 
 	{\centering \begin{tabular}{l}
 		$|h \ast \varphi_{1/n}(x)| \leq \int |h(x - y)\varphi_{1/n}(y)| \df y \leq \|h\|_p \left(\int_{-1/n}^{1/n} |n(1 - |nx|)|^q \df x \right)^{1/q}$\\ [5pt]
-		$\phantom{|h \ast \varphi_{1/n}(x)| \leq \int |h(x - y)\phi_{1/n}(y)| \df y} \leq n\|h\|_p \left(\int_{-1/n}^{1/n} 1 \df x \right)^{1/q} = n\left(\frac{2}{n}\right)^{\sfrac{1}{q}}\|h\|_p$
+		$\phantom{|h \ast \varphi_{1/n}(x)| \leq \int |h(x - y)\phi_{1/n}(y)| \df y} \leq n\|h\|_p \left(\int_{-1/n}^{1/n} 1 \df x \right)^{1/q} = n\left(\frac{2}{n}\right)^{\sfrac{1}{q}}\|h\|_p \leq 2^{\sfrac{1}{q}}\|h\|_p$
 	\end{tabular} \retTwo\par}
 
-	This tells us that for all $n \in \mathbb{N}$, $f \ast \varphi_{1/n}$ has a bounded derivative. It then follows by the mean value theorem that $f \ast \varphi_{1/n}$ is absolutely continuous. So for any $a, b \in \mathbb{R}$ with $a < b$, we have that:
+	This tells us that for all $n \in \mathbb{N}$, $f \ast \varphi_{1/n}$ has a bounded derivative. It then follows by the mean value theorem that $f \ast \varphi_{1/n}$ is absolutely continuous. So for any $a, x \in \mathbb{R}$ with\\ $a < x$, we have that:
 
-	{\centering $(f * \varphi_{1/n})(b) - (f * \varphi_{1/n})(a) = \int_a^b (f * \varphi_{1/n})^\prime(x) \df x = \int_a^b (h * \varphi_{1/n})(x) \df x$ \retTwo\par}
+	{\centering $(f * \varphi_{1/n})(x) - (f * \varphi_{1/n})(a) = \int_a^x (f * \varphi_{1/n})^\prime(y) \df y = \int_a^x (h * \varphi_{1/n})(y) \df y$ \newpage\par}
 
+	And, since $h * \varphi_{1/n} \to h$ pointwise a.e. and $2^{\sfrac{1}{q}} \|h\|_p \chi_{[a, x]} \in L^1$, we know by dominated convergence theorem that:
+	
+	{\centering $\lim\limits_{n \to \infty}\left((f * \varphi_{1/n})(x) - (f * \varphi_{1/n})(a)\right) = \lim\limits_{n \to \infty} \int_a^x (h * \varphi_{1/n})(y) \df y = \int_a^x h(y)\df y$ \retTwo\par}
 
+	Now, we're finally ready to show the right hand side of our implication. Suppose $a, b \in L_f$ are fixed with $a < b$. Then for any $x \in L_f \cap [a, b]$, we have that:
+
+	{\centering $f(x) - f(a) = \lim\limits_{n \to \infty}\left((f * \varphi_{1/n})(x)\right) - \lim\limits_{n \to \infty}\left((f * \varphi_{1/n})(a)\right) = \int_a^x h(y)\df y$ \retTwo\par}
+
+	By redefining $f$ on the null space $(L_f)^\comp \cap [a, b]$, we can thus guarentee that\\ $f(x) - f(a) = \int_a^x h(y)\df y$ for all $x \in [a, b]$. In turn, by the fundamental theorem of calculus we know $f$ is absolutely continuous on $[a, b]$ and that $h = f^\prime$ a.e. on $[a, b]$.\retTwo
+
+	If $I \subseteq \mathbb{R}$ is any arbitrary bounded interval, then we can still apply the former reasoning by finding $a, b \in L_f$ such that $I \subseteq [a, b]$. Then $f$ being absolutely continuous on $[a, b]$ implies that $f$ is absolutely continuous $I$. Also, since $\mathbb{R}$ can be completed covered by these intervals, we know that $f^\prime = h$ a.e. The only snag we still have to sort out is to show that our redefinitions of $f(x)$ for $x \in (L_f)^\comp$ are well defined (i.e. not dependent on our choice of $a, b \in L^f$.)
+
+	\begin{myIndent}\HexTwoP
+		Suppose $a_1, a_2 \in L_f$ and without loss of generality assume $a_1 < a_2 < x$. Then: 
+		
+		{\centering $\left(\int_{a_1}^x h(y)\df y + f(a_1)\right) - \left(\int_{a_2}^x h(y)\df y + f(a_2)\right) = \int_{a_1}^{a_2} h(y)\df y - \left(f(a_2) - f(a_1)\right)$.\retTwo\par}
+
+		Since $a_1, a_2 \in L^f$, we know that $\int_{a_1}^{a_2} h(y)\df y = f(a_2) - f(a_1)$. So our above expression equals $0$ and we've shown that:
+
+		{\centering $f(x) = \int_{a_1}^x h(y)\df y + f(a_1) = \int_{a_2}^x h(y)\df y + f(a_2)$ is well defined. \retTwo\par}
+	\end{myIndent}
+
+	($\Longleftarrow$)\\
+	Note that if $y > 0$, then our assumptions about $f$ tell us that:
+
+	{\centering \begin{tabular}{l}
+		$\frac{f(x + y) - f(x)}{y} - f^\prime(x) = \frac{1}{y}\int_x^{x + y}f^\prime(t)\df t - f^\prime(x) = \frac{1}{y}\int_x^{x+y}f^\prime(t) - f^\prime(x)\df t$\\ [6pt]
+		$\phantom{\frac{f(x + y) - f(x)}{y} - f^\prime(x) = \frac{1}{y}\int_x^{x + y}f^\prime(t)\df t - f^\prime(x)} = \frac{1}{y}\int_0^y f^\prime(x + t) - f^\prime(x)\df t$
+	\end{tabular} \retTwo\par}
+
+	Similarly, if $y < 0$, then we know:
+
+	{\centering \begin{tabular}{l}
+		$\frac{f(x + y) - f(x)}{y} - f^\prime(x) = \frac{-1}{y}\int_{x+y}^{x}f^\prime(t)\df t - f^\prime(x) = \frac{-1}{y}\int_{x+y}^xf^\prime(t) - f^\prime(x)\df t$\\ [6pt]
+		$\phantom{\frac{f(x + y) - f(x)}{y} - f^\prime(x) = \frac{-1}{y}\int_{x+y}^xf^\prime(t)\df t - f^\prime(x)} = \frac{-1}{y}\int_y^0 f^\prime(x + t) - f^\prime(x)\df t$
+	\end{tabular} \retTwo\par}
+
+	In either case, we can see that:
+
+	{\centering $\left| \frac{f(x + y) - f(x)}{y} - f^\prime(x)\right| \leq \int_{-|y|}^{|y|} \frac{1}{|y|}|\tau_{-t}f^\prime(x) - f^\prime(x)|\df t$ \retTwo\par}
+
+	Thus by Minkowski's inequality for integrals:
+
+	{\centering \begin{tabular}{l}
+		$\left\| \frac{f(x + y) - f(x)}{y} - f^\prime(x) \right\|_p \leq \left\| \int_{-|y|}^{|y|} \frac{1}{|y|}|\tau_{-t}f^\prime(x) - f^\prime(x)|\df t \right\|_p \leq \frac{1}{|y|}\int_{-|y|}^{|y|} \|\tau_{-t} f^\prime(x) - f^\prime(x)\|_p \df t$
+	\end{tabular}\retTwo\par}
+
+	And since translation is continuous with respect to the $L^p$ norm for $1 \leq p < \infty$, we know that $\|\tau_{-t} f^\prime(x) - f^\prime(x)\|_p \to 0$ as $t \to 0$. Hence given $\varepsilon > 0$, we have for $|y|$ small enough that:
+
+	{\centering $\frac{1}{|y|}\int_{-|y|}^{|y|} \|\tau_{-t} f^\prime(x) - f^\prime(x)\|_p \df t < \frac{1}{|y|} \int_{-|y|}^{|y|} \varepsilon \df t = \frac{2|y|\varepsilon}{|y|} = 2\varepsilon$ \newpage\par}
+
+	By taking $\varepsilon \to 0$, this proves that $\left\| \frac{f(x + y) - f(x)}{y} - f^\prime(x) \right\|_p \to 0$ as $y \to 0$. Hence $f^\prime$ is an $L^p$\\ [-6pt] derivative of $f$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\pracTwo\fontsize{11}{13}\selectfont
+		So what's the significance of this result?
+		\begin{itemize}
+			\item A function on $\mathbb{R}$ having an $L^p$ derivative is a strictly stronger assumption than the function just being differentiable almost everywhere.
+			\item Any two $L^p$ derivatives of a function are equal a.e.\hspace{-0.1em} to the ordinary derivative of the\\ function. Thus there's at most one $L^p$ derivative of any function in $L^p(\mathbb{R})$.
+			\item Any function $L^p(\mathbb{R})$ that is differentiable a.e. and whose derivative is bounded and also in $L^p$ has an $L^p$ derivative.\retTwo
+		\end{itemize}
+	\end{myIndent}
 \end{myIndent}
 
+\dispDate{7/11/2025}
 
+\blab{Exercise 8.18:} Suppose $f \in L^2(\mathbb{R})$.
+\begin{enumerate}
+\item[(a)] The $L^2$ derivative $f^\prime$ exists iff $\xi \widehat{f} \in L^2$, in which case $\widehat{f^\prime}(\xi) = 2\pi i \xi \widehat{f}(\xi)$.
+
+\begin{myIndent}\HexOne
+	($\Longrightarrow$)\\
+	Once again set $\varphi(x) = (1 - |x|)\chi_{[-1, 1]}$. Then by theorem 8.14(a) (see page 29 of my\\ [2pt] paper notes): $f * \varphi_{1/n} \to f$ in $L^2$ as $n \to \infty$. In turn, since the Fourier transform is continuous on $L^2$, we know that $(f * \varphi_{1/n})^\wedge \to \widehat{f}$ as $n \to \infty$.\retTwo
+
+	Next, note that $f * \varphi_{1/n} \in C^1$.
+	\begin{myIndent}\pracTwo\fontsize{11}{13}\selectfont
+		Why: Recall from exercise 8.8 that $(f * \varphi_{1/n})^\prime = f^\prime * \varphi_{1/n}$. Also, since $f^\prime \in L_{\mathsf{loc}}^1$ and $\varphi_{1/n} \in C^0$ has compact support, we know from exercise 8.7 (which was a homework problem in Math 240C), that $f^\prime * \varphi_{1/n} \in C^0$.\retTwo
+	\end{myIndent}
+
+	Also, since $f$, $f^\prime$ and $\varphi_{1/n}$ are all in $L^2$, we know by proposition 8.8 (see page 25 of my paper notes) that $f * \varphi_{1/n} \in C_0$, and we know by Young's inequality (see page 26 of my paper notes) that $f * \varphi_{1/n}, f^\prime *\varphi_{1/n} \in L^1$. All together, this lets us conclude via integration by parts that:
+	
+	{\centering $(f * \varphi_{1/n})^\wedge = \frac{1}{2\pi i \xi}((f * \varphi_{1/n})^\prime)^\wedge = \frac{1}{2\pi i \xi}(f^\prime * \varphi_{1/n})^\wedge$.\retTwo\par}
+
+	Finally, since $f^\prime * \varphi_{1/n} \to f^\prime$ in $L^2$ as $n \to \infty$ and the Fourier transform is continuous on $L^2$, we know that:
+
+	{\centering $\widehat{f}(\xi) = \lim\limits_{n \to \infty}(f * \varphi_{1/n})^\wedge(\xi) = \frac{1}{2\pi i \xi} \lim\limits_{n \to \infty}(f^\prime * \varphi_{1/n})^\wedge(\xi) = \frac{1}{2\pi i \xi} \widehat{f^\prime}(\xi)$ a.e.\retTwo\par}
+
+	Since $\frac{1}{2\pi i}\widehat{f^\prime}$ is in $L^2$, this thus proves that $\xi \widehat{f} \in L^2$. Also, by rearranging out expression we get that $\widehat{f^\prime} = 2\pi i \xi \widehat{f}(\xi)$.\retTwo
+
+	($\Longleftarrow$)\\
+	
+
+	\newpage
+\end{myIndent}
+
+\item[(b)] If the $L^2$ derivative $f^\prime$ exists, then: $\int |f(x)|^2 \df x \leq 4 \int |xf(x)|^2 \df x \int |f^\prime(x)|^2 \df x$
+
+\begin{myIndent}\HexOne
+\end{myIndent}
+
+\item[(c)] (\blab{Heisenberg's Inequality}) For any $b, \beta \in \mathbb{R}$,
+
+{\centering $\int (x-b)^2|f(x)|^2\df x\int (\xi - \beta)^2|\widehat{f}(\xi)|^2\df \xi \geq \frac{\|f\|_2^4}{16\pi^2}$ \retTwo\par}
+
+\begin{myIndent}\HexOne
+\end{myIndent}
+\end{enumerate}
 
 
 
