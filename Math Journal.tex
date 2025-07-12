@@ -3120,22 +3120,65 @@ Recall that for $f \in L^p(\mathbb{R})$, if there exists $h \in L^p(\mathbb{R})$
 	Since $\frac{1}{2\pi i}\widehat{f^\prime}$ is in $L^2$, this thus proves that $\xi \widehat{f} \in L^2$. Also, by rearranging out expression we get that $\widehat{f^\prime} = 2\pi i \xi \widehat{f}(\xi)$.\retTwo
 
 	($\Longleftarrow$)\\
+	Define $h(\xi) =  2\pi i \xi \widehat{f}(\xi)$. Then by assumption we know that $h \in L^2$. So, there exists\\ [-2pt] a function $H \in L^2$ such that $\widehat{H} = h$. And since the Fourier transform is a continuous isometric linear operator on $L^2$, we know that for all $y \neq 0$:
+
+	{\centering \begin{tabular}{l}
+		$\|\frac{1}{y}(\tau_{-y}f - f) - H\|_2 = \|\mathcal{F}(\frac{1}{y}(\tau_{-y}f - f) - H)\|_2$\\ [9pt]
+		$\phantom{\|\frac{1}{y}(\tau_{-y}f - f) - H\|_2} = \|\frac{1}{y}(\mathcal{F}(\tau_{-y}f) - \mathcal{F}(f)) - h\|_2$
+	\end{tabular} \newpage\par}
+
+	Now we claim that $\mathcal{F}(\tau_{-y}f) = e^{2\pi i \xi y}\mathcal{F}(f)$ for all $f \in L^2$.
+
+	\begin{myIndent}\HexTwoP
+		Proof:\\
+		Let $(f_n)_{n \in \mathbb{N}}$ be a sequence of Schwartz functions converging to $f \in L^2$. Then since $\int g = \int \tau_{-y}g$ for all functions $g$, we can easily see that $\tau_{-y}f_n \to \tau_{-y}f$ in $L^2$. Therefore, $\mathcal{F}(\tau_{-y}f) = \lim\limits_{n \to \infty} \mathcal{F}(\tau_{-y}f_n)$.\retTwo
+
+		Next, since $f_n \in L^1$ for all $n$, we know that $\mathcal{F}(\tau_{-y}f_n)(\xi) = e^{2\pi i \xi y}\widehat{f_n}(\xi)$. Then finally, since the Fourier transform is continuous on $L^2$, we have that $\widehat{f_n} \to \widehat{f}$ in $L^2$ as $n \to \infty$. By passing to a subsequence, we can assume $\widehat{f_n} \to \widehat{f}$ pointwise a.e. And so, $\mathcal{F}(\tau_{-y}f) = \lim\limits_{n \to \infty} e^{2\pi i \xi y}\widehat{f_n}(\xi) = e^{2\pi i \xi y}\widehat{f}(\xi)$ a.e.\retTwo
+	\end{myIndent}
+
+	Thus, we know that:
+
+	{\centering \begin{tabular}{l}
+		$\left|\frac{1}{y}(\mathcal{F}(\tau_{-y}f) - \mathcal{F}(f)) - h\right|^2 = \left|\left(\frac{1}{y}e^{2\pi i \xi y} - \frac{1}{y} - 2\pi i \xi\right)\widehat{f}(\xi)\right|^2$\\ [12pt]
+		$\phantom{\left|\frac{1}{y}(\mathcal{F}(\tau_{-y}f) - \mathcal{F}(f)) - h\right|^2} = \left|\left((\frac{\cos(2\pi \xi y)}{y} - \frac{1}{y}) + i(\frac{\sin(2\pi \xi y)}{y} - 2\pi \xi)\right)\widehat{f}(\xi)\right|^2$\\ [12pt]
+		$\phantom{\left|\frac{1}{y}(\mathcal{F}(\tau_{-y}f) - \mathcal{F}(f)) - h\right|^2} = \left|\left((\frac{\cos(2\pi \xi y) - 1}{\xi y}) + i(\frac{\sin(2\pi \xi y)}{y \xi} - 2\pi)\right)\xi\widehat{f}(\xi)\right|^2$\\ [12pt]
+	\end{tabular} \retTwo\par}
+
+	Now, note that $\lim_{y \to 0}\frac{\cos(2\pi \xi y) - 1}{\xi y} = 2\pi \lim_{t \to 0}\frac{\cos(t) - 1}{t} = 2\pi \cdot 0 = 0$ for all $\xi \neq 0$. Similarly, we have that $\lim_{y \to 0}\frac{\sin(2\pi \xi y)}{y \xi} = 2\pi \lim_{t \to 0} \frac{\sin(t)}{t} = 2\pi \cdot 1$ for all $\xi \neq 0$. This\\ [1pt] proves that $|\frac{1}{y}(\mathcal{F}(\tau_{-y}f) - \mathcal{F}(f)) - h|^2 \to 0$ pointwise a.e. as $y \to 0$.\retTwo
+
+	Meanwhile, note that $\left|\frac{\sin(2\pi x)}{x}\right|$ and $\left|\frac{\cos(2 \pi x) - 1}{x}\right|$ are both less than or equal to $2 \pi$ on their domains. Therefore, we can get that for all $\xi \neq 0$ and $y \neq 0$, we have that:
 	
+	{\centering $|(\frac{\cos(2\pi \xi y) - 1}{\xi y}) + i(\frac{\sin(2\pi \xi y)}{y \xi} - 2\pi)| \leq |(\frac{\cos(2\pi \xi y) - 1}{\xi y})| + |(\frac{\sin(2\pi \xi y)}{y \xi} - 2\pi)| \leq 6\pi$\retTwo\par}
+
+	\begin{myIndent}
+		\HexPPP(I'm not sure how to prove $|\frac{\cos(2 \pi x) - 1}{x}| \leq 2\pi$ without pulling out numerical\\ methods. But you'll see that it is true if you graph it.)\retTwo
+	\end{myIndent}
+
+	Thus using $36\pi^2|\xi \widehat{f}(\xi)|^2$ as our upper bound function (which is in $L^1$ since $\xi \widehat{f} \in L^2$), we can conclude via the dominated convergence theorem that:
+
+	{\centering $\lim\limits_{y \to 0}\|\frac{1}{y}(\mathcal{F}(\tau_{-y}f) - \mathcal{F}(f)) - h\|_2^2 = \lim\limits_{y \to 0} \int \left|\frac{1}{y}(\mathcal{F}(\tau_{-y}f) - \mathcal{F}(f)) - h\right|^2 = 0$ \retTwo\par}
+
+	So, $f$ has $H = h^\vee$ as it's $L^2$ derivative.\retTwo
+\end{myIndent}
+
+\item[(b)] Now for the next part, Folland asks us to prove that if the $L^2$ derivative $f^\prime$ exists, then:\\ [-2pt] $\left[\int |f(x)|^2 \df x\right]^2 \leq 4 \int |xf(x)|^2 \df x \int |f^\prime(x)|^2 \df x$. Furthermore, his hinted solution involves\\ [2pt] evaluating $\int |f(x)|^2 \df x$ using integration by parts. But that would require knowing that $f^\prime$ is\\ [2pt] continuous, which we don't know. Also, it's possible for the inequality he wrote down to not\\ [2pt] be well defined if $\int |f^\prime(x)|^2 \df x = 0$ but $\int |xf(x)|^2 \df x = \infty$. In an effort to address this, I will assume for this part that $f$ is a Schwartz function.\newpage
+
+\begin{myIndent}\HexOne
+	Our problem is trivial if $\int |xf(x)|^2 \df x = \infty$. So assume the right hand side is finite:
+
 
 	\newpage
 \end{myIndent}
 
-\item[(b)] If the $L^2$ derivative $f^\prime$ exists, then: $\int |f(x)|^2 \df x \leq 4 \int |xf(x)|^2 \df x \int |f^\prime(x)|^2 \df x$
+% \item[(b)] If the $L^2$ derivative $f^\prime$ exists, then: $\left[\int |f(x)|^2 \df x\right]^2 \leq 4 \int |xf(x)|^2 \df x \int |f^\prime(x)|^2 \df x$ (where we interpret $\infty \cdot 0$ on the right side of the equation as $\infty$ if it ever comes up). 
 
-\begin{myIndent}\HexOne
-\end{myIndent}
 
-\item[(c)] (\blab{Heisenberg's Inequality}) For any $b, \beta \in \mathbb{R}$,
+% \item[(c)] (\blab{Heisenberg's Inequality}) For any $b, \beta \in \mathbb{R}$,
 
-{\centering $\int (x-b)^2|f(x)|^2\df x\int (\xi - \beta)^2|\widehat{f}(\xi)|^2\df \xi \geq \frac{\|f\|_2^4}{16\pi^2}$ \retTwo\par}
+% {\centering $\int (x-b)^2|f(x)|^2\df x\int (\xi - \beta)^2|\widehat{f}(\xi)|^2\df \xi \geq \frac{\|f\|_2^4}{16\pi^2}$ \retTwo\par}
 
-\begin{myIndent}\HexOne
-\end{myIndent}
+% \begin{myIndent}\HexOne
+% \end{myIndent}
 \end{enumerate}
 
 
