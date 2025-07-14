@@ -2444,7 +2444,7 @@ Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also
 	\item[(a)] Suppose $E \subseteq V$ where $V$ is a Vitali set (see the tangent on page 22) and $E \in \mathcal{L}$. Prove that $m(E) = 0$.
 	
 	\begin{myIndent}\exTwoP
-		For all $r \in \mathbb{Q} \cap [-1, 1]$, define $E_r = \{v + r : v \in E\}$. By translation invariance, we know that $E_r$ is measurable with $m(E_r) = m(E)$ for all $r$. Also each $E_r$ is disjoint and $\bigcup_{r \in \mathbb{Q}}E_r \subseteq [-1, 2]$. It follows that $\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r$ is measurable and:
+		For all $r \in \mathbb{Q} \cap [-1, 1]$, define $E_r = \{v + r : v \in E\}$. By translation invariance, we know that $E_r$ is measurable with $m(E_r) = m(E)$ for all $r$. Also each $E_r$ is disjoint and $\bigcup_{r \in \mathbb{Q} \cap [-1,1]}E_r \subseteq [-1, 2]$. It follows that $\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r$ is measurable and:
 
 		{\centering $3 \geq m(\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r) = \sum_{r \in \mathbb{Q} \cap [-1, 1]} m(E_r) = \sum_{r \in \mathbb{Q} \cap [-1, 1]} m(E)$\retTwo\par}
 
@@ -2460,7 +2460,7 @@ Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also
 
 		To start, it suffices to show this for $E \subseteq [0, 1]$. After all, we can use the\\ translation invariance of the Lebesgue measure to move $N$ from $[0, 1]$ to where ever $E$ is (we can't have that $N + r$ is measurable because that would imply $(N + r) - r = N$ is measurable).\retTwo
 
-		Now, let $V$ be a Vitali set and $V_r = \{v + r : v \in V\}$ for all $r \in [-1, 1] \cap \mathbb{Q}$. If $E \cap V_r$ is not measurable for some $r$, then we are done. So, suppose $E \cap V_r$ is measurable for all $r$.  Then note that $\bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(E \cap V_r) = E \cap \bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r)$. Since $[0, 1]$ is a subset of $\bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r)$ and $E \subseteq [0, 1]$, we thus know that $E \cap \bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r) = E$. Additionally, since each $E \cap V_r$ is disjoint, we know that:
+		Now, let $V$ be a Vitali set and $V_r = \{v + r : v \in V\}$ for all $r \in [-1, 1] \cap \mathbb{Q}$. If $E \cap V_r$ is not measurable for some $r$, then we are done. So, suppose $E \cap V_r$ is measurable for all $r$.  Then note $\bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(E \cap V_r) = E \cap \bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r)$. Since $[0, 1]$ is a subset of $\bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r)$ and $E \subseteq [0, 1]$, we thus know that $E \cap \bigcup_{r \in [-1, 1] \cap \mathbb{Q}}(V_r) = E$. Additionally, since each $E \cap V_r$ is disjoint, we know that:
 
 		{\centering $m(E) = \sum_{r \in [-1, 1] \cap \mathbb{Q}}m(E \cap V_r)$ \retTwo\par}
 
@@ -3272,7 +3272,7 @@ Recalling page 53 of this journal, it's easy to see that the Cantor function is 
 	\end{myIndent}
 \end{myIndent}
 
-\hOne This poses a challenge because in exercise 8.18(b), we're going to need to be able say that function having a derivative of zero almost everywhere implies that the function is constant. So here is one more lemma.\retTwo
+\hOne This poses a challenge because in exercise 8.18(b), we're going to need to be able say that a function having a derivative of zero almost everywhere implies that the function is constant. So here is one more lemma.\retTwo
 
 \exOne \ul{Lemma:} If $f: \mathbb{R} \to \mathbb{C}$ is absolutely continuous on $[a, b]$ and $f^\prime = 0$ a.e. on $[a, b]$, then $f$ is constant on $[a, b]$.
 \begin{myIndent}
@@ -3296,7 +3296,7 @@ Recalling page 53 of this journal, it's easy to see that the Cantor function is 
 	
 	Also, note:\\ [-15pt]
 	
-	{\centering $\frac{\df}{\df x}|f(x)|^2 = \frac{\df}{\df x}(f(x)\overline{f(x)}) = f^\prime(x)\overline{f(x)} + f(x)\overline{f^\prime(x)} = 2\rea{f^\prime(x)\overline{f}(x)}$.\retTwo\par}
+	{\centering $\frac{\df}{\df x}|f(x)|^2 = \frac{\df}{\df x}(f(x)\overline{f(x)}) = f^\prime(x)\overline{f(x)} + f(x)\overline{f^\prime(x)} = 2\rea{f^\prime(x)\overline{f(x)}}$.\retTwo\par}
 
 	Hence, for any $a < b$, we have:\\ [-15pt]
 	
@@ -3375,8 +3375,25 @@ Recalling page 53 of this journal, it's easy to see that the Cantor function is 
 \end{myIndent}
 \end{enumerate}
 
-\blab{Exercise 8.19:} If $f \in L^2(\mathbb{R}^n)$ and the set $S = \{x : f(x) \neq 0\}$ has finite measure, then for any measurable $E \subseteq \mathbb{R}^n$, $\int_E |\widehat{f}|^2 \leq \|f\|_2 m(S)m(E)$.
+\blab{Exercise 8.19:} If $f \in L^2(\mathbb{R}^n)$ and the set $S = \{x : f(x) \neq 0\}$ has finite measure, then for any measurable $E \subseteq \mathbb{R}^n$, $\int_E |\widehat{f}|^2 \leq \|f\|_2^2 m(S)m(E)$.
 
+\begin{myIndent}\HexOne
+	By Minkowski's inequality for integrals, we have:
+
+	{\centering\fontsize{11}{12} \begin{tabular}{l}
+		$\int_E |\widehat{f}|^2 = \int \chi_{E}(\xi) | \int f(x)e^{-2\pi i \xi \cdot x}\df x|^2 \df \xi$\\ [6pt]
+		$\phantom{\int_E |\widehat{f}|^2} = \int | \int f(x)e^{-2\pi i \xi \cdot x} \sqrt{\chi_{E}(\xi)}\df x|^2 \df \xi$\\ [6pt]
+		$\phantom{\int_E |\widehat{f}|^2} \leq \left[\int (\int |f(x)e^{-2\pi i \xi \cdot x} \sqrt{\chi_{E}(\xi)}|^2\df \xi)^{\sfrac{1}{2}} \df x\right]^2 = \left[\int |f(x)| (\int_E\df \xi)^{\sfrac{1}{2}} \df x\right]^2 = m(E)\left(\int |f(x)|\df x\right)^2$
+	\end{tabular}\retTwo\par}
+
+	Next, by Hölder's inequality we have:
+
+	{\centering\fontsize{11}{12} \begin{tabular}{l}
+		$\int |f(x)|\df x = \int |\chi_S(x)f(x)|\df x \leq \|\chi_S\|_2\|f\|_2 = \sqrt{m(S)}\|f\|_2$.
+	\end{tabular}\retTwo\par}
+
+	Thus $\int_E |\widehat{f}|^2 \leq m(E)(\sqrt{m(S)}\|f\|_2)^2 = m(E)m(S)\|f\|_2^2$. $\blacksquare$\retTwo
+\end{myIndent}
 
 \end{document}
 
