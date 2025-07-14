@@ -229,6 +229,9 @@
 \newcommand{\opnorm}{\mathrm{op}}
 \newcommand{\sgn}{\mathrm{sgn}}
 
+\newcommand{\NBV}{\mathrm{NBV}}
+\newcommand{\BV}{\mathrm{BV}}
+
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
 \newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
@@ -1369,7 +1372,7 @@ Unfortunately I tested positive for Covid on the two days ago. So I've been real
 
    Let $J_0 = \{\alpha \in J \mid h(\alpha)\leq k(\alpha)\}$. Then suppose that for some $\alpha \in J$, we have that $S_\alpha \subseteq J_0$. Because $k$ is order preserving, we know that $k(\alpha) > k(\beta) \geq h(\beta)$ for all $\beta \in S_\alpha$. Hence, $k(\alpha) \notin h(S_\alpha)$, meaning that $h(S_\alpha) \neq E$. So, we conclude that $h(\alpha) = \text{smallest}(E - h(S_\alpha))$. And since $k(\alpha) \in E - h(S_\alpha)$, we thus know that $h(\alpha) \leq k(\alpha)$\retTwo
    
-   Therefore, $\alpha \in J_0$. By transfinite induction, this proves that $J = J_0$. The reason this is relavent is that we can now say that $k(\alpha)$ is never in $h(S_\alpha)$ , meaning that $E - h(S_\alpha) \neq \emptyset$. So $h(\alpha)$, will never be determined by the second case of our definition above.\retTwo
+   Therefore, $\alpha \in J_0$. By transfinite induction, this proves that $J = J_0$. The reason this is relevant is that we can now say that $k(\alpha)$ is never in $h(S_\alpha)$ , meaning that $E - h(S_\alpha) \neq \emptyset$. So $h(\alpha)$, will never be determined by the second case of our definition above.\retTwo
 
    By exercise 2, we know that $h: J \longrightarrow E$ is the unique order-preserving map whose image is either $E$ or a section of $E$. Thus, $J$ has the same order type as exactly one of either the entirety of $E$ or one section of $E$.\retTwo
 \end{myIndent}
@@ -3160,32 +3163,222 @@ Recall that for $f \in L^p(\mathbb{R})$, if there exists $h \in L^p(\mathbb{R})$
 
 	So, $f$ has $H = h^\vee$ as it's $L^2$ derivative.\retTwo
 \end{myIndent}
-
-% \item[(b)] Now for the next part, Folland asks us to prove that if the $L^2$ derivative $f^\prime$ exists, then:\\ [0pt] $\left[\int |f(x)|^2 \df x\right]^2 \leq 4 \int |xf(x)|^2 \df x \int |f^\prime(x)|^2 \df x$. I think this is wrong. Furthermore, his\\ hinted solution involves evaluating $\int |f(x)|^2 \df x$ using integration by parts. But that would\newpage require knowing that $f^\prime$ is continuous, which we don't know. Also, it's possible for that\\ inequality he wrote to not be well defined if $\int |f^\prime(x)|^2 \df x = 0$ but $\int |xf(x)|^2 \df x = \infty$. Not to mention, I think I might have thought of a counter example using exercise 3.40 in\\ Folland's textbook (I haven't done that exercise yet though but I'll try to get around to it some time this Summer). In an effort to address this, I will assume for this part that $f$ is a Schwartz function.\newpage
-
-% \begin{myIndent}\HexOne
-% 	Our problem is trivial if $\int |xf(x)|^2 \df x = \infty$. So assume the right hand side is finite:
-
-
-% 	\newpage
-% \end{myIndent}
-
-% \item[(b)] If the $L^2$ derivative $f^\prime$ exists, then: $\left[\int |f(x)|^2 \df x\right]^2 \leq 4 \int |xf(x)|^2 \df x \int |f^\prime(x)|^2 \df x$ (where we interpret $\infty \cdot 0$ on the right side of the equation as $\infty$ if it ever comes up). 
-
-
-% \item[(c)] (\blab{Heisenberg's Inequality}) For any $b, \beta \in \mathbb{R}$,
-
-% {\centering $\int (x-b)^2|f(x)|^2\df x\int (\xi - \beta)^2|\widehat{f}(\xi)|^2\df \xi \geq \frac{\|f\|_2^4}{16\pi^2}$ \retTwo\par}
-
-% \begin{myIndent}\HexOne
-% \end{myIndent}
 \end{enumerate}
 
+\dispDate{7/12/2025}
 
+\hOne
+
+Ok. I think that in order to prove part (b) of exercise 8.18, I need to make a pit stop in the exercises of section 3.5 of Folland. This is because Folland's hinted solution\newpage  route is to use integration by parts. However, right now I've only shown that you can do integration by parts if the two functions in your integrand are continuously\\ differentiable. Yet that's not guarenteeable in exercise 8.18(b). So, my current\\ objective is to weaken my requirements for doing integration by parts.\retTwo
+
+\Hstatement\blab{Exercise 3.35:} If $F$ and $G$ are absolutely continuous on $[a, b]$, then so is $FG$ and:
+
+{\centering $\int_a^b (FG^\prime + GF^\prime)(x)\df x = F(b)G(b) - F(a)G(a)$ \retTwo\par}
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	By extreme value theorem, there exists $M \geq 0$ such that $\max(|F(x)|, |G(x)|) \leq M$ for all $x \in [a, b]$. Now for any $\varepsilon > 0$, let $\delta > 0$ be such that for all finite collections of disjoint intervals $(a_1, b_1), \ldots, (a_n, b_n) \subseteq [a, b]$ with $\sum_{i=1}^n |b_i - a_i| < \delta$, we have:\\ [-9pt]
+
+	{\centering $\sum_{i=1}^n |F(b_i) - F(a_i)| < \frac{\varepsilon}{2M}$ and $\sum_{i=1}^n |G(b_i) - G(a_i)| < \frac{\varepsilon}{2M}$\retTwo\par}
+
+	Then we have:
+	
+	{\centering\fontsize{11}{12}\selectfont\begin{tabular}{l}
+		$\sum\limits_{i=1}^n |F(b_i)G(b_i) - F(a_i)G(a_i)| \leq \sum\limits_{i=1}^n |F(b_i)G(b_i) - F(b_i)G(a_i)| + \sum\limits_{i=1}^n |F(b_i)G(a_i) - F(a_i)G(a_i)|$\\ [14pt]
+		$\phantom{\sum\limits_{i=1}^n |F(b_i)G(b_i) - F(a_i)G(a_i)|} = \sum\limits_{i=1}^n |F(b_i)||G(b_i) - G(a_i)| + \sum\limits_{i=1}^n |G(a_i)||F(b_i) - F(a_i)|$\\ [14pt]
+		$\phantom{\sum\limits_{i=1}^n |F(b_i)G(b_i) - F(a_i)G(a_i)|} \leq M\sum\limits_{i=1}^n |G(b_i) - G(a_i)| + M\sum\limits_{i=1}^n |F(b_i) - F(a_i)|$\\ [14pt]
+		$\phantom{\sum\limits_{i=1}^n |F(b_i)G(b_i) - F(a_i)G(a_i)|} < M\frac{\varepsilon}{2M} + M\frac{\varepsilon}{2M} = \varepsilon$\\ [14pt]
+	\end{tabular}\retTwo\par}
+
+	Hence, $FG$ is also absolutely continuous on $[a, b]$. It follows by the fundamental theorem of calculus for Lebesgue integrals that:
+
+	{\centering $F(b)G(b) - G(b)G(a) = \int_a^b (FG)^\prime(x)\df x = \int_a^b (FG^\prime + GF^\prime)(x)\df x$. $\blacksquare$ \retTwo\par}
+\end{myIndent}
+
+\hOne The following is also tangentially relevant to exercise 8.18(b) in addition to being interesting in its own right. A function $f : \mathbb{R} \to \mathbb{C}$ is \udefine{singular} if $f$ is continuous\\ everywhere, $f^\prime$ exists a.e. with $f^\prime = 0$ a.e., and $f$ is not a constant function.\retTwo
+
+Recalling page 53 of this journal, it's easy to see that the Cantor function is singular (if you continuously extend it to be constant outside $[0, 1]$). However, it's also constant on a small enough neighborhood around almost every point. Hence, it doesn't defy our intution too overly much. In the next two exercises however, we'll construct a strictly increasing singular function.\retTwo
+
+\Hstatement\blab{Exercise 3.39:} If $(F_k)_{k \in \mathbb{N}}$ is a sequence of nonnegative increasing functions on $[a, b]$ such that $F(x) = \sum_{k=1}^\infty F_k(x) < \infty$ for all $x \in [a, b]$, then $F^\prime(x) = \sum_{k=1}^\infty F_k^\prime(x)$ for a.e. $x \in [a, b]$.
+
+\begin{myIndent}\HexOne
+	For all $k$, define:
+	
+	{\centering $G_k(x) = \left\{\begin{matrix}
+	F_k(a+) & \text{if } x \leq a\\
+	F_k(x+) & \text{if } x \in [a, b)\\
+	F_k(b) & \text{if } x \geq b
+	\end{matrix}\right.$ \hspace{1em} and \hspace{1em} $G(x) = \left\{\begin{matrix}
+	F(a+) & \text{if } x \leq a\\
+	F(x+) & \text{if } x \in [a, b)\\
+	F(b) & \text{if } x \geq b
+	\end{matrix}\right.$ \newpage\par}
+
+	Then by theorem 3.23, we know that $G_k^\prime = F_k^\prime$; $G^\prime = F^\prime$ a.e. on $[a, b]$ Also, each $G_k$ is a nonnegative monotone increasing function with $G(x) = \sum_{k=1}^\infty G_k(x) < \infty$ for all $x \in \mathbb{R}$.
+	\begin{myIndent}\HexTwoP
+		Why: For any $x \in [a, b)$, we can apply the dominated convergence theorem to $l^1(\mathbb{N})$ using the upper bound $F(b) = \sum_{k=1}^\infty F_k(b)$ in order to get that:
+
+		{\centering\fontsize{11}{13}\selectfont $G(x) = F(x+) = \lim\limits_{t \to 0^+} \sum\limits_{k=1}^\infty F_k(x + t) = \sum\limits_{k=1}^\infty \lim\limits_{t \to 0^+} F_k(x + t) = \sum\limits_{k=1}^\infty F_k(x+) = \sum\limits_{k=1}^\infty G_k(x)$\retTwo\par}
+	\end{myIndent}
+
+	Taking things one step further, define $H_k(x) = G_k(x) - G_k(a)$ and $H(x) = G(x) - G(a)$. Since adding by a constant doesn't change the derivative of a function at all, we still know that $H_k^\prime = F_k^\prime$; $H^\prime = F^\prime$ a.e. on $[a, b]$ Also, since $G_k$ and $G$ are monotone increasing, we\\ [1pt] know that $G_k(x) \geq G_k(a)$ and $G(x) \geq G(a)$ for all $x$. Hence, all of our $H_k$ and $H$ are still nonnegative monotone increasing functions on $\mathbb{R}$. And clearly $H(x) = \sum_{k=1}^\infty H_k(x)$ for all $x \in \mathbb{R}$.\retTwo
+
+	The significance of this is that if we now prove that $H^\prime(x) = \sum_{k = 1}^\infty H_k^\prime(x)$ for a.e.\\ [1pt] $x \in [a, b]$, then we will have also shown that $F^\prime(x) = \sum_{k=1}^\infty F_k^\prime(x)$ for a.e. $x \in [a, b]$.\\ [0pt] But importantly, all our $H_k$ and $H$ are in $\NBV$. After all, they are in $\BV$ because they\\ [0pt] are bounded and monotone increasing. Also, they are all right continuous and\\ [0pt] $H_k(-\infty) = 0 = H(-\infty)$. It then follows that there are unique finite Borel measures\\ [0pt]  $\mu_{H_k}$ and$\mu_H$ such that $\mu_{H_k}((-\infty, x]) = H_k(x)$ and $\mu_{H}((-\infty, x]) = H(x)$.\retTwo
+
+	Now let $\df \mu_{H_k} = \df \lambda_k + f_k \df m$ and $\df \mu_H = \df \lambda + f \df m$ be the Radon-Nikodym\\ representations of $\mu_{H_k}$ and $\mu_H$ with respect to the Lebesgue measure. Then since $\mu_H$ and $\mu_{H_k}$ are both finite measures in the separable locally compact Hausdorff space $\mathbb{R}$, we know by theorem 7.8 that $\mu_{H_k}$ and $\mu_H$ are regular. Also, if we let $E_r(x) = (x, x + r]$ for all $r > 0$ and $x \in \mathbb{R}$, then we know that $E_r$ shrinks nicely to $x$ for all $x$. Therefore, by the generalized Lebesgue differentiation theorem, we have:
+
+	{\centering $H^\prime(x) = \lim\limits_{h \to 0^+}\frac{H(x + h) - H(x)}{h} =
+		\lim\limits_{h \to 0^+}\frac{\mu_H((x, x+h])}{h} = \lim\limits_{h \to 0^+}\frac{\mu_H(E_h(x))}{m(E_h(x))} = f(x)$ for $m$-a.e. $x$.\par}
+
+	\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaa}{\HexPPP(And similarly we have that $H_k^\prime(x) = f_k(x)$ for $m$-a.e. $x$.)}\retTwo
+
+	Next note that for any $(a, b) \subseteq \mathbb{R}$, we have that:
+	
+	{\centering \begin{tabular}{l}
+		$\mu_H((a, b)) = \lim\limits_{\beta \to b-}\mu_H((a, \beta]) = \lim\limits_{\beta \to b-}\left(H(\beta) - H(a)\right) = \lim\limits_{\beta \to b-}\sum\limits_{k=1}^\infty (H_k(\beta) - H_k(a))$.
+	\end{tabular} \retTwo\par}
+
+	Once again, $H_k(\beta) - H_k(a) \geq 0$ for all $k$ and our series is bounded from above by\\ $\sum_{k=1}^\infty (H_k(b) - H_k(a)) = \mu_{H_k}(a, b] < \infty$. So, by applying the dominated convergence theorem we get that:
+
+	{\centering \begin{tabular}{l}
+		$\sum\limits_{k=1}^\infty (H_k(\beta) - H_k(a)) = \sum\limits_{k=1}^\infty \lim\limits_{\beta \to b-} (H_k(\beta) - H_k(a)) = \sum\limits_{k=1}^\infty \lim\limits_{\beta \to b-} \mu_{H_k}((a, \beta]) = \sum\limits_{k=1}^\infty \mu_{H_k}((a, b))$.
+	\end{tabular} \retTwo\par}
+
+	This in turn proves that $\mu_H = \sum_{k=1}^\infty \mu_{H_k}$ on all open sets by the countable additivity of measures, and all measurable sets in general by outer regularity. Hence, we know that $\df \lambda + H^\prime \df m = \sum_{k=1}^\infty (\df \lambda_k + H_k^\prime \df m) = \sum_{k=1}^\infty \df \lambda_k + \sum_{k=1}^\infty H_k^\prime \df m$.\retTwo
+
+	Lastly, note that $\sum_{k=1}^\infty \lambda_k \perp m$ and $\sum_{k=1}^\infty H_k^\prime \df m = \left(\sum_{k=1}^\infty H_k^\prime \right) \df m \ll m$. By the Radon-\\ [2pt]Nikodym theorem, we thus know that $ \lambda = \sum_{k=1}^\infty \lambda_k$ and $H^\prime \df m =  \left(\sum_{k=1}^\infty H_k^\prime \right) \df m$ with\\ [2pt] $H^\prime = \sum_{k=1}^\infty H_k^\prime$ $m$-a.e. $\blacksquare$\newpage
+\end{myIndent}
+
+\blab{Exercise 3.40:} Let $F$ denote the Cantor function on $[0, 1]$ and set $F(x) = 0$ for $x > 1$ and $F(x) = 1$ for $x > 1$. Let $\{[a_n, b_n]\}_{n \in \mathbb{N}}$ be an enumeration of the closed subintervals of $[0, 1]$ with distinct rational endpoints, and let $F_n(x) = F(\frac{x - a_n}{b_n - a_n})$. Then $ G = \sum_{n=1}^\infty 2^{-n}F_n$ is continuous\\ [-2pt] and strictly increasing on $[0, 1]$, and $G^\prime = 0$ a.e.
+
+\begin{myIndent}\HexOne
+	Since $\frac{x - a_n}{b_n - a_n}$ is continuous and increasing, we know that each $F_n$ is still continuous and\\ [-2pt] monotone increasing. Also, we clearly have that if $x \geq b_n$, then $F_n(x) = 1$. Meanwhile,\\ [1pt] if $x \leq a_n$, then $F_n(x) = 0$. Thus, it's easy to see that:
+	
+	\begin{itemize}
+		\item $G(x) = 0$ for $x \leq 0$ and $G(x) = 1$ for $x \geq 1$
+		\item $G$ is monotone increasing
+		\item $\sum_{n=1}^\infty 2^{-n}F_n$ converges uniformly to $G$, thus making $G$ continuous.
+		\item By an easy application of exercise 3.39, $G^\prime = 0$ a.e. since $F^\prime$ being zero almost\\ everywhere implies $(2^{-n}F_n)^\prime = 0$ a.e. for each $n$.
+		
+		\begin{myIndent}
+			\HexPPP Reminder, for any $x$ not in the Cantor set, we know either $x \notin [0, 1]$ or there is an open interval containing $x$ that was removed to form the Cantor set. In either scenario, we have that $f$ is constant on a neighborhood of $x$. So, $f^\prime(x) = 0$.
+		\end{myIndent}
+	\end{itemize}
+
+	Finally, to show that $G$ is strictly increasing on $[0, 1]$, note that for any $x, y \in [0, 1]$ with $x < y$, we know there is a closed subinterval $[a_n, b_n]$ with $x < a_n < b_n < y$. In turn, we know that $F_n(x) = 0$ while $F_n(y) = 1$. Then since $F_n(y) \geq F_n(x)$ for all other $n$, we know that $G(x)$ is strictly less than $G(y)$.\retTwo
+
+	\begin{myIndent}\pracTwo\fontsize{11}{13}\selectfont
+		Note: We can also fairly easily see now that $\sum_{n \in \mathbb{Z}}(n + G(x - n))\chi_{[n, n+1]}$ is strictly increasing and continuous everywhere with a derivative equal to zero almost everywhere.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hOne This poses a challenge because in exercise 8.18(b), we're going to need to be able say that function having a derivative of zero almost everywhere implies that the function is constant. So here is one more lemma.\retTwo
+
+\exOne \ul{Lemma:} If $f: \mathbb{R} \to \mathbb{C}$ is absolutely continuous on $[a, b]$ and $f^\prime = 0$ a.e. on $[a, b]$, then $f$ is constant on $[a, b]$.
+\begin{myIndent}
+	\why By the fundamental theorem of calculus for Lebesgue integrals, we know that if\\ $x \in [a, b]$, then $f(x) - f(a) = \int_a^x f^\prime(t)\df t = \int_a^x 0 \df t = 0$. So, $f(x) = f(a)$.\retTwo
+\end{myIndent}
+
+\dispDate{7/13/2025}
+
+\Hstatement\blab{Exercise 8.18 (continued):}
+\begin{enumerate}
+	\item[(b)] If the $L^2$ derivative $f^\prime$ exists, then: $\left[\int |f(x)|^2 \df x\right]^2 \leq 4 \int |xf(x)|^2 \df x \int |f^\prime(x)|^2 \df x$.
+
+\begin{myIndent}\HexOne
+	To start out, we need to make sure this inequality is well defined. Note that since $f, f^\prime \in L^2$, we know that $\int |f(x)|^2 \df x < \infty$ and $\int |f^\prime(x)|^2 \df x < \infty$. So, to guarentee that this inequality is well defined, we just need to show that if $\int |f^\prime(x)|^2 \df x = 0$, then we will never have that $\int |xf(x)|^2 \df x = \infty$ (thus making the right-hand side $4(\infty \cdot 0))$. Luckily, by exercise 8.9, we know that $f$ having an $L^2$ derivative means that $f$ is absolutely continuous on every bounded interval. So by the lemma I ended yesterday with, we know that if $\int |f^\prime(x)|^2 \df x = 0$, then $f$ must be constant on every bounded interval since the ordinary derivative of $f$ is zero almost everywhere. This proves that $f = c$ where $c$ is some constant. But since $f \in L^2$, we must have that $\int_{-\infty}^\infty |c|^2 \df x < \infty$. The only way this is possible is if $c = 0$. So, $f = 0$ a.e. and we've thus shown that $\int |xf(x)|^2 \df x = 0$ as well.\newpage
+
+	Next, for any $a < b$ note that $|f|^2$ is absolutely continuous on $[a, b]$. This is because as\\ mentioned before, $f$ is absolutely continuous on $[a, b]$. Then in turn, it is easy to see\\ [-1pt] that $\overline{f}$ is absolutely continuous on $[a, b]$. So, by exercise 3.35, we know that $f \overline{f} = |f|^2$\\ [2pt] is absolutely continuous on $[a, b]$. Also $g(x) = x$ is absolutely continuous on $[a, b]$. Thus by exercise 3.35, we know that:\\ [-15pt]
+
+	{\centering $\int_a^b (1|f(x)|^2 + x\frac{\df}{\df x}|f(x)|^2) = b|f(b)|^2 - a|f(a)|^2$ \retTwo\par}
+
+	Or in other words: $\int_a^b |f(x)|^2 \df x = b|f(b)|^2 - a|f(a)|^2 - \int_a^b x\frac{\df}{\df x}|f(x)|^2 \df x$.\retTwo
+	
+	Also, note:\\ [-15pt]
+	
+	{\centering $\frac{\df}{\df x}|f(x)|^2 = \frac{\df}{\df x}(f(x)\overline{f(x)}) = f^\prime(x)\overline{f(x)} + f(x)\overline{f^\prime(x)} = 2\rea{f^\prime(x)\overline{f}(x)}$.\retTwo\par}
+
+	Hence, for any $a < b$, we have:\\ [-15pt]
+	
+	{\centering $\int_a^b |f(x)|^2\df x = b|f(b)|^2 - a|f(a)|^2 - 2\rea{\int_a^b f^\prime(x)\overline{f(x)}\df x}$\retTwo\par}
+
+
+	Now since the inequality we want to prove is trivial if $\int |xf(x)|^2 \df x = \infty$, we can\\ [-1pt] safely assume $\int |xf(x)|^2 \df x < \infty$. This is important because it guarentees that for\\ [-1pt] any $n \in \mathbb{N}$ and $\varepsilon > 0$, we can pick $a_n < -n$ and $b_n > n$ such that $|a_nf(a_n)|^2 < \sfrac{1}{n}$\\ [2pt] and $|b_n f(b_n)|^2 < \sfrac{1}{n}$. In turn, this lets us say that $a_n|f(a_n)|^2 \in (-\sfrac{1}{n}, 0]$ and\\ [1pt] $b_n|f(b_n)|^2 \in [0, \sfrac{1}{n})$ since $a_n < -1$ and $b_n > 1$.\retTwo
+
+	Now by an application of dominated convergence theorem, we know that:\\ [-15pt]
+
+	{\centering \begin{tabular}{l}
+		$\int |f(x)|^2 \df x = \lim\limits_{n \to \infty} \int_{a_n}^{b_n} |f(x)|^2 \df x$\\ [4pt]
+		$\phantom{\int |f(x)|^2 \df x} = \lim\limits_{n \to \infty} \left(b_n|f(b_n)|^2 - a_n|f(a_n)|^2 - 2 \rea{\int_{a_n}^{b_n} f^\prime(x)\overline{f(x)}\df x}\right)$\\ [8pt]
+		$\phantom{\int |f(x)|^2 \df x} = -2 \cdot \lim\limits_{n \to \infty} \rea{\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\df x}$\\
+	\end{tabular} \retTwo\par}
+
+	Then by the Cauchy-Schwartz inequality (using the fact that $f^\prime\chi_{[a_n, b_n]}, x\overline{f} \in L^2)$, we can say that:\\ [-19pt]
+
+	{\centering \begin{tabular}{l}
+		$-2 \cdot \lim\limits_{n \to \infty} \rea{\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\df x} \leq 2 \lim\limits_{n \to \infty} \left|\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\right|$\\ [8pt]
+		$\phantom{-2 \cdot \lim\limits_{n \to \infty} \rea{\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\df x}} \leq 2 \lim\limits_{n \to \infty} \left(\int_{a_n}^{b_n} |f^\prime(x)|^2 \df x\right)^{\sfrac{1}{2}}\hspace{-0.4em}\left(\int |xf(x)|^2 \df x\right)^{\sfrac{1}{2}}$\\ [8pt]
+	\end{tabular} \retTwo\par}
+
+	By a final application of dominated convergence theorem using an upper bound of $|f^\prime(x)|^2$, we get that:\\ [-19pt]
+	
+	{\centering $\lim\limits_{n \to \infty} \left(\int_{a_n}^{b_n} |f^\prime(x)|^2 \df x\right)^{\sfrac{1}{2}} = \left(\int |f^\prime(x)|^2 \df x\right)^{\sfrac{1}{2}}$\retTwo\par}
+
+	So, $\int |f(x)|^2\df x \leq \left(\int |f^\prime(x)|^2 \df x\right)^{\sfrac{1}{2}}\left(\int |xf(x)|^2 \df x\right)^{\sfrac{1}{2}}$. Squaring both sides gives the desired inequality.\retTwo
+\end{myIndent}
+
+\item[(c)] (\blab{Heisenberg's Inequality}) For any $b, \beta \in \mathbb{R}$,
+
+{\centering $\int (x-b)^2|f(x)|^2\df x\int (\xi - \beta)^2|\widehat{f}(\xi)|^2\df \xi \geq \frac{\|f\|_2^4}{16\pi^2}$\par}
+
+\begin{myIndent}\HexOne
+	To start off, $f = 0$ a.e. if and only if $\widehat{f} = 0$ a.e. It follows that we will never have a $0 \cdot \infty$ situation on the left-hand side, and thus our inequality is well-defined. Also, if\newpage either of the two left hand integrals are infinite, then the inequality is trivial. So, we may assume both integrals are finite.\retTwo
+
+	Next note that if we consider $g(x) = f(x + b)$, then I already showed on page 71 that $\widehat{g}(\xi) = e^{2\pi i \xi b}\widehat{f}(\xi)$. In turn, we know that:\\ [-13pt]
+
+	\begin{itemize}
+		\item $\int x^2|g(x)|^2\df x = \int x^2|f(x + b)|^2 \df x = \int (x - b)^2|f(x)|^2\df x$,
+		\item $\int (\xi - \beta)^2|\widehat{g}(\xi)|^2 \df \xi = \int (\xi - \beta)^2|e^{2\pi i \xi b}\widehat{f}(\xi)|^2 \df \xi = \int (\xi - \beta)^2|e^{2\pi i \xi b}\widehat{f}(\xi)|^2 \df \xi$,\\ [-9pt]
+		\item $\|g\|_2 = \|f\|_2$.\retTwo
+	\end{itemize}
+
+	So, by proving our inequality for $g$ when $b = 0$, we've also proven it for $f$ when $b$ is anything.\retTwo
+
+	Going a step further, set $h(x) = e^{-2\pi i \beta x}g(x)$. Then $h^\vee(\xi) = g^\vee(\xi - \beta) = \widehat{g}(\beta - \xi)$. So, we know that $\widehat{h}(\xi) = \widehat{g}(\beta + \xi)$ since $\widehat{g}(\xi) = g^\vee(-\xi)$. In turn:
+	\begin{itemize}
+		\item $\int x^2|h(x)|^2\df x = \int x^2|e^{-2\pi i \beta x}g(x)|^2 \df x = \int x^2|g(x)|^2\df x$,
+		\item $\int \xi^2|\widehat{h}(\xi)|^2 \df \xi = \int \xi^2|\widehat{g}(\xi + \beta)|^2 \df \xi = \int (\xi - \beta)^2|\widehat{g}(\xi)|^2 \df \xi$,\\ [-9pt]
+		\item $\|h\|_2 = \|g\|_2$.\retTwo
+	\end{itemize}
+
+	So, by proving our inequality for $h$ when $b = 0$ and $\beta = 0$, we've also proven it for $f$ when $b$ and $\beta$ are anything. Luckily, proving that for $h$ is easy due to what we've already proven in parts (a) and (b) of this exercise.\retTwo
+
+	Since $\int \xi^2|\widehat{h}(\xi)|^2\df \xi < \infty$, we know from part (a) that $h$ has an $L^2$ derivative $h^\prime$\\ which satisfies that:\\ [-18pt]
+	
+	{\centering $\frac{1}{2\pi i \xi}\widehat{h^\prime}(\xi) = \widehat{h}(\xi)$.\retTwo\par}
+
+	In turn, we can rewrite $\int \xi^2|\widehat{h}(\xi)|^2\df \xi = \frac{1}{4\pi^2}\int |\widehat{h^\prime}(\xi)|^2\df \xi$ and the latter is just\\ $\frac{1}{4\pi^2}\int |h^\prime(\xi)|^2\df \xi$ by the Plancharel theorem. Finally, by applying part (b) we get that:
+
+	{\centering $\frac{1}{4\pi^2} \int x^2|h(x)|^2\df x \int |h^\prime(\xi)|^2\df \xi \geq \frac{\|h\|_2^4}{4} \cdot \frac{1}{4\pi^2} = \frac{\|h\|_2^4}{16\pi^2}$. $\blacksquare$\retTwo\par}
+
+	\begin{myIndent}\pracTwo\fontsize{11}{13}
+		This inequality is the cause of the quantum uncertainity principle. To see why, first note that in quantum mechanics, a property of a particle at a given point in time is modeled as a probability density function whose density at a point $x$ is\\ [-2pt] $|f(x)|^2$ where $f$ is some function in $L^2$ (importantly this means $\|f\|_2 = 1$ always in this context).\retTwo
+		
+		In turn, $\int (x - b)^2|f(x)|^2\df x$ is the formula for the variance of that probability\\ distribution around $b$. So, that integral evaluates to something small precisely when the probability distribution of the property of the particle has a small\\ standard deviation and $b$ is close to the mean of the distribution.\newpage
+
+		Next, note that in quantum mechanics, pairs of properties are related to each other by a Fourier transformation. Hence, $|\widehat{f}(\xi)|^2\df x$ is the probability density function of another property of the particle.\retTwo
+		
+		Similarly to before, {$\int (x - \beta)^2|\widehat{f}(x)|^2\df x$} is the formula for the variance of that probability distribution around $\beta$, and that will be small precisely when the\\ probability distribution of the property has a small standard deviation and $\beta$ is close to the mean of the distribution.\retTwo
+
+		Now finally, $\int (x - b)^2|f(x)|^2\df x\int (x - \beta)^2|\widehat{f}(x)|^2\df x \geq \frac{1}{16\pi^2}$ for all $b, \beta \in \mathbb{R}$ means that it's impossible for both probability distributions to simultaneously have a standard deviation less than $\frac{1}{2\sqrt{\pi}}$, and decreasing one of the standard deviations beyond that value necessarily requires increasing the other. This is the quantum uncertainty principle.\retTwo
+	\end{myIndent}
+\end{myIndent}
+\end{enumerate}
+
+\blab{Exercise 8.19:} If $f \in L^2(\mathbb{R}^n)$ and the set $S = \{x : f(x) \neq 0\}$ has finite measure, then for any measurable $E \subseteq \mathbb{R}^n$, $\int_E |\widehat{f}|^2 \leq \|f\|_2 m(S)m(E)$.
 
 
 \end{document}
-
 
 
 % I thought it'd be fun to do this exercise from Folland's \textit{Real Analysis} tonight.\retTwo
