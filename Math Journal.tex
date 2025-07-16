@@ -207,6 +207,7 @@
 \newcommand{\rea}[1]{\mathrm{Re}(#1)}
 \newcommand{\ima}[1]{\mathrm{Im}(#1)}
 \newcommand{\comp}{\mathsf{C}}
+\newcommand{\trans}{\mathsf{T}}
 \newcommand{\myHS}{ \hspace{0.5em}}
 \newcommand{\gap}{\phantom{2}}
 
@@ -3395,9 +3396,123 @@ Recalling page 53 of this journal, it's easy to see that the Cantor function is 
 	Thus $\int_E |\widehat{f}|^2 \leq m(E)(\sqrt{m(S)}\|f\|_2)^2 = m(E)m(S)\|f\|_2^2$. $\blacksquare$\retTwo
 
 	\begin{myIndent}\pracTwo\fontsize{11}{13}
-		This inequality is another cause/statement of the quantum uncertainty principle. This is because to optimize the precision of our measurement of the property associated to the wave $|\widehat{f}|^2$, we'd want to maximize $\int_E |\widehat{f}|^2$ while simultaneously minimizing $m(E)$. But, this inequality says that doing that requires increasing $m(S)$. I.e., it requires us to know less about the property associated to the wave $|f|^2$.
+		This inequality is another cause/statement of the quantum uncertainty principle. This is because to optimize the precision of our measurement of the property associated to the wave $|\widehat{f}|^2$, we'd want to maximize $\int_E |\widehat{f}|^2$ while simultaneously minimizing $m(E)$. But, this inequality says that doing that requires increasing $m(S)$. I.e., it requires us to know less about the property associated to the wave $|f|^2$.\retTwo
 	\end{myIndent}
 \end{myIndent}
+
+\dispDate{7/15/2025}\hOne
+
+Welp, I'm currently sick. Anyways, now that I've scanned my paper notes from\\ winter quarter, I'm thinking I want to finally learn vector calculus properly since I never really learned it in math 20E. Also, since I'm crashing the physics 4 sequence, I'm going to eventually need to finally learn Stokes' theorem and Divergence\\ theorem when they cover E\&M.\retTwo
+
+For now, my plan is to sort of follow along with Munkres' \ul{Analysis on Manifolds}, starting at chapter 5. That said, I want to work with Lebesgue integrals. So, I might go on some tangents and or come up with different proofs for things. Also, I might skip something if I'm bored.\newpage
+
+Conventions:
+\begin{itemize}
+	\item $\{e_1, \ldots, e_n\}$ will refer to the standard basis on $\mathbb{R}^n$.\\ [-16pt]
+	\item If $f \in C^r(U)$ where $U \subseteq \mathbb{R}^n$ is open and $r \geq 1$, then $\Df f$ will refer to the\\ derivative matrix of $f$ with respect to the standard bases. I.e, $\Df f$ is the matrix of partial derivatives of $f$.\retTwo
+\end{itemize}
+
+\exOne\ul{Lemma:} Let $W$ be a $k$-dimensional linear subspace of $\mathbb{R}^n$. Then there is an\\ orthogonal (i.e. unitary) linear transformation $h: \mathbb{R}^n \to \mathbb{R}^n$ that carries $W$ onto the subspace $\mathbb{R}^k \times 0^{n-k}$ of $\mathbb{R}^n$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Let $\{v_1, \ldots, v_n\}$ be an orthonormal basis for $W$ such that $\{v_1, \ldots, v_k\}$ is an\\ orthonormal basis for $W$. Then if $g$ is the linear map whose matrix with respect\\ to the standard basis has columns, $v_1, \ldots, v_n$, we know $g$ is orthogonal and\\ $g(e_i) = v_i$ for all $i$. Now just set $h = g^{-1}$.\retTwo
+\end{myIndent}
+
+\ul{Theorem:} Let $k, n \in \mathbb{N}$ with $0 < k \leq n$. There is a unique function $V$ that assigns to each $k$-tuple: $(x_1, \ldots, x_k)$, of elements in $\mathbb{R}^n$ a nonnegative number such that:\\ [-22pt]
+
+\begin{enumerate}
+	\item If $h: \mathbb{R}^n \to \mathbb{R}^n$ is an orthogonal transformation, then:
+
+	{\centering $V(h(x_1), \ldots, h(x_k)) = V(x_1, \ldots, x_k)$\par}
+
+	\item If $y_1, \ldots, y_k$ belong to the subspace $\mathbb{R}^k \times 0^{n-k}$ with $y_i = \left[\begin{smallmatrix}
+		z_i \\ 0
+	\end{smallmatrix}\right]$ where $z_i \in \mathbb{R}^k$, then $V(y_1, \ldots, y_k) = |\det(z_1, \ldots, z_k)|$.
+\end{enumerate}
+
+Specifically, we have, $V(x_1, \ldots, x_k) = \left(\det(X^\trans X)\right)^{\sfrac{1}{2}}$ where $X$ is the $n \times k$ matrix $X = [x_1, \ldots, x_k]$. 
+
+\begin{myTindent}\begin{myDindent}\exPPP
+	(Note: we will typically abreviate $V(x_1, \ldots, x_k)$ as $V(X)$\dots)\retTwo
+\end{myDindent}\end{myTindent}
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Given $X = [x_1, \ldots, x_k]$, define $F(X) = \det(X^{\trans}X)$. Then note:
+	\begin{itemize}
+		\item If $h: \mathbb{R}^n \to \mathbb{R}^n$ is an orthogonal linear map, then $h(x) = Ax$ where $A$ is an\\ orthogonal matrix. Now $[h(x_1), \ldots, h(x_k)] = [Ax_1, \ldots, Ax_k] = AX$. Thus:
+		
+		{\centering $F(h(X)) = f(AX) = \det{(AX)^\trans AX} = \det{X^\trans A^\trans A X} = \det{X^\trans X} = F(X)$\retTwo\par}
+
+		\item If $Z$ is a $k\times k$ matrix and $Y$ is the $n \times k$ matrix $\left[\begin{smallmatrix}
+		Z \\ 0 \end{smallmatrix}\right]$, then:
+
+		{\centering $F(Y) = \det\left(\left[\begin{matrix}
+		Z^\trans & 0 \end{matrix}\right] \left[\begin{matrix}
+		Z \\ 0 \end{matrix}\right]\right) = \det\left(Z^\trans Z\right) = \left(\det(Z)\right)^2$ \retTwo\par}
+	\end{itemize}
+
+	With that, all we need to do is show that $F$ is nonnegative so that we can take the square root of $F$. Luckily, if $\{x_1, \ldots, x_k\}$ are any $k$-tuple of vectors in $\mathbb{R}^n$, then we know there is a $k$-dimensional linear subspace of $\mathbb{R}^n$ containing $x_1, \ldots, x_k$. By our prior lemma, there exists an orthogonal linear map $h$ taking $W$ to $\mathbb{R}^k \to 0^{n-k}$. Next by our first bullet, we know that $F(h(X)) = F(X)$. And finally, by our second bullet we know $F(h(X)) = (\det(h(X)))^2 \geq 0$.\newpage
+
+	Now just define $V(X) = \sqrt{F(X)}$. This proves the existence part of the theorem.\retTwo
+
+	To prove uniqueness, suppose $U$ also satisfies our two axioms. Then for any\\ $\{x_1, \ldots, x_k\} \subseteq \mathbb{R}^n$, let $h(x) = Ax$ be an orthogonal linear map taking $\{x_1, \ldots, x_k\}$ into $\mathbb{R}^k \times 0^{n-k}$. Thus $U(X) = U(h(X)) = |\det(AX)| = V(h(X)) = V(X)$
+
+	\begin{myIndent}
+		\pracTwo Side note: if $\{x_1, \ldots, x_k\}$ are not linearly independent, then $V(X) = 0$.\retTwo
+
+		Also, hopefully it's clear that the significance of $V$ is that we now have a way of defining the $k$-dimensional volume of a $k$-dimensional parallelepiped in $\mathbb{R}^n$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hOne With that, we're ready to start integrating on manifolds. We'll start with the simple case of a manifold parametrized by a single function.\retTwo
+
+Let $k \leq n$. Let $A$ be open in $\mathbb{R}^k$ and let $\alpha : A \to \mathbb{R}^n$ be an injective $C^r$ map (where $r \geq 1$). The set $Y = \alpha(A)$ together with the map $\alpha$ constitute a \udefine{parametrized-\\manifold} of dimension $k$. We denote this parametrized manifold $Y_\alpha$. For a topology, we equip $Y_\alpha$ with the subspace topology of $Y$ with respect to $\mathbb{R}^n$. That way $\alpha$ is still a continuous map.\retTwo
+
+Next, we define a Borel measure on $Y_\alpha$. Given any set $E \in \mathcal{B}_{Y_\alpha}$, we define:
+
+{\centering $V(E) \coloneq \int_{\alpha^{-1}(E)} V(\Df \alpha)$\par}
+
+\begin{myTindent}\exPPP
+	(unfortunately the measure is typically called $V$ even though we already named another function that.)\retTwo
+\end{myTindent}
+
+\begin{myIndent}
+	Note, $V(\Df \alpha)$ is Borel measurable because the matrix determinant is a\\ continuous function with respect to all the matrix entries and all the entries of $\Df \alpha$ are continuous since $\alpha \in C^1$. It follows that our integral is well-defined.\retTwo
+
+	Since $V(\emptyset) = 0$ and $V$ is clearly countably additive, we know $V$ is a measure. Also, the naturalness of this measure is hopefully clear. After all, you can\\ imagine that we are approximating the $k$-dimensional volume using a bunch of tiny parallelepipeds.\retTwo
+\end{myIndent}
+
+Then, given any measurable function $f: Y \to \mathbb{C}$ on our manifold, we can integrate via the formula: $\int_{Y_\alpha} f \df V = \int_A (f \circ \alpha)V(\Df \alpha) \df m$.
+
+\begin{myIndent}
+	\why This formula clearly holds for simple functions. Then you can extend that to\\ nonnegative functions via the monotone convergence theorem and then to real and\\ complex functions in the standard way.\retTwo
+\end{myIndent}
+
+\exOne\ul{Theorem:} Let $g: A \to B$ be a diffeomorphism of open sets in $\mathbb{R}^k$ and let $\beta: B \to \mathbb{R}^n$ be an injective $C^r$ map (with $r \geq 1$). If we define $\alpha = \beta \circ g$, then $\alpha: A \to \mathbb{R}^n$ is also an injective $C_r$ map and $\alpha(A) = \beta(B) = Y$. Then, a function $f: Y \to \mathbb{C}$ is integrable over $Y_\beta$ if and only if it is integrable over $Y_\alpha$, in which case:
+
+{\centering $\int_{Y_\alpha} f\df V_\alpha = \int_{Y_\beta} f\df V_\beta$ \retTwo\par}
+
+\begin{myIndent}\exTwoP 
+	Proof:\\
+	The measurability of $f$ is independent of our parametrization since the topology of $Y_\alpha$ and $Y_\beta$ was not defined using $\alpha$ or $\beta$. Next note that by change of variables:
+
+	{\centering\begin{tabular}{l}
+		$\int_{Y_\beta} f \df V_\beta = \int_B (f \circ \beta)V(\Df \beta)\df m = \int_A (f \circ \beta \circ g)(V(\Df \beta)\circ g)|\det(\Df g)|\df m$\\ [6pt]
+		$\phantom{\int_{Y_\beta} f \df V_\beta = \int_B (f \circ \beta)V(\Df \beta)\df m} = \int_A (f \circ \alpha)(V(\Df \beta)\circ g)|\det(\Df g)|\df m$
+	\end{tabular} \retTwo\par}
+
+	Thus, we just need to show that $(V(\Df \beta)\circ g)|\det(\Df g)| = V(\Df \alpha)$. To do that, note by chain rule that $\Df \alpha = ((\Df \beta) \circ g) \Df g$. Therefore:
+	
+	{\centering \begin{tabular}{l}
+		$(V(\Df \alpha))^2 = \det((((\Df \beta) \circ g) \Df g)^\trans(((\Df \beta) \circ g) \Df g))$\\ [6pt]
+		$\phantom{(V(\Df \alpha))^2} = (\det(\Df g))^2\det(((\Df \beta) \circ g)^\trans((\Df \beta) \circ g)) = (\det(\Df g))^2(V((\Df \beta) \circ g))^2$ $\blacksquare$
+	\end{tabular} \retTwo\par}
+\end{myIndent}
+
+\pracOne\ul{Exercise 5.2.1:} 
+
 
 \end{document}
 
