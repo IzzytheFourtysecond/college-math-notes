@@ -3511,7 +3511,203 @@ Then, given any measurable function $f: Y \to \mathbb{C}$ on our manifold, we ca
 	\end{tabular} \retTwo\par}
 \end{myIndent}
 
-\pracOne\ul{Exercise 5.2.1:} 
+\pracOne\ul{Exercise 22.1:} Let $A$ be open in $\mathbb{R}^k$, $\alpha: A \to \mathbb{R}^n$ be a $C^1$ map, and $Y = \alpha(A)$. Suppose $h: \mathbb{R}^n \to \mathbb{R}^n$ is an isometry and let $Z = h(Y)$ and $\beta = h \circ \alpha$. Then $Y_\alpha$ and $Z_\beta$ have the\\ [-3pt] same volume. 
+
+\begin{myIndent}\pracTwo
+	Since $h$ is an isometry, we know $h$ has the form $h(x) = Qx + b$ where $Q$ is an orthogonal matrix and $b$ is a constant vector. Thus by chain rule, we have that $\Df \beta = Q \Df \alpha$. So:
+
+	{\centering $\int_{Z_\beta} \df V = \int_A V(\Df \beta) = \int_A V(Q\Df \alpha) = \int_A V(\Df \alpha) = \int_{Y_\alpha} \df V$ \retTwo\par}
+\end{myIndent}
+
+\hOne\mySepTwo
+
+\dispDate{7/16/2025}
+
+Now our previous approach to manifolds is lacking in some respects. For one, it'd be nice if our manifolds were able to include their boundaries. However, requiring the domains of our parametrizations to be strictly open makes that difficult. Also, it'd be nice if we could talk about manifolds that can't be parametrized by a single function (such as the unit sphere $S^2$ in $\mathbb{R}^3$).\retTwo
+
+To address the first issue, we extend our notion differentiability. Let $S$ be any subset of $\mathbb{R}^k$ and let $f: S \to \mathbb{R}^n$. We say \udefine{$f \in C^r(S)$} iff there exists an open set $U \supset S$ and a function $g: U \to \mathbb{R}^n$ in $C^r(U)$ such that $g|_S = f$.
+
+\begin{myIndent}\hTwo
+	Note that if $f_1, f_2 \in C^r(S)$, then we have that $f_1 + f_2 \in C^r(S)$ and $f_1f_2 \in C^r(S)$. After all, supposing we can extend $f_1$ and $f_2$ to the functions $g_1$ and $g_2$ defined respectively on the open sets $U$ and $V$ containing $S$, then $U \cap V$ is still open and contains $S$, and $g_1 + g_2, g_1g_2 \in C^r(U \cap V)$.\retTwo
+
+	Also, if $f_1 \in C^r(S)$ and $f_2 \in C^r(T)$ where $f_1(S) \subseteq T$, then $f_2 \circ f_1 \in C^r(S)$. This is because if $g_1$ extends $f_1$ to an open set $U \supseteq S$ and $g_2$ extends $f_2$ to an open set $V \supseteq T$, then $g_2 \circ g_1$ is a $C^r$ extension of $f_2 \circ f_1$ to the open set $g_1^{-1}(V) \supseteq S$.\retTwo
+\end{myIndent}
+
+Next, we show that being in $C^r(S)$ is a local property. However, to do that we first prove a result about partitions of unity.\newpage
+
+Recall from Math 240B that a \udefine{partition of unity} on a set $E \subseteq X$ (where $X$ is an LCH space such as $\mathbb{R}^n$) is a collection of functions $\{h_\alpha\}_{\alpha \in A} \in C(X, [0, 1])$ such that:
+\begin{itemize}
+	\item Each $x \in X$ has a neighborhood on which only finitely many $h_\alpha$ are nonzero,
+	\begin{myIndent}\begin{myTindent}\pracTwo
+		Although Munkres only requires this to hold for all $x \in E$.
+	\end{myTindent}\end{myIndent}
+	\item $\sum_{\alpha \in A}h_\alpha(x) = 1$ for all $x \in E$.\retTwo
+\end{itemize}
+
+Also, we say $\{h_\alpha\}_{\alpha \in A}$ is \udefine{subordinate to the open cover $\mathcal{U}$} of $E$ if for each $\alpha$ there exists $U \in \mathcal{U}$ such that $\supp(h_\alpha) \subseteq U$.\retTwo
+
+A really cool result Munkres spends all of chapter 16 proving is that for any collection $\mathcal{A}$ of open sets in $\mathbb{R}^n$ whose union is $A$, there is a partition of unity $\{h_m\}_{m \in \mathbb{N}}$ of $A$ consisting of $C_c^\infty$ functions and such that $\{h_m\}_{m \in \mathbb{N}}$ is subordinate to $\mathcal{A}$.\retTwo
+
+\begin{myIndent}\exOne
+	\ul{Lemma 16.2:} Let $\mathcal{A}$ be a collection of open sets in $\mathbb{R}^n$ whose union is $A$.\\ Then there exists a countable collection $\{Q_i\}_{i \in \mathbb{N}}$ of rectangles (i.e. Cartesian\\ products of closed intervals) contained in $A$ such that:
+	\begin{enumerate}
+		\item The sets $\{Q_i^{\circ}\}_{i \in \mathbb{N}}$ cover $A$.
+		\item Each $Q_i$ is contained in an element of $\mathcal{A}$.
+		\item Each point of $A$ has a neighborhood that intersects only finitely many of the sets $Q_i$.
+	\end{enumerate} 
+
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Step 1: Dividing $A$ into a nicely structured sequence of compact sets:
+
+		\begin{myIndent}\exPPP
+			Because $\mathbb{R}^n$ is $\sigma$-compact, we know $A$ is a countable union of compact sets. Then, by taking larger and larger finite unions of those compact sets we get an increasing sequence of compact sets $\{K_{i}\}_{i \in \mathbb{N}}$ whose union is $A$.\retTwo
+
+			Next, to get a nicer sequence, we do more finagling. Let $D_1 = K_1$. Then for $i \geq 1$, define $D_{i+1}$ inductively as follows:
+			\begin{myDindent}
+				We know there exists a precompact open set $V$ such that\\ $(D_i \cup K_i) \subseteq V \subseteq \overline{V} \subseteq A$. Thus, set $D_{i+1} = \overline{V}$.\retTwo
+			\end{myDindent}
+
+			Thus, $\{D_i\}_{i \in \mathbb{N}}$ is a sequence of compact sets whose union is $A$ and which satisfies that $D_i \subseteq D_{i+1}^\circ$ for all $i$. Also, for convenience of notation let\\ $D_i = \emptyset$ if $i \leq 0$.\retTwo
+
+			Finally, set $B_i = D_i - D_{i-1}^\circ$ for all $i$. Then note that $\{B_i\}_{i \in \mathbb{N}}$ is a sequence of compact sets whose union is $A$ and which satisfies that $B_i$ is disjoint from $D_{i-2}$ for all $i \geq 2$. Consequently, this means that any $B_i$ only intercepts $B_{i-1}$ and $B_{i+1}$ in our sequence. Also, $U_i \coloneq D_{i+1}^\circ - D_{i-2}$ is an open neighborhood of $B_i$ which intercepts only $B_{i-1}$, $B_i$, and $B_{i+1}$.\newpage
+		\end{myIndent}
+
+		Step 2: Making our covering of $A$:
+
+		\begin{myIndent}\exPPP
+			After fixing $i$, note that for any $x \in B_i$  we know that there is a set $E \in \mathcal{A}$ such that $x \in E$. So, we can pick a rectangle $Q_x$ such that $x \in Q_x^\circ$ and\\ $Q_x \subseteq E \cap U_i$. Doing this for all $x \in B_i$, we get a collection $\{Q_x\}_{x \in B_i}$ of sets whose interiors give an open covering of $B_i$. So, because $B_i$ is compact, there is a finite collection $\mathcal{C}_i \coloneq \{Q_{x_1}, \ldots, C_{Q_{n_i}}\}$ of rectangles whose\\ interiors cover all of $B_i$ and such that each rectangle is a subset of some element of $\mathcal{A}$ intercepted with $U_i$.\retTwo
+
+			Repeat this process for all $i$ and let $\mathcal{C} = \bigcup_{i \in \mathbb{N}} \mathcal{C}_i$. Then $\mathcal{C}$ is a countable\\ collection of rectangles such that each $Q \in \mathcal{C}$ is contained in an element of $\mathcal{A}$. Also, for any $x \in A$, we know there is some $j$ with:
+			
+			{\centering $x \in \left(B_{j-1} \cup B_{j} \cup B_{j+1}\right) - \hspace{-1.8em}\bigcup\limits_{\begin{smallmatrix}
+			i \in \mathbb{N}\\ i \notin \{j-1, j, j+1\}
+			\end{smallmatrix}}\hspace{-1.8em} B_i$\retTwo\par}
+
+			In turn, $x$ is in the interior of one the rectangles in $\mathcal{C}_{j-1} \cup \mathcal{C}_{j} \cup \mathcal{C}_{j+1}$.\retTwo
+
+			Finally, supposing $x \in B_k$, then we know the open neighborhood $U_k \subseteq A$ of $x$ only intercepts $U_{k-1}$ and $U_{k+1}$, which in turn only intercept $B_{k-2}$ through $B_{k+2}$. So, $U_k$ is an open neighborhood of $x$ which intercepts at most the rectangles from $\mathcal{C}_{j-2}$ through $\mathcal{C}_{j+2}$. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\ul{Theorem 16.3:} Let $\mathcal{A}$ be a collection of open sets in $\mathbb{R}^n$ whose union is $A$. Then there is a partition of unity $\{h_m\}_{m \in \mathbb{N}}$ subordinate to $\mathcal{A}$ such that each $h_m$ is in $C_c^\infty$.
+
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Construct $\{Q_m\}_{m \in \mathbb{N}}$ like in the previous lemma. Then note that for each $Q_m$, there is a $C_c^\infty$ function $g_m$ such that $g_m(x) > 0$ if $x \in Q_m^{\circ}$ and $g_m(x) = 0$\\ otherwise. 
+
+		\begin{myIndent}\exPPP
+			Specifically: If you define $f(x) = e^{1/x}$ when $x > 0$ and $f(x) = 0$ when $x \leq 0$, then $f \in C^\infty(\mathbb{R})$. In turn, $g \coloneq f(x)f(1-x) \in C^\infty(\mathbb{R})$ with $g(x) > 0$ when $x \in (0, 1)$ and $g(x) = 0$ otherwise.\retTwo
+			
+			Finally, if $Q_m = [a_1, b_1] \times \ldots \times [a_n, b_n]$, then define:
+
+			{\center $g_m(x_1, \ldots, x_n) = g(\frac{x_1 - a_1}{b_1 - a_1})\cdots g(\frac{x_n - a_n}{b_n - a_n})$ \retTwo\par}
+
+			Thus $g_m \in C^\infty(\mathbb{R}^n)$ with $g_m(x) > 0$ when $x \in Q_m^\circ$ and $g_m(x) = 0$ otherwise.\retTwo
+		\end{myIndent}
+
+		Having done that, we've now guarenteed that $\{g_m\}_{m \in \mathbb{N}}$ has all the properties we want except that we don't necessarily have that $\sum_{m \in \mathbb{N}} g_m(x) = 1$ for all $x \in A$. To fix that, we normalize our functions.\retTwo
+		
+		Let $\lambda(x) \coloneqq \sum_{m=1}^\infty g_m(x)$. Then for any $x \in A$, we know there is an open neighborhood $N_x$ of $x$ that intercepts only finitely many $\supp(g_m)$. It follows then that $\lambda(x) < \infty$ for all $x\in A$ and that $\lambda$ is infinitely differentiable for all $x \in A$. Meanwhile, since any $x \in A$ is in the interior of at least one $Q_m$, we know that $\lambda(x) > 0$ for all $x \in A$.\newpage
+
+		Now for each $m$ define $h_m(x) = g_m(x) / \lambda(x)$ when $x \in A$ and $h_m(x) = 0$ when $x \notin A$. Then it's clear that $\sum_{m \in \mathbb{N}} h_m(x) = 1$ when $x \in A$. Also, we still have that each $h_m \in C^\infty$. To see that, first note that $h_m$ is infinitely differentiable via quotient rule on $A$. Also, since $Q_m$ is compact, $A^\comp$ is closed, and both are disjoint, we know there is some minimum distance $\delta$ between the two sets. So for any $x \in A^\comp$, we know that $h_m$ is just the zero function while on a ball of radius $\delta/2$ around $x$. So, all of the derivatives of $h_m$ exist and equal zero at $x$ for any $x \in A^\comp$. Finally, since $\supp(h_m) = \supp(g_m)$, we have that $h_m$ satisfies our other requirements.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+Now returning to our goal of extending the concept of differentiability, we have the following result:\retTwo
+
+\exOne\ul{Lemma 23.1:} Let $S$ be a subset of $\mathbb{R}^k$ and let $f: S \to \mathbb{R}^n$. If for each $x \in S$ there is a neighborhood $U_x$ of $x$ and a $C^r$ function $g_x: U_x \to \mathbb{R}^n$ which agrees with $f$ on $U_x \cap S$, then $f \in C^r(S)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	For each $x \in S$, pick a set $U_x$ and a $C^r$ function $g_x : U_x \to \mathbb{R}^n$ as allowed by the hypothesis of the lemma. Then set $\mathcal{A} = \{U_x : x \in S\}$ and call the union of that collection of sets $A$. Via the prior result, there is a partition of unity $\{\phi_m\}_{m \in \mathbb{N}}$ on $A$ consisting of $C^\infty_c$ functions and which is subordinate to $\mathcal{A}$. In turn, for any $m \in \mathbb{N}$ there exists $x_m$ with $\supp(\phi_m) \subseteq U_{x_m}$. It then follows that $h_m \coloneqq \phi_m g_{x_m} \in C^r(U_m)$ and that $h_m$ vanishes outside a compact subset of $U_m$, meaning we can extend $h_m$ to being in $C^r(\mathbb{R}^k)$ by setting $h_m = 0$ outside $U_{x_m}$.\retTwo
+
+	Finally, define $g = \sum_{m=1}^\infty h_m$ on $A$. Then for any $x \in A$, we know that $x$ has a neighborhood on which $g$ is only a sum of finitely many $h_m$. So, $g \in C^r(A)$. Also, if $x \in S$, then for any $m$ with $\phi_m(x) \neq 0$, $h_m(x) = \phi_m(x)g_m(x) = \phi_m(x)f(x)$. Therefore, for any $x \in A \cap S$:
+
+	{\centering $g(x) = \sum\limits_{m \in \mathbb{N}} h_m(x) = f(x)\sum\limits_{m \in \mathbb{N}} \phi_m(x) = f(x)$. $\blacksquare$ \retTwo\par}
+\end{myIndent}
+
+\dispDate{7/18/2025}
+
+\hOne Let $H^k = \{(x_1, \ldots, x_k) \in \mathbb{R}^k : x_k \geq 0\}$ denote the \udefine{"upper-Half-space"}. Also, let $H^k_+ = \{(x_1, \ldots, x_k) \in \mathbb{R}^k : x_k > 0\}$ denote the \udefine{"open upper-Half-space"} in $\mathbb{R}^k$.\retTwo
+
+\exOne\ul{Lemma 23.2:} Let $U$ be open in $H^k$ but not in $\mathbb{R}^k$, and let $\alpha: U \to \mathbb{R}^n$ be in $C^r(U)$. That way, there exists a $C^r$ extension $\beta: U^\prime \to \mathbb{R}^n$ of $\alpha$ defined on an open set $U^\prime$ of $\mathbb{R}^k$. Then for $x \in U$, the derivative $\Df \beta(x)$ depends only on the function $\alpha$ and is independent of the extension $\beta$. Hence it follows we may denote this derivative by $\Df \alpha(x)$ without ambiguity.
+
+\begin{myIndent}
+	\why We know that $\frac{\partial}{\partial x_k} \beta$ is fully determined by the right-hand limit:
+
+	{\centering $\lim\limits_{h \to 0^+}\frac{\beta(x + he_k) - \beta(x)}{h} = \lim\limits_{h \to 0^+}\frac{\alpha(x + he_k) - \alpha(x)}{h}$ \newpage\par}
+
+	It follows that all first order partial derivatives of $\beta$ on $U$ are uniquely determined by $\alpha$. Then proceeding by induction and noting that $\partial^\gamma \beta$ extends $\partial^\gamma \alpha$ from $U$ to $U^\prime$ for all multi-indices $\gamma$ of degree less than $r$, we can apply the same reasoning to conclude that all partial derivatives of $\beta$ with order less than $r$ on $U$ are uniquely determined by $\alpha$.\retTwo
+\end{myIndent}
+
+\hOne With that, we now have the ability to define parametrized manifolds with a\\ boundary by making the domain of our parametrization open with respect to $H^k$\\ instead of $\mathbb{R}^k$. As for our other issue of wanting to talk about manifolds that can't be parametrized by a single function, we shall deal with that now.\retTwo
+
+Let $k > 0$. A \udefine{$k$-manifold} in $\mathbb{R}^n$ of class $C^r$ is a subset $M$ of $\mathbb{R}^n$ having the following property: For each $p \in M$ there is an open set $V$ of $M$ containing $p$, a set $U$ that is open in either $\mathbb{R}^k$ or $H^k$, and a continuous bijective map $\alpha: U \to V$ such that:\\ [-26pt]
+
+\begin{enumerate}
+	\item $\alpha \in C^r(U)$\\ [-22pt]
+	\item $\alpha^{-1}: V \to U$ is continuous\\ [-22pt]
+	\item $\Df \alpha(x)$ has rank $k$ for each $x \in U$.\retTwo
+\end{enumerate}
+
+The map $\alpha$ is called a \udefine{coordinate patch} on $M$ about $p$.\retTwo
+
+Also, we call a discrete collection of points in $\mathbb{R}^n$ to be a \udefine{$0$-manifold}.\retTwo
+
+\exOne\ul{Lemma 23.3:} Let $M$ be a manifold in $\mathbb{R}^n$ and $\alpha: U \to V$ be a coordinate patch on $M$. If $U_0$ is a subset of $U$ that is open in $U$, then the restriction of $\alpha$ to $U_0$ is also a coordinate patch on $M$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Since $\alpha^{-1}$ is continuous and $U_0$ is open in $U$, we know that $V_0 \coloneqq \alpha^{-1}(U_0)$ is also open in $V$ and thus also $M$. Hence, $\alpha|_{U_0}$ is a coordinate patch on $M$ because it carries $U_0$ onto $V_0$ in a bijective fashion, and it's a $C^r$ map with a continuous inverse and $\Df (\alpha|_{U_0})$ having rank $k$ just because it's the restriction of $\alpha$ which has all of those things.\retTwo
+\end{myIndent}
+
+\pracOne\ul{Exercise 23.3(b):} Why is $\alpha : [0, 1) \to \mathbb{R}^2$ defined by $\alpha(t) = (\cos(2\pi t), \sin(2\pi t))$ not a\\ coordinate patch for the unit circle $S^1$?
+\begin{myIndent}\pracTwo
+	In this example, $\alpha^{-1}$ is not continuous at $\alpha(0) = (1, 0)$. One way to see this is that the limit of $\alpha^{-1}$ going one way around the circle towards $(1, 0)$ will be $1$, whereas the limit going the other way around the circle will be $0$.\retTwo
+
+	It should be noted though that $S^1$ is still a $1$-manifold. It's just that we need to use multiple overlapping coordinate patches that don't individually go all the way around the circle in order to cover it.\retTwo
+\end{myIndent}
+
+\hOne In order to prove the next theorem, I actually need to generalize the version of the inverse function theorem that I learned in 140C so that if $f$ is a bijective $C^r$ map with a nonsingular derivative, then I know that $g = f^{-1}$ is also $C^r$ rather than just merely $C^1$. But to do that, I need to finally learn Cramer's rule.\newpage
+
+I'm also realizing right about now that in my original notes where I defined $\det$ (my MITx notes which I just got back from my parents, yay!), while my construction still generalizes to matrices defined on arbitrary scalar fields perfectly well, it does have a slight problem of using the parity of permutations in it's definition. However, in Math 100A we defined the parity of a permutation by taking the determinant of it's matrix representation. So, I might as well deal with that cyclic definition now\dots\retTwo
+
+\begin{myIndent}\hTwo
+	Given a permutation $\sigma: \{1, \ldots, n\} \to \{1, \ldots, n\}$, we can define the function:
+
+	{\centering$\sgn(\sigma) = \prod\limits_{i < j}\sgn(\sigma(j) - \sigma(i))$\retTwo\par}
+
+	Now I claim that $\sgn$ is a group homomorphism from $S_n$ to the multiplicative group $\{-1, 1\} \subseteq \mathbb{R}^n$
+\end{myIndent}
+
+
+
+\newpage
+
+\exOne\ul{Theorem 24.1} Let $M$ be a $k$-manifold in $\mathbb{R}^n$ of class $C^r$. Also let $a_0: U_0 \to V_0$ and $a_1: U_1 \to V_1$ be coordinate patches on $M$ with $W = V_0 \cap V_1$ nonempty, and let $W_i = \alpha_i^{-1}(W)$. Then the map $(\alpha_1^{-1} \circ \alpha_0): W_0 \to W_1$ is a $C^r$ map with a nonsingular derivative.\newpage
+
+\begin{myIndent}
+	(Side note: We often call $\alpha_1^{-1} \circ \alpha_0$ the \udefine{transition function} between the\\ coordinate patches $\alpha_0$ and $\alpha_1$.)\retTwo
+
+	\exTwoP Proof:\\
+	It suffices to show that if $\alpha: U \to V$ is a coordinate patch on $M$, then $\alpha^{-1} : V \to \mathbb{R}^k$ is in $C^r(V)$.
+	\begin{myIndent}
+		\why If $\alpha_0$ and $\alpha_1^{-1}$ are both of class $C^r$, then so is their composite $\alpha_1^{-1} \circ \alpha_0$. By similar reasoning, we also know that $\alpha_0^{-1} \circ \alpha_1: W_1 \to W_0$ is in $C^r(W_0)$. And since $(\alpha_1^{-1} \circ \alpha_0)$ and $\alpha_0^{-1} \circ \alpha_1$ are inverses of each other, we know by chain rule that for any $x \in W_0$ and $y = (\alpha_1^{-1} \circ \alpha_0)(x)$:
+
+		{\centering $\Df(\alpha_0^{-1} \circ \alpha_1)(y)\Df(\alpha_1^{-1} \circ \alpha_0)(x) = \mathbf{1}$ \retTwo\par}
+
+		The only way this is possible is if $\det(\Df(\alpha_1^{-1} \circ \alpha_0)) \neq 0$ for all $x \in W_0$.\retTwo
+	\end{myIndent}
+
+	Next, to prove that $\alpha^{-1}$ is of class $C^r$, it suffices to show that it is locally of class $C^r$. So let $p_0$ be a point of $V$ and set $x_0 = \alpha^{-1}(p_0)$.\retTwo
+
+	First consider the case $U$ is open in $H^k$ but not in $\mathbb{R}^k$. Then, we can extend $\alpha$ to a $C^r$ map $\beta$ on an open set $U^\prime$ of $\mathbb{R}^k$. Now $\Df \alpha(x_0)$ has rank $k$. So after some suitable permutation of our standard basis vectors, we can assume the first $k$ rows of the matrix $\Df \alpha(x_0)$ are linearly independent. If we define $\pi: \mathbb{R}^n \to \mathbb{R}^k$ to then be the projection from $\mathbb{R}^n$ onto those first $k$ basis vectors, we have that the map $g = \pi \circ \beta$ maps $U^\prime$ into $\mathbb{R}^k$ and $\Df g(x_0)$ is non-singular.
+
+\end{myIndent}
+
+
+
 
 
 \end{document}
