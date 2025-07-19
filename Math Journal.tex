@@ -3673,19 +3673,93 @@ Also, we call a discrete collection of points in $\mathbb{R}^n$ to be a \udefine
 
 I'm also realizing right about now that in my original notes where I defined $\det$ (my MITx notes which I just got back from my parents, yay!), while my construction still generalizes to matrices defined on arbitrary scalar fields perfectly well, it does have a slight problem of using the parity of permutations in it's definition. However, in Math 100A we defined the parity of a permutation by taking the determinant of it's matrix representation. So, I might as well deal with that cyclic definition now\dots\retTwo
 
-\begin{myIndent}\hTwo
+\begin{myIndent}\pracOne
 	Given a permutation $\sigma: \{1, \ldots, n\} \to \{1, \ldots, n\}$, we can define the function:
 
 	{\centering$\sgn(\sigma) = \prod\limits_{i < j}\sgn(\sigma(j) - \sigma(i))$\retTwo\par}
 
-	Now I claim that $\sgn$ is a group homomorphism from $S_n$ to the multiplicative group $\{-1, 1\} \subseteq \mathbb{R}^n$
+	Now I claim that $\sgn$ is a group homomorphism from $S_n$ to the multiplicative group $\{-1, 1\} \subseteq \mathbb{R}^n$ To see this, suppose $\sigma \in S_n$ and that $\tau_{k_1,k_2} \in S_n$ is the transposition swapping $k_1$ and $k_2$. Then it's clear that:
+	
+	{\centering $\sgn(\tau_{k_1, k_2} \circ \sigma) = -\sgn(\sigma) = \sgn(\tau_{k_1,k_2})\sgn(\sigma)$.\retTwo\par}
+
+	In turn, if $\sigma^\prime \in S_n$ is another arbitrary permutation, then by expressing\\ $\sigma^\prime = \tau_1 \circ \tau_2 \circ \ldots \circ \tau_N$ where all the $\tau_i$ are transpositions, we have that:
+
+	{\center\begin{tabular}{l}
+		$\sgn(\sigma^\prime \circ \sigma) = \sgn(\tau_1 \circ \tau_2 \circ \ldots \circ \tau_{N-1}\circ\tau_N \circ \sigma)$\\ [4pt]
+		$\phantom{\sgn(\sigma^\prime \circ \sigma)} = \sgn(\tau_1)\sgn(\tau_2 \circ \ldots \circ \tau_{N-1} \circ \tau_N \circ \sigma)$\\
+
+		$\phantom{\sgn(\sigma^\prime \circ \sigma)aaaaaaaaaaaaaaaaa} \vdots$\\
+
+		$\phantom{\sgn(\sigma^\prime \circ \sigma)} = \sgn(\tau_1)\sgn(\tau_2)\ldots\sgn(\tau_{N-1})\sgn(\tau_N)\sgn(\sigma)$\\ [4pt]
+		$\phantom{\sgn(\sigma^\prime \circ \sigma)} = \sgn(\tau_1)\sgn(\tau_2)\ldots\sgn(\tau_{N-1} \circ \tau_N)\sgn(\sigma)$\\
+
+		$\phantom{\sgn(\sigma^\prime \circ \sigma)aaaaaaaaaaaaaaaaa} \vdots$\\
+
+		$\phantom{\sgn(\sigma^\prime \circ \sigma) } = \sgn(\tau_1)\sgn(\tau_2 \circ \cdots \tau_{N-1} \circ \tau_N)\sgn(\sigma)$\\ [4pt]
+		$\phantom{\sgn(\sigma^\prime \circ \sigma) } = \sgn(\tau_1 \circ \tau_2 \circ \cdots \tau_{N-1} \circ \tau_N)\sgn(\sigma) = \sgn(\sigma^\prime)\sgn(\sigma)$\\ [4pt]
+	\end{tabular}\retTwo\par}
+
+	Also, it's easily checked that $\sgn(\myId) = 1$. Thus $\sgn$ is a group homomorphism.\\ And, since every transposition has a negative sign, we get the following nice\\ interpretation of the sign of a permutation. Specifically: $\sgn(\sigma) = 1$ if $\sigma$ can only be constructed using an even number of transpositions starting from the identity, and $\sgn(\sigma) = -1$ if $\sigma$ can only be constructed using an odd number of transpositions starting from the identity.\retTwo
 \end{myIndent}
 
+Next, here are \udefine{Cramer's rules:}\retTwo
 
+\exOne\ul{Theorem 2.13:} Let $A = \begin{bmatrix}
+	a_1  & \cdots & a_n
+\end{bmatrix}$ be an $n\times n$ matrix. Also let:
 
-\newpage
+{\centering \phantom{aaaaaaaaaaaaaaa}$x = \begin{bmatrix}
+	x_1 \\ \vdots \\ x_n
+\end{bmatrix}$ and $c = \begin{bmatrix}
+	c_1 \\ \vdots \\ c_n
+\end{bmatrix}$.\retTwo\par}
 
-\exOne\ul{Theorem 24.1} Let $M$ be a $k$-manifold in $\mathbb{R}^n$ of class $C^r$. Also let $a_0: U_0 \to V_0$ and $a_1: U_1 \to V_1$ be coordinate patches on $M$ with $W = V_0 \cap V_1$ nonempty, and let $W_i = \alpha_i^{-1}(W)$. Then the map $(\alpha_1^{-1} \circ \alpha_0): W_0 \to W_1$ is a $C^r$ map with a nonsingular derivative.\newpage
+Then if $Ax = c$, we have:
+
+{\centering $\det(A) x_i = \det\left(\begin{bmatrix}a_1 & \cdots & a_{i-1}& c & a_{i+1} & \cdots & a_n\end{bmatrix}\right)$\newpage\par}
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Define $C = \begin{bmatrix}e_1 & \cdots & e_{i-1}& x & e_{i+1} & \cdots & e_n\end{bmatrix}$.\retTwo
+	
+	Then, we have that $AC = \begin{bmatrix}a_1 & \cdots & a_{i-1}& c & a_{i+1} & \cdots & a_n\end{bmatrix}$. Thus, we know:
+
+	{\centering $\det(A)\det(C) = \det\left(\begin{bmatrix}a_1 & \cdots & a_{i-1}& c & a_{i+1} & \cdots & a_n\end{bmatrix}\right)$. \retTwo\par}
+
+	Also note that $\det(C) = x_{i}(-1)^{i + i}\det(I_{n-1}) = x_i(-1)^{2i} = x_i$. The desired\\ conclusion then follows.\retTwo
+\end{myIndent}
+
+\ul{Theorem 2.14:} Let $A$ be an $n \times n$ matrix of rank $n$ and let $B = A^{-1} = [b_{i,j}]$. Then\\ letting $A_{j,i}$ denote the matrix which results from removing the $j$th row and $i$th\\ column of $A$, we have that:
+
+{\centering $b_{i,j} = \frac{(-1)^{j+i}\det(A_{j,i})}{\det(A)}$ \retTwo\par}
+
+\begin{myIndent}\exTwoP
+	Proof:\\ [-4pt]
+	After fixing $j$, set $x = \left[\begin{smallmatrix}x_1 \\ \vdots \\ x_n\end{smallmatrix}\right]$ equal to the $j$th column of $B$.\retTwo
+
+	Now since $AB = I_{n}$, we know $Ax = e_j$. Therefore, by our last theorem we know:
+
+	{\centering $\det(A)x_i = \det\left(\begin{bmatrix}a_1 & \cdots & a_{i-1}& e_j & a_{i+1} & \cdots & a_n\end{bmatrix}\right)$ \retTwo\par}
+
+	The latter determinant equals $(-1)^{j+i}\det(A_{j,i})$. Therefore:
+
+	{\center $x_i = b_{i,j} = \frac{(-1)^{j+i}\det(A_{j,i})}{\det(A)}$. $\blacksquare$ \retTwo\par}
+\end{myIndent}
+
+\hOne Now, here's the generalization of the inverse function theorem, that if $f \in C^r$ and satisfies all the other hypotheses of the inverse function theorem, then we can guarentee that our inverse function $g = f^{-1}$ is also $C^r$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Jumping to where we ended our proof of the inverse function theorem in math 140C, we had shown that $\Df g(y) = (\Df f(g(y)))^{-1}$ for all $y$ in some open subset of the image of $f$. If $g(y) = (g_1(y), \ldots, g_n(y))$, then by our prior theorem we know that:
+
+	{\centering $\frac{\partial}{\partial y_j}g_i(y) = \frac{(-1)^{j + i}\det([\Df f(g(y))]_{j,i})}{\det(\Df f(g(y)))}$ \retTwo\par}
+
+	Now we already know that $g$ is $C^1$. So, when proceeding by induction for $r > 1$, it suffices to assume $g$ is also $C^{r-1}$. But then note that since $\det(\Df f(g(y))) \neq 0$ for all $y$, and since all the partial derivatives of $f$ are $C^{r-1}$, our above expression shows that $\frac{\partial}{\partial y_j}g_i(y)$ is also $C^{r-1}$. And since this works for all partial derivatives of $g$, we've\\ [-3pt] proven that $g$ is $C^{(r-1)+1}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+And finally to finish off for tonight\ldots\newpage
+
+\exOne\ul{Theorem 24.1} Let $M$ be a $k$-manifold in $\mathbb{R}^n$ of class $C^r$. Also let $a_0: U_0 \to V_0$ and $a_1: U_1 \to V_1$ be coordinate patches on $M$ with $W = V_0 \cap V_1$ nonempty, and let $W_i = \alpha_i^{-1}(W)$. Then the map $(\alpha_1^{-1} \circ \alpha_0): W_0 \to W_1$ is a $C^r$ map with a nonsingular derivative.
 
 \begin{myIndent}
 	(Side note: We often call $\alpha_1^{-1} \circ \alpha_0$ the \udefine{transition function} between the\\ coordinate patches $\alpha_0$ and $\alpha_1$.)\retTwo
@@ -3702,10 +3776,43 @@ I'm also realizing right about now that in my original notes where I defined $\d
 
 	Next, to prove that $\alpha^{-1}$ is of class $C^r$, it suffices to show that it is locally of class $C^r$. So let $p_0$ be a point of $V$ and set $x_0 = \alpha^{-1}(p_0)$.\retTwo
 
-	First consider the case $U$ is open in $H^k$ but not in $\mathbb{R}^k$. Then, we can extend $\alpha$ to a $C^r$ map $\beta$ on an open set $U^\prime$ of $\mathbb{R}^k$. Now $\Df \alpha(x_0)$ has rank $k$. So after some suitable permutation of our standard basis vectors, we can assume the first $k$ rows of the matrix $\Df \alpha(x_0)$ are linearly independent. If we define $\pi: \mathbb{R}^n \to \mathbb{R}^k$ to then be the projection from $\mathbb{R}^n$ onto those first $k$ basis vectors, we have that the map $g = \pi \circ \beta$ maps $U^\prime$ into $\mathbb{R}^k$ and $\Df g(x_0)$ is non-singular.
+	First consider the case $U$ is open in $H^k$ but not in $\mathbb{R}^k$. Then, we can extend $\alpha$ to a $C^r$ map $\beta$ on an open set $U^\prime$ of $\mathbb{R}^k$. Now $\Df \alpha(x_0)$ has rank $k$. So after some suitable permutation of our standard basis vectors, we can assume the first $k$ rows of the matrix $\Df \alpha(x_0)$ are linearly independent. If we then define $\pi: \mathbb{R}^n \to \mathbb{R}^k$ to be the projection from $\mathbb{R}^n$ onto those first $k$ basis vector coordinates, we have that the map $g = \pi \circ \beta$ maps $U^\prime$ into $\mathbb{R}^k$ and $\Df g(x_0)$ is non-singular. So by the inverse function theorem, we know $g$ is a $C^r$ diffeomorphism on an open set $W$ of $\mathbb{R}^k$ about $x_0$ (meaning $g$ is $C^r$, $g$ has an inverse $g^{-1}$, and $g^{-1}$ is $C^r$).\retTwo
 
+	Now we claim $h = g^{-1} \circ \pi$ (which is a $C^r$ map) extends $\alpha^{-1}$ to a neighborhood $A$ of $p_0$. Firstly note $U_0 \coloneq W \cap U$ is open in $U$. Hence, $\alpha^{-1}$ being continuous implies that $V_0 \coloneq \alpha(U_0)$ is open in $V$. This means there is an open set $A \subseteq \mathbb{R}^n$ such that $A \cap V = V_0$. By intercepting $A$ with $\pi^{-1}(g(W))$ ($= \beta(W)$), we can force $A$ to be contained in the domain of $h$.\retTwo
+
+	Now $h: A \to \mathbb{R}^k$ is of class $C^r$, and if $p \in A \cap V = V_0$, then when letting $x = \alpha^{-1}(p)$ we have:
+
+	{\centering $h(p) = h(\alpha(x)) = g^{-1}(\pi(\alpha(x))) = g^{-1}(g(x)) = x = \alpha^{-1}(p)$.\retTwo\par}
+
+	As for the case where $U$ is open in $\mathbb{R}^k$, then just set $U^\prime = U$ and $\beta = \alpha$ and the prior reasoning still works. $\blacksquare$
+
+	\begin{myDindent}\pracTwo
+		Side note: As a corollary, we now know that if two coordinate patches parametrize the same manifold, then the domains of those two coordinate patches are diffeomorphic. So hopefully that adds to the significance of theorem I wrote at the bottom of page 79. \newpage 
+	\end{myDindent}
 \end{myIndent}
 
+\dispDate{7/19/2025}
+
+\hOne Today I shall formalize what I mean by the "boundary" of a manifold and maybe also do some cool exercises. I'll try to get as much done as possible since I'm going to be busy at San Diego pride tomorrow.\retTwo
+
+Let $M$ be a $k$-manifold in $\mathbb{R}^n$ and let $p \in M$. If there is a coordinate patch\\ $\alpha: U \to V$ on $M$ about $p$ such that $U$ is open in $\mathbb{R}^k$, we say $p$ is an \udefine{interior point}\\ of $M$. Otherwise, we say $p$ is a \udefine{boundary point} of $M$.\retTwo
+
+We denote the set of boundary points of $M$ as $\partial M$ and call it the \udefine{boundary} of $M$. Meanwhile, we call $M - \partial M$ the \udefine{interior} of $M$. Note that these definitions are distinct from the topological definitions of boundaries and interiors.
+\begin{myIndent}
+	\pracTwo Untill I get bored of this and go back to Folland or someone else, I'll be using $\partial M$ to refer to the manifold definition of boundary as opposed to a different definition.\retTwo
+\end{myIndent}
+
+\exOne\ul{Lemma 24.2:} Let $M$ be a $k$-manifold in $\mathbb{R}^n$ and $\alpha:U \to V$ be a coordinate patch about the point $p$ of $M$.\\ [-24pt]
+\begin{enumerate}
+	\item[(a)] If $U$ is open in $\mathbb{R}^k$, then $p$ is an interior point of $M$.\\ [-22pt]
+	\item[(b)] If $U$ is open in $H^k$ and $p = \alpha(x_0)$ where $x_0 \in H^k_+$, then $p$ is an interior point\\ of $M$.\\ [-22pt]
+	\item[(c)] If $U$ is open in $H^k$ and $p = \alpha(x_0)$ where $x_0 \in \mathbb{R}^{k-1} \times 0$, then $p$ is a boundary point of $M$.\\ [-22pt]
+\end{enumerate}
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Parts (a) and (b) are trivial.
+\end{myIndent}
 
 
 
