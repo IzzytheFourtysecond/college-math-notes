@@ -229,6 +229,9 @@
 \newcommand{\supp}{\mathrm{supp}}
 \newcommand{\opnorm}{\mathrm{op}}
 \newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\mSpan}{\mathrm{span}}
+
+\newcommand{\mMat}[1]{\mathbf{#1}}
 
 \newcommand{\NBV}{\mathrm{NBV}}
 \newcommand{\BV}{\mathrm{BV}}
@@ -3842,12 +3845,12 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 	\end{myDindent}
 
 	Proof:\\
-	Firstly, suppose $p \in N$ with with $f(p) > 0$. Then if let $\alpha$ be the identity map on the set $U \coloneq f^{-1}((0, \infty))$, we have that $\alpha$ is a $C^\infty$ bijective map from the open set $U$ in $\mathbb{R}^n$ to itself such that $\alpha$ has a continuous inverse and a full rank derivative matrix. So, $\alpha$ is a coordinate patch on $N$.\retTwo
+	Firstly, suppose $p \in N$ with $f(p) > 0$. Then if  $\alpha$ is the identity map on the set $U \coloneq f^{-1}((0, \infty))$, we have that $\alpha$ is a $C^\infty$ bijective map from the open set $U$ in $\mathbb{R}^n$ to itself such that $\alpha$ has a continuous inverse and a full rank derivative matrix. So, $\alpha$ is a coordinate patch on $N$.\retTwo
 
 	Meanwhile, suppose $f(p) = 0$. Then since $\Df f(p) \neq 0$, at least one partial\\ derivative $\frac{\partial}{\partial x_i} f(p)$ is nonzero. By a sufficient permutation of our standard basis\\ vectors, we can assume $i = n$. So, define $F: \mathcal{O} \to \mathbb{R}^n$ by the equation\\ $F(x) = (x_1, \ldots, x_{n-1}, f(x))$. Thus, $F$ is a $C^r$ map with a nonsingular derivative matrix at $p$ since:
 
 	{\centering $\Df F = \begin{bmatrix}
-	I_{n-1} & 0 \\ * & \frac{\partial}{\partial x_i} f \end{bmatrix}$ \retTwo\par}
+	I_{n-1} & 0 \\ * & \frac{\partial}{\partial x_n} f \end{bmatrix}$ \retTwo\par}
 
 	By the inverse function theorem, we know $F$ is a $C^r$ diffeomorphism from an open neighborhood $V$ of $p$ in $\mathbb{R}^n$ to an open set $U$ of $\mathbb{R}^n$. Furthermore, $F$ carries the open set $V \cap N$ of $N$ onto the open set $U \cap H^n$ of $H^n$. Therefore, $F^{-1}|_{(U \cap H^n)}$ works as our coordinate patch on $N$ about $p$.\newpage
 	
@@ -3861,12 +3864,198 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 	Consider the function $f(x) = a^2 - (\|x\|_2)^2$.\retTwo
 \end{myIndent}
 
-\pracOne\ul{Exercise 24.2} Let $f: \mathbb{R}^{n + k} \to \mathbb{R}^n$ be of class $C^r$. Let $M$ be the set of all $x$ such that\\ $f(x) = 0$. Assume that $M$ is nonempty and $\Df f(x)$ has rank $n$ for all $x \in M$. Then $M$ is a $k$-manifold in $\mathbb{R}^{n+k}$ without boundary. Furthermore, if $N$ is the set of all $x$ such that $f_1(x) = \cdots = f_{n-1}(x) = 0$ and $f_n(x) \geq 0$, and the matrix $\partial(f_1, \ldots, f_{n-1})/\partial x$ has rank $n-1$ at each point of $N$, then $N$ is a $k+1$ manifold and $M = \partial N$. 
+\hOne The next exercise gives us an important tool for constructing manifolds (which makes it kinda shocking that Munkres leaves it as an exercise).\retTwo
+
+\pracOne\ul{Exercise 24.2} Let $f: \mathbb{R}^{n + k} \to \mathbb{R}^n$ be of class $C^r$. Let $M$ be the set of all $x$ such that\\ $f(x) = 0$. Assume that $M$ is nonempty and $\Df f(x)$ has rank $n$ for all $x \in M$. Then $M$ is a $k$-manifold in $\mathbb{R}^{n+k}$ without boundary. Furthermore, if $N$ is the set of all $x$ such that $f_1(x) = \cdots = f_{n-1}(x) = 0$ and $f_n(x) \geq 0$, and the matrix $\partial(f_1, \ldots, f_{n-1})/\partial x$ has rank $n-1$ at each point of $N$, then $N$ is a $k+1$ manifold and $M = \partial N$.\\ [-4pt] 
 
 \begin{myIndent}\pracTwo 
-	Proof:\\
-	For all $x \in \mathbb{R}^{n+k}$, we shall write $x = (x^{(1)}, x^{(2)})$ where $x^{(1)} \in \mathbb{R}^n$ and $x^{(2)} \in \mathbb{R}^k$.
+	\ul{Lemma:} Let $m \leq n$ and suppose $f: \mathbb{R}^{n + k} \to \mathbb{R}^m$ is a $C^r$ map such that the matrix $\Df f$ has rank $m$ at the point $p$. Then there are open sets $U, V \subseteq \mathbb{R}^{n + k}$ with $p \in V$, as well as a $C^r$ diffeomorphism $G: U \to V$ with rank $n + k$ satisfying that $f \circ G(x) = \pi_m(x)$ where $\pi_m$ is a projection from $\mathbb{R}^{n + k}$ to $m$ of it's coordinates (and by applying a suitable permutation of our basis vectors, we can assume that those coordinates are the first $m$ coordinates).
+
+	\begin{myIndent}
+		Proof:\\
+		Since $\Df f$ has rank $m$ at $p$, we know that the derivative matrix has $m$ linearly\\ independent columns at $p$, and by a permutation of our standard bases, we can\\ assume those $m$ columns are the first $m$ columns. Therefore, it makes sense to adopt the notation of writing $x = (x^{(1)}, x^{(2)})$ in $\mathbb{R}^{n+k}$ where $x^{(1)} \in \mathbb{R}^{m}$ and $x^{(2)} \in \mathbb{R}^{n+k-m}$. Also, it makes sense to define the projection $\pi_m(x) = x^{(1)}$.\retTwo
+
+		Now define the function $F: \mathbb{R}^{n+k} \to \mathbb{R}^{n+k}$ by:
+		
+		{\centering $F(x) = (f_1(x), \ldots, f_{m}(x), x^{(2)})$.\retTwo\par}
+
+		Then $F$ is a $C^r$ map with the derivative matrix:
+
+		{\centering $\Df F= \begin{bmatrix}
+		\partial(f_1, \ldots, f_{m})/\partial x^{(1)} & \partial(f_1, \ldots, f_{m})/\partial x^{(2)} \\
+		0 & I_{n+k-m}\end{bmatrix}$ \retTwo\par}
+
+		Since $\Df F$ is full rank at $p$, by the inverse function theorem there are open sets\\ $U, V \subseteq \mathbb{R}^{n+k}$ with $p \in V$ such that $F$ is a $C^r$ diffeomorphism from $V$ to $U$ with full rank. Taking $G \coloneqq F^{-1}$, we get:
+
+		{\centering $f \circ G(x) = (\pi_m \circ F) \circ G(x) = \pi_m \circ (F \circ F^{-1})(x) = \pi_m(x) = x^{(1)}$ \retTwo\par}
+	\end{myIndent}
+
+	Given $f = (f_1, \ldots, f_{n-1}, f_n)$, we'll denote $\tilde{f} = (f_1, \ldots, f_{n-1})$. Now, the rest of the exercise just involves applying the prior lemma three times.
+
+	\begin{enumerate}
+		\item[1.] Suppose $p \in N - M$ (meaning $f_n(p) > 0$ and $\tilde{f}(p) = 0$). Then using our prior lemma, there are open sets $U, V \subseteq \mathbb{R}^{n+k}$ with $p \in V$ as well as a $C^r$ diffeomorphism $\tilde{G}: U \to V$ with full rank such that $\tilde{f} \circ \tilde{G}(x) = \pi_{n-1}(x)$. Using the continuity of $f_n$, we can assume $f_n(x) > 0$ for all $x \in V$ by making $V$ sufficiently small.\newpage
+		
+		Now note that $V \cap N$ is an open subset of $N$ containing $p$ such that:
+	
+		{\centering\begin{tabular}{l}
+		$V \cap N = \tilde{G}(U) \cap \tilde{f}^{-1}(\{0\}) \cap \{x : f_n(x) > 0\}$\\ [3pt]
+		$\phantom{V \cap N} = \tilde{G}(U) \cap (\pi_{n-1} \circ \tilde{G}^{-1})^{-1}(\{0\}) \cap \{x : f_n(x) > 0\}$\\ [3pt]
+		$\phantom{V \cap N} = \tilde{G}(U) \cap \tilde{G}(\pi_{n-1}^{-1}(\{0\})) \cap \{x : f_n(x) > 0\}$\\ [3pt]
+		$\phantom{V \cap N} = \tilde{G}\left(U \cap (0^{n-1} \times \mathbb{R}^{k+1})\right) \cap \{x : f_n(x) > 0\}$\\ [3pt]
+		$\phantom{V \cap N} = \tilde{G}\left(U \cap (0^{n-1} \times \mathbb{R}^{k+1}) \cap \tilde{G}^{-1}(\{x : f_n(x) > 0\})\right)$\\ [3pt]
+		\end{tabular}\retTwo\par}
+
+		Then since $U \cap \tilde{G}^{-1}(\{x : f_n(x) > 0\})$ is open in $\mathbb{R}^{n+k}$, we can deduce that there is\\ [-1pt] an open set $A \subseteq \mathbb{R}^{k+1}$ with $0^{n-1} \times A = U \cap (0^{n-1} \times \mathbb{R}^{k+1}) \cap \tilde{G}^{-1}(\{x : f_n(x) > 0\})$.\\ [-2pt] And by defining $\alpha(x_1, \ldots, x_{k+1}) = \tilde{G}(0^{n-1}, x_1, \ldots, x_{k+1})$, we have that $\alpha$ is a\\ [0pt] bijective $C^r$ map from the open set $A$ of $\mathbb{R}^{k+1}$ to $V \cap N$ with rank $k+1$ and a continuous inverse. Hence, $\alpha$ is\\ [0pt] a coordinate patch on $N$ about $p$.\retTwo
+
+		\item[2.] Suppose $p \in M$ and only assume the part of the exercise statement that comes before the word "furthermore". Then let $U, V \subseteq \mathbb{R}^{n+k}$ be open sets with $p \in V$, and let $G: U \to V$ be a $C^r$ diffeomorphism with full rank satisfying that $f \circ G(x) = \pi_n(x)$. Then $V \cap M$ is an open subset of $M$ containing $p$ such that:
+		
+		{\centering\begin{tabular}{l}
+		$V \cap M = G(U) \cap f^{-1}(\{0\})$\\ [3pt]
+		$\phantom{V \cap M} = G(U) \cap (\pi_n \circ G^{-1})^{-1}(\{0\}) = G(U) \cap G(\pi_n^{-1}(\{0\}))$\\ [3pt]
+		$\phantom{V \cap M = G(U) \cap (\pi_n \circ G^{-1})^{-1}(\{0\})} = G(U \cap (0^n \times \mathbb{R}^{k}))$\\ [3pt]
+		\end{tabular}\retTwo\par}
+
+		Now we know there is some open set $A \subseteq \mathbb{R}^k$ such that $0^n \times A = U \cap (0^n \times \mathbb{R}^k)$.\\ Therefore, by defining $\alpha(x_1, \ldots, x_{k}) = \tilde{G}(0^{n}, x_1, \ldots, x_{k})$, we have that $\alpha$ is a\\ bijective $C^r$ map from the open set $A$ of $\mathbb{R}^{k+1}$ to $V \cap M$ with rank $k$ and a continuous inverse. Hence, $\alpha$ is a coordinate patch on $M$ about $p$.\retTwo
+
+		\item[3.] Finally, suppose $p \in M$ and this time assume the entire hypothesis of the exercise.\\ Also let $G: U \to V$ be as in the prior part. Now:
+		
+		{\centering\begin{tabular}{l}
+		$V \cap N = G(U) \cap f^{-1}(\{0\}) = G(U) \cap G(\pi_n^{-1}(0^{n-1} \times [0, \infty)))$\\ [3pt]
+		$\phantom{V \cap N = G(U) \cap f^{-1}(\{0\})} = G(U \cap (0^{n-1} \times [0, \infty) \times \mathbb{R}^{k}))$\\ [3pt]
+		\end{tabular}\retTwo\par}
+
+		Now if $\tau$ is the function permuting the first and $(k + 1)$th basis vectors, then we know there is some open set $A \subseteq H^{k+1}$ such that $0^{n-1} \times \tau(A) = U \cap (0^{n-1} \times [0, \infty) \times \mathbb{R}^{k})$. So, define $\alpha(x_1, \ldots, x_{k+1}) = G(0^{n-1}, x_{k+1}, x_1, \ldots, x_k)$. Then $\alpha$ is a bijective $C^r$ map from the open set $A$ of $H^{k+1}$ to $V \cap N$ with rank $k+1$ and a continuous inverse. Hence, $\alpha$ is a coordinate patch on $N$ about $p$.\retTwo
+
+		Also, if $x \in U$ satisfies that $\alpha(x) = p$, then since $f \circ G = \pi_n$, we know that $f(G(x)) = f(p) = 0$. So $x \in \partial H^{k+1}$. This proves $p$ is on the boundary of $N$. $\blacksquare$\retTwo
+	\end{enumerate}
 \end{myIndent}
+
+\hOne\dispDate{7/28/2025}
+
+Here's a fun application of the prior exercise.\newpage
+
+\pracOne
+
+\ul{Exercise 24.6:} Let $\mathcal{O}(n)$ denote the set of all orthogonal $n$ by $n$ matrices, considered as a subspace of $\mathbb{R}^N$ where $N = n^2$. Show that $\mathcal{O}(n)$ is a compact $\binom{n}{2}$-manifold of class $C^\infty$ in\\ [-1pt] $\mathbb{R}^N$ without boundary.
+\begin{myIndent}\pracTwo
+	Firstly, define $F: \mathbb{R}^N \to \mathbb{R}^N$ by $F(\mMat{A}) = \mMat{A}\mMat{A}^T - I_n$. Also define $f: \mathbb{R}^N \to \mathbb{R}^{\frac{1}{2}n(n+1)}$ such that $f(\mMat{A})$ is the vector containing just the elements of $F(\mMat{A})$ on or above the main diagonal. Then it is fairly clear that $F(\mMat{A}) = 0$ if and only if $f(\mMat{A}) = 0$ if and only if $\mMat{A} \in \mathcal{O}(n)$.\retTwo
+
+	Next note that if $\mMat{A} = [x_{i,j}]$, then the $(i,j)$th. column of the derivative matrix $\Df F$ is:
+	
+	{\centering \begin{tabular}{l}
+		$\frac{\partial}{\partial x_{i,j}}F(\mMat{A}) = \left(\frac{\partial}{\partial x_{i,j}}\mMat{A}\right)\mMat{A}^T + \mMat{A}\left(\frac{\partial}{\partial x_{i,j}}\mMat{A}\right)^T$\\ [12pt]
+
+		$\phantom{\frac{\partial}{\partial x_{i,j}}F(A)} = \begin{bmatrix} &
+		\mMat{0}^{(i-1)\times n} & \\ &&\\ x_{1,j} & \cdots & x_{n,j}\\ & & \\ &
+		\mMat{0}^{(n-i)\times n} &
+		\end{bmatrix} + \begin{bmatrix} &
+		\mMat{0}^{(i-1)\times n} & \\ &&\\ x_{1,j} & \cdots & x_{n,j}\\ & & \\ &
+		\mMat{0}^{(n-i)\times n} &
+		\end{bmatrix}^T$\\ [35pt]
+
+		$\phantom{\frac{\partial}{\partial x_{i,j}}F(A)} = \begin{bmatrix} 
+			& & x_{1,j} & & \\
+			& & \vdots &  & \\
+			x_{1,j} & \cdots & 2x_{i,j} & \cdots & x_{n,j}\\
+			& & \vdots & & \\
+			& & x_{n,j} & & \\
+
+		\end{bmatrix}$\\ [12pt]
+	\end{tabular}\retTwo\par}
+
+	Meanwhile, the $(i,j)$th. column of $\Df f$ is just the vector with the elements of $\Df F$ on or above the diagonal. From this, it is clear that $f$ and $F$ are $C^\infty$ maps.\retTwo
+
+	Taking a different view, if $k \leq \ell$, then the $(k, \ell)$th. row of $\Df f$ is:
+
+	{\centering $\left(\left[ \begin{matrix}
+		\\ x_{\ell, 1} & \cdots & x_{\ell,n} \\ \phantom{}
+	\end{matrix}\middle]\begin{matrix}
+		\\ (k\text{th. row}) \\\phantom{}
+	\end{matrix}\right.\right)
+	+ \left(\left[ \begin{matrix}
+		\\ x_{k, 1} & \cdots & x_{k,n} \\ \phantom{}
+	\end{matrix}\middle]\begin{matrix}
+		\\ (\ell\text{th. row}) \\\phantom{}
+	\end{matrix}\right.\right)$ \retTwo\par}
+	
+	Now let $v_{k,\ell}$ denote the $(k,\ell)$th. row of $\Df f$; let $r_i$ denote the $i$th. row of $\mMat{A}$; and let $\delta_{i,j}(x, y)$ equal $1$ if $(x, y) = (i, j)$ and equal $0$ otherwise. Then supposing $k_1 \leq \ell_1$ and $k_2 \leq \ell_2$, we have that:
+
+	{\centering $v_{k_1,\ell_1} \cdot v_{k_2,\ell_2} = \delta_{k_1, k_2}(r_{\ell_1} \cdot r_{\ell_2}) + \delta_{k_1, \ell_2}(r_{\ell_1} \cdot r_{k_2}) + \delta_{\ell_1, k_2}(r_{k_1} \cdot r_{\ell_2}) + \delta_{\ell_1, \ell_2}(r_{k_1} \cdot r_{k_2})$ \retTwo\par}
+
+	If $\mMat{A}$ is orthogonal, then this simplifies to:
+
+	{\centering\begin{tabular}{l}
+	$v_{k_1,\ell_1} \cdot v_{k_2,\ell_2} = \delta_{k_1, k_2}\delta_{\ell_1, \ell_2} + \delta_{k_1, \ell_2}\delta_{\ell_1, k_2} + \delta_{\ell_1, k_2}\delta_{k_1, \ell_2} + \delta_{\ell_1, \ell_2}\delta_{k_1, k_2}$\\ [6pt]
+	$\phantom{v_{k_1,\ell_1} \cdot v_{k_2,\ell_2}} = 2\delta_{k_1, k_2}\delta_{\ell_1, \ell_2} + 2\delta_{k_1, \ell_2}\delta_{\ell_1, k_2}$\\ [6pt]
+	\end{tabular} \retTwo\par}
+
+	There are two cases where this dot product will be nonzero. The first case is if $k_1 = k_2$ and $\ell_1 = \ell_2$. Meanwhile, the second case is if $k_1 = \ell_2$ and $\ell_1 = k_2$. However, since we are requiring that $k_1 \leq \ell_1$ and $k_2 \leq \ell_2$, the second case actually implies the first case.\retTwo
+
+	This proves that the rows of $\Df f$ actually form an orthogonal set of vectors in $\mathbb{R}^N$. Hence, $f$ has full rank on $\mathcal{O}(n)$.\newpage
+
+	It now follows from the previous exercise that $\mathcal{O}(n)$ is a manifold without boundary in $\mathbb{R}^N$. It's dimension will be $n^2 - \frac{(n+1)n}{2} = \frac{n^2}{2} - \frac{n}{2} = \binom{n}{2}$. Meanwhile, to see that the manifold is compact, note firstly that it is bounded by the set $\{x \in \mathbb{R}^N : \|x\|_\infty \leq 1\}$. Also, the points in the manifold are given by the set $f^{-1}(\{0\})$, and that set is closed since $f$ continuous and $\{0\}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\dispDate{7/29/2025}
+
+\hOne I'm gonna finish the current chapter of Munkres and then switch to a different book to learn about differential forms. For today, my agenda is to define integration of scalar-valued functions on general manifolds in $\mathbb{R}^n$.\retTwo
+
+Let $M$ be a $k$-manifold of class $C^r$ in $\mathbb{R}^n$ (with $r \geq 1$ and $k \leq n$). Then recall that we already defined integration on $M$ if $M$ is parametrized by a single coordinate patch from an open set of $\mathbb{R}^k$. Hopefully, it's also clear to see that our previous definition works if our coordinate patch is from an open set of $H^k$. Also, by theorem 24.1 plus the theorem at the bottom of page 79 of this journal, we now know that our definition of integral is independent of the parametrization we use.\retTwo
+
+In general though, $M$ probably can't be parametrized by just one coordinate patch. So, we instead bodge our definition using a partition of unity.
+
+\begin{myIndent}
+	\exTwo\ul{Lemma:} There is a countable set $\{\alpha_n: U_n \to V_n\}_{n \in \mathbb{N}}$ of coordinate patches on $M$ such that $\bigcup_{n \in \mathbb{N}} V_n = M$.
+
+	\begin{myIndent}\exTwoP
+		Proof:
+		\begin{itemize} 
+			\item[1.] Note that topologically speaking, $M$ is a second countable LCH space. 
+
+			\begin{myIndent}\exPPP
+				The fact that $M$ is second countable and Hausdorff is just a consequence of the fact that $\mathbb{R}^n$ is both of those things and $M$ is equipped with the subspace topology.\retTwo
+
+				To show that $M$ is locally compact, note that if $p \in M$, then there is a homeomorphism $\alpha$ from some open set $U$ in $\mathbb{R}^k$ or $H^k$ to an open set $V \subseteq M$ containing $p$. Then given the $x \in U$ satisfying that $\alpha(x) = p$, there is a compact set $K \subseteq U$ with $x \in K$.
+				\begin{myIndent}\pracTwo
+					If $U$ is open in $\mathbb{R}^k$, then it's obvious that $K$ exists. Meanwhile, if $U$ is open in $H^k$, then consider picking a $U^\prime$ which is open in $\mathbb{R}^k$ and satisfies that $U^\prime \cap H^k = U$. Then we know there is a compact set $K^\prime$ such that $x \in K^\prime \subseteq U^\prime$. And since $H^k$ is closed, we can set $K = K^\prime \cap H^k$ and know $K$ is compact.\retTwo
+				\end{myIndent}
+
+				Next, by Urysohn's lemma, there is a precompact open set $V$ such that $K \subseteq V \subseteq \overline{V} \subseteq U$. Hence, we have that $\alpha(\overline{V})$ is a compact subset of $M$ containing $p$. Also $\alpha(V)$ is an open subset of $\alpha(\overline{V})$ which contains $p$. Hence, $\alpha(\overline{V})$ is a compact neighborhood of $p$.\retTwo
+			\end{myIndent}
+
+		\item[2.] In turn, we know that $M$ is $\sigma$-compact. From that hopefully it is obvious how we can get a countable covering of coordinate patches over $M$. $\blacksquare$\newpage
+	\end{itemize}
+	\end{myIndent}
+
+	\ul{Lemma:} Let $\{\alpha_a: U_a \to V_a\}_{a \in A}$ be a collection of coordinate patches on $M$ such that $\bigcup_{a \in A} V_a = M$. Then there exists a countable collection of $C^\infty$ functions\\ $\{\phi_i: \mathbb{R}^n \to \mathbb{R}\}_{i \in \mathbb{N}}$ satisfying that:
+	\begin{itemize}
+		\item $\phi_i(x) \geq 0$ for all $x \in \mathbb{R}^n$ and $i \in \mathbb{N}$.
+		\item Each $p \in M$ has a neighborhood in $M$ on which only finitely many $\phi_i$ are\\ nonzero.
+		\item $\sum_{i \in \mathbb{N}} \phi_i(p) = 1$ for all $p \in M$.
+		\item For each $i \in \mathbb{N}$, there is some $a \in A$ such that $\supp(\phi_i) \cap M \subseteq V_{a}$.
+	\end{itemize}
+
+	\begin{myIndent}\exTwoP
+		\begin{myIndent}\exPPP
+			In the future I will just refer to $\{\phi_i\}_{i \in \mathbb{N}}$ as being a partition of unity on $M$\\ subordinate to our collection of coordinate patches.\retTwo
+		\end{myIndent}
+
+		Proof:\\
+		For each coordinate patch $\alpha_a$, choose an open set $V^\prime_a \subseteq \mathbb{R}^n$ such that\\ $V^\prime_a \cap M = V_a$. Then by theorem 16.3, we get our desired partition which is subordinate to $\{V^\prime_a\}_{a \in A}$. And by restricting all of our functions to $M$, we are done.\retTwo
+	\end{myIndent}
+
+	\hTwo\ul{Definition:} Let $(\phi_i)_{i \in \mathbb{N}}$ be a partition of unity on $M$ subordinate to the collection of coordinate patches $\{\alpha_i: U_i \to V_i\}$ which cover $M$. Without loss of generality, suppose $\supp(\phi_i) \cap M \subseteq V_i$. Then, we define a Borel measure on $M$ by:
+	
+	{\centering $V(E) \coloneqq \sum\limits_{i=1}^\infty \int_{E \cap V_i} \phi \df V = \sum\limits_{i=1}^\infty \int_{\alpha_i^{-1}(E \cap V_i)} (\phi \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
+
+	Similarly to before, we can then deduce that:
+
+	{\centering $\int_M f \df V = \sum\limits_{i=1}^\infty \int_{V_i} f\phi \df V = \sum\limits_{i=1}^\infty \int_{U_i} (f\phi \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
+
+	Now our first challenge is to show that this definition is independent of our choice of coordinate patches and partition of unity.  
+
+\end{myIndent}
+
 
 \end{document}
 
