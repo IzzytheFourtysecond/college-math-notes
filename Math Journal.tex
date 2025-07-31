@@ -3662,7 +3662,7 @@ Also, we call a discrete collection of points in $\mathbb{R}^n$ to be a \udefine
 
 \begin{myIndent}\exTwoP
 	Proof:\\
-	Since $\alpha^{-1}$ is continuous and $U_0$ is open in $U$, we know that $V_0 \coloneqq \alpha^{-1}(U_0)$ is also open in $V$ and thus also $M$. Hence, $\alpha|_{U_0}$ is a coordinate patch on $M$ because it carries $U_0$ onto $V_0$ in a bijective fashion, and it's a $C^r$ map with a continuous inverse and $\Df (\alpha|_{U_0})$ having rank $k$ just because it's the restriction of $\alpha$ which has all of those things.\retTwo
+	Since $\alpha^{-1}$ is continuous and $U_0$ is open in $U$, we know that $V_0 \coloneqq \alpha(U_0)$ is also open in $V$ and thus also $M$. Hence, $\alpha|_{U_0}$ is a coordinate patch on $M$ because it carries $U_0$ onto $V_0$ in a bijective fashion, and it's a $C^r$ map with a continuous inverse and $\Df (\alpha|_{U_0})$ having rank $k$ just because it's the restriction of $\alpha$ which has all of those things.\retTwo
 \end{myIndent}
 
 \pracOne\ul{Exercise 23.3(b):} Why is $\alpha : [0, 1) \to \mathbb{R}^2$ defined by $\alpha(t) = (\cos(2\pi t), \sin(2\pi t))$ not a\\ coordinate patch for the unit circle $S^1$?
@@ -4041,19 +4041,69 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 		\end{myIndent}
 
 		Proof:\\
-		For each coordinate patch $\alpha_a$, choose an open set $V^\prime_a \subseteq \mathbb{R}^n$ such that\\ $V^\prime_a \cap M = V_a$. Then by theorem 16.3, we get our desired partition which is subordinate to $\{V^\prime_a\}_{a \in A}$. And by restricting all of our functions to $M$, we are done.\retTwo
+		For each coordinate patch $\alpha_a$, choose an open set $V^\prime_a \subseteq \mathbb{R}^n$ such that\\ $V^\prime_a \cap M = V_a$. Then by theorem 16.3, we get our desired partition which is subordinate to $\{V^\prime_a\}_{a \in A}$.\retTwo
 	\end{myIndent}
 
-	\hTwo\ul{Definition:} Let $(\phi_i)_{i \in \mathbb{N}}$ be a partition of unity on $M$ subordinate to the collection of coordinate patches $\{\alpha_i: U_i \to V_i\}$ which cover $M$. Without loss of generality, suppose $\supp(\phi_i) \cap M \subseteq V_i$. Then, we define a Borel measure on $M$ by:
+	\hTwo\ul{Definition:} Let $(\phi_i)_{i \in \mathbb{N}}$ be a partition of unity on $M$ subordinate to the collection of coordinate patches $\{\alpha_i: U_i \to V_i\}_{i \in \mathbb{N}}$ which cover $M$. Without loss of generality, suppose $\supp(\phi_i) \cap M \subseteq V_i$. Then, we define a Borel measure on $M$ by:
 	
-	{\centering $V(E) \coloneqq \sum\limits_{i=1}^\infty \int_{E \cap V_i} \phi \df V = \sum\limits_{i=1}^\infty \int_{\alpha_i^{-1}(E \cap V_i)} (\phi \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
+	{\centering $V(E) \coloneqq \sum\limits_{i=1}^\infty \int_{E \cap V_i} \phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{\alpha_i^{-1}(E \cap V_i)} (\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
 
-	Similarly to before, we can then deduce that:
+	From here it's pretty obvious that $V(\emptyset) = 0$ and that $V$ is countably additive. Also, similarly to before we can then deduce that:
 
-	{\centering $\int_M f \df V = \sum\limits_{i=1}^\infty \int_{V_i} f\phi \df V = \sum\limits_{i=1}^\infty \int_{U_i} (f\phi \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
+	{\centering $\int_M f \df V = \sum\limits_{i=1}^\infty \int_{V_i} f\phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{U_i} (f\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
 
-	Now our first challenge is to show that this definition is independent of our choice of coordinate patches and partition of unity.  
+	Now our first challenge is to show that this definition is independent of our choice of coordinate patches and partition of unity.
 
+	\begin{myIndent}\pracTwo
+		Let $(\psi_i)_{i \in \mathbb{N}}$ be another partition of unity on $M$ subordinate to another collection of coordinate patches $\{\beta_i: U^\prime_i \to V^\prime_i\}_{i \in \mathbb{N}}$ which cover $M$ (and like before suppose\\ $\supp(\psi_i) \cap M \subseteq V^\prime_i$).\retTwo
+
+		Now importantly, by our prior results about integration on manifolds parametrized by single coordinate patches, we know that $\int_{V_i \cap V_j^\prime } f \df V_{\alpha_i} = \int_{V_i \cap V_j^\prime } f \df V_{\beta_j}$ for all\\ [-2pt] integrable $f$ on $V_i \cap V_j^\prime$. Therefore, if $E \in \mathcal{B}_M$, we have that:
+
+		{\centering\begin{tabular}{l}
+			$\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \left(\sum\limits_{j=1}^\infty \psi_j \chi_{V^\prime_j}\right) \df V_{\alpha_i}$\\ [12pt]
+
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\alpha_i} \phantom{= \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \df V_{\beta_j}}$\\ [12pt]
+		
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\beta_j}$\\ [12pt]
+		\end{tabular}\newpage
+		\begin{tabular}{l}
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{j=1}^\infty \sum\limits_{i=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\beta_j}$\\ [12pt]
+
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \left(\sum\limits_{i=1}^\infty \phi_i \chi_{V_i}\right) \df V_{\beta_j} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \df V_{\beta_j}$
+		\end{tabular}\retTwo\par}
+
+		\begin{myTindent}
+			Side note: we can swap the order of the sums in the second to last line by applying Fubini-Tonelli's theorem.\retTwo
+		\end{myTindent}
+
+		This shows that our definition of the measure of $E$ is independent of our patches and partition of unity.\retTwo
+
+		One other thing to note is that if $M$ can be parametrized by a single coordinate patch, then this result shows that our definition for parametrized manifolds is\\ compatible with this one. After all, just take $\phi_i = \delta_{1,i}$ (where $\delta$ is the Kronecker delta function), and let $\alpha_i$ be the same coordinate patch parametrizing all of our manifold for all $i$.\retTwo
+	\end{myIndent}
+
+	\exTwo\ul{Lemma:} A subset $E \subseteq M$ has measure zero if and only if $E$ can be covered by a collection of coordinate patches $\{\beta_j: U_j^\prime \to V_j^\prime\}_{j \in \mathbb{N}}$ such that $\beta_j^{-1}(V_j \cap E)$ has\\ Lebesgue measure zero for all $j$.
+
+	\begin{myIndent}\exTwoP
+		$(\Longrightarrow)$\\ Let $\{\alpha_i: U_i \to V_i\}$ be a covering of coordinate patches on $M$ and let\\ $\{\phi_i: \mathbb{R}^k \to \mathbb{R}\}_{i \in \mathbb{N}}$ be a partition of unity such that $\supp(\phi_i) \cap M \subseteq V_i$ for\\ all $i$. Then since $V(E) = 0$, we know that:
+
+		{\centering $0 = \sum\limits_{i=1}^\infty \int_{V_i \cap E} \phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{\alpha_i^{-1}(V_i \cap E)} (\phi_i \circ \alpha_i) V(\Df \alpha_i)\df m$ \retTwo\par}
+
+		And because the latter integrals are all nonnegative, we know for all $i \in \mathbb{N}$ that, $\int_{\alpha_i^{-1}(V_i \cap E)} (\phi_i \circ \alpha_i) V(\Df \alpha_i)\df m = 0$.\retTwo
+		
+		Next, setting $N_i = \{x \in V_i : \phi_i(x) > 0\}$, we know by the continuity of $\alpha_i$ and $\phi_i$ that $N_i$ and $\alpha_i^{-1}(N_i)$ are open. Hence, $\beta_i \coloneqq \alpha_i|_{\alpha_i^{-1}(N_i)}$ is a coordinate patch satisfying that:
+		
+		{\centering $\int_{\alpha_i^{-1}(V_i \cap E)} (\phi_i \circ \alpha_i) V(\Df \alpha_i)\df m = \int_{\beta_i^{-1}(N_i \cap E)} (\phi_i \circ \beta_i) V(\Df \beta_i)\df m$ \retTwo\par}
+
+		Since $(\phi_i \circ \beta_i) V(\Df \beta_i) > 0$ on $\beta_i^{-1}(N_i \cap E)$, we thus must have that that\\ $m(\beta_i^{-1}(N_i \cap E)) = 0$. Also, it's easy to see that $\{\beta_i: \alpha_i^{-1}(N_i) \to N_i\}_{i \in \mathbb{N}}$ is a collection of coordinate patches covering all of $M$ (although $\{\phi_i\}_{i \in \mathbb{N}}$ is no longer subordinate to it necessarily). After all, for all $p \in M$ there is some $i$ such that $\phi_i(p) > 0$. Hence, the $N_i$ cover all of $M$.\retTwo
+
+		$(\Longleftarrow)$\\
+		Note that we can consider $\bigcup_{i \in \mathbb{N}} V_i^\prime$ to be a manifold and construct a partition of unity $\{\psi_i\}_{i \in \mathbb{N}}$ subordinate to the covering $\{\beta_i: U_i^\prime \to V_i^\prime\}_{i \in \mathbb{N}}$ of that\\ manifold.\newpage
+		
+		Now if $\{\alpha_i: U_i \to V_i\}_{i \in \mathbb{N}}$ and $\{\phi_i\}_{i \in \mathbb{N}}$ are as in the previous proof's direction we have that:
+
+		$V(E) = \sum\limits_{i=1}^\infty \int_{V_i \cap E} \phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{V_i \cap E} \phi_i\left(\sum\limits_{j=1}^\infty \psi_j \chi_{V_i^\prime}\right) \df V_{\alpha_i}$
+
+	\end{myIndent}
 \end{myIndent}
 
 
