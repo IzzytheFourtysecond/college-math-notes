@@ -3816,10 +3816,13 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 	Proof:\\
 	Parts (a) and (b) are trivial. As for part (c), let $\alpha_0: U_0 \to V_0$ be the coordinate patch in the hypothesis of the lemma and suppose (for the sake of contradiction) that there is another coordinate patch $\alpha_1: U_1 \to V_1$ about $p$ with $U_1$ open in $\mathbb{R}^k$.\retTwo
 
-	Since $V_0$ and $V_1$ are open in $M$, the set $W = V_0 \cap V_1$ is also open in $M$. Let\\ $W_i = \alpha_i^{-1}(W)$ for $i = 0, 1$. Then $W_0$ is open in $H^k$ and contains $x_0$ (which\\ consequently means $W_0$ isn't open in $\mathbb{R}^k$). Also, $W_1$ is open in $\mathbb{R}^k$ and contains\\ $x_0$. But now note that by our prior theorem, $\alpha_0^{-1} \circ \alpha_1$ is a $C^r$ diffeomorphism from $W_1$ to $W_0$. So, it must map $W_1$ to an open set in $\mathbb{R}^k$. Yet $\alpha_0^{-1} \circ \alpha_1(W_1) = W_0$ is not open in $\mathbb{R}^k$. Hence, a contradiction. $\blacksquare$\retTwo
+	Since $V_0$ and $V_1$ are open in $M$, the set $W = V_0 \cap V_1$ is also open in $M$. Let\\ $W_i = \alpha_i^{-1}(W)$ for $i = 0, 1$. Then $W_0$ is open in $H^k$ and contains $x_0$ (which\\ consequently means $W_0$ isn't open in $\mathbb{R}^k$). Also, $W_1$ is open in $\mathbb{R}^k$ and contains\\ $x_0$. But now note that by our prior theorem, $\alpha_0^{-1} \circ \alpha_1$ is a $C^r$ map from $W_1$ to $W_0$ with a nonsingular derivative matrix. So, by specifically part (A) of the inverse function theorem (as covered in math 140C), we know $W_1$ maps to an open set in $\mathbb{R}^k$. Yet $\alpha_0^{-1} \circ \alpha_1(W_1) = W_0$ is not open in $\mathbb{R}^k$. Hence, a contradiction. $\blacksquare$
+	\begin{myIndent}\exPPP
+		Side note: Holy fuck I did not realize before now that in math 140C we proved that $C^1$ functions with a nonsingular derivative matrix are open maps.\retTwo
+	\end{myIndent}
 \end{myIndent}
 
-\hOne Note, we trivially have that $H^k$ is a $k$-manifold of class $C^\infty$ in $\mathbb{R}^k$ (just define the coordinate patch to be the identity map on $H^k$.) Then, $\partial H^k = \mathbb{R}^{k-1} \times 0$ by the prior lemma.\retTwo
+\hOne Note, we trivially have that $H^k$ is a $k$-manifold of class $C^\infty$ in $\mathbb{R}^k$ (just define the coordinate patch to be the identity map on $H^k$.) Then, $\partial H^k = \mathbb{R}^{k-1} \times 0$ by the prior lemma.\newpage
 
 \exOne\ul{Theorem 24.3:} Let $M$ be a $k$-manifold in $\mathbb{R}^n$ of class $C^r$. If $\partial M$ is nonempty, then $\partial M$ is a $k-1$ manifld without boundary in $\mathbb{R}^n$ of class $C^r$.
 
@@ -3850,9 +3853,9 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 	Meanwhile, suppose $f(p) = 0$. Then since $\Df f(p) \neq 0$, at least one partial\\ derivative $\frac{\partial}{\partial x_i} f(p)$ is nonzero. By a sufficient permutation of our standard basis\\ vectors, we can assume $i = n$. So, define $F: \mathcal{O} \to \mathbb{R}^n$ by the equation\\ $F(x) = (x_1, \ldots, x_{n-1}, f(x))$. Thus, $F$ is a $C^r$ map with a nonsingular derivative matrix at $p$ since:
 
 	{\centering $\Df F = \begin{bmatrix}
-	I_{n-1} & 0 \\ * & \frac{\partial}{\partial x_n} f \end{bmatrix}$ \retTwo\par}
+	I_{n-1} & 0 \\ * & \frac{\partial}{\partial x_n} f \end{bmatrix}$ \newpage\par}
 
-	By the inverse function theorem, we know $F$ is a $C^r$ diffeomorphism from an open neighborhood $V$ of $p$ in $\mathbb{R}^n$ to an open set $U$ of $\mathbb{R}^n$. Furthermore, $F$ carries the open set $V \cap N$ of $N$ onto the open set $U \cap H^n$ of $H^n$. Therefore, $F^{-1}|_{(U \cap H^n)}$ works as our coordinate patch on $N$ about $p$.\newpage
+	By the inverse function theorem, we know $F$ is a $C^r$ diffeomorphism from an open neighborhood $V$ of $p$ in $\mathbb{R}^n$ to an open set $U$ of $\mathbb{R}^n$. Furthermore, $F$ carries the open set $V \cap N$ of $N$ onto the open set $U \cap H^n$ of $H^n$. Therefore, $F^{-1}|_{(U \cap H^n)}$ works as our coordinate patch on $N$ about $p$.\retTwo
 	
 	Finally note that $F(p) \in \partial H^n$. This shows that $M = \partial N$. $\blacksquare$\retTwo
 \end{myIndent}
@@ -3887,13 +3890,13 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 
 		Since $\Df F$ is full rank at $p$, by the inverse function theorem there are open sets\\ $U, V \subseteq \mathbb{R}^{n+k}$ with $p \in V$ such that $F$ is a $C^r$ diffeomorphism from $V$ to $U$ with full rank. Taking $G \coloneqq F^{-1}$, we get:
 
-		{\centering $f \circ G(x) = (\pi_m \circ F) \circ G(x) = \pi_m \circ (F \circ F^{-1})(x) = \pi_m(x) = x^{(1)}$ \retTwo\par}
+		{\centering $f \circ G(x) = (\pi_m \circ F) \circ G(x) = \pi_m \circ (F \circ F^{-1})(x) = \pi_m(x) = x^{(1)}$ \newpage\par}
 	\end{myIndent}
 
 	Given $f = (f_1, \ldots, f_{n-1}, f_n)$, we'll denote $\tilde{f} = (f_1, \ldots, f_{n-1})$. Now, the rest of the exercise just involves applying the prior lemma three times.
 
 	\begin{enumerate}
-		\item[1.] Suppose $p \in N - M$ (meaning $f_n(p) > 0$ and $\tilde{f}(p) = 0$). Then using our prior lemma, there are open sets $U, V \subseteq \mathbb{R}^{n+k}$ with $p \in V$ as well as a $C^r$ diffeomorphism $\tilde{G}: U \to V$ with full rank such that $\tilde{f} \circ \tilde{G}(x) = \pi_{n-1}(x)$. Using the continuity of $f_n$, we can assume $f_n(x) > 0$ for all $x \in V$ by making $V$ sufficiently small.\newpage
+		\item[1.] Suppose $p \in N - M$ (meaning $f_n(p) > 0$ and $\tilde{f}(p) = 0$). Then using our prior lemma, there are open sets $U, V \subseteq \mathbb{R}^{n+k}$ with $p \in V$ as well as a $C^r$ diffeomorphism $\tilde{G}: U \to V$ with full rank such that $\tilde{f} \circ \tilde{G}(x) = \pi_{n-1}(x)$. Using the continuity of $f_n$, we can assume $f_n(x) > 0$ for all $x \in V$ by making $V$ sufficiently small.\retTwo
 		
 		Now note that $V \cap N$ is an open subset of $N$ containing $p$ such that:
 	
@@ -3924,7 +3927,7 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 		$\phantom{V \cap N = G(U) \cap f^{-1}(\{0\})} = G(U \cap (0^{n-1} \times [0, \infty) \times \mathbb{R}^{k}))$\\ [3pt]
 		\end{tabular}\retTwo\par}
 
-		Now if $\tau$ is the function permuting the first and $(k + 1)$th basis vectors, then we know there is some open set $A \subseteq H^{k+1}$ such that $0^{n-1} \times \tau(A) = U \cap (0^{n-1} \times [0, \infty) \times \mathbb{R}^{k})$. So, define $\alpha(x_1, \ldots, x_{k+1}) = G(0^{n-1}, x_{k+1}, x_1, \ldots, x_k)$. Then $\alpha$ is a bijective $C^r$ map from the open set $A$ of $H^{k+1}$ to $V \cap N$ with rank $k+1$ and a continuous inverse. Hence, $\alpha$ is a coordinate patch on $N$ about $p$.\retTwo
+		Now if $\tau$ is the function permuting the first and $(k + 1)$th basis vectors, then we know there is some open set $A \subseteq H^{k+1}$ such that $0^{n-1} \times \tau(A) = U \cap (0^{n-1} \times [0, \infty) \times \mathbb{R}^{k})$. So, define $\alpha(x_1, \ldots, x_{k+1}) = G(0^{n-1}, x_{k+1}, x_1, \ldots, x_k)$. Then $\alpha$ is a bijective $C^r$ map from the open set $A$ of $H^{k+1}$ to $V \cap N$ with rank $k+1$ and a continuous inverse. Hence, $\alpha$ is a coordinate patch on $N$ about $p$.\newpage
 
 		Also, if $x \in U$ satisfies that $\alpha(x) = p$, then since $f \circ G = \pi_n$, we know that $f(G(x)) = f(p) = 0$. So $x \in \partial H^{k+1}$. This proves $p$ is on the boundary of $N$. $\blacksquare$\retTwo
 	\end{enumerate}
@@ -3932,7 +3935,7 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 
 \hOne\dispDate{7/28/2025}
 
-Here's a fun application of the prior exercise.\newpage
+Here's a fun application of the prior exercise.\retTwo
 
 \pracOne
 
@@ -3980,7 +3983,7 @@ Here's a fun application of the prior exercise.\newpage
 	
 	Now let $v_{k,\ell}$ denote the $(k,\ell)$th. row of $\Df f$; let $r_i$ denote the $i$th. row of $\mMat{A}$; and let $\delta_{i,j}(x, y)$ equal $1$ if $(x, y) = (i, j)$ and equal $0$ otherwise. Then supposing $k_1 \leq \ell_1$ and $k_2 \leq \ell_2$, we have that:
 
-	{\centering $v_{k_1,\ell_1} \cdot v_{k_2,\ell_2} = \delta_{k_1, k_2}(r_{\ell_1} \cdot r_{\ell_2}) + \delta_{k_1, \ell_2}(r_{\ell_1} \cdot r_{k_2}) + \delta_{\ell_1, k_2}(r_{k_1} \cdot r_{\ell_2}) + \delta_{\ell_1, \ell_2}(r_{k_1} \cdot r_{k_2})$ \retTwo\par}
+	{\centering $v_{k_1,\ell_1} \cdot v_{k_2,\ell_2} = \delta_{k_1, k_2}(r_{\ell_1} \cdot r_{\ell_2}) + \delta_{k_1, \ell_2}(r_{\ell_1} \cdot r_{k_2}) + \delta_{\ell_1, k_2}(r_{k_1} \cdot r_{\ell_2}) + \delta_{\ell_1, \ell_2}(r_{k_1} \cdot r_{k_2})$ \newpage\par}
 
 	If $\mMat{A}$ is orthogonal, then this simplifies to:
 
@@ -3991,7 +3994,7 @@ Here's a fun application of the prior exercise.\newpage
 
 	There are two cases where this dot product will be nonzero. The first case is if $k_1 = k_2$ and $\ell_1 = \ell_2$. Meanwhile, the second case is if $k_1 = \ell_2$ and $\ell_1 = k_2$. However, since we are requiring that $k_1 \leq \ell_1$ and $k_2 \leq \ell_2$, the second case actually implies the first case.\retTwo
 
-	This proves that the rows of $\Df f$ actually form an orthogonal set of vectors in $\mathbb{R}^N$. Hence, $f$ has full rank on $\mathcal{O}(n)$.\newpage
+	This proves that the rows of $\Df f$ actually form an orthogonal set of vectors in $\mathbb{R}^N$. Hence, $f$ has full rank on $\mathcal{O}(n)$.\retTwo
 
 	It now follows from the previous exercise that $\mathcal{O}(n)$ is a manifold without boundary in $\mathbb{R}^N$. It's dimension will be $n^2 - \frac{(n+1)n}{2} = \frac{n^2}{2} - \frac{n}{2} = \binom{n}{2}$. Meanwhile, to see that the manifold is compact, note firstly that it is bounded by the set $\{x \in \mathbb{R}^N : \|x\|_\infty \leq 1\}$. Also, the points in the manifold are given by the set $f^{-1}(\{0\})$, and that set is closed since $f$ continuous and $\{0\}$. $\blacksquare$\retTwo
 \end{myIndent}
@@ -4000,7 +4003,11 @@ Here's a fun application of the prior exercise.\newpage
 
 \hOne I'm gonna finish the current chapter of Munkres and then switch to a different book to learn about differential forms. For today, my agenda is to define integration of scalar-valued functions on general manifolds in $\mathbb{R}^n$.\retTwo
 
-Let $M$ be a $k$-manifold of class $C^r$ in $\mathbb{R}^n$ (with $r \geq 1$ and $k \leq n$). Then recall that we already defined integration on $M$ if $M$ is parametrized by a single coordinate patch from an open set of $\mathbb{R}^k$. Hopefully, it's also clear to see that our previous definition works if our coordinate patch is from an open set of $H^k$. Also, by theorem 24.1 plus the theorem at the bottom of page 79 of this journal, we now know that our definition of integral is independent of the parametrization we use.\retTwo
+Let $M$ be a $k$-manifold of class $C^r$ in $\mathbb{R}^n$ (with $r \geq 1$ and $k \leq n$). Then recall that we already defined integration on $M$ if $M$ is parametrized by a single coordinate patch from an open set of $\mathbb{R}^k$. Hopefully, it's also clear to see that our previous definition works if our coordinate patch is from an open set of $H^k$. Also, by theorem 24.1 plus the theorem at the bottom of page 79 of this journal, we now know that our definition of the integral is independent of the parametrization we use.
+
+\begin{myIndent}\pracOne
+	Note from 7/31/2025: Actually I haven't yet showed that the parametrization is independent if the domain of that parametrization is open in $H^k$ but not $\mathbb{R}^k$.\retTwo
+\end{myIndent}
 
 In general though, $M$ probably can't be parametrized by just one coordinate patch. So, we instead bodge our definition using a partition of unity.
 
@@ -4013,7 +4020,7 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 			\item[1.] Note that topologically speaking, $M$ is a second countable LCH space. 
 
 			\begin{myIndent}\exPPP
-				The fact that $M$ is second countable and Hausdorff is just a consequence of the fact that $\mathbb{R}^n$ is both of those things and $M$ is equipped with the subspace topology.\retTwo
+				The fact that $M$ is second countable and Hausdorff is just a consequence of the fact that $\mathbb{R}^n$ is both of those things and $M$ is equipped with the subspace topology.\newpage
 
 				To show that $M$ is locally compact, note that if $p \in M$, then there is a homeomorphism $\alpha$ from some open set $U$ in $\mathbb{R}^k$ or $H^k$ to an open set $V \subseteq M$ containing $p$. Then given the $x \in U$ satisfying that $\alpha(x) = p$, there is a compact set $K \subseteq U$ with $x \in K$.
 				\begin{myIndent}\pracTwo
@@ -4023,7 +4030,7 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 				Next, by Urysohn's lemma, there is a precompact open set $V$ such that $K \subseteq V \subseteq \overline{V} \subseteq U$. Hence, we have that $\alpha(\overline{V})$ is a compact subset of $M$ containing $p$. Also $\alpha(V)$ is an open subset of $\alpha(\overline{V})$ which contains $p$. Hence, $\alpha(\overline{V})$ is a compact neighborhood of $p$.\retTwo
 			\end{myIndent}
 
-		\item[2.] In turn, we know that $M$ is $\sigma$-compact. From that hopefully it is obvious how we can get a countable covering of coordinate patches over $M$. $\blacksquare$\newpage
+		\item[2.] In turn, we know that $M$ is $\sigma$-compact. From that hopefully it is obvious how we can get a countable covering of coordinate patches over $M$. $\blacksquare$\retTwo
 	\end{itemize}
 	\end{myIndent}
 
@@ -4050,7 +4057,7 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 
 	From here it's pretty obvious that $V(\emptyset) = 0$ and that $V$ is countably additive. Also, similarly to before we can then deduce that:
 
-	{\centering $\int_M f \df V = \sum\limits_{i=1}^\infty \int_{V_i} f\phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{U_i} (f\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
+	{\centering $\int_M f \df V = \sum\limits_{i=1}^\infty \int_{V_i} f\phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{U_i} (f\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \newpage\par}
 
 	Now our first challenge is to show that this definition is independent of our choice of coordinate patches and partition of unity.
 
@@ -4065,8 +4072,7 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\alpha_i} \phantom{= \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \df V_{\beta_j}}$\\ [12pt]
 		
 			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\beta_j}$\\ [12pt]
-		\end{tabular}\newpage
-		\begin{tabular}{l}
+
 			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{j=1}^\infty \sum\limits_{i=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\beta_j}$\\ [12pt]
 
 			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \left(\sum\limits_{i=1}^\infty \phi_i \chi_{V_i}\right) \df V_{\beta_j} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \df V_{\beta_j}$
@@ -4080,34 +4086,154 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 
 		One other thing to note is that if $M$ can be parametrized by a single coordinate patch, then this result shows that our definition for parametrized manifolds is\\ compatible with this one. After all, just take $\phi_i = \delta_{1,i}$ (where $\delta$ is the Kronecker delta function), and let $\alpha_i$ be the same coordinate patch parametrizing all of our manifold for all $i$.\retTwo
 	\end{myIndent}
+\end{myIndent}
 
-	\exTwo\ul{Lemma:} A subset $E \subseteq M$ has measure zero if and only if $E$ can be covered by a collection of coordinate patches $\{\beta_j: U_j^\prime \to V_j^\prime\}_{j \in \mathbb{N}}$ such that $\beta_j^{-1}(V_j \cap E)$ has\\ Lebesgue measure zero for all $j$.
+\mySepTwo
 
-	\begin{myIndent}\exTwoP
-		$(\Longrightarrow)$\\ Let $\{\alpha_i: U_i \to V_i\}$ be a covering of coordinate patches on $M$ and let\\ $\{\phi_i: \mathbb{R}^k \to \mathbb{R}\}_{i \in \mathbb{N}}$ be a partition of unity such that $\supp(\phi_i) \cap M \subseteq V_i$ for\\ all $i$. Then since $V(E) = 0$, we know that:
+\dispDate{7/31/2025}
 
-		{\centering $0 = \sum\limits_{i=1}^\infty \int_{V_i \cap E} \phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{\alpha_i^{-1}(V_i \cap E)} (\phi_i \circ \alpha_i) V(\Df \alpha_i)\df m$ \retTwo\par}
+Ok. So in the previous journal entry, I was sorta following along with Munkres while only slightly modifying his thoerems. However, after some thought, I actually want to take a completely different approach to defining a measure on manifolds which is more in line with math 240A. So, I'm going to completely depart from Munkres and do a bunch of stuff entirely on my own (i.e. not based on any people's books).\newpage
 
-		And because the latter integrals are all nonnegative, we know for all $i \in \mathbb{N}$ that, $\int_{\alpha_i^{-1}(V_i \cap E)} (\phi_i \circ \alpha_i) V(\Df \alpha_i)\df m = 0$.\retTwo
-		
-		Next, setting $N_i = \{x \in V_i : \phi_i(x) > 0\}$, we know by the continuity of $\alpha_i$ and $\phi_i$ that $N_i$ and $\alpha_i^{-1}(N_i)$ are open. Hence, $\beta_i \coloneqq \alpha_i|_{\alpha_i^{-1}(N_i)}$ is a coordinate patch satisfying that:
-		
-		{\centering $\int_{\alpha_i^{-1}(V_i \cap E)} (\phi_i \circ \alpha_i) V(\Df \alpha_i)\df m = \int_{\beta_i^{-1}(N_i \cap E)} (\phi_i \circ \beta_i) V(\Df \beta_i)\df m$ \retTwo\par}
+Let $M$ be a $k$-manifold of class $C^r$ in $\mathbb{R}^n$ (with $r \geq 1$ and $k \leq n$). Then recall from the last journal entry that $M$ is an LCH second countable topological space. Hence, it follows that $M$ is $\sigma$-compact, and from there it follows easily that given any arbitrary collection $\{\alpha_a: U_a \to V_a\}_{a \in A}$ of coordinate patches covering $E \subseteq M$, there is a countable subcover over $E$.\retTwo
 
-		Since $(\phi_i \circ \beta_i) V(\Df \beta_i) > 0$ on $\beta_i^{-1}(N_i \cap E)$, we thus must have that that\\ $m(\beta_i^{-1}(N_i \cap E)) = 0$. Also, it's easy to see that $\{\beta_i: \alpha_i^{-1}(N_i) \to N_i\}_{i \in \mathbb{N}}$ is a collection of coordinate patches covering all of $M$ (although $\{\phi_i\}_{i \in \mathbb{N}}$ is no longer subordinate to it necessarily). After all, for all $p \in M$ there is some $i$ such that $\phi_i(p) > 0$. Hence, the $N_i$ cover all of $M$.\retTwo
+Also, recall that if $\alpha: U \to V$ is a coordinate patch on $M$, then we can use the formula $\int_{\alpha^{-1}(E)} V(\Df \alpha)\df m$ to calculate the "surface-volume" of any Borel set\\ $E \subseteq V$.
+\begin{myIndent}\pracOne
+	Note that if $\alpha_1: U_1 \to V_1$ and $\alpha_2: U_2 \to V_2$ are both coordinate patches on $M$,\\ $E \subseteq V_1 \cap V_2$ is Borel, and $U_1, U_2$ are open in $\mathbb{R}^k$, then as we already noted, by\\ theorem 24.1 plus the theorem at the bottom of page 79 of this journal:
+	
+	{\centering $\int_{\alpha_1^{-1}(E)} V(\Df \alpha_1)\df m = \int_{\alpha_2^{-1}(E)} V(\Df \alpha_2)\df m$.\retTwo\par}
+	
+	That said, before continuing on I want to show that this equivalence still holds if $U_1$ or $U_2$ is open in $H^k$ but not $\mathbb{R}^k$.
 
-		$(\Longleftarrow)$\\
-		Note that we can consider $\bigcup_{i \in \mathbb{N}} V_i^\prime$ to be a manifold and construct a partition of unity $\{\psi_i\}_{i \in \mathbb{N}}$ subordinate to the covering $\{\beta_i: U_i^\prime \to V_i^\prime\}_{i \in \mathbb{N}}$ of that\\ manifold.\newpage
-		
-		Now if $\{\alpha_i: U_i \to V_i\}_{i \in \mathbb{N}}$ and $\{\phi_i\}_{i \in \mathbb{N}}$ are as in the previous proof's direction we have that:
+	\begin{myIndent}\pracTwo
+		To start off, by restricting $\alpha_1$ and $\alpha_2$ to their preimages of $V_1 \cap V_2$, we can without loss of generality assume that $V_1 = V_2$. This is important because it makes it so that $\alpha_2^{-1} \circ \alpha_1(U_1) = U_2$ and $\alpha_1^{-1} \circ \alpha_2(U_2) = U_1$.\retTwo
 
-		$V(E) = \sum\limits_{i=1}^\infty \int_{V_i \cap E} \phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{V_i \cap E} \phi_i\left(\sum\limits_{j=1}^\infty \psi_j \chi_{V_i^\prime}\right) \df V_{\alpha_i}$
+		Now, its impossible for $U_1$ to be open in $\mathbb{R}^k$ but not $U_2$, or vice versa. After all, if $U_1$ is open in $\mathbb{R}^k$, we must have that the transition function $\alpha_2^{-1} \circ \alpha_1: U_1 \to U_2$ maps $U_1$ to an open set in $\mathbb{R}^k$. Analogous reasoning using the transition function $\alpha_1^{-1} \circ \alpha_2$ works if $U_2$ is open in $\mathbb{R}^k$.\retTwo
 
+		Now suppose both $U_1$ and $U_2$ are open only in $H^k$. Then, we can easily see that $W_i \coloneqq U_i - \partial H^k$ is the interior of $U_i$ in $\mathbb{R}^k$ and that $m(U_i - W_i) = 0$ for both $i$. Also, since the transition functions map open sets of $\mathbb{R}^k$ to open sets of $\mathbb{R}^k$, we have that $\alpha_2^{-1} \circ \alpha_1(W_1) \subseteq W_2$ and $\alpha_1^{-1} \circ \alpha_2(W_2) \subseteq W_1$. This is enough to say that the transition functions restricted to $W_1$ and $W_2$ are a diffeomorphism.\retTwo
+
+		Now finally, by applying the lemma at the bottom of page 79, we have for all\\ functions $f$ which are integrable over $V$:
+
+		{\centering\begin{tabular}{l}
+			$\int_{U_1} (f \circ \alpha_1) V(\Df \alpha_1)\df m = 0 + \int_{W_1} (f \circ \alpha_1) V(\Df \alpha_1)\df m$\\
+			$\phantom{\int_{U_1} (f \circ \alpha_1) V(\Df \alpha_1)\df m} = 0 + \int_{W_2} (f \circ \alpha_2) V(\Df \alpha_2)\df m = \int_{U_2} (f \circ \alpha_2) V(\Df \alpha_2)\df m$\\
+		\end{tabular}\retTwo\par}
+
+		Set $f = \chi_E$ and we are done.\retTwo
 	\end{myIndent}
 \end{myIndent}
 
+We take the following steps to define a measure on $M$:
+\begin{enumerate}\hTwo
+	\item[(1)] Defining an algebra or even a ring of sets is too much to ask for right now. But, we can at least define a collection of sets $\mathcal{A}$ satisfying that if $A \in \mathcal{A}$ and $E \subseteq A$ is a Borel subset of $M$, then $E \in \mathcal{A}$. Specifically, let $\mathcal{A}$ be the collection of Borel sets $A \subseteq M$ for which there exists a coordinate patch $\alpha: U \to V$ with $A \subseteq V$.\newpage
+	
+	\item[(2)] Next, we define a "premeasure" $\mu_0$ on $\mathcal{A}$. Specifically, for each $A \in \mathcal{A}$, define\\ $\mu_0(A) = \int_{\alpha^{-1}(A)} V(\Df \alpha) \df m$ where $\alpha: U \to V$ is some coordinate patch with $A \subseteq V$.\retTwo
+	
+	Importantly, even though $\mu_0$ isn't a proper premeasure according to Folland's\\ definition since $\mathcal{A}$ isn't actually an algebra, it is still the case that $\mu_0$ and $\mathcal{A}$ are\\ structured enough that the following is easily seen to hold:\\ [-24pt]
+	\begin{itemize}
+		\item $\mu_0(\emptyset) = 0$
+		\item If $A, B \in \mathcal{A}$ satisfy $A \subseteq B$. then $\mu_0(A) \leq \mu_0(B)$.
+		\item If $(A_j)_{j \in \mathbb{N}}$ is a sequence of disjoint sets in $\mathcal{A}$ with $\bigcup_{j \in \mathbb{N}}A_j \in \mathcal{A}$, then:
+		
+		{\centering $\mu_0(\bigcup\limits_{j \in \mathbb{N}}A_j) = \sum\limits_{j=1}^\infty \mu_0(A_j)$.  \retTwo\par}
+	\end{itemize}
+
+	\item[(3)] Now, we use $\mu_0$ to define an outer measure on $\mathcal{A}$. For any $E \subseteq M$, define:
+	
+	{\centering $\mu^*(E) = \inf\left\{\sum\limits_{i=1}^\infty \mu_0(A_i) : A_i \in \mathcal{A} \text{ for all } i \text{ and } E \subseteq \bigcup\limits_{i \in \mathbb{N}}A_i\right\}$ \retTwo\par}
+
+	Since any subset of $M$ can be covered by countably many coordinate patches, we know that $\mu^*(E)$ is well defined. The rest of the proof that $\mu^*$ is an outer measure is then identical to proposition 1.10 of Folland (which is at the top of page 21 of my Latex math 240a notes).\retTwo
+
+	\exTwo\item[(4)] \ul{Lemma:} $\mu^*|_\mathcal{A} = \mu_0$ and every set in $\mathcal{A}$ is $\mu^*$ measurable.
+
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		To prove the first claim, suppose $E \in \mathcal{A}$ and $(A_m)_{m \in \mathbb{N}}$ is a sequence of sets in $\mathcal{A}$ covering $E$. It's trivial that $\mu^*(E) \leq \mu_0(E)$. Meanwhile let $B_1 = E \cap A_1$ and $B_m = E \cap A_m - \bigcup_{j=1}^{m-1}$. Then the $B_m$ are each disjoint Borel subsets of $E \in \mathcal{A}$ whose union is all of $E$. Hence all the $B_m$ are in $\mathcal{A}$ and we have:
+
+		{\centering $\mu_0(E) = \mu_0(\bigcup\limits_{m \in \mathbb{N}} B_m) = \sum\limits_{m\in\mathbb{N}}\mu_0(B_m) \leq \sum\limits_{m\in\mathbb{N}}\mu_0(A_m)$ \retTwo\par}
+
+		This shows that $\mu_0(E) \leq \mu^*(E)$, thus proving the first claim.\retTwo
+
+		To show the second claim, suppose $A \in \mathcal{A}$, $E \subseteq X$, and $\varepsilon > 0$. Then there exists a sequence $(B_j)_{j \in \mathbb{N}}$ of sets in $\mathcal{A}$ such that $E \subseteq \bigcup_{j=1}^\infty B_j$ and $\sum_{j=1}^\infty \mu_0(B_j) \leq \mu^*(E) + \varepsilon$. Importantly, $(B_j \cap A)_{j \in \mathbb{N}}$ and $(B_j - A)_{j \in \mathbb{N}}$ are both sequences of sets in $\mathcal{A}$ covering $E \cap A$ and $E - A$ respectively. Also, $\mu_0(B_j) = \mu_0(B_j \cap A) + \mu_0(B_j - A)$ since $B_j \cap A$ and $B_j - A$ are disjoint sets in $\mathcal{A}$ whose union $B_j$ is also in $\mathcal{A}$. Therefore, we have that:
+
+		{\centering\begin{tabular}{l}
+			$\mu^*(E) + \varepsilon \geq \sum\limits_{j=1}^\infty \mu_0(B_j)$\\ [12pt]
+			$\phantom{\mu^*(E) + \varepsilon} = \sum\limits_{j=1}^\infty \mu_0(B_j \cap A) + \sum\limits_{j=1}^\infty \mu_0(B_j - A) \geq \mu^*(E \cap A) + \mu^*(E - A)$
+		\end{tabular} \newpage\par}
+		
+		Taking $\varepsilon \to 0$, we have that $\mu^*(E) \geq \mu^*(E \cap A) + \mu^*(E - A)$ for all $E \subseteq M$. Thus $A$ is $\mu^*$ measurable. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\hTwo\item[(5)] We now know by Carathéodory's theorem that if $\mathcal{N}$ is the $\sigma$-algebra of $\mu^*$-measurable sets, then $\mu \coloneq \mu^*|_\mathcal{N}$ is a complete measure on $\mathcal{N}$. Furthermore, $\mathcal{A} \subseteq \mathcal{N}$ with\\ $\mu|_\mathcal{A} = \mu_0$.\retTwo
+
+	\exTwo\item[(6)] \ul{Lemma:} If $\mathcal{B}_M$ is the collection of Borel sets on our manifold $M$, then $\mathcal{B}_M \subseteq \mathcal{N}$.\\ Hence, we can restrict $\mu$ to be a Borel measure if we wanted.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		If $E \in \mathcal{B}_m$, then let $(A_j)_{j \in \mathbb{N}}$ be a countable covering of $E$ consisting of sets in $\mathcal{A}$. Then $E \cap A_j \in \mathcal{A} \subseteq \mathcal{N}$ for all $j$ and $\bigcup_{j \in \mathbb{N}} (E \cap A_j) = E$. So $E \in \mathcal{N}$.\retTwo
+	\end{myIndent}
+
+	\hTwo\item[(7)] The next thing we want to do now is show that $\mu$ is $\sigma$-finite. One reason we want to do this is so that we can apply theorems such as Fubini-Tonelli and Radon-Nikodym. Another reason is so that (as I'll show in the next step) $\mu$ is guarenteed to be the unique measure on $(M, \mathcal{N})$ which preserves our definition of the measure of a\\ manifold parametrized by a single coordinate patch. Hence, this construction agrees with what I was doing back when I was loosely following Munkres.
+
+	\begin{myIndent}\pracTwo
+		To start, we will show that every point $p \in M$ has a neighborhood $A \in \mathcal{N}$ with finite measure. 
+		\begin{myIndent}
+			Let $\alpha: U \to V$ be a coordinate patch on $M$ about $p$. Then, given $x \in U$ satisfying that $\alpha(x) = p$, let $K \subseteq U$ be a compact neighborhood of $x$. Since $\alpha$ is a homeomorphism, it is clear that $A \coloneq \alpha(K)$ is a compact set containing $p$ in its interior. Hence, $A \in \mathcal{B}_M \subseteq \mathcal{N}$, $A$ is a neighborhood of $p$ and:
+
+			{\centering$\mu(A) = \int_{K} V(\Df \alpha)\df m$\retTwo}
+
+			Now $V(\Df \alpha)$ is continuous. So by the extreme value theorem, there exists some $C \geq 0$ such that:
+
+			{\centering$\int_{K} V(\Df \alpha)\df m \leq \int_K C \df m = Cm(K)$\retTwo}
+
+			And since $m(K) < \infty$, we've shown that $\mu(A) < \infty$.		
+		\end{myIndent}
+
+		Now since $M$ is $\sigma$-compact, if we pick a set $A_p$ for each $p \in M$ using the reasoning above, then there is a countable subcovering of the $A_p$ over $M$. This proves that $M$ is $\sigma$-finite. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\exTwo\item[(8)] \ul{Lemma:} If $\nu: \mathcal{N} \to [0, \infty]$ is another measure on $(M, \mathcal{N})$ satisfying that $\nu|_\mathcal{A} = \mu_0$, then $\nu = \mu$.
+
+	\begin{myIndent}\exTwoP
+		The proof of this is almost identical to that of theorem 1.14 in Folland (bottom of page 24 on my Latex math 240a notes).\newpage
+
+		The one difference is that if $(A_j)_{j \in \mathbb{N}} \subseteq A$ and $A = \bigcup_{j \in \mathbb{N}} A_j$, then $\nu(A) = \mu(A)$ because $A_m - \bigcup_{j=1}^{m-1} A_j \in \mathcal{A}$ for all $m$ and hence:
+
+		{\centering $\nu(A) = \sum\limits_{m=1}^\infty \nu(A_m - \bigcup_{j=1}^{m-1} A_j) = \sum\limits_{m=1}^\infty \mu(A_m - \bigcup_{j=1}^{m-1} A_j) = \mu(A)$. $\blacksquare$ \retTwo\par}
+	\end{myIndent}
+\end{enumerate}
+
+Why did I take this pivot? The reason is that now all of Munkres theorems from chapter 25 of his book are obvious including the final theorem about how one would in practice calculate an integral on $M$. Also, I got to show that this construction is universal in a sense.
+
+\mySepTwo
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 % I thought it'd be fun to do this exercise from Folland's \textit{Real Analysis} tonight.\retTwo
@@ -4129,6 +4255,4 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 % 	\item[(b)] If $n \in \mathbb{N}$, then $I_n f$ is the $n$th-order antiderivative of $f$. 
 % \end{itemize}
 
-% \newpage
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
