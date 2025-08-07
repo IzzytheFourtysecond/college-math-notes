@@ -236,6 +236,8 @@
 \newcommand{\NBV}{\mathrm{NBV}}
 \newcommand{\BV}{\mathrm{BV}}
 
+\newcommand{\Alt}{\mathrm{Alt}}
+
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
 \newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
@@ -4202,10 +4204,356 @@ We take the following steps to define a measure on $M$:
 	\end{myIndent}
 \end{enumerate}
 
-Why did I take this pivot? The reason is that now all of Munkres theorems from chapter 25 of his book are obvious including the final theorem about how one would in practice calculate an integral on $M$. Also, I got to show that this construction is universal in a sense.
+Why did I take this pivot? The reason is that now all of Munkres theorems from chapter 25 of his book are obvious including the final theorem about how one would in practice calculate an integral on $M$. Also, I got to show that this construction is universal in a sense.\retTwo
 
-\mySepTwo
+\hOne\mySepTwo
 
+I'm now going to switch over to following Guillemin's \ul{Differential Forms} since I was recommended this book by another tutor. Once again, I'm not going to perfectly follow the book. But I will be using the book as a loose guide.\retTwo
+
+\blab{Tensors:}\\
+Let $V$ be an $n$-dimensional vector spaces over the field $F$. Let $V^k$ be the set of all $k$-tuples of elements of $V$. Then a function $T: V^K \to F$ is said to be \udefine{linear in its $i$th. variable} if for all $u, v_1, \ldots, v_k \in V$ and $a, b \in F$, we have that:
+
+{\centering\begin{tabular}{l}
+	$T(v_1, \ldots, v_{i-1}, av_i + bu, v_{i+1}, \ldots, v_k)$\\ [2pt]
+	$\phantom{aaaaaaaaaa} = aT(v_1, \ldots, v_{i-1}, v_i, v_{i+1}, \ldots, v_k) + bT(v_1, \ldots, v_{i-1}, u, v_{i+1}, \ldots, v_k)$.
+\end{tabular}\retTwo\par}
+
+If $T$ is linear in all it's variables, we say $T$ is \udefine{$k$-linear}, and that $T$ is a \udefine{$k$-tensor}.\retTwo
+
+Given $k \geq 1$, we shall denote $\mathcal{L}^k(V)$ to be the set of all $k$-tensors from $V$. Also, we shall denote $\mathcal{L}^0(V) \coloneqq F$. Note that we can add together and scale $k$-linear maps to get more $k$-linear maps. Thus, $\mathcal{L}^k(V)$ is a vector space.
+\begin{myIndent}\hTwo
+	Side note: $\mathcal{L}^1(V)$ is also called the \udefine{dual space} of $V$ and denoted $V^*$.\retTwo\retTwo\retTwo
+
+	\pracOne Sorry but my apartment mate sent me down a rabbithole that led me to writing a proof on the following pages. I'll come back to tensors right after I'm done writing the following\dots
+\end{myIndent}
+
+\newpage
+
+\dispDate{8/5/2024}
+
+So for context, my apartment mate was reading through a paper by Joel Spencer (who is famous for using probabilistic methods to study combinatorics and graph theory). This paper, which is titled \ul{Balancing Unit Vectors}, gives a pretty neat\\ existence proof using probability that given any finite collection $\{u_1, \ldots, u_m\}$ of\\ vectors in $\mathbb{R}^n$ with $\|u_i\|_2 \leq 1$ for all $i$, there exists coefficients $\varepsilon_1, \ldots, \varepsilon_m \in \{-1, +1\}$ such that: $\|\varepsilon_1u_1 + \ldots + \varepsilon_mu_m\|_2 \leq \sqrt{n}$. However, my apartment mate was having trouble with the following part of the paper and thus asked for my help with it:
+
+{\centering\includegraphics[scale=1.3]{Joel_Spencer_balancing_vectors.png}\retTwo\par}
+
+Our issue was figuring out what linear algebra argument Spencer was fucking using. After thinking about it for three days while I was grading tests, I finally came up with a proof:\retTwo
+
+\Hstatement\blab{Theorem:} Let $u_1, \ldots, u_m$ be vectors in $\mathbb{R}^n$. Then there are constants $a_1, \ldots, a_m$ satisfying\\ $a_1u_1 + \ldots + a_mu_m = 0$ such that all $|a_i| \leq 1$ and $a_i = \pm 1$ for all but at most $n$ $i$'s.
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	We'll proceed by an inductive argument. For our base case, let $u_{m+1} \coloneq 0$. That way\\ $\sum_{i = 1}^m 0 u_i = u_{m+1}$. Next, suppose that for $n + 1 \leq k \leq m$, we've shown that there\\ are constants $b_1, \ldots, b_{k} \in [-1, 1]$ and $\varepsilon_{k+1}, \ldots, \varepsilon_{m+1} \in \{-1, +1\}$ satisfying that:
+
+	{\centering $b_1u_1 + \ldots + b_ku_k = \varepsilon_{k+1}u_{k+1} + \ldots + \varepsilon_{m+1}u_{m+1}$. \retTwo\par}
+
+	If we consider the matrix $U \coloneqq \begin{bmatrix}u_1 & \cdots & u_k\end{bmatrix}$, then letting $b = (b_1, \ldots, b_k)$ we have that any $a = (a_1, \ldots, a_k) \in b + \ker(U)$ will satisfy that:
+	
+	{\centering $a_1u_1 + \ldots + a_{k}u_{k} = \varepsilon_{k+1}u_{k+1} + \ldots + \varepsilon_{m+1}u_{m+1}$.\retTwo\par}
+	
+	Since $k > n$, we know that $\ker(U)$ is nontrivial and hence unbounded. At the same time, $\|b\|_{\infty} \leq 1$. Hence, by the connectedness of $b + \ker(U)$ and the continuity of the $\infty$-norm, we know there is some $a \in b + \ker(U)$ with $\|a\|_\infty = 1$. After reordering our $u_i$, this is the same as saying that there exists $a_1, \ldots, a_{k-1} \in [-1, 1]$ and $\varepsilon_k = \pm 1$ such that:
+
+	{\centering $a_1u_1 + \ldots + a_{k-1}u_{k-1} + \varepsilon_{k}u_k = \varepsilon_{k+1}u_{k+1} + \ldots + \varepsilon_{m+1}u_{m+1}$.\retTwo\par}
+	
+	Subtract both sides by $\varepsilon_{k}u_k$ to complete the induction step.\retTwo
+
+	After induction, we will eventaully get constants $a_1, \ldots, a_n \in [-1, 1]$ and $\varepsilon_{n+1}, \ldots, \varepsilon_{m+1}$ equal to $\pm 1$ such that:
+
+	{\centering $a_1u_1 + \ldots + a_nu_n = \varepsilon_{n+1}u_{n+1} + \ldots + \varepsilon_mu_m + \varepsilon_{m+1}u_{m+1}$. \retTwo\par}
+
+	Move everything over to one side of the equation and forget about the $u_{m+1}$ and we have proven what we wanted.\newpage
+\end{myIndent}
+
+\dispDate{8/6/2025}\hOne
+
+Now I'm going to go back to studying tensors.\retTwo
+
+A \udefine{multi-index of length $k$} is a $k$-tuple $I = (i_1, \ldots, i_k)$ of integers. We say $I$ is a multi-index of $n$ if each $i$ is between $1$ and $n$. Now let $u_1, \ldots, u_n$ is a basis of $V$. For $T \in \mathcal{L}^k(V)$, write $T_I \coloneq T(u_{i_1}, \ldots, u_{i_k})$ for every multi-index $I$ of $n$ of length $k$.\retTwo
+
+\exOne\ul{Proposition 1.3.7:} The $T_I$ uniquely determine $T$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	When $k = 1$, $T$ is just a linear map and we've already proven this for linear maps. For $k > 1$, we proceed by induction. For each $i$, define $T_i \in L^{k-1}(V)$ by:
+	
+	{\centering $(v_1, \ldots, v_{k-1}) \mapsto T(v_1, \ldots, v_{k-1}, u_i)$.\retTwo\par} Then for $v = c_1u_1 + \ldots + c_nu_n$, we have:
+
+	{\centering $T(v_1, \ldots, v_{k-1}, v) = \sum\limits_{i=1}^n c_iT_i(v_1, \ldots, v_{k-1})$\retTwo\par}
+
+	Also, by induction each $T_i$ is uniquely determined by the coefficients $T_I$ where $I$ is a multi-index of $n$ of length $k$ with a final index equal to $i$.\retTwo
+
+	\begin{myIndent}\exPPP
+		Side note: We can see that if $C = (c_{i,j}) \in \mathcal{M}_{n \times k}(F)$ is the matrix satisfying that $v_{j} = \sum_{i=1}^n c_{i,j} u_i$ for each $j$, then:
+
+		{\centering $T(v_1, \ldots, v_k) = \hspace{-1em}\sum\limits_{I = (i_1, \ldots, i_k)}\hspace{-0.5em} \left(\hspace{0.1em}\prod\limits_{j=1}^k c_{i_j, j}\right)T_I$ \retTwo\par}
+	\end{myIndent}
+\end{myIndent}
+
+\hOne%
+Given two tensors: $T_1 \in \mathcal{L}^k(V)$ and $T_2 \in \mathcal{L}^\ell(V)$, we define the \udefine{tensor product} of $T_1$ and $T_2$ as:
+
+{\centering $(T_1 \otimes T_2)(v_1, \ldots, v_k, v_{k+1}, \ldots, v_{k + \ell}) = T_1(v_1, \ldots, v_k)T_2(v_{k + 1}, \ldots, v_{k + \ell})$\retTwo\par}
+
+Note that:\hTwo\\ [-20pt]
+\begin{itemize}
+	\item $\otimes$ is associative.
+	\item If $T_1$ or $T_2$ is a $0$-tensor, then $\otimes$ is just scalar multiplication.
+	\item If $\lambda \in F$, $T_1 \in \mathcal{L}^k(V)$, and $T_2 \in \mathcal{L}^\ell(V)$, then $\lambda(T_1 \otimes T_2) = (\lambda T_1) \otimes T_2 = T_1 \otimes (\lambda T_2)$.
+	\item If $T_1, T_2 \in \mathcal{L}^k(V)$ and $T_3 \in \mathcal{L}^\ell(V)$, then $(T_1 + T_2) \otimes T_3 = (T_1 \otimes T_3) + (T_2 \otimes T_3)$. Also $T_3 \otimes (T_1 + T_2)  = (T_3 \otimes T_1 ) + (T_3 \otimes T_2)$\retTwo
+\end{itemize}
+
+\hOne Suppose $T \in \mathcal{L}^k(V)$ and there exists $\ell_1, \ldots, \ell_k \in V^* = \mathcal{L}^1(V)$ such that $T = \ell_1 \otimes \cdots \otimes \ell_k$. Then we say $T$ is \udefine{decomposable}.\retTwo
+
+If $u_1, \ldots, u_n$ is a basis for $V$, then we can define the \udefine{dual basis}: $u_1^*, \ldots, u_n^*$ for $V^*$ such that if $v = \sum_{i=1}^n c_iu_i$, then $u_j^*(v) = c_j$.
+
+\begin{myIndent}\exTwoP
+	To prove that this is a basis, first note that if $f \in V^*$ and $\lambda_i = f(u_i)$, then we can easily see that for any $v = \sum_{i=1}^n c_iu_i$, then:\newpage
+	
+	{\centering $f(v) = \sum_{i=1}^n c_if(u_i) = \sum_{i=1}^n \lambda_ic_i = \sum_{i=1}^n \lambda_iu_i^*(v)$.\retTwo\par}
+
+	It follow that $u_1^*, \ldots, u_n^*$ span all of $V^*$. Also, consider if $f = \sum_{i=1}^n \lambda_i u_i^* = 0$ where all the $\lambda_i \in F$. Then we know that $0 = f(u_j) = \lambda_j$ for all $j$. This shows that\\ $u_1^*, \ldots, u_n^*$ are linearly  independent.\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+Tangent: if $V, W$ are vector fields over $F$ and $A: V \to W$ is a linear map, then we define the \udefine{transpose} $A^\dag: W^* \to V^*$ of $A$ by $f \mapsto A^\dag(f) = f \circ A$.\retTwo
+
+\exOne\ul{Claim 1.2.15:} Suppose $e_1, \ldots, e_m$ is a basis of $V$ and $u_1, \ldots, u_n$ is a basis of $W$. Then if $A = (a_{i,j})$ is the the matrix of $A$ with respect to the given bases, we have that the matrix of $A^\dag$ with respect to the dual bases of $V$ and $W$ is given by $(a_{j,i})$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Suppose $(c_{j,i})$ is the matrix representation of $A^\dag$. Then:
+
+	{\centering $A^\dag(u_i^*)(e_j) = u_i^*(A(e_j)) = u_i^*(\sum_{k=1}^n a_{k,j}u_k) = a_{i,j}$ \retTwo\par}
+
+	Simultaneously:
+
+	{\centering $A^\dag(u_i^*)(e_j) = \sum_{k=1}^m c_{k, i} e_k^*(e_j) = c_{j, i}$ \retTwo\par}
+\end{myIndent}
+\pracOne\mySepTwo
+
+\hOne Let $u_1, \ldots, u_n$ be a basis of $V$ and $u_1^*, \ldots, u_n^*$ be the corresponding dual basis of $V^*$. Then for every multi-index $I = (i_1, \ldots, i_k)$ of $n$ of length $k$, define:
+
+{\centering $u_I^* = u_{i_1}^* \otimes \cdots \otimes u_{i_k}^*$.\retTwo\par}
+
+Note that if $J = (j_1, \ldots, j_k)$ is another multi-index of $n$ of length $k$, then\\ $u_I^*(u_{j_1}, \ldots, u_{j_k}) = \delta_{I,J}$ where $\delta$ is the Kronecker delta function.\retTwo
+
+\exOne\ul{Theorem 1.3.13:} The $k$-tensors $u_I^*$ form a basis for $\mathcal{L}^k(V)$.
+\begin{myIndent}\exTwoP 
+	Proof:\\
+	Suppose $T \in \mathcal{L}^k(V)$. Then if $T^\prime \coloneq \sum_{I} T_Iu_I^*$, we have that $T^\prime_J = T_J$ for all multi-indices $J$ of $n$ of length $k$. Therefore, since $T^\prime$ and $T$ are uniquely determined by the same $T_I$, this proves that $T = T^\prime$. So, $T$ is in the span of the $u_I^*$. This proves that the $u_I^*$ span all of $\mathcal{L}^k(V)$.\retTwo
+
+	Next suppose $T^\prime = \sum_{I} C_Iu_I^* = 0$ where each $C_I \in F$. Then if $J$ is a multi-index of $n$ of length $k$,
+	
+	{\centering$0 = T^\prime(u_{j_1}, \ldots, u_{j_k}) = \sum\limits_{I} C_Iu_I^*(u_{j_1}, \ldots, u_{j_k}) = C_J$\retTwo\par}
+
+	This shows that the $u_I^*$ are linearly independent. \blacksquare\retTwo
+\end{myIndent}
+
+\ul{Corollary 1.3.15:} If $V$ is an $n$-dimensional vector space, then $\mathcal{L}^k(V)$ is an\\ $n^k$-dimensional vector space.\newpage
+
+\hOne If $V, W$ are vector fields over $F$, $A: V \to W$ is a linear map, and $T \in \mathcal{L}^k(W)$, we define $A^\dag T(v_1, \ldots, v_k) \coloneq T(Av_1, \ldots, Av_k)$.\retTwo
+
+We call $A^\dag T$ the \udefine{pullback} of $T$ by the map $A$. Note that this is just a generalization of taking the transpose of $A$.\retTwo
+
+\exOne\ul{Proposition 1.3.18:} If we denote $A^\dag : \mathcal{L}^k(W) \to \mathcal{L}^k(V)$ to be the map $T \mapsto A^\dag T$, then $A^\dag$ is a linear map.
+
+\begin{myIndent}\exTwoP This should be pretty obvious\dots\retTwo
+\end{myIndent}
+
+Furthermore, $A^\dag(T_1 \otimes T_2) = (A^\dag T_1) \otimes (A^\dag T_2)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Suppose $T_1 \in \mathcal{L}^k(V)$ and $T_2 \in \mathcal{L}^\ell(V)$. Then:
+
+	{\centering\begin{tabular}{l}
+		$A^\dag(T_1 \otimes T_2)(v_1, \ldots, v_k, v_{k+1}, \ldots, v_{k+\ell})$\\
+		$\phantom{aaaaaaaaaaaaaa} = (T_1 \otimes T_2)(Av_1, \ldots, Av_k, Av_{k+1}, \ldots, Av_{k+\ell})$\\
+		$\phantom{aaaaaaaaaaaaaa} = T_1(Av_1, \ldots, Av_k)T_2(Av_{k+1}, \ldots, Av_{k+\ell})$\\
+		$\phantom{aaaaaaaaaaaaaa} = A^\dag T_1(v_1, \ldots, v_k)A^\dag T_2(v_{k+1}, \ldots, v_{k+\ell})$\\
+		$\phantom{aaaaaaaaaaaaaa} = (A^\dag T_1 \otimes A^\dag T_2)(v_1, \ldots, v_k, v_{k+1}, \ldots, v_{k+\ell})$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+As a corollary to the above fact, we know that pullbacks map decomposable tensors to decomposable tensors.\retTwo
+
+Finally, suppose $B: U \to V$ is another linear map. Then $(AB)^\dag T = B^\dag(A^\dag T)$ for all $T \in \mathcal{L}^k(W)$. In other words, $(AB)^\dag = B^\dag A^\dag$.
+
+\begin{myIndent}\exTwoP
+	Proof:
+
+	{\centering\begin{tabular}{l}
+		$B^\dag(A^\dag T)(v_1, \ldots, v_k) = A^\dag T(Bv_1, \ldots, Bv_k)$\\
+		$\phantom{B^\dag(A^\dag T)(v_1, \ldots, v_k)} = T(ABv_1, \ldots, ABv_k) = (AB)^\dag T(v_1, \ldots, v_k)$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\hOne\blab{Alternating $k$-Tensors:}\\
+Let $V$ be an $n$-dimensional vector space over the field $F$ and $S_k$ be the symmetric group over $\{1, \ldots, k\}$. For $\sigma \in S_k$ and $T \in \mathcal{L}^k(V)$, we define $T^\sigma \in \mathcal{L}^k(V)$ by:
+
+{\centering $T^\sigma(v_1, \ldots, v_k) = T(v_{\sigma^{-1}(1)}, \ldots, v_{\sigma^{-1}(k)})$ \retTwo\par}
+
+\exOne\ul{Proposition 1.4.14:}
+\begin{itemize}
+	\item[(a)] If $T = \ell_1 \otimes \cdots \otimes \ell_k$ where each $\ell_i \in V^*$, then $T^\sigma = \ell_{\sigma(1)} \otimes \cdots \otimes \ell_{\sigma(k)}$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:
+
+		{\centering\begin{tabular}{l}
+			$T^\sigma(v_1, \ldots, v_k) = T(v_{\sigma^{-1}(1)}, \ldots, v_{\sigma^{-1}(k)}) = \ell_1(v_{\sigma^{-1}(1)}) \cdots \ell_k(v_{\sigma^{-1}(k)})$\\
+			$\phantom{T^\sigma(v_1, \ldots, v_k) = T(v_{\sigma^{-1}(1)}, \ldots, v_{\sigma^{-1}(k)})} = \ell_{\sigma(1)}(v_1) \cdots \ell_{\sigma(k)}(v_k)$\\
+			$\phantom{T^\sigma(v_1, \ldots, v_k) = T(v_{\sigma^{-1}(1)}, \ldots, v_{\sigma^{-1}(k)})} = (\ell_{\sigma(1)} \otimes \cdots \otimes \ell_{\sigma(k)})(v_1, \ldots, v_k)$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+	\item[(b)] If $\sigma \in S_k$, the function $T \mapsto T^\sigma$ is a linear map from $\mathcal{L}^k(V)$ to $\mathcal{L}^k(V)$.
+	\begin{myIndent}\exTwoP
+		This should be obvious. Also note that this map is invertible via the function $T \mapsto T^{(\sigma^{-1})}$.\newpage
+	\end{myIndent}
+
+	\item[(c)] If $\sigma, \tau \in S_k$, then $(T^\sigma)^\tau = T^{\sigma \tau}$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Let $u_i \coloneq v_{\tau^{-1}(i)}$ for all $i$. Then:
+
+		{\centering\begin{tabular}{l}
+			$(T^\sigma)^\tau(v_1, \ldots, v_k) = T^\sigma(v_{\tau^{-1}(1)}, \ldots, v_{\tau^{-1}(k)})$\\ [2pt]
+
+			$\phantom{(T^\sigma)^\tau(v_1, \ldots, v_k)} = T^\sigma(u_1, \ldots, u_k) = T(u_{\sigma^{-1}(1)}, \ldots, u_{\sigma^{-1}(k)})$\\ [2pt]
+
+			$\phantom{(T^\sigma)^\tau(v_1, \ldots, v_k) = T^\sigma(u_1, \ldots, u_k)} = T(v_{\tau^{-1}(\sigma^{-1}(1))}, \ldots, v_{\tau^{-1}(\sigma^{-1}(k))})$\\ [2pt]
+
+			$\phantom{(T^\sigma)^\tau(v_1, \ldots, v_k) = T^\sigma(u_1, \ldots, u_k)} = T(v_{(\sigma\tau)^{-1}(1)}, \ldots, v_{(\sigma\tau)^{-1}(k)})$\\ [2pt]
+
+			$\phantom{(T^\sigma)^\tau(v_1, \ldots, v_k) = T^\sigma(u_1, \ldots, u_k)} = T^{\sigma\tau}(v_1, \ldots, v_k)$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+\end{itemize}
+
+\hOne Let $V$ be a vector space and $k \geq 1$ be an integer. Then $T \in \mathcal{L}^k(V)$ is \udefine{alternating} if $T^\sigma = \sgn(\sigma)T$ for all $\sigma \in S_k$. We denote $\mathcal{A}^k(V)$ as the set of all alternating\\ $k$-tensors on $V$.
+
+\begin{myIndent}\hTwo
+	Note:
+	\begin{itemize}
+		\item If $c_1, c_2 \in F$ and $T_1, T_2 \in \mathcal{A}^k(V)$, then since $T \mapsto T^\sigma$ is a linear map, we have for all $\sigma \in S_k$ that:
+		
+		{\centering\begin{tabular}{l}
+			$(c_1T_1 + c_2T_2)^{\sigma} = c_1T_1^{\sigma} + c_2T_2^\sigma$\\
+			$\phantom{(c_1T_1 + c_2T_2)^{\sigma}} = c_1\sgn(\sigma)T_1 + c_2\sgn(\sigma)T_2 = \sgn(\sigma)(c_1T_1 + c_2T_2)$
+		\end{tabular}\retTwo\par}
+
+		This proves that $\mathcal{A}^k(V)$ is a subspace of $\mathcal{L}^k(V)$.\retTwo
+
+		\item We shall define $\mathcal{A}^0(V) \coloneqq \mathcal{L}^0(V) = F$.\retTwo
+	\end{itemize}
+\end{myIndent}
+
+Given an integer $k > 0$, and a tensor $T \in \mathcal{L}^k(V)$, let:
+
+{\centering $\Alt(T) \coloneqq \sum\limits_{\tau \in S_k} \sgn(\tau)T^\tau$.\retTwo\par}
+
+Then the \udefine{alternation operation} has the following properties:\\
+\exOne\ul{Proposition 1.4.17:}
+\begin{itemize}
+	\item[(a)] Given any $T \in \mathcal{L}^k(V)$ and $\sigma \in S_k$ (where $k > 0$), we have that\\ $(\Alt(T))^{\sigma} = \sgn(\sigma)\Alt(T)$. I.e., $\Alt(T)$ is an alternating tensor.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		By proposition 1.4.14 plus the fact that $(\sgn(\sigma))^2 = 1$, we have that:
+
+		{\centering\begin{tabular}{l}
+			$(\Alt(T))^\sigma = (\sum\limits_{\tau \in S_k}\sgn(\tau)T^{\tau})^{\sigma}$\\ [16pt]
+		
+			$\phantom{(\Alt(T))^\sigma} = 1 \cdot \hspace{-0.4em}\sum\limits_{\tau \in S_k}\sgn(\tau)T^{\tau\sigma} = (\sgn(\sigma))^2 \sum\limits_{\tau \in S_k}\sgn(\tau)T^{\tau\sigma}$\\ [16pt]
+
+			$\phantom{(\Alt(T))^\sigma = 1 \cdot \hspace{-0.4em}\sum\limits_{\tau \in S_k}\sgn(\tau)T^{\tau\sigma}} = \sgn(\sigma) \sum\limits_{\tau \in S_k}\sgn(\tau\sigma)T^{\tau\sigma} = \sgn(\sigma) \sum\limits_{\tau^\prime \in S_k}\sgn(\tau^\prime)T^{\tau^\prime}$\\ [16pt]
+
+			$\phantom{(\Alt(T))^\sigma = 1 \cdot \hspace{-0.4em}\sum\limits_{\tau \in S_k}\sgn(\tau)T^{\tau\sigma} = \sgn(\sigma) \sum\limits_{\tau \in S_k}\sgn(\tau\sigma)T^{\tau\sigma}} = \sgn(\sigma) \Alt(T)$\\ [16pt]
+		\end{tabular} \newpage\par}
+	\end{myIndent}
+
+	\item[(b)] If $T \in \mathcal{A}^k(V)$, the $\Alt(T) = k!T$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Since $T^\tau = \sgn(\tau)T$ for all $\tau \in S_k$, we know:
+
+		{\centering\begin{tabular}{l}
+			$\Alt(T) = \sum\limits_{\tau \in S_k} \sgn(\tau)T^\tau = \sum\limits_{\tau \in S_k} (\sgn(\tau))^2T = \sum\limits_{\tau \in S_k} (1)T = |S_k|T = k!T$
+		\end{tabular} \retTwo\par}
+	\end{myIndent}
+
+	\item[(c)] $\Alt(T^\sigma) = (\Alt(T))^\sigma$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		By similar reasoning to in part (a), we have that:
+
+		{\centering\begin{tabular}{l}
+			$\Alt(T^\sigma) = 1 \cdot \hspace{-0.4em}\sum\limits_{\tau \in S_k} \sgn(\tau) T^{\sigma\tau} = (\sgn(\sigma))^2 \sum\limits_{\tau \in S_k} \sgn(\tau) T^{\sigma\tau}$\\ [12pt]
+
+			$\phantom{\Alt(T^\sigma) = 1 \cdot \hspace{-0.4em}\sum\limits_{\tau \in S_k} \sgn(\tau) T^{\sigma\tau}} = \sgn(\sigma) \sum\limits_{\tau \in S_k} \sgn(\sigma\tau) T^{\sigma\tau}$\\ [12pt]
+
+			$\phantom{\Alt(T^\sigma) = 1 \cdot \hspace{-0.4em}\sum\limits_{\tau \in S_k} \sgn(\tau) T^{\sigma\tau}} = \sgn(\sigma) \sum\limits_{\tau^\prime \in S_k} \sgn(\tau^\prime) T^{\tau^\prime} = \sgn(\sigma)\Alt(T)$
+		\end{tabular} \retTwo\par}
+
+		And since $\sgn(\sigma)\Alt(T) = (\Alt(T))^\sigma$ by part (a), we know $\Alt(T^\sigma) = (\Alt(T))^\sigma$.\retTwo
+	\end{myIndent}
+
+	\item[(d)] The map $\Alt: \mathcal{L}^k(V) \to \mathcal{L}^k(V)$ defined by $T \mapsto \Alt(T)$ is a linear map.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		$\Alt$ is a linear map because it is a linear combination of a bunch of linear maps.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hOne\dispDate{8/7/2025}
+
+If $I = (i_1, \ldots, i_k)$ is a multi-index of $n$ of length $k$, then we write:
+\begin{itemize}
+	\item $I$ is \udefine{repeating} if $i_s = i_r$ for some $s \neq r$.
+	\item $I$ is \udefine{increasing} if $i_1 < i_2 < \ldots < i_k$.
+	\item Given $\sigma \in S_k$, we define $I^\sigma = (i_{\sigma(1)}, \ldots, i_{\sigma(k)})$.\retTwo
+\end{itemize}
+
+Note that if $I$ is not repeating, then there is a unique permutation $\sigma \in S_k$ such that $I^\sigma$ is increasing.\retTwo
+
+Let $u_1, \ldots, u_n$ be a basis of the vector space $V$ over a field $F$, and let $u_1^*, \ldots, u_n^*$ be the corresponding dual basis. Now given the multi-index $I = (i_1, \ldots, i_k)$, set $u_I^* = u_{i_1}^* \otimes \cdots \otimes u_{i_k}^*$. Next define $\Psi_I = \Alt(u_I^*)$.\retTwo
+
+\exOne\ul{Proposition 1.4.20:} Let $I = (i_1, \ldots, i_k)$ and $J = (j_1, \ldots, j_k)$ be multi-indices.
+\begin{itemize}
+	\item[(a)] $\Psi_{I^\sigma} = \sgn(\sigma)\Psi_I$.
+	\begin{myIndent}\exTwoP
+		To start off, by the last proposition:
+		
+		{\centering$\sgn(\sigma)\Psi_I = \sgn(\sigma)\Alt(u_I^*) = (\Alt(u_I^*))^\sigma = \Alt((u_I^*)^\sigma)$.\newpage\par}
+
+		Next, set $\ell_j = u^*_{i_j}$ for $1 \leq j \leq k$. Then by proposition 1.4.14, we have:
+		
+		{\centering$(u_I^*)^\sigma = (\ell_1 \otimes \cdots \otimes \ell_k)^\sigma = \ell_{\sigma(1)} \otimes \cdots \otimes \ell_{\sigma(k)} = u_{i_{\sigma(1)}}^* \otimes \cdots \otimes u_{i_{\sigma(k)}}^* = u^*_{I^\sigma}$.\retTwo\par}
+
+		Thus $\sgn(\sigma)\Psi_I = \Alt((u_I^*)^\sigma) = \Alt(u^*_{I^\sigma}) = \Psi_{I^\sigma}$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] If $I$ is repeating, $\Psi_{I} = 0$.
+	
+	\begin{myIndent}\exTwoP
+		If $I$ is repeating, then there exists $r \neq s$ such that $i_r = i_s$. Then in turn, if $\tau_{r,s} \in S_k$ is the transposition of $r$ and $s$, then $\sgn(\tau_{r,s}) = -1$ and $I^{\tau_{r,s}} = I$. Then by part (a), we have:
+
+		{\centering$\Psi_I = \Psi_{I^{\tau_{r,s}}} = \sgn(\tau_{r,s})\Psi_{I} = -\Psi_{I}$\retTwo\par}
+		
+		This is only possible if $\Psi_I(v_1, \ldots, v_k) = 0$ for all $v_1, \ldots, v_k \in V$. Hence $\Psi_I$ is the zero map.\retTwo
+	\end{myIndent}
+
+
+	\item[(c)] If $I$ and $J$ are strictly increasing, then $\Phi_I(u_{j_1}, \ldots, u_{j_k}) = \delta_{I,J}$ where $\delta$ is the Kronecker delta function.
+	
+	\begin{myIndent}\exTwoP
+		
+		\retTwo
+	\end{myIndent}
+\end{itemize}
 
 
 
@@ -4220,6 +4568,68 @@ Why did I take this pivot? The reason is that now all of Munkres theorems from c
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Proof:\\
+	% If $m \leq n$, then the problem is trivial because we can just set all constants equal to $0$. So, it suffices to assume $m \geq n + 1$.\retTwo
+
+	% Let $U = \begin{bmatrix}
+	% u_1 & \cdots & u_m
+	% \end{bmatrix}$ be the matrix with the $u_i$ as it's columns. Set $N = \ker(U)$ and define $\mathcal{I}$ to be the collection of all subsets of $\{1, \ldots, m\}$ with order $m-n$. Then define:
+
+	% $$f(x) = \prod\limits_{I \in \mathcal{I}}\left(\sum\limits_{i \in I}(1 - x_i^2)\right)\text{.}$$ \retTwo
+
+	% Now $f$ is $C^\infty$ and satisfies that $f(x) \geq 0$ for all $x \in [-1, 1]^m$ with equality iff $m-n$ of the coordinates of $x$ are $\pm 1$. By the extreme value theorem, we know that $f$ achieves an absolute minimum on $N \cap [-1, 1]^m$. Hence, our goal will be to show that if the absolutely minimum of $f$ over $N \cap [-1, 1]^m$ is at $a$, then at least $m-n$ coordinates of $a$ are equal to $\pm 1$.\retTwo
+
+	% Suppose $f$ achieves a local extreme over $N$ at some point $b = (b_1, \ldots, b_m) \in N$. Then it must be that $\nabla f(b) \cdot x = 0$ for all $x \in N$ or else we'd be able to do gradient descent to find an even more extreme value on $N$. Hence, we have that $\nabla f(b) \cdot b = 0$. But now note that for all $i \in \{1, \ldots, m\}$, if $x = (x_1, \ldots, x_m)$, then by an easy application of product rule:
+
+	% $$\frac{\partial f}{\partial x_i}(x) = -2x_i \hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	% I \in \mathcal{I} \suchthat \\ i \in I
+	% \end{smallmatrix}}\hspace{-0.8em}\left(\prod\limits_{
+	% J \in \mathcal{I} - \{I\}} \left(\sum\limits_{j \in J}(1 - x_j^2)\right)\right)$$\newpage
+
+	% Therefore, we have that:
+
+	% $$0 = \nabla f(b) \cdot b = -2\sum\limits_{i=1}^m b_i^2\sum\limits_{\begin{smallmatrix}
+	% I \in \mathcal{I} \suchthat \\ i \in I
+	% \end{smallmatrix}}\hspace{-0.8em}\left(\prod\limits_{
+	% J \in \mathcal{I} - \{I\}} \left(\sum\limits_{j \in J}(1 - b_j^2)\right)\right)$$
+
+	% Now, if you parse the really ugly term after the $b_i^2$, you can see that it is nonnegative for all $b \in [-1, 1]^m$, and that it will be equal to zero iff there are $m-n$ coordinate of $b$ other than $b_i$ which are equal to $\pm 1$.\retTwo
+
+	% It follows that the only local extrema of $f$ over $N$ located in $[-1, 1]^m$ are at the origin and in the set of points of $N$ with $m-n+1$ coordinates equal to $\pm 1$. But note that since $m > n$, we know $N$ is a proper superset of $\{0\}$ and hence $f$ achieves a local maximum and not a local minimum at the origin. Therefore, we've proven that:
+
+	% {\centering $\min\limits_{x \in N \cap [-1, 1]^m}(f(x)) = \hspace{-1em}\min\limits_{x \in N \cap \partial[-1, 1]^m}(f(x))$ \retTwo\par}
+
+	% In other words, if $f$ achieves an absolute minimum over $N \cap [-1, 1]^m$ at $a = (a_1, \ldots, a_m)$, then we've proven that at least one $a_i = \pm1$. By reordering our vectors $u_1, \ldots, u_m$ we can assume that $a = (a_1, \ldots, a_{m-1}, \varepsilon_{m})$ where $\varepsilon_m \in \{-1, +1\}$. Hence, we can reduce our problem to trying to minimize $f$ over the compact set $N \cap ([-1, 1]^{m-1} \times \{\varepsilon_m\})$.\retTwo
+
+	% Now to finish off, we proceed via induction. Assume that we've reduced our problem to trying to minimize $f$ over the compact set $N \cap ([-1, 1]^{m-k} \times (\varepsilon_{m-k+1}, \ldots, \varepsilon_m))$ where\\ $1 \leq k < m-n$ and $\varepsilon_i = \pm 1$ for all $i \in \{m-k+1, \ldots, m\}$.
+
+	% \begin{myIndent}\HexTwoP
+	% 	If $f$ achieves a local minimum on $N \cap (\mathbb{R}^{m-k} \times \{\varepsilon_{m-k+1}, \ldots, \varepsilon_m\})$ at some point\\ $b = (b_1, \ldots, b_{m-k}, \varepsilon_{m-k+1}, \ldots, \varepsilon_m)$, we know that $\nabla f(b) \perp e_1, \ldots, e_{n-k}$ where $\{e_1, \ldots, e_m\}$ is the standard basis for $\mathbb{R}^m$. Hence for all $i \leq m-k$, we know:
+
+	% 	$$-2b_i\sum\limits_{\begin{smallmatrix}
+	% 	I \in \mathcal{I} \suchthat \\ i \in I
+	% 	\end{smallmatrix}}\hspace{-0.8em}\left(\prod\limits_{
+	% 	J \in \mathcal{I} - \{I\}} \left(\sum\limits_{j \in J}(1 - b_j^2)\right)\right) = \nabla f(b) \cdot e_i = 0$$\retTwo
+
+	% 	Since the ugly term after $-2b_i$ is zero only when $b$ has $m - n$ many coordinates other than $b_i$ equal to $\pm$, we only need to consider the case that $b_i = 0$ for all $i \in \{1, \ldots, m-k\}$. However, note that we must also have that $\nabla f(b) \cdot b = 0$.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
