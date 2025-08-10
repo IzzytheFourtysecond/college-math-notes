@@ -125,6 +125,10 @@
    \color{RedViolet}%
    \fontsize{13}{15}\selectfont%
 }
+\newcommand{\exThreeP}{%
+   \color{RedViolet}%
+   \fontsize{12}{14}\selectfont%
+}
 \newcommand{\exPP}{%
    \color{RedViolet}%
    \fontsize{12}{14}\selectfont%
@@ -237,6 +241,7 @@
 \newcommand{\BV}{\mathrm{BV}}
 
 \newcommand{\Alt}{\mathrm{Alt}}
+\newcommand{\Sym}{\mathrm{Sym}}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -4211,7 +4216,7 @@ Why did I take this pivot? The reason is that now all of Munkres theorems from c
 I'm now going to switch over to following Guillemin's \ul{Differential Forms} since I was recommended this book by another tutor. Once again, I'm not going to perfectly follow the book. But I will be using the book as a loose guide.\retTwo
 
 \blab{Tensors:}\\
-Let $V$ be an $n$-dimensional vector spaces over the field $F$. Let $V^k$ be the set of all $k$-tuples of elements of $V$. Then a function $T: V^K \to F$ is said to be \udefine{linear in its $i$th. variable} if for all $u, v_1, \ldots, v_k \in V$ and $a, b \in F$, we have that:
+Let $V$ be an $n$-dimensional vector space over a field $F$. Let $V^k$ be the set of all $k$-tuples of elements of $V$. Then a function $T: V^K \to F$ is said to be \udefine{linear in its $i$th. variable} if for all $u, v_1, \ldots, v_k \in V$ and $a, b \in F$, we have that:
 
 {\centering\begin{tabular}{l}
 	$T(v_1, \ldots, v_{i-1}, av_i + bu, v_{i+1}, \ldots, v_k)$\\ [2pt]
@@ -4387,7 +4392,7 @@ Finally, suppose $B: U \to V$ is another linear map. Then $(AB)^\dag T = B^\dag(
 \end{myIndent}
 
 \hOne\blab{Alternating $k$-Tensors:}\\
-Let $V$ be an $n$-dimensional vector space over the field $F$ and $S_k$ be the symmetric group over $\{1, \ldots, k\}$. For $\sigma \in S_k$ and $T \in \mathcal{L}^k(V)$, we define $T^\sigma \in \mathcal{L}^k(V)$ by:
+Let $V$ be an $n$-dimensional vector space over a field $F$ with characteristic $\neq 2$ and $S_k$ be the symmetric group over $\{1, \ldots, k\}$. For $\sigma \in S_k$ and $T \in \mathcal{L}^k(V)$, we define $T^\sigma \in \mathcal{L}^k(V)$ by:
 
 {\centering $T^\sigma(v_1, \ldots, v_k) = T(v_{\sigma^{-1}(1)}, \ldots, v_{\sigma^{-1}(k)})$ \retTwo\par}
 
@@ -4500,11 +4505,11 @@ Then the \udefine{alternation operation} has the following properties:\\
 		And since $\sgn(\sigma)\Alt(T) = (\Alt(T))^\sigma$ by part (a), we know $\Alt(T^\sigma) = (\Alt(T))^\sigma$.\retTwo
 	\end{myIndent}
 
-	\item[(d)] The map $\Alt: \mathcal{L}^k(V) \to \mathcal{L}^k(V)$ defined by $T \mapsto \Alt(T)$ is a linear map.
+	\item[(d)] The map $\Alt: \mathcal{L}^k(V) \to \mathcal{L}^k(V)$ defined by $T \mapsto \Alt(T)$ is a linear map. (Also it's onto if $F$ has characteristic $0$ or $> k$.)
 	
 	\begin{myIndent}\exTwoP
 		Proof:\\
-		$\Alt$ is a linear map because it is a linear combination of a bunch of linear maps.\retTwo
+		$\Alt$ is a linear map because it is a linear combination of a bunch of linear maps. The onto property follows from part (b).\retTwo
 	\end{myIndent}
 \end{itemize}
 
@@ -4519,7 +4524,7 @@ If $I = (i_1, \ldots, i_k)$ is a multi-index of $n$ of length $k$, then we write
 
 Note that if $I$ is not repeating, then there is a unique permutation $\sigma \in S_k$ such that $I^\sigma$ is increasing.\retTwo
 
-Let $u_1, \ldots, u_n$ be a basis of the vector space $V$ over a field $F$, and let $u_1^*, \ldots, u_n^*$ be the corresponding dual basis. Now given the multi-index $I = (i_1, \ldots, i_k)$, set $u_I^* = u_{i_1}^* \otimes \cdots \otimes u_{i_k}^*$. Next define $\Psi_I = \Alt(u_I^*)$.\retTwo
+Let $u_1, \ldots, u_n$ be a basis of the vector space $V$ over a field $F$ of characteristic $\neq 2$, and let $u_1^*, \ldots, u_n^*$ be the corresponding dual basis. Now given the multi-index\\ $I = (i_1, \ldots, i_k)$, set $u_I^* = u_{i_1}^* \otimes \cdots \otimes u_{i_k}^*$. Next define $\Psi_I = \Alt(u_I^*)$.\retTwo
 
 \exOne\ul{Proposition 1.4.20:} Let $I = (i_1, \ldots, i_k)$ and $J = (j_1, \ldots, j_k)$ be multi-indices.
 \begin{itemize}
@@ -4547,18 +4552,414 @@ Let $u_1, \ldots, u_n$ be a basis of the vector space $V$ over a field $F$, and 
 	\end{myIndent}
 
 
-	\item[(c)] If $I$ and $J$ are strictly increasing, then $\Phi_I(u_{j_1}, \ldots, u_{j_k}) = \delta_{I,J}$ where $\delta$ is the Kronecker delta function.
+	\item[(c)] If $I$ and $J$ are strictly increasing, then $\Psi_I(u_{j_1}, \ldots, u_{j_k}) = \delta_{I,J}$ where $\delta$ is the Kronecker delta function.
 	
 	\begin{myIndent}\exTwoP
+		To start off, note that:
+
+		{\centering\begin{tabular}{l}
+			$\Psi_I(u_{j_1}, \ldots, u_{k_k}) = \sum\limits_{\tau \in S_k}\sgn(\tau)(u_I^*)^{\tau}(u_{j_1}, \ldots, u_{j_k})$\\ [18pt]
+
+			$\phantom{\Psi_I(u_{j_1}, \ldots, u_{k_k})} = \sum\limits_{\tau \in S_k}\sgn(\tau)(u_{i_1}^* \otimes \cdots \otimes u_{i_k}^*)^{\tau}(u_{j_1}, \ldots, u_{j_k})$\\ [18pt]
+
+			$\phantom{\Psi_I(u_{j_1}, \ldots, u_{k_k})} = \sum\limits_{\tau \in S_k}\sgn(\tau)(u_{i_{\tau(1)}}^* \otimes \cdots \otimes u_{i_{\tau(k)}}^*)(u_{j_1}, \ldots, u_{j_k})$\\ [18pt]
+
+			$\phantom{\Psi_I(u_{j_1}, \ldots, u_{k_k})} = \sum\limits_{\tau \in S_k}\sgn(\tau)u_{i_{\tau(1)}}^*(u_{j_1})\cdots u_{i_{\tau(k)}}^*(u_{j_k})$\\ [18pt]
+		\end{tabular}\retTwo\par}
+
+		Now it's clear that $u_{i_{\tau(1)}}^*(u_{j_1})\cdots u_{i_{\tau(k)}}^*(u_{j_k}) = \delta_{I^\tau, J}$. Also, since both $J$ and $I$ are strictly increasing and also since there is only one permutation such that $I^\sigma$ is strictly increasing for any nonrepeating $I$, we know that $\delta_{I^\tau, J} = 1$ iff $\tau = \myId$ and $I = J$. And in that case $\sgn(\tau) = 1$. Hence: 
 		
-		\retTwo
+		{\centering $\sum\limits_{\tau \in S_k}\sgn(\tau)u_{i_{\tau(1)}}^*(u_{j_1})\cdots u_{i_{\tau(k)}}^*(u_{j_k}) = \delta_{I,J}$.\retTwo\par}
 	\end{myIndent}
 \end{itemize}
 
+\ul{Proposition 1.4.24:} Suppose $F$ has characteristic $0$ or greater than $k$. Then\\ $\{\Psi_J : J \text{ is increasing}\}$ is a basis for $\mathcal{A}^k(V)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Suppose $T \in \mathcal{A}^k(V)$. By theorem 1.3.13, we know there exists $a_I \in F$ such that $T = \sum_{I} a_I u_I^*$. However, we also know that $k!T = \Alt(T)$. Since $\Alt$ is a linear map, we thus know that:
+
+	{\centering $T = \frac{1}{k!}\Alt(T) = \sum\limits_I \frac{a_I}{k!} \Alt(u_I^*) = \sum\limits_I \frac{a_I}{k!} \Psi_I$\newpage\par}
+
+	If $I$ is repeating, then $\frac{a_I}{k!} \Psi_I^*$  cancels. Otherwise, there is some $\sigma \in S_k$ and some increasing multi-index $J$ such that:
+	
+	{\centering $\frac{a_I}{k!} \Psi_I = \frac{a_I}{k!} \Psi_{J^\sigma} = \frac{a_I\sgn(\sigma)}{k!} \Psi_{J}$.\retTwo\par}
+
+	By collecting terms, we get that $T = \hspace{-1em}\sum\limits_{J \text{ increasing}}\hspace{-1em}c_J\Phi_J$ where each $c_J \in F$.\retTwo
+
+	This shows that the $\Psi_J$ span all of $\mathcal{A}^k(V)$. Next we show that they form a basis.\\ Suppose $T = \hspace{-1em}\sum\limits_{J \text{ increasing}}\hspace{-1em}c_J\Phi_J = 0$.\retTwo
+
+	Then by part (c) of the last proposition, we know that if $I = (i_1, \ldots, i_k)$ is an\\ increasing multi-index, then:
+
+	{\centering $0 = T(u_{i_1}, \ldots, u_{i_k}) = C_I$ \retTwo\par}
+
+	So, all the $C_I$ are equal to $0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} If $F$ has characteristic $0$ or greater than $k$, then $\mathcal{A}^k(V)$ has dimension $\binom{n}{k}$.\retTwo
+
+\ul{Corollary 2:} If $F$ has characteristic $0$ or greater than $k \geq n$, then any alternating $n$-tensor on $V$ is a scalar multiple of the determinant function. Also, there are no nontrivial alternating $m$-tensors where $n < m \leq k$.\retTwo
+
+\pracOne\ul{Exercise 1.4.ix:} Suppose $A: V \to W$ is a linear map. Then if $T \in \mathcal{A}^k(W)$, we have that $A^\dag T \in \mathcal{A}^k(V)$. Hence, the pullback operation maps alternating tensors to alternating tensors.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Suppose $\sigma \in S_k$. Then for any $v_1, \ldots, v_k \in V$, we have that:
+
+	{\centering\begin{tabular}{l}
+		$(A^\dag T)^\sigma(v_1, \ldots, v_k) = A^\dag T(v_{\sigma^{-1}(1)}, \ldots, v_{\sigma^{-1}(k)})$\\ [6pt]
+
+		$\phantom{(A^\dag T)^\sigma(v_1, \ldots, v_k)} = T(Av_{\sigma^{-1}(1)}, \ldots, Av_{\sigma^{-1}(k)})$\\ [6pt]
+
+		$\phantom{(A^\dag T)^\sigma(v_1, \ldots, v_k)} = T^\sigma(Av_1, \ldots, Av_k)$\\ [6pt]
+
+		$\phantom{(A^\dag T)^\sigma(v_1, \ldots, v_k)} = \sgn(\sigma)T(Av_1, \ldots, Av_k) = \sgn(\sigma)A^\dag T(v_1, \ldots, v_k)$
+	\end{tabular}\retTwo\par}
+
+	Hence, $(A^\dag T)^\sigma = \sgn(\sigma)A^\dag T$. This proves that $A^\dag T$ is alternating. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Exercise 1.4.x:} Additionally to the last exercise, we have that if $T \in \mathcal{L}^k(V)$, then\\ $A^\dag(\Alt(T)) = \Alt(A^\dag T)$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	If $v_1, \ldots, v_k \in V$, then:
+
+	{\centering\begin{tabular}{l}
+		$\Alt(A^\dag T)(v_1, \ldots, v_k) = \sum\limits_{\tau \in S_k}\sgn(\tau)(A^\dag T )^\tau(v_1, \ldots, v_k)$\\ [16pt]
+
+		$\phantom{\Alt(A^\dag T)(v_1, \ldots, v_k)} = \sum\limits_{\tau \in S_k}\sgn(\tau)A^\dag T(v_{\tau^{-1}(1)}, \ldots, v_{\tau^{-1}(k)})$\\ [16pt]
+
+		$\phantom{\Alt(A^\dag T)(v_1, \ldots, v_k) } = \sum\limits_{\tau \in S_k}\sgn(\tau)T(Av_{\tau^{-1}(1)}, \ldots, Av_{\tau^{-1}(k)})$\\ [-24pt]
+
+		$\phantom{\Alt(A^\dag T)(v_1, \ldots, v_k) = \Alt(T)(Av_1, \ldots, Av_k) = A^\dag(\Alt (T))(v_1, \ldots, v_k)}$
+	\end{tabular}\newpage
+	
+	\begin{tabular}{l}
+		$\phantom{\Alt(A^\dag T)(v_1, \ldots, v_k)} = \sum\limits_{\tau \in S_k}\sgn(\tau)T^\tau(Av_1, \ldots, Av_k)$\\ [16pt]
+
+		$\phantom{\Alt(A^\dag T)(v_1, \ldots, v_k) } = \Alt(T)(Av_1, \ldots, Av_k) = A^\dag(\Alt (T))(v_1, \ldots, v_k)$
+	\end{tabular}\retTwo\par}
+
+	This shows that $\Alt(A^\dag T) =  A^\dag(\Alt (T))$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne\blab{The space $\Lambda^k(V^*)$:}\\
+If $k > 1$, a decomposable $k$-tensor $\ell_1 \otimes \cdots \otimes \ell_k$ with each $\ell_i \in V^*$ is called \udefine{redundant} if $\ell_i = \ell_{i+1}$ for some index $i$. We let $\mathcal{I}^k(V)$ be the span of all redundant $k$-tensors.
+
+\begin{myIndent}\hTwo 
+	If $k = 1$, we define $\mathcal{I}^1(V) \coloneq \{0\} \subseteq \mathcal{L}^1(V)$.\\ Also if $k = 0$, we define $\mathcal{I}^0(V) \coloneq \{0\} \subseteq F$.\retTwo 
+\end{myIndent}
+
+\exOne\ul{Proposition 1.5.2:} Suppose $F$ has characteristic $\neq 2$. If $T \in \mathcal{I}^k(V)$, then $\Alt(T) = 0$. In other words, $\mathcal{I}^k(V) \subseteq \ker(\Alt)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	If $T \in \mathcal{I}^k(V)$, then we know there are redundant decomposable $k$-tensors\\ $T_1, \ldots, T_m$ as well as scalars $c_1, \ldots, c_m \in F$ such that $T = \sum_{j=1}^m c_jT_j$. Then since\\ $\Alt(T) = \sum_{j=1}^m c_j\Alt(T_j)$, all we need to do now is show that $\Alt(T_j) = 0$ for\\ every $j$.\retTwo
+
+	Since $T_j$ is a redundant decomposable $k$-tensor, we know that $T_j = \ell_1 \otimes \cdots \otimes \ell_k$ where $\ell_i = \ell_{i+1}$ for some $1 \leq i < k$. In turn, if $\tau_{i, i+1} \in S_k$ is the transposition of $i$ and $i+1$, we have that $(T_j)^{\tau_{i,i+1}} = T_j$ and $\sgn(\tau_{i, i+1}) = -1$. Hence:
+
+	{\centering$\Alt(T_j) = \Alt((T_j)^{\tau_{i, i+1}}) = \sgn(\tau_{i,i+1})\Alt(T_j) = -\Alt(T_j)$\retTwo\par}
+
+	This implies that $\Alt(T_j) = 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 1.5.3:} If $T \in \mathcal{I}^r(V)$ and $T^\prime \in \mathcal{L}^s(V)$, then $T \otimes T^\prime$ and $T^\prime \otimes T$ are in $\mathcal{I}^{r+s}(V)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	The argument for $T^\prime \otimes T$ being in $\mathcal{I}^{r+s}(V)$ is mostly identical to the argument for $T \otimes T^\prime$  being in $\mathcal{I}^{r+s}(V)$. So, I'll focus only on proving the latter.\retTwo
+
+	To start off, like before we know that there are redundant decomposable $r$-tensors $T_1, \ldots, T_m$ as well as scalars $c_1, \ldots, c_m \in F$ such that $T = \sum_{j=1}^m c_jT_j$. Hence, it suffices to show that $T_j \otimes T^\prime \in \mathcal{I}^{r+s}(V)$ for all $1 \leq j \leq m$ since:
+
+	{\center$T \otimes T^\prime = (\sum_{j=1}^m c_jT_j) \otimes T^\prime = \sum_{j=1}^m c_j (T_j \otimes T^\prime)$\retTwo\par}
+
+	Fortunately, by writing $T^\prime = \sum_{I} d_Iu_I^*$, we can see that:
+
+	{\centering $T_j \otimes T^\prime = T_j \otimes (\sum\limits_{I} d_I u_I^*) = \sum\limits_{I} d_I(T_j \otimes u_I^*)$\retTwo\par}
+
+	Now since both $u_I^*$ and $T_j$ are decomposable and $T_j$ is redundant, we can easily see that $T_j \otimes u_I^*$ is decomposable and redundant. It follows that $T_j \otimes T^\prime \in \mathcal{I}^{r+s}(V)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 1.5.4:} Suppose $F$ has characteristic $\neq 2$. If $T \in \mathcal{L}^k(V)$ and $\sigma \in S_k$, then $T^\sigma = \sgn(\sigma)T + S$ where $S \in \mathcal{I}^k(V)$.\newpage
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Hopefully you're getting use to this trick. It suffices to assume $T$ is decomposable. After all, after writing $T = \sum_{I} c_Iu_I^*$, if we can show for all multi-indexes $I$ that $(u_{I}^*)^\sigma = \sgn(\sigma)u_{I}^* + S_I$ where $S_I \in \mathcal{I}^k(V)$, then we can set $S = \sum_{I} c_I S_I \in \mathcal{I}^k(V)$ and have that:
+
+	{\centering $T^\sigma = \sum\limits_{I} c_I (u_I^*)^\sigma = \sgn(\sigma)\sum\limits_{I} c_I u_I^* + \sum\limits_{I} S_I = \sgn(\sigma)T + S$\retTwo\par}
+	
+	So suppose $T = \ell_1 \otimes \cdots \otimes \ell_k$. Then given $\sigma \in S^k$, we can write $\sigma = \tau_1 \ldots \tau_m$ as the product of $m$ many transpositions of adjacent pairs of numbers in $\{1, \ldots, k\}$.
+	\begin{myIndent}\exPPP
+		(by adjacent I mean a pair $\{j, j+1\}$ where $1 \leq j < k$\dots)\retTwo
+	\end{myIndent}
+
+	We shall induct on $m$. First assume $m = 1$. Thus $\sigma = \tau_{j,j+1}$ for some $1 \leq j < k$ and hence $\sgn(\sigma) = -1$. Also:
+
+	{\centering\begin{tabular}{l}
+		$T^\sigma -\sgn(\sigma)T = T^\sigma + T$\\ [3pt]
+
+		$\phantom{T^\sigma -\sgn(\sigma)T} = (\ell_1 \otimes \cdots \otimes \ell_{j-1} \otimes \ell_{j+1} \otimes \ell_{j} \otimes \ell_{j+2} \otimes \cdots \otimes \ell_{k}) + (\ell_1 \otimes \cdots \otimes \ell_k)$\\ [3pt]
+
+		$\phantom{T^\sigma -\sgn(\sigma)T} = (\ell_1 \otimes \cdots \otimes \ell_{j-1}) \otimes \left((\ell_{j+1} \otimes \ell_j) + (\ell_j \otimes \ell_{j+1})\right) \otimes (\ell_{j+2} \otimes \cdots \otimes \ell_{k})$
+	\end{tabular}\retTwo\par}
+
+	Now note that:
+
+	{\centering\begin{tabular}{l}
+		$(\ell_{j} + \ell_{j+1}) \otimes (\ell_{j} + \ell_{j+1}) = (\ell_j \otimes \ell_j) + (\ell_j \otimes \ell_{j+1}) + (\ell_{j+1} \otimes \ell_j) + (\ell_{j+1} \otimes \ell_{j+1})$.
+	\end{tabular}\retTwo\par}
+
+	Therefore:
+
+	{\centering\begin{tabular}{l}
+		$T^\sigma - \sgn(\sigma)T = (\ell_1 \otimes \cdots \otimes \ell_{j-1}) \otimes (\ell_j + \ell_{j+1}) \otimes (\ell_j + \ell_{j+1}) \otimes (\ell_{j+1} \otimes \cdots \otimes \ell_{k})$\\
+		$\phantom{T^\sigma - \sgn(\sigma)T = aaaaaaaaaaa} - (\ell_1 \otimes \cdots \otimes \ell_{j-1}) \otimes \ell_j \otimes \ell_j \otimes (\ell_{j+2} \otimes \cdots \otimes \ell_{k})$\\
+		$\phantom{T^\sigma - \sgn(\sigma)T = aaaaaaaaaaa} - (\ell_1 \otimes \cdots \otimes \ell_{j-1}) \otimes \ell_{j+1} \otimes \ell_{j+1} \otimes (\ell_{j+2} \otimes \cdots \otimes \ell_{k})$\\
+	\end{tabular}\retTwo\par}
+
+	Hence $T^\sigma - \sgn(\sigma)T \in \mathcal{I}^k(V)$ and we are done with this case.\retTwo
+
+	Now suppose $m > 1$. Then $\sigma = \tau_{j,j+1} \sigma^\prime$ where $\sigma^\prime$ is the product of $m-1$\\ transpositions. By induction, we know that there exists $S_1 \in \mathcal{I}^k(V)$ such that:
+
+	{\centering $T^\sigma = (T^{\tau_{j,j+1}})^{\sigma^\prime} = \sgn(\sigma^\prime)T^{\tau_{j,j+1}} + S_1$ \retTwo\par}
+
+	Also by our base case, there is $S_2 \in \mathcal{I}^k(V)$ such that $T^{\tau_{j,j+1}} = \sgn(\tau_{j,j+1})T + S_2$. Then setting $S = \sgn(\tau_{j,j+1})S_2 + S_1$, we have that $S \in \mathcal{I}^K(V)$ and:
+
+	{\centering $T^\sigma = \sgn(\sigma^\prime)(\sgn(\tau_{j,j+1})T + S_2) + S_1 = \sgn(\sigma)T + S$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\ul{Corollary 1.5.6:} Suppose $F$ has characteristic $\neq 2$. If $T \in \mathcal{L}^k(V)$, then\\ $\Alt(T) = k!T + S$ where $S \in \mathcal{I}^k(V)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Given any $\tau \in S_k$, let $S_\tau \in \mathcal{I}^k(V)$ be such that $T^\tau = \sgn(\tau) T + S_\tau$. Then\\ $S \coloneq \sum_{\tau \in S_k} \sgn(\tau)S_\tau \in \mathcal{I}^k(V)$ and:
+
+	{\center $\Alt(T) = \sum\limits_{\tau \in S_k}\sgn(\tau)T^\tau = \sum\limits_{\tau \in S_k} (\sgn(\tau))^2 T + \sum\limits_{\tau \in S_k} \sgn(\tau)S_{\tau} = k!T + S$. $\blacksquare$ \retTwo\par}
+\end{myIndent}
+
+\ul{Corollary 1.5.8:} Let $k \geq 1$. Then let $V$ be a vector space over a field $F$ of\\ characteristic $0$ or $> \max(k, 2)$. Then:
+
+{\centering $\mathcal{I}^k(V) = \ker(\Alt: \mathcal{L}^k(V) \to \mathcal{A}^k(V))$ \retTwo\par}
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	We already know from proposition 1.5.2 that $\mathcal{I}^k(V) \subseteq \ker(\Alt)$. To prove the\\ reverse relation, suppose $T \in \mathcal{L}^k(V)$ satisfies that $\Alt(T) = 0$. Then based on the previous corollary, we know there exists $S \in \mathcal{I}^k(V)$ such that $-\frac{1}{k!}S = T - \Alt(T)$. Hence $T \in \mathcal{I}^k(V)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 1.5.9:} Suppose $F$ is a field of characteristic $0$ or $> \max(k, 2)$. Then any element $T \in \mathcal{L}^k(V)$ can be written uniquely as a sum $T_1 + T_2$ where $T_1 \in \mathcal{A}^k(V)$ and $T_2 \in \mathcal{I}^k(V)$. I.e, $\mathcal{L}^k(V) = \mathcal{A}^k(V) \oplus \mathcal{I}^k(V)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Let $W \in \mathcal{I}^k(V)$ satisfy that $\Alt(T) = k!T + W$. Then set $T_1 = \frac{1}{k!}\Alt(T)$ and\\ $T_2 = -\frac{1}{k!}W$. Then clearly $T = T_1 + T_2$ with $T_1 \in \mathcal{A}^k(V)$ and $T_2 \in \mathcal{I}^k(V)$.\retTwo
+
+	Next, to prove uniqueness suppose $T^\prime_1 + T^\prime = T$ with $T^\prime_1 \in \mathcal{A}^k(V)$ and $T^\prime_2 \in \mathcal{I}^k(V)$. Then $T_1 - T^\prime_1 \in \mathcal{A}^k(V)$, $T_2 - T^\prime_2 \in \mathcal{I}^k(V)$, and $(T_1 - T^\prime_1) + (T_2 - T_2^\prime) = 0$. So:
+
+	{\center $0 = \Alt(0) = \Alt((T_1 - T^\prime_1) + (T_2 - T_2^\prime)) = k!(T_1 - T^\prime_1)$ \retTwo\par}
+
+	Hence $T_1 = T^\prime_1$ and it easily follows $T_2 = T^\prime_2$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne Let $k \geq 0$. Let $V$ be a finite dimensional vector space over a field $F$ of characteristic $0$ or $> \max(k, 2)$. Then we define:
+
+{\centering $\Lambda^k(V^*) \coloneq \mathcal{L}^k(V) / \mathcal{I}^k(V)$ \retTwo\par}
+
+By the first isomorphism theorem along with the previous theorem, we have that $\Lambda^k(V^*) \cong \mathcal{A}^k(V)$.\retTwo
+
+\dispDate{8/8/2025}
+
+Here is a tangent  about symmetric tensors. For this section, suppose $V$ is an\\ $n$-dimensional vector space over a field $F$ with characteristic $\neq 2$.\retTwo
+
+A tensor $T \in \mathcal{L}^k(V)$ is \udefine{symmetric} if $T^\sigma = T$ for all $\sigma \in S_k$. We denote the space of\\ symmetric tensors $\mathcal{S}^k(V)$.
+\begin{myIndent}\hTwo
+	You can show by the same reasoning as with $\mathcal{A}^k(V)$ that $\mathcal{S}^k(V)$ is a vector subspace.\retTwo
+\end{myIndent}
+
+\pracOne\ul{Exercise 1.5.iii:} Suppose $F$ has characteristic $0$ or $> k$. Then if $T$ is a symmetric $k$-tensor and $k \geq 2$, we have that $T \in \mathcal{I}^k(V)$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Let $\sigma \in S_k$ be an odd permutation. Then by proposition 1.4.17:
+	
+	{\centering $\Alt(T) = \Alt(T^\sigma) = \sgn(\sigma)\Alt(T) = -\Alt(T)$.\newpage\par}
+
+	The only way this is possible is if $\Alt(T) = 0$. Hence $T \in \ker(\Alt)$, and by theorem 1.5.8 that means that $T \in \mathcal{I}^k(V)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne We define a \udefine{symmetrization} operator as follows. Given $T \in \mathcal{L}^k(V)$, define:
+
+{\centering $\Sym(T) \coloneqq \sum\limits_{\sigma \in S_k} T^\sigma$ \retTwo\par}
+
+Then like in proposition 1.4.17, we can show that given any $T \in \mathcal{L}^k(V)$ and $\sigma \in S_k$:
+\begin{itemize}\hTwo
+	\item[(a)] $(\Sym(T))^\sigma = \Sym(T)$ (i.e. $\Sym(T) \in \mathcal{S}^k(V)$\dots)
+	\item[(b)] If $T \in \mathcal{S}^k(V)$, then $\Sym(T) = k!T$
+	\item[(c)] $\Sym(T^\sigma) = \Sym(T)$
+	\item[(d)] $\Sym: \mathcal{L}^k(V) \to \mathcal{A}^k(V)$ is an linear map (which is surjective so long as $k! \neq 0$ in the field $F$\dots).\retTwo 
+\end{itemize}
+
+Supposing $k! \neq 0$ in $F$, then by following a process very similar to what we did with the alternation operation, we can construct a basis for the symmetric tensors:
+
+{\centering$\{\Phi_I^*: I \text{ is a non-decreasing multi-index}\}$.\retTwo\par}
+
+\begin{myDindent}\pracTwo
+	Note: By non-decreasing the textbook means that $I = (i_1, \ldots, i_k)$ satisfies that\\ $i_1 \leq i_2 \leq \cdots \leq i_k$.\retTwo
+\end{myDindent}
+
+I'm bored and won't do that construction here. But the important point is that this means $\mathcal{S}^k(V)$ has the same number of dimensions as there are non-decreasing multi-indexes of $n$ of length $k$. And since there are $\binom{n+k-1}{k}$ ways of picking $k$\\ elements of the set $\{1, \ldots, n\}$ when you allow yourself to pick the same element multiple times, this means that $\dim(\mathcal{S}^k(V)) = \binom{n+k-1}{k}$.
+
+\begin{myIndent}\pracOne
+	Side note: If $k! \neq 0$ in $F$, then we have already shown that $\dim(\mathcal{I}^k(V)) = n^k - \binom{n}{k}$. Since $\mathcal{S}^k(V) \subseteq \mathcal{I}^k(V)$, this shows that $\mathcal{S}^2(V) = \mathcal{I}^2(V)$. That said, we don't in general have that $\dim(\mathcal{I}^k(V)) = \dim(\mathcal{S}^k(V))$ when $k > 2$.\retTwo
+\end{myIndent}
+
+Next, here's some other miscellaneous results.\retTwo
+
+\pracOne\ul{Exercise 1.5.vii:} Suppose $F$ has characteristic $0$ or $> \max(k, 2)$. Then if $T \in \mathcal{I}^k(V)$, we have that $T^\sigma \in \mathcal{I}^k(V)$ for all $\sigma \in S_k$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Since $T \in \mathcal{I}^k(V)$, we know that: $\Alt(T^\sigma) = \sgn(\sigma)\Alt(T) = 0$. Therefore,\\ $T^\sigma \in \ker(\Alt)$, and by corollary 1.5.8 we know that $\ker(\Alt) = \mathcal{I}^k(V)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne\ul{Corollary / Exercise 1.5.v:} Let $k \geq 2$ and suppose $F$ has characteristic $0$ or $> k$. Then if\\ $T \in \mathcal{L}^{k-2}(V)$ and $\ell \in V^*$, we have that $\ell \otimes T \otimes \ell \in \mathcal{I}^k(V)$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	There is a permutation $\sigma \in S_k$ satisfying that $(\ell \otimes T \otimes \ell)^\sigma = (\ell \otimes \ell) \otimes T$. Then by proposition 1.5.3, we have that $(\ell \otimes \ell) \otimes T \in \mathcal{I}^k(V)$. And finally, by applying the last exercise we have that $\ell \otimes T \otimes \ell = ((\ell \otimes \ell) \otimes T)^{\sigma^{-1}} \in \mathcal{I}^k(V)$. $\blacksquare$\newpage
+\end{myIndent}
+
+\pracOne\ul{Corollary / Exercise 1.5.vi:} Let $k \geq 2$ and suppose $F$ has characteristic $0$ or $> k$. Then if\\ $T \in \mathcal{L}^{k-2}(V)$ and $\ell_1, \ell_2 \in V^*$, we have that $(\ell_1 \otimes T \otimes \ell_2) + (\ell_2 \otimes T \otimes \ell_1) \in \mathcal{I}^k(V)$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Apply the last exercise plus the fact that:
+
+	{\centering\begin{tabular}{l}
+	$(\ell_1 \otimes T \otimes \ell_2) + (\ell_2 \otimes T \otimes \ell_1) = ((\ell_1 + \ell_2) \otimes T \otimes (\ell_1 + \ell_2))$\\
+	$\phantom{(\ell_1 \otimes T \otimes \ell_2) + (\ell_2 \otimes T \otimes \ell_1)aaaa} - (\ell_1 \otimes T \otimes \ell_1) - (\ell_2 \otimes T \otimes \ell_2)$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\hOne\dispDate{8/9/2025}
+
+\blab{The Wedge Product:}\\
+In this section, we'll suppose $V$ is an $n$-dimensional vector space over a field $F$\\ of characteristic $0$. Also, we shall for each $k$ define the map $\pi: \mathcal{L}^k(V) \to \Lambda^k(V^*)$\\ such that $\pi(T) = T + \mathcal{I}^k(V)$ for all $T \in \mathcal{L}^k(V)$.\retTwo
+
+Suppose for each $i \in \{1, 2\}$ we have $\omega_i \in \Lambda^{k_i}(V^*)$. Then if for each $i$ we are given $T_i \in \mathcal{L}^{k_i}(V)$ satisfying that $\pi(T_i) = \omega_i$, we define:
+
+{\centering $\omega_1 \wedge \omega_2 \coloneqq \pi(T_1 \otimes T_2)$.\retTwo\par}
+
+\exOne\ul{Claim 1.6.3:} The wedge product is well defined. 
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Suppose for each $i \in \{1,2\}$ that we also have $T_i^\prime \in \mathcal{L}^{k_i}(V)$ satisfying that\\ $\pi(T_i^\prime) = \pi(T_i) = \omega_i$. Then for each $i$ there exists $W_i \in \mathcal{I}^k(V)$ such that\\ $T_i^\prime = T_i + W_i$. Hence:
+
+	{\centering$\pi(T_1^\prime \otimes T_2^\prime) = \pi((T_1 \otimes T_2) + (T_1 \otimes W_2) + (W_1 \otimes T_2) + (W_1 \otimes W_2))$\retTwo\par}
+
+	Then by applying proposition 1.5.3, we know that:
+	
+	{\centering$(T_1 \otimes W_2) + (W_1 \otimes T_2) + (W_1 \otimes W_2) \in\mathcal{I}^k(V)$\retTwo\par}
+
+	Hence, $\pi(T_1^\prime \otimes T_2^\prime) = \pi(T_1 \otimes T_2)$. $\blacksquare$
+	\retTwo
+\end{myIndent}
+
+\hOne More generally, if for each $i \in \{1, \ldots, m\}$ we have $\omega_i \in \Lambda^{k_i}(V^*)$ and $T_i \in \mathcal{L}^{k_i}(V)$ satsifying that $\pi(T_i) = \omega_i$, then we define:
+
+{\centering $\omega_1 \wedge \cdots \wedge \omega_m \coloneq \pi(T_1 \otimes \cdots \otimes T_m)$\retTwo\par}
+
+\begin{myIndent}\exTwoP
+	This is well defined for basically the same reasoning as before, although to avoid some overly long expressions, it suffices to replace only one tensor at a time.\retTwo
+\end{myIndent}
+
+\exOne\ul{Claim:} Given any $m \geq 3$, we have that:
+
+{\centering$\omega_1 \wedge (\omega_2 \wedge \cdots \wedge \omega_{m}) = \omega_1 \wedge \cdots \wedge \omega_m = (\omega_1 \wedge \cdots \wedge \omega_{m-1}) \wedge \omega_m$\retTwo\par}
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	If for each $i \in \{1, \ldots, m\}$ we have some $T_i \in \mathcal{L}^{k_i}(V)$ satisfying that $\pi(T_i) = \omega_i$, then $\pi(T_2 \otimes \cdots \otimes T_{m}) = \omega_2 \wedge \cdots \wedge \omega_{m}$ and $\pi(T_1 \otimes \cdots \otimes T_{m-1}) = \omega_1 \wedge \cdots \wedge \omega_{m-1}$. In turn:
+
+	{\centering \begin{tabular}{l}
+		$\omega_1 \wedge \cdots \wedge \omega_m = \pi(T_1 \otimes \cdots \otimes T_m)$\\
+
+		$\phantom{\omega_1 \wedge \cdots \wedge \omega_m} = \pi(T_1 \otimes (T_2 \otimes \cdots \otimes T_m)) = \omega_1 \wedge (\omega_2 \wedge \cdots \wedge \omega_{m})$\\
+
+		$\phantom{\omega_1 \wedge \cdots \wedge \omega_m} = \pi((T_1 \otimes \cdots \otimes T_{m-1}) \otimes T_m) = (\omega_1 \wedge \cdots \wedge  \omega_{m-1}) \wedge \omega_m$
+	\end{tabular}\newpage\par}
+\end{myIndent}
+
+\ul{Corollary:} The wedge product is associative and we get the same result no matter how we use parentheses to group together the $\omega_i$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Suppose we have $\omega_1, \ldots, \omega_m$. If $m = 3$, then we're already done by the last claim. Meanwhile, for $m > 3$ is suffices due to the strong inductive hypothesis on $m$ to show that for any $r \in \{1, \ldots, m-1\}$:
+
+	{\centering $\omega_1 \wedge \cdots \wedge \omega_m = (\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m)$ \retTwo\par}
+
+	Luckily, note that by the previous claim as well as our inductive hypothesis:
+
+	{\centering\begin{tabular}{l}\HexTwoP
+		$(\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m) = ((\omega_1 \wedge \cdots \wedge \omega_r) \wedge \omega_{r+1} \wedge \cdots \wedge \omega_{m-1}) \wedge \omega_m$\\
+
+		$\phantom{(\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m)} = (\omega_1 \wedge \cdots   \wedge \omega_{m-1}) \wedge \omega_m$\\
+
+		$\phantom{(\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m)} = \omega_1 \wedge \cdots  \wedge \omega_m$. $\blacksquare$
+	\end{tabular} \retTwo\par}
+\end{myIndent}
+
+\hOne Here are some other properties of the wedge product which I'm too bored to\\ properly prove:
+\begin{itemize}
+	\item If $\lambda \in F$, then $\lambda (\omega_1 \wedge \omega_2) = (\lambda \omega_1) \wedge \omega_2 = \omega_1 \wedge (\lambda \omega_2)$.
+	\item $(\omega_1 + \omega_2) \wedge \omega_3 = (\omega_1 \wedge \omega_3) + (\omega_2 \wedge \omega_3)$
+	\item $\omega_1 \wedge (\omega_2 + \omega_3) = (\omega_1 \wedge \omega_2) + (\omega_1 \wedge \omega_3)$\retTwo
+\end{itemize}
+
+\begin{myDindent}\pracOne
+	Side note: if we were instead writing the definition of the wedge product in terms of alternating tensors, we'd be defining:
+	
+	{\centering$T_1 \wedge \cdots \wedge T_m = \frac{1}{(k_1 + \ldots + k_m)!}\Alt(T_1 \otimes \cdots \otimes T_m)$.\retTwo\par}
+
+	Hopefully its obvious why this definition is inferior.\retTwo
+\end{myDindent}
+
+Note that since $\mathcal{I}^1(V) = \{0\}$, we can just identify $\Lambda^1(V^*) = V^*$. Then given $\ell_1, \ldots, \ell_k \in V^* = \Lambda^1(V^*)$, we say that $\omega = \pi(\ell_1 \otimes \cdots \otimes \ell_k) = \ell_1 \wedge \cdots \wedge \ell_k$ is a \udefine{decomposable} element of $\Lambda^k(V^*)$.\retTwo
+
+\exOne\ul{Claim:} For any $\sigma \in S_k$, we have: $\ell_{\sigma(1)} \wedge \cdots \wedge \ell_{\sigma(k)} = \sgn(\sigma)\ell_1 \wedge \cdots \wedge \ell_k$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	\ul{Lemma:} If $T \in \mathcal{L}^k(V)$ and $\sigma \in S_k$, then $\pi(T^\sigma) = \sgn(\sigma)\pi(T)$.
+	\begin{myIndent}\exPPP
+		This is just a consequence of proposition 1.5.4.\retTwo
+	\end{myIndent}
+
+	As a result of that lemma:
+	
+	{\centering\begin{tabular}{l}
+		$\ell_{\sigma(1)} \wedge \cdots \wedge \ell_{\sigma(k)} = \pi(\ell_{\sigma(1)} \otimes \cdots \otimes \ell_{\sigma(k)})$\\
+		$\phantom{\ell_{\sigma(1)} \wedge \cdots \wedge \ell_{\sigma(k)}} = \pi((\ell_{1} \otimes \cdots \otimes \ell_{k})^\sigma)$\\
+		$\phantom{\ell_{\sigma(1)} \wedge \cdots \wedge \ell_{\sigma(k)}} = \sgn(\sigma)\pi(\ell_1 \otimes \cdots \otimes \ell_k)$\\
+		$\phantom{\ell_{\sigma(1)} \wedge \cdots \wedge \ell_{\sigma(k)}} = \sgn(\sigma)\ell_1 \wedge \cdots \wedge \ell_k$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\hOne As a corollary, given any $\ell_1, \ell_2 \in V^*$ we have that $\ell_1 \wedge \ell_2 = -\ell_2 \wedge \ell_1$. Also more generally:
+\begin{myIndent}\exTwo
+	\ul{Theorem:} If $\omega_1 \in \Lambda^r(V^*)$ and $\omega_2 \in \Lambda^s(V^*)$, then $\omega_1 \wedge \omega_2 = (-1)^{rs}\omega_2 \wedge \omega_1$.\newpage
+
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		
+
+	
+	
+	\end{myIndent}
 
 
-
-
+	
+\end{myIndent}
 
 
 
@@ -4584,7 +4985,7 @@ Let $u_1, \ldots, u_n$ be a basis of the vector space $V$ over a field $F$, and 
 
 
 
-Proof:\\
+% Proof:\\
 	% If $m \leq n$, then the problem is trivial because we can just set all constants equal to $0$. So, it suffices to assume $m \geq n + 1$.\retTwo
 
 	% Let $U = \begin{bmatrix}
