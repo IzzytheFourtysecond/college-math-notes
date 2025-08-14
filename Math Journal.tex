@@ -5145,7 +5145,7 @@ If $f_1, f_2: X \to Y$ are continuous maps, we say $f_1$ is \udefine{homotopic} 
 
 {\centering $h(s) = \left\{\begin{matrix}
 		f(2s) & \text{for } s \in [0, \sfrac{1}{2}] \\
-		f(2s - 1) & \text{for } s \in [\sfrac{1}{2}, 1]
+		g(2s - 1) & \text{for } s \in [\sfrac{1}{2}, 1]
 \end{matrix}\right.$ \retTwo\par}
 
 \begin{myIndent}\hTwo
@@ -5168,9 +5168,9 @@ If $f: [0, 1] \to X$ is a path, let $[f]$ denote the path homotopy class of $f$.
 Recall that a groupoid is a category in which every morphism is an isomorphism (look at my old Allufi notes to see what a category is\dots). Using the product operation of path-homotopy classes, we can define a groupoid as follows:
 
 \begin{myIndent}\hTwo
-	Consider the space $X$ as a collection of objects, and for any $x_0, x_1 \in X$, let\\ $\Hom_X(x_0, x_1)$ be the collection of path homotopy classes from $x_0$ to $x_1$.\retTwo
+	Consider the space $X$ as a collection of objects, and for any $x_0, x_1 \in X$, let\\ $\Hom_X(x_0, x_1)$ be the collection of path homotopy classes from $x_0$ to $x_1$. For the law of composition, say that if $[f] \in \Hom_X(x_0, x_1)$ and $[g] \in \Hom_X(x_1, x_2)$, then $[g][f] = [f * g] \in \Hom_X(x_0, x_2)$.\retTwo
 
-	It's clear that if if $[f] \in \Hom(x_0, x_1)$ and $[g] \in \Hom(x_1, x_2)$, then\\ $[f]*[g] \in \Hom(x_0, x_2)$. Also, we claim:
+	We claim:
 	\begin{itemize}
 	\item Every point has an identity morphism (namely the homotopy class of the\\ constant map).
 	\item For any $[f] \in \Hom(x_0, x_1)$, you can reverse the path $f$ (i.e. define\\ $\bar{f}(s) \coloneqq f(1-s)$) in order to get an inverse morphism in $\Hom(x_1, x_0)$.
@@ -5199,9 +5199,79 @@ Recall that a groupoid is a category in which every morphism is an isomorphism (
 
 		To prove the second bullet point, let $\bar{i} = i(1-s)$. Then we can find a\\ homotopy $G$ from $e_0$ to $i * \bar{i}$ {\exPPP(one that works is $G(s, t) = t((i * \bar{i})(s))$)}.\retTwo
 		
-		Then for any path $f$ from $x_0$ to $x_1$, we can easily see that $e_{x_0} = f \circ e_0$,\\ $f = f \circ i$, and $\bar{f} = f \circ \bar{i}$. Hence by our two lemmas, $f \circ G$ is a homotopy between $e_{x_0} = f \circ (e_0)$ and $f * \bar{f} = (f \circ i) * (f \circ \bar{i}) = f \circ (i * \bar{i})$. Also, once again similar reasoning shows that $e_{x_1} \simeq \bar{f} * f$. This proves bullet point 2.
+		Then for any path $f$ from $x_0$ to $x_1$, we can easily see that $e_{x_0} = f \circ e_0$,\\ $f = f \circ i$, and $\bar{f} = f \circ \bar{i}$. Hence by our two lemmas, $f \circ G$ is a homotopy between $e_{x_0} = f \circ (e_0)$ and $f * \bar{f} = (f \circ i) * (f \circ \bar{i}) = f \circ (i * \bar{i})$. Also, once again similar reasoning shows that $e_{x_1} \simeq \bar{f} * f$. This proves bullet point 2.\retTwo
+
+		I'm bored. So tldr: to prove the third bullet point just note that we can apply a continuous reparametrization $k(s)$ to $((f * g) * h)(s)$ to get $(f * (g * h))(s)$. Hence, we can define a homotopy:
+		
+		{\centering $G(s, t) \coloneqq ((f * g) * h)((1-t)s + tk(s))$. $\blacksquare$\retTwo\par}
 	\end{myIndent}
 \end{myIndent}
+
+Now given a point $x_0 \in X$, define $\pi_1(X, x_0) \coloneq \End(x_0)$. This is the \udefine{fundamental\\ group} of $X$ relative to $x_0$, and it is in fact a group with respect to our product\\ operation since $X$ was a groupoid. I'm going to state the next proposition as\\ abstractly as I can cause why the hell not.\retTwo
+
+\pracOne\ul{Proposition:} Let $\mcateg{C}$ be a groupoid and let $A, B \in \Obj(\mcateg{C})$. If there exists $g \in \Hom(A, B)$, then $\End(A) \cong \End(B)$.
+
+\begin{myIndent}\pracTwo 
+	Proof:\\
+	If $f \in \End(A)$, then define $\phi(f) = gfg^{-1}$. Then it's clear that $\phi$ is a group\\ homomorphism from $\End(A)$ to $\End(B)$. To show that $\phi$ is injective, suppose $\phi(f) = e_B$ where $e_B$ is the identity morphism on $B$. Then $f = g^{-1}e_B g = g^{-1}g = e_A$ where $e_A$ is the identity morphism on $A$. Next, to show that $\phi$ is surjective, suppose $h \in \End(B)$. Then $f \coloneqq g^{-1}hg$ satisfies that $\phi(f) = h$.\retTwo
+\end{myIndent}
+
+\ul{Corollary:} If $X$ is path connected, then $\pi_1(X, x_0) \cong \pi_1(X, x_1)$ for all $x_0, x_1 \in X$.\retTwo
+
+\hOne We say a space $X$ is \udefine{simply connected} if $X$ is path connected and for some $x_0 \in X$, $\pi_1(X, x_0) = \{1\}$.\retTwo
+
+\exOne\ul{Lemma 52.3:} Let $X$ be a path-connected topological space. Then $X$ is simply\\ connected iff every pair of paths $f$ and $f^\prime$ with the same initial and final point are path homotopic.
+
+\begin{myIndent}\exTwoP
+	$(\Longrightarrow)$\\
+	Suppose $f$ and $f^\prime$ are paths from $x_0$ to $x_1$. Then if we set $\bar{f}$ and $\bar{f^\prime}$ to be the reversed paths, we know that $[f^\prime * \bar{f}], [f * \bar{f^\prime}] \in \pi_1(X, x_0)$. But now since $\pi_1(X, x_0)$ is trivial, we know that $[f^\prime * \bar{f}] = 1 = [f * \bar{f^\prime}]$. So, there is a path homotopy $F$ between $f^\prime * \bar{f}$ and $f * \bar{f}$. Now just define $G(s, t) = F(\frac{1}{2}s, t)$ and we have shown that $f$ and $f^\prime$ are path homotopic.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $f \in \pi_1(X, x_0)$ for some $x_0 \in X$. Also suppose $g$ is a path in $X$ from $x_0$ to $x_1$ where $x_1 \neq x_0$. (Note, this lemma is trivial if $X$ has only one point. So, we can without loss of generality assume $X$ has more than one point.)\newpage
+
+	Then since both $g$ and $f * g$ are paths from $x_0$ to $x_1$, we know there is a homotopy $F$ between the two paths. So, $[g] = [f * g] = [g] * [f]$. If we apply on the left side the class $[\bar{g}]$, then this means that $1 = [f]$. Hence, $\pi_1(X, x_0)$ is trivial. $\blacksquare$\retTwo
+
+	\begin{myIndent}\exPPP
+		A consequence of this lemma is that all convex subsets of $\mathbb{R}^n$ are simply connected.
+	\end{myIndent}
+\end{myIndent}
+
+\hOne \mySepTwo
+
+Recall the two lemmas stated on page 118. Those lemmas will let us define an\\ important thing.\retTwo
+
+Suppose $h: X \to Y$ is a continuous map such that $h(x_0) = y_0$. We will denote this by writing $h: (X, x_0) \to (Y, y_0)$. Then we define the \udefine{homomorphism induced by $h$}, $h_*: \pi_1(X, x_0) \to \pi_2(X, y_0)$, by the map:
+
+{\centering $h_*([f]) \coloneqq [h \circ f]$ \retTwo\par} 
+
+This is well defined since if $F$ is a homotopy between $f$ and $f^\prime$, then $h \circ F$ is a homotopy between $h \circ f$ and $h \circ f^\prime$. Also, this is indeed a group homomorphism since:
+
+{\centering $h_*([f] * [g]) = [h \circ (f * g)] = [h \circ f] * [h \circ g] = h_*([f]) * h_*([g])$ \retTwo\par}
+
+\exOne\ul{Theorem 52.4:} If $h: (X, x_0) \to (Y, y_0)$ and $k: (Y, y_0) \to (Z, z_0)$ are continuous\\ maps, then $(k \circ h)_* = k_* \circ h_*$. Also if $i: (X, x_0) \to (X, x_0)$ is the identity map on $X$, then $i_*$ is the identity map on $\pi_1(X, x_0)$.
+
+\begin{myIndent}\exTwoP
+	Hopefully this is self-explanatory.\retTwo
+\end{myIndent}
+
+\ul{Corollary 52.5:} If $h: (X, x_0) \to (Y, y_0)$ is a homeomorphism from $X$ to $Y$, then $h_*$ is an isomorphism from $\pi_1(X, x_0)$ to $\pi_1(Y, y_0)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Let $k = h^{-1}$. Then from the last theorem we can easily see that $k_*$ and $h_*$ are\\ inverses of each other. Hence, $h_*$ is invertible and thus a group  isomorphism. $\blacksquare$\retTwo
+
+	\begin{myIndent}\exPPP
+		Consequently, we know that the fundamental group of a path connected space is\\ a topological property. So, if two path connected spaces do not have the same\\ fundamental group, they can't be homeomorphic.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+
+
+
+
+
+
+
 
 \end{document}
 
