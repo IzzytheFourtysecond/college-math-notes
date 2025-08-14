@@ -217,10 +217,10 @@
 
 \newcommand{\myId}{\mathrm{Id}}
 \newcommand{\myIm}{\mathrm{im}}
-\newcommand{\myObj}{\mathrm{Obj}}
-\newcommand{\myHom}{\mathrm{Hom}}
-\newcommand{\myEnd}{\mathrm{End}}
-\newcommand{\myAut}{\mathrm{Aut}}
+\newcommand{\Obj}{\mathrm{Obj}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
 
 \newcommand{\df}{\mathrm{d}}
 \newcommand{\Df}{\mathrm{D}}
@@ -4945,25 +4945,263 @@ Note that since $\mathcal{I}^1(V) = \{0\}$, we can just identify $\Lambda^1(V^*)
 	\end{tabular}\retTwo\par}
 \end{myIndent}
 
-\hOne As a corollary, given any $\ell_1, \ell_2 \in V^*$ we have that $\ell_1 \wedge \ell_2 = -\ell_2 \wedge \ell_1$. Also more generally:
+\hOne As a corollary, given any $\ell_1, \ell_2 \in V^*$ we have that $\ell_1 \wedge \ell_2 = -\ell_2 \wedge \ell_1$. Also, given $\ell_1, \ell_2, \ell_3 \in V^*$, we have:
+
+{\centering\begin{tabular}{l}
+	$\ell_1 \wedge \ell_2 \wedge \ell_3 = -\ell_2 \wedge \ell_1 \wedge \ell_3 = \ell_2 \wedge \ell_3 \wedge \ell_1$\\
+	$\phantom{\ell_1 \wedge \ell_2 \wedge \ell_3} = -\ell_1 \wedge \ell_3 \wedge \ell_2 = \ell_3 \wedge \ell_1 \wedge \ell_2$
+\end{tabular}\newpage\par}
+
+Let $u_1, \ldots, u_n$ be a basis for $V$ and let $u_1^*, \ldots, u_n^*$ be the corresponding dual basis. Then the collection of $u_{i_1}^* \wedge \cdots \wedge u_{i_k}^*$ such that $I = (i_1, \ldots, i_k)$ is an increasing multi-index forms a basis for $\Lambda^k(V^*)$. 
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Recall that when defining $u_I^* = u_{i_1}^* \otimes \cdots \otimes u_{i_k}$ for a multi-index $I = (i_1, \ldots, i_k)$,\\ we then have that the $\Psi_I \coloneq \Alt(u_I^*)$ where $I$ is increasing form a basis of $\mathcal{A}^k(V)$. It follows that each $\pi(\Psi_I)$ where $I$ is increasing is a basis vector of $\Lambda^k(V^*)$. But note that:
+
+	{\centering\exThreeP\begin{tabular}{l}
+		$\pi(\Psi_I) = \pi\left(\sum\limits_{\tau \in S_k}\sgn(\tau)(u_{I}^*)\tau\right) = \sum\limits_{\tau \in S_k}\sgn(\tau)\pi((u_{I}^*)^\tau) = \sum\limits_{\tau \in S_k}(\sgn(\tau))^2\pi(u_{I}^*) = k!\pi(u_I^*)$
+	\end{tabular}\retTwo\par}
+
+	So, the $\pi(u_I^*) = u_{i_1} \wedge \cdots \wedge u_{i_k}$ also form a basis for $\Lambda^k(V^*)$.\retTwo
+\end{myIndent}
+
+This now let's us prove the following general result:
 \begin{myIndent}\exTwo
-	\ul{Theorem:} If $\omega_1 \in \Lambda^r(V^*)$ and $\omega_2 \in \Lambda^s(V^*)$, then $\omega_1 \wedge \omega_2 = (-1)^{rs}\omega_2 \wedge \omega_1$.\newpage
+	\ul{Theorem 1.6.10:} If $\omega_1 \in \Lambda^r(V^*)$ and $\omega_2 \in \Lambda^s(V^*)$, then $\omega_1 \wedge \omega_2 = (-1)^{rs}\omega_2 \wedge \omega_1$.
 
 	\begin{myIndent}\exThreeP
 		Proof:\\
+		Express $\omega_1 = \sum\limits_I c_I u_{i_1}^* \wedge \cdots \wedge u_{i_{r}}^*$ and $\omega_2 = \sum\limits_J d_J u_{j_1}^* \wedge \cdots \wedge u_{j_{s}}^*$.\retTwo
+
+		Then we have that:\\ [-8pt]
 		
+		{\centering\begin{tabular}{l}
+			$\omega_1 \wedge \omega_2 = \sum\limits_{I,J} c_Id_J (u_{i_1}^* \wedge \cdots \wedge u_{i_r}^* \wedge u_{j_1}^* \wedge \cdots \wedge u_{j_s}^*)$\\ [16pt]
 
-	
-	
-	\end{myIndent}
+			$\phantom{\omega_1 \wedge \omega_2} = \sum\limits_{I,J} c_Id_J(-1)^{rs} (u_{j_1}^* \wedge \cdots \wedge u_{j_s}^* \wedge u_{i_1}^* \wedge \cdots \wedge u_{i_r}^*)$\\ [16pt]
 
-
-	
+			$\phantom{\omega_1 \wedge \omega_2} = (-1)^{rs}\sum\limits_{I,J} d_Jc_I (u_{j_1}^* \wedge \cdots \wedge u_{j_s}^* \wedge u_{i_1}^* \wedge \cdots \wedge u_{i_r}^*) = (-1)^{rs}\omega_2 \wedge \omega_1$.
+		\end{tabular}\retTwo\par}
+	\end{myIndent}	
 \end{myIndent}
 
+One more note I'd like to make is that we can identify $\Lambda^0(V^*)$ and $F$. Then if\\ $\omega \in \Lambda^k(V^*)$ and $\lambda \in F$, we have that $\lambda \wedge \omega = \lambda\omega = \omega \wedge \lambda$.\retTwo
 
+\dispDate{8/10/2025}
 
+Before moving onto the next section of the book, I'm going to do a few of the\\ exercises.\retTwo
 
+\pracOne\ul{Exercise 1.6.iii:} Given $\omega \in \Lambda^r(V^*)$, we define $\omega^1 \coloneqq \omega$ and $\omega^k \coloneqq \omega \wedge \omega^{k-1} \in \Lambda^{rk}(V^*)$ for all $k > 1$. In other words, $\omega^k$ is the $k$-fold wedge product of $\omega$ with itself.
+\begin{itemize}
+	\item[(A)] If $r$ is odd, then $\omega^k = 0$ for all $k > 1$.
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		By an easy application of theorem 1.6.10, we have that:
+		
+		{\centering $\omega^k = \omega \wedge \omega^{k-1} = (-1)^{r\cdot r^{k-1}}\omega^{k-1} \wedge \omega = (-1)^{r^k}\omega^k$ \retTwo\par}
+
+		But $r^k$ is odd if $r$ is odd. Then in turn, $\omega^k = -\omega^k$. The only way this is possible is if $\omega^k = 0$.\newpage
+	\end{myIndent}
+
+	\item[(B)] If $\omega$ is decomposable, then $\omega^k = 0$ for all $k > 1$.
+	
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		For the ease of notation we'll $\omega^0 = 1 \in F$. Now if $\omega = \ell_1 \wedge \cdots \wedge \ell_r$, then by just swapping two occurences of $\ell_1$, we have that:
+		
+		{\centering\begin{tabular}{l}
+			$\omega^k = \ell_1 \wedge \cdots \wedge \ell_r \wedge \ell_1 \wedge \cdots \wedge \ell_r \wedge \omega^{k-2}$\\
+			$\phantom{\omega^k} = (-1)\ell_1 \wedge \cdots \wedge \ell_r \wedge \ell_1 \wedge \cdots \wedge \ell_r \wedge \omega^{k-2} = -\omega^k$
+		\end{tabular}\retTwo\par}
+
+		This implies $\omega^k = 0$.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\ul{Exercise 1.6.iv:} If $\omega, \mu \in \Lambda^r(V^*)$, then:
+
+{\centering $(\omega + \mu)^k = \sum\limits_{i=0}^k \binom{k}{i} \omega^i \wedge \mu^{k-i}$.\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	This is obvious so I'm skipping this problem. I just wanted to write out the result.\retTwo
+\end{myIndent}
+
+\hOne\mySepTwo
+
+\blab{The interior Product:}\\
+All the assumptions about $V$ and $F$ made yesterday still apply and you should keep assuming them until I tell you to stop (cause I don't want to keep writing this shtick).\retTwo
+
+Given $T \in \mathcal{L}^k(V)$ where $k > 1$ and $v \in V$, we define the $(k-1)$-tensor:
+
+{\centering $\iota_v T(v_1, \ldots, v_{k-1}) \coloneqq \sum\limits_{r = 1}^k (-1)^{r-1}T(v_1, \ldots, v_{r-1}, v, v_r, \ldots, v_{k-1})$\retTwo\par}
+
+Also if $\lambda \in \mathcal{L}^0(V) = F$, we define $\iota_v \lambda = 0$ for all $v \in V$.\retTwo
+
+Note that if $v = c_1v_1 + c_2v_2$ and $T = d_1T_1 + d_2T_2$, then:
+
+{\centering$\iota_v T = c_1\iota_{v_1}T + c_2\iota_{v_2}T$ and $\iota_v T = d_1\iota_v T_1 + d_2\iota_v T_2$.\retTwo\par}
+
+Also, if $T = \ell_1 \otimes \cdots \otimes \ell_k$ where each $\ell_i \in V^*$, then when writing $\hat{\ell_r}$ to mean that we are deleting $\ell_r$ from that term of the expression, we have that:
+
+{\centering $\iota_v T = \sum\limits_{r=1}^k (-1)^{r-1}\ell_r(v) \ell_1 \otimes \cdots \otimes \hat{\ell_r} \otimes \cdots \otimes \ell_k$ \retTwo\par}
+
+Slightly less obviously, if $T_1 \in \mathcal{L}^p(V)$ and $T_2 \in \mathcal{L}^q(V)$, we have that:
+
+{\centering $\iota_{v}(T_1 \otimes T_2) = (\iota_v T_1)\otimes T_2 + (-1)^{p}T_1 \otimes (\iota_v T_2)$.\retTwo\par}
+
+\exOne\ul{Lemma 1.7.8:} Let $V$ be a vector space and $T \in \mathcal{L}^k(V)$ where $k \geq 1$. Then for all $v \in V$, $\iota_v(\iota_v(T)) = 0$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	By linearity it suffices to prove this statement for decomposable $T$. Also, this statement is trivial when $k = 1$. So, we can proceed by induction, assuming that the theorem holds for $T \in \mathcal{L}^{r}(V)$ where $r < k$. Then after expressing $T = T^\prime \otimes \ell$ where $T^\prime \in \mathcal{L}^{k-1}(V)$ and $\ell \in V^*$, we have that:\newpage
+
+	{\centering \begin{tabular}{l}
+		$\iota_v T = \iota_v(T^\prime \otimes \ell) = (\iota_v T^\prime) \otimes \ell + (-1)^{k-1}T^\prime \otimes (\iota_v T^\prime)$\\ [2pt]
+		$\phantom{\iota_v T = \iota_v(T^\prime \otimes \ell)} = (\iota_v T^\prime) \otimes \ell + (-1)^{k-1}\ell(v)T^\prime$ 
+	\end{tabular}\retTwo\par}
+
+	By induction $\iota_v(\iota_v T^\prime) = 0$. Combining that with the above reasoning shows:
+
+	{\centering \begin{tabular}{l}
+		$\iota_v (\iota_v T) = \iota_v((\iota_v T^\prime) \otimes \ell + (-1)^{k-1}\ell(v)T^\prime)$\\ [2pt]
+		$\phantom{\iota_v (\iota_v T)} = \iota_v((\iota_v T^\prime) \otimes \ell) + (-1)^{k-1}\ell(v)\iota_v(T^\prime)$\\ [2pt]
+		$\phantom{\iota_v (\iota_v T)} = \left(\iota_v(\iota_v T^\prime) \otimes \ell + (-1)^{k-2}(\iota_v T^\prime) \otimes (\iota_v \ell)\right) + (-1)^{k-1}\ell(v)\iota_v(T^\prime)$\\ [2pt]
+		$\phantom{\iota_v (\iota_v T)} = 0 + (-1)^{k-2}\ell(v)(\iota_v T^\prime) + (-1)^{k-1}\ell(v)\iota_v(T^\prime) = 0$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\ul{Corollary:} If $v_1, v_2 \in V$ and $T \in \mathcal{L}^k(V)$, then $\iota_{v_1}(\iota_{v_2}T) = -\iota_{v_2}(\iota_{v_1}T)$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	We know from the prior lemma that:
+
+	{\centering $\iota_{v_1 + v_2}(\iota_{v_1 + v_2} T) = 0$ \retTwo\par}
+
+	Therefore:
+
+	{\centering $0 + \iota_{v_1}(\iota_{v_2} T) = \iota_{v_1}(\iota_{v_1 + v_2} T) = - \iota_{v_2}(\iota_{v_1 + v_2} T) = -\iota_{v_2}(\iota_{v_1} T) - 0$ \retTwo\par}
+\end{myIndent}
+
+\ul{Lemma 1.7.11:} If $T \in \mathcal{L}^k(V)$ is redundant, then so is $\iota_v T$.
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Write $T = T_1 \otimes \ell \otimes \ell \otimes T_2$ where $\ell \in V^*$, $T_1 \in \mathcal{L}^p(V)$, and $T_2 \in \mathcal{L}^q(V)$. Then:
+
+	{\center$\iota_v T = \iota_v(T_1) \otimes \ell \otimes \ell \otimes T_2 + (-1)^p T_1 \otimes \iota_v(\ell \otimes \ell) \otimes T_2 + (-1)^{p+2} T_1 \otimes \ell \otimes \ell \otimes \iota_v(T_2)$ \retTwo\par}
+
+	Now the first and third terms are obvious redundant. Meanwhile, the second term cancels because $\iota_v(\ell \otimes \ell) = \ell(v)\ell - \ell(v)\ell = 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} If $T \in \mathcal{I}^k(V)$, then $\iota_v T \in \mathcal{I}^{k-1}(V)$.\retTwo
+
+\hOne Now we define the \udefine{interior product operator} $\iota_v$ on $\Lambda^k(V^*)$. If $\pi$ is the projection\\ of $\mathcal{L}^k(V)$ onto $\Lambda^k(V^*)$ and $\omega = \pi(T) \in \Lambda^{k}(V^*)$, then we define:
+
+{\centering $\iota_v \omega \coloneqq \pi(\iota_v T) \in \Lambda^{k-1}(V^*)$.\retTwo\par}
+
+This is well defined since by the previous corollary, if both $T$ and $T^\prime$ satisfy\\ that $\pi(T) = \pi(T^\prime) = \omega$, then there is some tensor $S \in \mathcal{I}^{k-1}(V)$ such that\\ $\iota_v T = \iota_v T^\prime + S$.\retTwo
+
+It is easily shown then that if $v_1, v_2, v \in V$\hspace{-0.2em},\hspace{0.2em} $\omega, \omega_1 \in \Lambda^p(V^*)$, and $\omega_2 \in \Lambda^q(V^*)$, then:
+\begin{itemize}
+	\item $\iota_{v_1 + v_2}\omega = \iota_{v_1} \omega + \iota_{v_2} \omega$.
+	\item $\iota_{v}(\omega_1 + \omega_2) = \iota_v \omega_1 + \iota_v \omega_2$
+	\item $\iota_v(\omega_1 \wedge \omega_2) = (\iota_v \omega_1) \wedge \omega_2 + (-1)^p \omega_1 \wedge (\iota_v \omega_2)$\\
+\end{itemize}
+
+Also, if you squint you can see that $\iota_v(\iota_v \omega) = \pi(\iota_v(\iota_v T))$ where $T$ satisfies that $\pi(T) = \omega$. Hence, we have that $\iota_v(\iota_v \omega) = 0$, and from there we can show that $\iota_{v_1}(\iota_{v_2}\omega) = -\iota_{v_2}(\iota_{v_1}\omega)$ just like before.\newpage
+
+\dispDate{8/13/2025}
+
+I'm going to take a break from Guillemin's book and instead try to learn some\\ algebraic topology. To do this I'm going to start following Munkres' \ul{Topology}.\retTwo
+
+If $f_1, f_2: X \to Y$ are continuous maps, we say $f_1$ is \udefine{homotopic} to $f_2$ if there is a  continuous map $F: X \times [0, 1] \to Y$ such that $F(x, 0) = f_1(x)$ and $F(x, 1) = f_2(x)$. $F$ is called a \udefine{homotopy} between $f_1$ and $f_2$. And if $f_1$ and $f_2$ are homotopic, we write $f_1 \simeq f_2$. If $f_1 \simeq f_2$ and $f_2$ is a constant map, then we say $f_1$ is \udefine{nulhomotopic}.\\
+
+\begin{myIndent}\hTwo
+	An important special case is when $f_1$ and $f_2$ are paths (i.e. continuous maps from $[0, 1]$ to a topological space $X$). In this case, it can be helpful to make the following stricter distinction. We say $f_1$ and $f_2$ are \udefine{path homotopic} if they have the same initial point and final point, and there is a homotopy $F$ between the two paths. Also, we call $F$ a \udefine{path homotopy} and say $f_1 \simeq_p f_2$. \retTwo
+\end{myIndent}
+
+\exOne\ul{Lemma 51.1:} $\simeq$ and $\simeq_p$ are equivalence relations.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	It's clear that any $f$ is homotopic to itself. Also, if $F(x, t)$ is a homotopy showing that $f_1 \sim f_2$, then $G(x, t) = F(x, 1-t)$ is a homotopy showing that $f_2 \sim f_1$.\retTwo
+	
+	Finally, suppose $f_1 \simeq f_2$ and $f_2 \simeq f_3$. Then there exists two homotopy's $F^{(1)}$\\ between $f_1$ and $f_2$ and $F^{(2)}$ between $f_2$ and $f_3$. So, define:
+
+	{\centering $G(x, t) = \left\{\begin{matrix}
+		F^{(1)}(x, 2t) & \text{for } t \in [0, \sfrac{1}{2}] \\
+		F^{(2)}(x, 2t - 1) & \text{for } t \in [\sfrac{1}{2}, 1]
+	\end{matrix}\right.$ \retTwo\par}
+
+	Then $G$ is a homotopy between $f_1$ and $f_3$, meaning $f_1 \simeq f_3$.
+	\begin{myIndent}\exPPP
+		We know $G$ is continuous by the pasting lemma.\retTwo
+	\end{myIndent}
+
+	The added stuff needed to $\simeq_p$ is an equivalence relation is obvious.\retTwo
+\end{myIndent}
+
+\hOne If $f$ is a path in $X$ from $x_0$ to $x_1$ and $g$ is a path in $X$ from $x_1$ to $x_2$, we define the product $f * g$ to be the path $h$ given by the equation:
+
+{\centering $h(s) = \left\{\begin{matrix}
+		f(2s) & \text{for } s \in [0, \sfrac{1}{2}] \\
+		f(2s - 1) & \text{for } s \in [\sfrac{1}{2}, 1]
+\end{matrix}\right.$ \retTwo\par}
+
+\begin{myIndent}\hTwo
+	By the pasting lemma, $h$ is a well-defined path in $X$ from $x_0$ to $x_2$.\retTwo
+\end{myIndent}
+
+If $f: [0, 1] \to X$ is a path, let $[f]$ denote the path homotopy class of $f$. Then\\ the product operation induces a well-defined operation on path-homotopy classes. Specifically, given a class $[f]$ from $x_0$ to $x_1$ and a class $[g]$ from $x_1$ to $x_2$, define\\ $[f]*[g] = [f*g]$.\newpage
+
+\begin{myIndent}\exTwoP
+	To verify that this is well defined, suppose $f \simeq_p f^\prime$ and $g \simeq_p g^\prime$. Then if $F$ is a homotopy from $f$ to $f^\prime$ and $G$ is a homotopy from $g$ to $g^\prime$, we can define a homotopy $H$ from $f * g$ to $f^\prime * g^\prime$ by the formula:
+
+	{\centering $H(s, t) = \left\{\begin{matrix}
+		F(2s, t) & \text{for } s \in [0, \sfrac{1}{2}] \\
+		G(2s - 1, t) & \text{for } s \in [\sfrac{1}{2}, 1]
+	\end{matrix}\right.$ \retTwo\par}
+
+	$H$ is well-defined and continuous by pasting lemma.\retTwo
+\end{myIndent}
+
+Recall that a groupoid is a category in which every morphism is an isomorphism (look at my old Allufi notes to see what a category is\dots). Using the product operation of path-homotopy classes, we can define a groupoid as follows:
+
+\begin{myIndent}\hTwo
+	Consider the space $X$ as a collection of objects, and for any $x_0, x_1 \in X$, let\\ $\Hom_X(x_0, x_1)$ be the collection of path homotopy classes from $x_0$ to $x_1$.\retTwo
+
+	It's clear that if if $[f] \in \Hom(x_0, x_1)$ and $[g] \in \Hom(x_1, x_2)$, then\\ $[f]*[g] \in \Hom(x_0, x_2)$. Also, we claim:
+	\begin{itemize}
+	\item Every point has an identity morphism (namely the homotopy class of the\\ constant map).
+	\item For any $[f] \in \Hom(x_0, x_1)$, you can reverse the path $f$ (i.e. define\\ $\bar{f}(s) \coloneqq f(1-s)$) in order to get an inverse morphism in $\Hom(x_1, x_0)$.
+	\item Finally, if $[f] \in \Hom(x_0, x_1)$, $[g] \in \Hom(x_1, x_2)$, and $[h] \in \Hom(x_2, x_3)$, then:
+	
+	{\centering $[f]*([g] * [h]) = ([f]*[g])*[h]$.\retTwo\par}
+	\end{itemize}
+
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		We start with two lemmas:
+		\begin{enumerate}
+			\item[1.] If $k: X \to Y$ is a continuous map and $F$ is a path homotopy in $X$ between the paths $f$ and $f^\prime$, then $k \circ F$ is a path homotopy in $Y$ between the paths $k \circ f$ and $k \circ f^\prime$.
+			\item[2.] If $k: X \to Y$ is a continuous map and $f$ and $g$ are paths in $X$ with\\ $f(1) = g(0)$, then $k \circ (f * g) = (k \circ f) * (k \circ g)$.\retTwo
+		\end{enumerate}
+
+		To prove the first bullet point, let $e_0: [0, 1] \to [0, 1]$ be the constant function equal to $0$ and $i: [0,1] \to [0, 1]$ be the identity map. Then when considering both of those as paths in $[0, 1]$, we can fairly easily find a path homotopy $G$ from $e_0 * i$ to $i$.
+
+		\begin{myIndent}\exPPP
+			One path homotopy that works is to define
+			
+			{\centering$F(s, t) = t(e_0 * i)(s) + (1-t)i(s)$.\retTwo\par}
+		\end{myIndent}
+
+		Now suppose $e_{x_0}: [0, 1] \to X$ is constant at $x_0$ and $f: [0, 1] \to X$ is a path from $x_0$ to $x_1$. Then $e_{x_0} = f \circ e_0$, $f = f \circ i$, and by our two lemmas, $f \circ G$ is a path homotopy from $f = f \circ i$ to $f \circ (e_0 * i) = (f \circ e_0) * (f \circ i) = e_{x_0} * f$.\\ Similar reasoning shows that if $e_{x_1}: [0, 1] \to X$ is constant at $x_1$, then\\ $f \simeq f * e_{x_1}$. This proves bullet point 1.\newpage
+
+		To prove the second bullet point, let $\bar{i} = i(1-s)$. Then we can find a\\ homotopy $G$ from $e_0$ to $i * \bar{i}$ {\exPPP(one that works is $G(s, t) = t((i * \bar{i})(s))$)}.\retTwo
+		
+		Then for any path $f$ from $x_0$ to $x_1$, we can easily see that $e_{x_0} = f \circ e_0$,\\ $f = f \circ i$, and $\bar{f} = f \circ \bar{i}$. Hence by our two lemmas, $f \circ G$ is a homotopy between $e_{x_0} = f \circ (e_0)$ and $f * \bar{f} = (f \circ i) * (f \circ \bar{i}) = f \circ (i * \bar{i})$. Also, once again similar reasoning shows that $e_{x_1} \simeq \bar{f} * f$. This proves bullet point 2.
+	\end{myIndent}
+\end{myIndent}
 
 \end{document}
 
@@ -5067,3 +5305,17 @@ Note that since $\mathcal{I}^1(V) = \{0\}$, we can just identify $\Lambda^1(V^*)
 % \end{itemize}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+% \dispDate{8/11/2025}
+
+% I'm going to take a break from Guillemin's book to instead work through John Lee's book \ul{Introduction to Smooth Manifolds}. I'll probably run into a few hiccups cause I've never studied fundamental groups or homotopy and homology. However, I'll try to work around that and just see how far I can go.\retTwo
+
+% If $M$ is a topological space, we say $M$ is a \udefine{topological $n$-manifold} if:
+% \begin{itemize}
+% 	\item $M$ is a Hausdorff second countable space
+% 	\item $M$ is \udefine{locally Euclidean of dimension $n$}, meaning each point of $M$ has an open neighborhood that is homeomorphic to an open subset of $\mathbb{R}^n$.
+% \end{itemize}
+
+% \exOne\ul{Theorem 1.2:} A nonempty $n$-dimensional topological manifold cannot be homeomorphic to an $m$-dimensional manifold 
