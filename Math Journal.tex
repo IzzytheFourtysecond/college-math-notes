@@ -231,6 +231,7 @@
 
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\supp}{\mathrm{supp}}
+\newcommand{\diam}{\mathrm{diam}}
 \newcommand{\opnorm}{\mathrm{op}}
 \newcommand{\sgn}{\mathrm{sgn}}
 \newcommand{\mSpan}{\mathrm{span}}
@@ -5195,11 +5196,11 @@ Recall that a groupoid is a category in which every morphism is an isomorphism (
 			{\centering$F(s, t) = t(e_0 * i)(s) + (1-t)i(s)$.\retTwo\par}
 		\end{myIndent}
 
-		Now suppose $e_{x_0}: [0, 1] \to X$ is constant at $x_0$ and $f: [0, 1] \to X$ is a path from $x_0$ to $x_1$. Then $e_{x_0} = f \circ e_0$, $f = f \circ i$, and by our two lemmas, $f \circ G$ is a path homotopy from $f = f \circ i$ to $f \circ (e_0 * i) = (f \circ e_0) * (f \circ i) = e_{x_0} * f$.\\ Similar reasoning shows that if $e_{x_1}: [0, 1] \to X$ is constant at $x_1$, then\\ $f \simeq f * e_{x_1}$. This proves bullet point 1.\newpage
+		Now suppose $e_{x_0}: [0, 1] \to X$ is constant at $x_0$ and $f: [0, 1] \to X$ is a path from $x_0$ to $x_1$. Then $e_{x_0} = f \circ e_0$, $f = f \circ i$, and by our two lemmas, $f \circ G$ is a path homotopy from $f = f \circ i$ to $f \circ (e_0 * i) = (f \circ e_0) * (f \circ i) = e_{x_0} * f$.\\ Similar reasoning shows that if $e_{x_1}: [0, 1] \to X$ is constant at $x_1$, then\\ $f \simeq_p f * e_{x_1}$. This proves bullet point 1.\newpage
 
 		To prove the second bullet point, let $\bar{i} = i(1-s)$. Then we can find a\\ homotopy $G$ from $e_0$ to $i * \bar{i}$ {\exPPP(one that works is $G(s, t) = t((i * \bar{i})(s))$)}.\retTwo
 		
-		Then for any path $f$ from $x_0$ to $x_1$, we can easily see that $e_{x_0} = f \circ e_0$,\\ $f = f \circ i$, and $\bar{f} = f \circ \bar{i}$. Hence by our two lemmas, $f \circ G$ is a homotopy between $e_{x_0} = f \circ (e_0)$ and $f * \bar{f} = (f \circ i) * (f \circ \bar{i}) = f \circ (i * \bar{i})$. Also, once again similar reasoning shows that $e_{x_1} \simeq \bar{f} * f$. This proves bullet point 2.\retTwo
+		Then for any path $f$ from $x_0$ to $x_1$, we can easily see that $e_{x_0} = f \circ e_0$,\\ $f = f \circ i$, and $\bar{f} = f \circ \bar{i}$. Hence by our two lemmas, $f \circ G$ is a homotopy between $e_{x_0} = f \circ (e_0)$ and $f * \bar{f} = (f \circ i) * (f \circ \bar{i}) = f \circ (i * \bar{i})$. Also, once again similar reasoning shows that $e_{x_1} \simeq_p \bar{f} * f$. This proves bullet point 2.\retTwo
 
 		I'm bored. So tldr: to prove the third bullet point just note that we can apply a continuous reparametrization $k(s)$ to $((f * g) * h)(s)$ to get $(f * (g * h))(s)$. Hence, we can define a homotopy:
 		
@@ -5265,9 +5266,200 @@ This is well defined since if $F$ is a homotopy between $f$ and $f^\prime$, then
 	\end{myIndent}
 \end{myIndent}
 
+\dispDate{8/15/2025}
 
+\pracOne If $\alpha$ is a path from $x_0$ to $x_1$ in $X$, we shall denote $\bar{\alpha}$ to be the reversed path from $x_1$ to $x_0$. Also we shall denote $\hat{\alpha}: \pi_1(X, x_0) \to \pi_1(X, x_1)$ to be the isomorphism $[f] \mapsto [\bar{\alpha} * f * \alpha]$.\retTwo
 
+\ul{Exercise 52.3:} Let $x_0 \to x_1$ be points of the path-connected space $X$. Show that $\pi_1(X, x_0)$ is abelian iff for every pair $\alpha$ and $\beta$ of paths from $x_0$ to $x_1$, we have $\hat{\alpha} = \hat{\beta}$. 
 
+\begin{myIndent}\pracTwo
+	$(\Longrightarrow)$\\
+	Suppose $\pi_1(X, x_0)$ is abelian and we have two paths $\alpha, \beta$ from $x_0$ to $x_1$. Then for any $[f] \in \pi_1(X, x_0)$, we have that $[f] * [\alpha * \bar{\beta}] = [\alpha * \bar{b}] * [f]$. Therefore:
+	
+	{\centering$\hat{\alpha}(f) = [\bar{\alpha} * f * \alpha] = [\bar{\beta} * f * \beta] = \hat{\beta}(f)$.\newpage\par}
+
+	$(\Longleftarrow)$\\
+	Suppose $[f] \in \pi_1(X, x_0)$ and $\alpha, \beta$ are paths from $x_0$ to $x_1$. Then since\\ $\hat{\alpha}([f * \alpha * \bar{\beta}]) = \hat{\beta}([f * \alpha * \bar{\beta}])$, we have that:
+
+	{\centering$[\bar{\alpha} * f * \alpha * \bar{\beta} * \alpha] = [\bar{\beta} * f * \alpha * \bar{\beta} * \beta] = [\bar{\beta} * f * \alpha]$\retTwo\par}
+
+	Hence $[f] * [\alpha * \bar{\beta}] = [\alpha * \bar{\beta}] * [f]$, and this proves that the group operation of $\pi_1(X, x_0)$ is commutative so long as one of the arguments passes through $x_1$.\retTwo
+
+	Now to prove general commutativity, suppose $[f], [g] \in \pi_1(X, x_0)$ and $\alpha$ is a path from $x_0$ to $x_1$. Then from before we know that:
+
+	{\centering $[f] * [g] = [f] * [g * \alpha * \bar{\alpha}] = [g * \alpha * \bar{\alpha}] * [f] = [g] * [f]$. \retTwo\par}
+\end{myIndent}
+
+\ul{Exercise 52.4:} Let $A \subseteq X$, suppose $r: X \to A$ is a continuous map such that $r(a) = a$ for each $a \in A$. (The map $r$ is called a \udefine{retraction} of $X$ onto $A$.) If $a_0 \in A$, then show that $r_*: \pi_1(X, a_0) \to \pi_1(A, a_0)$ is surjective.
+
+\begin{myIndent}\pracTwo
+	Suppose $[f]_A \in \pi_1(A, a_0)$. Then $f$ is also a loop in $X$, meaning it has a class\\ $[f]_X \in \pi_1(X, a_0)$. And $r_*([f]_X) = [r \circ f]_A = [f]_A$. Hence $r_*$ is surjective.\retTwo
+\end{myIndent}
+
+\ul{Exercise 52.5:} Let $A$ be a subspace of a simply connected space $X$, and let\\ $h: (A, a_0) \to (Y, y_0)$ be a continuous map. If $h$ is extendable to a continuous map of $X$ into $Y$, then $h_*$ is the trivial homomorphism (i.e. the homomorphism mapping everything to the identity element).
+
+\begin{myIndent}\pracTwo
+	Let $h^\prime$ be a continuous extension of $h$ to all of $X$. Now importantly, for any loop\\ $[f]_A \in \pi_1(A, a_0)$, we know $f$ also defines a class $[f]_X \in \pi_1(X, a_0)$. Also importantly:
+	
+	{\centering$h^\prime_*([f]_X) = [h^\prime \circ f]_Y = [h \circ f]_Y = h_*([f]_A)$.\retTwo\par}
+
+	However, since $X$ is simply connected, we know $[f]_X = 1$ and thus $h^\prime_*([f]_X) = 1$. So, we've shown that $h_*([f]_A) = 1$ for all $[f]_A \in \pi_1(A, a_0)$.
+
+	\begin{myTindent}\myComment
+		Note: Munkres specifically sets $X = \mathbb{R}^n$ in his statement of the exercise.\retTwo
+	\end{myTindent}
+\end{myIndent}
+
+\ul{Exercise 52.6:} Suppose $h: X \to Y$ is a continuous map, $\alpha$ is a path from $x_0$ to $x_1$ in $X$, and $\beta \coloneqq h \circ \alpha$. Then $h_* \circ \hat{\alpha} = \hat{\beta} \circ h_*$.
+
+\begin{myIndent}\pracTwo
+	Suppose $[f] \in \pi_1(X, x_0)$. Then:
+
+	{\centering\begin{tabular}{l}
+	$h_*(\hat{\alpha}([f])) = [h \circ (\bar{\alpha} * f * \alpha)] = [(h \circ \bar{\alpha}) * (h \circ f) * (h \circ \alpha)]$\\
+	$\phantom{h_*(\hat{\alpha}([f])) = [h \circ (\bar{\alpha} * f * \alpha)]} = [\bar{\beta} * h_*([f]) * \beta] = \hat{\beta}(h_*([f]))$.
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\hOne\mySepTwo
+
+Let $p: E \to B$ be a continuous surjective map. Then an open set $U \subseteq B$ is said to be \udefine{evenly covered} by $p$ if $p^{-1}(U)$ is a union of disjoint open sets $V_\alpha \subseteq E$ satisfying that $p|_{V_\alpha}$ is a homeomorphism from $V_\alpha$ to $U$. The collection $\{V_\alpha\}_{\alpha \in A}$ will be called a partition of $p^{-1}(U)$ into \udefine{slices}.
+
+\begin{myIndent}\hTwo
+	Note that if $W \subseteq U$ is also open, then $W$ is also openly covered by $p$ with there being a partition of slices $\{V_\alpha \cap p^{-1}(W)\}_{\alpha \in A}$.
+	\retTwo
+\end{myIndent}
+
+If every point $b \in B$ has an open neighborhood $U \subseteq B$ that is evenly covered by $p$, we call $p$ a \udefine{covering map} and $E$ a \udefine{covering space} of $B$.\newpage
+
+\exOne\ul{Claim:} If $p: E \to B$ is a covering map of $B$, then $p$ is an open map.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Suppose $A \subseteq E$ is open. Then for any $y \in f(A)$, there exists an open neighborhood $U$ of $y$ that is evenly covered by $p$. In turn there exists $x \in A$ with $p(x) = y$ and an open neighborhood $V_\alpha$ of $x$ such that $p|_{V_\alpha}$ is a homeomorphism from $V_\alpha$ to $U_y$. And hence, $p(A \cap V_\alpha)$ is an open neighborhood of $y$ in $U \subseteq B$ that is also a subset of $p(A)$. It follows that $p(A)$ is an open subset of $B$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exOne\ul{Corollary:} If $p: E \to B$ is a covering map of $B$, then $p$ is a \udefine{local homeomorphism}, meaning each point $e \in E$ has an open neighborhood that is mapped\\ homeomorphically by $p$ onto an open subset of $B$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	If $x \in E$, then the reasoning from the prior proof lets us pick an open set $A \cap V_\alpha$ containing $x$ such that, $p|_{A \cap V_\alpha}$ is a homeomorphism to an open set $p(A \cap V_\alpha)$ in $B$.\retTwo
+\end{myIndent}
+
+\exOne\ul{Theorem 53.1:} The map $p: \mathbb{R} \to S^1$ given by $p(x) = (\cos(2\pi x), \sin(2\pi x))$ is a covering map of $S^1$.
+
+\begin{myIndent}\exTwoP
+	Hopefully this is obvious. We can cover $S^1$ with four open sets gotten by intersecting $S^1$ with the top, bottom, right, and left open halfs respectively of the coordinate plane. Then it's easy to find a partition of each preimage into slices.\retTwo
+
+	\begin{myIndent}\exPPP
+		As a side note, if $H^1 = \{x \in \mathbb{R} : x \geq 0\}$, then $p|_{H^1}$ is surjective and a local homeomorphism. That said, it is not a covering map since the point $(1, 0) \in S^1$ has no open neighborhood $U$ that is evenly covered by $p|_{H^1}$.
+
+		\begin{myIndent}
+			(The specific issue we run into is that for any open set $U$ we pick, $p|_{H^1}$ will not be a surjective map from the slice of the preimage containing $0$ to $U$\dots)\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Theorem 53.2:} Let $p: E \to B$ be a covering map. If $B_0$ is a subspace of $B$ and $E_0 \coloneqq p^{-1}(B_0)$, then the map $p_0 : E_0 \to B_0$ obtained by restricting $p$ is a covering map.
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Given $y \in B_0$, let $U \subseteq B$ be an open neighborhood of $y$ that is evenly covered\\ and let $\{V_\alpha\}_{\alpha \in A}$ be a partition of $p^{-1}(U)$ into slices. Then $U \cap B_0$ is an open\\ neighborhood of $y$ in $B_0$ that is evenly covered by $p_0$ via the partition\\ $\{V_\alpha \cap E_0\}_{\alpha \in A}$ of $p^{-1}(U \cap B_0)$ into slices. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 53.3:} If $p: E \to B$ are covering maps and $p^\prime : E^\prime \to B^\prime$ are covering maps, then the map $p \times p^\prime: E \times E^\prime \to B \times B^\prime$ defined by $(e, e^\prime) \mapsto (p(e), p^\prime(e^\prime))$ is a covering map.
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Given $b \in B$ and $b^\prime \in B^\prime$, let $U$ and $U^\prime$ be open neighborhoods of $b$ and $b^\prime$ that are evenly covered by $p$ and $p^\prime$ respectively. Next let $\{V_\alpha\}_{\alpha \in A}$ and $\{V^\prime_\gamma\}_{\gamma \in C}$ be partitions of $p^{-1}(U)$ and $(p^\prime)^{-1}(U^\prime)$ respectively into slices. Then:
+
+	{\centering $(p \times p^\prime)^{-1}(U \times U^\prime) = \bigcup\limits_{\alpha \in A}(\bigcup\limits_{\gamma \in C} (V_\alpha \times V^\prime_\gamma))$.\newpage\par}
+
+	Also $U \times U^\prime$ is open in $B \times B^\prime$; $V_\alpha \times V^\prime_\gamma$ is open in $E \times E^\prime$ for all $\alpha$ and $\gamma$; the $V_\alpha \times V^\prime_\gamma$ are all disjoint; and each $V_\alpha \times V^\prime_\gamma$ is mapped homeomorphically onto $U \times U^\prime$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne\ul{Exercise 53.2:} Let $p: E \to B$ be continuous and surjective, and suppose $U \subseteq B$ is an\\ open set that is evenly covered by $p$. If $U$ is connected, then the partition of $p^{-1}(U)$ into\\ slices is unique.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	For the sake of contradiction, suppose $\{V_\alpha\}_{\alpha \in A}$ and $\{V^\prime_\beta\}_{\beta \in B}$ are two different partitions of $p^{-1}(U)$ into slices. Then we know there exists $V_{\alpha_0}, V^\prime_{\beta_0}$ in those two partitions satisfying that $V_{\alpha_0} \cap V^\prime_{\beta_0} \neq \emptyset$ and $V_{\alpha_0} \neq V^\prime_{\beta_0}$. Without loss of generality suppose $V_{\alpha_0} - V^\prime_{\beta_0} \neq \emptyset$. Then since $p$ is a homeomorphism from $V_{\alpha_0}$ to $U$, we know $p(V_{\alpha_0} \cap V^\prime_{\beta_0})$ is open in $U$. Also, since $V^\prime_{\beta_0} = p^{-1}(U) - (\bigcup_{\beta \neq \beta_0} V^\prime_\beta)$, we know $V^\prime_{\beta_0}$ is closed in $p^{-1}(U)$. Hence $V_{\alpha_0} - V^\prime_{\beta_0}$ is open in $V_{\alpha_0}$ and so $p(V_{\alpha_0} - V^\prime_{\beta_0})$ is also open in $U$.\retTwo
+	
+	But now $p(V_{\alpha_0} - V^\prime_{\beta_0})$ and $p(V_{\alpha_0} \cap V^\prime_{\beta_0})$ are two disjoint nonempty open subsets of $U$. This contradicts that $U$ is connected. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Exercise 53.3:} Let $p: E \to B$ be a covering map and let $B$ be connected. If $p^{-1}(\{b_0\})$ has $k$ elements for some $b_0 \in B$, then $p^{-1}(\{b\})$ has $k$ elements for all $b \in B$. In such a case $E$ is called a \udefine{$k$-fold covering} of $B$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Let $B_k \coloneqq \{b \in B : |p^{-1}(\{b\})| = k\}$. Now it's very clear that if $b \in B$ and $U \subseteq B$ is an open neighborhood of $b$ that is evenly covered by $p$, then $U \subseteq B_k$. Hence, $B_k$ is open. Also note that if $b \in (B_k)^\comp$ and $U \subseteq B$ is an open neighborhood of $b$ that is evenly covered by $p$, then $U \subseteq (B_k)^\comp$. Hence $(B_k)^\comp$ is open. Since $B$ is connected, this means that $B_k$ or $(B_{k})^\comp$ must be empty. and since $b_0 \in B_k$, we know the empty set isn't $B_k$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne Let $p: E \to B$ be a map. If $f: X \to B$ is a continuous map, a \udefine{lifting} of $f$ is a\\ map $\tilde{f}: X \to E$ such that $p \circ \tilde{f} = f$. Or in other words, the following diagram\\ commutes:
+
+% https://q.uiver.app/#q=WzAsMyxbMCwyLCJYIl0sWzIsMCwiRSJdLFsyLDIsIkIiXSxbMCwxLCJcXHRpbGRle2Z9Il0sWzEsMiwicCJdLFswLDIsImYiLDJdXQ==
+\[\begin{tikzcd}[column sep=large,row sep=scriptsize]
+	&& E \\
+	\\
+	X && B
+	\arrow["p", from=1-3, to=3-3]
+	\arrow["{\tilde{f}}", from=3-1, to=1-3]
+	\arrow["f"', from=3-1, to=3-3]
+\end{tikzcd}\]
+
+\exOne\ul{Lemma 54.1:} Let $p: E \to B$ be a covering map and let $e_0 \in p^{-1}(\{b_0\})$. Then if\\ $f: [0, 1] \to B$ is a path beginning at $b_0$, there is a unique lifting of $f$ to a path $\tilde{f} \in E$\\ beginning at $e_0$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Let $\{U_\alpha\}_{\alpha \in A}$ be an open covering of $B$ consisting of open sets that are evenly\\ covered by $p$. Then in turn $\{f^{-1}(U_\alpha)\}_{\alpha \in A}$ is an open covering of $[0, 1]$. So, we can invoke the following useful lemma.\newpage
+
+	\ul{Lebesgue Number Lemma:} If $(X, d)$ is a compact metric space and an open cover $\mathcal{U}$ of $X$ is given, then the cover admits some \udefine{Lebesgue number} $\delta > 0$. That is, for some $\delta > 0$ we have that: $\diam(E) < \delta \Longrightarrow \exists U \in \mathcal{U} \suchthat E \subseteq U$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Let $\{U_1, \ldots, U_n\} \subseteq \mathcal{U}$ be a finite subcover of $X$. If any $U_i = X$, then trivially any $\delta > 0$ works. So assume $U_i \neq X$ for all $i$. Then since $F_i \coloneqq X - U_i$ is nonempty for all $i$, we know that $d(x, F_i) = \inf\{d(x, y) : y \in F_i\}$ is well defined for all $x \in X$ and $i \in \{1, \ldots, n\}$. Furthermore, it is easy to see that $d(x, F_i)$ is a continuous function of $x$. And since $F_i$ is closed, we have that $d(x, F_i) = 0$ iff $x \in F_i$.\retTwo
+
+		Now define $f: X \to \mathbb{R}$ by $f(x) = \sum\limits_{i = 1}^n d(x, F_i)$.\retTwo
+
+		Since $f$ is a continuous map from a compact set, we know by the extreme value\\ theorem that $f$ attains a minimum $\alpha \in \mathbb{R}$. Also, since the $F_i$ cover $X$, we know that $f(x) \neq 0$ for any $x \in X$. Hence, $\alpha > 0$.\retTwo
+
+		Now set $\delta = \sfrac{\alpha}{n}$. Then for any $E \subseteq X$ with $\diam(E) < \delta$, if we pick $x_0 \in E$ we have that $E \subseteq B_{\delta}(x_0)$. Importantly, since $f(x_0) > \alpha = n\delta$, we must have that $d(x, F_i) > \delta$ for some $i$. It follows then that $E \subseteq U_i$. This proves that $\delta$ works as a Lebesgue number. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	By the above lemma, we know that there exists $0 = s_0 < s_1 < \ldots < s_n = 1$\\ satisfying for each $0 \leq i < n$ that $[e_i, e_{i+1}] \subseteq f^{-1}(U_{\alpha_i})$ for some $\alpha_i \in A$. Or in other words, $f([e_i, e_{i+1}]) \subseteq U_{\alpha_i}$ for some $\alpha_i \in A$. After setting $\tilde{f}(0) = e_0$, we may proceed by induction as follows in order to show a suitable $\tilde{f}$ exists.
+
+	\begin{myIndent}
+		Assume that $\tilde{f}$ was already defined for all $s \in [0, s_i]$ where $i < n$. Since\\ $U_{\alpha_i}$ is evenly covered by $p$, we know there is a unique open set $V \subseteq E$\\ such that $\tilde{f}(s_i) \in V$ and $p|_V$ is a homeomorphism onto $U_{\alpha_i}$. Then since\\ $f([s_i, s_{i+1}]) \subseteq U_{\alpha_i}$, we know it is well defined to set $\tilde{f}(s) = (p|_V)^{-1}(f(s))$\\ for all $s \in [s_i, s_{i+1}]$. Also, it is clear then that $\tilde{f}|_{[s_i, s_{i+1}]}$ is continuous since it\\ is the composition of two continuous functions. In turn, we can see by the\\ pasting lemma that $\tilde{f}$ will be continuous on the domain $[0, s_{i+1}]$ \retTwo
+	\end{myIndent}
+	
+	To finish off, we now need to show that $\tilde{f}$ is unique. So suppose $g: [0, 1] \to E$ also satisfies that $p \circ g = E$ and $g(0) = e_0$. Then we trivially have that $g(s_0) = \tilde{f}(s_0)$. So, we may proceed by induction as follows in order to show $\tilde{f} = g$.
+	\begin{myIndent}
+		Assume we've already shown that $\tilde{f}(s) = g(s)$ for all $s \in [0, s_i]$ where\\ $0 \leq i < n$. Now letting $V$ be as in the prior reasoning, we know that $g(s)$\\ must be in $V$ for all $s \in [s_i, s_{i+1}]$. After all, if $\{V_\gamma\}_{\gamma \in C}$ is a partition of $p^{-1}(U_{\alpha_i})$\\ into slices, we must have that:
+		
+		{\centering$g([s_i, s_{i+1}]) \subseteq p^{-1}(U_{\alpha_i}) = \bigcup_{\gamma \in C} V_\gamma$.\retTwo\par}
+
+		But since all the $V_\gamma$ are disjoint, nonempty, and open; and $g([s_i, s_{i+1}])$ is\\ connected, it must be the case that $g([s_i, s_{i+1}])$ only intercepts one $V_\gamma$.\\ Specifically, that one $V_\gamma$ is $V$ since $g(s_i) \in V$.\newpage
+
+		But now we must have for each $s \in [s_i, s_{i+1}]$ that $g(s)$ satisfies that\\ $p(g(s)) = f(s)$. Yet the only point in $V$ which satisfies that is $\tilde{f}(s)$. Hence, $\tilde{f}(s) = g(s)$ for all $[0, s_{i+1}]$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Lemma 54.2:} Let $p: E \to B$ be a covering map and let $e_0 \in p^{-1}(\{b_0\})$. Then if\\ $F: [0, 1]^2 \to B$ is a continuous map satisfying that $F(0, 0) = b_0$, there is a unique lifting of $F$ to a continuous function $\tilde{F}: [0, 1]^2 \to E$ such that $\tilde{F}(0, 0) = e_0$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	We'll start by showing uniqueness. Suppose $\tilde{F}$ and $G$ both are continuous functions from $[0, 1]^2$ to $E$ satisfying our lemma. By an easy application of the last lemma, if $(x_0, y_0) \in [0, 1]^2$, then we must have $\tilde{f}(s) \coloneqq \tilde{F}(sx_0, sy_0)$ and $g(s) \coloneqq G(sx_0, sy_0)$ are equal for all $s \in [0, 1]$ since both are the unique lifting of the path\\ $f(s) \coloneqq F(sx_0, sy_0)$ to a path in $E$ starting at $e_0$. But then we've shown that\\ $\tilde{F}(x_0, y_0) = \tilde{f}(1) = g(1) = G(x_0, y_0)$. And since $(x_0, y_0)$ was arbitrary, we have shown that $\tilde{F}$ is unique if it exists.\retTwo
+
+	Next, we need to show that a sufficient $\tilde{F}$ exists in the first place. So start by setting $\tilde{F}(0, 0) = e_0$. Now for any fixed $(x_0, y_0) \in [0,1]^2$, if we define $f(s) = F(sx_0, sy_0)$, then we know by the prior lemma that there is a continuous map $\tilde{f}: [0, 1] \to E$ such that $p \circ \tilde{f}(s) = f(s)$ for all $s \in [0, 1]$. Hence, we may define $\tilde{F}(x_0, y_0) = \tilde{f}(1)$. After doing this for all choices of $(x_0, y_0)$, we will have constructed a function\\ $\tilde{F}: [0, 1]^2 \to E$ such that $p \circ \tilde{F} = F$.\retTwo
+
+	What's still not clear is that $\tilde{F}$ is continuous. To show this, we will need the\\ observation that if $f(s) = F(sx_0, sy_0)$ and $\tilde{f}$ is the unique lifting of $f$ to path in $E$ such that $p \circ \tilde{f} = f$ and $\tilde{f}(0) = e_0$, then by an easy application of the last lemma we can show that $\tilde{F}(sx_0, sy_0) = \tilde{f}(s)$. Hence, for any $(x_0, y_0) \in [0,1]^2$ we have that $\tilde{F}$ varies continuously as one moves along the straight line between $(0, 0)$ to $(x_0, y_0)$.\retTwo
+
+	Now use the Lebesgue number lemma to pick $0 = s_0 < s_1 < \ldots < s_n = 1$ such that for all $0 \leq i, j < n$, $F([s_i, s_{i+1}] \times [s_j, s_{j+1}])$ is contained in some open set $U$ that is evenly covered by $p$. Then make the inductive hypotheses that there exists $0 \leq i, j < n$ for which we've already shown that $\tilde{F}$ is continuous on:
+	
+	{\centering$([0, s_i] \times [0, 1]) \cup ([s_i, s_{i+1}] \times [0, s_j])$.\retTwo\par}
+
+	\begin{myTindent}\exPPP
+		Note that if $i = 0$ or $j = 0$, then the fact that $\tilde{F}$ is continuous on the line connecting $(0, 0)$ to $(0, 1)$ and on the line connecting $(0, 0)$ to $(1, 0)$ proves this base case.\retTwo
+	\end{myTindent}
+
+	Now let $U$ be an open set that contains $F([s_i, s_{i+1}] \times [s_j, s_{j+1}])$ and is evenly covered by $p$. Then let $V \subseteq E$ be an open set disjoint from the rest of the preimage of $U$ such that $p|_V$ is a homeomorphism from $V$ to $U$ and $\tilde{F}(s_i, s_j) \in V$. Since we already know by induction that $F$ varies continuously along the straight lines from $(s_i, s_{j})$ to $(s_i, s_{j+1})$, and from $(s_i, s_{j})$ to $(s_{i+1}, s_j)$, we know that $F(x, s_j)$ and $F(s_i, y)$ are in $V$ for all $x \in [s_i, s_{i+1}]$ and $y \in [s_j, s_{j+1}]$. This is important because we know that for any $(x, y) \in [s_i, s_{i+1}] \times [s_j, s_{j+1}]$, the straight line from $(0, 0)$ to $(x, y)$ must cross one of those two borders of the rectangle. And since $F$ varies continuously along the straight line from $(0, 0)$ to $(x, y)$, this proves that $F(x, y) \in V$ for all $(x, y) \in [s_i, s_{i+1}] \times [s_j, s_{j+1}]$.\retTwo
+
+	In turn, we have for all $(x, y) \in [s_i, s_{i+1}] \times [s_j, s_{j+1}]$ that $\tilde{F} = (p|_V)^{-1}(F(x, y))$. Thus $\tilde{F}$ is continuous on $[s_i, s_{i+1}] \times [s_j, s_{j+1}]$ since it is the composition of two\\ continuous functions. Also by pasting lemma, we can thus say that $\tilde{F}$ is continuous on $([0, s_i] \times [0, 1]) \cup ([s_i, s_{i+1}] \times [0, s_{j+1}])$. $\blacksquare$\retTwo
+\end{myIndent}
 
 
 
