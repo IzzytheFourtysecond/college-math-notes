@@ -5118,7 +5118,7 @@ I'm going to take a break from Guillemin's book and instead try to learn some\\ 
 If $f_1, f_2: X \to Y$ are continuous maps, we say $f_1$ is \udefine{homotopic} to $f_2$ if there is a  continuous map $F: X \times [0, 1] \to Y$ such that $F(x, 0) = f_1(x)$ and $F(x, 1) = f_2(x)$. $F$ is called a \udefine{homotopy} between $f_1$ and $f_2$. And if $f_1$ and $f_2$ are homotopic, we write $f_1 \simeq f_2$. If $f_1 \simeq f_2$ and $f_2$ is a constant map, then we say $f_1$ is \udefine{nulhomotopic}.\\
 
 \begin{myIndent}\hTwo
-	An important special case is when $f_1$ and $f_2$ are paths (i.e. continuous maps from $[0, 1]$ to a topological space $X$). In this case, it can be helpful to make the following stricter distinction. We say $f_1$ and $f_2$ are \udefine{path homotopic} if they have the same initial point and final point, and there is a homotopy $F$ between the two paths. Also, we call $F$ a \udefine{path homotopy} and say $f_1 \simeq_p f_2$. \retTwo
+	An important special case is when $f_1$ and $f_2$ are paths (i.e. continuous maps from $[0, 1]$ to a topological space $X$). In this case, it can be helpful to make the following stricter distinction. We say $f_1$ and $f_2$ are \udefine{path homotopic} if they have the same initial point $x_0$ and final point $x_1$, and there is a homotopy $F$ between the two paths such that $F(0, t) = x_0$ and $F(1, t) = x_1$ for all $t$. Also, we call $F$ a \udefine{path homotopy} and say $f_1 \simeq_p f_2$. \retTwo
 \end{myIndent}
 
 \exOne\ul{Lemma 51.1:} $\simeq$ and $\simeq_p$ are equivalence relations.
@@ -5290,7 +5290,7 @@ This is well defined since if $F$ is a homotopy between $f$ and $f^\prime$, then
 	{\centering $[f] * [g] = [f] * [g * \alpha * \bar{\alpha}] = [g * \alpha * \bar{\alpha}] * [f] = [g] * [f]$. \retTwo\par}
 \end{myIndent}
 
-\ul{Exercise 52.4:} Let $A \subseteq X$, suppose $r: X \to A$ is a continuous map such that $r(a) = a$ for each $a \in A$. (The map $r$ is called a \udefine{retraction} of $X$ onto $A$.) If $a_0 \in A$, then show that $r_*: \pi_1(X, a_0) \to \pi_1(A, a_0)$ is surjective.
+\ul{Exercise 52.4:} Let $A \subseteq X$, suppose $r: X \to A$ is a continuous map such that $r(a) = a$ for each $a \in A$. (The map $r$ is called a \udefine{retraction} of $X$ onto $A$ and we call $A$ a \udefine{retract} of $X$.) If $a_0 \in A$, then show that $r_*: \pi_1(X, a_0) \to \pi_1(A, a_0)$ is surjective.
 
 \begin{myIndent}\pracTwo
 	Suppose $[f]_A \in \pi_1(A, a_0)$. Then $f$ is also a loop in $X$, meaning it has a class\\ $[f]_X \in \pi_1(X, a_0)$. And $r_*([f]_X) = [r \circ f]_A = [f]_A$. Hence $r_*$ is surjective.\retTwo
@@ -5460,6 +5460,118 @@ If every point $b \in B$ has an open neighborhood $U \subseteq B$ that is evenly
 
 	In turn, we have for all $(x, y) \in [s_i, s_{i+1}] \times [s_j, s_{j+1}]$ that $\tilde{F} = (p|_V)^{-1}(F(x, y))$. Thus $\tilde{F}$ is continuous on $[s_i, s_{i+1}] \times [s_j, s_{j+1}]$ since it is the composition of two\\ continuous functions. Also by pasting lemma, we can thus say that $\tilde{F}$ is continuous on $([0, s_i] \times [0, 1]) \cup ([s_i, s_{i+1}] \times [0, s_{j+1}])$. $\blacksquare$\retTwo
 \end{myIndent}
+
+\ul{Corollary:} If $F$ is a path homotopy then the lifting in the prior lemma: $\tilde{F}$, is a path\\ homotopy.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	If $F(0, t) = b_0$ for all $t \in [0, 1]$, then we know that $\tilde{F}(\{0\} \times [0, 1]) \subseteq p^{-1}(b_0)$. But the latter set will have the discrete topology as a subspace of $E$. Since $\tilde{F}(\{0\} \times [0, 1])$ is connected, this must mean that $\tilde{F}$ is constant on $0 \times [0, 1]$. Similar reasoning also shows that $\tilde{F}(\{1\} \times [0, 1])$ has one element. $\blacksquare$\retTwo
+
+	\begin{myIndent}\exPPP
+		Note: $p^{-1}(b_1)$ as a subspace of $E$ has the discrete topology because $p$ being a\\ covering map means that each of the elements of $p^{-1}(b_1)$ are contained in distinct disjoint open sets. Also, a subset of a space with the discrete topology is connected iff it has one element.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+
+\ul{Theorem 54.3:} Let $p: E \to B$ be a covering map, and let $e_0 \in p^{-1}(b_0)$. Next let $f$ and $g$ be paths in $B$ from $b_0$ to $b_1$ and let $\tilde{f}$ and $\tilde{g}$ be their respective liftings to a path in $E$ starting at $e_0$. If $f$ and $g$ are path homotopic, then $\tilde{f}$ and $\tilde{g}$ end at the same point and are path homotopic.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Let $F: [0, 1]^2 \to B$ be a homotopy between $f$ and $g$. Then $F(0, 0) = b_0$,\\ meaning there is a unique continuous lifting $\tilde{F}: [0, 1]^2 \to E$ of $F$ to $E$\\ satisfying that $\tilde{F}(0, 0) = e_0$. By our prior corollary, we know that $\tilde{F}$ will be a\\ homotopy, meaning that $\tilde{f}(\{0\} \times [0, 1]) = \{e_0\}$ and $\tilde{f}(\{1\} \times [0, 1]) = \{e_1\}$ where $e_1 \in p^{-1}(b_1)$. Also, due to the uniqueness we proved in lemma 54.1, it's easy to see that $\tilde{F}(s, 0) = \tilde{f}(s)$ and $\tilde{F}(s, 1) = \tilde{g}(s)$ for all $s$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne Let $p: E \to B$ be a covering map and let $b_0 \in B$. Choose an $e_0 \in E$ such that $p(b_0) = b_0$. Then given an element $[f] \in \pi_1(B, b_0)$, define $\phi([f]) \coloneqq \tilde{f}(1)$ where $\tilde{f}$ is the unique lifting of $f$ to path in $E$ starting at $e_0$.\retTwo
+
+By the last theorem, $\phi: \pi_1(B, b_0) \to p^{-1}(b_0)$ is a well-defined map which we call the \udefine{lifting correspondence} derived from $p$. Note, $\phi$ is dependent on our choice of $e_0$.\newpage
+
+\exOne\ul{Theorem 54.4:} Let $p: E \to B$ be a covering map and for some $b_0 \in B$, choose\\ some $e_0 \in p^{-1}(b_0)$. If $E$ is path connected, then the lifting correspondence\\ $\phi: \pi_1(B, b_0) \to p^{-1}(b_0)$ is surjective. Furthermore, if $E$ is simply connected,\\ then $\phi$ is bijective.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	If $E$ is path connected, then given any $e_1 \in p^{-1}(b_0)$ there exists a path $\tilde{f}$ from $e_0$ to $e_1$. In turn, $f \coloneqq p \circ \tilde{f}$ is a continuous loop from $b_0$ to itself in $B$ such that $\phi([f]) = \tilde{f}(1) = e_1$.\retTwo
+
+	Next suppose $E$ is simply connected. Then suppose $[f], [g] \in \pi_1(B, b_0)$ satisfy that $\phi([f]) = \phi([g])$. By letting $\tilde{f}$ and $\tilde{g}$ be the liftings of $f$ and $g$ respectively, we know that $\tilde{f}$ and $\tilde{g}$ are both paths from $e_0$ to some $e_1$. Therefore, by lemma 52.3 plus the fact that $E$ is simply connected, we know that $\tilde{f}$ and $\tilde{g}$ are path homotopic via a homotopy $\tilde{F}$. And since $p$ is a continuous map, we have that $F \coloneqq p \circ \tilde{F}$ is a path homotopy of $f = p \circ \tilde{f}$ and $g = p \circ \tilde{g}$. This proves that $[f] = [g]$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 54.5:} The fundamental group of $S^1 \coloneqq \{x \in \mathbb{R}^2 : \|x\|_2 = 1\}$ is isomorphic to $\mathbb{Z}$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Let $p : \mathbb{R} \to S^1$ be the covering map $p(t) = (\cos(2\pi t), \sin(2\pi t))$. Also pick $e_0 = 0$ and let $b_0 = p(e_0) = (1, 0)$. Then $p^1(\{b_0\}) = \mathbb{Z}$. And since $\mathbb{R}$ is simply connected, we have that the lifting correspondence $\phi: \pi_1(S^1, b_0) \to \mathbb{Z}$ is bijective.\retTwo
+
+	To show that $\pi_1(S^1, b_0) \cong \mathbb{Z}$, we shall now show that $\phi$ is a group homomorphism.
+	\begin{myIndent}
+		Suppose $[f], [g] \in \pi_1(S^1, b_0)$. Then let $\tilde{f}$ and $\tilde{g}$ be the respective liftings of $f$ and $g$ to $\mathbb{R}$ to paths starting at $0$. Also let $n \coloneqq \phi([f])$ and $m \coloneqq \phi([g])$. If we define $\tilde{h}(s) = \tilde{g}(s) + n$, then because $p(x + n) = p(x)$ for all $x \in \mathbb{R}$, we know $\tilde{h}$ is another lifting of $g$. However $\tilde{h}$ starts at $n$ instead of $0$. It follows that $\tilde{f} * \tilde{h}$ is a well-defined product of paths, and it is lifting of $f * g$ to a path in $\mathbb{R}$ starting at $0$. Hence:
+		
+		{\centering$\phi([f] * [g]) = \phi([f * g]) = (\tilde{f} * \tilde{h})(1) = n+m = \phi([f]) + \phi([g])$. $\blacksquare$\retTwo\par}
+		
+		\exPPP The intution for this result is that the fundamental group of $S^1$ categorizes all loops in $S^1$ by the net number of complete revolutions of the path around $S^1$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Theorem 54.6:} Let $p: E \to B$ be a covering map and let $p(e_0) = b_0$.
+\begin{itemize}
+	\item[(a)] The induced homomorphism $p_*: \pi_1(E, e_0) \to \pi_1(B, b_0)$ is injective.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Suppose $[\tilde{h}] \in \pi_1(E, e_0)$ such that $p_*([\tilde{h}])$ is the identity element of $\pi_1(B, b_0)$. Then there is a homotopy $F$ between $p \circ \tilde{h}$ and the constant loop based at $b_0$. If $\tilde{F}$ is the lifting of $F$ to $E$ satisfying that $\tilde{F}(0, 0) = e_0$, then $\tilde{F}$ will be a homotopy between $\tilde{h}$ and the constant loop based at $e_0$.\newpage
+	\end{myIndent}
+
+	\item[(b)] Let $H = p_*(\pi_1(E, e_0))$. Then if $\pi_1(B, b_0)/H$ is collection of right cosets of $H$, then the lifting correspondance of $\phi$ induces an injective map:
+	
+	{\centering $\Phi: \pi_1(B, b_0)/H \to p^{-1}(b_0)$ \retTwo\par}
+
+	Furthermore, $\Phi$ is bijective, if $E$ is path connected.
+
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Let $f$ and $g$ be loops in $B$ based at $b_0$, and let $\tilde{f}$ and $\tilde{g}$ be the liftings of those loops in $E$ to paths starting at $e_0$. Since $H$ is a subgroup of $\pi_1(B, b_0)$, we know that $[g] \in H * [f]$ iff $H * [g] = H * [f]$. Thus, to show that $\Phi$ is well-defined, we just need to show that $[g] \in H * [f] \Longrightarrow \phi([g]) = \phi([f])$. Meanwhile, to show that $\Phi$ is injective, we just need to show that $[g] \in H * [f] \Longleftarrow \phi([g]) = \phi([f])$.
+		\begin{myIndent}\exThreeP
+			$(\Longrightarrow)$\\
+			If $[f] \in H * [g]$, then there exists $[h] \in H$ with $[f] = [h * g]$. And due to how we defined $H$, the lifting $\tilde{h}$ of $h$ to $E$ starting $e_0$ will be a loop.
+			
+			\begin{myIndent}\exPPP
+				Why: We know there exists a loop $\tilde{h^\prime}$ in $E$ based at $e_0$ such that\\ $[h] = [p \circ \tilde{h^\prime}]$. But now by theorem 54.3, we have that the liftings $\tilde{h}$ and $\tilde{h^\prime}$ of $h$ and $p \circ \tilde{h^\prime}$ respectively are path homotopic. So, $\tilde{h}$ is also a loop based at $e_0$.\retTwo
+			\end{myIndent}
+
+			It follows that the product $\tilde{h} * \tilde{g}$ is well-defined and is a lifting of $h * g$. That plus the fact that $[f] = [h * g]$ means that by theorem 54.3, $\tilde{f}$ and $\tilde{h} * \tilde{g}$ have\\ [2pt] the same end point. So:
+
+			{\centering $\phi([f]) = \tilde{f}(1) = \tilde{h} * \tilde{g}(1) = \tilde{g}(1) = \phi([g])$ \retTwo\par}
+
+			$(\Longleftarrow)$\\
+			Next suppose $\phi([f]) = \phi([g])$. Then $\tilde{f}$ and $\tilde{g}$ end at the same point of $E$. So, we can define the loop $\tilde{h}$ in $E$ based at $e_0$ as the product of $\tilde{f}$ and the reverse of $\tilde{g}$. Importantly, $[\tilde{h} * \tilde{g}] = [\tilde{f}]$. So, if $\tilde{F}$ is a path homotopy between $\tilde{h} * \tilde{g}$ and $\tilde{f}$, then $F \coloneqq p \circ \tilde{F}$ is a path homotopy between $f = p \circ \tilde{f}$ and $p \circ (\tilde{h} * \tilde{g}) = (p \circ \tilde{h}) * g$. Also, $p \circ \tilde{h} \in H$. So $[f] \in H * [g]$.\retTwo
+		\end{myIndent}
+
+		If $E$ is path connected, then we know $\phi$ is surjective. In turn $\Phi$ will also be\\ surjective.\retTwo
+	\end{myIndent}
+	
+	\item[(c)] If $f$ is a loop in $B$ based at $b_0$, then $[f] \in H$ iff $f$ lifts to a loop in $E$ based at $e_0$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Since $\Phi$ is injective and the constant loop about $b_0$ is mapped to $e_0$ by $\phi$, we know that $\phi([f]) = e_0$ iff $[f] \in H$. But $\phi([f]) = e_0$ precisely iff $f$ lifts to a loop in $E$ based at $e_0$. $\blacksquare$\newpage
+	\end{myIndent}
+\end{itemize}
+
+\hOne\dispDate{8/17/2025}
+
+\exOne\ul{Lemma 55.1:} If $A$ is a retract of $X$, then the homomorphism of fundamental groups induced by the inclusion map $j: A \to X$ is injective.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	If $r: X \to A$ is a retraction, then $r \circ j$ is just the identiy map on $A$. It follows that $(r \circ j)_* = r_* \circ j_*$ is the identiy map on $\pi_1(A, a_0)$ for any $a_0 \in A$. This is only possible if $r_*$ is surjective (which we admittedly already proved on page 121) and $j_*$ is injective. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne We'll denote $D^2 \coloneqq \{x \in \mathbb{R}^2 : \|x\|_2 \leq 1\}$.\retTwo
+
+\exOne\ul{Theorem 55.2:} There is no retraction from $D^2$ to $S^1$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	If such a retraction did exist, then we would know by the previous lemma that there exists an injective group homomorphism from the fundamental group of $S^1$ to the fundamental group of $D^2$. However, the fundamental group of $S^1$ has strictly greater cardinality than that of $D^2$. So, no such injection exists.
+\end{myIndent}
+
 
 
 
