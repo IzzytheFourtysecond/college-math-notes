@@ -5569,10 +5569,98 @@ By the last theorem, $\phi: \pi_1(B, b_0) \to p^{-1}(b_0)$ is a well-defined map
 
 \begin{myIndent}\exTwoP
 	Proof:\\
-	If such a retraction did exist, then we would know by the previous lemma that there exists an injective group homomorphism from the fundamental group of $S^1$ to the fundamental group of $D^2$. However, the fundamental group of $S^1$ has strictly greater cardinality than that of $D^2$. So, no such injection exists.
+	If such a retraction did exist, then we would know by the previous lemma that there exists an injective group homomorphism from the fundamental group of $S^1$ to the fundamental group of $D^2$. However, the fundamental group of $S^1$ has strictly greater cardinality than that of $D^2$. So, no such injection exists. $\blacksquare$\retTwo
 \end{myIndent}
 
+\ul{Lemma 55.3:} Suppose $h: S^1 \to X$ is a continuous map. Then the following are equivalent.\\ [-25pt]
+\begin{itemize}
+	\item[(1)] $h$ is nulhomotopic (meaning there is a homotopy from $h$ to a constant function on $X$).\\ [-20pt]
+	\item[(2)] $h$ extends to a continuous map $k: D^2 \to X$.\\ [-20pt]
+	\item[(3)] $h_*$ is the trivial homomorphism of fundamental groups.
+\end{itemize}
 
+\begin{myIndent}\exTwoP
+	$(1 \Longrightarrow 2)$\\
+	Let $H : S^1 \times [0, 1] \to X$ be a homotopy from $h$ to some constant map. Then if we define $\pi: S^1 \times [0, 1] \to D^2$ by $\pi(x, t) = x(1 - t)$, we have that $\pi$ defines a quotient map. 
+	\begin{myIndent}\exPPP
+		It's obvious that $\pi$ is continuous and surjective. Also, it's clear that $\pi$ is an open function since any closed set of $S^1 \times [0, 1]$ is compact and thus maps to another compact set of $D^2$ which must be closed.\retTwo
+	\end{myIndent}
+
+	Now since $H$ is constant over the preimage with respect to $\pi$ of any given singleton, we know that $H$ induces a continuous map $k: D^2 \to X$ satisfying that $H = k \circ \pi$. Also, it's clear that for $x \in S^1$, $k(x) = H(x, 0) = h(x)$.\retTwo
+
+	$(2 \Longrightarrow 3)$\\
+	Let $k : D^2 \to X$ be an extension of $h$ and let $j: S^1 \to D^2$ be the inclusion map. Then $h = k \circ j$, meaning $h_* = k_* \circ j_*$. But now since the fundamental group of $D^2$ is trivial, we know that $h_*$ must be the trivial homomorphism.\newpage
+
+	$(3 \Longrightarrow 1)$\\
+	Let $p: \mathbb{R} \to S^1$ be the standard covering map (the one defined in theorem 53.1). Then $p_0 \coloneqq p|_{[0, 1]}$ is a generator for $\pi_1(S^1, 0)$. If we let $x_0 = h(b_0)$, then $f = h \circ p_0$ is a loop in $X$. And since $h_*$ is trivial, we know there exists a path homotopy $F$ from $h \circ p_0$ to the constant map $x_0$.\retTwo
+
+	Now the map $(p_0 \times i): [0,1]^2 \to S^1 \times [0, 1]$ defined by $(p_0 \times i)(x, t) = (p_0(x), t)$ is a quotient map. 
+	\begin{myIndent}\exPPP
+		It's continuous and surjective. Also, once again it maps any closed set to another closed set since all closed subsets of $[0, 1]^2$ are compact and $S^1 \times [0, 1]$ is Hausdorff.\retTwo
+	\end{myIndent}
+
+	Since $F$ is constant on $(p_0 \times i)^{-1}(y)$ for any $y \in S^1 \times [0, 1]$, we have that $F$ induces a continuous map $H: S^1 \times [0, 1] \to X$ satisfying that $H \circ (p_0 \times i) = F$. Also, $x_0 = F(s, 1) = H(p_0(s), 1)$ for all $s \in [0, 1]$. This shows that $H$ is our desired homotopy. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary 55.4:} The inclusion map $j: S^1 \to \mathbb{R} - \{0\}$ is not nulhomotopic. Also the identity map $i: S^1 \to S^1$ is not nulhomotopic.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	There is a retraction $k: \mathbb{R} - \{0\} \to S^1$ given by $k(x) = x / \|x\|_2$. It follows by lemma 55.1 that $j_*$ is injective. And since the fundamental group of $S^1$ is not trivial, that means that $j_*$ is not the trivial homomorphism. Hence, $j$ isn't nulhomotopic by the last lemma.\retTwo
+
+	Similarly, $i_*$ is the identity homomorphism and thus isn't trivial.So $i$ isn't nulhomotopic by the last lemma. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne\mySepTwo
+
+\dispDate{8/18/2025}
+
+Today I want to start learning about general manifolds. So, I will switch over to following John Lee's book \ul{Introduction to Smooth Manifolds}. Soon I might switch back either to Munkres or Guillemin.\retTwo
+
+Suppose $M$ is a topological space. Then we say $M$ is a \udefine{topological manifold of\\ dimension $n$} (a.k.a a \udefine{topological $n$-manifold}) if:
+
+\begin{itemize}
+	\item $M$ is second countable and Hausdorff.
+	\item $M$ is \udefine{locally Euclidean of dimension $n$}, meaning that for any $p \in M$, there exists an open neighborhood $U \subseteq M$ of $p$ and a homeorphism $\varphi$ from $U$ to an open set $\hat{U}$ of $H^n$ or $\mathbb{R}^n$..\newpage
+\end{itemize}
+
+While it's clear that each pair $(U, \varphi)$ define \udefine{local coordinates} on $M$, one weird thing notation-wise is that those coordinates are commonly written as:
+
+{\centering $\varphi(p) = (x^1(p), \ldots, x^n(p))$ (as opposed to using subscripts).\retTwo\par}
+
+This notation also extends to trivial Euclidean manifolds where (for example) John Lee denotes $x \in \mathbb{R}$ as $x = (x^1, \ldots, x^n)$. I don't know why this is apparently common notation in this field of math. (Also, to be clear my differential geometry professor before I dropped the course also used that notation. So, I'm not making it up that the notation is common.\dots)\retTwo
+
+\begin{myIndent}\pracOne
+	One manifold I haven't seen before is the \udefine{$n$-dimensional real projective space},\\ denoted $\mathbb{RP}^n$. It is defined as the set of $1$-dimensional linear subspaces of $\mathbb{R}^{n+1}$ equipped with the quotient topology determined by the map $\pi: \mathbb{R}^{n+1} \to \mathbb{RP}^n$ where $x \mapsto \mSpan\{x\}$.
+	\begin{myIndent}\pracTwo
+		Note: Given $x \in \mathbb{R}^{n+1}$, denote $[x] \coloneqq \pi(x)$.\retTwo
+	\end{myIndent}
+
+	To prove that $\mathbb{RP}^n$ is in fact a manifold, for each $i \in \{1, \ldots, n+1\}$ let\\ $\tilde{U_i} = \{x \in \mathbb{R}^{n+1}: x^i \neq 0\}$. Then let $U = \pi(\tilde{U_i})$. Now $\tilde{U_i}$ is a \udefine{saturated set} with respect to $\pi$ (meaning $\pi^{-1}(\pi(U_i)) = U_i$) for each $i$. Hence $\pi(U_i)$ is open $\mathbb{RP}^n$ for each $i$.\retTwo
+
+	Next, define a map $\varphi_i: U_i \to \mathbb{R}^n$ by:
+	
+	{\centering$\varphi([(x^1, \ldots, x^{n+1})]) \coloneqq (\frac{x^1}{x^i}, \ldots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \ldots,  \frac{x^{n+1}}{x^i})$.\retTwo\par}
+
+	If we scale $x \in \mathbb{R}^{n+1}$ by a nonzero constant, $\varphi_i([x])$ doesn't change. It follows that $\varphi_i$ is a well-defined map. Also, $\varphi_i$ is continuous since it's clear that $\varphi_i \circ \pi$ is continuous and $\pi$ is a quotient map. Finally, to show that $\varphi_i$ has a continuous inverse, note that:
+
+	{\centering $\varphi_i^{-1}(u^1, \ldots, u^n) = [(u^1, \ldots, u^{i-1}, 1, u^{i+1}, \ldots, u^{n+1})]$.\retTwo\par}
+
+	Since $\varphi_i^{-1}$ is the composition of a continuous function from $\mathbb{R}^n$ to $\mathbb{R}^{n+1}$ and $\pi$ which is also continuous, we have that $\varphi_i^{-1}$ is continuous. So $\varphi_i$ is a homeomorphism.\retTwo
+
+	Since the $U_i$ cover $\mathbb{RP}^n$ we've thus shown that $\mathbb{RP}^n$ is locally Euclidean of dimension $n$. The proof that $\mathbb{RP}^n$ is second countable and Hausdorff is left as an exercise by Lee.
+	\begin{myIndent}\pracTwo
+		We know $\mathbb{RP}^n$ is second countable since it is the union of a finite number of open second countable sets.\retTwo
+
+		To show that $\mathbb{RP}^n$ is Hausdorff, suppose that $[x_1], [x_2] \in \mathbb{RP}^n$ with $[x_1] \neq [x_2]$, and without loss of generality suppose $x_1$ and $x_2$ are unit vectors. Then $x_1$ and $x_2$ are not collinear. So, using the Hausdorffness of $S^n$, there is an open neighborhood $U_1 \subseteq S^n$ of $x_1$ such that $x_2, -x_2 \notin U_1$, and similarly there is an open neighborhood $U_2 \subseteq S^n$ of $x_2$ such that $x_1, -x_1 \notin U_2$.\newpage
+
+		Now define $V_i = \{cu : c \in \mathbb{R} - \{0\}, u \in U_i\}$ for each $i$. Then each $V_i$ is easily checked to be a saturated open set with respect to $\pi$. Also, we have that $[x_2] \notin \pi(V_1)$ and $[x_1] \notin \pi(V_2)$. So $\pi(V_1)$ and $\pi(V_2)$ are disjoint open sets in $\mathbb{RP}^n$ separating $[x_1]$ and $[x_2]$.\retTwo
+
+		One more note is that if we restrict $\pi$ to just $S^n$, then we get a continuous surjective map from a compact set to $\mathbb{RP}^n$. This says that $\mathbb{RP}^n$ is compact. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exOne\ul{Lemma 1.10:} Every topological manifold without boundary has a countable basis of precompact \udefine{coordinate balls} (i.e. sets that are homeomorphic to an open ball in $\mathbb{R}^n$).
 
 
 
