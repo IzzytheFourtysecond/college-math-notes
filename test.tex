@@ -1,100 +1,301 @@
-\documentclass[12pt, letterpaper]{article}
-% \usepackage[dvipsnames]{xcolor}
-% \usepackage{soul}
+\documentclass{book}
 
-% \usepackage{tikz}
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
 
-% \usepackage{calc}
-% \usepackage{fontspec} % used to import Calibri
-% \usepackage{anyfontsize} % used to adjust font size
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
 
-% \usepackage{mathtools}
-% %\usepackage{maths}
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
 
-% \usepackage[amsmath=mimic,overcommands]{overarrows}
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
 
-% \newfontfamily{\calibri}{Calibri}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bm}
 
-% \newcommand{\hOne}{
-%    \calibri
-%    \color{Blue}%
-%    \fontsize{14}{14}\selectfont%
+\DeclareMathAlphabet{\mathcaltwo}{U}{eus}{m}{n}
+
+\usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+\graphicspath{{./158_Images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
+
+\usepackage{quiver} %commutative diagrams
+
+
+\newfontfamily{\calibri}{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Arrow Commands:
+
+% Thank you Bernard, gernot, and Sigur who I copied this from:
+% https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+
+% Thank you egreg who I copied from:
+% https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
+\newcommand{\longrightarrowdbl}{\longrightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\longleftarrowdbl}{\leftarrow\mathrel{\mkern-14mu}\longleftarrow}
+
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+\newcommand{\xleftarrowdbl}[2][]{%
+  \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
+}
+
+\newcommand{\mRoman}[1]{%
+   \textrm{\MakeUppercase{\romannumeral #1}}%
+}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwo}{%
+\color{Black}%
+   \fontsize{13}{15}\selectfont%
+}
+% \newcommand{\scratchWork}{%
+%    \color{PineGreen!85!Orange}
+%    \fontsize{12}{14}\selectfont%
 % }
+\newcommand{\hThree}{%
+   \color{Black}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\pracOne}{
+   \color{BrickRed}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\pracTwo}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\why}{%
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+	Why:
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{Purple}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{Purple}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exTwoP}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exThreeP}{%
+   \color{RedViolet}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exPP}{%
+   \color{RedViolet}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exPPP}{%
+   \color{VioletRed}%
+   \fontsize{12}{14}\selectfont%
+}
 
-% \newcommand{\uuline}[2][.]{%
-%    {\color{#1}%
-%    \rlap{\rule[-0.20em]{\widthof{#2}}{0.06em}}%
-%    \rlap{\rule[-0.40em]{\widthof{#2}}{0.06em}}}%
-%    #2}
+% Homework standard below (God the bloat in the header is absurd...)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\newcommand{\Hstatement}{%
+   \color{MidnightBlue!90!Black}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexOne}{%
+   \color{Purple}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexTwoP}{%
+   \color{RedViolet}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexPPP}{%
+   \color{VioletRed}%
+   \fontsize{11}{12}\selectfont%
+}
 
-% \newcommand{\rHarpoon}[1]{%
-%    \text{\vphantom{x}%
-%    \rlap{\rule[0.8em]{\widthof{#1}}{0.035em}}}%
-%    #1
-%    \text{\llap{\raisebox{0.56em}{\rightharpoonup}}%
-%    \llap{\raisebox{0.56em}{\rightharpoonup}}}%
-% }
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+\newcommand{\redPen}[1]{{\vphantom{.}\color{Red}#1}}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{{%
+   \setulcolor{Red}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1}%
+}}
+
+\newcommand{\uprop}[1]{{%
+   \setulcolor{Purple}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1} 
+}}
+
+\newcommand{\blab}[1]{\textbf{#1}}
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.3em}s.t.\hspace{0.3em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\myHS}{ \hspace{0.5em}}
+\newcommand{\gap}{\phantom{2}}
+
+\newcommand{\myId}{\mathrm{Id}}
+\newcommand{\myIm}{\mathrm{im}}
+\newcommand{\Obj}{\mathrm{Obj}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+\newcommand{\df}{\mathrm{d}}
+\newcommand{\Df}{\mathrm{D}}
+
+\newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+\newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
+
+\newcommand{\card}{\mathrm{card}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\opnorm}{\mathrm{op}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\mSpan}{\mathrm{span}}
+
+\newcommand{\mMat}[1]{\mathbf{#1}}
+
+\newcommand{\NBV}{\mathrm{NBV}}
+\newcommand{\Acc}{\mathrm{Acc}}
+\newcommand{\BV}{\mathrm{BV}}
+
+\newcommand{\Alt}{\mathrm{Alt}}
+\newcommand{\Sym}{\mathrm{Sym}}
+
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
+
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
+
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
+
+\newcommand{\dispDate}[1]{{
+   \color{Black}%
+   \fontsize{20}{18}\selectfont%
+   #1\retTwo
+}}
 
 
-% \newcommand{\xrightarrowdbl}[2][]{%
-%   \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
-% }
+\title{Math Journal}
+\author{Isabelle Mills}
 
-% \usepackage{quiver} %commutative diagrams
 
 \begin{document}
+   \setul{0.14em}{0.07em}
+   \calibri\hOne
 
-% \hOne This is some \uuline{text} with your formatting. \[\sup{A}\]
+	Test Test:
 
+	$e^{-2\pi i \xi \cdot x}$, $\mathcal{A}$, $\mathbb{R}$, $\mMat{A}$\retTwo
 
+	I need to figure out a way to import a math caligraphy font after this that doesn't brake my previous bad code.
 
-% \begin{center}
-%    \begin{tikzpicture}[scale=1.5]
-%       \usetikzlibrary{arrows.meta}
-%       \tikzstyle help lines=[color=Lavender, ultra thick, dashed];
-      
-%       \fill[Apricot!90!gray!10!White] (-5, -5) rectangle (3, 3);
-%       \clip (-5, -5) rectangle (3, 3); %another thing you can do apparently
+	$\mathcal{X}$
 
-%       \draw[style=help lines] (0, 0) -- (2, -1);
-%       \fill (0, 0) circle (1mm);
-%       \draw (-1, -1) arc (180:300:2 and 1);
-
-%       \fill[Cyan!15, opacity=0.5] (-2, -1) sin (-1, 0) cos 
-%                                           (0, -1.5) -- cycle;
-      
-%       \fill[OrangeRed!50] (-4, -4) -- (-3, -4) -- (-3, -3) -- (-4, -3)
-%          -- cycle;
-      
-%       \shade[left color=yellow, right color=green, opacity=0.25]
-%          (-4, -1) -- (-3, 2.5) -- (-1, 0) -- cycle;
-
-%       %polar coordinates
-%       \draw[color=Purple, semithick] (225:4cm) circle (2pt);
-%       \draw[color=Purple, -To, very thick] (225:4cm) .. controls (0:2cm) .. (135:2cm);
-
-
-%    \end{tikzpicture}
-% \end{center}
-
-% $\overrightharpoonup{xyzyzyz}$
-
-% \newpage
-
-% % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiKEEvXFxzaW0pIl0sWzQsMCwiXFxtYXRocm17aW19ZiJdLFs2LDAsIkIiXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwyLCJcXHNpbSJdLFsyLDMsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiXFx3aWRldGlsZGV7Zn0iLDJdLFswLDMsImYiLDAseyJjdXJ2ZSI6LTR9XV0=
-% \[\begin{tikzcd}
-% 	A && {(A/{\sim})} && {\mathrm{im}f} && B
-% 	\arrow[two heads, from=1-1, to=1-3]
-% 	\arrow["A/{\sim}", from=1-3, to=1-5]
-% 	\arrow[hook, from=1-5, to=1-7]
-% 	\arrow["{\widetilde{f}}"', from=1-3, to=1-5]
-% 	\arrow["f", curve={height=-44pt}, from=1-1, to=1-7]
-% \end{tikzcd}\]
-
-Is /newpage in default latex?
-
-\newpage
-
-Test Test test
+	$\mathcaltwo{X}$
 
 \end{document}

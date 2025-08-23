@@ -21,6 +21,9 @@
 
 \usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
 
+\DeclareMathAlphabet{\mathcalli}{U}{eus}{m}{n}
+
+
 \usepackage{amssymb} % originally imported to get the proof square
 \usepackage{xfrac}
 \usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
@@ -239,6 +242,7 @@
 \newcommand{\mMat}[1]{\mathbf{#1}}
 
 \newcommand{\NBV}{\mathrm{NBV}}
+\newcommand{\Acc}{\mathrm{Acc}}
 \newcommand{\BV}{\mathrm{BV}}
 
 \newcommand{\Alt}{\mathrm{Alt}}
@@ -3824,7 +3828,7 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 	Proof:\\
 	Parts (a) and (b) are trivial. As for part (c), let $\alpha_0: U_0 \to V_0$ be the coordinate patch in the hypothesis of the lemma and suppose (for the sake of contradiction) that there is another coordinate patch $\alpha_1: U_1 \to V_1$ about $p$ with $U_1$ open in $\mathbb{R}^k$.\retTwo
 
-	Since $V_0$ and $V_1$ are open in $M$, the set $W = V_0 \cap V_1$ is also open in $M$. Let\\ $W_i = \alpha_i^{-1}(W)$ for $i = 0, 1$. Then $W_0$ is open in $H^k$ and contains $x_0$ (which\\ consequently means $W_0$ isn't open in $\mathbb{R}^k$). Also, $W_1$ is open in $\mathbb{R}^k$ and contains\\ $x_0$. But now note that by our prior theorem, $\alpha_0^{-1} \circ \alpha_1$ is a $C^r$ map from $W_1$ to $W_0$ with a nonsingular derivative matrix. So, by specifically part (A) of the inverse function theorem (as covered in math 140C), we know $W_1$ maps to an open set in $\mathbb{R}^k$. Yet $\alpha_0^{-1} \circ \alpha_1(W_1) = W_0$ is not open in $\mathbb{R}^k$. Hence, a contradiction. $\blacksquare$
+	Since $V_0$ and $V_1$ are open in $M$, the set $W = V_0 \cap V_1$ is also open in $M$. Let\\ $W_i = \alpha_i^{-1}(W)$ for $i = 0, 1$. Then $W_0$ is open in $H^k$ and contains $x_0$ (which\\ consequently means $W_0$ isn't open in $\mathbb{R}^k$). Also, $W_1$ is open in $\mathbb{R}^k$. But now note that by our prior theorem, $\alpha_0^{-1} \circ \alpha_1$ is a $C^r$ map from $W_1$ to $W_0 \subseteq \mathbb{R}^k$ with a nonsingular derivative matrix. So, by specifically part (A) of the inverse function theorem (as covered in math 140C), we know $W_1$ maps to an open set in $\mathbb{R}^k$. Yet $\alpha_0^{-1} \circ \alpha_1(W_1) = W_0$ is not open in $\mathbb{R}^k$. Hence, a contradiction. $\blacksquare$
 	\begin{myIndent}\exPPP
 		Side note: Holy fuck I did not realize before now that in math 140C we proved that $C^1$ functions with a nonsingular derivative matrix are open maps.\retTwo
 	\end{myIndent}
@@ -5660,7 +5664,285 @@ This notation also extends to trivial Euclidean manifolds where (for example) Jo
 	\end{myIndent}
 \end{myIndent}
 
-\exOne\ul{Lemma 1.10:} Every topological manifold without boundary has a countable basis of precompact \udefine{coordinate balls} (i.e. sets that are homeomorphic to an open ball in $\mathbb{R}^n$).
+\exOne\ul{Lemma 1.10:} Every topological manifold  $M$
+without boundary has a countable basis of precompact \udefine{coordinate balls} (i.e. sets that are homeomorphic to an open ball in $\mathbb{R}^n$) and \udefine{coordinate half-balls} (i.e. sets that are homeomorphic to $B_r(x) \cap H^n$ where $B_r(x)$ is a ball centered at a point in $\partial H^n$).
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Firstly, since every point in $M$ has a coordinate patch (Lee uses the word "chart") about it, there exists an open covering $\{U_\alpha\}_{\alpha \in A}$ of $M$ consisting of domains of\\ coordinate patches $\varphi_\alpha: U_\alpha \to \hat{U_\alpha} \subseteq \mathbb{R}$.\retTwo
+
+	\ul{Lemma:} If $X$ is a second countable space and $\{U_\alpha\}_{\alpha \in A}$ is an open cover of $X$, then there exists a countable subcover $\{U_{\alpha_n}\}_{n \in \mathbb{N}}$ of $X$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Let $\mathcal{B} = \{B_n\}_{n \in \mathbb{N}}$ be a countable basis for the topology of $X$. Then for each $n$ we know there exists $U_{\alpha_n}$ with $B_n \subseteq U_{\alpha_n}$. Then in turn, since $\mathcal{B}$ is an open cover of $X$, we have that $\{U_{\alpha_n}\}_{n \in \mathbb{N}}$ also covers $X$.\retTwo
+	\end{myIndent}
+
+	It follows from that lemma there is a countable collection of coordinate charts\\ $\varphi_{\alpha_n} : U_{\alpha_n} \to \hat{U}_{\alpha_n}$ covering $M$. Then, it's obvious how each $\varphi_{\alpha_n}$ defines a countable basis for $U_{\alpha_n}$ consisting of precompact coordinate balls and half balls, and if we take the union of all those bases for each $n$, we get a countable basis for all of $M$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} Every topological manifold $M$ is \udefine{locally path connected} (meaning there exists a basis of $M$ consisting of path connected sets). 
+\begin{myIndent}\exPPP
+	This is cause every coordinate ball is path connected on account of being homemorphic to a path connected set.\retTwo
+\end{myIndent}
+
+\hOne\mySepTwo
+
+Now due to my patchy background, I'm only sorta familiar with how topological connectedness works. So, here is my attempt at reviewing / teaching some stuff to myself:
+
+\begin{myIndent}\hTwo
+	Here's what I already know / have proven in math 240B (Folland exercise 4.10):
+	\begin{itemize}
+		\item A topological space $X$ is \udefine{connected} if there doesn't exist two nonempty open sets $U$ and $V$ in $X$ such that $U \cap V = \emptyset$ and $U \cup V = X$.
+		\item Equivalently, $X$ is connected if the only two clopen sets are $\emptyset$ and $X$.\newpage
+		\item If $\{E_{\alpha}\}_{\alpha \in A}$ is a collection of connected sets with nonempty intersection, then $E \coloneqq \bigcup_{\alpha \in A} E_\alpha$ is connected.
+		\item If $E \subseteq X$ is connected, then so is $\overline{E}$.
+		\item For every $x \in X$ there is a maximal connected set $E \subseteq X$ containing $x$. This\\ set is called a \udefine{component} of $X$. Additionally, we know that $E$ is closed.
+		\item A topological space $X$ is \udefine{path connected} if for any $x, y \in X$, there is a\\ continuous map $f : [0, 1] \to X$ satisfying that $f(0) = x$ and $f(1) = y$.
+		\item Any convex set in a topological vector space is path connected.\retTwo
+	\end{itemize}
+
+	Here's some stuff I've used but not ever gotten around to proving before.
+	\begin{itemize}
+		\item If $X$ is path connected, then $X$ is connected.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			If $X$ has only $1$ element, then $X$ is trivially both path-connected and connected.\retTwo
+
+			For the sake of contradiction, suppose $X$ is path connected and that there exists nonempty open sets $U, V \subseteq X$ such that $U \cap V = \emptyset$ and $U \cup V = X$. Then pick $x \in U - V$ and $y \in V - U$. Since $X$ is path connected, we know there is a path $f: [0, 1] \to X$ from $x$ to $y$.\retTwo
+
+			If we define $U^\prime = f^{-1}(U)$ and $V^\prime = f^{-1}(V)$, then the continuity of $f$\\ guarentees that $U^\prime$ and $V^\prime$ are open subsets of $[0, 1]$. Also, since $U$ and $V$ are disjoint and contain the entire range of $f$, we know that $U^\prime$ and $V^\prime$ are disjoint and their union is all of $[0, 1]$. And since $0 \in U^\prime$ and $1 \in V^\prime$, neither sets are empty. All of this would points towards $[0, 1]$ being a disconnected set.\retTwo
+
+			However, $[0, 1]$ is connected.
+			\begin{myIndent}\pracTwo
+				Let $U$ and $V$ be two open sets partitioning $[0, 1]$, and without loss of generality suppose $0 \in U$. Then set $\alpha \coloneqq \sup \{s > 0 : [0, s) \subseteq U\}$. If $\alpha < 1$, then it'd be clear that $\alpha \notin U$. But it'd also be clear that $\alpha$ is not an interior point of $V = [0, 1] - U$, which would contradict that $V$ is open. So, we know that $\alpha = 1$. But now this requires that $[0, 1] - U$ equals either $\{1\}$ or $\emptyset$, and only the latter is open in $[0, 1]$. So there does not exist two open nonempty sets which form a partition of $[0, 1]$.\retTwo
+			\end{myIndent}
+
+			Hence, we have a contradiction and conclude that it is impossible for $X$ to be path connected but not connected. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item If $f: X \to Y$ is continuous and $X$ is connected, then $f(X)$ is connected.\\ Similarly, if $X$ is path connected, then $f(X)$ is path connected.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			If $X$ is connected, let $U$ and $V$ be open sets in the subspace topology which\\ partition $f(X)$. Then $f^{-1}(U)$ and $f^{-1}(V)$ are disjoint open subsets of $X$ whose union is $X$. Since $X$ is connected, it follows that either $f^{-1}(U)$ or $f^{-1}(V)$ is empty. And since $f(f^{-1}(U)) = U$ and $f(f^{-1}(V)) = V$ on\\ account of the fact that both $U, V \subseteq f(X)$, we know either $U$ or $V$ is empty. So, $f(X)$ is connected.\newpage
+
+			If $X$ is path connected, consider any $y_1, y_2 \in f(X)$. Then $\exists x_1, x_2 \in X$\\ with $f(x_i) = y_i$ for $i = 1,2$, as well as a path $g: [0, 1] \to X$ going from $x_1$ to $x_2$. It follows that $f \circ g$ is a path going from $y_1$ to $y_2$ in $f(X)$. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item If $\{E_\alpha\}_{\alpha \in A}$ is a collection of path connected sets with nonempty intersection, then $E \coloneqq \bigcup_{\alpha \in A}E_\alpha$ is connected.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Consider any $x, y \in E$, and let $z \in \bigcap_{\alpha \in A}E_\alpha$. Then there is path contained in one of the $E_\alpha$ going from $x$ to $z$, and there is another path in another $E_\alpha$\\ going from $z$ to $y$. Combining those paths gives us a path from $x$ to $y$. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item $E$ being path-connected does not necessarily mean that $\overline{E}$ is. 
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Let $S = \{(t, \sin(1/t)) \in \mathbb{R}^2 : t > 0\}$. Then $S$ is clearly path connected. Also, we can see that $\overline{S} = S \cup (\{0\} \times [-1, 1])$. But, there is no continuous path going from any point in $\{0\} \times [-1, 1]$ to any point in $S$. Hence $\overline{S}$ is not connected. $\blacksquare$\retTwo
+		\end{myIndent}
+		
+		\item For every $x \in X$ there is a maximal path connected set $E \subseteq X$ containing $x$. This set is called a \udefine{path component} of $X$.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Let $\mathcal{E} = \{E_{\alpha}\}_{\alpha \in A}$ be the collection of every path connected set in $X$ containing $x$. Note that $\mathcal{E}$ is not empty since $\{x\} \in \mathcal{E}$. Then $E = \bigcup_{\alpha \in A} E_\alpha$ is path connected. Also, clearly it is a maximal path connected set containing $x$. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item Let $X$ be a topological space, and given $x \in X$ let $E_x$ be the maximal connected component of $X$ containing $x$. Then $\{E_x\}_{x \in X}$ forms a partition of $X$, meaning that if $E_x \cap E_y \neq \emptyset$, then $E_x = E_y$. 
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Suppose $x, y \in X$ satisfy that $E_x \cap E_y \neq \emptyset$. Then $E_x \cup E_y$ is a connected subset containing both $x$ and $y$. So, since $E_x$ and $E_y$ are maximal, we have that $E_x \cup E_y \subseteq E_x, E_y$. It follows that $E_x = E_x \cup E_y = E_y$. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item The previous bullet point also holds if we replace "maximal connected\\ component" with "maximal path connected component".\retTwo
+
+		\item Two sets $A$ and $B$ are \udefine{separated} if $A \cap \overline{B} = \emptyset$ and $\overline{A} \cap B = \emptyset$. A topological space $X$ is connected if and only if no two nonempty sets whose union is all of $X$ are disconnected. (This is the definition in math 140a\dots)
+		\begin{myIndent}\pracTwo
+			$(\Longrightarrow)$\\
+			Let $A$ and $B$ be two nonempty separated sets satisfying that $A \cup B = X$.\\ Then since $\overline{A} \cup B = X$ and $\overline{A} \cap B = \emptyset$, it's clear that $B = (\overline{A})^\comp$. Similarly,\\ it's clear that $A = (\overline{B})^\comp$. So, both $A$ and $B$ are open. But now $A$ and $B$ are\\ disjoint nonempty open sets partitioning $X$. This means that $X$ is not\\ connected.\newpage
+
+			$(\Longleftarrow)$\\
+			Let $U$ and $V$ be two disjoint nonempty open sets whose union is $X$. Then $V = U^\comp$ and $U = V^\comp$. This means $U$ and $V$ are closed and so $U = \overline{U}$, $V = \overline{V}$, and clearly both $U$ and $V$ are separated. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item If $X$ is a topological space and $E \subseteq X$ is clopen, then $E$ is a union of connected components.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			It suffices to show that if $x \in E$ and $A_x$ is the connected component of $X$ containing $x$, then $A_x \subseteq E$. Fortunately, since $A_x$ is closed and $E$ is clopen, we know that $A_x \cap E$ and $A_x - E$ are both closed subsets of $X$. In turn, we know that  $A_x \cap E$ and $A_x - E$ are disjoint open sets in the relative topology of $A_x$ whose union is all of $A_x$. Since $A_x$ is connected, it follows that either $A_x \cap E = \emptyset$ or $A_x - E = \emptyset$. But the former case is not true since $x \in A_x \cap E$. So, we know that $A_x - E = \emptyset$. This shows that $A_x \subseteq E$. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{itemize}
+
+	Here's some nicher proofs:
+	\begin{itemize}
+		\item A space $X$ is \udefine{locally connected} if $X$ has a basis consisting of sets which are connected. Similarly, $X$ is \udefine{locally path connected} if $X$ has a basis consisting of sets which are path connected.\retTwo
+		
+		\item If $X$ is locally connected, then every connected component of $X$ is open.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Let $E$ be a connected component of $X$. Then for all $y \in E$, there exists a\\ connected open set $U_y$ containing $y$. And since $E$ is the maximal connected set containing $y$, we have that $U_y \subseteq E$. Hence, $E = \bigcup_{y \in E}U_y$ is open. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item By identical reasoning to the last bullet point, if $X$ is locally path connected, then every path component of $X$ is open.
+
+		\item Suppose $X$ is locally path connected. Then $X$ is connected if and only if $X$ is path connected.
+		\begin{myIndent}\pracTwo
+			$(\Longrightarrow)$\\
+			It suffices to show that $X$ has only one path component. Luckily, if $X$ had more than one, then since every path component is open, we'd be able to take the union of all but one in order to get two disjoint nonempty open sets whose union is all of $X$. But this contradicts that $X$ is connected.\retTwo
+
+			$(\Longleftarrow)$\\
+			We proved this direction several bullet points ago. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item If $\{X_\alpha\}_{\alpha \in A}$ is a family of connected topological spaces, then the product space $X = \prod_{\alpha \in A} X_\alpha$ is also connected.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Let $<$ be a well-ordering of $A$, and for any $\beta \in A$ let $S_\beta = \{\alpha \in A: \alpha < \beta\}$\\ [-2pt] and $\overline{S_\beta} = S_\beta \cup \{\beta\}$. We shall proceed via transfinite induction.\newpage
+
+			Let $\langle x_\alpha \rangle_{\alpha \in A} \in \prod_{\alpha \in A} X_\alpha$. Then suppose that $\beta \in A$ satisfies that\\ $(\prod\limits_{\alpha \in \overline{S_\gamma}} X_\alpha) \times (\hspace{-0.4em}\prod\limits_{\alpha \in (\overline{S_\gamma})^\comp}\hspace{-0.4em} \{x_\alpha\})$ is connected for every $\gamma \in S_\beta$.\retTwo
+
+			We claim that $(\prod\limits_{\alpha \in \overline{S_\beta}} X_\alpha) \times (\hspace{-0.4em}\prod\limits_{\alpha \in (\overline{S_\beta})^\comp}\hspace{-0.4em} \{x_\alpha\})$ is connected.\retTwo
+
+			To prove this, first note that if $\beta \in A$, then $X_\beta \times \prod_{\alpha \in A - \{\beta\}} \{x_\alpha\}$ is connected. 
+			
+			\begin{myIndent}
+				Proof:\\
+				Let $U$ and $V$ be disjoint open sets which partition $X_\beta \times \prod_{\alpha \in A - \{\beta\}} \{x_\alpha\}$, and let $\pi_\beta$ be the projection of $X$ onto $X_\beta$. Then $\pi_\beta(U)$ and $\pi_\beta(V)$ are disjoint open sets which partition $X_\beta$. It follows that one of those two sets is empty, and the only way that is possible is if either $U$ or $V$ is empty.\retTwo
+			\end{myIndent}
+
+			If $\overline{S_\beta} = \{\beta\}$, then this already proves our claim. Otherwise, notice that:
+
+			{\centering $(\prod\limits_{\alpha \in \overline{S_\beta}} X_\alpha) \times (\hspace{-0.4em}\prod\limits_{\alpha \in (\overline{S_\beta})^\comp}\hspace{-0.4em} \{x_\alpha\}) = \bigcup\limits_{\gamma \in S_\beta}(X_\beta \times (\prod\limits_{\alpha \in \overline{S_\gamma}} X_\alpha) \times (\hspace{-1.3em}\prod\limits_{\alpha \in (\overline{S_\gamma})^\comp - \{\beta\}}\hspace{-1.3em} \{x_\alpha\}))$ \retTwo\par}
+
+			Now each of the sets in that union contain $\langle x_\alpha \rangle$. Also, we claim that each of them are connected. After all, note that:
+			
+			{\centering $X_\beta \times (\prod\limits_{\alpha \in \overline{S_\gamma}} X_\alpha) \times (\hspace{-1.3em}\prod\limits_{\alpha \in (\overline{S_\gamma})^\comp - \{\beta\}}\hspace{-1.3em} \{x_\alpha\}) = \bigcup\limits_{y \in X_\beta} (\{y\} \times (\prod\limits_{\alpha \in \overline{S_\gamma}} X_\alpha) \times (\hspace{-1.3em}\prod\limits_{\alpha \in (\overline{S_\gamma})^\comp - \{\beta\}}\hspace{-1.3em} \{x_\alpha\}))$ \retTwo\par}
+
+			We already know that $\{x_\beta\} \times (\prod\limits_{\alpha \in \overline{S_\gamma}} X_\alpha) \times (\hspace{-1.3em}\prod\limits_{\alpha \in (\overline{S_\gamma})^\comp - \{\beta\}}\hspace{-1.3em} \{x_\alpha\})$ is connected.\retTwo
+
+			Also, for any $y \in X_\beta$, we can find a continuous map $f$ from $X$ to itself which sets the $\beta$th coordinate of a point to $y$ and otherwise acts as the identity for all other coordinates. (We know this map is continuous because $\pi_\alpha \circ f$ is trivially continuous for all $\alpha \in A$\dots) This in turn shows that:
+
+			{\centering $\{y\} \times (\prod\limits_{\alpha \in \overline{S_\gamma}} X_\alpha) \times (\hspace{-1.3em}\prod\limits_{\alpha \in (\overline{S_\gamma})^\comp - \{\beta\}}\hspace{-1.3em} \{x_\alpha\})$ is connected for all $y$. \retTwo\par}
+
+			And since $X_\beta \times \prod_{\alpha \in A - \{\beta\}} \{x_\alpha\}$ is a connected set intersecting the set in the previous paragraph for all $y$ and is a subset of the union:
+			
+			{\center $\bigcup\limits_{y \in X_\beta}( \{y\} \times (\prod\limits_{\alpha \in \overline{S_\gamma}} X_\alpha) \times (\hspace{-1.3em}\prod\limits_{\alpha \in (\overline{S_\gamma})^\comp - \{\beta\}}\hspace{-1.3em} \{x_\alpha\}))$,\par}
+
+			we've thus shown that the entire union is connected. This finishes proving our claim at the top of this page.\retTwo
+			
+			By transfinite induction, we can now conclude that:
+			
+			{\centering $(\prod\limits_{\alpha \in \overline{S_\beta}} X_\alpha) \times (\hspace{-0.4em}\prod\limits_{\alpha \in (\overline{S_\beta})^\comp}\hspace{-0.4em} \{x_\alpha\})$ is connected for all $\beta \in A$.\retTwo\par}
+
+			Finally, to finish our proof we can just note that:
+
+			{\centering $X = \bigcup\limits_{\beta \in A}( (\prod\limits_{\alpha \in \overline{S_\beta}} X_\alpha) \times (\hspace{-0.4em}\prod\limits_{\alpha \in (\overline{S_\beta})^\comp}\hspace{-0.4em} \{x_\alpha\}))$ \newpage\par}
+
+			Also, every set in the above union is connected and contains $\langle x_\alpha \rangle_{\alpha \in A}$. Hence $X$ is connected.\retTwo
+		\end{myIndent}
+
+		\item If $\{X_\alpha\}_{\alpha \in A}$ is a family of path connected topological spaces, then the product space $X = \prod_{\alpha \in A} X_\alpha$ is also path connected.
+		
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Let $\langle x_\alpha\rangle_{\alpha \in A}$ and $\langle y_\alpha \rangle_{\alpha \in A}$ be elements of $X$. Then we know for each $\alpha \in A$ that there is a path $f_\alpha: [0, 1] \to X_\alpha$ such that $f_\alpha(0) = x_\alpha$ and $f_\alpha(1) = y_\alpha$. If we now define $f: [0, 1] \to X$ by $f(t) = \langle f_\alpha(t) \rangle_{\alpha \in A}$, we will have that $f$ is a continuous path from $\langle x_\alpha\rangle_{\alpha \in A}$ to $\langle y_\alpha \rangle_{\alpha \in A}$.
+			\begin{myIndent}
+				(It is continuous because $\pi_{\alpha} \circ f = f_\alpha$ is continuous for all $\alpha \in A$.) $\blacksquare$\retTwo
+			\end{myIndent}
+		\end{myIndent}
+
+		\item Every quotient space of a connected space is connected. Also, every quotient space of a path connected space is path connected.
+		
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Let $X^*$ be a partition of $X$ and let $f: X \to X^*$ be the function mapping every element to the set in $X^*$ containing it. If we equip $X^*$ with the quotient\\ topology with resepct to $f$, then $f$ will be continuous. Hence since $X$ is connected, so will $f(X) = X^*$.\retTwo
+			
+			Similar reasoning works when $X$ is path connected. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\item If $X$ is a locally connected space, then every open set in $X$ is locally connected. Similarly, if $X$ is a locally path connected space, then so is every open set in $X$.
+		\begin{myIndent}\pracTwo
+			This should be obvious.\retTwo
+		\end{myIndent}
+
+		\item If $(X, \mathcal{T})$ is a topological space and $\mathcal{T}^\prime$ is a coarser topology on $\mathcal{T}$, then $(X, \mathcal{T})$ being connected implies that $(X, \mathcal{T}^\prime)$ is connected. Similarly, $(X, \mathcal{T})$ being path connected implies that $(X, \mathcal{T}^\prime)$ is path connected. Another way of thinking about this is that adding sets to a topology only makes your space more\\ disconnected.
+
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			If $(X, \mathcal{T}^\prime)$ weren't connected, then the disjoint sets in $\mathcal{T}^\prime$  partitioning $X$ would also be an open partition in $(X, \mathcal{T})$.\retTwo
+			
+			Next, if $f : [0, 1] \to X$ is continuous with respect to $\mathcal{T}$, then we know it is also continuous with respect to $\mathcal{T}^\prime$. This shows that a path with respect to $\mathcal{T}$ is also a path with respect to $\mathcal{T}^\prime$. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{itemize}
+\end{myIndent}
+
+\mySepTwo
+
+\hOne\dispDate{8/22/2025}
+
+To start off today, I'm going to do an exercise from Folland.\newpage
+
+\Hstatement\blab{Exercise 4.57:} A collection $\mathcal{U}$ of open sets in $X$ is called \udefine{locally finite} if each $x \in X$ has a\\ neighborhood that intersects only finitely many members of $\mathcal{U}$. If $\mathcal{U}$ and $\mathcal{V}$ are open covers of $X$, $\mathcal{V}$ is a \udefine{refinement} of $\mathcal{U}$ if for each $V \in \mathcal{V}$ there exists $U \in \mathcal{U}$ with $V \subseteq U$. $X$ is called \udefine{paracompact} if every open cover of $X$ has a locally finite refinement.
+
+\begin{myIndent}\myComment\fontsize{11}{12}\selectfont
+	Clearly any compact set is automatically paracompact since a finite subcover of an open cover will automatically be a locally finite refinement of that cover. However, beware that a refinement of a cover doesn't need to be a subset of the original cover, and it is possible for a cover to be locally finite without being finite.\retTwo
+
+	The following exercise generalizes the theorems written on pages 81 and 82 of this journal.
+\end{myIndent}
+\begin{itemize}
+	\item[(a)] If $X$ is a $\sigma$-compact LCH space, then $X$ is paracompact. In fact, every open cover $\mathcal{U}$ has locally finite refinements $\{V_\alpha\}_{\alpha \in A}$ and $\{W_\alpha\}_{\alpha \in A}$ such that $\overline{V_\alpha}$ is compact and $\overline{W}_\alpha \subseteq V_\alpha$ for all $\alpha \in A$.
+	\begin{myIndent}\HexOne
+		Let $(U_n)_{n \in \mathbb{N}}$ be an increasing sequence of precompact open sets such that $\overline{U_n} \subseteq U_{n+1}$ and $X = \bigcup_{n \in \mathbb{N}} U_n$. (Since $X$ is a $\sigma$-compact LCH space, we proved in math 240b that such a sequence must exist\dots) Also, for ease of notation take $U_n = \emptyset$ whenever $n \leq 0$\retTwo
+
+		Now, the collection $\{E \cap (U_{n+2} - \overline{U_{n-1}}): E \in \mathcal{U}\}$ is an open cover of $\overline{U_{n+1}} - U_n$.\\ [-2pt] And since $\overline{U_{n+1}} - U_n$ is compact, we can choose a finite subcover $\mathcal{V}_n$ from that\\ collection. Doing this for all $n$ and then setting $\mathcal{V} = \bigcup_{n \in \mathbb{N}} \mathcal{V}_n$, we have that $\mathcal{V}$ is a\\ [-2pt] locally finite refinement of $\mathcal{U}$. After all, each $x$ has a neighborhood $U_{n+2} - \overline{U_{n-1}}$ which\\  only the finitely many open sets in $\mathcal{V}_n, \mathcal{V}_{n+1}, \mathcal{V}_{n+2}$, $\mathcal{V}_{n-1}$ and $\mathcal{V}_{n-2}$ can intercept. Also,\\ each set in $\mathcal{V}$ is contained in some set of $\mathcal{U}$. And thirdly, we claim that if $V_\alpha \in \mathcal{V}$, then\\ [-1pt] $V_\alpha$ is precompact. This is because $V_\alpha$ will be a closed subset of $\overline{U_{n+2}}$ for some $n$ and\\ the latter is compact.\retTwo
+
+		Having constructed our first refinement $\mathcal{V} = \{V_\alpha\}_{\alpha \in A}$, we're now ready to construct our second. Fix $n$ and note that each $x \in X$ has a compact neighborhood $N_x \subseteq V_\alpha$ for some $V_\alpha \in \mathcal{V}_n$. The $N_x^\circ$ form an open cover of $\overline{U_{n+1}} - U_n$. Hence, there is a finite collection $\{x_1, \ldots, x_m\}$ of points in $\overline{U_{n+1}} - U_n$ such that $\overline{U_{n+1}} - U_n \subseteq \bigcup_{j=1}^m N_{x_j}^\circ$. So, for each $\alpha \in A$ with $V_\alpha \in \mathcal{V}_n$ let $W_\alpha$ be the union of all the $N_{x_j}^\circ$ such that $N_{x_j} \subseteq V_\alpha$, and let $\mathcal{W}_n$ be the collection of $W_\alpha$ defined in this sentence. It's clear that $\mathcal{W}_n$ is also an open cover of $\overline{U_{n+1}} - U_n$, and that $\overline{W_\alpha} \subseteq V_\alpha$ for all $V_\alpha \in \mathcal{V}_n$. Doing this for all $n$, we then have that $\mathcal{W} = \bigcup_{n \in \mathbb{N}}\mathcal{W}_n$ is our second desired refinement.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] If $X$ is a $\sigma$-compact LCH space, for any open cover $\mathcal{U}$ of $X$ there is a partition of unity on $X$ subordinate to $\mathcal{U}$ and consisting of compactly supported functions.
+	\begin{myIndent}\HexOne
+		Let $\{V_n\}_{n \in \mathbb{N}}$ and $\{W_n\}_{n \in \mathbb{N}}$ be refinements of $\mathcal{U}$  constructed as in part (a). Note that our refinements in the last part were countable. So, there is no issue just taking the indexing set $A$ to be $\mathbb{N}$.\retTwo
+
+		For each $n$ there exists by Urysohn's lemma a function $f_n \in C_c(X, [0, 1])$ such that\\ [-1pt] $f_n(x) = 1$ for all $x \in \overline{W_n}$ and $f_n(x) = 0$ for all $x \in V_n^\comp$. Setting $f = \sum_{n=1}^\infty f_n$, we\\ [1pt] then have that $f$ is continuous and finite everywhere in $X$ on account of the fact that every $x \in X$ has a neighborhood where $f$ is only a sum of finitely many continuous\\ [1pt] functions on that neighborhood. Also, since every $x \in X$ is contained in $W_n$, we know that $f(x) \geq 1$ for all $x$. Hence, if we define $g_n = f_n / f$ for each $n$, we have that $g_n$ is well-defined and still in $C_c(X, [0, 1])$.\newpage
+
+		We claim $(g_n)_{n \in \mathbb{N}}$ is a partition of unity subordinate to $\mathcal{U}$. After all,\\ $\sum_{n \in \mathbb{N}} g_n = \frac{1}{f}\sum_{n \in \mathbb{N}} f_n = 1$. Also, each $g_n$ satisfies that $\supp(g_n) \subseteq V_n$ and $V_n \subseteq U$ for some $U \in \mathcal{U}$. And finally, it is still the case that every $x \in X$ has a neighborhood on which only finitely many of the $g_n$ are nonzero.
+
+		\begin{myIndent}\HexPPP
+			As a side note, we can extend this result to proving theorem 16.3 on page 82 of this journal by just noting that $\mathbb{R}^n$ is a $\sigma$-compact LCH space and that the Urysohn lemma on $\mathbb{R}^n$ specifies that we can choose each of our $f_n$ to be in $C_c^\infty(X, [0, 1])$.
+		\end{myIndent}
+	\end{myIndent}
+\end{itemize}
+
+\hOne Now I shall go over some more of John Lee's book.\retTwo
+
+Since manifolds are locally path connected, we know that a manifold is connected if and only if it is path connected. Also, it is clear that the path components of a manifold are identical to it's components. One more proposition is as follows:\retTwo
+
+\exOne\ul{Proposition 1.11.d:} If $M$ is a topological manifold, then $M$ has countably many\\ components, each of which are open subsets of $M$ and a topological manifold\\ by themselves.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Since $M$ is locally path connected, we know every single component is an open set. It follows that the components form an open cover $\mathcal{U}$ of $M$. And since $M$ is second countable, this means that there is a countable subcover of $\mathcal{U}$. Yet, because all the sets of $\mathcal{U}$ are disjoint, the only way this is possible is if $\mathcal{U}$ was countable to begin with.\retTwo
+
+	Also, it's clear that every component equipped with the subspace topology will still be second countable and Hausdorff. And to show that each component is locally Euclidean of dimension $n$, just restrict the domain and codomain of the coordinate patches covering that component. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne Another consequence of every manifold having a countable basis of precompact coordinate balls and half balls is that manifolds are locally compact and $\sigma$-compact. And by the exercise I did earlier today, that means that every manifold is\\ paracompact.
+
+\begin{myIndent}\hTwo
+	In fact, by slightly modifying our construction of $\mathcal{W}$ in the exercise I did before (namely by picking each $N_x$ to be the closure of a precompact coordinate ball and then letting $\mathcal{W}_n$ consist of the $N_{x_j}^\circ$ without bothering to take any unions), we can construct a locally finite refinement consisting of coordinate balls and half balls for any open cover of $M$.\retTwo
+\end{myIndent}
+
+\pracOne Why do we care about collections of sets that are locally finite?\retTwo
+
+\ul{Exercise 1.14:} Suppose $\mathcal{X}$ is a locally finite collection of subsets of a topological space $M$.
+\begin{itemize}
+	\item[(a)] The collection $\{\overline{X} : X \in \mathcal{X}\}$ is also locally finite.\newpage
+	
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		Let $x \in M$ and let $U \subseteq M$ be an open set containing $x$ that intersects only the elements of a finite subset $\mathcal{Y}$ of $\mathcal{X}$. Now we want to show that if $X \in \mathcal{X}$ satisfies $\overline{X} \cap U \neq \emptyset$, then $X \in \mathcal{Y}$. $\mathcalli{X}$
+	\end{myIndent}
+	
+	\item[(b)] $\overline{\bigcup_{X \in \mathcal{X}} X} = \bigcup_{X \in \mathcal{X}} \overline{X}$.
+\end{itemize}
+
 
 
 
@@ -5781,3 +6063,10 @@ This notation also extends to trivial Euclidean manifolds where (for example) Jo
 % \end{itemize}
 
 % \exOne\ul{Theorem 1.2:} A nonempty $n$-dimensional topological manifold cannot be homeomorphic to an $m$-dimensional manifold 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% For the next few results, we will be working with manifolds \udefine{without boundary},\\ meaning each point has an open neighborhood homeomorphic to an open subset of $\mathbb{R}^n$ (as opposed to being only open in $H^n$). 
+% \begin{myIndent}\hTwo
+% 	I don't have the algebraic topology background to prove this but it turns out to be a general fact that if $f: \mathbb{R}^n \to \mathbb{R}^n$ is continuous and injective, then $f$ is an open map. Based on that, we can adapt the proof of lemma 24.2 on page 88 almost word-for-word to apply to general topological manifolds.\retTwo
+% \end{myIndent}
