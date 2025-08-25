@@ -21,7 +21,9 @@
 
 \usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
 
-\DeclareMathAlphabet{\mathcalli}{U}{eus}{m}{n}
+% This is how I'm getting the nice caligraphy font :(
+\DeclareMathAlphabet{\eulerscr}{U}{eus}{m}{n}
+\newcommand{\mathcalli}[1]{\text{\scalebox{1.11}{$\eulerscr{#1}$}}}
 
 
 \usepackage{amssymb} % originally imported to get the proof square
@@ -238,6 +240,7 @@
 \newcommand{\opnorm}{\mathrm{op}}
 \newcommand{\sgn}{\mathrm{sgn}}
 \newcommand{\mSpan}{\mathrm{span}}
+\newcommand{\Interior}{\mathop{\mathrm{Int}}}
 
 \newcommand{\mMat}[1]{\mathbf{#1}}
 
@@ -265,6 +268,9 @@
 }
 \newcommand{\mySepTwo}[1][.]{%
    {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+\newcommand{\mySepThree}[1][.]{%
+   {\noindent\color{#1}{\rule{6in}{0.25mm}}}\\%
 }
 
 \newenvironment{myClosureOne}[2][.]{%
@@ -3795,7 +3801,7 @@ And finally to finish off for tonight\ldots\newpage
 
 	Now we claim $h = g^{-1} \circ \pi$ (which is a $C^r$ map) extends $\alpha^{-1}$ to a neighborhood $A$ of $p_0$. Firstly note $U_0 \coloneq W \cap U$ is open in $U$. Hence, $\alpha^{-1}$ being continuous implies that $V_0 \coloneq \alpha(U_0)$ is open in $V$. This means there is an open set $A \subseteq \mathbb{R}^n$ such that $A \cap V = V_0$. By intercepting $A$ with $\pi^{-1}(g(W))$ ($= \beta(W)$), we can force $A$ to be contained in the domain of $h$.\retTwo
 
-	Now $h: A \to \mathbb{R}^k$ is of class $C^r$, and if $p \in A \cap V = V_0$, then when letting $x = \alpha^{-1}(p)$ we have:
+	Now $h: A \to \mathbb{R}^k$ is of class $C^r$, and if $p \in A \cap V = V_0$, then when letting\\ $x = \alpha^{-1}(p)$ we have:
 
 	{\centering $h(p) = h(\alpha(x)) = g^{-1}(\pi(\alpha(x))) = g^{-1}(g(x)) = x = \alpha^{-1}(p)$.\retTwo\par}
 
@@ -3830,7 +3836,7 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 
 	Since $V_0$ and $V_1$ are open in $M$, the set $W = V_0 \cap V_1$ is also open in $M$. Let\\ $W_i = \alpha_i^{-1}(W)$ for $i = 0, 1$. Then $W_0$ is open in $H^k$ and contains $x_0$ (which\\ consequently means $W_0$ isn't open in $\mathbb{R}^k$). Also, $W_1$ is open in $\mathbb{R}^k$. But now note that by our prior theorem, $\alpha_0^{-1} \circ \alpha_1$ is a $C^r$ map from $W_1$ to $W_0 \subseteq \mathbb{R}^k$ with a nonsingular derivative matrix. So, by specifically part (A) of the inverse function theorem (as covered in math 140C), we know $W_1$ maps to an open set in $\mathbb{R}^k$. Yet $\alpha_0^{-1} \circ \alpha_1(W_1) = W_0$ is not open in $\mathbb{R}^k$. Hence, a contradiction. $\blacksquare$
 	\begin{myIndent}\exPPP
-		Side note: Holy fuck I did not realize before now that in math 140C we proved that $C^1$ functions with a nonsingular derivative matrix are open maps.\retTwo
+		Side note: Holy fuck I did not realize before now that in math 140C we proved that $C^1$ functions to $\mathbb{R}^k$ with a nonsingular derivative matrix are open maps.\retTwo
 	\end{myIndent}
 \end{myIndent}
 
@@ -5625,8 +5631,10 @@ Suppose $M$ is a topological space. Then we say $M$ is a \udefine{topological ma
 
 \begin{itemize}
 	\item $M$ is second countable and Hausdorff.
-	\item $M$ is \udefine{locally Euclidean of dimension $n$}, meaning that for any $p \in M$, there exists an open neighborhood $U \subseteq M$ of $p$ and a homeorphism $\varphi$ from $U$ to an open set $\hat{U}$ of $H^n$ or $\mathbb{R}^n$..\newpage
+	\item $M$ is \udefine{locally Euclidean of dimension $n$}, meaning that for any $p \in M$, there exists an open neighborhood $U \subseteq M$ of $p$ and a homeorphism $\varphi$ from $U$ to an open set $\hat{U}$ of $H^n$ or $\mathbb{R}^n$.\retTwo
 \end{itemize}
+
+If $n = 0$, we say $M$ is a topological $0$-manifold if $M$ is countable and equipped with the discrete topology.\newpage
 
 While it's clear that each pair $(U, \varphi)$ define \udefine{local coordinates} on $M$, one weird thing notation-wise is that those coordinates are commonly written as:
 
@@ -5929,23 +5937,373 @@ Since manifolds are locally path connected, we know that a manifold is connected
 	In fact, by slightly modifying our construction of $\mathcal{W}$ in the exercise I did before (namely by picking each $N_x$ to be the closure of a precompact coordinate ball and then letting $\mathcal{W}_n$ consist of the $N_{x_j}^\circ$ without bothering to take any unions), we can construct a locally finite refinement consisting of coordinate balls and half balls for any open cover of $M$.\retTwo
 \end{myIndent}
 
-\pracOne Why do we care about collections of sets that are locally finite?\retTwo
+\pracOne Here is a proposition about locally finite collections of sets.\retTwo
 
-\ul{Exercise 1.14:} Suppose $\mathcal{X}$ is a locally finite collection of subsets of a topological space $M$.
+\ul{Exercise 1.14:} Suppose $\mathcalli{X}$ is a locally finite collection of subsets of a topological space $M$.
 \begin{itemize}
-	\item[(a)] The collection $\{\overline{X} : X \in \mathcal{X}\}$ is also locally finite.\newpage
+	\item[(a)] The collection $\{\overline{X} : X \in \mathcalli{X}\}$ is also locally finite.\newpage
 	
 	\begin{myIndent}\pracTwo
 		Proof:\\
-		Let $x \in M$ and let $U \subseteq M$ be an open set containing $x$ that intersects only the elements of a finite subset $\mathcal{Y}$ of $\mathcal{X}$. Now we want to show that if $X \in \mathcal{X}$ satisfies $\overline{X} \cap U \neq \emptyset$, then $X \in \mathcal{Y}$. $\mathcalli{X}$
+		Let $x \in M$ and let $U \subseteq M$ be an open set containing $x$ that intersects only the\\ elements of a finite subset $\mathcalli{Y}$ of $\mathcalli{X}$. Now we want to show that if $X \in \mathcalli{X}$ satisfies\\ $\overline{X} \cap U \neq \emptyset$, then $X \in \mathcalli{Y}$. Luckily, if $\overline{X} \cap U \neq \emptyset$ but $X \cap U = \emptyset$ so that $X \notin \mathcalli{Y}$, then it must be that any $x \in \overline{X} \cap U$ is an accumulation point of $X$. However, that is immediately contradicted by the fact that $U$ is a neighborhood of $x$ which does not intercept $X$ anywhere. $\blacksquare$\retTwo	
 	\end{myIndent}
 	
-	\item[(b)] $\overline{\bigcup_{X \in \mathcal{X}} X} = \bigcup_{X \in \mathcal{X}} \overline{X}$.
+	\item[(b)] $\overline{\bigcup_{X \in \mathcalli{X}} X} = \bigcup_{X \in \mathcalli{X}} \overline{X}$.
+	
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		It is always true that $\bigcup_{X \in \mathcalli{X}} \overline{X} \subseteq \overline{\bigcup_{X \in \mathcalli{X}} X}$.\retTwo
+
+		Meanwhile, to show the other inclusion, suppose $x$ is an accumulation point of\\ $\bigcup_{X \in \mathcalli{X}} X$ but not in any individual $\overline{X}$. Then it must be the case that every\\ neighborhood of $x$ intercepts some set in $\mathcalli{X}$, yet it must also be the case that for every $X \in \mathcalli{X}$ there is a neighborhood of $x$ with doesn't intercept $X$. The only way this is possible is if every neighborhood intercepts infinitely many $X \in \mathcalli{X}$.
+		\begin{myIndent}
+			Let $N$ be any neighborhood of $x$. Then we can construct an infinite sequence of distinct sets $(X_n)_{n \in \mathbb{N}}$ in $\mathcalli{X}$ intercepting $N$ as follows.\retTwo
+
+			For the ease of notation set $U_0 = M$. Now at step $n$, choose any $X_n \in \mathcalli{X}$ that intersects $N \cap \bigcap_{k=0}^{n-1} U_k$. Note that we can do this since a finite intersection of neighborhoods of $x$ is still a neighborhood of $x$. But now we can choose some neighborhood $U_{n}$ of $x$ such that $X_n \cap U_n = \emptyset$. And now repeat this reasoning.\retTwo
+
+			It's clear that all the chosen $X_n$ intercept $\bigcap_{k=0}^{n-1} U_k \subseteq N$. Additionally, all the chosen $X_n$ are distinct since $X_n \cap \bigcap_{k=0}^{N} U_k \subseteq X_n \cap U_n = \emptyset$ for all $N \geq n$.\retTwo
+		\end{myIndent}
+
+		But that contradicts that $\mathcalli{X}$ is locally finite. $\blacksquare$\retTwo
+	\end{myIndent}
 \end{itemize}
 
+\exOne\ul{Proposition 1.16:} The fundamental group of a topological manifold $M$ is countable.
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Let $\mathcalli{B}$ be a countable collection of coordinate balls and half balls covering $M$. For any $B, B^\prime \in \mathcalli{B}$, the intersection $B \cap B^\prime$ has at most countably many components each of which is path connected.
+	\begin{myIndent}\exPPP
+		Why? $B \cap B^\prime$ is second countable and locally path connected on account of being an open subset of $M$. In turn, by the same reasoning as in proposition 1.11.d we know that $B \cap B^\prime$ has only countably many components.\retTwo
+	\end{myIndent}
+
+	Let $\mathcalli{X}$ be a countable set containing a point from each component of $B \cap B^\prime$ for every $B, B^\prime \in \mathcalli{B}$ (including $B = B^\prime$). Also, for each $B \in \mathcalli{B}$ and $x, x^\prime \in \mathcalli{X}$ satisfying that $x, x^\prime \in B$, let $h^B_{x, x^\prime}$ be some path from $x$ to $x^\prime$ in $B$. Since $\mathcalli{X}$ intercepts every component of $M$, it suffices when calculating the fundamental group to take our base point $p$ to be in $\mathcalli{X}$. Then, we define a \textit{special loop} to be a loop based at $p$ that is a finite product of paths $h^B_{x,x^\prime}$.\newpage
+
+	Now there are only countably many special loops. Therefore, in order to prove that $\pi_1(M, p)$ is countable, it suffices to show that if $f: [0,1] \to M$ is a loop based at $p$, then $f$ is homotopic to some special loop.\retTwo
+
+	Fortunately, the collection of the components of the sets $f^{-1}(B)$ with $B \in \mathcalli{B}$ is an open cover of $[0, 1]$. So, there exists $0 = a_0 < a_1 < \cdots < a_k = 1$ such that for each $i \geq 1$, $[a_{i-1}, a_i] \subseteq f^{-1}(B)$ for some $B \in \mathcalli{B}$. Now for each $i$, let $f_i$ be the restriction of $f$ to interval $[a_{i-1}, a_i]$ and then reparametrized so that its domain is $[0, 1]$, and also let $B_i \in \mathcalli{B}$ be a coordinate ball containing the image of $f_i$. For each $1 \leq i < k$, $f(a_i) \in B_i \cap B_{i + 1}$. Also there is some $x_i \in \mathcalli{X}$ that lies in the same component of $B_i \cap B_{i+1}$ as $f(a_i)$. So, let $g_i$ be a path in $B_i \cap B_{i+1}$ from $x_i$ to $f(a_i)$. 
+	\begin{myIndent}\exPPP
+		Note, we'll also write $x_0 = x_k = p$ and $g_0 = g_k$ are the constant paths based at $p$.\\ Also, like in Munkres, we'll denote $\bar{g}_i$ to be the reverse path.\retTwo
+	\end{myIndent}
+
+	Now if we denote $\tilde{f}_i \coloneqq g_{i-1} * f_i * \bar{g}_i$, we have that:
+
+	{\center\begin{tabular}{l}
+	$f \simeq_p f_1 * \cdots * f_k$\\ [6pt]
+	$\phantom{f} \simeq_p g_0 * f_1 * \bar{g}_1 * g_1 * f_2 * \bar{g}_2 * g_2 * \cdots * \bar{g}_{k-1} * g_{k-1} * f_k * \bar{g}_k$\\ [6pt]
+	$\phantom{f} \simeq_p \tilde{f}_1 * \cdots * \tilde{f}_k$.
+	\end{tabular}\retTwo\par}
+
+	But now since each $B_i$ is simply connected, we know that $\tilde{f}_i$ is path homotopic to $h^{B_i}_{x_{i-1}, x_i}$. In turn, we have that $f$ is path homotopic to a special loop. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne\mySepTwo
+
+A question I've had for a while is how smoothness can even be defined for manifolds which aren't subsets of $\mathbb{R}^n$. After all, differentiability as a concept relies on the topological structure of the reals. It turns out that the answer to this problem is to reframe some prior theorems as defining axioms which must be met.\retTwo
+
+\begin{myIndent}\hTwo
+	Let $M$ be a topological $n$-manifold. Two charts $(U, \varphi)$ and $(V, \psi)$ on $M$ are said to be \udefine{$C^r$ compatible} if either $U \cap V = \emptyset$ or the transition map $\psi \circ \varphi^{-1}$ from $\varphi(U \cap V)$ to $\psi(U \cap V)$ is a $C^r$ diffeomorphism.
+	\begin{myIndent}\myComment
+		Note that the transition map is a function from an open open subset of either $H^n$ or $\mathbb{R}^n$ to another open subset of either $H^n$ or $\mathbb{R}^n$. So, it makes sense to talk about the transition map as being differentiable.\retTwo
+	\end{myIndent}
+
+	An \udefine{atlas} $\mathcal{A}$ for $M$ is a collection of charts covering $M$. $\mathcal{A}$ is called a \udefine{$C^r$ atlas} if any two charts in $\mathcal{A}$ are $C^r$ compatible.\retTwo
+\end{myIndent}
+
+Very roughly speaking, if $1 \leq s, r$, we want to define that a manifold $M$ is $C^r$\\ smooth if $M$ has a $C^r$ atlas $\mathcal{A}$. Additionally, we want to then say that a function\\ $f: M \to \mathbb{R}$ is $C^s$ differentiable if and only if $f \circ \varphi^{-1}$ is $C^s$ differentiable for all\\ charts $(U, \varphi) \in \mathcal{A}$.\newpage
+
+A snag we need to work out though is that a space can have many $C^r$ atlases. Also, some of those atlases may have charts which aren't $C^r$ compatible with the charts in the other atlases. In a sense, that would mean they define different "smooth structures". At the same time, it could be the case that two atlases contain charts which are all $C^r$ compatible with the charts in the other atlas. In that case, the two atlases could be said to define the same "smooth structure". We'll get around this issue as follows:
+
+\begin{myIndent}\hTwo
+	We define a $C^r$ atlas $\mathcal{A}$ on a topological manifold $M$ to be \udefine{maximal} or \udefine{complete} if it is not contained in a larger $C^r$ atlas. Or in other words, if a chart $(U, \varphi)$ is $C^r$ compatible with every chart in $\mathcal{A}$, then $(U, \varphi) \in \mathcal{A}$.\retTwo
+
+	If $M$ is a topological manifold, then a \udefine{$C^r$ structure on $M$} is a maximal $C^r$ atlas.\retTwo
+
+	A \udefine{$C^r$ manifold} is a pair $(M, \mathcal{A})$ where $M$ is a topological manifold and $\mathcal{A}$ is a $C^r$ structure on $M$.\retTwo
+\end{myIndent}
+
+\exOne\ul{Proposition 1.17:} Let $M$ be a topological manifold.
+\begin{itemize}
+	\item[(a)] Every $C^r$ atlas $\mathcal{A}$ for $M$ is contained in a unique maximal $C^r$ atlas called the \udefine{$C^r$ structure determined by $\mathcal{A}$}.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Let $\mathcal{A}$ be a $C^r$ atlas for $M$ and define $\overline{\mathcal{A}}$ as the set of all charts which are $C^r$ compatible with every chart in $\mathcal{A}$. If $\overline{\mathcal{A}}$ were a $C^r$ atlas, it would be obvious that it is maximal. After all, if a chart was $C^r$ compatible with every chart in $\overline{\mathcal{A}}$, then it would also be compatible with every chart in $\mathcal{A}$ on account of the fact that $\mathcal{A} \subseteq \overline{\mathcal{A}}$. But that would mean that that chart is also in $\overline{\mathcal{A}}$.\retTwo
+
+		Hence, we proceed by trying to prove that $\overline{\mathcal{A}}$ is a $C^r$ atlas on $M$. Or in other words, we want to show that for any $(U, \varphi), (V, \psi) \in \overline{\mathcal{A}}$, with $U \cap V \neq \emptyset$, the map $\psi \circ \varphi^{-1}: \varphi(U \cap V) \to \psi(U \cap V)$ is smooth.
+		\begin{myIndent}\exThreeP
+			Choose $x = \varphi(p) \in \varphi(U \cap V)$. Then there is some chart $(W, \theta) \in \mathcal{A}$\\ with $p \in W$. And since every chart in $\overline{\mathcal{A}}$ is $C^r$ compatible with $(W, \theta)$,\\ we know that $\theta \circ \varphi^{-1}$ and $\psi \circ \theta^{-1}$ are both $C^r$ maps. It follows that\\ $\psi \circ \varphi^{-1} = (\psi \circ \theta^{-1}) \circ (\theta \circ \varphi^{-1})$ is a $C^r$ map on the neighborhood\\ $\varphi(U \cap V \cap W)$ of $x$.\retTwo
+
+			This proves that $\phi \circ \varphi^{-1}$ is locally $C^r$. Hence it is $C^r$ in general.\retTwo
+		\end{myIndent}
+
+		With that, we've prove that there exists a maximal $C^r$ atlas $\overline{\mathcal{A}}$ containing $\mathcal{A}$. To finish off we show uniqueness. Suppose $\mathcal{B}$ is another maximal $C^r$ atlas containg $\mathcal{A}$. Then every chart in $\mathcal{B}$ must be $C^r$ compatible with every char in $\mathcal{A}$. But that then implies that $\mathcal{B} \subseteq \overline{\mathcal{A}}$. And since $\mathcal{B}$ is maximal, we have that $\mathcal{B} = \overline{\mathcal{A}}$. $\blacksquare$\newpage
+	\end{myIndent}
+	
+	\item[(b)] Two $C^r$ atlases determine the same $C^r$ structure iff their union is is a $C^r$ atlas.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Let $\mathcal{A}$ and $\mathcal{B}$ be $C^r$ atlases and let $\overline{\mathcal{A}}$ and $\overline{\mathcal{B}}$ denote the smooth structures\\ determined by $\mathcal{A}$ and $\mathcal{B}$ respectively.\retTwo
+
+		$(\Longrightarrow)$\\
+		If $\overline{\mathcal{A}} = \overline{\mathcal{B}}$, then we know $\mathcal{B} \subseteq \overline{\mathcal{A}}$. So, every chart of $\mathcal{B}$ is $C^r$ compatible with every chart of $\mathcal{A}$. It follows that any two charts in $\mathcal{A} \cup \mathcal{B}$ are smoothly compatible.\retTwo
+
+		$(\Longleftarrow)$\\
+		If $\mathcal{A} \cup \mathcal{B}$ is a $C^r$ atlas, then we know that $\mathcal{A} \cup \mathcal{B} \subseteq \overline{\mathcal{A}}$ and that $\mathcal{A} \cup \mathcal{B} \subseteq \overline{\mathcal{B}}$. It follows that both $\overline{\mathcal{A}}$ and $\overline{\mathcal{B}}$ are the unique smooth structure determined by $\mathcal{A} \cup \mathcal{B}$. So, $\mathcal{A} = \mathcal{B}$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hOne Note that in the prior reasoning, we took $r \in \mathbb{Z}_{>0} \cup \{\infty\}$. If $r = \infty$, we call a $C^r$ manifold a \udefine{smooth manifold}.\retTwo
+
+\pracOne Before doing the following exercise, I want to establish a useful result.\retTwo 
+
+\ul{Proposition:} Let $M$ be a topological manifold. Also let $\mathcal{A}$ be a $C^r$ atlas for $M$ and $\overline{\mathcal{A}}$ be the $C^r$ structure determined by $\mathcal{A}$.
+\begin{itemize}
+	\item[(a)] If $(U, \varphi)$ is a chart in $\mathcal{A}$, then given any $C^r$ diffeomorphism $h$ acting on $\varphi(U)$, we have that the chart $(U, h \circ \varphi) \in \overline{\mathcal{A}}$.
+	
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		By the prior proposition it suffices to show that given another chart $(V, \psi)$ in $\mathcal{A}$ such\\ that $V \cap U \neq \emptyset$, $\psi \circ (h \circ \varphi)^{-1}$ and $(h \circ \varphi) \circ \psi^{-1}$ are $C^r$ maps. Luckily, since $h$, $h^{-1}$, $\varphi \circ \psi^{-1}$, and $\psi \circ \varphi^{-1}$ are all $C^r$ maps, this is obvious. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\item[(b)] If $(U, \varphi)$ is a chart in $\mathcal{A}$, then given any open set $V \subseteq U$, $(V, \varphi|_V)$ is a chart in $\overline{\mathcal{A}}$.
+	
+	\begin{myIndent}\pracTwo
+		Hopefully this is obvious.
+	\end{myIndent}
+\end{itemize}
+
+The significance of the above lemma is that we can cut up and smoothly reparametrize a coordinate chart and we'll still get a chart which is in the $C^r$ structure we've equipped our manifold with.\retTwo
+
+\ul{Problem 1-6:} Let $M$ be a nonempty topological manifold of dimension $n \geq 1$. If $M$ has a $C^r$ (or smooth) structure, then show that it has uncountably many distinct ones.\newpage
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We start by proving the following lemma\dots
+
+	\mySepThree
+
+	\ul{Lemma:} If $s > 0$, then $F_s(x) \coloneqq \|x\|_2^{s-1} x$ defines a homeomorphism from $B^n$ to itself\\ and from $H^n \cap B^n$ to itself (where $B^n$ is the open unit ball in $\mathbb{R}^n$). Also, $F_s$ is a $C^\infty$\\ diffeomorphism on $\mathbb{R}^n - \{0\}$, and $F_s$ is also a $C^k$ diffeomorphism (for any $k$) on $\mathbb{R}^n$ if\\ and only if $s = 1$.
+	\begin{myIndent}
+		Proof:\\
+		It's clear that $F_s$ is a continuous function on $\mathbb{R}^n$. Also if $x \neq 0$ satisfies that\\ $\|x\|_2^{s-1} x = y$, then $x = \|x\|_2^{1-s}y$ and $\|y\|_2 = \|x\|_2^s$. In turn $\|y\|_2^{(1-s)/s} = \|x\|_2^{1-s}$\\ [2pt] and we have thus derived the following inverse function for $F_s$:
+
+		{\center$F_s^{-1}(x) = \left\{\begin{matrix}
+			0 & \text{ if } x = 0\\
+			\|x\|_2^{(1-s)/s} x & \text{ if } x \neq 0
+		\end{matrix}\right.$ \retTwo\par}
+
+		We claim that $F_s^{-1}$ is continuous. This is clearly true on $\mathbb{R}^n - \{0\}$. Meanwhile, to show that $\|x\|_2^{(1-s)/s} x \to 0$ as $x \to 0$, note that:
+		
+		{\centering$\left\|\|x\|_2^{(1-s)/s} x\right\|_2 = \|x\|_2^{1 + \frac{1-s}{s}} = \|x\|_2^{1/s}$.\retTwo\par}
+
+		The latter clearly goes to $0$ as $x$ goes to $0$. So $F_s^{-1}$ is continuous at $0$. This proves that $F_s$ is a homeomorphism from $\mathbb{R}^n$ to itself. To show that restricting $F_s$ defines a homeomorphism on $B^n$ or $H^n \cap B^n$ just requires noting that both $F_s$ and $F_s^{-1}$ map $B^n$ into $B^n$ and $H^n$ into $H^n$. Also, since we have formulas for $F_s$ and $F_s^{-1}$, we can now clearly see that $F_s$ and $F_s^{-1}$ are smooth on $\mathbb{R}^n - \{0\}$.\retTwo
 
 
+		Finally, note that if $s = 1$, then $F_s(x) = x$ is clearly a smooth diffeomorphism. Meanwhile, if $s \neq 1$, then we either have that $s - 1 < 0$ or $(1-s)/s < 0$. In the former case, we know that $F_s$ is not differentiable at $0$. After all, given any $A \in L(\mathbb{R}^n, \mathbb{R}^n)$, we have that:
 
+		{\centering $\frac{\left\| F_s(h) - F_s(0) - Ah \right\|_2}{\|h\|_2} = \frac{\left\| \|h\|^{s-1} h - Ah \right\|_2}{\|h\|_2} = \left\|(\|h\|^{s-1} I - A)\frac{h}{\|h\|_2} \right\|_2$ \retTwo\par}
+
+		It follows then that there is some sequence $(h_n)_{n \in \mathbb{N}}$ in $\mathbb{R}^n$ converging to $0$ such that:
+
+		{\centering $\left\|(\|h_n\|^{s-1} I - A)\frac{h_n}{\|h_n\|_2} \right\|_2 = \| (\|h_n\|^{s-1}I - A)\|_\opnorm$ for all $n$.\retTwo\par}
+
+		\begin{myDindent}\myComment\fontsize{11}{12}\selectfont
+			I'll also note that by taking the negative of any neccesary $h_n$, we can force $(h_n)_{n \in \mathbb{N}}$ to be a sequence in $H^n$. I'm not actually sure if this is strictly\\ necessary but who cares.\retTwo
+		\end{myDindent}
+
+		But now $\| (\|h_n\|^{s-1}I - A)\|_\opnorm \geq \left| \|h_n\|^{s-1}_\opnorm - \|A\|_\opnorm \right| \to \infty$ as $n \to \infty$ since\\ [-2pt] $\|h_n\|^{s-1} \to \infty$ as $h_n \to 0$. This proves that the derivative of $F_s$ at $0$ doesn't exist\\ [1pt] when $s - 1 < 0$. Analogous reasoning shows that the derivative of $F_s^{-1}$ at $0$ doesn't\\ [1pt] exist when $(1-s)/s < 0$. So, $F_s$ is not a diffeomorphism at $0$ when $s \neq 1$.\retTwo
+	\end{myIndent}
+
+	\mySepThree\newpage
+
+	Now let $\mathcal{A}$ be an atlas contained in our $C^r$ structure for $M$. Then choose $p \in M$ and let $(U, \varphi)$ be a chart in $M$ containing $p$. By using the proposition I showed before doing this exercise, we can define another $C^r$ atlas $\mathcal{A}^\prime$ in the same structure on $M$ such that $(U, \varphi)$ is the only chart containing $p$. Specifically, define:
+
+	{\centering $\mathcal{A}^\prime \coloneqq \left\{(V - \{p\}, \psi|_{V - \{p\}}) : (V, \psi) \in \mathcal{A}\right\} \cup \left\{(U, \varphi)\right\}$. \retTwo\par}
+
+	Next, by restricting $\varphi$ to a coordinate ball or half ball $W$ centered at $p$ and then\\ reparametrizing, we can say that there is a chart $(W, \varphi^\prime)$ in our structure on $M$ satisfying that $p \in W$, $\varphi^\prime(p) = 0$, and $\varphi^\prime(W)$ equals either $B^n$ or $H^n \cap B^n$. Hence, we define the $C^r$ atlas:
+
+	{\centering $\mathcal{A}^\pprime \coloneqq \left\{(V - \{p\}, \psi|_{V - \{p\}}) : (V, \psi) \in \mathcal{A}\right\} \cup \left\{(W, \varphi^\prime)\right\}$ \retTwo\par}
+
+	And now we're in a position to use our lemma. Given $s > 0$, let $F_s$ be as in our lemma and define the atlas:
+	
+	{\centering $\mathcalli{B}_s \coloneqq \left\{(V - \{p\}, \psi|_{V - \{p\}}) : (V, \psi) \in \mathcal{A}\right\} \cup \left\{(W, F_s \circ \varphi^\prime)\right\}$\retTwo\par}
+
+	Note that $\mathcalli{B}_s$ is in fact an atlas for every $s$ since $F_s$ is a homeomorphism, meaning that $(W, F_s \circ \varphi^\prime)$ is a well-defined chart in $M$. Also, we can see that $\mathcalli{B}_s$ is actually a $C^r$ atlas. After all, we know from before that every pair of charts in $\mathcal{B}_s$ not including $(W, F_s \circ \varphi^\prime)$ are $C^r$ compatible. Meanwhile, note that if $(V, \psi) \in \mathcal{A}$ satisfies that $(V - \{p\}) \cap W \neq \emptyset$, then $F_s$ is a diffeomorphism on the set $\varphi^\prime(V \cap W - \{p\})$ on account of $0 = \varphi^\prime(p)$ not being in that set. It follows easily that $(F_s \circ \varphi^\prime) \circ \psi^{-1}$ defined on $\psi(V \cap W - \{p\})$ is a $C^r$ diffeomorphism.\retTwo
+
+	But now note that if $s \neq t$, then $\mathcal{B}_s$ and $\mathcal{B}_t$ do not generate the same $C^r$ structure on $M$. After all, the charts $(W, F_s \circ \varphi^\prime)$ and $(W, F_t \circ \varphi^\prime)$ are not $C^r$ compatible unless $s = t$. This is because when $x \neq 0$,
+	
+	{\centering\begin{tabular}{l}
+		$((F_s \circ \varphi^\prime) \circ (F_t \circ \varphi^\prime)^{-1})(x) = (F_s \circ \varphi^\prime \circ (\varphi^\prime)^{-1} \circ F_t^{-1})(x)$\\ [6pt]
+
+		$\phantom{((F_s \circ \varphi^\prime) \circ (F_t \circ \varphi^\prime)^{-1})(x)} = (F_s \circ F_t^{-1})(x)$\\ [6pt]
+
+		$\phantom{((F_s \circ \varphi^\prime) \circ (F_t \circ \varphi^\prime)^{-1})(x)} = F_s(\|x\|_2^{(1-t)/t}x)$\\ [6pt]
+
+		$\phantom{((F_s \circ \varphi^\prime) \circ (F_t \circ \varphi^\prime)^{-1})(x)} = \| (\|x\|_2^{(1-t)/t})x \|_2^{s-1} \cdot \|x\|_2^{(1-t)/t}x$\\ [6pt]
+
+		$\phantom{((F_s \circ \varphi^\prime) \circ (F_t \circ \varphi^\prime)^{-1})(x)} = \|x\|_2^{\frac{(1-t)s}{t}}\|x\|_2^{s-1}x = \|x\|_2^{\frac{s}{t} - 1}x = F_{s/t}(x)$.\\ [6pt]
+	\end{tabular}\retTwo\par}
+
+	Also, you can manually check that the transition map also equals $F_{s/t}(0)$ at $x = 0$. And since $F_{s/t}$ is a diffeomorphism of any class iff $s/t = 1$, we know that the two charts are $C^r$ compatible if and only if $s = t$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne In a sense this exercise proves how important it is to keep in mind that we consider a manifold to be smooth with respect to a specific structure. That said, if we're not working with multiple different structures, then it's annoying to explicitely mention the structure over and over. So, we take the approach of calling a chart a \udefine{smooth chart} if it's in our structure.\retTwo
+
+To finish off today, I want to briefly address the boundary of a manifold.\newpage
+
+\begin{myIndent}\hTwo
+	Like before if $M$ is a topological manifold, we say a point $p \in M$ is an \udefine{interior point} of $M$ if there exists a chart $(U, \varphi)$ covering $p$ such that $\varphi(U)$ is open in $\mathbb{R}^n$. Meanwhile, if no such chart exists, we say $p$ is a \udefine{boundary point}. Also, we denote the \udefine{interior} of $M$: $\Interior{M}$, to be to be collection of interior points and the \udefine{boundary} of $M$: $\partial M \coloneqq M - \Interior{M}$.\retTwo
+
+	It is easy to see that $\Interior{M}$ is an open subset of $M$ and a manifold by itself without a boundary. Based on that we can also easily see that $\partial M$ is a closed subset of $M$.\retTwo
+\end{myIndent}
+
+Oh, I also forgot to mention: if $U \subseteq M$ is open and $M$ is a $C^r$ manifold, then we can view $U \subseteq M$ as a $C^r$ \udefine{submanifold} of $M$. Specifically, it's clear that $U$ is a second countable Hausdorff space in the relative topology. Also, given any smooth chart $(V, \varphi)$ on $M$, we define a smooth chart $(U \cap V, \varphi|_{U \cap V})$ on $U$. This gives us a $C^r$ structure on $U$.\retTwo
+
+\dispDate{8/24/2025}
+
+Let $r, k \in \mathbb{Z}_{>0} \cup \{\infty\}$ with $k \leq r$.\retTwo
+
+Suppose $M$ is a $C^r$ manifold and $f: M \to \mathbb{R}^m$ is a function. We say $f$ is a \udefine{$C^k$\\ function} if for every $p \in M$ there exists a smooth chart $(U, \varphi)$ such that $p \in U$\\ and $f \circ \varphi^{-1}$ is $C^k$ on the open set $\varphi(U)$ of either $H^n$ or $\mathbb{R}^n$. In this case we denote $f \in C^k(M, \mathbb{R}^m)$ (although when $m = 1$ we usually shorthand this as $f \in C^k(M)$).\retTwo
+
+\pracOne\ul{Exercise 2.3:} Let $M$ be a $C^r$ manifold and suppose $f: M \to \mathbb{R}^k$ is a $C^k$ function where $k \leq r$. Show that $f \circ \psi^{-1}: \varphi(U) \to \mathbb{R}^m$ is $C^k$ for every smooth chart $(U, \psi)$ on $M$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Given any smooth chart $(U, \psi)$, we can show that $f \circ \psi^{-1}$ is locally $C^k$ as follows. Take any $x = \psi(p) \in \psi(U)$. Now we know there exists another smooth chart $(V, \varphi)$  satisfying that $p \in V$ and that $f \circ \varphi^{-1}$ is $C^k$. Also, $\varphi \circ \psi^{-1}$ is a $C^r$ map on $\psi(U \cap V)$. Thus, $f \circ \psi^{-1} = (f \circ \varphi^{-1}) \circ (\varphi \circ \psi^{-1})$ is a $C^k$ map on the open neighborhood $\psi(U \cap V)$ of $x$ in $H^n$ or $\mathbb{R}^n$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		Side note: A recurring theme will be that you need $M$ to be at to be at least $C^k$ in order for $C^k$ functions on $M$ to be well-behaved. After all, if $r < k$ then the composite function above is no longer guarenteed to be $C^k$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Corollary / Exercise 2.1:} $C^k(M, \mathbb{R}^m)$ is a real vector space. If $m = 1$, then $C^k(M)$ is a a real commutative algebra.\retTwo
+
+\hOne We want to generalize the previous definition even more to cover maps from\\ manifolds to other manifolds. To do this, it's worth noting that any open set $U$ of either $H^n$ or $\mathbb{R}^n$ can be thought of as a manifold. Furthermore, $U$ is a $C^r$  manifold\\ for any $r$ when equipped with the \udefine{standard structure}, i.e. the one determined\\ by the atlas $\{(U, \myId)\}$.
+
+\begin{myIndent}\hThree
+	(Unless specified otherwise, always assume an open subset of $\mathbb{R}^n$ or $H^n$ is equipped with the standard structure\dots)\newpage
+\end{myIndent}
+
+\pracOne\ul{Exercise 2.2:} Let $U$ be an open subset of $H^n$ or $\mathbb{R}^n$. Then a function $f: U \to \mathbb{R}^m$ is $C^k$ in the traditional real analysis definition iff it is $C^k$ with respect to our new definition.
+
+\begin{myIndent}\pracTwo
+	$(\Longrightarrow)$\\
+	Suppose $(V, \varphi)$ is any smooth chart on $U$. Then $\varphi^{-1} = \myId \circ \varphi^{-1}$ is a $C^r$ function. So, $f \circ \varphi^{-1}$ is $C^k$.\retTwo
+
+	$(\Longleftarrow)$\\
+	It must be the case that $f \circ \myId^{-1} = f$ is $C^k$ in the traditional real analysis sense since $(U, \myId)$ is a smooth chart. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hOne Now note that when viewing $\mathbb{R}^m$ as being a $C^r$ manifold, we can "symmetrize" our definition by noting that a function $f: M \to \mathbb{R}^m$ is $C^k$ if and only if for all $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ and another smooth chart $(V, \psi)$ on $\mathbb{R}^m$ with $f(U) \subseteq V$ such that $\psi \circ f \circ \varphi^{-1}$ is $C^k$ from $\varphi(U)$ into $\psi(V)$.
+\begin{myIndent}\pracTwo
+	$(\Longrightarrow)$\\
+	Since $f$ is $C^k$, let $(U, \varphi)$ be a smooth chart such that $f \circ \varphi^{-1}$ is $C^k$. Then let $(V, \psi)$ be any smooth chart on $\mathbb{R}^m$ with $f(U) \subseteq V$. Note that such a chart must exist since we know $(\mathbb{R}^m, \myId)$ works. Now $\psi \circ \myId^{-1} = \psi$ is a $C^r$ map from $V$. So, $\psi \circ f \circ \varphi^{-1}$ is a $C^k$ from $\varphi(U)$ into $\psi(V)$.\retTwo
+
+	$(\Longleftarrow)$\\
+	This direction is obvious when you just take $(V, \psi)$ to be the chart $(\mathbb{R}^m, \myId)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+This points us to following generalization of differentiability on manifolds. Suppose $M$ and $N$ are both $C^r$ manifolds and let $F: M \to N$ be any map. We say $F$ is a \udefine{$C^k$ map} if for every $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ with $p \in U$ and another smooth chart $(V, \psi)$ on $N$ with $F(U) \subseteq V$ satisfying that the composite map $\psi \circ F \circ \varphi^{-1}$ is a $C^k$ map from $\varphi(U)$ into $\psi(V)$.\retTwo
+
+\exOne\ul{Proposition 2.4:} Every $C^k$ map between two $C^r$ manifolds $M$ and $N$ is continuous.
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Suppose $F: M \to N$ is $C^k$. Then given any $p \in M$, we can show that $F$ is continuous on a neighborhood $U$ of $p$. Specifically, let $(U, \varphi)$ and $(V, \psi)$ be smooth charts as in the prior definition. Then $\psi \circ F \circ \varphi^{-1}$ is continuous on the set $\varphi(U)$ on account of it being a differentiable function between two subsets of $\mathbb{R}^n$. Also, since both $\psi$ and $\varphi$ are homeomorphisms, we have that $F = \psi^{-1} \circ (\psi \circ F \circ \varphi^{-1}) \circ \varphi$ is a continuous map from $U \subseteq M$ into $N$.\retTwo
+
+	Since each $p \in M$ has a neighborhood on which $F$ is continuous, it follows that $F$ is a continuous map from $M$ to $N$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\exPPP
+		Shit I just realized that I've never actually proven that continuity is local like that. So here's a quick lemma\dots\retTwo
+
+		\ul{Lemma:} Let $f: X \to Y$ be a map and suppose that every $x \in X$ has a\\ neighborhood $N_x$ such that $f|_{N_x}$ is continuous. Then $f$ is continuous.\newpage
+
+		\begin{myIndent}
+			Proof:\\
+			For any $x \in X$, let $N_x$ be a neighborhood satisfying that $f|_{N_x}$ is continuous. Then given any neighborhood $V$ of $f(x)$ in $Y$, we know $U \coloneqq f^{-1}(V) \cap N_x$ must be a neighborhood of $x$. satisfying that $f(U) \subseteq V$. So, $f$ (not restricted to any subset) is continuous at $x$.\retTwo
+
+			Since $f$ is continuous at all $x \in X$, we know that $f$ is continuous on $X$. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+\pracOne As a side note, when we were defining what it means for a map between manifolds,\\ $F: M \to N$, to be differentiable, perhaps it felt overly restricting for us to force the\\ chart $(V, \psi)$ on $N$ to satisfy that $F(U) \subseteq V$ in our definition. However, it turns out that without that requirement, it is no longer the case that $F$ being differentiable implies that $F$ is continuous.\retTwo
+
+\ul{Problem 2-1:} Define $f: \mathbb{R} \to \mathbb{R}$ by $f(x) = \left\{\begin{matrix}
+	1 & \text{ if } x \geq 0 \\ 0 & \text{ if } x < 0
+\end{matrix}\right.$.\\
+
+Now for every $x \in \mathbb{R}$ there are smooth coordinate charts $(U, \varphi)$ containing $x$ and $(V, \psi)$ containing $f(x)$ such that $\psi \circ f \circ \varphi^{-1}$ is smooth as a map from $\varphi(U \cap f^{-1}(V))$ to $\psi(V)$. However $f$ is clearly not continuous, nor smooth according to according to definition of smoothness of maps between two manifolds.
+\begin{myIndent}\pracTwo
+	If $x \neq 0$, we can just pick $(U, \varphi) = (\mathbb{R} - \{0\}, \myId)$ and $(V, \psi) = (\mathbb{R}, \myId)$. Then it's clear that $f(x) \in V$ and $\psi \circ f \circ \varphi^{-1} = f$ is smooth as a map from $\varphi(U \cap f^{-1}(V)) = \mathbb{R} - \{0\}$ to $\mathbb{R}$.\retTwo
+
+	Meanwhile, if $x = 0$, then pick $(U, \varphi) = (\mathbb{R}, \myId)$ and $(V, \psi) = ((0, \infty), \myId)$. Then it is still the case that $f(x) \in V$. Also, $\psi \circ f \circ \varphi^{-1} = f$ is just the constant function $1$ on the set $\varphi(U \cap f^{-1}(V)) = [0, \infty)$. Thus since it can be extended to a differentiable function on an open set containing $[0, \infty)$, we can say that $\psi \circ f \circ \varphi^{-1}$ is also a smooth map from $\varphi(U \cap f^{-1}(V))$.\retTwo
+
+	However, $f$ is not differentiable or even continuous in the traditional analysis sense. Thus, $f$ cannot be a smooth map from $\mathbb{R}$ as a manifold into $\mathbb{R}$ by exercise 2.2. Then in turn, we know from our prior efforts in generalizing differentiability that $f$ is not smooth as a map into $\mathbb{R}$ as a manifold either. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exOne\ul{Proposition 2.5:} Suppose $M$ and $N$ are $C^r$ manifolds, and $F: M \to N$ is a map. Then the following are equivalent.
+
+\begin{itemize}
+	\item[(a)] $F$ is a $C^k$ map.
+	\item[(b)] For every $p \in M$ there exist smooth charts $(U, \varphi)$ containing $p$ and $(V, \psi)$\\ containing $F(p)$ such that $U \cap F^{-1}(V)$ is open in $M$ and the map $\psi \circ F \circ \varphi^{-1}$ is $C^k$ from $\varphi(U \cap F^{-1}(V))$ into $\psi(V)$.
+	\item[(c)] $F$ is continuous and there exists atlases $\{(U_\alpha, \varphi_\alpha)\}_{\alpha \in A}$ of $M$ and $\{(V_\beta, \psi_\beta)\}_{\beta \in B}$ of $N$ consisting of smooth charts such that for each $\alpha$ and $\beta$:
+	
+	{\centering$\psi_\beta \circ F \circ \varphi_\alpha^{-1}$ is a $C^k$ map from $\varphi_\alpha(U_\alpha \cap F^{-1}(V_\beta))$ into $\psi_\beta(V_\beta)$.\newpage\par}
+\end{itemize}
+
+\begin{myIndent}\exTwoP
+	$(a \Longrightarrow c)$\\
+	From the last proposition we know that $F$ is continuous. Also, suppose $(U, \varphi)$ and $(V, \psi)$ are \textit{any} smooth charts on $M$ and $N$ respectively such that $U \cap F^{-1}(V) \neq \emptyset$. Then we claim that $\psi \circ F \circ \varphi^{-1}$ is a $C^k$ map from $\varphi(U \cap F^{-1}(V))$ into $\psi(V)$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Let $x = \varphi(p)$ be in $\varphi(U \cap F^{-1}(V))$. Then since $F$ is $C^k$, we know there are\\ smooth charts $(W_m, \theta_m)$ in $M$ and $(W_n, \theta_n)$ in $N$ such that $p \in W_m$,\\ $F(W_m) \subseteq W_n$, and $\theta_n \circ F \circ \theta_m^{-1}$ is a $C^k$ map from $\theta_m(W_m)$ into $\theta_n(W_n)$. Also,\\ we have that $\psi \circ \theta_n^{-1}$ is a $C^r$ map from $\theta_n(V \cap W_n)$ to $\psi(V \cap W_n)$. And\\ similarly, we have that $\theta_m \circ \varphi^{-1}$ is a $C^r$ map from $\varphi(U \cap W_m)$ to $\theta_m(U \cap W_m)$.\retTwo
+
+		Now we get to composing the functions established above (and I'll do this slowly since my head is already spinning from all the symbols written above).
+		\begin{itemize}
+			\item $\hspace{-0.5em}$\begin{tabular}{l}
+					$(\psi \circ \theta_n^{-1}) \circ (\theta_n \circ F \circ \theta_m^{-1})$ is a $C^k$ map from $\theta_m(W_m \cap F^{-1}(V \cap W_n))$ into $\psi(V)$.
+				\end{tabular}\\ [-6pt]
+
+			\item $\hspace{-0.5em}$\begin{tabular}{l}
+					Because $F^{-1}(W_n) \supseteq W_m$, we have that $W_m \cap F^{-1}(V \cap W_n) = W_m \cap F^{-1}(V)$.
+				\end{tabular}\\ [-9pt]
+			
+			\item Thus $(\psi \circ \theta_n^{-1}) \circ (\theta_n \circ F \circ \theta_m^{-1}) \circ (\theta_m \circ \varphi^{-1})$ is a $C^k$ map from\\ $\phantom{aaaaaaaaaaaaaaaaaaaaaaaaa} \varphi(U \cap W_m \cap F^{-1}(V))$ into $\psi(V)$.\\ [-9pt]
+			
+			\item Also $\psi \circ F \circ \varphi^{-1} = (\psi \circ \theta_n^{-1}) \circ (\theta_n \circ F \circ \theta_m^{-1}) \circ (\theta_m \circ \varphi^{-1})$ and we know $x \in \varphi(U \cap W_m \cap F^{-1}(V))$.\\ [-9pt]
+			
+			\item Since $F$ is continuous, we know that $F^{-1}(V)$ is open. It follows that\\ $\varphi(U \cap W_m \cap F^{-1}(V))$ is an open neighborhood of $x$ in either $H^n$ or $\mathbb{R}^n$.\\ [-9pt]
+			
+			\item This shows that any $x \in \varphi(U \cap F^{-1}(V))$ has an open neighborhood in either $H^n$ or $\mathbb{R}^n$ for which $\psi \circ F \circ \varphi^{-1}$ is a $C^k$ map when restricted to that\\ neighborhood. It  follows that $\psi \circ F \circ \varphi^{-1}$ is $C^k$ on $\varphi(U \cap F^{-1}(V))$.\retTwo
+		\end{itemize}
+
+		\myComment Side note: I essentially just proved an analog of exercise 2.3 a few pages ago.\\ So that I can cite it later, I'll write it out as follows\ldots\retTwo
+		
+		\ul{Proposition} If $M$ and $N$ are $C^r$ manifolds and $F: M \to N$ is a $C^k$ map, then\\ $\psi \circ F \circ \varphi^{-1}$ is a $C^k$ map on $\varphi(U \cap F^{-1}(V))$ for all smooth charts $(U, \varphi)$ on $M$\\ and $(V, \psi)$ on $N$.\retTwo
+	\end{myIndent}
+
+	Based on the prior reasoning, it suffices to choose any covering of $M$ and $N$ of smooth charts and we are done showing (c).\retTwo
+
+	$(c \Longrightarrow b)$\\
+	Let $p \in M$ and let $(U_\alpha, \varphi_\alpha)$ be a smooth chart on $M$ covering $p$. Next let $(V_\beta, \psi_\beta)$ be a smooth chart on $N$ covering $F(p)$. Since $F$ is continuous, we know that\\ $U_\alpha \cap F^{-1}(V_\beta)$ is open. Also, we know by assumption that $\psi_\beta \circ F \circ \varphi_\alpha^{-1}$ is $C^k$ from\\ $\varphi_\alpha(U_\alpha \cap F^{-1}(V_\beta))$ into $\psi_\beta(V_\beta)$. This proves (b).\retTwo
+
+	$(b \Longrightarrow a)$\\
+	Given any $p \in M$ let $(U, \varphi)$ and $(V, \psi)$ be as in the hypothesis of (b). Then since\\ $U \cap F^{-1}(V)$ is open and contains $p$, we have that:
+	
+	{\centering$(U^\prime, \varphi^\prime) \coloneqq (U \cap F^{-1}(V), \varphi|_{U \cap F^{-1}(V)})$ is another chart on $M$ containing $p$.\newpage\par}
+
+	Importantly, $\psi \circ F \circ (\varphi^\prime)^{-1}$ will still be a $C^k$ map from $\varphi^\prime(U^\prime)$ into $\psi(V)$ since\\ $\psi \circ F \circ \varphi^{-1}$ also is that. But, we also have $F(U^\prime) \subseteq V$. This proves (a). $\blacksquare$\retTwo
+\end{myIndent}
+
+\exOne\ul{Proposition 2.6:} Let $M$ and $N$ be $C^r$ manifolds, and let $F: M \to N$ be a map.
+\begin{itemize}
+	\item If every point $p \in M$ has an open neighborhood $U$ such that the restriction $F|_U$ is $C^k$, then $F$ is $C^k$ globaly. 
+	\item If $F$ is $C^k$ globaly, then it's restriction to every open subset $U \subseteq M$ is $C^k$.
+\end{itemize}
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Hopefully it is obvious that the latter bullet point is just a corollary of the prosition I noted on the last page. Meanwhile, the first bullet point is proved just by noting that any smooth chart in $U$ is also a smooth chart in $M$. $\blacksquare$\retTwo
+\end{myIndent}
 
 \end{document}
 
