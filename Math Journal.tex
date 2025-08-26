@@ -56,6 +56,8 @@
 
 % Thank you Bernard, gernot, and Sigur who I copied this from:
 % https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\renewcommand{\hookrightarrow}{\lhook\joinrel\rightarrow}
+\renewcommand{\hookleftarrow}{\leftarrow\joinrel\rhook}
 \newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
 \newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
 \newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
@@ -4609,7 +4611,7 @@ Let $u_1, \ldots, u_n$ be a basis of the vector space $V$ over a field $F$ of ch
 
 \ul{Corollary:} If $F$ has characteristic $0$ or greater than $k$, then $\mathcal{A}^k(V)$ has dimension $\binom{n}{k}$.\retTwo
 
-\ul{Corollary 2:} If $F$ has characteristic $0$ or greater than $k \geq n$, then any alternating $n$-tensor on $V$ is a scalar multiple of the determinant function. Also, there are no nontrivial alternating $m$-tensors where $n < m \leq k$.\retTwo
+\ul{Corollary 2:} If $F$ has characteristic $0$ or greater than $k \geq n$, then any alternating $n$-tensor on $V$ is a scalar multiple of a determinant function. Also, there are no\\ nontrivial alternating $m$-tensors where $n < m \leq k$.\retTwo
 
 \pracOne\ul{Exercise 1.4.ix:} Suppose $A: V \to W$ is a linear map. Then if $T \in \mathcal{A}^k(W)$, we have that $A^\dag T \in \mathcal{A}^k(V)$. Hence, the pullback operation maps alternating tensors to alternating tensors.
 
@@ -5114,9 +5116,9 @@ This is well defined since by the previous corollary, if both $T$ and $T^\prime$
 
 It is easily shown then that if $v_1, v_2, v \in V$\hspace{-0.2em},\hspace{0.2em} $\omega, \omega_1 \in \Lambda^p(V^*)$, and $\omega_2 \in \Lambda^q(V^*)$, then:
 \begin{itemize}
-	\item $\iota_{v_1 + v_2}\omega = \iota_{v_1} \omega + \iota_{v_2} \omega$.
-	\item $\iota_{v}(\omega_1 + \omega_2) = \iota_v \omega_1 + \iota_v \omega_2$
-	\item $\iota_v(\omega_1 \wedge \omega_2) = (\iota_v \omega_1) \wedge \omega_2 + (-1)^p \omega_1 \wedge (\iota_v \omega_2)$\\
+	\item $\iota_{v_1 + v_2}\omega = \iota_{v_1} \omega + \iota_{v_2} \omega$;
+	\item $\iota_{v}(\lambda_1\omega_1 + \lambda_2\omega_2) = \lambda_1\iota_v \omega_1 + \lambda_2\iota_v \omega_2$ (where $\lambda_1, \lambda_2 \in F$);
+	\item $\iota_v(\omega_1 \wedge \omega_2) = (\iota_v \omega_1) \wedge \omega_2 + (-1)^p \omega_1 \wedge (\iota_v \omega_2)$.\\
 \end{itemize}
 
 Also, if you squint you can see that $\iota_v(\iota_v \omega) = \pi(\iota_v(\iota_v T))$ where $T$ satisfies that $\pi(T) = \omega$. Hence, we have that $\iota_v(\iota_v \omega) = 0$, and from there we can show that $\iota_{v_1}(\iota_{v_2}\omega) = -\iota_{v_2}(\iota_{v_1}\omega)$ just like before.\newpage
@@ -6160,7 +6162,7 @@ Oh, I also forgot to mention: if $U \subseteq M$ is open and $M$ is a $C^r$ mani
 
 \dispDate{8/24/2025}
 
-Let $r, k \in \mathbb{Z}_{>0} \cup \{\infty\}$ with $k \leq r$.\retTwo
+Let $r, k \in \mathbb{Z}_{>0} \cup \{\infty\}$ and always assume $k \leq r$.\retTwo
 
 Suppose $M$ is a $C^r$ manifold and $f: M \to \mathbb{R}^m$ is a function. We say $f$ is a \udefine{$C^k$\\ function} if for every $p \in M$ there exists a smooth chart $(U, \varphi)$ such that $p \in U$\\ and $f \circ \varphi^{-1}$ is $C^k$ on the open set $\varphi(U)$ of either $H^n$ or $\mathbb{R}^n$. In this case we denote $f \in C^k(M, \mathbb{R}^m)$ (although when $m = 1$ we usually shorthand this as $f \in C^k(M)$).\retTwo
 
@@ -6305,6 +6307,182 @@ Now for every $x \in \mathbb{R}$ there are smooth coordinate charts $(U, \varphi
 	Hopefully it is obvious that the latter bullet point is just a corollary of the prosition I noted on the last page. Meanwhile, the first bullet point is proved just by noting that any smooth chart in $U$ is also a smooth chart in $M$. $\blacksquare$\retTwo
 \end{myIndent}
 
+\ul{Corollary 2.8: (Gluing lemma)} Let $M$ and $N$ be $C^r$ manifolds and let $\{U_\alpha\}_{\alpha \in A}$\\ be an open cover for $M$. Suppose that for each $\alpha \in A$ we are given a $C^k$ map\\ $F_\alpha: U_\alpha \to N$ and suppose that $F_\alpha|_{U_\alpha \cap U_\beta} = F_\beta|_{U_\alpha \cap U_\beta}$ for all $\alpha$ and $\beta$. Then there exists a unique $C^k$ map $F: M \to N$ such that $F|_{U_\alpha} = F_\alpha$ for all $\alpha$.
+
+\begin{myIndent}\exTwoP
+	Proof:\\
+	Define $F = \bigcup_{\alpha \in A}F_\alpha$. This a well defined function on $M$ since the $U_\alpha$ cover all of $M$ and for any $p \in M$ there is only one $q \in N$ such that $(p, q) \in F$. Also, it is clear that $F$ is the unique map satisying that $F|_{U_\alpha} = F_\alpha$ for all $\alpha \in A$. And since all the $F_\alpha$ are $C^k$, we know that $F$ is locally $C^k$. So by the last proposition, we know that $F$ is a $C^k$ map globally. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 2.10:} Let $M$, $N$, and $P$ be $C^r$ manifolds.
+\begin{itemize}
+	\item[(a)] Every constant map $c: M \to M$ is $C^r$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Suppose $c(p) = q$ for all $p \in M$. Then let $(V, \psi)$ be a smooth chart covering $q$. If $(U, \varphi)$ is any smooth chart on $M$, we know that $c(U) = \{q\} \subseteq V$ and that $\psi \circ c \circ \varphi^{-1} = \psi(q)$ is a constant function on $\varphi(U)$. Therefore $\psi \circ c \circ \varphi^{-1}$ is $C^r$ and we've proven that $c$ is a $C^r$ map. $\blacksquare$
+	\end{myIndent}
+
+	\item[(b)] The identity map on $M$ is $C^r$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Let $(U, \varphi)$ be any chart on $M$. Then $\myId_M(U) \subseteq U$ and $\varphi \circ \myId_M \circ \varphi^{-1} = \myId_{\mathbb{R}^n}$\\ is $C^r$. This proves that $\myId_M$ is $C^r$.$\blacksquare$.
+	\end{myIndent}
+
+	\item[(c)] If $U \subseteq M$ is an open submanifold, then the inclusion map $U \hookrightarrow M$ is $C^r$.
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Just apply proposition 2.6 to the identity map on $M$. $\blacksquare$
+	\end{myIndent}
+
+	\item[(d)] If $F: M \to N$ and $G: N \to P$ are $C^k$, then so is $G \circ F: M \to P$.\newpage
+	
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Let $p \in M$. Then by definition there are smooth charts $(V, \theta)$ on $N$ and $(W, \psi)$ on $P$ such that $F(p) \in V$, $G(V) \subseteq W$, and $\psi \circ G \circ \theta^{-1}$ is a $C^k$ map on $\theta(V)$. Also, since $F$ is continuous, we know that $F^{-1}(V)$ is an open set in $M$. Therefore, we can find a smooth chart $(U, \varphi)$ such that $p \in U \subseteq F^{-1}(V)$. In turn, $(G \circ F)(U) \subseteq W$. And since $F$ is $C^k$, we know that $\theta \circ F \circ \varphi^{-1}$ is a $C^k$ map from $\varphi(U)$. Hence:
+
+		{\centering $\psi \circ (G \circ F) \circ \varphi^{-1} = (\psi \circ G \circ \theta^{-1}) \circ (\theta \circ F \circ \varphi^{-1})$ is a $C^k$ map from $\varphi(U)$ \retTwo\par}
+
+		This proves that $G \circ F$ is a $C^k$ map. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hOne\mySepTwo
+
+\dispDate{8/25/2025}
+
+Today I'm going to jump back to Guillemin's \ul{Differential Forms}. My reasoning for this is that I want a working fomulation of Stokes theorem before the end of the Summer, and at the rate I'm going through Lee's book, I'm not going to get that formulation from Lee. I also never quite finished the chapter on tensors before. I will continue to return to Lee off and on though.\retTwo
+
+\hTwo\blab{The pullback operation on $\Lambda^k(V^*)$:}\\
+Let $V$ be an $n$-dimensional spaces over a field $F$ with characteristic $0$, and let $W$ be an $m$-dimensional vector space over $F$. Also let $A: V \to W$ be a linear map. Recall that for any $T \in \mathcal{L}^k(W)$ we defined $A^\dag T(v_1, \ldots, v_k) = T(Av_1, \ldots, Av_k)$.\retTwo
+
+\exTwo\ul{Lemma 1.8.1:} If $T \in \mathcal{I}^k(W)$, then $A^\dag T \in \mathcal{I}^k(V)$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Since $T$ can be expressed as a linear combination of redundant $k$-tensors and $A^{\dag}$ is a linear map from $\mathcal{L}^k(W)$ to $\mathcal{L}^k(V)$, it suffices to assume $T$ is itself a redundant $k$-tensor. So let $T = \ell_1 \otimes \cdots \otimes \ell_k$ where each $\ell_j \in W^*$ and $\ell_i = \ell_{i+1}$ for some $i$. Then by proposition 1.3.18 (on page 103) we have that $A^\dag T = (A^\dag \ell_1) \otimes \cdots \otimes (A^\dag \ell_k)$. It follows that $A^\dag T$ is a redundant $k$-tensor. $\blacksquare$.\retTwo
+\end{myIndent}
+
+\hTwo Let $\pi_W$ and $\pi_V$ be the projections of $\mathcal{L}^k(W)$ and $\mathcal{L}^k(V)$ onto $\Lambda^k(W^*)$ and $\Lambda^k(V^*)$\\ respectively.\retTwo
+
+If $\omega \in \Lambda^k(W^*)$ and $T \in \mathcal{L}^k(W)$ satisfies that $\pi_W(T) = \omega$, then we define:
+
+{\centering$A^\dag \omega \coloneqq \pi_V(A^\dag T)$.\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	To see that this is well defined, suppose $\omega = \pi(T) = \pi(T^\prime)$. Then $T = T^\prime + S$ for some $S \in \mathcal{I}^k(V)$. So, $A^\dag T  = A^\dag T^\prime  + A^\dag S$. And since $A^\dag S  \in \mathcal{I}^k(V)$ by the last lemma, we have that $\pi(A^\dag T) = \pi(A^\dag T^\prime)$.\newpage
+\end{myIndent}
+
+\exTwo\ul{Proposition 1.8.4:} The map $A^\dag : \Lambda^k(W^*) \to \Lambda^k(V^*)$ sending $\omega$ to $A^\dag \omega$ is linear. Moreover:
+\begin{itemize}
+	\item if $\omega_i \in \Lambda^{k_i}(W^*)$ for $i = 1, 2$, then $A^\dag(\omega_1 \wedge \omega_2) = (A^\dag \omega_1) \wedge (A^\dag \omega_2)$;
+	
+	\item if $U$ is a vector space and $B: U \to V$ is a linear map, then for $\omega \in \Lambda^k(W^*)$, $B^\dag (A^\dag \omega) = (AB)^\dag \omega$.
+\end{itemize}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Firstly, let $\omega, \omega^\prime \in \Lambda^k(W^*)$. Then if $T \in \pi_W^{-1}(\{\omega\})$ and $T^\prime \in \pi_W^{-1}(\{\omega\})$, we have for any $\lambda, \lambda^\prime \in F$ that $\pi_W(\lambda T + \lambda^\prime T^\prime) = \lambda \omega + \lambda^\prime \omega^\prime$. And now, showing that $A^\dag$ as a map from $\Lambda^k(W^*)$ is linear is as simple as noting that $\pi_V \circ A^\dag$ is linear (where we view $A^\dag$ as a map from $\mathcal{L}^k(W)$).\retTwo
+
+	Next, let $\omega_1, \omega_2$ be as in the proposition statement. Then suppose $T_1$ and $T_2$ both satisfy that $\pi_W(T_1) = \omega_1$ and $\pi_W(T_2) = \omega_2$ (ignore my abuse of notation). Then:
+	
+	{\centering\begin{tabular}{l}
+		$A^\dag(\omega_1 \wedge \omega_2) = \pi_V(A^\dag(T_1 \otimes T_2))$\\
+		$\phantom{A^\dag(\omega_1 \wedge \omega_2)} = \pi_V((A^\dag T_1) \otimes (A^\dag T_2))$\\
+		$\phantom{A^\dag(\omega_1 \wedge \omega_2)} = \pi_V((A^\dag T_1)) \wedge \pi_V((A^\dag T_2)) = (A^\dag \omega_1) \wedge (A^\dag \omega_2)$.
+	\end{tabular}\retTwo\par}
+
+	Finally, let $\omega \in \Lambda^k(W^*)$ and choose $T \in \mathcal{L}^k(W)$ such that $\pi_W(T) = \omega$. Then if you squint you can see that:
+	
+	{\centering$B^\dag(A^\dag \omega) = \pi_V(B^\dag(A^\dag T)) = \pi_V((AB)^\dag T) = (AB)^\dag \omega$.\retTwo\par}
+\end{myIndent}
+
+\hTwo One application of the pullback operation is that it gives us a way of defining determinants completely independently of any chosen basis. Specifically, let $V$ be an $n$-dimensional vector space over a field $F$ with characteristic $0$, and suppose $A: V \to V$ is a linear map.
+
+\begin{myIndent}\myComment
+	(If you want to be pedantic, everything that follows should work so long as $F$ has a\\ characteristic that makes it so that $n! \neq 0$ and $-1 \neq 1$\dots)\retTwo
+\end{myIndent}
+
+Since $\dim \Lambda^n(V^*) = \binom{n}{n} = 1$ and $A^\dag: \Lambda^n(V^*) \to \Lambda^n(V^*)$ is linear, it must be that\\ [-2pt] the map $A^\dag$ is just multiplication by a constant. We denote this constant $\det(A)$ and call it the \udefine{determinant} of $A$. In other words, we define $\det(A) \in F$ to be the constant such that $A^\dag \omega = \det(A)\omega$ for all $\omega \in \Lambda^n(V^*)$.\retTwo
+
+\exTwo\ul{Proposition 1.8.7:} If $A$ and $B$ are linear mappings of $V$ into $V$, then $\det(AB) = \det(A)\det(B)$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Given any $\omega \in \Lambda^n(V^*)$:
+	
+	{\centering $\det(AB)\omega = (AB)^\dag \omega = B^\dag(A^\dag \omega) = \det(B) A^\dag \omega = \det(B)\det(A)\omega$\retTwo\par}
+
+	It follows that $\det(A)\det(B) = \det(AB)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 1.8.8:} Write $\myId_V: V \to V$ for the identity map. Then $\det(\myId_V) = 1$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Note that if $\omega \in \Lambda^k(V^*)$ for any $k$ and $T \in \mathcal{L}^k(V)$ satisfies that $\pi_V(T) = \omega$, then $\myId^\dag \omega = \pi_V(\myId^\dag T) = \pi_V(T) = \omega$. This shows that for any $k$, $\myId^\dag$ is the identity map on $\Lambda^k(V^*)$. Hence $\det(\myId) = 1$. $\blacksquare$\newpage
+\end{myIndent}
+
+\ul{Corollary:} If $A: V \to V$ is a surjective linear map, then $\det(A) \neq 0$. 
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $A$ is surjective, then we know by the rank-nullity theorem that $A$ has nullity $0$. So, $A$ is bijective and has an inverse $A^{-1}$. Then by our last two propositions, we know that $\det(A)\det(A^{-1}) = \det(\myId_V) = 1$. Thus, it cannot be that $\det(A) = 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 1.8.9:} If $A: V \to V$ is not surjective, then $\det(A) = 0$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $W$ be the image of $A$. If $A$ is not surjective, we know that $\dim W < n$ and thus\\ $\Lambda^n(W^*) = \{0\}$. So, let $A = i_W B$ where $i_W$ is the inclusion map $W \hookrightarrow V$ and let $B$\\ be the map $A$ with it's codomain restricted to $W$. Then by proposition 1.8.4 we have that\\ $A^\dag \omega = B^\dag(i_W^\dag \omega)$. But now note $i_W^\dag \omega \in \Lambda^n(W^*) = \{0\}$. This means that $i_W^\dag \omega = 0$ and we trivially have that $B^\dag(i_W^\dag) = 0$. It follows that $\det(A) = 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo We still need to show that this definition of the determinant agrees with the usual one. To do this we can first prove something slightly more general.\retTwo
+
+Suppose $A: V \to W$ is a linear map, and let $e_1, \ldots, e_n$ and $f_1, \ldots, f_n$ be bases of $V$ and $W$ respectively. Then let $e_1^*, \ldots, e_n^*$ and $f_1^*, \ldots, f_n^*$ be the corresponding dual bases. If $(a_{i,j})$ is the $n \times n$ matrix representing $A$ with respect to our bases (i.e. $A e_j = \sum_{i=1}^n a_{i,j}f_i$ for all $j$), then:
+
+{\centering $A^\dag f_j^* = \sum_{i=1}^n a_{j,i}e_{i}^*$ for all $j$ (see claim 1.2.15 on page 102\dots).\retTwo\par}
+
+In turn:\\ [-9pt]
+
+{\centering\begin{tabular}{l}
+	$A^\dag(f_1^* \wedge \cdots \wedge f_n^*) = (A^\dag f_1^*) \wedge \cdots \wedge (A^\dag f_n^*)$\\ [4pt]
+	$\phantom{A^\dag(f_1^* \wedge \cdots \wedge f_n^*)} = (\sum\limits_{i=1}^n a_{1,i}e_i^*) \wedge \cdots \wedge (\sum\limits_{i=1}^n a_{n,i}e_i^*) = \hspace{-1.5em}\sum\limits_{1 \leq k_1, \ldots, k_n \leq n}\hspace{-1.5em} a_{1,k_1}\cdots a_{n,k_n} (e_{k_1}^* \wedge \cdots \wedge e_{k_n}^*)$\\ 
+\end{tabular}\retTwo\par}
+
+Next, if the multi-index $I = (k_1, \ldots, k_n)$ is repeating, then $e_{k_1}^* \wedge \cdots \wedge e_{k_n}^* = 0$. (This is a consequence of the fact that the wedge product with respect to $1$-tensors is anti-commutative). It follows that we can cancel out a bunch of terms in the sum and be left with:
+
+{\centering $A^\dag(f_1^* \wedge \cdots \wedge f_n^*) = \sum\limits_{\sigma \in S_n}a_{1, \sigma(1)} \cdots a_{n, \sigma(n)} (e_{\sigma(1)}^* \wedge \cdots \wedge e_{\sigma(n)}^*)$ \retTwo\par}
+
+But now note that:\\ [-9pt]
+
+{\centering\begin{tabular}{l}
+	$(e_{\sigma(1)}^* \wedge \cdots \wedge e_{\sigma(n)}^*) = \pi_V(e_{\sigma(1)}^* \otimes \cdots \otimes e_{\sigma(n)}^*)$\\ [6pt]
+	$\phantom{(e_{\sigma(1)}^* \wedge \cdots \wedge e_{\sigma(n)}^*)} = \pi_V((e_1^* \otimes \cdots \otimes e_n^*)^\sigma) = \sgn(\sigma) \pi_V(e_1^* \otimes \cdots \otimes e_n^*) = \sgn(\sigma) e_1^* \wedge \cdots \wedge e_n^*$.
+\end{tabular}\retTwo\par}
+
+So, we conclude that $A^\dag(f_1^* \wedge \cdots \wedge f_n^*) = \sum\limits_{\sigma \in S_n}\sgn(\sigma)a_{1, \sigma(1)} \cdots a_{n, \sigma(n)} (e_1^* \wedge \cdots \wedge e_n^*)$.\retTwo
+
+Letting $W = V$ and $f_i = e_i$ for all $i$, we in turn have shown that:
+
+{\centering$\det(A) = \sum\limits_{\sigma \in S_n}\sgn(\sigma)a_{1, \sigma(1)} \cdots a_{n, \sigma(n)}$.\newpage\par}
+
+\hOne\dispDate{8/26/2025}
+
+In physics yesterday we started talking about statistical mechanics, and that inspired me to try focusing on real analysis again. So, I will be returning to Folland for a bit. I think I'll start off where I left off at chapter 7.\retTwo
+
+\hTwo Let $X$ be an LCH space and $\mathcalli{B}_X$ be the collection of Borel sets on $X$. At where we left off (on page 62), we had showed that the space $M(X)$ of complex Radon measures on $(X, \mathcalli{B}_X)$ is a normed complex vector space when equipped with the norm $\mu \mapsto \|\mu\| = |\mu|(X)$. Also, we had shown that the map $\mu \mapsto I_\mu$ where $I_\mu(f) = \int f \df \mu$ is an isometric isomorphism from $M(X)$ to $C_0(X)^*$.\retTwo
+
+\Hstatement\blab{Exercise 7.8:} Suppose that $\mu$ is a Radon measure on $X$. If $\phi \in L^1(\mu)$ and $\phi \geq 0$, then $\nu = f \df \mu$ is a Radon measure.
+\begin{myIndent}\HexOne
+	Since $\phi \in L^1(\mu)$, we know that $\nu(E) = \int_E \phi \df \mu$ is finite for all $E \in \mathcalli{B}_X$. Thus $\nu$ is a finite measure. This trivially satisfies the requirement that $\nu(K)$ is finite for all compact $K$.\retTwo
+
+	Now since $\nu$ is finite, it suffices to show that $\nu$ is regular on any set $E \in \mathcalli{B}_X$. Luckily, by corollary 3.6 (see my math 240a notes from Fall quarter), we know that given a fixed $\varepsilon > 0$ there exists $\delta > 0$ such that $\mu(A) < \delta$ implies that $|\nu(A)| = \nu(A) < \varepsilon$. Then by the outer regularity of $\mu$, we can pick an open set $U \supseteq E$ with $\mu(U - E) < \frac{\delta}{2}$.
+\end{myIndent}
+
+
 \end{document}
 
 
@@ -6325,52 +6503,6 @@ Now for every $x \in \mathbb{R}$ there are smooth coordinate charts $(U, \varphi
 
 
 
-% Proof:\\
-	% If $m \leq n$, then the problem is trivial because we can just set all constants equal to $0$. So, it suffices to assume $m \geq n + 1$.\retTwo
-
-	% Let $U = \begin{bmatrix}
-	% u_1 & \cdots & u_m
-	% \end{bmatrix}$ be the matrix with the $u_i$ as it's columns. Set $N = \ker(U)$ and define $\mathcal{I}$ to be the collection of all subsets of $\{1, \ldots, m\}$ with order $m-n$. Then define:
-
-	% $$f(x) = \prod\limits_{I \in \mathcal{I}}\left(\sum\limits_{i \in I}(1 - x_i^2)\right)\text{.}$$ \retTwo
-
-	% Now $f$ is $C^\infty$ and satisfies that $f(x) \geq 0$ for all $x \in [-1, 1]^m$ with equality iff $m-n$ of the coordinates of $x$ are $\pm 1$. By the extreme value theorem, we know that $f$ achieves an absolute minimum on $N \cap [-1, 1]^m$. Hence, our goal will be to show that if the absolutely minimum of $f$ over $N \cap [-1, 1]^m$ is at $a$, then at least $m-n$ coordinates of $a$ are equal to $\pm 1$.\retTwo
-
-	% Suppose $f$ achieves a local extreme over $N$ at some point $b = (b_1, \ldots, b_m) \in N$. Then it must be that $\nabla f(b) \cdot x = 0$ for all $x \in N$ or else we'd be able to do gradient descent to find an even more extreme value on $N$. Hence, we have that $\nabla f(b) \cdot b = 0$. But now note that for all $i \in \{1, \ldots, m\}$, if $x = (x_1, \ldots, x_m)$, then by an easy application of product rule:
-
-	% $$\frac{\partial f}{\partial x_i}(x) = -2x_i \hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
-	% I \in \mathcal{I} \suchthat \\ i \in I
-	% \end{smallmatrix}}\hspace{-0.8em}\left(\prod\limits_{
-	% J \in \mathcal{I} - \{I\}} \left(\sum\limits_{j \in J}(1 - x_j^2)\right)\right)$$\newpage
-
-	% Therefore, we have that:
-
-	% $$0 = \nabla f(b) \cdot b = -2\sum\limits_{i=1}^m b_i^2\sum\limits_{\begin{smallmatrix}
-	% I \in \mathcal{I} \suchthat \\ i \in I
-	% \end{smallmatrix}}\hspace{-0.8em}\left(\prod\limits_{
-	% J \in \mathcal{I} - \{I\}} \left(\sum\limits_{j \in J}(1 - b_j^2)\right)\right)$$
-
-	% Now, if you parse the really ugly term after the $b_i^2$, you can see that it is nonnegative for all $b \in [-1, 1]^m$, and that it will be equal to zero iff there are $m-n$ coordinate of $b$ other than $b_i$ which are equal to $\pm 1$.\retTwo
-
-	% It follows that the only local extrema of $f$ over $N$ located in $[-1, 1]^m$ are at the origin and in the set of points of $N$ with $m-n+1$ coordinates equal to $\pm 1$. But note that since $m > n$, we know $N$ is a proper superset of $\{0\}$ and hence $f$ achieves a local maximum and not a local minimum at the origin. Therefore, we've proven that:
-
-	% {\centering $\min\limits_{x \in N \cap [-1, 1]^m}(f(x)) = \hspace{-1em}\min\limits_{x \in N \cap \partial[-1, 1]^m}(f(x))$ \retTwo\par}
-
-	% In other words, if $f$ achieves an absolute minimum over $N \cap [-1, 1]^m$ at $a = (a_1, \ldots, a_m)$, then we've proven that at least one $a_i = \pm1$. By reordering our vectors $u_1, \ldots, u_m$ we can assume that $a = (a_1, \ldots, a_{m-1}, \varepsilon_{m})$ where $\varepsilon_m \in \{-1, +1\}$. Hence, we can reduce our problem to trying to minimize $f$ over the compact set $N \cap ([-1, 1]^{m-1} \times \{\varepsilon_m\})$.\retTwo
-
-	% Now to finish off, we proceed via induction. Assume that we've reduced our problem to trying to minimize $f$ over the compact set $N \cap ([-1, 1]^{m-k} \times (\varepsilon_{m-k+1}, \ldots, \varepsilon_m))$ where\\ $1 \leq k < m-n$ and $\varepsilon_i = \pm 1$ for all $i \in \{m-k+1, \ldots, m\}$.
-
-	% \begin{myIndent}\HexTwoP
-	% 	If $f$ achieves a local minimum on $N \cap (\mathbb{R}^{m-k} \times \{\varepsilon_{m-k+1}, \ldots, \varepsilon_m\})$ at some point\\ $b = (b_1, \ldots, b_{m-k}, \varepsilon_{m-k+1}, \ldots, \varepsilon_m)$, we know that $\nabla f(b) \perp e_1, \ldots, e_{n-k}$ where $\{e_1, \ldots, e_m\}$ is the standard basis for $\mathbb{R}^m$. Hence for all $i \leq m-k$, we know:
-
-	% 	$$-2b_i\sum\limits_{\begin{smallmatrix}
-	% 	I \in \mathcal{I} \suchthat \\ i \in I
-	% 	\end{smallmatrix}}\hspace{-0.8em}\left(\prod\limits_{
-	% 	J \in \mathcal{I} - \{I\}} \left(\sum\limits_{j \in J}(1 - b_j^2)\right)\right) = \nabla f(b) \cdot e_i = 0$$\retTwo
-
-	% 	Since the ugly term after $-2b_i$ is zero only when $b$ has $m - n$ many coordinates other than $b_i$ equal to $\pm$, we only need to consider the case that $b_i = 0$ for all $i \in \{1, \ldots, m-k\}$. However, note that we must also have that $\nabla f(b) \cdot b = 0$.
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
@@ -6406,25 +6538,10 @@ Now for every $x \in \mathbb{R}$ there are smooth coordinate charts $(U, \varphi
 % 	\item[(b)] If $n \in \mathbb{N}$, then $I_n f$ is the $n$th-order antiderivative of $f$. 
 % \end{itemize}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-% \dispDate{8/11/2025}
-
-% I'm going to take a break from Guillemin's book to instead work through John Lee's book \ul{Introduction to Smooth Manifolds}. I'll probably run into a few hiccups cause I've never studied fundamental groups or homotopy and homology. However, I'll try to work around that and just see how far I can go.\retTwo
-
-% If $M$ is a topological space, we say $M$ is a \udefine{topological $n$-manifold} if:
-% \begin{itemize}
-% 	\item $M$ is a Hausdorff second countable space
-% 	\item $M$ is \udefine{locally Euclidean of dimension $n$}, meaning each point of $M$ has an open neighborhood that is homeomorphic to an open subset of $\mathbb{R}^n$.
-% \end{itemize}
-
-% \exOne\ul{Theorem 1.2:} A nonempty $n$-dimensional topological manifold cannot be homeomorphic to an $m$-dimensional manifold 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-% For the next few results, we will be working with manifolds \udefine{without boundary},\\ meaning each point has an open neighborhood homeomorphic to an open subset of $\mathbb{R}^n$ (as opposed to being only open in $H^n$). 
-% \begin{myIndent}\hTwo
-% 	I don't have the algebraic topology background to prove this but it turns out to be a general fact that if $f: \mathbb{R}^n \to \mathbb{R}^n$ is continuous and injective, then $f$ is an open map. Based on that, we can adapt the proof of lemma 24.2 on page 88 almost word-for-word to apply to general topological manifolds.\retTwo
-% \end{myIndent}
+% \blab{Orientations:}\\
+% If $L$ is a $1$-dimensional vector space, then $L - \{0\}$ has two connected components. An\\ \udefine{orientation} of $L$ is a choice of one of those two connected components. Typically, we denote that choice $L_+$ (or \udefine{the positive component}) and we denote the one not chosen $L_-$ (or \udefine{the negative component}).\retTwo
+
+% If $(L, L^+)$ is an \udefine{oriented} $1$-dimensional vector space, then we say a vector $v \in L$ is \udefine{positively oriented} if $v \in L_+$.
