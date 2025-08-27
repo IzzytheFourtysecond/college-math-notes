@@ -6479,8 +6479,191 @@ In physics yesterday we started talking about statistical mechanics, and that in
 \begin{myIndent}\HexOne
 	Since $\phi \in L^1(\mu)$, we know that $\nu(E) = \int_E \phi \df \mu$ is finite for all $E \in \mathcalli{B}_X$. Thus $\nu$ is a finite measure. This trivially satisfies the requirement that $\nu(K)$ is finite for all compact $K$.\retTwo
 
-	Now since $\nu$ is finite, it suffices to show that $\nu$ is regular on any set $E \in \mathcalli{B}_X$. Luckily, by corollary 3.6 (see my math 240a notes from Fall quarter), we know that given a fixed $\varepsilon > 0$ there exists $\delta > 0$ such that $\mu(A) < \delta$ implies that $|\nu(A)| = \nu(A) < \varepsilon$. Then by the outer regularity of $\mu$, we can pick an open set $U \supseteq E$ with $\mu(U - E) < \frac{\delta}{2}$.
+	Now let $\varepsilon > 0$ and note that by corollary 3.6 (see my math 240a notes from Fall quarter), there exists $\delta > 0$ such that $\mu(A) < \delta$ implies that $|\nu(A)| = \nu(A) < \varepsilon$ for all $A \in \mathcalli{B}_X$. This easily let's us show all the desired regularity properties of $\nu$.
+	\begin{myIndent}
+		If $E \in \mathcalli{B}_X$ then let $U \supseteq E$ be an open set such that $\mu(U - E) < \delta$. Then we know that $\nu(U - E) < \varepsilon$. Taking $\varepsilon \to 0$ shows that $\nu$ is outer regular on $E$.\retTwo
+
+		If $U \subseteq X$ is open, then let $K \subseteq U$ be a compact set such that $\mu(U - K) < \delta$. Then we know that $\nu(U - K) < \varepsilon$. Taking $\varepsilon \to 0$ shows that $\nu$ is inner regular on $U$.\retTwo
+	\end{myIndent}
 \end{myIndent}
+
+\blab{Corollary:} If $\mu$ is a fixed positive Radon measure and $f \in L^1(\mu)$, then $\nu = f \df \mu$ is a complex Radon measure.
+
+\begin{myIndent}\HexOne
+	If we write $f = f_1 - f_2 + i(f_3 - f_4)$ and set $\nu_j = f_j \df \mu$ for all $j$, then it's clear from\\ the last exercise that all the $\nu_j$ are finite (and thus complex) Radon measures. Also,\\ $\nu = \nu_1 - \nu_2 + i(\nu_3 - \nu_4)$. So $\nu$ is also a complex radon measure.\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+In one sense the following is completely unnecessary. I will never need the full generality\\ of what I'm about to prove (probably). On the other hand, Folland doesn't prove this and instead points his readers to the bibliography. So, for the first time in my life I went and procured a book from the bibliography of a math textbook. Also, this was especially a pain since when I finally got the textbook, it wouldn't convert to a pdf for some reason and my main E-book reader couldn't read it. So I eventually downloaded a DJVu reader that looks like it's from the fucking 2000s in order to finally read the book.\retTwo
+
+Considering the fact that there aren't just pdfs of this book floating around willy nilly on the internet, I should probably give a citation instead of just vaguely describing it. The book I will be briefly following along with is Hewitt and Stromberg's \ul{Real and Abstract Analysis}. I've also made a bibiliography section at the end of the pdf where this book will have the honor of being the first citation.\newpage
+
+\hTwo 
+A measure $\mu$ on $(X, \mathcal{M})$ is called \udefine{decomposable} if there is a family $\mathcal{F} \subseteq \mathcal{M}$ with the\\ following properties:\\ [-20pt]
+\begin{itemize}
+	\item[(i)] $\mu(F) < \infty$ for all $F \in \mathcal{F}$;\\ [-18pt]
+	\item[(ii)] The members of $\mathcal{F}$ are disjoint and their union is $X$;\\ [-18pt]
+	\item[(iii)] If $\mu(E) < \infty$, then $\mu(E) = \sum_{F \in \mathcal{F}} \mu(E \cap F)$;\\ [-18pt]
+	\item[(iv)] If $E \subseteq X$ and $E \cap F \in \mathcal{M}$ for all $F \in \mathcal{F}$, then $E \in \mathcal{M}$.\\ [-12pt]
+\end{itemize}
+
+Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$.
+\begin{myIndent}\myComment
+	Note that if $\mu$ is $\sigma$-finite, then we clearly have that $\mu$ is decomposable on $(X, \mathcal{M})$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma 19.26:} Let $(X, \mathcal{M})$ be a measurable space and let $\mu$ and $\nu$ be arbitrary measures on $(X, \mathcal{M})$ such that $\mu(X) < \infty$ and $\nu \ll \mu$. Then there exists a set $E \in \mathcal{M}$ such that:
+\begin{itemize}
+	\item[(i.)] For all $A \in \mathcal{M}$ with $A \subseteq E$, either $\nu(A) = 0$ or $\nu(A) = \infty$. Also, if $\nu(A) = 0$, then so does $\mu(A) = 0$.
+	\item[(ii.)] $\nu$ is $\sigma$-finite on $E^\comp$. 
+\end{itemize}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider the family:
+	
+	{\centering $\mathcalli{B} \coloneqq \{B \in \mathcal{M} : \forall C \in \mathcal{A},\hspace{0.3em} C \subseteq B \Longrightarrow \nu(C) = 0 \text{ or } \nu(C) = \infty\}$.\retTwo\par}
+
+	Importantly, we know that $\mathcalli{B} \neq \emptyset$ since $\emptyset \in \mathcalli{B}$, and also that $\mu(B) \leq \mu(X) < \infty$ for all $B \in \mathcalli{B}$. So, it is well defined to set $\alpha \coloneqq \sup_{B \in \mathcal{B}} \mu(B)$. Next note that if $B , B^\prime \in \mathcalli{B}$, then $B \cup B^\prime \in \mathcalli{B}$.
+	\begin{myIndent}\exPPP
+		Suppose $C \subseteq B \cup B^\prime$ is measurable. Then $\nu(C) = \nu(C \cap B) + \nu(C \cap (B^\prime - B))$. And since $C \cap B$ and $C \cap (B^\prime - B)$ are both measurable subsets of sets in $\mathcalli{B}$, we know that both have $\nu$-measure zero or infinity. It follows that $\nu(C) \in \{0, \infty\}$.\retTwo
+	\end{myIndent}
+	
+	We can thus construct a nondecreasing sequence of sets $(B_n)_{n \in \mathbb{N}}$ in $\mathcalli{B}$ such that\\ $\lim_{n \to \infty} \mu(B_n) = \alpha$. Setting $D = \bigcup_{n \in \mathbb{N}} B_n$, we have that $\mu(D) = \alpha$ and we can also show that $D \in \mathcalli{B}$ using near identical reasoning as in the prior pink text.\retTwo
+
+	Next we show that $\nu$ is semifinite on $D^\comp$. Suppose $F \in \mathcal{M}$ with $F \subseteq D$ and $\nu(F) = \infty$. Then for the sake of contradiction assume that $\nu(G)$ equals $0$ or $\infty$ for every measurable subset $G \subseteq F$. It would follow that $F \cup D \in \mathcalli{B}$. But then since $\nu(F) > 0$ and $\nu \ll \mu$, we'd know that $\mu(F) > 0$. Hence, $F \cup D$ would be a set in $\mathcalli{B}$ with $\mu(F \cup D) > \alpha$ (and that inequality is strict since $\alpha < \infty$). Yet that contradicts how we defined $\alpha$.\retTwo
+
+	We furthermore show that $\nu$ is $\sigma$-finite on $D^\comp$. Let:
+
+	{\centering $\mathcalli{F} \coloneqq \{F \in \mathcal{M} : F \subseteq D^\comp \text{ and } \nu \text{ is \sigma-finite on } F\}$.\retTwo\par}
+
+	Like before, there exists a nondecreasing sequence $(F_n)_{n \in \mathbb{N}}$ in $\mathcalli{F}$ such that\\ $\lim_{n\to \infty}\mu(F_n) = \sup_{F \in \mathcalli{F}}\mu(F) \eqqcolon \beta$. And if we set $F = \bigcup_{n \in \mathbb{N}} F_n$, then we clearly have that $F \in \mathcalli{F}$ and $\mu(F) = \beta$. Our claim is that $\nu(F^\comp \cap D^\comp) = 0$.
+	\begin{myIndent}\exPPP
+		Suppose not. Since $\nu$ is semifinite on $D^\comp$, we would have that there exists a\\ measurable set $H \subseteq F^\comp \cap D^\comp$ with $0 < \nu(H) < \infty$. But since $\nu \ll \mu$, we'd have that $\mu(H) > 0$. It would then follow that $F \cup H \in \mathcalli{F}$ and satisfies that $\mu(F \cup H) > \beta$. But this contradicts how we defined $\beta$.\newpage
+	\end{myIndent}
+
+	It easily follows that $\nu$ is $\sigma$-finite on $F \cup (F^\comp \cap D^\comp) = D^\comp$.\retTwo
+
+	To finish off, let $\mathcalli{G} \coloneqq \{B \in \mathcal{M}: B \subseteq D \text{ and } \nu(B) = 0\}$. Now $\mathcalli{G}$ is nonempty since $\emptyset \in \mathcalli{G}$. So, it is well defined to set $\gamma \coloneqq \sup_{B \in \mathcalli{G}} \mu(B)$. Also, like before we have that if $B, B^\prime \in \mathcalli{G}$ then $B \cup B^\prime \in \mathcalli{G}$. So, we can once again take the union of a nondecreasing\\ sequence of sets to get a set $G \subseteq D$ in $\mathcalli{G}$ with $\mu(G) = \gamma$. And finally, set $E \coloneqq D \cap G^\comp$.\\ [-10pt]
+
+	\begin{itemize}
+		\item[(i.)] Since $E \subseteq D$, we know that any measurable $A \subseteq E$ satisfies that $\nu(A) \in \{0, \infty\}$.\\ Also, if $\nu(A) = 0$ then we must have that $\mu(A) = 0$ since otherwise $G \cup A \in \mathcalli{G}$ and $\mu(G \cup A) > \gamma$, which is a contradiction.
+		
+		\item[(ii.)] $E^\comp = D^\comp \cup G$. And since $\nu$ is $\sigma$-finite on $D^\comp$ and $\nu(G) = 0$, we have that $\nu$ is\\ $\sigma$-finite on $E^\comp$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\exTwo\ul{Theorem 19.27: An Extension of the Lebesgue-Radon-Nikodym Theorem:} 
+\begin{myIndent}
+	Let $(X, \mathcal{M}, \mu)$ be decomposable via the decomposition $\mathcal{F}$, and let $\nu$ be an arbitrary\\ signed measure such that $\nu \ll \mu$.  Then there exists an extended real $\mathcal{M}$-measurable\\ function $f: X \to \overline{\mathbb{R}}$ such that $\nu(A) = \int_A f \df \mu$ for all $A \in \mathcal{M}$ for which $\mu$ is $\sigma$-finite.\\ Also if $g$ is any extended real $\mathcal{M}$-measurable function such that $\nu(A) = \int_A g \df \mu$ when $\mu(A) < \infty$, then $f\chi_E = g\chi_E$ $\mu$-a.e. for all $E \in \mathcal{M}$ on which $\mu$ is $\sigma$-finite.\retTwo
+
+	\exThreeP%
+	Proof:\\
+	We shall first consider the simpler case where $\nu$ is a positive measure.\retTwo
+
+	Now restricting $\mu$ and $\nu$ to subspaces of $(X, \mathcal{M})$ won't change that $\nu \ll \mu$. Consequently, by restricting $\mu$ and $\nu$ to any subspace $F \in \mathcalli{F}$ and applying our prior lemma, we can conclude that there are sets $D_F, E_F \in \mathcal{M}$ such that $D_F \cap E_F = \emptyset$; $D_F \cup E_F = F$;\\ $\nu$ is $\sigma$-finite on $D_F$; and all measurable $A \subseteq E_F$ satisfy that $\nu(A) = 0 \Longrightarrow \mu(A) = 0$ and $\nu(A) \in \{0, \infty\}$. And going one step further, if we restrict $\mu$ and $\nu$ to the subspace $D_F$ of $(X, \mathcal{M})$, then we know by the typical Lebesgue-Radon-Nikodym theorem that there is\\ [-2pt] a nonnegative function $f_0^{(F)} \in L^1(D_F, \mu)$ such that $\nu(A) = \int_A f_0^{(F)} \df \mu$ for all $A \in \mathcal{M}$\\ with $A \subseteq D_F$.\retTwo
+
+	Now define $f$ by pasting together the functions:
+
+	{\centering $f|_F(x) \coloneqq \left\{\begin{matrix}
+		f_0^{(F)}(x) & \text{ if } x \in D_F \\ \infty & \text{ if } x \in E_F
+	\end{matrix}\right.$ \retTwo\par}
+
+	\begin{itemize}
+		\item To show that $f$ is measurable, let $(a, \infty]$ be an open ray in $\overline{\mathbb{R}}$. Then:
+		
+		{\centering$f^{-1}((a, \infty]) \cap F= f|_F^{-1}((a, \infty]) = (f_0^{(F)})^{-1}((a, \infty]) \cup E_F$.\retTwo\par}
+		
+		And since $f_0^{(F)}$ is measurable on the subspace $D_F$ of $(X, \mathcal{M})$, we've thus proven that $f^{-1}((a, \infty]) \cap F \in \mathcal{M}$ for all $F$. It follows from the definition of a decomposition that $f^{-1}((a, \infty]) \in \mathcal{M}$. And since the open rays form a basis for $\mathcalli{B}_{\overline{\mathbb{R}}}$, we have proven that $f$ is measurable.\newpage
+
+		\item To show that $\nu(A) = \int_A f \df \mu$ when $\mu$ is $\sigma$-finite on $A$, first suppose that $\mu(A) < \infty$. Then we know from axiom (iii) of the definition of a decomoposition that there exists a countable subset $\mathcalli{F}_0 \subseteq \mathcalli{F}$ such that $\mu(A) = \sum_{F \in \mathcalli{F}_0} \mu(A \cap F)$. One consequence of this is that:
+		
+		{\centering$\int_A f \df \mu = \sum_{F \in \mathcalli{F}_0} \int_{A \cap F} f \df \mu$.\retTwo\par}
+		
+		Another consequence is that because the $F \in \mathcalli{F}$ partition $X$, we know\\ $\mu(A \cap (\bigcup_{F \in \mathcalli{F}_0^\comp} F)) = 0$. Then in turn, since $\nu \ll \mu$, we also know that\\ $\nu(A \cap (\bigcup_{F \in \mathcalli{F}_0^\comp} F)) = 0$. So, we must have that $\nu(A) = \sum_{F \in \mathcalli{F}_0}\nu(A \cap F)$.\\ And now we claim for each $F$ that $\nu(A \cap F) = \int_{A \cap F} f \df \mu$.
+
+		\begin{myIndent}\exPPP
+			Clearly $\nu(A \cap F) = \nu(A \cap D_F) + \nu(A \cap E_F) = \int_{A \cap D_F} f \df \mu + \nu(A \cap E_F)$.\retTwo
+			
+			Also, because $A \cap E_f \subseteq E_F$, we know that $\nu(A \cap E_F) \in \{0, \infty\}$ with\\ $\mu(A \cap E_F) = 0$ if and only if $\nu(A \cap E_f) = 0$. So if $\mu(A \cap E_F) = 0$,\\ then $\int_{A \cap E_F} f \df \mu = 0 = \nu(A \cap E_F)$. Meanwhile, if $\mu(A \cap E_F) > 0$, then\\ $\int_{A \cap E_F} f \df \mu = \int_{A \cap E_F} (\infty) \df \mu = \infty = \nu(A \cap E_F)$. Either way, we have that:
+
+			{\centering $\nu(A \cap F) = \int_{A \cap D_F} f \df \mu + \int_{A \cap E_F} f \df \mu = \int_A f \df \mu$ \retTwo\par}
+		\end{myIndent}
+
+		So, we've shown that $\nu(A) = \sum_{F \in \mathcalli{F}_0} \int_{A \cap F} f \df \mu = \int_A f \df \mu$ when $\mu(A) < \infty$. The case where $\mu(A) = \infty$ and $\mu$ is $\sigma$-finite on $A$ then easily follows.\retTwo
+
+		\item Finally, suppose $g$ is as in the theorem statement. Then for every $F \in \mathcalli{F}$ and every measurable set $A \subseteq D_F$, we have that $\nu(A) = \int_A f \df \mu = \int_A g \df \mu$. The only way this is possible is if $f = g$ $\mu$-a.e. on $D_F$.\retTwo
+		
+		Meanwhile, we know for any $F \in \mathcalli{F}$ that $A \coloneqq E_F \cap g^{-1}([0, \infty)) \in \mathcal{M}$ because $g$ is measurable. Now suppose $\mu(A) > 0$. Then letting $A_n \coloneqq \{x \in A : g(x) < n\}$ for each $n$, we have that the $A_n$ form an increasing sequence of sets whose union is $A$. So, we know that $\nu(A) = \lim_{n \to \infty}\nu(A_n)$. Also, since $\nu(A) > 0$ we know that $\nu(A_n) > 0$ for some $n$. Then in turn $\nu(A_n) = \infty$ since $A_n \subseteq E_F$. But this contradicts the fact that $\nu(A_n) = \int g \df \mu \leq n \mu(A_n) < \infty$. So, we conclude that $\mu(A) = 0$.\retTwo
+
+		As a result, we've shown for any $F \in \mathcalli{F}$ that $f = g$ $\mu$-a.e. on $D_F \cup E_F = F$.\retTwo
+		
+		The fact that $g = f$ $\mu$-a.e. on any measurable set such that $\mu(E) < \infty$ is then a simple consequence of the fact that there is a countable subset $\mathcalli{F}_0 \subseteq \mathcalli{F}$ as well a $\mu$-null set $N \subseteq X$ such that $E = N \cup (\bigcup_{F \in \mathcalli{F}_0} (F \cap E))$. And if $\mu$ is $\sigma$-finite on $E$, then we can show that $g = f$ $\mu$-a.e. on $E$ by considering $E$ as a countable union of sets on which we've already showed $g = f$ $\mu$-a.e.
+	\end{itemize}
+
+	\mySepThree
+
+	Now we come back to the case where $\nu$ is signed. Let $\nu^+$ and $\nu^-$ be the positive and negative variations of $\nu$, and also let $P$ and $N$ be measurable subsets of $X$ such that $\nu^+(N) = 0$ and $\nu^-(P) = 0$. Then by our prior reasoning we know there exists measurable functions $f^+$ and $f^-$ such that $\nu^+(A) = \int_A f^+ \df \mu$ and $\nu^-(A) = \int_A f^- \df \mu$ for all $A$ on which $\mu$ is $\sigma$-finite. By setting $f = f^+ - f^-$, we thus get a measurable function such that $\nu(A) = \int_A f \df \mu$ for all $A$ on which $\mu$ is $\sigma$-finite.\newpage
+
+	Now suppose $g$ is as in the theorem statement, and let $g^+$ and $g^-$ be it's positive and\\ negative parts. Given any $F \in \mathcalli{F}$ we must have that $\int_A g \df \mu = \nu(A) = \nu^+(A) \geq 0$ for\\ all measurable $A \subseteq F \cap P$. It follows that $g \geq 0$ $\mu$-a.e. on $F \cap P$, and in turn:
+	
+	{\centering $\int_A g^+ \df \mu = \nu^+(A)$ when $A \subseteq F \cap P$.\retTwo\par}
+
+	By similar reasoning, we can show that $g \leq 0$ $\mu$-a.e. on $F \cap N$. This is important because it shows that $g^+ = 0$ $\mu$-a.e. on $F \cap N$. So $\int_A g^+ \df \mu = 0 = \nu^+(A)$ for all $A \subseteq F \cap N$. And hence, we can conclude that $\int_A g^+ = \nu^+(A)$ for all $A \subseteq F$. It easily follows that $\int_A g^+ = \nu^+(A)$ for all $A$ satisfying that $\mu(A) < \infty$. But then by the prior reasoning we did, we know that $g^+ = f^+$ $\mu$-a.e. on any set $E$ which $\mu$ is $\sigma$-finite on.\retTwo
+
+	Analogous reasoning can be used to show that $g^- = f^-$ $\mu$-a.e. on any set $E$ which $\mu$ is $\sigma$-finite on. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} Let $(X, \mathcal{M}, \mu)$ be a $\sigma$-finite measure space and suppose $\nu$ is any arbitrary signed measure such that $\nu \ll \mu$. Then there exists a measurable function $f: X \to \overline{\mathbb{R}}$ such that\\ $\nu = f \df \mu$. Also, if $g: X \to \overline{\mathbb{R}}$ is another function satisfying that $\nu = g \df \mu$, then $f = g$\\ $\mu$-a.e.\retTwo
+
+\hTwo We can of course also write a version of the prior theorem and corollary for when $\nu$ is a complex measure. Specifically, just apply the prior theorem to the real and imaginary parts of $\nu$ separately. That said, the corollary stops being interesting if $\nu$ is complex.\retTwo
+
+Now, it's unfortunate that this extension of the Lebesgue-Radon-Nikodym theorem loses the ability to decompose $\nu$ into a continuous part and a mutually singular part. That said, an extremely convenient fact which makes the last theorem feel more worthwhile is that it turns out that every positive Radon measure is decomposable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\hThree\dispDate{Bibliography:}
+
+Everything is cited in the order it shows up in the journal with the exception that the first citation is for the book that got me to actually sit down and make a bibliography. Also, I decided to write my citations according APA 7.
+\begin{enumerate}
+	\item Hewitt, E., \& Stromberg, K. (1975). \textit{Real and Abstract Analysis}. Springer.
+	
+	\item Rudin, W. (1976). \textit{Principles of Mathematical Analysis} (3rd ed.). McGraw Hill.
+	
+	\item Munkres, J. R. (2014). \textit{Topology}. Pearson.
+	
+	\item Artin, M. (2010). \textit{Algebra} (2nd ed.). Pearson.
+
+	\item Folland, G. B. (1999). \textit{Real Analysis : Modern Techniques and Their Applications} (2nd ed.). John Wiley And Sons.
+	
+	\item Munkres, J. R. (1994). \textit{Analysis on manifolds}. Addison-Wesley.
+	
+	\item Guillemin, V., \& Haine, P. (2019). \textit{Differential Forms}. World Scientific Publishing Company.
+	
+	\item Spencer, J. (1981). Balancing unit vectors. \textit{Journal of Combinatorial Theory, Series A}, 30(3), 349–350. https://doi.org/10.1016/0097-3165(81)90033-9
+	
+	\item Lee, J. M. (2013). \textit{Introduction to smooth manifolds}. Springer.
+\end{enumerate}
+
+
 
 
 \end{document}
@@ -6545,3 +6728,46 @@ In physics yesterday we started talking about statistical mechanics, and that in
 % If $L$ is a $1$-dimensional vector space, then $L - \{0\}$ has two connected components. An\\ \udefine{orientation} of $L$ is a choice of one of those two connected components. Typically, we denote that choice $L_+$ (or \udefine{the positive component}) and we denote the one not chosen $L_-$ (or \udefine{the negative component}).\retTwo
 
 % If $(L, L^+)$ is an \udefine{oriented} $1$-dimensional vector space, then we say a vector $v \in L$ is \udefine{positively oriented} if $v \in L_+$.
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+% If $\mu$ is a signed or complex measure on $(X, \mathcal{M})$, we call $\mu$ decomposable if $(X, \mathcal{M}, |\mu|)$ is decomposable.
+% \begin{myIndent}\myComment
+% 	Hopefully it is obvious to you that every $\sigma$-finite measure is decomposable. This also means that every complex measure is trivially decomposable since complex measures are finite.\retTwo
+
+% 	Here are two lemmas which will come up in the following theorem. (I will not write out proofs cause they're fairly obvious if you just think about it for a second.)
+	
+% 	\begin{enumerate}
+% 		\item If $\mu$ is a signed decomposable measure on $(X, \mathcal{M})$ via the decomposition $\mathcal{F}$, then we have that the positive and negative variations $\mu^+$ and $\mu^-$ of $\mu$ are also decomposable via $\mathcal{F}$.
+% 		\item Suppose $(X, \mathcal{M}, \mu)$ is decomposable via the decomposition $\mathcal{F}$, and let $E \in \mathcal{M}$. Then the measure $\mu_E$ defined by $\mu_E(A) = \mu(E \cap A)$ is also decompsable via $\mathcal{F}$.\retTwo 
+% 	\end{enumerate}
+% \end{myIndent}
+
+% \exTwo\ul{One generalization of the Lebesgue-Radon-Nikodym Theorem:} 
+% \begin{myIndent}
+% 	Let $(X, \mathcal{M})$ be a measurable space and let $\mu$ and $\nu$ be decomposable measures on $(X, \mathcal{M})$ via the decomposition $\mathcal{F}$. Then there exists measures $\lambda$ and $\rho$ on $(X, \mathcal{M})$ that are decomposable via $\mathcal{F}$ and which satisfy that $\lambda \perp \mu$, $\rho \ll \mu$, and $\nu = \lambda + \rho$. Moreover, there is an extended $\mu$-integrable function $f: X \to \mathbb{R}$ such that $\rho = f \df \mu$. And if $f^\prime$ also satisfies that $\rho = f^\prime \df \mu$, then $f^\prime = f$ $\mu$-a.e.\retTwo
+
+% 	\exThreeP%
+% 	Proof:\\
+% 	By considering the positive and negative variations separately and then taking their\\ differences, it suffices to assume that $\nu$ is a positive measure.\retTwo
+
+% 	We first consider the case that $\mu$ is finite and $\nu$ is decomposable on $(X, \mathcal{M})$ via the\\ decomposition $\mathcalli{F}$. For each $F \in \mathcalli{F}$ let $\mu_F(E) \coloneqq \mu(E \cap F)$ and $\nu_F(E) \coloneqq \nu(E \cap F)$\\ for all $E \in \mathcal{M}$. Then since both $\mu_F$ and $\nu_F$ are finite, we know by the typical Lebesgue-\\Radon-Nikodym theorem that there exists positive measures $\lambda_F$ and $f_F\df \mu_F$ such that\\ $\lambda_F \perp \mu_F$ and $\nu_F = \lambda_F + f_F \df \mu_F$. Also, since $\mu_F(F^\comp) = \nu_F(F^\comp) = 0$, we know that\\ $\lambda_F(F^\comp) = \nu_F(F^\comp) - \int_{F^\comp} f_F\df \mu_F = 0$. And, by modifying $f_F$ on the null set $F^\comp$, we can assume $f_F = 0$ outside of $F$.\retTwo
+
+% 	Now $\mathcalli{F}$ is not necessarily countable so this step will require some carefulness. Define\\ $\lambda \coloneqq \sum_{F \in \mathcalli{F}} \lambda_F$ and $f \coloneqq \sum_{F \in \mathcalli{F}} f_F$.
+
+% 	\begin{itemize}
+% 		\item To show that $f$ is measurable, suppose $E$ is any measurable set in $\overline{\mathbb{R}}$. Then since all the $F$ are disjoint so that only one $f_F$ is contributing a nonzero amount to $f$ at a time, we know that $F \cap f^{-1}(E) = F \cap f_F^{-1}(E)$ for all $F \in \mathcalli{F}$. It follows from the fact that $f_F$ is measurable then that $F \cap f^{-1}(E) \in \mathcal{M}$ for all $F$.\newpage Hence by property (iv) of decompositions, we know that $f_F^{-1}(E) \in \mathcal{M}$.\retTwo
+		
+% 		\item 
+% 	\end{itemize}
+
+
+% \end{myIndent}
