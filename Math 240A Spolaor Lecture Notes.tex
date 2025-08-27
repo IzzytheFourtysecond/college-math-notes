@@ -1301,19 +1301,23 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
          To show this, construct a sequence of "increasing" sets $(A_j)_{j \in \mathbb{N}}$ satisfying\\ that $A_j \subseteq E$ and $\mu(A_j) \geq j$. Then the union $A$ of that sequence will satisfy\\ that $A \in \mathcal{M}$, that $A \subseteq E$, and that $\mu(A) = \infty$.\retTwo
       \end{myIndent}
 
-      Because of that lemma, we don't need to deal with the edge case that a least upper bound equaling infinity doesn't mean a set contains infinity. So, let $(E_j)_{j \in \mathbb{N}}$ be a sequence of disjoint sets in $\widetilde{\mathcal{M}}$ with $E = \bigcup\limits_{j \in \mathbb{N}} E_j$. Then let $\varepsilon > 0$.\retTwo
+      Because of that lemma, we don't need to deal with the edge case that a least\\ upper bound equaling $\infty$ doesn't mean a set contains $\infty$. So, let $(E_j)_{j \in \mathbb{N}}$ be a sequence of disjoint sets in $\widetilde{\mathcal{M}}$ with $E = \bigcup\limits_{j \in \mathbb{N}} E_j$. Then let $\varepsilon > 0$.\retTwo
 
       To show one inequality, pick a sequence $(A_j)_{j \in \mathbb{N}}$ of sets in $\mathcal{M}$ satisfying that $A_j \subseteq E_j$ and $\underline{\mu}(E_j) - \sfrac{\varepsilon}{2^j} \leq \mu(A_j)$. Since $A = \bigcup\limits_{j \in \mathbb{N}}A_j \subseteq E$, and each $A_j$ is\\ [-10pt] disjoint, we thus have:
 
-      {\centering $-\varepsilon + \sum\limits_{j=1}^\infty \underline{\mu}(E_j) \leq \sum\limits_{j=1}^\infty \mu(A_j) = \mu(A) \leq \underline{\mu}(E)$ \newpage\par}
+      {\centering $-\varepsilon + \sum\limits_{j=1}^\infty \underline{\mu}(E_j) \leq \sum\limits_{j=1}^\infty \mu(A_j) = \mu(A) \leq \underline{\mu}(E)$\retTwo\par}
 
-      To show the other inequality, pick $B \in \mathcal{M}$ satisfying that $B \subseteq E$ and\\ [1pt] $\underline{\mu}(E) - \varepsilon < \mu(B)$. Because $E, E_j \in \widetilde{\mathcal{M}}$ for each $j$, we know that $B \cap E$ and\\ [3pt] $B \cap E_j$ are in $\mathcal{M}$ for each $j$. So:
+		To show the other inequality, first suppose $\underline{\mu}(E) < \infty$. Then pick $B \in \mathcal{M}$\\ [-2pt] satisfying that $B \subseteq E$ and\ $\underline{\mu}(E) - \varepsilon < \mu(B) < \infty$. Because $E, E_j \in \widetilde{\mathcal{M}}$ for each $j$, we know that $B \cap E$ and $B \cap E_j$ are in $\mathcal{M}$ for each $j$. So:
 
-      {\centering $\underline{\mu}(E) - \varepsilon < \mu(B) = \mu(B \cap E) = \sum\limits_{j=1}^\infty \mu(B \cap E_j) \leq \sum\limits_{j=1}^\infty\underline{\mu}(E_j)$\\ [1pt]\par}
+      {\centering $\underline{\mu}(E) - \varepsilon < \mu(B) = \mu(B \cap E) = \sum\limits_{j=1}^\infty \mu(B \cap E_j) \leq \sum\limits_{j=1}^\infty\underline{\mu}(E_j)$\newpage\par}
 
-      Taking $\varepsilon \rightarrow 0$, we thus get that $\underline{\mu}(E) = \sum\limits_{j=1}^\infty \underline{\mu}(E_j)$.\retTwo
+      And taking $\varepsilon \rightarrow 0$, we get that $\underline{\mu}(E) = \sum\limits_{j=1}^\infty \underline{\mu}(E_j)$.\retTwo
 
-      Proving that $\mu(E) = \underline{\mu}(E)$ when $E \in \mathcal{M}$ is trivial. Obviously, $\mu(E) \leq \underline{\mu}(E)$.\\ [2pt] Meanwhile for any $F \in \mathcal{M}$ satisfying that $F \subseteq E$, we know that $\mu(F) \leq \mu(E)$.\\ [2pt] So, there does not exists a subset of $E$ in $\mathcal{M}$ with greater measure than $\mu(E)$.\retTwo
+		Meanwhile if $\underline{\mu}(E) = \infty$, then using the semifiniteness of $\mu$ there exists\\ an increasing sequence of sets $(B_n)_{n \in \mathbb{N}}$ in $\mathcal{M}$ with finite measure such that\\ $B_n \subseteq E$ for each $n$. Then:
+
+		{\centering $\sum\limits_{j=1}^\infty \underline{\mu}(E_j) \geq \sum\limits_{j=1}^\infty \mu(B_n \cap E_j) = \mu(B_n \cap E) = \mu(B_n) \to \infty = \underline{\mu}(E)$ as $n \to \infty$. \retTwo\par}
+
+      Proving that $\mu(E) = \underline{\mu}(E)$ when $E \in \mathcal{M}$ is trivial. Obviously, $\mu(E) \leq \underline{\mu}(E)$.\\ [2pt] Meanwhile for any $F \in \mathcal{M}$ satisfying that $F \subseteq E$, we know that $\mu(F) \leq \mu(E)$.\\ [2pt] So, $\underline{E} = \sup\{\mu(F) : F \in \mathcal{M} \text{ and } F \subseteq E\} \leq \mu(E)$.\retTwo
    \end{myIndent}
 
    Note that $\widetilde{\mu}$ and $\underline{\mu}$ are not necessarily equal. Part (f) of this problem gives a relatively\\ [2pt] simple counterexample.
