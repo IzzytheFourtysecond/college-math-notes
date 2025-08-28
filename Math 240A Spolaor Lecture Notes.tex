@@ -1320,8 +1320,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
       Proving that $\mu(E) = \underline{\mu}(E)$ when $E \in \mathcal{M}$ is trivial. Obviously, $\mu(E) \leq \underline{\mu}(E)$.\\ [2pt] Meanwhile for any $F \in \mathcal{M}$ satisfying that $F \subseteq E$, we know that $\mu(F) \leq \mu(E)$.\\ [2pt] So, $\underline{E} = \sup\{\mu(F) : F \in \mathcal{M} \text{ and } F \subseteq E\} \leq \mu(E)$.\retTwo
    \end{myIndent}
 
-   Note that $\widetilde{\mu}$ and $\underline{\mu}$ are not necessarily equal. Part (f) of this problem gives a relatively\\ [2pt] simple counterexample.
-
+   Note that $\widetilde{\mu}$ and $\underline{\mu}$ are not necessarily equal. Part (f) of this problem gives a relatively\\ [0pt] simple counterexample. Hence, there is not generally a unique extension of $\mu$ to the $\sigma$-algebra of locally measurable sets.
 \end{enumerate}
 
 \mySepTwo
@@ -1378,7 +1377,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
       {\centering 
       \begin{tabular}{l}
          $\mu^*(F - E) = \mu^*(F \cap E^\comp \cap B) + \mu^*(F \cap E^\comp \cap B^\comp)$\\ [2pt]
-         $\phantom{\mu^*(F - E)} = \mu^*(F \cap (B - E)) + \mu^*(F - B) = \mu^*(F - B)$
+         $\phantom{\mu^*(F - E)} = \mu^*(F \cap (B - E)) + \mu^*(F - B) = 0 + \mu^*(F - B)$
       \end{tabular} \retTwo\par}
 
       Also, since $F \cap E \subseteq F \cap B$, we know that $\mu^*(F \cap E) \leq \mu^*(F \cap B)$.\retTwo
@@ -1393,7 +1392,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
 
       To start, let $(C_i)_{i \in \mathbb{N}}$ satisfy that $\mu_0(C_i) < \infty$ and $\bigcup\limits_{i = 1}^\infty C_i = X$.\newpage
       
-      Next for all $j, i \in \mathbb{N}$, pick $A_j^{(i)} \in \mathcal{A}_\sigma$ satisfying that $E \cap C_i \subseteq A_j^{(i)}$ and\\ $\mu^*(E) \leq \mu^*(A_j^{(i)}) \leq \mu^*(E) + \sfrac{1}{j2^{i}}$. Since $\mu^*(E \cap C_i)$ is finite, we can use the same reasoning as in part (b) to say that $\mu^*(A_j^{(i)} - (E \cap C_i)) \leq \sfrac{1}{j2^i}$.\retTwo
+      Next for all $j, i \in \mathbb{N}$, pick $A_j^{(i)} \in \mathcal{A}_\sigma$ satisfying that $E \cap C_i \subseteq A_j^{(i)}$ and\\ [-2pt] $\mu^*(E \cap C_i) \leq \mu^*(A_j^{(i)}) \leq \mu^*(E \cap C_i) + \sfrac{1}{j2^{i}}$. Since $\mu^*(E \cap C_i)$ is finite, we can\\ use the same reasoning as in part (b) to say that $\mu^*(A_j^{(i)} - (E \cap C_i)) \leq \sfrac{1}{j2^i}$.\retTwo
 
       Importantly, $A_j^{(i)} - E \subseteq A_j^{(i)} - (E \cap C_i)$. for all $i$. Therefore:
       
@@ -1450,9 +1449,9 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
 \begin{myIndent}\exTwoP
    Let $E$ be a locally $\overline{\mu}$-measurable set and choose any $F \subseteq X$. Given any $\varepsilon > 0$, by part (a) of exercise 1.18, we know that there exists a $\mu^*$-measurable set $A \in \mathcal{A}_{\sigma} \subseteq \mathcal{M}$\\ such that $F \subseteq A$ and $\mu^*(A) \leq \mu^*(F) + \varepsilon$.\retTwo
 
-   Assuming without loss of generality that $\mu^*(F)$ is finite, we thus know that\\ $\mu^*(A) < \infty$. So, since $E$ is locally $\overline{\mu}$-measurable, we have that $E \cap A \in \mathcal{M}$.\retTwo
+   If $\mu^*(F) = \infty$, it's trivial that $\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(F)$. So assume  that $\mu^*(F)$ is finite, we thus know that $\mu^*(A) < \infty$. So, since $E$ is locally $\overline{\mu}$-measurable, we have that $E \cap A \in \mathcal{M}$.\retTwo
 
-   Now, we first note that because $F \cap E \subseteq A \cap E$ and $F - E \subseteq A - E$, we have that:
+   Now, we first note that since $F \cap E \subseteq A \cap E$ and $F - E \subseteq A - E$, we have that:
 
    {\centering $\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(A \cap E) + \mu^*(A - E) $\retTwo\par}
 
@@ -1756,7 +1755,7 @@ Note that we call measures with the property described in the above two theorems
 \blab{Exercise 1.28:} Let $F$ be increasing and right continuous, and let $\mu_F$ be the associated\\ measure. Then:
 
 \begin{itemize}
-   \item[(a)] $\mu_F({a}) = F(a) - F(a-)$ {\exPPP (Note that this is a special case of (c))}
+   \item[(a)] $\mu_F(\{a\}) = F(a) - F(a-)$ {\exPPP (Note that this is a special case of (c))}
    \item[(b)] $\mu_F([a, b)) = F(b-) - F(a-)$
    \item[(c)] $\mu_F([a, b]) = F(b) - F(a-)$
    \item[(d)] $\mu_F((a, b)) = F(b-) - F(a)$

@@ -1176,7 +1176,7 @@
       
       Finally, note that $\mu(V) = \mu(V + q_n)$ for all $n$. Thus $\sum\limits_{n = 1}^\infty \mu(V + q_n) = \sum\limits_{n = 1}^\infty \mu(V)$ is either\\ [-6pt] $0$ or $\infty$.\retTwo
       
-      But this contradicts our earlier finding that the measure was between $1$ and $3$. So, we conclude that $V \notin \mathfrak{M}(\mu)$. $\blacksquare$
+      But this contradicts our earlier finding that the measure was between $1$ and $3$. So, we conclude that $V \notin \mathcal{M}(\mu)$. $\blacksquare$
    \end{myIndent}
 
    \mySepTwo 
@@ -4167,7 +4167,7 @@ We take the following steps to define a measure on $M$:
 
 	\begin{myIndent}\exTwoP
 		Proof:\\
-		To prove the first claim, suppose $E \in \mathcal{A}$ and $(A_m)_{m \in \mathbb{N}}$ is a sequence of sets in $\mathcal{A}$ covering $E$. It's trivial that $\mu^*(E) \leq \mu_0(E)$. Meanwhile let $B_1 = E \cap A_1$ and $B_m = E \cap A_m - \bigcup_{j=1}^{m-1}$. Then the $B_m$ are each disjoint Borel subsets of $E \in \mathcal{A}$ whose union is all of $E$. Hence all the $B_m$ are in $\mathcal{A}$ and we have:
+		To prove the first claim, suppose $E \in \mathcal{A}$ and $(A_m)_{m \in \mathbb{N}}$ is a sequence of sets in $\mathcal{A}$ covering $E$. It's trivial that $\mu^*(E) \leq \mu_0(E)$. Meanwhile let $B_1 = E \cap A_1$ and $B_m = E \cap A_m - \bigcup_{j=1}^{m-1} A_j$. Then the $B_m$ are each disjoint Borel subsets of $E \in \mathcal{A}$ whose union is all of $E$. Hence all the $B_m$ are in $\mathcal{A}$ and we have:
 
 		{\centering $\mu_0(E) = \mu_0(\bigcup\limits_{m \in \mathbb{N}} B_m) = \sum\limits_{m\in\mathbb{N}}\mu_0(B_m) \leq \sum\limits_{m\in\mathbb{N}}\mu_0(A_m)$ \retTwo\par}
 
@@ -6619,11 +6619,155 @@ Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$
 
 \hTwo We can of course also write a version of the prior theorem and corollary for when $\nu$ is a complex measure. Specifically, just apply the prior theorem to the real and imaginary parts of $\nu$ separately. That said, the corollary stops being interesting if $\nu$ is complex.\retTwo
 
-Now, it's unfortunate that this extension of the Lebesgue-Radon-Nikodym theorem loses the ability to decompose $\nu$ into a continuous part and a mutually singular part. That said, an extremely convenient fact which makes the last theorem feel more worthwhile is that it turns out that every positive Radon measure is decomposable.\retTwo
+Now, it's unfortunate that this extension of the Lebesgue-Radon-Nikodym theorem loses the ability to decompose $\nu$ into a continuous part and a mutually singular part. That said, an extremely convenient fact which makes the last theorem feel more worthwhile is that it turns out that every positive Radon measure is decomposable (with an asterisk attached).\retTwo
 
-Let $X$ be a LCH space and let $\mu$ be a Radon measure on $(X, \mathcalli{B}_X)$. Then recall from the proof of the Riesz Representation thorem in my math 240c notes that if $\mu^*(E) = \inf \{\mu(U) : U \supseteq \text{ with } U \text{ open}\}$, then $\mu^*$ is a well-defined outer measure 
+\mySepTwo
 
-\exTwo\ul{Lemma 19.30:}
+To start off, we need an exercise from Folland.
+
+\begin{myIndent}\myComment
+	Note that this exercise references a bunch of exercises which I already did in my Math 240a notes. Look there if you want to see stuff like the definition of the saturation of a measure. I even just now went back and clean up a bunch of problems with my answer for exercise 1.16(e)!! (haha why was I so stupid I swear I want to put an evoker to my head\dots)\retTwo 
+\end{myIndent}
+
+\Hstatement\blab{Exercise 1.22:} Let $(X, \mathcal{M}, \mu)$ be a measure space and let $\mu^*$ be the outer measure induced by treating $\mu$ as a premeasure on $\mathcal{M}$. Then let $\mathcal{M}^*$ be the $\sigma$-algebra of $\mu^*$-measurable sets and $\overline{\mu} \coloneqq \mu^*|_{\mathcal{M}^*}$.
+\begin{itemize}
+	\item[(a)] If $\mu$ is $\sigma$-finite, then $(X, \mathcal{M}^*, \overline{\mu})$ is the the completion of $(X, \mathcal{M}, \mu)$.
+	
+	\begin{myIndent}\HexOne
+		If $E \in \mathcal{M}^*$, then since $\mu$ is $\sigma$-finite we know by exercise 1.18 that there exists a set $A$ in $\mathcal{M}_{\sigma \delta} \subseteq \mathcal{M}$ such that $E \subseteq A$ and $\overline{\mu}(A - E) = 0$. Hence $E = A \cup N$ where $A \in \mathcal{M}$ and $\overline{\mu}(N) = 0$. And since $\overline{\mu}$ is the restriction of the outer measure induced by $\mu$, we know there is a null set $N^\prime \in \mathcal{M}$ with $N \subseteq N^\prime$. This proves that $\mathcal{M}^*$ is a subset of the completion of $\mathcal{M}$ (which I will hereafter call $\mathcal{M}^\wedge$).\newpage
+		
+		Meanwhile, by Carathéodory's theorem we know that $(X, \mathcal{M}^*, \overline{\mu})$ is a complete\\ measure space. So, suppose $E = F \cup N$ where $F \in \mathcal{M}$ and $N \subseteq N^\prime$ with\\ $\mu(N^\prime) = 0$. Then since $N^\prime \in \mathcal{M}^*$ and $\overline{\mu}(N^\prime) = \mu(N^\prime) = 0$, we know $N \in \mathcal{M}^*$.\\ In turn this means that $E = F \cup N \in \mathcal{M}^*$ and we've showed that $\mathcal{M}^\wedge \subseteq \mathcal{M}^*$.\retTwo
+
+		Combining the last two paragraphs, we have that $\mathcal{M}^* = \mathcal{M}^\wedge$. And since there is only one measure that extends $\mu$ to $\mathcal{M}^\wedge$, we automatically have that $\overline{\mu}$ is the completion of $\mu$.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] In general, $\overline{\mu}$ is the saturation of the completion of $\mu$.
+	
+	\begin{myIndent}\HexOne
+		For the sake of notation, I will write that $\mathcal{M}^\wedge$ and $\mu^\wedge$ are the completions of $\mathcal{M}$ and\\ [-2pt] $\mu$ respectively; that $\widetilde{\mathcal{M}}^\wedge$ is the collection of $\mu^\wedge$-locally measurable sets; and that $\widetilde{\mu}^\wedge$\\ [2pt] is the saturation of of $\mu^\wedge$.\\ [-4pt]
+
+		
+		Our first goal is to show that $\widetilde{\mathcal{M}}^\wedge = \mathcal{M}^*$. Equivalently, this means we need to show that a  set $E \subseteq X$ is $\mu^*$-measurable if and only if it is locally $\mu^\wedge$-measurable.
+		\begin{myIndent}\HexTwoP
+			$(\Longrightarrow)$\\
+			Suppose $E \subseteq X$ is $\mu^*$-measurable and let $A \subseteq X$ be any set in $\mathcal{M}^\wedge$ with\\ $\mu^\wedge(A) < \infty$. In part (a) we were able to show without using any $\sigma$-finiteness\\ that $\mathcal{M}^\wedge \subseteq \mathcal{M}^*$. Thus, $A$ and $E \cap A$ are $\mu^*$-measurable. Also note that by\\ definition of the completion of a measure, we can pick a set $F \in \mathcal{M}$ with\\ $A \subseteq F$ and $\mu^\wedge(A) = \mu(F)$.\retTwo
+
+			Now we claim by a similar argument as in exercise 1.18 that there exists a set $B \in \mathcal{M}$ such that $E \cap A \subseteq B$ and $\mu^*(B - (A \cap E)) = 0$.
+			\begin{myIndent}\HexPPP
+				Using exercise 1.18(a), for each $j \in \mathbb{N}$ pick $B_j \in \mathcal{M}$ such that $(A \cap E) \subseteq B_j$\\ and $\mu^*(B_j) \leq \mu^*(E \cap A) + \frac{1}{j}$. Then since $E \cap A$ is $\mu^*$-measurable and\\ $B \cap (E \cap A) = E \cap A$, we have that:
+				
+				{\centering $\mu^*(E \cap A) + \mu^*(B_j - (E \cap A)) = \mu^*(B_j) \leq \mu^*(E \cap A) + \frac{1}{j}$ \retTwo\par}
+
+				Next note that $\mu^*(E \cap A) \leq \mu^*(A) \leq \mu^*(F) = \mu(F) = \mu^\wedge(A) < \infty$. Thus, we can subtract $\mu^*(E \cap A)$ from both sides of our inequality above to get that:
+				
+				{\centering $\mu^*(B_j - (E \cap A)) < \frac{1}{j}$ \retTwo\par}
+
+				And now, if we define $B = \bigcap_{j \in \mathbb{N}} B_j$, it's clear that $B \in \mathcal{M}$ and that\\ $\mu^*(B - (E \cap A)) \leq \mu^*(B_j - (E \cap A)) < \frac{1}{j}$ for all $j \in \mathbb{N}$. So, $\mu^*(B - (E \cap A)) = 0$.\retTwo
+			\end{myIndent}
+
+			Now since $\mu^*(B - (A \cap E)) = 0$, we know that there exists a set $C \in \mathcal{M}$ with $\mu(C) = 0$ and $B - (A \cap E)\subseteq C$.\\ [-16pt]
+			\begin{myIndent}\HexPPP
+				Specifically, for each $n \in \mathbb{N}$ there exists a countable covering $\{C_j^{(n)}\}_{j \in \mathbb{N}}$ of\\ [-2pt] $B - (A \cap E)$ such that $\mu(\bigcup_{j \in \mathbb{N}} C_j^{(n)}) \leq \sum_{j = 0}^\infty \mu(C_j^{(n)}) < \sfrac{1}{n}$ In turn,\\ [-2pt] $C \coloneqq \bigcap_{n \in \mathbb{N}} (\bigcup_{j \in \mathbb{N}} C_j^{(n)})$ is a set in $\mathcal{M}$ with $B - (A \cap E) \subseteq C$ and $\mu(C) = 0$.\retTwo
+			\end{myIndent}
+
+			Finally, we have that $N \coloneqq B - (A \cap E) \in \mathcal{M}^\wedge$ because $N \subseteq C$\\ and $(X, \mathcal{M}^\wedge, \mu^\wedge)$ is complete. And since $B \in \mathcal{M} \subseteq \mathcal{M}^\wedge$, we have that\\ $(A \cap E) = B - N \in \mathcal{M}^\wedge$. This proves that $E$ is locally $\mu^\wedge$-measurable.\newpage
+
+			$(\Longleftarrow)$\\
+			Suppose $E \subseteq X$ is locally $\mu^\wedge$-measurable and then choose any $F \subseteq X$. If $\mu^*(F)$, then we trivially have that $\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(F)$. So, it suffices to assume that $\mu^*(F) < \infty$. But then by exercise 1.18(a) there exists for each $j \in \mathbb{N}$  a set $A_j \in \mathcal{M}$ such that $F \subseteq A_j$ and $\mu(A_j) < \mu^*(F) + \sfrac{1}{j}$.\\ And, by taking the intersection of all the $A_j$, we get a set $A \in \mathcal{M}$ such that $A \subseteq F$ and $\mu(A) = \mu^*(F) < \infty$.\retTwo
+
+			Since $E$ is locally $\mu^\wedge$-measurable, it follows that $A \cap E \in \mathcal{M}^\wedge$. Then since $\mathcal{M}^\wedge \subseteq \mathcal{M}^*$, we know that $\mu^*(F) = \mu^*(F \cap (A \cap E)) + \mu^*(F - (A \cap E))$.\\ And this shows that $E$ is $\mu^*$-measurable since $F \cap (A \cap E) = F \cap E$ and $F - (A \cap E) = F - E$ on account of the fact that $F \subseteq A$.\retTwo
+		\end{myIndent}
+
+		With that, we've now shown that $\widetilde{\mathcal{M}}^\wedge = \mathcal{M}^*$. Also, since there is only one extension\\ of $\mu$ to $\mathcal{M}^\wedge$ and both $\overline{\mu}$ and $\widetilde{\mu}^\wedge$ extend $\mu$ to $\mathcal{M}^\wedge$, we must have that $\overline{\mu}(E) = \widetilde{\mu}^\wedge(E)$ whenever $E \in \mathcal{M}^\wedge \subseteq \mathcal{M}^*$ Also, by definition of the saturation of a measure, we have that if $E \in \mathcal{M}^* - \mathcal{M}^\wedge$, then $\widetilde{\mu}^\wedge(E) = \infty$. So, all we need to do left is show that if $E$ is locally $\mu^\wedge$-measurable but not in $\mathcal{M}^\wedge$, then $\overline{\mu}(E) = \mu^*(E) = \infty$.\retTwo
+
+		Suppose $E$ is $\mu^*$-measurable and $\overline{\mu}(E) = \mu^*(E) < \infty$. When we were proving\\ the backwards implication before, we showed that there is a set $A \in \mathcal{M}$ with\\ $A \subseteq E$ and $\mu^*(E) = \mu(A) < \infty$. Next, when we were proving the forwards\\ implication, we showed that there is a set $B \in \mathcal{M}$ with $A \cap E = E \subseteq B$ and\\ $\mu^*(B - (A \cap E)) = \mu^*(B - E) = 0$. Then afterwords, we showed that there exists\\ $C \in \mathcal{M}$ with $\mu(C) = 0$ and $B - E \subseteq C$. Finally, we have that $B - E \in \mathcal{M}^\wedge$\\ and in turn that $E = B - (B - E) \in \mathcal{M}^\wedge$. $\blacksquare$\retTwo
+
+		\begin{myIndent}\myComment
+			As a side note, this shows that you can't indefinitely extend a measure space to larger and larger $\sigma$-algebras just by applying the theorem on page 24 of my latex math 240a notes over and over again. After all, the saturation of a complete measure is still complete (by exercise 1.16 in my latex math 240a notes). So, if you complete it again you just get back the same set. Also, it's easy to see that saturating a measure does not add any new locally measurable sets since all the added measurables sets have infinite measure. So, taking a saturation twice is the same as taking it once.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{itemize}
+
+\hTwo Now let $X$ be an LCH space and let $\mu$ be a Radon measure on $(X, \mathcalli{B}_X)$. Then set:
+
+{\centering$\mu^*(E) \coloneqq \inf \{\mu(U) : U \supseteq E \text{ with } U \text{ open}\}$ for all $E \in \mathcal{P}(X)$.\retTwo\par}
+
+Recall from the proof of the Riesz Representation thorem in my math 240c notes that $\mu^*$ is a well-defined outer measure for which every Borel set is $\mu^*$-measurable and $\mu^*|_{\mathcalli{B}_X} = \mu$.
+Furthermore, if $\mathcal{M}$ is the collection of $\mu^*$-measurable sets and $\overline{\mu} = \mu^*|_{\mathcal{M}}$, we have by definition that $\overline{\mu}$ is outer regular on all of $\mathcal{M}$. Also, $\overline{\mu}$ is fully determined by the linear functional $I(f) \coloneqq \int f \df \mu$. (since $I$ uniquely determines $\mu(U)$ for each open $U$).\retTwo
+
+Importantly, we can also say that $\mu^*(E) = \inf \{\mu(B) : B \supseteq E \text{ with } B \in \mathcalli{B}_X\}$ for all $E \in \mathcal{P}(X)$. This is because (and I will be abusing notation to write this since otherwise it would be really cumbersome) if $B$ represents any Borel set and $U$ any open set, then:\newpage
+
+{\centering $\mu^*(E) \leq \mu^*(\bigcap\limits_{B \supseteq E} B) \leq \inf\limits_{B \supseteq E} \mu(B) \leq \inf\limits_{U \supseteq E} \mu(U) = \mu^*(E)$.  \retTwo\par}
+
+Next, we claim that:
+
+{\centering\hThree $\inf \{\mu(B) : B \supseteq E \text{ with } B \in \mathcalli{B}_X\} = \inf\{\sum\limits_{n = 1}^\infty \mu(B_n) : \text{ all } B_n \text{ are Borel and } E \subseteq \bigcup_{n \in \mathbb{N}} B_n\}$\retTwo\par}
+
+The fact that the right side is at most the left side is trivial. Meanwhile, to show the other inequality we can just note that if $(B_n)_{n \in \mathbb{N}}$ is a covering of $E$ by Borel sets, then by taking differences we can get a sequence of disjoint Borel sets $(B_n^\prime)_{n \in \mathbb{N}}$ covering $E$ such that $B_n^\prime \subseteq B_n$ for all $n$; $B \coloneqq \bigcup_{n \in \mathbb{N}} B_n$ is a Borel set containing $E$; and:
+
+{\center$\mu(B) = \sum_{n \in \mathbb{N}}\mu(B_n^\prime) \leq \sum_{n \in \mathbb{N}}\mu(B_n)$\retTwo\par}
+
+As a result, $\mu^*$ is equal to the outer measure induced by treating $\mu$ as a premeasure on $(X, \mathcalli{B}_X)$. Combining this with the previous exercise I did, we thus know that $(X, \mathcal{M}, \overline{\mu})$ is precisely the saturation of the completion of $(X, \mathcalli{B}_X, \mu)$.\retTwo
+
+Now returning to Hewitt and Stromberg, here is one more lemma before I reset which variable names I have assigned to what.\retTwo
+
+\exTwo\ul{Lemma 10.31:} For any $A \subseteq X$, the following are equivalent:
+\begin{itemize}
+	\item[(i)] $A$ is $\mu^*$-measurable;
+	\item[(ii)] $\mu^*(U) \geq \mu^*(U \cap A) + \mu^*(U - A)$ for all open $U \subseteq X$ such that $\mu(U) < \infty$;
+	\item[(iii)] $A \cap U$ is $\mu^*$-measurable for all open $U \subseteq X$ such that $\mu(U) < \infty$;
+	\item[(iv)] $A \cap K$ is $\mu^*$-measurable for all compact $K \subseteq X$. 
+\end{itemize}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	It's trivial that (i) implies (iv).\retTwo
+
+	Next suppose (iv) holds and let $U$ be an open set such that $\mu(U) < \infty$. Then since $\mu$ is inner regular on all open sets, we know for each $n \in \mathbb{N}$ that there is a compact set $F_n \subseteq U$ such that $\mu(F_n) > \mu(U) - \sfrac{1}{n}$. Letting $F = \bigcup_{n \in \mathbb{N}} F_n$ we have that $F \subseteq U$; $F$ is\\ $\mu^*$-measurable (since all the $F_n$ are); and $\mu(F) \geq \mu(F_n) > \mu(U) - \sfrac{1}{n}$ for all $n$. It follows that $\mu(F) = \mu(U)$ and $\mu(U - F) = 0$.\retTwo
+	
+	One consequence of this is that:
+
+	{\centering\begin{tabular}{l}
+		$A \cap U = A \cap (F \cup (U - F)) = (A \cap F) \cup (A \cap (U - F))$\\
+		$\phantom{A \cap U = A \cap (F \cup (U - F))} = (\bigcup_{n \in \mathbb{N}} (A \cap F_n)) \cup (A \cap (U - F))$.
+	\end{tabular}\retTwo\par}
+
+	And since $A \cap (U - F) \subseteq U - F$ with $\mu(U - F) = 0$, we know by the completeness of $(X, \mathcal{M}, \overline{\mu})$  that $A \cap (U - F)$ is in $\mathcal{M}$. Also, since we have that all the $A \cap F_n$ are in $\mathcal{M}$ by (iv), we know that $A \cap U$ is a countable union of sets in $\mathcal{M}$. This proves (iii).\retTwo
+
+	Now suppose (iii) and let $U \subseteq X$ be an open set such that $\mu(U) < \infty$. Then both $U$ and $U \cap A$ are in $\mathcal{M}$ by (iii). And in turn we also have that $U - A = U - (U \cap A) \in \mathcal{M}$. Thus $\overline{\mu}(U) = \overline{\mu}(U \cap A) + \overline{\mu}(U - A)$ and we've shown (ii).\newpage
+
+	Finally suppose (ii) and let $F$ be any subset of $X$. If $\mu^*(F) = \infty$, then we trivially have that $\mu^*(F) \geq \mu^*(A \cap F) + \mu^*(A - F)$. So assume $\mu^*(F) < \infty$. Then for any given $\varepsilon > 0$ we know there is an open set $U$ such that $F \subseteq U$ and $\mu(U) < \mu^*(F) + \varepsilon$. In turn:
+
+	{\center\begin{tabular}{l}
+		$\mu^*(F) + \varepsilon \geq \mu(U) \geq \mu^*(U \cap A) + \mu^*(U - A) \geq \mu^*(F \cap A) + \mu^*(F - A)$
+	\end{tabular}\retTwo\par}
+
+	Taking $\varepsilon \to 0$ finishes proving (i). $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\exTwo\ul{Theorem 19.30:} Let $X$ be an LCH space and let $(X, \mathcal{M}, \mu)$ be the saturation of the\\ completion of a positive radon measure on $X$. Then there exists a family $\mathcalli{F}_0$ of subsets of $X$ with the following properties:
+\begin{itemize}
+	\item[(i)] the sets in $\mathcalli{F}_0$ are compact and have finite measure greater than $0$;
+	\item[(ii)] the sets in $\mathcalli{F}_0$ are pairwise disjoint; 
+	\item[(iii)] if $F \in \mathcalli{F}_0$, $U$ is open, and $U \cap F \neq \emptyset$, then $\mu(U \cap F) > 0$;
+	\item[(iv)] if $E \in \mathcal{M}$ and $\mu(E) < \infty$, then $\mu(E \cap F) > 0$ for only countably many $F \in \mathcalli{F}_0$;
+	\item[(v)] the set $D = X - (\bigcup_{F \in \mathcalli{F}} F)$ is $\mu$-measurable and is locally $\mu$-null (which means that $\mu(E \cap A) = 0$ for all $A \in \mathcal{M}$ with $\mu(A) < \infty$ [see my homework for 240b for more info about this\dots]);
+	\item[(vi)] if $Y$ is a subset of $X$ such that $Y \cap F \in \mathcal{M}$ for all $F \in \mathcalli{F}_0$, then $Y \in \mathcal{M}$.
+\end{itemize}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\mathcalli{X}$ be the collection of all families of subsets in $\mathcal{M}$ which satisfy properties (i), (ii), and (iii). Then firstly note that $\emptyset \in \mathcalli{X}$. So, $\mathcalli{X}$ is not empty. Also, it easy to see that if $\mathcalli{X}_0$ is a subset of $\mathcalli{X}$ that is linearly ordered by the subset relation, then $\mathcalli{X}_0$ has an upper bound in $\mathcalli{X}$. Just set $\mathcalli{F} = \bigcup_{\mathcalli{F}^\pprime \in \mathcalli{X}_0} \mathcalli{F}^\pprime$. Then it's obvious that $\mathcalli{F}$ satisfies properties (i) and (iii) since\\ [-2pt] every $F \in \mathcalli{F}$ is in some $\mathcalli{F}^\pprime \in \mathcalli{X}_0 \subseteq \mathcalli{X}$. Also, if $F_1$ and $F_2$ are sets in $\mathcalli{F}$, then we know there exists a collection $\mathcalli{F}^\pprime \in \mathcalli{X}_0$ such that both $F_1, F_2 \in \mathcalli{F}^\pprime$. And thus in turn we know that $F_1 \cap F_2 = \emptyset$, meaning $\mathcalli{F}$ satisfies property (ii).\retTwo
+
+	It follows by Zorn's lemma that $\mathcalli{X}$ contains a maximal family $\mathcalli{F}_0$. Our goal now is to show that $\mathcalli{F}_0$ satisfies properties (iv), (v), and (vi).\retTwo
+
+	Suppose $E \in \mathcal{M}$ and $\mu(E) < \infty$. Then for the sake of finding a contradiction, suppose $E \cap F \neq \emptyset$ for uncountably many $F \in \mathcalli{F}_0$. Then by the outer regularity of $\mu$, we know there exists an open set $U$ such that $U \supseteq E$ and $\mu(U) < \mu(E) + 1 < \infty$. Then in turn, by property (ii) we have that $\mu(U) \geq \sum_{F \in \mathcalli{F}_0} \mu(U \cap F)$ (because $U$ is a superset of any finite union of the $F \cap U$). But now since $U \cap F \supseteq E \cap F \neq \emptyset$ for uncountably many $F \in \mathcalli{F}_0$, we know by property (iii) that $\mu(U \cap F) > 0$ for uncountably many $F \in \mathcalli{F}_0$. But that implies that $\sum_{F \in \mathcalli{F}_0} \mu(U \cap F) = \infty$, which is a contradiction. Hence, we've proven property (iv).\retTwo
+
+	Next let $U$ be any open set 
+\end{myIndent}
+
 
 
 
