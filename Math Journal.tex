@@ -1211,7 +1211,8 @@
       \end{myIndent}
    \end{itemize}
 
-   {\hOne In the next exercises we will explore some equivalent theorems to the Hausdorff maximum principle and Zorn's lemma.}\retTwo
+   {\hOne In the next exercises we will explore some equivalent theorems to the Hausdorff maximum principle and Zorn's lemma.}
+	
    \blab{Exercise 11.5:} Show that Zorn's lemma implies the following:
    
    \begin{myIndent}
@@ -2515,7 +2516,10 @@ Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also
 	\item[(d)] There exists a Lebesgue measurable function $F$ and continuous function $G$ on $\mathbb{R}$ such that $F \circ G$ is not Lebesgue measurable.
 	
 	\begin{myIndent}\exTwoP
-		Define $G$ by continuously extending $g(x)$ to all $\mathbb{R}$ (One way to do this would be to set $G(x) = 2x$ when $x \notin [0, 1]$). Then set $F = \chi_B$ where $B$ is the the set found in part $c$. Then $(F \circ G)^{-1}(\{1\}) = A$ is not Lebesgue measurable. So $F \circ G$ is not a Lebesgue measurable function. \retTwo
+		Define $G$ by continuously extending $g^{-1}(x)$ to all $\mathbb{R}$ (One way to do this would be to set $G(x) = x$ when $x < 0$ and $G(x) = 1$ when $x > 2$). Then set $F = \chi_B$ where $B$ is the set found in part $c$. Now $(F \circ G)^{-1}(\{1\}) = A$ is not Lebesgue measurable. So $F \circ G$ is not a Lebesgue measurable function.
+		\begin{myIndent}\myComment
+			The significance of this result is that we've proven that $G$ is continuous but not Lebesgue measurable.\retTwo
+		\end{myIndent}
 	\end{myIndent}
 \end{itemize}
 
@@ -3887,7 +3891,8 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 	Consider the function $f(x) = a^2 - (\|x\|_2)^2$.\retTwo
 \end{myIndent}
 
-\hOne The next exercise gives us an important tool for constructing manifolds (which makes it kinda shocking that Munkres leaves it as an exercise).\retTwo
+\hOne The next exercise gives us an important tool for constructing manifolds (which makes it kinda shocking that Munkres leaves it as an exercise).
+
 
 \pracOne\ul{Exercise 24.2} Let $f: \mathbb{R}^{n + k} \to \mathbb{R}^n$ be of class $C^r$. Let $M$ be the set of all $x$ such that\\ $f(x) = 0$. Assume that $M$ is nonempty and $\Df f(x)$ has rank $n$ for all $x \in M$. Then $M$ is a $k$-manifold in $\mathbb{R}^{n+k}$ without boundary. Furthermore, if $N$ is the set of all $x$ such that $f_1(x) = \cdots = f_{n-1}(x) = 0$ and $f_n(x) \geq 0$, and the matrix $\partial(f_1, \ldots, f_{n-1})/\partial x$ has rank $n-1$ at each point of $N$, then $N$ is a $k+1$ manifold and $M = \partial N$.\\ [-4pt] 
 
@@ -3950,6 +3955,10 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 		Now if $\tau$ is the function permuting the first and $(k + 1)$th basis vectors, then we know there is some open set $A \subseteq H^{k+1}$ such that $0^{n-1} \times \tau(A) = U \cap (0^{n-1} \times [0, \infty) \times \mathbb{R}^{k})$. So, define $\alpha(x_1, \ldots, x_{k+1}) = G(0^{n-1}, x_{k+1}, x_1, \ldots, x_k)$. Then $\alpha$ is a bijective $C^r$ map from the open set $A$ of $H^{k+1}$ to $V \cap N$ with rank $k+1$ and a continuous inverse. Hence, $\alpha$ is a coordinate patch on $N$ about $p$.\newpage
 
 		Also, if $x \in U$ satisfies that $\alpha(x) = p$, then since $f \circ G = \pi_n$, we know that $f(G(x)) = f(p) = 0$. So $x \in \partial H^{k+1}$. This proves $p$ is on the boundary of $N$. $\blacksquare$\retTwo
+
+		\begin{myIndent}\myComment
+			Note from 8/28/2025: How the fuck did I just realize this is just implicit function theorem.\retTwo
+		\end{myIndent}
 	\end{enumerate}
 \end{myIndent}
 
@@ -6475,7 +6484,7 @@ In physics yesterday we started talking about statistical mechanics, and that in
 
 \hTwo Let $X$ be an LCH space and $\mathcalli{B}_X$ be the collection of Borel sets on $X$. At where we left off (on page 62), we had showed that the space $M(X)$ of complex Radon measures on $(X, \mathcalli{B}_X)$ is a normed complex vector space when equipped with the norm $\mu \mapsto \|\mu\| = |\mu|(X)$. Also, we had shown that the map $\mu \mapsto I_\mu$ where $I_\mu(f) = \int f \df \mu$ is an isometric isomorphism from $M(X)$ to $C_0(X)^*$.\retTwo
 
-\Hstatement\blab{Exercise 7.8:} Suppose that $\mu$ is a Radon measure on $X$. If $\phi \in L^1(\mu)$ and $\phi \geq 0$, then $\nu = f \df \mu$ is a Radon measure.
+\Hstatement\blab{Exercise 7.8:} Suppose that $\mu$ is a Radon measure on $X$. If $\phi \in L^1(\mu)$ and $\phi \geq 0$, then $\nu = \phi \df \mu$ is a Radon measure.
 \begin{myIndent}\HexOne
 	Since $\phi \in L^1(\mu)$, we know that $\nu(E) = \int_E \phi \df \mu$ is finite for all $E \in \mathcalli{B}_X$. Thus $\nu$ is a finite measure. This trivially satisfies the requirement that $\nu(K)$ is finite for all compact $K$.\retTwo
 
@@ -6556,13 +6565,18 @@ Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$
 
 \exTwo\ul{Theorem 19.27: An Extension of the Lebesgue-Radon-Nikodym Theorem:} 
 \begin{myIndent}
-	Let $(X, \mathcal{M}, \mu)$ be decomposable via the decomposition $\mathcal{F}$, and let $\nu$ be an arbitrary\\ signed measure such that $\nu \ll \mu$.  Then there exists an extended real $\mathcal{M}$-measurable\\ function $f: X \to \overline{\mathbb{R}}$ such that $\nu(A) = \int_A f \df \mu$ for all $A \in \mathcal{M}$ for which $\mu$ is $\sigma$-finite.\\ Also if $g$ is any extended real $\mathcal{M}$-measurable function such that $\nu(A) = \int_A g \df \mu$ when $\mu(A) < \infty$, then $f\chi_E = g\chi_E$ $\mu$-a.e. for all $E \in \mathcal{M}$ on which $\mu$ is $\sigma$-finite.\retTwo
+	Let $(X, \mathcal{M}, \mu)$ be decomposable via the decomposition $\mathcalli{F}$, and let $\nu$ be an arbitrary\\ signed measure such that $\nu \ll \mu$.  Then there exists an extended real $\mathcal{M}$-measurable\\ function $f: X \to \overline{\mathbb{R}}$ such that $\nu(A) = \int_A f \df \mu$ for all $A \in \mathcal{M}$ for which $\mu$ is $\sigma$-finite.\\ Also, we can take $f$ to be finite on any $F$ which on which $\nu$ is $\sigma$-finite. And if $g$ is any extended real $\mathcal{M}$-measurable function such that $\nu(A) = \int_A g \df \mu$ when $\mu(A) < \infty$, then $f\chi_E = g\chi_E$ $\mu$-a.e. for all $E \in \mathcal{M}$ on which $\mu$ is $\sigma$-finite.\retTwo
 
 	\exThreeP%
 	Proof:\\
 	We shall first consider the simpler case where $\nu$ is a positive measure.\retTwo
 
-	Now restricting $\mu$ and $\nu$ to subspaces of $(X, \mathcal{M})$ won't change that $\nu \ll \mu$. Consequently, by restricting $\mu$ and $\nu$ to any subspace $F \in \mathcalli{F}$ and applying our prior lemma, we can conclude that there are sets $D_F, E_F \in \mathcal{M}$ such that $D_F \cap E_F = \emptyset$; $D_F \cup E_F = F$;\\ $\nu$ is $\sigma$-finite on $D_F$; and all measurable $A \subseteq E_F$ satisfy that $\nu(A) = 0 \Longrightarrow \mu(A) = 0$ and $\nu(A) \in \{0, \infty\}$. And going one step further, if we restrict $\mu$ and $\nu$ to the subspace $D_F$ of $(X, \mathcal{M})$, then we know by the typical Lebesgue-Radon-Nikodym theorem that there is\\ [-2pt] a nonnegative function $f_0^{(F)} \in L^1(D_F, \mu)$ such that $\nu(A) = \int_A f_0^{(F)} \df \mu$ for all $A \in \mathcal{M}$\\ with $A \subseteq D_F$.\retTwo
+	Now restricting $\mu$ and $\nu$ to subspaces of $(X, \mathcal{M})$ won't change that $\nu \ll \mu$. Consequently, by restricting $\mu$ and $\nu$ to any subspace $F \in \mathcalli{F}$ and applying our prior lemma, we can conclude that there are sets $D_F, E_F \in \mathcal{M}$ such that $D_F \cap E_F = \emptyset$; $D_F \cup E_F = F$;\\ $\nu$ is $\sigma$-finite on $D_F$; and all measurable $A \subseteq E_F$ satisfy that $\nu(A) = 0 \Longrightarrow \mu(A) = 0$ and $\nu(A) \in \{0, \infty\}$.
+	\begin{myIndent}\exPPP
+		Note that if $\nu$ is $\sigma$-finite on all of $F$, we can just take $D_F = F$ and $E_F = \emptyset$.\retTwo
+	\end{myIndent}
+
+	And going one step further, if we restrict $\mu$ and $\nu$ to the subspace $D_F$ of $(X, \mathcal{M})$, then we know by the typical Lebesgue-Radon-Nikodym theorem that there is a finite measurable nonnegative function $f_0^{(F)}: X \to [0, \infty)$ such that $\nu(A) = \int_A f_0^{(F)} \df \mu$ for all $A \in \mathcal{M}$ with $A \subseteq D_F$.\retTwo
 
 	Now define $f$ by pasting together the functions:
 
@@ -6673,7 +6687,7 @@ To start off, we need an exercise from Folland.
 			Finally, we have that $N \coloneqq B - (A \cap E) \in \mathcal{M}^\wedge$ because $N \subseteq C$\\ and $(X, \mathcal{M}^\wedge, \mu^\wedge)$ is complete. And since $B \in \mathcal{M} \subseteq \mathcal{M}^\wedge$, we have that\\ $(A \cap E) = B - N \in \mathcal{M}^\wedge$. This proves that $E$ is locally $\mu^\wedge$-measurable.\newpage
 
 			$(\Longleftarrow)$\\
-			Suppose $E \subseteq X$ is locally $\mu^\wedge$-measurable and then choose any $F \subseteq X$. If $\mu^*(F)$, then we trivially have that $\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(F)$. So, it suffices to assume that $\mu^*(F) < \infty$. But then by exercise 1.18(a) there exists for each $j \in \mathbb{N}$  a set $A_j \in \mathcal{M}$ such that $F \subseteq A_j$ and $\mu(A_j) < \mu^*(F) + \sfrac{1}{j}$.\\ And, by taking the intersection of all the $A_j$, we get a set $A \in \mathcal{M}$ such that $A \subseteq F$ and $\mu(A) = \mu^*(F) < \infty$.\retTwo
+			Suppose $E \subseteq X$ is locally $\mu^\wedge$-measurable and then choose any $F \subseteq X$. If $\mu^*(F) = \infty$, then we trivially have that $\mu^*(F \cap E) + \mu^*(F - E) \leq \mu^*(F)$. So, it suffices to assume that $\mu^*(F) < \infty$. But then by exercise 1.18(a) there exists for each $j \in \mathbb{N}$  a set $A_j \in \mathcal{M}$ such that $F \subseteq A_j$ and $\mu(A_j) < \mu^*(F) + \sfrac{1}{j}$.\\ And, by taking the intersection of all the $A_j$ we get a set $A \in \mathcal{M}$ such that\\ $A \subseteq F$ and $\mu(A) = \mu^*(F) < \infty$.\retTwo
 
 			Since $E$ is locally $\mu^\wedge$-measurable, it follows that $A \cap E \in \mathcal{M}^\wedge$. Then since $\mathcal{M}^\wedge \subseteq \mathcal{M}^*$, we know that $\mu^*(F) = \mu^*(F \cap (A \cap E)) + \mu^*(F - (A \cap E))$.\\ And this shows that $E$ is $\mu^*$-measurable since $F \cap (A \cap E) = F \cap E$ and $F - (A \cap E) = F - E$ on account of the fact that $F \subseteq A$.\retTwo
 		\end{myIndent}
@@ -6693,7 +6707,7 @@ To start off, we need an exercise from Folland.
 {\centering$\mu^*(E) \coloneqq \inf \{\mu(U) : U \supseteq E \text{ with } U \text{ open}\}$ for all $E \in \mathcal{P}(X)$.\retTwo\par}
 
 Recall from the proof of the Riesz Representation thorem in my math 240c notes that $\mu^*$ is a well-defined outer measure for which every Borel set is $\mu^*$-measurable and $\mu^*|_{\mathcalli{B}_X} = \mu$.
-Furthermore, if $\mathcal{M}$ is the collection of $\mu^*$-measurable sets and $\overline{\mu} = \mu^*|_{\mathcal{M}}$, we have by definition that $\overline{\mu}$ is outer regular on all of $\mathcal{M}$. Also, $\overline{\mu}$ is fully determined by the linear functional $I(f) \coloneqq \int f \df \mu$. (since $I$ uniquely determines $\mu(U)$ for each open $U$).\retTwo
+Furthermore, if $\mathcal{M}$ is the collection of $\mu^*$-measurable sets and $\overline{\mu} = \mu^*|_{\mathcal{M}}$, we have by the definition of $\mu^*$ that $\overline{\mu}$ is outer regular on all of $\mathcal{M}$. Also, $\overline{\mu}$ is fully determined by the linear functional $I(f) \coloneqq \int f \df \mu$. (since $I$ uniquely determines $\mu(U)$ for each open $U$).\retTwo
 
 Importantly, we can also say that $\mu^*(E) = \inf \{\mu(B) : B \supseteq E \text{ with } B \in \mathcalli{B}_X\}$ for all $E \in \mathcal{P}(X)$. This is because (and I will be abusing notation to write this since otherwise it would be really cumbersome) if $B$ represents any Borel set and $U$ any open set, then:\newpage
 
@@ -6739,21 +6753,23 @@ Now returning to Hewitt and Stromberg, here is one more lemma before I reset whi
 	Finally suppose (ii) and let $F$ be any subset of $X$. If $\mu^*(F) = \infty$, then we trivially have that $\mu^*(F) \geq \mu^*(A \cap F) + \mu^*(A - F)$. So assume $\mu^*(F) < \infty$. Then for any given $\varepsilon > 0$ we know there is an open set $U$ such that $F \subseteq U$ and $\mu(U) < \mu^*(F) + \varepsilon$. In turn:
 
 	{\center\begin{tabular}{l}
-		$\mu^*(F) + \varepsilon \geq \mu(U) \geq \mu^*(U \cap A) + \mu^*(U - A) \geq \mu^*(F \cap A) + \mu^*(F - A)$
+		$\mu^*(F) + \varepsilon > \mu(U) \geq \mu^*(U \cap A) + \mu^*(U - A) \geq \mu^*(F \cap A) + \mu^*(F - A)$
 	\end{tabular}\retTwo\par}
 
 	Taking $\varepsilon \to 0$ finishes proving (i). $\blacksquare$\retTwo
 \end{myIndent}
 
-\hTwo\mySepTwo
+\hTwo Oh, one more lemma I'll need is that $\overline{\mu}$ is inner regular on all of its $\sigma$-finite sets. (You\\ can prove this identically to how we proved $\mu$ is inner regular on all of its $\sigma$-finite sets\\ [0pt] \vphantom{a}[see my math 240c notes]).
 
-\exTwo\ul{Theorem 19.30:} Let $X$ be an LCH space and let $(X, \mathcal{M}, \mu)$ be the saturation of the\\ completion of a positive radon measure on $X$. Then there exists a family $\mathcalli{F}_0$ of subsets of $X$ with the following properties:
+\mySepTwo
+
+\exTwo\ul{Theorem 19.30:} Let $X$ be an LCH space and let $(X, \mathcal{M}, \mu)$ be the saturation of the\\ completion of a positive Borel Radon measure on $X$. Then there exists a family $\mathcalli{F}_0$ of subsets of $X$ with the following properties:
 \begin{itemize}
 	\item[(i)] the sets in $\mathcalli{F}_0$ are compact and have finite measure greater than $0$;
 	\item[(ii)] the sets in $\mathcalli{F}_0$ are pairwise disjoint; 
 	\item[(iii)] if $F \in \mathcalli{F}_0$, $U$ is open, and $U \cap F \neq \emptyset$, then $\mu(U \cap F) > 0$;
 	\item[(iv)] if $E \in \mathcal{M}$ and $\mu(E) < \infty$, then $\mu(E \cap F) > 0$ for only countably many $F \in \mathcalli{F}_0$;
-	\item[(v)] the set $D = X - (\bigcup_{F \in \mathcalli{F}} F)$ is $\mu$-measurable and is locally $\mu$-null (which means that $\mu(E \cap A) = 0$ for all $A \in \mathcal{M}$ with $\mu(A) < \infty$ [see my homework for 240b for more info about this\dots]);
+	\item[(v)] the set $D \coloneqq X - (\bigcup_{F \in \mathcalli{F}} F)$ is measurable and locally null (which means that\\ $\mu(E \cap A) = 0$ for all $A \in \mathcal{M}$ with $\mu(A) < \infty$ [see my homework from math 240b\\ for more info about this\dots]);
 	\item[(vi)] if $Y$ is a subset of $X$ such that $Y \cap F \in \mathcal{M}$ for all $F \in \mathcalli{F}_0$, then $Y \in \mathcal{M}$.
 \end{itemize}
 
@@ -6763,12 +6779,97 @@ Now returning to Hewitt and Stromberg, here is one more lemma before I reset whi
 
 	It follows by Zorn's lemma that $\mathcalli{X}$ contains a maximal family $\mathcalli{F}_0$. Our goal now is to show that $\mathcalli{F}_0$ satisfies properties (iv), (v), and (vi).\retTwo
 
-	Suppose $E \in \mathcal{M}$ and $\mu(E) < \infty$. Then for the sake of finding a contradiction, suppose $E \cap F \neq \emptyset$ for uncountably many $F \in \mathcalli{F}_0$. Then by the outer regularity of $\mu$, we know there exists an open set $U$ such that $U \supseteq E$ and $\mu(U) < \mu(E) + 1 < \infty$. Then in turn, by property (ii) we have that $\mu(U) \geq \sum_{F \in \mathcalli{F}_0} \mu(U \cap F)$ (because $U$ is a superset of any finite union of the $F \cap U$). But now since $U \cap F \supseteq E \cap F \neq \emptyset$ for uncountably many $F \in \mathcalli{F}_0$, we know by property (iii) that $\mu(U \cap F) > 0$ for uncountably many $F \in \mathcalli{F}_0$. But that implies that $\sum_{F \in \mathcalli{F}_0} \mu(U \cap F) = \infty$, which is a contradiction. Hence, we've proven property (iv).\retTwo
+	Suppose $E \in \mathcal{M}$ and $\mu(E) < \infty$. Then for the sake of finding a contradiction, suppose $E \cap F \neq \emptyset$ for uncountably many $F \in \mathcalli{F}_0$. Then by the outer regularity of $\mu$, we know there exists an open set $U$ such that $U \supseteq E$ and $\mu(U) < \mu(E) + 1 < \infty$. Then in turn, by property (ii) we have that $\mu(U) \geq \sum_{F \in \mathcalli{F}_0} \mu(U \cap F)$ (because $U$ is a superset of any finite union of the $F \cap U$). But now since $U \cap F \supseteq E \cap F \neq \emptyset$ for uncountably many $F \in \mathcalli{F}_0$, we know by property (iii) that $\mu(U \cap F) > 0$ for uncountably many $F \in \mathcalli{F}_0$. But that implies that $\sum_{F \in \mathcalli{F}_0} \mu(U \cap F) = \infty$, which is a contradiction. Hence, we've proven property (iv).\newpage
 
-	Next let $U$ be any open set 
+	Next let $U$ be any open set with $\mu(U) < \infty$ and let $\mathcalli{F}_1$ be the countable subfamily of $\mathcalli{F}_0$\\ [2pt] containing all the $F$ such that $\mu(U \cap F) > 0$. Since all $F \in \mathcalli{F}_1$ are in $\mathcal{M}$, we know that\\ [2pt] $\bigcup_{F \in \mathcalli{F}_1} F \in \mathcal{M}$. Thus $\mu(U) = \mu(U \cap \bigcup_{F \in \mathcalli{F}_1} F) + \mu(U - \bigcup_{F \in \mathcalli{F}_1} F)$. But by (iii) we have\\ [2pt] that $\mathcalli{F}_1 = \{F \in \mathcalli{F}_0 : U \cap F \neq \emptyset\}$. Thus, it's clear that $U \cap \bigcup_{F \in \mathcalli{F}_1} F = U \cap \bigcup_{F \in \mathcalli{F}_0} F$\\ [2pt] and $U - \bigcup_{F \in \mathcalli{F}_1} F = U - \bigcup_{F \in \mathcalli{F}_0} F$. And by the previous lemma, this proves that\\ [2pt] $\bigcup_{F \in \mathcalli{F}_0} F$ and $D \coloneqq X - \bigcup_{F \in \mathcalli{F}_0} F$ are in $\mathcal{M}$.\retTwo
+
+	Now we still need to show that $D$ is locally null. So suppose for the sake of contradiction\\ that there exists $A \in \mathcal{M}$ with $0 < \mu(A \cap D) < \infty$. Then since $\mu$ is inner regular on\\ $A \cap D$, there'd be a compact set $K \subseteq A \cap D$ such that $0 < \mu(K) < \mu(A \cap D) < \infty$.\\ Also, if we consider the collection $\mathcalli{U}$ of open sets $U \subseteq X$ such that $\mu(U \cap K) = 0$, then\\ $K \cap \bigcup_{U \in \mathcalli{U}}U$ is measurable on account of $\bigcup_{U \in \mathcalli{U}}U$ being open. We claim $K \cap \bigcup_{U \in \mathcalli{U}}U$ is\\ a null set. 
+	\begin{myIndent}\exPPP
+		Otherwise, by inner regularity there would exist a compact set $C \subseteq K \cap \bigcup_{U \in \mathcalli{U}} U$ with $\mu(C) > 0$. And since $\mathcalli{U}$ is an open cover of $C$, we'd have that there is a finite subcover of sets $U \cap H$, all with measure zero, covering $C$. This is a contradiction.\retTwo
+	\end{myIndent}
+
+	Setting $H \coloneqq K - \bigcup_{U \in \mathcalli{U}}U$, we'd know that $H$ is compact on account of being a closed subset of $K$. Also, we'd know that $\mu(H) = \mu(K) > 0$. And it's clear that $H$ would be disjoint from all the $F \in \mathcalli{F}_0$. And finally, if $V$ were any open set such that $V \cap H \neq \emptyset$ then we'd know that $V \notin \mathcalli{U}$. But that would mean that $\mu(V \cap K) > 0$. And so:
+
+	{\centering $\mu(V \cap H) = \mu(V \cap K) - \mu(V \cap (K - \bigcup_{U \in \mathcalli{U}}U)) = \mu(V \cap K) - 0 > 0$ \retTwo\par}
+
+	Hence, we've shown that $\mathcalli{F}_0 \cup \{H\}$ is a collection in $\mathcalli{X}$ that is strictly larger than $\mathcalli{F}_0$. But that contradicts that $\mathcalli{F}_0$ is maximal. Thus, we've proven property (v).\retTwo
+
+	Finally, let $Y$ be as in the theorem statement and consider any open set $U \subseteq X$ such that $\mu(U) < \infty$. Then:
+
+	{\centering $U \cap Y = (U \cap Y \cap D) \cup (U \cap Y \cap \hspace{-0.3em}\bigcup\limits_{F \in \mathcalli{F}_0} \hspace{-0.3em} F) = (U \cap Y \cap D) \cup \hspace{-0.3em}\bigcup\limits_{F \in \mathcalli{F}_0} \hspace{-0.3em}(U \cap (Y \cap F)) $\retTwo\par}
+
+	But now we know from before that there is a countable subfamily of $\mathcalli{F}_0$ containing all the $F$ which intersect $U$. Also, since $D$ is locally null, we know that $\mu(U \cap D) = 0$ and in turn $U \cap Y \cap D$ is measurable due to it being a subset of a null set. It follows that $U \cap Y$ is a countable union of measurable sets. So, $U \cap Y$ is measurable. By our prior lemma, we thus have that $Y \in \mathcal{M}$. This proves (vi). $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		Side note: You may note that since $D$ is locally null and all compact sets have finite measure, we must have that any compact set $K \subseteq X$ contained in $D$ has measure zero. By inner regularity, this in turn implies that any open set $U \subseteq X$ contained in $D$ has measure zero.\retTwo
+	\end{myIndent}
 \end{myIndent}
 
+\ul{Corollary 19.31:} Let $X$ be an LCH space and let $(X, \mathcal{M}, \mu)$ be the saturation of the\\ completion of a positive Borel Radon measure on $X$. Then $(X, \mathcal{M}, \mu)$ is decomposable.
 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\mathcalli{F}_0$ and $D$ be as in the last theorem. Then set $\mathcalli{F} \coloneqq \mathcalli{F}_0 \cup \{ \{x\} : x \in D\}$. We claim $\mathcalli{F}$ is a decomposition.\newpage
+	\begin{itemize}
+		\item[(i)] Since $X$ is Hausdorff, we know that $\{x\}$ is compact for all $x \in D$. Hence, every set in $\mathcalli{F}$ is compact and thus has finite measure.
+		\item[(ii)] It's clear that all the elements of $\mathcalli{F}$ form a partition of $X$.
+		\item[(iii)] If $\mu(E) < \infty$ then since $D$ is locally null, we have that $\mu(E \cap D) = 0$. Also, by how we chose $\mathcal{F}_0$ we know there are only countably many $F \in \mathcal{F}_0$ with $F \cap E \neq \emptyset$. So:
+		
+		{\centering $\mu(E) = \sum_{F \in \mathcalli{F}} \mu(E \cap F)$. \retTwo}
+
+		\item[(iv)] This is an immediate consequence of the sixth property that we proved about $\mathcalli{F}_0$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\ul{Corollary 19.32: Another Extension of the Lebesgue-Radon-Nikodym Theorem:} 
+\begin{myIndent}
+	Let $X$ be an LCH space and let $(X, \mathcal{M}, \mu)$ be the saturation of the completion of a positive Borel Radon measure on $X$. Also let $\nu$ be any measure on $(X, \mathcal{M})$ such that $\nu \ll \mu$. Then all the conclusions of theorem 19.27 (on page 156 of my journal) hold.\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\blab{Reflection:}\\
+It is here that Hewitt and Stromberg mostly stop being useful. So, I will give one last quote from them before expositing some more about this topic on my own (also geeze I just noticed that this quote has a typo. It's supposed to be "(19.32)"; not "(19.33)"\dots):
+
+{\center\includegraphics[scale=0.8]{A quote.png}\retTwo\par}
+
+I'm not gonna lie, while going down research rabbitholes is really fun, I feel like Folland\\ really oversold the significance of this result. When I went into this rabbithole, I was under the impression from Folland that I'd be proving that if $\mu$ is an arbitrary Radon measure and $\nu \ll \mu$, then $\nu$ always has the form $f \df \mu$. But that is not what was proven in theorems 19.27 and 19.32 so I don't know what Folland was yappin about. Considering the lack of specific details that Folland gives, I can't help but suspect that Folland didn't entirely understand what Hewitt and Stromberg actually proved. Although, I don't necessarily blame Folland for that.\retTwo
+
+Hewitt and Stromberg were difficult for me to understand partly because they had a lot of (in my opinion) very questionable conventions. For example, I tried my best to hide it away as much as possible but Hewitt and Stromberg explicitely treated every measure as the restriction of an outer measure to the $\sigma$-algebra of $\mu^*$-measurable sets rather than abstracting that away because I guess they always wanted their $\sigma$-algebras to be as large as possible. In fact, while I was skimming the book I even saw some other sections where they talked about extending their measures to even larger $\sigma$-algebras. Never mind that there are advantages to working on a smaller $\sigma$-algebra (see for instance page 55 of my journal: when working on a larger $\sigma$-algebra we lose that continuity implies measurability\dots).\newpage
+
+I'll also mention that the choice of math font in their book is awful and I couldn't help but wonder if they knew what kerning is. Anyways I guess my review of their book is that it feels dated and very clunky. Although, maybe I only had a mixed experience because I'm not an intended reader. (cough cough)\retTwo
+
+Anyways, while getting a milkshake with my apartment-mates, I thought of a few ideas for how to make the preceding theorems actually useful.\retTwo
+
+\mySepTwo
+
+My first challenge is that I'm primarily working with Borel Radon measures while Hewitt and Stromberg weren't. This leads me to the following result:\retTwo
+
+\exTwo\ul{Proposition:} Suppose $X$ is an LCH space and let $\mu$ and $\nu$ be positive Radon measures on $(X, \mathcalli{B}_X)$ such that $\nu \ll \mu$. Then let $(X, \mathcal{M}_\mu, \overline{\mu})$ be the saturation of the completion of $(X, \mathcalli{B}_x, \mu)$ and let $(X, \mathcal{M}_\nu, \overline{\nu})$ be the saturation of the completion of $(X, \mathcalli{B}_x, \nu)$.
+\begin{itemize}
+	\item In general $\mathcal{M}_\mu \neq \mathcal{M}_\nu$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $X = \mathbb{R}$. Then set $\mu$ to be the Lebesgue measure and set $\nu$ equal to the zero\\ measure (i.e. the measure for which every set is null). Note that we trivially have\\ that $\nu \ll \mu$. Also, both are easily seen to be Radon measures.\retTwo
+		
+		Since $\mu$ and $\nu$ are $\sigma$-finite, we know by the exercise on pages 158 and 159 that $\mathcal{M}_\mu$ and $\mathcal{M}_\nu$ are just the completions of $\mathcal{M}$ with respect to $\mu$ and $\nu$ respectively. Since $\nu(X) = 0$, we have that $\mathcal{M}_\nu = \mathcal{P}(X)$. Meanwhile, because of the existance of Vitali sets, we know that $\mathcal{M}_\mu \neq \mathcal{P}(X)$. $\blacksquare$.\retTwo
+	\end{myIndent}
+
+	\item We do always have that $\mathcal{M}_\mu \subseteq \mathcal{M}_\nu$.
+	
+	\begin{myIndent}\exThreeP
+		Proof: (I got this argument from Hewitt and Stromberg 19.33)\\
+		Suppose $A \in \mathcal{M}_\mu$ and let $F \subseteq X$ be any compact set. Since $A$ is locally measurable with respect to the completion of $\mu$, we know that $A \cap F$ is in the completion of $\mathcalli{B}_X$ with respect to $\mu$. So let $A \cap F = E \cup N$ where $E \in \mathcalli{B}_X$ and $N \subseteq N^\prime$ with $N^\prime \in \mathcalli{B}_X$ and $\mu(N^\prime) = 0$. Then since $\mu(N^\prime) = 0$ implies that $\nu(N^\prime) = 0$, we know that $A \cap F$ is in the complection of $\mathcalli{B}_X$ with respect to $\nu$. By the lemma on page 161, this proves that $A \in \mathcal{M}_\nu$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\item We do always have that $\overline{\nu}|_{\mathcal{M}_\mu} \ll \overline{\mu}$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Suppose $A \in \mathcal{M}_\mu$ with $\overline{\mu}(A) = 0$. Since $A$ has finite measure, we know that $A$ is not merely locally measurable but also that $A$ is in the completion of $\mathcalli{B}_X$ with respect to $\mu$. Hence, there exists a set $N \in \mathcalli{B}_X$ such that $A \subseteq N$ and $\mu(N) = 0$. But now since $\nu \ll \mu$, we have that $\nu(N) = 0$. In turn, $\overline{\nu}(A) \leq \nu(N) = 0$. This proves that $\overline{\mu}(A) = 0 \Longrightarrow \overline{\nu}(A) = 0$.  $\blacksquare$\newpage
+	\end{myIndent}
+\end{itemize}
 
 
 
@@ -6788,7 +6889,7 @@ Now returning to Hewitt and Stromberg, here is one more lemma before I reset whi
 
 \hThree\dispDate{Bibliography:}
 
-Everything is cited in the order it shows up in the journal with the exception that the first citation is for the book that got me to actually sit down and make a bibliography. Also, I decided to write my citations according APA 7.
+Everything is cited in the order it shows up in the journal with the exception that the first citation is for the book that got me to actually sit down and make a bibliography. Also, I decided to write my citations according to APA 7.
 \begin{enumerate}
 	\item Hewitt, E., \& Stromberg, K. (1975). \textit{Real and Abstract Analysis}. Springer.
 	

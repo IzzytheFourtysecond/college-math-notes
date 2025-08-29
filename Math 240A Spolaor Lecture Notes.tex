@@ -1284,7 +1284,7 @@ Note that $\mu^*$ is an outer measure by a previous proposition.\retTwo
    \item[(d)] If $\mu$ is complete, then so is $\widetilde{\mu}$.
    
    \begin{myIndent}\exTwoP
-      This fact is obvious because by the way we defined $\widetilde{\mu}$, we know a set is $\widetilde{\mu}$-null if and only if it is $\mu$-null.\retTwo
+      This fact is obvious because when we defined $\widetilde{\mu}$, we didn't add any new null sets. So, there are no new sets for the completeness property to fail on.
    \end{myIndent}
 
    \item[(e)] Suppose that $\mu$ is semifinite. For $E \in \widetilde{\mathcal{M}}$, define:
@@ -2114,7 +2114,7 @@ We've mostly been working without regard to a particular measure. Here are some 
       Thus $\{x \mid g(x) > a, f(x) = g(x)\}$ is measurable because $f$ is a measurable function and $\{x \mid f(x) > a, f(x) \neq g(x)\}$ is a subset of $\{x \mid f(x) \neq g(x)\}$. Hence, we've shown that $\{x \mid g(x) > a\}$ is measurable for all $a \in \mathbb{R}$, meaning $g$ is measurable.\retTwo
 
       ($\Longleftarrow$)\\
-      Let $N$ be a null set of $(X, \mathcal{M}, \mu)$ and $F \subseteq N$. Then, let $f = \chi_{N}$ and $g = \chi_F$. Clearly, $f(x) = g(x)$ for all $x \in X - N$. And looking back at the definition of something being true $\mu$-a.e., that means that $f(x) = g(x)$ $\mu$-a.e. So by assumption, we know $g$ is measurable, meaning that $g^{-1}(1) = F \in \mathcal{M}$. 
+      Let $N$ be a null set of $(X, \mathcal{M}, \mu)$ and $F \subseteq N$. Then, let $f = \chi_{N}$ and $g = \chi_F$. Clearly, $f(x) = g(x)$ for all $x \in X - N$. And looking back at the definition of something being true $\mu$-a.e., that means that $f(x) = g(x)$ $\mu$-a.e. So by assumption, we know $g$ is measurable, meaning that $g^{-1}(\{1\}) = F \in \mathcal{M}$. 
    \end{myIndent}
 
    \item[(b)] If $f_n$ is measurable for all $n \in \mathbb{N}$ and $\lim\limits_{n \rightarrow \infty}f_n(x) = f(x)$ $\mu$-a.e., then $f$ is measurable.
@@ -2125,7 +2125,12 @@ We've mostly been working without regard to a particular measure. Here are some 
       
       {\centering\exPP $\{x \mid f(x) > a\} = \{x \mid f(x) > a, f_n(x) \rightarrow f(x)\} \cup \{x \mid f(x) > a, f_n(x) \not\rightarrow f(x)\}$.\newpage\par}
 
-      The first of those two sets is measurable by the proposition on pages 42 and 43. The second is a subset of a null set. So since $(X, \mathcal{M}, \mu)$ is complete, it follows that $\{x \mid f(x) > a\} \in \mathcal{M}$.\retTwo
+      The first of those two sets is measurable by the proposition on pages 42 and 43. 
+		\begin{myIndent}\exTwoP
+			Specifically, $\{x \mid f(x) > a, f_n(x) \rightarrow f(x)\} = \{x \mid f(x) > a\} \cap \{x \mid \liminf_{n \to \infty}f_n(x) = \limsup_{n \to \infty} f_n(x)\}$ where both of the latter sets are measurable.\retTwo
+		\end{myIndent}
+		
+		The second is a subset of a null set. So since $(X, \mathcal{M}, \mu)$ is complete, it follows that $\{x \mid f(x) > a\} \in \mathcal{M}$.\retTwo
 
       ($\Longleftarrow$)\\
       Let $N$ be a null set of $(X, \mathcal{M}, \mu)$ and $F \subseteq N$. Then define $f_n = 0$ for all $n \in \mathbb{N}$ and $f = \chi_F$. Then $f_n(x) \rightarrow f(x)$ for all $x \in N^\comp$, meaning $f_n(x) \rightarrow f(x)$ $\mu$-a.e. So by assumption, $f$ is measurable, meaning that $f^{-1}(1) = F \in \mathcal{M}$. 
@@ -2135,10 +2140,10 @@ We've mostly been working without regard to a particular measure. Here are some 
 
 \hOne
 \begin{myIndent}\hTwo
-   \blab{Proposition:} If $(X, \mathcal{M}, \mu)$ is a measure space and $(X, \overline{\mathcal{M}}, \overline{\mu})$ is its completion. If $f$ is $\overline{\mathcal{M}}$-measurable, then there exists $g$ that is $\mathcal{M}$-measurable such that $f = g$ $\overline{\mu}$-a.e.
+   \blab{Proposition:} Let $(X, \mathcal{M}, \mu)$ be a measure space and $(X, \overline{\mathcal{M}}, \overline{\mu})$ its completion. If $f$ is $\overline{\mathcal{M}}$-measurable, then there exists $g$ that is $\mathcal{M}$-measurable such that $f = g$ $\overline{\mu}$-a.e.
 
    \begin{myIndent}\hThree
-      If $f = \chi_E$ for $E \in \mathcal{M}$, then this is obvious.
+      If $f = \chi_E$ for $E \in \overline{\mathcal{M}}$, then this is obvious.
       \begin{myIndent}\hFour
          $E = E^\prime \cup F^\prime$ where $E^\prime \in \mathcal{M}$ and $F^\prime \subseteq N^\prime \in \mathcal{M}$ with $\mu(N^\prime) = 0$. So define $g = \chi_{E^\prime}$. Then $g$ is $\mathcal{M}$-measurable and $f(x) = g(x)$ for all $x \in (N^\prime)^\comp$. So $f(x) = g(x)$ $\mu$-a.e. and thus also $\overline{\mu}$-a.e.\retTwo
       \end{myIndent}
@@ -2146,7 +2151,7 @@ We've mostly been working without regard to a particular measure. Here are some 
       Now let $f$ be any $\overline{\mathcal{M}}$-measurable function and let $(\phi_n)_{n\in\mathbb{N}}$ be a sequence of $\overline{\mathcal{M}}$-measurable simple functions converging pointwise to $f$. Next, for each $n$, let $\psi_n$ be an $\mathcal{M}$-simple function satisfying that $\psi_n(x) = \phi_n(x)$ except on a null set $E_n$ of $\overline{\mathcal{M}}$.
       
       \begin{myTindent}\myComment
-         Remember above definition for why we can do that.\retTwo
+         Remember the above note plus the theorem on page 44 for why we can do that.\retTwo
       \end{myTindent}
 
       Choose a $\mu$-null set $N \in \mathcal{M}$ such that $\bigcup\limits_{n \in \mathbb{N}}E_n \subseteq N$. Then define $g = \lim\limits_{n \rightarrow \infty} \chi_{N^\comp}\psi_n(x)$.\retTwo
@@ -2163,7 +2168,7 @@ Fixing our measure space as $(X, \mathcal{M}, \mu)$, define $L^+ \coloneq \{f: X
 
 If $\phi = \sum_{j=1}^m a_j\chi_{E_j}$ where all $a_j \in [0, \infty]$ and all $E_j \in \mathcal{M}$ are disjoint, we define:
 
-{\centering $\int \phi = \int \phi \df \mu = \int \phi(x) \df \mu(x) \coloneq \sum\limits_{j=1}^m a_j \mu(E_j)$ \retTwo\par}
+{\centering $\int \phi = \int \phi \df \mu = \int \phi(x) \df \mu(x) \coloneq \sum\limits_{j=1}^m a_j \mu(E_j)$ \newpage\par}
 
 If $A \in \mathcal{M}$, then we define $\int_A \phi \coloneq \int \chi_A \phi$. Note that if $\phi, \psi$ are simple functions in $L^+$, then you can show:
 
@@ -2173,12 +2178,13 @@ If $A \in \mathcal{M}$, then we define $\int_A \phi \coloneq \int \chi_A \phi$. 
 \item $\phi \leq \psi \Longrightarrow \int \phi \leq \int \psi$.
 \end{enumerate}
 
-\newpage
-
 Given any $f \in L^+$, we now define:
 
 {\centering$\int f \df \mu \coloneq \sup \left\{\int \phi \df \mu : 0 \leq \phi \leq f \text{ and } \phi \text{ is simple}\right\}$\retTwo\par}
+\retTwo
+\retTwo
 
+\myComment It's at this point that I switched to taking paper notes. So everything after this in my pdf is just homework.
 
 
 \newpage
