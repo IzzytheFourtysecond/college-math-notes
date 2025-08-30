@@ -6565,7 +6565,7 @@ Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$
 
 \exTwo\ul{Theorem 19.27: An Extension of the Lebesgue-Radon-Nikodym Theorem:} 
 \begin{myIndent}
-	Let $(X, \mathcal{M}, \mu)$ be decomposable via the decomposition $\mathcalli{F}$, and let $\nu$ be an arbitrary\\ signed measure such that $\nu \ll \mu$.  Then there exists an extended real $\mathcal{M}$-measurable\\ function $f: X \to \overline{\mathbb{R}}$ such that $\nu(A) = \int_A f \df \mu$ for all $A \in \mathcal{M}$ for which $\mu$ is $\sigma$-finite.\\ Also, we can take $f$ to be finite on any $F$ which on which $\nu$ is $\sigma$-finite. And if $g$ is any extended real $\mathcal{M}$-measurable function such that $\nu(A) = \int_A g \df \mu$ when $\mu(A) < \infty$, then $f\chi_E = g\chi_E$ $\mu$-a.e. for all $E \in \mathcal{M}$ on which $\mu$ is $\sigma$-finite.\retTwo
+	Let $(X, \mathcal{M}, \mu)$ be decomposable via the decomposition $\mathcalli{F}$, and let $\nu$ be an arbitrary\\ signed measure such that $\nu \ll \mu$.  Then there exists an extended real $\mathcal{M}$-measurable\\ function $f: X \to \overline{\mathbb{R}}$ such that $\nu(A) = \int_A f \df \mu$ for all $A \in \mathcal{M}$ for which $\mu$ is $\sigma$-finite.\\ Also, we can take $f$ to be finite on any $F$ on which $\nu$ is $\sigma$-finite, and if $\nu$ is a positive measure, we can take $f$ to be nonnegative. Furthermore, if $g$ is any extended real $\mathcal{M}$-measurable function such that $\nu(A) = \int_A g \df \mu$ when $\mu(A) < \infty$, then we\\ know $f\chi_E = g\chi_E$ $\mu$-a.e. for all $E \in \mathcal{M}$ on which $\mu$ is $\sigma$-finite.\retTwo
 
 	\exThreeP%
 	Proof:\\
@@ -6591,9 +6591,7 @@ Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$
 		
 		And since $f_0^{(F)}$ is measurable on the subspace $D_F$ of $(X, \mathcal{M})$, we've thus proven that $f^{-1}((a, \infty]) \cap F \in \mathcal{M}$ for all $F$. It follows from the definition of a decomposition that $f^{-1}((a, \infty]) \in \mathcal{M}$. And since the open rays form a basis for $\mathcalli{B}_{\overline{\mathbb{R}}}$, we have proven that $f$ is measurable.\newpage
 
-		\item To show that $\nu(A) = \int_A f \df \mu$ when $\mu$ is $\sigma$-finite on $A$, first suppose that $\mu(A) < \infty$. Then we know from axiom (iii) of the definition of a decomoposition that there exists a countable subset $\mathcalli{F}_0 \subseteq \mathcalli{F}$ such that $\mu(A) = \sum_{F \in \mathcalli{F}_0} \mu(A \cap F)$. One consequence of this is that:
-		
-		{\centering$\int_A f \df \mu = \sum_{F \in \mathcalli{F}_0} \int_{A \cap F} f \df \mu$.\retTwo\par}
+		\item To show that $\nu(A) = \int_A f \df \mu$ when $\mu$ is $\sigma$-finite on $A$, first suppose that $\mu(A) < \infty$. Then we know from axiom (iii) of the definition of a decomoposition that there exists a countable subset $\mathcalli{F}_0 \subseteq \mathcalli{F}$ such that $\mu(A) = \sum_{F \in \mathcalli{F}_0} \mu(A \cap F)$. One consequence of this is that $\int_A f \df \mu = \sum_{F \in \mathcalli{F}_0} \int_{A \cap F} f \df \mu$.\retTwo
 		
 		Another consequence is that because the $F \in \mathcalli{F}$ partition $X$, we know\\ $\mu(A \cap (\bigcup_{F \in \mathcalli{F}_0^\comp} F)) = 0$. Then in turn, since $\nu \ll \mu$, we also know that\\ $\nu(A \cap (\bigcup_{F \in \mathcalli{F}_0^\comp} F)) = 0$. So, we must have that $\nu(A) = \sum_{F \in \mathcalli{F}_0}\nu(A \cap F)$.\\ And now we claim for each $F$ that $\nu(A \cap F) = \int_{A \cap F} f \df \mu$.
 
@@ -6618,13 +6616,13 @@ Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$
 
 	\mySepThree
 
-	Now we come back to the case where $\nu$ is signed. Let $\nu^+$ and $\nu^-$ be the positive and negative variations of $\nu$, and also let $P$ and $N$ be measurable subsets of $X$ such that $\nu^+(N) = 0$ and $\nu^-(P) = 0$. Then by our prior reasoning we know there exists measurable functions $f^+$ and $f^-$ such that $\nu^+(A) = \int_A f^+ \df \mu$ and $\nu^-(A) = \int_A f^- \df \mu$ for all $A$ on which $\mu$ is $\sigma$-finite. By setting $f = f^+ - f^-$, we thus get a measurable function such that $\nu(A) = \int_A f \df \mu$ for all $A$ on which $\mu$ is $\sigma$-finite.\newpage
+	Now we return to the case where $\nu$ is signed. Let $\nu^+$ and $\nu^-$ be the positive and negative variations of $\nu$, and also let $P$ and $N$ be measurable subsets of $X$ such that $\nu^+(N) = 0$ and $\nu^-(P) = 0$. Then by our prior reasoning we know there exists measurable functions $f^+$ and $f^-$ such that $\nu^+(A) = \int_A f^+ \df \mu$ and $\nu^-(A) = \int_A f^- \df \mu$ for all $A$ on which $\mu$\\ is $\sigma$-finite. Also, since either $\nu^+$ or $\nu^-$ is finite, we know either $f^+$ or $f^-$ never outputs $\infty$. So by setting $f = f^+ - f^-$, we get a measurable function such that $\nu(A) = \int_A f \df \mu$ for all $A$ on which $\mu$ is $\sigma$-finite.\newpage
 
 	Now suppose $g$ is as in the theorem statement, and let $g^+$ and $g^-$ be it's positive and\\ negative parts. Given any $F \in \mathcalli{F}$ we must have that $\int_A g \df \mu = \nu(A) = \nu^+(A) \geq 0$ for\\ all measurable $A \subseteq F \cap P$. It follows that $g \geq 0$ $\mu$-a.e. on $F \cap P$, and in turn:
 	
 	{\centering $\int_A g^+ \df \mu = \nu^+(A)$ when $A \subseteq F \cap P$.\retTwo\par}
 
-	By similar reasoning, we can show that $g \leq 0$ $\mu$-a.e. on $F \cap N$. This is important because it shows that $g^+ = 0$ $\mu$-a.e. on $F \cap N$. So $\int_A g^+ \df \mu = 0 = \nu^+(A)$ for all $A \subseteq F \cap N$. And hence, we can conclude that $\int_A g^+ = \nu^+(A)$ for all $A \subseteq F$. It easily follows that $\int_A g^+ = \nu^+(A)$ for all $A$ satisfying that $\mu(A) < \infty$. But then by the prior reasoning we did, we know that $g^+ = f^+$ $\mu$-a.e. on any set $E$ which $\mu$ is $\sigma$-finite on.\retTwo
+	By similar reasoning, we can show that $g \leq 0$ $\mu$-a.e. on $F \cap N$. This is important because it shows that $g^+ = 0$ $\mu$-a.e. on $F \cap N$. So $\int_A g^+ \df \mu = 0 = \nu^+(A)$ for all $A \subseteq F \cap N$. And hence, we can conclude that $\int_A g^+ \df \mu = \nu^+(A)$ for all $A \subseteq F$. It easily follows that $\int_A g^+ \df \mu = \nu^+(A)$ for all $A$ satisfying that $\mu(A) < \infty$. But then by the prior reasoning we did, we know that $g^+ = f^+$ $\mu$-a.e. on any set $E$ which $\mu$ is $\sigma$-finite on.\retTwo
 
 	Analogous reasoning can be used to show that $g^- = f^-$ $\mu$-a.e. on any set $E$ which $\mu$ is $\sigma$-finite on. $\blacksquare$\retTwo
 \end{myIndent}
@@ -6856,7 +6854,7 @@ My first challenge is that I'm primarily working with Borel Radon measures while
 		Since $\mu$ and $\nu$ are $\sigma$-finite, we know by the exercise on pages 158 and 159 that $\mathcal{M}_\mu$ and $\mathcal{M}_\nu$ are just the completions of $\mathcal{M}$ with respect to $\mu$ and $\nu$ respectively. Since $\nu(X) = 0$, we have that $\mathcal{M}_\nu = \mathcal{P}(X)$. Meanwhile, because of the existance of Vitali sets, we know that $\mathcal{M}_\mu \neq \mathcal{P}(X)$. $\blacksquare$.\retTwo
 	\end{myIndent}
 
-	\item We do always have that $\mathcal{M}_\mu \subseteq \mathcal{M}_\nu$.
+	\item We do always have that $\mathcal{M}_\mu \subseteq \mathcal{M}_\nu$ when $\mu$ and $\nu$ are Radon and $\nu \ll \mu$.
 	
 	\begin{myIndent}\exThreeP
 		Proof: (I got this argument from Hewitt and Stromberg 19.33)\\
@@ -6871,10 +6869,98 @@ My first challenge is that I'm primarily working with Borel Radon measures while
 	\end{myIndent}
 \end{itemize}
 
+\hTwo It follows that if $X$ is an LCH space, then given any two positive Radon measures $\mu$ and $\nu$ on $(X, \mathcalli{B}_X)$ with $\nu \ll \mu$ we can extend $\mu$ and $\nu$ to measures $\overline{\mu}$ and $\overline{\nu}$ on a common $\sigma$-algebra $\mathcal{M}$ with precisely the following properties:\\ [-18pt]
+\begin{itemize}
+	\item $\overline{\mu}$ and $\overline{\nu}$ are both outer regular on all sets and inner regular on all $\sigma$-finite sets;\\ [-18pt]
+	\item $\overline{\mu}$ and $\overline{\nu}$ are both finite on all compact sets;\\ [-18pt]
+	\item $(X, \mathcal{M}, \overline{\mu})$ is the saturation of the completion of $(X, \mathcalli{B}_X, \mu)$;\\ [-18pt]
+	\item $(X, \mathcal{M}, \overline{\mu})$ is decomposable;\\ [-18pt]
+	\item $\overline{\nu} \ll \overline{\mu}$.\retTwo
+\end{itemize}
 
+Now using the theorems from Hewitt and Stromberg, I want to show that $\overline{\nu} = \overline{f} \df \overline{\mu}$ for some $\overline{\mu}$-measurable function $\overline{f}$. As it turns out, when $\nu$ is $\sigma$-finite (which in turn means $\overline{\nu}$ is $\sigma$-finite), this is always possible:\retTwo
 
+\exTwo\mySepTwo
 
+\ul{Proposition:} Let $(X, \mathcal{M})$ be a measurable LCH space and suppose $\mu$ and $\nu$ are positive measures on $(X, \mathcal{M})$ satisfying that $\nu$ is inner regular on all $\sigma$-finite sets; that $\mu$ is finite on all compact sets; that $\nu \ll \mu$; and that $(X, \mathcal{M}, \mu)$ is decomposable via the decomposition $\mathcalli{F}$. If $\nu$ is $\sigma$-finite, then there exists an $\mathcal{M}$-measurable function $f: X \to [0, \infty)$ which vanishes outside a set on which $\mu$ is $\sigma$-finite such that $\nu(A) = \int_A f \df \mu$ for all $A \in \mathcal{M}$. Furthermore, if $\nu$ is finite, then $f \in L^1(\mu)$. And if $g : X \to [0, \infty)$ is another function satisfying $\nu(A) = \int_A g \df \mu$ for all $A \in \mathcal{M}$, then $f = g$ $\mu$-a.e.
 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We shall first suppose that $\nu$ is finite. Then by applying theorem 19.27 on page 156, we know there exists a measurable function $f: X \to [0, \infty)$ satisfying that $\nu(A) = \int_A f \df \mu$ whenever $\mu$ is $\sigma$-finite on $A$. Furthermore, since $\mu(F) < \infty$ for all $F \in \mathcalli{F}$, we thus know that $\nu(F) = \int_F f \df \mu$ for all $F \in \mathcalli{F}$.\retTwo
+
+	Now recall that $\sum_{F \in \mathcalli{F}} \nu(F)$ is by definition equal to the suprememum of all finite sums of the $\nu(F)$. Thus, while we cannot currently guarentee strict equality due to the fact that $\mathcalli{F}$ may be uncountable, we can at least say that $\nu(X) \geq \sum_{F \in \mathcalli{F}}\nu(F)$. And since $\nu(X) < \infty$, this proves that there is a countable subset $\mathcalli{F}_1 \subseteq \mathcalli{F}$ satisfying that $\nu(F) = 0$ for all $F \notin \mathcalli{F}_1$. And clearly $\nu(X) = \nu(\hspace{-0.1em}\bigcup\limits_{F \notin \mathcalli{F}_1}\hspace{-0.1em} F) + \hspace{-0.1em}\sum\limits_{F \in \mathcalli{F}_1} \hspace{-0.1em}\nu(F)$.\retTwo
+
+	Now we claim $\nu(\bigcup_{F \notin \mathcalli{F}_1} F) = 0$. After all, if the set weren't null, then we'd have that\\ $0 < \nu(\bigcup_{F \notin \mathcalli{F}_1} F) \subseteq \nu(X) < \infty$. It would thus follow by the inner regularity of $\nu$ that\\ there is a compact set $K \subseteq \bigcup_{F \notin \mathcalli{F}_1} F$ with $\nu(K) > 0$. But then we'd have that\\ $\mu(K) < \infty$, which means $\nu(K) = \int_K f \df \mu$ and $\mu(K) = \sum_{F \in \mathcalli{F}}\mu(F \cap K)$.\retTwo
+	
+	Now we can't have that $\mu(K) = 0$ since that would contradict that $\nu(K) = \int_K f \df \mu > 0$. Hence, there is a nonempty countable family $\mathcalli{F}_2 \subseteq \mathcalli{F}$ such that $\mu(F \cap K) > 0$ for all\\ $F \in \mathcalli{F}_2$ and $\mu(F \cap K) = 0$ for all $F \notin \mathcalli{F}_2$. Also, since $K$ doesn't intercept any $F \in \mathcalli{F}_1$, we know that $\mathcalli{F}_1 \cap \mathcalli{F}_2 = \emptyset$. But now note that:
+	
+	{\centering$0 < \nu(K) = \int_K f \df \mu = \sum_{F \in \mathcalli{F}_2} \int_{F \cap K} f \df \mu = \sum_{F \in \mathcalli{F}_2} \nu(F \cap K)$.\newpage\par}
+
+	This implies that there is some $F \in \mathcalli{F}_2$ such that $\nu(F) > \nu(F \cap K) > 0$. But that is a contradiction since we already know that $\nu(F) = 0$ if $F \notin \mathcalli{F}_1$. Hence, we have proven that there is a set $E = \bigcup_{F \in \mathcalli{F}_1} F$ which $\mu$ is $\sigma$-finite on such that $\nu(X) = \nu(E)$. And in turn, we've now proven that $\nu = f\chi_E \df \mu$.
+	\begin{myIndent}\exPPP
+		And as a side note: if $f\chi_E \in L^1(\mu)$ because $\int f \chi_E \df \mu = \nu(X) < \infty$.\retTwo
+	\end{myIndent}
+
+	Next, we consider the case where $\nu$ is $\sigma$-finite. Let $(X_n)_{n \in \mathbb{N}}$ be a partition of $X$ consisting of finitely measurable sets. Then by identical reasoning as before, we can find for each $n$ a set $E_n \subseteq X$ on which $\mu$ is $\sigma$-finite and $\nu(X_n \cap A) = \int_A f \chi_{E_n} \df \mu$ for all $A \in \mathcal{M}$. Also, since $E_n \subseteq X_n$ for all $n$, it is clear that they are all disjoint. So, $E \coloneqq \bigcup_{n \in \mathbb{N}} E_n$ satisfies that $\mu$ is $\sigma$-finite on $E$ and $f\chi_E = \sum_{n \in \mathbb{N}} f\chi_{E_n}$. Also, it is clear that $\nu = f\chi_E \df \mu$ since:
+	
+	{\centering$\nu(A) = \sum_{n \in \mathbb{N}}\nu(X_n \cap A) = \sum_{n \in \mathbb{N}}\int_A f\chi_{E_n} \df \mu = \int_A f \chi_E \df \mu$ for all $A \in \mathcal{M}$.\retTwo\par}
+	
+	Finally, we show uniqueness. Suppose $g: X \to [0, \infty)$ is another function satisfying that $\nu = g \df \mu$ and let $B = \{x \in X: f(x)\chi_E(x) \neq g(x)\}$. Then it's clear that:
+	
+	{\centering$B = (B \cap E) \cup (B - E)$.\retTwo\par}
+	
+	Since $E$ is $\sigma$-finite, we already know from theorem 19.27 that there is a $\mu$-null set $N_1$ with $B \cap E \subseteq N_1$. Also, $B - E = \{x \in X - E : g(x) > 0\}$. So, if $\mu(B - E) > 0$, then we'd have that $\nu(B - E) = \int_{B - E} g \df \mu > 0$. But that contradicts that $\nu(X - E) = 0$. So, we can conclude that $\mu(B - E) = 0$. This proves that $f\chi_E = g$ $\mu$-a.e. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo To finish making this useful for our purposes we need to find a $\mathcalli{B}_X$-measurable function $f$ such that $\overline{f} = f$ $\overline{\mu}$-a.e. That way, for all $A \in \mathcalli{B}_X$ we have that:
+
+{\centering $\int_A f \df \mu = \int_A f \df \overline{\mu} = \int_A \overline{f} \df \overline{\mu} = \overline{\nu}(A) = \nu(A)$ \retTwo\par}
+
+Fortunately, if we let $(X, \mathcalli{N}, \overline{\mu}|_{\mathcalli{N}})$ be the completion of $(X, \mathcalli{B}_X, \mu)$ (meaning $(X, \mathcal{M}, \overline{\mu})$ is the saturation of $(X, \mathcalli{N}, \overline{\mu}|_{\mathcalli{N}})$), then we know  that $\overline{f}$ is $\mathcalli{N}$-measurable.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We know $\overline{f}$ vanishes outside a set on which $\overline{\mu}$ is $\sigma$-finite. It follows that if $a < 0$, then $\overline{f}^{-1}((a, \infty)) = X \in \mathcalli{N}$; and if $a \geq 0$, then $\overline{f}^{-1}((a, \infty))$ is $\sigma$-finite. Now we claim that all sets for which $\overline{\mu}$ is $\sigma$-finite are in $\mathcalli{N}$. After all, if $\overline{\mu}$ is $\sigma$-finite on $E$, then we know there is a sequence of sets $(E_n)_{n \in \mathbb{N}}$ whose union is $E$ and which satisfy that $\overline{\mu}(E_n) < \infty$ for all $n$. Then since all the $E_n$ have finite measure, we know that $E_n \in \mathcalli{N}$ for all $n$. So, $E$ is also in $\mathcalli{N}$.\retTwo
+
+	With that, we've shown that $\overline{f}^{-1}((a, \infty))$ is $\mathcalli{N}$-measurable for all $a \in \mathbb{R}$. This proves that $\overline{f}$ is $\mathcalli{N}$-measurable. $\blacksquare$\retTwo
+\end{myIndent}
+
+Now, it is a simple application of the proposition on page 46 of my latex math 240a notes to show there exists a $\mathcalli{B}_X$-measurable function $f$ such that $\overline{f} = f$ a.e. with respect to $(X, \mathcalli{N}, \overline{\mu}|_{N_x})$. And since saturating the latter $\sigma$-algebra doesn't add any new null sets, we have that $f = \overline{f}$ $\overline{\mu}$-a.e. Thus, we have found a $\mathcalli{B}_X$-measurable function $f$ such that\\ $\nu = f \df \mu$.\newpage
+
+One more note I want to make is that if $g$ is another $\mathcalli{B}_X$-measurable function such that $\nu = g \df \mu$, then $f = g$ $\mu$-a.e.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Since $\overline{f}$ vanishes outside a set on which $\overline{\mu}$ is $\sigma$-finite and $\overline{f} = f$ $\overline{\mu}$-a.e., we also know that $f$ vanishes outside a set on which $\overline{\mu}$ is $\sigma$-finite. If we call that set $E$, then we have that $f = f\chi_E$ everywhere. Also note that since $E$ is in $\mathcalli{N}$ on account of $\overline{\mu}$ being $\sigma$-finite on it, we can expand $E$ to a larger set in $\mathcalli{B}_X$ that $\overline{\mu}$ is still $\sigma$-finite on. Hence, we may without loss of generality just say that $E \in \mathcalli{B}_X$. One final note is that if $\overline{\mu}$ is $\sigma$-finite on $E$, then we also know that $\mu$ is $\sigma$-finite on $E$. So, we conclude that $f = f\chi_E$ where $E \in \mathcalli{B}_X$ and $\mu$ is $\sigma$-finite on $E$.\retTwo
+
+	Now let $B \coloneqq \{x \in X: g(x) \neq f(x)\}$. Then we know that $B = (B \cap E) \cup (B - E)$. Our claim is that both of the latter sets are null with respect to $\mu$.
+	\begin{myIndent}
+		First suppose that $\mu(B - E) > 0$. Then since $B - E = \{x \in X - E : g(x) > 0\}$, we'd have to have that $\nu(B - E) = \int_{B - E} g \df \mu > 0$. But that contradicts that $\nu(B - E) = \int_{B - E} f \df \mu = \int_{B - E} 0 \df \mu = 0$. So, we conclude that $\mu(B - E) = 0$.\retTwo
+
+		Meanwhile, if $B \cap E$ is not a null set, then because $\mu$ is $\sigma$-finite (and thus also\\ semifinite) on $E$, we must be able to pick a set $C \in \mathcalli{B}_X$ such that $0 < \mu(C) < \infty$\\ and $g(x) \neq f(x)$ for all $x \in C$. Then in turn we'd have that:
+
+		{\centering $\int_C |f(x) - g(x)| \df \mu> 0$ \retTwo\par}
+
+		But note that since $\nu$ is $\sigma$-finite, we know there there is a disjoint sequence of\\ sets $\{C_n\}_{n \in \mathbb{N}}$ such that $C = \bigcup_{n \in \mathbb{N}} C_n$ and $\nu(C_n) = \int_{C_n}f \df \mu = \int_{C_n} g \df \mu < \infty$\\ for all $n$. Also, for each $n$ we can define $C_n^+ \coloneqq \{x \in C_n : f(x) > g(x)\}$ and\\ $C_n^- \coloneqq \{x \in C_n : g(x) > f(x)\}$. And thus:
+		
+		{\center $\int_C |f(x) - g(x)| \df \mu = \sum\limits_{n \in \mathbb{N}} \int_{C_n^+}(f(x) - g(x))\df \mu + \sum\limits_{n \in \mathbb{N}} \int_{C_n^-}(g(x) - f(x))\df \mu$ \retTwo\par}
+
+		But now because $\int_{C_n^\pm} f(x) \df \mu = \int_{C_n^\pm} g(x) \df \mu = \nu(C_n^\pm)$ where $\nu(C_n^\pm)$ is finite, we must have that $\int_C |f(x) - g(x)| \df \mu = 0$ as:
+		
+		{\center $\int_{C_n^+} (f(x) - g(x)) \df \mu = 0 = \int_{C_n^-} (g(x) - f(x))\df \mu$ for all $n$.\retTwo\par}
+
+		This is a contradiction. So, we've proven that $\mu(B \cap E) = 0$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+So to sum all my previous work up, we have the following result:\retTwo
+
+\exTwo\ul{Another Extension of the Lebesgue-Radon-Nikodym Theorem:}
+\begin{myIndent}
+	If $X$ is an LCH space and $\mu$ and $\nu$ positive Radon measures on $(X, \mathcalli{B}_X)$ such that\\ $\nu$ is $\sigma$-finite and $\nu \ll \mu$, then there exists a measurable function $f: X \to [0, \infty)$\\ which vanishes outside of a set where $\mu$ is $\sigma$-finite and which satisfies that $\nu = f \df \mu$.\\ Furthermore, if $g$ is another measurable function satisfying that $\nu = g \df \mu$, then\\ $f = g$ $\mu$-a.e.
+\end{myIndent}
 
 
 
