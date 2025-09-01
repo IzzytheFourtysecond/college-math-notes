@@ -246,12 +246,14 @@
 
 \newcommand{\mMat}[1]{\mathbf{#1}}
 
-\newcommand{\NBV}{\mathrm{NBV}}
+\newcommand{\NBV}{\ensuremath{\mathrm{NBV}}}
 \newcommand{\Acc}{\mathrm{Acc}}
-\newcommand{\BV}{\mathrm{BV}}
+\newcommand{\BV}{\ensuremath{\mathrm{BV}}}
 
 \newcommand{\Alt}{\mathrm{Alt}}
 \newcommand{\Sym}{\mathrm{Sym}}
+
+\newcommand{\weakst}{weak$^*$ }
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -2666,7 +2668,7 @@ I'm going to be taking more analysis notes from Folland. I'm starting with the\\
 		$I(f) = J(\rea{f}) + iJ(\ima{f})$\\ [4pt]
 		$\phantom{I(f)} = J_1(\rea{f}) + iJ_2(\rea{f}) + iJ_1(\ima{f}) + i^2J_2(\ima{f})$\\ [4pt]
 		$\phantom{I(f)} = J_1^+(\rea{f}) - J_1^-(\rea{f}) + iJ_2^+(\rea{f}) - iJ_2^-(\rea{f})$\\
-		$\phantom{I(f) +} + iJ_1^+(\ima{f}) - iJ_1^-(\ima{f}) + i^2J_2^+(\ima{f}) - i^2J_2^-(\ima{f})$\\ [4pt]
+		$\phantom{I(f) +} + iJ_1^+(\ima{f}) - iJ_1^-(\ima{f}) + i^2J_2^+(\ima{f}) - i^2J_2^-(\ima{f})$\\ [8pt]
 		$\phantom{I(f)} = I_1^+(f) - I_2^-(f) + iI_2^+(f) - iI_2^-(f)$\\ [4pt]
 	\end{tabular} \retTwo\par}
 
@@ -2740,7 +2742,10 @@ A thing that Folland neglected to show is that while it's clear that $\mu_1 - \m
 	\ul{Lemma (Riesz Representation theorem on $C_0(X, \mathbb{R})^*$):} There is a one-to-one\\ correspondance between positive linear functionals in $C_0(X, \mathbb{R})^*$ and finite Radon measures on $(X, \mathcal{B}_X)$.
 
 	\begin{myIndent}\pracTwo
-	To start out, if $I \in C_0(X, \mathbb{R})^*$, then recall that there is a unique $J \in C_0(X)^*$ such that $J|_{C_0(x, \mathbb{R})} = I$. Namely, $J(f) = I(\rea{f}) + iI(\ima{f})$. Then $I$ being positive means that $J$ is positive. So by the Riesz Representation theorem, there is a unique finite Radon measure $\mu$ on $(X, \mathcal{B}_X)$ such that $J(f) = \int f \df \mu$. Then since $C_0(X, \mathbb{R}) \subseteq C_0(X)$, we have that $I(f) = \int f \df \mu$ for all $f \in C_0(X, \mathbb{R})$. At the same time, for any finite Radon measure $\mu$, $f \mapsto \int f \df \mu$ is in $C_0(X, \mathbb{R})^*$. So, there is a bijective correspondence between finite Radon measures on $X$ and $\{f \in C_0(X, \mathbb{R})^* : f \text{ is positive}\}$.\retTwo
+		Proof:\\
+		Recall that there is a bijection between $C_0(X, \mathbb{R})^*$ and $C_0(X)^*$. Namely given any $I \in C_0(X, \mathbb{R})^*$, define $J \in C_0(X)^*$ by setting $J(f) = I(\rea{f}) + iI(\ima{f})$ for all $f$. And to go the other way, just restrict the domain of $J$.\retTwo
+
+		Now in that bijection, it's clear that $I$ is positive iff $J$ is positive. Also, it's clear that $I(f) = \int f \df \mu$ for all $f \in C_0(X, \mathbb{R})$ iff $J(f) = \int f \df \mu$ for all $f \in C_0(X)$. So, we can apply the Riesz Representation theorem we already proved to say that there is a bijective correspondence between finite Radon measures on $X$ and\\ $\{I \in C_0(X, \mathbb{R})^* : I \text{ is positive}\}$.
 	\end{myIndent}
 	
 	Now suppose $I \in C_0(X, \mathbb{R})^*$ and let $I = I^+ - I^-$ where $I^\pm \in C_0(X, \mathbb{R})^*$ are as we constructed in Lemma 7.15. As we just demonstrated, there are finite Radon measures $\mu_1$ and $\mu_2$ such that $I^+(f) = \int f \df \mu_1$ and $I^-(f) = \int f \df \mu_2$. In turn, setting $\mu = \mu_1 - \mu_2$ we have that $I(f) = \int f \df \mu$.\retTwo
@@ -3251,7 +3256,7 @@ Recalling page 53 of this journal, it's easy to see that the Cantor function is 
 
 	Taking things one step further, define $H_k(x) = G_k(x) - G_k(a)$ and $H(x) = G(x) - G(a)$. Since adding by a constant doesn't change the derivative of a function at all, we still know that $H_k^\prime = F_k^\prime$; $H^\prime = F^\prime$ a.e. on $[a, b]$ Also, since $G_k$ and $G$ are monotone increasing, we\\ [1pt] know that $G_k(x) \geq G_k(a)$ and $G(x) \geq G(a)$ for all $x$. Hence, all of our $H_k$ and $H$ are still nonnegative monotone increasing functions on $\mathbb{R}$. And clearly $H(x) = \sum_{k=1}^\infty H_k(x)$ for all $x \in \mathbb{R}$.\retTwo
 
-	The significance of this is that if we now prove that $H^\prime(x) = \sum_{k = 1}^\infty H_k^\prime(x)$ for a.e.\\ [1pt] $x \in [a, b]$, then we will have also shown that $F^\prime(x) = \sum_{k=1}^\infty F_k^\prime(x)$ for a.e. $x \in [a, b]$.\\ [0pt] But importantly, all our $H_k$ and $H$ are in $\NBV$. After all, they are in $\BV$ because they\\ [0pt] are bounded and monotone increasing. Also, they are all right continuous and\\ [0pt] $H_k(-\infty) = 0 = H(-\infty)$. It then follows that there are unique finite Borel measures\\ [0pt]  $\mu_{H_k}$ and$\mu_H$ such that $\mu_{H_k}((-\infty, x]) = H_k(x)$ and $\mu_{H}((-\infty, x]) = H(x)$.\retTwo
+	The significance of this is that if we now prove that $H^\prime(x) = \sum_{k = 1}^\infty H_k^\prime(x)$ for a.e.\\ [1pt] $x \in [a, b]$, then we will have also shown that $F^\prime(x) = \sum_{k=1}^\infty F_k^\prime(x)$ for a.e. $x \in [a, b]$.\\ [0pt] But importantly, all our $H_k$ and $H$ are in $\NBV$. After all, they are in $\BV$  because they\\ [0pt] are bounded and monotone increasing. Also, they are all right continuous and\\ [0pt] $H_k(-\infty) = 0 = H(-\infty)$. It then follows that there are unique finite Borel measures\\ [0pt]  $\mu_{H_k}$ and$\mu_H$ such that $\mu_{H_k}((-\infty, x]) = H_k(x)$ and $\mu_{H}((-\infty, x]) = H(x)$.\retTwo
 
 	Now let $\df \mu_{H_k} = \df \lambda_k + f_k \df m$ and $\df \mu_H = \df \lambda + f \df m$ be the Radon-Nikodym\\ representations of $\mu_{H_k}$ and $\mu_H$ with respect to the Lebesgue measure. Then since $\mu_H$ and $\mu_{H_k}$ are both finite measures in the separable locally compact Hausdorff space $\mathbb{R}$, we know by theorem 7.8 that $\mu_{H_k}$ and $\mu_H$ are regular. Also, if we let $E_r(x) = (x, x + r]$ for all $r > 0$ and $x \in \mathbb{R}$, then we know that $E_r$ shrinks nicely to $x$ for all $x$. Therefore, by the generalized Lebesgue differentiation theorem, we have:
 
@@ -3328,7 +3333,7 @@ Recalling page 53 of this journal, it's easy to see that the Cantor function is 
 
 	Hence, for any $a < b$, we have:\\ [-15pt]
 	
-	{\centering $\int_a^b |f(x)|^2\df x = b|f(b)|^2 - a|f(a)|^2 - 2\rea{\int_a^b f^\prime(x)\overline{f(x)}\df x}$\retTwo\par}
+	{\centering $\int_a^b |f(x)|^2\df x = b|f(b)|^2 - a|f(a)|^2 - 2\rea{\int_a^b x f^\prime(x)\overline{f(x)}\df x}$\retTwo\par}
 
 
 	Now since the inequality we want to prove is trivial if $\int |xf(x)|^2 \df x = \infty$, we can\\ [-1pt] safely assume $\int |xf(x)|^2 \df x < \infty$. This is important because it guarentees that for\\ [-1pt] any $n \in \mathbb{N}$ and $\varepsilon > 0$, we can pick $a_n < -n$ and $b_n > n$ such that $|a_nf(a_n)|^2 < \sfrac{1}{n}$\\ [2pt] and $|b_n f(b_n)|^2 < \sfrac{1}{n}$. In turn, this lets us say that $a_n|f(a_n)|^2 \in (-\sfrac{1}{n}, 0]$ and\\ [1pt] $b_n|f(b_n)|^2 \in [0, \sfrac{1}{n})$ since $a_n < -1$ and $b_n > 1$.\retTwo
@@ -3337,14 +3342,14 @@ Recalling page 53 of this journal, it's easy to see that the Cantor function is 
 
 	{\centering \begin{tabular}{l}
 		$\int |f(x)|^2 \df x = \lim\limits_{n \to \infty} \int_{a_n}^{b_n} |f(x)|^2 \df x$\\ [4pt]
-		$\phantom{\int |f(x)|^2 \df x} = \lim\limits_{n \to \infty} \left(b_n|f(b_n)|^2 - a_n|f(a_n)|^2 - 2 \rea{\int_{a_n}^{b_n} f^\prime(x)\overline{f(x)}\df x}\right)$\\ [8pt]
+		$\phantom{\int |f(x)|^2 \df x} = \lim\limits_{n \to \infty} \left(b_n|f(b_n)|^2 - a_n|f(a_n)|^2 - 2 \rea{\int_{a_n}^{b_n} x f^\prime(x)\overline{f(x)}\df x}\right)$\\ [8pt]
 		$\phantom{\int |f(x)|^2 \df x} = -2 \cdot \lim\limits_{n \to \infty} \rea{\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\df x}$\\
 	\end{tabular} \retTwo\par}
 
-	Then by the Cauchy-Schwartz inequality (using the fact that $f^\prime\chi_{[a_n, b_n]}, x\overline{f} \in L^2)$, we can say that:\\ [-19pt]
+	Then by the Cauchy-Schwartz inequality (using the fact that $f^\prime\chi_{[a_n, b_n]}, xf \in L^2)$, we can say that:\\ [-19pt]
 
 	{\centering \begin{tabular}{l}
-		$-2 \cdot \lim\limits_{n \to \infty} \rea{\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\df x} \leq 2 \lim\limits_{n \to \infty} \left|\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\right|$\\ [8pt]
+		$-2 \cdot \lim\limits_{n \to \infty} \rea{\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\df x} \leq 2 \lim\limits_{n \to \infty} \left|\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)} \df x\right|$\\ [8pt]
 		$\phantom{-2 \cdot \lim\limits_{n \to \infty} \rea{\int_{a_n}^{b_n} xf^\prime(x)\overline{f(x)}\df x}} \leq 2 \lim\limits_{n \to \infty} \left(\int_{a_n}^{b_n} |f^\prime(x)|^2 \df x\right)^{\sfrac{1}{2}}\hspace{-0.4em}\left(\int |xf(x)|^2 \df x\right)^{\sfrac{1}{2}}$\\ [8pt]
 	\end{tabular} \retTwo\par}
 
@@ -6977,12 +6982,118 @@ Going a step further, if $\nu$ is complex, then we can apply the prior reasoning
 
 \hOne\dispDate{8/30/2025}
 
+\hTwo Let $X$ be an LCH space. Given any fixed positive Radon measure $\mu$, we can isometrically embed $L^1(\mu)$ into $M(X)$ as follows:
+
+\begin{myIndent}\hThree
+	Define a map $L^1(\mu) \hookrightarrow M(X)$ such that $f \mapsto f \df \mu$ for all $f \in L^1(\mu)$. By the exercise on page 154, we know that $f \df \mu$ is in fact Radon. Also, we know that the image of this map is precisely the subset of $M(X)$ consisting of all complex measures that are absolutely continuous with respect to $\mu$ (this works even if $\mu$ is not Radon by the rabbithole I went down this past week).\retTwo
+
+	Also, we can easily see that $\| f \df \mu \|_{M(X)} = \|f\|_1$.
+	\begin{myIndent}\pracTwo
+		I want to be slightly careful about saying this since I'm not assuming $\mu$ is $\sigma$-finite.\retTwo
+
+		Let $\nu = f \df \mu$. Now we know from math 240a that there exists a measurable function\\ [2pt] $g$ with $|g| = 1$ $|\nu|$-a.e. such that $\nu = g \df |\nu|$. Furthermore, we know from the rabbit\\ [2pt] hole before that there exists a nonnegative function $\frac{\df |\nu|}{\df \mu}$ such that $\df |\nu| = \frac{\df |\nu|}{\df \mu} \df \mu$. Hence, we have that $\nu = g \frac{\df |\nu|}{\df \mu} \df \mu$, and this proves that $f = g \frac{\df |\nu|}{\df \mu}$ a.e.. Then in turn we also have that $|f| = \frac{\df |\nu|}{\df \mu}$ and $|\nu| = |f|\df \mu$. This proves that even if $\mu$ is not\\ $\sigma$-finite, we still have that $\nu = f \df \mu \Longrightarrow |\nu| = |f|\df\mu$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+An important application of the above fact is that if $m$ is the Lebesgue measure on $\mathbb{R}^n$, then we can identify $L^1(m)$ as a subspace $M(X)$. This will be used in my journal later.\retTwo
+
+Given a net $\langle \mu_\alpha \rangle_{\alpha \in A}$ and another measure $\mu$ in $M(X)$, we have that $\mu_\alpha \to \mu$ in the \weakst topology on $M(X) = C_0(X)^*$ iff we have that $\int f \df \mu_\alpha \to \int f \df \mu$ for all $f \in C_0(X)$. This topology is important enough to be given a second name: the \udefine{vague topology} on $M(X)$.\newpage
+
+Before covering the next theorem in Folland, I'm gonna do another side quest concerning the Stone-Weierstrass Theorem.\retTwo
+
+\Hstatement\blab{Exercise 4.67:} Let $X$ be a noncompact LCH space. If $\mathcalli{A}$ is a closed subalgebra of $C_0(X, \mathbb{R})$ that separates points, then either $\mathcalli{A} = C_0(X, \mathbb{R})$ or $\mathcalli{A} = \{f \in C_0(X, \mathbb{R}) : f(x_0) = 0\}$ for some $x_0 \in X$.
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	First suppose there does not exist any $x_0 \in X$ such that $f(x_0) = 0$ for all $f \in \mathcalli{A}$. Then let $Y$ be the Alexandroff (i.e. one-point) compactification of $X$ and $i: C_0(X, \mathbb{R}) \hookrightarrow C(Y, \mathbb{R})$ be the injective map that continuously extends each $f$ to $Y$ by setting $f(\infty) = 0$. Now $i(\mathcalli{A})$ is a subalgebra of $C(Y, \mathbb{R})$ that separates points and for which $x_0 \coloneqq \infty$ satisfies that $f(x_0) = 0$ for all $f \in i(\mathcalli{A})$. So by the Stone Weierstrass theorem we already proved, we know that:\\ [-16pt]
+
+	{\centering $\overline{i(\mathcalli{A})} = \{f \in C(Y, \mathbb{R}) : f(\infty) = 0\}$ \retTwo\par}
+	
+	But now we claim that $i(\mathcalli{A})$ is closed. For suppose $g \in \overline{i(\mathcalli{A})}$ and  $\{f_n\}_{n \in \mathbb{N}}$ is a sequence in $i(\mathcalli{A})$ converging uniformly to $g$. Then it's clear that $f_n|_X \to g|_X$ uniformly. So $g|_X \in \mathcalli{A}$ since $\mathcalli{A}$ is closed. And in turn $g \in i(\mathcalli{A})$.\retTwo
+	
+	This shows that $i(\mathcalli{A}) = \overline{i(\mathcalli{A})} = \{f \in C(Y, \mathbb{R}) : f(\infty) = 0\}$. It then follows that\\ $\mathcalli{A} = C_0(X, \mathbb{R})$.\retTwo
+
+	Next suppose there does exist some $x_0 \in X$ such that $f(x_0) = 0$ for all $f \in \mathcalli{A}$. This poses a problem to our previous approach because $i(\mathcalli{A})$ no longer separates points. So to get around this, we first consider the subspace $X^\prime = X - \{x_0\}$. Importantly, $X^\prime$ is still Hausdorff. Also, since $X^\prime$ is an open subset of $X$, we know any $x \in X^\prime$ has a compact neighborhood $N \subseteq X^\prime$. Hence, $X^\prime$ is locally compact.\retTwo
+
+	Next, let $j$ be the map restricting the domain of each $f \in C_0(X, \mathbb{R})$ to $X^\prime$. Then note that\\ [1pt] if $f(x_0) = 0$, then $f|_{X^\prime} \in C_0(X^\prime, \mathbb{R})$. After all, if $\{x \in X : f(x) > \varepsilon\}$ is compact and\\ [1pt] entirely contained in $X^\prime$, then we also know that $\{x \in X^\prime : f|_X(x) > \varepsilon\}$ is compact in\\ [1pt] the subspace topology of $X^\prime$. As a result of this, we know that $j$ is an injective map from\\ [1pt] $\{f \in C_0(X, \mathbb{R}) : f(x_0) = 0\}$ into $C_0(X^\prime, \mathbb{R})$.\retTwo
+
+	Now, it is easily seen that $j(\mathcalli{A})$ is an algebra that separates points and vanishes nowhere. And, it is also seen similarly to earlier that $j(\mathcalli{A})$ is closed. But then by the first case\\ we proved in this exercise, we know that $j(\mathcalli{A}) = C_0(X^\prime, \mathbb{R})$. Hence, it follows that\\ $\mathcalli{A} = \{f \in C_0(X, \mathbb{R}) : f(x_0) = 0\}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Now in the next theorem, Folland brought up this exercise because he needs it to prove that $C^1_c(\mathbb{R})$ is dense in $C_0(\mathbb{R})$. However, in my math 240c notes I already proved a stronger statement that $C^\infty_c(\mathbb{R})$ is dense in $C_0(\mathbb{R})$. So was proving this unnecessary? No comment.\retTwo
+
+\exTwo\ul{Proposition 7.19:} Suppose $\mu, \mu_1, \mu_2, \ldots \in M(\mathbb{R})$ and let $F_n(X) = \mu_n((-\infty, x])$ and\\ $F(x) = \mu((-\infty, x])$.\\ [-22pt]
+\begin{itemize}
+	\item[(a)] If $\sup_{n \in \mathbb{N}}\|\mu_n\| < \infty$ and $F_n(x) \to F(x)$ for every $x$ at which $F$ is continuous, then $\mu_n \to \mu$ vaguely.\newpage
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		By Folland theorem 3.29 (check my paper math 240a notes), we know $F$ and each of the $F_n$ are all in \NBV. In turn, this means that $F$ and all the $F_n$ are continuous except at countably many points. So, our assumed conditions actually guarentee that $F_n \to F$ a.e. with respect to the Lebesgue measure.\retTwo
+
+		Now consider any $f \in C^1_c(\mathbb{R})$. By applying theorem 3.36 from math 240a, we can say that $\int f \df \mu = -\int f^\prime F \df x$ and that $\int f \df \mu_n = -\int f^\prime F_n \df x$ for all $n$.
+		\begin{myIndent}\exPPP
+			Side note: I just realized why theorem 3.36 is a strict generalization of\\ integration by parts as taught in undergrad analysis. If $f$ is a $C^1$ function\\ on $[a, b]$, then we know $f$ is absolutely continuous on $[a, b]$ via the mean\\ value theorem. And it follows then that the measure $f^\prime \df t$ satisfies that\\ $f(x) - f(a) = \int_{(a, x]}f^\prime(t)\df t$ for all $x \in [a, b]$.\retTwo
+			
+			Next suppose $f$ is $C^1$ everywhere,  $f^\prime \in L^1(\mathbb{R})$, and $f(-\infty) = 0$. Then\\ by taking $a \to -\infty$ and $b \to +\infty$ in the last paragraph, we get that $f^\prime \df t$\\ is a measure satisfying that $f(x) = \int_{(-\infty, x]} f^\prime \df t$.\retTwo
+
+			Thus, so long as $f$ is $C^1$, $f(-\infty) = 0$, and $f^\prime \in L^1$, we know that $f^\prime \df t$\\ is the unique borel measure such that $f(x) = \int_{(-\infty, x]} f^\prime \df t$. And since $f$ is continuous, we can always apply theorem 3.36 to $f$ and any other {\NBV} function.
+			\begin{myIndent}\pracTwo
+				Now if only I had thought about that while I was actually taking math 240. This is why I failed the qual. AAUGH.\retTwo
+			\end{myIndent}
+		\end{myIndent}
+
+		But note that $\|F_n\|_u \leq \|\mu_n\|$ for all $n$. So if we set $C = \|f^\prime\|_u \sup_{n \in \mathbb{N}}\|\mu_n\|$, then we can apply dominated convergence theorem using an upper bound of $C\chi_{\supp(f^\prime)}$ to show that $-\int f^\prime F_n \df x \to -\int f^\prime F \df x$ as $n \to \infty$. Hence, $\int f \df \mu_n \to \int f \df \mu$ as $n \to \infty$.\retTwo
+
+		Consequently, we have shown that $\int f \df \mu_n \to \int f \df \mu$ on a dense subset of $C_0(\mathbb{R})$. And so, by proposition 5.17 (see math 240b notes), we know $\int f \df \mu_n \to \int \df \mu$ for all $f \in C_0(\mathbb{R})$. This proves that $\mu_n \to \mu$ vaguely. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\item[(b)] If $\mu_n \to \mu$ vaguely, then $\sup_{n \in \mathbb{N}} \|\mu_n\| < \infty$. If in addition the $\mu_n$ are positive, then $F_n(x) \to F(x)$ at every $x$ at which $F$ is continuous. 
+
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		By the Riesz Representation theore, we already know that the linear functional\\ $f \mapsto \int f \df \mu_n$ from $C_0(\mathbb{R})$ to $\mathbb{C}$ has the operator norm $\|\mu_n\|$. Also, since $\mu_n \to \mu$\\ vaguely, we know that $\sup_{n \in \mathbb{N}}|\int f \df \mu_n| < \infty$ for all $f \in C_0(\mathbb{R})$. Thus by the uniform\\ boundedness principle, we know that $\sup_{n \in \mathbb{N}}\|\mu_n\| < \infty$.\retTwo
+
+		Next suppose all the $\mu_n$ are positive. Then since $\mu_n \to \mu$ vaguely, we claim that $\mu$ is positive.
+		\begin{myIndent}\exPPP
+			Note: The following the reasoning works on any general LCH space $X$.\newpage 
+
+			Write $\mu = \mu^{(1)} - \mu^{(2)} + i(\mu^{(3)} - \mu^{(4)})$ where the four latter measures are\\ positive Radon measures. Since $\int f \df \mu_n \to \int f \df \mu$ for all $f \in C_0(X)$ and all the $\mu_n$ are positive, we know that if $f$ is nonnegative and real, then $\int f \df \mu \geq 0$. This is enough to show that $\mu^{(i)} = 0$ unless $i = 1$.\retTwo
+
+			Suppose for the sake of contradiction that $\mu^{(2)} = \alpha > 0$ on some set\\ $A \in \mathcalli{B}_X$. Then by restricting our set $A$ using a Hahn decomposition, we can also say without loss of generality that $\mu^{(1)}(A) = 0$. But now pick any $\varepsilon \in (0, \frac{\alpha}{2})$. By the outer regularity of $\mu^{(1)}$ we know there exists an open set $U \supseteq A$ such that $\mu^{(1)}(U) < \varepsilon$. At the same time, by the inner regularity of $\mu^{(2)}$ we know there exists a compact set $K \subseteq A$ such that $\mu^{(2)}(K) > \alpha - \varepsilon$. And by Urysohn's lemma, we know there is a function $\phi \in C_c(X, [0, 1])$ such that $\phi(K) = \{1\}$ and $\supp(\phi) \subseteq U$. It now follows that:
+			
+			{\centering\begin{tabular}{l}
+				$\rea{\int \phi \df \mu} = \int \phi \df \mu^{(1)} - \int \phi \df \mu^{(2)}$\\
+				$\phantom{\rea{\int \phi \df \mu}} \leq \int \chi_U \df \mu^{(1)} - \int \chi_K \df \mu^{(2)} < \varepsilon - (\alpha - \varepsilon) < 0$.
+			\end{tabular}\retTwo\par}
+
+			But that contradicts our earlier statement that $\int \phi \df \mu$ is real and nonnegative if $\phi$ is real and nonnegative. So, we conclude no such $A$ exists.\retTwo
+
+			Similar reasoning shows that $\mu^{(3)}$ and $\mu^{(4)}$ are zero.\retTwo
+		\end{myIndent}
+
+		Now given any $a$ at which $F$ is continuous, choose any $\varepsilon > 0$ and $N$ such that\\ $-N < a - 2\varepsilon$. Then letting $f \in C_c(\mathbb{R})$ be the function that is $1$ on $[-N, a]$,\\ $0$ on $(-\infty, -N - \varepsilon) \cup (a + \varepsilon, \infty)$, we have that:
+
+		{\centering\begin{tabular}{l}
+			$F_n(a) - F_n(-N) = \mu_n((-N, a])$\\ [4pt]
+			$\phantom{F_n(a) - F_n(-N)} \leq \int f \df \mu_n \to \int f \df \mu \leq F(a + \varepsilon) - F(-N - \varepsilon)$.
+		\end{tabular}\retTwo\par}
+
+		And by taking $N \to \infty$ we thus get that $\limsup_{n \to \infty} F_n(a) \leq F(a + \varepsilon)$.\retTwo
+
+		Meanwhile, letting $g \in C_c(\mathbb{R})$ be the function that is $1$ on $[-N + \varepsilon, a - \varepsilon]$, $0$\\ on $(-\infty, -N] \cup [a, \infty]$, and linear in between, we have that:
+
+		{\centering\begin{tabular}{l}
+			$F_n(a) - F_n(-N) = \mu_n((-N, a))$\\ [4pt]
+			$\phantom{F_n(a) - F_n(-N)} \geq \int g \df \mu_n \to \int g \df \mu \geq F(a - \varepsilon) - F(-N + \varepsilon)$.
+		\end{tabular}\retTwo\par}
+
+		And by taking $N \to \infty$ we thus get that $\liminf_{n \in \infty} F_n(a) \geq F(a - \varepsilon)$.\retTwo
+
+		Now by taking $\varepsilon \to 0$ and using the fact that $F$ is continuous at $a$, we prove that $F_n(a) \to F(a)$ as $n \to \infty$. $\blacksquare$\retTwo
 
 
-
-
-
-
+	\end{myIndent}
+\end{itemize}
 
 
 
