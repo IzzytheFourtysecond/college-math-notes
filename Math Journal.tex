@@ -2745,7 +2745,7 @@ A thing that Folland neglected to show is that while it's clear that $\mu_1 - \m
 		Proof:\\
 		Recall that there is a bijection between $C_0(X, \mathbb{R})^*$ and $C_0(X)^*$. Namely given any $I \in C_0(X, \mathbb{R})^*$, define $J \in C_0(X)^*$ by setting $J(f) = I(\rea{f}) + iI(\ima{f})$ for all $f$. And to go the other way, just restrict the domain of $J$.\retTwo
 
-		Now in that bijection, it's clear that $I$ is positive iff $J$ is positive. Also, it's clear that $I(f) = \int f \df \mu$ for all $f \in C_0(X, \mathbb{R})$ iff $J(f) = \int f \df \mu$ for all $f \in C_0(X)$. So, we can apply the Riesz Representation theorem we already proved to say that there is a bijective correspondence between finite Radon measures on $X$ and\\ $\{I \in C_0(X, \mathbb{R})^* : I \text{ is positive}\}$.
+		Now in that bijection, it's clear that $I$ is positive iff $J$ is positive. Also, it's clear that $I(f) = \int f \df \mu$ for all $f \in C_0(X, \mathbb{R})$ iff $J(f) = \int f \df \mu$ for all $f \in C_0(X)$. So, we can apply the Riesz Representation theorem we already proved to say that there is a bijective correspondence between finite Radon measures on $X$ and\\ $\{I \in C_0(X, \mathbb{R})^* : I \text{ is positive}\}$.\retTwo
 	\end{myIndent}
 	
 	Now suppose $I \in C_0(X, \mathbb{R})^*$ and let $I = I^+ - I^-$ where $I^\pm \in C_0(X, \mathbb{R})^*$ are as we constructed in Lemma 7.15. As we just demonstrated, there are finite Radon measures $\mu_1$ and $\mu_2$ such that $I^+(f) = \int f \df \mu_1$ and $I^-(f) = \int f \df \mu_2$. In turn, setting $\mu = \mu_1 - \mu_2$ we have that $I(f) = \int f \df \mu$.\retTwo
@@ -6973,7 +6973,7 @@ Going a step further, if $\nu$ is complex, then we can apply the prior reasoning
 
 \exTwo\ul{A Fourth Extension of the Lebesgue-Radon-Nikodym Theorem:}
 \begin{myIndent}
-	Suppose $X$ is an LCH space and $\mu$ is a Radon measure on $(X, \mathcalli{B}_X)$. If $\nu$ is a complex\\ or $\sigma$-finite signed measure with $\nu \ll \mu$, then there exists a measurable function\\ $f: X \to \mathbb{R}$ (or $\mathbb{C}$) which vanishes outside of a set where $\mu$ is $\sigma$-finite and which satisfies that $\nu = f \df \mu$. Furthermore, if $g$ is another measurable function satisfying that $\nu = g \df \mu$, then $f = g$ $\mu$-a.e.\retTwo
+	Suppose $X$ is an LCH space and $\mu$ is a Radon measure on $(X, \mathcalli{B}_X)$. If $\nu$ is a complex\\ or $\sigma$-finite signed Radon measure with $\nu \ll \mu$, then there exists a measurable function\\ $f: X \to \mathbb{R}$ (or $\mathbb{C}$) which vanishes outside of a set where $\mu$ is $\sigma$-finite and which satisfies that $\nu = f \df \mu$. Furthermore, if $g$ is another measurable function satisfying that $\nu = g \df \mu$, then $f = g$ $\mu$-a.e.\retTwo
 \end{myIndent}
 
 \hTwo I will note that this is still not as general of a statement as Folland was claiming Hewitt and Stromberg were making. Yet it is enough for a specific claim which Folland makes and I will take notes on tomorrow to be true. Anyways, it's been four days since I started going down this rabbithole and I need to grade.
@@ -7090,15 +7090,87 @@ Before covering the next theorem in Folland, I'm gonna do another side quest con
 		And by taking $N \to \infty$ we thus get that $\liminf_{n \in \infty} F_n(a) \geq F(a - \varepsilon)$.\retTwo
 
 		Now by taking $\varepsilon \to 0$ and using the fact that $F$ is continuous at $a$, we prove that $F_n(a) \to F(a)$ as $n \to \infty$. $\blacksquare$\retTwo
-
-
 	\end{myIndent}
 \end{itemize}
 
+\dispDate{9/1/2025}
 
+\hOne Today I want to clean up my knowledge about product measures by doing some exercises from Folland that I never got around to while I was taking math 240.\newpage
 
+\Hstatement\blab{Exercise 2.11:} If $f : \mathbb{R} \times \mathbb{R}^k \to \mathbb{C}$ satisfies that $f(x, \cdot)$ is measurable on $\mathbb{R}^k$ for all $x \in \mathbb{R}$ and that $f(\cdot, y)$ is continuous on $\mathbb{R}$ for all $y \in \mathbb{R}^k$, then $f$ is Borel measurable on $\mathbb{R} \times \mathbb{R}^k$.
 
+\begin{myIndent}\HexOne
+	Proof:\\
+	Let $n$ be any positive integer and for all $i \in \mathbb{Z}$, define $a_{i} = \sfrac{i}{n}$. Then define a function $f_n$ on $\mathbb{R} \times \mathbb{R}^k$ by setting for all $y \in \mathbb{R}^k$ and $x \in [a_{i}, a_{i+1}]$:
 
+	\[f_n(x, y) = \frac{f(a_{i+1}, y)(x - a_{i}) - f(a_{i}, y)(x - a_{i+1})}{a_{i+1} - a_{i}}\]
+
+	\phantom{.}\\
+
+	In order to show that each $f_n$ is well defined, note that if $x = a_{i}$ for some $i \in \mathbb{Z}$, then:
+	
+	{\center$\frac{f(a_{i}, y)(x - a_{i-1}) - f(a_{i-1}, y)(x - a_{i})}{a_{i} - a_{i-1}} = f(a_{i}, y) = \frac{f(a_{i+1}, y)(x - a_{i}) - f(a_{i}, y)(x - a_{i+1})}{a_{i+1} - a_{i}}$\retTwo\par}
+
+	\begin{myTindent}\HexPPP
+		You may note that $f_n$ is essentially linearly interpolating because the\\ differents sets $\{a_i\} \times \mathbb{R}^k$ of the domain. And as $n \to \infty$ we are sampling more often.\retTwo
+	\end{myTindent}
+
+	We also claim that $f_n$ is measurable. After all, if $E \in \mathcal{M}$, then:
+
+	{\centering $f_n^{-1}(E) = \bigcup_{i \in \mathbb{Z}} (f_n^{-1}(E) \cap ([a_i, a_{i+1}] \times \mathbb{R}^k))$ \retTwo\par}
+
+	But now we know that $f_n$ is measurable on the domain $[a_i, a_{i+1}] \times \mathbb{R}^k$ since it is equal to a sum of products of measurable functions. $g(x, y) \coloneqq f(a_{i+1}, y)$ is measurable as a function from $\mathbb{R} \times \mathbb{R}^k$ because the projection map $(x, y) \mapsto (a_i, y)$ is a continuous map from $\mathbb{R} \times \mathbb{R}^k$ to $\mathbb{R}^k$ and we already assumed that $f(a_i, \cdot)$ is measurable on $\mathbb{R}^k$. Similarly, we can show that $h(x, y) \coloneqq f(a_i, y)$ is measurable. And since $(x - a_i)$ and $(x - a_{i+1})$ are continuous, we also know those parts of the expression for $f_n$ are measurable. And since $[a_i, a_{i+1}] \times \mathbb{R}^k$ is in $\mathcalli{B}_\mathbb{R} \otimes \mathcalli{B}_{\mathbb{R}^k}$ for each $i$, we can now conclude $f_n$ is measurable on its entire domain.\retTwo
+
+	Now in order to show that $f$ is measurable, we claim that $f_n \to f$ pointwise. To prove this, consider any $x \in \mathbb{R}$ and $y \in \mathbb{R}^k$ and let $\varepsilon > 0$. Since $f(\cdot, y)$ is continuous, we know that there exists $\delta > 0$ such that $|f(x^\prime, y) - f(x, y)| < \varepsilon$ for all $x^\prime$ satisfying that $|x^\prime - x| < \delta$. Now suppose $n$ is large enough so that $\sfrac{1}{n} < \sfrac{\delta}{3}$. Then we know there exists $i \in \mathbb{Z}$ such that $x - \delta < a_i \leq x \leq a_{i+1} < x + \delta$. And in turn:
+
+	{\center\begin{tabular}{l}
+	$|f_n(x, y) - f(x, y)| = \left|\frac{f(a_{i+1}, y)(x-a_i) - f(a_i, y)(x-a_{i+1})}{a_{i+1} - a_i} - f(x, y)\right|$\\ [14pt]
+	$\phantom{|f_n(x, y) - f(x, y)|} = \left|\frac{f(a_{i+1}, y)(x-a_i) - f(a_i, y)(x-a_{i+1})}{a_{i+1} - a_i} - f(x, y)\frac{(x - a_i) - (x - a_{i+1})}{a_{i+1} - a_i}\right|$\\ [14pt]
+	$\phantom{|f_n(x, y) - f(x, y)|} = \left|\frac{(f(a_{i+1}, y) - f(x, y))(x-a_i)}{a_{i+1} - a_i} - \frac{(f(a_i, y) - f(x, y))(x-a_{i+1})}{a_{i+1} - a_i}\right|$\\ [14pt]
+	$\phantom{|f_n(x, y) - f(x, y)|} = |f(a_{i+1}, y) - f(x, y)||\frac{(x-a_i)}{a_{i+1} - a_i}| + |f(a_i, y) - f(x, y)||\frac{(x-a_{i+1})}{a_{i+1} - a_i}|$\\ [14pt]
+	$\phantom{|f_n(x, y) - f(x, y)|} \leq |f(a_{i+1}, y) - f(x, y)|\cdot 1 + |f(a_i, y) - f(x, y)|\cdot 1$\\ [14pt]
+	$\phantom{|f_n(x, y) - f(x, y)|} < \varepsilon + \varepsilon = 2\varepsilon$. $\blacksquare$
+	\end{tabular}\newpage\par}
+\end{myIndent}
+
+As a corollary, if $f: \mathbb{R}^n \to \mathbb{C}$ is continuous in each variable separately, then $f$ is measurable.
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	Suppose we already proved that if $g: \mathbb{R}^{n-1} \to \mathbb{C}$ is continuous in each variable, then $g$ is Borel measurable. Then consider $f$ as a function from $\mathbb{R} \times \mathbb{R}^{n-1}$ to $\mathbb{C}$. We know by our assumption that $f(\cdot, y)$ is continuous for all $y \in \mathbb{R}^{n-1}$. Also, we know by our inductive hypothesis that $f(x, \cdot)$ is measurable for all $x \in \mathbb{R}$. So by the reasoning in the last exercise, we have that $f$ is Borel measurable on $\mathbb{R} \times \mathbb{R}^{n-1}$.\retTwo
+	
+	And since $\mathcalli{B}_{\mathbb{R} \times \mathbb{R}^{n-1}} = \mathcalli{B}_{\mathbb{R}^n}$ when identifying $\mathbb{R} \times \mathbb{R}^{n-1}$ with $\mathbb{R}^n$, we've shown that $f$ is measurable. $\blacksquare$
+	\begin{myTindent}\myComment\fontsize{11}{13}\selectfont
+		I realize I still have not yet properly convinced myself of why\\ $\mathcalli{B}_{\mathbb{R} \times \mathbb{R}^{n-1}} \cong \mathcalli{B}_{\mathbb{R}^n}$. So, I'd like to set that and a few other conerns about products of measures straight tomorrow. But for now I need to study for physics.\retTwo
+	\end{myTindent}
+\end{myIndent}
+
+\pracOne One more note I'd like to make is that this exercise is significant because we don't generally have that $f: \mathbb{R}^n \to \mathbb{C}$ being continuous with respect to each variable separately implies that $f$ is continuous. So essentially this exercise gives a strictly weaker sufficient condition for $f: \mathbb{R}^n \to \mathbb{C}$ to be Borel measurable than strict continuity. Also, this new condition is way easier to show.\retTwo
+
+\dispDate{9/2/2025}
+
+\Hstatement\blab{Exercise 2.45:} Suppose $(X_j, \mathcal{M}_j, \mu_j)$ is a measure space for $j = 1, 2, 3$, and let us identify $\prod_{j=1}^3 X_j$ with $(X_1 \times X_2) \times X_3$ in the obvious way.
+\begin{itemize}
+	\item We have that $\bigotimes_{j=1}^3 \mathcal{M}_j = (\mathcal{M}_1 \otimes \mathcal{M}_2) \otimes \mathcal{M}_3$.
+	\begin{myIndent}
+		\HexOne Proof:\\ 
+		For $i = 1, 2, 3$ let $\pi_i$ be the projection of $\prod_{j=1}^3 X_j$ on $X_i$. Also let $\pi_{1,2}$ be the projection of $\prod_{j=1}^3 X_j$ onto $X_1 \times X_2$. Now since $\mathcal{M}_1 \otimes \mathcal{M}_2$ is generated by the basis $\{\pi_{\alpha}^{-1}_i(E) : i=1,2 \text{ and } E \in \mathcal{M}_i\}$
+		
+		
+		Use proposition on page 13.
+		
+		Now $(\mathcal{M}_1 \otimes \mathcal{M}_2) \otimes \mathcal{M}_3$ and $\bigotimes_{j=1}^3 \mathcal{M}_j$ are the $\sigma$-algebras\\ [3pt] generated respectively by the collections:
+
+		\begin{itemize}
+			\item[\bullet] $A_1 \coloneqq \{\pi_{1,2}^{-1}(E) : E \in \mathcal{M}_1 \otimes \mathcal{M}_2\} \cup \{\pi_3^{-1}(E) : E \in \mathcal{M}_3\}$,
+			\item[\bullet] $A_2 \coloneqq \{\pi_j^{-1}(E) : j=1,2,3 \text{ and } E \in \mathcal{M}_j\}$.\retTwo
+		\end{itemize}
+
+		By considering the sets $F = X_1 \times F_2$ and $E = E_1 \times X_2$ in $\mathcal{M}_1 \otimes \mathcal{M}_2$ for any $E_1 \in \mathcal{M}_1$ and $F \in \mathcal{M}_2$, it's clear that $A_2 \subseteq A_1$. Hence $\bigotimes_{j=1}^3 \mathcal{M}_j \subseteq (\mathcal{M}_1 \otimes \mathcal{M}_2) \otimes \mathcal{M}_3$.\retTwo
+
+		Meanwhile, recall ta
+	\end{myIndent}
+\end{itemize}
 
 
 
