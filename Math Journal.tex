@@ -4230,7 +4230,7 @@ We take the following steps to define a measure on $M$:
 	\begin{myIndent}\exTwoP
 		The proof of this is almost identical to that of theorem 1.14 in Folland (bottom of page 24 on my Latex math 240a notes).\newpage
 
-		The one difference is that if $(A_j)_{j \in \mathbb{N}} \subseteq A$ and $A = \bigcup_{j \in \mathbb{N}} A_j$, then $\nu(A) = \mu(A)$ because $A_m - \bigcup_{j=1}^{m-1} A_j \in \mathcal{A}$ for all $m$ and hence:
+		The one difference is that if $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{A}$ and $A = \bigcup_{j \in \mathbb{N}} A_j$, then $\nu(A) = \mu(A)$ because $A_m - \bigcup_{j=1}^{m-1} A_j \in \mathcal{A}$ for all $m$ and hence:
 
 		{\centering $\nu(A) = \sum\limits_{m=1}^\infty \nu(A_m - \bigcup_{j=1}^{m-1} A_j) = \sum\limits_{m=1}^\infty \mu(A_m - \bigcup_{j=1}^{m-1} A_j) = \mu(A)$. $\blacksquare$ \retTwo\par}
 	\end{myIndent}
@@ -4921,29 +4921,31 @@ Suppose for each $i \in \{1, 2\}$ we have $\omega_i \in \Lambda^{k_i}(V^*)$. The
 
 \begin{myIndent}\exTwoP
 	Proof:\\
-	Suppose we have $\omega_1, \ldots, \omega_m$. If $m = 3$, then we're already done by the last claim. Meanwhile, for $m > 3$ is suffices due to the strong inductive hypothesis on $m$ to show that for any $r \in \{1, \ldots, m-1\}$:
+	Suppose we have $\omega_1, \ldots, \omega_m$. If $m = 3$, then we're already done by the last claim. Meanwhile, for $m > 3$ is suffices due to the strong inductive hypothesis on $m$ to show that for any $1 \leq s < r \leq m$ with not both $s = 1$ and $r = m$:
 
-	{\centering $\omega_1 \wedge \cdots \wedge \omega_m = (\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m)$ \retTwo\par}
+	{\centering $\omega_1 \wedge \cdots \wedge \omega_m = \omega_1 \wedge \cdots \wedge \omega_{s-1} \wedge (\omega_s \wedge \cdots \wedge \omega_r) \wedge \omega_{r+1} \wedge \cdots \wedge \omega_m$ \retTwo\par}
 
-	Luckily, note that by the previous claim as well as our inductive hypothesis:
+	Luckily, when focusing on the case that $r \neq m$, note that by the previous claim as well as the strong inductive hypothesis:
 
 	{\centering\begin{tabular}{l}\HexTwoP
-		$(\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m) = ((\omega_1 \wedge \cdots \wedge \omega_r) \wedge \omega_{r+1} \wedge \cdots \wedge \omega_{m-1}) \wedge \omega_m$\\
+		$\omega_1 \wedge \cdots \wedge \omega_{s-1} \wedge (\omega_s \wedge \cdots \wedge \omega_r) \wedge \omega_{r+1} \wedge \cdots \wedge \omega_{m-1} \wedge \omega_m$\\
 
-		$\phantom{(\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m)} = (\omega_1 \wedge \cdots   \wedge \omega_{m-1}) \wedge \omega_m$\\
+		$\phantom{aaaaaaa} = (\omega_1 \wedge \cdots \wedge \omega_{s-1} \wedge (\omega_s \wedge \cdots \wedge \omega_r) \wedge \omega_{r+1} \wedge \cdots \wedge \omega_{m-1}) \wedge \omega_m$\\
 
-		$\phantom{(\omega_1 \wedge \cdots \wedge \omega_r) \wedge (\omega_{r+1} \wedge \cdots \wedge \omega_m)} = \omega_1 \wedge \cdots  \wedge \omega_m$. $\blacksquare$
+		$\phantom{aaaaaaa} = (\omega_1 \wedge \cdots \wedge \omega_{m-1}) \wedge \omega_m = \omega_1 \wedge \cdots \wedge \omega_m$\\
 	\end{tabular} \retTwo\par}
+
+	The other case is analogous.\retTwo
 \end{myIndent}
 
-\hOne Here are some other properties of the wedge product which I'm too bored to\\ properly prove:
+\hOne Here are some other properties of the wedge product which I'm too bored to\\ properly write proofs for:\\ [-22pt]
 \begin{itemize}
-	\item If $\lambda \in F$, then $\lambda (\omega_1 \wedge \omega_2) = (\lambda \omega_1) \wedge \omega_2 = \omega_1 \wedge (\lambda \omega_2)$.
-	\item $(\omega_1 + \omega_2) \wedge \omega_3 = (\omega_1 \wedge \omega_3) + (\omega_2 \wedge \omega_3)$
-	\item $\omega_1 \wedge (\omega_2 + \omega_3) = (\omega_1 \wedge \omega_2) + (\omega_1 \wedge \omega_3)$\retTwo
+	\item If $\lambda \in F$, then $\lambda (\omega_1 \wedge \omega_2) = (\lambda \omega_1) \wedge \omega_2 = \omega_1 \wedge (\lambda \omega_2)$.\\ [-18pt]
+	\item $(\omega_1 + \omega_2) \wedge \omega_3 = (\omega_1 \wedge \omega_3) + (\omega_2 \wedge \omega_3)$\\ [-18pt]
+	\item $\omega_1 \wedge (\omega_2 + \omega_3) = (\omega_1 \wedge \omega_2) + (\omega_1 \wedge \omega_3)$
 \end{itemize}
 
-\begin{myDindent}\pracOne
+\begin{myDindent}\pracOne\fontsize{12}{13}\selectfont
 	Side note: if we were instead writing the definition of the wedge product in terms of alternating tensors, we'd be defining:
 	
 	{\centering$T_1 \wedge \cdots \wedge T_m = \frac{1}{(k_1 + \ldots + k_m)!}\Alt(T_1 \otimes \cdots \otimes T_m)$.\retTwo\par}
@@ -6700,7 +6702,7 @@ To start off, we need an exercise from Folland.
 		Suppose $E$ is $\mu^*$-measurable and $\overline{\mu}(E) = \mu^*(E) < \infty$. When we were proving\\ the backwards implication before, we showed that there is a set $A \in \mathcal{M}$ with\\ $A \subseteq E$ and $\mu^*(E) = \mu(A) < \infty$. Next, when we were proving the forwards\\ implication, we showed that there is a set $B \in \mathcal{M}$ with $A \cap E = E \subseteq B$ and\\ $\mu^*(B - (A \cap E)) = \mu^*(B - E) = 0$. Then afterwords, we showed that there exists\\ $C \in \mathcal{M}$ with $\mu(C) = 0$ and $B - E \subseteq C$. Finally, we have that $B - E \in \mathcal{M}^\wedge$\\ and in turn that $E = B - (B - E) \in \mathcal{M}^\wedge$. $\blacksquare$\retTwo
 
 		\begin{myIndent}\myComment
-			As a side note, this shows that you can't indefinitely extend a measure space to larger and larger $\sigma$-algebras just by applying the theorem on page 24 of my latex math 240a notes over and over again. After all, the saturation of a complete measure is still complete (by exercise 1.16 in my latex math 240a notes). So, if you complete it again you just get back the same set. Also, it's easy to see that saturating a measure does not add any new locally measurable sets since all the added measurables sets have infinite measure. So, taking a saturation twice is the same as taking it once.\retTwo
+			As a side note, this shows that you can't indefinitely extend a measure space to larger and larger $\sigma$-algebras just by applying the theorem on page 24 of my latex math 240a notes over and over again. After all, the saturation of a complete measure is still complete (by exercise 1.16 in my latex math 240a notes). So, if you complete it again you just get back the same measure space \color{BrickRed}(see page 178 for a proof of this...)\color{RawerSienna}. Also, it's easy to see that saturating a measure does not add any new locally measurable sets since all the added measurables sets have infinite measure. So, taking a saturation twice back to back is the same as taking it once. \retTwo
 		\end{myIndent}
 	\end{myIndent}
 \end{itemize}
@@ -7149,28 +7151,228 @@ As a corollary, if $f: \mathbb{R}^n \to \mathbb{C}$ is continuous in each variab
 
 \dispDate{9/2/2025}
 
-\Hstatement\blab{Exercise 2.45:} Suppose $(X_j, \mathcal{M}_j, \mu_j)$ is a measure space for $j = 1, 2, 3$, and let us identify $\prod_{j=1}^3 X_j$ with $(X_1 \times X_2) \times X_3$ in the obvious way.
+\Hstatement\blab{Exercise 2.45:} Let $n \geq 3$ and suppose $(X_j, \mathcal{M}_j, \mu_j)$ is a measure space for $j = 1, \ldots, n$, and let us identify $\prod_{j=1}^n X_j$ with $(\prod_{j=1}^{n-1} X_j) \times X_n$  and $X_1 \times (\prod_{j=2}^{n} X_j)$ in the obvious ways.
 \begin{itemize}
-	\item We have that $\bigotimes_{j=1}^3 \mathcal{M}_j = (\mathcal{M}_1 \otimes \mathcal{M}_2) \otimes \mathcal{M}_3$.
-	\begin{myIndent}
-		\HexOne Proof:\\ 
-		For $i = 1, 2, 3$ let $\pi_i$ be the projection of $\prod_{j=1}^3 X_j$ on $X_i$. Also let $\pi_{1,2}$ be the projection of $\prod_{j=1}^3 X_j$ onto $X_1 \times X_2$. Now since $\mathcal{M}_1 \otimes \mathcal{M}_2$ is generated by the basis $\{\pi_{\alpha}^{-1}_i(E) : i=1,2 \text{ and } E \in \mathcal{M}_i\}$
-		
-		
-		Use proposition on page 13.
-		
-		Now $(\mathcal{M}_1 \otimes \mathcal{M}_2) \otimes \mathcal{M}_3$ and $\bigotimes_{j=1}^3 \mathcal{M}_j$ are the $\sigma$-algebras\\ [3pt] generated respectively by the collections:
+	\item We have that $\bigotimes_{j=1}^n \mathcal{M}_j = (\bigotimes_{j=1}^{n-1} \mathcal{M}_j) \otimes \mathcal{M}_n$.
+	\begin{myIndent}\HexOne 
+		Proof:\\ 
+		For $i = 1, \ldots, n$ let $\pi_i$ be the projection of $\prod_{j=1}^n X_j$ onto $X_i$. Also let $\pi_{\widehat{n}}$ be the\\ projection of $\prod_{j=1}^n X_j$ onto $\prod_{j=1}^{n-1} X_j$ and for $k=1,\ldots,n-1$ let $\tau_{k}$ be the projection\\ of $\prod_{j=1}^{n-1} X_j$ onto $X_k$.\retTwo
 
-		\begin{itemize}
-			\item[\bullet] $A_1 \coloneqq \{\pi_{1,2}^{-1}(E) : E \in \mathcal{M}_1 \otimes \mathcal{M}_2\} \cup \{\pi_3^{-1}(E) : E \in \mathcal{M}_3\}$,
-			\item[\bullet] $A_2 \coloneqq \{\pi_j^{-1}(E) : j=1,2,3 \text{ and } E \in \mathcal{M}_j\}$.\retTwo
-		\end{itemize}
+		We know by definition that $\bigotimes_{j=1}^{n} \mathcal{M}_j$ is generated by the collection of sets:
 
-		By considering the sets $F = X_1 \times F_2$ and $E = E_1 \times X_2$ in $\mathcal{M}_1 \otimes \mathcal{M}_2$ for any $E_1 \in \mathcal{M}_1$ and $F \in \mathcal{M}_2$, it's clear that $A_2 \subseteq A_1$. Hence $\bigotimes_{j=1}^3 \mathcal{M}_j \subseteq (\mathcal{M}_1 \otimes \mathcal{M}_2) \otimes \mathcal{M}_3$.\retTwo
+		{\centering $A_1 \coloneqq \{\pi_j^{-1}(E) : j=1,\ldots,n \text{ and } E \in \mathcal{M}_j\}$.\retTwo\par}
+		
+		Meanwhile, by the proposition at the top of page 13 of my latex math 240a notes,\\ since $\{\tau_k^{-1}(E) : k=1,\ldots,n-1 \text{ and } E \in \mathcal{M}_k\}$ is a base for $\bigotimes_{j=1}^{n-1} \mathcal{M}_j$, we have that $(\bigotimes_{j=1}^{n-1} \mathcal{M}_j) \otimes \mathcal{M}_3$ is generated by the collection of sets:
+		
+		{\centering $A_2 \coloneqq \{\pi_{\widehat{n}}^{-1}(\tau^{-1}_k(E)) : k=1,\ldots,{n-1} \text{ and } E \in \mathcal{M}_k\} \cup \{\pi_n^{-1}(E) : E \in \mathcal{M}_3\}$.\retTwo\par}
 
-		Meanwhile, recall ta
+		But now if $E \in \mathcal{M}_1$, we know that:
+		
+		{\centering$\pi^{-1}_{\widehat{n}}(\tau^{-1}_1(E)) = \pi^{-1}_{\widehat{n}}(E \times X_2 \times \cdots \times X_{n-1}) = E \times X_2 \times \cdots \times X_{n-1} \times X_n$.\retTwo\par}
+		
+		Repeating this reasoning for all $2 \leq k \leq n-1$ we can in fact see that $A_1 = A_2$. This shows that both of the sigma algebras in the problem are equal.\newpage
+	\end{myIndent}
+
+	\item By nearly identical reasoning, we have that $\bigotimes_{j=1}^n \mathcal{M}_j = \mathcal{M}_1 \otimes (\bigotimes_{j=2}^{n} \mathcal{M}_j)$. And note that this is enough to show that the $\bigotimes$ operation is associative and we get the same result no matter how we use parentheses to group together the $\mathcal{M}_j$ (see the top of page 113 of my math journal).\retTwo
+
+	\item If all the $\mu_j$ are $\sigma$-finite, then $\mu_1 \times \cdots \times \mu_n = (\mu_1 \times \cdots \times \mu_{n-1}) \times \mu_n$.
+	\begin{myIndent}\HexOne 
+		Proof:\\ 
+		If all the $\mu_j$ are $\sigma$-finite, then we know that $\mu_1 \times \cdots \times \mu_n$ is the unique measure\\ on $\bigotimes_{j=1}^n \mathcal{M}_j$ satisfying that for any rectangle $E_1 \times \cdots \times E_n$ where $E_k \in \mathcal{M}_k$ for\\ all $k=1,\ldots,n$:
+
+		{\centering $\mu_1 \times \cdots \times \mu_n(E_1 \times \cdots \times E_n) = \mu_1(E_1)\cdots\mu_n(E_n)$ \retTwo\par}
+
+		Meanwhile, we also have that $\mu_1 \times \cdots \times \mu_{n-1}$ is a measure on $\bigotimes_{j=1}^{n-1} \mathcal{M}_j$ satisfying that if $E_k \in \mathcal{M}_k$ for all $k = 1,\ldots,n-1$, then:
+		
+		{\centering$\mu_1 \times \cdots \times \mu_{n-1}(E_1 \times \cdots \times E_n) = \mu_1(E_1)\cdots\mu_{n-1}(E_{n-1})$\retTwo\par}
+
+		Furthermore, $(\mu_1 \times \cdots \times \mu_{n-1}) \times \mu_n$ is a measure on $\bigotimes_{j=1}^n$ satisfying that if\\ $A \in \bigotimes_{j=1}^{n-1} \mathcal{M}_j$ and $E_n \in \mathcal{M}_n$, then:
+
+		{\centering$((\mu_1 \times \cdots \times \mu_{n-1}) \times \mu_n)(A \times E_n) = \mu_1 \times \cdots \times \mu_{n-1}\mu(A) \cdot \mu_n(E_{n})$\retTwo\par}
+
+		So, if we let $E_k \in \mathcal{M}_k$ for all $k=1,\ldots,n$, then we can clearly see that:
+		
+		{\centering\begin{tabular}{l}
+			$((\mu_1 \times \cdots \times \mu_{n-1}) \times \mu_n)(E_1 \times \cdots \times E_n)$\\ [4pt]
+			$\phantom{aaaaaaaaaaaa} = \mu_1 \times \cdots \times \mu_{n-1}(E_1 \times \cdots \times E_{n-1}) \cdot \mu_{n}(E_n)$\\ [4pt]
+			$\phantom{aaaaaaaaaaaa} = \mu_1(E_1) \cdots \mu_{n-1}(E_{n-1})\mu_{n}(E_n)$
+		\end{tabular}\retTwo\par}
+
+		This shows that both measures in the problem have the same property which uniquely determines $\mu_1 \times \cdots \times \mu_n$. So, both measures must be equal.\retTwo
+	\end{myIndent}
+
+	\item By nearly identical reasoning we have that $\mu_1 \times \cdots \times \mu_n = \mu_1 \times (\mu_2 \times \cdots \times \mu_n)$ if all the $\mu_j$ are $\sigma$-finite. Then similarly to two bullet points ago, this is enough to show that the $\times$ operation with respect to $\sigma$-finite measures is associative and we get the same result no matter how we use parentheses to group together the $\mu_j$.
+\end{itemize}
+
+\begin{myDindent}\myComment
+	I said yesterday that $\mathcalli{B}_{\mathbb{R} \times \mathbb{R}^{n-1}} = \mathcalli{B}_{\mathbb{R}^n}$. To prove this, first note that by the corollary on page 14 of my latex math 240a notes: 
+	
+	{\centering$\mathcalli{B}_{\mathbb{R} \times \mathbb{R}^{n-1}} = \mathcalli{B}_{\mathbb{R}} \otimes  \mathcalli{B}_{\mathbb{R}^{n-1}} = \mathcalli{B}_\mathbb{R} \times (\bigotimes_{j=1}^{n-1} \mathcalli{B}_\mathbb{R})$ and $\mathcalli{B}_{\mathbb{R}^n} = \bigotimes_{j=1}^n \mathcalli{B}_\mathbb{R}$.\retTwo\par}
+
+	Also, by the last exercise we have that $\mathcalli{B}_\mathbb{R} \times (\bigotimes_{j=1}^{n-1} \mathcalli{B}_\mathbb{R}) = \bigotimes_{j=1}^n \mathcalli{B}_\mathbb{R}$. So hopefully this addresses my worry from yesterday.\retTwo
+\end{myDindent}
+
+\hTwo Next order of business: in my paper math notes for math 240a, I copied down a\\ sentence from Folland stating that the completion of $(\mathbb{R}^n, \mathcalli{B}_{\mathbb{R}^n}, m^n)$ and the completion of $(\mathbb{R}^n, \bigotimes_{j=1}^n \mathcal{L}, m^n)$ are equal. I want to show that now by proving something slightly more general.\newpage
+
+\exTwo\ul{Claim:} For each $j=1,\ldots,n$ let $(X_j, \mathcal{M}_j, \mu_j)$ be a $\sigma$-finite measure space and let\\ $(X_j, \overline{\mathcal{M}_j}, \overline{\mu_j})$ be the completion of $(X_j, \mathcal{M}_j, \mu_j)$.
+\begin{itemize}
+	\item Suppose that $(X, \mathcal{N}, \nu) = (\prod_{j=1}^n X_j, \bigotimes_{j=1}^n \mathcal{M}_j, \prod_{j=1}^n\mu_j)$ and that\\ $(X, \mathcal{N}^\prime, \nu^\prime) = (\prod_{j=1}^n X_j, \bigotimes_{j=1}^n \overline{\mathcal{M}_j}, \prod_{j=1}^n\overline{\mu_j})$. Then $\mathcal{N} \subseteq \mathcal{N}^\prime$ and $\nu^\prime(A) = \nu(A)$\\ [3pt] for all $A \in \mathcal{N}$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Since $\mathcal{N}$ is a finite product of $\sigma$-algebras, we know that $\mathcal{N}$ is generated by the\\ collection of sets:
+
+		{\centering $A_1 = \{E_1 \times \cdots \times E_n : E_k \in \mathcal{M}_k \text{ for all } k=1,\ldots,n\}$ \retTwo\par}
+
+		Similarly, we know that $\mathcal{N}^\prime$ is generated by the collection of sets:
+
+		{\centering $A_2 = \{E_1 \times \cdots \times E_n : E_k \in \overline{\mathcal{M}_k} \text{ for all } k=1,\ldots,n\}$ \retTwo\par}
+
+		But clearly $A_1 \subseteq A_2$. So $\mathcal{N} \subseteq \mathcal{N}^\prime$. To prove the other claim, consider the restriction $\nu^\prime|_\mathcal{N}$. Since all the $\mu_j$ are $\sigma$-finite, we know that $\nu$ is the unique measure on $\mathcal{N}$\\ such that $\nu(E_1 \times \cdots \times E_n) = \mu_1(E_1)\cdots \mu_n(E_n)$ for all $E_1 \times \cdots \times E_n \in A^1$. However, we also have that:
+
+		{\centering $\mu_1(E_1)\cdots \mu_n(E_n) = \overline{\mu_1}(E_1)\cdots \overline{\mu_n}(E_n) = \nu^\prime(E_1 \times \cdots \times E_n)$ \retTwo\par}
+
+		So, $\nu = \nu^\prime|_\mathcal{N}$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\item Let $(X, \overline{\mathcal{N}}, \overline{\nu})$ be the completion of $(X, \mathcal{N}, \nu)$. Then $\mathcal{N}^\prime \subseteq \overline{\mathcal{N}}$ and $\overline{\nu}(A) = \nu^\prime(A)$ for all $A \in \mathcal{N}^\prime$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		To start off, first note that $\nu^\prime$ is the restriction of the outer measure induced by the\\ function $\pi(E_1 \times \cdots \times E_n) = \overline{\mu_1}(E_1)\cdots \overline{\mu_n}(E_n)$ for all rectangles $E_1 \times \cdots \times E_n$\\ where $E_k \in \overline{\mathcal{M}_k}$ for all $k=1,\ldots,n$.
+		\begin{myIndent}\exPPP
+			Technically Folland defined the product measure by taking the outer measure\\ of a premeasure $\pi$ defined on the collection $\mathcal{A}$ of all finite disjoint unions of\\ rectangles. However, by just expanding each element of a sequence\\ $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{A}$ into an expression of disjoint rectangles, it's obvious how we\\ can find a sequence $\{B_m\}_{m \in \mathbb{N}}$ consisting only of rectangles such that\\ $\bigcup_{n \in \mathbb{N}}A_n = \bigcup_{m \in \mathbb{N}}B_m$ and $\sum_{n \in \mathbb{N}}\pi(A_n) = \sum_{m \in \mathbb{N}}\pi(B_m)$.\retTwo
+
+			The only reason Folland uses the larger collection $\mathcal{A}$ is that $\mathcal{A}$ is an algebra of sets and so by defining a premeasure on $\mathcal{A}$ we can thus abstract away the outer measure definition and just apply the theorems from chapter 1 of his book. That said, the values that any additive measure takes on $\mathcal{A}$ are clearly determined entirely by the values that the measure takes on the collection of rectangles.\retTwo
+		\end{myIndent}
+
+		But now note that if $E_k \in \overline{\mathcal{M}_k}$, then we can pick a set $F_k \in \mathcal{M}_k$ with $E_k \subseteq F_k$ and $\mu_k(F_k) = \overline{\mu_k}(F_k) = \overline{\mu_k}(E_k)$.\newpage
+		
+		Doing this for all $k$, we have that for any rectangle $E = E_1 \times \cdots \times E_n$ with $E_k \in \overline{\mathcal{M}_k}$ for all $k$, there exists a rectangle $F = F_1 \times \cdots \times F_n$ with $E_k \subseteq F_k$ and $F_k \in \mathcal{M}_k$ for all $k$ and which satisfies that $\nu^\prime(E) = \nu^\prime(F) = \nu(F)$.\retTwo
+
+		As a consequence of all of the above reasoning, if $A \in \mathcal{N}^\prime$ with $\nu^\prime(A) < \infty$, then for each $k \in \mathbb{N}$ we may pick a sequence of rectangles $\{A_m^{(k)}\}_{m \in \mathbb{N}}$ in $\mathcal{N}^\prime$ such that $A \subseteq \bigcup_{m \in \mathbb{N}} A_m^{(k)}$ and $\sum_{m \in \mathbb{N}}\nu^\prime(A_m^{(k)}) < \nu^\prime(A) + \sfrac{1}{k}$. Next, for all $k$ and $n$ we may pick a rectangle $B_m^{(k)} \in \mathcal{N}$ such that $A_m^{(k)} \subseteq B_m^{(k)}$ and $\nu^\prime(B_m^{(k)}) = \nu^\prime(A_m^{(k)})$. And now, if we set $B \coloneqq \bigcap_{k \in \mathbb{N}}\left(\bigcup_{m \in \mathbb{N}} B_m^{(k)}\right)$, we will know that $A \subseteq B$, $B \in \mathcal{N}$, and $\nu(B) = \nu^\prime(B) = \nu^\prime(A)$. Also note that clearly $\nu^\prime(B - A) = 0$.\retTwo
+
+		And this at long last leads us to the following construction for any $A \in \mathcal{N}^\prime$:
+		\begin{myIndent}\exPPP
+			Let $\{E_i\}_{i \in \mathbb{N}} \subseteq \mathcal{N}$ be a partition of $X$ consisting of sets with finite measure.\\ Then for each $i$ we can pick a set $C_i \in \mathcal{N}$ such that $C_i \supseteq E_i - A$ and\\ $\nu^\prime(C_i - (E_i - A)) = 0$. And in turn, if we let $B_i \coloneqq E_i - C_i$, we will have\\ that $B_i \in \mathcal{N}$, $B_i \subseteq E_i \cap A$, and $\nu^\prime((A \cap E_i) - B_i) = 0$.\retTwo
+
+			Meanwhile, for each $i$ we may also pick $D_i \in \mathcal{N}$ such that $D_i \supseteq A_i \cap E_i$ and $\nu^\prime(D_i - (A_i \cap E_i)) = 0$. Now it's clear that:
+
+			{\centering $\nu(D_i - B_i) = \nu^\prime(D_i - (A \cap E_i)) + \nu^\prime((A \cap E_i) - B_i) = 0$ \retTwo\par}
+
+			Finally, set $B = \bigcup_{i \in \mathbb{N}} B_i$ and $D = \bigcup_{i \in \mathbb{N}}D$. Then $B$ and $D$ are in $\mathcal{N}$,\\ $B \subseteq A \subseteq D$, and $\nu(D - B) = 0$.\retTwo
+
+			Now $A = B \cup (A - B)$ where $B \in \mathcal{N}$ and $A - B \subseteq D - B$ with $D - B$ being a $\nu$-null set in $\mathcal{N}$. From that it's clear that $A \in \overline{\mathcal{N}}$. Also, since we have that $0 \leq \nu^\prime(A - B) \leq \nu^\prime(D - B) = \nu(D - B) = 0$, we know:
+			
+			{\centering$\overline{\nu}(A) = \nu(B) = \nu^\prime(B) = \nu^\prime(A)$. $\blacksquare$\retTwo\par}
+		\end{myIndent}
+
+		\myComment Note from 9/4/2025: Fuck I thought of a way clearner proof for this. I'll write it below.\retTwo
+
+		Suppose $\pi_k$ is the projection of $X$ onto $X_k$ and that $A \in \overline{\mathcal{M}_k}$. Then $A = E \cup F$ where $E \in \mathcal{M}_k$ and $F \subseteq N$ where $N \in \mathcal{M}_k$ and $\mu_k(N) = 0$. It now follows that $\pi_k^{-1}(A) = \pi_k^{-1}(E) \cup \pi_k^{-1}(F)$ where $\pi_k^{-1}(E) \in \mathcal{N}$ and $\pi_k^{-1}(F) \subseteq \pi_k^{-1}(N)$ with $\nu(\pi_k^{-1}(N)) = 0$. Hence, $\pi_k^{-1}(A) \in \overline{\mathcal{N}}$.\retTwo
+
+		Now since the collection $\mathcal{A} = \{\pi_k^{-1}(E) : k=1,\ldots,n \text{ and } E \in \mathcal{M}_k\}$ is a base for $\mathcal{N}^\prime$ and $\mathcal{A}$ is a subset of the $\sigma$-algebra $\overline{\mathcal{N}}$, we must have that $\mathcal{N}^\prime \subseteq \overline{\mathcal{N}}$.\retTwo
+
+		Finally, consider that for any $A \in \mathcal{N}^\prime$, if we write $A = E \cup F$ where $E \in \mathcal{N}$ and $F \subseteq N$ with $N \in \mathcal{N}$ and $\nu(N) = 0$, then we know that $\nu^\prime(A - E) = 0$. Hence, $\overline{\nu}(A) = \nu(E)$ and $\nu^\prime(A) = \nu^\prime(E) + \nu^\prime(A - E) = \nu(E) + 0$. So $\overline{\nu}(A) = \nu^\prime(A)$.\newpage
 	\end{myIndent}
 \end{itemize}
+
+\pracOne\mySepTwo
+
+Now before continuing, we need the following lemmas which I'm shocked I didn't prove during homeworks for math 240a. (To be clear, I thought I had proved this stuff at some point and I've used all of these things in proofs before. But now that I'm looking, I can't actually find a proof written down anywhere in my notes for this stuff.)\retTwo
+
+\ul{Lemma 1:} Suppose $(X, \mathcal{M}, \mu)$ and $(X, \mathcal{N}, \nu)$ are measure spaces such that $\mathcal{M} \subseteq \mathcal{N}$ and $\nu|_\mathcal{M} = \mu$. Then if $(X, \overline{\mathcal{M}}, \overline{\mu})$ and $(X, \overline{\mathcal{N}}, \overline{\nu})$ are the completions of $(X, \mathcal{M}, \mu)$ and $(X, \mathcal{N}, \nu)$ respectively, we have that $\overline{\mathcal{M}} \subseteq \overline{\mathcal{N}}$ and $\overline{\nu}|_{\overline{\mathcal{M}}} = \overline{\mu}$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Suppose $A \in \overline{\mathcal{M}}$ and let $E, F, N$ be sets satisfying that $A = E \cup F$; $F \subseteq N$;\\ $E, N \in \mathcal{M}$; and $\mu(N) = 0$. Then we also have that $E, N \in \mathcal{N}$ and that\\ $\nu(N) = \mu(N) = 0$. So, it's clear $A \in \overline{\mathcal{N}}$ and $\overline{\mu}(A) = \mu(E) = \nu(E) = \overline{\nu}(A)$.\\ $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Lemma 2:} Suppose $(X, \mathcal{M}, \mu)$ is a complete measure space and let $(X, \overline{\mathcal{M}}, \overline{\mu})$ be the\\ completion of $(X, \mathcal{M}, \mu)$. Then $\mathcal{M} = \overline{\mathcal{M}}$ and $\mu = \overline{\mu}$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	If $A \in \overline{\mathcal{M}}$, then there exists sets $E, F, N$ satisfying that $A = E \cup F$; $F \subseteq N$;\\ $E, N \in \mathcal{M}$; and $\mu(N) = 0$. But now since $\mu$ is complete, we know that $F \in \mathcal{M}$.\\ So, $A = E \cup F$ is also in $\mathcal{M}$, meaning $\overline{\mathcal{M}} \subseteq \mathcal{M}$. And since the other inclusion is\\ obvious, we know that $\overline{\mathcal{M}} = \mathcal{M}$  Also, we thus have that $\overline{\mu} = \overline{\mu}|_\mathcal{M} = \mu$. $\blacksquare$\retTwo
+\end{myIndent}
+
+For the sake of nicer notation in the next corollary, let us refer to a given measure space $(X, \mathcal{M}, \mu)$ using a single symbol such as $A$. Also let $c(A)$ denote the completion of $A$. And if $B = (Y, \mathcal{N}, \nu)$ is another measure space, let us write $A \subseteq B$ to mean that $X = Y$, $\mathcal{M} \subseteq \mathcal{N}$, and $\nu|_\mathcal{M} = \mu$.\retTwo
+
+\ul{Theorem:} If $A$ and $B$ are measures spaces such that $A \subseteq B \subseteq c(A)$, then $c(A) = c(B)$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We know by lemma 1 that $A \subseteq B \subseteq c(A)$ implies that $c(A) \subseteq c(B) \subseteq c(c(A))$. However, by lemma 2 we know that $c(c(A)) = c(A)$. So, $c(A) \subseteq c(B) \subseteq c(A)$. This is the same as saying that $c(A) = c(B)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\exTwo Returning to what we were doing before the prior tangent:
+\begin{itemize}
+	\item Let $(X, \overline{\mathcal{N}^\prime}, \overline{\nu^\prime})$ be the completion of $(X, \mathcal{N}^\prime, \nu^\prime)$. Then $(X, \overline{\mathcal{N}^\prime}, \overline{\nu^\prime}) = (X, \overline{\mathcal{N}}, \overline{\nu})$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		We'll continue using the notation in the theorem I showed right above. Let\\ $A = (X, \mathcal{N}, \nu)$ and $B = (X, \mathcal{N}^\prime, \nu^\prime)$. Then note that $c(A) = (X, \overline{\mathcal{N}}, \overline{\nu})$ and\\ $c(B) = (X, \overline{\mathcal{N}^\prime}, \overline{\nu^\prime})$.\newpage
+
+		In the first bullet point of our claim, we showed that $A \subseteq B$. And in the second bullet point of our claim, we showed that $B \subseteq c(A)$. Thus, by applying our theorem right above, we know that $c(B) = c(A)$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\myComment As a side note before I clock out today, suppose $A, B, C$ are $\sigma$-finite measure spaces and let us write $AB$ to denote the product measure space of $A$ and $B$. Then we can use the theorems I covered today to say things like:
+
+{\centering$c(c(AB)C) = c(c(c(AB))c(C)) = c(c(AB)c(C)) = c((AB)C) = c(ABC)$\retTwo\par}
+
+You can have more fun playing around with that! The rules of the game are:
+\begin{itemize}
+	\item $c(A_1\cdots A_n) = c(c(A_1)\cdots c(A_n))$,
+	\item multiplication is associative (i.e. $A_1A_2A_3 = (A_1A_2)A_3 = A_1(A_2A_3)$). \retTwo
+\end{itemize}
+
+
+\hOne\dispDate{9/4/2025}
+
+One more thing I want to do before finally moving onto new content is finally prove the reformulation of Fubini's theorem but for complete measures. The theorem statement is in my paper notes but I'll also write it below. Also as a side note: if $f(x, y)$ is a function from $X \times Y$ to $\mathbb{C}$ (or $\overline{\mathbb{R}}$), then Folland denotes $f_x \coloneqq f(x, \cdot)$ and $f^y \coloneqq f(\cdot, y)$. Additionally, if $E \subseteq X \times Y$, then Folland denotes: 
+
+{\centering $E_x \coloneqq \{y \in Y : (x, y) \in E\}$ and $E^y \coloneqq \{x \in X : (x, y) \in E\}$.\retTwo\par}
+
+\exTwo\ul{Theorem 2.39: (The Fubini-Tonelli Theorem for Complete Measures)}
+\begin{myIndent}
+	Let $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ be complete $\sigma$-finite measure spaces, and let\\ $(X \times Y, \mathcal{L}, \lambda)$ be the completion of $(X \times Y, \mathcal{M} \otimes \mathcal{N}, \mu \times \nu)$. If $f$ is $\mathcal{L}$-measurable and either (a) $f \geq 0$ or (b) $f \in L^1(\lambda)$, then $f_x$ is $\mathcal{N}$-measurable for a.e. $x$ and $f^y$ is $\mathcal{M}$-measurable for a.e. $y$. Also, in the case that (b) is true, $f_x$ and $f^y$ are integrable for a.e. $x$ and a.e. $y$.\retTwo
+
+	Moreover, $x \mapsto \int f_x \df \nu$ and $y \mapsto \int f^y \df \mu$ are measurable for a.e. $x$ and a.e. $y$. And in the case that (b) is true they are also integrable for a.e. $x$ and a.e. $y$.\retTwo
+
+	And finally, in the case of either (a) or (b), we have that:
+
+	$$\int f \df \lambda =  \iint f(x, y) \df \mu(x) \df \nu(y) = \iint f(x, y) \df \nu(y) \df \nu(x)$$
+\end{myIndent}
+
+\phantom{.}\\
+
+\Hstatement\blab{Exercise 2.49:} Prove the above theorem.
+\begin{myIndent}\HexOne
+	\ul{Lemma 1:} If $E \in \mathcal{M} \times \mathcal{N}$ and $\mu \times \nu(E) = 0$, then $\nu(E_x) = \mu(E^y) = 0$ for a.e. $x$ and a.e. $y$.
+	\begin{myIndent}\HexTwoP
+		Proof:\\ 
+		Consider the function $f(x, y) = \chi_E(x, y)$. By the Fubini-Tonelli theorem I already proved in my math 240a notes, we know that:
+
+		{\centering $0 = \mu \times \nu(E) = \int f \df (\mu \times \nu) = \int (\int f_x \df \nu(y))\df \nu(x) = \int( \int f^y \df \mu(x))\df \nu(y)$\retTwo\par}
+
+		So, $\int f_x \df \nu(y) = \nu(E_x) = 0$ for a.e. $x$ and $\int f^y \df \mu(x) = \mu(E^y) = 0$ for a.e. $y$.\newpage
+	\end{myIndent}
+
+	\ul{Lemma 2:} If $f$ is $\mathcal{L}$-measurable and $f = 0$ $\lambda$-a.e., then $f_x$ and $f^y$ are integrable for a.e. $x$ and a.e. $y$, and $\int f_x \df \nu = \int f^y \df \mu = 0$ for a.e. $x$ and $y$.
+	\begin{myIndent}\HexTwoP
+		Proof:\\ 
+		Let $A = \{(x, y) \in X \times Y\}$
+
+		% I'll do more during discussion today...
+	\end{myIndent}
+\end{myIndent}
+
+
+
+
+
 
 
 
