@@ -7469,7 +7469,7 @@ Let $X$ and $Y$ be LCH spaces and let $\pi_X$ and $\pi_Y$ denote the projections
 			It's clear that $\mathcal{B}$ is countable and contains only open sets. Meanwhile, in order to prove that $\mathcal{B}$ is a basis, suppose $(x, y) \in U \subseteq X \times Y$ where $U$ is open. Then we know there is a set $V_1 \times V_2 \subseteq U$ such that $V_1$ is open in $X$; $V_2$ is open in $Y$; and $x \in V_1$ and $y \in V_2$. Next, there are sets $B_1 \in \mathcal{B}_x$ and $B_2 \in \mathcal{B}_y$ such that $x \in B_1 \subseteq V_1$ and $y \in B_2 \subseteq V_2$. Now it's clear that $B_1 \times B_2 \in \mathcal{B}$ and $(x, y) \in B_1 \times B_2 \subseteq V_1 \times V_2 \subseteq U$.\retTwo
 		\end{myIndent}
 
-		Now since every open set in $X \times Y$ is a countable union of sets in $\mathcal{B}$, we know that $\mathcal{T} \subseteq \mathcal{M}(\mathcal{B})$ where $\mathcal{T}$ is the topology on $X \times Y$. It follows that $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B})$. But at the same time note that $\mathcalli{B}$ is a subset of the entire collection of products of open sets, and we know by the proposition at the top of page 13 of my latex math 240a notes that the latter collection generates $\mathcalli{B}_X \otimes \mathcalli{B}_Y$. So, $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B}) \subseteq \mathcalli{B}_X \times \mathcalli{B}_Y$. $\blacksquare$\retTwo
+		Now since every open set in $X \times Y$ is a countable union of sets in $\mathcal{B}$, we know that $\mathcal{T} \subseteq \mathcal{M}(\mathcal{B})$ where $\mathcal{T}$ is the topology on $X \times Y$. It follows that $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B})$. But at the same time note that $\mathcal{B}$ is a subset of the entire collection of products of open sets, and we know by the proposition at the top of page 13 of my latex math 240a notes that the latter collection generates $\mathcalli{B}_X \otimes \mathcalli{B}_Y$. So, $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B}) \subseteq \mathcalli{B}_X \times \mathcalli{B}_Y$. $\blacksquare$\retTwo
 	\end{myIndent}
 
 	\item[(c)] If $X$ and $Y$ are second countable and $\mu$ and $\nu$ are Radon measures on $X$ and $Y$, then $\mu \times \nu$ is a Radon measure on $X \times Y$.
@@ -7482,8 +7482,40 @@ Let $X$ and $Y$ be LCH spaces and let $\pi_X$ and $\pi_Y$ denote the projections
 	\end{myIndent}
 \end{itemize}
 
+\hTwo Given functions $g:X \to \mathbb{C}$ and $h: X \to \mathbb{C}$, we define $g \otimes h(x, y) \coloneqq g(x)h(y)$.\retTwo
 
+\exTwo\ul{Proposition 7.21:} Let $\mathcalli{P}$ be the vector space spanned by the functions $g \otimes h$ with\\ $g \in C_c(X)$ and $h \in C_c(Y)$. Then $\mathcalli{P}$ is dense in $C_c(X \times Y)$ in the uniform norm. More\\ precisely, given $f \in C_c(X \times Y)$, $\varepsilon > 0$, and precompact open sets $U \subseteq X$ and $V \subseteq Y$\\ containing $\pi_X(\supp(f))$ and $\pi_Y(\supp(f))$, there exists $F \in \mathcalli{P}$ such that $\|F - f\|_u < \varepsilon$\\ and $\supp(F) \subseteq U \times V$.
 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$\overline{U} \times \overline{V}$ is a compact Hausdorff space. Also, we clearly have that the linear span $\mathcalli{A}$ of $\{g \otimes h : g \in C(\overline{U}) \text{ and } h \in C(\overline{V})\}$ is a subalgebra of $C(\overline{U}\times\overline{V})$ which contains all the constant functions and is closed under complex conjugation. We can also see that $\mathcalli{A}$ separates points as follows:
+	\begin{myIndent}\exPPP
+		Suppose $(x_1, y_1)$ and $(x_2, y_2)$ be distinct points in $\overline{U} \times \overline{V}$. Then we know that either $x_1 \neq x_2$ or $y_1 \neq y_2$. I'll focus on the case that $x_1 \neq x_2$ since the other case is basically identical. We know that $\overline{U}$ is normal (since all compact Hausdorff spaces are normal). So, by Urysohn's lemma there exists a function $g \in C(\overline{U})$ such that $g(x_1) = 1$ and $g(x_2) = 0$. And now if we just set $h(y) = 1 \in C(\overline{V})$, we have that $g \otimes h \in C(\overline{U} \times \overline{V})$ with $g \otimes h(x_1, y_1) = 1$ and $g \otimes h(x_2, y_2) = 0$.\retTwo
+	\end{myIndent}
+
+	Thus by the Stone-Weierstrass theorem, we know that $\mathcalli{A}$ is dense in $C(\overline{U} \times \overline{V})$. In\\ particular, this means that there is an element $G \in \mathcalli{A}$ with $\sup_{(x,y) \in \overline{U} \times \overline{V}}|G - f| < \varepsilon$.\retTwo
+
+	Meanwhile, by Urysohn's lemma we know there exists functions $\phi \in C_c(U, [0, 1])$ and $\psi \in C_c(V, [0, 1])$ such that $\phi = 1$ on $\pi_X(\supp(f))$ and $\psi = 1$ on $\pi_Y(\supp(f))$. Thus if we define $F = (\phi \otimes \psi)G$ on $\overline{U} \times \overline{V}$ and $F = 0$ elsewhere, we have that $F \in \mathcalli{P}$, $\|F - f\|_u < \varepsilon$, and $\supp(F) \subseteq U \times V$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 7.22:} Every $f \in C_c(X, Y)$ is $(\mathcalli{B}_X \otimes \mathcalli{B}_Y)$-measurable. Moreover, if $\mu$ and $\nu$ are Radon measures on $X$ and $Y$, then $C_c(X \times Y) \subseteq L^1(\mu \times \nu)$ and:\\ [-25pt]
+
+$$\int f \df(\mu \times \nu) = \iint f \df \mu \df \nu = \iint f \df \nu \df \mu \text{ for all } f \in C_c(X \times Y)\text{.}$$
+
+\phantom{.}\\ [-14pt]
+\begin{myIndent}\exThreeP 
+	Proof:\\
+	If $g \in C_c(X)$ and $h \in C_c(Y)$, then $g \otimes h = (g \circ \pi_X)(h \circ \pi_Y)$ is $(\mathcalli{B}_X \otimes \mathcalli{B}_Y)$-measurable. Hence since products, sums, and pointwise limits of measurable function are measurable, we know by the last proposition that every $f \in C_c(X, Y)$ is $(\mathcalli{B}_X, \mathcalli{B}_Y)$-measurable.\retTwo
+
+	Also, every $f \in C_c(X, Y)$ is bounded and supported in a set of finite $(\mu \times \nu)$-measure.
+	\begin{myIndent}\exPPP
+		Specifically consider the compact set $K \coloneqq \pi_X(\supp(f)) \times \pi_Y(\supp(f)) in X \times Y$. Then $\supp(f) \subseteq K$, $K$ is compact, and $\mu \times \nu(K) = \mu(\pi_X(\supp(f)))\nu(\pi_Y(\supp(f)))$. Also, the latter expression is finite since $\pi_X(\supp(f))$ and $\pi_Y(\supp(f))$ are compact and $\mu$ and $\nu$ are Radon.\retTwo
+	\end{myIndent}
+
+	This proves that every $f \in C_c(X, Y)$ is also in $L^1(\mu \times \nu)$. Finally, even if $\mu$ and $\nu$ are not $\sigma$-finite, we can still show that Fubini's theorem holds. Specifically, consider taking\\ $\mu^\prime(E) \coloneqq \mu(E \cap \pi_X^{-1}(\supp(f)))$ and $\nu^\prime(E) \coloneqq \nu(E \cap \pi_Y^{-1}(\supp(f)))$.\newpage
+
+	
+\end{myIndent}
 
 
 
