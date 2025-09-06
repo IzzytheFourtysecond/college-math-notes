@@ -2858,7 +2858,7 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 	\end{myIndent}
 \end{enumerate}
 
-\blab{Exercise 2.51:} Let $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ be arbitrary measure spaces (not necessarily $\sigma$-finite).
+\blab{Exercise 2.51:} Let $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ be arbitrary measure spaces (not necessarily $\sigma$-finite). {\myComment(Last proofread on 9/6/2025)}
 
 \begin{enumerate}
 	\item[(a)] If $f: X \rightarrow \mathbb{C}$ is $\mathcal{M}$-measurable, $g: Y \rightarrow \mathbb{C}$ is $\mathcal{N}$-measurable, and\\ $h(x, y) = f(x)g(y)$, then $h$ is $\mathcal{M} \otimes \mathcal{N}$-measurable.
@@ -2885,9 +2885,9 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 		
 		{\centering $(\int f d\mu)(\int g d\nu) = (\sum\limits_{i=1}^n a_i\mu(E_i))(\sum\limits_{j=1}^m b_i\nu(F_j)) = \sum\limits_{i=1}^n \sum\limits_{j=1}^m a_i b_j \mu(E_i)\nu(F_j)$.\retTwo\par}
 
-		To extend this to nonnegative real-valued functions, let $(\phi_n)$ and $(\varphi_n)$ be increasing sequences of nonnegative simple functions converging pointwise to $f$ and $g$ respectively. Then by M.C.T., we know that $\int \phi_n d\mu \rightarrow \int f d\mu$ and $\int \varphi_n d\nu \rightarrow \int gd\nu$ as $n \rightarrow \infty$.\retTwo
+		To extend this to nonnegative real-valued functions, let $(\phi_n)$ and $(\varphi_n)$ be\\ increasing sequences of nonnegative simple functions converging pointwise to $f$ and $g$ respectively. Then by M.C.T., we know that $\int \phi_n d\mu \rightarrow \int f d\mu$ and $\int \varphi_n d\nu \rightarrow \int gd\nu$ as $n \rightarrow \infty$.\retTwo
 
-		Next, note that $\phi_n\varphi_n \rightarrow fg$ pointwise as $n \rightarrow \infty$. Also, each $\phi_n\varphi_n$ is a simple function as is demontrated on the previous line, and $\phi_n(x)\varphi_n(y)$ monotonically increases as $n \rightarrow \infty$. So by applying M.C.T., we know that:
+		Next, note that $\phi_n\varphi_n \rightarrow fg$ pointwise as $n \rightarrow \infty$. Also, each $\phi_n\varphi_n$ is a simple function and $\phi_n(x)\varphi_n(y)$ monotonically increases as $n \rightarrow \infty$. So by applying M.C.T., we know that:
 
 		{\centering $\int \phi_n \varphi_n d(\mu \times \nu) \rightarrow \int fg d(\mu \times \nu) = \int h d(\mu \times \nu)$ \retTwo\par}
 
@@ -2897,7 +2897,7 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 
 		Now consider if $f, g$ are real-valued functions. Then $|h(x, y)| = |f(x)||g(y)|$ and so from before: $\int |h| d(\mu \times \nu) = (\int |f| d\mu)(\int |g|d\nu)$. If $f \in L^1(\mu)$ and $g \in L^1(\nu)$, then the right side of that expression is finite. So $\int |h| < \infty$ and thus $h \in L^1(\mu \times \nu)$.\retTwo
 
-		Assuming $f, g$ are integrable, then note that $h^+ = f^+g^+ + f^-g^-$ and $h^- = f^+g^- + f^-g^+$. So applying our prior reasoning to those parts:
+		Assuming $f, g$ are integrable, then note that $h^+ = f^+g^+ + f^-g^-$ and\\ $h^- = f^+g^- + f^-g^+$. So applying our prior reasoning to those parts:
 
 		{\centering\exPP
 		\begin{tabular}{l}
@@ -2914,14 +2914,23 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 
 		Finally, supposing that $f, g$ are integrable one last time, note that:
 		
-		{\centering\exPP $\rea(h) = \rea(f)\rea(g) - \ima(f)\ima(g)$ and $\ima(h) = \rea(f)\ima(g) + \ima(f)\rea(g)$.\retTwo\par}
+		{\centering\exPP $\rea(h) = \rea(f)\rea(g) - \ima(f)\ima(g)$ and $\ima(h) = \rea(f)\ima(g) + \ima(f)\rea(g)$.\newpage\par}
 
-		By doing a bunch of similar manipulations to the real-valued case, you can then show that:
-		
-		{\centering\exPP $\int \rea(h) d(\mu \times \nu) + i \int \ima(h) d(\mu \times \nu) = (\int \rea(f)d\mu + i \int \ima(f)d\mu)(\int \rea(g)d\mu + i \int \ima(g)d\mu)$.\retTwo\par}
+		Then we have that:
 
-		But I'm out of time so do them yourself :P.
-		\retTwo
+		{\centering\exPP\begin{tabular}{l}
+			$\int h \df(\mu \times \nu) = \int \rea(h) df(\mu \times \nu) + i \int \ima(h) df(\mu \times \nu)$\\ [8pt]
+
+			$\phantom{\int h \df(\mu \times \nu)} = \int \rea(f)\rea(g) - \ima(f)\ima(g) \df (\mu \times \nu)$\\
+			$\phantom{\phantom{\int h \df(\mu \times \nu)} aaaaaa} + i \int \rea(f)\ima(g) + \ima(f)\rea(g) \df (\mu \times \nu)$.\\ [8pt]
+
+			$\phantom{\int h \df(\mu \times \nu)} = \int \rea(f)\df \mu \int\rea(g) \df \nu - \int \ima(f)\df \mu \int \ima(g) \df \nu$\\
+			$\phantom{\phantom{\int h \df(\mu \times \nu)} aaaaaa} + i (\int \rea(f) \df \mu \int \ima(g) \df \nu + \int \ima(f) \df \mu \int \rea(g) \df \nu)$.\\ [8pt]
+
+			$\phantom{\int h \df(\mu \times \nu)} = \int \rea(f) \df \mu (\int \rea(g) + i\ima(g) \df \nu) + i \int \ima(f) \df \mu (\int \rea(g) + i \ima(g)\df \nu)$\\ [8pt]
+
+			$\phantom{\int h \df(\mu \times \nu)} = (\int \rea(f) + i\ima(f) \df \mu)(\int \rea(g) + i \ima(g) \df \nu) = \int f df \mu \int g \df \nu$
+		\end{tabular}\retTwo\par}
 	\end{myIndent}
 \end{enumerate}
 
@@ -2961,11 +2970,9 @@ Then $\rho$ is a metric on the space of measurable functions if we identify func
 
 		Next note that $\int_0^1 \frac{-1}{y^2 + 1}dy = -\tan^{-1}(1) + \tan^{-1}(0) = -\sfrac{\pi}{4}$. In turn this means that $\int_0^1 \frac{1}{x^2 + 1}dx = \sfrac{\pi}{4}$.\retTwo
 
-		So, we've shown that $\int_0^1 \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dydx \neq \int_0^1 \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dxdy$\retTwo
+		So, we've shown that $\int_0^1 \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dydx \neq \int_0^1 \int_0^1 \frac{x^2 - y^2}{(x^2 + y^2)^2}dxdy$\newpage
 
-		The reason why is that $\frac{x^2 - y^2}{(x^2 + y^2)^2} \notin L^1(m^2)$.\newpage
-		
-		To see why, note that:
+		The reason why is that $\frac{x^2 - y^2}{(x^2 + y^2)^2} \notin L^1(m^2)$. To see why, note that:
 		
 		{\centering\exPP
 		\begin{tabular}{l}

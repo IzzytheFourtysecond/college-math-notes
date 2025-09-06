@@ -259,6 +259,8 @@
 
 \newcommand{\weakst}{weak$^*$ }
 
+\newcommand{\radtimes}{\mathop{\widehat{\times}}}
+
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
 \newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
@@ -7509,20 +7511,54 @@ $$\int f \df(\mu \times \nu) = \iint f \df \mu \df \nu = \iint f \df \nu \df \mu
 
 	Also, every $f \in C_c(X, Y)$ is bounded and supported in a set of finite $(\mu \times \nu)$-measure.
 	\begin{myIndent}\exPPP
-		Specifically consider the compact set $K \coloneqq \pi_X(\supp(f)) \times \pi_Y(\supp(f)) in X \times Y$. Then $\supp(f) \subseteq K$, $K$ is compact, and $\mu \times \nu(K) = \mu(\pi_X(\supp(f)))\nu(\pi_Y(\supp(f)))$. Also, the latter expression is finite since $\pi_X(\supp(f))$ and $\pi_Y(\supp(f))$ are compact and $\mu$ and $\nu$ are Radon.\retTwo
+		Specifically consider the set $K \coloneqq \pi_X(\supp(f)) \times \pi_Y(\supp(f)) \in X \times Y$. Then $\supp(f) \subseteq K$, $K$ is compact, and $\mu \times \nu(K) = \mu(\pi_X(\supp(f)))\nu(\pi_Y(\supp(f)))$. Also, the latter expression is finite since $\pi_X(\supp(f))$ and $\pi_Y(\supp(f))$ are compact and $\mu$ and $\nu$ are Radon.\retTwo
 	\end{myIndent}
 
-	This proves that every $f \in C_c(X, Y)$ is also in $L^1(\mu \times \nu)$. Finally, even if $\mu$ and $\nu$ are not $\sigma$-finite, we can still show that Fubini's theorem holds. Specifically, consider taking\\ $\mu^\prime(E) \coloneqq \mu(E \cap \pi_X^{-1}(\supp(f)))$ and $\nu^\prime(E) \coloneqq \nu(E \cap \pi_Y^{-1}(\supp(f)))$.\newpage
+	This proves that every $f \in C_c(X, Y)$ is also in $L^1(\mu \times \nu)$. Finally, even if $\mu$ and $\nu$ are not $\sigma$-finite, we can still show that Fubini's theorem holds. Specifically, consider letting $U$ and $V$ be precompact open sets in $X$ and $Y$ respectively such that $\pi_X^{-1}(\supp(f)) \subseteq U$ and $\pi_Y^{-1}(\supp(f)) \subseteq V$. Then set $\mu^\prime(E) \coloneqq \mu(E \cap U)$ and $\nu^\prime(E) \coloneqq \nu(E \cap V)$.\newpage
 
+	Now it's clear that:
 	
+	\begin{itemize}
+		\item $\int f \df \mu^\prime = \int f \chi_{U} \df \mu = \int f \df \mu$,
+		
+		\item $\int (\int f \df \mu^\prime) \df \nu^\prime = \int (\int f \df \mu) \df \nu^\prime = \int (\int f \df \mu) \chi_{V} \df \nu = \int (\int f \df \mu) \df \nu$,\\ [-4pt]
+		
+		\item $\int f \df \nu^\prime = \int f \chi_{V} \df \nu = \int f \df \nu$,
+		
+		\item $\int (\int f \df \nu^\prime) \df \mu^\prime = \int (\int f \df \nu) \df \mu^\prime = \int (\int f \df \nu) \chi_{U} \df \mu = \int (\int f \df \nu) \df \mu$.\retTwo
+	\end{itemize}
+
+	Also, we can see as follows that $\int f \df(\mu \times \nu) = \int f \df(\mu^\prime \times \nu^\prime)$\dots
+	\begin{myIndent}\exPPP
+		Note that if $g \in L^1(\mu)$ and $h \in L^1(\nu)$, then we automatically have that $g \in L^1(\mu^\prime)$, $h \in L^1(\nu^\prime)$, $\int g \df \mu^\prime = \int g \chi_U \df \mu$, and $\int h \df \nu^\prime = \int h \chi_V \df \nu$. Additionally, by applying exercise 2.51 from my math 240a homework, we know that:
+		
+		{\center\begin{tabular}{l}
+			$\int (g \chi_U)\otimes(h\chi_V)\df (\mu \times \nu) = (\int g \chi_U \df \mu)(\int h \chi_V \df \nu)$\\ [6pt]
+			
+			$\phantom{\int (g \chi_U)\otimes(h\chi_V)\df (\mu \times \nu)} = (\int g \df \mu^\prime)(\int h  \df \nu^\prime) = \int (g \otimes h) \df (\mu^\prime \times \nu^\prime)$.
+		\end{tabular} \retTwo\par}
+
+		It then follows that if $\mathcalli{P}$ is as in the last proposition, $F \in \mathcalli{P}$, and $\supp(F) \subseteq U \times V$, then we know that $\int F \df (\mu^\prime \times \nu^\prime) = \int F \df (\mu \times \nu)$. However, we also showed in the last proposition that we can find a sequence $(F_n)_{n \in \mathbb{N}}$ of such functions such that $F_n \to f$ uniformly. Since $\mu \times \nu(U \times V) = \mu^\prime \times \nu^\prime(U \times V) < \infty$, we can thus conclude via the dominated convergence theorem (using an upper bound of $f + \chi_{U \times V})$ that:
+
+		{\center$\int f \df (\mu \times \nu) = \lim\limits_{n \to \infty} \int F_n \df (\mu \times \nu) = \lim\limits_{n \to \infty} \int F_n \df (\mu^\prime \times \nu^\prime) = \int f \df (\mu^\prime \times \nu^\prime)$ \retTwo\par}
+	\end{myIndent}
+
+	A consequence of this is that since $f \in L^1(\mu \times \nu)$, we now know that $f \in L^1(\mu^\prime \times \nu^\prime)$. In turn, since both $\mu^\prime$ and $\nu^\prime$ are finite measures, we can apply the Fubini-Tonelli theorem to see that $\int f \df (\mu^\prime \times \nu^\prime) = \iint f \df \mu^\prime \df \nu^\prime = \iint f \df \nu^\prime \df \mu^\prime$. And now we're done since we already showed earlier that $\int f \df (\mu^\prime \times \nu^\prime) = \int f \df (\mu \times \nu)$, $\iint f \df \mu^\prime \df \nu^\prime = \iint f \df \mu \df \nu$, and $\iint f \df \nu^\prime \df \mu^\prime = \iint f \df \nu \df \mu$. $\blacksquare$\retTwo
 \end{myIndent}
 
+\hTwo The significance of the last proposition is that we now know that if $\mu$ and $\nu$ are positive\\ Radon measures on $X$ and $Y$ respectively, then $I(f) = \int f \df (\mu \times \nu)$ is a well-defined\\ positive linear functional from $C_c(X \times Y)$ to $\mathbb{C}$. Hence, there exists a unique well- \\defined positive Radon measure (which we denote $\mu \radtimes \nu$) on $\mathcalli{B}_{X \times Y}$ such that\\ $\int f \df (\mu \radtimes \nu) = \int f (\mu \times \nu)$ for all $f \in C_c(X \times Y)$. We call $\mu \radtimes \nu$ the \udefine{Radon product}\\ of $\mu$ and $\nu$.\retTwo
 
+I'm going to stop taking notes on this section of Folland for the time being cause I don't think Radon products will be necessary for anything I want to study in Folland for a while. Next time, I will be studying some Fourier analysis from Folland.\retTwo
 
+\dispDate{9/7/2025}
 
+Let $M(\mathbb{R}^n)$ be the space of complex Borel Radon measures on $\mathbb{R}^n$. Then given any\\ $\mu, \nu \in M(\mathbb{R}^n)$, we define $\mu \times \nu \in M(\mathbb{R}^n \times \mathbb{R}^n)$ by:
 
+{\centering $\df (\mu \times \nu)(x, y) = \frac{\df \mu}{\df |\mu|}(x) \frac{\df \nu}{\df |\nu|}(y) \df(|\mu| \times |\nu|)(x, y)$ \newpage\par}
 
-
+\begin{myIndent}\hThree
+	It's clear that $\mu \times \nu$ is a well-defined Radon measure on $M(\mathbb{R}^n \times \mathbb{R}^n)$ by propostion 7.16 (page 59 of my journal), propositions 7.20(c) (page 182 of my journal), and the corollary to exercise 7.8 (page 154 of my journal).
+\end{myIndent}
 
 
 
