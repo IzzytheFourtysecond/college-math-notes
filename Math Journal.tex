@@ -47,6 +47,19 @@
 \usepackage{quiver} %commutative diagrams
 
 
+
+
+
+
+\usepackage[hidelinks]{hyperref}
+\newcommand{\inLinkRap}[2]{{\color{blue}\hyperlink{#1}{\textit{#2}}}}
+
+
+
+
+
+
+
 \newfontfamily{\calibri}{Calibri}
 \setlength{\parindent}{0pt}
 \definecolor{RawerSienna}{HTML}{945D27}
@@ -2695,7 +2708,7 @@ I'm continuing on in Folland where I left off.
 
 	We denote the space of complex Radon measures on $(X, \mathcal{B}_X)$ as $M(X)$ and for $\mu \in M(X)$ we define $\|\mu\| = |\mu|(X)$ where $|\mu|$ is the total variation of $\mu$.\retTwo
 
-	\exOne \ul{Proposition 7.16:} If $\mu$ is a complex Borel measure, then $\mu$ is Radon iff $|\mu|$ is Radon. Moreover, $M(X)$ is a vector space and $\mu \mapsto \|\mu\|$ is a norm on that space.
+	\exOne \hypertarget{Folland prop 7.16}{\ul{Proposition 7.16:}} If $\mu$ is a complex Borel measure, then $\mu$ is Radon iff $|\mu|$ is Radon. Moreover, $M(X)$ is a vector space and $\mu \mapsto \|\mu\|$ is a norm on that space.
 
 	\begin{myIndent}\exTwoP
 		Proof:\\
@@ -6509,7 +6522,7 @@ In physics yesterday we started talking about statistical mechanics, and that in
 	\end{myIndent}
 \end{myIndent}
 
-\blab{Corollary:} If $\mu$ is a fixed positive Radon measure and $f \in L^1(\mu)$, then $\nu = f \df \mu$ is a complex Radon measure.
+\hypertarget{Folland exercise 7.8 corollary}{\blab{Corollary:}} If $\mu$ is a fixed positive Radon measure and $f \in L^1(\mu)$, then $\nu = f \df \mu$ is a complex Radon measure.
 
 \begin{myIndent}\HexOne
 	If we write $f = f_1 - f_2 + i(f_3 - f_4)$ and set $\nu_j = f_j \df \mu$ for all $j$, then it's clear from\\ the last exercise that all the $\nu_j$ are finite (and thus complex) Radon measures. Also,\\ $\nu = \nu_1 - \nu_2 + i(\nu_3 - \nu_4)$. So $\nu$ is also a complex radon measure.\retTwo
@@ -7277,7 +7290,7 @@ As a corollary, if $f: \mathbb{R}^n \to \mathbb{C}$ is continuous in each variab
 
 		Suppose $\pi_k$ is the projection of $X$ onto $X_k$ and that $A \in \overline{\mathcal{M}_k}$. Then $A = E \cup F$ where $E \in \mathcal{M}_k$ and $F \subseteq N$ where $N \in \mathcal{M}_k$ and $\mu_k(N) = 0$. It now follows that $\pi_k^{-1}(A) = \pi_k^{-1}(E) \cup \pi_k^{-1}(F)$ where $\pi_k^{-1}(E) \in \mathcal{N}$ and $\pi_k^{-1}(F) \subseteq \pi_k^{-1}(N)$ with $\nu(\pi_k^{-1}(N)) = 0$. Hence, $\pi_k^{-1}(A) \in \overline{\mathcal{N}}$.\retTwo
 
-		Now since the collection $\mathcal{A} = \{\pi_k^{-1}(E) : k=1,\ldots,n \text{ and } E \in \mathcal{M}_k\}$ is a base for $\mathcal{N}^\prime$ and $\mathcal{A}$ is a subset of the $\sigma$-algebra $\overline{\mathcal{N}}$, we must have that $\mathcal{N}^\prime \subseteq \overline{\mathcal{N}}$.\retTwo
+		Now since the collection $\mathcal{A} = \{\pi_k^{-1}(A) : k=1,\ldots,n \text{ and } A \in \overline{\mathcal{M}_k}\}$ is a base for $\mathcal{N}^\prime$ and $\mathcal{A}$ is a subset of the $\sigma$-algebra $\overline{\mathcal{N}}$, we must have that $\mathcal{N}^\prime \subseteq \overline{\mathcal{N}}$.\retTwo
 
 		Finally, consider that for any $A \in \mathcal{N}^\prime$, if we write $A = E \cup F$ where $E \in \mathcal{N}$ and $F \subseteq N$ with $N \in \mathcal{N}$ and $\nu(N) = 0$, then we know that $\nu^\prime(A - E) = 0$. Hence, $\overline{\nu}(A) = \nu(E)$ and $\nu^\prime(A) = \nu^\prime(E) + \nu^\prime(A - E) = \nu(E) + 0$. So $\overline{\nu}(A) = \nu^\prime(A)$.\newpage
 	\end{myIndent}
@@ -7474,7 +7487,7 @@ Let $X$ and $Y$ be LCH spaces and let $\pi_X$ and $\pi_Y$ denote the projections
 		Now since every open set in $X \times Y$ is a countable union of sets in $\mathcal{B}$, we know that $\mathcal{T} \subseteq \mathcal{M}(\mathcal{B})$ where $\mathcal{T}$ is the topology on $X \times Y$. It follows that $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B})$. But at the same time note that $\mathcal{B}$ is a subset of the entire collection of products of open sets, and we know by the proposition at the top of page 13 of my latex math 240a notes that the latter collection generates $\mathcalli{B}_X \otimes \mathcalli{B}_Y$. So, $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B}) \subseteq \mathcalli{B}_X \times \mathcalli{B}_Y$. $\blacksquare$\retTwo
 	\end{myIndent}
 
-	\item[(c)] If $X$ and $Y$ are second countable and $\mu$ and $\nu$ are Radon measures on $X$ and $Y$, then $\mu \times \nu$ is a Radon measure on $X \times Y$.
+	\item[\hypertarget{Folland Theorem 7.20c}{(c)}] If $X$ and $Y$ are second countable and $\mu$ and $\nu$ are Radon measures on $X$ and $Y$, then $\mu \times \nu$ is a Radon measure on $X \times Y$.
 	
 	\begin{myIndent}\exThreeP
 		Proof:\\
@@ -7548,17 +7561,121 @@ $$\int f \df(\mu \times \nu) = \iint f \df \mu \df \nu = \iint f \df \nu \df \mu
 
 \hTwo The significance of the last proposition is that we now know that if $\mu$ and $\nu$ are positive\\ Radon measures on $X$ and $Y$ respectively, then $I(f) = \int f \df (\mu \times \nu)$ is a well-defined\\ positive linear functional from $C_c(X \times Y)$ to $\mathbb{C}$. Hence, there exists a unique well- \\defined positive Radon measure (which we denote $\mu \radtimes \nu$) on $\mathcalli{B}_{X \times Y}$ such that\\ $\int f \df (\mu \radtimes \nu) = \int f (\mu \times \nu)$ for all $f \in C_c(X \times Y)$. We call $\mu \radtimes \nu$ the \udefine{Radon product}\\ of $\mu$ and $\nu$.\retTwo
 
-I'm going to stop taking notes on this section of Folland for the time being cause I don't think Radon products will be necessary for anything I want to study in Folland for a while. Next time, I will be studying some Fourier analysis from Folland.\retTwo
+I'm going to stop taking notes on this section of Folland for the time being cause I don't think Radon products will be necessary for anything I want to study in Folland for a while. Next time, I will be studying some Fourier analysis from Folland. Also, I'm going to finally add in-pdf hyperlinks to this document.\retTwo
 
 \dispDate{9/7/2025}
 
 Let $M(\mathbb{R}^n)$ be the space of complex Borel Radon measures on $\mathbb{R}^n$. Then given any\\ $\mu, \nu \in M(\mathbb{R}^n)$, we define $\mu \times \nu \in M(\mathbb{R}^n \times \mathbb{R}^n)$ by:
 
-{\centering $\df (\mu \times \nu)(x, y) = \frac{\df \mu}{\df |\mu|}(x) \frac{\df \nu}{\df |\nu|}(y) \df(|\mu| \times |\nu|)(x, y)$ \newpage\par}
+{\centering $\df (\mu \times \nu)(x, y) \coloneqq \frac{\df \mu}{\df |\mu|}(x) \frac{\df \nu}{\df |\nu|}(y) \df(|\mu| \times |\nu|)(x, y)$ \newpage\par}
 
 \begin{myIndent}\hThree
-	It's clear that $\mu \times \nu$ is a well-defined Radon measure on $M(\mathbb{R}^n \times \mathbb{R}^n)$ by propostion 7.16 (page 59 of my journal), propositions 7.20(c) (page 182 of my journal), and the corollary to exercise 7.8 (page 154 of my journal).
+	It's clear that $\mu \times \nu$ is a well-defined Radon measure on $M(\mathbb{R}^n \times \mathbb{R}^n)$ by \inLinkRap{Folland prop 7.16}{proposition 7.16}, \inLinkRap{Folland Theorem 7.20c}{theorem 7.20(c)}, and the \inLinkRap{Folland exercise 7.8 corollary}{corollary to exercise 7.8}. Also, this definition doesn't conflict with our previous definition for product measures because if $\mu$ and $\nu$ are positive measures, then $|\mu| = \mu$ and $|\nu| = \nu$. So $\frac{\df \mu}{\df |\mu|}(x) \frac{\df \nu}{\df |\nu|}(y) = 1$ and $\df(|\mu| \times |\nu|) = \df (\mu \times \nu)$.
+
+	\begin{myIndent}\myComment
+		Note: we need this new definition of product measures because we want to be able to take products of complex measures rather than  just positive measures.\retTwo
+
+		Also, this definition can be used to define products for complex measures in general (as opposed to just on $(\mathbb{R}^n, \mathcalli{B}_{\mathbb{R}^n})$).\retTwo
+	\end{myIndent}
 \end{myIndent}
+
+\Hstatement\mySepTwo
+
+\blab{Exercise 3.12:} For $j = 1,2$, let $\mu_j, \nu_j$ be $\sigma$-finite positive measures on $(X_j, \mathcal{M}_j)$ such that\\ $\nu_j \ll \mu_j$. Then $\nu_1 \times \nu_1 \ll \mu_1 \times \mu_2$ and:
+
+$$\frac{\df (\nu_1 \times \nu_2)}{\df (\mu_1 \times \mu_2)}(x_1, x_2) = \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2} (x_2)$$
+
+\phantom{.}\\
+\begin{myIndent}\HexOne
+	Proof:\\
+	Note that for all $E \in \mathcal{M}_1 \otimes \mathcal{M}_2$, since $\frac{\df \nu_j}{\df \mu_j} \geq 0$ for $j=1,2$ and $\chi_E \geq 0$, we have by\\ [-2pt] Tonelli's theorem that:
+
+	{\center\begin{tabular}{l}
+		$\nu_1 \times \nu_2(E) = \int \chi_E \df (\nu_1 \times \nu_2) = \iint \chi_E(x_1, x_2) \df \nu_1(x_1) \df \nu_2(x_2)$\\ [6pt]
+		$\phantom{\nu_1 \times \nu_2(E) = \int \chi_E \df (\nu_1 \times \nu_2)} = \iint \chi_E(x_1, x_2)\frac{\df \nu_1}{\df \mu_1}(x_1) \df \mu_1(x_1) \frac{\df \nu_2}{\df \mu_2}(x_2)\df \mu_2(x_2)$\\ [6pt]
+		$\phantom{\nu_1 \times \nu_2(E) = \int \chi_E \df (\nu_1 \times \nu_2)} = \int_E \frac{\df \nu_1}{\df \mu_1}(x_1)\frac{\df \nu_2}{\df \mu_2}(x_2) \df (\mu_1 \times \mu_2)(x_1, x_2)$.
+	\end{tabular}\retTwo\par}
+
+	This proves that $\nu_1 \times \nu_2 \ll \mu_1 \times \mu_2$ and that $\frac{\df (\nu_1 \times \nu_2)}{\df (\mu_1 \times \mu_2)}(x_1, x_2) = \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2} (x_2)$\\ [-2pt] $(\mu_1 \times \mu_2)$-a.e. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Extension (not in Folland):} For $j = 1,2$ let $\mu_j$ be a $\sigma$-finite measure on $(X_j, \mathcal{M}_j)$ and $\nu_j$ be a complex measure on $(X_j, \mathcal{M}_j)$ such that $\nu_j \ll \mu_j$. Then $\nu_1 \times \nu_2 \ll \mu_1 \times \mu_2$ and:
+
+$$\frac{\df (\nu_1 \times \nu_2)}{\df (\mu_1 \times \mu_2)}(x_1, x_2) = \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2} (x_2)$$
+
+\phantom{.}\\
+\begin{myIndent}\HexOne
+	Proof:\\
+	Starting off, we know that $\left|\frac{\df \nu_1}{\df |\nu_1|}(x_1)\frac{\df \nu_2}{\df |\nu_2|}(x_2)\right| = 1$ for $(|\nu_1| \times |\nu_2|)$-a.e. $(x_1, x_2)$.\retTwo
+
+	Thus since $|\nu_1|$ and $|\nu_2|$ are finite measures, we know $\frac{\df \nu_1}{\df |\nu_1|}(x_1)\frac{\df \nu_2}{\df |\nu_2|}(x_2) \in L^1(|\nu_1| \times |\nu_2|)$.\\ [-2pt] Hence, we can apply Fubini's theorem to say that:
+
+	{\center\begin{tabular}{l}
+		$\nu_1 \times \nu_2(E) = \int_E \frac{\df \nu_1}{\df |\nu_1|}(x_1)\frac{\df \nu_2}{\df |\nu_2|}(x_2) \df(|\nu_1| \times |\nu_2|)(x_1, x_2)$\\ [12pt]
+
+		$\phantom{\nu_1 \times \nu_2(E)} = \iint \chi_E \frac{\df \nu_1}{\df |\nu_1|}(x_1)\frac{\df \nu_2}{\df |\nu_2|}(x_2) \df |\nu_1|(x_1) \df |\nu_2|(x_2)$\\ [12pt]
+	\end{tabular}\retTwo\par}
+
+	Next, since $\nu_j \ll \mu_j$ for $j=1,2$ we know that $|\nu_j| \ll \mu_j$ for all $j = 1,2$. Thus for $j = 1,2$ there exists $\frac{\df \nu_j}{\df |\nu_j|}$. And so we may write:\newpage
+
+	{\center\begin{tabular}{l}
+		$\iint \chi_E \frac{\df \nu_1}{\df |\nu_1|}(x_1)\frac{\df \nu_2}{\df |\nu_2|}(x_2) \df |\nu_1|(x_1) \df |\nu_2|(x_2)$\\ [12pt]
+
+		$\phantom{aaaaaaaaaaaa} = \iint \chi_E \frac{\df \nu_1}{\df |\nu_1|}(x_1)\frac{\df |\nu_1|}{\df \mu_1}(x_1) \cdot \frac{\df \nu_2}{\df |\nu_2|}(x_2)\frac{\df |\nu_2|}{\df \mu_2}(x_2) \df \mu_1(x_1) \df \mu_2(x_2)$\\ [12pt]
+
+		$\phantom{aaaaaaaaaaaa} = \iint \chi_E \frac{\df \nu_1}{\df \mu_1}(x_1) \cdot \frac{\df \nu_2}{\df \mu_2}(x_2) \df \mu_1(x_1) \df \mu_2(x_2)$
+	\end{tabular}\retTwo\par}
+
+	Finally, $\frac{\df \nu_j}{\df \mu_j}\in L^1(\mu_j)$ for $j=1,2$ since $|\nu_j|$ is a finite measure. Thus by Tonelli's theorem we have that:\\ [-8pt]
+
+	{\centering\begin{tabular}{l}
+		$\int | \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2}(x_2)| \df (\mu_1 \times \mu_2)(x_1, x_2)$\\ [8pt]
+		$\phantom{aaaaaaaaaaaaaa} = \iint| \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2}(x_2)| \df \mu_1(x_1) \df \mu_2(x_2)$\\ [8pt]
+		$\phantom{aaaaaaaaaaaaaa} = \left[\int |\frac{\df \nu_1}{\df \mu_1}(x_1)| \df \mu_1(x_1)\right] \cdot \left[\int |\frac{\df \nu_2}{\df \mu_2}(x_2)|\df \mu_2(x_2)\right] < \infty$
+	\end{tabular}\retTwo\par}
+
+	Thus, $\frac{\df \nu_1}{\df \mu_1}(x_1) \cdot \frac{\df \nu_2}{\df \mu_2}(x_2) \in L^1(\mu_1 \times \mu_2)$ and we can conclude by Fubini's theorem that:\\ [-8pt]
+
+	{\centering\begin{tabular}{l}
+		$\iint \chi_E \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2}(x_2) \df \mu_1(x_1) \df \mu_2(x_2) = \int_E \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2}(x_2) \df (\mu_1 \times \mu_2)(x_1, x_2)$.
+	\end{tabular}\retTwo\par}
+
+	So, we've proven that $\nu_1 \times \nu_2(E) = \int_E \frac{\df \nu_1}{\df \mu_1}(x_1) \frac{\df \nu_2}{\df \mu_2}(x_2) \df (\mu_1 \times \mu_2)(x_1, x_2)$. And from there all the conclusions we were trying to prove before are obvious. $\blacksquare$\retTwo
+\end{myIndent}
+
+\myComment\fontsize{12}{13} One more note I'd like to make is that if for $j=1,2$ we have that $\nu_j$ is a complex measure $(X_j, \mathcal{M}_j)$, then $|\nu_1 \times \nu_2| = |\nu_1| \times |\nu_2|$. This is easily seen from the fact that:
+
+{\center\begin{tabular}{l}
+	$\nu_1 \times \nu_2 = \frac{\df \nu_1}{\df |\nu_1|}(x) \frac{\df \nu_2}{\df |\nu_2|}(y) \df(|\nu_1| \times |\nu_2|)(x, y)$\\ [8pt]
+	
+	$\phantom{aaaaaaaaa}\Longrightarrow |\nu_1 \times \nu_2| = \left| \frac{\df \nu_1}{\df |\nu_1|}(x) \frac{\df \nu_2}{\df |\nu_2|}(y) \right| \df(|\nu_1| \times |\nu_2|)(x, y) = 1 \cdot \df(|\nu_1| \times |\nu_2|)$
+\end{tabular} \retTwo\par}
+
+Also, if $f \in L^1(\nu_1 \times \nu_2)$ or if $f \geq 0$, then we can easily see via the Fubini-Tonelli theorem that $\int f \df \nu_1 \times \nu_2 = \iint f \df \nu_1 \df \nu_2$.\retTwo
+
+\Hstatement\mySepTwo
+
+\hTwo If $\mu, \nu \in M(\mathbb{R}^n)$, we define $\mu * \nu \in M(\mathbb{R}^n)$ by $\mu * \nu(E) \coloneqq \mu \times \nu(\alpha^{-1}(E))$ where $\alpha$ is addition (literally, $\alpha: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}^n$ is the map $\alpha(x, y) = x + y$). $\mu * \nu$ is called the \udefine{convolution} of $\mu$ and $\nu$. Also note that $\alpha^{-1}(E) = \{(x, y) \in \mathbb{R}^n \times \mathbb{R}^n : x + y \in E\}$. Thus $\chi_{\alpha^{-1}(E)}(x, y) = \chi_E(x + y)$ and so:\\ [-10pt]
+
+{\centering\begin{tabular}{l}
+	$\mu * \nu(E) = \mu \times \nu(\alpha^{-1}(E)) = \iint \chi_{\alpha^{-1}(E)}(x, y)\df \mu(x) \df \nu(y) = \iint \chi_E(x + y) \df \mu(x) \df \nu(y)$ 
+\end{tabular}\retTwo\par}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
