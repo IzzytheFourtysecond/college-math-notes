@@ -4280,7 +4280,7 @@ Given $k \geq 1$, we shall denote $\mathcal{L}^k(V)$ to be the set of all $k$-te
 
 \newpage
 
-\dispDate{8/5/2024}
+\dispDate{8/5/2025}
 
 So for context, my apartment mate was reading through a paper by Joel Spencer (who is famous for using probabilistic methods to study combinatorics and graph theory). This paper, which is titled \ul{Balancing Unit Vectors}, gives a pretty neat\\ existence proof using probability that given any finite collection $\{u_1, \ldots, u_m\}$ of\\ vectors in $\mathbb{R}^n$ with $\|u_i\|_2 \leq 1$ for all $i$, there exists coefficients $\varepsilon_1, \ldots, \varepsilon_m \in \{-1, +1\}$ such that: $\|\varepsilon_1u_1 + \ldots + \varepsilon_mu_m\|_2 \leq \sqrt{n}$. However, my apartment mate was having trouble with the following part of the paper and thus asked for my help with it:
 
@@ -7651,17 +7651,86 @@ $$\frac{\df (\nu_1 \times \nu_2)}{\df (\mu_1 \times \mu_2)}(x_1, x_2) = \frac{\d
 	$\phantom{aaaaaaaaa}\Longrightarrow |\nu_1 \times \nu_2| = \left| \frac{\df \nu_1}{\df |\nu_1|}(x) \frac{\df \nu_2}{\df |\nu_2|}(y) \right| \df(|\nu_1| \times |\nu_2|)(x, y) = 1 \cdot \df(|\nu_1| \times |\nu_2|)$
 \end{tabular} \retTwo\par}
 
-Also, if $f \in L^1(\nu_1 \times \nu_2)$ or if $f \geq 0$, then we can easily see via the Fubini-Tonelli theorem that $\int f \df \nu_1 \times \nu_2 = \iint f \df \nu_1 \df \nu_2$.\retTwo
+Also, if $f \in L^1(\nu_1 \times \nu_2)$, then we can easily see via the Fubini-Tonelli theorem that:
+
+{\centering$\int f \df \nu_1 \times \nu_2 = \iint f \df \nu_1 \df \nu_2 = \iint f \df \nu_2 \df \nu_1$.\retTwo\par}
 
 \Hstatement\mySepTwo
 
-\hTwo If $\mu, \nu \in M(\mathbb{R}^n)$, we define $\mu * \nu \in M(\mathbb{R}^n)$ by $\mu * \nu(E) \coloneqq \mu \times \nu(\alpha^{-1}(E))$ where $\alpha$ is addition (literally, $\alpha: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}^n$ is the map $\alpha(x, y) = x + y$). $\mu * \nu$ is called the \udefine{convolution} of $\mu$ and $\nu$. Also note that $\alpha^{-1}(E) = \{(x, y) \in \mathbb{R}^n \times \mathbb{R}^n : x + y \in E\}$. Thus $\chi_{\alpha^{-1}(E)}(x, y) = \chi_E(x + y)$ and so:\\ [-10pt]
+\hTwo If $\mu, \nu \in M(\mathbb{R}^n)$, we define $\mu * \nu \in M(\mathbb{R}^n)$ by $\mu * \nu(E) \coloneqq \mu \times \nu(\alpha^{-1}(E))$ where $\alpha$ is addition. (Literally. $\alpha: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}^n$ is the map $\alpha(x, y) = x + y$.) We call $\mu * \nu$ the \udefine{convolution} of $\mu$ and $\nu$. Also note that $\alpha^{-1}(E) = \{(x, y) \in \mathbb{R}^n \times \mathbb{R}^n : x + y \in E\}$. Thus $\chi_{\alpha^{-1}(E)}(x, y) = \chi_E(x + y)$ and so:\\ [-10pt]
 
 {\centering\begin{tabular}{l}
-	$\mu * \nu(E) = \mu \times \nu(\alpha^{-1}(E)) = \iint \chi_{\alpha^{-1}(E)}(x, y)\df \mu(x) \df \nu(y) = \iint \chi_E(x + y) \df \mu(x) \df \nu(y)$ 
+	$\mu * \nu(E) = \mu \times \nu(\alpha^{-1}(E)) = \int \chi_{\alpha^{-1}(E)}(x, y)\df(\mu \times \nu)(x, y)$\\ [6pt]
+	$\phantom{\mu * \nu(E) = \mu \times \nu(\alpha^{-1}(E))} = \int \chi_E(x + y) \df (\mu \times \nu)(x, y)$ 
 \end{tabular}\retTwo\par}
 
+\begin{myIndent}\pracOne
+	Question: How do we know that $\mu * \nu$ is a well-defined measure in $M(\mathbb{R}^n)$?\retTwo
+	
+	\pracTwo To start off, if $E \in \mathcalli{B}_{\mathbb{R}^n}$ then we know $\alpha^{-1}(E) \in \mathcalli{B}_{\mathbb{R}^n \times \mathbb{R}^n}$. because $\alpha$ is continuous. Next, we clearly have that $\chi_{\alpha^{-1}(E)} \in L^1(|\mu \times \nu|) = L^1(|\mu| \times |\nu|)$ since $|\mu|$ and $|\nu|$ are both finite. This proves that the integral expression $\int \chi_E(x + y)\df(\mu \times \nu)(x, y)$ is well-defined and finite.
+	\begin{myIndent}\myComment
+		Also, as a side note it means that:
+		
+		{\centering$\mu * \nu(E) = \iint \chi_E(x + y)\df\mu(x)\df \nu(y) = \iint \chi_E(x + y)\df \nu(y)\df \mu(x)$.\newpage\par}
+	\end{myIndent}
 
+	Now showing that $\mu * \nu$ is a countably additive measure is as simple as noting that\\ $\alpha^{-1}(\emptyset) = \emptyset$ and $\alpha^{-1}(\bigcup E_n) = \bigcup \alpha^{-1}(E_n)$. Meanwhile, by theorem 7.8 in my math 240c notes, it suffices to show that $|\mu * \nu|(K) < \infty$ for all compact sets $K$ in order to say that $\mu * \nu$ is regular (and thus Radon). Yet this is trivially true for any complex measure.
+
+
+
+\end{myIndent}
+
+
+
+
+\newpage
+
+\exTwo\ul{Proposition 8.48:}
+\begin{itemize}
+	\item[(a)] Convolution of measures is commutative and associative.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Commutativity is obvious. Meanwhile to show associativity note that:
+		
+		\begin{itemize}
+			\item[\bullet] $((\lambda * \mu) * \nu)(E) = \iint \chi_{E}(x^\prime + z)\df (\lambda * \mu)(x^\prime) \df \nu(z)$\\ [6pt]
+			$\phantom{((\lambda * \mu) * \nu)(E)} = \int (\lambda * \mu)(E + (-z)) \df \nu(z)$\\ [6pt]
+			$\phantom{((\lambda * \mu) * \nu)(E)} = \int (\iint \chi_{E + (-z)}(x + y) \df \lambda(x) \df \mu(y)\df )\nu(z)$\\ [6pt]
+			$\phantom{((\lambda * \mu) * \nu)(E)} = \iiint \chi_E(x + y + z)\df \lambda(x)\df \mu(y) \df \nu(z)$\retTwo
+
+			\item[\bullet] Similarly, you can show that:
+			
+			{\centering$(\lambda * (\mu * \nu))(E) = \iiint \chi_E(x + y + z)\df \lambda(x)\df\mu(y)\df \nu(z)$.\retTwo\par}
+		\end{itemize}
+
+		Thus since both measures equal a common expression, we are done. $\blacksquare$\retTwo
+	\end{myIndent}
+	
+	\item[(b)] For any bounded Borel measurable function $h$, $\int h \df (\mu * \nu) = \iint h(x + y)\df \mu(x) \df \nu(y)$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		This clearly holds for characteristic functions and in turn by linearity it holds for simple functions.\retTwo
+
+		Next if $f$ is measurable and nonnegative, then letting $(\phi_n)_{n \in \mathbb{N}}$ be a monotonically increasing sequence of nonnegative simple functions converging to $f$ pointwise, we have by the monotone convergence theorem that:
+
+		{\centering\begin{tabular}{l}
+			$\int f \df(\mu * \nu) = \lim_{n \to \infty} \int \phi_n \df(\mu * \nu)$\\ [4pt]
+			$\phantom{\int f \df(\mu * \nu)} = \lim_{n \to \infty} \iint \phi_n(x + y)\df \mu(x)\df \nu(y)$\\ [4pt]
+			$\phantom{\int f \df(\mu * \nu)} = \iint \lim_{n \to \infty} \phi_n(x + y) \df \mu(x)\df \nu(y) = \iint f(x + y)\df \mu(x) \df \nu(y)$.
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+
+
+
+
+	\item[(c)] $\|\mu * \nu\| \leq \|\mu\|\|\nu\|$.
+	
+	\item[(d)] If $\mu = f \df m$ and $\nu = g \df m$, then $\mu * \nu = (f * g)\df m$; that's to say, if we view $L^1(m)$ as a subspace of $M(X)$ via the mapping $f \mapsto f \df m$ (where $m$ is the Lebesgue measure), then our old and new definition of convolutions coincide.
+
+\end{itemize}
 
 
 
