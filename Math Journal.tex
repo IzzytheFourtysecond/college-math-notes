@@ -266,6 +266,7 @@
 \newcommand{\NBV}{\ensuremath{\mathrm{NBV}}}
 \newcommand{\Acc}{\mathrm{Acc}}
 \newcommand{\BV}{\ensuremath{\mathrm{BV}}}
+\newcommand{\Var}{\ensuremath{\mathrm{Var}}}
 
 \newcommand{\Alt}{\mathrm{Alt}}
 \newcommand{\Sym}{\mathrm{Sym}}
@@ -6918,13 +6919,13 @@ Now using the theorems from Hewitt and Stromberg, I want to show that $\overline
 
 	Now we claim $\nu(\bigcup_{F \notin \mathcalli{F}_1} F) = 0$. After all, if the set weren't null, then we'd have that\\ $0 < \nu(\bigcup_{F \notin \mathcalli{F}_1} F) \subseteq \nu(X) < \infty$. It would thus follow by the inner regularity of $\nu$ that\\ there is a compact set $K \subseteq \bigcup_{F \notin \mathcalli{F}_1} F$ with $\nu(K) > 0$. But then we'd have that\\ $\mu(K) < \infty$, which means $\nu(K) = \int_K f \df \mu$ and $\mu(K) = \sum_{F \in \mathcalli{F}}\mu(F \cap K)$.\retTwo
 	
-	Now we can't have that $\mu(K) = 0$ since that would contradict that $\nu(K) = \int_K f \df \mu > 0$. Hence, there is a nonempty countable family $\mathcalli{F}_2 \subseteq \mathcalli{F}$ such that $\mu(F \cap K) > 0$ for all\\ $F \in \mathcalli{F}_2$ and $\mu(F \cap K) = 0$ for all $F \notin \mathcalli{F}_2$. Also, since $K$ doesn't intercept any $F \in \mathcalli{F}_1$, we know that $\mathcalli{F}_1 \cap \mathcalli{F}_2 = \emptyset$. But now note that:
+	Now we can't have that $\mu(K) = 0$ since that contradicts that $\nu \ll \mu$. Hence, since $\mu$ is decomposable there's a nonempty countable family $\mathcalli{F}_2 \subseteq \mathcalli{F}$ such that $\mu(F \cap K) > 0$ for all $F \in \mathcalli{F}_2$ and $\mu(K) = \sum_{F \in \mathcalli{F}_2}\mu(F \cap K)$ (which in turn means $\mu(\bigcup_{F \notin \mathcalli{F}_2} F \cap K) = 0$). Also, since $K$ doesn't intercept any $F \in \mathcalli{F}_1$, we know that $\mathcalli{F}_1 \cap \mathcalli{F}_2 = \emptyset$. But now note that:
 	
 	{\centering$0 < \nu(K) = \int_K f \df \mu = \sum_{F \in \mathcalli{F}_2} \int_{F \cap K} f \df \mu = \sum_{F \in \mathcalli{F}_2} \nu(F \cap K)$.\newpage\par}
 
 	This implies that there is some $F \in \mathcalli{F}_2$ such that $\nu(F) > \nu(F \cap K) > 0$. But that is a contradiction since we already know that $\nu(F) = 0$ if $F \notin \mathcalli{F}_1$. Hence, we have proven that there is a set $E = \bigcup_{F \in \mathcalli{F}_1} F$ which $\mu$ is $\sigma$-finite on such that $\nu(X) = \nu(E)$. And in turn, we've now proven that $\nu = f\chi_E \df \mu$.
 	\begin{myIndent}\exPPP
-		And as a side note: if $f\chi_E \in L^1(\mu)$ because $\int f \chi_E \df \mu = \nu(X) < \infty$.\retTwo
+		And as a side note: $f\chi_E \in L^1(\mu)$ because $\int f \chi_E \df \mu = \nu(X) < \infty$.\retTwo
 	\end{myIndent}
 
 	Next, we consider the case where $\nu$ is $\sigma$-finite. Let $(X_n)_{n \in \mathbb{N}}$ be a partition of $X$ consisting of finitely measurable sets. Then by identical reasoning as before, we can find for each $n$ a set $E_n \subseteq X$ on which $\mu$ is $\sigma$-finite and $\nu(X_n \cap A) = \int_A f \chi_{E_n} \df \mu$ for all $A \in \mathcal{M}$. Also, since $E_n \subseteq X_n$ for all $n$, it is clear that they are all disjoint. So, $E \coloneqq \bigcup_{n \in \mathbb{N}} E_n$ satisfies that $\mu$ is $\sigma$-finite on $E$ and $f\chi_E = \sum_{n \in \mathbb{N}} f\chi_{E_n}$. Also, it is clear that $\nu = f\chi_E \df \mu$ since:
@@ -6985,7 +6986,7 @@ So to sum all my previous work up, we have the following result:\retTwo
 
 \exTwo\ul{A Third Extension of the Lebesgue-Radon-Nikodym Theorem:}
 \begin{myIndent}
-	If $X$ is an LCH space and $\mu$ and $\nu$ positive Radon measures on $(X, \mathcalli{B}_X)$ such that\\ $\nu$ is $\sigma$-finite and $\nu \ll \mu$, then there exists a measurable function $f: X \to [0, \infty)$\\ which vanishes outside of a set where $\mu$ is $\sigma$-finite and which satisfies that $\nu = f \df \mu$.\\ Furthermore, if $g$ is another measurable function satisfying that $\nu = g \df \mu$, then\\ $f = g$ $\mu$-a.e.\retTwo
+	If $X$ is an LCH space and $\mu$ and $\nu$ are positive Radon measures on $(X, \mathcalli{B}_X)$ such that\\ $\nu$ is $\sigma$-finite and $\nu \ll \mu$, then there exists a measurable function $f: X \to [0, \infty)$\\ which vanishes outside of a set where $\mu$ is $\sigma$-finite and which satisfies that $\nu = f \df \mu$.\\ Furthermore, if $g$ is another measurable function satisfying that $\nu = g \df \mu$, then\\ $f = g$ $\mu$-a.e.\retTwo
 \end{myIndent}
 
 \hTwo Also, we can clearly extend this theorem to the case where $\nu$ is signed by just applying the theorem to the positive and negative variations separately of $\nu$. And in order to prove uniqueness in this case we can employ a similar strategy as was shown at the top of page 158.\newpage
@@ -7016,7 +7017,7 @@ Going a step further, if $\nu$ is complex, then we can apply the prior reasoning
 	\end{myIndent}
 \end{myIndent}
 
-An important application of the above fact is that if $m$ is the Lebesgue measure on $\mathbb{R}^n$, then we can identify $L^1(m)$ as a subspace $M(X)$. This will be used in my journal later.\retTwo
+An important application of the above fact is that if $m$ is the Lebesgue measure on $\mathbb{R}^n$, then we can identify $L^1(m)$ as a subspace $M(\mathbb{R}^n)$. This will be used in my journal later.\retTwo
 
 Given a net $\langle \mu_\alpha \rangle_{\alpha \in A}$ and another measure $\mu$ in $M(X)$, we have that $\mu_\alpha \to \mu$ in the \weakst topology on $M(X) = C_0(X)^*$ iff we have that $\int f \df \mu_\alpha \to \int f \df \mu$ for all $f \in C_0(X)$. This topology is important enough to be given a second name: the \udefine{vague topology} on $M(X)$.\newpage
 
@@ -7651,9 +7652,11 @@ $$\frac{\df (\nu_1 \times \nu_2)}{\df (\mu_1 \times \mu_2)}(x_1, x_2) = \frac{\d
 	$\phantom{aaaaaaaaa}\Longrightarrow |\nu_1 \times \nu_2| = \left| \frac{\df \nu_1}{\df |\nu_1|}(x) \frac{\df \nu_2}{\df |\nu_2|}(y) \right| \df(|\nu_1| \times |\nu_2|)(x, y) = 1 \cdot \df(|\nu_1| \times |\nu_2|)$
 \end{tabular} \retTwo\par}
 
-Also, if $f \in L^1(\nu_1 \times \nu_2)$, then we can easily see via the Fubini-Tonelli theorem that:
+Also, since $\left|\frac{\df \nu_j}{\df |\nu_j|}\right| = 1$ a.e. we know $f \in L^1(|\nu_1| \times |\nu_2|)$ iff $f \cdot \frac{\df \nu_1}{\df |\nu_1|} \cdot \frac{\df \nu_2}{\df |\nu_2|} \in L^1(|\nu_1| \times |\nu_2|)$. And when the latter is true then we can easily see via the Fubini-Tonelli theorem that:
 
 {\centering$\int f \df \nu_1 \times \nu_2 = \iint f \df \nu_1 \df \nu_2 = \iint f \df \nu_2 \df \nu_1$.\retTwo\par}
+
+And since $|\nu_1 \times \nu_2| = |\nu_1| \times |\nu_2|$ is finite, it's clear that any bounded $f$ is in $L^1(\nu_1 \times \nu_2)$.\retTwo
 
 \Hstatement\mySepTwo
 
@@ -7667,23 +7670,17 @@ Also, if $f \in L^1(\nu_1 \times \nu_2)$, then we can easily see via the Fubini-
 \begin{myIndent}\pracOne
 	Question: How do we know that $\mu * \nu$ is a well-defined measure in $M(\mathbb{R}^n)$?\retTwo
 	
-	\pracTwo To start off, if $E \in \mathcalli{B}_{\mathbb{R}^n}$ then we know $\alpha^{-1}(E) \in \mathcalli{B}_{\mathbb{R}^n \times \mathbb{R}^n}$. because $\alpha$ is continuous. Next, we clearly have that $\chi_{\alpha^{-1}(E)} \in L^1(|\mu \times \nu|) = L^1(|\mu| \times |\nu|)$ since $|\mu|$ and $|\nu|$ are both finite. This proves that the integral expression $\int \chi_E(x + y)\df(\mu \times \nu)(x, y)$ is well-defined and finite.
+	\pracTwo To start off, if $E \in \mathcalli{B}_{\mathbb{R}^n}$ then we know $\alpha^{-1}(E) \in \mathcalli{B}_{\mathbb{R}^n \times \mathbb{R}^n}$. because $\alpha$ is continuous. Next, we clearly have that $\chi_{\alpha^{-1}(E)} \in L^1(|\mu \times \nu|) = L^1(|\mu| \times |\nu|)$ since $|\mu|$ and $|\nu|$ are both finite. This proves that the integral expression $\int \chi_{\alpha^{-1}(E)}\df(\mu \times \nu)(x, y)$ is well-defined and finite.\newpage
 	\begin{myIndent}\myComment
 		Also, as a side note it means that:
 		
-		{\centering$\mu * \nu(E) = \iint \chi_E(x + y)\df\mu(x)\df \nu(y) = \iint \chi_E(x + y)\df \nu(y)\df \mu(x)$.\newpage\par}
+		{\centering$\mu * \nu(E) = \iint \chi_E(x + y)\df\mu(x)\df \nu(y) = \iint \chi_E(x + y)\df \nu(y)\df \mu(x)$.\retTwo\par}
 	\end{myIndent}
 
-	Now showing that $\mu * \nu$ is a countably additive measure is as simple as noting that\\ $\alpha^{-1}(\emptyset) = \emptyset$ and $\alpha^{-1}(\bigcup E_n) = \bigcup \alpha^{-1}(E_n)$. Meanwhile, by theorem 7.8 in my math 240c notes, it suffices to show that $|\mu * \nu|(K) < \infty$ for all compact sets $K$ in order to say that $\mu * \nu$ is regular (and thus Radon). Yet this is trivially true for any complex measure.
-
-
-
+	Now showing that $\mu * \nu$ is a countably additive measure is as simple as noting that\\ $\alpha^{-1}(\emptyset) = \emptyset$ and also that if $\{E_n\}_{n \in \mathbb{N}}$ is a sequence of disjoint sets in $\mathcalli{B}_{\mathbb{R}^n}$, then\\ $\{\alpha^{-1}(E_n)\}_{n \in \mathbb{N}}$ is a sequence of disjoint sets in $\mathcalli{B}_{\mathbb{R}^n} \otimes \mathcalli{B}_{\mathbb{R}^n}$. Meanwhile, by theorem 7.8 in my math 240c notes, it suffices to show that $|\mu * \nu|(K) < \infty$ for all compact sets $K$ in order to say that $\mu * \nu$ is regular (and thus Radon). Yet this is trivially true for any complex measure.\retTwo
 \end{myIndent}
 
-
-
-
-\newpage
+\hOne\dispDate{9/11/2025}
 
 \exTwo\ul{Proposition 8.48:}
 \begin{itemize}
@@ -7707,33 +7704,238 @@ Also, if $f \in L^1(\nu_1 \times \nu_2)$, then we can easily see via the Fubini-
 		Thus since both measures equal a common expression, we are done. $\blacksquare$\retTwo
 	\end{myIndent}
 	
-	\item[(b)] For any bounded Borel measurable function $h$, $\int h \df (\mu * \nu) = \iint h(x + y)\df \mu(x) \df \nu(y)$.
+	\item[(b)] For any bounded Borel measurable function $h$:
+	
+	{\centering$\int h \df (\mu * \nu) = \iint h(x + y)\df \mu(x) \df \nu(y)$.\retTwo\par}
 	
 	\begin{myIndent}\exThreeP
 		Proof:\\
-		This clearly holds for characteristic functions and in turn by linearity it holds for simple functions.\retTwo
+		This is obvious for characteristic functions, and by applying standard linearity\\ arguments we can show this is true when $h$ is a simple function.\retTwo
 
-		Next if $f$ is measurable and nonnegative, then letting $(\phi_n)_{n \in \mathbb{N}}$ be a monotonically increasing sequence of nonnegative simple functions converging to $f$ pointwise, we have by the monotone convergence theorem that:
+		For the general case, suppose $h: X \to \mathbb{C}$ is Borel measurable. Then, using a theorem on page 44 of my latex math 240a notes, we know there exists a sequence $\{\phi_n\}_{n \in \mathbb{N}}$ of simple functions such that $\{\phi_n\}_{n \in \mathbb{N}}$ is monotone increasing and $\phi_n \to h$ pointwise. If $h$ is bounded, then we can conclude by the dominated convergence theorem using $|h|$ and $\int |h(x, y)| \df \mu(x)$ as upper bounds that:
 
 		{\centering\begin{tabular}{l}
-			$\int f \df(\mu * \nu) = \lim_{n \to \infty} \int \phi_n \df(\mu * \nu)$\\ [4pt]
-			$\phantom{\int f \df(\mu * \nu)} = \lim_{n \to \infty} \iint \phi_n(x + y)\df \mu(x)\df \nu(y)$\\ [4pt]
-			$\phantom{\int f \df(\mu * \nu)} = \iint \lim_{n \to \infty} \phi_n(x + y) \df \mu(x)\df \nu(y) = \iint f(x + y)\df \mu(x) \df \nu(y)$.
-		\end{tabular}\retTwo\par}
+			$\int h \df (\mu * \nu) = \lim\limits_{n \to \infty}\int \phi_n \df (\mu * \nu)$\\ [9pt]
+			$\phantom{\int h \df (\mu * \nu)} = \lim\limits_{n \to \infty}\iint \phi_n(x + y)\df \mu(x)\df \nu(y) = \iint h(x + y)\df \mu(x)\df \nu(y)$ $\blacksquare$
+		\end{tabular} \newpage\par}
 	\end{myIndent}
-
-
-
-
 
 	\item[(c)] $\|\mu * \nu\| \leq \|\mu\|\|\nu\|$.
 	
-	\item[(d)] If $\mu = f \df m$ and $\nu = g \df m$, then $\mu * \nu = (f * g)\df m$; that's to say, if we view $L^1(m)$ as a subspace of $M(X)$ via the mapping $f \mapsto f \df m$ (where $m$ is the Lebesgue measure), then our old and new definition of convolutions coincide.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $h = \frac{\df (\mu * \nu)}{\df |\mu * \nu|}$. Then we have that:
+		
+		{\centering $\|\mu * \nu\| = |\mu * \nu|(X) = \int \df |\mu * \nu| = \int \overline{h} h \df |\mu * \nu| = \int \overline{h} \df (\mu * \nu)$.\retTwo\par}
 
+		Next, $|\overline{h}| = 1$ a.e. Therefore by applying part (b) we have that:
+
+		{\centering\begin{tabular}{l}
+			$\int \overline{h} \df (\mu * \nu) = |\iint \overline{h}(x + y)\df \mu(x)\df \nu(y)|$\\ [6pt]
+			$\phantom{\int \overline{h} \df (\mu * \nu)} \leq \iint |\overline{h}(x + y)|\df |\mu|(x)\df |\nu|(y) = \iint 1 \df |\mu|(x)\df |\nu|(y)$\\ [6pt]
+			$\phantom{\int \overline{h} \df (\mu * \nu) \leq \iint |\overline{h}(x + y)|\df |\mu|(x)\df |\nu|(y)} = |\mu|(\mathbb{R}^n)|\nu|(\mathbb{R}^n) = \|\mu\|\|\nu\|$ $\blacksquare$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+	
+	\item[(d)] If $\mu = f \df m$ and $\nu = g \df m$, then $\mu * \nu = (f * g)\df m$; that's to say, if we view $L^1(m)$ as a subspace of $M(\mathbb{R}^n)$ via the mapping $f \mapsto f \df m$ (where $m$ is the Lebesgue measure), then our old and new definition of convolutions coincide.
+
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $E \in \mathcalli{B}_{\mathbb{R}^n}$. Now $f(x)g(y) \in L^1(m \times m)$ by exercise 2.51 (in my math 240a latex notes) plus the fact that $|\mu|$ and $|\nu|$ are finite. So by Fubini's theorem plus the translation invariance of the Lebesgue measure, we have that:
+
+		{\centering\begin{tabular}{l}
+			$\mu * \nu(E) = \iint \chi_E(x + y)\df x \df y$\\ [6pt]
+			$\phantom{\mu * \nu(E)} = \iint \chi_E(x + y)f(x)g(y) \df x \df y$\\ [6pt]
+			$\phantom{\mu * \nu(E)} = \iint \chi_E(x)f(x - y)g(y) \df x \df y$\\ [6pt]
+			$\phantom{\mu * \nu(E)} = \int_E \left(\int f(x - y)g(y)\df y \right)\df x = \int_E f * g \df x$ $\blacksquare$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
 \end{itemize}
 
+\hTwo From now on if I write $L^p$, let it be assumed that I'm referring to $L^p(\mathbb{R}^n, m)$ where $m$ is the Lebesgue measure. Then, we shall define convolutions of measures with functions in $L^p$ for any $p$.\retTwo
+
+\exTwo\ul{Proposition 8.49:} If $f \in L^p(\mathbb{R}^n)$ (where $1 \leq p \leq \infty$) and $\mu \in M(\mathbb{R}^n)$, then the integral $f * \mu(x) \coloneqq \int f(x - y)\df \mu(y)$ exists for a.e. $x$, $f * \mu \in L^p$, and $\|f * \mu\|_p \leq \|f\|_p\|\mu\|$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, we know by Minkowski's inequality that:
+	
+	{\centering\begin{tabular}{l}
+		$\left(\int \left|\int |f(x - y)|\df |\mu|(y)^{\vphantom{\int^\int}}\right|^p \df x\right)^{1/p}\hspace{-0.5em} \leq \int \left( \int |f(x - y)|^p\df x \right)^{1/p} \df |\mu|(y)$\\
+
+		$\phantom{\left(\int \left|\int |f(x + y)|\df |\mu|(y)^{\vphantom{\int^\int}}\right|^p \df x\right)^{1/p}\hspace{-0.5em}} = \int \left( \int |f(x)|^p\df x \right)^{1/p} \df |\mu|(y)$\\
+
+		$\phantom{\left(\int \left|\int |f(x + y)|\df |\mu|(y)^{\vphantom{\int^\int}}\right|^p \df x\right)^{1/p}\hspace{-0.5em}} = \int \|f\|_p \df |\mu| = \|f\|_p \int \df |\mu| = \|f\|_p \|\mu\|$.
+	\end{tabular}\retTwo\par}
+	
+	Then since $\|f\|_p \|\mu\| < \infty$, this tells us that $\int |f(x - y)|\df |\mu|(y)$ exists and is finite for a.e. $x$. In turn, this means that $\int f(x - y) \df \mu(y)$ exists and is finite for a.e. $x$. And since $|\int f(x + y)\df \mu(y)| \leq \int |f(x - y)\df |\mu|(y) = \left|\int |f(x - y)\df |\mu|(y)\right|$, we're done. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo Note that if $p = 1$, then our two definitions of $f * \mu$ coincide (where again we are\\ considering $L^1$ as a subspace of $M(\mathbb{R}^n)$). After all,
+
+{\centering $\int_E f * \mu(x) \df x = \iint \chi_E(x) f(x - y)\df \mu(y)\df x = \iint \chi_E(x + y) (f(x)\df x)\df \mu(y)$. \retTwo\par}
+
+Thus, consider equipping $M(\mathbb{R}^n)$ with the convolution operator in addition to its other vector space operations. Then it's easy to see that $\mu * (\nu + \lambda) = (\mu * \nu) + (\mu * \lambda)$ for all $\mu, \nu, \lambda \in M(\mathbb{R}^n)$. Also, consider the point mass measure $\mu$ defined by $\iota(E) = 1$ if $0 \in E$ and $\iota(E) = 0$ otherwise. Clearly $\iota \in M(X)$ since $\iota$ is a measure on $\mathbb{R}^n$ that is finite on all compact sets. Also, if $\mu$ is any other measure in $M(\mathbb{R}^n)$ then we have that $\iota * \mu = \mu$. After all:
+
+{\centering$\iota * \mu(E) = \iint \chi_E(x + y)\df \iota(x) \df \mu(y) = \int \chi_E(y)\df \mu(y) = \mu(E)$\retTwo\par}
+
+Thus it follows that $M(\mathbb{R}^n)$ when equipped with pointwise addition and convolution is a commutative ring, and by proposition 8.49 we know that $L^1$ is an ideal in $M(\mathbb{R}^n)$.\retTwo
+
+Also, it's clear that $c(\mu * \nu) = (c \mu) * \nu = \mu * (c \nu)$. So, $M(\mathbb{R}^n)$ is also an algebra. And it's clear either by proposition 8.48(d) or the fact that $L^1$ is an ideal that we also know that $L^1$ is a subalgebra of $M(\mathbb{R}^n)$.\retTwo
+
+We now extend the Fourier Transform from $L^1$ to $M(\mathbb{R}^n)$ in the obvious way. Specifically, if $\mu \in M(\mathbb{R}^n)$, then define the function $\widehat{\mu}: \mathbb{R}^n \to \mathbb{C}$ by $\widehat{\mu}(\xi) = \int e^{-2\pi i \xi \cdot x} \df \mu(x)$.\retTwo
+
+\pracOne\mySepTwo
+Right now it is relevant to express a generalization of a result that Folland gave in chapter 2 of his book.\retTwo
+
+\ul{Theorem:} Consider any measure space $(X, \mathcal{M}, \mu)$ (where $\mu$ is positive), let $U \subseteq \mathbb{R}^n$ be an open set, and suppose that $f: X \times U \to \mathbb{C}$ is a function such that $f(\cdot, y): X \to \mathbb{C}$ is integrable for all $y \in U$. Also define $F(y) = \int_X f(x, t)\df \mu(x)$.
+
+\begin{enumerate}
+	\item[(a)] Suppose there exists $g \in L^1(\mu)$ such that $|f(x, y)| \leq g(x)$ for all $x \in X$ and $y \in U$. If $\lim_{y \to y^\prime} f(x, y) = f(x, y^\prime)$ for all $x \in X$, then $\lim_{y \to y^\prime} F(y) = F(y^\prime)$. In particular, if $f(x, \cdot)$ is continuous for each $x$, then $F$ is continuous.
+	
+	\item[(b)] Denote any $y \in U$ as $y = (y_1, \ldots, y_n)$. Now suppose that $\partial f / \partial y_j$ exists for all $y \in U$ and that there exists $g \in L^1(\mu)$ such that $|(\partial f / \partial y_j)(x, y)| \leq g(x)$ for all $x \in X$ and $y \in U$. Then $\partial F / \partial y_j$ exists and $\frac{\partial F}{\partial y_j}(y) = \int (\partial f / \partial y_j)(x, y)\df \mu(x)$.
+\end{enumerate}
+
+\begin{myIndent}\pracTwo
+	The proof for part (a) is identical to that of theorem 2.27 in Folland (see my paper math 240a notes). Just apply dominated convergence theorem to the functions $f_m(x) \coloneqq f(x, y^{(m)})$ where $(y^{(m)})_{m \in \mathbb{N}}$ is any sequence in $U$ converging to $y^\prime$.
+	\begin{myIndent}\myComment
+		Side note: technically the proof for part (a) doesn't require $U$ to be open.\retTwo
+	\end{myIndent}
+
+	To prove part (b), let $e_1, \ldots, e_n$ be the standard basis vectors for $\mathbb{R}^n$ and consider for any $y \in U$ that there exists some $r > 0$ such that $B_r(y) \subseteq U$. Thus for any sequence $(t_m)_{m \in \mathbb{N}}$ in $(-r, r)$ converging to $0$ we have that:
+
+	{\centering $\frac{\partial f}{\partial y_j}(x, y) = \lim_{m \to \infty} h_m(x)$ where $h_m(x) = \frac{f(x, y + t_m e_j) - f(x, y)}{t_m}$.\par}
+
+	\begin{myIndent}\myComment
+		(Note that this guarentees that $\frac{\partial f}{\partial y_j}$ is measurable for all $y$.)\newpage
+	\end{myIndent}
 
 
+	Now importantly $\tilde{f}(t) \coloneqq f(x, y + te_j)$ is differentiable with $\frac{\df \tilde{f}}{\df t}(t) = \frac{\partial f}{\partial y_j} (x, y + te_j)$.\retTwo 
+	
+	So, we know by the mean value theorem that $|\tilde{f}(t) - \tilde{f}(0)| \leq |t| \cdot \sup_{t \in (-r, r)} |\tilde{f}^\prime(t)|$. And in turn, we have that:
+
+	{\centering $|h_m(x)| \leq \sup_{t \in (-r, r)}\frac{\partial f}{\partial y_j}(x, y + te_j) \leq g(x)$. \retTwo\par}
+
+	Hence, we may apply dominated convergence theorem to say that:
+
+	{\center\begin{tabular}{l}
+		$\lim\limits_{m \to \infty}\frac{F(y + t_m) - F(y)}{t} = \lim\limits_{m \to \infty} \dfrac{\int f(x, y + t_me_j) \df \mu(x) - \int f(x, y)\df \mu(x)}{t}$\\ [10pt]
+		$\phantom{\lim\limits_{m \to \infty}\frac{F(y + t_m) - F(y)}{t}} = \lim\limits_{m \to \infty} \int h_m(x)\df \mu(x) = \int \lim\limits_{m \to \infty} h_m(x)\df \mu(x) = \int \frac{\partial f}{\partial y_j}(x, y) \df \mu(x)$
+	\end{tabular}\retTwo\par}
+
+	This proves that $\frac{\partial F}{\partial y_j}(y) = \int \frac{\partial f}{\partial y_j}(x, y) \df \mu(x)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+Also note that if $\mu$ is a complex measure, then by expressing $\mu = \mu_1 - \mu_2 + i(\mu_3 - \mu_4)$\\ where each $\mu_j$ is a positive measure and applying what we already proved to each\\ $\int f(x,y)\df \mu_j(x)$, we can show that the previous theorem holds for any function\\ $F(y) = \int f(x, y)\df \mu(x)$ provided that there exists some $g : X \to \mathbb{C}$ in $L^1(|\mu|)$ such\\ that $|f(x, y)| \leq g(x)$ for all $x \in X$ and $y \in U \subseteq \mathbb{R}^n$.\retTwo
+
+\mySepTwo
+
+\hTwo Since $e^{-2\pi i \xi \cdot x}$ is continuous with respect to $x$ and $|e^{-2\pi i \xi \cdot x}| = 1 \in L^1(|\mu|)$, we know by the prior reasoning that $\widehat{\mu}$ is continuous. Also, it is clear that $|\widehat{\mu}(\xi)| \leq \|\mu\|$. And, we can see for any $\mu, \nu \in M(\mathbb{R}^n)$ that $(\mu * \nu)^\wedge = \widehat{\mu}\widehat{\nu}$. After all:
+
+{\centering \begin{tabular}{l}
+	$(\mu * \nu)^\wedge(\xi) = \int e^{-2\pi i \xi \cdot x^\prime} \df (\mu * \nu)(x^\prime)$\\ [6pt]
+	$\phantom{(\mu * \nu)^\wedge(\xi)} = \iint e^{-2\pi i \xi \cdot (x + y)} \df \mu(x)\df \nu(y)$ \\ [6pt]
+	$\phantom{(\mu * \nu)^\wedge(\xi)} = \left(\int e^{-2\pi i \xi \cdot x} \df \mu(x)\right)\left(\int e^{-2\pi i \xi \cdot y} \df \nu(y)\right) = \widehat{\mu}(\xi)\widehat{\nu}(\xi)$
+\end{tabular} \retTwo\par}
+
+\exTwo\hypertarget{Folland proposition 8.50}{\ul{Proposition 8.50:}} Suppose that $\{\mu_k\}_{k\in \mathbb{N}}$ is a sequence in $M(\mathbb{R}^n)$ and $\mu \in M(\mathbb{R}^n)$. If\\ $\|\mu_k\| \leq C < \infty$ for all $k$ and $\widehat{\mu}_k \to \widehat{\mu}$ pointwise, then $\mu_k \to \mu$ vaguely.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $f \in \mathcalli{S}$ (where $\mathcalli{S}$ is the collection of Schwarts functions), then $f^\vee \in \mathcalli{S}$. So by the Fourier inversion theorem, we have that:
+
+	{\centering\begin{tabular}{l}
+		$\int f \df \mu_k = \int (\int f^{\vee}(x)e^{-2\pi i \xi \cdot x} \df x)\df \mu_k(\xi)$\\ [6pt]
+		$\phantom{\int f \df \mu_k} = \int f^\vee(x) (\int e^{-2\pi i \xi \cdot x}\df \mu_k(\xi)) \df x = \int f^\vee(x) \widehat{\mu}_k(x) \df x$
+	\end{tabular}\retTwo\par}
+
+	By similar resoning we know that $\int f \df \mu = \int f^\vee(x) \widehat{\mu}(x) \df x$. But now since $\|\widehat{\mu_k}\|_u \leq C$ for all $k$ and $f^\vee \widehat{\mu}_k \to f^\vee \widehat{\mu}$ pointwise, we can conclude by the dominated convergence theorem that:
+
+	{\centering\begin{tabular}{l}
+		$\lim\limits_{k\to \infty} \int f \df \mu_k = \lim\limits_{k \to \infty}\int f^\vee(x) \widehat{\mu_k}(x) \df x$\\ [10pt]
+		$\phantom{\lim\limits_{k\to \infty} \int f \df \mu_k} = \int \lim\limits_{k \to \infty} f^\vee(x)\widehat{\mu_k}(x)\df x = \int f^\vee(x)\widehat{\mu}(x) \df x = \int f \df \mu$
+	\end{tabular}\retTwo\par}
+
+	To finish off, note that since $\mathcalli{S}$ is dense in $C_0(\mathbb{R}^n)$, we know by Folland  proposition 5.17 (see my math 240b notes) that $\int f \df \mu_k \to \int f \df \mu$ as $k \to \infty$ for all $f \in C_0(\mathbb{R}^n)$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo Here's a relevant exercise from Folland:\retTwo
+
+\Hstatement\blab{Exercise 7.26:} Suppose $X$ is an LCH space. If $\{\mu_k\}_{k \in \mathbb{N}} \subseteq M(X)$, $\mu_k \to \mu$ vaguely, and\\ $\|\mu_k\| \to \|\mu\|$, then $\int f \df \mu_k \to \int f \df \mu$ for every $f \in BC(X)$.
+
+\begin{myIndent}\HexOne
+	In the case that $\mu = 0$, then this is trivial from the fact that $\|\mu_k\| = |\mu_k|(X) \to 0$ as\\ $k \to \infty$. Meanwhile, if $\mu \neq 0$, then consider any $\varepsilon > 0$. We can show  that there exists\\ a compact set $F \subseteq X$ such that $|\mu_k|(F^\comp) < 4 \varepsilon$ for all $k$ and that $|\mu|(F^\comp) < 4\varepsilon$.\\ [-8pt]
+	\begin{myIndent}\HexTwoP
+		By Lusin's theorem, we know there exists a function $h \in C_c(X, [0, 1])$ such that\\ [2pt] $\|h\|_u \leq 1$ and $h = \frac{\df \mu}{\df |\mu|}$ everwhere outside a set $E$ of $|\mu|$-measure less than $\varepsilon$. Thus\\ we have that $|\int h \df \mu_k | \leq \int |h| \df |\mu_k| \leq \|\mu_k\|$, that $|\int h \df \mu| \leq \|\mu\|$, and that:
+
+		{\center $|\int h \df \mu| = |\int_{E^\comp} \df |\mu| + \int_E h \df \mu| \geq |\mu|(E^\comp) - |\mu|(E) > \|\mu\| - 2\varepsilon$ \retTwo\par}
+
+		Also, since $\mu_k \to \mu$ vaguely, we know that $\int h \df \mu_k \to \int h \df \mu$ as $k \to \infty$. Hence, there is some $N_1 \in \mathbb{N}$ such that for all $k > N_1$, $|\int h \df \mu_k - \int h \df \mu| < \varepsilon$. But in turn we have that $|\int h \df \mu_k| > \|\mu\| - 3\varepsilon$ for all $k > N_1$. Meanwhile, since $\|\mu_k\| \to \|\mu\|$, we can find some $N_2 \in \mathbb{N}$ greater than $N_1$ such that $|\int h \df \mu_k| > \|\mu_k\| - 4\varepsilon$ for all $k > N_2$. Thus, by setting $F^\prime = \supp(h)$ it is clear that $|\mu_k|(X - F^\prime) < 4\varepsilon$ for all $k > N_2$ and that $|\mu|(X - F^\prime) < \varepsilon < 4\varepsilon$.\retTwo
+
+		Now to finish off, for all $k \in \mathbb{N}$ with $k \leq N_2$, we can find by the inner regularity\\ of $|\mu_k|$ on $X$ a compact set $F_k$ such that $|\mu_k|(F_k^\comp) < 4\varepsilon$. And by setting\\ [-2pt] $F = F^\prime \cup (\bigcup_{k=1}^{N_2} F_k )$, we are done.\retTwo 
+	\end{myIndent}
+
+	Now by Urysohn's lemma, we know there exists a function $g \in C_c(X, [0, 1])$ such that\\ $g = 1$ on $F$. It follows for any $f \in BC(X)$ that:
+	
+	{\centering$|\int (f - gf) \df \mu_k| = |\int_{F^\comp} (1 - g)f \df \mu_k| \leq \int_{F^\comp} 1\df |\mu_k| < 4\varepsilon$\retTwo\par}
+	
+	Similarly we have that $|\int (f - gf) \df \mu| < 4\varepsilon$. And importantly since $fg \in C_c(X)$ for any\\ $f \in BC(X)$ and $\mu_k \to \mu$ vaguely, we know that $\lim_{k \to \infty} |\int gf \df \mu_k - \int gf \df \mu| = 0$. So, we may conclude that:
+
+	{\center\begin{tabular}{l}
+		$\lim\limits_{k \to \infty}|\int f \df \mu_k - \int f \df \mu|$\\
+		$\phantom{aaaaa} \leq \lim\limits_{k \to \infty}\left(|\int (f - gf)\df \mu_k| + |\int gf \df \mu_k - \int gf \df \mu| + |\int (f - gf) \df \mu| \right) < 8\varepsilon$
+	\end{tabular} \retTwo\par}
+
+	And taking $\varepsilon \to 0$ we have shown what we wanted.\retTwo
+\end{myIndent}
+
+Moreover, the hypothesis that $\|\mu_k\| \to \|\mu\|$ can't be omitted.
+
+\begin{myIndent}\HexOne
+	Consider $X = \mathbb{R}$ and let $\mu = 0$ and $\mu_k$ be the point mass centered at $k$ (i.e. $\mu_k(E) = 1$\\ if $k \in E$ and $0$ otherwise). Now clearly $\|\mu_k\| \not\to \|\mu\|$ as $k \to \infty$ since $\|\mu_k\| = 1$ for all $k$ but $\|\mu\| = 0$. Also it's clear that $\mu_k \to \mu$ vaguely since for all $f \in C_0(\mathbb{R})$, we have that $\int f \df \mu_k = f(k) \to 0 = \int f \df \mu$ as $k \to \infty$ since $f$ vanishes at infinity. That said, it is not the case that $\int f \df \mu_k \to \int f \df \mu$ for all $f \in BC(\mathbb{R})$, and a simple example illustrating that is $f = 1$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo A corollary of the above exercise is that if $\{\mu_k\}_{k \in \mathbb{N}}$ is a sequence in $M(\mathbb{R}^n)$, $\mu \in M(\mathbb{R}^n)$, $\mu_k \to \mu$ vaguely, and $\|\mu_k\| \to \|\mu\|$, then $\widehat{\mu}_k \to \widehat{\mu}$ pointwise. This is because $e^{-2pi i \xi \cdot x}$ is a bounded continuous function for all $\xi \in \mathbb{R}^n$.\newpage
+
+\Hstatement\blab{Exercise 8.40:} $L^1(\mathbb{R}^n)$ is vaguely dense in $M(\mathbb{R}^n)$.
+
+\begin{myIndent}\HexOne
+	Let $\varphi \in L^1(\mathbb{R}^n)$ such that $\varphi \geq 0$ and $\int \varphi(x) \df x = 1$. Then put $\varphi_t(x) \coloneqq \frac{1}{t^n}\varphi(x/t)$ for all $t > 0$. Now our claim is that for any $\mu \in M(\mathbb{R}^n)$, we have that $(\varphi_t * \mu)\df x \to \mu$ vaguely as $t \to 0$.
+	\begin{myIndent}\HexTwoP
+		To start off, we know that $\|(\varphi_t * \mu)\df x\| \leq \|\varphi_t\|_1 \|\mu\| = \|\mu\| < \infty$ for all $t > 0$.\retTwo
+		
+		Also note that $((\varphi_t * \mu)\df x)^\wedge(\xi) = \widehat{\varphi}_t(\xi)\widehat{\mu}(\xi)$. But consider that $\widehat{\varphi}$ is continuous and $\widehat{\varphi}_t(\xi) = \int \frac{1}{t^n} \varphi(\frac{x}{t}) e^{-2\pi i \xi \cdot x} \df x = \int \varphi(u)e^{-2\pi i \xi \cdot t u} \df u = \widehat{\varphi}(t\xi)$. Thus it's clear that $\widehat{\varphi}_t(\xi) \to \widehat{\varphi}(0)$ pointwise as $t \to 0$. And since $\int \varphi(x)\df x = 1$, we know that $\widehat{\varphi}(0) = 1$. Hence, $((\varphi_t*\mu)\df x)^\wedge \to \widehat{\mu}$ pointwise.\retTwo
+
+		Applying \inLinkRap{Folland proposition 8.50}{proposition 8.50}, we are done. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hOne\dispDate{9/14/2025}
+
+I'd been visiting my parents in Ohio for the entire past week and didn't manage\\ to get that much done. But now that I'm heading back to California, I ought to start doing work again. Today I'll be starting on Folland chapter 10 (where he covers\\ probability). But before covering any theorems, I'd just like to shamelessly rip off\\ this table that Folland put together:
+
+{\center\includegraphics[scale=1]{Folland_screenshot.png}\retTwo\par}
+
+Also, given some proposition $P$, probabilists typically write $\{P(\omega) = \text{true}\}$ as\\  opposed to $\{\omega \in \Omega : P(\omega) = \text{true}\}$. As long as I'm studying probability theory,\\ I'm going to use probability terminology and notation.\retTwo
+
+\hTwo Let $X$ be a random variable. We define it's \udefine{variance} $\sigma^2$ and \udefine{standard deviation} $\sigma$ as:\\ [-20pt]
+
+{\center $\sigma^2(X) \coloneqq \inf_{a \in \mathbb{R}}E[(x - a)^2]$ and $\sigma(X) \coloneqq \sqrt{\sigma^2(X)}$\retTwo\par}
+
+If $X \in L^1 \cap L^2$, then $E((X - a)^2) = E(X^2 - 2aX + a^2) = E(X^2) - 2aE(X) + a^2$. Note that this is a quadratic which attains it's minimum at $a = E(X)$.\newpage 
+
+\begin{myIndent}\pracTwo
+	Sanity check, by completing the square we have:
+	
+	{\center\fontsize{11}{13}\selectfont$a^2 - 2aE(X) = a^2 - 2aE(X) + (E(X))^2 - (E(X))^2 = (a - E(X))^2 - (E(X))^2$.\retTwo\par}
+\end{myIndent}
+
+Hence, for all $X \in L^1 \cap L^2$ we have that:
+
+{\centering$\sigma^2(X) = E(X^2) - 2(E(X))^2 + (E(X))^2 = E(X^2) - (E(X))^2$.\retTwo\par}
+
+Let $(\Omega, \mathcalli{B}, P)$ be a sample space and let $(\Omega^\prime, \mathcalli{B}^\prime)$ be another measurable space. Given a $(\mathcalli{B}, \mathcalli{B}^\prime)$-measurable map $\phi$, we may define the \udefine{image measure} $P_\phi(E) \coloneqq P(\phi^{-1}(E))$ on $(\Omega^\prime, \mathcalli{B}^\prime)$.
 
 
 
@@ -7773,10 +7975,6 @@ Everything is cited in the order it shows up in the journal with the exception t
 	
 	\item Lee, J. M. (2013). \textit{Introduction to smooth manifolds}. Springer.
 \end{enumerate}
-
-
-
-
 \end{document}
 
 
