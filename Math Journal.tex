@@ -7788,7 +7788,7 @@ We now extend the Fourier Transform from $L^1$ to $M(\mathbb{R}^n)$ in the obvio
 \pracOne\mySepTwo
 Right now it is relevant to express a generalization of a result that Folland gave in chapter 2 of his book.\retTwo
 
-\ul{Theorem:} Consider any measure space $(X, \mathcal{M}, \mu)$ (where $\mu$ is positive), let $U \subseteq \mathbb{R}^n$ be an open set, and suppose that $f: X \times U \to \mathbb{C}$ is a function such that $f(\cdot, y): X \to \mathbb{C}$ is integrable for all $y \in U$. Also define $F(y) = \int_X f(x, t)\df \mu(x)$.
+\hypertarget{Generalization page 189}{\ul{Theorem:}} Consider any measure space $(X, \mathcal{M}, \mu)$ (where $\mu$ is positive), let $U \subseteq \mathbb{R}^n$ be an open set, and suppose that $f: X \times U \to \mathbb{C}$ is a function such that $f(\cdot, y): X \to \mathbb{C}$ is integrable for all $y \in U$. Also define $F(y) = \int_X f(x, t)\df \mu(x)$.
 
 \begin{enumerate}
 	\item[(a)] Suppose there exists $g \in L^1(\mu)$ such that $|f(x, y)| \leq g(x)$ for all $x \in X$ and $y \in U$. If $\lim_{y \to y^\prime} f(x, y) = f(x, y^\prime)$ for all $x \in X$, then $\lim_{y \to y^\prime} F(y) = F(y^\prime)$. In particular, if $f(x, \cdot)$ is continuous for each $x$, then $F$ is continuous.
@@ -7940,7 +7940,7 @@ Hence, for all $X \in L^2$ we have that:
 
 Let $(\Omega, \mathcalli{B}, P)$ be a sample space and let $(\Omega^\prime, \mathcalli{B}^\prime)$ be another measurable space. Given a $(\mathcalli{B}, \mathcalli{B}^\prime)$-measurable map $\phi$, we may define the \udefine{image measure} $P_\phi(E) \coloneqq P(\phi^{-1}(E))$ on $(\Omega^\prime, \mathcalli{B}^\prime)$. This is in fact a measure because preimages commute with unions, intersections, and complements. Also importantly $P_\phi(\Omega^\prime) = P(\Omega) = 1$. So $P_\phi$ is another probability measure.\retTwo
 
-\exTwo\ul{Proposition 10.1:} If $f: \Omega^\prime \to \mathbb{R}$ is a random variable, then $\int f \df P_\phi = \int (f \circ \phi) \df P$\\ whenever either side exists.
+\exTwo\hypertarget{Folland Proposition 10.1}{\ul{Proposition 10.1:}} If $f: \Omega^\prime \to \mathbb{R}$ is a random variable, then $\int f \df P_\phi = \int (f \circ \phi) \df P$\\ whenever either side exists.
 
 \begin{myIndent}\exThreeP
 	This obviously holds for simple functions and you can extend the result from there using standard methods.\retTwo
@@ -8050,7 +8050,7 @@ Thus, we have that $P_{X_1, \ldots, X_n} = \prod_{j=1}^n P_{X_j}$ if $X_1, \ldot
 
 {\centering$\lambda_1 * \ldots * \lambda_n(E) = \int\cdots\int \chi_E(\sum_{i=1}^n t_n) \df \lambda_1(t_1)\cdots \df \lambda_n(t_n)$.\retTwo\par}
 
-\exTwo\ul{Proposition 10.4:} If $X_1, \ldots, X_n$  are independent random variables, then:
+\exTwo\hypertarget{Folland Proposition 10.4}{\ul{Proposition 10.4:}} If $X_1, \ldots, X_n$  are independent random variables, then:
 
 {\centering $P_{X_1 + \ldots + X_n} = P_{X_1} * \ldots * P_{X_n}$.\par}
 
@@ -8358,7 +8358,7 @@ Before continuing, we need an exercise.\retTwo
 
 \begin{myIndent}\exThreeP
 	Proof:\\
-	For each $k$ let $A_k$ be the set where $|S_j| < \varepsilon$ for $j < k$ and $|S_k| \geq \varepsilon$. That way all the $A_k$ are disjoint and their union is the set where $\max_{1 \leq k \leq n} |S_k| \geq \varepsilon$. Also, note that $P(A_k) = E(\chi_{A_k}) \leq \varepsilon^{-2}E(\chi_{A_k}S_k^2)$ since $S_k^2 \geq \varepsilon^2$ on $A_k$. Therefore, we know that:\\ [-9pt]
+	For each $k$ let $A_k$ be the set where $|S_j| < \varepsilon$ for $j < k$ and $|S_k| \geq \varepsilon$. That way all the\\ $A_k$ are disjoint and their union is the set where $\max_{1 \leq k \leq n} |S_k| \geq \varepsilon$. Also, note that\\ $P(A_k) = E(\chi_{A_k}) \leq \varepsilon^{-2}E(\chi_{A_k}S_k^2)$ since $S_k^2 \geq \varepsilon^2$ on $A_k$. Therefore, we know that:\\ [-9pt]
 
 	{\centering $P(\max_{1 \leq k \leq n} |S_k| \geq \varepsilon) = \sum_{k=1}^n P(A_k) \leq \varepsilon^{-2}\sum_{k=1}^n E(\chi_{A_k}S_k^2)$. \retTwo\par}
 
@@ -8557,13 +8557,406 @@ I want to start today by doing some exercises to expand on some of the earlier r
 	\end{myIndent}
 \end{myIndent}
 
-\hTwo I next want to cover two other miscellaneous results.\retTwo
+\hTwo On a complete tangent, here's another interesting result.\retTwo
 
-\Hstatement\blab{Exercise 10.14:} If $\{X_n\}_{n \in \mathbb{N}}$ is a sequence of independent random variables such that $E(X_n) = 0$ for all $n$ and $\sum_{n=1}^\infty \sigma^2(X_n) < \infty$, then $\sum_{n=1}^\infty X_n$ converges almost surely.
+\Hstatement\blab{Exercise 10.14:} If $\{X_n\}_{n \in \mathbb{N}}$ is a sequence of independent random variables such that $E(X_n) = 0$ for all $n$ and $\sum_{n=1}^\infty \sigma^2(X_n) < \infty$, then $\sum_{n=1}^\infty X_n$ converges almost surely.\newpage
 
 \begin{myIndent}\HexOne
+	Proof:\\
+	Fix $\varepsilon > 0$ and let $N \in \mathbb{N}$. Also denote $S_n = \sum_{j=1}^n X_j$ for all $n \in \mathbb{N}$. Then note that\\ [1pt] by Kolmogorov's inequality, we have for all $m > N$ that:\\ [-10pt]
+
+	{\centering$P(\max\limits_{N < n \leq m}|S_n - S_N| \geq \sfrac{\varepsilon}{2}) \leq 4\varepsilon^{-2}\hspace{-0.5em}\sum\limits_{n=N + 1}^m\hspace{-0.5em} \sigma^2(X_n)$.\retTwo\par}
+
+	And by taking $m \to \infty$, we get that:
+
+	{\centering$P(\exists n > N \suchthat |S_n - S_N| \geq \sfrac{\varepsilon}{2}) \leq 4\varepsilon^{-2}\hspace{-0.5em}\sum\limits_{n=N + 1}^\infty\hspace{-0.5em} \sigma^2(X_n)$.\retTwo\par}
+
+	But now since $\sum_{n=1}^\infty \sigma^2(X_n) < \infty$, we know that $\sum_{n=N + 1}^\infty \sigma^2(X_k) \to 0$ as $N \to \infty$.\\ This is enough to let us conclude that there almost surely exists some $N \in \mathbb{N}$ such that\\ $|S_n - S_N| < \sfrac{\varepsilon}{2}$ for all $n > N$.
+
+	\begin{myIndent}\HexTwoP
+		Why is this?
+		
+		{\centering\begin{tabular}{l}
+			$P(\forall N \in \mathbb{N},\myHS \exists n > N \suchthat |S_n - S_N| \geq \sfrac{\varepsilon}{2})$\\ [6pt]
+
+			$\phantom{aaaaaaaaaaaaaaaa} = P(\bigcap\limits_{N \in \mathbb{N}}\{\exists n > N \suchthat |S_n - S_N| \geq \sfrac{\varepsilon}{2}\})$\\ [12pt]
+
+			$\phantom{aaaaaaaaaaaaaaaa} \leq \inf\limits_{N \in \mathbb{N}}P(\exists n > N \suchthat |S_n - S_N| \geq \sfrac{\varepsilon}{2})$\\ [6pt]
+
+			$\phantom{aaaaaaaaaaaaaaaa}\leq \inf\limits_{N \in \mathbb{N}} 4\varepsilon^{-2}\hspace{-0.5em}\sum\limits_{n=N + 1}^\infty\hspace{-0.5em} \sigma^2(X_n) = 0$.
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+	Also note that if $m > n > N$, $|S_m - S_N| < \sfrac{\varepsilon}{2}$, and $|S_n - S_N| < \sfrac{\varepsilon}{2}$, then:
+	
+	{\centering $|S_m - S_n| \leq |S_m - S_N| + |s_n - S_N| < \varepsilon$.\retTwo\par}
+
+	Hence, we have successfully proven that for any $\varepsilon > 0$, there almost surely exists some $N \in \mathbb{N}$ such that for all $m > n > N$ we have that $|S_m - S_n| < \varepsilon$. And in turn  by considering a countable sequence $(\varepsilon_k)_{k \in \mathbb{N}}$ in $(0, \infty)$ converging to $0$ we can thus easily see that the partial sums of the $X_n$ almost surely satisfy the Cauchy criterion. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Corollary (still part of the prior exercise):} If the plus and minus signs in $\sum_{n=1}^\infty \pm n^{-1}$ are\\ determined by successive tosses of a fair coin, the resulting series converges almost surely.
+
+\begin{myIndent}\HexOne
+	In this case, we have for each $n$ that $X_n = +n^{-1}$ $50$\% of the time and $-n^{-1}$ the other\\ $50$\% of the time. And since each $X_n$ is a simple function, we can easily evaluate that\\ $E(X_n) = 0$ and $\sigma^2(X_n) = E((X_n - 0)^2) = n^{-2}$. Hence, it's clear that we can apply\\ what we just proved to this sequence of $X_n$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Now to finish off today, I want to do (and give a little commentary) to an exercise that is heavily relevant to statistics.\retTwo
+
+\Hstatement\blab{Exercise 10.17:} A collection or "population" of $N$ objects may be considered a sample space in\\ which each object individually has probability $N^{-1}$. Also let $X$ be a random variable on this space\\ with mean $\mu$ and variance $\sigma^2$. A central goal of statistics is to determine what $\mu$ and $\sigma^2$ are by\\ randomly sampling our population and measuring $X$ for each object sampled.\retTwo
+
+To mathematically model this process, we imagine generating a sequence $\{X_n\}_{n \in \mathbb{N}}$ of numbers that are values of independent random variables with the same distribution as $X$. (specifically we can think of $X_n$ as the value of $X$ for the $n$th. object we sampled). And now we want to infer what $\mu$ and $\sigma^2$ are using only the first however so many numbers of our sequence.\newpage
+
+The \udefine{$n$th sample mean} is defined as $M_n \coloneqq n^{-1}\sum_{j=1}^n X_j$. Note that $E(M_n) = \mu$ and\\ $\sigma^2(M_n) = n^{-1}\sigma^2$ for all $n$ and that $M_n \to \mu$ a.s. as $n \to \infty$.
+
+\begin{myIndent}\HexOne
+	The final statement is easily seen by applying Khinchine's strong law of large numbers.\\ [2pt] Meanwhile, the first result can be easily evaluated using the linearity of expectation (i.e.\\ [2pt] the fact that $E(n^{-1}\sum_{j=1}^n X_j) = n^{-1}\sum_{j=1}^n E(X_j)$). And finally, note by \inLinkRap{Folland Corollary 10.6}{corollary 10.6}\\ plus the easily checked fact that $\sigma^2(aX) = a^2 \sigma^2(X)$ that:
+	
+	{\center$\sigma^2(M_n) = \sigma^{2}(n^{-1}\sum_{j=1}^n X_j) = n^{-2}\sigma^2(\sum_{j=1}^n X_j) = n^{-2}\sum_{j=1}^n \sigma^2 = n^{-1}\sigma^2$\retTwo\par}
+\end{myIndent}
+
+Next, the \udefine{$n$th sample variance} is defined as $S_n^2 \coloneqq (n-1)^{-1} \sum_{j=1}^n (X_j - M_n)^2$.
+\begin{itemize}
+	\item Why do we use $n-1$ instead of $n$?
+	
+	\begin{myIndent}\HexOne
+		Consider letting $E_n^2 \coloneqq {\text{\exPPP $n^{-1}$}} \sum_{j=1}^n (X_j - M_n)^2$ for all $n$. Then:
+
+		{\centering\begin{tabular}{l}
+			$E(E_n^2) = {\text{\exPPP $n^{-1}$}}\sum_{j=1}^nE((X_j - M_n)^2)$\\ [6pt]
+
+			$\phantom{E(E_n^2)} = {\text{\exPPP $n^{-1}$}}\sum_{j=1}^n E(((X_j - \mu) - (M_n - \mu))^2)$\\ [6pt]
+
+			$\phantom{E(E_n^2)} = {\text{\exPPP $n^{-1}$}}\sum_{j=1}^n \left[E((X_j - \mu)^2) - 2E((X_j - \mu)(M_n - \mu)) + E((M_n - \mu)^2)\right]$\\ [6pt]
+
+			$\phantom{E(E_n^2)} = {\text{\exPPP $n^{-1}$}}\left[(\sum_{j=1}^n \sigma^2) - 2(\sum_{j=1}^n E((M_n - \mu)(X_j - \mu)) + (\sum_{j=1}^n n^{-1}\sigma^2))\right]$\\ [6pt]
+
+			$\phantom{E(E_n^2)} = {\text{\exPPP $n^{-1}$}}\left[(n + 1)\sigma^2 - 2\sum_{j=1}^n E((M_n - \mu)(X_j - \mu))\right]$\\
+		\end{tabular}\retTwo\par}
+
+		Also note for all $j$ that:
+
+		{\centering\begin{tabular}{l}
+			$E((M_n - \mu)(X_j - \mu)) = E((n^{-1}\sum_{i=1}^n X_i - \mu)\cdot (X_j - \mu))$\\ [6pt]
+
+			$\phantom{E((M_n - \mu)(X_j - \mu))} = n^{-1}\sum_{i=1}^nE((X_i - \mu)(X_j - \mu))$\\ [6pt]
+
+			$\phantom{E((M_n - \mu)(X_j - \mu))} = n^{-1}\left(E((X_j - \mu)^2) + \sum_{i\neq j} E(X_i - \mu)E(X_j - \mu)\right)$\\ [6pt]
+
+			$\phantom{E((M_n - \mu)(X_j - \mu))} = n^{-1}\left(\sigma^2 + \sum_{i\neq j} 0\right)$
+		\end{tabular}\retTwo\par}
+
+		Hence, we've shown that:
+		
+		{\centering$E(E_n^2) = {\text{\exPPP $n^{-1}$}}((n + 1)\sigma^2 - 2(n \cdot n^{-1}\sigma^2)) = {\text{\exPPP $n^{-1}$}}(n-1)\sigma^2$.\retTwo\par}
+		
+		And this proves that $E_n^2$ will typically under-estimate the actual variance of the\\ population.
+		\begin{myIndent}\color{RawerSienna}
+			As a side note, the physical intuition for this is that when sampling a population you aren't likely to measure the outliers of a population and it is those that tend to dominate what would be the theoretical expression for the population\\ variance.\retTwo
+		\end{myIndent}
+
+		Fortunately though, notice that upon replacing {\exPPP $n^{-1}$} with {\exPPP $(n-1)^{-1}$}, then it does work out that $E(S_n^2) = \text{\exPPP $(n-1)^{-1}$}(n-1) \sigma^2 = \sigma^2$.\retTwo
+	\end{myIndent}
+
+	\item Also note that $S_n^2 \to \sigma^2$ a.s. as $n \to \infty$.
+	
+	\begin{myIndent}\HexOne
+		To start off, this statement would be way easier to prove if we were working with $E_n^2$ instead of $S_n^2$. So let's first prove that if $E_n^2 \to \sigma^2$ a.s. as $n \to \infty$, then so does $S_n^2 \to \sigma^2$ a.s. as $n \to \infty$.
+		
+		\begin{myIndent}\HexTwoP
+			It's clear that $\frac{1}{n} \leq \frac{1}{n-1}$. So it will always be the case that:
+			
+			{\centering$\liminf_{n \to \infty} S_n^2 \geq \lim_{n \to \infty} E_n^2$.\newpage\par}
+
+			On the other hand, note that for all $a > 1$, we have that $\frac{a}{n} \geq \frac{1}{n-1}$ so long as $n \geq \frac{a}{a-1}$.
+
+			\begin{myIndent}\HexPPP
+				Why?
+				For $x > 1$ and $a > 1$: 
+				
+				{\centering\begin{tabular}{l}
+					$\frac{a}{x} - \frac{1}{x-1} = \frac{ax - a - x}{x(x-1)} \geq 0 \Longleftrightarrow ax - a - x \geq 0 \Longleftrightarrow (a-1)x \geq a$\\
+					$\phantom{\frac{a}{x} - \frac{1}{x-1} = \frac{ax - a - x}{x(x-1)} \geq 0 \Longleftrightarrow ax - a - x \geq 0} \Longleftrightarrow x \geq \frac{a}{a-1}$.
+				\end{tabular}\retTwo\par}
+			\end{myIndent}
+
+			This proves that $\limsup_{n \to \infty} S_n^2 \leq a\lim_{n \to \infty} E_n^2$ for all $a > 1$. And now taking\\ [2pt] $a \to 1$ we get the desired result that $\lim_{n \to \infty} S_n^2 = \lim_{n \to \infty} E_n^2$.\retTwo
+		\end{myIndent}
+
+		So now we just need to show that $E_n^2 \to \sigma^2$ almost surely. Fortunately, note that:
+
+		{\centering\begin{tabular}{l}
+			$E_n^2 = n^{-1}\sum_{j=1}^n (X_j - M_j)^2$\\ [6pt]
+
+			$\phantom{E_n^2} = n^{-1}\sum_{j=1}^n ((X_j - \mu) - (M_j - \mu))^2$\\ [6pt]
+
+			$\phantom{E_n^2} = n^{-1}\sum_{j=1}^n \left[(X_j - \mu)^2 - 2(X_j - \mu)(M_n - \mu) + (M_n - \mu)^2\right]$\\ [6pt]
+
+			$\phantom{E_n^2} = \left(n^{-1}\sum_{j=1}^n (X_j - \mu)^2\right) - \left(2(M_n - \mu) \cdot n^{-1}\sum_{j=1}^n(X_j - \mu)\right) + (M_n - \mu)^2$
+		\end{tabular}\retTwo\par}
+
+		Now we already proved that $M_n \to \mu$ a.s. Therefore it's clear that, $(M_n - \mu)^2 \to 0$ and $2(M_n - \mu) \to 0$ a.s. as $n \to \infty$. Meanwhile, by a straight foward application of Khinchine's strong law of large numbers we know that almost surely:
+		
+		{\centering$n^{-1}\sum_{j=1}^n(X_j - \mu) \to 0$ and $n^{-1}\sum_{j=1}^n (X_j - \mu)^2 \to \sigma^2$ as $n \to \infty$\retTwo\par}
+
+		So, we almost surely have that $E_n^2 \to \sigma^2 - (0 \cdot 0) + 0 = \sigma^2$ as $n \to \infty$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hTwo\dispDate{9/19/2025}
+
+Given any $\mu \in \mathbb{R}$ and $\sigma^2 > 0$, we define the measure $\nu_\mu^{\sigma^2} \coloneqq \frac{1}{\sigma\sqrt{2\pi}} e^{-(t - \mu)^2/(2\sigma^2)} \df t$. \retTwo
+
+You can check my math 180a notes to see that $\nu_\mu^{\sigma^2}(\mathbb{R}) = 1$. Also, while I realize that my\\ [-3pt] math 180a notes don't prove that $\int |t| \df \nu_\mu^{\sigma^2}(t) < \infty$, come on it's not that hard to prove and I don't feel like entirely redoing all my notes from that class. So just note that\\ $\int t \df \nu_\mu^{\sigma^2}(t) = \mu$ and $\int(t - \mu)^2 \df \nu_\mu^{\sigma^2}(t) = \sigma^2$.\retTwo
+
+$\nu_\mu^{\sigma^2}$ is called the \udefine{normal / Gaussian distribution} with mean $\mu$ and variance $\sigma^2$. Also $\nu_0^1$ is called the \udefine{standard normal distribution}. Interestingly, this probability distribution was observed to be common in nature before the following technical reasoning was ever come up with for why.\retTwo
+
+\pracOne\mySepTwo
+Before continuing on, I need to lay some groundwork for some notation used in Folland's next proof. I don't know of any particular resources for this so I'm just going to wing this next part and also look at wikipedia for definitions (see bibliography for a link).\retTwo
+
+Given a function $g: \mathbb{R} \to \mathbb{R}$ and $t_0 \in \overline{\mathbb{R}}$, we say that $f(t) = o(g(t))$ as $t \to t_0$ if there exists $\alpha: \mathbb{R} \to \mathbb{R}$ (or $\mathbb{C}$) such that $f(t) = \alpha(t)g(t)$ and $\alpha(t) \to 0$ as $t \to t_0$. This is called \udefine{little $o$ notation}.\newpage
+
+\begin{myIndent}\myComment
+	Note that I'm letting $\alpha$ take on complex values because I want to let $f$ also take on complex values. Although, for the sake of simplicity, I'm requiring $g$ to be real-valued.
+	\retTwo
+\end{myIndent}
+
+Note that if $g(t) \neq 0$ when $t \neq t_0$ on some neighborhood of $t_0$, then $f(t) = o(g(t))$ as\\ $t \to t_0$ if and only if $\frac{f(t)}{g(t)} \to 0$ as $t \to t_0$.\retTwo
+
+\ul{Lemma 1:} If $f(t) = o(g(t))$ as $t \to t_0$ and $c \neq 0$, then $f(t) = o(cg(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Suppose $f(t) = \alpha(t)g(t)$ where $\alpha(t) \to 0$ as $t \to t_0$. Then just let $\alpha^\prime(t) \coloneqq c^{-1}\alpha(t)$\\ and we have that $f(t) = \alpha^\prime(t) \cdot cg(t)$ where $\alpha^\prime(t) \to 0$ as $t \to t_0$.\retTwo
+\end{myIndent}
+
+
+\ul{Lemma 2:} If $f(t) = o(g(t))$ as $t \to t_0$ and $c \in \mathbb{C}$, then $cf(t) = o(g(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Once again write $f(t) = \alpha(t)g(t)$. Then $cf(t) = c\alpha(t)g(t)$ and $c\alpha(t) \to 0$ as $t \to t_0$.\retTwo
+\end{myIndent}
+
+\ul{Lemma 3:} $f(t) = o(g(t))$ as $t \to t_0$ iff $f(t) = o(|g(t)|)$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	$(\Longrightarrow)$\\
+	Suppose $f(t) = o(g(t))$ and write $f(t) = \alpha(t)g(t)$. Then set $\alpha^\prime(t) \coloneqq \alpha(t)g(t)|g(t)|^{-1}$ when $g(t) \neq 0$ and $\alpha^\prime(t) \coloneqq 0$ when $g(t) = 0$. Then it's clear that $f(t) = \alpha^\prime(t)|g(t)|$ and that $|\alpha^\prime(t)| \leq |\alpha(t)|\cdot 1 \to 0$ as $t \to t_0$. Hence $f(t) = o(|g(t)|)$.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $f(t) = o(|g(t)|)$ and write $f(t) = \alpha(t)|g(t)|$. Then when $g(t) \neq 0$ set\\ $\alpha^\prime(t) \coloneqq \alpha(t)|g(t)|(g(t))^{-1}$ and when $g(t) = 0$ set $\alpha^\prime(t) \coloneqq 0$. And, it's clear by identical reasoning as before that $f(t) = o(|g(t)|)$.\retTwo
+\end{myIndent}
+
+\ul{Lemma 4:} If $g_1$ and $g_2$ are nonnegative and $f_1(t) = o(g_1(t))$ and $f_2(t) = o(g_2(t))$ as $t \to t_0$, then $(f_1 + f_2)(t) = o((g_1 + g_2)(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Write $f_1(t) = \alpha_1(t)g_1(t)$ and $f_2(t) = \alpha_2(t)g_2(t)$, and then set:
+	
+	{\centering$\alpha^\prime(t) \coloneqq \frac{\alpha_1(t)g_1(t) + \alpha_2(t)g_2(t)}{g_1(t) + g_2(t)}$ when $g_1(t) \neq 0$ and $g_2(t) \neq 0$, and $\alpha^\prime(t) \coloneqq 0$ otherwise.\retTwo\par}
+
+	Then $(f_1 + f_2)(t) = \alpha^\prime(t)(g_1 + g_2)(t)$ and:
+
+	{\centering\begin{tabular}{l}
+		$|\alpha^\prime(t)| = |\alpha_1(t)|\frac{g_1(t)}{g_1(t) + g_2(t)} + |\alpha_2(t)|\frac{g_2(t)}{g_1(t) + g_2(t)} \leq |\alpha_1(t)|\frac{g_1(t)}{g_1(t)} + |\alpha_2(t)|\frac{g_2(t)}{g_2(t)}$\\ [6pt]
+		
+		$\phantom{|\alpha^\prime(t)| = |\alpha_1(t)|\frac{g_1(t)}{g_1(t) + g_2(t)} + |\alpha_2(t)|\frac{g_2(t)}{g_1(t) + g_2(t)}} = |\alpha_1(t)| + |\alpha_2(t)| \to 0$ as $t \to t_0$.
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\ul{Corollary 5:} If $g_1$ and $g_2$ always have the same sign and $f_1(t) = o(g_1(t))$ and\\ $f_2(t) = o(g_2(t))$ as $t \to t_0$, then $(f_1 + f_2)(t) = o((g_1 + g_2)(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Just apply lemmas 3 and 4 and use the fact the fact $|g_1| + |g_2| = |g_1 + g_2|$.\retTwo
+\end{myIndent}
+
+\ul{Corollary 6:} If $f_1(t) = o(g(t))$ and $f_2(t) = o(g(t))$ as $t \to t_0$, then $(f_1 + f_2)(t) = o(g(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Apply corollary 5 as well as lemma 1.\retTwo
+\end{myIndent}
+
+\ul{Lemma 7:} Suppose $f_1(t) = o(g_1(t))$ and $f_2(t) = o(g_2(t))$ as $t \to t_0$. Then\\ $(f_1 \cdot f_2)(t) = o((g_1 \cdot g_2)(t))$ as $t \to t_0$.\newpage
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Write $f_1(t) = \alpha_1(t)g_1(t)$ and $f_2(t) = \alpha_2(t)g_2(t)$. Then $\alpha^\prime(t) \coloneqq \alpha_1(t)\alpha_2(t)$ satisfies that $\alpha^\prime(t) \to 0$ as $t \to t_0$ and $(f_1 \cdot f_2)(t) = \alpha^\prime(t)(g_1 \cdot g_2)(t)$.\retTwo
+\end{myIndent}
+
+\ul{Lemma 8:} Suppose $f(t) = o(g(t))$ as $t \to t_0$ and $h: \mathbb{R} \to \mathbb{R}$ is another function. Then $(f \cdot h)(t) = o((g \cdot h)(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	If $f(t) = \alpha(t)g(t)$, then $(f \circ h)(t) = \alpha(t)(g \circ h)(t)$.\retTwo
+\end{myIndent}
+
+\ul{Lemma 9:} Suppose $f(t) = o(g(t))$ as $t \to t_0$ and $g(t) = o(h(t))$ as $t \to t_0$. Then\\ $f(t) = o(h(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Write $f(t) = \alpha_1(t)g(t)$ and $g(t) = \alpha_2(t)h(t)$. Then $f(t) = (\alpha_1(t)\alpha_2(t))h(t)$ and it's clear that $\alpha_1(t)\alpha_2(t) \to 0$ as $t \to t_0$.\retTwo
+\end{myIndent}
+
+\ul{Lemma 10:} Suppose $f(t) = o(g(t) + \sum_{j=1}^n h_j(t))$ as $t \to t_0$ where each $h_j(t) = o(g(t))$ as $t \to t_0$ for each $j$. Then $f(t) = o(g(t))$ as $t \to t_0$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Write $h_j(t) = \alpha_j(t)g(t)$ for each $j$ and $f(t) = \alpha(t)\cdot(g(t) + \sum_{j=1}^n h_j(t))$. Then\\ $\alpha^\prime(t) \coloneqq \alpha(t)\left(1 + \sum_{j=1}^n \alpha_j(t)\right)$ satisfies that $f(t) = \alpha^\prime(t)g(t)$ and:
+	
+	{\centering$\alpha^\prime(t) \to 0(1 + \sum_{j=1}^n 0) = 0$ as $t \to t_0$.\retTwo\par}
+\end{myIndent}
+
+\ul{Lemma 11:} Let $t_0, t_1 \in \overline{\mathbb{R}}$ and suppose $h: \mathbb{R} \to \mathbb{R}$ is some function such that $h(t) \to t_0$ as $t \to t_1$. Also suppose either:
+\begin{itemize}
+	\item that $h(t) \neq t_0$ on $U - \{t_1\}$ for some open neighborhood of $t_1$,
+	\item or that $f$ and $g$ are continuous at $t_0$ (so that $\alpha$ is too).
+\end{itemize}
+Then if $f(t) = o(g(t))$ as $t \to t_0$, we know that $(f \circ h)(t) = o((g \circ h)(t))$ as $t \to t_1$. 
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Write $f(t) = \alpha(t)g(t)$. Then $(f \circ h)(t) = \alpha(h(t))g(h(t))$. And no matter which\\ assumption proposed above that we make, we have that $\alpha(h(t)) \to 0$ as $t \to t_1$.\retTwo
+\end{myIndent}
+
+\ul{Lemma 12:} Suppose $f(t) = o(g(t))$ as $t \to t_0$ and $|g| \leq |h|$ on some neighborhood of $t_0$. Then $f(t) = o(h(t))$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Write $f(t) = \alpha(t)g(t)$ and define $\alpha^\prime(t) \coloneqq \alpha(t)\frac{g(t)}{h(t)}$ when $h(t) \neq 0$ and $\alpha^\prime(t) \coloneqq 0$ otherwise. Then since $|g| \leq |h|$ on a neighborhood of $t_0$, it's clear that $|\alpha^\prime(t)| \leq |\alpha(t)|$ on a neighborhood of $t_0$. Hence, $f(t) = \alpha^\prime(t)h(t)$ and $\alpha^\prime(t) \to 0$ as $t \to t_0$.\retTwo
+\end{myIndent}
+
+\myComment Now, why do we care about little $o$ notation? Essentially, there are two use cases. First, if\\ $g(t) \to \pm \infty$ as $t \to t_0$ then we can use little $o$ notation to describe a cap on how fast something\\ grows. After all, if $g$ had that property and $f(t) = o(g(t))$ as $t \to t_0$, then that would be\\ equivalent to saying that for every $\varepsilon > 0$ there exists some $\delta > 0$ such that $|f(t)| < \varepsilon |g(t)|$\\ for all $t$ satisfying that $|t - t_0| < \delta$.\newpage
+
+Meanwhile, note that if $g(t)$ is bounded on a neighborhood of $t_0$ and $f(t) = o(g(t))$ as $t \to t_0$, then we must have that $f(t) \to 0$ as $t \to t_0$. This points to the other use case of little $o$ notation which is to rigorously keep track of how negligible an error term is as we approach an asymptotic case while not having to worry about what those error terms specifically are. In fact, typically for this use case we will just entirely forget what $f$ is and write expressions like $1 + x^2 + o(x^2)$ as $x \to 0$. And if we write $o(g(t))$ (as $t \to t_0$) in an arithmetic setting without any other context, then it is implied that you can replace $o(g(t))$ with any $f$ satisfying that $f(t) = o(g(t))$ as $t \to t_0$ \retTwo
+
+One more note to make is that (according to wikipedia) usually it is assumed that $t_0 = \infty$ unless otherwise stated. Also, hopefully it is clear how little $o$ notation can easily be applied to sequences in the case that $t_0 = \infty$.
+
+\pracOne\mySepTwo
+
+\hTwo Now Folland near the end of his next proof does some cool reasoning which unfortunately is flawed. Therefore, while I still want to show off the idea (since I think it's a cool usage of little $o$ notation), I'm going to try and find a different proof.\retTwo
+
+\exTwo\ul{Lemma:} For any fixed $b \in \mathbb{R}$, we have that $\lim\limits_{n \to \infty}\left[1 + \frac{b}{n} + o(\frac{1}{n})\right]^n = e^{b}$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $(a_n)_{n \in \mathbb{N}}$ be any sequence in $\mathbb{C}$ with $a_n \to 0$ as $n \to \infty$ (so that $o(\frac{\xi^2}{n}) = a_n\frac{\xi^2}{n}$).\\ Then note that:
+
+	{\centering\begin{tabular}{l}
+		$\left[1 + \frac{b}{n} + \frac{a_n}{n}\right]^n = (1 + \frac{b}{n})^n + \sum\limits_{k=1}^n (1 + \frac{b}{n})^{n-k} \cdot \frac{n\cdots(n-k+1)}{k!} \cdot (\frac{a_n}{n})^k$
+	\end{tabular}\retTwo\par}
+
+	It's clear that $(1 + \frac{b}{n})^n \to e^b$ as $n \to \infty$. So, we just need to show that the complicated-looking sum goes to $0$ as $n \to \infty$. To do this, note that:
+
+	{\centering\begin{tabular}{l}
+		$\left|\sum\limits_{k=1}^n (1 + \frac{b}{n})^{n-k} \cdot \frac{n\cdots(n-k+1)}{k!} \cdot (\frac{a_n}{n})^k\right| \leq \sum\limits_{k=1}^n \left|(1 + \frac{b}{n})^{n-k}\right| \cdot \frac{n\cdots(n-k+1)}{k! \cdot n^k} \cdot |a_n|^k$
+	\end{tabular}\retTwo\par}
+
+	Now $\frac{n\cdots(n-k+1)}{k! \cdot n^k} \leq \frac{1}{k!}$. Also, when $n$ is big enough, we can guarentee $(1 + \frac{b}{n}) \in (0, 2)$. Then $(1 + \frac{b}{n})^{n-k} = ((1 + \frac{b}{n})^n)^{1 - \frac{k}{n}}$. And in the case that $b$ is negative, we will have that $((1 + \frac{b}{n})^n)^{1 - \frac{k}{n}} \leq ((1 + \frac{b}{n})^n)^0 = 1$ for all $k$. Meanwhile, in the case that $b$ is nonnegative, we know that for any $C > e^b$ that $((1 + \frac{b}{n})^n)^{1 - \frac{k}{n}} \leq ((1 + \frac{b}{n})^n)^1 < C$ for all $k$ once $n$ is big enough. Either way, this proves that there exists a constant $C^\prime$ such that once $n$ is big enough, $|(1 + \frac{b}{n})^{n-k}| \leq C^\prime$.\retTwo
+
+	So, we now have for all $n$ sufficiently large that:
+
+	{\centering\begin{tabular}{l}
+		$\left|\sum\limits_{k=1}^n (1 + \frac{b}{n})^{n-k} \cdot \frac{n\cdots(n-k+1)}{k!} \cdot (\frac{a_n}{n})^k\right| \leq C^\prime \sum\limits_{k=1}^n  \frac{1}{k!} |a_n|^k$\\
+		$\phantom{\left|\sum\limits_{k=1}^n (1 + \frac{b}{n})^{n-k} \cdot \frac{n\cdots(n-k+1)}{k!} \cdot (\frac{a_n}{n})^k\right|} = C^\prime(-1 + \sum\limits_{k=0}^n \frac{1}{k!}|a_n|^k)$\\
+		$\phantom{\left|\sum\limits_{k=1}^n (1 + \frac{b}{n})^{n-k} \cdot \frac{n\cdots(n-k+1)}{k!} \cdot (\frac{a_n}{n})^k\right|} \leq C^\prime(-1 + \sum\limits_{k=0}^\infty \frac{1}{k!}|a_n|^k) = C^\prime(e^{|a_n|} - 1)$.
+	\end{tabular}\retTwo\par}
+
+	And since $|a_n| \to 0$ as $n \to \infty$, we are done. $\blacksquare$\newpage
+\end{myIndent}
+
+\exTwo\ul{Theorem 10.14:} Let $\lambda$ be a Borel probability measure on $\mathbb{R}$ such that $\int t^2 \df \lambda(t) = 1$ and $\int t \df \lambda(t) = 0$ (side note: the finiteness of the first integral implies the existence of the second integral). For $n \in \mathbb{N}$ let $\lambda^{*n} \coloneqq \lambda * \cdots * \lambda$ (i.e. $\lambda$ convoluted with itself $n$ times), and $\lambda_n(E) \coloneqq \lambda^{*n}(\sqrt{n} E)$ for all $E \in \mathcalli{B}_{\mathbb{R}}$ where $\sqrt{n}E \coloneqq \{\sqrt{n} t : t \in E\}$. Then $\lambda_n \to \nu_0^1$ vaguely as $n \to \infty$.
+
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		As a side note: $\lambda_n$ is just the measure induced by $\lambda^{*n}$ and $t \mapsto n^{-\sfrac{1}{2}} t$. So $\lambda_n$ is in fact a well-defined measure. This also means that $\int f(t) \df \lambda_n(t) = \int f(n^{-\sfrac{1}{2}}t)\df \lambda^{*n}(t)$ for all $f$ where either integral exists by \inLinkRap{Folland Proposition 10.1}{proposition 10.1}.\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	By applying part (b) of the \inLinkRap{Generalization page 189}{theorem on page 189} of my journal twice and then part (a) once, we can show that $\widehat{\lambda} \in C^2(\mathbb{R})$ with:
+	\begin{itemize}
+		\item $\widehat{\lambda}(0) = \int e^{-2 \pi i (0) \cdot t} \df \lambda(t) = \lambda(\mathbb{R}) = 1$,
+		\item $\widehat{\lambda}^\prime(0) = \int -2\pi it e^{-2 \pi i (0) \cdot t} \df \lambda(t) = -2\pi i \int t \cdot 1 \df \lambda(t) = 0$,
+		\item $\widehat{\lambda}^\pprime(0) = \int (-2\pi it)^2 e^{-2 \pi i (0) \cdot t} \df \lambda(t) = -4\pi^2\int t^2 \cdot 1 \df \lambda(t) = -4\pi^2$.\retTwo
+	\end{itemize}
+
+	It follows by applying Taylor's theorem to the real and imaginary parts separately (see my math 240c notes) that $\lambda(\xi) = 1 - 2\pi^2 \xi^2 + o(\xi^2)$ as $\xi \to 0$.\retTwo
+
+	Next note that: {\exPPP(where $o(\frac{\xi^2}{n})$ is by any path where $\frac{\xi^2}{n} \to 0$)}\\ [-10pt]
+	
+	{\centering\begin{tabular}{l}
+		$\widehat{\lambda}_n(\xi) = \int e^{-2\pi i \xi t} \df \lambda_n(t) = \int e^{-2\pi i \xi n^{-\sfrac{1}{2}} t} \df \lambda^{*n}(t)$\\ [6pt]
+		$\phantom{\widehat{\lambda}_n(\xi) = \int e^{-2\pi i \xi t} \df \lambda_n(t)} = \widehat{\lambda^{*n}}(n^{-\sfrac{1}{2}}\xi) = \left[\widehat{\lambda}(n^{-\sfrac{1}{2}}\xi)\right]^n = \left[1 - \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n})\right]^n$
+	\end{tabular}\retTwo\par}
+
+	In particular, upon fixing $\xi \in \mathbb{R}$ we can apply the prior lemma to get that:
+	
+	{\centering\begin{tabular}{l}
+		$\left[1 - \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n})\right]^n = \left[1 + \frac{-2\pi^2 \xi^2}{n} + o(\frac{1}{n})\right]^n \to e^{-2\pi^2 \xi^2}$ as $n \to \infty$.
+	\end{tabular}\retTwo\par}
+
+	This shows that $\widehat{\lambda}_n \to e^{-2\pi^2\xi^2}$ pointwise as $n \to \infty$.\retTwo
+
+	But now recall from Folland proposition 8.24 (which is in my math 240c notes) that if\\ $f(x) = e^{-\pi ax^2}$ where $a > 0$, then $\widehat{f}(\xi) = a^{-1/2} e^{-\pi \xi^2 / a}$. Therefore:\\ [-10pt]
+
+	{\centering\begin{tabular}{l}
+		$\widehat{\nu}_0^1(\xi) = (\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}x^2})^\wedge(\xi) = \frac{1}{\sqrt{2\pi}}(e^{-\pi(\frac{1}{2\pi})x^2})^\wedge(\xi) = \frac{1}{\sqrt{2\pi}} (\frac{1}{2\pi})^{-1/2} e^{-\pi \xi^2 \cdot (\frac{1}{2\pi})^{-1}} = 1 \cdot e^{-2\pi^2 \xi^2}$
+	\end{tabular}\retTwo\par}
+
+	Hence $\widehat{\lambda}_n \to \widehat{\nu}_0^1$ pointwise as $n \to \infty$. And since $\|\lambda_k\| = 1$ for all $k$, we can thus conclude by \inLinkRap{Folland proposition 8.50}{proposition 8.50} that $\lambda_n \to \nu_0^1$ vaguely. $\blacksquare$\retTwo
+
+	\exPPP\mySepThree
+	Before moving on, I want to show off what Folland tried to do. Folland notes that\\ $\log(1 + z) = z + o(z)$ as $z \to 0$. And therefore we have that:
+
+	{\centering\begin{tabular}{l}
+		$\log(\widehat{\lambda}_n(\xi)) = n \log(1 - \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n})) = n(- \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n}) + o(- \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n})))$\\ [6pt]
+
+		$\phantom{\log(\widehat{\lambda}_n(\xi)) = n \log(1 - \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n}))} = -2\pi^2\xi^2 + n \cdot \left(o(\frac{\xi^2}{n}) + o(- \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n}))\right)$\\ [6pt]
+
+		$\phantom{\log(\widehat{\lambda}_n(\xi)) = n \log(1 - \frac{2\pi^2 \xi^2}{n} + o(\frac{\xi^2}{n}))} = -2\pi^2\xi^2 + n \cdot o(\frac{\xi^2}{n}) \to -2\pi^2 \xi^2$ as $n \to \infty$.\\ [6pt]
+	\end{tabular}\newpage\par}
+
+	My issue with this reasoning is that $\widehat{\lambda}_n(\xi)$ is a complex valued function. So, what exactly does it mean to take the logarithm of it? Also, even if we were to extend the logarithm function to the complex plane, how do we know that $\log(z^n) = n\log(z)$ when $z$ has an imaginary component?
+
+	\mySepThree
+\end{myIndent}
+
+\ul{The Central Limit Theorem:} Let $\{X_j\}_{j \in \mathbb{N}}$ be a sequence of independent identically\\ distributed $L^2$ random variables with mean $\mu$ and variance $\sigma^2$. As $n \to \infty$, the distribution\\ of $(\sigma \sqrt{n})^{-1}\sum_{j=1}^n (X_j - \mu)$ converges vaguely to the standard normal distribution\\ $\nu_0^1$ as $n \to \infty$, and for all $a \in \mathbb{R}$: $$\lim\limits_{n \to \infty} P\left(\frac{1}{\sigma\sqrt{n}}\sum_{j=1}^n(X_j - \mu) \leq a\right) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{\frac{-t^2}{2}} \df t$$
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\lambda$ be the common distribution of $\sigma^{-1}(X_j - \mu)$ for all $j$. Then $\lambda$ satisfies the hypotheses last theorem. So, using the notation of the last theorem, we know that $\lambda_n \to \nu_0^1$ vaguely as $n \to \infty$. But now by applying \inLinkRap{Folland Proposition 10.4}{proposition 10.4} as well as the quick lemma on the same page, we have that:
+
+	{\centering $\lambda_n = (\lambda^{*n})_{t \mapsto n^{-1/2}t} = (P_{\sigma^{-1}\sum_{j=1}^n (X_j - \mu)})_{t \mapsto n^{-1/2}t} = P_{\frac{1}{\sigma\sqrt{n}}\sum_{j=1}^n (X_j - \mu)}$ \retTwo\par}
+
+	This proves the first claim. The second claim follows easily from \inLinkRap{Folland Proposition 7.19}{proposition 7.19 part (b)}\\ after you notice that $F(a) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{\frac{-t^2}{2}} \df t$ is continuous at all $a$ and that we trivially\\ have that all of the distributions of the $(\sigma \sqrt{n})^{-1}\sum_{j=1}^n (X_j - \mu)$ are positive measures.\\ $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\dispDate{9/20/2025}
+
+To start off, there's an exercise that applies both the central limit theorem and the law of large numbers that I want to do. However, before I tackle it I need to do an exercise from chapter 2 of Folland.\retTwo
+
+\Hstatement\blab{Exercise 2.39:} Let $(X, \mathcal{M}, \mu)$ be a measure space and suppose $(f_n)_{n \in \mathbb{N}}$ is a sequence of functions on $X$ such that $f_n \to f$ almost uniformly as $n \to \infty$ (meaning for all $\varepsilon > 0$ there exists $E \in \mathcal{M}$ such that $\mu(E) < 0$ and $f_n \to f$ uniformly on $E^\comp$). Then $f_n \to f$ a.e. and in measure.
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	The first claim is simple. For each $n$ let $E_n$ be a set satisfying that $\mu(E_n) < \sfrac{1}{n}$ and $f_n \to f$ uniformly as $n \to \infty$ on $E_n^\comp$. Then it is clear that $f_n \to f$ pointwise on $\bigcup_{n \in \mathbb{N}} E_n^\comp$. And $\mu((\bigcup_{n \in \mathbb{N}} E_n^\comp)^\comp) = \mu(\bigcap_{n \in \mathbb{N}} E_n) < \mu(E_n) = \sfrac{1}{n}$ for all $n \in \mathbb{N}$. Thus it follows that\\ [1pt] $\mu((\bigcup_{n \in \mathbb{N}} E_n^\comp)^\comp) = 0$ and $f_n \to f$ a.e.\retTwo
+
+	To show the second claim, consider any fixed $\varepsilon > 0$ and $\delta > 0$. Then let $E$ be a set satisfying that $\mu(E) < \delta$ and $f_n \to f$ uniformly on $E^\comp$. Then clearly there is some $N$ such that for all $n \geq N$, $\mu(\{x : |f_n(x) - f(x)| \geq \varepsilon\}) \leq \mu(E) < \delta$. This proves that $f_n \to f$ in measure.\newpage
+\end{myIndent}
+
+\hTwo By combining the prior exercise with Egoroff's theorem, we can see that on any finite measure space, if $f_n \to f$ pointwise a.e., then $f_n \to f$ almost uniformly and therefore also in measure. This can be especially useful to keep in mind when working on spaces equipped with probability measures.\retTwo
+
+\Hstatement\blab{Exercise 10.20:} If $\{X_j\}_{j \in \mathbb{N}}$ is a sequence of independent identically distributed random\\ variables with mean $0$ and variance $1$, then the distributions of $\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2)^{1/2}$ and\\ $\sqrt{n}\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2)$ both converge vaguely to the standard normal distribution.
+
+\begin{myIndent}\HexOne
+	Proof:\\
 	
 \end{myIndent}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8599,6 +8992,8 @@ Everything is cited in the order it shows up in the journal with the exception t
 	\item Spencer, J. (1981). Balancing unit vectors. \textit{Journal of Combinatorial Theory, Series A}, 30(3), 349–350. https://doi.org/10.1016/0097-3165(81)90033-9
 	
 	\item Lee, J. M. (2013). \textit{Introduction to smooth manifolds}. Springer.
+	
+	\item Big O notation. (2025, September 9). In \textit{Wikipedia}. https://en.wikipedia.org/w/index.php?title=Big\_O\_notation\&oldid=1310464597\#Little-o\_notation
 \end{enumerate}
 \end{document}
 
