@@ -46,7 +46,19 @@
 
 \usepackage{quiver} %commutative diagrams
 
+
+
+
+
+
 \usepackage[hidelinks]{hyperref}
+\newcommand{\inLinkRap}[2]{{\color{blue}\hyperlink{#1}{\textit{#2}}}}
+
+
+
+
+
+
 
 \newfontfamily{\calibri}{Calibri}
 \setlength{\parindent}{0pt}
@@ -141,6 +153,10 @@
    \color{RedViolet}%
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\exFourP}{%
+   \color{RedViolet}%
+   \fontsize{11}{13}\selectfont%
+}
 \newcommand{\exPP}{%
    \color{RedViolet}%
    \fontsize{12}{14}\selectfont%
@@ -211,6 +227,7 @@
 }}
 
 \newcommand{\blab}[1]{\textbf{#1}}
+\newcommand{\blect}[1]{{\color{MidnightBlue}\textbf{#1}}}
 
 \newcommand{\uuline}[2][.]{%
 {\vphantom{a}\color{#1}%
@@ -226,6 +243,9 @@
 \newcommand{\trans}{\mathsf{T}}
 \newcommand{\myHS}{ \hspace{0.5em}}
 \newcommand{\gap}{\phantom{2}}
+
+\newcommand{\GenLin}{\ensuremath{\mathrm{GL}}}
+\newcommand{\Cay}{\ensuremath{\mathrm{Cay}}}
 
 \newcommand{\myId}{\mathrm{Id}}
 \newcommand{\myIm}{\mathrm{im}}
@@ -244,6 +264,7 @@
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\supp}{\mathrm{supp}}
 \newcommand{\diam}{\mathrm{diam}}
+\newcommand{\conv}{\mathrm{conv}}
 \newcommand{\opnorm}{\mathrm{op}}
 \newcommand{\sgn}{\mathrm{sgn}}
 \newcommand{\mSpan}{\mathrm{span}}
@@ -254,6 +275,7 @@
 \newcommand{\NBV}{\ensuremath{\mathrm{NBV}}}
 \newcommand{\Acc}{\mathrm{Acc}}
 \newcommand{\BV}{\ensuremath{\mathrm{BV}}}
+\newcommand{\Var}{\ensuremath{\mathrm{Var}}}
 
 \newcommand{\Alt}{\mathrm{Alt}}
 \newcommand{\Sym}{\mathrm{Sym}}
@@ -261,6 +283,8 @@
 \newcommand{\weakst}{weak$^*$ }
 
 \newcommand{\radtimes}{\mathop{\widehat{\times}}}
+
+\newcommand{\mMod}[1]{\phantom{a}(\mathrel{\mathrm{mod}} #1)}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -299,44 +323,97 @@
    #1\retTwo
 }}
 
-\newcommand{\inLinkRap}[2]{{\color{blue}\hyperlink{#1}{\textit{#2}}}}
-
-
-
-\title{Math Journal}
-\author{Isabelle Mills}
-
 
 \begin{document}
+\setul{0.14em}{0.07em}
+\calibri
 
-Thus by the vague convergence of the $P_{X_n}$ we know for all $s \in (0, r)$\\ that $\int \phi_{\alpha}(t)|t|^s\df P_{X_n} \to \int \phi_{\alpha}(t)|t|^s \df P_{X}$ as $n \to \infty$ (and similarly if $s$ is also an integer\\ we have that $\int \phi_{\alpha}(t)t^s\df P_{X_n} \to \int \phi_{\alpha}(t)t^s \df P_{X}$).\retTwo
 
-	Meanwhile, since $s < r$, we know by Hölder's inequality that:
+\hTwo\dispDate{9/29/2025}
 
-	{\centering\begin{tabular}{l}
-		$0 \leq \int (1 - \phi_{\alpha}(t))|t|^s \df P_{X_n} \leq \left[\int (1 - \phi_{\alpha}(t))^{r/(r-s)} \df P_{X_n}\right]^{(r-s)/r} \cdot \left[\int \left(|t|^s\right)^{r/s} \df P_{X_n}\right]^{s/r}$\\ [4pt]
-		$\phantom{0 \leq \int (1 - \phi_{\alpha}(t))|t|^s \df P_{X_n}} \leq [\int \chi_{\{|t| > a\}} \df P_{X_n}]^{(r-s)/r} \cdot [E(|X_n|^r)]^{s/r}$\\ [4pt]
-		$\phantom{0 \leq \int (1 - \phi_{\alpha}(t))|t|^s \df P_{X_n}} \leq (P(|X_n| > a))^{(r-s)/r} \cdot C^{s/r} \leq (C/\alpha)^{r-s}C^{s/r} = \frac{1}{\alpha^{r-s}} C^{r-s + \frac{s}{r}}$.
-	\end{tabular}\newpage\par}
-	
-	And if $s$ is an integer, then:
-	
-	{\centering$0 \leq |\int (1 - \phi_{\alpha}(t))t^s \df P_{X_n}| \leq \int (1 - \phi_{\alpha}(t))|t|^s \df P_{X_n} \leq \frac{1}{\alpha^{r-s}} C^{r-s + \frac{s}{r}}$.\retTwo\par}
+All homework problem's for math 220a will be coming from John Conway's book \textit{functions of one complex variable} (See \inLinkRap{bib citation 13}{item 13} in the bibliography).\retTwo
 
-	Now $\int |t|^s\df P_{X_n} = \int \phi_{\alpha}(t)|t|^s \df P_{X_n} + \int(1 - \phi_{\alpha}(t))|t|^s \df P_{X_n}$. So, we can say that:\\ [-6pt]
+\Hstatement\blab{Exercise I.6.4:} Let $\Lambda$ be a circle lying in $S^2$. Then (by the definition of a circle) there is a unique\\ plane $P$ in $\mathbb{R}^3$ such that $P \cap S^2 = \Lambda$. So, take $P = \{(x_1, x_2, x_3) \in \mathbb{R}^3 : x_1\beta_1 + x_2\beta_2 + x_3\beta_3 = \ell\}$\\ where $(\beta_1, \beta_2, \beta_3)$ is a unit vector orthogonal to $P$ and $\ell \in \mathbb{R}$. Then show that if $\Lambda$ contains $(0, 0, 1)$, it's projection to $\mathbb{C}_\infty$ is a straight line, and meanwhile if $\Lambda$ doesn't contain $(0, 0, 1)$ then it's projection to $\mathbb{C}_\infty$ is another circle.
 
-	{\centering\begin{tabular}{l}
-		$\int_{-\alpha}^{\alpha} |t|^s \df P_{X} \leq \int \phi_{\alpha}(t)|t|^s \df P_{X} \leq \liminf\limits_{n \to \infty} \int |t|^s \df P_{X_n}$\\ [10pt] 
+\begin{myIndent}\HexOne
+	To start off, any point $z = x + iy \in \mathbb{C}$ corresponds to a point in $\Lambda$ iff:
+
+	{\centering $\frac{2x}{|z|^2 + 1}\beta_1 + \frac{2y}{|z|^2 + 1}\beta_2 + \frac{|z|^2 - 1}{|z|^2 + 1}\beta^3 = \ell$ \retTwo\par}
+
+	After some rearranging this becomes $2\beta_1 x + 2\beta_2 y + (x^2 + y^2 - 1)\beta_3 = \ell(x^2 + y^2 + 1)$. Or in other words $(\beta_3 - \ell)x^2 + 2\beta_1 x + (\beta_3 - \ell)y^2 + 2\beta_2 y = \ell + \beta_3$. And now we break off into two cases.
+
+	\begin{enumerate}
+		\item Suppose $\beta_3 = \ell$. Then we know that $0\beta_1 + 0\beta_2 + 1\beta_3 = \ell$. So $(0, 0, 1) \in \Lambda$. At the same time, all the square terms in our condition cancel and we are left with the requirement $2\beta_1 x + 2\beta_2 y = \ell + \beta_3$. This is the equation of a line. Hence, we've shown that the projection of $\Lambda$ onto $\mathbb{C}_\infty$ is a straight line unioned with the point at infinity.\retTwo
 		
-		$\phantom{\int_{-\alpha}^{\alpha} |t|^s \df P_{X} \leq \int \phi_{\alpha}(t)|t|^s \df P_{X}} \leq \limsup\limits_{n \to \infty} \int |t|^s \df P_{X_n} \leq \int \phi_{\alpha}(t)|t|^s \df P_{X} + \frac{1}{\alpha^{r-s}}C^{r-s+\frac{s}{r}}$\\ [10pt]
+		\item Suppose $\beta_3 \neq \ell$. Then we know that $0\beta_1 + 0\beta_2 + 1\beta_3 \neq \ell$ and hence $(0, 0, 1) \notin \Lambda$. At the same time, we can now divide our equation from before by $\beta - \ell$ in order to get that $x^2 + 2\frac{\beta_1}{\beta_3 - \ell}x + y^2 + 2\frac{\beta_2}{\beta_3 - \ell}y = \frac{\ell + \beta_3}{\beta_3 - \ell}$. And by completing the square we have:
+		
+		{\centering $(x + \frac{\beta_1}{\beta_3 - \ell})^2 + (y + \frac{\beta_2}{\beta_3 - \ell})^2 = \frac{\beta_3 + \ell}{\beta_3 - \ell} + \frac{\beta_1^2 + \beta_2^2}{(\beta_3 - \ell)^2} = \frac{1 - \ell^2}{(\beta_3 - \ell)^2}$.\retTwo\par}
 
-		$\phantom{\int_{-\alpha}^{\alpha} |t|^s \df P_{X} \leq \int \phi_{\alpha}(t)|t|^s \df P_{X} \leq \limsup\limits_{n \to \infty} \int |t|^s \df P_{X_n}} \leq \int_{-\alpha-1}^{\alpha + 1} |t|^s \df P_{X} + \frac{1}{\alpha^{r-s}}C^{r-s+\frac{s}{r}}$
-	\end{tabular}\retTwo\par}
+		So, the projection of $\Lambda$ onto $\mathbb{C}_\infty$ is a circle of radius $\frac{\sqrt{1 - \ell^2}}{\beta_3 - \ell}$ centered at $\frac{-\beta_1}{\beta_3 - \ell} + i\frac{-\beta_2}{\beta_3 - \ell}$.
 
-	And by taking $\alpha \to \infty$, we know by the monotone convergence theorem and the fact that $\frac{1}{\alpha^{r-s}} \to 0$ that $\lim_{n \to \infty}E(|X|^s) = \lim_{n\to\infty}\int |t|^s \df P_{X_n} = \int |t|^s \df P_X = E(|X|^s)$ for all $s \in (0, r)$.\retTwo
+		\begin{myIndent}\HexPPP
+			As a side note, let $\mathbf{b} = (b_1, b_2, b_3)$ and consider any $\mathbf{y} = (y_1, y_2, y_3) \in \Lambda$. Then note by the Cauchy Schwarts inequality that $\ell^2 = (\mathbf{b} \cdot \mathbf{y})^2 \leq \|\mathbf{b}\|^2 \|\mathbf{y}\|^2 = 1 \cdot 1 = 1$. Hence,\\ $\sqrt{1 - \ell^2}$ is a well defined real number.\retTwo
+		\end{myIndent}
+	\end{enumerate}
+\end{myIndent}
 
-	As for the special case that $s$ is an integer,
+\hTwo I'll continue with this class on \inLinkRap{math 220a lecture 2}{page \_\_\_}
 
+\mySepTwo
+
+\blect{Math 200a (lecture 2):}\retTwo
+
+Given a group $G$ and $a \in G$, we denote the \udefine{order} of $a$ as $o(a) \coloneqq o(\langle a \rangle)$
+Now let $C_n$ be a cyclic group of order $n$. In other words, $C_n = \langle a \rangle$ where $o(a) = n$. What is $\Aut(C_n)$?\\ [-6pt]
+
+\begin{myIndent}\Hstatement
+	\blab{Set 1 problem 5:}
+	\begin{itemize}
+		\item[(a)] Suppose $\theta \in \Aut(C_n)$ and pick any $m \in \mathbb{Z}$ with $\theta(a) = a^m$. Then $\gcd(m, n) = 1$.
+		
+		\begin{myIndent}\HexOne
+			Since $\theta$ is a bijection, we know that $\theta(a^k)$ for each $k \in \{0, \ldots, n-1\}$ is distinct. But also since $\theta$ is a group homomorphism, we know that $\theta(a^0) = a^0 = 1$ and $\theta(a^k) = (\theta(a))^k = (a^m)^k$ for $k > 0$. Hence, we must have that $o(a^m) = n$.\\ [-1pt] But now recall also that $o(a^m) = \frac{o(a)}{\gcd(o(a), m)} = \frac{n}{\gcd(n, m)}$. So, we must have that\\ [-3pt] $\gcd(n, m) = 1$.\newpage
+		\end{myIndent}
+
+		\item[(b)] Suppose $m \in \mathbb{Z}$ satisfies that $\gcd(m, n) = 1$ and define $\theta_m(a): C_n \to C_n$ by\\ $\theta_m(a^k) = (a^k)^m$. Then $\theta \in \Aut(C_n)$.
+		
+		\begin{myIndent}\HexOne
+			To see that $\theta_m$ is a group homomorphism, just note that:
+			
+			{\centering\begin{tabular}{l}
+				$\theta_m(a^{k_1}a^{k_2}) = \theta_m(a^{k_1 + k_2})$\\
+				$\phantom{\theta_m(a^{k_1}a^{k_2})} = (a^{k_1 + k_2})^m = a^{m(k_1 + k_2)}$\\
+				$\phantom{\theta_m(a^{k_1}a^{k_2}) = (a^{k_1 + k_2})^m} = a^{mk_1 + mk_2} = (a^{k_1})^m (a^{k_2})^m = \theta_m(a^{k_1})\theta_m(a^{k_2})$
+			\end{tabular}\retTwo\par}
+
+			Meanwhile note that $o(a^m) = \frac{o(a)}{\gcd(o(a), m)} = \frac{n}{1} = n$.\retTwo
+			
+			Therefore, because $\theta_m(a^k) = (\theta_m(a))^k = (a^m)^k$ since $\theta_m$ is a group\\ homomorphism, we know by pigeonhole principle that $\theta_m$ is both injective\\ and surjective.\retTwo
+		\end{myIndent}
+
+		\item[(c)] The mapping $(\mathbb{Z}/n\mathbb{Z})^\times \to \Aut(C_n)$ is an isomorphism.
+		
+		\begin{myIndent}\HexOne
+			
+		\end{myIndent}
+	\end{itemize}
+\end{myIndent}
+
+
+
+
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\hypertarget{Folland Proposition 10.1}{}
+\hypertarget{bib citation 12}{}
+\hypertarget{math 241a lecture 2}{}
+\hypertarget{math 200a lecture 2}{}
+\hypertarget{math 220a lecture 2}{}
+\hypertarget{bib citation 13}{}
 
 \end{document}
 

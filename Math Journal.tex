@@ -153,6 +153,10 @@
    \color{RedViolet}%
    \fontsize{12}{14}\selectfont%
 }
+\newcommand{\exFourP}{%
+   \color{RedViolet}%
+   \fontsize{11}{13}\selectfont%
+}
 \newcommand{\exPP}{%
    \color{RedViolet}%
    \fontsize{12}{14}\selectfont%
@@ -223,6 +227,8 @@
 }}
 
 \newcommand{\blab}[1]{\textbf{#1}}
+\newcommand{\blect}[1]{{\color{MidnightBlue}\textbf{#1}}}
+
 
 \newcommand{\uuline}[2][.]{%
 {\vphantom{a}\color{#1}%
@@ -238,6 +244,9 @@
 \newcommand{\trans}{\mathsf{T}}
 \newcommand{\myHS}{ \hspace{0.5em}}
 \newcommand{\gap}{\phantom{2}}
+
+\newcommand{\GenLin}{\ensuremath{\mathrm{GL}}}
+\newcommand{\Cay}{\ensuremath{\mathrm{Cay}}}
 
 \newcommand{\myId}{\mathrm{Id}}
 \newcommand{\myIm}{\mathrm{im}}
@@ -256,6 +265,7 @@
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\supp}{\mathrm{supp}}
 \newcommand{\diam}{\mathrm{diam}}
+\newcommand{\conv}{\mathrm{conv}}
 \newcommand{\opnorm}{\mathrm{op}}
 \newcommand{\sgn}{\mathrm{sgn}}
 \newcommand{\mSpan}{\mathrm{span}}
@@ -274,6 +284,8 @@
 \newcommand{\weakst}{weak$^*$ }
 
 \newcommand{\radtimes}{\mathop{\widehat{\times}}}
+
+\newcommand{\mMod}[1]{\phantom{a}(\mathrel{\mathrm{mod}} #1)}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -5468,7 +5480,7 @@ If every point $b \in B$ has an open neighborhood $U \subseteq B$ that is evenly
 		Now set $\delta = \sfrac{\alpha}{n}$. Then for any $E \subseteq X$ with $\diam(E) < \delta$, if we pick $x_0 \in E$ we have that $E \subseteq B_{\delta}(x_0)$. Importantly, since $f(x_0) > \alpha = n\delta$, we must have that $d(x, F_i) > \delta$ for some $i$. It follows then that $E \subseteq U_i$. This proves that $\delta$ works as a Lebesgue number. $\blacksquare$\retTwo
 	\end{myIndent}
 
-	By the above lemma, we know that there exists $0 = s_0 < s_1 < \ldots < s_n = 1$\\ satisfying for each $0 \leq i < n$ that $[e_i, e_{i+1}] \subseteq f^{-1}(U_{\alpha_i})$ for some $\alpha_i \in A$. Or in other words, $f([e_i, e_{i+1}]) \subseteq U_{\alpha_i}$ for some $\alpha_i \in A$. After setting $\tilde{f}(0) = e_0$, we may proceed by induction as follows in order to show a suitable $\tilde{f}$ exists.
+	By the above lemma, we know that there exists $0 = s_0 < s_1 < \ldots < s_n = 1$\\ satisfying for each $0 \leq i < n$ that $[s_i, s_{i+1}] \subseteq f^{-1}(U_{\alpha_i})$ for some $\alpha_i \in A$. Or in other words, $f([s_i, s_{i+1}]) \subseteq U_{\alpha_i}$ for some $\alpha_i \in A$. After setting $\tilde{f}(0) = e_0$, we may proceed by induction as follows in order to show a suitable $\tilde{f}$ exists.
 
 	\begin{myIndent}
 		Assume that $\tilde{f}$ was already defined for all $s \in [0, s_i]$ where $i < n$. Since\\ $U_{\alpha_i}$ is evenly covered by $p$, we know there is a unique open set $V \subseteq E$\\ such that $\tilde{f}(s_i) \in V$ and $p|_V$ is a homeomorphism onto $U_{\alpha_i}$. Then since\\ $f([s_i, s_{i+1}]) \subseteq U_{\alpha_i}$, we know it is well defined to set $\tilde{f}(s) = (p|_V)^{-1}(f(s))$\\ for all $s \in [s_i, s_{i+1}]$. Also, it is clear then that $\tilde{f}|_{[s_i, s_{i+1}]}$ is continuous since it\\ is the composition of two continuous functions. In turn, we can see by the\\ pasting lemma that $\tilde{f}$ will be continuous on the domain $[0, s_{i+1}]$ \retTwo
@@ -5898,7 +5910,7 @@ Now due to my patchy background, I'm only sorta familiar with how topological co
 		
 		\begin{myIndent}\pracTwo
 			Proof:\\
-			Let $X^*$ be a partition of $X$ and let $f: X \to X^*$ be the function mapping every element to the set in $X^*$ containing it. If we equip $X^*$ with the quotient\\ topology with resepct to $f$, then $f$ will be continuous. Hence since $X$ is connected, so will $f(X) = X^*$.\retTwo
+			Let $X^*$ be a partition of $X$ and let $f: X \to X^*$ be the function mapping every element to the set in $X^*$ containing it. If we equip $X^*$ with the quotient\\ topology with resepct to $f$, then $f$ will be continuous. Hence since $X$ is\\ connected, so will $f(X) = X^*$.\retTwo
 			
 			Similar reasoning works when $X$ is path connected. $\blacksquare$\retTwo
 		\end{myIndent}
@@ -7514,7 +7526,7 @@ Let $X$ and $Y$ be LCH spaces and let $\pi_X$ and $\pi_Y$ denote the projections
 	Meanwhile, by Urysohn's lemma we know there exists functions $\phi \in C_c(U, [0, 1])$ and $\psi \in C_c(V, [0, 1])$ such that $\phi = 1$ on $\pi_X(\supp(f))$ and $\psi = 1$ on $\pi_Y(\supp(f))$. Thus if we define $F = (\phi \otimes \psi)G$ on $\overline{U} \times \overline{V}$ and $F = 0$ elsewhere, we have that $F \in \mathcalli{P}$, $\|F - f\|_u < \varepsilon$, and $\supp(F) \subseteq U \times V$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\ul{Proposition 7.22:} Every $f \in C_c(X, Y)$ is $(\mathcalli{B}_X \otimes \mathcalli{B}_Y)$-measurable. Moreover, if $\mu$ and $\nu$ are Radon measures on $X$ and $Y$, then $C_c(X \times Y) \subseteq L^1(\mu \times \nu)$ and:\\ [-25pt]
+\hypertarget{Folland Proposition 7.22}{\ul{Proposition 7.22:}} Every $f \in C_c(X, Y)$ is $(\mathcalli{B}_X \otimes \mathcalli{B}_Y)$-measurable. Moreover, if $\mu$ and $\nu$ are Radon measures on $X$ and $Y$, then $C_c(X \times Y) \subseteq L^1(\mu \times \nu)$ and:\\ [-25pt]
 
 $$\int f \df(\mu \times \nu) = \iint f \df \mu \df \nu = \iint f \df \nu \df \mu \text{ for all } f \in C_c(X \times Y)\text{.}$$
 
@@ -7560,7 +7572,7 @@ $$\int f \df(\mu \times \nu) = \iint f \df \mu \df \nu = \iint f \df \nu \df \mu
 	A consequence of this is that since $f \in L^1(\mu \times \nu)$, we now know that $f \in L^1(\mu^\prime \times \nu^\prime)$. In turn, since both $\mu^\prime$ and $\nu^\prime$ are finite measures, we can apply the Fubini-Tonelli theorem to see that $\int f \df (\mu^\prime \times \nu^\prime) = \iint f \df \mu^\prime \df \nu^\prime = \iint f \df \nu^\prime \df \mu^\prime$. And now we're done since we already showed earlier that $\int f \df (\mu^\prime \times \nu^\prime) = \int f \df (\mu \times \nu)$, $\iint f \df \mu^\prime \df \nu^\prime = \iint f \df \mu \df \nu$, and $\iint f \df \nu^\prime \df \mu^\prime = \iint f \df \nu \df \mu$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\hTwo The significance of the last proposition is that we now know that if $\mu$ and $\nu$ are positive\\ Radon measures on $X$ and $Y$ respectively, then $I(f) = \int f \df (\mu \times \nu)$ is a well-defined\\ positive linear functional from $C_c(X \times Y)$ to $\mathbb{C}$. Hence, there exists a unique well- \\defined positive Radon measure (which we denote $\mu \radtimes \nu$) on $\mathcalli{B}_{X \times Y}$ such that\\ $\int f \df (\mu \radtimes \nu) = \int f (\mu \times \nu)$ for all $f \in C_c(X \times Y)$. We call $\mu \radtimes \nu$ the \udefine{Radon product}\\ of $\mu$ and $\nu$.\retTwo
+\hTwo \hypertarget{page 184 reference}{The} significance of the last proposition is that we now know that if $\mu$ and $\nu$ are positive\\ Radon measures on $X$ and $Y$ respectively, then $I(f) = \int f \df (\mu \times \nu)$ is a well-defined\\ positive linear functional from $C_c(X \times Y)$ to $\mathbb{C}$. Hence, there exists a unique well- \\defined positive Radon measure (which we denote $\mu \radtimes \nu$) on $\mathcalli{B}_{X \times Y}$ such that\\ $\int f \df (\mu \radtimes \nu) = \int f (\mu \times \nu)$ for all $f \in C_c(X \times Y)$. We call $\mu \radtimes \nu$ the \udefine{Radon product}\\ of $\mu$ and $\nu$.\retTwo
 
 I'm going to stop taking notes on this section of Folland for the time being cause I don't think Radon products will be necessary for anything I want to study in Folland for a while. Next time, I will be studying some Fourier analysis from Folland. Also, I'm going to finally add in-pdf hyperlinks to this document.\retTwo
 
@@ -8268,7 +8280,7 @@ I won't be reintroducing distributions or proving things that are already in my 
 
 \hTwo\dispDate{9/16/2025}
 
-In the next section of Folland, he writes a lot of theorems involving infinite sequences of\\ independent random variables. Now unfortunately actually constructing those sequences\\ requires some theorems I skipped over earlier. So for now just I'm just going to ignore the\\ issue. However, I'll come back and address this issue later \hypertarget{page 200 reference}{on} page \_\_\_.\newpage
+\hypertarget{page 199 reference}{In} the next section of Folland, he writes a lot of theorems involving infinite sequences of\\ independent random variables. Now unfortunately actually constructing those sequences\\ requires some theorems I skipped over earlier. So for now just I'm just going to ignore the\\ issue. However, I'll come back and address this issue later on \inLinkRap{page 215 reference}{page 215}.\newpage
 
 \exTwo\ul{Theorem 10.9: (The Weak Law of Large Numbers)}
 \begin{myIndent}
@@ -8935,18 +8947,1243 @@ To start off, there's an exercise that applies both the central limit theorem an
 	To show the second claim, consider any fixed $\varepsilon > 0$ and $\delta > 0$. Then let $E$ be a set satisfying that $\mu(E) < \delta$ and $f_n \to f$ uniformly on $E^\comp$. Then clearly there is some $N$ such that for all $n \geq N$, $\mu(\{x : |f_n(x) - f(x)| \geq \varepsilon\}) \leq \mu(E) < \delta$. This proves that $f_n \to f$ in measure.\newpage
 \end{myIndent}
 
-\hTwo By combining the prior exercise with Egoroff's theorem, we can see that on any finite measure space, if $f_n \to f$ pointwise a.e., then $f_n \to f$ almost uniformly and therefore also in measure. This can be especially useful to keep in mind when working on spaces equipped with probability measures.\retTwo
+\hTwo By combining the prior exercise with Egoroff's theorem, we can see that on any finite\\ measure space, if $f_n \to f$ pointwise a.e., then $f_n \to f$ almost uniformly and therefore also in measure. This can be especially useful to keep in mind when working on spaces equipped with probability measures.
+\begin{myIndent}\pracOne
+	(Although now that I'm actually doing exercise 10.20, I don't think I actually need to use the prior exercise in order to do exercise 10.20.)\retTwo
+\end{myIndent}
 
-\Hstatement\blab{Exercise 10.20:} If $\{X_j\}_{j \in \mathbb{N}}$ is a sequence of independent identically distributed random\\ variables with mean $0$ and variance $1$, then the distributions of $\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2)^{1/2}$ and\\ $\sqrt{n}\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2)$ both converge vaguely to the standard normal distribution.
+\Hstatement\blab{Exercise 2.37:} Let $(X, \mathcal{M}, \mu)$ be a measure space. Then suppose $\{f_n\}_{n \in \mathbb{N}}$ is a sequence\\ of measurable functions on $X$, $f$ is a measurable function on $X$, and consider any function\\ $\phi: \mathbb{C} \to \mathbb{C}$.\\ [-20pt]
+\begin{itemize}
+	\item[(a)] If $\phi$ is continuous and $f_n \to f$ a.e., then $\phi \circ f_n \to \phi \circ f_n$ a.e.
+	
+	\begin{myIndent}\HexOne
+		Suppose $x$ satisfies that $f_n(x) \to f(x)$ as $n \to \infty$. Then since $\phi$ is continuous, we have that $\phi(f_n(x)) \to \phi(f(x))$ as $n \to \infty$. This shows that the set where $f_n \to f$ is a subset of the set where $\phi \circ f_n \to \phi \circ f$. Hence $\phi \circ f_n \to \phi \circ f_n$ a.e.
+	\end{myIndent}
+	
+	\item[(b)] If $\phi$ is uniformly continuous and $f_n \to f$ uniformly, almost uniformly, or in measure, then $\phi \circ f_n \to \phi \circ f$ uniformly, almost uniformly, or in measure respectively.
+	
+	\begin{myIndent}\HexOne
+		First suppose $f_n \to f$ uniformly. Then for any $\varepsilon > 0$ pick $\delta > 0$ such that\\ $|\phi(z_1) - \phi(z_2)| < \varepsilon$ when $|z_1 - z_2| < \delta$ and $N \in \mathbb{N}$ such that $|f_n(x) - f(x)| < \delta$\\ for all $n \geq N$ and $x \in X$. And now $|\phi(f_n(x)) - \phi(f(x))| < \varepsilon$ for all $n \geq N$ and $x \in X$.\retTwo
+
+		This also shows that if $f_n \to f$ uniformly on some set $E^\comp \subseteq X$, then $\phi \circ f_n \to \phi \circ f$ uniformly on $E^\comp$. And from there it's clear that $f_n \to f$ almost uniformly implies that $\phi \circ f_n \to \phi \circ f$ almost uniformly.\retTwo
+		
+		Finally, suppose $f_n \to f$ in measure. Then for any $\varepsilon > 0$ and $\delta > 0$ we want to show there exists $N \in \mathbb{N}$ such that $\mu(\{x : |(\phi \circ f_n)(x) - (\phi \circ f_n)(x)| \geq \delta\}) < \varepsilon$ for all $n \geq N$. To do this, pick $\kappa > 0$ such that $|\phi(z_1) - \phi(z_2)| < \delta$ whenever $|z_1 - z_2| < \kappa$. Then upon picking $N \in \mathbb{N}$ such that $\mu(\{x : |f_n(x) - f(x)| \geq \kappa\}) < \varepsilon$, we have for all $n \geq N$ that:
+
+		{\centering $\mu(\{x : |(\phi \circ f_n)(x) - (\phi \circ f_n)(x)| \geq \delta\}) \subseteq \mu(\{x : |f_n(x) - f(x)| \geq \kappa\}) < \varepsilon$. $\blacksquare$ \retTwo\par}
+	\end{myIndent}
+\end{itemize}
+
+\hTwo Now to the actual exercise I wanted to do\dots\retTwo
+
+\Hstatement\blab{Exercise 10.20:} If $\{X_j\}_{j \in \mathbb{N}}$ is a sequence of independent identically distributed random\\ variables with mean $0$ and variance $1$, then the distributions of $\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2)^{1/2}$ and\\ $\sqrt{n}\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2)$ both converge vaguely to the standard normal distribution.\\ [-10pt]
 
 \begin{myIndent}\HexOne
 	Proof:\\
+	Firstly, note that:
 	
+	{\centering$\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2)^{1/2} = n^{-1/2}\sum_{j=1}^n X_j / (\frac{1}{n}\sum_{j=1}^n X_j^2)^{1/2}$.\retTwo\par}
+
+	Similarly, note that:
+
+	{\centering$\sqrt{n}\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2) = \sum_{j=1}^n X_j / (\frac{1}{\sqrt{n}}\sum_{j=1}^n X_j^2) = n^{-1/2}\sum_{j=1}^n X_j / (\frac{1}{n}\sum_{j=1}^n X_j^2)$ \retTwo\par}
+
+	Now by Khinchine's strong law of large numbers, we know that $\frac{1}{n}\sum_{j=1}^n X_j^2 \to \sigma^2 = 1$\\ [1pt] almost surely as $n \to \infty$. Also, by a straightfoward application of the prior exercise using\\ $\phi(z) = \sqrt{\rea{z}}\chi_{(0, \infty)}(\rea{z})$, we know that $(\frac{1}{n}\sum_{j=1}^n X_j^2)^{1/2} \to \sqrt{1} = 1$ almost surely\\ as $n \to \infty$.\newpage 
+	
+	Meanwhile, the central limit theorem says for all $a \in \mathbb{R}$ that:
+	
+	{\centering$\lim_{n \to \infty}P(n^{-1/2}\sum_{j=1}^n X_j < a) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$.\retTwo\par}
+	
+	So for the sake of brevity, from now on I will just write out that I'm working with a\\ sequence of random variables $\{\sfrac{Y_n}{Z_n}\}_{n \in \mathbb{N}}$ where $Z_n \to 1$ a.s. as $n \to \infty$ and\\ $\lim_{n\to \infty}P(Y_n < a) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$. And if we can show that the distribution of\\ $\sfrac{Y_n}{Z_n}$ converges vaguely to the standard normal distribution, we are done.\retTwo
+
+	From here our strategy is to apply \inLinkRap{Folland Proposition 7.19}{proposition 7.19}. Fortunately, the first condition of that proposition is trivial since we are working with probability measures. As for showing the second condition, let $F_n(a) \coloneqq P(Y_n / Z_n \leq a)$ and $F(a) \coloneqq \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$ for all $a \in \mathbb{R}$. Now, we need to show that $F_n \to F$ pointwise (since $F$ is continuous everywhere).\retTwo
+	
+	To do this, note that $Z_n \to 1$ almost uniformly  by Egoroff's theorem. And from there we know that for any $\varepsilon > 0$ and $\delta \in (0, 1)$ that there exists an event $E$ with $P(E) < \varepsilon$ as well as an integer $N \in \mathbb{N}$ such that $|Z_n(\omega) - 1| \leq \delta$ for all integers $n \geq N$ and outcomes $\omega \in E^\comp$. And in turn we can say for all $n \geq N$ and $a \geq 0$ that:\\ [-14pt]
+	\begin{itemize}
+		\item $F_n(a) \geq P(\{\frac{Y_n}{Z_n} \leq a\} \cap E^\comp) \geq P(\{Y_n \leq a(1 - \delta)\} \cap E^\comp)$\\ [2pt]
+		$\phantom{F_n(a) \geq P(\{\frac{Y_n}{Z_n} \leq a\} \cap E^\comp)} \geq P(Y_n \leq a(1 - \delta)) - P(E)$\\ [2pt]
+		$\phantom{F_n(a) \geq P(\{\frac{Y_n}{Z_n} \leq a\} \cap E^\comp)} > P(Y_n \leq a(1 - \delta)) - \varepsilon$\retTwo
+
+		\item $F_n(a) \leq P(\{\frac{Y_n}{Z_n} \leq a\} \cap E^\comp) + P(E) \leq P(\{Y_n \leq a(1 + \delta)\} \cap E^\comp) + P(E)$\\ [2pt]
+		$\phantom{F_n(a) \leq P(\{\frac{Y_n}{Z_n} \leq a\} \cap E^\comp) + P(E)} \leq P(Y_n \leq a(1 + \delta)) + P(E)$\\ [2pt]
+		$\phantom{F_n(a) \leq P(\{\frac{Y_n}{Z_n} \leq a\} \cap E^\comp) + P(E)} < P(Y_n \leq a(1 + \delta)) + \varepsilon$\retTwo
+	\end{itemize}
+
+	\begin{myIndent}\HexPPP
+		Meanwhile if $a < 0$ and $n \geq N$ then we can say that:
+		
+		{\centering$P(Y_n \leq a(1 + \delta)) - \varepsilon < F_n(a) < P(Y_n \leq a(1 - \delta)) + \varepsilon$.\retTwo\par}
+		
+		However, this minute detail doesn't really affect any of the core reasoning after this. So\\ I'm just going to assume I'm working with $a \geq 0$ from now on.\retTwo
+	\end{myIndent}
+
+	Taking $n \to \infty$, we have that:
+	
+	{\centering $F(a(1 - \delta)) - \varepsilon \leq \liminf_{n\to\infty}F_n(a) \leq \limsup_{n \to \infty} F_n(a) \leq F(a(1 + \delta)) + \varepsilon$.\retTwo\par}
+
+	And since $F$ is continuous, we can take $\varepsilon \to 0$ and $\delta \to 0$ to get that $F(a) = \lim_{n \to \infty}F_n(a)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{9/21/2025\hypertarget{page 215 reference}{}}
+
+Now is the day that I return to asking about how we construct sequences of independent random variables. (see \inLinkRap{page 199 reference}{page 199} for when I brought up this question). Unfortunately, answering this question will require taking a detour back to Folland chapter 7 to finish learning about Radon products of measures. To see where I last stopped in this chapter, go to \inLinkRap{page 184 reference}{page 184}.\newpage
+
+Let $X$ and $Y$ be LCH spaces equipped with Borel Radon measures. Then like in my paper notes for math 240a, given any set $E \subseteq X \times Y$ denote $E_x \coloneqq \{y \in Y : (x, y) \in E\}$ and $E^y \coloneqq \{x \in X : (x, y) \in E\}$. Also, given any function $f: X \times Y \to \mathbb{C}$, denote $f_x(\cdot) \coloneqq f(x, \cdot)$ and $f^y(\cdot) \coloneqq f(\cdot, y)$.\retTwo
+
+\exTwo\ul{Lemma 7.23:}\\ [-20pt]
+\begin{itemize}
+	\item[(a)] If $E \in \mathcalli{B}_{X \times Y}$, then $E_x \in \mathcalli{B}_Y$ for all $x \in X$ and $E^y \in \mathcalli{B}_X$ for all $y \in Y$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $\mathcal{M} \coloneqq \{E \in \mathcalli{B}_{X \times Y} : E_x \in \mathcalli{B}_Y \text{ and } E^y \in \mathcalli{B}_X \text{ for all } x \in X \text{ and } y \in Y\}$. Then we claim that $\mathcal{M}$ is a $\sigma$-algebra.
+		\begin{myIndent}\exPPP
+			Suppose $E \in \mathcal{M}$. Then for all $x \in X$
+			
+			{\centering\begin{tabular}{l}
+				$(E^\comp)_x = \{y \in Y : (x, y) \in E^\comp\}$\\ [6pt]
+				$\phantom{(E^\comp)_x} = \{y \in Y : (x, y) \in E\}^\comp = (E_x)^\comp \in \mathcalli{B}_Y$.
+			\end{tabular}\retTwo\par}
+			
+			Similarly, $(E^\comp)^y = (E^y)^\comp \in \mathcalli{B}_X$ for all $y \in Y$. So $\mathcal{M}$ is closed under\\ complements.\retTwo
+
+			Next suppose $\{E_n\}_{n \in \mathbb{N}}$ is a collection in $\mathcal{M}$ and let $E = \bigcup_{n \in \mathbb{N}}E_n$. Then for all $x \in X$:
+			
+			{\centering\begin{tabular}{l}
+				$(E)_x = \{y \in Y: (x, y) \in E\}$\\ [6pt]
+
+				$\phantom{(E)_x} = \{y \in Y: (x, y) \in \bigcup_{n \in \mathbb{N}} E_n\} = \bigcup_{n \in \mathbb{N}}\{y \in Y: (x, y) \in E_n\}$\\ [3pt]
+				
+				$\phantom{(E)_x = \{y \in Y: (x, y) \in \bigcup_{n \in \mathbb{N}} E_n\}}= \bigcup_{n \in \mathbb{N}} (E_n)_x \in \mathcalli{B}_Y$
+			\end{tabular}\retTwo\par}
+
+			And similarly $E^y = \bigcup_{n \in \mathbb{N}} (E_n)^y \in \mathcalli{B}_X$ for all $y \in Y$. So, $\mathcal{M}$ is closed under countable unions.\retTwo
+		\end{myIndent}
+
+		Also, for all $x \in X$ and $y \in Y$ the maps $x^\prime \in X \mapsto (x^\prime, y)$ and $y^\prime \in Y \mapsto (x, y^\prime)$ are easily checked to be continuous. Hence, we know that if $E \in \mathcalli{B}_{X \times Y}$ is open, then so is $E_x$ and $E^y$ for all $x \in X$ and $y \in Y$. And consequently we know that $\mathcal{M}$ contains all the open sets in $X \times Y$. This proves that $\mathcal{M} = \mathcalli{B}_{X \times Y}$.
+	\end{myIndent}
+	
+	\item[(b)] \hypertarget{Folland Lemma 7.23(b)}{If} $f : X \times Y \to \mathbb{C}$ is $\mathcalli{B}_{X \times Y}$-measurable, then $f_x$ is $\mathcalli{B}_Y$-measurable for all $x \in X$ and $f^y$ is $\mathcalli{B}_X$-measurable for all $y \in Y$. 
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Note that for any $A \in \mathcalli{B}_\mathbb{C}$ and $x \in X$, we have that:
+		
+		{\centering\begin{tabular}{l}
+			$(f_x)^{-1}(A) = \{y \in Y : f(x, y) \in A\}$\\
+			$\phantom{(f_x)^{-1}(A)} = \{y \in Y : (x, y) \in f^{-1}(A)\} = (f^{-1}(A))_x$
+		\end{tabular}\retTwo\par}
+
+		Similarly, we have for any $A \in \mathcalli{B}_\mathbb{C}$ and $y \in Y$ that $(f^y)^{-1}(A) = (f^{-1}(A))^y$. Thus if $f$ is $\mathcalli{B}_{X \times Y}$-measurable, then it is a straightfoward application of part (a) to prove part (b). $\blacksquare$\newpage
+	\end{myIndent}
+\end{itemize}
+
+\ul{Lemma 7.24:} If $f \in C_c(X \times Y)$ and $\mu$ and $\nu$ are Radon measures on $X$ and $Y$ respectively, then the functions $x \mapsto \int f_x \df \nu$ and $y \mapsto \int f^y \df \mu$ are continuous.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Folland writes out only the proof for $x \mapsto \int f_x \df \nu$ so I'm only going to write out the proof for $y \mapsto \int f^y \df \mu$ (they're basically identical so it doesn't matter). It suffices to show that given any $y_0 \in Y$ and $\varepsilon > 0$ there is a neighborhood $V \subseteq Y$ of $y_0$ such that $\|f^{y} - f^{y_0}\|_u < \varepsilon$ for all $y \in V$ since then $|\int f^y \df \mu - \int f^{y_0} \df \mu| = |\int f^y - f^{y_0} \df \mu| \leq \varepsilon \cdot  \mu(\pi_X(\supp(f)))$ for all $y \in V$ (thus showing $y \mapsto \int f^y \df \mu$ is continuous at any $y_0 \in Y$).\retTwo
+
+	However, since $f$ is continuous, we know that for each $x^\prime \in \pi_X(\supp(f))$ there\\ exists neighborhoods $U_{x^\prime} \subseteq X$ and $V_{x^\prime} \subseteq Y$ of $x^\prime$ and $y_0$ respectively such that if\\ $(x, y) \in U_x \times V_x$, then $|f(x, y) - f(x^\prime, y_0)| < \frac{1}{2}\varepsilon$. And then since $\pi_X(\supp(f))$\\ is compact, we can choose a finite subcover $U_{x^\prime_1}, \ldots, U_{x^\prime_n}$ of $\pi_X(\supp(f))$. And by\\ setting $V = \bigcap_{j=1}^n V_{x^\prime_j}$, we claim that $V \subseteq Y_0$ is a neighborhood of $y_0$ such that for\\ any $x \in X$ and $y \in V$, $|f(x, y) - f(x, y_0)| < \varepsilon$.
+	\begin{myIndent}\exPPP
+		If $x \notin \pi_X(\supp(f))$, then clearly $|f(x, y) - f(x, y_0)| = |0 - 0| < \varepsilon$ no matter what $y$ is. On the other hand, if $x \in \pi_X(\supp(f))$, then we know that $(x, y) \in U_{x^\prime_j} \times V_{x^\prime_j}$\\ [-2pt] for some $x^\prime_j \in X$. And since $(x, y_0)$ is then also in $U_{x^\prime_j} \times V_{x^\prime_j}$, we have that:
+
+		{\centering $|f(x, y) - f(x, y_0)| \leq |f(x, y) - f(x_j^\prime, y_0)| + |f(x, y_0) - f(x_j^\prime, y_0)| < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2}$ \retTwo\par}
+	\end{myIndent}
+
+	This proves that $\|f^y - f^{y_0}\|_u < \varepsilon$ for all $y \in V$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 7.25:} Let $\mu$ and $\nu$ be Radon measures on $X$ and $Y$. If $U$ is open in $X \times Y$, then the functions $x \mapsto \nu(U_x)$ and $y \mapsto \mu(U^y)$ are Borel measurable on $X$ and $Y$, and $\mu \radtimes \nu(U) = \int \nu(U_x) \df \mu_x = \int \mu(U^y) \df \nu(y)$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\mathcalli{F} \coloneqq \{f \in C_c(X \times Y): 0 \leq f \leq \chi_{X_U}\}$. Now by Folland proposition 7.11 (a) and\\ (e) (near the end of my math 240c notes), we know that $\chi_U$ is LSC (\udefine{lower semicontinuous}),\\ and that $\chi_U = \sup\{f : f \in \mathcalli{F}\}$. It easily follows then that $\chi_{U_x} = \sup\{f_x : f \in \mathcalli{F}\}$ and that $\chi_{U^y} = \sup\{f^y : f \in \mathcalli{F}\}$.\retTwo
+
+	Next, it's obvious that $\mathcalli{F}$, $\{f_x : f \in \mathcalli{F}\}$, and $\{F^y : f \in \mathcalli{F}\}$ are all families of LCS functions (since continuous function are automatically semicontinuous). And you can see that those families are directed by $\leq$ by considering that if $f_1, f_2 \in \mathcalli{F}$, then $\max(f_1, f_2) \in \mathcalli{F}$. Thus by proposition 7.12 (also near the end of my math 240c notes):
+
+	\begin{itemize}
+		\item $\mu \radtimes \nu(U) = \int \chi_U \df \mu \radtimes \nu = \sup \{\int f \df \mu \radtimes \nu : f \in \mathcalli{F}\}$
+		
+		\item $\nu(U_x) = \int \chi_{U_x} \df \nu = \sup\{\int f_x \df \nu: f \in \mathcalli{F}\}$
+		
+		\item $\mu(U^y) = \int \chi_{U^y} \df \mu = \sup\{\int f^y \df \mu : f \in \mathcalli{F}\}$\\
+	\end{itemize}
+
+	Now by lemma 7.24 above, we know that $x \mapsto \int f_x \df \nu$ and $y \mapsto \int f^y \df \mu$ are continuous (and thus LSC) mappings for all $f \in \mathcalli{F}$. And so by applying proposition 7.11 (c), we can conclude that $x \mapsto \nu(U_x)$ and $y \mapsto \mu(U^y)$ are both LSC (and hence Borel measurable). Finally, \inLinkRap{Folland Proposition 7.22}{proposition 7.22} following by one more application of proposition 7.12 yields:
+
+	{\centering $\mu \radtimes \nu(U) = \sup\{\iint f_x \df \nu \df \mu : f \in \mathcalli{F}\} = \int \sup\{\int f_x \df \nu : f \in \mathcalli{F}\} \df \mu = \int \nu(U_x) \df \mu$ \retTwo\par}
+
+	Similarly, $\mu \radtimes \nu(U) = \int \mu(U^y)\df \nu$. $\blacksquare$\newpage
+\end{myIndent}
+
+\exTwo\ul{Theorem 7.26:} Suppose that $\mu$ and $\nu$ are $\sigma$-finite Radon measures on $X$ and $Y$. If\\ $E \in \mathcalli{B}_{X \times Y}$, then the functions $x \mapsto \nu(E_x)$ and $y \mapsto \mu(E^y)$ (which are well-defined\\ by lemma 7.23) are Borel measurable on $X$ and $Y$ respectively. Also:
+
+{\center $\mu \radtimes \nu(E) = \int \nu(E_x) \df \mu(x) = \int \mu(E^y) \df \nu(y)$.\retTwo\par}
+
+And finally the restriction of $\mu \radtimes \nu$ to $\mathcalli{B}_X \otimes \mathcalli{B}_Y$ is just $\mu \times \nu$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, fix any open $U \subseteq X$ and $V \subseteq Y$ satisfying that $\mu(U) < \infty$ and $\nu(V) < \infty$. Then let $W \coloneqq U \times V$ and let $\mathcal{M}$ be the collection of all $E \in \mathcalli{B}_{X \times Y}$ for which $E \cap W$ satisfies the conclusions of the theorem. Then note:
+	\begin{enumerate}
+		\item $\mathcal{M}$ contains all open sets in $X \times Y$ by the last proposition.
+		\item If $E, F \in \mathcal{M}$ and $F \subseteq E$, then $E - F \in \mathcal{M}$.
+		\begin{myIndent}\exPPP
+			Why? Note that:
+			\begin{itemize}
+				\item $\mu \radtimes \nu(E \cap W) = \mu \radtimes \nu(F \cap W) + \mu \radtimes \nu((E - F) \cap W)$.
+				\item $\nu((E \cap W)_x) = \nu((F \cap W)_x) + \nu(((E - F) \cap W)_x)$
+				\item $\nu((E \cap W)^y) = \nu((F \cap W)^y) + \nu(((E - F) \cap W)^y)$.\retTwo
+			\end{itemize}
+
+			But now since $W$ is open, we know $\mu \radtimes \nu(W) = \mu(U)\nu(V) < \infty$ by the last proposition. Also $\nu(W_x) = \nu(V) < \infty$ and $\mu(W^y) = \mu(U) < \infty$. This proves the maps $x \mapsto \nu(((E - F) \cap W)_x)$ and $y \mapsto \mu(((E - F) \cap W)^y)$ are Borel measurable since they are both differences of two other Borel functions (this is why we wanted to define $W$). Also, we have that:
+			
+			{\centering\begin{tabular}{l}
+				$\mu \radtimes \nu((E - F) \cap W) = \mu \radtimes \nu(E \cap W) - \mu \times \radtimes \nu(F \cap W)$\\
+				$\phantom{\mu \radtimes \nu((E - F) \cap W)} = \int \nu((E \cap W)_x) \df \mu(x) - \int \nu((F \cap W)_x) \df \mu(x)$\\
+				$\phantom{\mu \radtimes \nu((E - F) \cap W)} = \int \nu(((E - F) \cap W)_x)\df \mu(x)$
+			\end{tabular}\retTwo\par}
+
+			And similar reasoning holds for the $y$-slices. This proves that $E - F \in \mathcal{M}$.\retTwo
+		\end{myIndent}
+
+		\item As a consequence of the last two bullet points, we know that if $E \in \mathcal{M}$, then so does $E^\comp = X - E \in \mathcal{M}$.
+		
+		\item $\mathcal{M}$ is closed under finite disjoint unions.
+		\begin{myIndent}\exPPP
+			Why? This is a straightfoward application of the finite additivity of measures and\\ integrals and also the fact that a finite sum of Borel measurable functions is also Borel measurable.\retTwo 
+		\end{myIndent}
+
+		\item $\mathcal{M}$ is closed under countable increasing unions.
+		\begin{myIndent}\exPPP
+			Why? Suppose $(E_n)_{n \in \mathbb{N}}$ is an increasing sequence of sets in $\mathcal{M}$ and\\ $E \coloneqq \bigcup_{n \in \mathbb{N}}E_n$. Then by the monotonicity of measures we have that\\ $\nu(E_x) = \lim_{n \to \infty}\nu((E_n)_x)$ and $\mu(E^y) = \lim_{n \to \infty}\mu((E_n)^y)$ for all $x \in X$ and $y \in Y$. Hence, the maps $x \mapsto \nu(E_x)$ and $y \mapsto \mu(E^y)$ are measurable (see corollary 2 on page 43 of my latex math 240a notes).\newpage
+
+			Also, by the monotone convergence theorem and the monotonicity of measures we know that:
+
+			{\centering\begin{tabular}{l}
+				$\mu \radtimes \nu(E) = \lim_{n \to \infty} \mu \radtimes \nu(E_n)$\\
+				$\phantom{\mu \radtimes \nu(E)} = \lim_{n \to \infty} \int \nu((E_n)_x)\df \mu(x) = \int \nu(E_x)\df \mu(x)$
+			\end{tabular}\retTwo\par}
+
+			And similar reasoning shows that $\mu \radtimes \nu(E) = \int \mu(E^y)\df \nu(y)$. Hence $E \in \mathcal{M}$.\retTwo
+		\end{myIndent}
+
+		\item By combining points 3 and 5, we also know that $\mathcal{M}$ is closed under countable\\ decreasing intersections. This finishes showing that $\mathcal{M}$ is a monotone class (see\\ my math 240a paper notes).\retTwo
+	\end{enumerate}
+
+	Now let $\mathcalli{E} \coloneqq \{A - B : A, B \text{ are open in } X \times Y\}$, and let $\mathcalli{A}$ be the collection of finite disjoint unions of sets in $\mathcalli{E}$. Note that $\mathcalli{E}$ is an elementary family (see my latex math 240a notes) since:
+	\begin{itemize}
+		\item $\emptyset - \emptyset = \emptyset \in \mathcalli{E}$
+		
+		\item $(A_1 - B_1) \cap (A_2 - B_2) = (A_1 \cap B_1^\comp) \cap (A_2 \cap B_2^\comp)$\\ [3pt]
+		$\phantom{(A_1 - B_1) \cap (A_2 - B_2)} = (A_1 \cap A_2) \cap (B_1^\comp \cap B_2^\comp) = (A_1 \cap A_2) - (B_1 \cup B_2)$
+
+		\item $(A - B)^\comp = [(X \times Y) - A] \cup [(A \cap B) - \emptyset]$\retTwo
+	\end{itemize}
+
+	Thus by the proposition at the top of page 15 of my math 240a latex notes, we know that $\mathcalli{A}$ is an algebra. And in turn, by the monotone class lemma (see my paper math 240a notes) we know that the monotone class $\mathcalli{C}(\mathcalli{A})$ generated by $\mathcalli{A}$ is the same as the $\sigma$-algebra generated by $\mathcalli{A}$ (which is clearly $\mathcalli{B}_{X \times Y}$).\retTwo
+	
+	But note that $\mathcal{M}$ contains $\mathcalli{A}$ since for any open $A, B \subseteq X \times Y$ we have by bullet points 1 and 2 that $A, A \cap B \in \mathcal{M}$ and that $A - B = A - (A \cap B) \in \mathcal{M}$. This shows that $\mathcalli{B}_{X \times Y} = \mathcalli{C}(\mathcalli{A}) \subseteq \mathcal{M}$. And hence, we've proven that $\mathcalli{B}_{X \times Y} = \mathcal{M}$.\retTwo
+
+	Next, since $X$ and $Y$ are $\sigma$-finite, and $\mu$ and $\nu$ are Radon, we may write $X = \bigcup_{n \in \mathbb{N}}U_n$ and $Y = \bigcup_{n \in \mathbb{N}}V_n$ where each $U_n$ and $V_n$ is open and has finite measure. Furthermore, we may assume $\{U_n\}_{n \in \mathbb{N}}$ and $\{V_n\}_{n \in \mathbb{N}}$ are increasing sequences of sets. If $E \in \mathcalli{B}_{X \times Y}$, the preceeding argument shows that $E \cap (U_n \times V_n)$ satisfies the conclusions of our theorem for all $n$. And by basically an identical argument to how we showed that $\mathcal{M}$ was closed under countable increasing unions, we can thus show that $E$ also satisfies the conclusions of our theorem.\retTwo
+
+	Finally, if $E \in \mathcalli{B}_X \otimes \mathcalli{B}_Y$, then by Fubini's theorem we have that:
+	
+	{\centering$\mu \times \nu(E) = \int \nu(E_x)\df \mu(x) = \mu \radtimes \nu(E)$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\ul{Theorem 7.27: (The Fubini-Tonelli Theorem for Radon Products)}
+\begin{myIndent}
+	Let $\mu$ and $\nu$ be $\sigma$-finite Radon measures on $X$ and $Y$, and let $f$ be a Borel measurable function on $X \times Y$. Then $f_x$ and $f^y$ are Borel measurable for every $x$ and $y$. If $f \geq 0$, then $x \mapsto \int f_x \df \nu$ and $y \mapsto \int f^y \df \mu$ are Borel measurable on $X$ and $Y$. Meanwhile, if $f \in L^1(\mu \radtimes \nu)$, then $f_x \in L^1(\nu)$ for a.e. $x \in X$, $f^y \in L^1(\mu)$ for a.e. $y \in Y$, and $x \mapsto \int f_x \df \nu$ and $y \mapsto \int f^y \df \mu$ are in $L^1(\mu)$ and $L^1(\nu)$ respectively. And in both cases, we have that $\int f \df (\mu \radtimes \nu) = \iint f \df \mu \df \nu = \iint f \df \nu \df \mu$.\newpage
+
+	\exThreeP Proof:\\
+	The measurability of $f_x$ and $f^y$ was established in \inLinkRap{Folland Lemma 7.23(b)}{lemma 7.23(b)}. Now the rest of the proof follows identically to our proof of the original Fubini-Tonelli theorem (see my paper math 240a notes) except that we use theorem 7.26 instead of theorem 2.36 to establish that the Fubini-Tonelli theorem holds for characteristic functions. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Interestingly, we can extend the theory of radon products of finitely many factor to\\ products of infinitely many factors provided that each factor measure space is compact and has total measure $1$.\retTwo
+
+Specifically, let $\{X_\alpha\}_{\alpha \in A}$ be a family of compact Hausdorff spaces, and for each $\alpha \in A$ let $\mu_\alpha$ be a Radon measure on $X_\alpha$ such that $\mu_\alpha(X_\alpha) = 1$. By Tychonoff's thoerem, we know that $X \coloneqq \prod_{\alpha \in A} X_\alpha$ is also a compact Hausdorff space. And so, our goal is to define a Radon measure $\mu$ on $X$ such that if $E_\alpha$ is a Borel on $X_\alpha$ for each $\alpha \in A$ and $E_\alpha = X_\alpha$ for all but finitely many $\alpha \in A$, then $\mu(\prod_{\alpha \in A} E_\alpha) = \prod_{\alpha \in A}\mu(E_\alpha)$.\retTwo
+
+\begin{myIndent}\pracOne
+	As a side tangent: how do we define arbitrary products of numbers?
+
+	\begin{myIndent}\pracTwo
+		The intuition for this definition is that I'm just applying the definition of arbitrary sums of numbers to the collection of the logarithms of the numbers I actually care about. If $\{t_\alpha\}_{\alpha \in A} \subseteq [0, 1]$, then we define:
+		
+		{\centering $\prod_{\alpha \in A} t_\alpha \coloneqq \inf\{\prod_{\alpha \in B} t_\alpha : B \subseteq A \text{ is finite}\}$.\retTwo\par}
+		
+		Meanwhile, if $\{t_\alpha\}_{\alpha \in A} \subseteq [1, \infty]$, then we define: 
+
+		{\centering $\prod_{\alpha \in A} t_\alpha \coloneqq \sup\{\prod_{\alpha \in B} t_\alpha : B \subseteq A \text{ is finite}\}$.\retTwo\par}
+	\end{myIndent}
+
+	\ul{Theorem:} If $\{t_\alpha\}_{\alpha \in A} \subseteq [0, 1]$, then $\prod_{\alpha \in A}t_\alpha > 0$ iff there exists exists a countable set $B \subseteq A$ with $t_\alpha = 1$ for all $\alpha \notin B$ and $t_\alpha \neq 0$ for all $\alpha \in B$. Also, in the case that the set $B$ exists, then if $b_1, b_2, \ldots$ is an enumeration of $B$ in any order, we have that $\prod_{\alpha \in A} t_\alpha = \lim_{n \to \infty}\prod_{j=1}^n t_{b_j}$. 
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		Suppose there are uncountably many $t_\alpha$ with $t_\alpha < 1$. Then we know there must exist a number $c < 1$ with infinitely many $t_\alpha < c$. And in turn, we know that $\prod_{\alpha \in A} t_\alpha \leq c^n$ for all $n \in \mathbb{N}$. But $c^n \to 0$ as $n \to \infty$ since $c < 1$. Hence $\prod_{\alpha \in A} t_\alpha = 0$.\retTwo
+
+		Hopefully the rest of the theorem is then obvious. I don't want to write it out since it's 1:33am and I'm tired. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	By mirror reasoning we can also show that if $\{t_\alpha\}_{\alpha \in A} \subseteq [1, \infty]$, then $\prod_{\alpha \in A}t_\alpha < \infty$ iff there exists exists a countable set $B \subseteq A$ with $t_\alpha = 1$ for all $\alpha \notin B$ and $t_\alpha \neq \infty$ for all $\alpha \in B$. And in the case that such a subset $B$ exists, then if $b_1, b_2, \ldots$ is an enumeration of $B$ in any order, we have that $\prod_{\alpha \in A} t_\alpha = \lim_{n \to \infty}\prod_{j=1}^n t_{b_j}$.\retTwo 
+\end{myIndent}
+
+One more bit of notation we will use in the next proof is that for any $\alpha_1, \ldots, \alpha_n \in A$, we'll let $\pi_{\alpha_1, \ldots, \alpha_n}$ denote the natural projection of $X$ onto $\prod_{j=1}^n X_{\alpha_j}$.\newpage
+
+\hTwo One more note before getting to the final theorem of chapter 7 is that we need to extend the idea of Radon products of measures to products of more than 2 spaces.\retTwo
+
+\exTwo\ul{Lemma:} Suppose $X, Y, Z$ are LCH spaces and $\mu, \nu, \lambda$ are $\sigma$-finite Radon measures on $X, Y, Z$. Then $(\mu \radtimes \nu) \radtimes \lambda = \mu \radtimes (\mu \radtimes \lambda)$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Note that $(\mu \radtimes \nu) \radtimes \lambda$ and $\mu \radtimes (\nu \radtimes \lambda)$ are the unique measures on $X \times Y \times Z$ such\\ that for all $f \in C_c(X \times Y \times Z)$ we have that:
+	\begin{itemize}
+		\item $\int f \df((\mu \radtimes \nu) \radtimes \lambda) = \int f \df((\mu \radtimes \nu) \times \lambda)$
+		\item $\int f \df(\mu \radtimes (\nu \radtimes \lambda)) = \int f \df(\mu \times (\nu \radtimes \lambda))$\retTwo
+	\end{itemize}
+
+	Hence, we just need to show that $\int f \df((\mu \radtimes \nu) \times \lambda) = \int f \df(\mu \times (\nu \radtimes \lambda))$ for all\\ $f \in C_c(X \times Y \times Z)$. Fortunately, we know by theorem 7.26 that:
+	\begin{itemize}
+		\item $\int |f| \df ((\mu \radtimes \nu) \times \lambda) \leq \|f\|_u \mu(\pi_X(\supp(f)))\mu(\pi_Y(\supp(f)))\lambda(\pi_Z(\supp(f)))$
+		\item $\int |f| \df (\mu \times (\nu \radtimes \lambda)) \leq \|f\|_u \mu(\pi_X(\supp(f)))\mu(\pi_Y(\supp(f)))\lambda(\pi_Z(\supp(f)))$.\retTwo
+	\end{itemize}
+
+	This shows that for all $f \in C_c(X \times Y \times Z)$, we have that $f \in L^1((\mu \radtimes \nu) \times \lambda)$ and\\ that $f \in L^1(\mu \times (\nu \radtimes \lambda))$. And thus by combining the classical Fubini theorem with the Fubini's theorem we just proved, we have that:
+
+	\begin{itemize}
+		\item $\int f \df ((\mu \radtimes \nu) \times \lambda) = \int (\int f \df (\mu \radtimes \nu))\df \lambda = \int (\iint f \df \mu \df \nu) \df \lambda$
+		\item $\int f \df(\mu \times (\nu \radtimes \lambda)) = \int (\int f \df \mu) \df (\nu \radtimes \lambda) = \iint (\int f \df \mu) \df \nu \df \lambda$
+	\end{itemize}
+
+	And clearly $\int (\iint f \df \mu \df \nu) \df \lambda = \iint (\int f \df \mu) \df \nu \df \lambda$ $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} The Radon product operation on $\sigma$-finite Radon measures is associative. And hence we can unambiguously just write $\mu_1 \radtimes \cdots \radtimes \mu_n$ if all measures involved are $\sigma$-finite.\retTwo
+
+\hTwo\dispDate{9/23/2025}
+
+Now we are ready to extend the notion of Radon products of measures to arbitrary\\ collections of measure spaces.\retTwo
+
+\exTwo\ul{Theorem 7.28:} Suppose that, for each $\alpha \in A$, $\mu_\alpha$ is a Radon measure on the compact\\ [1pt] Hausdorff space $X_\alpha$ such that $\mu_\alpha(X_\alpha) = 1$. Then there is a unique Radon measure $\mu$ on\\ [1pt] $X \coloneqq \prod_{\alpha \in A}X_\alpha$ such that for any $\alpha_1, \ldots, \alpha_n \in A$ and any Borel set $E \in \prod_{j=1}^n X_{\alpha_j}$ we have that $\mu(\pi^{-1}_{\alpha_1, \ldots, \alpha_n}(E)) = \mu_{\alpha_1} \radtimes \cdots \radtimes \mu_{\alpha_n}$. Also $\mu(X) = 1$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $C_F(X)$ be the collection of all $f \in C(X)$ that depend on finitely many coordinates\\ [1pt] (i.e. there exists $\alpha_1, \ldots, \alpha_n \in A$ and $g \in C(\prod_{j=1}^n X_{\alpha_j})$ with $f = g \circ \pi_{\alpha_1, \ldots, \alpha_n}$). Then if $f \in C_F(X)$, we define $I(f) \coloneqq \int g \df (\mu_{\alpha_1} \radtimes \cdots \radtimes \mu_{\alpha_n})$. Note that adding on extra\\ [1pt] coordinate to $\alpha_1, \ldots, \alpha_n$ doesn't change our definition of $I(f)$ since $\mu_\alpha(X_\alpha) = 1$ for\\ [1pt] all $\alpha \in A$. Hence $I$ is a well-defined positive linear functional on $C_F(X)$. Also, clearly\\ [1pt] $|I(f)| \leq \|f\|_u$ for all $f \in C_F(X)$ with equality when $f$ is a constant function.\newpage
+
+	Next, $C_F(X)$ is an algebra in $C(X)$ that separates points, contains constant functions, and is closed under complex conjugation. Hence $C_F(X)$ is uniformly dense in $C(X)$ by the Stone-Weierstrass theorem. Hence, the functional $I$ extends uniquely to a positive linear function of norm $1$ on $C(X)$, and the Riesz representation theorem then yields a unique Radon measure $\mu$ on $X$ such that $I(f) = \int f \df \mu$ for all $f \in C_F(X)$. And since $\|I\|_{op} = 1$, $\mu(X) = 1$.\retTwo
+
+	Finally define, $\mu_{\alpha_1, \ldots, \alpha_n}(E) \coloneqq \mu \circ \pi^{-1}_{\alpha_1, \ldots, \alpha_n}(E)$ for all $E \in \mathcalli{B}_{X_{\alpha_1} \times \ldots \times X_{\alpha_n}}$. Then by\\ [-1pt] \inLinkRap{Folland Proposition 10.1}{proposition 10.1}, we know that $\int g \df \mu_{\alpha_1, \ldots, \alpha_n} = \int g \circ \pi_{\alpha_1, \ldots, \alpha_n} \df \mu$ whenever $g$ is a\\ [1pt] bounded Borel measurable function on $X_{\alpha_1} \times \ldots \times X_{\alpha_n}$. In particular, by our\\ [1pt] definition of $\mu$ we know that for all $g \in C(X_{\alpha_1} \times \ldots \times X_{\alpha_n})$:
+
+	{\centering $\int g \df \mu_{\alpha_1, \ldots, \alpha_n} = \int g \circ \pi_{\alpha_1, \ldots, \alpha_n} \df \mu = \int g \df (\mu_{\alpha_1} \radtimes \cdots \radtimes \mu_{\alpha_n})$ \retTwo\par}
+
+	Thus if we can show that $\mu_{\alpha_1, \ldots, \alpha_n}$ is Radon, then we will know by the uniqueness part of the Riesz representation theorem that $\mu_{\alpha_1, \ldots, \alpha_n} = \mu_{\alpha_1} \radtimes \cdots \radtimes \mu_{\alpha_n}$.
+	\begin{myIndent}\exPPP
+		Let $E$ be any Borel set in $\prod_{j=1}^n X_{\alpha_j}$ and write $\pi = \pi_{\alpha_1, \ldots, \alpha_n}$ for short. Since $\mu$ is\\ regular, we know that for any $\varepsilon > 0$ there exists a compact $K \subseteq \pi^{-1}(E)$ with\\ $\mu(K) > \mu(\pi^{-1}(E)) - \varepsilon$. Then $K^\prime \coloneqq \pi(K)$ is a compact subset of $E$ and\\ $\mu_{\alpha_1, \ldots, \alpha_n}(K^\prime) = \mu(\pi^{-1}(K^\prime)) \geq \mu(K)$ since $K \subseteq \pi^{-1}(K^\prime) = \pi^{-1}(\pi(K))$. And\\ in turn $\mu_{\alpha_1, \ldots, \alpha_n}(K^\prime) > \mu(\pi^{-1}(E)) - \varepsilon = \mu_{\alpha_1, \ldots, \alpha_n}(E)$. This proves that $\mu_{\alpha_1, \ldots, \alpha_n}$ is inner regular.\retTwo
+
+		Doing the same reasoning to $E^\comp$ shows that $\mu_{\alpha_1, \ldots, \alpha_n}$ is outer regular as well. And since $\mu_{\alpha_1, \ldots, \alpha_n}$ is trivially finite on all compact sets on account of it being a finite\\ measure, we know that $\mu_{\alpha_1, \ldots, \alpha_n}$ is Radon.\retTwo
+	\end{myIndent}
+
+	All that's left to do now is prove the uniqueness of $\mu$. So suppose $\nu$ is another such measure on $X$ such that for any $\alpha_1, \ldots, \alpha_n \in A$ and any Borel set $E \in \prod_{j=1}^n X_{\alpha_j}$ we have that\\ [-1pt] $\nu(\pi^{-1}_{\alpha_1, \ldots, \alpha_n}(E)) = \mu_{\alpha_1} \radtimes \cdots \radtimes \mu_{\alpha_n}$. Then it's clear that $\nu$ defines the same bounded linear functional $I$ on $C_F$ as all the $\mu_\alpha$ defined before. So, we can show that $I(f) = \int f \df \nu$ for all $f \in C_F(X)$. And by the Riesz representation theorem, this guarentees that $\mu = \nu$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo With this covered we are ready to start constructing sample spaces with our desired infinite sequences of random variables.\retTwo
+
+Firstly, suppose $\{X_\alpha\}_{\alpha \in A}$ is a collection of random variables (not necessarily independent) on a sample space $(\Omega, \mathcalli{F}, P)$. Then for any $n$-tuple $\alpha_1, \ldots, \alpha_n$ of distinct elements of $A$ (where $n$ is any positive integer), let $P_{(\alpha_1, \ldots, \alpha_n)}$ be the joint distribution of $X_{\alpha_1}, \ldots, X_{\alpha_n}$. If $\mathcalli{P}$ is the collection of such joint distributions, then any $P_{(\alpha_1, \ldots, \alpha_n)} \in \mathcalli{P}$ must satisfy:\\[-20pt]
+\begin{itemize}
+	\item[{\pracOne *}] If $\sigma$ is a permutation of $\{1, \ldots, n\}$, then:
+	
+	{\centering$\int \mathop{\cdot} \df P_{(\alpha_{\sigma(1)}, \ldots, \alpha_{\sigma(n)})}(x_{\sigma(1)}, \ldots, x_{\sigma(n)}) = \int \mathop{\cdot} \df P_{(\alpha_1, \ldots, \alpha_n)}(x_1, \ldots, x_n)$.\retTwo\par}
+
+	\item[{\pracOne **}] If $k < n$ and $E \in \mathcalli{B}_{\mathbb{R}^k}$, then $P_{(\alpha_1, \ldots, \alpha_k)}(E) = P_{(\alpha_1, \ldots, \alpha_n)}(E \times \mathbb{R}^{n-k})$.\newpage
+\end{itemize} 
+
+Conversely, for any set $A$ and collection $\mathcalli{P}$ of measures $P_{(\alpha_1, \ldots, \alpha_n)}$ (where $(\alpha_1, \ldots, \alpha_n)$ is an $n$-tuple of disjoint elements of $A$ and $n$ is any integer) satisfying {\pracOne *} and {\pracOne **}, we shall show there exists a sample space $(\Omega, \mathcalli{F}, P)$ and a family of random variables $\{X_\alpha\}_{\alpha \in A}$ such that $P_{(\alpha_1, \ldots, \alpha_n)}$ is the joint distribution of $X_{\alpha_1}, \ldots, X_{\alpha_n}$.\retTwo
+
+Now, let $\mathbb{R}^*$ refer to the Alexandroff compactification of $\mathbb{R}$. (I.e. $\mathbb{R}^* = \mathbb{R} \cup \{\infty\}$ and a set $U \subseteq \mathbb{R}^*$ is open iff $U$ is open in $\mathbb{R}$ or $U^\comp$ is compact in $\mathbb{R}$). Note that any Borel measure on $\mathbb{R}^n$ can be regarded as a Borel measure on $(\mathbb{R}^*)^n$ that assigns $0$ to the set $(\mathbb{R}^*)^n - \mathbb{R}^n$ and vice versa. For our construction, we will actually let the $X_\alpha$ be measurable functions into $\mathbb{R}^*$ and we will take our family of measures to be measures on $(\mathbb{R}^*)^n$. Thus, the $X_\alpha$ will be allowed to take on the value $\infty$ but only with probability zero (when we actually make this sample space). 
+\begin{myIndent}\pracTwo
+	The reason why this is helpful is that by Tychonoff's theorem, we know that $(\mathbb{R}^*)^A$ is\\ compact and Hausdorff no matter what $A$ is. Also, $(\mathbb{R}^*)^n$ is second countable and satisfies that every open set is $\sigma$-compact for every $n \in \mathbb{N}$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem 10.18:} Let $A$ be an arbitrary nonempty set, and suppose that for each ordered $n$-tuple of distinct elements of $A$ (where $n \in \mathbb{N}$) we are given a Borel probability measure $P_{(\alpha_1, \ldots, \alpha_n)}$ on $\mathbb{R}^n$ satisfying {\pracOne *} and {\pracOne **}. Then there is a unique Radon probability measure $P$ on the compact Hausdorff space $\Omega = (\mathbb{R}^*)^A$ such that $P_{(\alpha_1, \ldots, \alpha_n)}$ extended to $(\mathbb{R}^*)^n$ in the manner described prior is the joint distribution of $X_{\alpha_1}, \ldots, X_{\alpha_n}$ where $X_\alpha: \Omega \to \mathbb{R}^*$ is the $\alpha$th coordinate function.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, it's worth noting that this statement is slightly more involved than just being a restatement of theorem 7.28 since we didn't assume that $P_{\alpha_1, \ldots, \alpha_n} = P_{\alpha_1} \times \cdots \times P_{\alpha_n}$.
+	\begin{myIndent}\exPPP
+		Although, if we did assume that $P_{\alpha_1, \ldots, \alpha_n}= P_{\alpha_1} \times \cdots \times P_{\alpha_n}$, generally then this\\ theorem would literally be a restatement of theorem 7.28. (Also the coordinate\\ functions $X_\alpha$ would all be independent).\retTwo
+	\end{myIndent}
+	
+	That said, {\pracOne *} and {\pracOne **} still give enough structure to let us construct a well-defined positive linear functional $I$ on $C_F((\mathbb{R}^*)^A)$ as we did in the proof of theorem 7.28. And then by\\ identical logic to that of theorem 7.28, we can construct a  Radon measure $P$ on $(\mathbb{R}^*)^A$ such that for any $f = g \circ (X_{\alpha_1}, \ldots, X_{\alpha_n}) \in C_F((\mathbb{R}^*)^A)$, we have that:
+	
+	{\centering$\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}\int f \df P = \int g \df P_{(\alpha_1, \ldots, \alpha_n)}$.\retTwo\par}
+
+	Also it's clear that if $P^\prime_{(\alpha_1, \ldots, \alpha_n)}$ is the joint distribution of $X_{\alpha_1}, \ldots, X_{\alpha_n}$, then\\ $P^\prime_{(\alpha_1, \ldots, \alpha_n)} = P_{(\alpha_1, \ldots, \alpha_n)}$. After all, both are Radon measures (since they are finite\\ on all compact sets) and for all $g \in C((\mathbb{R}^n)^A)$ we have that:
+	
+	{\centering$\int g \df P^\prime_{(\alpha_1, \ldots, \alpha_n)} = \int g \circ (X_{\alpha_1}, \ldots, X_{\alpha_n}) = I(g \circ (X_{\alpha_1}, \ldots, X_{\alpha_n})) = \int g \df P_{(\alpha_1, \ldots, \alpha_n)}$.\retTwo\par}
+
+	Thus by the Riesz representation theorem we know that $P^\prime_{(\alpha_1, \ldots, \alpha_n)} = P_{(\alpha_1, \ldots, \alpha_n)}$.\retTwo
+	
+	Finally, uniqueness is proven in an identical manner to that done when showing theorem 7.28.$\blacksquare$
+
+	\begin{myIndent}\myComment
+		Side note: now that we have our probability space constructed, if you really want to have the distributions of our random variables be on $\mathbb{R}$ instead of $\mathbb{R}^*$, you can just set $X_\alpha$ equal to anything else when the $\alpha$th coordinate is $\infty$.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Corollary 10.19:} Suppose $\{P_\alpha\}_{\alpha \in A}$ is a family of probability measures on $\mathbb{R}$. Then there exists a sample space $(\Omega, \mathcalli{F}, P)$ and independent random variables $\{X_{\alpha}\}_{\alpha \in A}$ on $\Omega$ such that $P_{\alpha}$ is the distribution of $X_\alpha$ for every $\alpha \in A$.\retTwo
+
+\hTwo The tldr of this is that for any desired collection of joint probability distributions (even uncountable collections) we can always find a sample space and collection of random\\ variables on that space with those joint distributions.\retTwo
+
+\mySepTwo
+
+\dispDate{9/24/2025}
+
+Since Fall classes are about to start, I'm probably not going to have as much time to work on this journal again. Although on the other hand I'm joining a reading group soon so I might be taking notes for that and putting them here. We'll see! Anyways today I wanted to try and study distributions and generalized functions. So for the next however so while, if I write $L^p$, assume I'm working with the Lebesgue measure on $\mathbb{R}^n$.\retTwo
+
+To start off, how in the world do we generalize the notion of functions on $\mathbb{R}^n$?
+\begin{itemize}
+	\item Well firstly it's worth noting that since we are typically working with a.e. equivalence classes of functions, we already have generalized our notion of functions a lot. Quite literally we've already bastardized functions to a point that it doesn't make sense to talk about their values at any individual point anymore, and all because we want $L^p$ to be a metric space.
+	
+	\item But in all seriousness, the real strategy for further generalizing functions is to start thinking of functions as linear functionals on vector spaces of functions. For some intution on this:\\ [-20pt]
+	\begin{itemize}
+		\item[$\circ$] Recall that in chapter 6 of Folland (covered in my math 240b notes), we found\\ for any conjugate exponents $p$ and $q$ that  that the map $g \mapsto \int \mathop{\cdot} g \df x$ is an\\ isometry (and thus injection) from $L^p$ into $(L^q)^*$. In other words, each function\\ in $L^p$ determines a unique bounded linear functional in $(L^q)^*$.
+		
+		\item[$\circ$] Also, since the Lebesgue measure is semifinite, we can even say that $g \in L^p$ if and only if $\phi \mapsto \int \phi g \df x$ is a bounded linear functional on $L^q$.
+		
+		\item[$\circ$] Going a step further, let $B_r(x_0)$ denote the ball of radius $r$ about $x_0 \in \mathbb{R}^n$. Then $\phi_r \coloneqq (m(B_r(x_0)))^{-1}\chi_{B_r(x_0)} \in L^q$ for any $q \geq 1$ and we have by the Lebesgue differentiation theorem that $\lim_{r \to 0}\int \phi_r g \df x = g(x_0)$ for a.e. $x_0$.
+		
+		\item[$\circ$] All of this is to say that we don't lose any information by considering any $g \in L^p$ as a linear map from $L^q$ into $\mathbb{C}$ instead of as a function from $\mathbb{R}^n$ into $\mathbb{C}$.
+	\end{itemize}
+
+	\item The only issue with merely copying chapter 6 of Folland is that in most cases,\\ $g \mapsto \int \mathop{\cdot} g \df x$ is a surjective map from $L^p$ into $(L^q)^*$. Yet the entire reason we want\\ to generalize our notion of functions in the first place is so that we can work with\\ objects that aren't functions by our old definition. Therefore, we will need to modify\\ this approach.\newpage
+\end{itemize}
+
+\pracOne\mySepTwo
+This is only tangentially relevant but I still want to take a minute to formally go through this since I think it's been a point of confusion for me. So here are a bunch of theorems meant to bridge my lack of intuition on nets.\retTwo
+
+\ul{Theorem 1:} \hypertarget{page 225 theorem 1}{If} $(X, \rho)$ is a metric space such that every Cauchy sequence converges and $\langle x_i \rangle_{i \in I}$ is any net in $X$ such that $\langle\rho(x_{i_1}, x_{i_2})\rangle_{(i_1, i_2) \in I \times I}$ converges to $0$, then there exists $x \in X$ such that $x_i \to x$.
+\begin{myIndent}\pracTwo
+	\begin{myDindent}\myComment
+		As a reminder: if $I$ is a directed set, then we consider $I \times I$ to be a directed set where $(i_1, i_2) \lesssim (j_1, j_2)$ in $I \times I$ iff $i_1 \lesssim j_1$ and $i_2 \lesssim j_2$ in $I$.\retTwo
+	\end{myDindent}
+
+	Proof:\\
+	To start off, we need to extract a Cauchy sequence from our net. Luckily, because\\ $\rho(x_{i_1}, x_{i_2}) \to 0$, we know that for any $\varepsilon > 0$ there exists $(j_1, j_2) \in I \times I$ such that\\ $\rho(x_{i_1}, x_{i_2}) < \varepsilon$ for all $(i_1, i_2) \gtrsim (j_1, j_2)$. Thus, we may find a Cauchy sequence\\ $(x_{i(k)})_{k \in \mathbb{N}}$ in $\langle x_i\rangle_{i \in I}$ as follows:
+	\begin{myIndent}
+		For each $k \in \mathbb{N}$, choose $(j_1, j_2) \in I$ with $\rho(x_{i_1}, x_{i_2}) < \frac{1}{k}$ for all $(i_1, i_2) \gtrsim (j_1, j_2)$.\\ Then choose any $i(k) \in I$ such that $i(k) \gtrsim j_1$, $i(k) \gtrsim j_2$, and $i(k) \gtrsim i(k-1)$\\ (if $k > 1$). Then clearly $(x_{i(k)})_{k \in \mathbb{N}}$ is a sequence in our net satisfying that\\ $\rho(x_{i(k_1)}, x_{i(k_2)}) < \sfrac{1}{\min(k_1, k_2)}$ for all $k_1, k_2 \in \mathbb{N}$.\retTwo
+	\end{myIndent}
+
+	Now since $(x_{i(k)})_{k \in \mathbb{N}}$ is a Cauchy sequence, we know that it converges to some $x \in X$.\\ So now we just need to show that the entire net $\langle x_i\rangle_{i \in I}$ converges to $x$, which is equivalent\\ to saying that for any $\varepsilon > 0$ there exists $j \in I$ such that $\rho(x_i, x) < \varepsilon$ for all $i \gtrsim j$. To\\ show this, pick any $k \in \mathbb{N}$ such that $\sfrac{1}{k} < \sfrac{\varepsilon}{2}$. Then for any $i \gtrsim i(k)$, we know that\\ $\rho(x_i, x) \leq \rho(x_i, x_{i(k)}) + \rho(x_{i(k)}, x)$. Also, by how we chose $i(k)$, we know that\\ $\rho(x_i, x_{i(k)}) < \sfrac{1}{k}$. And since $\rho(x_{i(k)}, \mathop{\cdot})$ is a (Lipschitz) continuous function from $X$ to $\mathbb{R}$\\ (due to the reverse triangle inequality), $\rho(x_{i(k)}, x) = \lim_{n \to \infty}\rho(x_{i(k)}, x_{i(n)}) < \sfrac{1}{k}$. Hence,\\ $\rho(x_i, x) < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 2:} If $(X, \rho)$ is a metric space and $\langle x_i \rangle_{i \in I}$ is a net in $X$ which converges to some $x \in X$, then the net $\langle \rho(x_{i_1}, x_{i_2}) \rangle_{(i_1, i_2) \in I \times I}$ converges to $0$.
+
+\begin{myIndent}\pracTwo
+	Pick any $\varepsilon > 0$. Then we know there exists $j \in I$ such that $\rho(x_i, x) < \sfrac{\varepsilon}{2}$ for all $i \gtrsim j$. And in turn, $\rho(x_{i_1}, x_{i_2}) \leq \rho(x_{i_1}, x) + \rho(x, x_{i_2}) < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2}$ for all $(i_1, i_2) \gtrsim (j, j)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 3:} If $X$ is a topological space and $\langle x_\alpha \rangle_{\alpha \in A}$ is a net that converges to some $x \in X$, then every subnet of $X$ converges to $x$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Let $\langle x_{\alpha_\beta}\rangle_{\beta \in B}$ be any subnet of $\langle x_\alpha \rangle_{\alpha \in A}$ and consider any neighborhood $U$ of $x$. Since $x_\alpha \to x$, we know there exists $\alpha_0 \in A$ such that $x_\alpha \in U$ for all $\alpha \gtrsim \alpha_0$. And in turn, we know that there exists $\beta_0 \in B$ such that $x_{\alpha_\beta} \in U$ for all $\beta \gtrsim \beta_0$. This shows that $x_{\alpha_\beta} \to x$ also. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary 4:} If $X$ is a Hausdorff topological space and $\langle x_\alpha \rangle_{\alpha \in A}$ is a net in $X$ such that\\ $x_\alpha \to x$ for some $x \in X$, then the only cluster point of $\langle x_\alpha \rangle_{\alpha \in A}$ is $x$.\newpage
+\begin{myIndent}\pracTwo
+	Proof:\\
+	If $y \in X$ is a cluster point of $\langle x_\alpha \rangle_{\alpha \in A}$, then we know our net has a subnet $\langle x_{\alpha_\beta} \rangle_{\beta \in B}$ which converges to $y$. However, a result I proved for homework in math 240b is that $X$ is Hausdorff if and only if every net converges to at most point in $X$. Also, by the last theorem we know that $x_{\alpha_\beta} \to x$. The only way this is possible is if $x = y$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 5:} If $X$ is a first countable topological space and $y$ is a cluster point of the net $\langle x_\alpha \rangle_{\alpha \in A}$ in $X$, then there exists a sequence $(x_{\alpha_n})_{n \in \mathbb{N}}$ in our net that converges to $y$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Let $\{U_n\}_{n \in \mathbb{N}}$ be a countable neighborhood base for $y \in X$. Also note that by taking\\ intersections, we can assume without loss of generality that $\{U_n\}_{n \in \mathbb{N}}$ is a decreasing\\ sequence of sets. Now we shall construct $(x_{\alpha_n})_{n \in \mathbb{N}}$ as follows. Start off by just letting $\alpha_0$ be any element of $A$. Then for each $n \in \mathbb{N}$ choose $\alpha_n$ such that $\alpha_n \gtrsim \alpha_{n-1}$ and $x_{\alpha_n} \in U_n$. Having done that, since $U_m \subseteq U_n$ for all $m > n$ and $x_{\alpha_n} \in U_n$ for all $n$, we know that $(x_{\alpha_n})_{n \in \mathbb{N}}$ is eventually in every set in $\{U_n\}_{n \in \mathbb{N}}$. $\blacksquare$
+
+	\begin{myDindent}\myComment
+		As a result, there is very little reason to work with nets as opposed to\\ sequences whenever $X$ is first countable (which as an example is always\\ the case if $X$ is a metric space).\retTwo
+	\end{myDindent} 
+\end{myIndent}
+
+\ul{Theorem 6:} Suppose $\langle a_i\rangle_{i \in I}$ and $\langle b_i\rangle_{i \in I}$ are two nets in $\mathbb{C}$ indexed by the same directed set such that $a_i \to A$ and $b_i \to B$. Then $(a_i + b_i) \to A + B$ and $(a_i \cdot b_i) \to A \cdot B$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We know that if $a_i \to A$ and $b_i \to B$ in $\mathbb{C}$, then $\langle a_i, b_i\rangle_{i \in I}$ converges to $(A, B)$ in $\mathbb{C}^2$. (see Folland exercise 4.34 which I did for homework in math 240b). And then since the addition and multiplication maps $\alpha$ and $m$ are continuous functions from $\mathbb{C}^2$ to $\mathbb{C}$, we know that $\alpha(a_i, b_i) \to \alpha(A, B) = A + B$ and $m(a_i, b_i) \to m(A, B) = A \cdot B$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo Given any set $E \subseteq \mathbb{R}^n$, let us denote $C_c^\infty(E)$ to be the collection of all $C^\infty_c$ functions $f: \mathbb{R}^n \to \mathbb{C}$ satisfying that $\supp(f) \subseteq E$.\retTwo
+
+\exTwo\ul{Proposition:} If $K \subseteq \mathbb{R}^n$ is compact, then $C_c^\infty(K)$ is a Fréchet space with the topology defined by the norms $\phi \mapsto \|\partial^\alpha \phi\|_u$ (where $\alpha \in \{0, 1, 2, \ldots\}^n$).
+\begin{myIndent}\exThreeP
+	\begin{myTindent}\exPPP
+		(see my math 240c notes for info on multi-index notation\dots)\\ [-12pt]
+	\end{myTindent}
+
+	Proof:\\
+	To start off, $\|\partial^\alpha \phi \|_u < \infty$ for all $\phi \in C_c^\infty(K)$ since $\phi(K)$ is compact. Hence each of\\ the (semi)norms defining the topology of $C_c^\infty(K)$ is well-defined. Also, if $\phi \neq 0$, then we know that $\|\partial^\alpha \phi \|_u > 0$ for all $\alpha \in \{0, 1, 2, \ldots\}^n$. Thus by theorems 5.14(c) and 5.16(a) (see my math 240b notes), we know that $C_c^\infty(K)$ is a Hausdorff topological vector space. And since $\{0, 1, 2, \ldots\}^n$ is countable, all that's left to do is show that $C_c^\infty(K)$ is complete.\retTwo
+
+	{\color{BrickRed}See note afterwards on why this next bit is WAAAAY overcomplicated...}\\
+	Let $\langle \phi_i \rangle_{i \in I}$ be a Cauchy net in $C_c^\infty(K)$. In other words, $\langle \phi_{i_1} - \phi_{i_2}\rangle_{(i_1, i_2) \in I \times I}$ converges to $0$, which is equivalent by theorem 5.14(b) to saying that $\|\partial^\alpha \phi_{i_1} - \partial^\alpha \phi_{i_2}\|_u \to 0$ for all multi-indexes $\alpha \in \{0, 1, 2, \ldots, \}^n$. But now since $C(K^\prime)$ is a complete metric space for\newpage any compact set $K^\prime$ containing $K$, we know that for each multi-index $\alpha$ there exists a unique continuous function $g_\alpha$ with $\partial^\alpha \phi_{i} \to g_\alpha$ and $\supp(g_\alpha) \subseteq K$.\retTwo
+
+	Let $f$ be the function such that $\phi_i \to f$. We clearly have that $\supp(f) \subseteq K$ and we claim that $\partial^\alpha f = g_\alpha$ for all multi-indices $\alpha$ (thus proving that $f$ is $C^\infty$).
+	\begin{myIndent}\exPPP
+		It suffices to assume by induction that $\partial^\beta f = g_\beta$ for all multi-indexes $\beta$ such that $|\beta| < |\alpha|$. This simplifies what we need to prove to the following:
+		\begin{myTindent}\exPPP
+			If $\langle \phi_i\rangle_{i \in I}$ is a net in $C^\infty_c(K)$ such that $\|\phi_i - g\|_u \to 0$;\\ [1pt] $\|\frac{\partial}{\partial x_j}\phi_i - h\|_u \to 0$; and $K$ contains the supports of both $g$\\ [-1pt] and $h$, then $\frac{\partial}{\partial x_j} g = h$.\retTwo
+		\end{myTindent}
+
+		Fix any $x \in \mathbb{R}^n$ and set $\psi_i(t) = \frac{1}{t}(\phi_i(x + te_j) - \phi_i(x))$ for all $i$. Also\\ let $\varepsilon > 0$ and $j$ be such that $\|\frac{\partial}{\partial x_j}\phi_{i_1} - \frac{\partial}{\partial x_j}\phi_{i_2}\|_u < \sfrac{\varepsilon}{2}$ for all $i_1, i_2 \gtrsim j$.\\ Then given any $i_1, i_2 \gtrsim j$, we have by the mean value theorem that:\\ [-6pt]
+
+		{\centering\begin{tabular}{l}
+			$|\psi_{i_1}(t) - \psi_{i_2}(t)| = \frac{|\phi_{i_1}(x + te_j) - \phi_{i_1}(x) - \phi_{i_2}(x + te_j) + \phi_{i_2}(x)|}{|t|}$\\ [7pt]
+
+			$\phantom{|\psi_{i_1}(t) - \psi_{i_2}(t)|} = \frac{|(\phi_{i_1} - \phi_{i_2})(x + te_j) - (\phi_{i_1} - \phi_{i_2})(x)|}{|t|}$\\ [7pt]
+
+			$\phantom{|\psi_{i_1}(t) - \psi_{i_2}(t)|} = \frac{|t|}{|t|}|\frac{\partial}{\partial x_j}(\phi_{i_1} - \phi_{i_2})(x + ae_j)|$ {\color{red}(where $a, b \in [0, t]$)}\\ [10pt]
+
+			$\phantom{|\psi_{i_1}(t) - \psi_{i_2}(t)|} = |\frac{\partial}{\partial x_j}\phi_{i_1}(x + ae_j) - \frac{\partial}{\partial x_j}\phi_{i_2}(x + ae_j)|$\\ [6pt]
+
+			$\phantom{|\psi_{i_1}(t) - \psi_{i_2}(t)|} = |\frac{\partial}{\partial x_j}\phi_{i_1}(x + ae_j) - h(x + ae_j)| + |\frac{\partial}{\partial x_j}\phi_{i_2}(x + ae_j) - h(x + ae_j)|$\\ [6pt]
+
+			$\phantom{|\psi_{i_1}(t) - \psi_{i_2}(t)|} < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2} = \varepsilon$\\ [6pt]
+		\end{tabular}\retTwo\par}
+
+		This shows that $\langle\psi_i\rangle_{i \in I}$ is uniformly Cauchy on $C(\mathbb{R} - \{0\})$. And in turn, by my tangent earlier we know that there exists a function $\psi \in C(\mathbb{R} - \{0\})$ such that $\|\psi_i - \psi\|_u \to 0$.\retTwo
+
+		Now finally, we need to show that $(\lim_{t \to 0} \psi_i(t)) \to \lim_{t \to 0} \psi(t)$. To do that we just adapt the proof of proposition 116 in my math 140b notes. For reasons I will say shortly, I'm tired of this proof. So I'm not going to skip that.\retTwo
+
+		Harah! We now know that $(\lim_{t \to 0} \psi_i(t)) \to \lim_{t \to 0} \psi(t)$. Or in other words,\\ $\frac{\partial}{\partial x_j}\phi_i(x) \to (\lim_{t \to 0} \psi(t))$, and this proves that $\lim_{t \to 0} \psi(t) = h(x)$. But also note\\ [-2pt] that we clearly have that $\psi(t) = \frac{1}{t}(g(x + te_j) - g(x))$. So $\lim_{t \to 0}\psi(t) = \frac{\partial}{\partial x_j} g(x)$.\retTwo
+	\end{myIndent}
+
+	With that we've now shown that there exists $f \in C_c^\infty(K)$ such that $\|\partial^\alpha \phi_i - \partial^\alpha f\|_u \to 0$ for all multi-indices $\alpha$. Thus clearly $\phi_i \to f$ according to all of our norms. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+So, I wanted to say that the proof I did above was completely unnecessary because there is an exercise I should have done back in 240b that would completely obsolete the need to work with nets as opposed to sequences. I'm going to do that exercise now.\retTwo
+
+\Hstatement\blab{Exercise 5.44:} If $\mathcalli{X}$ is a first countable topological vector space and every Cauchy sequence in $\mathcalli{X}$ converges, then every Cauchy net in $\mathcalli{X}$ converges.
+\begin{myIndent}\HexPPP 
+	(As a side note, a net $\langle x_i \rangle_{i \in I}$ in $\mathcalli{X}$ is Cauchy iff $\langle x_{i_1} - x_{i_2}\rangle_{(i_1, i_2) \in I \times I}$ converges to $0 \in \mathcalli{X}$.)\newpage
+
+	\HexOne Proof:\\
+	You may note that the following proof is basically just an adaption of the proof to \inLinkRap{page 225 theorem 1}{theorem 1} on page 225. Let $\{U_n\}_{n \in \mathbb{N}}$ be a countable neighborhood base for $0 \in \mathcalli{X}$. Then we can construct a Cauchy sequence $(x_{i(k)})_{k \in \mathbb{N}}$ in $\langle x_i \rangle_{i \in I}$ as follows:
+	\begin{myIndent}
+		For each $k \in \mathbb{N}$ choose $(j_1^{(k)}, j_2^{(k)}) \in I$ with $x_{i_1} - x_{i_2} \in U_k$ for all\\ $(i_1, i_2) \gtrsim (j_1^{(k)}, j_2^{(k)})$. Then choose any $i(k) \in I$ such that $i(k) \gtrsim j_1^{(k)}$,\\ $i(k) \gtrsim j_2^{(k)}$, and $i(k) \gtrsim i(k-1)$ (if $k > 1$). Having done this for all $k$, it's\\ [2pt] clear that $(x_{i(k)})_{k \in \mathbb{N}}$ is a sequence in our net satisfying that $x_{i(k_1)} - x_{i(k_2)} \in U_n$\\ [2pt] for all $n \leq \min(k_1, k_2)$.\retTwo
+	\end{myIndent}
+
+	Now we know that there exists $x \in \mathcalli{X}$ such that $x_{i(k)} \to x$ as $k \to \infty$. Hence, all that's left to show is that the net as a whole converges to $x$. To prove this, let $\{V_n\}_{n \in \mathbb{N}}$ be a countable neighborhood base for $x$.\retTwo
+	
+	For any $n \in \mathbb{N}$, since vector addition is a continuous map from $\mathcalli{X} \times \mathcalli{X}$ to $\mathcalli{X}$, we know that the set $E \coloneqq \{(y, z) \in \mathcalli{X} \times \mathcalli{X} : y + z \in V_n\}$ is a neighborhood of $(0, x) \in \mathcalli{X} \times \mathcalli{X}$. In turn, we know there are two open sets $W_1, W_2 \subseteq \mathcalli{X}$ such that $(0, x) \in W_1 \times W_2 \subseteq E$. And going a step further there exists neighborhoods $U_r$ of $0$ and $V_s$ of $x$ in our countable neighborhood bases such that so long as $(y, z) \in U_r \times V_s$, then $y + z \in V_n$.\retTwo
+	
+	But now consider that since $x_{i(k)} \to x$ as $k \to \infty$, there exists $N \in \mathbb{N}$ such that\\ $x_{i(k)} \in V_s$ for all $k \geq N$. Also, based on how we constructed our sequence, we know\\ $x_i - x_{i(k)} \in U_r$ for all $k \geq r$ and $i \gtrsim i(r)$. Thus let $j = i(r)$. Then for any $i \gtrsim j$, we have\\ that $x_i = (x_i - x_{i(\max(N, r))}) + x_{i(\max(N, r))} \in V_n$. And this proves that $\langle x_i \rangle_{i \in I}$ converges\\ to $x$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne The significance of this result is that if a topological vector space has a topology induced by any countable collection of seminorms, then $\mathcalli{X}$ is easily seen to be first countable. So, in my ill-advised proof I did to show that $C_c^\infty(K)$ is a Fréchet space (for example), there was absolutely no reason for me to talk about Cauchy nets. I should have just talked about Cauchy sequences. And then, I could have used helpful theorems like the dominated\\ convergence theorem and the fundamental theorem of calculus to write a much neater and shorter proof.
+
+\mySepTwo
+
+\hTwo One final note for today. If $U \subseteq \mathbb{R}^n$ is open, then $C_c^\infty(U)$ is the union of all the $C_c^\infty(K)$ where $K$ is a compact subset of $U$.
+Now for any open $U \subseteq X$ we state the following as definitions (technically there is a topology such that all these things are true but Folland says it's not really important to know):
+\begin{enumerate}
+	\item A sequence $(\phi_j)_{j \in \mathbb{N}}$ in $C_c^\infty(U)$ \udefine{converges in $C_c^\infty$} to $\phi$ if $\{\phi_j\}_{j \in \mathbb{N}} \subseteq C_c^\infty(K)$ for some compact $K \subseteq U$ and $\phi_j \to \phi$ in the topology of $C_c^\infty(K)$.
+	
+	\item If $\mathcalli{X}$ is a locally convex topological vector space and $T: C_c^\infty(U) \to \mathcalli{X}$ is a linear map, $T$ is \udefine{continuous} if $T|_{C_c^\infty(K)}$ is continuous for each compact set $K \subseteq U$. In other words, $T$ is continuous if whenever $(\phi_j)_{j \in \mathbb{N}}$ is a sequence in $C_c^\infty(U)$ converging in $C_c^\infty$ to $\phi$, then $T \phi_j \to T \phi$.\newpage
+	
+	\item A linear map $T: C_c^\infty(U) \to C_c^\infty(U^\prime)$ is \udefine{continuous} if for each compact set $K \subseteq U$\\ there exists a compact set $K^\prime \subseteq U^\prime$ such that $T(C_c^\infty(K)) \subseteq C_c^\infty(K^\prime)$ and $T$ is\\ continuous from $C_c^\infty(K)$ to $C_c^\infty(K^\prime)$.
+	
+	\item A \udefine{distribution} on $U$ is a continuous linear functional on $C_c^\infty(U)$. The space of all\\ distributions on $U$ is denoted by $\mathcalli{D}^\prime(U)$, and we set $\mathcalli{D}^\prime \coloneqq \mathcalli{D}^\prime(\mathbb{R}^n)$. We impose the \weakst topology on $\mathcalli{D}^\prime$.
+\end{enumerate}
+
+\mySepTwo
+
+\dispDate{9/25/2025}
+
+I've decided for the time being I'm going to try doing all my class work in my journal. Also, as I cover more math, I'm going to feel less and less need to take notes on everything I see in lecture. So expect my lecture notes here to be less organized than my independent studying I guess.\retTwo
+
+\blect{Math 241a (lecture 1):}
+\begin{myIndent}\myComment
+	Note that this class uses the textbook \textit{Essential Results of Functional Analysis} by Robert J. Zimmer. So if I number any lemma, theorem, or definition in my notes for math 241a, assume it came from that book.\retTwo
+\end{myIndent}
+
+Let $\mathcalli{X}$ denote a $K$-vector space where $K$ is either $\mathbb{R}$ or $\mathbb{C}$. Also, although I won't mention\\ it again, assume $\mathcalli{X}$ isn't trivial (i.e. a singleton).\retTwo
+
+\exTwo\ul{Proposition:} If $X$ is a topological space, $E \subseteq X$ is open iff for any $x \in E$ and net $\langle x_i \rangle_{i \in I}$\\ converging to $x$ we have that $\langle x_i\rangle_{i \in I}$ is eventually in $E$.
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	Suppose $x \in E$ and $\langle x_i \rangle_{i \in I}$ is a net converging to $x$ such that $x_i$ isn't eventually in $E$. Then by definition $E$ can't be a neighborhood of $x$. And thus since $E - E^\circ \neq \emptyset$ since it includes $x$, we know that $E$ is not open.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $E$ is not open. Then $E - E^\circ \neq \emptyset$. Hence, we can pick $x \in E - E^\circ$. But now $x \in (E^\circ)^\comp = \overline{E^\comp}$. So, there exists a net $\langle x_i\rangle_{i\in I}$ in $E^\comp$ with $x_i \to x$ (by Folland proposition 4.18 in my math 240b notes). And clearly $\langle x_i\rangle_{i\in I}$ is not eventually in $E$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} \hypertarget{Corollary page 229}{Let} $X$ be a set and $\mathcal{T}$ and $\mathcal{T}^\prime$ be two topologies such that for any net $\langle x_i \rangle_{i \in I}$ in $X$ and $x \in X$ we have that $x_i \to x$ with respect to $\mathcal{T}$ if $x_i \to x$ with respect to $\mathcal{T}^\prime$. Then $\mathcal{T} \subseteq \mathcal{T}^\prime$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $U \in \mathcal{T}$ and then consider any $x \in U$ and net $\langle x_i \rangle_{i \in I}$ such that $x_i \to x$ with respect to $\mathcal{T}^\prime$. By assumption we also know that $x_i \to x$ with respect to $\mathcal{T}$, and thus $\langle x_i \rangle_{i \in I}$ is eventually in $U$. It follows by our prior lemma that $U \in \mathcal{T}^\prime$, thus showing that $\mathcal{T} \subseteq \mathcal{T}^\prime$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo In math 240b (Folland theorem 5.14), we proved that if $\mathcalli{X}$ is a vector space and $\{p_\alpha\}_{\alpha \in A}$\\ is a family of seminorms, then the topology induced by those seminorms is \udefine{locally convex}, meaning there exists a base for the topology consisting entirely of convex sets. As it turns out, we can prove a converse statement.\retTwo
+
+\begin{myIndent}\hThree
+	To start off, here is a useful result about convexity. (As a reminder, $E \subseteq \mathcalli{X}$ is convex if for all $x, y \in E$ and $t \in [0, 1]$, $(1-t)x + ty \in E$.)\retTwo
+	
+	\exThree\ul{Lemma:} If $\{E_\alpha\}_{\alpha \in A}$ is a collection of convex sets in a vector space $\mathcalli{X}$, then $E \coloneqq \bigcap_{\alpha \in A} E_\alpha$ is convex.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		Let $x, y \in E$ and $t \in [0, 1]$. Then $(1-t)x + ty \in E_\alpha$ for all $\alpha \in A$. Hence for all $t \in [0, 1]$\\ we have that $(1 - t)x + ty \in \bigcap_{\alpha \in A}E_\alpha = E$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\hThree It follows that given any $E \subseteq \mathcalli{X}$, we can define the \udefine{convex hull} of $E$ (denoted $\conv(E)$) to be the unique smallest convex set in $\mathcalli{X}$ containing $E$.\retTwo
+
+	\exThree\ul{Proposition:} If $\mathcalli{X}$ is a vector space and $E \subseteq \mathcalli{X}$, then:
+	
+	{\centering$\conv(E) = \left\{\sum\limits_{j=1}^n \lambda_j x_j : n \in \mathbb{N}; x_1, \ldots, x_n \in E; \lambda_1, \ldots, \lambda_n > 0; \text{ and } \sum\limits_{j=1}^n \lambda_j = 1\right\}$\retTwo\par}
+	\begin{myIndent}\exFourP
+		Proof:\\
+		Let us denote the set on the right-hand side by $C$. When $n = 2$, it's clear that any\\ $\sum_{j=1}^n \lambda_j x_j \in C$ must also be in $\conv(E)$. And by a simple enough induction argument,\\ we can prove that $C \subseteq \conv(E)$. 
+		\begin{myIndent}\color{VioletRed}
+			Let $\sum_{j=1}^n \lambda_j x_j \in C$ (where $n > 2$). If $\lambda_n = 1$, then it's trivial that:
+			
+			{\centering$\sum_{j=1}^n \lambda_j x_j = x_n \in E \subseteq \conv(E)$.\retTwo\par}
+			
+			Meanwhile, if $\lambda_n < 1$, then $(1 - \lambda_n)^{-1}\sum_{j=1}^{n-1} \lambda_j = 1$ and hence we know by induction that $(1 - \lambda_n)^{-1}\sum_{j=1}^{n-1} \lambda_j x_j \in \conv(E)$. And in turn we know that:
+
+			{\centering $\sum_{j=1}^n \lambda_j x_j = (1 - \lambda_n)\left((1 - \lambda_n)^{-1} \sum_{j=1}^{n-1} \lambda_j x_j  \right) + \lambda_n x_n \in \conv(E)$ \retTwo\par}
+		\end{myIndent}
+
+		Meanwhile, if we can show that $C$ is convex, then we must have that $\conv(E) \subseteq C$.\\ Luckily consider any $\sum_{i=1}^n \lambda_i x_i \in C$ and $\sum_{j=1}^m \mu_j y_j \in C$ and fix $t \in [0, 1]$. Then since\\ $\sum_{i=1}^n \lambda_i = 1 = \sum_{j=1}^m \mu_j$, we can easily see that $(1 - t)\sum_{i=1}^n \lambda_i + t \sum_{j=1}^m \mu_j = 1$. And\\ [2pt] so, we must have that:
+
+		{\centering $(1 - t)\left(\sum_{i=1}^n \lambda_i x_i\right) +  t\left(\sum_{j=1}^m \mu_j y_j\right) \in C$. $\blacksquare$\retTwo\par}
+	\end{myIndent}
+
+	\hThree Next, a set $E \subseteq \mathcalli{X}$ is called \udefine{balanced} if for all $c \in K$ with $|c| \leq 1$, we have that $cE \subseteq E$ (where $cE \coloneqq \{c x \in \mathcalli{X} : x \in E\}$). Concerning convexity and the property of being balanced, we have the following three lemmas:\retTwo
+
+	\exThree\ul{Proposition:} Suppose $\mathcalli{X}$ is a topological vector space and $E \subseteq \mathcalli{X}$ is balanced. Then $\conv(E)$\\ is balanced as well.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		Consider any $\sum_{j=1}^n \lambda_j x_j \in \conv(E)$ where $x_1, \ldots, x_n \in E$; $\lambda_1, \ldots, \lambda_n > 0$; and\\ $\sum_{j=1}^n \lambda_j = 1$. Then let $c \in K$ with $|c| \leq 1$. Since $E$ is balanced, we know that $cx_j \in E$\\ [2pt] for each $j$. And hence $c (\sum_{j=1}^n \lambda_j x_j) = \sum_{j=1}^n \lambda_j (cx_j) \in \conv(E)$. $\blacksquare$\newpage
+	\end{myIndent}
+	
+	\ul{Proposition:} Suppose $\mathcalli{X}$ is a topological vector space. 
+	\begin{itemize}
+	\item[(a)] \hypertarget{proposition page 231}{If} $N$ is a neighborhood of $0$, there is a balanced neighborhood $B$ of $0$ with $B \subseteq N$.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		By setting $N = N^\circ$ we can without loss of generality assume that $N$ is open. Then since scalar multiplication is continuous, we know the set $W \coloneqq \{(c, x) \in K \times \mathcalli{X} : cx \in N\}$ is open in $K \times \mathcalli{X}$. Also, clearly $(0, 0) \in W$. Hence, there are open sets $U \subseteq K$ and $V \subseteq \mathcalli{X}$ such that $(0, 0) \in U \times V \subseteq W$. Or in other words, there exists $\varepsilon > 0$ and an open set $V \subseteq \mathcalli{X}$ such that for all $c \in K$ with $|c| < \varepsilon$ and $x \in V$, $cx \subseteq N$.\retTwo
+		
+		Now note that $cV$ is open for all $c \in K$ with $c \neq 0$. This is because $x \mapsto cx$ is a continuous function on $\mathcalli{X}$ with a continuous inverse function $x \mapsto x/c$. Also, since $0 \in V$, we know that $0 \in cV$ for all $c \in K$. Thus $0V \subseteq cV$ for all $c \in K$ and we don't need to worry about the edge case that $0V$ isn't open (I haven't shown it yet but it is true that singletons can't be open in a topological vector space). Consequently, we know that $B \coloneqq \bigcup_{|c| < \varepsilon} cV$ is an open set in $\mathcalli{X}$. And clearly $0 \in B \subseteq N$.\retTwo
+
+		What's left to do now is show that $B$ is balanced. Consider any $d \in K$ with $|d| \leq 1$. Then $|dc| \leq 1|c| < \varepsilon$ for all $c \in K$ with $|c| < \varepsilon$. Hence, for all $d \in K$ with $|d| \leq 1$:
+		
+		{\centering\begin{tabular}{l}
+			$dB = \{d x \in \mathcalli{X} : x \in \bigcup_{|c| < \varepsilon}cV\}$\\ [3pt]
+			$\phantom{dB} = \bigcup_{|c| < \varepsilon} \{dx \in \mathcalli{X} : x \in cV\} = \bigcup_{|c| < \varepsilon} \{dcy \in \mathcalli{X} : y \in V\} = \bigcup_{|c| < \varepsilon} (dc)V \subseteq N$.
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+	\item[(b)] If additionally $N$ is convex, then we can choose $B$ to be convex.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		By the reasoning described in part (a), let $A \subseteq N$ be a balanced neighborhood of $0 \in \mathcalli{X}$. Then set $B = \conv(A)$. Since $A$ is balanced, we know $B$ is also. Also, since $N$ is convex, we know that $B \subseteq N$. And finally, since $A^\circ \subseteq B^\circ$, we know that $B$ is also a neighborhood of $0$ in $\mathcalli{X}$. $\blacksquare$.\retTwo
+	\end{myIndent}
+	\end{itemize}
+
+	\ul{Proposition:} Let $\mathcalli{X}$ be a topological vector space. 
+	\begin{itemize}
+	\item[(a)] If $E \subseteq \mathcalli{X}$ is balanced and $0 \in E^\circ$, then $E^\circ$ is balanced.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		To start off, fix any $c \in K$ with $0 < |c|$. Then note that $x \mapsto cx$ is a continuous map\\ in $\mathcalli{X}$ with a continuous inverse $x \mapsto x/c$. So if $U$ is any open set in $\mathcalli{X}$, then $cU$ and\\ $(1/c)U$ are also open.\retTwo
+
+		If $V \subseteq E$ is open in $\mathcalli{X}$. Then we clearly have the $cV \subseteq cE$ and we know from before that $cV$ is open. Consequently, we know that $cE^\circ \subseteq (cE)^\circ$. On the other hand, if $W \subseteq cE$ is open, then $(1/c)W \subseteq E$; $(1/c)W$ is open; and $W = c((1/c)W)$ is in $cE^\circ$. From this we know that $(cE)^\circ \subseteq cE^\circ$. And hence we've proven that $(cE)^\circ = cE^\circ$. 
+		\retTwo
+
+		To finish off the main section of the proof, note that since $E$ is balanced, we have that $cE \subseteq E$ whenever $|c| \leq 1$. Thus $cE^\circ = (cE)^\circ \subseteq E^\circ$. And therefore we have shown that $cE^\circ \subseteq E^\circ$ if $0 < |c| \leq 1$.\retTwo
+
+		As for the annoying case of $c = 0$, note that $0E^\circ = \{0\} \subseteq E^\circ$. $\blacksquare$
+		\begin{myIndent}\color{VioletRed}
+			As a side note, we do have to explicitely assume that $E$ is a neighborhood of $0 \in \mathcalli{X}$ because there are loads of examples of balanced sets which don't have $0$ as an interior point. For example, if $K = \mathbb{R}$, then consider the closure of the first and third quadrants in the real number plane (equipped with the euclidean norm). There are other examples online for when $K = \mathbb{C}$.\newpage
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] If $E \subseteq \mathcalli{X}$ is convex, then so is $E^\circ$.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		We first need a lemma. If $U$ and $V$ are open sets in $\mathcalli{X}$, then we have that\\ $U + V = \{x + y \in \mathcalli{X} : x \in U, y \in V\}$ is open.
+		\begin{myIndent}\color{VioletRed}
+			If either $U$ or $V$ is empty, then this is trivial. Otherwise, note that:
+			
+			{\centering $U + V = \bigcup_{x \in U} (x + V)$ (where $x + V = \{x + y \in \mathcalli{X} : y \in V \}$).\retTwo\par}
+
+			Since $y \mapsto y + x$ is a continuous map with a continuous inverse $y \mapsto y - x$, we know that $x + V$ is open iff $V$ is open. So, $U + V$ is an arbitrary union of open sets. It follows that $U + V$ is open.\retTwo
+		\end{myIndent}
+
+		Choose any $t \in [0, 1]$. If $t \in \{0, 1\}$, then we trivially have that $(1-t)E^\circ + tE^\circ = E^\circ$ is open. Otherwise, note from the lemma we just showed plus the fact that $cE^\circ$ is open for any $c \in K$ with $|c| > 0$ that $(1 - t)E^\circ + tE^\circ$ is an open set. Also, by using the convexity of $E$ we can easily check that $(1 - t)E^\circ + tE^\circ \subseteq E$. Hence, we can conclude that $(1 - t)E^\circ + tE^\circ \subseteq E^\circ$, and this proves that $E^\circ$ is convex since:
+
+		{\centering $\bigcup_{t \in [0, 1]} \left[(1-t)E^\circ + tE^\circ\right] \subseteq E^\circ$. $\blacksquare$ \retTwo\par}
+	\end{myIndent}
+	\end{itemize}
+
+	\hThree The main take away from the last three propositions is that if $N$ is any neighborhood of $0$, then we can find an open balanced set $U$ such that $0 \in U \subseteq N$. And if additionally $N$ is convex, we can also take $U$ to be convex.\retTwo
+
+	As for why we like working with balanced sets, consider the following fact. If $V \subseteq \mathcalli{X}$ is balanced and $s \in K$, then $sV$ is balanced.
+	\begin{myIndent}\fontsize{11}{13}\color{Orange}
+		Why? Suppose $c \in K$ with $|c| \leq 1$. Then $c(sV) = (cs)V = s(cV) \subseteq sV$.\retTwo
+	\end{myIndent}
+
+	Consequently, if $V \subseteq \mathcalli{X}$ is balanced and $c_1, c_2 \in K$ with $|c_1| \leq |c_2|$, then $c_1 K \subseteq c_2 K$.
+	\begin{myIndent}\fontsize{11}{13}\color{Orange}
+		Why? If $c_2 = 0$, then both $c_1 V$ and $c_2 V$ equal $\{0\}$. Otherwise, we know that $c_2 V$\\ is balanced and that $|c_1 / c_2| \leq 1$. Hence, $c_1 V = (c_1/c_2)c_2 V \subseteq c_2 V$.\retTwo
+
+		\begin{myDindent}\color{RawerSienna}
+			And as a side note: in the special case that $|c_1| = |c_2|$ we can apply the\\ prior reasoning twice to say that $c_1 V= c_2 V$. In particular, this means\\ that $cV = |c|V$ for all $c \in K$.\retTwo
+		\end{myDindent}
+	\end{myIndent}
+	
+	One more piece of terminology: a set $E$ is \udefine{absorbing} if for all $x \in \mathcalli{X}$ there exists a\\ finite $r > 0$ such that for all $s \in K$ with $|s| \geq r$ we have that $x \in sE$.\retTwo
+
+	\exThree\ul{Lemma:} If $E \subseteq \mathcalli{X}$ is a neighborhood of $0$, then $E$ is absorbing.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		Let $x \in \mathcalli{X}$. Then since $x \mapsto cx$ is a continuous map and $0x \in E^\circ$, we know there is a\\ neighborhood $N \subseteq K$ of $0$ such that $cx \in E$ for all $c \in N$. In particular, pick $r > 0$\\ such that the ball $B_{\sfrac{1}{r}}(0)$ of radius $\sfrac{1}{r}$ about $0$ in $K$ is a subset of $N$. Then for any $s \in K$\\ with $|s| \geq 2r$ (so that $|s^{-1}| \leq \sfrac{1}{(2r)} < r^{-1}$), we have that $s^{-1}x \in E$. Or in other words,\\ for all $s \in K$ with $|s| \geq 2r$ we have that $x \in sE$. This shows that $E$ is absorbing. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\begin{myTindent}\color{RawerSienna}
+		As a side note, this lemma shows that $\{0\}$ can't be open since $\{0\}$ isn't absorbing. And in turn since vector addition is continuous, we know that no singleton contained in $\mathcalli{X}$ can be open.\newpage
+	\end{myTindent}
+
+	\hThree Now the next two proofs are sourced/inspired by a pdf I found online (see the \inLinkRap{bib citation 12}{12th\\ document} cited in my bibliography\dots). Let $\mathcalli{X}$ be a topological vector space and $U \subseteq \mathcalli{X}$\\ be any open balanced convex set containing $0$. Then the \udefine{Minkowski functional} associated\\ to $U$ is $p_U(x) \coloneqq \inf \{t \geq 0 : x \in tU\}$.\retTwo
+
+	\exThree\ul{Claim:} $p_U: \mathcalli{X} \to [0, \infty)$ is a well-defined seminorm on $\mathcalli{X}$ (i.e. $p_U(x)$ exists and is finite for all $x \in \mathcalli{X}$, and $p_U$ satisfies the two axioms of a seminorm). Also, $p_U$ is continuous.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		Firstly, since $U$ is absorbing, we know that for any $x \in \mathcalli{X}$ there exists some finite $t > 0$ with $x \in tU$. Hence $\{t \geq 0 : x \in tU\}$ is nonempty (and contains finite values), and it easily follows that $p_U(x)$ exists and is finite for all $x \in \mathcalli{X}$.\retTwo
+
+		Next, we show that $p_U$ is a seminorm.
+		\begin{itemize}
+			\item Suppose $c \in K$ and $x \in \mathcalli{X}$. Then for any $t \geq 0$ with $x \in tU$, we have that\\ $cx \in ctU = |c|tU$. And in turn we can easily see that:
+			
+			{\centering$p_U(cx) \leq \inf\{|c|\cdot t \geq 0: x \in tU\} = |c| \cdot p_U(x)$.\retTwo\par}
+
+			By similar reasoning, if $cx \in tU$ for some $t \geq 0$ and $c \neq 0$, then $x \in c^{-1}t U = |c^{-1}|t U$. So $p_U(x) \leq \inf\{|c|^{-1}\cdot t \geq 0: cx \in tU\} = |c|^{-1} p_U(cx)$. I.e. $|c| \cdot p_U(x) \leq p_U(cx)$, and this proves that $p_U(cx) = |c|p_U(x)$ for all $c \in K$ with $c \neq 0$. As for the case that $c = 0$, then we trivially have that $p_U(0x) = p_U(0) = 0 = |0| \cdot p_U(x)$.\retTwo
+
+			\item To show the triangle inequality, we finally use the convexity of $U$. Consider any $x, y \in \mathcalli{X}$ and pick $s, t > 0$ such that $x \in sU$ and $y \in tU$. Then:
+			
+			{\centering$x + y \in sU + tU = \{su + tu^\prime : u, u^\prime \in U\}$.\retTwo\par}
+
+			Now by the convexity of $U$, we know that $\frac{s}{s + t}u + \frac{t}{s + t}u^\prime \in U$ for all $u, u^\prime \in U$. Hence $su + tu^\prime = (s + t)(\frac{s}{s + t}u + \frac{t}{s + t}u^\prime) \in (s + t)U$ and this proves that $sU + tU \subseteq (s + t)U$. So, we've shown that $p_U(x + y) \leq \inf\{s + t : s, t \geq 0, x \in sU, \text{ and } y \in tU\}$.\retTwo
+
+			Finally, we just need to show that:
+			
+			{\centering\begin{tabular}{l}
+				$\inf\{s + t : s, t \geq 0, x \in sU, \text{ and } y \in tU\} \leq \inf \{s \geq 0 : x \in sU\} + \inf \{ t \geq 0 : y \in tU\}$.
+			\end{tabular}\retTwo\par}
+
+			As shorthand, write $\alpha = \inf \{s \geq 0 : x \in sU\}$, $\beta = \inf \{ t \geq 0 : y \in tU\}$, and\\ $\gamma = \inf\{s + t : s, t \geq 0, x \in sU, \text{ and } y \in tU\}$. Then consider any $\varepsilon > 0$ and\\ let $s, t \geq 0$ satisfy that $x \in sU$; $y \in tU$; $s < \alpha + \sfrac{\varepsilon}{2}$; and $t < \beta + \sfrac{\varepsilon}{2}$. But now\\ clearly $\gamma \leq s + t < \alpha + \beta + \varepsilon$. And by taking $\varepsilon \to 0$ we get that $\gamma \leq \alpha + \beta$.\retTwo
+		\end{itemize}
+
+		Lastly, we need to show that $p_U$ is continuous (annoyingly the paper I'm looking at just forgets about this step). To prove this, note that $p_U$ is continuous at some $x \in \mathcalli{X}$ iff for all nets $\langle x_i \rangle_{i \in I}$ converging to $x$, we have that $p_U(x_i) \to p_U(x)$ in $K$. So consider any net $\langle x_i \rangle_{i \in I}$ converging to some $x \in \mathcalli{X}$. Then notice that $p_U(x_i) \to p_U(x)$ iff $|p_U(x_i) - p_U(x)| \to 0$. Also, by reverse triangle inequality we have that $|p_U(x_i) - p_U(x)| \leq p_U(x_i - x)$. Hence, we will be done once we show that for all $\varepsilon > 0$ there exists $j \in I$ such that $p_U(x_i - x) < \varepsilon$ for all $i \gtrsim j$.\retTwo
+
+		Since $x_i \to x$ and vector addition is continuous, we know that $x_i - x \to 0$ in $\mathcalli{X}$. Also note that if $t > 0$, then we showed while proving an \inLinkRap{proposition page 231}{earlier proposition} that $tU$ is also an open set containing $0$. So becase $x_i - x \to 0$, we must have that $x_i - x$ is eventually in $tU$ for all $t > 0$. This is equivalent to saying that for all $t > 0$ there exists $j \in I$ such that $p_U(x_i - x) \leq t$ for all $i \gtrsim j$. Hence, $p_U(x_i - x) \to 0$. $\blacksquare$\newpage
+	\end{myIndent}
+
+	\ul{Theorem:} If $\mathcalli{X}$ is a topological vector space that is locally convex, then the topology of $\mathcalli{X}$ is identical to the topology generated by a collection of Minkowski functionals associated with a neighborhood base of $0$ consisting of convex balanced open sets.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		If $\mathcalli{X}$ is locally convex, then we know there is a neighborhood base of $0 \in \mathcalli{X}$ consisting of open convex sets. And by an earlier proposition we can then easily acquire a neighborhood base $\{U_\alpha\}_{\alpha \in A}$ of $0$ consisting entirely of balanced open convex sets.\retTwo
+
+		Now for each $\alpha \in A$ let $p_{U_\alpha}$ be the Minkowski functional associated to $U_\alpha$. If we can prove that a net $\langle x_i \rangle_{i \in I}$ converges to $x$ iff $p_{U_\alpha}(x_i - x) \to 0$ for all $\alpha \in A$, then we will know by the corollary at the \inLinkRap{Corollary page 229}{bottom of page 229} that the topology on $\mathcalli{X}$ is equal to the topology generated by the seminorms.
+
+		\begin{myIndent}\color{VioletRed}
+			\hypertarget{sufficient condition for seminormable}{$(\Longrightarrow)$}\\
+			Suppose $x_i \to x$. Then that implies that $x_i - x \to 0$, which means that $x_i - x$\\ is eventually in every neighborhood of $0$. In particular, consider any $\alpha \in A$ and\\ $t > 0$. Then $x_i - x$ is eventually in $tU_\alpha$. Or equivalently, there exists $j \in I$ such\\ that $p_{U_\alpha}(x_i - x) \leq t$ for all $i \gtrsim j$. This proves that $p_{U_\alpha}(x_i - x) \to 0$ for all $\alpha \in A$.\retTwo
+
+			$(\Longleftarrow)$\\
+			Suppose $p_{U_\alpha}(x_i - x) \to 0$ for all $\alpha \in A$ and consider any neighborhood $N$ of $0$. Since $\{U_\alpha\}_{\alpha \in A}$ is a neighborhood base of $0$, we know there exists $\alpha \in A$ such that $U_\alpha \subseteq N$. Then because $U_\alpha$ is balanced and we eventually have that $p_{U_\alpha}(x_i - x) \leq 1$, we know that $x_i$ is eventually in $U_\alpha \subseteq N$. This proves that $x_i - x \to 0$. And since vector addition is continuous, we in turn know that $x_i \to x$. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+So, we've proven that a topological vector space is locally convex if and only if the topology is generated by a family of seminorms. Can we go one step further and give a necessary and sufficient condition for a topological vector space to be normable? As it turns out, yes.\\ [-9pt]
+
+\begin{myIndent}\hThree
+	If $\mathcalli{X}$ is a topological vector space, a set $B \subseteq \mathcalli{X}$ is called \udefine{von Neumann bounded} (or just \udefine{bounded}) if for every neighborhood $N$ of $0$ in $\mathcalli{X}$ there exists some $r > 0$ such that for all $s \in K$ with $|s| \geq r$ we have that $B \subseteq sN$.\retTwo
+
+	From the above definition it's obvious that if $\mathcalli{X}$ is a topological vector space, $B \subseteq \mathcalli{X}$ is bounded, and $E \subseteq B$, then we also have that $E$ is bounded. Also, it's worth noting the folowing equivalent properties to boundedness.\retTwo
+
+	\exThree\ul{Proposition:} If $N$ is a neighborhood of $0$ in a topological vector space $\mathcalli{X}$ and $B \subseteq \mathcalli{X}$ is bounded, then there exists $r > 0$ such that $sB \subseteq N$ for all $s \in K$ with $|s| \leq r$.
+	\begin{myIndent}\exFourP
+		$(\Longrightarrow)$\\
+		Note that we trivially have that $0B = \{0\} \subseteq N$. Meanwhile, if $B$ is bounded, then suppose $B\subseteq sN$ for all $s \in K$ with $|s| \geq r > 0$. Then $s^{-1}B \subseteq N$ when $|s| \geq r$. And since for all ${s^\prime} \in K$ with $0 < |{s^\prime}| < 1/r$ there exists $(s^\prime)^{-1} \in K$ with $|(s^\prime)^{-1}| \geq r$, we can conclude\\ $s^\prime B \subseteq N$ for all ${s^\prime} \in K$ with $0 < |{s^\prime}| \leq 1/r$.\retTwo
+
+		$(\Longleftarrow)$\\
+		The proof of this direction is analogous to that of the prior direction. So I'm omitting it. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\ul{Proposition:} $B \subseteq \mathcalli{X}$ is bounded if and only if for every balanced open set $U \subseteq \mathcalli{X}$ containing $0$ there exists $r \in K$ such that $B \subseteq rU$.\newpage
+	\begin{myIndent}\exFourP
+		Proof:\\
+		The forward direction is trivial. Meanwhile, to show the backwards direction, consider any neighborhood $N$ of $0$ in $\mathcalli{X}$. Then we know from earlier that there is a balanced open set $U \subseteq \mathcalli{X}$ such that $0 \in U \subseteq N$. Also, by the hypothesis of our proposition we know there exists $r \in K$ such that $B \subseteq rU$. Plus, we know that $rU = |r|U$ since $U$ is balanced. Hence, without loss of generality we can say $r$ is real and nonnegative. Finally, we know $B \subseteq sU$ for all $s \in K$ with $|s| \geq r$ (since $U$ is balanced). And since $U \subseteq N$, we in turn know that $B \subseteq sN$ for all $s \in K$ with $|s| \geq r$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\hThree Now a question one may ask is whether this definition of boundedness is compatible with our definition of boundedness on metric spaces. Unfortunately, the answer is generally no. For example, consider $\mathbb{C}$ as a complex vector space and then equip $\mathbb{C}$ with the metric $\rho(z_1, z_2) \coloneqq \min(|z_1 - z_2|, 1)$.
+
+	\begin{myIndent}\fontsize{11}{13}\color{Orange}
+		Sanity check:\\
+		Note that $\rho$ is in fact a metric. After all, clearly $\rho(z_1, z_2) = 0$ iff $|z_1 - z_2| = 0$ and the latter happens iff $z_1 = z_2$. And otherwise we have that $\rho(z_1, z_2) > 0$. Also note that clearly $\rho(z_1, z_2) = \rho(z_2, z_1)$. Finally, suppose $z_1, z_2, z_3 \in \mathbb{C}$. If $|z_1 - z_2| + |z_2 - z_3| \leq 1$, then we must have that $|z_1 - z_1| \leq 1$ and $|z_2 - z_3| \leq 1$. Hence:
+
+		{\centering $\min(|z_1 - z_2| + |z_2 - z_3|, 1) = |z_1 - z_2| + |z_2 - z_3| = \rho(z_1, z_2) + \rho(z_2, z_3)$. \retTwo\par}
+
+		On the other hand, if $|z_1 - z_2| + |z_2 - z_3| > 1$, then we must have that:
+		
+		{\centering\begin{tabular}{l}
+			$1 \leq \min(|z_1 - z_2| + |z_2 - z_3|, |z_1 - z_2| + 1, |z_2 - z_3| + 1, 2)$\\ [2pt]
+			
+			$\phantom{aaaaaaaaaaaaaaaaa} \leq \min(|z_1 - z_2|, 1) + \min(|z_2 - z_3|, 1) = \rho(z_1, z_2) + \rho(z_2, z_3)$
+		\end{tabular}\retTwo\par}
+
+		Either way this proves the triangle inequality since:
+		
+		{\centering$\rho(z_1, z_3) = \min(|z_1 - z_3|, 1) \leq \min(|z_1 - z_2| + |z_2 - z_3|, 1) \leq \rho(z_1, z_2) + \rho(z_2, z_3)$.\retTwo\par}
+	\end{myIndent}
+	
+	Then it is easy to see that the entire space $\mathbb{C}$ is bounded with respect to $\rho$ according to the metric space definition of boundedness. Also, it is easy to see that $\rho$ generates the same topology on $\mathbb{C}$ as the Euclidean metric. Hence, $(\mathbb{C}, \rho)$ is a complex topological vector space. That said, if $B$ is the open unit ball about $0$, then clearly $B$ is balanced and contains $0$ but there does not exist any $r \in \mathbb{C}$ such that $\mathbb{C} \subseteq rB$. So $\mathbb{C}$ is not von Neumann bounded in the topology induced by $\rho$.\retTwo
+
+	At the very least however, if $\mathcalli{X}$ is a normed $K$-vector space (which automatically makes $\mathcalli{X}$ a topological vector space), then the metric space definition of being bounded according to the norm $\|\cdot\|$ is equivalent to being von Neumann bounded.\\ [-6pt]
+
+	\begin{myIndent}\exFourP
+		$(\Longrightarrow)$\\
+		Let $E \subseteq \mathcalli{X}$ and suppose there exists $C > 0$ such that $\|x\| < C$ for all $x \in E$. Then consider any balanced open set $U \subseteq \mathcalli{X}$ containing $0$. We know that there exists a ball $B_\varepsilon(0)$ of radius $\varepsilon$ about $0$ such that $B_\varepsilon(0) \subseteq U$. Also, we clearly have that $E \subseteq (C\varepsilon^{-1})B_\varepsilon(0)$ since the latter set contains all $x \in \mathcalli{X}$ with $\|x\| < C$. Therefore, we also have that $E \subseteq (C\varepsilon^{-1})U$. And this shows that $E$ is von-Neumann bounded.\retTwo
+
+		$(\Longleftarrow)$\\
+		Suppose $E \subseteq \mathcalli{X}$ is Von-Neumann bounded. Then the ball $B_1(0)$ of radius $1$ about $0 \in \mathcalli{X}$ is a neighborhood of $0$ in $\mathcalli{X}$. So, there exists some $r > 0$ with $E \subseteq rB_1(0) = B_r(0)$. Or in other words, $\|x\| < r$ for all $x \in E$. $\blacksquare$\newpage
+
+		\begin{myIndent}\color{VioletRed}
+			As a side note: what sets the norm metric apart from just any metric in this proof is that the norm metric lets us say that $(C\varepsilon^{-1}) B_\varepsilon(0) = B_C(0)$ and $rB_1(0) = B_r(0)$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	With that we now have all the background we need to find a necessary and sufficient condition for a topology on $\mathcalli{X}$ to be a normed topology. Note that every normed vector space $\mathcalli{X}$ is $T_1$ (in fact $\mathcalli{X}$ is normal since all metric spaces are normal). Also, it's a trivial observation that every normed vector space $\mathcalli{X}$ has a nonempty convex open von Neumann bounded set. For example, just take the open ball of radius $1$ about $0 \in \mathcalli{X}$. As it turns out, these are all the topological properties needed of a topological vector space in order to show that the space is normable.\retTwo
+
+	\exThree\ul{Lemma:} If $\mathcalli{X}$ is a topological vector space, $y \in \mathcalli{X}$, and $E \subseteq \mathcalli{X}$ is von Neumann bounded, then $y + E \coloneqq \{x + y \in \mathcalli{X} : x \in E\}$ is von Neumann bounded.
+
+	\begin{myIndent}\exFourP
+		Proof:\\
+		For any balanced open set $U \subseteq \mathcalli{X}$ containing $0$, we know since $E$ is bounded that there\\ exists $t > 0$ such that $E \subseteq t U$. Also, since $U$ is absorbing, we know there exists $s > 0$ such\\ that $y \in sU$. And finally, note that $sU \subseteq tU$ if $s \leq t$ and $tU \subseteq sU$ if $t \leq s$ (this is true\\ because $U$ is balanced). $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\ul{Lemma:} If $\mathcalli{X}$ is a topological vector space, $y \in \mathcalli{X}$, and $E \subseteq \mathcalli{X}$ is convex, then $y + E$ is convex.
+
+	\begin{myIndent}\exFourP
+		Proof:\\
+		If $E$ is empty or a singleton, then $E$ is trivially convex. Otherwise, consider any two points $y + x_1$ and $y + x_2$ in $y + E$ and let $t \in [0, 1]$. Then:
+		
+		{\centering$(1 - t)(y + x_1) + t(y + x_2) = y + ((1-t)x_1 + tx_2)$.\retTwo\par}
+		
+		And since $E$ is convex, we know that $y + ((1-t)x_1 + tx_2) \in y + E$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	\ul{Theorem:} Suppose $\mathcalli{X}$ is a $T_1$ topological vector space and there exists a nonempty convex\\ open von Neumann bounded set $U \subseteq \mathcalli{X}$. Then the topology on $\mathcalli{X}$ is identical to a norm-\\topology generated by a Minkowski functional.
+
+	\begin{myIndent}\exFourP
+		Proof:\\
+		If we pick any $x \in U$, then we know by the last two lemmas plus the continuity of vector addition that $(-x) + U$ is a convex open von Neumann bounded set containing $0$. So, without loss of generality we can assume $U$ contains $0$. Then by restricting $U$ further, we can also assume without loss of generality that $U$ is balanced.\retTwo
+
+		Next, we know there is a Minkowski functional $p_U$ associated with $U$ which we already\\ proved to be a seminorm and continuous on $\mathcalli{X}$. We claim $p_U$ is in fact a norm. After all, suppose $y \in \mathcalli{X}$ with $y \neq 0$. Then since $\mathcalli{X}$ is $T_1$, we know there exists an open set $V \subseteq \mathcalli{X}$ with $0 \in V$ and $y \notin V$. And in turn since $U$ is von Neumann bounded, we know there exists $r > 0$ such that $sU \subseteq V$ for all $s \in K$ with $|s| \leq r$. This proves that $p_U(y) \geq r > 0$. So, $p_U(y) = 0$ iff $y = 0$.\retTwo
+
+		Finally, we need to show that a net $\langle x_i\rangle_{i \in I}$ converges to $x$ iff $p_U(x_i - x) \to 0$. Fortunately, the \inLinkRap{sufficient condition for seminormable}{proof} that $p_U(x_i - x) \to 0$ if $x_i \to x$ which we wrote when showing our sufficient condition for $\mathcalli{X}$ being seminormable still works here. As for the other implication, note by the continuity of vector addition that $x_i \to x$ iff $x_i - x \to 0$. So, all we need to show is that if $p_U(x_i - x) \to 0$ in $K$, then $x_i - x$ is eventually in every neighborhood $N$ of $0$ in $\mathcalli{X}$. To do that, note that since $U$ is von Neumann bounded, there exists $r > 0$ such that $sU \subseteq N$ when $|s| \leq r$. And since $p_U(x_i - x) < r$ eventually, this proves $x_i - x \in N$ eventually. $\blacksquare$\newpage
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo Anyways, all of the topology I just did is beyond the scope of our class and textbook. I only toiled at proving everything prior because I wanted to know how to put rigor behind some comments my professor made.
+\begin{myIndent}\myComment
+	For example, if $A$ has infinite cardinality, then $\mathbb{C}^A$ equipped with the topology of pointwise convergence (which as a reminder is equivalent to the product topology) is not normable. This is because any nonempty open set in $\mathbb{C}^A$ is not von Neumann bounded.\retTwo
+\end{myIndent}
+
+Given a family of seminorms $\{p_\alpha\}_{\alpha \in A}$ on $\mathcalli{X}$, we call that family \udefine{sufficient} if for all $x \in \mathcalli{X}$ with $x \neq 0$ there exists $\alpha \in A$ with $p_{\alpha} \neq 0$. Recall from math 240b that the topology generated by a family of seminorms is Hausdorff iff that family is sufficient.\retTwo
+
+\exTwo\ul{Remark 1.1.9:} Topologies on a vector space $\mathcalli{X}$ given by a finite sufficient family of\\ seminorms are actually norm topologies. Specifically, let $\{p_1, \ldots, p_n\}$ be a sufficient family\\ of seminorms on $\mathcalli{X}$ and let $\|\cdot\|_q$ denote the $q$-norm on $\mathbb{R}^n$ (where $q \in [1, \infty]$). Then\\ $\|\cdot\| \coloneqq \|(p_1(x), \ldots, p_n(x))\|_q$ is a norm on $\mathcalli{X}$ yielding the same topology as that generated\\ by our family of seminorms.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Firstly we check $\|\cdot\|$ is a norm. Since some $p_i(x) > 0$ whenever $x \neq 0$, we know that $\|x\| = 0$ if and only if $x = 0$. Also it's obvious that $\|x\| \geq 0$ for all $x \in \mathcalli{X}$. And if $c \in K$ and $x \in \mathcalli{X}$, then:
+
+	{\centering\begin{tabular}{l}
+	$\|cx\| = \|(p_1(cx), \ldots, p_n(cx))\|_q$\\
+	$\phantom{\|cx\|} = \|(cp_1(x), \ldots, cp_n(x))\|_q - |c|\cdot\|(p_1(x), \ldots, p_n(x))\|_q = |c|\cdot\|x\|$.
+	\end{tabular} \retTwo\par}
+
+	Finally, note that if $(c_1, \ldots, c_n), (d_1, \ldots, d_n) \in \mathbb{R}^n$ with $0 \leq c_i \leq d_i$ for all $1 \leq i \leq n$, then $\|c_1, \ldots, c_n\|_q \leq \|d_1, \ldots, d_n\|_q$.
+	\begin{myIndent}\exPPP
+		Why?\\
+		If $q = \infty$ then this is obvious from the fact that $\max(c_1, \ldots, c_n) \leq \max(d_1, \ldots, d_n)$. Meanwhile, if $q < 1$, then since $t \mapsto t^{1/q}$ and $t \mapsto t^q$ are strictly increasing on the domain $[0, \infty)$, we know that $\left(d_1^q + \ldots + d_n^q\right)^{1/q} \geq \left(c_1^q + \ldots + c_n^q\right)^{1/q}$. \retTwo
+	\end{myIndent}
+	
+	Thus if $x, y \in \mathcalli{X}$, we have that:
+
+	{\centering\begin{tabular}{l}
+	$\|x + y\| = \|(p_1(x + y), \ldots, p_n(x + y))\|_q$\\ [4pt]
+	$\phantom{\|x + y\|} \leq \|(p_1(x) + p_1(y), \ldots, p_n(x) + p_n(y))\|_q$\\ [4pt]
+	$\phantom{\|x + y\|} = \|(p_1(x), \ldots, p_n(x))\|_q + \|(p_1(y), \ldots, p_n(y))\|_q = \|x\| + \|y\|$
+	\end{tabular} \retTwo\par}
+
+	This proves that $\|\cdot\|$ is a norm on $\mathcalli{X}$.\retTwo
+	
+	Next note that if $q < \infty$ and $\|\cdot\|_\infty$ is the $\infty$-norm, then:
+	\begin{itemize}
+	\item $\|(x_1, \ldots, x_n)\|_q \leq (n(\max(|x_i|))^q)^{1/q} = n^{1/q}\|(x_1, \ldots, x_n)\|_\infty$,
+	\item $\|(x_1, \ldots, x_n)\|_\infty = (\max_{1 \leq i \leq n}|x_i|^q)^{1/q} \leq (\sum_{i=1}^n |x_i|^q)^{1/q} = \|(x_1, \ldots, x_n)\|_q$.\retTwo
+	\end{itemize} 
+
+	So in general we know there exists $C \geq 1$ such that:
+	
+	{\centering$\max_{1 \leq i \leq n} p_i(x) \leq \|x\| \leq C \cdot \max_{1 \leq i \leq n} p_i(x)$.\retTwo\par}
+
+	And from there it is easy to show that a net converges with respect to the seminorms $p_1, \ldots, p_n$ iff it converges with respect to $\|\cdot\|$. $\blacksquare$\newpage
+
+	\begin{myIndent}\myComment
+		As a side note: technically our textbook says that you can replace the $q$-norm on $\mathbb{R}^n$ with any norm on $\mathbb{R}^n$ and the prior construction still works. However, for the last 14 hours I have not for the life of me been able to prove the triangle inequality for that more general construction. Thus, since I don't have time to be wasting on this, I'm just going to move on and swallow my losses.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo There are a few more things I'd like to take notes on from this lecture. However, it's now 9/28/2025 and I need to make sure I have my notes done for my other math classes. So I'll come back to my functional analysis notes later on \inLinkRap{math 241a lecture 2}{page \_\_\_}.
+
+\mySepTwo
+
+\dispDate{9/28/2025}
+
+\blect{Math 200a (lecture 1):}\retTwo
+
+What follows is not a logical definition but instead a grammatical one. Let $X$ be a set\\ endowed with some sort of mathematical structure. Then we say a \udefine{symmetry} or\\ \udefine{automorphism} of $X$ is a bijection $f : X \to X$ such that $f$ and $f^{-1}$ preserve the\\ mathemtical structure of $X$. Also, we write $\Aut(X)$ to mean the set of symmetries\\ of $X$. Importantly, $\Aut(X)$ will be a group.\retTwo
+
+Now while the last definition is very fuzzy, it is a suitable north star to follow in order\\ to define the following actual concrete definitions.
+\begin{itemize}
+	\item If $X$ is just a set with no additional structure, then we denote the \udefine{symmetric group\\ of $X$} to be $\Aut(X) = S_X \coloneqq \{\text{permutations of } X\}$.\retTwo
+
+	\item If $V$ is an $F$-vector space of dimension $n$, then we denote:
+	
+	{\centering$\Aut(V) = \{\text{invertible linear maps on } V\}$.\par}
+
+	\begin{myTindent}\pracTwo
+		Note that if $\GenLin_n(F)$ is the set of $n \times n$ invertible matrices with\\ coefficients in $F$, then $\GenLin_n(F) \cong \Aut(V)$. We call $\GenLin_n(F)$ the\\ \udefine{$n\times n$ general linear group on $F$}.\\ [-9pt]
+	\end{myTindent}
+
+	\item Let $G = (V, E)$ be a graph. Then we say $\theta \in \Aut(G)$ if and only if $\theta : V \to V$\\ is a bijection such that $\{v_1, v_2\} \in E$ if and only if $\{\theta(v_1), \theta(v_2)\} \in E$.\retTwo
+	
+	\item If $G$ is a group, then we denote $\Aut(G)$ to be the set of bijective group\\ homomorphisms from $G$ to $G$.\retTwo
+\end{itemize}
+
+Given a group $G$ and a \udefine{symmetric} set $S \subseteq G$ (meaning that $s \in S \Longleftrightarrow s^{-1} \in S)$, we\\ define the \udefine{Cayley graph} $\Cay(G, S)$ of $S$ and $G$ to be the graph whose vertex set is $G$ and\\ for which given any distinct $g_1, g_2 \in G$ we have that $\{g_1, g_2\}$ is an edge if and only if\\ $g_1g_2^{-1} \in S$.
+\begin{myIndent}
+	\pracTwo Note that we require $S$ to be symmetric so that $g_1g_2^{-1} \in S \Longleftrightarrow g_2g_1^{-1} \in S$. If this\\ weren't true than we'd need to let $G$ be a digraph instead of a graph.\newpage
+\end{myIndent}
+
+Also, if $G$ is a group and $S \subseteq G$, we denote $\langle S \rangle$ to be the smallest subgroup of $G$ containing $S$ and say $\langle S \rangle$ is \udefine{generated} by $S$.
+\begin{myIndent}\pracTwo
+	Note that $\langle S \rangle$ is precisely equal to the collection $H$ of all finite compositions of\\ elements of $S$ and their inverses. After all, since each finite composition of elements in $S$ has to be in $\langle S \rangle$, we trivially know that $H \subseteq \langle S \rangle$. On the other hand, it is clear that $H$ is closed under composition and that every element of $H$ has an inverse element. And finally, for any $h \in H$ we have that $hh^{-1} = 1 \in H$. So, $H$ is a group containing $S$. It follows that $\langle S \rangle \subseteq H$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Let $G$ be a group and $S \subseteq G$ be a symmetric subset. Then $\Cay(G, S)$ is\\ connected if and only if $\langle S \rangle = G$.
+\begin{myIndent}\exThreeP
+	$(\Longleftarrow)$\\
+	Suppose $\langle S \rangle = G$. Then for any $g \in G$ there exists $s_1, \ldots, s_n \in S$ with $g = s_n\cdots s_1$.\\ And in turn, we can easily see that the following is a walk in $\Cay(G, S)$ from $1$ to $g$:
+
+	{\centering $1,\gap s_1,\gap s_2s_1,\gap s_3s_2s_1,\gap \ldots,\gap (s_{n-1}\cdots s_2s_1),\gap g$ \retTwo\par}
+
+	$(\Longrightarrow)$\\
+	Suppose $g \in G$ and there are $g_1, \ldots, g_n \in G$ such that $1 = g_1$, $g = g_n$, and $1, g_1, \ldots, g_n$\\ is a walk in $\Cay(G, S)$. Then $g_i(g_{i+1})^{-1} \in S$ for all $i \in \{1, \ldots, n-1\}$. Then:
+	
+	{\centering$g^{-1} = 1g^{-1} = g_1g_n^{-1} = (g_1g_2^{-1})(g_2g_3^{-1})\cdots(g_{n-1}g_n^{-1}) \in \langle S \rangle$.\retTwo\par}
+
+	And in turn since $\langle S \rangle$ is a subgroup of $G$, we therefore have that $g \in \langle S \rangle$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Note that an $n$-cycle is the Cayley graph of $\mathbb{Z}/n\mathbb{Z}$ and $\{-1, 1\}$. For if we label the vertices as shown below, we have that $\{i, j\} \in E$ if and only if $i - j = \pm 1$.
+
+{\center\raisebox{0em}{\tikz[scale=0.35,inner sep=4pt]{
+	\tikzstyle{myCir}=[circle, fill, thick];
+	\tikzstyle{myLine}=[thick];
+
+	\node[myCir, label=right:$2$] (2) at (22.5:5) {};
+	\node[myCir, label=above:$1$] (1) at (67.5:5) {} edge[myLine] (2);
+	\node[myCir, label=above:$0$] (0) at (112.5:5) {} edge[myLine] (1);
+	\node[myCir, label=left:$n-1$] (n-1) at (157.5:5) {} edge[myLine] (0);
+
+	\draw[dashed, line width=1.25pt, out=315, in=225, color=gray] (n-1) to (2)
+}}\par}
+
+Thus it's clear that $\sigma: \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$ given by $\sigma(x) = x + 1$ and $\tau: \mathbb{Z}/n\mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}$ given by $\tau(x) = -x$ are both symmetries of our graph, and that $\langle \sigma, \tau\rangle \subseteq \Aut(n\text{-cycle})$.\retTwo
+
+Can we show that $\langle \sigma, \tau\rangle = \Aut(n\text{-cycle})$? Sure.\\ [-10pt]
+\begin{myIndent}\hThree
+	Suppose $\theta \in \Aut(n\text{-cycle})$ and let $\theta(0) = i$. Then $\sigma^{-i}(x) = x - i$. Hence, we\\ know that $\sigma^{-i}\circ\theta(0) = 0$. Next, since $\sigma^{-i}\circ\theta$ is a graph automorphism we know that\\ $\sigma^{-i}\circ\theta(1) = \pm 1$. If $\sigma^{-i}\circ \theta(1) = - 1$ then note that $\tau(0) = 0$ and $\tau(-1) = 1$. So,\\ $\psi = \tau \circ \sigma^{-i}$ is an automorphism in $\langle \sigma, \tau\rangle$ such that $\psi \circ \theta$ fixes $0$ and $1$. Meanwhile, if\\ $\sigma^{-i} \circ \theta(1) = +1$ then we can just set $\psi = \sigma^{-i}$ to get an automorphism in $\langle \sigma, \tau\rangle$ such\\ that $\psi \circ \theta$ fixes $0$ and $1$.\retTwo
+
+	Now it is an easy induction argument to show that $\psi \circ \theta$ fixes all of $\mathbb{Z}/n\mathbb{Z}$. Consider\\ any $k \in \{2, \ldots, n-1\}$ and suppose that we already showed that $\psi \circ \theta(j) = j$ for\\ all $j \in \{0, \ldots, k-1\}$. Then since $\psi \circ \theta$ is an automorphism and $\psi \circ \theta(k-1) = k-1$ we know $\psi \circ \theta(k) \in \{k-2, k\}$. However, we can't have that $\psi \circ \theta(k) = k-2$ since we already have that $\psi \circ \theta(k-2) = k-2$. Hence, we must have that $\psi \circ \theta(k) = k$.\newpage
+
+	It follows that $\psi \circ \theta = \myId$. Or in other words, $\theta = \psi^{-1} \in \langle \sigma, \tau\rangle$.\retTwo
+\end{myIndent}
+
+Note that in the prior reasoning we also proved that every $\theta \in \Aut(n\text{-cycle})$ can be\\ expressed as $\sigma^i$ or $\sigma^i \tau$ where $i \in \{0, \ldots, n-1\}$. Is this expression unique? Sure.\\ [-10pt]
+\begin{myIndent}\hThree
+	Consider the subgroup $H = \langle \sigma \rangle$ of $\Aut(n\text{-cycle})$. Thus $H = \{\sigma^i : i \in \mathbb{Z}\}$. And by\\ examining that $\sigma^i(0) = i$ for all $i \in \mathbb{Z}$, we can see that $\sigma^0, \sigma^1, \ldots, \sigma^{n-1}$ are all\\ distinct. Also, since $\sigma^n$ fixes $0$ and $1$, we know like before that $\sigma^n = \myId$. Hence\\ $H = \{\myId, \sigma, \sigma^2, \ldots, \sigma^{n-1}\}$.\retTwo
+
+	Now importantly, $\tau \notin H$. After all, $\tau$ fixes $0$ and sends $1$ to $-1$. But the only element in\\ $H$ which fixes $0$ is $\myId$ and that sends $1$ to $+1$. Hence, we know $H$ and $H \tau$ are disjoint cosets. Also, since all cosets of a finite group have the same order, we know that each $\tau \sigma^i$ (where $i \in \{0, \ldots, n-1\}$) is also distinct.\retTwo
+\end{myIndent}
+
+Given a group $G$, we write $o(G)$ to denote the order of $G$. Notably, we have now showed that $o(\Aut(n\text{-cycle})) = 2n$ and that:
+
+{\centering $\Aut(n\text{-cycle}) = \{\sigma^i : 0 \leq i \leq n-1\} \cup \{\sigma^i \tau : 0 \leq i \leq n-1\}$. \retTwo\par}
+
+We call this group the \udefine{$n$th. dihedral group} and will refer to it as $D_{2n}$ from now on.\retTwo
+
+Note that $\tau \circ \sigma \circ \tau(x) = \tau \circ \sigma(-x) = \tau(-x + 1) = x - 1 = \sigma^{-1}(x)$.  Hence $\tau \circ \sigma \circ \tau = \sigma^{-1}$. Also, we clearly have that $\tau^2 = \myId$ and that $\sigma^n = \myId$. We call these three identities the \udefine{defining relations} of the dihedral group.\retTwo
+
+We that $H$ is a normal subgroup of $G$ by writing $H \lhd G$. In particular, note that $\langle \sigma \rangle \lhd D_{2n}$. This is because conjugation is a group automorphism and $\tau = \tau^{-1}$, which in turn shows that $\tau\circ\sigma^j\circ\tau = (\tau \circ \sigma \circ \tau)^j = \sigma^{-j} \in \langle \sigma\rangle$ for all $j \in \mathbb{Z}$.\retTwo
+
+I'll continue with this class on \inLinkRap{math 200a lecture 2}{page 244}.\retTwo
+
+\mySepTwo
+
+\blect{Math 220a (lecture 1):}\retTwo
+
+In real analysis, sometimes we wanted to compactify $\mathbb{R}$ so that we could describe the\\ limiting behavior of unbounded sequences and functions. And the common way we did that was by defining the extended real number line $\overline{\mathbb{R}} = \mathbb{R} \cup \{\infty, -\infty\}$. In complex\\ analysis, we want to be able to do something similar. However, $\mathbb{C}$ doesn't just have two\\ directions for an unbounded sequence to diverge in. So, we will need to modify our\\ strategy when defining the \udefine{extended complex plane / Riemann sphere}.\retTwo
+
+Let $\mathbb{C}_\infty = \mathbb{C} \cup \{\infty\}$ denote the one-point compactification of $\mathbb{C}$. We can metrize $\mathbb{C}_\infty$ as follows.
+\begin{myIndent}\hThree
+	Consider the spherical shell $S^2 = \{(x, y, z) \in \mathbb{R}^3 : \sqrt{x^2 + y^2 + z^2} = 1\} \subseteq \mathbb{R}^3$ and identify $\mathbb{C}$ with the $xy$-plane in the obvious way.\retTwo
+
+	Now given any $z = x + iy = (x, y, 0) \in \mathbb{R}^3$, let $\ell$ be the line passing through $z$ and the north pole $(0, 0, 1)$ of $S^2$. We claim that there is a unique other point on $S^2$ which $\ell$ crosses.\newpage
+
+	\begin{myIndent}\pracTwo
+		Proof:\\ 
+		We may parametrize $\ell$ by $\ell(t) = t(0, 0, 1) + (1-t)(x, y, 0)$. Then $\ell$ intersects $S^2$ precisely when $(1 - t)^2x^2 + (1 - t)^2y^2 + t^2 = 1$. Or in other words, we need $t$ to satisfy that $(1 - t)^2|z|^2 + t^2 = 1$.\retTwo
+		
+		This then rearranges to the quadratic equation $(1 + |z|^2)t^2 - 2|z|^2t + (|z|^2 - 1) = 0$. And by applying the quadratic formula we see that $\ell(t)$ intercepts $S^2$ when:
+
+		{\centering$t = \frac{2|z|^2 \pm \sqrt{4|z|^4 - 4(1 + |z|^2)(|z|^2 - 1)}}{2(1 + |z|^2)} = \frac{|z|^2 \pm \sqrt{|z|^4 - (|z|^4 - 1)}}{1 + |z|^2} = \frac{|z|^2 \pm 1}{|z|^2 + 1}$\retTwo\par}
+
+		This shows that $\ell$ crosses $S^2$ exactly twice. Now when $t = 1$, we just have that $\ell(t) = (0, 0, 1)$. So, the fabled other point on $S^2$ which $\ell$ crosses and which we actually care about is:
+
+		{\centering\begin{tabular}{l}
+			$\ell(\frac{|z|^2 - 1}{|z|^2 + 1}) = \left((1 - \frac{|z|^2 - 1}{|z|^2 + 1})^2 x,\gap (1 - \frac{|z|^2 - 1}{|z|^2 + 1})^2 y,\gap \frac{|z|^2 - 1}{|z|^2 + 1}\right)$\\ [9pt]
+			$\phantom{\ell(\frac{|z|^2 - 1}{|z|^2 + 1})} = \left(\frac{|z|^2 + 1 - (|z|^2 - 1)}{|z|^2 + 1}x,\gap \frac{|z|^2 + 1 - (|z|^2 - 1)}{|z|^2 + 1}y,\gap \frac{|z|^2 - 1}{|z|^2 + 1} \right) = (\frac{2x}{|z|^2 + 1}, \gap \frac{2y}{|z|^2 + 1}, \gap \frac{|z|^2 - 1}{|z|^2 + 1})$
+		\end{tabular} \retTwo\par}
+	\end{myIndent}
+
+	Also, if $(c_1, c_2, c_3) \in S^2$, with $(c_1, c_2, c_3) \neq (0, 0, 1)$, we can go in reverse and find a unique point $z = x + iy = (x, y, 0)$ in the $xy$-plane which the line $\ell$ passing through $(0, 0, 1)$ and $(c_1, c_2, c_3)$ intercepts.
+
+	\begin{myIndent}\pracTwo
+		Proof:\\ 
+		Parametrize $\ell$ by $\ell(t) = t(0,0,1) + (1-t)(c_1, c_2, c_3)$. Then $\ell$ intercepts the\\ $xy$-plane precisely when $t + (1-t)c_3 = 0$. Or in other words, when $t = \frac{-c_3}{1 - c_3}$.\retTwo
+
+		In turn, the point at which $\ell$ intercepts the $xy$-plane is:
+
+		{\centering $((1 + \frac{c_3}{1 - c_3})c_1, \gap (1 + \frac{c_3}{1 - c_3})c_2, \gap 0) = (1 + \frac{c_3}{1 - c_3})c_1 + i(1 + \frac{c_3}{1 - c_3})c_2 = \frac{c_1 + ic_2}{1-c_3}$.\retTwo\par}
+	\end{myIndent}
+
+	Hence, we have shown that there is a bijective correspondance between $\mathbb{C}$ and\\ $S^2 - \{0, 0, 1\}$. And now the big observation to make is that for any sequence in $\mathbb{C}$\\ converging to $\infty$ in $\mathbb{C}_\infty$, we have that the associated sequence in $S^2 - \{(0,0,1)\}$\\ converges to $(0, 0, 1)$.
+
+	\begin{myIndent}\pracTwo
+		Why?\\
+		Convergence of a sequence $(z_n)_{n \in \mathbb{N}}$ to $\infty$ in $\mathbb{C}_\infty$ is equivalent to saying that $z_n$ is eventually not in every compact set $K \subseteq \mathbb{C}$. And by the Heine-Borel theorem, this is equivalent to saying that $|z_n| \to \infty$ (in $\overline{\mathbb{R}}$) as $n \to \infty$.\retTwo
+
+		But now note that we have as $|z_n| \to \infty$  that:
+		\begin{itemize}
+			\item $\frac{|z_n|^2 - 1}{|z_n|^2 + 1} \to 1$,\\ [-6pt]
+			\item $\frac{2|z_n|}{|z_n|^2 + 1} \to \lim\limits_{t \to \infty} \frac{t}{t^2 + 1} = \lim\limits_{t \to \infty} \frac{1}{2t} = 0$\retTwo
+		\end{itemize}
+
+		And since $|\rea{z}| \leq |z|$ and $|\ima{z}| \leq |z|$, we thus know that:
+
+		{\centering$(\frac{2\rea{z_n}}{|z_n|^2 + 1}, \gap \frac{2\ima{z_n}}{|z_n|^2 + 1}, \gap \frac{|z_n|^2 - 1}{|z_n|^2 + 1}) \to (0, 0, 1)$ as $n \to \infty$.\retTwo\par}
+	\end{myIndent}
+
+	So by mapping $\infty$ to $(0, 0, 1)$, we can now say we've constructed a bijection from $\mathbb{C}_\infty$ to $S^2$. To finish constructing our metric on $\mathbb{C}_\infty$, just define $d(z_1, z_2)$ to be the Euclidean metric evaluated between $z_1$ and $z_2$'s corresponding points on $S^2$.\newpage
+
+	Note that if $\mathbf{x}$ and $\mathbf{y}$ are two points on $S^2$, then $\|\mathbf{x} - \mathbf{y}\|_2 = \left(2 - 2(\mathbf{x} \cdot \mathbf{y})\right)^{1/2}$. This is\\ because $\|\mathbf{x} - \mathbf{y}\|_2^2 = \|\mathbf{x}\|_2^2 - 2(\mathbf{x} \cdot \mathbf{y}) + \|\mathbf{y}\|_2^2$. And since $\mathbf{x}, \mathbf{y} \in S^2$, we know that\\ $\|\mathbf{x}\|_2^2 = \|\mathbf{y}\|_2^2 = 1$.\retTwo
+
+	This now leads us to the following formulas for $d(z_1, z_2)$ where $z_1, z_2 \in \mathbb{C}_\infty$.
+	\hThree\begin{itemize}
+		\item Suppose $z_1 = x_1 + iy_1 \neq \infty$ and $z_2 = x_2 + iy_2 \neq \infty$. Then:
+		
+		{\centering\begin{tabular}{l}
+			$d(z_1, z_2) = \left(2 - \frac{2\left(4x_1x_2 + 4y_1y_2 + (|z_1|^2 - 1)(|z_2|^2 - 1)\right)}{(|z_1|^2 + 1)(|z_2|^2 + 1)}\right)^{1/2}$\\ [8pt]
+
+			$\phantom{d(z_1, z_2)} =  \left(\frac{2\left((|z_1|^2 + 1)(|z_2|^2 + 1) - 4x_1x_2 - 4y_1y_2 - (|z_1|^2 - 1)(|z_2|^2 - 1)\right)}{(|z_1|^2 + 1)(|z_2|^2 + 1)}\right)^{1/2}$\\ [8pt]
+
+			$\phantom{d(z_1, z_2)} =  \left(\frac{2\left(|z_1|^2|z_2|^2 + |z_1|^2 + |z_2|^2 + 1 - 4x_1x_2 - 4y_1y_2 - |z_1|^2|z_2|^2 + |z_1|^2 + |z_2|^2 - 1\right)}{(|z_1|^2 + 1)(|z_2|^2 + 1)}\right)^{1/2}$\\ [8pt]
+
+			$\phantom{d(z_1, z_2)} =  \left(\frac{2\left(2|z_1|^2 + 2|z_2|^2 - 4x_1x_2 - 4y_1y_2\right)}{(|z_1|^2 + 1)(|z_2|^2 + 1)}\right)^{1/2}$\\ [8pt]
+
+			$\phantom{d(z_1, z_2)} =  \frac{2}{((|z_1|^2 + 1)(|z_2|^2 + 1))^{1/2}} \cdot \left(\|(x_1, y_1)\|_2^2 - 2((x_1, y_1) \cdot (x_2, y_2)) + \|(x_2, y_2)\|_2^2\right)^{1/2}$\\ [8pt]
+
+			$\phantom{d(z_1, z_2)} =  \frac{2}{((|z_1|^2 + 1)(|z_2|^2 + 1))^{1/2}} \cdot \left(\|(x_1, y_1) - (x_2, y_2)\|_2^2\right)^{1/2} = \frac{2|z_1 - z_2|}{((|z_1|^2 + 1)(|z_2|^2 + 1))^{1/2}}$.\\ [8pt]
+		\end{tabular} \retTwo\par}
+
+		\item Meanwhile, suppose $z_1 \neq \infty$. Then:
+		
+		{\centering\begin{tabular}{l}
+			$d(z_1, \infty) = \left(2 - 2(0 + 0 + 1\frac{|z_1|^2 - 1}{|z_1|^2 + 1})\right)^{1/2} = \left(\frac{2|z_1|^2 + 2 - 2|z_1|^2 + 2}{|z_1|^2 + 1}\right)^{1/2} = \frac{2}{(|z_1|^2 + 1)^{1/2}}$.
+		\end{tabular} \retTwo\par}
+
+		\item And obviously, $d(\infty, \infty) = 0$.\retTwo
+	\end{itemize}
+
+	Due to how we constructed $d$, it's trivial that $d$ is a metric.
+	\begin{myIndent}\color{BrickRed}
+		In fact, even more generally suppose $X$ is a set, $(Y, \rho)$ is a metric space, and\\ $f: X \to Y$ is an injection. Then $d(x_1, x_2) = \rho(f(x_1), f(x_2))$ is a metric on $X$.
+		\begin{myIndent}\pracTwo
+			Why?\\
+			We know $d(x_1, x_2) = 0$ if and only if $x_1 = x_2$ because $f(x_1) = f(x_2)$ if and only if $x_1 = x_2$. Plus, it's clear since $\rho$ is symmetric and nonnegative that $d(x_1, x_2) = d(x_2, x_1)$ and $d(x_1, x_2) \geq 0$. Finally, the triangle inequality holds since:
+
+			{\centering \begin{tabular}{l}
+				$d(x_1 , x_2) = \rho(f(x_1), f(x_2))$\\ [4pt]
+				$\phantom{d(x_1 , x_2)} \leq \rho(f(x_1), f(x_3)) + \rho(f(x_3), f(x_2)) = d(x_1, x_3) + d(x_3, x_2)$.
+			\end{tabular}\retTwo\par}
+		\end{myIndent}
+	\end{myIndent}
+
+	What's less trivial is that $d$ generates the same topology as that which is already on $\mathbb{C}_\infty$.
+	\begin{myIndent}\pracTwo
+		Let $\mathcal{T}$ equal the typical one-point compactification topology on $\mathbb{C}_\infty$ and $\mathcal{T}^\prime$ equal the metric topology on $\mathbb{C}_\infty$ generated by $d$.\retTwo
+
+		\begin{itemize}
+			\item Firstly, fix any $z \in \mathbb{C}$. Then note that $d(z, z^\prime) \leq 2|z - z^\prime|$ for all $z^\prime \in \mathbb{C}$. Also\\ [1pt] $d(z, \infty) = \frac{2}{(|z|^2 + 1)^{1/2}} > 0$. Thus if $U \in \mathcal{T}^\prime$ is a $d$-ball of radius $\varepsilon$, there exists\\ [-1pt] a (Euclidean) open ball $V \in \mathcal{T}$ of radius less than $\min(\frac{2}{2\cdot (|z|^2 + 1)^{1/2}}, \sfrac{\varepsilon}{2})$ with\\ $x \in V \subseteq U \cap \mathbb{C} \subseteq U$.\newpage
+
+			\item Meanwhile, suppose $V \in \mathcal{T}$ is an open set containing $z$. Then by restricting $V$ to $\mathbb{C}$ we can assume $V \subseteq \mathbb{C}$. So, there is a (Euclidean) ball $B \subseteq \mathbb{C}$ of radius $\varepsilon > 0$ centered at $z$ which is contained in $V$.\retTwo
+
+		Next note that for any $z^\prime \in \mathbb{C}$
+		
+		{\centering\begin{tabular}{l}
+			$|z - z^\prime| = d(z, z^\prime)\left((|z|^2 + 1)(|z^\prime|^2 + 1)\right)^{1/2}$\\ [6pt]
+			$\phantom{|z - z^\prime|} \leq d(z, z^\prime) \sqrt{|z|^2 + 1} \cdot \left|(|z^\prime|^2 + 1)^{1/2} - (|z|^2 + 1)^{1/2}\right| + d(z, z^\prime)(|z|^2 + 1)$
+		\end{tabular}\retTwo\par}
+
+		Now if $f(t) = (t^2 + 1)^{1/2}$ then $f^\prime(t) = \frac{t}{\sqrt{t^2 + 1}}$. So $|f^\prime(t)| \leq 1$ and we can conclude by the mean value theorem that:
+
+		{\centering $\left|(|z^\prime|^2 + 1)^{1/2} - (|z|^2 + 1)^{1/2}\right| \leq 1 \cdot \left||z^\prime| - |z|\right| \leq |z - z^\prime|$ \retTwo\par}
+
+		Hence $|z - z^\prime| \leq d(z, z^\prime)|z - z^\prime|\sqrt{|z|^2 + 1} + d(z, z^\prime)(|z|^2 + 1)$. Or equivalently, we have that:
+
+		{\centering $(1 - d(z, z^\prime)\sqrt{|z|^2 + 1})|z - z^\prime| \leq d(z, z^\prime)(|z|^2 + 1)$.\retTwo\par}
+
+		Now importantly there exists $\delta_1 > 0$ such that if $d(z, z^\prime) < \delta_1$ is small enough, then since $|z|$ is fixed we will always have that $(1 - d(z, z^\prime)\sqrt{|z|^2 + 1}) > 0$. Hence, we can say that $|z - z^\prime| \leq \frac{d(z, z^\prime)(|z|^2 + 1)}{1 - d(z, z^\prime)\sqrt{|z|^2 + 1}}$. And finally, since $\frac{t}{1-t} \to 0$ as\\ [1pt] $t \to 0$, we can pick $\delta_2 \in (0, \delta_1)$ such that $|z - z^\prime| < \varepsilon$ when $d(z, z^\prime) < \delta_2$.\\ [2pt] And by shrinking $\delta_2$ enough we can also assume that $d(z, \infty) > \delta_2$.\retTwo
+
+		Thus, we have found an open ball $U \in \mathcal{T}^\prime$ with $d$-radius $\delta_2$ about $z$ such that\\ $z \in U \subseteq B \subseteq V$.
+		\end{itemize}
+
+		\mySepThree
+
+		What's left to show is firstly that for any $U \in \mathcal{T}$ containing $\infty$ there exists $V \in \mathcal{T}^\prime$ with $\infty \in V \subseteq U$, and secondly that for any $V \in \mathcal{T}^\prime$ containing $\infty$ there exists $U \in \mathcal{T}$ with $\infty \in U \subseteq V$.
+
+		\begin{itemize}
+			\item Pick any $U \in \mathcal{T}$ with $0 \in U$. Then there exists some $N > 0$ such that $z \in U$ for all $z \in \mathbb{C}$ with $|z| > N$. In turn, if $d(\infty, 2) < \frac{2}{1 + N}$ then we know that:
+			
+			{\centering$N + 1 < \frac{2}{d(\infty, z)} = \sqrt{|z|^2 + 1} \leq |z| + 1$\retTwo\par}
+
+			Hence, whenever $d(\infty, z) < \frac{2}{1 + N}$ we have that $|z| > N$ and hence $z \in U$. So, we've shown that there exists $V \in \mathcal{T}^\prime$ with $\infty \in V \subseteq U$.\retTwo
+
+			\item Meanwhile, pick any $V \in \mathcal{T}^\prime$ with $\infty \in V$. Then there exists $\varepsilon > 0$ such that $z \in V$ for all $z \in \mathbb{C}$ with $d(\infty, z) < \varepsilon$. And if $|z| > \sfrac{2}{\varepsilon}$, then we know that:
+			
+			{\centering $d(\infty, z) = \frac{2}{(|z|^2 + 1)^{1/2}} < \frac{2}{|z|} < \varepsilon$.\retTwo\par}
+
+			So, $U = \{z \in \mathbb{C} : |z| > \sfrac{2}{\varepsilon}\} \cup \{\infty\}$ is an open set in $\mathcal{T}$ with $\infty \in U \subseteq  V$.\retTwo
+		\end{itemize}
+
+		With that we've \textit{finally} proven that $\mathcal{T} = \mathcal{T}^\prime$. $\blacksquare$\retTwo
+
+		\begin{myIndent}\myComment
+			As a side note, it's now clear that our bijection from $\mathbb{C}_\infty$ to $S^2$ is continuous. And since $\mathbb{C}_\infty$ is compact and $S^2$ is Hausdorff, we also know that our bijection is a homeomorphism. Hence $\mathbb{C}_\infty$ is homeomorphic to $S^2$.\newpage
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\dispDate{9/29/2025}
+
+All homework problem's for math 220a will be coming from John Conway's book \textit{functions of one complex variable} (See \inLinkRap{bib citation 13}{item 13} in the bibliography).\retTwo
+
+\Hstatement\blab{Exercise I.6.4:} Let $\Lambda$ be a circle lying in $S^2$. Then (by definition of a circle) there is a unique plane\\ $P$ in $\mathbb{R}^3$ such that $P \cap S^2 = \Lambda$. So, take $P = \{(x_1, x_2, x_3) \in \mathbb{R}^3 : x_1\beta_1 + x_2\beta_2 + x_3\beta_3 = \ell\}$\\ where $(\beta_1, \beta_2, \beta_3)$ is a unit vector orthogonal to $P$ and $\ell \in \mathbb{R}$. Then show that if $\Lambda$ contains $(0, 0, 1)$, it's projection to $\mathbb{C}_\infty$ is a straight line, and meanwhile if $\Lambda$ doesn't contain $(0, 0, 1)$ then it's projection to $\mathbb{C}_\infty$ is another circle.
+
+\begin{myIndent}\HexOne
+	To start off, any point $z = x + iy \in \mathbb{C}$ corresponds to a point in $\Lambda$ iff:
+
+	{\centering $\frac{2x}{|z|^2 + 1}\beta_1 + \frac{2y}{|z|^2 + 1}\beta_2 + \frac{|z|^2 - 1}{|z|^2 + 1}\beta^3 = \ell$ \retTwo\par}
+
+	After some rearranging this becomes $2\beta_1 x + 2\beta_2 y + (x^2 + y^2 - 1)\beta_3 = \ell(x^2 + y^2 + 1)$. Or in other words $(\beta_3 - \ell)x^2 + 2\beta_1 x + (\beta_3 - \ell)y^2 + 2\beta_2 y = \ell + \beta_3$. And now we break off into two cases.
+
+	\begin{enumerate}
+		\item Suppose $\beta_3 = \ell$. Then we know that $0\beta_1 + 0\beta_2 + 1\beta_3 = \ell$. So $(0, 0, 1) \in \Lambda$. At the same time, all the square terms in our condition cancel and we are left with the requirement $2\beta_1 x + 2\beta_2 y = \ell + \beta_3$. This is the equation of a line. Hence, we've shown that the projection of $\Lambda$ onto $\mathbb{C}_\infty$ is a straight line unioned with the point at infinity.\retTwo
+		
+		\item Suppose $\beta_3 \neq \ell$. Then we know that $0\beta_1 + 0\beta_2 + 1\beta_3 \neq \ell$ and hence $(0, 0, 1) \notin \Lambda$. At the same time, we can now divide our equation from before by $\beta - \ell$ in order to get that $x^2 + 2\frac{\beta_1}{\beta_3 - \ell}x + y^2 + 2\frac{\beta_2}{\beta_3 - \ell}y = \frac{\ell + \beta_3}{\beta_3 - \ell}$. And by completing the square we have:
+		
+		{\centering $(x + \frac{\beta_1}{\beta_3 - \ell})^2 + (y + \frac{\beta_2}{\beta_3 - \ell})^2 = \frac{\beta_3 + \ell}{\beta_3 - \ell} + \frac{\beta_1^2 + \beta_2^2}{(\beta_3 - \ell)^2} = \frac{1 - \ell^2}{(\beta_3 - \ell)^2}$.\retTwo\par}
+
+		So, the projection of $\Lambda$ onto $\mathbb{C}_\infty$ is a circle of radius $\frac{\sqrt{1 - \ell^2}}{\beta_3 - \ell}$ centered at $\frac{-\beta_1}{\beta_3 - \ell} + i\frac{-\beta_2}{\beta_3 - \ell}$.
+
+		\begin{myIndent}\HexPPP
+			As a side note, let $\mathbf{b} = (b_1, b_2, b_3)$ and consider any $\mathbf{y} = (y_1, y_2, y_3) \in \Lambda$. Then note by the Cauchy Schwarts inequality that $\ell^2 = (\mathbf{b} \cdot \mathbf{y})^2 \leq \|\mathbf{b}\|^2 \|\mathbf{y}\|^2 = 1 \cdot 1 = 1$. Hence,\\ $\sqrt{1 - \ell^2}$ is a well defined real number.\retTwo
+		\end{myIndent}
+	\end{enumerate}
+\end{myIndent}
+
+\hTwo I'll continue with this class on \inLinkRap{math 220a lecture 2}{page \_\_\_}
+
+\mySepTwo
+
+\hypertarget{math 200a lecture 2}{\blect{Math 200a (lecture 2):}}\retTwo
+
+Given a group $G$ and $a \in G$, we denote the \udefine{order} of $a$ as $o(a) \coloneqq o(\langle a \rangle)$
+Now let $C_n$ be a cyclic group of order $n$. In other words, $C_n = \langle a \rangle$ where $o(a) = n$. What is $\Aut(C_n)$?\\ [-6pt]
+
+\begin{myIndent}\Hstatement
+	\blab{Set 1 problem 5:}
+	\begin{itemize}
+		\item[(a)] Suppose $\theta \in \Aut(C_n)$ and pick any $m \in \mathbb{Z}$ with $\theta(a) = a^m$. Then $\gcd(m, n) = 1$.
+		
+		\begin{myIndent}\HexOne
+			Since $\theta$ is a bijection, we know that $\theta(a^k)$ for each $k \in \{0, \ldots, n-1\}$ is distinct. But also since $\theta$ is a group homomorphism, we know that $\theta(a^0) = a^0 = 1$ and $\theta(a^k) = (\theta(a))^k = (a^m)^k$ for $k > 0$. Hence, we must have that $o(a^m) = n$.\\ [-1pt] But now recall also that $o(a^m) = \frac{o(a)}{\gcd(o(a), m)} = \frac{n}{\gcd(n, m)}$. So, we must have that\\ [-3pt] $\gcd(n, m) = 1$.\newpage
+		\end{myIndent}
+
+		\item[(b)] Suppose $m \in \mathbb{Z}$ satisfies that $\gcd(m, n) = 1$ and define $\theta_m(a): C_n \to C_n$ by\\ $\theta_m(a^k) = (a^k)^m$. Then $\theta \in \Aut(C_n)$.
+		
+		\begin{myIndent}\HexOne
+			To see that $\theta_m$ is a group homomorphism, just note that:
+			
+			{\centering\begin{tabular}{l}
+				$\theta_m(a^{k_1}a^{k_2}) = \theta_m(a^{k_1 + k_2})$\\
+				$\phantom{\theta_m(a^{k_1}a^{k_2})} = (a^{k_1 + k_2})^m = a^{m(k_1 + k_2)}$\\
+				$\phantom{\theta_m(a^{k_1}a^{k_2}) = (a^{k_1 + k_2})^m} = a^{mk_1 + mk_2} = (a^{k_1})^m (a^{k_2})^m = \theta_m(a^{k_1})\theta_m(a^{k_2})$
+			\end{tabular}\retTwo\par}
+
+			Meanwhile note that $o(a^m) = \frac{o(a)}{\gcd(o(a), m)} = \frac{n}{1} = n$.\retTwo
+			
+			Therefore, because $\theta_m(a^k) = (\theta_m(a))^k = (a^m)^k$ since $\theta_m$ is a group\\ homomorphism, we know by pigeonhole principle that $\theta_m$ is both injective\\ and surjective.\retTwo
+		\end{myIndent}
+
+		\item[(c)] The mapping $(\mathbb{Z}/n\mathbb{Z})^\times \to \Aut(C_n)$ is an isomorphism.
+		
+		\begin{myIndent}\HexOne
+			
+		\end{myIndent}
+	\end{itemize}
 \end{myIndent}
 
 
 
 
+
+
+
+
+
+
+
+
+
+\hypertarget{math 241a lecture 2}{}
+\hypertarget{math 220a lecture 2}{}
+\hypertarget{math 200a lecture 3}{}
 
 
 
@@ -8994,6 +10231,12 @@ Everything is cited in the order it shows up in the journal with the exception t
 	\item Lee, J. M. (2013). \textit{Introduction to smooth manifolds}. Springer.
 	
 	\item Big O notation. (2025, September 9). In \textit{Wikipedia}. https://en.wikipedia.org/w/index.php?title=Big\_O\_notation\&oldid=1310464597\#Little-o\_notation
+	
+	\item Zimmer, R. J. (1990). \textit{Essential Results of Functional Analysis}. University of Chicago Press.
+	
+	\item \hypertarget{bib citation 12}{Garrett}, P. (2014, April 23). \textit{Seminorms and locally convex spaces}. Retrieved September 26, 2025, from https://www-users.cse.umn.edu/\~garrett/m/fun/notes\_2012-13/07b\_seminorms.pdf
+	
+	\item \hypertarget{bib citation 13}{Conway}, J. B. (1978). \textit{Functions of One Complex Variable} (2nd ed.). Springer.
 \end{enumerate}
 \end{document}
 
@@ -9051,6 +10294,22 @@ Everything is cited in the order it shows up in the journal with the exception t
 % \end{itemize}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 % \blab{Orientations:}\\
@@ -9061,12 +10320,23 @@ Everything is cited in the order it shows up in the journal with the exception t
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
-
 
 % If $\mu$ is a signed or complex measure on $(X, \mathcal{M})$, we call $\mu$ decomposable if $(X, \mathcal{M}, |\mu|)$ is decomposable.
 % \begin{myIndent}\myComment
@@ -9100,3 +10370,32 @@ Everything is cited in the order it shows up in the journal with the exception t
 
 
 % \end{myIndent}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% \hTwo To finish off my lecture notes finally, here are a few standard constructions of seminormed topological vector spaces:
+% \begin{enumerate}
+% 	\item Let $X$ be a Hausdorff topological space and $\mathcalli{K}$ be a collection of compact sets covering $X$. Then for each $K \in \mathcalli{K}$ define $p_K(f) = \|f\chi_K\|_u$. Now each $p_K$ is easily checked to be a seminorm on $C(X)$. Also, if $f(x) \neq 0$ for some $x \in X$, then $p_{K}(f) \neq 0$ for any $K \in \mathcalli{K}$ containing $x$. So, this collection of seminorms is sufficient (thus making the topology Hausdorff).
+% 	\begin{myIndent}\exTwo
+% 		\ul{Proposition}: This topology is complete.
+% 		\begin{myIndent}\exThreeP
+% 			Proof:\\
+
+% 		\end{myIndent}
+% 	\end{myIndent}
+
+% \end{enumerate}
