@@ -261,12 +261,17 @@
 
 \newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
 
+\newcommand{\divides}{\mathop{\mid}}
+
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\supp}{\mathrm{supp}}
 \newcommand{\diam}{\mathrm{diam}}
 \newcommand{\conv}{\mathrm{conv}}
 \newcommand{\opnorm}{\mathrm{op}}
+\newcommand{\loc}{\mathrm{loc}}
 \newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\acc}{\mathrm{acc}}
+
 \newcommand{\mSpan}{\mathrm{span}}
 \newcommand{\Interior}{\mathop{\mathrm{Int}}}
 
@@ -285,6 +290,13 @@
 \newcommand{\radtimes}{\mathop{\widehat{\times}}}
 
 \newcommand{\mMod}[1]{\phantom{a}(\mathrel{\mathrm{mod}} #1)}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\act}{\mathrm{act}}
+\newcommand{\Fix}{\mathrm{Fix}}
+
+\DeclareMathOperator{\lcm}{lcm}
+
+
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -328,92 +340,285 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-
-\hTwo\dispDate{9/29/2025}
-
-All homework problem's for math 220a will be coming from John Conway's book \textit{functions of one complex variable} (See \inLinkRap{bib citation 13}{item 13} in the bibliography).\retTwo
-
-\Hstatement\blab{Exercise I.6.4:} Let $\Lambda$ be a circle lying in $S^2$. Then (by the definition of a circle) there is a unique\\ plane $P$ in $\mathbb{R}^3$ such that $P \cap S^2 = \Lambda$. So, take $P = \{(x_1, x_2, x_3) \in \mathbb{R}^3 : x_1\beta_1 + x_2\beta_2 + x_3\beta_3 = \ell\}$\\ where $(\beta_1, \beta_2, \beta_3)$ is a unit vector orthogonal to $P$ and $\ell \in \mathbb{R}$. Then show that if $\Lambda$ contains $(0, 0, 1)$, it's projection to $\mathbb{C}_\infty$ is a straight line, and meanwhile if $\Lambda$ doesn't contain $(0, 0, 1)$ then it's projection to $\mathbb{C}_\infty$ is another circle.
-
-\begin{myIndent}\HexOne
-	To start off, any point $z = x + iy \in \mathbb{C}$ corresponds to a point in $\Lambda$ iff:
-
-	{\centering $\frac{2x}{|z|^2 + 1}\beta_1 + \frac{2y}{|z|^2 + 1}\beta_2 + \frac{|z|^2 - 1}{|z|^2 + 1}\beta^3 = \ell$ \retTwo\par}
-
-	After some rearranging this becomes $2\beta_1 x + 2\beta_2 y + (x^2 + y^2 - 1)\beta_3 = \ell(x^2 + y^2 + 1)$. Or in other words $(\beta_3 - \ell)x^2 + 2\beta_1 x + (\beta_3 - \ell)y^2 + 2\beta_2 y = \ell + \beta_3$. And now we break off into two cases.
-
-	\begin{enumerate}
-		\item Suppose $\beta_3 = \ell$. Then we know that $0\beta_1 + 0\beta_2 + 1\beta_3 = \ell$. So $(0, 0, 1) \in \Lambda$. At the same time, all the square terms in our condition cancel and we are left with the requirement $2\beta_1 x + 2\beta_2 y = \ell + \beta_3$. This is the equation of a line. Hence, we've shown that the projection of $\Lambda$ onto $\mathbb{C}_\infty$ is a straight line unioned with the point at infinity.\retTwo
+\exTwo\ul{Lemma:}\\ [-20pt]
+\begin{itemize}
+	\item[(a)] For all $g^\prime \in G$ we have that $\Fix(g^\prime g (g^\prime)^{-1}) = g^\prime \cdot \Fix(g) \coloneqq \{g^\prime \cdot x \in X : g \cdot x = x\}$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:
 		
-		\item Suppose $\beta_3 \neq \ell$. Then we know that $0\beta_1 + 0\beta_2 + 1\beta_3 \neq \ell$ and hence $(0, 0, 1) \notin \Lambda$. At the same time, we can now divide our equation from before by $\beta - \ell$ in order to get that $x^2 + 2\frac{\beta_1}{\beta_3 - \ell}x + y^2 + 2\frac{\beta_2}{\beta_3 - \ell}y = \frac{\ell + \beta_3}{\beta_3 - \ell}$. And by completing the square we have:
-		
-		{\centering $(x + \frac{\beta_1}{\beta_3 - \ell})^2 + (y + \frac{\beta_2}{\beta_3 - \ell})^2 = \frac{\beta_3 + \ell}{\beta_3 - \ell} + \frac{\beta_1^2 + \beta_2^2}{(\beta_3 - \ell)^2} = \frac{1 - \ell^2}{(\beta_3 - \ell)^2}$.\retTwo\par}
+		{\centering\begin{tabular}{l}
+			$x \in \Fix(g^\prime g (g^\prime)^{-1}) \Longleftrightarrow (g^\prime g (g^\prime)^{-1}) \cdot x = x$\\ [3pt]
+			$\phantom{x \in \Fix(g^\prime g (g^\prime)^{-1})} \Longleftrightarrow g \cdot ((g^\prime)^{-1} \cdot x) = (g^\prime)^{-1} \cdot x$\\ [3pt]
+			$\phantom{x \in \Fix(g^\prime g (g^\prime)^{-1})} \Longleftrightarrow (g^\prime)^{-1} \cdot x \in \Fix(g) \Longleftrightarrow x \in g^\prime \cdot \Fix(g)$.
+		\end{tabular} \retTwo\par}
+	\end{myIndent}
 
-		So, the projection of $\Lambda$ onto $\mathbb{C}_\infty$ is a circle of radius $\frac{\sqrt{1 - \ell^2}}{\beta_3 - \ell}$ centered at $\frac{-\beta_1}{\beta_3 - \ell} + i\frac{-\beta_2}{\beta_3 - \ell}$.
+	\item[(b)] For all $g \in G$ we have that $G_{g \cdot x} = gG_xg^{-1}$
+	
+	\begin{myIndent}\exThreeP
+		Proof:
 
-		\begin{myIndent}\HexPPP
-			As a side note, let $\mathbf{b} = (b_1, b_2, b_3)$ and consider any $\mathbf{y} = (y_1, y_2, y_3) \in \Lambda$. Then note by the Cauchy Schwarts inequality that $\ell^2 = (\mathbf{b} \cdot \mathbf{y})^2 \leq \|\mathbf{b}\|^2 \|\mathbf{y}\|^2 = 1 \cdot 1 = 1$. Hence,\\ $\sqrt{1 - \ell^2}$ is a well defined real number.\retTwo
-		\end{myIndent}
-	\end{enumerate}
+		{\centering\begin{tabular}{l}
+			$g^\prime \in G_{g \cdot x} \Longleftrightarrow g^\prime \cdot (g \cdot x) = g \cdot x$\\ [3pt]
+			$\phantom{g^\prime \in G_{g \cdot x}} \Longleftrightarrow (g^{-1}g^\prime g) \cdot x = x \Longleftrightarrow g^{-1}g^\prime g \in G_x \Longleftrightarrow g^\prime \in gG_xg^{-1}$. $\blacksquare$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+\end{itemize}
+
+\ul{Corollary:} Suppose $G \curvearrowright X$ and $|X| < \infty$. Then $g \mapsto |\Fix(g)|$ is a class function,\\ meaning that $|\Fix(g^\prime g (g^\prime)^{-1})| = |\Fix(g)|$ (or in other words $|\Fix(g)|$ is constant on\\ any given conjugate classes).
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$|\Fix(g^\prime g (g^\prime)^{-1})| = |g^\prime \cdot \Fix(g)|$ by the last lemma. And since $x \mapsto g^\prime \cdot x$ is an element\\ of $S_X$, we know that $|g^\prime \cdot \Fix(g)| = |\Fix(g)|$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\hTwo I'll continue with this class on \inLinkRap{math 220a lecture 2}{page \_\_\_}
+\hTwo The \udefine{$G$-orbit} of $x \in X$ is the set of all points in $X$ that are \udefine{$G$-similar} to $x$. Or to put into other words, we define $G \cdot x \coloneqq \{g \cdot x \in X : g \in G\}$ and say that $x^\prime$ is $G$-similar to $x$ if $x^\prime = g \cdot x \in G \cdot x$ for some $g \in G$. Also, in that case we denote $x^\prime \sim x$.\retTwo
 
-\mySepTwo
-
-\blect{Math 200a (lecture 2):}\retTwo
-
-Given a group $G$ and $a \in G$, we denote the \udefine{order} of $a$ as $o(a) \coloneqq o(\langle a \rangle)$
-Now let $C_n$ be a cyclic group of order $n$. In other words, $C_n = \langle a \rangle$ where $o(a) = n$. What is $\Aut(C_n)$?\\ [-6pt]
-
-\begin{myIndent}\Hstatement
-	\blab{Set 1 problem 5:}
+\exTwo\ul{Lemma:} $\sim$ is an equivalence relation.
+\begin{myIndent}\exThreeP
+	Proof:\\ [-20pt]
 	\begin{itemize}
-		\item[(a)] Suppose $\theta \in \Aut(C_n)$ and pick any $m \in \mathbb{Z}$ with $\theta(a) = a^m$. Then $\gcd(m, n) = 1$.
-		
-		\begin{myIndent}\HexOne
-			Since $\theta$ is a bijection, we know that $\theta(a^k)$ for each $k \in \{0, \ldots, n-1\}$ is distinct. But also since $\theta$ is a group homomorphism, we know that $\theta(a^0) = a^0 = 1$ and $\theta(a^k) = (\theta(a))^k = (a^m)^k$ for $k > 0$. Hence, we must have that $o(a^m) = n$.\\ [-1pt] But now recall also that $o(a^m) = \frac{o(a)}{\gcd(o(a), m)} = \frac{n}{\gcd(n, m)}$. So, we must have that\\ [-3pt] $\gcd(n, m) = 1$.\newpage
-		\end{myIndent}
-
-		\item[(b)] Suppose $m \in \mathbb{Z}$ satisfies that $\gcd(m, n) = 1$ and define $\theta_m(a): C_n \to C_n$ by\\ $\theta_m(a^k) = (a^k)^m$. Then $\theta \in \Aut(C_n)$.
-		
-		\begin{myIndent}\HexOne
-			To see that $\theta_m$ is a group homomorphism, just note that:
-			
-			{\centering\begin{tabular}{l}
-				$\theta_m(a^{k_1}a^{k_2}) = \theta_m(a^{k_1 + k_2})$\\
-				$\phantom{\theta_m(a^{k_1}a^{k_2})} = (a^{k_1 + k_2})^m = a^{m(k_1 + k_2)}$\\
-				$\phantom{\theta_m(a^{k_1}a^{k_2}) = (a^{k_1 + k_2})^m} = a^{mk_1 + mk_2} = (a^{k_1})^m (a^{k_2})^m = \theta_m(a^{k_1})\theta_m(a^{k_2})$
-			\end{tabular}\retTwo\par}
-
-			Meanwhile note that $o(a^m) = \frac{o(a)}{\gcd(o(a), m)} = \frac{n}{1} = n$.\retTwo
-			
-			Therefore, because $\theta_m(a^k) = (\theta_m(a))^k = (a^m)^k$ since $\theta_m$ is a group\\ homomorphism, we know by pigeonhole principle that $\theta_m$ is both injective\\ and surjective.\retTwo
-		\end{myIndent}
-
-		\item[(c)] The mapping $(\mathbb{Z}/n\mathbb{Z})^\times \to \Aut(C_n)$ is an isomorphism.
-		
-		\begin{myIndent}\HexOne
-			
-		\end{myIndent}
+		\item $x \sim x$ as $1_G \cdot x = x$.
+		\item $x \sim y \Longrightarrow y \sim x$ as $x = g \cdot y \Longrightarrow g^{-1} \cdot x = y$.
+		\item If $x \sim y$ and $y \sim z$ then let $g_1, g_2 \in G$ be such that $x = g_1 \cdot y$ and $y = g_2 \cdot z$. Then $x = (g_1g_2) \cdot z$. So $x \sim z$. $\blacksquare$\retTwo
 	\end{itemize}
 \end{myIndent}
 
+\hTwo It's now clear that the $G$-orbit of $x$: $G \cdot x$, is the equivalence class of $x$ with respect to $\sim$. Thus, we define $X/G \coloneqq \{G \cdot x : x \in X\}$. Also note that $X/G$ is a partition of $X$. As a result, we know that $|X| = \hspace{-0.8em}\sum\limits_{G \cdot x \in X/G}\hspace{-0.8em} |G \cdot x|$.\retTwo
 
+\exTwo\ul{Theorem (Orbit-stabilizer):} The map $G/G_x \to G \cdot x$ given by $gG_x \mapsto g \cdot x$ is a bijection. Hence $|G \cdot x| = [G : G_x]$ (where the latter is the number of left cosets of $G$ in $G_x$).
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We first show this map is well-defined. Suppose $g_1G_x = g_2G_x$. Then $g_2 = g_1h$ for some $g \in G_x$. And in turn $g_2 \cdot x = (g_1h) \cdot x = g_1 \cdot (h \cdot x) = g_1 \cdot x$.\retTwo
 
+	Next we show injectivity. Assume $g_1 \cdot x = g_2 \cdot x$. Then $g_2^{-1} \cdot (g_1 \cdot x) = x$. So $g_2^{-1}g_1 \in G_x$. Or in other words, $g_1G_x = g_2G_x$.\retTwo
 
+	Finally, surjectivity is obvious from the fact that $G \cdot x$ is the set of $y \in X$ such that there exists $g \in G$ with $g \cdot x = y$. $\blacksquare$\newpage
+\end{myIndent}
 
+\hTwo Note that $|G \cdot x| = 1$ iff $\forall g \in G,\gap g \cdot x = x$ iff $x \in \Fix(G)$ where:
 
+{\centering$\Fix(G) = X^G \coloneqq \{x \in X : \forall g \in G,\gap g \cdot x = x\}$.\retTwo\par}
 
+This leads to the equation:
+
+{\centering$|X| = \hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	G \cdot x \in X/G \\ |G \cdot x| = 1
+\end{smallmatrix}}\hspace{-0.8em} |G \cdot x| + 
+\hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	G \cdot x \in X/G \\ |G \cdot x| > 1
+\end{smallmatrix}}\hspace{-0.8em} |G \cdot x| = |\Fix(G)| + 
+\hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	G \cdot x \in X/G \\ |G \cdot x| > 1
+\end{smallmatrix}}\hspace{-0.8em} [G:G_x]$.\retTwo\par}
+
+\Hstatement\mySepTwo
+
+\hTwo I need to do the rest of the math 200a homework still. So I'm going to take a break from taking lecture notes to do the homework.\retTwo
+
+\Hstatement\blab{Set 1 Problem 3:} Find the automorphism group of the Cayley graph of $\mathbb{Z}$ with respect to $\{-1, +1\}$.
+
+\begin{myIndent}\HexOne
+	To start off, note that $\{n, m\}$ is an edge of $\Cay(\mathbb{Z}, \{-1, 1\})$ iff $n - m = \pm 1$. This yields the infinite graph which I've attempted to draw below.\retTwo
+
+	{\centering{\color{black}\raisebox{0em}{\tikz[scale=0.8,inner sep=4pt]{
+		\tikzstyle{myCir}=[circle, fill, thick, color=black];
+		\tikzstyle{myLine}=[thick, color=black];
+
+		\node[myCir, label=above:$0$] (0) at (0, 0) {};
+		\node[myCir, label=above:$1$] (1) at (2, 0) {} edge[myLine] (0);
+		\node[myCir, label=above:$2$] (2) at (4, 0) {} edge[myLine] (1);
+		\node[myCir, label=above:$3$] (3) at (6, 0) {} edge[myLine] (2);
+		\node[myCir, label=above:$-1$] (-1) at (-2, 0) {} edge[myLine] (0);
+		\node[myCir, label=above:$-2$] (-2) at (-4, 0) {} edge[myLine] (-1);
+		\node[myCir, label=above:$-3$] (-3) at (-6, 0) {} edge[myLine] (-2);
+
+		\node (+i) at (7.7, 0) {$\cdots$} edge[myLine] (3);
+		\node (-i) at (-7.7, 0) {$\cdots$} edge[myLine] (-3);
+	}}}\retTwo\par}
+
+	Now from this graph it is clear that reversing the graph is a symmetry. Specifically, define $\tau(n) = -n$. Then $\tau(n) - \tau(m) = -n - (-m) = m-n = -(n-m)$. Hence, $n-m =\pm 1$ iff $\tau(n) - \tau(m) = \mp 1$ and we thus know that $\tau$ preserves the edges of our graph and is thus a symmetry.\retTwo
+
+	Another obvious symmetry of our graph are index shifts. Specifically define $\sigma(n) = n + 1$. Then $\tau(n) - \tau(m) = n - m$ for all $n, m \in \mathbb{N}$ and it is thus obvious that $\tau$ preserves the edges of graph and is a symmetry.
+
+	\begin{myDindent}\HexPPP
+		I glossed over this point before but technically we also need to show $\sigma$ and $\tau$ are\\ bijections. To do this, just note that $\sigma^{-1}$ is given by $n \mapsto n-1$ and $\tau^{-1} = \tau$. So,\\ both maps are invertible.\retTwo
+	\end{myDindent}
+
+	Now we claim that every automorphism of $\Cay(\mathbb{Z}, \{-1, 1\})$ is some composition of $\tau$ and $\sigma$. To prove this, let $\theta$ be any arbitrary automorphism. We know that $\theta(0) = k$ for some $k \in \mathbb{Z}$. And in turn we have that $(\sigma^{-k} \circ \theta)(0) = 0$. Next note that $(\sigma^{-k} \circ \theta)(1)$ equals either $+1$ or $-1$. In the former case, we can trivially say that $\tau^0 \circ \sigma^{-k} \circ \theta$ fixes both $0$ and $1$. As for the latter case, since $\tau(0) = 0$ and $\tau(-1) = +1$, we can say that $\tau^{1} \circ \sigma^{-k} \circ \theta$ fixes both $0$ and $1$. Either way, this shows there exists a graph automorphism $\psi = \sigma^k \circ \tau^i$ (where $k \in \{\mathbb{Z}\}$ and $i \in \{0, 1\}$) such that $\psi^{-1} \circ \theta$ fixes both $0$ and $1$.\retTwo
+
+	Observation: If $\phi \in \Aut(\Cay(\mathbb{Z}, \{-1, 1\}))$ with $\phi(0) = 0$ and $\phi(1) = 1$, then $\phi = \myId$.
+	\begin{myIndent}\HexTwoP
+		To prove this, we do induction separately on the positive integers and then on the negative integers.
+		\begin{itemize}
+			\item Suppose $n \geq 1$ and we've already shown that $\phi(k) = k$ for all $0 \leq k \leq n$. Then since $\phi$ is a graph automorphism, we must have that $\phi(n + 1) = \phi(n) \pm 1$. But since $\phi$ is a bijection and we already know that $\phi(n-1) = n-1 =\phi(n) - 1$, this means we can only have that $\phi(n+1) = \phi(n) + 1 = n + 1$. By induction this means that $\phi(n) = n$ for all $n \geq 0$.\retTwo
+			
+			\item Next suppose $n \leq 0$ and we've shown for all $k \geq n$ that $\phi(k) = k$. Then like before we must have that $\phi(n - 1) = \phi(n) \pm 1 = n \pm 1$ since $\phi$ is a graph automorphism. But since $\phi$ is a bijection and we already know $\phi(n + 1) = n + 1$,\newpage we can only have $\phi(n - 1) = n - 1$. By induction this means that $\phi(n) = n$ for all $n \in \mathbb{Z}$.\retTwo
+		\end{itemize}
+	\end{myIndent}
+
+	Thus $\psi^{-1} \circ \theta = \myId$. Or in other words $\theta = \psi = \sigma^k \tau^i$ where $k \in \mathbb{Z}$ and $i \in \{0, 1\}$. This shows that $\Aut(\Cay(\mathbb{Z}, \{-1, 1\})) = \langle \sigma, \tau\rangle$.\retTwo
+
+	Now the homework sheet specifically tells us to list out all the elements of the group of automorphisms. To do this, we need to show that $\sigma^{k_1} \circ \tau^{i_1} \neq \sigma^{k_2} \circ \tau^{i_2}$ if either $k_1 \neq k_2$ or $i_1 \neq i_2$. 
+	\begin{myIndent}\HexTwoP
+		To start off, note that $\sigma^{k_1}$ and $\sigma^{k_2}$ are easily checked to not equal each other when\\ $k_1 \neq k_2$. We merely note that $\sigma^{k_1}(0) = k_1 \neq k_2 = \sigma^{k_2}(0)$.\retTwo
+		
+		Also, it is easy to see that $\langle \sigma \rangle = \{\sigma^k : k \in \mathbb{Z}\}$ is a cyclic subgroup of our collection of symmetries and that $\tau$ is not in that subgroup. After all the only $k \in \mathbb{Z}$ such that $\sigma^k(0) = \tau(0)$ is $k = 0$. However, $\sigma^0(1) = 1 \neq -1 = \tau(1)$. It now follows that $\langle \sigma \rangle$ and $\langle \sigma \rangle \tau$ are two disjoint cosets which partition our collection of symmetries.\retTwo
+
+		Finally, we need to show that if $k_1 \neq k_2$ then $\sigma^{k_1} \circ \tau \neq \sigma^{k_2} \circ \tau$. To do this, suppose $\sigma^{k_1} \circ \tau = \sigma^{k_2} \circ \tau$. Then by composing $\tau$ on the right side we get that $\sigma^{k_1} = \sigma^{k_2}$. And by prior work, we thus know that $k_1 = k_2$.\retTwo
+	\end{myIndent}
+
+	Thus $\Aut(\Cay(\mathbb{Z}, \{-1, 1\})) = \{\sigma^k \circ \tau^i : k \in \mathbb{Z} \text{ and } i \in \{0, 1\}\}$ and we know that the representation $\theta = \sigma^k \circ \tau^i$ is unique.\retTwo
+
+	As for showing how to compose elements note that:
+
+	{\centering $\tau \circ \sigma \circ \tau(n) = \tau \circ \sigma(-n) = \tau(-n + 1) = n - 1 = \sigma^{-1}(n)$.\retTwo\par}
+
+	And since conjugation is a group automorphism, we know that:
+	\begin{itemize}
+		\item $(\sigma^m \circ \tau) \circ \sigma^n = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) \circ \tau = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n \circ \tau = \sigma^m \circ \sigma^{-n} \circ \tau$\\ [3pt]
+		$\phantom{(\sigma^m \circ \tau) \circ \sigma^n = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) \circ \tau = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n \circ \tau} = \sigma^{m-n} \circ \tau$,\\
+
+		\item $(\sigma^m \circ \tau) \circ (\sigma^n \circ \tau) = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n = \sigma^m \circ \sigma^{-n} = \sigma^{m - n}$,\\
+
+		\item $\sigma^m \circ (\sigma^n \circ \tau) = \sigma^{m + n} \circ \tau$ and $\sigma^m \circ \sigma^n = \sigma^{m + n}$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\blab{Set 1 Problem 2:} Suppose $G$ is a finite group and that for every positive integer $n$:\\ [-16pt]
+
+{\center$|\{g \in G : g^n = e\}| \leq n$\\ [9pt]\par}
+
+(where $e$ is the identity element of $G$). Use the following steps to prove that $G$ is a cyclic group.
+
+\begin{enumerate}
+	\item[(a)] Prove that if there is an element of order $d$ in $G$, then there are exactly $\phi(d)$ elements of\\ order $d$ in $G$ where $\phi(d)$ is the Euler $\phi$-function {\color{BrickRed}(where as a reminder $\phi(d)$ equals the\\ number of integers between $1$ and $d$ inclusive which are coprime to $d$)}.
+	
+	\begin{myIndent}\HexOne
+		Suppose $g \in G$ with $o(g) = d$ and then consider the cyclic subgroup $\langle g \rangle \subseteq G$. We\\ [1pt] know that $o(g^k) = \frac{o(g)}{\gcd(o(g), k)} = \frac{d}{\gcd(d, k)} = d$ iff $\gcd(k, d) = 1$. So by considering $g^k$\\ for each $k \in \{1, \ldots, d\}$ with $\gcd(d, k) = d$ we get that there are at least $\phi(d)$\\ [3pt] distinct elements of $G$ with order $d$.\newpage
+
+		That said, all $g^k$ where $k \in \{0, \ldots, d - 1\}$ are distinct elements of $\{g \in G : g^d = e\}$. And since $|\{g \in G : g^d = e\}| \leq d$, this proves that $h \in G$ can satisfy that $h^d = e$ only if $h = g^k$ for some integer $k$. And also because $h^d$ equaling $e$ is a necessary condition for us to have $o(h) = d$, we know that the $\phi(d)$ elements of $G$ we found before are the only elements of $G$ with order $d$.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] For every positive number $d$, let $\psi(d)$ be the number of elements of $G$ that have order $d$. Show that $\psi(d) \leq \phi(d)$ and that $\psi(d) \neq 0$ implies that $d \divides |G|$.
+	
+	\begin{myIndent}\HexOne
+		We know that $\phi(d) \geq 1$ for all positive $d$ since $\gcd(1, d) = 1$. So, if $\psi(d) = 0$, then we trivially know that $\psi(d) \leq \phi(d)$. Meanwhile, if $\psi(d) > 0$ then we showed in part (a) that $\psi(d) = \phi(d)$. Hence in either case we have that $\psi(d) \leq \phi(d)$.\retTwo
+
+		Also, the fact that $d \divides |G|$ if $\psi(d) \neq 0$ is just a result of Lagrange's theorem (since the order of any subgroup of $G$ must divides $|G|$ and $\phi(d) \neq 0$ implies there is a cyclic subgroup of $G$ with order $d$).\retTwo
+	\end{myIndent}
+	
+	\item[(c)] Prove that $\psi(d) = \phi(d)$ if $d$ is a positive divisor of $|G|$. Deduce that $G$ is a cyclic group.
+	
+	\begin{myIndent}\HexOne
+		Let $n = |G|$ and note that $\sum_{d \divides n} \psi(d) = n$ since every element of $G$ has some order dividing $n$. At the same time, it is a somewhat well known result that $\sum_{d \divides n} \phi(d) = n$ for all $n \in \mathbb{N}$.
+		\begin{myIndent}\HexTwoP
+			I can't find a proof of this result anywhere in my notes so I guess I'll prove it here.\retTwo
+
+			Let $S = \{1, \ldots, n\}$ and define $S_d \coloneqq \{k \in S : \gcd(k, n) = d\}$ for each\\ $d$. Clearly, the $S_d$ form a partition of $S$ as we range over all the divisors\\ of $n$. Also note that there is a bijective correspondence between $S_d$ and\\ $E_{n/d} \coloneqq \{k \in \{1, \ldots, \frac{n}{d}\} : \gcd(k, \frac{n}{d}) = 1\}$.
+			\begin{myIndent}\HexPPP
+				Specifically note that $\gcd(m, n) = d \Longrightarrow \frac{m}{d}, \frac{n}{d} \in \mathbb{Z}$ with $\gcd(\frac{m}{d}, \frac{n}{d}) = 1$. And if we also have that $m \leq n$ then clearly $\frac{m}{d} \leq \frac{n}{d}$. So, $m \in S_d \Longrightarrow \frac{m}{d} \in E_{n/d}$. Meanwhile, if $\gcd(m, \frac{n}{d}) = 1$, then we know that $\gcd(dm, n) = d$. And also if $m \leq \frac{n}{d}$, then we know that $md \leq n$ Hence $m \in E_{n/d} \Longrightarrow dm \in S_d$. It now follows that the map $m \mapsto \frac{m}{d}$ is an invertible map from $S_d$ to $E_{n/d}$.\retTwo
+			\end{myIndent}
+
+			Now $|S_d| = |E_{n/d}| = \phi(\frac{n}{d})$. Also, we know that $n = |S| = \sum_{d \divides n} |S_d|$. So we have shown that $n = \sum_{d \divides n} \phi(\frac{n}{d}) = \sum_{d \divides n} \phi(d)$.\retTwo
+		\end{myIndent}
+
+		Since $\psi(d) \leq \phi(d)$ for all $d$, we thus have that:
+
+		{\centering $n = \sum_{d \divides n} \psi(d) \leq \sum_{d \divides n} \phi(d) = n$.\retTwo\par}
+
+		And this proves that $\sum_{d \divides n} \psi(d) = \sum_{d \divides n} \phi(d)$. Going even further, since\\ $0 \leq \psi(d) \leq \phi(d)$ for all $d$, the two sums can only equal if $\psi(d) = \phi(d)$ for all $d$ being summed over. In particular, we must have that $\phi(n) = \psi(n) \geq 1$. So, there is some element of order $n = |G|$ in $G$. This is equivalent to saying that $G$ is cyclic. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 1 Problem 1:} Suppose $G_1$ and $G_2$ are two groups. We say $G_1$ and $G_2$ are \udefine{algebraically\\ independent} if there are no proper normal subgroups $N_1$ and $N_2$ of $G_1$ and $G_2$ respectively\\ such that $G_1/N_1 \cong G_2/N_2$.\newpage
+\begin{enumerate}
+	\item[(a)] Prove that $G_1$ and $G_2$ are algebraically independent if and only if $G_1 \times G_2$ satisfies the following property: suppose $H$ is a subgroup of $G_1 \times G_2$ and the projection of $H$ to the $i$-th component is $G_i$ for $i = 1, 2$. Then $H = G_1 \times G_2$.
+	\begin{myIndent}\HexOne
+		\begin{myDindent}\exPPP
+			As a reminder, the group $G_1 \times G_2$ is just the cartesian product\\ of the two groups equipped with the law of composition that\\ $(g_1, g_2)(g_1^\prime, g_2^\prime) = (g_1g_1^\prime, g_2g_2^\prime)$.\retTwo
+		\end{myDindent}
+		
+		$(\Longrightarrow)$\\
+		Suppose $G_1$ and $G_2$ are algebraically independent and then consider any subgroup $H \subseteq G_1 \times G_2$ such that $\pi_1(H) = G_1$ and $\pi_2(H) = G_2$ (where $\pi_1$ and $\pi_2$ are the projection maps). Also let $e_1$ and $e_2$ denote the identity elements of $G_1$ and $G_2$ respectively.\retTwo
+
+		To start off, let $N_1 \coloneqq H \cap (\{e_1\} \times G_2)$ and $N_2 \coloneqq H \cap (G_1 \times \{e_2\})$. Then set $N_1^\prime \coloneqq \pi_2(N_1)$ and $N_2^\prime \coloneqq \pi_1(N_2)$. Both $N_1$ and $N_2$ are easily seen to be subgroups of $G_1 \times G_2$ as they are both intersections of groups. From there it also easy to see that $N_1^\prime$ and $N_2^\prime$ are subgroups of $G_2$ and $G_1$ respectively on account of being images of $N_2$ and $N_1$ via the homomorphisms $\pi_2$ and $\pi_1$. And of course there are obvious group isomorphisms showing that $N_1^\prime \cong N_1$ and $N_2^\prime \cong N_2$.
+		\retTwo
+
+		Our first big step is to show that $N_1^\prime$ and $N_2^\prime$ are normal subgroups (which in turn means that $G_1/N_2^\prime$ and $G_2/N_1^\prime$ are well-defined quotient groups).
+		\begin{myIndent}\HexTwoP
+			Suppose $g_1 \in N_2^\prime$ and let $g^\prime_1$ be any element of $G$. Since $\pi_1(H) = G_1$, we know\\ [2pt] there is some $g^\prime_2 \in G_2$ such that $(g^\prime_1, g^\prime_2) \in H$. And since $H$ is closed under\\ [2pt] inverses, we also know that $((g_1^\prime)^{-1}, (g_2^\prime)^{-1}) \in H$. Therefore $g^\prime_1 g (g^\prime_1)^{-1} \in N_2^\prime$\\ [2pt] since $(g^\prime_1 g (g^\prime_1)^{-1},  g^\prime_2 e_2 (g^\prime_2)^{-1}) = (g^\prime_1 g (g^\prime_1)^{-1}, e_2) \in H$. This proves that $N_2^\prime$ is\\ [2pt] normal in $G_1$. Analogous reasoning shows that $N_1^\prime$ is normal in $G_2$.\retTwo
+		\end{myIndent}
+
+		Next we define a group homomorphism $\phi$ from $G_1$ to $G_2/N_1^\prime$ as follows:
+
+		{\centering Given any $g_1 \in G$, let $\phi(g_1) = g_2N_1^\prime$ where $(g_1, g_2) \in H$.   \retTwo\par}
+
+		\begin{myIndent}\HexTwoP
+			To show this is well defined, suppose $g_2, g_2^\prime \in G_2$ both satisfy that\\ [1pt] $(g_1, g_2) \in H$ and $(g_1, g_2^\prime) \in H$. Then $(e_1, g_2^{-1}g_2^\prime) \in H$, which in turns\\ [1pt] means that $g_2^{-1}g_2^\prime \in N_1^\prime$. This is equivalent to saying that $g_2^{-1} g_2^\prime N_1^\prime = N_1^\prime$\\ which in turn is equivalent to saying that $g_2^\prime N_1^\prime = g_2 N_1^\prime$.\retTwo
+
+			Also, to see that $\phi$ is a homomorphism, suppose $(g_1, g_2), (g_1^\prime, g_2^\prime) \in H$.\\ [1pt] Then $(g_1g_1^\prime, g_2g_2^\prime) \in H$ and so $\phi(g_1g_1^\prime) = g_2g_2^\prime N_1^\prime$. But we also have that\\ [1pt] $\phi(g_1)\phi(g_2) = g_2N_1^\prime g_2^\prime N_1^\prime = g_2g_2^\prime N_1^\prime$. So $\phi(g_1g_2) = \phi(g_1)\phi(g_2)$.\retTwo
+		\end{myIndent}
+
+		Now we claim $\phi$ is surjective. After all, $\pi_2(H) = G_2$ so for all $g_2 \in G_2$ there exists\\ [1pt] $g_1 \in G_1$ such that $(g_1, g_2) \in H$. And then in turn $\phi(g_1) = g_2 N_1^\prime$. We also claim that\\ [1pt] the kernel of $\phi$ is $N_2^\prime$. After all, suppose $\phi(g_1) = N_1^\prime$. Then we know that there is some\\ [1pt] $g_2 \in G_2$ such that $(g_1, g_2) \in H$ and $(e_1, g_2) \in H$. But since $(e_1, g_2) \in H$, we also\\ [1pt] know that $(e_1, g_2^{-1}) \in H$, and thus $(e_1g_1, g_2^{-1}g_2) = (g_1, e_2) \in H$. So, $g_1 \in N_2^\prime$ and\\ [1pt] we've shown that $\ker(\phi) \subseteq N_2^\prime$. Going the other direction and showing $N_2^\prime \subseteq \ker(\phi)$\\ [1pt] is as simple as noting that $e_2N_1^\prime = N_1^\prime$.\newpage
+
+		By the first isomorphism theorem, we are thus able to conclude that $\frac{G}{N_2^\prime} \cong \frac{G}{N_1^\prime}$.\retTwo
+
+		{\color{red}I ran out of time so everything after this point is not being graded\dots\retTwo}
+
+		Since $G_1$ and $G_2$ are algebraically independent, this implies that $N_2^\prime = G_1$ and\\ $N_1^\prime = G_2$. But now since $G_1 \times \{e_2\}$ and $\{e_1\} \times G_2$ are both contained in $H$ are\\ easily seen to together generate all of $G_1 \times G_2$, we know that $H = G_1 \times G_2$.\\ This proves the property in the problem statement.\retTwo
+
+		$(\Longleftarrow)$\\
+		Suppose $G_1$ and $G_2$ are not algebraically independent and let $N_1$ and $N_2$ be\\ proper normal subgroups of $G_1$ and $G_2$ such that $G_1 / N_1 \cong G_2 / N_2$. Then let\\ $\phi : G_1 / N_1 \to G_2 / N_2$ be a group isomorphism.\retTwo
+
+		We define the set $H \coloneqq \{(g_1, g_2) \in G_1 \times G_2 : \phi(g_1N_1) = g_2N_2\}$ and claim that\\ this is a subgroup of $G_1 \times G_2$.
+		\begin{myIndent}\HexTwoP
+			\begin{itemize}
+				\item Note that $(e_1, e_2) \in H$ since we must have that $\phi(N_1) = N_2$.\\ [-6pt]
+				\item Suppose $(g_1, g_2) \in H$. Then $\phi(g_1 N_1) = g_2 N_2$. But note that:
+				
+				{\centering$N_2 = \phi(N_1) = \phi(g_1^{-1}g_1 N_1) = \phi(g_1^{-1} N_1)\phi(g_1 N_1) = \phi(g_1^{-1} N_1) g_2N_2$.\retTwo\par}
+
+				Therefore $\phi(g_1^{-1}N_1) = (g_2N_2)^{-1} = g_2^{-1} N_2$ and we've shown that\\ $(g_1, g_2) \in H$.\\ [-6pt]
+
+				\item Suppose $(g_1, g_2), (g_1^\prime, g_2^\prime) \in H$. Then we have that $\phi(g_1N_1) = g_2N_2$ and\\ $\phi(g_1^\prime N_1) = g_2^\prime N_2$. And since $\phi$ is a group homomorphism, we get that:
+				
+				{\centering $\phi(g_1g_1^\prime N_1) \phi(g_1 N_1)\phi(g_1^\prime N_1) = (g_2N_2)(g_2^\prime N_2) = g_2g_2^\prime N_2$. \retTwo\par}
+
+				This shows that $(g_1g_1^\prime, g_2g_2^\prime) \in H$.\retTwo
+			\end{itemize}
+		\end{myIndent}
+
+		Next observe that $\pi_1(H) = G_1$. After all, for any $g_1 \in G_1$ we can just pick\\ [1pt] $g_2 \in \phi(g_1 N)$ and then we'll know that $(g_1, g_2) \in H$. We also know that\\ [1pt] $\pi_2(H) = G_2$. After all, since $\phi$ is surjective, we know that for any $g_2 \in G_2$\\ [1pt] there exists a coset $g_1^\prime N_1 \in G_1/N_1$ such that $\phi(g_1^\prime N_1) = g_2N_2$. And now by\\ [1pt] just choosing any $g_1 \in g_1^\prime N_1$ we get that $(g_1, g_2) \in H$.\retTwo
+
+		That said, $H \neq G_1 \times G_2$. To see this, just pick any $g_1 \in N_1$ and $g_2 \notin N_2$.\\ Then $\phi(g_1 N_1) \neq g_2N_2$ and we have that $(g_1, g_2) \notin H$. $\blacksquare$\retTwo
+	\end{myIndent}
+	
+	\item[(b)] Suppose $G_1$ and $G_2$ are two finite groups and $\gcd(|G_1|, |G_2|) = 1$. Then $G_1$ and $G_2$ are algebraically independent.
+	
+	\begin{myIndent}\HexOne
+		Let $H$ be any subgroup of $G_1 \times G_2$ such that $\pi_1(H) = G_1$ and $\pi_2(H) = G_2$.\\ [2pt] Since $\pi_1$ and $\pi_2$ are group homomorphisms from $G_1 \times G_2$ to $G_1$ and $G_2$ respectively,\\ [2pt] we know that both $|G_1| = |\pi_1(H)|$and $|G_2| = |\pi_2(H)|$ divide $|H|$. Hence,\\ [2pt] $\lcm(|G_1|, |G_2|)$ divides $|H|$. Meanwhile, we have by Lagrange's theorem that\\ [2pt] $|H|$ divides $|G_1 \times G_2| = |G_1||G_2|$.\retTwo
+
+		But now because $\gcd(|G_1|, |G_2|) = 1$, we have that $\lcm(|G_1|, |G_2|) = |G_1||G_2|$ So, we must have $|H| = |G_1||G_2|$. And this proves that $H = G_1 \times G_2$.\newpage
+
+		By part (a), we can now conclude that $G_1$ and $G_2$ are algebraically independent. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\mySepTwo
+
+\hTwo
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 \hypertarget{Folland Proposition 10.1}{}
 \hypertarget{bib citation 12}{}
-\hypertarget{math 241a lecture 2}{}
-\hypertarget{math 200a lecture 2}{}
-\hypertarget{math 220a lecture 2}{}
+\hypertarget{math 241a lecture 3}{}
+\hypertarget{math 200a lecture 4}{}
+\hypertarget{math 220a lecture 3}{}
 \hypertarget{bib citation 13}{}
+\hypertarget{page idk 1 reference}{}
 
 \end{document}
 

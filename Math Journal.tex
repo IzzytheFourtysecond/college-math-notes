@@ -262,12 +262,16 @@
 
 \newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
 
+\newcommand{\divides}{\mathop{\mid}}
+
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\supp}{\mathrm{supp}}
 \newcommand{\diam}{\mathrm{diam}}
 \newcommand{\conv}{\mathrm{conv}}
 \newcommand{\opnorm}{\mathrm{op}}
+\newcommand{\loc}{\mathrm{loc}}
 \newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\acc}{\mathrm{acc}}
 \newcommand{\mSpan}{\mathrm{span}}
 \newcommand{\Interior}{\mathop{\mathrm{Int}}}
 
@@ -286,6 +290,14 @@
 \newcommand{\radtimes}{\mathop{\widehat{\times}}}
 
 \newcommand{\mMod}[1]{\phantom{a}(\mathrel{\mathrm{mod}} #1)}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\act}{\mathrm{act}}
+\newcommand{\Fix}{\mathrm{Fix}}
+
+\DeclareMathOperator{\lcm}{lcm}
+
+
+
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -5475,7 +5487,7 @@ If every point $b \in B$ has an open neighborhood $U \subseteq B$ that is evenly
 
 		Now define $f: X \to \mathbb{R}$ by $f(x) = \sum\limits_{i = 1}^n d(x, F_i)$.\retTwo
 
-		Since $f$ is a continuous map from a compact set, we know by the extreme value\\ theorem that $f$ attains a minimum $\alpha \in \mathbb{R}$. Also, since the $F_i$ cover $X$, we know that $f(x) \neq 0$ for any $x \in X$. Hence, $\alpha > 0$.\retTwo
+		Since $f$ is a continuous map from a compact set, we know by the extreme value\\ theorem that $f$ attains a minimum $\alpha \in \mathbb{R}$. Also, since the $U_i$ cover $X$ and each $x \in U_i$ is some $\varepsilon$ from $F_i$, we know $f(x) \neq 0$ for all $x \in X$. Hence, $\alpha > 0$.\retTwo
 
 		Now set $\delta = \sfrac{\alpha}{n}$. Then for any $E \subseteq X$ with $\diam(E) < \delta$, if we pick $x_0 \in E$ we have that $E \subseteq B_{\delta}(x_0)$. Importantly, since $f(x_0) > \alpha = n\delta$, we must have that $d(x, F_i) > \delta$ for some $i$. It follows then that $E \subseteq U_i$. This proves that $\delta$ works as a Lebesgue number. $\blacksquare$\retTwo
 	\end{myIndent}
@@ -5786,7 +5798,7 @@ Now due to my patchy background, I'm only sorta familiar with how topological co
 			If $X$ is path connected, consider any $y_1, y_2 \in f(X)$. Then $\exists x_1, x_2 \in X$\\ with $f(x_i) = y_i$ for $i = 1,2$, as well as a path $g: [0, 1] \to X$ going from $x_1$ to $x_2$. It follows that $f \circ g$ is a path going from $y_1$ to $y_2$ in $f(X)$. $\blacksquare$\retTwo
 		\end{myIndent}
 
-		\item If $\{E_\alpha\}_{\alpha \in A}$ is a collection of path connected sets with nonempty intersection, then $E \coloneqq \bigcup_{\alpha \in A}E_\alpha$ is connected.
+		\item If $\{E_\alpha\}_{\alpha \in A}$ is a collection of path connected sets with nonempty intersection, then $E \coloneqq \bigcup_{\alpha \in A}E_\alpha$ is path connected.
 		\begin{myIndent}\pracTwo
 			Proof:\\
 			Consider any $x, y \in E$, and let $z \in \bigcap_{\alpha \in A}E_\alpha$. Then there is path contained in one of the $E_\alpha$ going from $x$ to $z$, and there is another path in another $E_\alpha$\\ going from $z$ to $y$. Combining those paths gives us a path from $x$ to $y$. $\blacksquare$\retTwo
@@ -5835,7 +5847,7 @@ Now due to my patchy background, I'm only sorta familiar with how topological co
 		\item If $X$ is locally connected, then every connected component of $X$ is open.
 		\begin{myIndent}\pracTwo
 			Proof:\\
-			Let $E$ be a connected component of $X$. Then for all $y \in E$, there exists a\\ connected open set $U_y$ containing $y$. And since $E$ is the maximal connected set containing $y$, we have that $U_y \subseteq E$. Hence, $E = \bigcup_{y \in E}U_y$ is open. $\blacksquare$\retTwo
+			Let $E$ be a connected component of $X$. Then for all $y \in E$, there exists a\\ connected open set $U_y$ containing $y$. And since $E$ is the maximal connected set containing $y$, we have that $E = \bigcup_{y \in E}U_y$ is open. $\blacksquare$\retTwo
 		\end{myIndent}
 
 		\item By identical reasoning to the last bullet point, if $X$ is locally path connected, then every path component of $X$ is open.
@@ -7855,7 +7867,7 @@ Also note that if $\mu$ is a complex measure, then by expressing $\mu = \mu_1 - 
 
 \begin{myIndent}\exThreeP
 	Proof:\\
-	If $f \in \mathcalli{S}$ (where $\mathcalli{S}$ is the collection of Schwarts functions), then $f^\vee \in \mathcalli{S}$. So by the Fourier inversion theorem, we have that:
+	If $f \in \mathcalli{S}$ (where $\mathcalli{S}$ is the collection of Schwartz functions), then $f^\vee \in \mathcalli{S}$. So by the Fourier inversion theorem, we have that:
 
 	{\centering\begin{tabular}{l}
 		$\int f \df \mu_k = \int (\int f^{\vee}(x)e^{-2\pi i \xi \cdot x} \df x)\df \mu_k(\xi)$\\ [6pt]
@@ -9728,28 +9740,19 @@ So, we've proven that a topological vector space is locally convex if and only i
 		The forward direction is trivial. Meanwhile, to show the backwards direction, consider any neighborhood $N$ of $0$ in $\mathcalli{X}$. Then we know from earlier that there is a balanced open set $U \subseteq \mathcalli{X}$ such that $0 \in U \subseteq N$. Also, by the hypothesis of our proposition we know there exists $r \in K$ such that $B \subseteq rU$. Plus, we know that $rU = |r|U$ since $U$ is balanced. Hence, without loss of generality we can say $r$ is real and nonnegative. Finally, we know $B \subseteq sU$ for all $s \in K$ with $|s| \geq r$ (since $U$ is balanced). And since $U \subseteq N$, we in turn know that $B \subseteq sN$ for all $s \in K$ with $|s| \geq r$. $\blacksquare$\retTwo
 	\end{myIndent}
 
-	\hThree Now a question one may ask is whether this definition of boundedness is compatible with our definition of boundedness on metric spaces. Unfortunately, the answer is generally no. For example, consider $\mathbb{C}$ as a complex vector space and then equip $\mathbb{C}$ with the metric $\rho(z_1, z_2) \coloneqq \min(|z_1 - z_2|, 1)$.
+	\hThree Now a question one may ask is whether this definition of boundedness is compatible with our definition of boundedness on metric spaces. Unfortunately, the answer is generally no. For example, consider $\mathbb{R}$ as a real vector space and then equip $\mathbb{R}$ with the metric $\rho(z_1, z_2) \coloneqq |\arctan(x_1) - \arctan(x_2)|$.
 
 	\begin{myIndent}\fontsize{11}{13}\color{Orange}
 		Sanity check:\\
-		Note that $\rho$ is in fact a metric. After all, clearly $\rho(z_1, z_2) = 0$ iff $|z_1 - z_2| = 0$ and the latter happens iff $z_1 = z_2$. And otherwise we have that $\rho(z_1, z_2) > 0$. Also note that clearly $\rho(z_1, z_2) = \rho(z_2, z_1)$. Finally, suppose $z_1, z_2, z_3 \in \mathbb{C}$. If $|z_1 - z_2| + |z_2 - z_3| \leq 1$, then we must have that $|z_1 - z_1| \leq 1$ and $|z_2 - z_3| \leq 1$. Hence:
-
-		{\centering $\min(|z_1 - z_2| + |z_2 - z_3|, 1) = |z_1 - z_2| + |z_2 - z_3| = \rho(z_1, z_2) + \rho(z_2, z_3)$. \retTwo\par}
-
-		On the other hand, if $|z_1 - z_2| + |z_2 - z_3| > 1$, then we must have that:
-		
-		{\centering\begin{tabular}{l}
-			$1 \leq \min(|z_1 - z_2| + |z_2 - z_3|, |z_1 - z_2| + 1, |z_2 - z_3| + 1, 2)$\\ [2pt]
-			
-			$\phantom{aaaaaaaaaaaaaaaaa} \leq \min(|z_1 - z_2|, 1) + \min(|z_2 - z_3|, 1) = \rho(z_1, z_2) + \rho(z_2, z_3)$
-		\end{tabular}\retTwo\par}
-
-		Either way this proves the triangle inequality since:
-		
-		{\centering$\rho(z_1, z_3) = \min(|z_1 - z_3|, 1) \leq \min(|z_1 - z_2| + |z_2 - z_3|, 1) \leq \rho(z_1, z_2) + \rho(z_2, z_3)$.\retTwo\par}
+		Note that $\rho$ is in fact a metric. After all, $\arctan$ is an injective function. So\\ $\rho(x_1, x_2) = \arctan(x_2) - \arctan(x_1) = 0$ iff $x_1 = x_2$. And if $x_1 \neq x_2$ we have that\\ $\rho(x_1, x_2) > 0$. Also note that clearly $\rho(z_1, z_2) = \rho(z_2, z_1)$. Finally, suppose $x, y, z \in \mathbb{R}$.\\ Then $|\arctan(x) - \arctan(y)| \leq |\arctan(x) - \arctan(z)| + |\arctan(y) - \arctan(z)|$.\\ This shows that triangle inequality is fulfilled.\retTwo
 	\end{myIndent}
-	
-	Then it is easy to see that the entire space $\mathbb{C}$ is bounded with respect to $\rho$ according to the metric space definition of boundedness. Also, it is easy to see that $\rho$ generates the same topology on $\mathbb{C}$ as the Euclidean metric. Hence, $(\mathbb{C}, \rho)$ is a complex topological vector space. That said, if $B$ is the open unit ball about $0$, then clearly $B$ is balanced and contains $0$ but there does not exist any $r \in \mathbb{C}$ such that $\mathbb{C} \subseteq rB$. So $\mathbb{C}$ is not von Neumann bounded in the topology induced by $\rho$.\retTwo
+
+	Then it is easy to see that the entire space $\mathbb{R}$ is bounded with respect to $\rho$ according to the metric space definition of boundedness. Also, it is easy to see that $\rho$ generates the same topology on $\mathbb{R}$ as the Euclidean metric. Hence, $(\mathbb{R}, \rho)$ is a real topological vector space. That said, if $B$ is the Euclidean open unit ball about $0$, then clearly $B$ is balanced and contains $0$ but there does not exist any $r \in \mathbb{C}$ such that $\mathbb{R} \subseteq rB$. So $\mathbb{R}$ is not von Neumann bounded in the topology induced by $\rho$.
+	\begin{myIndent}\fontsize{11}{13}\color{BrickRed}
+		Note from 10/3/2025: I originally had a different counter example here but\\ I realized it was wrong and replaced it.\retTwo
+
+		I originally wrote $\rho(z_1, z_2) = \min(|z_1, z_2|, 1)$. The issue with this metric is that it makes the closed Euclidean unit ball open with respect to $\rho$. So $\rho$ doesn't generate the same topology as the Euclidean metric. Also, it's easy to check $\{z \in \mathbb{C} : |z| \leq \frac{1}{2}\}$ is not open even with respect to $\rho$. So $\rho$ doesn't even define a topological vector space.\retTwo
+	\end{myIndent}
 
 	At the very least however, if $\mathcalli{X}$ is a normed $K$-vector space (which automatically makes $\mathcalli{X}$ a topological vector space), then the metric space definition of being bounded according to the norm $\|\cdot\|$ is equivalent to being von Neumann bounded.\\ [-6pt]
 
@@ -9847,7 +9850,7 @@ Given a family of seminorms $\{p_\alpha\}_{\alpha \in A}$ on $\mathcalli{X}$, we
 	\end{myIndent}
 \end{myIndent}
 
-\hTwo There are a few more things I'd like to take notes on from this lecture. However, it's now 9/28/2025 and I need to make sure I have my notes done for my other math classes. So I'll come back to my functional analysis notes later on \inLinkRap{math 241a lecture 2}{page \_\_\_}.
+\hTwo There are a few more things I'd like to take notes on from this lecture. However, it's now 9/28/2025 and I need to make sure I have my notes done for my other math classes. So I'll come back to my functional analysis notes later on \inLinkRap{math 241a lecture 2}{page 251}.
 
 \mySepTwo
 
@@ -10041,6 +10044,8 @@ Let $\mathbb{C}_\infty = \mathbb{C} \cup \{\infty\}$ denote the one-point compac
 				$d(x_1 , x_2) = \rho(f(x_1), f(x_2))$\\ [4pt]
 				$\phantom{d(x_1 , x_2)} \leq \rho(f(x_1), f(x_3)) + \rho(f(x_3), f(x_2)) = d(x_1, x_3) + d(x_3, x_2)$.
 			\end{tabular}\retTwo\par}
+
+			\HexOne(Since the grader for \blab{Exercise II.1.7} didn't see the last page: another way you can see that the stereographic projection is injective is that we can literally calculate using our prior formulas that $d(z_1, z_2) \neq 0$ unless $z_1 = z_2$.)\retTwo
 		\end{myIndent}
 	\end{myIndent}
 
@@ -10051,12 +10056,13 @@ Let $\mathbb{C}_\infty = \mathbb{C} \cup \{\infty\}$ denote the one-point compac
 		\begin{itemize}
 			\item Firstly, fix any $z \in \mathbb{C}$. Then note that $d(z, z^\prime) \leq 2|z - z^\prime|$ for all $z^\prime \in \mathbb{C}$. Also\\ [1pt] $d(z, \infty) = \frac{2}{(|z|^2 + 1)^{1/2}} > 0$. Thus if $U \in \mathcal{T}^\prime$ is a $d$-ball of radius $\varepsilon$, there exists\\ [-1pt] a (Euclidean) open ball $V \in \mathcal{T}$ of radius less than $\min(\frac{2}{2\cdot (|z|^2 + 1)^{1/2}}, \sfrac{\varepsilon}{2})$ with\\ $x \in V \subseteq U \cap \mathbb{C} \subseteq U$.\newpage
 
-			\item Meanwhile, suppose $V \in \mathcal{T}$ is an open set containing $z$. Then by restricting $V$ to $\mathbb{C}$ we can assume $V \subseteq \mathbb{C}$. So, there is a (Euclidean) ball $B \subseteq \mathbb{C}$ of radius $\varepsilon > 0$ centered at $z$ which is contained in $V$.\retTwo
+			\item Meanwhile, suppose $V \in \mathcal{T}$ is an open set containing $z$. Then by restricting $V$ to $\mathbb{C}$ we can assume $V \subseteq \mathbb{C}$. So, there is a (Euclidean) ball $B \subseteq \mathbb{C}$ of radius $\varepsilon > 0$ centered at $z$ which is contained in $V$.\\ [-9pt]
 
 		Next note that for any $z^\prime \in \mathbb{C}$
 		
 		{\centering\begin{tabular}{l}
 			$|z - z^\prime| = d(z, z^\prime)\left((|z|^2 + 1)(|z^\prime|^2 + 1)\right)^{1/2}$\\ [6pt]
+			$\phantom{|z - z^\prime|} = d(z, z^\prime)\sqrt{|z|^2 + 1}\left((|z^\prime|^2 + 1)^{1/2} - (|z|^2 + 1)^{1/2} + (|z|^2 + 1)^{1/2}\right)$\\ [6pt]
 			$\phantom{|z - z^\prime|} \leq d(z, z^\prime) \sqrt{|z|^2 + 1} \cdot \left|(|z^\prime|^2 + 1)^{1/2} - (|z|^2 + 1)^{1/2}\right| + d(z, z^\prime)(|z|^2 + 1)$
 		\end{tabular}\retTwo\par}
 
@@ -10072,9 +10078,7 @@ Let $\mathbb{C}_\infty = \mathbb{C} \cup \{\infty\}$ denote the one-point compac
 
 		Thus, we have found an open ball $U \in \mathcal{T}^\prime$ with $d$-radius $\delta_2$ about $z$ such that\\ $z \in U \subseteq B \subseteq V$.
 		\end{itemize}
-
 		\mySepThree
-
 		What's left to show is firstly that for any $U \in \mathcal{T}$ containing $\infty$ there exists $V \in \mathcal{T}^\prime$ with $\infty \in V \subseteq U$, and secondly that for any $V \in \mathcal{T}^\prime$ containing $\infty$ there exists $U \in \mathcal{T}$ with $\infty \in U \subseteq V$.
 
 		\begin{itemize}
@@ -10088,7 +10092,7 @@ Let $\mathbb{C}_\infty = \mathbb{C} \cup \{\infty\}$ denote the one-point compac
 			
 			{\centering $d(\infty, z) = \frac{2}{(|z|^2 + 1)^{1/2}} < \frac{2}{|z|} < \varepsilon$.\retTwo\par}
 
-			So, $U = \{z \in \mathbb{C} : |z| > \sfrac{2}{\varepsilon}\} \cup \{\infty\}$ is an open set in $\mathcal{T}$ with $\infty \in U \subseteq  V$.\retTwo
+			So, $U = \{z \in \mathbb{C} : |z| > \sfrac{2}{\varepsilon}\} \cup \{\infty\}$ is an open set in $\mathcal{T}$ with $\infty \in U \subseteq  V$.\\ [-12pt]
 		\end{itemize}
 
 		With that we've \textit{finally} proven that $\mathcal{T} = \mathcal{T}^\prime$. $\blacksquare$\retTwo
@@ -10122,12 +10126,12 @@ All homework problem's for math 220a will be coming from John Conway's book \tex
 		So, the projection of $\Lambda$ onto $\mathbb{C}_\infty$ is a circle of radius $\frac{\sqrt{1 - \ell^2}}{\beta_3 - \ell}$ centered at $\frac{-\beta_1}{\beta_3 - \ell} + i\frac{-\beta_2}{\beta_3 - \ell}$.
 
 		\begin{myIndent}\HexPPP
-			As a side note, let $\mathbf{b} = (b_1, b_2, b_3)$ and consider any $\mathbf{y} = (y_1, y_2, y_3) \in \Lambda$. Then note by the Cauchy Schwarts inequality that $\ell^2 = (\mathbf{b} \cdot \mathbf{y})^2 \leq \|\mathbf{b}\|^2 \|\mathbf{y}\|^2 = 1 \cdot 1 = 1$. Hence,\\ $\sqrt{1 - \ell^2}$ is a well defined real number.\retTwo
+			As a side note, let $\mathbf{b} = (b_1, b_2, b_3)$ and consider any $\mathbf{y} = (y_1, y_2, y_3) \in \Lambda$. Then note by the Cauchy Schwartz inequality that $\ell^2 = (\mathbf{b} \cdot \mathbf{y})^2 \leq \|\mathbf{b}\|^2 \|\mathbf{y}\|^2 = 1 \cdot 1 = 1$. Hence,\\ $\sqrt{1 - \ell^2}$ is a well defined real number.\retTwo
 		\end{myIndent}
 	\end{enumerate}
 \end{myIndent}
 
-\hTwo I'll continue with this class on \inLinkRap{math 220a lecture 2}{page \_\_\_}
+\hTwo I'll continue with this class on \inLinkRap{math 220a lecture 2}{page 247}.
 
 \mySepTwo
 
@@ -10145,7 +10149,7 @@ Now let $C_n$ be a cyclic group of order $n$. In other words, $C_n = \langle a \
 			Since $\theta$ is a bijection, we know that $\theta(a^k)$ for each $k \in \{0, \ldots, n-1\}$ is distinct. But also since $\theta$ is a group homomorphism, we know that $\theta(a^0) = a^0 = 1$ and $\theta(a^k) = (\theta(a))^k = (a^m)^k$ for $k > 0$. Hence, we must have that $o(a^m) = n$.\\ [-1pt] But now recall also that $o(a^m) = \frac{o(a)}{\gcd(o(a), m)} = \frac{n}{\gcd(n, m)}$. So, we must have that\\ [-3pt] $\gcd(n, m) = 1$.\newpage
 		\end{myIndent}
 
-		\item[(b)] Suppose $m \in \mathbb{Z}$ satisfies that $\gcd(m, n) = 1$ and define $\theta_m(a): C_n \to C_n$ by\\ $\theta_m(a^k) = (a^k)^m$. Then $\theta \in \Aut(C_n)$.
+		\item[(b)] Suppose $m \in \mathbb{Z}$ satisfies that $\gcd(m, n) = 1$ and define $\theta_m(a): C_n \to C_n$ by\\ $\theta_m(a^k) = (a^k)^m$. Then $\theta_m \in \Aut(C_n)$.
 		
 		\begin{myIndent}\HexOne
 			To see that $\theta_m$ is a group homomorphism, just note that:
@@ -10161,14 +10165,734 @@ Now let $C_n$ be a cyclic group of order $n$. In other words, $C_n = \langle a \
 			Therefore, because $\theta_m(a^k) = (\theta_m(a))^k = (a^m)^k$ since $\theta_m$ is a group\\ homomorphism, we know by pigeonhole principle that $\theta_m$ is both injective\\ and surjective.\retTwo
 		\end{myIndent}
 
-		\item[(c)] The mapping $(\mathbb{Z}/n\mathbb{Z})^\times \to \Aut(C_n)$ is an isomorphism.
+		\item[(c)] The mapping $(\mathbb{Z}/n\mathbb{Z})^\times \to \Aut(C_n)$ given by $m + n\mathbb{Z} \mapsto \theta_m$ is an isomorphism.
 		
 		\begin{myIndent}\HexOne
-			
+			Suppose $m + n\mathbb{Z} \in (\mathbb{Z}/n\mathbb{Z})^\times$ and consider any $m^\prime \in m + n\mathbb{Z}$. Then\\ $m^\prime = m + qn$. So for any $a^k \in C_n$, we have that:
+
+			{\centering\begin{tabular}{l}
+				$\theta_m(a^k) = (a^k)^m$\\ [3pt]
+				$\phantom{\theta_m(a^k)} = (a^k)^{m^\prime - qn} = (a^k)^{m^\prime}(a^k)^{-qn}$\\
+				$\phantom{\theta_m(a^k) = (a^k)^{m^\prime - qn}} = (\theta_{m^\prime}(a^k))(a^n)^{-qk} = (\theta_{m^\prime}(a^k)) 1^{-qk} = \theta_{m^\prime}(a^k)$.
+			\end{tabular}\retTwo\par}
+
+			This proves that $m + n\mathbb{Z} \mapsto \theta_m$ is a well defined function on $(\mathbb{Z}/n\mathbb{Z})^\times$. Also, since $\gcd(m, n) = 1$ for all $m \in \mathbb{Z}$ with $m + n\mathbb{Z} \in (\mathbb{Z}/n\mathbb{Z})^\times$, we know from\\ part (b) that each $\theta_m$ is in fact in $\Aut(C_n)$.\retTwo
+
+			Finally, we need to show our mapping is a group isomorphism. Luckily, by part (a) we know each $\theta \in \Aut(C_n)$ satisfies that $\theta(a^k) = (\theta(a))^k = (a^m)^k = (a^k)^m$ where $\gcd(m, n) = 1$. And since $\gcd(m, n) = 1$ iff $m + n\mathbb{Z} \in (\mathbb{Z}/n\mathbb{Z})^\times$, this proves that our mapping into $\Aut(C_n)$ is a surjective map. As for showing injectivity, suppose $\theta_{m_1} = \theta_{m_2}$. Then $\theta_{m_1}(a) = a^{m_1} = a^{m_2} = \theta_{m_2}(a)$. But in turn we have that $a^{m_1 - m_2} = 1$. So $m_1 = m_2 \mMod{n}$. Lastly, suppose that suppose that $m_1, m_2$ represent classes in $(\mathbb{Z}/n\mathbb{Z})^\times$. Then:
+
+			{\centering $\theta_{m_1} \circ \theta_{m_2}(a) = \theta_{m_1}(a^{m_2}) = (\theta_{m_1}(a))^{m_2} = (a^{m_1})^{m_2} = a^{m_1m_2} = \theta_{m_1m_2}(a)$ \retTwo\par}
+
+			In turn $\theta_{m_1} \circ \theta_{m_2}(a^k) = (\theta_{m_1} \circ \theta_{m_2}(a))^k = (\theta_{m_1m_2}(a))^k = \theta_{m_1m_2}(a^k)$. And so we know our mapping is a group homomorphism since $\theta_{m_1} \circ \theta_{m_2} = \theta_{m_1m_2}$. $\blacksquare$\retTwo
 		\end{myIndent}
 	\end{itemize}
 \end{myIndent}
 
+Question: Given a group $G$ and a set $X$, how can we  treat $G$ as a group of\\ symmetries of $X$?
+\begin{myIndent}\hThree
+	To answer this, let us suppose we have a function $G \times X \to X$ where we write that $(g, x) \mapsto g \cdot x$ {\myComment(that way whenever we fix $g$ we get a function from $X$ to $X$)}.\retTwo
+	
+	If $x \mapsto g \cdot x$ is an automorphism for each $g$ and $G$ is homomorphic to $\Aut(X)$, then clearly we must have that $1_G \cdot x = x$ for all $x \in X$ and that $g_2 \cdot (g_1 \cdot x) = (g_2g_1) \cdot x$ for all $g_1, g_2 \in G$ and $x \in X$.\retTwo
+
+	In other words, we may describe group homomorphisms of $G$ to $\Aut(X)$ using \udefine{(left)\\ group actions}.
+	\begin{myIndent}\pracTwo
+		Side note: given a group action $G \times X \to X$, we say $G$ \udefine{acts on} $X$ and write\\ $G \curvearrowright X$.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+Here are some notable examples of group actions.
+
+\begin{enumerate}
+	\item Let $G$ be a group and $H \subseteq G$ be a subgroup. Also denote $G/H$ as the set of \udefine{left cosets} of $H$. Then $G \curvearrowright G/H$ by left translation (i.e. $g \cdot xH \coloneqq (gx)H$ is a group action).\retTwo
+	
+	\item If $G$ is a group, $G \curvearrowright G$ via conjugation (i.e. where we define $g \cdot x \coloneqq gxg^{-1}$).
+	\begin{myIndent}\pracTwo
+		As a side note, we don't write $g^{-1}xg$ because that would make it so that:
+
+		{\centering $g_1 \cdot (g_2 \cdot x) = g_1^{-1}g_2^{-2}xg_2g_1 = (g_2g_1)^{-1} x (g_2g_1) = (g_2g_1) \cdot x$.\retTwo\par}
+
+		That said, if we were instead formulating everything by right group actions, then we would want to define $x \cdot g = g^{-1}xg$. After all, we'd then have that:
+		
+		{\centering$(x \cdot g_1) \cdot g_2 = g_2^{-1}g_1^{-1}xg_1g_2 = (g_1g_2)^{-1}xg_1g_2 = x \cdot (g_1g_2)$.\retTwo\par}
+
+		In general there is no reason we need to work with left actions as opposed to right actions. In fact, if $(g, x) \mapsto g \cdot x$ is a left action, then $(x, g) \mapsto g^{-1} \cdot x$ is a right  action. Similarly, if $(x, g) \mapsto x \cdot g$ is a right action, then $(g, x) \mapsto x \cdot g^{-1}$ is a left action. For whatever reason it just happens to be more standard in english speaking countries to use left actions as opposed to right actions.\retTwo
+	\end{myIndent}
+
+	\item If $G \curvearrowright X$, then we also have that $G \curvearrowright Y^X$ (where $\Fun(X, Y) \coloneqq Y^X$).
+	\begin{myIndent}\pracTwo
+		How?\\
+		For any $f \in \Fun(X, Y)$ define $(g \cdot f)(x) = f(g^{-1} \cdot x)$ for each $x \in X$. Then it's clear that for any $x \in X$ we have that:
+		\begin{itemize}
+			\item $(1_G \cdot f)(x) = f(1_G \cdot x) = f(x)$,
+			\item $(g_1 \cdot (g_2 \cdot f))(x) = (g_2 \cdot f)(g_1^{-1} \cdot x)$\\
+			$\phantom{(g_1 \cdot (g_2 \cdot f))(x)} = f(g_2^{-1} \cdot (g_1^{-1} \cdot x)) = f((g_2^{-1}g_1^{-1}) \cdot x)$\\
+			$\phantom{(g_1 \cdot (g_2 \cdot f))(x) = f(g_2^{-1} \cdot (g_1^{-1} \cdot x))} = f((g_1g_2)^{-1} \cdot x) = ((g_1g_2) \cdot f)(x)$\retTwo
+		\end{itemize}
+
+		Hence $1_G \cdot f = f$ and $g_1 \cdot (g_2 \cdot f) = (g_1g_2) \cdot f$.\retTwo
+
+		\begin{myDindent}
+			A big reason why this is relevant is that if $Y = \mathbb{C}$ then $\Fun(X, Y)$\\ becomes a complex vector space.\retTwo
+		\end{myDindent}
+	\end{myIndent}
+\end{enumerate}
+
+\exTwo\hypertarget{Alireza Theorem page 246}{\ul{Theorem:}} Let $\act(G, X)$ be the collection of group actions $a : G \times X \to X$. Also let\\ $\Hom(G, S_X)$ be the set of homomorphisms from $G$ to $S_X$. There there exists mappings\\ $\Phi$ and $\Psi$ with:
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGFjdChHLCBYKSJdLFsyLDAsIlxcSG9tKEcsIFNfeCkiXSxbMCwxLCJcXFBoaSIsMCx7Im9mZnNldCI6LTEsImN1cnZlIjotMn1dLFsxLDAsIlxcUHNpIiwwLHsib2Zmc2V0IjotMSwiY3VydmUiOi0yfV1d
+\[\begin{tikzcd}[cramped]
+	{\act(G, X)} && {\Hom(G, S_x)}
+	\arrow["\Phi", shift left, curve={height=-6pt}, from=1-1, to=1-3]
+	\arrow["\Psi = \Phi^{-1}", shift left, curve={height=-6pt}, from=1-3, to=1-1]
+\end{tikzcd}\]
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Firstly, given any action $(g, x) \mapsto g \cdot x$ in $\act(G, X)$, define:
+	
+	{\centering$\Phi((g, x) \mapsto g \cdot x) = (g \mapsto \sigma_g)$ where $\sigma_g(x) \coloneqq g \cdot x$.\retTwo\par}
+	
+	We claim that $g \mapsto \sigma_g$ is a group homomorphism from $G$ to $S_X$.
+	\begin{myIndent}\exPPP
+		To start off, $\sigma_{1_G} = \myId$ since $1_G \cdot x = x$. Also note that for all $x \in X$:
+
+		{\centering $\sigma_{g_1} \circ \sigma_{g_2}(x) = \sigma_{g_1}(g_2 \cdot x) = g_1 \cdot (g_2 \cdot x) = (g_1g_2) \cdot x = \sigma_{g_1g_2}(x)$.\newpage\par}
+
+		This shows that the map $g \mapsto \sigma_g$ preserves compositions. In particular, note that\\ $\sigma_{g} \circ \sigma_{g^{-1}} = \sigma_{1_G} = \myId$ and $\sigma_{g^{-1}} \circ \sigma_g = \myId$. Thus each $\sigma_g$ has an inverse for every $g \in G$ and is therefore a bijection. So, we have proven that $g \mapsto \sigma_g$ does in fact map into $S_X$.\retTwo
+	\end{myIndent}
+
+	Meanwhile, given any $f \in \Hom(G, S_X)$ define $\Psi(f) = ((g, x) \mapsto g \cdot x)$ where\\ $g \cdot x \coloneqq (f(g))(x)$. We can easily see as follows that this is a well defined action.
+	\begin{myIndent}\exPPP
+		\begin{itemize}
+			\item $1_G \cdot x = (f(1_G))(x) = \myId_X(x) = x$
+			\item $g_1 \cdot (g_2 \cdot x) = g_1 \cdot (f(g_2))(x)$\\
+			$\phantom{g_1 \cdot (g_2 \cdot x)} = (f(g_1))((f(g_2))(x)) = (f(g_1) \circ f(g_2))(x)$\\
+			$\phantom{g_1 \cdot (g_2 \cdot x) = (f(g_1))((f(g_2))(x))} = (f(g_1g_2))(x) = (g_1g_2) \cdot x$.\retTwo
+		\end{itemize}
+	\end{myIndent}
+
+	Now we just need to show that $\Phi$ and $\Psi$ invert each other.
+	\begin{itemize}
+		\item Let $(g, x) \mapsto g \cdot x$ be a group action. Then for any $g^\prime \in G$ and $x^\prime \in X$ we have that:
+		
+		{\centering\begin{tabular}{l}
+			$\left((\Psi \circ \Phi)((g, x) \mapsto g \cdot x)\right)(g^\prime, x^\prime) = \left((\Phi((g, x)\mapsto g\cdot x))(g^\prime)\right)(x^\prime)$\\ [3pt]
+			$\phantom{\left((\Psi \circ \Phi)((g, x) \mapsto g \cdot x)\right)(g^\prime, x^\prime)} = \left((g \mapsto (x \mapsto (g \cdot x)))(g^\prime)\right)(x^\prime)$\\ [3pt]
+			$\phantom{\left((\Psi \circ \Phi)((g, x) \mapsto g \cdot x)\right)(g^\prime, x^\prime)} = \left(x \mapsto (g^\prime \cdot x)\right)(x^\prime) = g^\prime \cdot x^\prime$.
+		\end{tabular}\retTwo\par}
+
+		Hence $\Psi \circ \Phi((g,x) \mapsto g \cdot x) = (g, x) \mapsto g \cdot x$.\retTwo
+
+		\item Meanwhile, suppose $f \in \Hom(G, S_X)$. Then note that:
+		
+		{\centering\begin{tabular}{l}
+			$(\Phi \circ \Psi)(f) = \Phi((g, x) \mapsto (f(g))(x)) = \left[g \mapsto (x \mapsto (f(g))(x))\right]$\\ [4pt]
+			$\phantom{(\Phi \circ \Psi)(f) = \Phi((g, x) \mapsto (f(g))(x))} =\left[ g \mapsto f(g)\right] = f$. $\blacksquare$
+		\end{tabular}\retTwo\par}
+	\end{itemize}
+\end{myIndent}
+
+\hTwo I'll continue with this class on \inLinkRap{math 200a lecture 3}{page 252}.
+
+\mySepTwo
+
+\hypertarget{math 220a lecture 2}{\blect{Math 220a (lecture 2):}}\retTwo
+
+There is only one theorem from this lecture that is worth writing down in my opinion. Also, the professor and Conway insist on proving this in an annoying way (imo). So, I'm going to prove it my way first.
+\begin{myIndent}\myComment
+	Btw theorem numbers for this class come from Conway's \textit{functions of one complex variable} (like in the homework).\retTwo
+\end{myIndent}
+
+Given any $z, w \in \mathbb{C}$, we denote the straight line from $z$ to $w$ as:
+
+{\centering$[z, w] \coloneqq \{(1-t)z + tw : t \in [0, 1]\}$.\retTwo\par}
+
+If $z_1, \ldots, z_n \in \mathbb{C}$, then the path resulting from concatenating the $[z_i, z_{i+1}]$ together will be called a \udefine{polygon} in this class and sometimes be denoted as $[z_1, z_2, \ldots, z_n]$.\retTwo
+
+\exTwo\hypertarget{math 220a theorem II.2.3}{\ul{Theorem II.2.3:}} Let $G \subseteq \mathbb{C}$ be an open set. Then $G$ is connected iff for alll $a, b \in G$ there exists $a = z_1, z_2, \ldots, z_{n-1}, z_n = b$ such that $[z_1, z_2, \ldots, z_n] \subseteq G$.
+
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	$\mathbb{C}$ is locally path connected since each open ball in $\mathbb{C}$ is convex (and thus path connected). It follows that if $G$ is connected then $G$ is path connected. And so, there exists a continuous function $f : [0, 1] \to \mathbb{C}$ such that $f(0) = a$ and $f(1) = b$.\newpage
+
+	Now for each $t \in [0, 1]$ consider that there is some $\varepsilon_t > 0$ such that the open ball\\ $B_{\varepsilon_t}(f(t))$ of radius $\varepsilon$ centered at $f(t) \in \mathbb{C}$ is contained in $G$. Then since $f$ is\\ continuous, there exists an open ball $B_{\delta_t}(t) \subseteq [0, 1]$ such that $f(B_{\delta_t}(t)) \subseteq B_{\varepsilon_t}(f(t))$.\retTwo
+	
+	Importantly, the $B_{\delta_t}(t)$ as $t$ ranges over $[0, 1]$ forms an open cover of $[0, 1]$. And since\\ [2pt] $[0, 1]$ is compact, we can pick $0 = t_1 < t_3 < \cdots < t_{2m-1} = 1$ such that $\{B_{\delta_{t_{2i-1}}}(t_{2i-1})\}_{i=1}^m$\\ [-2pt] covers $[0, 1]$ and each $B_{\delta_{t_{2i-1}}}(t_{2i-1})$ is mapped into an open ball contained in $G$. Also,\\ [-2pt] without loss of generality we can assume no $B_{\delta_{t_{2i-1}}}(t_{2i-1})$ is entirely contained in any\\ [-2pt] $B_{\delta_{t_{2j-1}}}(t_{2j-1})$ where $i \neq j$\retTwo
+
+	Finally, it's easy to see for each $i$ that $[f(s), f(t_{2i-1})] \subseteq G$ for all $s,\in B_{\delta_{t_{2i-1}}}(t_{2i-1})$. So, if for each $i \in \{1, \ldots, m-1\}$ we can find $t_{2i} \in B_{\delta_{t_{2i-1}}}(t_{2i-1}) \cap B_{\delta_{t_{2i-1}}}(t_{2i+1})$, then we will be able to set $z_i = f(t_i)$ for all $t \in \{1, \ldots 2m-1\}$ and be done.
+
+	\begin{myIndent}\exPPP
+		Fortunately, note that $B_{\delta_{t_{2i-1}}}(t_{2i-1})$ and $B_{\delta_{t_{2i-1}}}(t_{2i+1})$ are two open sets which cover $[t_{2i-1}, t_{2i+1}]$. After all, suppose $B_{\delta_{t_{2i-1}}}(t_{2i-1})$ doesn't cover all of $[t_{2i-1}, t_{2i+1}]$. Then we know that $\alpha \coloneqq t_{2i - 1} + \delta_{t_{2i-1}}$ is contained in some $B_{\delta_{t_{2j-1}}}(t_{2j-1})$. But that $j$ can't be less than $i$ since that would imply $B_{\delta_{t_{2i-1}}}(t_{2i-1})$ is entirely contained in $B_{\delta_{t_{2j-1}}}(t_{2j-1})$. For similar reasons, that $j$ also can't be greater than $i + 1$. Hence $[t_{2i-1} + \delta_{t_{2i-1}}, t_{2i+1}] \subseteq B_{\delta_{t_{2i-1}}}(t_{2i+1})$ and we've proven all of $[t_{2i-1}, t_{2i+1}]$ is\\ contained in our two open sets.\retTwo
+
+		But now note that $[t_{2i-1}, t_{2i+1}]$ is connected. And since both of our open sets have a nonempty intersection with $[t_{2i-1}, t_{2i+1}]$, we thus must have that our two open sets intersect. And hence, we may now pick our $t_{2i}$ in that intersection.\retTwo
+	\end{myIndent}
+
+	$(\Longleftarrow)$\\
+	This direction is easy because you just need to define the obvious path going from $a$ to $b$ to show that $G$ is path connected and thus connected.\retTwo
+\end{myIndent}
+
+\hTwo Meanwhile here is how Conway show this same result:
+
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	Given a fixed $a \in G$ let $A \coloneqq \{b \in G : \exists P \text{ a polygon going from } a \text{ to } b\}$. Now we shall show that $A$ is both open and closed.
+	\begin{itemize}
+		\item Suppose $b \in A$. Then because $G$ is open, there exists a ball $B_\varepsilon(b)$ of radius $\varepsilon$ about $b$ such that $B_\varepsilon(b) \subseteq G$. And if $P$ is any polygon in $G$ going from $a$ to $b$, then for any $z \in B_\varepsilon(b)$ we have that $P \cup [b, z]$ is a polygon in $G$ going from $a$ to $z$. So, $B_\varepsilon(b)$ is also contained in $A$, thus proving that $A$ is open.\retTwo
+		
+		\item Next suppose for the that $z \in \acc(A)$ and let $\varepsilon > 0$ be such that $B_\varepsilon(z) \subseteq G$. Then we know that there exists $b \in A$ such that $b \in B_\varepsilon(z)$. And then for any polygon $P \subseteq G$ going from $a$ to $b$, we have that $P \cup [b, z]$ is a polygon going from $a$ to $z$ contained in $G$. This shows that $\acc(A) \subseteq A$. Hence $A$ is closed.\retTwo
+	\end{itemize}
+
+	Now since $G$ is connected, the only clopen sets in $G$ are $\emptyset$ and $G$. But $A$ is clearly\\ nonempty since it trivially contains $a$. So $A = G$.\newpage
+
+	$(\Longleftarrow)$\\
+	Especially now that I've realized I don't need to do the exercise associated with this proof direction, frick no I'm not copying down this direction. I don't need to reprove a weaker statement than that path connectedness implies connectedness.\retTwo
+\end{myIndent}
+
+Anyways time to do a bunch of busy work now for this class.\retTwo
+
+\Hstatement
+\blab{II.1.6:} Prove that a set $G \subseteq X$ is open if and only if $X - G$ is closed.
+
+\begin{myIndent}\HexOne
+	The book literally defines that $X - G$ is closed iff $(X - G)^\comp = G$ is open. Why was this assigned?!? Grrrr.\retTwo
+\end{myIndent}
+
+\blab{II.2.1:}
+\begin{itemize}
+	\item[(a)] Show that a set $A \subseteq \mathbb{R}$ is connected iff for any two points $a, b \in A$ we have that $[a, b] \subseteq A$.
+	\begin{myIndent}\HexOne
+		$(\Longrightarrow)$\\
+		Suppose there exists $a, b \in A$ such that $[a, b] \not\subseteq A$. Then pick $z \in [x, y] - A$.\\ Importantly $(-\infty, z) \cap A$ and $(z, \infty) \cap A$ are both open in the subspace\\ topology of $A$. Also, they're obviously disjoint and nonempty since they contain\\ $a$ and $b$ respectively. And since $z \notin A$ and $(-\infty, z) \cup (z, \infty) = \{z\}^\comp$, we know $((-\infty, z) \cap A) \cup ((z, \infty) \cap A) = A$. This shows $A$ can be partitioned into two disjoint open sets (in the subspace topology). [I'll also mention those sets are thus clopen in the subspace topology so don't you dare take off points or I will complain a lot]. Hence $A$ is not connected.\retTwo
+
+		$(\Longleftarrow)$\\
+		Suppose $A$ is not connected and let $U, V \subseteq A$ be open in the subspace topology\\ [1pt] such that $U \cap V = \emptyset$, $U \neq \emptyset$, $V \neq \emptyset$, and $U \cup V = A$. Next pick $a \in U$,\\ [1pt] $b \in V$, and without loss of generality assume $a < b$. If $[a, b] \subseteq A$, we must have\\ [1pt] that $U \cap [a, b]$ and $V \cap [a, b]$ are also disjoint nonempty open sets in the subspace\\ [1pt] topology of $[a,b]$. But this contradicts what we already showed in class that any\\ [1pt] interval $[a, b]$ is connected.
+		\begin{myIndent}\HexTwoP
+			Suppose for the sake of contradiction that $E \subseteq [a, b]$ is clopen and $E \neq X$. Also, without loss of generality we can assume that $a \in E$ (since otherwise $a \in E^\comp$ and $E^\comp$ is clopen). Since $E$ is open, we know there exists $\varepsilon > 0$ such that $[a, \varepsilon) \subseteq E$. Thus it is well defined to set $r \coloneqq \sup\{\varepsilon > 0 : [a, \varepsilon) \subseteq E\}$.\retTwo
+
+			If $r = b$, then we clearly can't have that $r \in E$ cause that contradicts that\\ $E \neq X$. But if $r \notin E$, then we no longer have that $E$ is closed since\\ $[a b] - E = \{b\}$ is not open. Hence we may assume $r < b$.\retTwo
+
+			Now once again suppose that $r \in E$. Then since $E$ is open, we have that there exists $\delta > 0$ such that $(r - \delta, r + \delta) \subseteq E$. But now $(a, r + \delta) \subseteq E$, contradicting how we defined $r$. Hence we must have that $r \notin E$. Yet even then we have a contradiction cause we know that $E^\comp$ is open and $r \in E^\comp$. So, there exists $\delta > 0$ such that $(r - \delta, r + \delta) \subseteq E^\comp$. And now this proves that $r - \delta$ is an upper bound $\{\varepsilon > 0 : [a, \varepsilon) \subseteq E\}$, thus contradicting how we defined $r$. \retTwo
+		\end{myIndent}
+
+		So, we can't have that $[a, b] \subseteq A$ $\blacksquare$\newpage
+	\end{myIndent}
+
+	\item[(b)] Suppose $A \subseteq \mathbb{R}$ is nonempty and connected. Then $A$ is an interval.
+	\begin{myIndent}\HexOne
+		If $A$ is empty or a singleton then this is trivial. Meanwhile, if $A$ has two distinct points $y_1, y_2$ (where we assume without loss of generality that $y_1 < y_2$), then we know from part (a) that $[y_1, y_2] \subseteq A$. Therefore, we can choose any $x \in (y_1, y_2)$ and know $a \coloneqq \inf\{t \in \mathbb{R} : [t, x] \subseteq A\} \neq x$ and $b \coloneqq \sup\{s \in \mathbb{R} : [x, s] \subseteq A\} \neq x$ (note that we are letting $a = -\infty$ and $b = \infty$).\retTwo
+		
+		By considering a strictly decreasing sequence $(t_n)_{n \in \mathbb{N}}$ to $a$ and a strictly increasing\\ sequence $(s_n)_{n \in \mathbb{N}}$ to $b$ and noting that $[t_n, s_n] \subseteq A$ by part (a), we can conclude that $(a, b) = \bigcup_{n \in \mathbb{N}}[t_n, s_n] \subseteq A$. Next suppose there exists any $t \in (-\infty, x) \cap A$ such that $t \notin [a, x]$. Then we know that $t < a$. And by part (a), we know that $[t, x] \subseteq A$. But this contradicts how we defined $a$. Analogous reasoning shows that there there can't exist any $s \in (x, \infty) \cap A$ such that $s \notin [x, b]$. So, $(a, b) \subseteq A \subseteq [a, b]$. This shows that $A$ is an interval of some variety. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hTwo I'll continue this class on \inLinkRap{math 220a lecture 3}{page \_\_\_}.
+
+\mySepTwo
+
+\dispDate{10/2/2025}
+
+\hypertarget{math 241a lecture 2}{\blect{Math 241a (lecture 2):}}\retTwo
+
+To start off, let $(X, \mathcal{M}, \mu)$ be a measure space and suppose $\{E_n\}_{n \in \mathbb{N}}$ is a countable\\ collection of sets whose union is all of $X$. Then given any $q \in [1, \infty]$ we can define\\ a Fréchet space as follows:
+
+\begin{myIndent}
+	Let $\mathcalli{X}$ be the collection of measurable functions $f:X\to\mathbb{C}$ (where functions\\ equal a.e. are identified with each other) such that $f\chi_{E_n} \in L^q(X, \mu)$ for each $n$. Then for each $n$ define a seminorm $p_n(f) \coloneqq \|f\chi_{E_n}\|_q$. Note that $f \in \mathcalli{X}$ if and only if $\|f\|_n < \infty$ for all $n \in \mathbb{N}$.\retTwo
+
+	It's obvious that $\mathcalli{X}$ is a complex vector space and that each of our seminorms are in fact seminorms. We also claim that $\{p_n\}_{n \in \mathbb{N}}$ is a sufficient family. After all first suppose $q \neq \infty$ and that $f \neq 0$ a.e.. Then we know there exists $\varepsilon > 0$ and a set $A \subseteq X$ with $\mu(A) > 0$ and $|f| \geq \varepsilon$ on $A$. And since $0 < \mu(A) \leq \sum_{n\in\mathbb{N}} \mu(E_n \cap A)$, we know there exists $k \in \mathbb{N}$ such that:
+	
+	{\centering$p_k(f) = (\int |f|^q\chi_{E_k} \df \mu)^{1/q} \geq (\int \varepsilon^q \chi_{E_k \cap A})^{1/q} = \varepsilon (\mu(E_k \cap A))^{1/q} > 0$\retTwo\par}
+
+	\begin{myIndent}\myComment
+		Meanwhile if $q = \infty$, then after choosing $k \in \mathbb{N}$ such that $\mu(E_k \cap A) > 0$, we know that $p_k(f) = \|f\chi_{E_k}\|_\infty \geq \varepsilon$.\retTwo
+	\end{myIndent}
+	
+	Finally, we claim that $\mathcalli{X}$ is complete. After all, note that $\mathcalli{X}$ is first countable. Hence, we only need to prove that all Cauchy sequences converge in order to prove that $\mathcalli{X}$ is complete. So suppose $(f_k)_{k \in \mathbb{N}}$ is a Cauchy sequence of functions in $\mathcalli{X}$ (meaning that $p_n(f_{k_1} - f_{k_2}) \to 0$ as $k_1, k_2 \to \infty$ for all $n$).\newpage
+
+	Since $L^q(X, \mu)$ is a complete metric space, we know that for each $n \in \mathbb{N}$ there exists a function $g_n \in L^q(X, \mu)$ such that $f_k\chi_{E_n} \to g_n$ as $k \to \infty$. And since $f_k(\chi_{E_n}) = 0$ on $E_n^\comp$ for all $k$, we can assume without loss of generality that $g_n = 0$ on $E^\comp$ as well. Now if $m$ is another integer then we know $f_k\chi_{E_n} - f_k\chi_{E_m} \to g_n - g_m$ in $L^q$. And by passing to a suitable subsequence we can get that $f_{k_j}\chi_{E_{n}} - f_{k_j}\chi_{E_m} \to g_n - g_m$ pointwise a.e.. However, $f_{k_j}\chi_{E_{n}} - f_{k_j}\chi_{E_m} = 0$ on $E_n \cap E_m$. This proves that the set of points in $E_n \cap E_m$ where $g_n \neq g_m$ has measure $0$.\retTwo
+
+	Now let $A \coloneqq \bigcup_{n \in \mathbb{N}} \bigcup_{m \in \mathbb{N}} \{x \in E_n \cap E_m: g_n(x) \neq g_m(x)\}$. Then $A$ is a null set since it is a countable collection of null sets. At the same time, for any $n, m \in \mathbb{N}$ we have that $g_n(x) = g_m(x)$ for all $x \in E_n \cap E_m \cap A^\comp$. So, there is a well defined function $g: A^\comp \to \mathbb{C}$ such that $g = \bigcap_{n \in \mathbb{N}} (g_n|_{E_n \cap A^\comp})$. And by setting $g = 0$ on $A$, we can now easily see that $g \in \mathcalli{X}$ and $f_k\chi_{E_n} \to g$ in $L^q(X, \mu)$ for all $n \in \mathbb{N}$.\retTwo
+\end{myIndent}
+
+A typical place where the above construction is used is when we want give $L^q_{\loc}$ a topology (where $q \in [1, \infty]$). Specifically, if $X$ is a LCH space and $\mu$ is a Radon measure on $X$, we shall say $f \in L^q_{\loc}(X, \mu)$ if for any compact set $K \subseteq X$ we have that $f\chi_K \in L^q$.
+\begin{myIndent}\myComment
+	Side note: in math 240a we had defined that $f \in L^1_\loc(\mathbb{R}^n, m)$ if $f$ is integrable when restricted to any bounded set. That definition is a subcase of ours because in $\mathbb{R}^n$, a set is bounded iff it is contained in a compact set.\retTwo
+\end{myIndent}
+
+If $X$ is $\sigma$-compact then we endow $L^q_\loc(X, \mu)$ with a topology that turns it into a Fréchet space as follows.
+\begin{myIndent}
+	Let $\{U_n\}_{n \in \mathbb{N}}$ be an increasing sequence of precompact open sets in $X$ whose union is all of $X$. Then define $p_n(f) = \|f\chi_{\overline{U_n}}\|_q < \infty$ for all $n$. If we can show that $p_n(f) < \infty$ for all $n$ iff $f \in L^q_\loc(X, \mu)$, then we will be able to conclude by our prior reasoning that these seminorms turn $L^q_\loc(X, \mu)$ into a Fréchet space.\\ [-6pt]
+
+	\begin{myIndent}\pracTwo
+		Fortunately it is obvious that if $\|f\chi_{K}\|_q < \infty$ for all compact $K \subseteq X$, then we know that $\|f\chi_{\overline{U_n}}\|_q < \infty$ for all $n \in \mathbb{N}$. As for the other direction, note that since the $\{U_n\}_{n \in \mathbb{N}}$ form an open cover of $X$ such that $U_n \subseteq U_{n+1}$ for all $n$, we know that any compact $K \subseteq X$ will eventually be entirely contained in some $\overline{U_{n}}$. And then if $f\chi_{\overline{U_n}}$ is in $L^q$, we know that $\|f\chi_K\|_q < \|f\chi_{\overline{U_n}}\|_q < \infty$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+As a special case of the last construction, if $q = \infty$ and we restrict ourselves to working with continuous function, then we can express the topology of uniform convergence of continuous functions on compact sets as a Fréchet space.\\ [-6pt]
+\begin{myIndent}\pracTwo
+	All we need to do is show that if $(f_k)_{k \in \mathbb{N}} \subseteq C(X)$ is Cauchy, then the function $f$ which the $f_k$ converge to is also in $C(X)$. Fortunately, note that for any $x \in X$ we know there exists a precompact open ball $V$ containing $x$. And since $\overline{V}$ is compact, we know there exists some $n \in \mathbb{N}$ with $V \subseteq \overline{U_n}$. So since $\|(f_k - f)\chi_{\overline{U_n}}\| \to 0$, we know that $f_k \to f$ uniformly on $V \subseteq \overline{U_n}$. This shows that $f$ is continuous at $x$.\retTwo
+\end{myIndent}
+
+Some other Fréchet spaces I've worked with are $C^\infty_c(K)$ and the Schwartz space $\mathcalli{S}$.\newpage
+
+Given a topological vector space $\mathcalli{X}$, (even if it isn't normed) we still define $\mathcalli{X}^*$ to be the space of continuous linear functionals on $\mathcalli{X}$. You may recall that if the topology on $\mathcalli{X}$ is generated by the family $\{p_\alpha\}_{\alpha \in A}$ of seminorms, then (due to Folland proposition 5.15 in math 240b) we have that $f \in \mathcalli{X}^*$ iff there exists $\alpha_1, \ldots, \alpha_n \in A$ and $C > 0$ such that $|f(x)| \leq C\sum_{k=1}^n p_{\alpha_k}(x)$.\retTwo
+
+\exTwo\ul{Lemma 1.1.24:} Let $\mathcalli{X}$ be a topological vector space with a topology generated by a\\ sufficient family $\{p_\alpha\}_{\alpha \in A}$ of seminorms. Then for all $x \in \mathcalli{X} - \{0\}$ there exists $f \in \mathcalli{X}^*$\\ such that $f(x) \neq 0$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	For all $x \in \mathcalli{X} - \{0\}$ there exists $\alpha \in A$ such that $p_\alpha(x) \neq 0$. Hence, we can definte the linear functional $g(cx) = cp_\alpha(x)$ for all $y = cx$ in the subspace $Kx \subseteq \mathcalli{X}$.
+
+	\begin{myIndent}\exPPP
+		If you doubt that this is well defined, suppose $c_1x = c_2x$. Then $(c_1 - c_2)x = 0$. And if $c_1 - c_2 \neq 0$, we could divide both sides to get that $x = 0$. But that contradicts the hypothesis of the lemma.\retTwo
+	\end{myIndent}
+
+	By the Hahn-Banach theorem we know there is linear functional $f: \mathcalli{X} \to \mathbb{C}$ such that $|f(x)| \leq p_\alpha(x)$ for all $x \in \mathcalli{X}$ and $f|_{Kx} = g$ (which means $f(x) = p_\alpha(x) \neq 0$). $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Recall that the weak topology on a topological vector space $\mathcalli{X}$ is defined as the weak\\ topology generated by the continuous linear functionals in $\mathcalli{X}^*$. Conveniently the weak\\ topology is always a seminormed topology. After all, for each $f \in \mathcalli{X}^*$ we may define\\ $p_f(x) \coloneqq |f(x)|$. Then it is easy to check that each $p_f$ is in fact a seminorm. Also, it is easy to check that convergence of nets in the weak topology is equivalent to convergence with respect to each of the seminorms.
+
+\begin{myIndent}\pracTwo
+	Observation: Suppose $(\mathcalli{X}, \mathcal{T})$ is a topological vector space and $\mathcal{T}^\prime$ is the weak topology on $\mathcalli{X}$. Then because each $f \in \mathcalli{X}^*$ is continuous, we must have that $\mathcal{T}^\prime \subseteq \mathcal{T}$.\retTwo
+
+	As a consequence, if $\mathcal{T}$ doesn't contain any convex sets other than $\mathcalli{X}$, then we automatically know that the only continuous linear functional on $\mathcalli{X}$ is the zero functional (since convex open sets always yield seminorms via Minkowski functionals).\retTwo
+\end{myIndent}
+
+By lemma 1.1.24, we know that if the topology on $\mathcalli{X}$ is generated by a sufficient family of seminorms, then the weak topology is also generated by a sufficient family of seminorms and is thus Hausdorff.\retTwo
+
+I'll continue with this class on \inLinkRap{math 241a lecture 3}{page \_\_\_}.
+
+\mySepTwo
+
+\dispDate{10/3/2025}
+
+\hypertarget{math 200a lecture 3}{\blect{Math 200a (lecture 3):}}\retTwo
+
+\Hstatement\blab{Set 1 problem 4:} Suppose $a$ and $b$ are non-negative integers. Prove that if $k = \frac{a^2 + b^2}{1 + ab}$ is an integer,\\ [-1pt] then $k$ is a perfect square.\\ [-10pt]
+\begin{myIndent}\HexOne
+	To start off, since we are requiring $a$ and $b$ to be nonnegative, we know that any $k = \frac{a^2 + b^2}{1 + ab}$ is also nonnegative. So, we only need to worry about nonnegative solutions of $k$.\newpage
+
+	Next note that both $k = 0$ and $k = 1$ are perfect squares. So, we don't need to worry about those cases when solving this problem and can always assume $k \geq 2$. With that out of the way, fix any $k \geq 2$ and define $V \coloneqq \{(a, b) \in \mathbb{Z}^2 : a^2 + b^2 -kab - k = 0\}$. We need to show that if $V$ contains any pair $(a_0, b_0)$ such that $a_0 \geq 0$ and $b_0 \geq 0$, then $k$ is a perfect square.\retTwo
+	
+	To do this, first note that if $(a, b) \in V$, then we also have that $(b, a) \in V$. Also note\\ that if $b \in \mathbb{R}$, then the sum of the roots of the quadratic $x^2 - kbx + (b^2 - k)$ must\\ add up to $kb$. Also, $kb$ is an integer if $b$ is an integer. So, if $(a, b) \in V$, we know that\\ $(kb - a, b) \in V$. By combining this observation with the last observation, know that\\ $(a, b) \in V \Longrightarrow (b, kb-a) \in V$.
+	\begin{myDindent}\exPPP
+		Or as the hint that professor Golsefidy gave says, multiplication by the matrix $\left(\begin{smallmatrix}0 & 1 \\ -1 & k\end{smallmatrix}\right)$ is a symmetry of $V$.\retTwo
+	\end{myDindent}
+
+	\ul{Claim 1:} If $(a, b) \in V$ and $0 \leq b \leq a$, then $kb - a < b$.
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		Suppose for the sake of contradiction that $kb - a \geq b$. Then:
+		
+		{\centering$0 = a^2 + b^2 - kab - k = b^2 - k - a(kb - a)$.\retTwo\par}
+
+		Or in other words, $k + a(kb - a) = b^2$. But since $a \geq b$ and $kb - a \geq b$, we know that $k + b^2 \leq b^2$. And since $k \geq 2$, this is a contradiction.\retTwo
+	\end{myIndent}
+
+	\ul{Claim 2:} If $(a, b) \in V$ and $a \geq 1$, then $b \geq 0 > -1$. 
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		We know that $a^2 + b^2 = k(ab + 1)$. And since $k > 0$ and $a^2 + b^2 > 0$ (because otherwise we'd have $k = 0$), this in turn means that $ab + 1 > 0$. Or in other words, $b > -\frac{1}{a}$. But since $a$ is an integer, we know that $\frac{-1}{a} \geq -\frac{1}{1} = -1$. And since $b$ is an integer, this means that $b \geq 0$.\retTwo
+	\end{myIndent}
+
+	\ul{Claim 3:} If $(a, b) \in V$, then $a \neq b$. Consequently, if $(a, b) \in V$ where $0 \leq b \leq a$, we know that $b < a$.
+	\begin{myIndent}\exTwoP
+		Proof:\\
+		If $b = a$ and $(a, b) \in V$, then $a^2 + a^2 - ka^2 - k = 0$. Or in other words $(2 - k)a^2 = k$. But since $a^2 \geq 0$ and $2 - k \leq 0$, we know that $(2 - k)a^2 \leq 0$. This contradicts that $k \geq 2$.\retTwo
+	\end{myIndent}
+
+	Now supposing there exists $(a, b) \in V$ with $a, b \geq 0$, we may choose $(a_0, b_0) \in V$ such that $0 \leq b_0 \leq a_0$ and $a_0$ is the least nonnegative integer for which such a $b_0$ exists. Then note that we must have that $b_0 = 0$. For if $b \geq 1$, then we know from the prior three claims that that $(b_0, kb_0 - a_0)$ is in $V$ with $0 \leq kb_0 - a_0 < b_0$ and $b_0 < a_0$. But this contradicts how we chose $a_0$.\retTwo
+	
+	So if there exists nonnegative integers $a, b$ such that $k = \frac{a^2 + b^2}{1 + ab}$, then we've also proven\\ [-4pt] there is an integer $c \geq 0$ such that $k = \frac{c^2 + 0^2}{1 + c(0)} = c^2$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\exPPP
+		As for how someone would actually come up with this reasoning without all the hints that our professor gave, note that when $k \geq 2$, then the level set $x^2 + y^2 - kxy = k$ defines a hyperbola. And then our symmetry is hopping points via the following process:\newpage
+
+		{\centering\includegraphics[scale=0.6]{imo_problem_hyperbola.png}\retTwo\par}
+	\end{myIndent}
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+This is a complete tangent unrelated to the class but I can't help but want to look into it briefly. Any curve graphed by the equation $Ax^2 + By^2 + Cxy + Dx + Ey = F$ in the $xy$-plane is called a \udefine{conic}. Importantly, if $C = 0$ then we already know from high school precalculus how to tell if the graphed curve is an ellipse, parabola, or hyperbola. However, the $C$ coefficient complicates things. Is there a test we can do to still know what type of conic is graphed by our equation when $C \neq 0$?
+\begin{myIndent}\pracTwo
+	Let $f(x, y) = Ax^2 + By^2 + Cxy + Dx + Ey$ and consider any matrix $R = \left(\begin{matrix}
+	r_1 & r_2 \\ r_3 & r_4
+	\end{matrix}\right)$.\retTwo
+	
+	Then while it is messy, we can evaluate that:
+
+	{\centering\begin{tabular}{l}
+		$(f \circ R)(x, y) = (Ar_1^2 + Br_3^2 + Cr_1r_3)x^2 + (Ar_2^2 + Br_4^2 + Cr_2r_4)y^2$\\ [3pt]
+		$\phantom{(f \circ R)(x, y) aaaaaa} + (2Ar_1r_2 + 2Br_3r_4 + Cr_1r_4 + Cr_2r_3)xy + (Dr_1 + Er_3)x$\\ [3pt]
+		$\phantom{(f \circ R)(x, y) aaaaaa} + (Dr_2 + Er_4)y$
+	\end{tabular}\retTwo\par}
+
+	In particular, we care about when $R$ is a rotation matrix. So, we can assume there exists some $\theta$ such that:
+	
+	{\centering$R = \left(\begin{matrix}
+	\cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta)
+	\end{matrix}\right)$.\retTwo\par}
+
+	And now we want to fix $\theta$ such that:\\ [-10pt]
+
+	{\centering\begin{tabular}{l}
+		$0 = 2Ar_1r_2 + 2Br_3r_4 + Cr_1r_4 + Cr_2r_3$\\ [2pt]
+		$\phantom{0} = -2A\cos(\theta)\sin(\theta) + 2B\sin(\theta)\cos(\theta) + C\cos^2(\theta) - C\sin^2(\theta)$\\ [2pt]
+		$\phantom{0} = 2(B - A)\cos(\theta)\sin(\theta) + C(\cos^2(\theta) - \sin^2(\theta))$\\ [2pt]
+		$\phantom{0} = (B - A)\sin(2\theta) + C\cos(2\theta)$.
+	\end{tabular}\retTwo\par}
+
+	Since we were originally motivated by the possibility that $B \neq 0$, for now I'm just going to assume $B \neq 0$. That way, we can explicitely calculate that $\theta = \frac{1}{2}\cot^{-1}(\frac{A - C}{B})$. And now by plugging that $\theta$ into our matrix $R$ we can find a rotation matrix such that $(f \circ R)(x, y)$ is another degree two polynomial but with $0$ for its $xy$ coefficient. And this proves that it is always possible to rotate our conic so that the $B$ term is $0$.\retTwo
+
+	\mySepThree\newpage
+	
+	Unfortunately I don't have time to continue this tangent right now. I'll continue it later on \inLinkRap{page idk 1 reference}{page \_\_\_}.\retTwo
+\end{myIndent}
+
+\Hstatement\mySepTwo
+
+\hTwo Before doing more 200a stuff, I unfortunately need to quickly do the rest of my math 220a homework since it is due in a few hours. So here it is:\retTwo
+
+\Hstatement\blab{Exercise II.2.4:} Prove that if $\{D_j : j \in J\}$ is a collection of connected subsets of $X$ and if for each $j$ and $k$ in $J$ we have $D_j \cap D_k \neq \emptyset$, then $D \coloneqq \bigcup_{j \in J} D_j$ is connected.
+
+\begin{myIndent}\HexOne
+	Let $A$ be a set that is open and closed in $D$. Then we know that $A \cap D_j$ is both open and closed in the subspace topology of $D_j$. And since $D_j$ is connected, this means that either $A \cap D_j = \emptyset$ or $A \cap D_j = D_j$ for all $j \in J$.\retTwo
+
+	Now suppose that $A \neq D$. That way, we know there is some $x \in D$ such that $x \notin A$. But then in turn there is some $k \in J$ such that $x \in D_k - A$. So, we know that $A \cap D_k = \emptyset$. And  since $D_j \cap D_k \neq \emptyset$ for all $j \in J$, we know that for each $j \in J$ there exists $y_j \in D_j$ such that $y_j \in D_j - A$. And hence, $A \cap D_j = \emptyset$ for all $j$. This shows $A = A \cap D = \emptyset$.\retTwo
+
+	So since the only clopen sets in $D$ are $\emptyset$ and $D$, we know that $D$ is connected. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.2.5:} Let $(X, d)$ be a metric space.
+\begin{enumerate}
+	\item[(a)] Show that if $F \subseteq X$ is closed and connected, then for every pair of points $a, b \in F$ and each $\varepsilon > 0$ there are points $z_0, \ldots, z_n$ in $F$ with $z_0 = a$, $z_n = b$, and $d(z_{k-1}, z_k) < \varepsilon$ for $1 \leq k \leq n$. Is the hypothesis that $F$ is closed needed?
+	\begin{myIndent}\HexOne
+		To start off, I don't know what Conway's obsession with writing the word "closed" is\\ because it is entirely unrelated to the proof which I imagine he intended for people to\\ write (considering I'm really just adapting Conway's proof for \inLinkRap{math 220a theorem II.2.3}{theorem II.2.3}).\retTwo
+
+		Fix any $a \in F$ and $\varepsilon > 0$, and let $A$ be the set of $b \in F$ for which there exists\\ $z_0, \ldots, z_n \in F$ as in the statement of the exercise. Clearly $A \neq \emptyset$ since $a \in A$.\\ Meanwhile, we claim $A$ is clopen in $F$.\\ [-6pt]
+		\begin{itemize}
+			\item Suppose $b \in A$ and let $z_0, \ldots, z_{n}$ be a collection of points of $F$ with $a_0 = z_0$,\\ $b = z_{n}$ and $d(z_{k-1}, z_k) < \varepsilon$ for each $1 \leq k \leq n$. Then for any $w \in B_\varepsilon(b) \cap F$\\ (the ball of radius $\varepsilon$ centered at $b$ restricted to $F$), we know that $z_0, \ldots, z_n, w$ is\\ another collection of points of $F$ satisfying the conclusion of the exercise. So,\\ $B_\varepsilon(b) \cap F \subseteq A$. And this proves that $A$ is open in $F$.\retTwo
+			
+			\item In a similar vein, if $w \in F - A$, then we must have that $B_\varepsilon(w) \cap A = \emptyset$. So\\ $F - A$ is also open in $F$, and this shows that $A$ is closed in $F$.\retTwo
+		\end{itemize}
+
+		Now since $F$ is connected and $A \neq \emptyset$ is clopen, we know that $A = F$. $\blacksquare$ 
+	\end{myIndent}
+
+	\item[(b)] Show that even if $F$ is closed and satisfies the conclusion the previous statement, then we still don't necessarily have that $F$ is connected.
+	\begin{myIndent}\HexOne
+		We shall construct a "broken ladder" in $\mathbb{R}^2$. Specifically, define
+
+		{\centering\fontsize{10}{12}\selectfont\begin{tabular}{l}
+	$L \coloneqq \{(-1, y) \in \mathbb{R}^2 : y > 0\}\cup \{(+1, y) \in \mathbb{R}^2 : y > 0\} \cup \bigcup\limits_{k=1}^\infty\{(x, k) \in \mathbb{R}^2 : \frac{1}{k+1} \leq |x| \leq 1\}$.
+		\end{tabular}\newpage\par}
+
+		In order to see that $L$ is closed, consider that:
+
+		{\centering\fontsize{10}{12}\selectfont \begin{tabular}{l}
+	$\hspace{-3em}L^\comp = (((-\infty, -1) \cup (1, \infty)) \times \mathbb{R}) \cup (\mathbb{R} \times (-\infty, 0)) \cup \bigcup\limits_{k=1}^\infty ((-1, 1) \times (k-1, k)) \cup \bigcup\limits_{k=1}^\infty(\frac{-1}{k}, \frac{1}{k})\times (k-2, k)$. 
+\end{tabular}\retTwo\par}
+
+		Importantly, this shows that $L^\comp$ is a union of open sets. So $L^\comp$ is open and we in\\ turn know that $L$ is closed. Next note that $L$ is not connected. After all, note that\\ $A \coloneqq L \cap ((0, \infty) \times \mathbb{R}) = L \cap ([0, \infty) \times \mathbb{R})$ is both open and closed in $L$. That\\ said, $A \neq \emptyset$ and $A \neq L$.\retTwo
+		
+		\begin{tabular}{p{1in} p{5in}}
+			\raisebox{-12em}{\includegraphics[scale=0.35]{Ladder_HW1_math220a.png}}
+			&
+			Finally note that $L$ does satisfy the conclusion of the problem\newline statement in part (a).  After all, $L \cap ((0, \infty))$ and $L \cap ((-\infty, 0))$ are\newline  easily checked to be the two connected components. So if $a, b$ are\newline in the same component, then we know from part (a) that a collection\newline $z_0, \ldots, z_n$ of points exists as described in the problem. Meanwhile\newline if $a$ and $b$ are in opposite components and $\varepsilon > 0$, then we know\newline there is some $k \in \mathbb{N}$ with $\frac{1}{k + 1} < \frac{1}{2}\varepsilon$. And then $(\frac{-1}{k+1}, k)$ and $(\frac{1}{k+1}, k)$\newline are two points in the opposite components that have distance $\varepsilon$ from\newline each other. $\blacksquare$\newline\phantom{.}\newline (Also see the drawing of $L$ to the side.)
+		\end{tabular}
+	\end{myIndent}
+\end{enumerate}
+
+\mySepTwo
+
+\hTwo Ok back to math 200a stuff now.\retTwo
+
+The kernel of a group action $a : G \times X \to X$ is the kernel of the induced group\\ homomorphism $G \to S_x$ (see the \inLinkRap{Alireza Theorem page 246}{theorem at the bottom of page 246}).\retTwo
+
+Note that $g$ is in the kernel of the group action $(g, x) \mapsto g \cdot x$ precisely when for all $x \in X$ we have that $g \cdot x = x$. Also, the kernel $K$ of a group action is a normal subgroup and $G/K \hookrightarrow S_X$ (this arrow notation means that the induced homomorphism described in that theorem from $G/K$ to $S_X$ is injective / a monomorphism).\retTwo
+
+Given a group action $G \curvearrowright X$ we define:
+\begin{itemize}
+	\item the \udefine{fixed set of $g$} to be $\Fix(g) = X^g \coloneqq \{x \in X : g \cdot x = x\}$ (where $g$ is fixed),
+	\item the \udefine{stabilizer of $g$} to be $G_x \coloneqq \{g \in G : g \cdot x = x\}$ (where $x$ is fixed).\retTwo
+\end{itemize}
+	
+\exTwo\ul{Lemma:} $G_x$ is a subgroup of $G$.
+\begin{myIndent}\exThreeP
+	Proof:\\ [-16pt]
+	\begin{itemize}
+		\item $1_g \cdot x = x \Longrightarrow 1 \in G_x$.
+		\item Suppose $g_2 \in G_x$. Then $g_2 \cdot x = x \Longrightarrow g_2^{-1} \cdot (g_2 \cdot x) = g_2^{-1} \cdot x$. But note that\\ $g_2^{-1} \cdot (g_2 \cdot x) = (g_2^{-1}g_2) \cdot x = 1_G \cdot x = x$. So $g_2^{-1} \in G_x$.
+		\item If $g_1, g_2 \in G_x$, then $(g_1g_2^{-1}) \cdot x = g_1 \cdot (g_2^{-1} \cdot x) = g_1 \cdot x = x$. So $g_1g_2^{-1} \in G_x$.\retTwo
+	\end{itemize}
+
+	This proves that $G_x$ is a subgroup of $G$. {\pracTwo(which by the way we shall denote as $G_x < G$).}\\ $\blacksquare$\newpage
+\end{myIndent}
+
+\exTwo\ul{Lemma:}\\ [-20pt]
+\begin{itemize}
+	\item[(a)] For all $g^\prime \in G$ we have that $\Fix(g^\prime g (g^\prime)^{-1}) = g^\prime \cdot \Fix(g) \coloneqq \{g^\prime \cdot x \in X : g \cdot x = x\}$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:
+		
+		{\centering\begin{tabular}{l}
+			$x \in \Fix(g^\prime g (g^\prime)^{-1}) \Longleftrightarrow (g^\prime g (g^\prime)^{-1}) \cdot x = x$\\ [3pt]
+			$\phantom{x \in \Fix(g^\prime g (g^\prime)^{-1})} \Longleftrightarrow g \cdot ((g^\prime)^{-1} \cdot x) = (g^\prime)^{-1} \cdot x$\\ [3pt]
+			$\phantom{x \in \Fix(g^\prime g (g^\prime)^{-1})} \Longleftrightarrow (g^\prime)^{-1} \cdot x \in \Fix(g) \Longleftrightarrow x \in g^\prime \cdot \Fix(g)$.
+		\end{tabular} \retTwo\par}
+	\end{myIndent}
+
+	\item[(b)] For all $g \in G$ we have that $G_{g \cdot x} = gG_xg^{-1}$
+	
+	\begin{myIndent}\exThreeP
+		Proof:
+
+		{\centering\begin{tabular}{l}
+			$g^\prime \in G_{g \cdot x} \Longleftrightarrow g^\prime \cdot (g \cdot x) = g \cdot x$\\ [3pt]
+			$\phantom{g^\prime \in G_{g \cdot x}} \Longleftrightarrow (g^{-1}g^\prime g) \cdot x = x \Longleftrightarrow g^{-1}g^\prime g \in G_x \Longleftrightarrow g^\prime \in gG_xg^{-1}$. $\blacksquare$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+\end{itemize}
+
+\ul{Corollary:} Suppose $G \curvearrowright X$ and $|X| < \infty$. Then $g \mapsto |\Fix(g)|$ is a class function,\\ meaning that $|\Fix(g^\prime g (g^\prime)^{-1})| = |\Fix(g)|$ (or in other words $|\Fix(g)|$ is constant on\\ any given conjugate classes).
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$|\Fix(g^\prime g (g^\prime)^{-1})| = |g^\prime \cdot \Fix(g)|$ by the last lemma. And since $x \mapsto g^\prime \cdot x$ is an element\\ of $S_X$, we know that $|g^\prime \cdot \Fix(g)| = |\Fix(g)|$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo The \udefine{$G$-orbit} of $x \in X$ is the set of all points in $X$ that are \udefine{$G$-similar} to $x$. Or to put into other words, we define $G \cdot x \coloneqq \{g \cdot x \in X : g \in G\}$ and say that $x^\prime$ is $G$-similar to $x$ if $x^\prime = g \cdot x \in G \cdot x$ for some $g \in G$. Also, in that case we denote $x^\prime \sim x$.\retTwo
+
+\exTwo\ul{Lemma:} $\sim$ is an equivalence relation.
+\begin{myIndent}\exThreeP
+	Proof:\\ [-20pt]
+	\begin{itemize}
+		\item $x \sim x$ as $1_G \cdot x = x$.
+		\item $x \sim y \Longrightarrow y \sim x$ as $x = g \cdot y \Longrightarrow g^{-1} \cdot x = y$.
+		\item If $x \sim y$ and $y \sim z$ then let $g_1, g_2 \in G$ be such that $x = g_1 \cdot y$ and $y = g_2 \cdot z$. Then $x = (g_1g_2) \cdot z$. So $x \sim z$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\hTwo It's now clear that the $G$-orbit of $x$: $G \cdot x$, is the equivalence class of $x$ with respect to $\sim$. Thus, we define $X/G \coloneqq \{G \cdot x : x \in X\}$. Also note that $X/G$ is a partition of $X$. As a result, we know that $|X| = \hspace{-0.8em}\sum\limits_{G \cdot x \in X/G}\hspace{-0.8em} |G \cdot x|$.\retTwo
+
+\exTwo\ul{Theorem (Orbit-stabilizer):} The map $G/G_x \to G \cdot x$ given by $gG_x \mapsto g \cdot x$ is a bijection. Hence $|G \cdot x| = [G : G_x]$ (where the latter is the number of left cosets of $G$ in $G_x$).
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We first show this map is well-defined. Suppose $g_1G_x = g_2G_x$. Then $g_2 = g_1h$ for some $g \in G_x$. And in turn $g_2 \cdot x = (g_1h) \cdot x = g_1 \cdot (h \cdot x) = g_1 \cdot x$.\retTwo
+
+	Next we show injectivity. Assume $g_1 \cdot x = g_2 \cdot x$. Then $g_2^{-1} \cdot (g_1 \cdot x) = x$. So $g_2^{-1}g_1 \in G_x$. Or in other words, $g_1G_x = g_2G_x$.\retTwo
+
+	Finally, surjectivity is obvious from the fact that $G \cdot x$ is the set of $y \in X$ such that there exists $g \in G$ with $g \cdot x = y$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo Note that $|G \cdot x| = 1$ iff $\forall g \in G,\gap g \cdot x = x$ iff $x \in \Fix(G)$ where:
+
+{\centering$\Fix(G) = X^G \coloneqq \{x \in X : \forall g \in G,\gap g \cdot x = x\}$.\retTwo\par}
+
+This leads to the equation:
+
+{\centering$|X| = \hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	G \cdot x \in X/G \\ |G \cdot x| = 1
+\end{smallmatrix}}\hspace{-0.8em} |G \cdot x| + 
+\hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	G \cdot x \in X/G \\ |G \cdot x| > 1
+\end{smallmatrix}}\hspace{-0.8em} |G \cdot x| = |\Fix(G)| + 
+\hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	G \cdot x \in X/G \\ |G \cdot x| > 1
+\end{smallmatrix}}\hspace{-0.8em} [G:G_x]$.\retTwo\par}
+
+\Hstatement\mySepTwo
+
+\hTwo I need to do the rest of the math 200a homework still. So I'm going to take a break from taking lecture notes to do the homework.\retTwo
+
+\Hstatement\blab{Set 1 Problem 3:} Find the automorphism group of the Cayley graph of $\mathbb{Z}$ with respect to $\{-1, +1\}$.
+
+\begin{myIndent}\HexOne
+	To start off, note that $\{n, m\}$ is an edge of $\Cay(\mathbb{Z}, \{-1, 1\})$ iff $n - m = \pm 1$. This yields the infinite graph which I've attempted to draw below.\retTwo
+
+	{\centering{\color{black}\raisebox{0em}{\tikz[scale=0.8,inner sep=4pt]{
+		\tikzstyle{myCir}=[circle, fill, thick, color=black];
+		\tikzstyle{myLine}=[thick, color=black];
+
+		\node[myCir, label=above:$0$] (0) at (0, 0) {};
+		\node[myCir, label=above:$1$] (1) at (2, 0) {} edge[myLine] (0);
+		\node[myCir, label=above:$2$] (2) at (4, 0) {} edge[myLine] (1);
+		\node[myCir, label=above:$3$] (3) at (6, 0) {} edge[myLine] (2);
+		\node[myCir, label=above:$-1$] (-1) at (-2, 0) {} edge[myLine] (0);
+		\node[myCir, label=above:$-2$] (-2) at (-4, 0) {} edge[myLine] (-1);
+		\node[myCir, label=above:$-3$] (-3) at (-6, 0) {} edge[myLine] (-2);
+
+		\node (+i) at (7.7, 0) {$\cdots$} edge[myLine] (3);
+		\node (-i) at (-7.7, 0) {$\cdots$} edge[myLine] (-3);
+	}}}\retTwo\par}
+
+	Now from this graph it is clear that reversing the graph is a symmetry. Specifically, define $\tau(n) = -n$. Then $\tau(n) - \tau(m) = -n - (-m) = m-n = -(n-m)$. Hence, $n-m =\pm 1$ iff $\tau(n) - \tau(m) = \mp 1$ and we thus know that $\tau$ preserves the edges of our graph and is thus a symmetry.\retTwo
+
+	Another obvious symmetry of our graph are index shifts. Specifically define $\sigma(n) = n + 1$. Then $\tau(n) - \tau(m) = n - m$ for all $n, m \in \mathbb{N}$ and it is thus obvious that $\tau$ preserves the edges of graph and is a symmetry.
+
+	\begin{myDindent}\HexPPP
+		I glossed over this point before but technically we also need to show $\sigma$ and $\tau$ are\\ bijections. To do this, just note that $\sigma^{-1}$ is given by $n \mapsto n-1$ and $\tau^{-1} = \tau$. So,\\ both maps are invertible.\retTwo
+	\end{myDindent}
+
+	Now we claim that every automorphism of $\Cay(\mathbb{Z}, \{-1, 1\})$ is some composition of $\tau$ and $\sigma$. To prove this, let $\theta$ be any arbitrary automorphism. We know that $\theta(0) = k$ for some $k \in \mathbb{Z}$. And in turn we have that $(\sigma^{-k} \circ \theta)(0) = 0$. Next note that $(\sigma^{-k} \circ \theta)(1)$ equals either $+1$ or $-1$. In the former case, we can trivially say that $\tau^0 \circ \sigma^{-k} \circ \theta$ fixes both $0$ and $1$. As for the latter case, since $\tau(0) = 0$ and $\tau(-1) = +1$, we can say that $\tau^{1} \circ \sigma^{-k} \circ \theta$ fixes both $0$ and $1$. Either way, this shows there exists a graph automorphism $\psi = \sigma^k \circ \tau^i$ (where $k \in \{\mathbb{Z}\}$ and $i \in \{0, 1\}$) such that $\psi^{-1} \circ \theta$ fixes both $0$ and $1$.\retTwo
+
+	Observation: If $\phi \in \Aut(\Cay(\mathbb{Z}, \{-1, 1\}))$ with $\phi(0) = 0$ and $\phi(1) = 1$, then $\phi = \myId$.
+	\begin{myIndent}\HexTwoP
+		To prove this, we do induction separately on the positive integers and then on the negative integers.
+		\begin{itemize}
+			\item Suppose $n \geq 1$ and we've already shown that $\phi(k) = k$ for all $0 \leq k \leq n$. Then since $\phi$ is a graph automorphism, we must have that $\phi(n + 1) = \phi(n) \pm 1$. But since $\phi$ is a bijection and we already know that $\phi(n-1) = n-1 =\phi(n) - 1$, this means we can only have that $\phi(n+1) = \phi(n) + 1 = n + 1$. By induction this means that $\phi(n) = n$ for all $n \geq 0$.\retTwo
+			
+			\item Next suppose $n \leq 0$ and we've shown for all $k \geq n$ that $\phi(k) = k$. Then like before we must have that $\phi(n - 1) = \phi(n) \pm 1 = n \pm 1$ since $\phi$ is a graph automorphism. But since $\phi$ is a bijection and we already know $\phi(n + 1) = n + 1$,\newpage we can only have $\phi(n - 1) = n - 1$. By induction this means that $\phi(n) = n$ for all $n \in \mathbb{Z}$.\retTwo
+		\end{itemize}
+	\end{myIndent}
+
+	Thus $\psi^{-1} \circ \theta = \myId$. Or in other words $\theta = \psi = \sigma^k \tau^i$ where $k \in \mathbb{Z}$ and $i \in \{0, 1\}$. This shows that $\Aut(\Cay(\mathbb{Z}, \{-1, 1\})) = \langle \sigma, \tau\rangle$.\retTwo
+
+	Now the homework sheet specifically tells us to list out all the elements of the group of automorphisms. To do this, we need to show that $\sigma^{k_1} \circ \tau^{i_1} \neq \sigma^{k_2} \circ \tau^{i_2}$ if either $k_1 \neq k_2$ or $i_1 \neq i_2$. 
+	\begin{myIndent}\HexTwoP
+		To start off, note that $\sigma^{k_1}$ and $\sigma^{k_2}$ are easily checked to not equal each other when\\ $k_1 \neq k_2$. We merely note that $\sigma^{k_1}(0) = k_1 \neq k_2 = \sigma^{k_2}(0)$.\retTwo
+		
+		Also, it is easy to see that $\langle \sigma \rangle = \{\sigma^k : k \in \mathbb{Z}\}$ is a cyclic subgroup of our collection of symmetries and that $\tau$ is not in that subgroup. After all the only $k \in \mathbb{Z}$ such that $\sigma^k(0) = \tau(0)$ is $k = 0$. However, $\sigma^0(1) = 1 \neq -1 = \tau(1)$. It now follows that $\langle \sigma \rangle$ and $\langle \sigma \rangle \tau$ are two disjoint cosets which partition our collection of symmetries.\retTwo
+
+		Finally, we need to show that if $k_1 \neq k_2$ then $\sigma^{k_1} \circ \tau \neq \sigma^{k_2} \circ \tau$. To do this, suppose $\sigma^{k_1} \circ \tau = \sigma^{k_2} \circ \tau$. Then by composing $\tau$ on the right side we get that $\sigma^{k_1} = \sigma^{k_2}$. And by prior work, we thus know that $k_1 = k_2$.\retTwo
+	\end{myIndent}
+
+	Thus $\Aut(\Cay(\mathbb{Z}, \{-1, 1\})) = \{\sigma^k \circ \tau^i : k \in \mathbb{Z} \text{ and } i \in \{0, 1\}\}$ and we know that the representation $\theta = \sigma^k \circ \tau^i$ is unique.\retTwo
+
+	As for showing how to compose elements note that:
+
+	{\centering $\tau \circ \sigma \circ \tau(n) = \tau \circ \sigma(-n) = \tau(-n + 1) = n - 1 = \sigma^{-1}(n)$.\retTwo\par}
+
+	And since conjugation is a group automorphism, we know that:
+	\begin{itemize}
+		\item $(\sigma^m \circ \tau) \circ \sigma^n = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) \circ \tau = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n \circ \tau = \sigma^m \circ \sigma^{-n} \circ \tau$\\ [3pt]
+		$\phantom{(\sigma^m \circ \tau) \circ \sigma^n = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) \circ \tau = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n \circ \tau} = \sigma^{m-n} \circ \tau$,\\
+
+		\item $(\sigma^m \circ \tau) \circ (\sigma^n \circ \tau) = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n = \sigma^m \circ \sigma^{-n} = \sigma^{m - n}$,\\
+
+		\item $\sigma^m \circ (\sigma^n \circ \tau) = \sigma^{m + n} \circ \tau$ and $\sigma^m \circ \sigma^n = \sigma^{m + n}$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\blab{Set 1 Problem 2:} Suppose $G$ is a finite group and that for every positive integer $n$:\\ [-16pt]
+
+{\center$|\{g \in G : g^n = e\}| \leq n$\\ [9pt]\par}
+
+(where $e$ is the identity element of $G$). Use the following steps to prove that $G$ is a cyclic group.
+
+\begin{enumerate}
+	\item[(a)] Prove that if there is an element of order $d$ in $G$, then there are exactly $\phi(d)$ elements of\\ order $d$ in $G$ where $\phi(d)$ is the Euler $\phi$-function {\color{BrickRed}(where as a reminder $\phi(d)$ equals the\\ number of integers between $1$ and $d$ inclusive which are coprime to $d$)}.
+	
+	\begin{myIndent}\HexOne
+		Suppose $g \in G$ with $o(g) = d$ and then consider the cyclic subgroup $\langle g \rangle \subseteq G$. We\\ [1pt] know that $o(g^k) = \frac{o(g)}{\gcd(o(g), k)} = \frac{d}{\gcd(d, k)} = d$ iff $\gcd(k, d) = 1$. So by considering $g^k$\\ for each $k \in \{1, \ldots, d\}$ with $\gcd(d, k) = d$ we get that there are at least $\phi(d)$\\ [3pt] distinct elements of $G$ with order $d$.\newpage
+
+		That said, all $g^k$ where $k \in \{0, \ldots, d - 1\}$ are distinct elements of $\{g \in G : g^d = e\}$. And since $|\{g \in G : g^d = e\}| \leq d$, this proves that $h \in G$ can satisfy that $h^d = e$ only if $h = g^k$ for some integer $k$. And also because $h^d$ equaling $e$ is a necessary condition for us to have $o(h) = d$, we know that the $\phi(d)$ elements of $G$ we found before are the only elements of $G$ with order $d$.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] For every positive number $d$, let $\psi(d)$ be the number of elements of $G$ that have order $d$. Show that $\psi(d) \leq \phi(d)$ and that $\psi(d) \neq 0$ implies that $d \divides |G|$.
+	
+	\begin{myIndent}\HexOne
+		We know that $\phi(d) \geq 1$ for all positive $d$ since $\gcd(1, d) = 1$. So, if $\psi(d) = 0$, then we trivially know that $\psi(d) \leq \phi(d)$. Meanwhile, if $\psi(d) > 0$ then we showed in part (a) that $\psi(d) = \phi(d)$. Hence in either case we have that $\psi(d) \leq \phi(d)$.\retTwo
+
+		Also, the fact that $d \divides |G|$ if $\psi(d) \neq 0$ is just a result of Lagrange's theorem (since the order of any subgroup of $G$ must divides $|G|$ and $\phi(d) \neq 0$ implies there is a cyclic subgroup of $G$ with order $d$).\retTwo
+	\end{myIndent}
+	
+	\item[(c)] Prove that $\psi(d) = \phi(d)$ if $d$ is a positive divisor of $|G|$. Deduce that $G$ is a cyclic group.
+	
+	\begin{myIndent}\HexOne
+		Let $n = |G|$ and note that $\sum_{d \divides n} \psi(d) = n$ since every element of $G$ has some order dividing $n$. At the same time, it is a somewhat well known result that $\sum_{d \divides n} \phi(d) = n$ for all $n \in \mathbb{N}$.
+		\begin{myIndent}\HexTwoP
+			I can't find a proof of this result anywhere in my notes so I guess I'll prove it here.\retTwo
+
+			Let $S = \{1, \ldots, n\}$ and define $S_d \coloneqq \{k \in S : \gcd(k, n) = d\}$ for each\\ $d$. Clearly, the $S_d$ form a partition of $S$ as we range over all the divisors\\ of $n$. Also note that there is a bijective correspondence between $S_d$ and\\ $E_{n/d} \coloneqq \{k \in \{1, \ldots, \frac{n}{d}\} : \gcd(k, \frac{n}{d}) = 1\}$.
+			\begin{myIndent}\HexPPP
+				Specifically note that $\gcd(m, n) = d \Longrightarrow \frac{m}{d}, \frac{n}{d} \in \mathbb{Z}$ with $\gcd(\frac{m}{d}, \frac{n}{d}) = 1$. And if we also have that $m \leq n$ then clearly $\frac{m}{d} \leq \frac{n}{d}$. So, $m \in S_d \Longrightarrow \frac{m}{d} \in E_{n/d}$. Meanwhile, if $\gcd(m, \frac{n}{d}) = 1$, then we know that $\gcd(dm, n) = d$. And also if $m \leq \frac{n}{d}$, then we know that $md \leq n$ Hence $m \in E_{n/d} \Longrightarrow dm \in S_d$. It now follows that the map $m \mapsto \frac{m}{d}$ is an invertible map from $S_d$ to $E_{n/d}$.\retTwo
+			\end{myIndent}
+
+			Now $|S_d| = |E_{n/d}| = \phi(\frac{n}{d})$. Also, we know that $n = |S| = \sum_{d \divides n} |S_d|$. So we have shown that $n = \sum_{d \divides n} \phi(\frac{n}{d}) = \sum_{d \divides n} \phi(d)$.\retTwo
+		\end{myIndent}
+
+		Since $\psi(d) \leq \phi(d)$ for all $d$, we thus have that:
+
+		{\centering $n = \sum_{d \divides n} \psi(d) \leq \sum_{d \divides n} \phi(d) = n$.\retTwo\par}
+
+		And this proves that $\sum_{d \divides n} \psi(d) = \sum_{d \divides n} \phi(d)$. Going even further, since\\ $0 \leq \psi(d) \leq \phi(d)$ for all $d$, the two sums can only equal if $\psi(d) = \phi(d)$ for all $d$ being summed over. In particular, we must have that $\phi(n) = \psi(n) \geq 1$. So, there is some element of order $n = |G|$ in $G$. This is equivalent to saying that $G$ is cyclic. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 1 Problem 1:} Suppose $G_1$ and $G_2$ are two groups. We say $G_1$ and $G_2$ are \udefine{algebraically\\ independent} if there are no proper normal subgroups $N_1$ and $N_2$ of $G_1$ and $G_2$ respectively\\ such that $G_1/N_1 \cong G_2/N_2$.\newpage
+\begin{enumerate}
+	\item[(a)] Prove that $G_1$ and $G_2$ are algebraically independent if and only if $G_1 \times G_2$ satisfies the following property: suppose $H$ is a subgroup of $G_1 \times G_2$ and the projection of $H$ to the $i$-th component is $G_i$ for $i = 1, 2$. Then $H = G_1 \times G_2$.
+	\begin{myIndent}\HexOne
+		\begin{myDindent}\exPPP
+			As a reminder, the group $G_1 \times G_2$ is just the cartesian product\\ of the two groups equipped with the law of composition that\\ $(g_1, g_2)(g_1^\prime, g_2^\prime) = (g_1g_1^\prime, g_2g_2^\prime)$.\retTwo
+		\end{myDindent}
+		
+		$(\Longrightarrow)$\\
+		Suppose $G_1$ and $G_2$ are algebraically independent and then consider any subgroup $H \subseteq G_1 \times G_2$ such that $\pi_1(H) = G_1$ and $\pi_2(H) = G_2$ (where $\pi_1$ and $\pi_2$ are the projection maps). Also let $e_1$ and $e_2$ denote the identity elements of $G_1$ and $G_2$ respectively.\retTwo
+
+		To start off, let $N_1 \coloneqq H \cap (\{e_1\} \times G_2)$ and $N_2 \coloneqq H \cap (G_1 \times \{e_2\})$. Then set $N_1^\prime \coloneqq \pi_2(N_1)$ and $N_2^\prime \coloneqq \pi_1(N_2)$. Both $N_1$ and $N_2$ are easily seen to be subgroups of $G_1 \times G_2$ as they are both intersections of groups. From there it also easy to see that $N_1^\prime$ and $N_2^\prime$ are subgroups of $G_2$ and $G_1$ respectively on account of being images of $N_2$ and $N_1$ via the homomorphisms $\pi_2$ and $\pi_1$. And of course there are obvious group isomorphisms showing that $N_1^\prime \cong N_1$ and $N_2^\prime \cong N_2$.
+		\retTwo
+
+		Our first big step is to show that $N_1^\prime$ and $N_2^\prime$ are normal subgroups (which in turn means that $G_1/N_2^\prime$ and $G_2/N_1^\prime$ are well-defined quotient groups).
+		\begin{myIndent}\HexTwoP
+			Suppose $g_1 \in N_2^\prime$ and let $g^\prime_1$ be any element of $G$. Since $\pi_1(H) = G_1$, we know\\ [2pt] there is some $g^\prime_2 \in G_2$ such that $(g^\prime_1, g^\prime_2) \in H$. And since $H$ is closed under\\ [2pt] inverses, we also know that $((g_1^\prime)^{-1}, (g_2^\prime)^{-1}) \in H$. Therefore $g^\prime_1 g (g^\prime_1)^{-1} \in N_2^\prime$\\ [2pt] since $(g^\prime_1 g (g^\prime_1)^{-1},  g^\prime_2 e_2 (g^\prime_2)^{-1}) = (g^\prime_1 g (g^\prime_1)^{-1}, e_2) \in H$. This proves that $N_2^\prime$ is\\ [2pt] normal in $G_1$. Analogous reasoning shows that $N_1^\prime$ is normal in $G_2$.\retTwo
+		\end{myIndent}
+
+		Next we define a group homomorphism $\phi$ from $G_1$ to $G_2/N_1^\prime$ as follows:
+
+		{\centering Given any $g_1 \in G$, let $\phi(g_1) = g_2N_1^\prime$ where $(g_1, g_2) \in H$.   \retTwo\par}
+
+		\begin{myIndent}\HexTwoP
+			To show this is well defined, suppose $g_2, g_2^\prime \in G_2$ both satisfy that\\ [1pt] $(g_1, g_2) \in H$ and $(g_1, g_2^\prime) \in H$. Then $(e_1, g_2^{-1}g_2^\prime) \in H$, which in turns\\ [1pt] means that $g_2^{-1}g_2^\prime \in N_1^\prime$. This is equivalent to saying that $g_2^{-1} g_2^\prime N_1^\prime = N_1^\prime$\\ which in turn is equivalent to saying that $g_2^\prime N_1^\prime = g_2 N_1^\prime$.\retTwo
+
+			Also, to see that $\phi$ is a homomorphism, suppose $(g_1, g_2), (g_1^\prime, g_2^\prime) \in H$.\\ [1pt] Then $(g_1g_1^\prime, g_2g_2^\prime) \in H$ and so $\phi(g_1g_1^\prime) = g_2g_2^\prime N_1^\prime$. But we also have that\\ [1pt] $\phi(g_1)\phi(g_2) = g_2N_1^\prime g_2^\prime N_1^\prime = g_2g_2^\prime N_1^\prime$. So $\phi(g_1g_2) = \phi(g_1)\phi(g_2)$.\retTwo
+		\end{myIndent}
+
+		Now we claim $\phi$ is surjective. After all, $\pi_2(H) = G_2$ so for all $g_2 \in G_2$ there exists\\ [1pt] $g_1 \in G_1$ such that $(g_1, g_2) \in H$. And then in turn $\phi(g_1) = g_2 N_1^\prime$. We also claim that\\ [1pt] the kernel of $\phi$ is $N_2^\prime$. After all, suppose $\phi(g_1) = N_1^\prime$. Then we know that there is some\\ [1pt] $g_2 \in G_2$ such that $(g_1, g_2) \in H$ and $(e_1, g_2) \in H$. But since $(e_1, g_2) \in H$, we also\\ [1pt] know that $(e_1, g_2^{-1}) \in H$, and thus $(e_1g_1, g_2^{-1}g_2) = (g_1, e_2) \in H$. So, $g_1 \in N_2^\prime$ and\\ [1pt] we've shown that $\ker(\phi) \subseteq N_2^\prime$. Going the other direction and showing $N_2^\prime \subseteq \ker(\phi)$\\ [1pt] is as simple as noting that $e_2N_1^\prime = N_1^\prime$.\newpage
+
+		By the first isomorphism theorem, we are thus able to conclude that $\frac{G}{N_2^\prime} \cong \frac{G}{N_1^\prime}$.\retTwo
+
+		{\color{red}I ran out of time so everything after this point is not being graded\dots\retTwo}
+
+		Since $G_1$ and $G_2$ are algebraically independent, this implies that $N_2^\prime = G_1$ and\\ $N_1^\prime = G_2$. But now since $G_1 \times \{e_2\}$ and $\{e_1\} \times G_2$ are both contained in $H$ are\\ easily seen to together generate all of $G_1 \times G_2$, we know that $H = G_1 \times G_2$.\\ This proves the property in the problem statement.\retTwo
+
+		$(\Longleftarrow)$\\
+		Suppose $G_1$ and $G_2$ are not algebraically independent and let $N_1$ and $N_2$ be\\ proper normal subgroups of $G_1$ and $G_2$ such that $G_1 / N_1 \cong G_2 / N_2$. Then let\\ $\phi : G_1 / N_1 \to G_2 / N_2$ be a group isomorphism.\retTwo
+
+		We define the set $H \coloneqq \{(g_1, g_2) \in G_1 \times G_2 : \phi(g_1N_1) = g_2N_2\}$ and claim that\\ this is a subgroup of $G_1 \times G_2$.
+		\begin{myIndent}\HexTwoP
+			\begin{itemize}
+				\item Note that $(e_1, e_2) \in H$ since we must have that $\phi(N_1) = N_2$.\\ [-6pt]
+				\item Suppose $(g_1, g_2) \in H$. Then $\phi(g_1 N_1) = g_2 N_2$. But note that:
+				
+				{\centering$N_2 = \phi(N_1) = \phi(g_1^{-1}g_1 N_1) = \phi(g_1^{-1} N_1)\phi(g_1 N_1) = \phi(g_1^{-1} N_1) g_2N_2$.\retTwo\par}
+
+				Therefore $\phi(g_1^{-1}N_1) = (g_2N_2)^{-1} = g_2^{-1} N_2$ and we've shown that\\ $(g_1, g_2) \in H$.\\ [-6pt]
+
+				\item Suppose $(g_1, g_2), (g_1^\prime, g_2^\prime) \in H$. Then we have that $\phi(g_1N_1) = g_2N_2$ and\\ $\phi(g_1^\prime N_1) = g_2^\prime N_2$. And since $\phi$ is a group homomorphism, we get that:
+				
+				{\centering $\phi(g_1g_1^\prime N_1) \phi(g_1 N_1)\phi(g_1^\prime N_1) = (g_2N_2)(g_2^\prime N_2) = g_2g_2^\prime N_2$. \retTwo\par}
+
+				This shows that $(g_1g_1^\prime, g_2g_2^\prime) \in H$.\retTwo
+			\end{itemize}
+		\end{myIndent}
+
+		Next observe that $\pi_1(H) = G_1$. After all, for any $g_1 \in G_1$ we can just pick\\ [1pt] $g_2 \in \phi(g_1 N)$ and then we'll know that $(g_1, g_2) \in H$. We also know that\\ [1pt] $\pi_2(H) = G_2$. After all, since $\phi$ is surjective, we know that for any $g_2 \in G_2$\\ [1pt] there exists a coset $g_1^\prime N_1 \in G_1/N_1$ such that $\phi(g_1^\prime N_1) = g_2N_2$. And now by\\ [1pt] just choosing any $g_1 \in g_1^\prime N_1$ we get that $(g_1, g_2) \in H$.\retTwo
+
+		That said, $H \neq G_1 \times G_2$. To see this, just pick any $g_1 \in N_1$ and $g_2 \notin N_2$.\\ Then $\phi(g_1 N_1) \neq g_2N_2$ and we have that $(g_1, g_2) \notin H$. $\blacksquare$\retTwo
+	\end{myIndent}
+	
+	\item[(b)] Suppose $G_1$ and $G_2$ are two finite groups and $\gcd(|G_1|, |G_2|) = 1$. Then $G_1$ and $G_2$ are algebraically independent.
+	
+	\begin{myIndent}\HexOne
+		Let $H$ be any subgroup of $G_1 \times G_2$ such that $\pi_1(H) = G_1$ and $\pi_2(H) = G_2$.\\ [2pt] Since $\pi_1$ and $\pi_2$ are group homomorphisms from $G_1 \times G_2$ to $G_1$ and $G_2$ respectively,\\ [2pt] we know that both $|G_1| = |\pi_1(H)|$and $|G_2| = |\pi_2(H)|$ divide $|H|$. Hence,\\ [2pt] $\lcm(|G_1|, |G_2|)$ divides $|H|$. Meanwhile, we have by Lagrange's theorem that\\ [2pt] $|H|$ divides $|G_1 \times G_2| = |G_1||G_2|$.\retTwo
+
+		But now because $\gcd(|G_1|, |G_2|) = 1$, we have that $\lcm(|G_1|, |G_2|) = |G_1||G_2|$ So, we must have $|H| = |G_1||G_2|$. And this proves that $H = G_1 \times G_2$.\newpage
+
+		By part (a), we can now conclude that $G_1$ and $G_2$ are algebraically independent. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\mySepTwo
 
 
 
@@ -10176,14 +10900,10 @@ Now let $C_n$ be a cyclic group of order $n$. In other words, $C_n = \langle a \
 
 
 
-
-
-
-
-
-\hypertarget{math 241a lecture 2}{}
-\hypertarget{math 220a lecture 2}{}
-\hypertarget{math 200a lecture 3}{}
+\hypertarget{math 241a lecture 3}{}
+\hypertarget{math 220a lecture 3}{}
+\hypertarget{math 200a lecture 4}{}
+\hypertarget{page idk 1 reference}{}
 
 
 
