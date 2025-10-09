@@ -293,8 +293,16 @@
 \newcommand{\Fun}{\mathrm{Fun}}
 \newcommand{\act}{\mathrm{act}}
 \newcommand{\Fix}{\mathrm{Fix}}
+\newcommand{\Sub}{\mathrm{Sub}}
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\core}{\mathrm{core}}
+\newcommand{\Syl}{\mathrm{Syl}}
 
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\symdif}{\triangle}
+\DeclareMathOperator{\Average}{Average}
+\DeclareMathOperator*{\AverageAst}{Average}
 
 
 
@@ -8718,7 +8726,7 @@ Next, the \udefine{$n$th sample variance} is defined as $S_n^2 \coloneqq (n-1)^{
 			$\phantom{E_n^2} = \left(n^{-1}\sum_{j=1}^n (X_j - \mu)^2\right) - \left(2(M_n - \mu) \cdot n^{-1}\sum_{j=1}^n(X_j - \mu)\right) + (M_n - \mu)^2$
 		\end{tabular}\retTwo\par}
 
-		Now we already proved that $M_n \to \mu$ a.s. Therefore it's clear that, $(M_n - \mu)^2 \to 0$ and $2(M_n - \mu) \to 0$ a.s. as $n \to \infty$. Meanwhile, by a straight foward application of Khinchine's strong law of large numbers we know that almost surely:
+		Now we already proved that $M_n \to \mu$ a.s. Therefore it's clear that, $(M_n - \mu)^2 \to 0$ and $2(M_n - \mu) \to 0$ a.s. as $n \to \infty$. Meanwhile, by a straightforward application of Khinchine's strong law of large numbers we know that almost surely:
 		
 		{\centering$n^{-1}\sum_{j=1}^n(X_j - \mu) \to 0$ and $n^{-1}\sum_{j=1}^n (X_j - \mu)^2 \to \sigma^2$ as $n \to \infty$\retTwo\par}
 
@@ -8999,7 +9007,7 @@ To start off, there's an exercise that applies both the central limit theorem an
 
 	{\centering$\sqrt{n}\sum_{j=1}^n X_j / (\sum_{j=1}^n X_j^2) = \sum_{j=1}^n X_j / (\frac{1}{\sqrt{n}}\sum_{j=1}^n X_j^2) = n^{-1/2}\sum_{j=1}^n X_j / (\frac{1}{n}\sum_{j=1}^n X_j^2)$ \retTwo\par}
 
-	Now by Khinchine's strong law of large numbers, we know that $\frac{1}{n}\sum_{j=1}^n X_j^2 \to \sigma^2 = 1$\\ [1pt] almost surely as $n \to \infty$. Also, by a straightfoward application of the prior exercise using\\ $\phi(z) = \sqrt{\rea{z}}\chi_{(0, \infty)}(\rea{z})$, we know that $(\frac{1}{n}\sum_{j=1}^n X_j^2)^{1/2} \to \sqrt{1} = 1$ almost surely\\ as $n \to \infty$.\newpage 
+	Now by Khinchine's strong law of large numbers, we know that $\frac{1}{n}\sum_{j=1}^n X_j^2 \to \sigma^2 = 1$\\ [1pt] almost surely as $n \to \infty$. Also, by a straightforward application of the prior exercise using\\ $\phi(z) = \sqrt{\rea{z}}\chi_{(0, \infty)}(\rea{z})$, we know that $(\frac{1}{n}\sum_{j=1}^n X_j^2)^{1/2} \to \sqrt{1} = 1$ almost surely\\ as $n \to \infty$.\newpage 
 	
 	Meanwhile, the central limit theorem says for all $a \in \mathbb{R}$ that:
 	
@@ -9087,7 +9095,7 @@ Let $X$ and $Y$ be LCH spaces equipped with Borel Radon measures. Then like in m
 			$\phantom{(f_x)^{-1}(A)} = \{y \in Y : (x, y) \in f^{-1}(A)\} = (f^{-1}(A))_x$
 		\end{tabular}\retTwo\par}
 
-		Similarly, we have for any $A \in \mathcalli{B}_\mathbb{C}$ and $y \in Y$ that $(f^y)^{-1}(A) = (f^{-1}(A))^y$. Thus if $f$ is $\mathcalli{B}_{X \times Y}$-measurable, then it is a straightfoward application of part (a) to prove part (b). $\blacksquare$\newpage
+		Similarly, we have for any $A \in \mathcalli{B}_\mathbb{C}$ and $y \in Y$ that $(f^y)^{-1}(A) = (f^{-1}(A))^y$. Thus if $f$ is $\mathcalli{B}_{X \times Y}$-measurable, then it is a straightforward application of part (a) to prove part (b). $\blacksquare$\newpage
 	\end{myIndent}
 \end{itemize}
 
@@ -9164,7 +9172,7 @@ And finally the restriction of $\mu \radtimes \nu$ to $\mathcalli{B}_X \otimes \
 		
 		\item $\mathcal{M}$ is closed under finite disjoint unions.
 		\begin{myIndent}\exPPP
-			Why? This is a straightfoward application of the finite additivity of measures and\\ integrals and also the fact that a finite sum of Borel measurable functions is also Borel measurable.\retTwo 
+			Why? This is a straightforward application of the finite additivity of measures\\ and integrals and also the fact that a finite sum of Borel measurable functions is\\ also Borel measurable.\retTwo 
 		\end{myIndent}
 
 		\item $\mathcal{M}$ is closed under countable increasing unions.
@@ -10383,7 +10391,7 @@ Anyways time to do a bunch of busy work now for this class.\retTwo
 	\end{myIndent}
 \end{itemize}
 
-\hTwo I'll continue this class on \inLinkRap{math 220a lecture 3}{page \_\_\_}.
+\hTwo I'll continue this class on \inLinkRap{math 220a lecture 3}{page 274}.
 
 \mySepTwo
 
@@ -10604,17 +10612,17 @@ This is a complete tangent unrelated to the class but I can't help but want to l
 
 \hTwo Ok back to math 200a stuff now.\retTwo
 
-The kernel of a group action $a : G \times X \to X$ is the kernel of the induced group\\ homomorphism $G \to S_x$ (see the \inLinkRap{Alireza Theorem page 246}{theorem at the bottom of page 246}).\retTwo
+The kernel of a group action $a : G \times X \to X$ is the kernel of the induced group\\ homomorphism $G \to S_X$ (see the \inLinkRap{Alireza Theorem page 246}{theorem at the bottom of page 246}).\retTwo
 
 Note that $g$ is in the kernel of the group action $(g, x) \mapsto g \cdot x$ precisely when for all $x \in X$ we have that $g \cdot x = x$. Also, the kernel $K$ of a group action is a normal subgroup and $G/K \hookrightarrow S_X$ (this arrow notation means that the induced homomorphism described in that theorem from $G/K$ to $S_X$ is injective / a monomorphism).\retTwo
 
 Given a group action $G \curvearrowright X$ we define:
 \begin{itemize}
 	\item the \udefine{fixed set of $g$} to be $\Fix(g) = X^g \coloneqq \{x \in X : g \cdot x = x\}$ (where $g$ is fixed),
-	\item the \udefine{stabilizer of $g$} to be $G_x \coloneqq \{g \in G : g \cdot x = x\}$ (where $x$ is fixed).\retTwo
+	\item the \udefine{stabilizer of $x$} to be $G_x \coloneqq \{g \in G : g \cdot x = x\}$ (where $x$ is fixed).\retTwo
 \end{itemize}
 	
-\exTwo\ul{Lemma:} $G_x$ is a subgroup of $G$.
+\exTwo\hypertarget{Alireza lemma page 256}{\ul{Lemma:}} $G_x$ is a subgroup of $G$.
 \begin{myIndent}\exThreeP
 	Proof:\\ [-16pt]
 	\begin{itemize}
@@ -10888,21 +10896,835 @@ This leads to the equation:
 
 		But now because $\gcd(|G_1|, |G_2|) = 1$, we have that $\lcm(|G_1|, |G_2|) = |G_1||G_2|$ So, we must have $|H| = |G_1||G_2|$. And this proves that $H = G_1 \times G_2$.\newpage
 
-		By part (a), we can now conclude that $G_1$ and $G_2$ are algebraically independent. $\blacksquare$\retTwo
+		By part (a), we can now conclude that $G_1$ and $G_2$ are algebraically independent. $\blacksquare$
 	\end{myIndent}
 \end{enumerate}
 
 \mySepTwo
 
+\hTwo I'll continue with this class on \inLinkRap{math 200a lecture 4}{page 269}.\retTwo
+
+\dispDate{10/5/2025}
+
+I agreed to help present on a book (\textit{Ergodic Theory with a view towards Number Theory} by Einsiedler and Ward) this coming Wednesday. So today I'm going to be preparing for that.\retTwo
+
+\ul{(Definition 2.1:)}
+\begin{itemize}
+	\item Let $(X, \mathcalli{B}, \mu)$ and $(Y, \mathcalli{C}, \nu)$ be probability spaces. A map $\phi : X \to Y$  is \udefine{measure preserving} if it is measurable and $\mu(\phi^{-1}(B)) = \nu(B)$ for all $B \in \mathcalli{C}$.
+	
+	\item If $T : (X, \mathcalli{B}, \mu) \to (X, \mathcalli{B}, \mu)$ is measure-preserving, then we call the measure space $(X, \mathcalli{B}, \mu)$ \udefine{$T$-invariant} and say that $(X, \mathcalli{B}, \mu, T)$ (which I will often shorthand as just $(X, T)$) is a \udefine{measure-preserving system}.\retTwo
+\end{itemize} 
+
+\exTwo\hypertarget{Einsiedler and Ward Theorem A.8}{\ul{Theorem A.8:}} Suppose $(X, \mathcalli{B}, \mu)$ and $(Y, \mathcalli{C}, \mu)$ are probability spaces and that $\mathcalli{E}$ is an\\ elementary family of sets that generates the $\sigma$-algebra $\mathcalli{C}$. Then a measurable map\\ $\phi: X \to Y$ is measure-preserving if and only if $\mu(\phi^{-1}(E)) = \nu(E)$ for all $E \in \mathcalli{E}$.
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	This is trivial.\retTwo
+
+	$(\Longleftarrow)$\\
+	Let $\mathcalli{A}$ be the collection of all finite disjoint unions of elements in $\mathcalli{E}$, then recall from math 240a that $\mathcalli{A}$ is an algebra of sets and that by Carathéodory's theorem, any $\sigma$-finite measure on $\mathcalli{C}$ is uniquely determined by it's restriction to $\mathcalli{A}$.\retTwo
+
+	Now importantly $\lambda: \mathcalli{C} \to [0, \infty]$ defined by $\lambda(C) = \mu(\phi^{-1}(C))$ is a well-defined\\ measure (You just need to note that $\phi^{-1}(\bigcup_{n \in \mathbb{N}} C_n) = \bigcup_{n \in \mathbb{N}} \phi^{-1}(C_n)$). And since $\mu$ is $\sigma$-\\finite, we know $\lambda$ is. So if $\lambda$ and $\nu$ agree on $\mathcalli{A}$, then they must agree on all of $\mathcalli{C}$. Also,\\ note that $\lambda$ and $\nu$'s values on $\mathcalli{A}$ are uniquely determined by their restrictions to $\mathcalli{E}$. So if\\ $\lambda|_\mathcalli{E} = \nu|_{\mathcalli{E}}$, we have that $\lambda = \nu$. $\blacksquare$\retTwo
+	\begin{myIndent}\myComment
+		As a side note: For this proof we didn't actually need $(X, \mathcalli{B}, \mu)$ and $(Y, \mathcalli{C}, \mu)$ to be probability measures. We just needed $\mu$ and $\nu$ to be $\sigma$-finite.\retTwo
+
+		A typical application of this theorem will be that if we want to check that some map on $\mathbb{T} \coloneqq \mathbb{R} / \mathbb{Z}$ is measure-preserving then we only need to check cosets of half-intervals $[a, b)$ of $[0, 1)$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+\hypertarget{Einsiedler and Ward trippy example}{Here} is a somewhat trippy example (to me):
+\begin{myIndent}
+	Consider $(\mathbb{T}, \mathcalli{B}_\mathbb{T})$ equipped with the Lebesgue measure $m$ and define $T_2 : \mathbb{T} \to \mathbb{T}$ by $T_2(t) = 2t \mMod{1}$. We claim that $T_2$ is a measure preserving map.\newpage
+
+	\pracTwo
+	Proof:\\
+	Consider any half-interval $[a, b) \subseteq [0, 1)$. Then we have that:
+	
+	{\centering$T_2^{-1}([a, b)) = [\frac{a}{2}, \frac{b}{2}) \cup [\frac{a}{2} + \frac{1}{2}, \frac{b}{2} + \frac{1}{2})$.\retTwo\par}
+
+	And hence $m(T_2^{-1}([a, b))) = \frac{b}{2} - \frac{a}{2} + (\frac{b}{2} + \frac{1}{2}) - (\frac{a}{2} + \frac{1}{2}) = b - a = m([a, b))$.\retTwo
+\end{myIndent}
+
+The reason I find this example a bit trippy is that if $b - a \leq \frac{1}{2}$ then we know that\\ $m(T_2([a, b))) = 2m([a, b))$. So I guess this example serves to illustrate that images of sets\\ with respect measure preserving maps don't need to have their measure preserved.\retTwo
+
+To fully dispel my confusion, suppose $X$ and $Y$ are equipped with probability measures $\mu$ and $\nu$ respectively, $\phi: X \to Y$ is a measure preserving map, $x \in X$, and $y = \phi(x)$. The definition of measure preserving says that for all measurable sets $A \subseteq Y$ the probability that $y \in A$ is equal to the probability that $x \in \phi^{-1}(A)$. The last example however shows that if $B \subseteq X$ is measurable then the probability that $x \in B$ \textit{does not} have to equal the probability that $y \in \phi(B)$.\retTwo
+
+That all said, we \textit{do} have that if $\phi$ is measure-preserving and bijective with a measurable inverse, then $\phi^{-1}$ is also measure preserving.
+\begin{myIndent}\pracTwo
+	This is because we then have for any measurable $B \subseteq X$ that:
+	
+	{\centering$\nu(\phi(B)) = \mu(\phi^{-1}(\phi(B))) = \mu(B)$.\retTwo\par}
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo If anyone in class asks, see my note on integrals of induced measures on \inLinkRap{Folland Proposition 10.1}{page 193.}\\ Otherwise I'll just state this without proof.
+\begin{myIndent}
+	\exTwo\ul{Lemma 2.6:} A measure $\mu$ on $X$ is $T$-invariant if and only if $\int f \df \mu = \int f \circ T \df \mu$ for all $f \in L^\infty(X, \mu)$. Moreover, if $\mu$ is $T$-invariant, then $\int f \df \mu = \int f \circ T \df \mu$ holds for all $f \in L^1(\mu, X)$.\retTwo
+\end{myIndent}
+
+\ul{(Definition 2.7:)} Let $(X, \mathcalli{B}_X, \mu, T)$ and $(Y, \mathcalli{B}_Y, \nu, S)$ be measure-preserving systems on probability spaces.
+\begin{enumerate}
+	\item The system $(Y, \mathcalli{B}_Y, \nu, S)$ is a \udefine{factor} of $(X, \mathcalli{B}_X, \mu, T)$ if there are sets $X^\prime \in \mathcalli{B}_X$ and\\ $Y^\prime \in \mathcalli{B}_Y$ with $\mu(X^\prime) = \nu(Y^\prime) = 1$,\phantom{a} $T(X^\prime) \subseteq X^\prime$, and $S(Y^\prime) \subseteq Y^\prime$, as well as a\\ measure-preserving map $\phi: X^\prime \to Y^\prime$ with $\phi \circ T(x) = S \circ \phi(x)$ for all $x \in X^\prime$. 
+	
+	\item If $\phi$ in the above definition has a measurable inverse, then we say $(Y, \mathcalli{B}_Y, \nu, S)$ is \udefine{isomorphic} to $(X, \mathcalli{B}_X, \mu, T)$.\retTwo
+\end{enumerate}
+
+Essentially if we let $\phi$ be undefined on a null set, then $(Y, \mathcalli{B}_Y, \nu, S)$ is a factor of\\ $(X, \mathcalli{B}_X, \mu, T)$ if there exists a function $\phi$ such that the diagram below commutes:
+
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzIsMCwiWCJdLFswLDIsIlkiXSxbMiwyLCJZIl0sWzAsMSwiVCJdLFsyLDMsIlMiLDJdLFswLDIsIlxccGhpIiwyXSxbMSwzLCJcXHBoaSJdXQ==
+\[\begin{tikzcd}[sep=scriptsize]
+	X && X \\
+	\\
+	Y && Y
+	\arrow["T", from=1-1, to=1-3]
+	\arrow["\phi"', from=1-1, to=3-1]
+	\arrow["\phi", from=1-3, to=3-3]
+	\arrow["S"', from=3-1, to=3-3]
+\end{tikzcd}\]
+
+\newpage
+
+\begin{myIndent}\pracOne
+	\begin{myClosureOne}{6}
+		Here is my attempt at giving an example of a factor system where the two systems\\ are not isomorphic: (not in the book)\retTwo
+		
+		Let $\mathbb{T}^2$ and $\mathbb{T}$ be equipped with the Lebesgue measure, and let $\phi: \mathbb{T}^2 \to \mathbb{T}$ be\\ the projection of $\mathbb{T}^2$ onto $\mathbb{T}$. Then given any $(c_x, c_y) \in \mathbb{T}^2$ define $T: \mathbb{T}^2 \to \mathbb{T}$ by\\ $T(x, y) = (x + c_x, y + c_y)$ and $S: \mathbb{T} \to \mathbb{T}$ by $S(x) = x + c_x$.\retTwo
+
+		Then it's clear that $T \circ \phi = \phi \circ S$, and you can also somewhat easily check that\\ $T$, $S$, and $\phi$ are measure-preserving.\\ [-4pt]
+	\end{myClosureOne}\retTwo
+\end{myIndent}
+
+Here is a non-trivial example (from the book) of two systems that are isomorphic. To start off, let $\{0, 1\}$ be equipped with the discrete topology (turning it into a compact Hausdorff space) as well as the coin flip measure $\mu_{1/2, 1/2}$ on it's power set. 
+\begin{myIndent}\myComment
+	In other words $\mu_{1/2, 1/2}(\{0\}) = \mu_{1/2, 1/2}(\{1\}) = 1/2$.\retTwo
+\end{myIndent}
+
+Next let $X = \{0, 1\}^\mathbb{N}$ and equip $X$ with the (Radon) product measure $\mu = \prod_{n \in \mathbb{N}}\mu_{1/2,1/2}$. Then the \udefine{left shift map} $\sigma : X \to X$ defined by $\sigma(x_0, x_1, \ldots) = (x_1, x_2, \ldots)$ preserves $\mu$.
+
+\begin{myIndent}\pracTwo
+	Why?\\
+	Since $\mu$ is defined on $\mathcalli{B}_X$ and is trivially $\sigma$-finite (since $\mu$ is a probability measure), we know by similar reasoning as in \inLinkRap{Einsiedler and Ward Theorem A.8}{theorem A.8} that $\sigma$ is measure preserving if and only if $\mu(\sigma^{-1}(U)) = \mu(U)$ for all open sets $U \subseteq \{0, 1\}^{\mathbb{N}}$ (in the product topology).\retTwo
+
+	Now, Einsiedler and Ward call open sets in the product topology of $\{0, 1\}^\mathbb{N}$ \udefine{cylinder sets}. Specifically, $U \subseteq \{0, 1\}^\mathbb{N}$ is open iff there is a finite set $I \subseteq \mathbb{N}$ and a map $\mathbf{a}: I \to \{0, 1\}$ such that $U = \{(x_0, x_1, \ldots) \in X : x_j = \mathbf{a}(j) \text{ for all } j \in I\}$.
+
+	\begin{myTindent}\begin{myTindent}
+		(Also Einsiedler and Ward denote this set $I(\mathbf{a})$.)\retTwo
+	\end{myTindent}\end{myTindent}
+
+	With this notation in mind, let $I(\mathbf{a})$ be an open set in $\mathcalli{B}_X$. Then we clearly have that $\sigma^{-1}(I(\mathbf{a})) = I^\prime(\mathbf{a}^\prime)$ where $I^\prime = \{n + 1 : n \in I\}$ and and $\mathbf{a}^\prime: I^\prime \to \{0, 1\}$ is given by $\mathbf{a}^\prime(n) = \mathbf{a}(n - 1)$. But also note that:
+	
+	{\centering$\mu(\sigma^{-1}(I(\mathbf{a}))) = \mu(I^\prime(\mathbf{a}^\prime)) = (1/2)^{|I^\prime|} = (1/2)^{|I|} = \mu(I(\mathbf{a}))$\retTwo\par}
+\end{myIndent}
+
+Also note that the map $\phi: X \to \mathbb{T}$ given by $\phi(x_0, x_1, \ldots) = \sum_{n=0}^\infty \frac{x_n}{2^{n+1}}$ is measure-preserving from $(X, \mu)$ to $(\mathbb{T}, m)$ (where $m$ is the Lebesgue measure).
+\begin{myIndent}\pracTwo
+	Why?\\
+	Note that the diadic rational numbers $\mathbb{Z}[\frac{1}{2}]$ are dense in the real numbers and include $0$\\ and $1$. And from there it is easy to see that the collection of cosets of half intervals\\ $[a, b) \subseteq [0, 1)$ such that $a, b \in \mathbb{Z}[\frac{1}{2}]$ is an elementary family generating $\mathcalli{B}_\mathbb{T}$. If we can\\ show that $\phi^{-1}([a, b)) \in \mathcalli{B}_X$ and that $\mu(\phi^{-1}([a, b))) = m([a, b))$ for all such half\\ intervals, we will have thus proven what we want.\retTwo
+
+	Let $a$ and $b$ be diadic rationals with $a < b$. Then we know that there is some $n \in \mathbb{N}$ with the binary expansion of $a$ and $b$ being $a = 0.a_0a_1\cdots a_n\overline{11}$ and $b = 0.b_0b_1\cdots b_n\overline{00}$. So, for all $0 \leq k \leq n$ define:
+	\begin{itemize}
+		\item $A_k \coloneqq \{(x_0,x_1,\ldots) \in X : x_k > a_k \text{ and } x_i = a_i \text{ for all }i < k\}$,\newpage
+		\item $B_k \coloneqq \{(x_0,x_1,\ldots) \in X : x_k < b_k \text{ and } x_i = b_i \text{ for all }i < k\}$.\retTwo
+	\end{itemize}
+
+	Also define:
+	\begin{itemize}
+		\item $A^\prime \coloneqq \{(x_0,x_1,\ldots) \in X : x_i = a_i \text{ for all }i \leq k\}$,
+		\item $B^\prime \coloneqq \{(x_0,x_1,\ldots) \in X : x_i = b_i \text{ for all }i \leq k\}$.\retTwo
+	\end{itemize}
+
+	Then it is easy to see that $A^\prime, A_0, A_1, \ldots, A_n$ are all disjoint open sets in $X$. And similarly it is easy to see that $B^\prime, B_0, B_1, \ldots, B_n$ are all disjoint open sets in $X$. Plus:
+
+	{\centering $\phi^{-1}([a, b)) = (A^\prime \cup \bigcup\limits_{k=0}^n A_k) \cap (B^\prime \cup \bigcup\limits_{k=0}^n B_k) - \{(b_0,b_1,\ldots, b_n, 1, 1, \ldots)\}$.\retTwo\par}
+
+	This proves the first claim that $\phi$ is measurable.\retTwo
+
+	As for actually calculating $\mu(\phi^{-1}([a, b)))$, let's now set $A = A^\prime \cup (\bigcup_{k=0}^n A_k)$ and\\ $B = B^\prime \cup (\bigcup_{k=0}^n B_k)$. Because $\{(b_0,b_1,\ldots, b_n, 1, 1, \ldots)\}$ is a null set, we can ignore\\ it. Also note that $A \cup B = X$. So we can evaluate that:\\ [-10pt]
+
+	{\centering\begin{tabular}{l}
+		$\mu(\phi^{-1}([a, b))) = \mu(A \cap B) = \mu(A) + \mu(B) - 1$\\ [6pt]
+
+		$\phantom{\mu(\phi^{-1}([a, b))) = \mu(A \cap B)} = (\sum_{k=0}^n \mu(A_k)) + \mu(A^\prime) + (\sum_{k=0}^n \mu(B_k)) + \mu(B^\prime) - 1$.\\ [6pt]
+
+		$\phantom{\mu(\phi^{-1}([a, b))) = \mu(A \cap B)} = (\sum_{k=0}^n \frac{1}{2^{k+1}}|a_k - 1|) + \frac{1}{2^{n+1}} + (\sum_{k=0}^n \frac{1}{2^{k+1}} b_k) + \frac{1}{2^{n+1}} - 1$.\\ [6pt]
+
+		$\phantom{\mu(\phi^{-1}([a, b))) = \mu(A \cap B)} = (-\sum_{k=0}^n \frac{1}{2^{k+1}}(1 - a_k)) + b - 1$.\\ [6pt]
+
+		$\phantom{\mu(\phi^{-1}([a, b))) = \mu(A \cap B)} = 1 - a + b - 1 $\\ [6pt]
+
+		$\phantom{\mu(\phi^{-1}([a, b))) = \mu(A \cap B)} = b - a = m([a, b))$.\\ [6pt]
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+Finally, letting $T_2: \mathbb{T} \to \mathbb{T}$ be the map from \inLinkRap{Einsiedler and Ward trippy example}{earlier}, note that $\phi(\sigma(x)) = T_2(\phi(x))$ for all $x \in X$. And by restricting $\phi$ to the set $X^\prime \subseteq X$ of elements that aren't eventually just an infinite string of zeros or of ones, we then have that $\phi$ is a bijection to the set $\mathbb{T} - \mathbb{Z}[\frac{1}{2}]/\mathbb{Z}$. 
+
+\begin{myIndent}\pracTwo
+	As for how we know that $\mu(X^\prime) = 1$, note that the measure of all singletons of $X$ is $0$ and that $X - X^\prime$ is countable. So $\mu(X - X^\prime) = 0$.\retTwo
+\end{myIndent}
+
+At last this proves that $(X, \mathcalli{B}_X, \mu, \sigma)$ is isomorphic to $(\mathbb{T}, \mathcalli{B}_\mathbb{T}, m, T_2)$.
+
+\begin{myIndent}\pracOne
+	Note from 10/8/2025: Fuck I forgot to show that $\phi^{-1}$ is measurable.
+\end{myIndent}
+\mySepTwo
+
+A measure-preserving transformation $T : X \to X$ on a probability space $(X, \mathcalli{B}, \mu)$ is \udefine{ergodic} if for any $B \in \mathcalli{B}$, $T^{-1}(B) = B \Longrightarrow \mu(B) = 0 \text{ or } \mu(B) = 1$.\retTwo
+
+\begin{myIndent}\myComment
+	By the way, I Googled it and apparently the term "ergodic" was coined by Boltzmann in the 1800s.\retTwo
+
+	Also, FYI the notation $T^{-n}(B)$ just means the preimage $B$ with respect to $T^n$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition 2.14:} The following are equivalent properties for a measure-preserving\\ transformation $T$ of $(X, \mathcalli{B}, \mu)$.\newpage
+\begin{enumerate}
+	\item[(1)] $T$ is ergodic.
+	\item[(2)] For any $B \in \mathcalli{B}$ , $\mu(T^{-1}(B) \symdif B) = 0$ implies that $\mu(B) = 0$ or $\mu(B) = 1$.
+	\item[(3)] For $A \in \mathcalli{B}$, $\mu(A) > 0$ implies that $\mu(\bigcup_{n=1}^\infty T^{-n}(A)) = 1$.
+	\item[(4)] For $A, B \in \mathcalli{B}$, $\mu(A)\mu(B) > 0$ implies that there exists $n \geq 1$ with:
+	
+	{\centering$\mu(T^{-n}(A) \cup B) > 0$.\par} 
+\end{enumerate}
+
+\begin{myIndent}\exThreeP
+	$(1 \Longrightarrow 2)$\\
+	Assume $T$ is Ergodic and let $B$ be an \udefine{almost invariant} measurable set (meaning that\\ $\mu(T^{-1}(B) \symdif B) = 0)$. Then consider the set 
+	
+	{\centering$C = \limsup T^{-n}(B) = \bigcap\limits_{N = 0}^\infty \bigcup\limits_{n = N}^\infty T^{-n}(B)$.\retTwo\par}
+
+	For any $N \geq 0$ we have that $B \symdif \bigcup_{n = N}^\infty T^{-n}(B) \subseteq \bigcup_{n = N}^\infty (B \symdif T^{-n}(B))$.
+
+	\begin{myIndent}\exPPP
+		Sanity check since I don't typically work with symmetric differences:
+		
+		{\centering$B \symdif \bigcup_{n = N}^\infty T^{-n}(B) = (B - \bigcup_{n = N}^\infty T^{-n}(B)) \cup ((\bigcup_{n = N}^\infty T^{-n}(B)) - B)$\retTwo\par}
+
+		Then the result we want follows from the fact that:
+		\begin{itemize}
+			\item $(\bigcup_{n = N}^\infty T^{-n}(B)) - B = \bigcup_{n = N}^\infty (T^{-n}(B) - B)$,
+			\item $B - \bigcup_{n = N}^\infty T^{-n}(B) \subseteq \bigcup_{n = N}^\infty (B - T^{-n}(B))$.\retTwo
+		\end{itemize}
+	\end{myIndent}
+
+	But now note that $\mu(B \symdif T^{-n}(B)) = 0$ for all $n \geq 1$. This is because firstly,
+	
+	{\centering$B \symdif T^{-n}(B) \subseteq \bigcup_{i=0}^{n-1} (T^{-i}(B) \symdif T^{-(i + 1)}(B))$.\retTwo\par}
+
+	\begin{myIndent}\exPPP
+		Why?\\
+		If $x \in T^{-n}(B) - B$, then we know there must exist some $i \in \{0, \ldots, n-1\}$ such that  $T^{i+1}(x) \in B$ but $T^i(x) \notin B$. Similarly, if $x \in B - T^{-n}(B)$, then we know there must exist some $i \in \{0, \ldots, n-1\}$ such that $T^i(x) \in B$ but $T^{i+1}(x) \notin B$.\retTwo
+	\end{myIndent}
+
+	And then since $T$ is measure-preserving we know for each $i$ that:
+	
+	{\centering$\mu(T^{-i}(B) \symdif T^{-(i + 1)}(B)) = \mu(B \symdif T^{-1}(B)) = 0$.\retTwo\par}
+
+	This proves that for $C_n \coloneqq \bigcup_{n = N}^\infty T^{-n}(B)$ we have that $\mu(B \symdif C_n) = 0$. And in turn since the $C_n$ form a decreasing sequence with $C = \bigcap_{n \in \mathbb{N}} C_n$, we have by the monotonicity of measures that:
+
+	{\center\begin{tabular}{l}
+		$\mu(B \symdif C) = \mu((B - \bigcap_{n \in \mathbb{N}}C_n)) + \mu((\bigcap_{n \in \mathbb{N}}C_n) - B)$\\ [6pt]
+		$\phantom{\mu(B \symdif C)} = \lim_{n \to \infty} \mu(B - C_n) + \lim_{n \to \infty}\mu(C_n - B) = \lim_{n \to \infty} \mu(B \symdif C_n) = 0$
+	\end{tabular}\retTwo\par}
+
+	This shows that $\mu(B \symdif C) = 0$. Or in other words, $\mu(B) = \mu(C)$. But now note that:
+
+	{\centering $T^{-1}(C) = \bigcap\limits_{N = 0}^\infty \bigcup\limits_{n= N}^\infty T^{-(n + 1)}(B) = \bigcap\limits_{N = 0}^\infty \bigcup\limits_{n= N+1}^\infty T^{-n}(B) = C$ \retTwo\par}
+
+	So by the ergodicity of $T$ we have that $\mu(C) = \mu(B)$ is either $0$ or $1$.\retTwo
+
+	$(2 \Longrightarrow 3)$\\
+	Let $A$ be a set with $\mu(A) > 0$ and let $B = \bigcup_{n=1}^\infty T^{-n}(A)$. Then:
+	
+	{\center$T^{-1}(B) = \bigcup_{n=2}^\infty T^{-n}(A) \subseteq B$.\newpage\par}
+	
+	Also, since $T$ is measure-preserving we know that $\mu(T^{-1}B) = \mu(B)$. Therefore\\ $\mu(T^{-1}(B) \symdif B) = 0$ and hence $\mu(B) = 0$ or $1$. But since $T^{-1}(A) \subseteq B$ with\\ $\mu(T^{-1}(A)) = \mu(A) > 0$, the former is impossible. So we must have that $\mu(B) = 1$.\retTwo
+
+	$(3 \Longrightarrow 4)$\\
+	Let $A$ and $B$ be sets of positive measure. Then $\mu(\bigcup_{n=1}^\infty T^{-n}(A)) = 1$. Hence:\\ [-10pt]
+	
+	{\center$0 < \mu(B) = \mu(B \cap \bigcup_{n=1}^\infty T^{-n}(A)) \leq \sum_{n=1}^\infty \mu(B \cap T^{-n}(A))$. \retTwo\par}
+
+	And it follows that there must be some $n \geq 1$ with $\mu(B \cap T^{-n}(A)) > 0$.\retTwo
+
+	$(4 \Longrightarrow 1)$\\
+	Let $A$ be a set with $T^{-1}(A) = A$. Then for all $n \geq 1$ we have that:
+	
+	{\centering$0 = \mu(A \cap (X - A)) = \mu(T^{-n}(A) \cap (X - A))$.\retTwo\par}
+
+	Hence to avoid contradicting (4), we must have that $\mu(A)\mu(X - A) = 0$. And that implies that either $\mu(A) = 0$ or $\mu(A) = 1$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Technically there is another equivalent condition that Einsiedler and Ward prove. However, I'm not going to continue with the proof cause I was just made aware that I read the wrong book. Oops.\retTwo
+
+\mySepTwo
+
+The real book I was supposed to read was \textit{Recurrence in Ergodic Theory and Combinatorial Number Theory} by Harry Furstenberg. I guess the key difference between this and the last text is that this will at first focus more on topological dynamics.\retTwo
+
+A \udefine{dynamical system} is a compact metric space $X$ and a group (or semigroup) $G$ acting on $X$ by continuous transformations. We denote our system $(X, G)$. 
+\begin{myIndent}\myComment
+	Side note: a semigroup is a set and composition operator satisfying all the group axioms except possibly the identity and inverse axioms.\retTwo
+\end{myIndent}
+
+If $G = \mathbb{Z}$ or $\mathbb{N}$ we denote by $T$ the transformation on $X$ representing the action of $1 \in G$. We then denote our dynamical system as $(X, T)$ and call it a \udefine{cyclic system}.\retTwo
+
+Let $T : X \to X$ be continuous. We say $x \in X$ is recurrent for $T$ (or for the dynamical system $(X, T)$) if for any neighborhood $V$ of $x$ there exists $n \geq 1$ with $T^n(x) \in V$. Or since $X$ is a metric space, $x$ is recurrent if there is an increasing sequence $(n_k)_{k \in \mathbb{N}} \subseteq \mathbb{N}$ such that $T^{n_k}(x) \to x$. {\pracOne(note from 10/8/2025: go \inLinkRap{Furstenberg confusion 1}{here} to see why these definitions are equivalent\dots)}\retTwo
+
+\exTwo\ul{Claim:} If $X$ is a compact metric space and $T: X \to X$ is continuous, then there\\ always exists recurrent points. 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\mathcalli{F}$ be the family of nonempty closed subsets $Y \subseteq X$ with $T(Y) \subseteq Y$, and order $\mathcalli{F}$ by inclusion. By the finite intersection property, we know that $\bigcap_{\alpha \in A} Y_\alpha \neq \emptyset$ and is closed for all chains $\{Y_\alpha\}_{\alpha \in A} \subseteq \mathcalli{F}$. Hence by Zorn's lemma there is a minimal $Y_0 \neq \emptyset$ such $T(Y_0) \subseteq Y_0$. And we claim that each $x \in Y_0$ is recurrent for $T$.\newpage
+
+	To show this, let $Q(x) = \overline{\{T^n (x) : n \geq 1\}}$. Then since $T(Y_0) \subseteq Y_0$, we know that\\ [1pt] $T^n(Y_0) \subseteq Y_0$ for all $n \geq 1$. And this proves that $Q(x) \subseteq \overline{Y_0} = Y_0$. At the same time\\ [1pt] note that $T(Q(X)) \subseteq Q(X)$. After all, if $y \in Q(x)$ and  $(n_k)_{k \in \mathbb{N}}$ is a sequence in $\mathbb{N}$ such\\ [1pt] that $T^{n_k}(x) \to y$, then because $T$ is continuous, we know that $T^{n_k + 1}(x) \to T(y)$.\retTwo
+
+	But now by the minimality of $Y_0$ we have that $Q(X) = Y_0$. So, $x \in Q(x)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Let $K$ be a compact metrized group, let $a \in K$, and define $T: K \to K$ by $T(x) = ax$. We then call the dynamical system $(K, T)$ a \udefine{Kronecker system}.
+
+\begin{myIndent}\myComment
+	As a side note, a \udefine{topological group} is a group equipped with a topology on which products and inverses are continuous. If that topology is also compact, we say we have a \udefine{compact group}.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem 1.2:} Every point in the space of a Kronecker system is recurrent.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We know some point $x_0$ is recurrent. Now let $x$ be any point and write $x = x_0 u$. If $V$ is a neighborhood of $x$, then $Vu^{-1}$ is a neighborhood of $x_0$. And $a^n x_0 \in Vu^{-1}$ implies that $a^n(x_0 u) = a^n x \in V$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo From now on, for the sake of shorthand I will write $gx$ instead of $T_g(x)$ when showing the continuous transformation associated with $g \in G$ acting on $x$. Also, for cyclic systems I'll just write $Tx$ instead of $T(x)$.\retTwo
+
+Let $(X, G)$ and $(Y, G)$ be two dynamical systems with the same group/semigroup $G$\\ of operators. A \udefine{homomorphism} from $(X, G)$ to $(Y, G)$ is given by a continuous map\\ $\phi: X \to Y$ satisfying that $\phi(gx) = g\phi(x)$ for all $x \in X$ and $g \in G$.\retTwo
+
+\ul{(Definition 1.3:)} A dynamical system $(Y, G)$ is a factor of the dynamical system $(X, G)$ if there is a homomorphism of the latter to the former given by a map $\phi$ of $X$ onto $Y$. In this case we also say that $(X, G)$ is an \udefine{extension} of $(Y, G)$.\retTwo
+
+\exTwo\hypertarget{Furstenberg proposition 1.3}{\ul{Proposition 1.3:}} If $\phi$ determines a homomorphism of a cyclic system $(X, T_X)$ to $(Y, T_Y)$, and $x \in X$ is recurrent for $(X, T_X)$, then $\phi(x)$ is recurrent for $(Y, T_Y)$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $(n_k)_{k \in \mathbb{N}}$ be an increasing sequence in $\mathbb{N}$ and suppose that $T^{n_k}_X(x) \to x$. Then\\ because $\phi$ is continuous, we know $\phi(T^{n_k}_X(x)) \to \phi(x)$ as $k \to \infty$. But also note that\\ $\phi(T^{n_k}_X(x)) = T^{n_k}_Y\phi(x)$. So $T^{n_k}_Y\phi(x) \to \phi(x)$ as $k \to \infty$. $\blacksquare$\retTwo 
+\end{myIndent}
+
+\hTwo It's 3:30am and I need to go to sleep. I'll pick this particular subject up again probably tomorrow (technically today) late at night. \hypertarget{Ergodic reading group notes 1 back}{See} \inLinkRap{Ergodic reading group notes 2}{page 277}. \retTwo
+
+\mySepTwo
+
+\dispDate{10/6/2025}
+
+\hypertarget{math 200a lecture 4}{\blect{Math 200a (lectures 4 \& 5):}}\newpage
+
+Here is a small example of what we were talking about in the previous class:
+\begin{myIndent}\hThree
+	Suppose $G \curvearrowright G$ by conjugation and let us denote the orbit of $g$ as:
+
+	{\centering$\Cl(g) \coloneqq \{g^\prime g (g^\prime)^{-1} : g^\prime \in G\}$.\retTwo\par}
+
+	The stabilizer of $g$ is $\{g^\prime \in G : g^\prime g (g^\prime)^{-1} = g\} = \{g^\prime \in G : g^\prime g = g g^\prime\} \eqqcolon C_G(g)$.\\ We call this set (which is a subgroup via the \inLinkRap{Alireza lemma page 256}{lemma on page 256}) the \udefine{centralizer} of $g$.
+	\begin{myIndent}\myComment
+		Side note: $C_G(g)$ consists of all elements of $G$ that commute with $g$.\retTwo
+	\end{myIndent}
+
+	By the orbit-stabilizer theorem, we know $|\Cl(g)| = [G : C_G(g)]$. Also note that:
+
+	{\centering$\Fix(G) = \{g^\prime \in G : \forall g \in G, \gap gg^\prime = g^\prime g\} \eqqcolon Z(G)$.\retTwo\par}
+
+	\begin{myIndent}\myComment
+		Side note: $Z(G)$ is called the \udefine{center} of $G$. Also, $Z(G) = \bigcap_{g \in G} C_G(g)$.\retTwo
+	\end{myIndent}
+
+	So $|G| = |Z(G)| + \hspace{-0.5em}\sum\limits_{\begin{smallmatrix}
+		\Cl(g) \\ |\Cl(g)| > 1
+	\end{smallmatrix}}\hspace{-0.5em}[G:C_G(g)]$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Cauchy-Frobenius Lemma:} Suppose $G$ is finite. Then:
+
+{\centering$|X/G| = \AverageAst_{g \in G} |\Fix(g)| = \frac{1}{|G|}\sum\limits_{g \in G}|\Fix(g)|$\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $F \coloneqq \{(g, x) \in G \times X : g \cdot x = x\}$. Then clearly $|F| = \sum\limits_{g \in G} |\Fix(g)| = \sum\limits_{x \in X} |G_x|$.\retTwo
+
+	But now recalling that $|G_{g\cdot x}| = |G_x|$ since $G_{g \cdot x} = gG_x g^{-1}$, we have that:
+
+	{\center $\sum\limits_{x \in X} |G_x| = \hspace{-0.5em}\sum\limits_{G \cdot x \in X/G} \left( \sum\limits_{x^\prime \in G \cdot x} |G_{x^\prime}|\right) = \hspace{-0.5em}\sum\limits_{G \cdot x \in X/G} |G \cdot x| \cdot |G_x|$ \retTwo\par}
+
+	Also from the orbit stabilizer theorem and Lagrange's theorem, we have that\\ $|G \cdot x| = [G : G_x] = \frac{|G|}{|G_x|}$. So $|G_x| = \frac{|G|}{|G \cdot x|}$. And hence:
+
+	{\center$|F| = \hspace{-0.9em}\sum\limits_{G \cdot x \in X/G} \hspace{-0.9em} |G \cdot x| \cdot |G_x| =  \hspace{-0.9em}\sum\limits_{G \cdot x \in X/G} \hspace{-0.9em} |G \cdot x| \cdot \frac{|G|}{|G \cdot x|} = |G|\cdot|G/X|$ \retTwo\par}
+
+	Thus $|G|\cdot|G/X| = \sum\limits_{g \in G} |\Fix(g)|$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo Suppose $G \curvearrowright X$. Then $G \curvearrowright X \times X$ by the action $g \cdot (x, y) = (g \cdot x, g \cdot y)$. What is $|(X \times X) / G|$?
+
+\begin{myIndent}\pracTwo
+	By the last lemma we have that:
+	
+	{\centering$|(X \times X) / G| = \frac{1}{|G|}\sum_{g \in G} |\{(x, y) \in X \times X : (g \cdot x, g \cdot y) = (x, y)\}|$.\retTwo\par}
+
+	If $\Fix(g)$ refers to the fixed points of the action $G \curvearrowright X$, we thus have that:
+
+	{\center\begin{tabular}{l}
+		$|\{(x, y) \in X \times X : (g \cdot x, g \cdot y) = (x, y)\}|$\\ [4pt]
+		$\phantom{aaaaaaaaaaaaaaaaaaa} = |\{(x, y) \in X \times X : x, y \in \Fix(g)\}| = |\Fix(g)|^2$
+	\end{tabular} \retTwo\par}
+
+	So $|(X \times X) / G| = \frac{1}{|G|}\sum_{g \in G} |\Fix(g)|^2$.\retTwo
+
+	\myComment More generally, we can say that $|(\prod_{j=1}^n X) / G| = \frac{1}{|G|}\sum_{g \in G} |\Fix(g)|^n$.
+\end{myIndent}
+\mySepTwo\newpage
+
+\hTwo Let $\Sub(G)$ denote the subgroups of $G$. Then $G \curvearrowright \Sub(G)$ via conjugation.
+\begin{itemize}
+	\item We denote $\Sub^{\lhd}(G)$ as the collection of normal subgroups of $G$. Note that\\ $(\Sub(G))^G = \Sub^{\lhd}(G)$.
+	
+	\item If $H \in \Sub(G)$, then the stabilizer of $H$ is equal to $N_G(H) \coloneqq \{g \in G : gHg^{-1} = H\}$. We call $N_G(H)$ the \udefine{normalizer} of $H$ in $G$.
+	\begin{myIndent}\pracTwo
+		Note that $H \lhd N_G(H)$ and that $N_G(H)$ is the largest subgroup of $G$ that has $H$ as a normal subgroup.\retTwo
+	\end{myIndent}
+
+	\item The $G$-orbit of $H$ consists of all subgroups of $G$ that are conjugate to $H$. The orbit-\\stabilizer theorem implies that the number of conjugates of a group $H$ is $[G : N_G(H)]$.\retTwo
+\end{itemize}
+
+\mySepTwo
+
+\hTwo Suppose $p$ is prime and $G$ is a group with $|G| = p^k$ (where $k$ is an integer). In that case we say that $G$ is a \udefine{finite $p$-group}.\retTwo
+
+\exTwo\ul{Theorem:} Suppose $G$ is a finite $p$-group and $G \curvearrowright X$ where $X$ is a finite set. Then\\ $|X| \equiv |X^G| \mMod{p}$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Note that if $H \lneqq G$ (meaning $H$ is a proper subgroup of $G$), then by Lagrange's theorem we have that $[G : H] \divides p^k$ and $[G : H] \neq 1$. Therefore, $[G : H] \equiv 0 \mMod{P}$. And in particular, we have that $[G : G_x] \equiv 0 \mMod{p}$ whenever $G_x \neq G$.\retTwo
+
+	Now $|X^G| = |X| - \hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
+	G \cdot x \in X/G \\ |G \cdot x| > 1
+\end{smallmatrix}}\hspace{-0.8em} [G : G_x]$.\retTwo And since $[G : G_x] \equiv 0 \mMod{p}$ for all $G_x$ with $[G : G_x] = |G \cdot x| > 1$ (so that $G \neq G_x$), we thus have that $|X^G| \equiv |X| \mMod{p}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem (Cauchy):} Suppose $p \divides |G|$ where $p$ is prime. Then $\exists g \in G$ such that $o(g) = p$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We want to show that $|\{x \in G : x^p = 1\}| \equiv 0 \mMod{p}$.
+	\begin{myIndent}\exPPP
+		Why? Note that if $x \neq 1$ and $x^p = 1$, then we know that $o(x) = p$. Also, by showing that $|\{x \in G : x^p = 1\}| \equiv 0 \mMod{p}$ we know that there exists $x \in G - \{1\}$ with $x^p = 1$.\retTwo
+	\end{myIndent}
+
+	To do that, let $X \coloneqq \{(x_0, x_1, \ldots, x_{p-1}) \in G^p : x_0x_1\cdots x_{p-1} = 1 \}$. Then note that shifting an index is a symmetry of $X$. After all, if $1 = x_0x_1\cdots x_{p-1}$, then we have that:
+	
+	{\centering$1 = x_0^{-1}1x_0 = x_0^{-1}(x_0x_1\cdots x_{p-1})x_0 = x_1x_2\cdots x_{p-1}x_0$.\retTwo\par}
+
+	So, $C_p \curvearrowright X$ where $C_p$ is the cyclic group of order $p$. And by the last theorem we have that $|X| \equiv |X^{C_p}| \mMod{p}$.\retTwo
+	But now note that $X^{C_p} = \{(x, \ldots, x) \in G^p : xx\cdots x = 1\} = \{x \in G : x^p = 1\}$.\\ Also, we have that $|X| = |G|^{p-1}$ (since you can freely choose $x_0$ through $x_{p-2}$ and then $x_{p-1}$ must be whatever the inverse of $x_0 x_1 \cdots x_{p-2}$ is). And since $p \divides |G|$, we have that $|G|^{p-1} \equiv 0 \mMod{p}$. Hence, $|\{x \in G : x^p = 1\}| \equiv 0 \mMod{p}$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo $G$ is called a \udefine{$p$-group} if $o(g)$ is a power of $p$ for all $g \in G$.\retTwo
+
+\exTwo\ul{Corollary:} If $G$ is finite and $p$ is prime, then $G$ is a $p$-group if and only if $|G| = p^n$ for some integer $n$. {\myComment(i.e. our new definition agrees with the old one)}
+\begin{myIndent}\exThreeP
+	$(\Longleftarrow)$\\
+	This is just Lagrange's theorem.\retTwo
+
+	$(\Longrightarrow)$\\
+	If not, then there exists a prime factor $\ell \neq p$ such that $\ell \divides |G|$. Hence by Cauchy's theorem $G$ has an element of order $\ell$ (a contradiction). $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition:} Suppose $P$ is a finite $p$-group and $1 \neq N \lhd P$. Then $Z(P) \cap N \neq \{1\}$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$P \curvearrowright N$ by conjugation. So $|N| \equiv |N^P| \mMod{p}$. Meanwhile note that:
+
+	{\centering\begin{tabular}{l}
+		$x \in N^P \Longleftrightarrow x \in N \text{ and } \forall g \in P,\gap g \cdot x = x$\\
+		$\phantom{x \in N^P} \Longleftrightarrow x \in N \text{ and } \forall g \in P,\gap gxg^{-1} = x$\\
+		$\phantom{x \in N^P} \Longleftrightarrow x \in N \text{ and } \forall g \in P,\gap gx = xg \Longleftrightarrow x \in Z(P) \cap N$.\\
+	\end{tabular}\retTwo\par}
+
+	So $|N| \equiv |Z(P) \cap N| \mMod{p}$. But finally note that $|N| \divides |P| = p^n$ for some $n$. But we also know by assumption that $|N| \neq \{1\}$. So, $|N| \equiv 0 \mMod{p}$ and we are done. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+The action $G \curvearrowright X$ is \udefine{transitive} if $|X/G| = 1$.\retTwo
+
+\exTwo\ul{Proposition:} If $G \curvearrowright X$ transitively and $G, X$ are finite with $|X| > 1$, then there exists\\ $g \in G$ with $\Fix(g) = \emptyset$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $|\Fix(g)| \geq 1$ for all $g \in G$. Then:
+	
+	{\centering $|X/G| = \frac{1}{|G|}\sum_{g \in G} |\Fix(g)| \geq \frac{\Fix(1) + |G| - 1}{|G|} = \frac{|X| + |G| - 1}{|G|} > 1$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\ul{Corollary:} If $|G| < \infty$ and $H \lneqq G$, then $\bigcup_{g \in G} gHg^{-1} \neq G$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider $G \curvearrowright G/H$ by left translation. This is a transitive action. And since $[G : H] > 1$,\\ we know by the last proposition that there exists $g \in G$ such that $\Fix(g) = \emptyset$. Now notice that $g \cdot xH = xH \Longleftrightarrow x^{-1}gx \in H \Longleftrightarrow g \in xHx^{-1}$. So if $\Fix(g) = \emptyset$, then $g \notin \bigcup_{x \in G} xHx^{-1}$. $\blacksquare$\retTwo
+
+	\pracOne
+	\begin{myClosureOne}{6}
+	\\ [-25pt] 
+	Side note: the prior corollary does not hold if $|G| = \infty$. For example, consider\\ that $\GL_2(\mathbb{C}) = \bigcup_{x \in \GL_2(\mathbb{C})} xBx^{-1}$ where:
+	
+	{\centering$B \coloneqq \left\{\begin{bmatrix}
+	a & b \\ 0 & c
+	\end{bmatrix} \in \mathbb{C}^{2 \times 2} : a, b \neq 0\right\}$ is the set of all invertible\\ [-8pt]
+	\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} upper triangular matrices.\retTwo\par}
+	\end{myClosureOne}\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage
+
+If $G$ is a group and $H < G$, then suppose $G \curvearrowright G/ H$ by left translations. What is the kernel of this action?
+\begin{myIndent}\hThree
+	Note that $g$ is in the kernel of the action iff $gxH = xH$ for all $x \in G$. And that happens iff $\forall x \in G, \gap g \in xHx^{-1}$ which happens iff $g \in \bigcap_{x \in G} xHx^{-1}$.\retTwo
+\end{myIndent}
+
+We call the kernel of the action above the \udefine{normal core} of $H$ in $G$, and denote it as\\ $\core_G(H)$ (or just $\core(H)$ if it's obvious what $G$ is).\retTwo
+
+\exTwo\ul{Lemma:} $\core_G(H)$ is the largest normal subgroup of $G$ which is a subgroup of $H$ (i.e. $\core_G(H) \lhd G$, $\core_G(H) < H$, and if $N \lhd G$ with $N < H$ then $N < \core_G(H)$).
+
+\begin{myIndent}\exThreeP
+	By setting $x = 1$ we can see that $\core_G(H) \subseteq H$. Also, since $\core_G(H)$ is the kernel of the induced homomorphism $G \to S_{G/H}$, we know that $\core_G(H)$ is a normal subgroup.\retTwo
+
+	Next suppose $N < H$ and $N \lhd G$. Since $N \subseteq H$, we know that $xNx^{-1} \subseteq xHx^{-1}$\\ for all $x \in G$. And then since $N \lhd G$, we know that $xNx^{-1} = N$ for all $x \in G$. So,\\ $N \subseteq xHx^{-1}$ for all $x \in G$. And this proves that $N \subseteq \bigcap_{x \in G} xHx^{-1} = \core_G(H)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Also note that $H \lhd G$ if and only if $\core_G(H) = H$. With that we're now ready to prove the following proposition\dots\retTwo
+
+\exTwo\ul{Proposition:} If $H < G$ and $[G : H] = p$ where $p$ is the smallest prime factor of $|G|$, then $H \lhd G$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\phi: G \to S_p$ be the induced group homomorphism of the left translation action of $G$\\ [1pt] on $G/H$. Then note that $|\phi(G)|$ divides $\gcd(|G|, |S_p|) = \gcd(|G|, p!)$. But since $p$ is the\\ [1pt] smallest prime factor dividing $|G|$, we have that $\gcd(|G|, p !) = p$. So $|\phi(G)| \divides p$. Also note that $|\phi(G)| > 1$. After all, for any $g \notin H$ we have that $g \cdot 1H \neq 1H$ and thus $g$ doesn't\\ correspond to the identity permutation in $S_p$. So, $|\phi(G)| = p$.\retTwo
+
+	But by Lagrange's theorem, we have that $[G: \core_G(H)] = |\phi(G)| = p$. And since $\core_G(H) \subseteq H$ and $[G : H] = p$, the only way this is possible is if $H = \core_G(H)$. So $H \lhd G$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\exTwo\ul{Theorem:} If $G$ is a finite group, $P < G$ is a $p$-group, and $p$ divides $[G : P]$, then\\ $p$ divides $[N_G(P) : P]$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$P \curvearrowright G/P$ by left-translations. Thus $|G/P| \equiv |(G/P)^P| \mMod{p}$. But note that:
+
+	{\center\begin{tabular}{l}
+		$xP \in (G/P)^P \Longleftrightarrow \forall g \in P,\gap g \cdot xP = xP$\\ [4pt]
+		$\phantom{xP \in (G/P)^P} \Longleftrightarrow \forall g \in P,\gap g \in xPx^{-1} \Longleftrightarrow P \subseteq xPx^{-1}$
+	\end{tabular} \retTwo\par}
+
+	And since $|P| = |xPx^{-1}| < \infty$, we have that $P \subseteq xPx^{-1} \Longleftrightarrow P = xPx^{-1}$. And that happens iff $x \in N_G(P)$. So $|G/P| \equiv |N_G(P)/P| \mMod{p}$.\retTwo
+
+	Next since $p$ divides $[G : P]$, we know that $0 \equiv |N_G(P)/P| \mMod{p}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Corollary:} If $G$ is a finite $p$-group and $H \lneqq G$ then $H \lneqq N_G(H)$.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $|G| = p^n$ and $H \lneqq G$ then $H$ is a finite $p$-group and $p$ divides $[G : H]$. Then by the last theorem we have that $p$ divides $[N_G(H) : H]$. So, $H \lneqq N_G(H)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Sylow's 1st. Theorem:} Suppose $p^n$ divides $|G|$. Then there exists subgroups\\ $P_1 < P_2 < \cdots < P_n < G$ such that $|P_i| = p^i$ for all $1 \leq i \leq n$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We proceed by induction on $k$.\retTwo
+
+	The base follows from Cauchy's theorem. Meanwhile suppose $p^{k+1}$ divides $|G|$ and we've already found subgroups $P_1 < \cdots < P_k < G$ such that $|P_i| = p^i$ for all $1 \leq i \leq k$. Then $p$ divides $[G : P_k]$, which means by two theorems ago that $p$ divides $[N_G(P_k) : P_k]$. And since $P_k \lhd N_G(P_k)$ we have that $N_G(P_k) / P_k$ is a well-defined group with $p \divides |N_G(P_k) / P_k|$.\retTwo
+
+	By Cauchy's theorem and the correspondance theorem (the latter is in my math 100a paper notes), we thus know there is a subgroup $P_k < P_{k+1} < N_G(P_k)$ such that $P_{k+1}/P_k$ is a cyclic group of order $p$. And it follows that $|P_{k+1}| = |P_k| \cdot p = p^{k+1}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo We say that $\nu_p(|G|) = k$ if $p^k \divides |G|$ and $p^{k+1} \not\divides |G|$ and call $\nu_p(|G|)$ the \udefine{$p$-valuation} of $G$.\retTwo
+
+$P < G$ is called a \udefine{Sylow $p$-subgroup} if $|P| = p^{\nu_p(|G|)}$. Note that $P$ is a Sylow $p$-subgroup if and only if $P$ is a finite $p$-group and $p \not\divides\gap [G : P]$.\retTwo
+
+Also, we let $\Syl_p(G)$ be the set of all Sylow $p$-subgroups of $G$.\retTwo
+
+I'll continue with this class on \inLinkRap{math 200a lecture 6}{page \_\_\_}.
+
+\mySepTwo
+
+\dispDate{10/7/2025}
+
+\hypertarget{math 220a lecture 3}{\blect{Complex Analysis Homework Assignment 2:}}\retTwo
+
+Right now the class is still being boring and not really covering anything new. But I do still need to do homework for the class. So\dots\retTwo
+
+\Hstatement\blab{Exercise II.3.1:} Prove the following:
+\begin{itemize}
+	\item[(a)] A set $A$ is closed iff it contains all its limits points.
+	\item[(b)] If $A \subseteq X$, then $\overline{A} = A \cup \{x : x \text{ is a limit point of A}\}$.
+\end{itemize}
+
+\HexOne
+\begin{myIndent}
+	Ok actually frick whoever assigned this stupid problem. I'm not fricking type-setting\\ problems which are at the level of a first quarter undergrad analysis class. When will this\\ professor stop wasting everyone's time and actually get to the content that we're all paying out of our asses to learn? Hell! Math 200 and Math 240 started covering new content on the first day of class. This class is actual theft. Anyways here are my notes from math 240b:\newpage
+\end{myIndent}
+
+\hspace{-2em}\begin{tabular}{p{3.7in} p{3.7in}}
+{\centering\includegraphics[scale=0.54]{HW2_1_math220a.png}\retTwo\par} & {\centering\includegraphics[scale=0.54]{HW2_2_math220a.png}\retTwo\par}
+\end{tabular}\retTwo
+
+\Hstatement\blab{Exercise II.3.4:} Let $z_n, z \in \mathbb{C}$ and let $d$ be the metric on $\mathbb{C}_\infty$. Then $|z_n - z| \to 0$ iff $d(z_n - z) \to 0$.
+
+\begin{myIndent}\HexOne
+	Recall that $d(z_n, z) = \frac{2|z_n - z|}{((|z_n|^2 + 1)(|z|^2 + 1))^{1/2}}$. Hence $d(x_n, z) \leq 2|z_n - z|$ and we have that $|z_n - z| \to 0 \Longrightarrow d(z_n - z) \to 0$.\retTwo
+	
+	On the other hand, if $\phi : \mathbb{C}_\infty \to S^2$ is the projection of the extended complex plane to\\ [1pt] the Riemann sphere, then by definition $d(z_n, z) \to 0$ iff $\phi(z_n) \to \phi(z)$ in $\mathbb{R}^3$. And since\\ [1pt] $\phi(z) \neq (0, 0, 1)$, there must exist some $-1 < C < 1$ and $N \in \mathbb{N}$ such that the third\\ [1pt] coordinates  of $\phi(z)$ and $\phi(z_n)$ are less than $C$ for all $n \geq N$. This translates to saying that:
+	
+	{\centering$\frac{|z|^2 - 1}{|z|^2 + 1}$ and $\frac{|z_n|^2 - 1}{|z_n|^2 + 1}$ are less than $C$ for all $n \geq N$.\retTwo\par}
+
+	By quadratic formula this translate to saying that $|z_n|$ and $|z|$ are less than $D \coloneqq \frac{\sqrt{1 - C^2}}{1 - C}$\\ [-2pt] when $n \geq N$ So finally we may say that when $n \geq N$:
+
+	{\center $|z_n - z| = \frac{1}{2}d(z_n, z)((|z_n|^2 + 1)(|z|^2 + 1))^{1/2} < \frac{1}{2}d(z_n, z)((D^2 + 1)(D^2 + 1))^{1/2}$ \retTwo\par}
+
+	And now it's clear that $d(z_n - z) \to 0$ implies that $|z_n - z| \to 0$ as $n \to \infty$.\retTwo
+\end{myIndent}
+
+Also show that if $|z_n| \to \infty$, then $\{z_n\}_{n \in \mathbb{N}}$ is Cauchy in $\mathbb{C}_\infty$. 
+
+\begin{myIndent}\HexOne
+	To prove Cauchy-ness, it suffices to show $\{z_n\}_{n \in \mathbb{N}}$ converges to $\infty$. Fortunately, note that $d(z_n, \infty) - \frac{2}{(|z_n|^2 + 1)^{1/2}} \to 0$ as $|z_n| \to \infty$. So $z_n \to \infty$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.3.8:} Suppose $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence in a metric space and $\{x_{n_k}\}_{k \in \mathbb{N}}$ is a convergent subsequence. Then $\{x_n\}$ is convergent.
+
+\begin{myIndent}\HexOne
+	Once again frick whoever is wasting all of our time with these stupid problems. Literally why I am wasting thousands of dollars to relearn content that any person getting into math grad school should already know.\retTwo
+
+	Let $x$ be the limit of $\{x_{n_k}\}_{n \in \mathbb{N}}$ and pick any $\varepsilon > 0$.\newpage 
+	
+	Since $\{x_n\}_{n \in \mathbb{N}}$ is Cauchy there exists some $N \in \mathbb{N}$ such that $d(x_n, x_m) < \sfrac{\varepsilon}{2}$ for all\\ [1pt] $n, m \geq N$. Then because $x_{n_k} \to x$, we know there exists some $k \in \mathbb{N}$ such that\\ [1pt] $d(x_{n_k}, x) < \sfrac{\varepsilon}{2}$ and $n_k \geq N$. Thus, $d(x_n, x) \leq d(x_n, x_{n_k}) + d(x_{n_k}, x) < \varepsilon$ for all\\ [1pt] $n \geq N$. And this proves that $x_n \to x$ as $n \to \infty$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.4.1:} Prove that if every collection $\mathcalli{F}$ of closed subsets of $K$ with the finite intersection property has that $\bigcap_{F \in \mathcalli{F}} F \neq \emptyset$, then $K$ is compact.
+
+\begin{myIndent}\HexOne
+	Suppose $K$ is not compact and let $\{U_\alpha\}_{\alpha \in A}$ be an open cover of $K$ that has no finite\\ subcover. Then upon setting $F_\alpha = U_\alpha^\comp$ for all $\alpha \in A$ we have that $\{F_\alpha\}_{\alpha \in A}$ is a\\ collection of closed sets having the finite intersection property. After all, if there\\ were some $F_{\alpha_1}, \ldots, F_{\alpha_n}$ such that $\bigcap_{j=1}^n F_{\alpha_j} = \emptyset$ then that would imply that\\ [-1pt] $(\bigcap_{j=1}^n F_{\alpha_j})^\comp = \bigcup_{j=1}^n U_{\alpha_j} = K$. But that contradicts that $\{U_\alpha\}_{\alpha \in A}$ has no finite\\ [1pt] subcover of $K$.\retTwo
+
+	At the same time though, $\bigcap_{\alpha \in A} F_\alpha = (\bigcup_{\alpha \in A} U_\alpha) = K^\comp = \emptyset$. So, we have found a\\ collection of closed sets with the finite intersection property whose intersection is\\ empty.  $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.4.4:} Show that the union of a finite number of compact sets is compact. 
+
+\begin{myIndent}\HexOne
+	Let $K_1, \ldots, K_n$ be a finite collection of compact sets and let $K$ be their union. Now if $\{U_\alpha\}_{\alpha \in A}$ is any open cover of $K$, then $\{U_\alpha\}_{\alpha \in A}$ is also an open cover of each $K_i$. So for each $i$ we can pick finitely many $U_{\alpha_j}$ covering each $K_i$. And by unioning the finitely many finite subcovers we get another finite subcover of all of $K$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.4.6:} Show that the closure of a totally bounded set is totally bounded.
+\begin{myIndent}\HexOne
+	Let $X$ be our metric space and suppose that $E \subseteq X$ is totally bounded. Then for any $\varepsilon > 0$ there are finitely many balls $B_1, \ldots, B_n$ of radius $\sfrac{\varepsilon}{2}$ covering $E$. And in turn the union of\\ [-1pt] the closures of those finitely many balls is a closed set containing $E$ and thus also $\overline{E}$. Finally, by expanding each of our balls to have radius $\varepsilon$ we now have a finite collection of balls of radius $\varepsilon$ covering $\overline{E}$.
+
+	\begin{myIndent}\HexPPP
+		Note to cover my bases:\\
+		If $B_{\varepsilon/2}(x) \coloneqq \{y \in X : d(x, y) < \varepsilon/2\}$, then $\overline{B_{\varepsilon/2}(x)} \subseteq \{y \in X : d(x, y) \leq \varepsilon/2\}$ since the latter is easily checked to be closed set (it's complement is open by triangle inequality) which contains $B_{\varepsilon/2}(x)$. Also, $\{y \in X : d(x, y) \leq \varepsilon/2\} \subseteq \{y \in X : d(x, y) < \varepsilon\}$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\blab{Exercise II.5.5:} Suppose $f: X \to \Omega$ is uniformly continuous (where $(\Omega, \rho)$ and $(X, d)$ are metric spaces). If $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence in $X$ then $\{f(x_n)\}_{n \in \mathbb{N}}$ is a Cauchy sequence in $\Omega$.
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	For any $\varepsilon > 0$ pick $\delta > 0$ such that $\rho(f(x), f(y)) < \varepsilon$ whenever $d(x, y) < \varepsilon$. Since $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence there exists some $N \in \mathbb{N}$ such that $d(x_n, x_m) < \delta$ for all $n, m \geq N$. And in turn $\rho(f(x_n), f(x_m)) < \varepsilon$ for all $n, m \geq N$. This proves that $\{f(x_n)\}_{n \in \mathbb{N}}$ is a Cauchy sequence in $\Omega$.\retTwo
+\end{myIndent}
+
+Does the prior statement still hold if $f$ is only assumed to be continuous but not\\ uniformly continuous.
+\begin{myIndent}\HexOne
+	No. For example, consider the sequence $\{\frac{1}{n}\}_{n \in \mathbb{N}}$ in $(0, \infty)$. This sequence is Cauchy since\\ for every $\varepsilon > 0$ we may choose some $N$ such that $\frac{1}{N} < \varepsilon$. And then for all $n, m \geq N$ we have that $|\frac{1}{n} - \frac{1}{m}| < \max(\frac{1}{n}, \frac{1}{m}) < \frac{1}{N} < \varepsilon$.\newpage
+
+	Next let $f(x) = \frac{1}{x}$. To show that $f$ is continuous on $(0, \infty)$, note that both $1$ and $x$ are continuous on $(0, \infty)$. After all, just set $\delta = \varepsilon$ when doing the $\varepsilon$-$\delta$-proof. And since $x \neq 0$ on $(0, \infty)$, we have by proposition 5.5 in Conway that $\sfrac{1}{x}$ is continuous on $(0, \infty)$.\retTwo
+
+	But now $\{\frac{1}{(1/n)}\}_{n \in \mathbb{N}}$ is not Cauchy. After all, for all $n,m \in \mathbb{N}$ with $n \neq m$ we have that:
+	
+	{\centering$|\frac{1}{(1/n)} - \frac{1}{(1/m)}| = |n - m| \geq 1$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\hTwo That's all my my math 220a homework for this week. Yay I'm done (finally). God I hope this class stops being a giant waste of money at some point. Anyways the next notes for this class will be on \inLinkRap{math 220a lecture 6}{page \_\_\_}.\retTwo
+
+\mySepTwo
+
+\hypertarget{Ergodic reading group notes 2}{My} next order of business for tonight is to continue taking notes for the reading group tomorrow. I'm picking up from \inLinkRap{Ergodic reading group notes 1 back}{here}.\retTwo
+
+Let $(Y, T)$ be a dynamical system, $K$ be  a metrized compact group, and $\psi: Y \to K$ be a\\ continuous mapping. Then define $X = Y \times K$ and $T^\prime: X \to X$ by $T^\prime(y, k) = (Ty, \psi(y)k)$.\\ The resulting system is called a \udefine{group extension} or \udefine{skew product}  of $(Y, T)$ with $K$.
+
+\begin{myIndent}\pracTwo
+	Sanity check:
+	\begin{enumerate}
+		\item $T^\prime$ is a continuous map. After all, it's continuous iff its two output coordinates are individually continuous. And since we're already requiring $T$ and $\psi$ to be continuous and we know $(k_1, k_2) \mapsto k_1k_2$ is continuous from $K \times K$ to $K$, we can easily show both coordinates are continuous.\retTwo 
+		
+		\item If we define $\phi: X \to Y$ by $\phi(y, k) = y$, then $\phi$ is continuous (this is just a defining property of product topologies) and:
+		
+		{\centering$\phi(T^\prime(y, k)) = \phi(Ty, \psi(y)k) = Ty = T\phi(y, k)$.\retTwo\par}
+
+		So, $\phi$ defines a homomorphism of $(X, T^\prime)$ to $(Y, T)$ and we've shown that $(X, T^\prime)$ does extend $(Y, T)$ by our prior definition.\retTwo
+	\end{enumerate}
+\end{myIndent}
+
+\hTwo Note that in our above system, $X \curvearrowleft K$ by right translation. Specifically, for each $k^\prime \in K$ there exists a homeomorphism $R_{k^\prime} : X \to X$ given by $R_{k^\prime}(y, k) = (y, kk^\prime)$. Also, $R_k$ commutes with $T^\prime$ since:
+
+{\centering $R_{k^\prime}(T^\prime(y, k)) = R_{k^\prime}(Ty, \phi(y)k) = (Ty, \phi(y)kk^\prime) = T^\prime(y, kk^\prime) = T^\prime(R_{k^\prime}(y, k))$ \retTwo\par}
+
+Thus, each $R_{k^\prime}$ is an automorphism of the dynamical system $(X, T^\prime)$.
+
+
+\begin{myIndent}\myComment 
+	Side note:\\
+	I think the author's choice to use right translations instead of left translations is really weird because it makes it so $R_{k_2}(R_{k_1}(y, k)) = (y, kk_1k_2) = R_{k_1k_2}(y, k)$. To fix this I would have instead set $T^\prime(y, k) = (Ty, k\psi(y))$ when defining the group extension, and then I'd have made $K \curvearrowright X$ by left translation. That way, we still have that $(X, T^\prime)$ is a dynamical system, $\phi$ is still a homomorphism from $(X, T^\prime)$ to $(Y, T)$, but now additionally we have that $R_{k_2} \circ R_{k_1} = R_{k_2k_1}$. Unfortunately, I don't want to confuse other presenters later on so I'll stick to the conventions of the book. :\lparen\newpage
+
+	Also just to be clear: I shall denote $X \curvearrowleft G$ instead of $G \curvearrowright X$ when $G$ is acting from the right on $X$ instead of from the left.\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+Before moving on to the next theorem, I need to clear up some confusion and write a few theorems.\retTwo
+
+Firstly, recall on \hypertarget{Furstenberg confusion 1}{page 268} when I said a point $x$ is recurrent for $(X, T)$ if for any\\ neighborhood $V$ of $x$ there exists $n \geq 1$ with $T^n x \in V$. And then I said that that is\\ equivalent to saying that there is some increasing sequence $(n_k)_{k \in \mathbb{N}} \subseteq \mathbb{N}$ such that\\ $T^{n_k}x \to x$. Why are these two definitions equivalent?
+
+\begin{myIndent}\pracTwo
+	$(\Longleftarrow)$\\
+	This direction is obvious.\retTwo
+
+	$(\Longrightarrow)$\\
+	If $T^n(x) = x$ for some $n$, then we know that $T^{kn}(x) = x$ for all $k \in \mathbb{N}$ and then we trivially have that $T^{kn}(x) \to x$ as $k \to \infty$. Meanwhile, suppose $T^n(x) \neq x$ for any $n \in \mathbb{N}$ and let $\{U_k\}_{k \in \mathbb{N}}$ be a countable decreasing neighborhood base for $x \in X$. Then we may construct a subsequence $\{T^{n_k}\}_{k \in \mathbb{N}}$ converging to $k$ as follows:
+	\begin{myIndent}
+		To start off, just pick any $n_1 \in \mathbb{N}$ such that $T^{n_1}x \in U_1$. Then we proceed by recursive definition.\retTwo
+		
+		Suppose we have already chosen $n_1 < \cdots < n_k$ in $\mathbb{N}$ and that $T^{n_i}x \in V_{i}$ for all\\ $1 \leq i \leq k$.  If $X$ is Hausdorff (which it will always be if $X$ is a metric space), then we can find pairs of disjoint open sets $V_{j}, W_j \subseteq X$ for all $1 \leq j \leq n_{k}$ such that $x \in V_j$ and $T^{j}x \in W_j$. And by setting $V \coloneqq \bigcap_{j=1}^{n_k} V_j$ we have that $V$ is an open set containing $x$ such that $T^j x \notin V$ for all $1 \leq j \leq n_k$.\retTwo
+
+		Now pick $m \geq k + 1$ such that $U_m \subseteq V$. Then by assumption, there is some $n_{k+1} \in \mathbb{N}$ such that $T^{n_{k+1}} x \in U_m$. And also we must have that $n_{k+1} > n_k$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+More generally, given a dynamical system $(X, T)$ and any $x \in X$, define the \udefine{forward orbit closure} of $x$ as $Q(x) \coloneqq \overline{\{T^n x : n \geq 1\}}$. Note that $x$ is recurrent for $(X, T)$ iff $x \in Q(x)$.\\ [1pt] Also, by slightly modified reasoning to before, we know (even for $z \neq x$) that $z \in Q(x)$ iff\\ [1pt] there is some increasing sequence $\{n_k\}_{k \in \mathbb{N}}$ in $\mathbb{N}$ such that $T^{n_k} \to z$. \retTwo
+
+\ul{Lemma A:} Let $(X, T)$ be a dynamical system and suppose that $y \in Q(x)$ and $z \in Q(y)$.\\ Then $z \in Q(x)$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Let $T^{n_j}y \to z$ as $j \to \infty$ and $T^{n_i}x \to y$ as $i \to \infty$. Also let $\{U_k\}_{k \in \mathbb{N}}$ be a countable decreasing neighborhood base for $z \in X$. We can construct a sequence $\{T^{n_k}x\}_{k \in \mathbb{N}}$ converging to $0$ as follows:
+	\begin{myIndent}
+		We'll want to keep track of subsequences of $\{n_{j(k)}\}_{k \in \mathbb{N}}$ and $\{n_{i(k)}\}_{n \in \mathbb{N}}$ of $\{n_j\}_{j \in \mathbb{N}}$ and $\{n_k\}_k \in \mathbb{N}$ respectively as we are constructing our actual desired sequence.\newpage
+
+		For any $k$ pick $j(k) \in \mathbb{N}$ such that $T^{n_{j(k)}}y \in U_k$ and $j(k) > j(k-1)$ (if $k > 1)$. Then set $V = (T^{n_j})^{-1}(U_k)$. Because $V$ is an open neighborhood of $y$, we know that there is some $I \in \mathbb{N}$ such that $T^{n_i}x  \in V$ whenever $i \geq I$. So pick $i(k)$ such that $T^{n_{i(k)}}x \in V$ and $i(k) > i(k-1)$ (if $k > 1$). Now $T^{n_{j(k)} + n_{i(k)}} x \in U_k$.\retTwo
+
+		Doing this for all $K \in \mathbb{N}$, we get that $T^{n_{j(k)} + n_{i(k)}} x \to z$ as $k \to \infty$ and that\\ $\{n_{j(k)} + n_{i(k)}\}_{k \in \mathbb{N}}$ is increasing. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Lemma B:} Suppose $(X, T)$ is a dynamical system and $R$ is an automorphism of $(X, T)$\\ (meaning $R \circ T = T \circ R$ and $R : X \to X$ is continuous). Then for any $x \in X$ we have\\ that $R(Q(x)) \subseteq Q(Rx)$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Suppose $z \in Q(x)$ and let $T^{n_k}x \to z$ Then $R(z) = \lim_{k \to \infty} R(T^{n_k}x) = \lim_{k \to \infty}T^{n_k}(Rx)$. So $R(z) \in Q(Rx)$ and we've shown that $R(Q(x)) \subseteq Q(Rx)$.\retTwo
+\end{myIndent}
+
+\ul{Lemma C:} Suppose $K$ is a compact metrized group and $k \in K$. Then the sequence $\{k^n\}_{n \in \mathbb{N}}$ has the identity $e$ of $K$ as a subsequential limit.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We know that $k^n$ must have a subsequential limit since it's a sequence in a compact set. So call this limit $g$ and say that $k^{n_j} \to g$ as $j \to \infty$. Since inversion is continuous on $K$, we thus know that $k^{-n_j} \to g^{-1}$ as $j \to \infty$. Also, since the group product is continuous on $K$, we know that $k^{n_{2j}}k^{-n_j} = k^{n_{2j} - n_j} \to gg^{-1} = e$ as $j \to \infty$. Finally, note that $n_{2j} - n_j \geq j$ for all $j$. And so there must be some subsequence $\{j_{k}\}_{k \in \mathbb{N}}$ such that $n_{2j_k} - n_{j_k}$ is strictly increasing. $\blacksquare$\retTwo
+\end{myIndent}
+
+I think before next week I will try to read up on topological groups some more cause I feel like I have a knowledge gap right now.\\
+\mySepTwo
+
+\exTwo\ul{Theorem 1.4:} If $y_0 \in Y$ is recurrent for $(Y, T)$ and $(X, T^\prime)$ is a skew extension of $(Y, T)$, then $(y_0, k_0)$ is a recurrent point of $(X, T^\prime)$ for all $k_0 \in K$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $e$ denote the identity of $K$. We shall show $(y_0, e)$ is a recurrent point of $(X, T)$ since it then follows from \inLinkRap{Furstenberg proposition 1.3}{proposition 1.3:} that each $R_{k_0}(y_0, e) = (y_0, k_0)$ is recurrent.\retTwo
+
+	For any $x \in X$ let $Q(x) = \overline{\{(T^\prime)^n x : n \geq 1\}}$ denote the \udefine{forward orbit closure} of $x$. Then $x$ is recurrent for $(X, T^\prime)$ iff $x \in Q(x)$. Now since $y_0$ is recurrent for $(Y, T)$, there is some $k_1 \in K$ such that: $(y_0, k_1) \in Q(y_0, e)$.
+
+	\begin{myIndent}\exPPP
+		Why (since Furstenberg doesn't explain this)?\\ [4pt]
+		Note that $(T^\prime)^n(y_0, e) = (T^n y_0, k^{(n)})$ where:
+		
+		{\centering$k^{(n)} = \phi(T^{n-1} y_0 ) \phi( T^{n-2} y_0) \cdots \phi(T y_0)\phi(y_0)$.\retTwo\par}
+
+		Now because $y_0$ is recurrent for $(Y, T)$, we know that there is a subsequence\\ $\{T^{n_i} y\}_{i \in \mathbb{N}}$ such that $T^{n_i} y \to y$ as $i \to \infty$. And since $K$ is compact, we have that $\{k^{n_{i}}\}_{i \in \mathbb{N}}$ has a subsequential limit point $k_1$. And finally, by passing to another subsequence $\{n_{i_j}\}_{j \in \mathbb{N}}$ we get that $(T^\prime)^{n_{i_j}}(y_0, e) \to (y_0, k_1)$ as $j \to \infty$.\newpage
+	\end{myIndent}
+
+	But now note by induction that $(y_0, k_1^n) \in Q(y_0, e)$ for all $n \in \mathbb{N}$.
+
+	\begin{myIndent}\exPPP
+		Why?\\
+		We know $(y_0, k_1) \in Q(y_0, e)$. Now by induction assume that $(y_0, k_1^n) \in Q(y_0, e)$. Then $(y_0, k_1^{n+1}) = R_{k_1}(y_0, k_1^n)  \in Q(R(y_0, e)) = Q(y_0, k_1)$ by lemma B. But we also have that $(y_0, k_1) \in Q(y_0, e)$. So $(y_0, k_1^{n+1}) \in Q(y_0, e)$ by lemma A.\retTwo
+	\end{myIndent}
+
+	In turn by lemma C we have that there is an increasing subsequence $\{n_j\}_{j \in \mathbb{N}}$ such that $(y_0, k^{n_j}) \to (y_0, e)$ as $j \to \infty$. And since $Q(y_0, e)$ is closed, we thus have shown that $(y_0, e) \in Q(y_0, e)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo By using the prior theorems we can inductively obtain examples of non-Kronecker\\ dynamical systems where every point is recurrent.\retTwo
+
+For example, let $T : \mathbb{T}^2 \to \mathbb{T}^2$ be given by $T(\theta, \phi) = (\theta + a, \phi + 2\theta + a)$. Then $(\mathbb{T}^2, T)$ is a group extension of the Kronecker system $(\mathbb{T}, T^\prime)$ where $T^\prime \theta = \theta + a$ and $\psi(\theta) = 2\theta + a$. By theorems 1.2. and 1.4 we know that every point in $(\mathbb{T}^2, T)$ is recurrent.
+
+In the prior system note that the orbit of $(0, 0) \in \mathbb{T}^2$ is:
+
+{\centering\begin{tabular}{l}
+	$(0, 0) \to (a, a) \to (2a, 4a) \to \cdots \to (na, n^2 a)$\\ [4pt]
+	$\phantom{(0, 0) \to (a, a) \to (2a, 4a) \to \cdots} \to (na + a, n^2a + 2na + a) = ((n+1)a, (n^2 +2n + 1)a)$\\ [4pt]
+	$\phantom{(0, 0) \to (a, a) \to (2a, 4a) \to \cdots \to (na + a, n^2a + 2na + a)} = ((n+1)a, (n+1)^2a) \to \cdots$ 
+\end{tabular}\retTwo\par}
+
+This leads to the following proposition:
+
+\begin{myIndent}\exTwo
+	\ul{Proposition 1.5:} For any $\alpha \in \mathbb{R}$ and $\varepsilon > 0$ we can solve the diophantine inequality $|\alpha n^2 - m| < \varepsilon$ (where $n > 0$).
+
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		We know there is some increasing sequence $\{n_k\}_{k \in \mathbb{N}}$ in $\mathbb{N}$ such that\\ $(n_k a, n_k^2 a) \to (0, 0) \in \mathbb{T}^2$. In particular, since $n_k^2 a \to 0 \in \mathbb{T}$ we know that\\ if $k$ is fixed large enough, then there exists $m \in \mathbb{N}$ such that $|n_k^2 - m| < \varepsilon$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+We can extend this to higher degree polynomials too. Let $p(x)$ be a polynomial of degree $d$ with real coefficients and write $p_d(x) \coloneqq p(x)$ as well as:
+
+{\centering $p_{d-1}(x) \coloneqq p_d(x + 1) - p_d(x)$, $\phantom{a}p_{d-2}(x) \coloneqq p_{d-1}(x + 1) - p_{d-1}(x)$, etc. \retTwo\par}
+
+Each $p_i(x)$ is of degree $i$. Let $\alpha$ be the constant $p_0(x)$. Then define a transformation\\ $T: \mathbb{T}^d \to \mathbb{T}^d$ by $T(\theta_1, \theta_2, \theta_3 \ldots, \theta_d) \coloneqq (\theta_1 + \alpha, \theta_2 + \theta_1, \theta_3 + \theta_2, \ldots, \theta_d - \theta_{d-1})$.
+
+\begin{myIndent}\pracTwo
+	By induction, we can see that this is a group extension of a dynamical system on the $(d-1)$-torus which in turn is a group extension of a dynamical system on the $(d-2)$-torus, and so on and so forth down to the $1$-torus. So we can conclude that each point in $\mathbb{T}^d$ is recurrent.\retTwo
+
+	\exThreeP I'll do a step of the induction cause why not.
+	\begin{myIndent}\exPPP
+		Suppose we've shown that $(\mathbb{T}^{k}, T_k)$ is a dynamical system where:
+		
+		{\centering$T_k(\theta_1, \theta_2, \ldots, \theta_k) = (\theta_1 + \alpha, \theta_2 + \theta_1, \theta_3 + \theta_2, \ldots, \theta_k - \theta_{k-1})$.\retTwo\par}
+
+		Then by letting $\psi : \mathbb{T}^k \to \mathbb{T}$ be given by $\psi(\theta_1, \theta_2, \ldots, \theta_k) = \theta_k$ we have that $(\mathbb{T}^k, T_{k+1})$ is a group extension where:
+
+		{\centering\begin{tabular}{l}
+			$T_{k+1}(\theta_1, \ldots, \theta_{k+1}) = (T_k(\theta_1, \dots, \theta_{k}), \theta_{k+1} + \psi(\theta_1, \dots, \theta_{k}))$\\ [4pt]
+			$\phantom{T_{k+1}(\theta_1, \ldots, \theta_{k+1})} = ((\theta_1 + \alpha, \theta_2 + \theta_1, \ldots, \theta_{k} + \theta_{k-1}), \theta_{k+1} + \theta_k)$.
+		\end{tabular} \newpage\par}
+	\end{myIndent}
+\end{myIndent}
+
+Now compute the orbit of $(p_1(0), \ldots, p_d(0))$. Since $p_{i-1}(n) + p_i(n) = p_i(n + 1)$ we find that $T(p_1(n), p_2(n), \ldots, p_d(n)) = (p_1(n + 1), p_2(n+1), \ldots, p_d(n+1))$.\retTwo
+
+And thus $T^n(p_1(0), p_2(0), \ldots, p_d(0)) = (p_1(n), p_2(n), \ldots, p_d(n))$.\retTwo
+
+We conclude that $p_d(n) = p(n)$ must get arbitrarily close to $p(0)$ modulo $1$. Hence the following theorem:
+\begin{myIndent}
+\exTwo\ul{Theorem 1.6:} If $p(x)$ is any real polynomial with $p(0) = 0$, then for any $\varepsilon > 0$ we can solve the diophantine inequality $|p(n) - m| < \varepsilon$ (where $n > 0$).\retTwo
+\end{myIndent}
+
+I'll study more related to this reading group on \inLinkRap{Ergodic reading group notes 3}{page \_\_\_}.
+
+\mySepTwo
+
+\dispDate{10/8/2025}
 
 
 
 
-
-
+\hypertarget{Furstenberg confusion 1}{}
 \hypertarget{math 241a lecture 3}{}
-\hypertarget{math 220a lecture 3}{}
-\hypertarget{math 200a lecture 4}{}
+\hypertarget{math 220a lecture 6}{}
+\hypertarget{math 200a lecture 6}{}
 \hypertarget{page idk 1 reference}{}
 
 
@@ -10954,9 +11776,13 @@ Everything is cited in the order it shows up in the journal with the exception t
 	
 	\item Zimmer, R. J. (1990). \textit{Essential Results of Functional Analysis}. University of Chicago Press.
 	
-	\item \hypertarget{bib citation 12}{Garrett}, P. (2014, April 23). \textit{Seminorms and locally convex spaces}. Retrieved September 26, 2025, from https://www-users.cse.umn.edu/\~garrett/m/fun/notes\_2012-13/07b\_seminorms.pdf
+	\item \hypertarget{bib citation 12}{Garrett}, P. (2014, April 23). \textit{Seminorms and locally convex spaces}. Retrieved September 26, 2025, from https://www-users.cse.umn.edu/\url{~}garrett/m/fun/notes\_2012-13/07b\_seminorms.pdf
 	
 	\item \hypertarget{bib citation 13}{Conway}, J. B. (1978). \textit{Functions of One Complex Variable} (2nd ed.). Springer.
+	
+	\item Einsiedler, M. \& Ward, T. (2010). \textit{Ergodic Theory}. Springer.
+	
+	\item Furstenberg, H. (1981). \textit{Recurrence in Ergodic Theory and Combinatorial Number Theory}. Princeton University Press. http://www.jstor.org/stable/j.ctt7zv9zv
 \end{enumerate}
 \end{document}
 

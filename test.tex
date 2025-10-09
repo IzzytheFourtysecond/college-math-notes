@@ -293,10 +293,17 @@
 \newcommand{\Fun}{\mathrm{Fun}}
 \newcommand{\act}{\mathrm{act}}
 \newcommand{\Fix}{\mathrm{Fix}}
+\newcommand{\Sub}{\mathrm{Sub}}
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\core}{\mathrm{core}}
+\newcommand{\Syl}{\mathrm{Syl}}
+
 
 \DeclareMathOperator{\lcm}{lcm}
-
-
+\DeclareMathOperator{\symdif}{\triangle}
+\DeclareMathOperator{\Average}{Average}
+\DeclareMathOperator*{\AverageAst}{Average}
 
 % Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
 %https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
@@ -340,285 +347,439 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\exTwo\ul{Lemma:}\\ [-20pt]
-\begin{itemize}
-	\item[(a)] For all $g^\prime \in G$ we have that $\Fix(g^\prime g (g^\prime)^{-1}) = g^\prime \cdot \Fix(g) \coloneqq \{g^\prime \cdot x \in X : g \cdot x = x\}$.
-	
-	\begin{myIndent}\exThreeP
-		Proof:
-		
-		{\centering\begin{tabular}{l}
-			$x \in \Fix(g^\prime g (g^\prime)^{-1}) \Longleftrightarrow (g^\prime g (g^\prime)^{-1}) \cdot x = x$\\ [3pt]
-			$\phantom{x \in \Fix(g^\prime g (g^\prime)^{-1})} \Longleftrightarrow g \cdot ((g^\prime)^{-1} \cdot x) = (g^\prime)^{-1} \cdot x$\\ [3pt]
-			$\phantom{x \in \Fix(g^\prime g (g^\prime)^{-1})} \Longleftrightarrow (g^\prime)^{-1} \cdot x \in \Fix(g) \Longleftrightarrow x \in g^\prime \cdot \Fix(g)$.
-		\end{tabular} \retTwo\par}
-	\end{myIndent}
+\hTwo $G$ is called a \udefine{$p$-group} if $o(g)$ is a power of $p$ for all $g \in G$.\retTwo
 
-	\item[(b)] For all $g \in G$ we have that $G_{g \cdot x} = gG_xg^{-1}$
-	
-	\begin{myIndent}\exThreeP
-		Proof:
+\exTwo\ul{Corollary:} If $G$ is finite and $p$ is prime, then $G$ is a $p$-group if and only if $|G| = p^n$ for some integer $n$. {\myComment(i.e. our new definition agrees with the old one)}
+\begin{myIndent}\exThreeP
+	$(\Longleftarrow)$\\
+	This is just Lagrange's theorem.\retTwo
 
-		{\centering\begin{tabular}{l}
-			$g^\prime \in G_{g \cdot x} \Longleftrightarrow g^\prime \cdot (g \cdot x) = g \cdot x$\\ [3pt]
-			$\phantom{g^\prime \in G_{g \cdot x}} \Longleftrightarrow (g^{-1}g^\prime g) \cdot x = x \Longleftrightarrow g^{-1}g^\prime g \in G_x \Longleftrightarrow g^\prime \in gG_xg^{-1}$. $\blacksquare$
-		\end{tabular}\retTwo\par}
-	\end{myIndent}
-\end{itemize}
+	$(\Longrightarrow)$\\
+	If not, then there exists a prime factor $\ell \neq p$ such that $\ell \divides |G|$. Hence by Cauchy's theorem $G$ has an element of order $\ell$ (a contradiction). $\blacksquare$\retTwo
+\end{myIndent}
 
-\ul{Corollary:} Suppose $G \curvearrowright X$ and $|X| < \infty$. Then $g \mapsto |\Fix(g)|$ is a class function,\\ meaning that $|\Fix(g^\prime g (g^\prime)^{-1})| = |\Fix(g)|$ (or in other words $|\Fix(g)|$ is constant on\\ any given conjugate classes).
+\ul{Proposition:} Suppose $P$ is a finite $p$-group and $1 \neq N \lhd P$. Then $Z(P) \cap N \neq \{1\}$.
 
 \begin{myIndent}\exThreeP
 	Proof:\\
-	$|\Fix(g^\prime g (g^\prime)^{-1})| = |g^\prime \cdot \Fix(g)|$ by the last lemma. And since $x \mapsto g^\prime \cdot x$ is an element\\ of $S_X$, we know that $|g^\prime \cdot \Fix(g)| = |\Fix(g)|$. $\blacksquare$\retTwo
+	$P \curvearrowright N$ by conjugation. So $|N| \equiv |N^P| \mMod{p}$. Meanwhile note that:
+
+	{\centering\begin{tabular}{l}
+		$x \in N^P \Longleftrightarrow x \in N \text{ and } \forall g \in P,\gap g \cdot x = x$\\
+		$\phantom{x \in N^P} \Longleftrightarrow x \in N \text{ and } \forall g \in P,\gap gxg^{-1} = x$\\
+		$\phantom{x \in N^P} \Longleftrightarrow x \in N \text{ and } \forall g \in P,\gap gx = xg \Longleftrightarrow x \in Z(P) \cap N$.\\
+	\end{tabular}\retTwo\par}
+
+	So $|N| \equiv |Z(P) \cap N| \mMod{p}$. But finally note that $|N| \divides |P| = p^n$ for some $n$. But we also know by assumption that $|N| \neq \{1\}$. So, $|N| \equiv 0 \mMod{p}$ and we are done. $\blacksquare$\retTwo
 \end{myIndent}
 
-\hTwo The \udefine{$G$-orbit} of $x \in X$ is the set of all points in $X$ that are \udefine{$G$-similar} to $x$. Or to put into other words, we define $G \cdot x \coloneqq \{g \cdot x \in X : g \in G\}$ and say that $x^\prime$ is $G$-similar to $x$ if $x^\prime = g \cdot x \in G \cdot x$ for some $g \in G$. Also, in that case we denote $x^\prime \sim x$.\retTwo
+\hTwo\mySepTwo
 
-\exTwo\ul{Lemma:} $\sim$ is an equivalence relation.
-\begin{myIndent}\exThreeP
-	Proof:\\ [-20pt]
-	\begin{itemize}
-		\item $x \sim x$ as $1_G \cdot x = x$.
-		\item $x \sim y \Longrightarrow y \sim x$ as $x = g \cdot y \Longrightarrow g^{-1} \cdot x = y$.
-		\item If $x \sim y$ and $y \sim z$ then let $g_1, g_2 \in G$ be such that $x = g_1 \cdot y$ and $y = g_2 \cdot z$. Then $x = (g_1g_2) \cdot z$. So $x \sim z$. $\blacksquare$\retTwo
-	\end{itemize}
-\end{myIndent}
+The action $G \curvearrowright X$ is \udefine{transitive} if $|X/G| = 1$.\retTwo
 
-\hTwo It's now clear that the $G$-orbit of $x$: $G \cdot x$, is the equivalence class of $x$ with respect to $\sim$. Thus, we define $X/G \coloneqq \{G \cdot x : x \in X\}$. Also note that $X/G$ is a partition of $X$. As a result, we know that $|X| = \hspace{-0.8em}\sum\limits_{G \cdot x \in X/G}\hspace{-0.8em} |G \cdot x|$.\retTwo
+\exTwo\ul{Proposition:} If $G \curvearrowright X$ transitively and $G, X$ are finite with $|X| > 1$, then there exists\\ $g \in G$ with $\Fix(g) = \emptyset$.
 
-\exTwo\ul{Theorem (Orbit-stabilizer):} The map $G/G_x \to G \cdot x$ given by $gG_x \mapsto g \cdot x$ is a bijection. Hence $|G \cdot x| = [G : G_x]$ (where the latter is the number of left cosets of $G$ in $G_x$).
 \begin{myIndent}\exThreeP
 	Proof:\\
-	We first show this map is well-defined. Suppose $g_1G_x = g_2G_x$. Then $g_2 = g_1h$ for some $g \in G_x$. And in turn $g_2 \cdot x = (g_1h) \cdot x = g_1 \cdot (h \cdot x) = g_1 \cdot x$.\retTwo
-
-	Next we show injectivity. Assume $g_1 \cdot x = g_2 \cdot x$. Then $g_2^{-1} \cdot (g_1 \cdot x) = x$. So $g_2^{-1}g_1 \in G_x$. Or in other words, $g_1G_x = g_2G_x$.\retTwo
-
-	Finally, surjectivity is obvious from the fact that $G \cdot x$ is the set of $y \in X$ such that there exists $g \in G$ with $g \cdot x = y$. $\blacksquare$\newpage
+	Suppose $|\Fix(g)| \geq 1$ for all $g \in G$. Then:
+	
+	{\centering $|X/G| = \frac{1}{|G|}\sum_{g \in G} |\Fix(g)| \geq \frac{\Fix(1) + |G| - 1}{|G|} = \frac{|X| + |G| - 1}{|G|} > 1$. $\blacksquare$\retTwo\par}
 \end{myIndent}
 
-\hTwo Note that $|G \cdot x| = 1$ iff $\forall g \in G,\gap g \cdot x = x$ iff $x \in \Fix(G)$ where:
+\ul{Corollary:} If $|G| < \infty$ and $H \lneqq G$, then $\bigcup_{g \in G} gHg^{-1} \neq G$.
 
-{\centering$\Fix(G) = X^G \coloneqq \{x \in X : \forall g \in G,\gap g \cdot x = x\}$.\retTwo\par}
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider $G \curvearrowright G/H$ by left translation. This is a transitive action. And since $[G : H] > 1$,\\ we know by the last proposition that there exists $g \in G$ such that $\Fix(g) = \emptyset$. Now notice that $g \cdot xH = xH \Longleftrightarrow x^{-1}gx \in H \Longleftrightarrow g \in xHx^{-1}$. So if $\Fix(g) = \emptyset$, then $g \notin \bigcup_{x \in G} xHx^{-1}$. $\blacksquare$\retTwo
 
-This leads to the equation:
-
-{\centering$|X| = \hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
-	G \cdot x \in X/G \\ |G \cdot x| = 1
-\end{smallmatrix}}\hspace{-0.8em} |G \cdot x| + 
-\hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
-	G \cdot x \in X/G \\ |G \cdot x| > 1
-\end{smallmatrix}}\hspace{-0.8em} |G \cdot x| = |\Fix(G)| + 
-\hspace{-0.8em}\sum\limits_{\begin{smallmatrix}
-	G \cdot x \in X/G \\ |G \cdot x| > 1
-\end{smallmatrix}}\hspace{-0.8em} [G:G_x]$.\retTwo\par}
-
-\Hstatement\mySepTwo
-
-\hTwo I need to do the rest of the math 200a homework still. So I'm going to take a break from taking lecture notes to do the homework.\retTwo
-
-\Hstatement\blab{Set 1 Problem 3:} Find the automorphism group of the Cayley graph of $\mathbb{Z}$ with respect to $\{-1, +1\}$.
-
-\begin{myIndent}\HexOne
-	To start off, note that $\{n, m\}$ is an edge of $\Cay(\mathbb{Z}, \{-1, 1\})$ iff $n - m = \pm 1$. This yields the infinite graph which I've attempted to draw below.\retTwo
-
-	{\centering{\color{black}\raisebox{0em}{\tikz[scale=0.8,inner sep=4pt]{
-		\tikzstyle{myCir}=[circle, fill, thick, color=black];
-		\tikzstyle{myLine}=[thick, color=black];
-
-		\node[myCir, label=above:$0$] (0) at (0, 0) {};
-		\node[myCir, label=above:$1$] (1) at (2, 0) {} edge[myLine] (0);
-		\node[myCir, label=above:$2$] (2) at (4, 0) {} edge[myLine] (1);
-		\node[myCir, label=above:$3$] (3) at (6, 0) {} edge[myLine] (2);
-		\node[myCir, label=above:$-1$] (-1) at (-2, 0) {} edge[myLine] (0);
-		\node[myCir, label=above:$-2$] (-2) at (-4, 0) {} edge[myLine] (-1);
-		\node[myCir, label=above:$-3$] (-3) at (-6, 0) {} edge[myLine] (-2);
-
-		\node (+i) at (7.7, 0) {$\cdots$} edge[myLine] (3);
-		\node (-i) at (-7.7, 0) {$\cdots$} edge[myLine] (-3);
-	}}}\retTwo\par}
-
-	Now from this graph it is clear that reversing the graph is a symmetry. Specifically, define $\tau(n) = -n$. Then $\tau(n) - \tau(m) = -n - (-m) = m-n = -(n-m)$. Hence, $n-m =\pm 1$ iff $\tau(n) - \tau(m) = \mp 1$ and we thus know that $\tau$ preserves the edges of our graph and is thus a symmetry.\retTwo
-
-	Another obvious symmetry of our graph are index shifts. Specifically define $\sigma(n) = n + 1$. Then $\tau(n) - \tau(m) = n - m$ for all $n, m \in \mathbb{N}$ and it is thus obvious that $\tau$ preserves the edges of graph and is a symmetry.
-
-	\begin{myDindent}\HexPPP
-		I glossed over this point before but technically we also need to show $\sigma$ and $\tau$ are\\ bijections. To do this, just note that $\sigma^{-1}$ is given by $n \mapsto n-1$ and $\tau^{-1} = \tau$. So,\\ both maps are invertible.\retTwo
-	\end{myDindent}
-
-	Now we claim that every automorphism of $\Cay(\mathbb{Z}, \{-1, 1\})$ is some composition of $\tau$ and $\sigma$. To prove this, let $\theta$ be any arbitrary automorphism. We know that $\theta(0) = k$ for some $k \in \mathbb{Z}$. And in turn we have that $(\sigma^{-k} \circ \theta)(0) = 0$. Next note that $(\sigma^{-k} \circ \theta)(1)$ equals either $+1$ or $-1$. In the former case, we can trivially say that $\tau^0 \circ \sigma^{-k} \circ \theta$ fixes both $0$ and $1$. As for the latter case, since $\tau(0) = 0$ and $\tau(-1) = +1$, we can say that $\tau^{1} \circ \sigma^{-k} \circ \theta$ fixes both $0$ and $1$. Either way, this shows there exists a graph automorphism $\psi = \sigma^k \circ \tau^i$ (where $k \in \{\mathbb{Z}\}$ and $i \in \{0, 1\}$) such that $\psi^{-1} \circ \theta$ fixes both $0$ and $1$.\retTwo
-
-	Observation: If $\phi \in \Aut(\Cay(\mathbb{Z}, \{-1, 1\}))$ with $\phi(0) = 0$ and $\phi(1) = 1$, then $\phi = \myId$.
-	\begin{myIndent}\HexTwoP
-		To prove this, we do induction separately on the positive integers and then on the negative integers.
-		\begin{itemize}
-			\item Suppose $n \geq 1$ and we've already shown that $\phi(k) = k$ for all $0 \leq k \leq n$. Then since $\phi$ is a graph automorphism, we must have that $\phi(n + 1) = \phi(n) \pm 1$. But since $\phi$ is a bijection and we already know that $\phi(n-1) = n-1 =\phi(n) - 1$, this means we can only have that $\phi(n+1) = \phi(n) + 1 = n + 1$. By induction this means that $\phi(n) = n$ for all $n \geq 0$.\retTwo
-			
-			\item Next suppose $n \leq 0$ and we've shown for all $k \geq n$ that $\phi(k) = k$. Then like before we must have that $\phi(n - 1) = \phi(n) \pm 1 = n \pm 1$ since $\phi$ is a graph automorphism. But since $\phi$ is a bijection and we already know $\phi(n + 1) = n + 1$,\newpage we can only have $\phi(n - 1) = n - 1$. By induction this means that $\phi(n) = n$ for all $n \in \mathbb{Z}$.\retTwo
-		\end{itemize}
-	\end{myIndent}
-
-	Thus $\psi^{-1} \circ \theta = \myId$. Or in other words $\theta = \psi = \sigma^k \tau^i$ where $k \in \mathbb{Z}$ and $i \in \{0, 1\}$. This shows that $\Aut(\Cay(\mathbb{Z}, \{-1, 1\})) = \langle \sigma, \tau\rangle$.\retTwo
-
-	Now the homework sheet specifically tells us to list out all the elements of the group of automorphisms. To do this, we need to show that $\sigma^{k_1} \circ \tau^{i_1} \neq \sigma^{k_2} \circ \tau^{i_2}$ if either $k_1 \neq k_2$ or $i_1 \neq i_2$. 
-	\begin{myIndent}\HexTwoP
-		To start off, note that $\sigma^{k_1}$ and $\sigma^{k_2}$ are easily checked to not equal each other when\\ $k_1 \neq k_2$. We merely note that $\sigma^{k_1}(0) = k_1 \neq k_2 = \sigma^{k_2}(0)$.\retTwo
-		
-		Also, it is easy to see that $\langle \sigma \rangle = \{\sigma^k : k \in \mathbb{Z}\}$ is a cyclic subgroup of our collection of symmetries and that $\tau$ is not in that subgroup. After all the only $k \in \mathbb{Z}$ such that $\sigma^k(0) = \tau(0)$ is $k = 0$. However, $\sigma^0(1) = 1 \neq -1 = \tau(1)$. It now follows that $\langle \sigma \rangle$ and $\langle \sigma \rangle \tau$ are two disjoint cosets which partition our collection of symmetries.\retTwo
-
-		Finally, we need to show that if $k_1 \neq k_2$ then $\sigma^{k_1} \circ \tau \neq \sigma^{k_2} \circ \tau$. To do this, suppose $\sigma^{k_1} \circ \tau = \sigma^{k_2} \circ \tau$. Then by composing $\tau$ on the right side we get that $\sigma^{k_1} = \sigma^{k_2}$. And by prior work, we thus know that $k_1 = k_2$.\retTwo
-	\end{myIndent}
-
-	Thus $\Aut(\Cay(\mathbb{Z}, \{-1, 1\})) = \{\sigma^k \circ \tau^i : k \in \mathbb{Z} \text{ and } i \in \{0, 1\}\}$ and we know that the representation $\theta = \sigma^k \circ \tau^i$ is unique.\retTwo
-
-	As for showing how to compose elements note that:
-
-	{\centering $\tau \circ \sigma \circ \tau(n) = \tau \circ \sigma(-n) = \tau(-n + 1) = n - 1 = \sigma^{-1}(n)$.\retTwo\par}
-
-	And since conjugation is a group automorphism, we know that:
-	\begin{itemize}
-		\item $(\sigma^m \circ \tau) \circ \sigma^n = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) \circ \tau = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n \circ \tau = \sigma^m \circ \sigma^{-n} \circ \tau$\\ [3pt]
-		$\phantom{(\sigma^m \circ \tau) \circ \sigma^n = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) \circ \tau = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n \circ \tau} = \sigma^{m-n} \circ \tau$,\\
-
-		\item $(\sigma^m \circ \tau) \circ (\sigma^n \circ \tau) = \sigma^m \circ (\tau \circ \sigma^n \circ \tau) = \sigma^m \circ (\tau \circ \sigma \circ \tau)^n = \sigma^m \circ \sigma^{-n} = \sigma^{m - n}$,\\
-
-		\item $\sigma^m \circ (\sigma^n \circ \tau) = \sigma^{m + n} \circ \tau$ and $\sigma^m \circ \sigma^n = \sigma^{m + n}$. $\blacksquare$\retTwo
-	\end{itemize}
+	\pracOne
+	\begin{myClosureOne}{6}
+	\\ [-25pt] 
+	Side note: the prior corollary does not hold if $|G| = \infty$. For example, consider\\ that $\GL_2(\mathbb{C}) = \bigcup_{x \in \GL_2(\mathbb{C})} xBx^{-1}$ where:
+	
+	{\centering$B \coloneqq \left\{\begin{bmatrix}
+	a & b \\ 0 & c
+	\end{bmatrix} \in \mathbb{C}^{2 \times 2} : a, b \neq 0\right\}$ is the set of all invertible\\ [-8pt]
+	\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} upper triangular matrices.\retTwo\par}
+	\end{myClosureOne}\retTwo
 \end{myIndent}
 
-\blab{Set 1 Problem 2:} Suppose $G$ is a finite group and that for every positive integer $n$:\\ [-16pt]
+\hTwo\mySepTwo\newpage
 
-{\center$|\{g \in G : g^n = e\}| \leq n$\\ [9pt]\par}
+If $G$ is a group and $H < G$, then suppose $G \curvearrowright G/ H$ by left translations. What is the kernel of this action?
+\begin{myIndent}\hThree
+	Note that $g$ is in the kernel of the action iff $gxH = xH$ for all $x \in G$. And that happens iff $\forall x \in G, \gap g \in xHx^{-1}$ which happens iff $g \in \bigcap_{x \in G} xHx^{-1}$.\retTwo
+\end{myIndent}
 
-(where $e$ is the identity element of $G$). Use the following steps to prove that $G$ is a cyclic group.
+We call the kernel of the action above the \udefine{normal core} of $H$ in $G$, and denote it as\\ $\core_G(H)$ (or just $\core(H)$ if it's obvious what $G$ is).\retTwo
 
-\begin{enumerate}
-	\item[(a)] Prove that if there is an element of order $d$ in $G$, then there are exactly $\phi(d)$ elements of\\ order $d$ in $G$ where $\phi(d)$ is the Euler $\phi$-function {\color{BrickRed}(where as a reminder $\phi(d)$ equals the\\ number of integers between $1$ and $d$ inclusive which are coprime to $d$)}.
-	
-	\begin{myIndent}\HexOne
-		Suppose $g \in G$ with $o(g) = d$ and then consider the cyclic subgroup $\langle g \rangle \subseteq G$. We\\ [1pt] know that $o(g^k) = \frac{o(g)}{\gcd(o(g), k)} = \frac{d}{\gcd(d, k)} = d$ iff $\gcd(k, d) = 1$. So by considering $g^k$\\ for each $k \in \{1, \ldots, d\}$ with $\gcd(d, k) = d$ we get that there are at least $\phi(d)$\\ [3pt] distinct elements of $G$ with order $d$.\newpage
+\exTwo\ul{Lemma:} $\core_G(H)$ is the largest normal subgroup of $G$ which is a subgroup of $H$ (i.e. $\core_G(H) \lhd G$, $\core_G(H) < H$, and if $N \lhd G$ with $N < H$ then $N < \core_G(H)$).
 
-		That said, all $g^k$ where $k \in \{0, \ldots, d - 1\}$ are distinct elements of $\{g \in G : g^d = e\}$. And since $|\{g \in G : g^d = e\}| \leq d$, this proves that $h \in G$ can satisfy that $h^d = e$ only if $h = g^k$ for some integer $k$. And also because $h^d$ equaling $e$ is a necessary condition for us to have $o(h) = d$, we know that the $\phi(d)$ elements of $G$ we found before are the only elements of $G$ with order $d$.\retTwo
-	\end{myIndent}
-	
-	\item[(b)] For every positive number $d$, let $\psi(d)$ be the number of elements of $G$ that have order $d$. Show that $\psi(d) \leq \phi(d)$ and that $\psi(d) \neq 0$ implies that $d \divides |G|$.
-	
-	\begin{myIndent}\HexOne
-		We know that $\phi(d) \geq 1$ for all positive $d$ since $\gcd(1, d) = 1$. So, if $\psi(d) = 0$, then we trivially know that $\psi(d) \leq \phi(d)$. Meanwhile, if $\psi(d) > 0$ then we showed in part (a) that $\psi(d) = \phi(d)$. Hence in either case we have that $\psi(d) \leq \phi(d)$.\retTwo
+\begin{myIndent}\exThreeP
+	By setting $x = 1$ we can see that $\core_G(H) \subseteq H$. Also, since $\core_G(H)$ is the kernel of the induced homomorphism $G \to S_{G/H}$, we know that $\core_G(H)$ is a normal subgroup.\retTwo
 
-		Also, the fact that $d \divides |G|$ if $\psi(d) \neq 0$ is just a result of Lagrange's theorem (since the order of any subgroup of $G$ must divides $|G|$ and $\phi(d) \neq 0$ implies there is a cyclic subgroup of $G$ with order $d$).\retTwo
-	\end{myIndent}
-	
-	\item[(c)] Prove that $\psi(d) = \phi(d)$ if $d$ is a positive divisor of $|G|$. Deduce that $G$ is a cyclic group.
-	
-	\begin{myIndent}\HexOne
-		Let $n = |G|$ and note that $\sum_{d \divides n} \psi(d) = n$ since every element of $G$ has some order dividing $n$. At the same time, it is a somewhat well known result that $\sum_{d \divides n} \phi(d) = n$ for all $n \in \mathbb{N}$.
-		\begin{myIndent}\HexTwoP
-			I can't find a proof of this result anywhere in my notes so I guess I'll prove it here.\retTwo
+	Next suppose $N < H$ and $N \lhd G$. Since $N \subseteq H$, we know that $xNx^{-1} \subseteq xHx^{-1}$\\ for all $x \in G$. And then since $N \lhd G$, we know that $xNx^{-1} = N$ for all $x \in G$. So,\\ $N \subseteq xHx^{-1}$ for all $x \in G$. And this proves that $N \subseteq \bigcap_{x \in G} xHx^{-1} = \core_G(H)$. $\blacksquare$\retTwo
+\end{myIndent}
 
-			Let $S = \{1, \ldots, n\}$ and define $S_d \coloneqq \{k \in S : \gcd(k, n) = d\}$ for each\\ $d$. Clearly, the $S_d$ form a partition of $S$ as we range over all the divisors\\ of $n$. Also note that there is a bijective correspondence between $S_d$ and\\ $E_{n/d} \coloneqq \{k \in \{1, \ldots, \frac{n}{d}\} : \gcd(k, \frac{n}{d}) = 1\}$.
-			\begin{myIndent}\HexPPP
-				Specifically note that $\gcd(m, n) = d \Longrightarrow \frac{m}{d}, \frac{n}{d} \in \mathbb{Z}$ with $\gcd(\frac{m}{d}, \frac{n}{d}) = 1$. And if we also have that $m \leq n$ then clearly $\frac{m}{d} \leq \frac{n}{d}$. So, $m \in S_d \Longrightarrow \frac{m}{d} \in E_{n/d}$. Meanwhile, if $\gcd(m, \frac{n}{d}) = 1$, then we know that $\gcd(dm, n) = d$. And also if $m \leq \frac{n}{d}$, then we know that $md \leq n$ Hence $m \in E_{n/d} \Longrightarrow dm \in S_d$. It now follows that the map $m \mapsto \frac{m}{d}$ is an invertible map from $S_d$ to $E_{n/d}$.\retTwo
-			\end{myIndent}
+\hTwo Also note that $H \lhd G$ if and only if $\core_G(H) = H$. With that we're now ready to prove the following proposition\dots\retTwo
 
-			Now $|S_d| = |E_{n/d}| = \phi(\frac{n}{d})$. Also, we know that $n = |S| = \sum_{d \divides n} |S_d|$. So we have shown that $n = \sum_{d \divides n} \phi(\frac{n}{d}) = \sum_{d \divides n} \phi(d)$.\retTwo
-		\end{myIndent}
+\exTwo\ul{Proposition:} If $H < G$ and $[G : H] = p$ where $p$ is the smallest prime factor of $|G|$, then $H \lhd G$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\phi: G \to S_p$ be the induced group homomorphism of the left translation action of $G$\\ [1pt] on $G/H$. Then note that $|\phi(G)|$ divides $\gcd(|G|, |S_p|) = \gcd(|G|, p!)$. But since $p$ is the\\ [1pt] smallest prime factor dividing $G$, we have that $\gcd(|G|, p !) = p$. So $|\phi(G)| \divides p$. Also note that $|\phi(G)| > 1$. After all, for any $g \notin H$ we have that $g \cdot 1H \neq 1H$ and thus $g$ doesn't\\ correspond to the identity permutation in $S_p$. So, $|\phi(G)| = p$.\retTwo
 
-		Since $\psi(d) \leq \phi(d)$ for all $d$, we thus have that:
+	But by Lagrange's theorem, we have that $[G: \core_G(H)] = |\phi(G)| = p$. And since $\core_G(H) \subseteq H$ and $[G : H] = p$, the only way this is possible is if $H = \core_G(H)$. So $H \lhd G$. $\blacksquare$\retTwo
+\end{myIndent}
 
-		{\centering $n = \sum_{d \divides n} \psi(d) \leq \sum_{d \divides n} \phi(d) = n$.\retTwo\par}
+\hTwo\mySepTwo
 
-		And this proves that $\sum_{d \divides n} \psi(d) = \sum_{d \divides n} \phi(d)$. Going even further, since\\ $0 \leq \psi(d) \leq \phi(d)$ for all $d$, the two sums can only equal if $\psi(d) = \phi(d)$ for all $d$ being summed over. In particular, we must have that $\phi(n) = \psi(n) \geq 1$. So, there is some element of order $n = |G|$ in $G$. This is equivalent to saying that $G$ is cyclic. $\blacksquare$\retTwo
-	\end{myIndent}
-\end{enumerate}
+\exTwo\ul{Theorem:} If $G$ is a finite group, $P < G$ is a $p$-group, and $p$ divides $[G : P]$, then\\ $p$ divides $[N_G(P) : P]$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$P \curvearrowright G/P$ by left-translations. Thus $|G/P| \equiv |(G/P)^P| \mMod{p}$. But note that:
 
-\blab{Set 1 Problem 1:} Suppose $G_1$ and $G_2$ are two groups. We say $G_1$ and $G_2$ are \udefine{algebraically\\ independent} if there are no proper normal subgroups $N_1$ and $N_2$ of $G_1$ and $G_2$ respectively\\ such that $G_1/N_1 \cong G_2/N_2$.\newpage
-\begin{enumerate}
-	\item[(a)] Prove that $G_1$ and $G_2$ are algebraically independent if and only if $G_1 \times G_2$ satisfies the following property: suppose $H$ is a subgroup of $G_1 \times G_2$ and the projection of $H$ to the $i$-th component is $G_i$ for $i = 1, 2$. Then $H = G_1 \times G_2$.
-	\begin{myIndent}\HexOne
-		\begin{myDindent}\exPPP
-			As a reminder, the group $G_1 \times G_2$ is just the cartesian product\\ of the two groups equipped with the law of composition that\\ $(g_1, g_2)(g_1^\prime, g_2^\prime) = (g_1g_1^\prime, g_2g_2^\prime)$.\retTwo
-		\end{myDindent}
-		
-		$(\Longrightarrow)$\\
-		Suppose $G_1$ and $G_2$ are algebraically independent and then consider any subgroup $H \subseteq G_1 \times G_2$ such that $\pi_1(H) = G_1$ and $\pi_2(H) = G_2$ (where $\pi_1$ and $\pi_2$ are the projection maps). Also let $e_1$ and $e_2$ denote the identity elements of $G_1$ and $G_2$ respectively.\retTwo
+	{\center\begin{tabular}{l}
+		$xP \in (G/P)^P \Longleftrightarrow \forall g \in P,\gap g \cdot xP = xP$\\ [4pt]
+		$\phantom{xP \in (G/P)^P} \Longleftrightarrow \forall g \in P,\gap g \in xPx^{-1} \Longleftrightarrow P \subseteq xPx^{-1}$
+	\end{tabular} \retTwo\par}
 
-		To start off, let $N_1 \coloneqq H \cap (\{e_1\} \times G_2)$ and $N_2 \coloneqq H \cap (G_1 \times \{e_2\})$. Then set $N_1^\prime \coloneqq \pi_2(N_1)$ and $N_2^\prime \coloneqq \pi_1(N_2)$. Both $N_1$ and $N_2$ are easily seen to be subgroups of $G_1 \times G_2$ as they are both intersections of groups. From there it also easy to see that $N_1^\prime$ and $N_2^\prime$ are subgroups of $G_2$ and $G_1$ respectively on account of being images of $N_2$ and $N_1$ via the homomorphisms $\pi_2$ and $\pi_1$. And of course there are obvious group isomorphisms showing that $N_1^\prime \cong N_1$ and $N_2^\prime \cong N_2$.
-		\retTwo
+	And since $|P| = |xPx^{-1}| < \infty$, we have that $P \subseteq xPx^{-1} \Longleftrightarrow P = xPx^{-1}$. And that happens iff $x \in N_G(P)$. So $|G/P| \equiv |N_G(P)/P| \mMod{p}$.\retTwo
 
-		Our first big step is to show that $N_1^\prime$ and $N_2^\prime$ are normal subgroups (which in turn means that $G_1/N_2^\prime$ and $G_2/N_1^\prime$ are well-defined quotient groups).
-		\begin{myIndent}\HexTwoP
-			Suppose $g_1 \in N_2^\prime$ and let $g^\prime_1$ be any element of $G$. Since $\pi_1(H) = G_1$, we know\\ [2pt] there is some $g^\prime_2 \in G_2$ such that $(g^\prime_1, g^\prime_2) \in H$. And since $H$ is closed under\\ [2pt] inverses, we also know that $((g_1^\prime)^{-1}, (g_2^\prime)^{-1}) \in H$. Therefore $g^\prime_1 g (g^\prime_1)^{-1} \in N_2^\prime$\\ [2pt] since $(g^\prime_1 g (g^\prime_1)^{-1},  g^\prime_2 e_2 (g^\prime_2)^{-1}) = (g^\prime_1 g (g^\prime_1)^{-1}, e_2) \in H$. This proves that $N_2^\prime$ is\\ [2pt] normal in $G_1$. Analogous reasoning shows that $N_1^\prime$ is normal in $G_2$.\retTwo
-		\end{myIndent}
+	Next since $p$ divides $[G : P]$, we know that $0 \equiv |N_G(P)/P| \mMod{p}$. $\blacksquare$\retTwo
+\end{myIndent}
 
-		Next we define a group homomorphism $\phi$ from $G_1$ to $G_2/N_1^\prime$ as follows:
+\exTwo\ul{Corollary:} If $G$ is a finite $p$-group and $H \lneqq G$ then $H \lneqq N_G(H)$.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $|G| = p^n$ and $H \lneqq G$ then $H$ is a finite $p$-group and $p$ divides $[G : H]$. Then by the last theorem we have that $p$ divides $[N_G(H) : H]$. So, $H \lneqq N_G(H)$. $\blacksquare$\retTwo
+\end{myIndent}
 
-		{\centering Given any $g_1 \in G$, let $\phi(g_1) = g_2N_1^\prime$ where $(g_1, g_2) \in H$.   \retTwo\par}
+\ul{Sylow's 1st. Theorem:} Suppose $p^n$ divides $|G|$. Then there exists subgroups\\ $P_1 < P_2 < \cdots < P_n < G$ such that $|P_i| = p^i$ for all $1 \leq i \leq n$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We proceed by induction on $k$.\retTwo
 
-		\begin{myIndent}\HexTwoP
-			To show this is well defined, suppose $g_2, g_2^\prime \in G_2$ both satisfy that\\ [1pt] $(g_1, g_2) \in H$ and $(g_1, g_2^\prime) \in H$. Then $(e_1, g_2^{-1}g_2^\prime) \in H$, which in turns\\ [1pt] means that $g_2^{-1}g_2^\prime \in N_1^\prime$. This is equivalent to saying that $g_2^{-1} g_2^\prime N_1^\prime = N_1^\prime$\\ which in turn is equivalent to saying that $g_2^\prime N_1^\prime = g_2 N_1^\prime$.\retTwo
+	The base follows from Cauchy's theorem. Meanwhile suppose $p^{k+1}$ divides $|G|$ and we've already found subgroups $P_1 < \cdots < P_k < G$ such that $|P_i| = p^i$ for all $1 \leq i \leq k$. Then $p$ divides $[G : P_k]$, which means by two theorems ago that $p$ divides $[N_G(P_k) : P_k]$. And since $P_k \lhd N_G(P_k)$ we have that $N_G(P_k) / P_k$ is a well-defined group with $p \divides |N_G(P_k) / P_k|$.\retTwo
 
-			Also, to see that $\phi$ is a homomorphism, suppose $(g_1, g_2), (g_1^\prime, g_2^\prime) \in H$.\\ [1pt] Then $(g_1g_1^\prime, g_2g_2^\prime) \in H$ and so $\phi(g_1g_1^\prime) = g_2g_2^\prime N_1^\prime$. But we also have that\\ [1pt] $\phi(g_1)\phi(g_2) = g_2N_1^\prime g_2^\prime N_1^\prime = g_2g_2^\prime N_1^\prime$. So $\phi(g_1g_2) = \phi(g_1)\phi(g_2)$.\retTwo
-		\end{myIndent}
+	By Cauchy's theorem and the correspondance theorem (the latter is in my math 100a paper notes), we thus know there is a subgroup $P_k < P_{k+1} < N_G(P_k)$ such that $P_{k+1}/P_k$ is a cyclic group of order $p$. And it follows that $|P_{k+1}| = |P_k| \cdot p = p^{k+1}$. $\blacksquare$\retTwo
+\end{myIndent}
 
-		Now we claim $\phi$ is surjective. After all, $\pi_2(H) = G_2$ so for all $g_2 \in G_2$ there exists\\ [1pt] $g_1 \in G_1$ such that $(g_1, g_2) \in H$. And then in turn $\phi(g_1) = g_2 N_1^\prime$. We also claim that\\ [1pt] the kernel of $\phi$ is $N_2^\prime$. After all, suppose $\phi(g_1) = N_1^\prime$. Then we know that there is some\\ [1pt] $g_2 \in G_2$ such that $(g_1, g_2) \in H$ and $(e_1, g_2) \in H$. But since $(e_1, g_2) \in H$, we also\\ [1pt] know that $(e_1, g_2^{-1}) \in H$, and thus $(e_1g_1, g_2^{-1}g_2) = (g_1, e_2) \in H$. So, $g_1 \in N_2^\prime$ and\\ [1pt] we've shown that $\ker(\phi) \subseteq N_2^\prime$. Going the other direction and showing $N_2^\prime \subseteq \ker(\phi)$\\ [1pt] is as simple as noting that $e_2N_1^\prime = N_1^\prime$.\newpage
+\hTwo We say that $\nu_p(|G|) = k$ if $p^k \divides |G|$ and $p^{k+1} \not\divides |G|$ and call $\nu_p(|G|)$ the \udefine{$p$-valuation} of $G$.\retTwo
 
-		By the first isomorphism theorem, we are thus able to conclude that $\frac{G}{N_2^\prime} \cong \frac{G}{N_1^\prime}$.\retTwo
+$P < G$ is called a \udefine{Sylow $p$-subgroup} if $|P| = p^{\nu_p(|G|)}$. Note that $P$ is a Sylow $p$-subgroup if and only if $P$ is a finite $p$-group and $p \not\divides\gap [G : P]$.\retTwo
 
-		{\color{red}I ran out of time so everything after this point is not being graded\dots\retTwo}
+Also, we let $\Syl_p(G)$ be the set of all Sylow $p$-subgroups of $G$.\retTwo
 
-		Since $G_1$ and $G_2$ are algebraically independent, this implies that $N_2^\prime = G_1$ and\\ $N_1^\prime = G_2$. But now since $G_1 \times \{e_2\}$ and $\{e_1\} \times G_2$ are both contained in $H$ are\\ easily seen to together generate all of $G_1 \times G_2$, we know that $H = G_1 \times G_2$.\\ This proves the property in the problem statement.\retTwo
-
-		$(\Longleftarrow)$\\
-		Suppose $G_1$ and $G_2$ are not algebraically independent and let $N_1$ and $N_2$ be\\ proper normal subgroups of $G_1$ and $G_2$ such that $G_1 / N_1 \cong G_2 / N_2$. Then let\\ $\phi : G_1 / N_1 \to G_2 / N_2$ be a group isomorphism.\retTwo
-
-		We define the set $H \coloneqq \{(g_1, g_2) \in G_1 \times G_2 : \phi(g_1N_1) = g_2N_2\}$ and claim that\\ this is a subgroup of $G_1 \times G_2$.
-		\begin{myIndent}\HexTwoP
-			\begin{itemize}
-				\item Note that $(e_1, e_2) \in H$ since we must have that $\phi(N_1) = N_2$.\\ [-6pt]
-				\item Suppose $(g_1, g_2) \in H$. Then $\phi(g_1 N_1) = g_2 N_2$. But note that:
-				
-				{\centering$N_2 = \phi(N_1) = \phi(g_1^{-1}g_1 N_1) = \phi(g_1^{-1} N_1)\phi(g_1 N_1) = \phi(g_1^{-1} N_1) g_2N_2$.\retTwo\par}
-
-				Therefore $\phi(g_1^{-1}N_1) = (g_2N_2)^{-1} = g_2^{-1} N_2$ and we've shown that\\ $(g_1, g_2) \in H$.\\ [-6pt]
-
-				\item Suppose $(g_1, g_2), (g_1^\prime, g_2^\prime) \in H$. Then we have that $\phi(g_1N_1) = g_2N_2$ and\\ $\phi(g_1^\prime N_1) = g_2^\prime N_2$. And since $\phi$ is a group homomorphism, we get that:
-				
-				{\centering $\phi(g_1g_1^\prime N_1) \phi(g_1 N_1)\phi(g_1^\prime N_1) = (g_2N_2)(g_2^\prime N_2) = g_2g_2^\prime N_2$. \retTwo\par}
-
-				This shows that $(g_1g_1^\prime, g_2g_2^\prime) \in H$.\retTwo
-			\end{itemize}
-		\end{myIndent}
-
-		Next observe that $\pi_1(H) = G_1$. After all, for any $g_1 \in G_1$ we can just pick\\ [1pt] $g_2 \in \phi(g_1 N)$ and then we'll know that $(g_1, g_2) \in H$. We also know that\\ [1pt] $\pi_2(H) = G_2$. After all, since $\phi$ is surjective, we know that for any $g_2 \in G_2$\\ [1pt] there exists a coset $g_1^\prime N_1 \in G_1/N_1$ such that $\phi(g_1^\prime N_1) = g_2N_2$. And now by\\ [1pt] just choosing any $g_1 \in g_1^\prime N_1$ we get that $(g_1, g_2) \in H$.\retTwo
-
-		That said, $H \neq G_1 \times G_2$. To see this, just pick any $g_1 \in N_1$ and $g_2 \notin N_2$.\\ Then $\phi(g_1 N_1) \neq g_2N_2$ and we have that $(g_1, g_2) \notin H$. $\blacksquare$\retTwo
-	\end{myIndent}
-	
-	\item[(b)] Suppose $G_1$ and $G_2$ are two finite groups and $\gcd(|G_1|, |G_2|) = 1$. Then $G_1$ and $G_2$ are algebraically independent.
-	
-	\begin{myIndent}\HexOne
-		Let $H$ be any subgroup of $G_1 \times G_2$ such that $\pi_1(H) = G_1$ and $\pi_2(H) = G_2$.\\ [2pt] Since $\pi_1$ and $\pi_2$ are group homomorphisms from $G_1 \times G_2$ to $G_1$ and $G_2$ respectively,\\ [2pt] we know that both $|G_1| = |\pi_1(H)|$and $|G_2| = |\pi_2(H)|$ divide $|H|$. Hence,\\ [2pt] $\lcm(|G_1|, |G_2|)$ divides $|H|$. Meanwhile, we have by Lagrange's theorem that\\ [2pt] $|H|$ divides $|G_1 \times G_2| = |G_1||G_2|$.\retTwo
-
-		But now because $\gcd(|G_1|, |G_2|) = 1$, we have that $\lcm(|G_1|, |G_2|) = |G_1||G_2|$ So, we must have $|H| = |G_1||G_2|$. And this proves that $H = G_1 \times G_2$.\newpage
-
-		By part (a), we can now conclude that $G_1$ and $G_2$ are algebraically independent. $\blacksquare$\retTwo
-	\end{myIndent}
-\end{enumerate}
+I'll continue with this class on \inLinkRap{math 200a lecture 6}{page \_\_\_}.
 
 \mySepTwo
 
-\hTwo
+\dispDate{10/7/2025}
+
+\hypertarget{math 220a lecture 3}{\blect{Complex Analysis Homework Assignment 2:}}\retTwo
+
+Right now the class is still being boring and not really covering anything new. But I do still need to do homework for the class. So\dots\retTwo
+
+\Hstatement\blab{Exercise II.3.1:} Prove the following:
+\begin{itemize}
+	\item[(a)] A set $A$ is closed iff it contains all its limits points.
+	\item[(b)] If $A \subseteq X$, then $\overline{A} = A \cup \{x : x \text{ is a limit point of A}\}$.
+\end{itemize}
+
+\HexOne
+\begin{myIndent}
+	Ok actually frick whoever assigned this stupid problem. I'm not fricking type-setting\\ problems which are at the level of a first quarter undergrad analysis class. When will this\\ professor stop wasting everyone's time and actually get to the content that we're all paying out of our asses to learn? Hell! Math 200 and Math 240 started covering new content on the first day of class. This class is actual theft. Anyways here are my notes from math 240b:\newpage
+\end{myIndent}
+
+\hspace{-2em}\begin{tabular}{p{3.7in} p{3.7in}}
+{\centering\includegraphics[scale=0.54]{HW2_1_math220a.png}\retTwo\par} & {\centering\includegraphics[scale=0.54]{HW2_2_math220a.png}\retTwo\par}
+\end{tabular}\retTwo
+
+\Hstatement\blab{Exercise II.3.4:} Let $z_n, z \in \mathbb{C}$ and let $d$ be the metric on $\mathbb{C}_\infty$. Then $|z_n - z| \to 0$ iff $d(z_n - z) \to 0$.
+
+\begin{myIndent}\HexOne
+	Recall that $d(z_n, z) = \frac{2|z_n - z|}{((|z_n|^2 + 1)(|z|^2 + 1))^{1/2}}$. Hence $d(x_n, z) \leq 2|z_n - z|$ and we have that $|z_n - z| \to 0 \Longrightarrow d(z_n - z) \to 0$.\retTwo
+	
+	On the other hand, if $\phi : \mathbb{C}_\infty \to S^2$ is the projection of the extended complex plane to\\ [1pt] the Riemann sphere, then by definition $d(z_n, z) \to 0$ iff $\phi(z_n) \to \phi(z)$ in $\mathbb{R}^3$. And since\\ [1pt] $\phi(z) \neq (0, 0, 1)$, there must exist some $-1 < C < 1$ and $N \in \mathbb{N}$ such that the third\\ [1pt] coordinates  of $\phi(z)$ and $\phi(z_n)$ are less than $C$ for all $n \geq N$. This translates to saying that:
+	
+	{\centering$\frac{|z|^2 - 1}{|z|^2 + 1}$ and $\frac{|z_n|^2 - 1}{|z_n|^2 + 1}$ are less than $C$ for all $n \geq N$.\retTwo\par}
+
+	By quadratic formula this translate to saying that $|z_n|$ and $|z|$ are less than $D \coloneqq \frac{\sqrt{1 - C^2}}{1 - C}$\\ [-2pt] when $n \geq N$ So finally we may say that when $n \geq N$:
+
+	{\center $|z_n - z| = \frac{1}{2}d(z_n, z)((|z_n|^2 + 1)(|z|^2 + 1))^{1/2} < \frac{1}{2}d(z_n, z)((D^2 + 1)(D^2 + 1))^{1/2}$ \retTwo\par}
+
+	And now it's clear that $d(z_n - z) \to 0$ implies that $|z_n - z| \to 0$ as $n \to \infty$.\retTwo
+\end{myIndent}
+
+Also show that if $|z_n| \to \infty$, then $\{z_n\}_{n \in \mathbb{N}}$ is Cauchy in $\mathbb{C}_\infty$. 
+
+\begin{myIndent}\HexOne
+	To prove Cauchy-ness, it suffices to show $\{z_n\}_{n \in \mathbb{N}}$ converges to $\infty$. Fortunately, note that $d(z_n, \infty) - \frac{2}{(|z_n|^2 + 1)^{1/2}} \to 0$ as $|z_n| \to \infty$. So $z_n \to \infty$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.3.8:} Suppose $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence in a metric space and $\{x_{n_k}\}_{k \in \mathbb{N}}$ is a convergent subsequence. Then $\{x_n\}$ is convergent.
+
+\begin{myIndent}\HexOne
+	Once again frick whoever is wasting all of our time with these stupid problems. Literally why I am wasting thousands of dollars to relearn content that any person getting into math grad school should already know.\retTwo
+
+	Let $x$ be the limit of $\{x_{n_k}\}_{n \in \mathbb{N}}$ and pick any $\varepsilon > 0$.\newpage 
+	
+	Since $\{x_n\}_{n \in \mathbb{N}}$ is Cauchy there exists some $N \in \mathbb{N}$ such that $d(x_n, x_m) < \sfrac{\varepsilon}{2}$ for all\\ [1pt] $n, m \geq N$. Then because $x_{n_k} \to x$, we know there exists some $k \in \mathbb{N}$ such that\\ [1pt] $d(x_{n_k}, x) < \sfrac{\varepsilon}{2}$ and $n_k \geq N$. Thus, $d(x_n, x) \leq d(x_n, x_{n_k}) + d(x_{n_k}, x) < \varepsilon$ for all\\ [1pt] $n \geq N$. And this proves that $x_n \to x$ as $n \to \infty$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.4.1:} Prove that if every collection $\mathcalli{F}$ of closed subsets of $K$ with the finite intersection property has that $\bigcap_{F \in \mathcalli{F}} F \neq \emptyset$, then $K$ is compact.
+
+\begin{myIndent}\HexOne
+	Suppose $K$ is not compact and let $\{U_\alpha\}_{\alpha \in A}$ be an open cover of $K$ that has no finite\\ subcover. Then upon setting $F_\alpha = U_\alpha^\comp$ for all $\alpha \in A$ we have that $\{F_\alpha\}_{\alpha \in A}$ is a\\ collection of closed sets having the finite intersection property. After all, if there\\ were some $F_{\alpha_1}, \ldots, F_{\alpha_n}$ such that $\bigcap_{j=1}^n F_{\alpha_j} = \emptyset$ then that would imply that\\ [-1pt] $(\bigcap_{j=1}^n F_{\alpha_j})^\comp = \bigcup_{j=1}^n U_{\alpha_j} = K$. But that contradicts that $\{U_\alpha\}_{\alpha \in A}$ has no finite\\ [1pt] subcover of $K$.\retTwo
+
+	At the same time though, $\bigcap_{\alpha \in A} F_\alpha = (\bigcup_{\alpha \in A} U_\alpha) = K^\comp = \emptyset$. So, we have found a\\ collection of closed sets with the finite intersection property whose intersection is\\ empty.  $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.4.4:} Show that the union of a finite number of compact sets is compact. 
+
+\begin{myIndent}\HexOne
+	Let $K_1, \ldots, K_n$ be a finite collection of compact sets and let $K$ be their union. Now if $\{U_\alpha\}_{\alpha \in A}$ is any open cover of $K$, then $\{U_\alpha\}_{\alpha \in A}$ is also an open cover of each $K_i$. So for each $i$ we can pick finitely many $U_{\alpha_j}$ covering each $K_i$. And by unioning the finitely many finite subcovers we get another finite subcover of all of $K$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise II.4.6:} Show that the closure of a totally bounded set is totally bounded.
+\begin{myIndent}\HexOne
+	Let $X$ be our metric space and suppose that $E \subseteq X$ is totally bounded. Then for any $\varepsilon > 0$ there are finitely many balls $B_1, \ldots, B_n$ of radius $\sfrac{\varepsilon}{2}$ covering $E$. And in turn the union of\\ [-1pt] the closures of those finitely many balls is a closed set containing $E$ and thus also $\overline{E}$. Finally, by expanding each of our balls to have radius $\varepsilon$ we now have a finite collection of balls of radius $\varepsilon$ covering $\overline{E}$.
+
+	\begin{myIndent}\HexPPP
+		Note to cover my bases:\\
+		If $B_{\varepsilon/2}(x) \coloneqq \{y \in X : d(x, y) < \varepsilon/2\}$, then $\overline{B_{\varepsilon/2}(x)} \subseteq \{y \in X : d(x, y) \leq \varepsilon/2\}$ since the latter is easily checked to be closed set (it's complement is open by triangle inequality) which contains $B_{\varepsilon/2}(x)$. Also, $\{y \in X : d(x, y) \leq \varepsilon/2\} \subseteq \{y \in X : d(x, y) < \varepsilon\}$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\blab{Exercise II.5.5:} Suppose $f: X \to \Omega$ is uniformly continuous (where $(\Omega, \rho)$ and $(X, d)$ are metric spaces). If $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence in $X$ then $\{f(x_n)\}_{n \in \mathbb{N}}$ is a Cauchy sequence in $\Omega$.
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	For any $\varepsilon > 0$ pick $\delta > 0$ such that $\rho(f(x), f(y)) < \varepsilon$ whenever $d(x, y) < \varepsilon$. Since $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence there exists some $N \in \mathbb{N}$ such that $d(x_n, x_m) < \delta$ for all $n, m \geq N$. And in turn $\rho(f(x_n), f(x_m)) < \varepsilon$ for all $n, m \geq N$. This proves that $\{f(x_n)\}_{n \in \mathbb{N}}$ is a Cauchy sequence in $\Omega$.\retTwo
+\end{myIndent}
+
+Does the prior statement still hold if $f$ is only assumed to be continuous but not\\ uniformly continuous.
+\begin{myIndent}\HexOne
+	No. For example, consider the sequence $\{\frac{1}{n}\}_{n \in \mathbb{N}}$ in $(0, \infty)$. This sequence is Cauchy since\\ for every $\varepsilon > 0$ we may choose some $N$ such that $\frac{1}{N} < \varepsilon$. And then for all $n, m \geq N$ we have that $|\frac{1}{n} - \frac{1}{m}| < \max(\frac{1}{n}, \frac{1}{m}) < \frac{1}{N} < \varepsilon$.\newpage
+
+	Next let $f(x) = \frac{1}{x}$. To show that $f$ is continuous on $(0, \infty)$, note that both $1$ and $x$ are continuous on $(0, \infty)$. After all, just set $\delta = \varepsilon$ when doing the $\varepsilon$-$\delta$-proof. And since $x \neq 0$ on $(0, \infty)$, we have by proposition 5.5 in Conway that $\sfrac{1}{x}$ is continuous on $(0, \infty)$.\retTwo
+
+	But now $\{\frac{1}{(1/n)}\}_{n \in \mathbb{N}}$ is not Cauchy. After all, for all $n,m \in \mathbb{N}$ with $n \neq m$ we have that:
+	
+	{\centering$|\frac{1}{(1/n)} - \frac{1}{(1/m)}| = |n - m| \geq 1$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\hTwo That's all my my math 220a homework for this week. Yay I'm done (finally). God I hope this class stops being a giant waste of money at some point. Anyways the next notes for this class will be on \inLinkRap{math 220a lecture 6}{page \_\_\_}.\retTwo
+
+\mySepTwo
+
+\hypertarget{Ergodic reading group notes 2}{My} next order of business for tonight is to continue taking notes for the reading group tomorrow. I'm picking up from \inLinkRap{Ergodic reading group notes 1 back}{here}.\retTwo
+
+Let $(Y, T)$ be a dynamical system, $K$ be  a metrized compact group, and $\psi: Y \to K$ be a\\ continuous mapping. Then define $X = Y \times K$ and $T^\prime: X \to X$ by $T^\prime(y, k) = (Ty, \psi(y)k)$.\\ The resulting system is called a \udefine{group extension} or \udefine{skew product}  of $(Y, T)$ with $K$.
+
+\begin{myIndent}\pracTwo
+	Sanity check:
+	\begin{enumerate}
+		\item $T^\prime$ is a continuous map. After all, it's continuous iff its two output coordinates are individually continuous. And since we're already requiring $T$ and $\psi$ to be continuous and we know $(k_1, k_2) \mapsto k_1k_2$ is continuous from $K \times K$ to $K$, we can easily show both coordinates are continuous.\retTwo 
+		
+		\item If we define $\phi: X \to Y$ by $\phi(y, k) = y$, then $\phi$ is continuous (this is just a defining property of product topologies) and:
+		
+		{\centering$\phi(T^\prime(y, k)) = \phi(Ty, \psi(y)k) = Ty = T\phi(y, k)$.\retTwo\par}
+
+		So, $\phi$ defines a homomorphism of $(X, T^\prime)$ to $(Y, T)$ and we've shown that $(X, T^\prime)$ does extend $(Y, T)$ by our prior definition.\retTwo
+	\end{enumerate}
+\end{myIndent}
+
+\hTwo Note that in our above system, $X \curvearrowleft K$ by right translation. Specifically, for each $k^\prime \in K$ there exists a homeomorphism $R_{k^\prime} : X \to X$ given by $R_{k^\prime}(y, k) = (y, kk^\prime)$. Also, $R_k$ commutes with $T^\prime$ since:
+
+{\centering $R_{k^\prime}(T^\prime(y, k)) = R_{k^\prime}(Ty, \phi(y)k) = (Ty, \phi(y)kk^\prime) = T^\prime(y, kk^\prime) = T^\prime(R_{k^\prime}(y, k))$ \retTwo\par}
+
+Thus, each $R_{k^\prime}$ is an automorphism of the dynamical system $(X, T^\prime)$.
+
+
+\begin{myIndent}\myComment 
+	Side note:\\
+	I think the author's choice to use right translations instead of left translations is really weird because it makes it so $R_{k_2}(R_{k_1}(y, k)) = (y, kk_1k_2) = R_{k_1k_2}(y, k)$. To fix this I would have instead set $T^\prime(y, k) = (Ty, k\psi(y))$ when defining the group extension, and then I'd have made $K \curvearrowright X$ by left translation. That way, we still have that $(X, T^\prime)$ is a dynamical system, $\phi$ is still a homomorphism from $(X, T^\prime)$ to $(Y, T)$, but now additionally we have that $R_{k_2} \circ R_{k_1} = R_{k_2k_1}$. Unfortunately, I don't want to confuse other presenters later on so I'll stick to the conventions of the book. :\lparen\newpage
+
+	Also just to be clear: I shall denote $X \curvearrowleft G$ instead of $G \curvearrowright X$ when $G$ is acting from the right on $X$ instead of from the left.\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+Before moving on to the next theorem, I need to clear up some confusion and write a few theorems.\retTwo
+
+Firstly, recall on \hypertarget{Furstenberg confusion 1}{page 268} when I said a point $x$ is recurrent for $(X, T)$ if for any\\ neighborhood $V$ of $x$ there exists $n \geq 1$ with $T^n x \in V$. And then I said that that is\\ equivalent to saying that there is some increasing sequence $(n_k)_{k \in \mathbb{N}} \subseteq \mathbb{N}$ such that\\ $T^{n_k}x \to x$. Why are these two definitions equivalent?
+
+\begin{myIndent}\pracTwo
+	$(\Longleftarrow)$\\
+	This direction is obvious.\retTwo
+
+	$(\Longrightarrow)$\\
+	If $T^n(x) = x$ for some $n$, then we know that $T^{kn}(x) = x$ for all $k \in \mathbb{N}$ and then we trivially have that $T^{kn}(x) \to x$ as $k \to \infty$. Meanwhile, suppose $T^n(x) \neq x$ for any $n \in \mathbb{N}$ and let $\{U_k\}_{k \in \mathbb{N}}$ be a countable decreasing neighborhood base for $x \in X$. Then we may construct a subsequence $\{T^{n_k}\}_{k \in \mathbb{N}}$ converging to $k$ as follows:
+	\begin{myIndent}
+		To start off, just pick any $n_1 \in \mathbb{N}$ such that $T^{n_1}x \in U_1$. Then we proceed by recursive definition.\retTwo
+		
+		Suppose we have already chosen $n_1 < \cdots < n_k$ in $\mathbb{N}$ and that $T^{n_i}x \in V_{i}$ for all\\ $1 \leq i \leq k$.  If $X$ is Hausdorff (which it will always be if $X$ is a metric space), then we can find pairs of disjoint open sets $V_{j}, W_j \subseteq X$ for all $1 \leq j \leq n_{k}$ such that $x \in V_j$ and $T^{j}x \in W_j$. And by setting $V \coloneqq \bigcap_{j=1}^{n_k} V_j$ we have that $V$ is an open set containing $x$ such that $T^j x \notin V$ for all $1 \leq j \leq n_k$.\retTwo
+
+		Now pick $m \geq k + 1$ such that $U_m \subseteq V$. Then by assumption, there is some $n_{k+1} \in \mathbb{N}$ such that $T^{n_{k+1}} x \in U_m$. And also we must have that $n_{k+1} > n_k$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+More generally, given a dynamical system $(X, T)$ and any $x \in X$, define the \udefine{forward orbit closure} of $x$ as $Q(x) \coloneqq \overline{\{T^n x : n \geq 1\}}$. Note that $x$ is recurrent for $(X, T)$ iff $x \in Q(x)$.\\ [1pt] Also, by slightly modified reasoning to before, we know (even for $z \neq x$) that $z \in Q(x)$ iff\\ [1pt] there is some increasing sequence $\{n_k\}_{k \in \mathbb{N}}$ in $\mathbb{N}$ such that $T^{n_k} \to z$. \retTwo
+
+\ul{Lemma A:} Let $(X, T)$ be a dynamical system and suppose that $y \in Q(x)$ and $z \in Q(y)$.\\ Then $z \in Q(x)$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Let $T^{n_j}y \to z$ as $j \to \infty$ and $T^{n_i}x \to y$ as $i \to \infty$. Also let $\{U_k\}_{k \in \mathbb{N}}$ be a countable decreasing neighborhood base for $z \in X$. We can construct a sequence $\{T^{n_k}x\}_{k \in \mathbb{N}}$ converging to $0$ as follows:
+	\begin{myIndent}
+		We'll want to keep track of subsequences of $\{n_{j(k)}\}_{k \in \mathbb{N}}$ and $\{n_{i(k)}\}_{n \in \mathbb{N}}$ of $\{n_j\}_{j \in \mathbb{N}}$ and $\{n_k\}_k \in \mathbb{N}$ respectively as we are constructing our actual desired sequence.\newpage
+
+		For any $k$ pick $j(k) \in \mathbb{N}$ such that $T^{n_{j(k)}}y \in U_k$ and $j(k) > j(k-1)$ (if $k > 1)$. Then set $V = (T^{n_j})^{-1}(U_k)$. Because $V$ is an open neighborhood of $y$, we know that there is some $I \in \mathbb{N}$ such that $T^{n_i}x  \in V$ whenever $i \geq I$. So pick $i(k)$ such that $T^{n_{i(k)}}x \in V$ and $i(k) > i(k-1)$ (if $k > 1$). Now $T^{n_{j(k)} + n_{i(k)}} x \in U_k$.\retTwo
+
+		Doing this for all $K \in \mathbb{N}$, we get that $T^{n_{j(k)} + n_{i(k)}} x \to z$ as $k \to \infty$ and that\\ $\{n_{j(k)} + n_{i(k)}\}_{k \in \mathbb{N}}$ is increasing. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Lemma B:} Suppose $(X, T)$ is a dynamical system and $R$ is an automorphism of $(X, T)$\\ (meaning $R \circ T = T \circ R$ and $R : X \to X$ is continuous). Then for any $x \in X$ we have\\ that $R(Q(x)) \subseteq Q(Rx)$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Suppose $z \in Q(x)$ and let $T^{n_k}x \to z$ Then $R(z) = \lim_{k \to \infty} R(T^{n_k}x) = \lim_{k \to \infty}T^{n_k}(Rx)$. So $R(z) \in Q(Rx)$ and we've shown that $R(Q(x)) \subseteq Q(Rx)$.\retTwo
+\end{myIndent}
+
+\ul{Lemma C:} Suppose $K$ is a compact metrized group and $k \in K$. Then the sequence $\{k^n\}_{n \in \mathbb{N}}$ has the identity $e$ of $K$ as a subsequential limit.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We know that $k^n$ must have a subsequential limit since it's a sequence in a compact set. So call this limit $g$ and say that $k^{n_j} \to g$ as $j \to \infty$. Since inversion is continuous on $K$, we thus know that $k^{-n_j} \to g^{-1}$ as $j \to \infty$. Also, since the group product is continuous on $K$, we know that $k^{n_{2j}}k^{-n_j} = k^{n_{2j} - n_j} \to gg^{-1} = e$ as $j \to \infty$. Finally, note that $n_{2j} - n_j \geq j$ for all $j$. And so there must be some subsequence $\{j_{k}\}_{k \in \mathbb{N}}$ such that $n_{2j_k} - n_{j_k}$ is strictly increasing. $\blacksquare$\retTwo
+\end{myIndent}
+
+I think before next week I will try to read up on topological groups some more cause I feel like I have a knowledge gap right now.\\
+\mySepTwo
+
+\exTwo\ul{Theorem 1.4:} If $y_0 \in Y$ is recurrent for $(Y, T)$ and $(X, T^\prime)$ is a skew extension of $(Y, T)$, then $(y_0, k_0)$ is a recurrent point of $(X, T^\prime)$ for all $k_0 \in K$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $e$ denote the identity of $K$. We shall show $(y_0, e)$ is a recurrent point of $(X, T)$ since it then follows from \inLinkRap{Furstenberg proposition 1.3}{proposition 1.3:} that each $R_{k_0}(y_0, e) = (y_0, k_0)$ is recurrent.\retTwo
+
+	For any $x \in X$ let $Q(x) = \overline{\{(T^\prime)^n x : n \geq 1\}}$ denote the \udefine{forward orbit closure} of $x$. Then $x$ is recurrent for $(X, T^\prime)$ iff $x \in Q(x)$. Now since $y_0$ is recurrent for $(Y, T)$, there is some $k_1 \in K$ such that: $(y_0, k_1) \in Q(y_0, e)$.
+
+	\begin{myIndent}\exPPP
+		Why (since Furstenberg doesn't explain this)?\\ [4pt]
+		Note that $(T^\prime)^n(y_0, e) = (T^n y_0, k^{(n)})$ where:
+		
+		{\centering$k^{(n)} = \phi(T^{n-1} y_0 ) \phi( T^{n-2} y_0) \cdots \phi(T y_0)\phi(y_0)$.\retTwo\par}
+
+		Now because $y_0$ is recurrent for $(Y, T)$, we know that there is a subsequence\\ $\{T^{n_i} y\}_{i \in \mathbb{N}}$ such that $T^{n_i} y \to y$ as $i \to \infty$. And since $K$ is compact, we have that $\{k^{n_{i}}\}_{i \in \mathbb{N}}$ has a subsequential limit point $k_1$. And finally, by passing to another subsequence $\{n_{i_j}\}_{j \in \mathbb{N}}$ we get that $(T^\prime)^{n_{i_j}}(y_0, e) \to (y_0, k_1)$ as $j \to \infty$.\newpage
+	\end{myIndent}
+
+	But now note by induction that $(y_0, k_1^n) \in Q(y_0, e)$ for all $n \in \mathbb{N}$.
+
+	\begin{myIndent}\exPPP
+		Why?\\
+		We know $(y_0, k_1) \in Q(y_0, e)$. Now by induction assume that $(y_0, k_1^n) \in Q(y_0, e)$. Then $(y_0, k_1^{n+1}) = R_{k_1}(y_0, k_1^n)  \in Q(R(y_0, e)) = Q(y_0, k_1)$ by lemma B. But we also have that $(y_0, k_1) \in Q(y_0, e)$. So $(y_0, k_1^{n+1}) \in Q(y_0, e)$ by lemma A.\retTwo
+	\end{myIndent}
+
+	In turn by lemma C we have that there is an increasing subsequence $\{n_j\}_{j \in \mathbb{N}}$ such that $(y_0, k^{n_j}) \to (y_0, e)$ as $j \to \infty$. And since $Q(y_0, e)$ is closed, we thus have shown that $(y_0, e) \in Q(y_0, e)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo By using the prior theorems we can inductively obtain examples of non-Kronecker\\ dynamical systems where every point is recurrent.\retTwo
+
+For example, let $T : \mathbb{T}^2 \to \mathbb{T}^2$ be given by $T(\theta, \phi) = (\theta + a, \phi + 2\theta + a)$. Then $(\mathbb{T}^2, T)$ is a group extension of the Kronecker system $(\mathbb{T}, T^\prime)$ where $T^\prime \theta = \theta + a$ and $\psi(\theta) = 2\theta + a$. By theorems 1.2. and 1.4 we know that every point in $(\mathbb{T}^2, T)$ is recurrent.
+
+In the prior system note that the orbit of $(0, 0) \in \mathbb{T}^2$ is:
+
+{\centering\begin{tabular}{l}
+	$(0, 0) \to (a, a) \to (2a, 4a) \to \cdots \to (na, n^2 a)$\\ [4pt]
+	$\phantom{(0, 0) \to (a, a) \to (2a, 4a) \to \cdots} \to (na + a, n^2a + 2na + a) = ((n+1)a, (n^2 +2n + 1)a)$\\ [4pt]
+	$\phantom{(0, 0) \to (a, a) \to (2a, 4a) \to \cdots \to (na + a, n^2a + 2na + a)} = ((n+1)a, (n+1)^2a) \to \cdots$ 
+\end{tabular}\retTwo\par}
+
+This leads to the following proposition:
+
+\begin{myIndent}\exTwo
+	\ul{Proposition 1.5:} For any $\alpha \in \mathbb{R}$ and $\varepsilon > 0$ we can solve the diophantine inequality $|\alpha n^2 - m| < \varepsilon$ (where $n > 0$).
+
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		We know there is some increasing sequence $\{n_k\}_{k \in \mathbb{N}}$ in $\mathbb{N}$ such that\\ $(n_k a, n_k^2 a) \to (0, 0) \in \mathbb{T}^2$. In particular, since $n_k^2 a \to 0 \in \mathbb{T}$ we know that\\ if $k$ is fixed large enough, then there exists $m \in \mathbb{N}$ such that $|n_k^2 - m| < \varepsilon$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+We can extend this to higher degree polynomials too. Let $p(x)$ be a polynomial of degree $d$ with real coefficients and write $p_d(x) \coloneqq p(x)$ as well as:
+
+{\centering $p_{d-1}(x) \coloneqq p_d(x + 1) - p_d(x)$, $\phantom{a}p_{d-2}(x) \coloneqq p_{d-1}(x + 1) - p_{d-1}(x)$, etc. \retTwo\par}
+
+Each $p_i(x)$ is of degree $i$. Let $\alpha$ be the constant $p_0(x)$. Then define a transformation\\ $T: \mathbb{T}^d \to \mathbb{T}^d$ by $T(\theta_1, \theta_2, \theta_3 \ldots, \theta_d) \coloneqq (\theta_1 + \alpha, \theta_2 + \theta_1, \theta_3 + \theta_2, \ldots, \theta_d - \theta_{d-1})$.
+
+\begin{myIndent}\pracTwo
+	By induction, we can see that this is a group extension of a dynamical system on the $(d-1)$-torus which in turn is a group extension of a dynamical system on the $(d-2)$-torus, and so on and so forth down to the $1$-torus. So we can conclude that each point in $\mathbb{T}^d$ is recurrent.\retTwo
+
+	\exThreeP I'll do a step of the induction cause why not.
+	\begin{myIndent}\exPPP
+		Suppose we've shown that $(\mathbb{T}^{k}, T_k)$ is a dynamical system where:
+		
+		{\centering$T_k(\theta_1, \theta_2, \ldots, \theta_k) = (\theta_1 + \alpha, \theta_2 + \theta_1, \theta_3 + \theta_2, \ldots, \theta_k - \theta_{k-1})$.\retTwo\par}
+
+		Then by letting $\psi : \mathbb{T}^k \to \mathbb{T}$ be given by $\psi(\theta_1, \theta_2, \ldots, \theta_k) = \theta_k$ we have that $(\mathbb{T}^k, T_{k+1})$ is a group extension where:
+
+		{\centering\begin{tabular}{l}
+			$T_{k+1}(\theta_1, \ldots, \theta_{k+1}) = (T_k(\theta_1, \dots, \theta_{k}), \theta_{k+1} + \psi(\theta_1, \dots, \theta_{k}))$\\ [4pt]
+			$\phantom{T_{k+1}(\theta_1, \ldots, \theta_{k+1})} = ((\theta_1 + \alpha, \theta_2 + \theta_1, \ldots, \theta_{k} + \theta_{k-1}), \theta_{k+1} + \theta_k)$.
+		\end{tabular} \newpage\par}
+	\end{myIndent}
+\end{myIndent}
+
+Now compute the orbit of $(p_1(0), \ldots, p_d(0))$. Since $p_{i-1}(n) + p_i(n) = p_i(n + 1)$ we find that $T(p_1(n), p_2(n), \ldots, p_d(n)) = (p_1(n + 1), p_2(n+1), \ldots, p_d(n+1))$.\retTwo
+
+And thus $T^n(p_1(0), p_2(0), \ldots, p_d(0)) = (p_1(n), p_2(n), \ldots, p_d(n))$.\retTwo
+
+We conclude that $p_d(n) = p(n)$ must get arbitrarily close to $p(0)$ modulo $1$. Hence the following theorem:
+\begin{myIndent}
+\exTwo\ul{Theorem 1.6:} If $p(x)$ is any real polynomial with $p(0) = 0$, then for any $\varepsilon > 0$ we can solve the diophantine inequality $|p(n) - m| < \varepsilon$ (where $n > 0$).\retTwo
+\end{myIndent}
+
+I'll study more related to this reading group on \inLinkRap{Ergodic reading group notes 3}{page \_\_\_}.
+
+\mySepTwo
+
+\dispDate{10/8/2025}
+
+\blect{Math 200a Homework:}\retTwo
+
+\Hstatement\blab{Set 2 Problem 1:} Suppose $G$ is a simple group (meaning the only normal subgroups of $G$ are $\{1\}$ and $G$), and it has a subgroup $H$ of index $n$ where $n$ is an integer more than $1$. Prove that $G$ can be embedded into the symmetric group $S_n$.
+\begin{myIndent}\HexOne
+	Consider the action $G \curvearrowright G/H$ by left translation, and let $\phi: G \to S_{G/H}$ be the group homomorphism induced by this action. Note that since $[G : H] = n$, we know $S_{G/H} \cong S_n$.\\ [1pt] So, as long as we can prove that $\phi$ is injective then we will be done.\retTwo
+
+	Suppose $x \in \ker(\phi)$. Then we know that $xgH = gH$ for all $g \in G$. But that's true iff\\ $x \in gHg^{-1}$ for all $g \in G$. Or in other words, we must have that $x \in \core_G(H)$. This\\ proves that $\{1\} < \ker(\phi) < \core_G(H)$. Next note that because $H \neq G$ (which we\\ know since $n > 1$), $\core_G(H) \lhd G$, $\core_G(H) < H$, and $G$ is simple, we must have that\\ $\core_G(H) = \{1\}$. So, we've shown that $\ker(\phi) = \{1\}$. And this proves that $\phi$ is injective.\\ $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 2 Problem 7:} Suppose $N$ is a finite cyclic normal subgroup of $G$. Prove that every subgroup of $N$ is normal in $G$.
+\begin{myIndent}\HexOne
+	
+\end{myIndent}
+
+
+
+
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\hypertarget{Folland Proposition 10.1}{}
 \hypertarget{bib citation 12}{}
+\hypertarget{Ergodic reading group notes 3}{}
+\hypertarget{Ergodic reading group notes 1 back}{}
+\hypertarget{Furstenberg proposition 1.3}{}
+
+
 \hypertarget{math 241a lecture 3}{}
-\hypertarget{math 200a lecture 4}{}
-\hypertarget{math 220a lecture 3}{}
+\hypertarget{math 200a lecture 6}{}
+\hypertarget{math 220a lecture 6}{}
 \hypertarget{bib citation 13}{}
 \hypertarget{page idk 1 reference}{}
+\hypertarget{Folland Proposition 10.1}{}
+\hypertarget{Alireza lemma page 256}{}
+
+
 
 \end{document}
 
