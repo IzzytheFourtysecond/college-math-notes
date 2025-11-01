@@ -305,6 +305,7 @@
 
 
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Log}{Log}
 \DeclareMathOperator{\symdif}{\triangle}
 \DeclareMathOperator{\Average}{Average}
 \DeclareMathOperator*{\AverageAst}{Average}
@@ -351,341 +352,791 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\hTwo\dispDate{10/17/2025}
+\pracOne\mySepTwo
+Before getting to the next theorem, I need to learn some more about quotient topologies.\retTwo
 
-So for functional analysis I need some fixed point theorems that would normally have been taught in a topology class. But I've never taken an actual topology class. Hence, my goal for today is to prove those theorems. First, I will be taking notes from the paper \textit{Brouwer's Fixed Point Theorem} by Jasmine Katz. (See the \inLinkRap{bib citation 17}{17th entry} of the bibliography\dots)\retTwo
-
-Katz defines a \udefine{convex body} in $\mathbb{R}^n$ to be a set $X \subseteq \mathbb{R}^n$ that is compact, convex, and has a nonempty interior (relative to the Euclidean topology of all of $\mathbb{R}^n$).\retTwo
-
-Also, for $m \geq n \geq 1$ suppose we are given any $n + 1$ points $p_0, p_1 \ldots, p_n \in \mathbb{R}^m$ in general linear position (see my math 190b notes). Then we say the convex hull of those points (i.e. $\conv(p_0, p_1 \ldots, p_n)$) is an \udefine{$n$-simplex}. Recall from the notes I took before I dropped math 190b last Spring that all $n$-simplices are compact and homeomorphic to each other.\retTwo
-
-Katz in particular denotes $\Delta_0^n \coloneqq \conv(e_1, \ldots, e_n, -\sum_{i=1}^n e_i)$ where $e_1, \ldots, e_n$ are\\ the standard basis vectors of $\mathbb{R}^n$. Also, Katz denotes $\Delta^n$ to be the \udefine{standard $n$-simplex}\\ $\conv(u_1, \ldots, u_{n+1})$ where $u_1, \ldots, u_{n+1}$ are the standard basis vectors of $\mathbb{R}^{n+1}$.\retTwo
-
-\exTwo\ul{Proposition 3.2:} $\Delta_0^n$ is a convex body in $\mathbb{R}^n$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	The only thing not trivial from the definition of $\Delta_0^n$ is that $\Delta_0^n$ has a nonempty interior. So to prove this, first define for each $k \in \mathbb{N}$ the $(k+1)$ by $(k+1)$ matrices:
-
-	{\centering $A_k \coloneqq \begin{pmatrix}
-		\begin{bmatrix} 1 & & \\ & \ddots & \\ & & 1 \end{bmatrix} & \begin{matrix} -1 \\ \vdots \\ -1 \end{matrix} \\ \begin{matrix} 1 & \cdots & 1 \end{matrix} & 1
-	\end{pmatrix}$ and $B_k \coloneqq \begin{pmatrix}
-		\begin{matrix} 0 \\ \vdots \\ 0 \end{matrix} & \begin{bmatrix} 1 & & \\ & \ddots & \\ & & 1 \end{bmatrix} \\ 1 & \begin{matrix} 1 & \cdots & 1 \end{matrix}
-	\end{pmatrix}$ \retTwo\par}
-
-	We can calculate the determinant of $A_k$ as follows:
-	\begin{myIndent}\exPPP
-		Clearly $\det(A_1) = \det(\left[ \begin{smallmatrix} 1 & -1 \\ 1 & 1 \end{smallmatrix}\right]) = 2$ and $\det(B_1) = \det(\left[ \begin{smallmatrix} 0 & 1 \\ 1 & 1 \end{smallmatrix}\right]) = -1$.\retTwo
-		
-		Meanwhile, by considering the Laplace expansions going along the top rows of $A_k$ and $B_k$ where $k > 1$, we get that:
-		
-		{\centering$\det(A_k) = \det(A_{k-1}) + (-1)^{k+3}\det(B_{k-1})$ and $\det(B_k) = -\det(B_{k-1})$\retTwo\par}
-
-		From there it is easy to see that $\det(B_k) = (-1)^{k}$. And hence:
-		
-		{\centering\begin{tabular}{l}
-			$\det(A_k) = \det(A_{k-1}) + (-1)^{(k + 3) + (k - 1)} = \det(A_{k-1}) + (-1)^{2(k + 1)}$\\
-			$\phantom{\det(A_k) = \det(A_{k-1}) + (-1)^{(k + 3) + (k - 1)}} = \det(A_{k-1}) + 1$\\
-			$\phantom{\det(A_k) = \det(A_{k-1}) + (-1)^{(k + 3) + (k - 1)}} = \det(A_{k-2}) + 2$\\
-			$\phantom{\det(A_k) = \det(A_{k-1}) + (-1)^{(k + 3) + (k - 1)} = aaaaaaa} \vdots$\\
-			$\phantom{\det(A_k) = \det(A_{k-1}) + (-1)^{(k + 3) + (k - 1)}} = \det(A_1) + (k-1) = k+1$\\
-		\end{tabular}\retTwo\par}
-	\end{myIndent}
-	
-	In particular, we now know that $A_n$ is invertible since it has nonzero determinant. And this is important because we can now say that $x = (x_1, \ldots, x_n) \in \Delta_0^n$ if and only if:
-	
-	{\centering\begin{tabular}{l}
-		$f(x_1, \ldots, x_n) \coloneqq (A_n)^{-1}\left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \\ 1 \end{smallmatrix}\right] \in [0, \infty)^{n+1}$
-	\end{tabular}\newpage\par}
-
-	But $f$ is a continuous injection and $f(0) = (\frac{1}{n+1}, \ldots, \frac{1}{n+1})$ since:
-	
-	{\centering$0 = \sum_{i=1}^n \frac{1}{n + 1}e_i - \frac{1}{n+1}(\sum_{i=1}^n e_i)$.\retTwo\par}
-
-	Hence, there must be some $\delta > 0$ such that $\|f(x) - f(0)\|_2 < \frac{1}{n+1}$ when $\|x\|_2 < \delta$. And in turn, the open ball of radius $\delta$ about $0$ is contained in $\Delta_0^n$. $\blacksquare$\retTwo
+\ul{Lemma 1:} If $f: X \to Y$ is a continuous map, then $f \times f: X \times X \to Y \times Y$ (given by $f \times f(x_1, x_2) = (f(x_1), f(x_2))$) is a continuous map.
+\begin{myIndent}\pracTwo
+	If $\pi_1, \pi_2$ are the natural projection maps from $Y \times Y$ to $Y$, then we have that $f \times f$ is continuous iff $\pi_1 \circ (f \times f)$ and $\pi_2 \circ (f \times f)$ is continuous. But clearly if $U \subseteq Y$ is an open set then $(\pi_1 \circ (f \times f))^{-1} = f^{-1}(U) \times X$ is open in $X \times X$. And a similar statement holds for $\pi_2 \circ (f \times f)$. Hence $f \times f$ is continuous.\retTwo
 \end{myIndent}
 
-\hTwo Katz defines a \udefine{ray} from $x_0 \in \mathbb{R}^n$ to be a set $\{x_0 + ty : t \geq 0\}$ where $y \in \mathbb{R}^n$ with $\|y\|_2 = 1$.\retTwo
+\ul{Lemma 2:} If $p: X \to Y$ is an open continuous map, then $p \times p: X \times X \to Y \times Y$ is also an open continuous map.
+\begin{myIndent}\pracTwo
+	We know from the last lemma that $p$ is continuous. Meanwhile, suppose $U \subseteq X \times X$ is open. Then, we know there is a collection $\{V_\alpha \times W_\alpha\}_{\alpha \in A}$ of rectangles in $X \times X$ such that $V_\alpha, W_\alpha$ are open in $X$ and $U = \bigcup_{\alpha \in A}(V_\alpha \times W_\alpha)$. Then in turn:
 
-\pracOne\mySepTwo
-Here is a basic topology fact I somehow haven't proved before:\retTwo
+	{\center $p \times p(U) = p \times p(\bigcup\limits_{\alpha \in A} (V_\alpha \times W_\alpha)) = \bigcup\limits_{\alpha \in A}p \times p(V_\alpha \times W_\alpha) = \bigcup\limits_{\alpha \in A}(p(V_\alpha) \times p(W_\alpha))$ \retTwo\par}
 
-\ul{Proposition:} Suppose $X$ is a topological space, $E \subseteq X$ is connected, and $A \subseteq X$ satisfies that $E \cap A \neq \emptyset$ and $E \cap A^\comp \neq \emptyset$. Then $E \cap \partial A \neq \emptyset$.
+	But since $p$ is open, we know $p(V_\alpha) \times p(W_\alpha)$ is open in $Y \times Y$. So, $p \times p(U)$ is a union of open sets. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary 3:} If $p: X \to Y$ is an open quotient map then $p \times p: X \times X \to Y \times Y$ is also an open quotient map.\retTwo
+
+As for why this will be relevant, suppose $G$ is a topological group and $H \lhd G$. Then if we consider the natural projection map $\pi: G \to G/H$ and equip $G/H$ with the quotient topology (so that $\pi$ is a quotient map), then we have that $\pi$ is an open map.
+\begin{myIndent}\pracTwo
+	Why?\\
+	Suppose $U \subseteq G$ is open. Then $\pi(U)$ is open in $g/H$ if and only if $\pi^{-1}(\pi(U))$ is open in\\ [1pt] $G$. But note that $\pi^{-1}(\pi(U)) = \{x \in G : \exists y \in U \suchthat x \in yH\} = UH = \bigcup_{h \in H}Uh$.\\ [1pt] Since each $Uh$ is open (since $G$ is a topological group), we thus have that $\pi^{-1}(\pi(U))$\\ [1pt] is open. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 4:} Suppose $X, Y, \overline{X}, \overline{Y}$ are topological spaces, $p_1: X \to \overline{X}$ and $p_2: Y \to \overline{Y}$ are quotient maps, and $f, \overline{f}$ are functions such that the following diagram commutes:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzAsMSwiXFxvdmVybGluZXtYfSJdLFsxLDEsIlxcb3ZlcmxpbmV7WX0iXSxbMSwwLCJZIl0sWzAsMywiZiJdLFsxLDIsIlxcb3ZlcmxpbmV7Zn0iXSxbMCwxLCJwXzEiLDJdLFszLDIsInBfMiJdXQ==
+\[\begin{tikzcd}
+	X & Y \\
+	{\overline{X}} & {\overline{Y}}
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["{p_1}"', from=1-1, to=2-1]
+	\arrow["{p_2}", from=1-2, to=2-2]
+	\arrow["{\overline{f}}", from=2-1, to=2-2]
+\end{tikzcd}\]
+
+If $f$ is continuous then so is $\overline{f}$.
 \begin{myIndent}\pracTwo
 	Proof:\\
-	Note that $\partial A = \overline{A} \cap \overline{A^\comp}$. So if $E \cap \partial A = \emptyset$, then this implies that $\overline{A} \cap E$ and $\overline{A^\comp} \cap E$\\ are two disjoint nonempty closed sets (in the subspace topology of $E$) whose union is\\ all of $E$. But this contradicts that $E$ is connected. $\blacksquare$
-\end{myIndent}
-\mySepTwo
-
-\exTwo\ul{Lemma 3.6:} Suppose $X \subseteq \mathbb{R}^n$ is a convex body with $0 \in X^\circ$. Then every ray from $0$\\ intersects $\partial X$ exactly once.
-
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Fix $y \in \mathbb{R}^n$ such that $\|y\| = 1$ and let $f(t) = ty$. Then we want to show there is a unique $t_0 \geq 0$ such that $f(t_0) \in \partial X$. Fortunately, it's easy to see that $f(t)$ intercepts $\partial X$ at least once. After all, $f(0) \in X$. But at the same time, since $X$ is compact and thus bounded, we know that there is some $t^\prime > 0$ such that $f(t^\prime) \in X^\comp$. Since the ray traced by $f$ is connected, it now follows that there exists some $t_0 > 0$ such that $f(t_0) \in \partial X$.\retTwo
-
-	We now show that our $t_0$ is unique. Suppose for the sake of contradiction that there exists $\varepsilon > 0$ with $(t_0 + \varepsilon)y \in X$. Then pick $r > 0$ such that the ball $\overline{B_r(0)} \subseteq X$. Since $X$ is convex, we know that any line segment from $(t_0 + \varepsilon)y$ to a point in $\overline{B_r(0)}$ is contained\\ [2pt] in $X$. And thus, while it is fucking awful to calculate, we have that the open ball of radius\\ [2pt] $R = \min(t_0, \sqrt{Q(t_{\min})})$ about $t_0 y$ is contained in $X$ where:\\ [-20pt] 
-	
-	{\centering$Q(t) = (r - \frac{r}{t_0 + \varepsilon}t)^2 + (t - t_0)^2$ and $t_{\min} = \frac{\frac{r^2}{t_0 + \varepsilon} + t_0}{\frac{r^2}{(t_0 + \varepsilon)^2} + 1}$ \retTwo\par}
-
-	\begin{tabular}{p{2in} p{4in}}
-	For a hint at how I got that\newline fucked up radius $R$, observe\newline the diagram to the right:\retTwo
-	
-	However, the fact we were\newline able to find such an $R$\newline contradicts that $t_0 y \in \partial X$.\newline Hence, our supposed $\varepsilon$ can't\newline exist.&
-
-	{\center\includegraphics[scale=0.44]{Doing_Geometry_page_318.png}\par}
-	\end{tabular}
-
-	\newpage
-
-	Since $X$ is closed (since it's compact) and thus includes it's boundary, we've now proven that if $f(t_0) \in \partial X$ then $f(t) \notin \partial X$ for all $t > t_0$. And hence, our ray can intercept $\partial X$ at most once. $\blacksquare$
+	Let $U \subseteq \overline{Y}$ be open. Then $p_1^{-1}(\overline{f}^{-1}(U)) = (p_2 \circ f)^{-1}(U)$ is open since $f$ and $p_2$ are\\ [-1pt] continuous. And since $p_1$ is a quotient map, we thus know that $\overline{f}^{-1}(U)$ is open. This shows that $\overline{f}$ is continuous. $\blacksquare$
 	\begin{myIndent}\myComment
-		As a side note: something even more fucked up is that the radius proposed by this paper doesn't work. It's too large. Anyways, because the paper handwaves this next bit, I'm going to deviate from the paper a bit.\retTwo
+		Also I'm dumb because this theorem can be simply restated as an application of the universal property of quotient maps.\newpage
 	\end{myIndent}
 \end{myIndent}
 
-\pracOne\mySepTwo
-\ul{Lemma:} Let $\mathcalli{X}$ be a topological $K$-vector space where $K = \mathbb{R}$ or $\mathbb{C}$. Also suppose $E \subseteq X$ and $c \in K$. 
-\begin{itemize}
-	\item If $E$ is convex, then so is $cE$.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		If $E$ is empty or $c = 0$, this is obvious. Otherwise, suppose $x, y \in cE$ and then note that $c^{-1}x, c^{-1}y \in E$. It follows that $c^{-1}(tx + (t-1)y) \in E$. So, $tx + (1-t)y \in cE$.\retTwo
-	\end{myIndent}
-
-	\item $c(\overline{E}) = \overline{cE}$.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		If $c = 0$ then it must be the case that both sets are empty or are $\{0\}$. Meanwhile, note that as a general fact if $f : X \to Y$ is a continuous map and $A \subseteq X$, then $f^{-1}(\overline{f(A)})$ is a closed set containing $A$. Hence $\overline{A} \subseteq f^{-1}(\overline{f(A)})$ and this proves that $f(\overline{A}) \subseteq \overline{f(A)}$. Since scalar multiplication by $c$ is a homeomorphism of $\mathcalli{X}$ when $c \neq 0$, we thus have that $c\overline{E} = \overline{cE}$. $\blacksquare$\retTwo
-	\end{myIndent}
-
-	\item $c(\partial E) = \partial (cE)$.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		By the last bullet point plus the fact that $f(A \cap B) = f(A) \cap f(B)$ for any function, we know that $c(\partial E) = c(\overline{E} \cap \overline{E^\comp}) = \overline{cE} \cap \overline{c(E^\comp)}$. Now if $c = 0$, then we know that $c(\partial E)$ and $\partial (cE)$ are either both empty or both $\{0\}$. So, we may assume that $c \neq 0$. But in that case scalar multiplication is a homeomorphism on $\mathcalli{X}$. So $c(E^\comp) = (cE)^\comp$ and we've shown that $c(\partial E) = \overline{cE} \cap \overline{(cE)^\comp} = \partial (cE)$.\retTwo
-	\end{myIndent}
-\end{itemize}
-
-\ul{Lemma:} Suppose $f: X \to Y$ is a homeomorphism and $A, B \subseteq X$. (This would include the case that $X = Y = \mathcalli{X}$ and $f$ is scalar multiplication by a nonzero scalar). Then\\ $f(E^\circ) = (f(E))^\circ$.
+\ul{Corollary 5:} Suppose $G$ is a topological group and $H \lhd G$. Then $G/H$ is a topological group when equipped with the quotient topology (induced by the natural projection map $\pi : G \to G/H$).
 \begin{myIndent}\pracTwo
-	Proof:\\
-	Since $f$ is continuous and bijective, $f^{-1}(f(A)^\circ)$ is an open set contained in $A$. So,\\ $f^{-1}(f(A)^\circ) \subseteq A^\circ$ and hence $f(A)^\circ \subseteq f(A^\circ)$. On the other hand, since $f^{-1}$ is\\ continuous, we know that $f(A^\circ)$ is an open subset of $f(A)$. So, $f(A^\circ) \subseteq f(A)^\circ$.\retTwo
+	By lemma 2 and corollary 3, we know that $\pi \times \pi : G \times G \to G/H \times G/H$ is a quotient map. Also, it is easy to verify that the following diagrams commute:
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJHXFx0aW1lcyBHIl0sWzAsMiwiRy9IIFxcdGltZXMgRy9IIl0sWzIsMiwiRy9IIl0sWzIsMCwiRyJdLFs3LDAsIkciXSxbNSwwLCJHIl0sWzUsMiwiRy9IIl0sWzcsMiwiRy9IIl0sWzAsMSwiXFxwaSBcXHRpbWVzIFxccGkiXSxbMSwyLCIoeEgsIHlIKSBcXG1hcHN0byB4eUgiXSxbMCwzLCIoeCwgeSkgXFxtYXBzdG8geHkiLDJdLFszLDIsIlxccGkiLDJdLFs2LDcsInhIIFxcbWFwc3RvICh4SCleey0xfSJdLFs0LDcsIlxccGkiLDJdLFs1LDYsIlxccGkiXSxbNSw0LCJ4IFxcbWFwc3RvIHheey0xfSIsMl1d
+	\[\begin{tikzcd}
+		{G\times G} && G &&& G && G \\
+		\\
+		{G/H \times G/H} && {G/H} &&& {G/H} && {G/H}
+		\arrow["{(x, y) \mapsto xy}"', from=1-1, to=1-3]
+		\arrow["{\pi \times \pi}", from=1-1, to=3-1]
+		\arrow["\pi"', from=1-3, to=3-3]
+		\arrow["{x \mapsto x^{-1}}"', from=1-6, to=1-8]
+		\arrow["\pi", from=1-6, to=3-6]
+		\arrow["\pi"', from=1-8, to=3-8]
+		\arrow["{(xH, yH) \mapsto xyH}", from=3-1, to=3-3]
+		\arrow["{xH \mapsto (xH)^{-1}}", from=3-6, to=3-8]
+	\end{tikzcd}\]
+
+	Therefore, by theorem 4 we know that the group operations on $G/H$ are continuous and so $G/H$ is a topological group. $\blacksquare$\retTwo
 \end{myIndent}
 
 \mySepTwo
 
-\exTwo\ul{Theorem:} Suppose $X \subseteq \mathbb{R}^n$ is a convex body and contains $0$. Then $X$ is homeomorphic to the closed unit ball $\overline{B_1(0)}$.
-
-\begin{myIndent}\exThreeP
-	Proof:\newpage
-	Let $p_{X^\circ}$ be the Minkowski functional associated with $X^\circ$. In other words,\\ $p_{X^\circ}(x) = \inf \{t \geq 0 : x \in tX\}$. Unfortunately, since $X$ isn't a balanced set\\ necessarily, we can't directly apply the proof on \inLinkRap{Minkowski functional reference}{page 233} to get that $P_{X^\circ}(cx) = |c|x$\\ for all $c \in \mathbb{R}$ and $x \in \mathbb{R}^n$. That said, since $X$ is convex and a neighborhood of $0$, we are able to copy the reasoning that shows that $p_{X^\circ}$ is well-defined and satisfies the triangle inequality.\retTwo
-
-	\ul{Claim 1:} Suppose $y$ is any unit vector and $t_0$ is the unique nonnegative number satisfying that $t_0 y \in \partial X$. Then $p_{X^\circ}(ty) = \sfrac{t}{t_0}$.
-	\begin{myIndent}\exPPP
-		Proof:\\
-		If $t = 0$, then it is obvious that $p_{X^\circ}(ty) = 0 = \sfrac{t}{t_0}$. As for when $t \neq 0$, first note that $t_0 y \in \partial X \Longleftrightarrow bt_0 y \in \partial(bX)$ for all $b \geq 0$. Also note that $bX$ is easily checked to be convex body when $b \neq 0$ (and so we can apply theorem 3.6 to $bX$).\retTwo
-
-		Suppose $b < \sfrac{t}{t_0}$. Then $bt_0 < t$ and thus $t \notin X$ since $bt_0 y \in \partial (bX)$. On the other hand, suppose $b > \sfrac{t}{t_0}$. Then $bt_0 > t$ and thus $t \in X - \partial X = X^\circ$ since again $bt_0 y \in \partial (bX)$. It follows that $p_{X^\circ}(ty) = \sfrac{t}{t_0}$.\retTwo
-	\end{myIndent}
-
-	\ul{Corollary:} Suppose $x \in X$ and $t_0 > 0$ is the unique nonnegative number such that\\ $t_0 \frac{x}{\|x\|_2} \in \partial X$. Then $p_{X^\circ}(x) = \sfrac{\|x\|_2}{t_0}$.\retTwo
-
-	\ul{Claim 2:} $p_{X^\circ}$ is continuous.
-	\begin{myIndent}\exPPP
-		Proof:\\
-		While we don't necessarily have reverse triangle inequality since $p_{X^\circ}(x) \neq p_{X^\circ}(-x)$, we can at least prove using just triangle inequality that:
-
-		{\centering $|p_{X^\circ}(x) - p_{X^\circ}(y)| \leq \max(p_{X^\circ}(x - y), p_{X^\circ}(y - x))$ \retTwo\par}
-
-		Then, you just need to follow almost identical reasoning to that of \inLinkRap{Minkowski functional reference}{page 233} to show that $p_{X^\circ}(x)$ is continuous.\retTwo
-	\end{myIndent}
-
-	At last we are ready to write our homeomorphism from $X$ to $B$. Define $g : X \to \overline{B_1(0)}$ by $g(x) = p_{X^\circ}(x)\frac{x}{\|x\|_2}$ when $x \neq 0$ and $g(0) = 0$. And similarly, define $h : \overline{B_1(0)} \to X$ by $h(y) = ty$ such that $ty \in \partial(\|y\|X)$.
-	\begin{itemize}
-		\item $g$ is continuous when $x \neq 0$ by virtue of being a scalar product of continuous\\ functions. Also, given any sequence $(x_n)_{n \in \mathbb{N}}$ in $X$ converging to $0$ we have that\\ $\|g(x_n)\|_2 = p_{X^\circ}(x_n) \cdot 1 \to 0$ as $n \to \infty$. So $g$ is also continuous at $0$.\retTwo
-		
-		\item $h(g(0)) = 0$. Meanwhile, suppose $x \in X - \{0\}$. Then let $t_0$ be the unique\\ [2pt] nonnegative number satisfying that $t_0 \frac{x}{\|x\|_2} \in \partial X$. Now $g(x) = p_{X^\circ}(x) \frac{x}{\|x\|_2} = \frac{x}{t_0}$.\\ [-1pt] Thus $h(g(x)) = t \frac{x}{t_0}$ where $t \geq 0$ satisfies that $t \frac{x}{t_0} \in \partial(\frac{\|x\|}{t_0}X)$. Or in other words,\\ [3pt] $t\frac{x}{\|x\|_2} \in \partial X$. It follows by theorem 3.6 that $t = t_0$ and so $h(g(x)) = x$.\retTwo
-		
-		\item $g(h(0)) = g(0) = 0$. Meanwhile, if $y \in \overline{B_1(0)} - \{0\}$ then let $t_0$ be the\\ unique nonnegative number such that $t_0 \frac{y}{\|y\|_2} \in \partial X$. Like before, we can show\\ that $h(y) = t_0 y$. And now $p_{X^\circ}(t_0 y) = \frac{t_0\|y\|_2}{t_0} = \|y\|_2$ since $t_0 y = t_0 \|y\|_2 \frac{y}{\|y\|_2}$.\\ Thus $g(t_0 y) = g(t_0 y) = \|y\|_2\frac{t_0y}{\|t_0y\|_2} = y$ and we've proven that $g(h(y)) = y$.\newpage
-		
-		\item Since $h = g^{-1}$, $g$ is continuous, $X$ is compact, and $\overline{B_1(0)}$ is Hausdorff, we have that $h$ is continuous. $\blacksquare$\retTwo
-	\end{itemize}
-\end{myIndent}
-
-\ul{Corollary:} All convex bodies in $\mathbb{R}^n$ are homeomorphic to the closed unit ball $\overline{B_1(0)}$.
-\begin{myIndent}\exThreeP
-	Why? We can just translate them so that they contain $0$ and then apply the last theorem.\retTwo
-\end{myIndent}
-
-\ul{Corollary 2:} All $n$-simplices are homeomorphic to the closed unit ball $\overline{B_1(0)}$ in $\mathbb{R}^n$.\retTwo
-
-\hTwo\mySepTwo 
-
-\dispDate{10/18/2025}
-
-I need to first do the rest of my math 200a homework. Then I think there is a different paper I want to try to following to prove the fixed point theorems from before.\retTwo
-
-\blect{Math 200a Homework:}\retTwo
-
-\Hstatement\blab{Set 3 Problem 3:} Suppose $G$ is a finite group and $h < G$. Suppose also for all $x \in H - \{1\}$ that $C_G(x) \subseteq H$. Then $\gcd(|H|, [G : H]) = 1$.
-\begin{myIndent}\HexOne
-	Proof:\\
-	If $\gcd(|H|, [G : H]) \neq 1$, then we know there is some prime number $p$ dividing both $|H|$ and $[G : H]$. And as a result, $\nu_p(|H|) < \nu_p(|G|)$. So, by choosing $P \in \Syl_p(H)$ and $Q \in \Syl_p(G)$, we know that $|P| < |Q|$. Also, by Sylow's second theorem, we can conjugate $Q$ in order to say without loss of generality that $P \subseteq Q$. We'll need two observations:
-	\begin{itemize}
-		\item Since the order of $Q$ doesn't divide $H$, we know that $Q$ isn't a subgroup of $H$. Hence, $Q \cap (G - H) \neq \emptyset$.
-		\item At the same time though, we know that $P < Q \cap H < H$. And since the only prime factors of $|Q \cap H|$ are $p$, this tells us by Lagrange's theorem that $|P| = p^{\nu_p(|H|)}$ divides $|Q \cap H|$ which itself divides $p^{\nu_p(|H|)}$. Hence, $|P| = |Q \cap H|$ and this proves that $Q \cap H = P$. \retTwo
-	\end{itemize}
-
-	Now recall from the 2nd proposition on \inLinkRap{Alireza theorem center of p groups}{page 272} that if $\{1\} \neq N \lhd P$ and $P$ is a $p$-group, then $Z(P) \cap N \neq \{1\}$.
-	\begin{myIndent}\exPPP
-		Side note: Whenever $H < G$, we define $Z(H) = \bigcap_{h \in H}C_H(h)$. Just wanted to make that's clear since I didn't know better before.\retTwo
-	\end{myIndent}
-
-	As a special case, if we set $N = P$ (where $P$ is nontrivial), then this proposition says that the center of a $p$-group is always nontrivial. Hence, there exists $y \in Z(P) - \{1\}$.
-	\begin{myIndent}\exPPP
-		Side note: How the hell hadn't I processed that consequence of the theorem we\\ proved before?\retTwo
-	\end{myIndent}
-
-	Now note that $Z(Q) \subseteq C_Q(y) \subseteq C_G(y) \subseteq H$ where the last inclusion is by the\\ assumption of the problem. Hence $Z(Q) \subseteq H \cap Q = P$. At the same time, we know\\ that $Z(Q)$ is nontrivial. So, there exists $x \in Z(Q) - \{1\}$ which we know from before is\\ in $P \subseteq H$. Finally, we now have that $Q \subseteq C_Q(x) \subseteq C_G(x) \subseteq H$. But this contradicts that $Q \cap (G - H) \neq \emptyset$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\blab{Set 3 Problem 8:} Suppose $G$ is a finite group.
+\exTwo\ul{Proposition 11.3:} Let $G$ be a topological group.
 \begin{enumerate}
-	\item[(a)] Prove that a normal Sylow $p$-subgroup is a characteristic subgroup.\newpage
+	\item[(a)] If $G$ is $T_1$, then $G$ is Hausdorff.
 	
-	\begin{myIndent}\HexOne
-		A Sylow $p$-subgroup $P$ is normal if and only if it is the only Sylow $p$-subgroup. And since automorphisms preserve the order of subgroups, we have that if $P$ is the only subgroup of $G$ with order $p^{\nu_p(|G|)}$ then $\theta(P) = P$ for all $\theta \in \Aut(G)$. So, $P$ is a characteristic subgroup.\retTwo
-	\end{myIndent}
-	
-	\item[(b)] Suppose $H \lhd G$ and $\gcd(|H|, [G : H]) = 1$. Prove that $H$ is a characteristic subgroup.
-	
-	\begin{myIndent}\HexOne
-		Suppose $\theta \in \Aut(G)$. Then since $H$ is normal, we know that $\theta(H)H$ is a subgroup of $G$ and $H \lhd \theta(H)H$. So by the correspondance theorem, we know that $|\frac{\theta(H)H}{H}|$ divides $|G/H| = [G : H]$. At the same time, $|\theta(H)H| = \frac{|H||\theta(H)|}{|H \cap \theta(H)}$. So, $|\frac{\theta(H)H}{H}| = \frac{|\theta(H)|}{|H \cap \theta(H)}$ divides $|\theta(H)| = |H|$.\retTwo
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		If $G$ is $T_1$ and $x \neq y \in G$, then we can find an open set $U$ containing $e$ but\\ not containing $xy^{-1}$. And in turn, by \inLinkRap{Folland proposition 11.1}{Proposition 11.1(c) and (d)} there is a symmetric neighborhood $V$ of $e$ such that $xy^{-1} \notin VV$.\retTwo
 
-		This shows that $|\frac{\theta(H)H}{H}| \divides \gcd(|H|, [G : H]) = 1$. And hence, $\theta(H)H = H$. Since $|\theta(H)| = |H|$ and $\theta(H) \subseteq \theta(H)H$, we can thus conclude that $\theta(H) = H$. $\blacksquare$\retTwo
+		Now we know $Vx$ and $Vy$ are neighborhoods of $x$ and $y$. Also, we know\\ $Vx \cap Vy = \emptyset$. After all, if this weren't true than there would exist $v_1, v_2 \in V$\\ with $v_1 x = v_2 y$. And in turn we'd have that $xy^{-1} = v_1^{-1}v_2$. But since $V$ is\\ symmetric and $xy^{-1} \notin VV$, this is a contradiction.\retTwo
+	\end{myIndent}
+
+	\item[(b)] If $G$ is not $T_1$, then let $H$ be the closure of $\{e\}$. Then $H$ is a normal subgroup,\\ and if $G/H$ is given the quotient topology (i.e. $A \subseteq G/H$ is open if and only if\\ $B = \{x \in G : xH \in A\}$ is open), then $G/H$ is a Hausdorff topological group.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		$H$ is a subgroup by Proposition 11.1(d). Also, to see why $H$ is normal, suppose $H^\prime$ is a conjugate of $H$ with $H^\prime \neq H$. Because the group product is continuous, we know that $H^\prime$ is also closed. And since $e \in H^\prime$, we know that $H^\prime \cap H$ is a closed proper subset of $H$ containing $\{e\}$. But this contradicts that $H$ is the closure of $\{e\}$. Hence, we conclude $H$ is normal.\retTwo
+
+		Now that we know $H$ is a normal subgroup, we can consider the quotient group $G/H$ equipped with the quotient topology. I already proved that $G/H$ is a topological group. Also note that if $\overline{e}$ is the identity of $G/H$ then $\{\overline{e}\}$ is closed in $G/H$. (This is just  a result of the definition of a quotient topology plus the fact that $H$ is closed). In turn, we can see that every singleton in $G/H$ is closed. So, $G/H$ is $T_1$. And by part (a) we have that $G/H$ is Hausdorff. $\blacksquare$\newpage
 	\end{myIndent}
 \end{enumerate}
 
-\blab{Set 3 Problem 4:} Suppose $G$ is a finite group, $N \lhd G$, and $p$ is a prime factor of $|N|$.
-\begin{myIndent}
-	\item[(a)] Suppose $P \in \Syl_p(G)$ and $Q \in \Syl_p(N)$. Prove there exists $g \in G$ such that\\ $Q = (gPg^{-1}) \cap N$.
+\hTwo The prior theorem shows that it is not much of a restriction to assume our topological groups are Hausdorff. Hence, we now define that $G$ is a \udefine{locally compact group} if $G$ is an LCH topological group.\retTwo
+
+Suppose $G$ is a locally compact group. Then a Borel measure $\mu$ on $G$ is called \udefine{left invariant} (or \udefine{right invariant}) if $\mu(xE) = \mu(E)$ (or $\mu(Ex) = \mu(E)$) for all $x \in G$ and $E \in \mathcalli{B}_G$. Similarly, a linear functional $I$ on $C_c(G)$ is called \udefine{left-} or \udefine{right-invariant} if $I(L_x f) = I(f)$ or $I(R_x f) = I(f)$ for all $f \in C_c(G)$. Finally, a \udefine{left} (or \udefine{right}) \udefine{Haar measure} on $G$ is a nonzero left-invariant (or right-invariant) Radon measure $\mu$ on $G$.\retTwo
+
+Let $C_c^+ \coloneqq \{f \in C_c(G) : f \geq 0 \text{ and } \|f\|_u > 0\}$.\retTwo
+
+\exTwo\ul{Proposition 11.4:} Let $G$ be a locally compact group.
+\begin{itemize}
+	\item[(a)] A Radon measure $\mu$ on $G$ is a left Haar measure iff the measure $\widetilde{\mu}$ defined by\\ $\widetilde{\mu}(E) = \mu(E^{-1})$ is a right Haar measure.
 	
-	\begin{myIndent}\HexOne
-		Uhhhh, I think I already basically proved this fact when doing problem 3.\retTwo
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		If $\mu$ is a left Haar measure then:
+		
+		{\centering$\widetilde{\mu}(Ex) = \mu((Ex)^{-1}) = \mu(x^{-1} E^{-1}) = \mu(E^{-1}) = \widetilde{\mu}(E)$.\retTwo\par} 
 
-		By Sylow's second theorem, we know there is some $g \in G$ such that $Q \subseteq gPg^{-1}$. Then since $(gPg^{-1}) \cap N$ is a subgroup of $gPg^{-1}$ where the latter is a $p$-group, we know that $(gPg^{-1}) \cap N$ is also a $p$-group. Also, since $(gPg^{-1}) \cap N$ is a subgroup of $N$, we know that $|(gPg^{-1}) \cap N|$ divides $|N|$. It follows that $|(gPg^{-1}) \cap N|$ divides $p^{\nu_p(|N|)}$. At the same time, since $|Q| = p^{\nu_p(|N|)}$ and $Q \subseteq gPg^{-1} \cap N$, we have that $p^{\nu_p(|N|)} \leq |(gPg^{-1}) \cap N|$.\retTwo
+		Meanwhile if $\widetilde{\mu}$ is a right Haar measure then:
 
-		So, $Q \subseteq (gPg^{-1}) \cap N$ and $|Q| = p^{\nu_p(|N|)} = |(gPg^{-1}) \cap N|$. It follows that\\ $Q = (gPg^{-1}) \cap N$.
+		{\centering$\mu(xE) = \mu((E^{-1}x^{-1})^{-1}) = \widetilde{\mu}(E^{-1}x^{-1}) = \widetilde{\mu}(E^{-1}) = \mu((E^{-1})^{-1}) = \mu(E)$.\retTwo\par}
+		
 		\begin{myIndent}\myComment
-			Side note: none of the reasoning in this part requires having $N$ be normal.\retTwo
+			Also as a side note, you can see that $\widetilde{\mu}$ is a well-defined measure since it is merely the \udefine{pushforward measure} of $\mu$ by the inversion map. (Back on \inLinkRap{Folland Proposition 10.1}{page 193} I was calling this the image measure\dots)\retTwo
 		\end{myIndent}
 	\end{myIndent}
-	
-	\item[(b)] Prove that the following is a well-defined surjective function:
-	
-	{\centering $\Phi : \Syl_p(G) \to \Syl_p(N)$ where $\Phi(P) = P \cap N$. \retTwo\par}
 
-	\begin{myIndent}\HexOne
-		Part (a) guarentees that the above map will be surjective provided that it is well-\\defined (since $gPg^{-1} \in \Syl_p(G)$ for any $P \in \Syl_p(G)$). Hence, all we need to show\\ is that $P \cap N \in \Syl_p(N)$ whenever $P \in \Syl_p(G)$.\retTwo
+	\item[(b)] A nonzero Radon measure $\mu$ on $G$ is a left Haar measure iff $\int f \df \mu = \int L_y f \df \mu$ for all $f \in C_c^+$ and $y \in G$.
+	
+	\begin{myIndent}\exThreeP
+		$(\Longrightarrow)$\\
+		If $\mu$ is a left Haar measure then it is obvious that $\int f \df \mu = \int L_y f \df \mu$ whenever $f$ is a simple function. And by the monotone convergence theorem we can extend this to all $f \in C_c^+$.\retTwo
 
-		Fortunately since $P \cap N < P$, we know that $P \cap N$ is a $p$-group. But suppose for\\ the sake contradiction that $|P \cap N| \neq p^{\nu_p(|N|)}$ (meaning $P \cap N \notin \Syl_p(G)$). Then,\\ by Sylow's first and second theorems there exists a group $Q \in \Syl_p(N)$ such that\\ $P \cap N \lneqq Q < N$. Also, by part (a) there exists $g \in G$ such that $Q = gPg^{-1} \cap N$. But since $N$ is normal, $gPg^{-1} \cap N = gPg^{-1} \cap gNg^{-1} = g(P \cap N)g^{-1}$.
-		\begin{myIndent}\HexPPP
-			The last equality is obvious if you think about it. So I'd rather not write out a proof since I want to go on an outing soon.\retTwo
+		$(\Longleftarrow)$\\
+		Note that $\supp(L_yf) = y \cdot \supp(f)$ for all $y \in G$ and $f \in C_c(G)$.
+		\begin{myIndent}\exPPP
+			After all, $L_yf(x) \neq 0$ iff $f(y^{-1}x) \neq 0$. So if $A = \{x : L_yf(x) \neq 0\}$ and $B = \{x : f(x) \neq 0\}$ then $x \in A$ iff $y^{-1}x \in B$ and that happens iff $x \in yB$. And finally, since translation by $y$ is a homeomorphism on $G$, we have that:
+		
+			{\centering$\supp(L_y f) = \overline{A} = \overline{yB} = y\overline{B} = y \cdot \supp(f)$.\retTwo\par}
 		\end{myIndent}
 
-		So $P \cap N \lneqq Q = g(P \cap N)g^{-1}$. Since $|P \cap N| = |g(P \cap N)g^{-1}|$ this is a contradiction.\newpage
+		Thus, for any open set $U \subseteq G$ we know that if $f \in C_c(G)$ with $\supp(f) \subseteq U$ then $L_y f \in C_c(G)$ with $\supp(L_y f) \subseteq y U$. Similarly, if $f \in C_c(G)$ with $\supp(f) \subseteq yU$ then $L_{y^{-1}}f \in C_c(G)$ with $\supp(L_{y^{-1}}f) \subseteq U$. And when you consider for all open sets $V \subseteq G$ that $\mu(V) = \sup\{\int f \df \mu : f\in C_c(G), 0 \leq f \leq 1, \supp(f) \subseteq V\}$,\\ it becomes clear that $\mu(yU) = \mu(U)$ for all $y \in G$ and open sets $U \subseteq G$.\newpage
+
+		As for the case that $E$ is a general Borel subset of $G$, we can just approximate $E$ and $xE$ using open sets.\retTwo
 	\end{myIndent}
 
-	\item[(c)] For $P \in \Syl_p(G)$, prove that $N_G(P) \subseteq N_G(\Phi(P))$ and:
+	\item[(c)] If $\mu$ is a left Haar measure on $G$, then $\mu(U) > 0$ for every nonempty open $U \subseteq G$ and $\int f \df \mu > 0$ for all $f \in C_c^+$.
 	
-	{\centering $|\Phi^{-1}(\Phi(P))| = [N_G(\Phi(P)) : N_G(P)]$. \retTwo\par}
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Since $\mu \neq 0$, we can show by the regularity properties of $\mu$ that there exists a compact set $K \subseteq G$ with $\mu(K) > 0$. Then, for any open nonempty set $U \subseteq G$ we have that $K$ can be covered by finitely many left translates of $U$. Hence, $\mu(U) > 0$.\retTwo
 
-	\begin{myIndent}\HexOne
-		To start off, note that:
-		
-		{\centering\begin{tabular}{l}
-			$\Phi(xPx^{-1}) = xPx^{-1} \cap N = xPx^{-1} \cap xNx^{-1}$\\
-			$\phantom{\Phi(xPx^{-1}) = xPx^{-1} \cap N} = x(P \cap N)x^{-1} = x\Phi(P)x^{-1}$.
-		\end{tabular}\retTwo\par}
-
-		Therefore, if $x \in N_G(P)$ then $\Phi(P) = \Phi(xPx^{-1}) = x\Phi(P)x^{-1}$. And this proves the first claim that $N_G(P) \subseteq N_G(\Phi(P))$.\retTwo
-
-		Next, note by Sylow's second theorem that:
-		
-		{\centering$\Phi^{-1}(\Phi(P)) = \{gPg^{-1} : g \in G \text{ and } \Phi(P) \subseteq gPg^{-1}\}$.\retTwo\par}
-
-		But $\Phi(P) \subseteq gPg^{-1}$ if and only if:
-		
-		{\centering\begin{tabular}{l}
-			$\Phi(P) = P \cap N \subseteq gPg^{-1} \cap N = (gPg^{-1}) \cap (gNg^{-1})$\\
-			$\phantom{\Phi(P) = P \cap N \subseteq gPg^{-1} \cap N} = g(P \cap N)g^{-1} = g\Phi(P)g^{-1}$.
-		\end{tabular}\retTwo\par}
-
-		And since $|\Phi(P)| = |g\Phi(P)g^{-1}|$, this is the same as saying that $\Phi(P) = g\Phi(P)g^{-1}$. So, we really have that:
-
-		{\centering$\Phi^{-1}(\Phi(P)) = \{gPg^{-1} : g \in N_G(\Phi(G))\}$.\retTwo\par}
-
-		Hence, if we consider the action $N_G(\Phi(P)) \curvearrowright \Syl_p(G)$ by conjugation, then\\ [-1pt] $\Phi^{-1}(\Phi(P))$ is precisely the orbit of $P$ with respect to this action. Also, $x$ is in the stabilizer of $P$ with respect to this action precisely when $xPx^{-1} = P$. Or in other\\ words, $x \in (N_G(\Phi(P)))_P$ when $x \in N_G(\Phi(P)) \cap N_G(P) = N_G(P)$. By the\\ orbit-stabilizer theorem, we thus can conclude that:
-		
-		{\centering$|\Phi^{-1}(\Phi(P))| = [N_G(\Phi(P)) : N_G(P)]$.\retTwo\par}
+		Next, if $f \in C_c^+$ then let $U \coloneqq \{x : f(x) > \frac{1}{2}\|f\|_u\}$. $U$ is open since $f$ is continuous. Therefore, since $\mu(U) > 0$ we have that $\int f \df \mu \geq \frac{1}{2}\|f\|_u \mu(U) > 0$.\retTwo
 	\end{myIndent}
 
-	\item[(d)] Prove that $|\Syl_p(N)|$ divides $|\Syl_p(G)|$.
+	\item[(d)] If $\mu$ is a left Haar measure on $G$ then $\mu(G) < \infty$ iff $G$ is compact.
 	
-	\begin{myIndent}\HexOne
-		We know that $\{\Phi^{-1}(Q) : Q \in \Syl_p(N)\}$ forms a partion of $\Syl_p(G)$. Hence, we\\ [-2pt] now seek to prove that there exists a single integer $r \in \mathbb{N}$ such that $|\Phi^{-1}(Q)| = r$ for all $Q \in \Syl_p(N)$. After all, once we know that we will then be able to say that $\Syl_p(N) = r \Syl_p(G)$.\retTwo
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		The $(\Longleftarrow)$ direction is obvious from the definition of a Radon measure. Meanwhile, suppose $G$ is not compact and let $V$ be a compact neighborhood of $e$. Then we know that $G$ cannot be covered by finitely many translates of $V$ (lest $G$ be a finite union of compact sets). So, we may find a sequence $\{x_n\}_{n \in \mathbb{N}}$ such that $x_n \in \bigcup_{j=1}^{n-1} x_j V$ for all $n$.\retTwo
 
-		Luckily, note that since conjugation is an automorphism of $G$ we have that:
+		Next, by proposition 11.1 we can find a symmetric neighborhood $U$ of $e$ with\\ $UU \subseteq V$. Importantly, if $m > n$ and $x_n U \cap x_m U \neq \emptyset$ then we would have\\ that $x_m \in x_n UU \subseteq x_n V$. But that contradicts how we picked our $x_n$. Hence, we\\ know $\{x_n U\}_{n \in \mathbb{N}}$ is a disjoint sequence of sets. And since $\mu(x_n U) = \mu(U) > 0$,\\ we know that $\mu(G) \geq \mu(\bigcup_{n \in \mathbb{N}} x_n U) = \sum_{n \in \mathbb{N}} \mu(x_n U) = \infty$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hTwo\hypertarget{page 353 reference}{I'll} continue with actually constructing a Haar measure later on \inLinkRap{idk reference 4}{page \_\_\_}.
+
+\mySepTwo
+
+\blect{Math 200a Notes:}\retTwo
+
+If $\sigma \in S_n$ we define $\supp(\sigma) \coloneqq \{i \in \{1, \ldots, n\} : \sigma(i) \neq i\}$. Note that if we consider the obvious injection $S_n \hookrightarrow S_{n+1} \hookrightarrow \cdots$ then $\supp(\sigma)$ doesn't change. Also, we let $\Fix(\sigma) = \{1, \ldots, n\} - \supp(\sigma)$.
+\begin{myIndent}\myComment
+	Note that this definition of $\Fix(\sigma)$ is equivalent to the set of fixed points of $\sigma$ with respect to the obvious group action $S_n \curvearrowright \{1, \ldots, n\}$.\retTwo
+\end{myIndent}
+
+We say $\sigma_1, \sigma_2 \in S_n$ are \udefine{disjoint} if $\supp(\sigma_1) \cap \supp(\sigma_2) = \emptyset$.\retTwo
+
+\exTwo\ul{Lemma:} If $\sigma_1, \sigma_2$ are disjoint then $\sigma_1 \circ \sigma_2 = \sigma_2 \circ \sigma_1$ and $o(\sigma_1 \circ \sigma_2) = \lcm(o(\sigma_1), o(\sigma_2))$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	For all $i \in \{1, \ldots, n\}$, if $i \in \Fix(\sigma) \cap \Fix(\sigma_2)$ then $\sigma_1\circ \sigma_2(i) = i = \sigma_2 \circ \sigma_1(i)$.\newpage
+	
+	Meanwhile, if $i \in \Fix(\sigma_1)$ and $i \notin \Fix(\sigma_2)$, then $\sigma_2 \circ \sigma_1(i) = \sigma_2(i)$. But now note that:
+	
+	{\centering\begin{tabular}{l}
+		$i \notin \Fix(\sigma_2) \Longrightarrow i \in \supp(\sigma_2) \Longrightarrow \sigma_2(i) \in \supp(\sigma_2)$\\ [2pt]
+		$\phantom{i \notin \Fix(\sigma_2) \Longrightarrow i \in \supp(\sigma_2)} \Longrightarrow \sigma_2(i) \notin \supp(\sigma_1)$\\ [2pt]
+		$\phantom{i \notin \Fix(\sigma_2) \Longrightarrow i \in \supp(\sigma_2)} \Longrightarrow \sigma_2(i) \in \Fix(\sigma_1) \Longrightarrow \sigma_1(\sigma_2(i)) = \sigma_2(i)$.
+	\end{tabular}\retTwo\par}
+
+	So, $\sigma_1 \circ \sigma_2(i) = \sigma_2 \circ \sigma_1(i)$.\retTwo
+
+	The case where $i \notin \Fix(\sigma_1)$ and $i \in \Fix(\sigma_2)$ is similar. And since $\sigma_1$ and $\sigma_2$ are disjoint, we never have the fourth case. This proves $\sigma_1 \circ \sigma_2 = \sigma_2 \circ \sigma_1$.\retTwo
+
+	Next, let $o(\sigma_i) = d_i$ for both $i$ and let $\ell = \lcm(d_1, d_2)$. Then we know from before that $(\sigma_1 \circ \sigma_2)^\ell = \sigma_1^{\ell} \sigma_2^{\ell} = \myId$. Hence, we must have that $o(\sigma_1 \sigma_2)$ divides $\ell$. On the other hand, suppose $(\sigma_1 \circ \sigma_2)^k = 1$. Then by considering the obvious action $\langle \sigma_2 \rangle \curvearrowright \{1, \ldots, n\}$, we know for all $j \in \supp(\sigma_2)$ that $\langle \sigma_2\rangle \cdot j \subseteq \supp(\sigma_2)$ and in turn $\langle \sigma_2 \rangle \cdot j \subseteq \Fix(\sigma_1)$. It follows that $j = \sigma_1^k \circ \sigma_2^k(j) = \sigma_2^k(j)$ for all $j \in \supp(\sigma_2)$. Hence $\sigma_2^k = \myId$ and we've shown that $d_2 \divides k$.\retTwo
+
+	By analogous reasoning we can show that $d_1 \divides k$. So, $\ell \divides k$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo For the sake of convenience I'm just going to refer to $\sigma_2 \circ \sigma_1$ as $\sigma_2 \sigma_1$ from now on.\retTwo
+
+If $k \geq 2$, we say $\sigma \in S_n$ is a \udefine{$k$-cycle} if there are distinct elements $a_1, \ldots, a_k \in \{1, \ldots, n\}$ such that $\supp(\sigma) = \{a_1, \ldots, a_k\}$, $\sigma(a_i) = \sigma(a_{i+1})$ for $i < k$, and $\sigma(a_k) = a_1$. We typically denote a $k$-cycle as $(a_1\gap a_2\gap \cdots\gap a_k)$.\retTwo
+
+A one-cycle is trivial since it is just the identity permutation. So we typically don't count them as "cycles".\retTwo
+
+\exTwo\ul{Theorem:} For all $\sigma \in S_n$ there are disjoint nontrivial cycles $\sigma_1, \ldots, \sigma_m$ such that\\ $\sigma= \sigma_1 \cdots \sigma_m$. Also, this decomposition is unique up to permuting the terms. We call\\ this decomposition a \udefine{cycle decomposition} of $\sigma$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Given any permutation $\sigma \in S_n$, we can say that $\langle \sigma \rangle \curvearrowright \{1, \ldots, n\}$ via the action\\ $\sigma \cdot i = \sigma(i)$. Using this fact we can easily show the existence of a cycle decomposition\\ of $\sigma$.
+	\begin{myIndent}\exPPP
+		Given any $a \in \{1, \ldots, n\}$ we know there is a unique smallest integer $k$ such that $\sigma^k(a) = a$. So, define $\sigma_{(a)} = (a\gap \sigma(a)\gap\sigma^2(a)\gap\cdots\gap \sigma^{k-1}(a))$. By doing this for all $a \in \{1, \ldots, n\}$, we can see that $\supp(\sigma_{(a)}) = \langle \sigma \rangle \cdot a$ (if $a$ has a non-singleton orbit). Also, it is easy to see that $\supp(\sigma_{(a)}) = \supp(\sigma_{(b)})$ implies that $\sigma_{(a)} = \sigma_{(b)}$. Hence $\Sigma \coloneqq \{\sigma_{(a)} : a \in \{1, \ldots, n\} \text{ and } \sigma(a) \neq a \}$ is a collection of disjoint cycles. And it is easy to see to that $\sigma$ equals the product of the elements of $\Sigma$ in any order.\retTwo
+	\end{myIndent}
+
+	As for proving the uniqueness of this cycle decomposition, note that if $\sigma = \tau_1 \tau_2 \cdots \tau_\ell$ where each $\tau_i$ is a disjoint cycle, then $a^\prime \in \supp(\tau_i)$ implies that $\tau_i = \sigma_{(a^\prime)}$ from before.
+	\begin{myIndent}\exPPP
+		To see this, first note that if $a^\prime \in \supp(\tau_i)$ then we can show from the disjointness of the $\tau_i$ that $\sigma^k(a^\prime) = \tau_i^k(a^\prime)$ for all integers $k$. But then this alligns with how we defined the permutation $\sigma_{(a^\prime)} \in \Sigma$.\newpage
+	\end{myIndent}
+
+	This says that each $\tau_i$ is equal to some $\sigma_{(a)} \in \Sigma$. Because each of the $\tau_i$ is disjoint, we know this correspondance is injective. Also, it's surjective since otherwise the products of the $\tau_i$ and the $\sigma_{(a)}$ wouldn't be the common permutation $\sigma$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		I realize I handwaved this entire proof. But at least I thought about it and wrote down something. Professor Alireza meanwhile skipped proving this.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo The \udefine{cycle type} of $\sigma$ is $(\ell_1 \geq \ell_2 \geq \cdots \geq \ell_m)$ where $\{\ell_1, \ldots, \ell_m\}$ is the set of sizes of the orbits of $\langle \sigma \rangle \curvearrowright \{1, \ldots, n\}$.\retTwo
+
+\exTwo\ul{Lemma:} $o(\sigma) = \lcm(\ell_1, \ldots, \ell_m)$ where $(\ell_1 \geq \cdots \geq \ell_m)$ is the cycle type of $\sigma$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Take a cycle decomposition of $\sigma$ and then inductively apply the lemma at the beginning of this section.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} Let $a_1, \ldots, a_{m}, a_{m+1}, \ldots, a_{m +n}$ be distinct elements.
+\begin{enumerate}
+	\item[(a)] $(a_1\gap\cdots\gap a_m)(a_m\gap\cdots\gap a_{m+n}) = (a_1\gap \cdots \gap a_{m + n})$.
+
+	\item[(b)] For any $\sigma \in S_n$, $\sigma(a_1\gap a_2\gap\cdots\gap a_m)\sigma^{-1} = (\sigma(a_1)\gap \sigma(a_2)\gap \cdots \gap \sigma(a_m))$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Showing part (a) is as simple as just going through and showing the permutations on either side of the identity map things to the same places.\retTwo
+
+		To show part (b), recall from \inLinkRap{Alireza lemma page 257}{page 257} that $\Fix(\sigma\tau\sigma^{-1}) = \sigma \cdot \Fix(\tau)$. (where\\ $A \subseteq \{1, \ldots, n\}$ implies that $\sigma \cdot A \coloneqq \{\sigma(a) : a \in A\}$). In turn:
+		
+		{\centering$\supp(\sigma \tau \sigma^{-1}) = \sigma \cdot \supp(\tau)$\retTwo\par}
+
+		And in particular, $\supp(\sigma(a_1\gap \cdots\gap a_m)\sigma^{-1}) = \{\sigma(a_1), \ldots, \sigma(a_m)\}$. So we know that the permutations on both sides of our proposed equation have the same support.\retTwo
+		
+		Next note for any $k < m$ that $\sigma(a_1 \gap \ldots \gap a_m)\sigma^{-1}(\sigma(a_k)) = \sigma(a_{k+1})$ (and similarly plugging in $\sigma(a_m)$ gives $\sigma(a_1)$). So the permutations agree on their supports and thus everywhere. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\ul{Proposition:} $\sigma_1, \sigma_2 \in S_n$ are conjugates if and only if they have the same cycle types.
+
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	Suppose $\sigma = \tau_1\cdots \tau_m$ is a cycle decomposition such that $\tau_i$ has cycle length $\ell_i$ and\\ $\ell_1 \geq \ell_2 \geq \cdots \geq \ell_m$. Then the cycle type of $\sigma_1$ is $(\ell_1 \geq \cdots \geq \ell_m \geq 1 \geq \cdots \geq 1)$\\ (with $n = \sum_{i=1}^m \ell_i$ many $1$s at the end). Also, if $\sigma_2 = \sigma \sigma_1 \sigma^{-1}$ then:
+
+	{\centering $\sigma_2 = \sigma \tau_1 \cdots \tau_m \sigma^{-1} = (\sigma \tau_1 \sigma^{-1})(\sigma \tau_2 \sigma^{-1})\cdots(\sigma \tau_m \sigma^{-1})$ \retTwo\par}
+
+	Additionally, it's not hard to see that each $(\sigma \tau_i \sigma^{-1})$ is a disjoint cycle of the same length as $\tau_i$. Hence $(\sigma \tau_1 \sigma^{-1})(\sigma \tau_2 \sigma^{-1})\cdots(\sigma \tau_m \sigma^{-1})$ is a cycle decomposition of $\sigma_2$ and the order type of $\sigma_2$ is also $(\ell_1 \geq \cdots \geq \ell_m \geq 1 \cdots \geq 1)$.\newpage
+
+	$(\Longleftarrow)$\\
+	Suppose the common cycle type is $(\ell_1 \geq \ell_2 \geq \cdots \geq \ell_m)$. Then there exists $n < m$ and cycle decompositions:
+	\begin{itemize}
+		\item $\sigma_1 = (a_1^{(1)}\gap\cdots\gap a_{\ell_1}^{(1)})(a_1^{(2)}\gap\cdots\gap a_{\ell_2}^{(2)})\cdots (a_1^{(n)}\gap\cdots \gap a_{\ell_n}^{(n)})$
+		\item $\sigma_2 = (b_1^{(1)}\gap\cdots\gap b_{\ell_1}^{(1)})(b_1^{(2)}\gap\cdots\gap b_{\ell_2}^{(2)})\cdots (b_1^{(n)}\gap\cdots \gap b_{\ell_n}^{(n)})$
+		\begin{myIndent}\myComment
+			(Note all $a_i^{(j)}$ are distinct and similarly all $b_i^{(j)}$ are distinct.)\retTwo
+		\end{myIndent}
+	\end{itemize}
+
+	For every $i$ such that $\ell_i = 1$ we pick a different $a_1^{(i)}$ among the fixed points of $\sigma_1$. Similarly, we pick a different $b_1^{(i)}$ among the fixed points of $\sigma_2$ for each $i$ with $\ell_i = 1$. Then finally, we define the permutation $\tau \in S_n$ by $\tau(a_j^{(i)}) = b_j^{(i)}$. Then:
+
+	{\centering\begin{tabular}{l}
+		$\tau \sigma_1 \tau^{-1} = (\tau(a_1^{(1)})\gap \cdots \gap \tau(a_{\ell_1}^{(1)}))\cdots(\tau(a_1^{(m)})\gap \cdots \gap \tau(a_{\ell_m}^{(m)}))$\\ [3pt]
+		$\phantom{\tau \sigma_1 \tau^{-1}} = (b_1^{(1)} \gap \cdots \gap b_{\ell_1}^{(1)})\cdots(b_1^{(m)}\gap \cdots \gap b_{\ell_m}^{(m)}) = \sigma_2$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\ul{Corollary:} The number of conjugate classes of $S_n$ is equal to the number of integer\\ partitions of $n$ (see my paper math 188 notes).
+
+\hTwo\mySepTwo
+
+By noting that $(a_1\gap a_2 \gap \cdots \gap a_n) = (a_1\gap a_2)(a_2 \gap a_3)\cdots (a_{n-1}\gap a_n)$ we can see that every\\ permutation can be written as a product of \udefine{transpositions} (i.e. $2$-cycles). That said,\\ except in trivial cases there are many different ways to write a permutation as a\\ product of transpositions. For example, $(1\gap 2)(2 \gap 3)(1 \gap 2) = (1 \gap 3)$. So, is it still possible\\ to characterize permutations somehow by how they are expressed as products of\\ transpositions?\retTwo
+
+Note that $S_n \curvearrowright \mathbb{Z}[x_1, \ldots, x_n]$ by $(\sigma \cdot f)(x_1, \ldots, x_n) = f(x_{\sigma(1)},\ldots, x_{\sigma(n)})$. Also, this\\ group action importantly has the properties that $\sigma \cdot (f + g) = (\sigma \cdot f) + (\sigma \cdot g)$ and\\ $\sigma \cdot (fg) = (\sigma \cdot f)(\sigma \cdot g)$.\retTwo
+
+If we let $\Delta(x_1, \ldots, x_n) \coloneqq \prod_{i < j} (x_i - x_j)$, then we we have that
+
+{\centering$\Delta^2(x_1, \ldots, x_n) = (-1)^{\frac{n(n-1)}{2}} \prod_{i \neq j}(x_i - x_j)$.\retTwo\par}
+
+Hence, $(\sigma \cdot \Delta^2) = \Delta^2$ for all $\sigma \in S_n$ (i.e. $\Delta^2$ is a \udefine{symmetric polynomial}). And since $(\sigma \cdot \Delta)^2 = (\sigma \cdot \Delta^2) = \Delta^2$, we must have that $\sigma \cdot \Delta = \pm \Delta$ for each $\sigma \in S_n$. So, there exists a map $\varepsilon : S_n \to \{-1, 1\}$ such that $\sigma \cdot \Delta = \varepsilon(\sigma) \Delta$.\retTwo
+
+Note that $\sigma \cdot (\sigma^\prime \cdot \Delta) = (\sigma \sigma^\prime) \cdot \Delta = \varepsilon(\sigma \sigma^\prime) \Delta$. But we also have that:
+
+{\centering $\sigma \cdot (\sigma^\prime \cdot \Delta) = \sigma \cdot (\varepsilon(\sigma^\prime)\Delta) = \varepsilon(\sigma^\prime) (\sigma \cdot \Delta) = \varepsilon(\sigma^\prime)\varepsilon(\sigma)\Delta$. \retTwo\par}
+
+Therefore $\varepsilon(\sigma \sigma^\prime) = \varepsilon(\sigma)\varepsilon(\sigma^\prime)$. And when you also consider that $\varepsilon(\myId) = +1$, this proves that $\varepsilon$ is a group homomorphism.\retTwo
+
+One more note is that if $\tau$ is a transposition then $\varepsilon(\tau) = -1$. To see this, just note that if $\tau = (i\gap j)$ where $i < j$, then $\tau \cdot \Delta = (-1)^{2(j-i - 1) + 1}\Delta = -\Delta$.\newpage
+
+Thus, if $\sigma \in S_n$ is decomposed into a product of transpositions, we must have that the number of transpositions in that product is even if $\varepsilon(\sigma) = +1$ and odd if $\varepsilon(\sigma) = -1$. In other words, \udefine{even and odd permutations} are well-defined.\retTwo
+
+We define $A_n \coloneqq \ker(\varepsilon) = \{\text{all even permutations of } S_n\}$. Note that $A_n \lhd S_n$ (since it is a kernel of a group homomorphism).\retTwo
+
+\exTwo\ul{Theorem:} If $n \geq 2$ then $[S_n : A_n] = 2$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By the first isomorphism theorem we have that:
+	
+	{\centering$S_n / A_n = S_n / \ker(\varepsilon) \cong \myIm(\varepsilon) = \{-1, +1\}$.\retTwo\par}
+	
+	Hence $[S_n : A_n] = 2$. $\blacksquare$
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+The last theorem that can be tested on the midterm tomorrow is that $A_n$ is a simple group (if $n \geq 5$). So I'll try to prove this and then do some exercises.\retTwo
+
+\exTwo\ul{Lemma:} $A_n$ is generated by the set of $3$-cycles.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	It is enough to show that the product of $2$ transpositions is in the subgroup generated by $3$ cycles. Fortunately, if $a, b, c, d$ are distinct elements in $\{1, \ldots, n\}$ then:
+	\begin{itemize}
+	\item $(a\gap b)(a\gap b) = \myId$
+	\item $(a \gap b)(b \gap c) = (a\gap b \gap c)$
+	\item $(a \gap b)(c \gap d) = (a \gap b)(b \gap c)(b \gap c)(c \gap d) = (a\gap b \gap c)(b \gap c \gap d)$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\ul{Lemma:} If $N \lhd A_n$ and $N$ has a $3$-cycle then $N = A_n$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $(a_1\gap a_2 \gap a_3) \in N$. Then for any distinct $b_1, b_2, b_3 \in \{1, \ldots, n\}$ let $\sigma \in S_n$ be a permutation such that $\sigma(a_1) = b_1$, $\sigma(a_2) = b_2$, and $\sigma(a_3) = b_3$. Since $N$ is normal, we have that $(b_1\gap b_2 \gap b_3) = \sigma (a_1 \gap a_2 \gap a_3)\sigma^{-1} \in N$. So, $N$ contains all $3$-cycles. And by the last lemma this means that $A_n < N$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem:} If $n \geq 5$ then $A_n$ is simple.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We shall first show that $A_5$ is simple. Note that $|A_5| = \frac{5!}{2} = 60 = 5 \cdot 2^2 \cdot 3$. So suppose for the sake of contradiction that there exists a subgroup $N \lhd A_5$ with $1 \lneqq N \lneqq A_5$.\retTwo
+
+	We can't have that $3$ divides $|N|$.
+	\begin{myIndent}\exPPP
+		If $3$ divides $|N|$ then we would know by Cauchy's theorem that $N$ contains an\\ element of order $3$, say $\sigma$. So, let $(\ell_1 \geq \cdots \geq \ell_m)$ be the cycle type of $\sigma$. We must\\ have that $\ell_1 + \ldots + \ell_m = 5$ and $\lcm(\ell_1, \ldots, \ell_m) = 3$. But the only cycle type\\ satisfying those requirements is $(3 \geq 1 \geq 1)$. Hence, $\sigma$ is a $3$-cycle. That in turn\\ implies by the last lemma that $N = A_n$ (which is a contradiction).\retTwo
+	\end{myIndent}
+
+	Similarly, we can't have that $5$ divides $|N|$.\newpage
+	\begin{myIndent}\exPPP
+		Let $P \in \Syl_5(N)$. If $5$ divides $N$ then we also have that $P \in \Syl_5(A_5)$. And since there exists $x \in A_5$ such that $P^\prime = xPx^{-1} \subseteq N$ for all $P^\prime \in \Syl_p(A_5)$, we can in turn say that $N$ contains every element of $A_n$ with order dividing $5$.\retTwo
+
+		But now note that the only elements of $S_5$ with order $5$ are $5$ cycles. Also, all $5$ cycles are easily seen to be even permutations. So, $\{\sigma \in S_5 : \sigma \text{ is a } 5\text{-cycle}\}$ is a subset of $N$. Also, it is an easy counting exercise to see that the number of such permutations is $\sfrac{5!}{5} = 24$. Hence, we've proven that $24 < |N|$.\retTwo
+
+		Since $|N|$ divides $60$ and $N \lneqq A_5$, this forces $|N| = 30$. But we already showed that $3$ can't divide $|N|$. So, we have a contradiction.\retTwo
+	\end{myIndent}
+
+	This narrows us down to the case that $|N| = 2$ or $|N| = 4$. To address this case, we bring up the following lemma:\retTwo
+
+	\ul{Lemma:} If $|G| < \infty$, $N \lhd G$, and $N$ is a $p$-group, then $N \subseteq \bigcap_{P \in \Syl_p(G)} P \eqqcolon O_p(G)$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		By Sylow's 2nd theorem we know $N \subseteq P_0$ for some $P_0 \in \Syl_p(G)$. Then since $N$ is normal, $N = \bigcap_{x \in G} xN x^{-1} \subseteq \bigcap_{x \in G} xP_0 x^{-1} = \bigcap_{P \in \Syl_p(G)} P$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	Now pick $\sigma \in A_5$ with $o(\sigma) = 2$. The only cycle types of permutations in $S_5$ that yield permutations of order $2$ are $(2 \geq 1 \geq 1 \geq 1)$ and $(2 \geq 2 \geq 1)$. However, permutations of the former cycle type are odd. Hence, we may assume $\sigma = (a\gap b)(c \gap d)$.\retTwo
+
+	Next, note that $P_2 \coloneqq \{\myId, (1\gap 2)(3 \gap 4), (1\gap 3)(2 \gap 4), (1\gap 4)(2 \gap 3)\}$ is a Sylow $2$-subgroup of $A_5$.
+	\begin{myIndent}\exPPP
+		It is clear that $P_2$ is closed under inverses. We only need to verify that it really is closed under compositions.
 		\begin{itemize}
-			\item $|N_G(P)| = |g(N_G(P))g^{-1}| = |(N_G(gPg^{-1}))|$,
-			\item $|N_G(\Phi(P))| = |g(N_G(\Phi(P)))g^{-1}| = |N_G(g\Phi(P)g^{-1})| = |N_G(\Phi(gPg^{-1}))|$.\retTwo
+			\item \begin{tabular}{l}
+				$(1\gap 2)(3 \gap 4)(1 \gap 3)(2 \gap 4) =(1 \gap 4) (2\gap 3)$ and $(1\gap 2)(3 \gap 4)(1 \gap 4)(2 \gap 3) =(1 \gap 3) (2\gap 4)$,
+			\end{tabular}
+
+			\item \begin{tabular}{l}
+				$(1\gap 3)(2 \gap 4)(1 \gap 2)(3 \gap 4) =(1 \gap 4) (2\gap 3)$ and $(1\gap 3)(2 \gap 4)(1\gap 4)(2 \gap 3) = (1\gap 2)(3 \gap 4)$,
+			\end{tabular}
+
+			\item I'm bored and don't want to manually verify the last two relations.\retTwo
 		\end{itemize}
-
-		It follows for all $g \in G$ and $P \in \Syl_p(G)$ that:
-
-		{\centering\begin{tabular}{l}
-			$|\Phi^{-1}(\Phi(P))| = [N_G(\Phi(P)) : N_G(P)]$ \\ [4pt]
-			$\phantom{|\Phi^{-1}(\Phi(P))|} = \frac{|N_G(\Phi(P))|}{|N_G(P)|} = \frac{|N_G(\Phi(gPg^{-1}))|}{|N_G(gPg^{-1})|} = [N_G(\Phi(gPg^{-1})) : N_G(gPg^{-1})]$\\
-			$\phantom{|\Phi^{-1}(\Phi(P))| = \frac{|N_G(\Phi(P))|}{|N_G(P)|} = \frac{|N_G(\Phi(gPg^{-1}))|}{|N_G(gPg^{-1})|}} = |\Phi^{-1}(\Phi(gPg^{-1}))|$
-		\end{tabular}\retTwo\par}
-
-		And since $G$ acts transitively on $\Syl_p(G)$ by conjugation, this means that there exists\\ $r \in \mathbb{N}$ such that $r = |\Phi^{-1}(\Phi(P))|$ for all $P \in \Syl_p(G)$. And since $\Phi$ is surjective,\\ we have that $\Phi^{-1}(Q) = r$ for all $Q \in \Syl_p(G)$. $\blacksquare$\retTwo
 	\end{myIndent}
+
+	Thus by our lemma, we know that $N \subseteq \bigcap_{P \in \Syl_2(G)} P = \bigcap_{x \in G} xP_2x^{-1}$.\retTwo
+
+	But now note that:
+	
+	{\centering$((a\gap b)(c \gap e)) P_2 ((a\gap b)(c \gap e))^{-1} = \{\myId, (b \gap a)(e \gap d), (b \gap e)(a\gap d), (b \gap d)(a \gap e)\}$\retTwo\par}
+
+	Therefore $\bigcap_{x \in G} xP_2x^{-1}$ is trivial and we have a contradiction since $N = \{\myId\}$. This\\ finishes the proof that $A_5$ is simple. 
+
+	\mySepThree 
+
+	Now we proceed by induction on $n$. Suppose $1 \neq N \lhd A_n$ and for all $i \in \{1, \ldots, n\}$ let $G_i \coloneqq \{\sigma \in A_n : \sigma(i) = i\}$. Then there is an obvious group isomorphism such that $G_i \cong A_{n-1}$ for all $i$. Also, $N \cap G_i \lhd G_i$. So, by induction we know for each $i$ that either $N \cap G_i = \{1\}$ or $N \cap G_i = G_i$.\newpage
+
+	But if $N \cap G_i = G_i$ for any $i$ then we are already done since that would imply that $N$ contains a $3$-cycle. So, without loss of generality we may now assume that $N \cap G_i = \{\myId\}$ for all $i$. As a consequence, if $\sigma, \sigma^\prime \in N$ satisfy that $\sigma(i) = \sigma^\prime(i)$ for any $i$ then we must have that $\sigma = \sigma^\prime$ since $\sigma (\sigma^\prime)^{-1} \in N \cap G_i$.\retTwo
+
+	Suppose $\sigma \in N - \{\myId\}$. Then we have two cases:
+	\begin{itemize}
+		\item Suppose $\sigma$ has a cycle of size $\geq 3$. In other words, there exists distinct numbers $a, b, c \in \{1, \ldots, n\}$ such that $\sigma = (a \gap b \gap c \gap \cdots)\cdots$. But now if $d, e \in \{1, \ldots, n\}$ are any other $2$ distinct numbers, we have that $\sigma^\prime \coloneqq (c \gap d \gap e)\sigma (c \gap d \gap e)^{-1} \in N$ with $\sigma^\prime(a) = b = \sigma(a)$ and $\sigma^\prime(b) = d \neq c = \sigma(b)$. This is a contradiction.
+		
+		\item Meanwhile, suppose $\sigma$ has only cycles of length $2$. Since $\sigma$ is even, we thus know there are distinct numbers $a, b, c, d \in \{1, \ldots, n\}$ such that $\sigma = (a\gap b)(c \gap d)\cdots$. But now if $e, f$ are two other distinct elements of $\{1, \ldots, n\}$ (supposing $n \geq 6$), then consider $\sigma^\prime \coloneqq (c \gap e \gap f)\sigma (c \gap e \gap f)^{-1}$. Like before, $\sigma^\prime(a) = b = \sigma(a)$. But $\sigma^\prime(d) = e \neq c = \sigma(d)$. Hence we again have a contradiction. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Here is an application of the prior theorem. Suppose $G$ is a finite group with $|G| = 2m$ where $2 \not\divides m$. Then there exists a characteristic subgroup $N < G$ such that $[G : N] = 2$.
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Consider the action of $G \curvearrowright G$ by left translations and let $\phi: G \to S_G$ be the induced group homomorphism. Note that we can always identify $S_G$ with $S_{|G|}$ by just numbering the elements of $G$. Also note that for all $g \in G$ the cycle type of $\phi(g)$ is:
+	
+	{\centering$(o(g) \geq o(g) \geq \cdots \geq o(g))$ (where there are $|G| / o(g)$ many orbits).\retTwo\par}
+
+	Next, by Cauchy's theorem there exists $g_0 \in G$ such that $o(g_0) = 2$. But now the cycle type of $\phi(g_0)$ is $(2 \geq 2 \geq \cdots \geq 2)$ (with $|G| / 2 = m$ many orbits.) Hence, $\phi(g_0)$ is an odd permutation and we know that $\varepsilon \circ \phi: G \to \{\pm 1\}$ is a surjective group homomorphism.\retTwo
+
+	Let $N \coloneqq \ker(\varepsilon \circ \phi)$. Then $[G : N] = |\myIm(\varepsilon \circ \phi)| = 2$. Also, because of how we defined $N$ we know that $g \in N$ if and only if the cycle type of $(o(g) \geq o(g) \geq \cdots \geq o(g))$ gives an even permutation.\retTwo
+
+	But now note that for all $\theta \in \Aut(G)$ we have that $o(\theta(g)) = o(g)$. Thus $g \in N$ iff $\theta(g) \in N$ for all $\theta \in \Aut(G)$. And this implies that $N$ is a characteristic subgroup of $G$. $\blacksquare$
+\end{myIndent}
+
+\Hstatement\mySepTwo
+
+{\color{Red} (I didn't do these problems before they were due but I'm doing them now\dots)\retTwo}
+
+\blab{Set 4 Problem 5:} In this problem we show that $\Inn(S_6) \neq \Aut(S_6)$.
+\begin{enumerate}
+	\item[(a)] Show that $S_5$ has $6$ Sylow $5$-subgroups and then use the action of $S_5$ on $\Syl_5(S_5)$ to show that $S_6$ has a subgroup $H$ which is isomorphic to $S_5$.
+	
+	\begin{myIndent}\HexOne
+		Since $s_5 \coloneqq |\Syl_5(S_5)|$ equals $1 \mMod{5}$ and divides $\frac{|S_5|}{5} = \frac{5!}{5} = 24$, that already restricts $s_5$ to equaling either $1$ or $6$. That said, as I will prove later on \inLinkRap{idk reference 5}{page \_\_\_} in my lecture notes, $S_5$ does not have a normal subgroup of size $5$. Therefore, this forces $s_5 = 6$.\newpage
+
+		Now consider the action $S_5 \curvearrowright \Syl_5(S_5)$ by conjugation and let:
+		
+		{\centering$\phi : S_5 \to S_{\Syl_5(S_5)} \cong S_6$ be the induced homomorphism.\retTwo\par}
+		
+		Note that $\sigma \in \ker(\phi)$ iff $\sigma P \sigma^{-1} = P$ for all $P \in \Syl_5(G)$. In particular, if we fix $P \in \Syl_5(G)$ then we know that $\ker(\phi) \subseteq N_G(P)$ and hence:
+		
+		{\centering$|\ker(\phi)| \leq \frac{S_5!}{s_5} = \frac{120}{6} = 20$.\retTwo\par}
+
+		Thus $\ker(\phi) \lhd S_5$ and $[S_5 : \ker(\phi)] > 2$. By the aforementioned proof on \inLinkRap{idk reference 5}{page \_\_\_}, this means that $\ker(\phi) = \{\myId\}$. Hence $\phi$ is an injective homomorphism. And by letting $H \coloneqq \myIm(\phi)$ we have that $S_5 \cong H < S_6$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Show for every $\sigma \in S_6$ that $\Fix(\sigma H \sigma^{-1}) = \emptyset$ (where $S_6$ is acting on $\{1, \ldots, 6\}$ by\\ evaluation).
+	
+	\begin{myIndent}\HexOne
+		We know that $\Fix(\sigma H \sigma^{-1}) = \bigcap_{\tau \in H}\Fix(\sigma \tau \sigma^{-1}) = \bigcap_{\tau \in H}(\sigma \cdot\Fix(\tau))$. But now recall that the action $S_5 \curvearrowright \Syl_5(S_5)$ is transitive and hence there is some $\tau^\prime \in H$ such that $\Fix(\tau^\prime) = \emptyset$. In turn, $\sigma \cdot \Fix(\tau^\prime) = \emptyset$ and so $\Fix(\sigma H \sigma^{-1}) = \emptyset$ for all $\sigma \in S_n$.
+
+		\begin{myIndent}\exPPP
+			Another way of thinking of this is that conjugation preserves cycle type. So if $\tau \in S_6$ has no fixed points (i.e. $1$-cycles), then $\sigma \tau \sigma^{-1}$ also has no $1$-cycles.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+	
+	\item[(c)] Consider the action $S_6 \curvearrowright S_6 / H$ by left-translation. Show that this induces a group\\ homomorphism $\theta : S_6 \to S_6$ and that $\Fix(\theta(H)) \neq \emptyset$ (again with respect to the action of $S_6$ on $\{1, \ldots, 6\}$ by evaluation).
+	
+	\begin{myIndent}\HexOne
+		Since $|H| = |S_5|$, we know $[S_6 : H] = \frac{|S_6|}{|S_5|} = \frac{6!}{5!} = 6$. Hence, by numbering the cosets of $H$ we can say that $S_{S_6 / H} \cong S_6$. For convenience, I'll assume the coset $H$ corresponds to $1 \in \{1, \ldots, 6\}$.\retTwo
+
+		Now consider the induced homomorphism $\theta$ described in the problem statement. For any $\tau \in S_6$ we have that $\theta(\tau)$ describes the map $\sigma H \mapsto \tau \sigma H$. But note that if $\tau \in H$ then $\theta(\tau)$ fixes $H$. After applying our correspondance $S_{S_6 / H} \cong S_6$ this translates to saying that $1 \in \Fix(\theta(H))$.\retTwo
+	\end{myIndent}
+
+	\item[(d)] Deduce that $\Aut(S_6) \neq \Inn(S_6)$.
+	
+	\begin{myIndent}\HexOne
+		In part (b) we proves that if $\psi \in \Inn(S_6)$ then $\Fix(\psi(H)) = \emptyset$. Thus the fact that $\theta$ from part (c) doesn't satisfy that property means $\theta$ is definitely not an inner automorphism. If we can now prove that $\theta$ is in fact an automorphism despite that, then we will be done.\retTwo
+
+		Fortunately, note that $\tau \in \ker(\theta)$ iff $\tau \sigma H = \sigma H$ for all $\sigma \in S_6$. This is equivalent to saying that $\tau \in \bigcap_{\sigma \in S_6} \sigma H \sigma^{-1}$. And in particular, this proves that $\ker(\theta) \subseteq H$. But now since $\ker(\theta ) \lhd S_6$ and $[S_6 : \ker(\theta)] > [S_6 : H] > 2$, we know from one more application of the fact on \inLinkRap{idk reference 5}{page \_\_\_} that $\ker(\theta) = \{\myId\}$. Hence $\theta$ is injective. And by pigeonhole principle this also proves that $\theta$ is surjective. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 4 Problem 6:} Prove that a group $G$ of order $36$ is not simple.\newpage
+
+\begin{myIndent}\HexOne
+	Suppose for the sake of contradiction that $G$ is simple. Then since $s_3 \coloneqq |\Syl_3(G)|$ divides $12$ and equals $1 \mMod{3}$, we know $s_3$ must equal either $1$ or $4$. But we can't have that $s_3 = 1$ since that would violate the simplicity of $G$. Hence, we know that $s_3 = 4$.\retTwo
+
+	Next, consider the action $G \curvearrowright \Syl_3(G)$ and let $\phi: G \to S_{\Syl_3(G)} \cong S_4$ be the induced homomorphism. Since that action is transitive, we know that $\ker(\phi) \neq G$. However, we also know that $\ker(\phi) \lhd G$. So by the simplicity of $G$ we must have that $\ker(\phi) = 1$. And this implies by the first isomorphism theorem that there is some subgroup $H = \myIm(\phi)$ of $S_4$ with $G \cong H$. But this is a contradiction since $|G| = 36 > 24 = |S_4|$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{10/29/2025}
+
+Ehh the midterm went mediocrely. I guess I'm one step closer towards flunking out of school. Anyways, right now I want to go back to studying Haar measures. So \hypertarget{idk reference 4}{I'm} going to resume what I was doing on \inLinkRap{page 353 reference}{page 353}.\retTwo
+
+If $G$ is a group and $E, V \subseteq G$, then we can in some sense measure the size of $E$ relative to $V$ by asking what is the minimum cardinality of $A \subseteq G$ such that $E \subseteq \bigcup_{x \in A} xV$. Also, if $E$ is a compact or precompact set and $V$ is open, then we can guarentee that this minimum cardinality is finite.\retTwo
+
+Clearly, the above construction defines a translation invariant notion of size. But it's not a measure. Can we modify this approach to actually get a measure?\retTwo
+
+Firstly, we'll switch to working with functions in $C_c^+(G)$ since functions are easier to work with than measures and we can hopefully apply the Riesz representation theorem if we get a positive result when working with functions.\retTwo
+
+Suppose $f, \phi \in C_c^+(G)$. Then $U = \{x : \phi(x) > \frac{1}{2}\|\phi\|_u\}$ is an open nonempty set. Also, $\supp(f)$ is compact. So there are finitely many $x_1, \ldots, x_n \in G$ with $\supp(f) \subseteq \bigcup_{j=1}^n x_jU$. And we in turn know that:
+
+{\centering $f \leq \frac{2\|f\|_u}{\|\phi\|_u}\sum_{j=1}^n L_{x_j} \phi$. \retTwo\par}
+
+Hence, given any $f, \phi \in C_c^+(G)$ it is well-defined to set:
+
+{\centering$(f : \phi) \coloneqq \inf\left\{ \sum_{j=1}^n c_j : f \leq \sum_{j=1}^n c_j L_{x_j}\phi \text{ for some } n \in \mathbb{N} \text{ and } x_1, \ldots, x_n \in G\right\}$.\retTwo\par}
+
+\begin{myTindent}\pracTwo
+	Note that if $f \leq \sum_{j=1}^n c_j L_{x_j}\phi$ then we have by triangle inequality that\\ $\|f\|_u \leq \|\phi\|_u\sum_{j=1}^n c_j$. Thus, we clearly have that $0 < \frac{\|f\|_u}{\|\phi\|_u} \leq (f : \phi)$.\retTwo
+\end{myTindent}
+
+\exTwo\ul{Lemma 11.5:} Suppose that $f, g, \phi \in C_c^+$. Then:
+\begin{enumerate}
+	\item[(a)] $(f : \phi) = (L_x f : \phi)$ for any $x \in G$.
+	
+	\begin{myIndent}\exThreeP
+		This is because $f \leq \sum_{j=1}^n c_j L_{x_j} \phi$ iff $L_x f \leq \sum_{j=1}^n c_j L_{xx_j}\phi$.\newpage
+	\end{myIndent}
+
+	\item[(b)] $(cf : \phi) = c(f : \phi)$ for any $c > 0$.
+
+	\begin{myIndent}\exThreeP
+		This is because $f \leq \sum_{j=1}^n c_j L_{x_j} \phi$ iff $cf \leq \sum_{j=1}^n cc_j L_{x_j}\phi$.\retTwo
+	\end{myIndent}
+
+	\item[(c)] $(f + g, \phi) \leq (f : \phi) + (g : \phi)$.
+	
+	\begin{myIndent}\exThreeP
+		Suppose $f \leq \sum_{j=1}^m c_j L_{x_j}\phi$ and $g \leq \sum_{j={m + 1}}^{m + n}c_j L_{x_j}\phi$. Then $f + g \leq \sum_{j=1}^n c_j L_{x_j}\phi$. And by minimizing $\sum_{j=1}^m c_j$ and $\sum_{j={m + 1}}^{m + n}c_j$ this claim follows.\retTwo
+	\end{myIndent}
+
+	\item[(d)] $(f : \phi) \leq (f : g)(g : \phi)$.
+	
+	\begin{myIndent}\exThreeP
+		If $f \leq \sum_{j=1}^n c_j L_{x_j} g$ and $g \leq \sum_{i=1}^n d_i L_{y_i}\phi$, then:
+		
+		{\centering$f \leq \sum_{j} c_j L_{x_j}(\sum_{i=1} d_i L_{y_i}\phi) = \sum_{j} c_j (\sum_{i} d_i L_{x_j}L_{y_i}\phi) = \sum_{j, i} c_j d_i L_{x_j y_i}\phi$\retTwo\par}
+
+		And since $\sum_{j, i} c_j d_i = (\sum_{j} c_j)(\sum_{i}d_i)$ our claim follows. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo Now let us fix $f_0 \in C_c^+(G)$ from here on out. It doesn't matter which function $f_0$\\ specifically is. We just want to have a base-line function to compare all other functions\\ in $C_c^+(G)$ to.\retTwo
+
+Next, if $\phi \in C_c^{+}(G)$ then let us define $ I_\phi(f) \coloneqq \frac{(f : \phi)}{(f_0 : \phi)}$ for all $f \in C_c^{+}(G)$.
+
+\begin{myIndent}\hThree
+	By the last lemma, we know that $I_\phi$ is a sublinear functional that is invariant to left\\ translations. Also, note that:
+
+	{\centering $I_\phi(f) = \frac{(f : \phi)}{(f_0 : \phi)} \leq \frac{(f : f_0)(f_0 : \phi)}{(f_0 : \phi)} \leq (f : f_0)$ and $I_\phi(f) = \frac{(f : \phi)}{(f_0 : \phi)} \geq \frac{(f : \phi)}{(f_0 : f)(f : \phi)} \geq (f_0 : f)^{-1}$.\retTwo\par}
+
+	(To put the last line more succinctly, $I_\phi(f) \in [(f_0 : f)^{-1}, (f : f_0)]$ for all $f, \phi \in C_c^+(G)$\dots)\retTwo
+\end{myIndent}
+
+Folland's next claim is that $I_\phi$ is "approximately" linear when $\supp(\phi)$ is small.\retTwo
+
+\exTwo\ul{Lemma 11.7:} If $f_1, f_2 \in C_c^+(G)$ and $\varepsilon > 0$ then there is a neighborhood $V$ of $e \in G$ such that $I_\phi(f_1) + I_\phi(f_2) \leq I_\phi(f_1 + f_2) + \varepsilon$ whenever $\supp(\phi) \subseteq V$. 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Fix $g \in C_c^+$ with $g = 1$ on $\supp(f_1 + f_2)$. Then for any $\delta > 0$ define $h_\delta = f_1 + f_2 + \delta g$\\ [-1pt] and for both $i$ define:
+	
+	{\centering$h^{(i)}_\delta(x) = \left\{\begin{matrix}
+		\sfrac{f_i(x)}{h_\delta(x)} & \text{if } x \in \supp(f) \\
+		0 & \text{otherwise.}
+	\end{matrix}\right.$\retTwo\par}
+
+	Then each $h^{(i)}_\delta \in C_c^+(G)$. So by \inLinkRap{Folland Proposition 11.2}{proposition 11.2} we know there is some neighborhood\\ $V_\delta$ of $e$ with $|h_\delta^{(i)}i(x) - h_\delta^{(i)}(y)| < \delta$ when $y^{-1}x \in V$ and $i \in \{1, 2\}$.
+	\begin{myIndent}\exPPP
+		Specifically, let $V_\delta$ be a nighborhood of $e$ such that $\|R_z h_\delta^{(i)} - h_\delta^{(i)}\|_u < \delta$ for all\\ $z \in V_\delta$. Then $|h_\delta^{(i)}(x) - h_\delta^{(i)}(y)| < \delta$ if $x = yz$ for some $z \in V_\delta$. Or in other\\ words, if $y^{-1}x = z \in V_\delta$ then $|h_\delta^{(i)}(x) - h_\delta^{(i)}(y)| < \delta$.\retTwo
+	\end{myIndent}
+
+	If $\phi \in C_c^+(G)$ with $\supp(\phi) \subseteq V_\delta$ and $h_\delta \leq \sum_{j=1}^n c_j L_{x_j}\phi$, then $|h_\delta^{(i)}(x) - h_\delta^{(i)}(x_j)| < \delta$ whenever $x_j^{-1} x \in \supp(\phi)$. Hence, we can say for all $x \in G$ that:
+
+	{\centering $f_i(x) = h_\delta(x)h_\delta^{(i)} \leq \sum\limits_{j=1}^n c_j \phi(x_j^{-1} x)h_\delta^{(i)}(x) \leq \sum\limits_{j=1}^n c_j \phi(x_j^{-1} x)(h_\delta^{(i)}(x_j) + \delta)$ \newpage\par}
+
+	But now this proves that $(f_i : \phi) \leq \sum_{j=1}^n c_j(h_\delta^{(i)}(x_j) + \delta)$ for both $i$.\retTwo
+	
+	Also, since $h_\delta^{(1)} + h_\delta^{(2)} \leq 1$, we can thus conclude that:
+	
+	{\centering$(f_1 : \phi) + (f_2 : \phi) \leq \sum_{j=1}^n c_j (1 + 2\delta)$.\retTwo\par}
+	
+	And by bringing $\sum_{j=1}^n c_j$ arbitrarily close to $(h : \phi)$ and dividing by $(f_0 : \phi)$, we can now say that $I_\phi(f_1) + I_\phi(f_2) \leq (1 + 2\delta)I_\phi(h_\delta) \leq (1 + 2\delta)(I_\phi(f_1 + f_2) + \delta I_\phi(g))$.\retTwo
+
+	Now we want $(1 + 2\delta)(I_\phi(f_1 + f_2) + \delta I_\phi(g)) < I_\phi(f_1 + f_2) + \varepsilon$. Equivalently this means we want $2\delta I_\phi(f_1 + f_2) + \delta(1 + 2\delta) I_\phi(g) < \varepsilon$. And fortunately, this will be guarenteed if:
+
+	{\centering $2\delta (f_1 + f_2 : f_0) + \delta(1 + 2\delta)(g : f_0) < \varepsilon$ \retTwo\par}
+
+	So, by choosing $\delta$ small enough we can guarentee that $I_\phi(f_1) + I_\phi(f_2) \leq I_\phi(f_1 + f_2)$ whenever $\supp(\phi) \subseteq V_\delta$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem 11.8:} Every locally compact group $G$ contains a left Haar measure.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	For each $f \in C_C^+(G)$ let $X_f \coloneqq [(f_0 : f)^{-1}, (f : f_0)]$. Then let $X = \prod_{f \in C_c^+(G)} X_f$. By\\ [-1pt] Tychonoff's theorem we know that $X$ is a compact Hausdorff space. Also, we have that\\ $I_\phi \in X$ for all $\phi \in C_c^+(G)$ since $I_\phi(f) \in [(f_0 : f)^{-1}, (f : f_0)]$ for all $f, \phi \in C_c^+(G)$.\retTwo
+
+	Now for each  neighborhood $V$ of $e$ let $K(V)$ be the closure in $X$ of $\{I_\phi : \supp(\phi) \subseteq V\}$. Then note that $\bigcap_{j=1}^n K(V_j) \supseteq K(\bigcap_{j=1}^n V_j) \neq \emptyset$  for all finite collections $\{V_1, \ldots, V_n\}$ of neighborhoods of $e$. Hence since $X$ is compact and the collection of sets $K(V)$ has the finite intersection property, we know there exists an element $I$ in the intersection of all the $K(V)$'s.\retTwo
+
+	Next since $I$ is either an accumulation point of or inside $\{I_\phi : \supp(\phi) \subseteq V\}$ for\\ all neighborhoods $V$ of $e$, we know that any neighborhood of $I$ in $X$ must intersect\\ $\{I_\phi : \supp(\phi) \subseteq V\}$ for all neighborhoods $V$ of $e$ in $G$. Consequently, for any\\ neighborhood $V$ of $e$ and any $f_1, \ldots, f_n \in C_c^+(G)$ and $\varepsilon > 0$ there exists $\phi \in C_c^+(G)$\\ with $\supp(\phi) \subseteq V$ such that $|I(f_j) - I_\phi(f_j)| < \varepsilon$ for each $j$.
+
+	\begin{myIndent}\exPPP
+		Why?\\
+		By definition of the product topology, the following is an open neighborhood of $I$\\ in $X$:
+		
+		{\centering$U \coloneqq \{I^\prime \in X : |I(f_j) - I^\prime(f_j)| < \varepsilon \text{ for } j =1, \ldots, n\}$\retTwo\par}
+		
+		Then any $I_\phi \in U \cap \{I_\phi : \supp(\phi) \subseteq V\}$ satisfies that $|I(f_j) - I_\phi(f_j)| < \varepsilon$\\ for each $j \in \{1, \ldots, n\}$.\retTwo
+	\end{myIndent}
+
+	Consequently, we can now show using lemmas 11.5 and 11.7 that $I$ is left-invariant and satisfies that $I(af + bg) = aI(f) + bI(g)$ for all $f, g \in C_c^+$ and $a, b > 0$. 
+	\begin{myIndent}\exPPP
+		To show that $I(af + bg) = aI(f) + bI(g)$, consider any $\varepsilon > 0$ and then pick a neighborhood $V$ of $e$ such that whenever $\supp(\phi) \subseteq V$ we have that:
+
+		{\centering $I_\phi(af + bg) \leq aI_\phi(f) + bI_\phi(g) \leq I_\phi(af + bg) + \varepsilon$ \retTwo\par}
+
+		Then by our prior reasoning there exists $\phi \in C_c^+(G)$ with $\supp(\phi) \subseteq V$ such that $|I(f) - I_\phi(f)| < \varepsilon$, $|I(g) - I_\phi(g)| < \varepsilon$, and $|I(af + bg) - I_\phi(af + bg)| < \varepsilon$. And hence we can get that $|I(af + bg) - aI(f) - bI(g)| < 4\varepsilon$.\newpage
+
+		By taking $\varepsilon \to 0$ this then proves that $I(af + bg) = aI(f) + bI(g)$.\retTwo
+
+		Similarly, to prove that $I$ is left-invariant let $\varepsilon > 0$ and pick $\phi$ such that\\ $|I(f) - I_\phi(f)| < \varepsilon$ and $|I(L_x f) - I_\phi(L_x f)| < \varepsilon$. Then $|I(f) - I(L_x f)| < 2\varepsilon$.\retTwo
+	\end{myIndent}
+
+	We can extend $I$ to all of $C_c(G, [0, \infty))$ by defining $I(0) = 0$. This importantly preserves the linearity and left-invariance of $I$. Then similarly to the proof of lemma 7.15 on \inLinkRap{Folland Lemma 7.15 reference}{pages 57-58}, by setting $I(f) = I(f^+) - I(f^-)$ where $f^+$ and $f^-$ are the positive and negative parts of $f$ we can extend $I$ to being a positive real linear functional on $C_c(G, \mathbb{R})$. And this extension is clearly still left-invariant since $(L_x f)^+ = L_x f^+$ and $(L_x f)^- = L_x f^-$.\retTwo
+
+	Finally, we extend $I$ to being a positive left-invariant linear functional on all of $C_c(G)$ by just setting $I(f) = I(\rea{f}) + iI(\ima{f})$. Then by applying the Riesz-representation theorem plus \inLinkRap{Folland Proposition 11.4(b)}{proposition 11.4(b)} we get a left Haar measure on $G$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo I will go into more depth on Haar measures later on \inLinkRap{idk reference 6}{page \_\_\_}.
+
+\mySepTwo
+
+\dispDate{10/30/2025}
+
+\blect{Math 220a Notes:}\retTwo
+
+We'll now introduce a notion of symmetric points with respect to a given circle $\Gamma \subseteq \mathbb{C}_\infty$. Firstly, if $\Gamma = \mathbb{R}_\infty \coloneqq \mathbb{R} \cup \{\infty\}$, then clearly the intuitive definition of a symmetric point of $z \in \mathbb{C}$ would be the point $z^* \coloneqq \overline{z} \in \mathbb{C}$.\retTwo
+
+\exTwo\ul{Proposition:} If $S$ is a Möbius transformation and $S(\mathbb{R}) = \mathbb{R}$, then $S(z^*) = (S(z))^*$ for all $z \in \mathbb{C}$ with $S(z) \neq \infty$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$S$ is uniquely determined by the points $z_1, z_2, z_3 \in \mathbb{C}_\infty$ such that $S(z_1) = 1$, $S(z_2) = 0$, and $S(z_3) = \infty$. But note that since $S(\mathbb{R}) = \mathbb{R}$ and $S$ maps circles to circles, we know that $z_1, z_2, z_3 \in \mathbb{R}_\infty$. Hence, by our construction in the existence proof at the top of \inLinkRap{page 337 reference}{page 337}, we know that there are real $a, b, c, d \in \mathbb{R}$ such that $S(z) = \frac{az + b}{cz + d}$. And now if $z \in \mathbb{C} - \{z_3\}$, we have that:
+
+	{\centering$S(z)^* = \overline{S(z)} =  \overline{\left(\frac{az+ b}{cz + d}\right)} = \frac{a\overline{z}+ b}{c\overline{z} + d} = S(\overline{z}) = S(z^*)$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\hTwo Next we consider letting $\Gamma \subseteq \mathbb{C}_\infty$ be any circle. Then we fix $z_1, z_2, z_3 \in \Gamma$ and define the Möbius transformation $T(z) \coloneqq (z, z_1, z_2, z_3)$. Given any $z \in \mathbb{C}_\infty - \{z_3\}$ we define the \udefine{symmetric point} of $z$ with respect to $\Gamma$ to be $z^* = T^{-1}(\overline{T(z)})$.
+\begin{myIndent}\pracTwo
+	In other words, $z^*$ is a symmetric point of $z$ relative to $\Gamma$ iff $(z^*, z_1, z_2, z_3) = \overline{(z, z_1, z_2, z_3)}$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Claim:} Our definition of symmetric point relative to $\Gamma$ is independent of our choice\\ of $z_1, z_2, z_3 \in \Gamma$. In other words, for any $z \in \mathbb{C}_\infty$, if $\{z_1, z_2, z_3\}$ and $\{\widetilde{z_1}, \widetilde{z_2}, \widetilde{z_3}\}$ are\\ two triplets of distinct points in $\Gamma$ with $z_3 \neq z$ and $\widetilde{z_3} \neq z$, then after defining\\ $T_1(z) \coloneqq (z, z_1, z_2, z_3)$ and $T_2(z) \coloneqq (z, \widetilde{z_1}, \widetilde{z_2}, \widetilde{z_3})$ we have that $T_1^{-1}(\overline{T_1(z)}) = T_2^{-1}(\overline{T_2(z)})$.
+\begin{myIndent}\exThreeP
+	Proof:\newpage
+	Note that $T_1 \circ T_2^{-1} \eqqcolon M$ sends $\mathbb{R}$ to $\mathbb{R}$, as does $M^{-1} = T_2 \circ T_1^{-1}$. Importantly, we can\\ thus apply our prior proposition to see that $M^{-1}(\overline{w}) = \overline{M^{-1}(w)}$ when $w \in \mathbb{C}$ and\\ [3pt] $M^{-1}(w) = T_2(T_1^{-1}(w)) \neq \infty$. In particular, if $w = M(T_2(z)) = T_1(z)$ then we have\\ [2pt] that $M^{-1}(\overline{M(T_2(z))}) = \overline{M^{-1}(M(T_2(z)))}$ if $T_1(z) \neq \infty$ and $T_2(T_1^{-1}(T_1(z))) \neq \infty$.\retTwo
+
+	So for all $z \in \mathbb{C}_\infty - \{z_3, \widetilde{z_3}\}$ we have that:
+
+	{\centering\begin{tabular}{l}
+		$T_1^{-1}(\overline{T_1(z)}) = T_2^{-1}(T_2(T_1^{-1}(\overline{T_1(T_2^{-1}(T_2(z)))})))$\\ [6pt]
+		$\phantom{T_1^{-1}(\overline{T_1(z)})} = T_2^{-1}(M^{-1}(\overline{M(T_2(z))})) = T_2^{-1}(\overline{M^{-1}(M(T_2(z)))}) = T_2^{-1}(T_2(z))$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+
+	\begin{myDindent}\myComment
+		As a side note, for any $z \in \mathbb{C}_\infty$ we can always choose $z_3 \in \Gamma$ such that $z \neq z_3$. Hence, we can say that every point $z$ in $\mathbb{C}_\infty$ has a well-defined symmetric point $z^*$ relative to $\Gamma$.\retTwo
+	\end{myDindent}
+\end{myIndent}
+
+\hTwo Note that since $z^*$ is the symmetric point of $z$ relative to $\Gamma$ iff $(z^*, z_1, z_2, z_3) = \overline{(z, z_1, z_2, z_3)}$, we clearly have that $(z^*)^* = z$ (relative to $\Gamma$).\retTwo
+
+\exTwo\ul{(Conway) Theorem III.3.19 (The Symmetry Principle):} If a Möbius transformation $T$ takes\\ a circle $\Gamma_1$ onto the circle $\Gamma_2$, then any pair of points symmetric with respect to $\Gamma_1$ are\\ mapped by $T$ onto a pair of points symmetric with respect to $\Gamma_2$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $z_2, z_3, z_4$ be distinct points in $\Gamma_1$ such that $z \neq z_4$. Then if $z$ and $z^{*}$ are symmetric with respect to $\Gamma_1$ we have that: 
+
+	{\centering $(Tz^*, Tz_2, Tz_3, Tz_4) = (z^*, z_2, z_3, z_4) = \overline{(z, z_2, z_3, z_4)} = \overline{(Tz, Tz_2, Tz_3, Tz_4)}$. \retTwo\par}
+
+	And since $Tz_2, Tz_3, Tz_4$ are three distinct points of $\Gamma_2$, we have that $Tz^*$ and $Tz$ are symmetric with respect to $\Gamma_2$. $\blacksquare$\retTwo
+\end{myIndent}
+
+Can we get an explicit formula for $z^*$?
+\begin{myIndent}\hThree
+	Firstly we need a quick observation. If $z_1, z_2, z_3, z_4 \in \mathbb{C}$ with $z_1 \neq z_4$ then:
+	
+	{\centering$\overline{(z_1, z_2, z_3, z_4)} = (\overline{z_1}, \overline{z_2}, \overline{z_3}, \overline{z_4})$.\retTwo\par}
+
+	\begin{myIndent}\pracTwo
+		Why?\\
+		From the existence proof in the theorem on \inLinkRap{page 337 reference}{page 337} we know that:
+		
+		{\centering$(z_1, z_2, z_3, z_4) = \frac{(z_1 - z_3)(z_2 - z_4)}{(z_1 - z_4)(z_2 - z_3)}$ and $(\overline{z_1}, \overline{z_2}, \overline{z_3}, \overline{z_4}) = \frac{(\overline{z_1} - \overline{z_3})(\overline{z_2} - \overline{z_4})}{(\overline{z_1} - \overline{z_4})(\overline{z_2} - \overline{z_3})}$ .\retTwo\par}
+	\end{myIndent}
+
+	Now let $\Gamma = \{z : |z - a| = R\}$ be a circle. Then for any three distinct points $z_2, z_3, z_4$ in $\Gamma$ and $z \in \mathbb{C}$ with $z \neq z_4$ we have (since Mobius transforms preserve cross ratios) that:
+
+	{\centering\begin{tabular}{l}
+		$(z^*, z_2, z_3, z_4) = \overline{(z, z_2, z_3, z_4)}$\\ [6pt]
+		$\phantom{(z^*, z_2, z_3, z_4)} = \overline{(z - a, z_2 - a, z_3 - a, z_4 - a)} = \overline{(\frac{R^2}{z - a}, \frac{R^2}{z_2 - a}, \frac{R^2}{z_3 - a}, \frac{R^2}{z_4 - a})}$\\ [6pt]
+		$\phantom{(z^*, z_2, z_3, z_4) = \overline{(z - a, z_2 - a, z_3 - a, z_4 - a)}} =(\frac{R^2}{\overline{z} - \overline{a}}, \frac{R^2}{\overline{z_2} - \overline{a}}, \frac{R^2}{\overline{z_3} - \overline{a}}, \frac{R^2}{\overline{z_4} - \overline{a}})$\\ [6pt]
+		$\phantom{(z^*, z_2, z_3, z_4) = \overline{(z - a, z_2 - a, z_3 - a, z_4 - a)}} =(\frac{R^2}{\overline{z} - \overline{a}}, \frac{(z_2 - a)(\overline{z_2} - \overline{a})}{\overline{z_2} - \overline{a}}, \frac{(z_3 - a)(\overline{z_3} - \overline{a})}{\overline{z_3} - \overline{a}}, \frac{(z_4 - a)(\overline{z_4} - \overline{a})}{\overline{z_4} - \overline{a}})$\\ [6pt]
+		$\phantom{(z^*, z_2, z_3, z_4) = \overline{(z - a, z_2 - a, z_3 - a, z_4 - a)}} = (\frac{R^2}{\overline{z} - \overline{a}}, z_2 - a, z_3 - a, z_4 - a)$\\ [6pt]
+		$\phantom{(z^*, z_2, z_3, z_4) = \overline{(z - a, z_2 - a, z_3 - a, z_4 - a)}} = (\frac{R^2}{\overline{z} - \overline{a}} + a, z_2, z_3, z_4)$
+	\end{tabular}\newpage\par}
+
+	Hence $z^* = a + \frac{R^2}{\overline{z} - \overline{a}}$ (when $\Gamma = \{z : |z - a| = R\}$). And in particular we have that $(z^* - a)(\overline{z} - \overline{a}) = R^2$.
+
+	\begin{myIndent}\myComment
+		Perhaps unsurprisingly this indicates that the symmetric point of the center of the circle is $\infty$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Suppose $\Gamma = \mathbb{R}$ and let $z_1, z_2, z_3 \in \mathbb{R}$. Then put $T(z) = (z, z_1, z_2, z_3) = \frac{az + b}{cz + d}$. As\\ mentioned before we can choose $a, b, c, d$ to be real-valued. Thus:
+
+{\centering $Tz = \frac{az + b}{cz + d} = \frac{az + b}{|cz + d|^2}(c\overline{z} + d) = \frac{1}{|cz + d|^2} (ac|z|^2 + bd + bc\overline{z} + adz)$ \retTwo\par}
+
+And specifically focusing on the imaginary component, we have that:
+
+{\centering$\ima{(z, z_1, z_2, z_3)} = \frac{(ad - bc)}{|cz + d|^2}\ima{z}$.\retTwo\par}
+
+This shows that $\{z : \ima{(z, z_1, z_2, z_3)} < 0\}$ is equal to either $\{z : \ima{z} < 0\}$ or\\ $\{z : \ima{z} > 0\}$ depending on whether $ad - bc > 0$ or $ad - bc < 0$ respectively.\retTwo
+
+Next suppose $\Gamma$ is an arbitrary circle and that $z_1, z_2, z_3 \in \Gamma$. Then if $S$ is any Möbius transformation we have that:
+
+{\centering\begin{tabular}{l}
+	$\{z : \ima{(z, z_1, z_2, z_3)} > 0\} = \{z : \ima{(S(z), S(z_1), S(z_2), S(z_3))} > 0\}$\\ [4pt]
+	$\phantom{\{z : \ima{(z, z_1, z_2, z_3)} > 0\}} = S^{-1}(\{z : \ima{(z, S(z_1), S(z_2), S(z_3))} > 0\})$ 
+\end{tabular}\retTwo\par}
+
+And in particular, if $S$ maps $\Gamma$ onto $\mathbb{R}_\infty$ then $\{z : \ima{(z, z_1, z_2, z_3)} > 0\} = S^{-1}(H)$ where $H \subseteq \mathbb{C}$ is either the upper half plane or lower half plane.\retTwo
+
+For a circle, we can indicate an \udefine{orientation} (i.e. a direction going around the circle) of\\ the circle by picking an ordered triple $(z_1, z_2, z_3)$ on $\Gamma$. Intuitively, you can think of an orientation as saying that you travel in $\Gamma$ in the direction going from $z_1$ to $z_2$ without passing through $z_3$ in the middle.\retTwo
+
+If $(z_1, z_2, z_3)$ is an orientation of $\Gamma$ then we define the \udefine{right side of $\Gamma$} (with respect to our orientation) to be $\{z : \ima{(z, z_1, z_2, z_3)} > 0\}$. Similarly, we define the \udefine{left side of $\Gamma$} to be $\{z : \ima{(z, z_1, z_2, z_3)} < 0\}$.\retTwo
+
+\exTwo\ul{(Conway) Theorem III.3.21 (The Orientation Principle):} Let $\Gamma_1$ and $\Gamma_2$ be two circles in\\ $\mathbb{C}_\infty$ and let $T$ be a Möbius transformation such that $T(\Gamma_1) = \Gamma_2$. Let $(z_1, z_2, z_3)$ be an\\ orientation for $\Gamma_1$. Then $T$ takes the right side and the left side of $\Gamma_1$ onto the right side\\ and left side of $\Gamma_2$ with respect to the orientation $(Tz_1, Tz_2, Tz_3)$.
+\begin{myIndent}\exThreeP
+	Why? Just note that $(z, z_1, z_2, z_3) = (Tz, Tz_1, Tz_2, Tz_3)$.\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+One more comment I'll make before moving on:
+\begin{myIndent}
+	Recall that if $\Gamma \subseteq \mathbb{C}_\infty$ is a circle and $z_1, z_2, z_3 \in \Gamma$, then $f(z) \coloneqq \ima{(z, z_1, z_2, z_3)}$ is equal to zero iff $z \in \Gamma$. It follows if $G_+$ denotes the left side of $\Gamma$ relative to $(z_1, z_2, z_3)$ and $G_-$ denotes the right side, $G_+$ and $G_-$ partition $\mathbb{C}_\infty - \Gamma$.\retTwo
+
+	Also note that since $f$ is continuous, we can show that both $G_+$ and $G_-$ are clopen in $\mathbb{C}_\infty - \Gamma$. Since $\mathbb{C}_\infty - \Gamma$ is easily shown to have at most two path components, it follows that both $G_+$ and $G_-$ must be the connected components of $\mathbb{C}_\infty - \Gamma$.\retTwo
+
+	A consequence of this as well as the orientation principle is that if if $T$ maps a circle $\Gamma_1 = \{z : |z - a| = R\}$ to another circle $\Gamma_2 = \{z : |z - a^\prime| = R^\prime\}$, then either $T$ maps the interior $\Gamma_1$ to the whole interior of $\Gamma_2$ or $T$ maps the interior of $\Gamma_1$ to the whole exterior of $\Gamma_2$.\retTwo
+\end{myIndent}
+
+Actually I have another comment to make as well.
+\begin{myIndent}
+	By our construction on \inLinkRap{page 337 reference}{page 337}, we know that $(z, z_1, z_2, z_3) = (z, z_1, z_3, z_2)^{-1}$. In particular, since $\frac{1}{w} = \overline{w}{|w|^2}$, this means that the orientation $(z_1, z_3, z_2)$ has the oppositive left vs right sides as does the orientation $(z_1, z_2, z_3)$.\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+The next topic covered by math 220a is proving Cauchy's formula and then doing a bunch of stuff with that such as proving that holomorphic functions are analytic.  Since I already took notes on a bunch of this last Spring, I'm going to intentionally skip over a lot of this.\retTwo
+
+\exTwo\ul{(Conway) Proposition IV.2.1:} Let $\varphi : [a, b] \times [c, d] \to \mathbb{C}$ be a continuous function and define $g : [c, d] \to \mathbb{C}$ by $g(t) = \int_a^b \varphi(s, t)\df s$. Then $g$ is continuous. Moreover, if $\frac{\partial \varphi}{\partial t}(s, t)\df s$ and is continuous on $[a, b] \times [c, d]$ then $g$ is continuously differentiable with $g^\prime(t) = \int_a^b \frac{\partial \varphi}{\partial t}(s, t)\df s$.
+\begin{myIndent}\exThreeP
+	Why? Just use the fact that $\varphi$ or $\frac{\partial \varphi}{\partial t}$ is continuous on a compact domain in order to get an upper bound and then apply the theorem from math 240a (see \inLinkRap{Generalization page 189}{page 189}).\retTwo
 \end{myIndent}
 
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\hypertarget{bib citation 17}{}
 
-\hypertarget{Minkowski functional reference}{}
+\hypertarget{Generalization page 189}{} 
 
 
+\hypertarget{Folland Proposition 11.2}{}
+\hypertarget{Folland Lemma 7.15 reference}{}
+\hypertarget{Folland Proposition 11.4(b)}{}
+
+\hypertarget{Alireza lemma page 257}{}
+
+\hypertarget{page 337 reference}{}
+
+\hypertarget{Folland Proposition 10.1}{}
+
+
+\hypertarget{Folland proposition 11.1}{}
 
 \hypertarget{Ergodic reading group notes 3}{}
 
 \hypertarget{existence and uniqueness diff eq notes}{}
-
-\hypertarget{page 251 reference}{}
-\hypertarget{page 271 reference}{}
-\hypertarget{page 270 reference}{}
-\hypertarget{Alireza theorem page 271}{}
-\hypertarget{Cauchy's theorem page 271}{}
-\hypertarget{Alireza theorem center of p groups}{}
-
 \hypertarget{math 241a lecture 5}{}
-\hypertarget{math 200a lecture 9}{}
-\hypertarget{math 220a lecture 9}{}
-
-
-\hypertarget{page 284 reference example 1.2.1}{}
-
 \hypertarget{idk reference 2}{}
 
-\hypertarget{math 220a theorem II.2.3}{}
-\hypertarget{Cauchy-Riemann equations theorem}{}
-
-
+\hypertarget{idk reference 5}{}
+\hypertarget{idk reference 6}{}
 
 \end{document}
+
+
+% \blect{Math 220 Homework:}\\
+
+% \blab{Exercise III.2.2:} Prove that if $b_n, a_n$ are real and positive, $0 < b = \lim_{n \to \infty} b_n$, and $a = \limsup_{n \to \infty} a_n$, then $ab = \limsup_{n \to \infty} (a_nb_n)$.
+
+% \begin{myIndent}\HexOne
+
+% \end{myIndent}
 
 
 
