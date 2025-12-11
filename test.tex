@@ -262,7 +262,8 @@
 
 \newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
 
-\newcommand{\divides}{\mathop{\mid}}
+\newcommand{\dividesDeprecated}{\mathop{\mid}}
+\newcommand{\divides}{\mathrel{\mid}}
 
 \newcommand{\card}{\mathrm{card}}
 \newcommand{\supp}{\mathrm{supp}}
@@ -307,6 +308,11 @@
 \newcommand{\Out}{\mathrm{Out}}
 \newcommand{\ab}{\mathrm{ab}}
 \newcommand{\Max}{\mathrm{Max}}
+\newcommand{\lt}{\mathrm{lt}}
+\newcommand{\Nil}{\mathrm{Nil}}
+\newcommand{\Ideal}{\mathrm{Ideal}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\Res}{\mathrm{Res}}
 
 
 \DeclareMathOperator{\lcm}{lcm}
@@ -357,1513 +363,102 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\exTwo\ul{(Conway) Cauchy's Theorem (Third Version)} Let $f$ be analytic in a region $G$ and let\\ $\gamma_0, \gamma_1 : [0, 1] \to G$ be closed piecewise $C^1$ paths such that $\gamma_0 \sim_G \gamma_1$. Then\\ $\int_{\gamma_0} f(z) \df z = \int_{\gamma_1} f(z) \df z$.
-\begin{myIndent}
-	\exThreeP
+\hTwo Note that we can also show the converse of Hilbert's basis theorem. In other words, $A$ is a Noetherian ring if $A[x]$ is Noetherian.
+\begin{myIndent}\pracTwo
 	Proof:\\
-	Let $\Gamma : [0, 1]^2 \to G$ be the homotopy.
-	\begin{myIndent}\myComment
-		Note that a difficulty with proving this theorem is that $\gamma_t(s) \coloneqq \Gamma(s, t)$ is not\\ guarenteed to be piecewise $C^1$ for any $t \neq 0, 1$.\retTwo
-	\end{myIndent}
-	
-	Since $\Gamma$ is continuous and $[0, 1]^2$ is compact, we know that $\Gamma([0, 1]^2)$ is compact in $G$.\\ It follows that $\varepsilon = \inf\{|x - y| : x \in \Gamma([0, 1]^2), y \in \mathbb{C} - G\} > 0$. It also follows\\ that $\Gamma$ is uniformly continuous. And by uniform continuity we can find $n$ such that given\\ any square $I_{j,k} \coloneqq [\frac{j}{n}, \frac{j+1}{n}] \times [\frac{k}{n}, \frac{k+1}{n}]$ we have that $\Gamma(I_{j,k}) \subseteq B_\varepsilon(z_{j,k}) \subseteq G$ for all\\ $j, k \in \{0,\ldots, n-1\}$ where $z_{j,k} \coloneqq \Gamma(\frac{j}{n}, \frac{k}{n})$.\retTwo
-
-	Now we approximate $\gamma_t(s) \coloneqq \Gamma(s, t)$ where $t = \frac{k}{n}$ by taking the closed polygonal path $P_k = [z_{0,k}, z_{1,k}] + \ldots + [z_{n-1,k}, z_{n,k}]$. Note that $[z_{j,k}, z_{j, k+1}] \subseteq B_\varepsilon(z_{j,k})$ for all $j,k$. Hence, $\{P_k\} \subseteq G$ for each $k$ (meaning we can integrate $f$ along these paths). Our claim is that:
-
-	{\center$\int_{\gamma_0} f \df z = \int_{P_0} f \df z = \int_{P_1} f \df z = \cdots =  \int_{P_n} f \df z = \int_{\gamma_1} f \df z$ \retTwo\par}
-
-	\ul{Part 1:} $\int_{\gamma_0} f \df z = \int_{P_0}f \df z$ and $\int_{\gamma_1} f \df z = \int_{P_n}f \df z$.
-	\begin{myIndent}\exPPP
-		The proof of both equalities is the same so I'll focus on the first equation. Let $\gamma_0^{(j)}$ be the restriction of $\gamma$ to $[\frac{j}{n}, \frac{j+1}{n}]$. Then after some rearranging we get that:
-
-		{\center $\int_{\gamma_0}f \df z - \int_{P_0} f \df z = \sum\limits_{j=0}^{n-1} (\int_{\gamma_0^{(j)}f \df z + \int_[z_{j+1, 0}, z_{j, 0}]} f \df z)$ \retTwo\par}
-
-		But note that $\gamma_0^{(j)}$ starts and ends at $z_{j,0}$ and $z_{j+1, 0}$ respectively. Thus $\gamma_0^{(j)} + [z_{j+1, 0}, z_{j, 0}]$ is a closed $C^1$ path. And as $\{\gamma_0^{(j)}\} \subseteq \Gamma(I_{j,k}) \subseteq B_\varepsilon(z_{j,0})$, we know that the trace of $\gamma_0^{(j)} + [z_{j+1, 0}, z_{j, 0}]$ is contained in a convex disc contained in $G$. So by Cauchy's theorem, we have that $(\int_{\gamma_0^{(j)}f \df z + \int_[z_{j+1, 0}, z_{j, 0}]} f \df z) = \int_{\gamma_0^{(j)} + [z_{j+1, 0}, z_{j, 0}]} f \df z = 0$ for all\\ [-3pt] $j$.\retTwo
-	\end{myIndent}
-
-	\ul{Part 2:} $\int_{P_k} f \df z = \int_{P_{k+1}} f \df z$ for all $k$.
-	\begin{myIndent}\exPPP
-		Note that the polygon $Q_{j,k} \coloneqq [z_{j,k}, z_{j+1, k}, z_{j+1,k+1}, z_{j, k+1}, z_{j, k}] \subseteq B_\varepsilon(z_{j,k}) \subseteq G$ for all $j,k$. And as $B_\varepsilon(z_{j,k})$ is convex, we thus know by Cauchy's theorem that:
-		
-		{\centering$\int_{Q_{j,k}} f \df z = 0$ for all $j,k$.\retTwo\par}
-
-		But now note that after some rearranging we have that:
-		
-		{\centering\begin{tabular}{l}
-			$\int_{P_k} f \df z - \int_{P_{k+1}} f \df z = \int_{[z_{n, k}, z_{n,k+1}]}f \df z - \int_{[z_{0, k}, z_{0,k+1}]}f \df z + \sum\limits_{j=1}^{n-1} \int_{Q_{j,k}} f \df z$\\ [14pt]
-			$\phantom{\int_{P_k} f \df z - \int_{P_{k+1}} f \df z} = \int_{[z_{n, k}, z_{n,k+1}]}f \df z - \int_{[z_{0, k}, z_{0,k+1}]}f \df z + 0$
-		\end{tabular}\retTwo\par}
-
-		But as $\Gamma(1, t) = \Gamma(0, t)$ for all $t \in [0, 1]$ we know that $z_{0, k} = z_{n, k}$ and\\ $z_{0, k+1} = z_{n, k+1}$. Therefore, $\int_{[z_{n, k}, z_{n,k+1}]}f \df z - \int_{[z_{0, k}, z_{0,k+1}]}f \df z = 0$ as well.\newpage
-
-		Here is a picture to hopefully help describe this part:
-
-		{\center\includegraphics[scale=0.8]{Proof5_HW7_math220a.png} $\blacksquare$\retTwo\par}
-	\end{myIndent}
+	Suppose $A$ isn't a Noetherian ring. Then there exists a sequence $\{\mathfrak{a}_n\}_{n \in \mathbb{N}}$ of ideals in $A$ such that $\mathfrak{a}_1 \subsetneqq \mathfrak{a}_2 \subsetneqq \cdots$. In turn, $\{\mathfrak{a}_n[x]\}_{n \in \mathbb{N}}$ is also a sequence of ideals in $A[x]$ such that $\mathfrak{a}_1[x] \subsetneqq \mathfrak{a}_2[x] \subsetneqq \cdots$. This proves that $A[x]$ isn't a Noetherian ring. $\blacksquare$\retTwo
 \end{myIndent}
 
-\exTwo\ul{Corollary:} If $\gamma : [0, 1] \to G$ is a closed piecewise $C^1$ curve and $\gamma \sim_{G} 0$, then $n(\gamma;a) = 0$ for all $a \in \mathbb{C} - G$.
-\begin{myIndent}\exThreeP
+Also note that if $A$ is Noetherian and $\mathfrak{a} \lhd A$, then we have that $A/\mathfrak{a}$ is Noetherian.
+\begin{myIndent}\pracTwo
 	Proof:\\
-	Just apply the previous theorem to the function $f(z) = \frac{1}{2\pi i (z-a)}$. Then as any path integral along a constant curve always evaluates to zero, we are done.\retTwo
-\end{myIndent}
-
-\exTwo\ul{(Conway) Cauchy's Theorem (Second Version)} If $f: G \to \mathbb{C}$ is an analytic function and $\gamma$ is closed $C^1$ curve in $G$ with $\gamma \sim_G 0$, then $\int_{\gamma} f = 0$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Apply Cauchy's integral theorem plus the last corollary.\retTwo
-\end{myIndent}
-
-\ul{Corollary:} If $G\subseteq \mathbb{C}$ is open and simply connected, then $\int_{\gamma} f\df z =0$ for any closed\\ piecewise $C^1$ curve $\gamma$ in $G$ and analytic function $f$ on $G$.\retTwo
-
-\hTwo\mySepTwo
-
-Munkres definition of being path homotopic (see \inLinkRap{Munkres Path Homotopic definition}{page 117}) is equivalent to Conway's\\ definition of being Fixed-End-Point (F.E.P.) homotopic. Note that if $\gamma_1$ and $\gamma_2$ are closed curves rooted at the same point, then $\gamma_1, \gamma_2$ being F.E.P. homotopic implies $\gamma_1 \sim_G \gamma_2$. Also note that if $\gamma_1$ and $\gamma_2$ are F.E.P. homotopic then $\gamma_1 + (-\gamma_2)$ is F.E.P. homotopic to a constant curve. In turn, we get the following theorem:\retTwo
-
-\exTwo\ul{Independence of Path Theorem:} If $\gamma_0, \gamma_1$ are two piecewise $C^1$ curves in an open set $G \subseteq \mathbb{C}$ from $a$ to $b$ and $\gamma_0 \sim_G \gamma_1$, then $\int_{\gamma_0} f = \int_{\gamma_1} f$ for any analytic function $f$ on $G$.
-
-\begin{myIndent}\exThreeP
-	Proof:\\
-	$\int_{\gamma_0} f \df z - \int_{\gamma_1} f \df z = \int_{\gamma_0 + (-\gamma_1)} f \df z = 0$ by the last corollary.\retTwo
-\end{myIndent}
-
-\hTwo When $G$ is simply connected (so that all curves in $G$ from a point $a$ to a point $b$ are path homotopic), we thus have that $\int_{\gamma} f$ depends only on the endpoints of $\gamma$ and not on the particular path taken. This has the following consequences:\retTwo
-
-\exTwo\ul{Theorem:} If $G$ is simply connected then every analytic function $f$ has a primitive $F$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Fix $a \in G$ and then for every $z \in G$ define $F(z) = \int_{\gamma_z} f \df w$ where $\gamma_z$ is any piecewise $C^1$ curve from $a$ to $z$.
-	\begin{myIndent}\exPPP
-		Recall from \inLinkRap{math 220a theorem II.2.3}{theorem II.2.3} on page 247 that if $G$ is connected then we can always find a polygonal path in $G$ going between any two points of $G$. Thus, we don't need to worry about if a piecewise $C^1$ curve from $a$ to $z$ exists.\newpage
-	\end{myIndent}
-
-	We claim $F$ is a primitive of $f$. After all, given any fixed $z_0$, let $r>0$ be such that\\ $B_r(z_0) \subseteq G$. Now by the corollary following Cauchy's theorem (second version), since\\ $\gamma_z + [z, z_0] + (-\gamma_{z_0})$ is a closed piecewise $C^1$ curve in $G$ for any arbitrary piecewise $C^1$ curves $\gamma_z$ and $\gamma_{z_0}$ in $G$ going from $a$ to $z$ and $z_0$ respectively, we know that:
-	
-	{\centering$F(z) + \int_{[z, z_0]}f \df w - F(z_0) = 0$ for all $z \in B_r(z_0)$.\retTwo\par}
-
-	In other words, $\frac{F(z) - F(z_0)}{z - z_0} = \frac{1}{z - z_0}\int_{[z_0, z]} f(w) \df w$. Then after subtracting $f(z_0)$ from both sides we get that:
-
-	{\centering  $\frac{F(z) - F(z_0)}{z - z_0} - f(z_0) = \frac{1}{z - z_0}\int_{[z_0, z]} f(w) - f(z_0) \df w$ \retTwo\par}
-
-	Finally, since $f$ is continuous at $z_0$, we know for any $\varepsilon > 0$ that there exists $0 < \delta < r$ such that when $|w - z_0| < \delta$ then $|f(w) - f(z_0)| < \varepsilon$. In turn, for all $z \in B_\delta(z_0)$ we have that:
-
-	{\centering  $|\frac{F(z) - F(z_0)}{z - z_0} - f(z_0)| \leq \frac{1}{|z - z_0|}\int_{[z_0, z]} |f(w) - f(z_0)| \df w < \frac{1}{|z - z_0|} \cdot |z_0 - z|\varepsilon = \varepsilon$. \retTwo\par}
-
-	This proves that $F$ is differentiable at $z_0$ with $F^\prime(z_0) = f(z_0)$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\ul{Theorem:} If $G \subseteq \mathbb{C}$ is simply connected and $f$ is an analytic nowhere vanishing function in $G$, then there exists a branch of $\log(f)$ on $G$ (i.e. an analytic function $g$ on $G$ such that $e^{g(z)} = f(z)$).
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Since $f \neq 0$ in $G$, we know $\frac{f^\prime}{f}$ is analytic on $G$. Hence by the prior theorem there\\ [-4pt] exists $g : G \to \mathbb{C}$ such that $g_1^\prime = \frac{f^\prime}{f}$.\retTwo
-
-	Next, pick $z_0 \in G$ and $w_0 \in \mathbb{C}$ such that $f(z_0) = e^{w_0}$. Since $g$ will still be a primitive even after adding a constant, we can without loss of generality assume $g(z_0) = w_0$. That way, $f(z_0) = e^{g(z_0)}$.\retTwo
-	
-	Finally, consider $h(z) = e^{g(z)}$. Then:
-
-	{\centering $(\frac{h}{f})^\prime = \frac{h^\prime f - hf^\prime}{f^2} = \frac{g^\prime e^{g} f - hf^\prime}{f^2} = \frac{g^\prime h}{f} - \frac{h}{f} \frac{f^\prime}{f} = \frac{h}{f}(g^\prime - \frac{f^\prime}{f}) = \frac{h}{f}(0) = 0$ \retTwo\par}
-
-	Since $G$ is connected, this shows that $\frac{h}{f}$ is constant on $G$. And since $\frac{h(z_0)}{f(z_0)} = 1$, we've proven that $h = f$ everywhere on $G$. $\blacksquare$\retTwo
+	By the correspondance theorem we know that any ideal of $A/\mathfrak{a}$ is of the form $\mathfrak{b}/\mathfrak{a}$ where $\mathfrak{b} \lhd A$ with $\mathfrak{a}\subseteq \mathfrak{b}$. Since $A$ is Noetherian, we know that $\mathfrak{b}$ is finitely generated. In turn, we also know that $\mathfrak{b}/\mathfrak{a}$ is finitely generated. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo\mySepTwo
 
-\blect{Math 200a Notes:}\retTwo
+\dispDate{12/10/2025}
 
-Given any integer $k > 0$, we let $F_k$ denote the free group generated by $k$ elements.\retTwo
+Today I'm preparing for the math 200a final and also taking some miscellaneous notes on topics that came up while I was doing practice problems.\retTwo
 
-\exTwo\ul{Theorem:} $\langle \left[\begin{smallmatrix}
-	1 & 2 \\ 0 & 1
-\end{smallmatrix}\right], \left[\begin{smallmatrix}
-	1 & 0 \\ 2 & 1
-\end{smallmatrix}\right]\rangle \cong F_2$.
+Recall how if $n$ is an integer and $p$ is a prime then we defined:
 
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Let $G = \langle \left[\begin{smallmatrix}
-		1 & 2 \\ 0 & 1
-	\end{smallmatrix}\right], \left[\begin{smallmatrix}
-		1 & 0 \\ 2 & 1
-	\end{smallmatrix}\right]\rangle$. Then note that $G \curvearrowright \mathbb{R}^2$ by linear transformations. In particular, if $\ell$ is a line passing through $0$, then each element of $G$ sends $\ell$ to another line. So, we can actually say that $G \curvearrowright X \coloneqq \mathbb{RP}$.\retTwo
+{\centering$\nu_p(n) = \max\{k \in \mathbb{Z}_{\geq 0} : p^k \divides n\}$.\retTwo\par}
 
-	Next, let $G_1 = \langle \left[\begin{smallmatrix}
-	1 & 2 \\ 0 & 1
-	\end{smallmatrix}\right]\rangle$ and $G_2 = \langle\left[\begin{smallmatrix}
-		1 & 0 \\ 2 & 1
-	\end{smallmatrix}\right]\rangle$. Then note that $\left[\begin{smallmatrix}
-		1 & 2 \\ 0 & 1
-	\end{smallmatrix}\right]^n = \left[\begin{smallmatrix}
-		1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right]$ and\\ $\left[\begin{smallmatrix}
-		1 & 0 \\ 2 & 1
-	\end{smallmatrix}\right]^n = \left[\begin{smallmatrix}
-		1 & 0 \\ 2n & 1
-	\end{smallmatrix}\right]$ (you can easily show this via induction).\newpage
-	
-	Thus, $G_1 = \left\{ \left[\begin{smallmatrix}
-	1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right] : n \in \mathbb{Z} \right\}$ and $G_2 = \left\{ \left[\begin{smallmatrix}
-	1 & 0 \\ 2n & 1
-	\end{smallmatrix}\right] : n \in \mathbb{Z} \right\}$. In particular, this means\\ $G_1 \cong \mathbb{Z}$, $G_2 \cong \mathbb{Z}$.\retTwo
-
-	Recall from \inLinkRap{Möbius transformations and projective space reference 336}{page 336} that any line in $\mathbb{RP}$ passing through $(x, y)$ can be uniquely represented by the homogeneous coordinates $[x:y] = x/y$. Then as $\left[\begin{smallmatrix}
-	1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right]\left[\begin{smallmatrix}
-	x \\ y
-	\end{smallmatrix}\right] = \left[\begin{smallmatrix}
-	x + 2ny \\ y
-	\end{smallmatrix}\right]$, we have that $\left[\begin{smallmatrix}
-	1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right] [1 : 0] = [1 : 0] $ and $\left[\begin{smallmatrix}
-	1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right] [k : 1] = [k + 2n : 1] $.\retTwo
-
-	Similarly, we have that $\left[\begin{smallmatrix}
-	1 & 0 \\ 2n & 1
-	\end{smallmatrix}\right] [0 : 1] = [0 : 1] $ and $\left[\begin{smallmatrix}
-	1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right] [1 : k] = [1 : k + 2n] $. So finally, let $X_1 = \{[1 : 0]\} \cup \{[k : 1] : |k| \geq 1\}$ and $X_2 = \{[0 : 1]\} \cup \{[1 : k] : |k| \geq 1\}$.\retTwo
-
-	If $g \in G_1 - \{\left[\begin{smallmatrix}
-	1 & 0 \\ 0 & 1
-	\end{smallmatrix}\right]\}$, then $g \cdot X_2 \subseteq X_1$. (After all, $[1 : k] = [1/k : 1]$ and $|x + 2n| \geq 1$ for all $n \in \mathbb{Z}$ if $|x| \leq 1$). Similarly, $(G_2 - \{\left[\begin{smallmatrix}
-	1 & 0 \\ 0 & 1
-	\end{smallmatrix}\right]\}) \cdot X_1 \subseteq X_2$.\retTwo
-
-	By the ping pong lemma we conclude:
-	
-	{\centering$G = \langle \left[\begin{smallmatrix}
-		1 & 2 \\ 0 & 1
-	\end{smallmatrix}\right], \left[\begin{smallmatrix}
-		1 & 0 \\ 2 & 1
-	\end{smallmatrix}\right]\rangle = \langle G_1, G_2 \rangle \cong G_1 * G_2 \cong \mathbb{Z} * \mathbb{Z} = F_2$. $\blacksquare$\retTwo\par}
-\end{myIndent}
-
-\hTwo $\SL_n(\mathbb{Z})$ refers to the collection of $n$x$n$ matrices with determinant $1$ and integer coefficients. At least for $\SL_2(\mathbb{Z})$ I already know how to show that $\SL_2(\mathbb{Z})$ is a group with respect to matrix multiplication.\retTwo
-
-\begin{myIndent}\myComment
-	In slightly more generallity, given any commutative ring $R$, the formula for matrix multiplication and the determinant of a matrix can still be carried out in $R$ and the formula for the determinant of a matrix in $R$ still makes sense. It follows that we can define $\SL_n(R)$ to be the collection of $n$x$n$ matrices with determinant $1 \in R$ and coefficients in $R$.\retTwo
-
-	Again, I don't know enough linear algebra to prove $\SL_n(R)$ is a group for arbitrary $n$. That said, if $n = 2$ then it is easy to see that $\SL_2(R)$ is a group.
-	\begin{itemize}
-		\item $\det(\left[\begin{smallmatrix}
-	a & b \\ c & d
-\end{smallmatrix}\right]\left[\begin{smallmatrix}
-	e & f \\ g & h
-\end{smallmatrix}\right]) = (ae + bg)(cf + dh) - (af + bh)(ce + dg)$\\
-$\phantom{\det(\left[\begin{smallmatrix}
-	a & b \\ c & d
-\end{smallmatrix}\right]\left[\begin{smallmatrix}
-	e & f \\ g & h
-\end{smallmatrix}\right])} = aecf + adeh + bgcf + bgdh - afce - afdg - bhce - bhdg$
-\\
-$\phantom{\det(\left[\begin{smallmatrix}
-	a & b \\ c & d
-\end{smallmatrix}\right]\left[\begin{smallmatrix}
-	e & f \\ g & h
-\end{smallmatrix}\right])} = adeh + bgcf - afdg - bhce$\\
-$\phantom{\det(\left[\begin{smallmatrix}
-	a & b \\ c & d
-\end{smallmatrix}\right]\left[\begin{smallmatrix}
-	e & f \\ g & h
-\end{smallmatrix}\right])} = ad(eh -fg) - bc(eh - fg) = \det(\left[\begin{smallmatrix}
-	a & b \\ c & d
-\end{smallmatrix}\right])\det(\left[\begin{smallmatrix}
-	e & f \\ g & h
-\end{smallmatrix}\right]) = 1$.
-
-	\item $\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]\left[\begin{smallmatrix}
-		d & -b \\ -c & a
-	\end{smallmatrix}\right] = \left[\begin{smallmatrix}
-		ad-bc & -ba + ab \\ cd - dc & ad - bc
-	\end{smallmatrix}\right] = \left[\begin{smallmatrix}
-		1 & 0 \\ 0 & 1
-	\end{smallmatrix}\right]$.\retTwo
-	\end{itemize}
-\end{myIndent}
-
-Next we define $\PSL_2(\mathbb{Z}) \coloneqq SL_2(\mathbb{Z}) / \{\pm I\}$. Note that $\{\pm I\} = Z(SL_2(\mathbb{Z}))$ and is thus a normal subgroup. Hence, $\PSL_2(\mathbb{Z})$ is well-defined. Also we denote $\overline{A} = A\{\pm I\} \in \PSL_2(\mathbb{Z})$. Note that $\overline{A} = \{A, -A\}$.\retTwo
-
-\exTwo\ul{Theorem:} $\langle \overline{\left[\begin{smallmatrix}
-	1 & 2 \\ 0 & 1
-\end{smallmatrix}\right]}, \overline{\left[\begin{smallmatrix}
-	0 & 1 \\ -1 & 0
-\end{smallmatrix}\right]}\rangle \cong \mathbb{Z} * \mathbb{Z}/2\mathbb{Z}$.
-
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Let $G_1 = \langle \overline{\left[\begin{smallmatrix}
-	1 & 2 \\ 0 & 1
-	\end{smallmatrix}\right]}\rangle$ and $G_2 = \langle\overline{\left[\begin{smallmatrix}
-		0 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]}\rangle$. We already know from the last proof that:
-	
-	{\center$G_1 = \left\{\overline{\left[\begin{smallmatrix}
-	1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right]} : n \in \mathbb{Z}\right\} \cong \mathbb{Z}$.\retTwo\par}
-
-	Meanwhile, $(\overline{\left[\begin{smallmatrix}
-		0 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]})^2 = \overline{\left[\begin{smallmatrix}
-		-1 & 0 \\ 0 & -1
-	\end{smallmatrix}\right]} = \overline{I}$. Thus $G_2 \cong \mathbb{Z}/2\mathbb{Z}$.\newpage
-
-	Next, note that $\PSL_2(\mathbb{R}) \curvearrowright H \coloneqq \{z \in \mathbb{C} : \ima{z} > 0\}$ by Möbius transformations (recall \inLinkRap{Math 200a Homework Set 2 Problem 3}{problem 3 on the second set}).\retTwo
-
-	In particular, $\overline{\left[\begin{smallmatrix}
-	1 & 2n \\ 0 & 1
-	\end{smallmatrix}\right]} \cdot z = z + 2n$ and $\overline{\left[\begin{smallmatrix}
-		0 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]} \cdot z = \frac{-1}{z}$. Thus $(G_1 - \{\overline{I}\}) \cdot X_2 \subseteq X_1$ and $(G_2 - \{\overline{I}\}) \cdot X_1 \subseteq X_2$ where $X_1 = \{z \in H : |z| > 1\}$ and $X_2 = \{z \in H : |z| < 1\}$.\retTwo
-
-	By the ping pong lemma we are done. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo We say a group $\Gamma$ is \udefine{residually $\mathcalli{C}$} if for all $x \in \Gamma - \{1\}$ there exists a finite group $G$ which satisfies $\mathcalli{C}$ and a group homomorphism $\phi : \Gamma \to G$ such that $\phi(x) \neq 1$.\retTwo
-
-We say $\Gamma$ is \udefine{residually finite} if $\forall x \in G - \{1\}$ there exists a finite group $G$ and a group homomorphism $\phi: \Gamma \to G$ such that $\phi(x) \neq 1$.
+We can extend $\nu_p$ to being defined on $\mathbb{Q}$ as follows. Given any rational number $\sfrac{m}{n} \neq 0$ we define $\nu_p(\sfrac{m}{n}) = \nu_p(m) - \nu_p(n)$.
 \begin{myIndent}\pracTwo
-	(By first isomorphism theorem, this is equivalent ot saying that for all $x \in \Gamma - \{1\}$ there exists a group $N \lhd \Gamma$ of finite index such that $x \notin N$.)\retTwo
+	To prove this is well-defined, suppose $\frac{m_1}{n_1} = \frac{m_2}{n_2}$. Then after canceling common prime\\ [-3pt] factors of $m_i$ and $n_i$, we can find pairs of integers $m_i^\prime, n^\prime_i$ such that for each $i$:
+	
+	{\centering$\frac{m_i^\prime}{n_i^\prime} = \frac{m_i}{n_i}$, $\gcd(m_i, n_i) = 1$, and $\nu_p(m_i^\prime) - \nu_p(n_i^\prime) = \nu_p(m_i) - \nu_p(n_i)$\retTwo\par}
+
+	But now it is easy to check that $m_1^\prime = m_2^\prime$ and $n^\prime_1 = n_2^\prime$. After all, we know that\\ [-1pt] $\frac{m_1^\prime}{n_1^\prime} = \frac{m_2^\prime}{n_2^\prime} \Longleftrightarrow m_1^\prime n_2^\prime = m_2^\prime n_1^\prime$. Then by comparing the prime factorings of both sides\\ [-1pt] of the latter equation and noting that $m_i^\prime$ and $n_i^\prime$ are coprime for each $i$, we can show that $m_1^\prime = \pm m_2^\prime$ and $n^\prime_1 = \pm n_2^\prime$. Yet the sign of $m_1^\prime$ doesn't effect $\nu_p(m_1^\prime)$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\exTwo\ul{Theorem:} $F_2$ is residually finite.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Recall $F_2 \cong \langle \left[\begin{smallmatrix}
-	1 & 2 \\ 0 & 1
-	\end{smallmatrix}\right], \left[\begin{smallmatrix}
-		1 & 0 \\ 2 & 1
-	\end{smallmatrix}\right]\rangle \subseteq \SL_2(\mathbb{Z})$. Thus, we can define a group homomorphism\\ $\phi_n: F_2 \to \SL_2(\mathbb{Z}/n\mathbb{Z})$ such that $\left[\begin{smallmatrix}
-	a & b \\ c & d
-	\end{smallmatrix}\right] \mapsto \left[\begin{smallmatrix}
-	\overline{a} & \overline{b} \\ \overline{c} & \overline{d}
-	\end{smallmatrix}\right]$ where $\overline{x} = x + n\mathbb{Z}$.
-	\begin{myIndent}\exPPP 
-		Since the mod map preserves addition and multiplication, it's clear that\\ $\phi_n(AB) = \phi_n(A)\phi_n(B)$ and that:
-		
-		{\centering$\det(A) = 1 \in \mathbb{Z} \Longrightarrow \det(\phi_n(A)) = 1 \in \mathbb{Z}/n\mathbb{Z}$.\retTwo\par}
-		
-		Hence $\phi_n$ is a well-defined group homomorphism into $\SL_2(\mathbb{Z}/n\mathbb{Z})$.\retTwo
-	\end{myIndent}
+\hTwo Note that since $\nu_p(n_1 n_2) = \nu_p(n_1)\nu_p(n_2)$ when $n_1, n_2 \in \mathbb{Z}$, we can easily show that $\nu_p(rs) = \nu_p(r) + \nu_p(s)$ for all $r, s \in \mathbb{Q} - \{0\}$. We can also easily see that $\nu_p(r^{-1}) = -\nu_p(r)$ for all $r \in \mathbb{Q}$.\retTwo
 
-	But now $\SL_2(\mathbb{Z}/n\mathbb{Z})$ has less than $n^4$ elements. Also, if $x \in F_2 - \{I\}$ then we can choose $n$ large enough so that $\phi_n(x) \neq \left[\begin{smallmatrix}
-	\overline{1} & \overline{0} \\ \overline{0} & \overline{1}
-	\end{smallmatrix}\right]$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-A group $\Gamma$ is \udefine{virtually $\mathcalli{C}$} if there exists $\Lambda < \Gamma$ with finite index such that $\Lambda$ satisfies $\mathcalli{C}$.\retTwo
-
-$\Gamma$ is \udefine{virtually solvable} if there exists $\Lambda \lhd \Gamma$ such that $[\Gamma : \Lambda] < \infty$ and $\Lambda$ is solvable.
-\begin{myIndent}\myComment
-	Note that it is not a restriction to assume $\Lambda$ is a normal subgroup. After all, suppose $\Lambda < \Gamma$ and $\Lambda$ is solvable. Then if we consider the group action $\Gamma \curvearrowright \Gamma/\Lambda$ by left translation, we get a group homomorphism $\phi : \Gamma \to S_{\Gamma/\Lambda}$. In turn, $\core_{\Gamma}(\Lambda) = \ker(\phi)$ is a normal subgroup of $\Gamma$ whose index is finite as $|\myIm(\phi)|$ divides $[\Gamma : \Lambda]! < \infty$. And as $\core_{\Gamma}(\Lambda) < \Lambda$ we know that $\core_{\Gamma}(\Lambda)$ is solvable.\retTwo
-
-	One other observation: If $\Gamma$ is virtually solvable then so is any quotient of $\Gamma$.
-	\begin{myIndent}\pracTwo
-		Why?\\ Consider any subgroup $N \lhd \Gamma$. Then $\Lambda N / N \cong \Lambda / N \cap \Lambda$, and the latter is\\ solvable. Hence $\Lambda N / N$ is solvable (see \inLinkRap{Math 200a Set 6 Problem 3}{problem 3 on the sixth set}). At the\\ same time, $(\Lambda N)/N \lhd \Gamma / N$ as $\Lambda$ and $N$ are both normal subgroups of $\Gamma$. So,\\ $(\Gamma / N) / (\Lambda N)/N \cong \Gamma / (\Lambda N)$ and the latter clearly has less elements than\\ the finitely many in $\Gamma / \Lambda$. So, $(\Lambda N)/N$ satisfies the requirements for $\Gamma / N$ to be\\ virtually solvable.\newpage
-	\end{myIndent}
-\end{myIndent}
-
-\exTwo\ul{Lemma:} $F_2$ is not virtually solvable.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Recall that $N \lhd S_n$ with $N$ solvable implies that $N = \{1\}$ when $n \geq 5$. That said, we also have that $S_n = \langle (1\gap 2), (1 \gap 2 \gap \cdots \gap n)\rangle$. (For a proof of this see page 53 of my math 100c notes.) So, by the universal property of free groups we know there exists a surjective group homomorphism $\Phi: F_{\{a, b\}} \to S_n$ such that $\phi(a) = (1 \gap 2)$ and $\phi(b) = (1 \gap 2 \gap \cdots \gap n)$.
-	\begin{myIndent}\exPPP
-		($F_{\{a, b\}}$ is just notation for $F_2$ that makes it explicit what the generators of $F_2$ are\dots)\retTwo
-	\end{myIndent}
-
-	Suppose there exists $\Lambda \lhd F_{\{a, b\}}$ such that $[F_{\{a, b\}} : \Lambda] = m$ and $\Lambda$ is solvable. Then we'd have that $\Phi(\Lambda)$ is solvable and $\Phi(\Lambda) \lhd S_n$. And when $n \geq 5$, this means that $\Phi(\Lambda) = \{\myId\}$. So, $\Lambda < \ker(\Phi)$ and in turn there is a surjective mapping:
-	
-	{\centering$F_{\{a, b\}}/ \Lambda \rightarrowdbl F_{\{a, b\}}/\ker(\Phi) \cong \myIm(\Phi) = S_n$.\retTwo\par}
-
-	Consequently, we must have that $m \geq n!$ for any $n \geq 5$. This is a contradiction. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-If $G$ is a group and $R \subseteq G$, then we say ${\ll}R{\gg}$ is the smallest normal subgroup of $G$ containing $R$. Next, given the sets $S$ and $R \subseteq \mathcalli{F}(S)$ (where $\mathcalli{F}(S)$ is the free group of $S$), we define $\langle S | R\rangle \coloneqq \mathcalli{F}(S) / {\ll}R{\gg}$. Also, we call $\langle S | R\rangle$ a \udefine{presentation}.
-\begin{myIndent}\pracTwo
-	In other words, ${\ll}R{\gg}$ is the set of all words in $\mathcalli{F}(S)$ identified with $1$. Also, note that a common abuse of notation is to list an element of $R$ as "word 1" = "word 2" as opposed to ("word 1")("word 2")$\vphantom{|}^{-1}$. Given this abuse of notation, it shouldn't be surprising that we call $R$ the set of defining relations of $\langle S | R\rangle$.\retTwo
-\end{myIndent}
-
-When trying to prove what group a presentation is  isomorphic to, there is a general\\ procedure that works.
-\begin{enumerate}
-	\item Already have an idea that $\langle S | R \rangle \cong G$. (Unfortunately, this procedure can only verify hunches one already has).
-	
-	\item Let $S^\prime \subseteq G$ be a generating set for $G$ such that there exists a bijection $f: S \to S^\prime$. Then using the universal property of free groups, let $\Phi : \mathcalli{F}(S) \to G$ be a group homomorphism such that $\Phi(x) = f(x)$ for all $x \in S$. This group homomorphism is a surjection.
-	
-	\item Check the relations to make sure that $R < \ker(\Phi)$. That way, we know that\\ ${\ll}R{\gg} < \ker(\Phi)$. And in turn, there is a well-defined surjective group\\ homomorphism $\overline{\Phi} : \langle S | R\rangle \to G$ such that $\overline{\Phi}(x) = \Phi(x) = f(x)$ for all $x \in S$.
-	
-	\item Finally, find a trick to show that $\overline{\Phi}$ is injective.
-\end{enumerate}
-
-\pracOne
-\ul{Example 1:} $\langle x | x^n = 1\rangle \cong C_n$.
-\begin{myIndent}\pracTwo
-	Let $a$ be a generator for $C_n$. Then there is surjective homomorphism $\Phi: \mathcalli{F}(\{x\}) \to C_n$ given by $\Phi(x) = a$. Also, it is clear that $\Phi(x^n) = a^n = 1$. So ${\ll} x^n {\gg} \subseteq \ker(\Phi)$ and we can define a surjective group homomorphism $\overline{\Phi} : \langle x | x^n = 1\rangle \to C_n$ such that $\overline{\Phi}(x) = a$. Finally, note that $|\langle x | x^n = 1\rangle| = n = |C_n|$. So by pigeonhole we know $\overline{\Phi}$ is a bijection.\newpage
-\end{myIndent}
-
-\ul{Example 2:} $\langle x, y \mid x^n = 1, y^2 = 1, yxy = x^{-1}\rangle \cong D_{2n}$.
-\begin{myIndent}\pracTwo
-	Show this yourself. The proof is mostly identical to the prior example. :p\retTwo
-\end{myIndent}
-
-\Hstatement\mySepTwo
-
-\blab{Set 8 Problem 1:} Prove that $\langle a, b \mid [a, b]\rangle \cong \mathbb{Z} \times \mathbb{Z}$.
-\begin{myIndent}\HexOne
-	By the universal property of free groups, we know there is a group homomorphism\\ $f: F_{\{a, b\}} \to \mathbb{Z} \times \mathbb{Z}$ such that $f(a) = (1, 0)$ and $f(b) = (0, 1)$. Furthermore, we then have that $f([a, b]) = f(a)f(b)f(a^{-1})f(b^{-1}) = (1, 0) + (0, 1) - (1, 0) - (0, 1) = 0$.\\ Hence, by quotienting out ${\ll}[a, b]{\gg}$ we can get a well-defined group homomorphism:
-	
-	{\centering$\widetilde{f} : \langle a, b \mid [a, b]\rangle \to \mathbb{Z} \times \mathbb{Z}$ such that $f(a) = (1, 0)$ and $f(b) = (0, 1)$.\retTwo\par}
-
-	Also note that as $\langle(1, 0), (0, 1)\rangle = \mathbb{Z} \times \mathbb{Z}$, we know that $f$ and in turn $\widetilde{f}$ are surjective.\retTwo
-
-	What's left to show is that $\widetilde{f}$ is a bijection. So first we note that the following  relevant commutators are in ${\ll}[a, b]{\gg}$.
-	\begin{myIndent}\HexTwoP
-		$[b, a] = ([a, b])^{-1}$, $a^{-1}[a, b]a = [b, a^{-1}]$, $b^{-1}[a, b]b = [b^{-1}, a]$, and\\ $(a^{-1}b^{-1})[b, a]ba = [b^{-1}, a^{-1}]$.\retTwo
-	\end{myIndent}
-
-	This shows that $a^{e_1}b^{e_2} = b^{e_2}a^{e_1}$ where $e_1, e_2 \in \{\pm 1\}$. Then by induction on $k$ we can conclude that for all $k \in \mathbb{N}$:
-	\begin{itemize}
-		\item $b^k a = b^{k-1} ba(b^{-1}a^{-1}ab) = b^{k-1}ab = ab^{k-1}b = ab^{k}$,
-		\item $b^{-k} a = b^{-k + 1} b^{-1}a(ba^{-1}ab^{-1}) = b^{-k + 1}ab^{-1} = ab^{-k + 1}b^{-1} = ab^{-k}$,
-		\item $b^k a^{-1} = b^{k-1} ba^{-1}(b^{-1}aa^{-1}b) = b^{k-1}a^{-1}b = a^{-1}b^{k-1}b = a^{-1}b^{k}$,
-		\item $b^{-k} a^{-1} = b^{-k + 1} b^{-1}a^{-1}(baa^{-1}b^{-1}) = b^{-k + 1}a^{-1}b^{-1} = a^{-1}b^{-k + 1}b^{-1} = a^{-1}b^{-k}$.\retTwo
-	\end{itemize}
-
-	Another round of induction then shows that $a^{m}b^n = b^n a^m$ for all $m,n \in \mathbb{Z}$. And finally, this lets us show (again through induction) that every element of $\langle a, b \mid [a, b]\rangle$ can be represented by a word of the form $a^m b^n$ where $m, n \in \mathbb{Z}$.\retTwo
-
-	We also claim that $a^m b^n = 1$ iff $m = 0 = n$. To see this, note that we can define the "$a$-power" and "$b$-power" of any word in $F_{\{a, b\}}$ by adding up the powers of all the $a$ terms and $b$ terms respectively.
-	\begin{myIndent}\HexPPP
-		Technically I'm overlooking the fact that the elements of $F_{\{a, b\}}$ are equivalence classes of words. That said, the two manipulations that let you go between any two words in the same equivalence class preserve "$a$-power" and "$b$-power". So, this technicality doesn't really matter.\retTwo
-	\end{myIndent}
-
-	But now if we let $N \subseteq F_{\{a, b\}}$ be the collection of all words with an $a$-power and $b$-power of $0$, then we have that $N$ is closed under word concatenation, inversing, and conjugation. Also $[a, b] \in N$. So ${\ll} [a, b] {\gg} < N \lhd F_{\{a, b\}}$. And in turn, we know that if $a^m b^n = 1$ in $\langle a, b \mid [a, b]\rangle$ then we must have that $a^m b^n \in N$ when considered as an element of $F_{\{a, b\}}$. But that implies that $m = 0 = n$.\retTwo
-
-	Consequently, we know that if $a^{m_1}b^{n_1} = a^{m_2}b^{n_2}$ then $m_1 = m_2$ and $n_1 = n_2$. Hence by all the prior reasoning, if we define $g: \mathbb{Z} \times \mathbb{Z} \to \langle a, b \mid [a, b]\rangle$ by $g(m, n) = a^mb^n$ then we know $g$ is an injective and surjective function satisfying that $\widetilde{f} \circ g = \myId_{\mathbb{Z} \times \mathbb{Z}}$. In turn, $\widetilde{f} = g^{-1}$ and this proves that $\widetilde{f}$ is a bijection. $\blacksquare$\newpage
-\end{myIndent}
-
-\blab{Set 8 Problem 2:} Suppose $X_1$ and $X_2$ are two disjoint sets. Prove that:
-
-{\centering $\langle X_1 \mid R_1 \rangle * \langle X_2 \mid R_2\rangle \cong \langle X_1 \cup X_2 \mid R_1 \cup R_2\rangle$ \retTwo\par}
-
-\begin{myIndent}\HexOne
-	I shall start by proving something I think my professor meant for me to take as obvious. Consider the natural inclusion maps $j_i : \mathcalli{F}(X_i) \hookrightarrow \mathcalli{F}(X_1 \cup X_2)$ for each $i$.
-	\begin{myIndent}\HexPPP
-		To see that each $j_i$ is an injection, note that adding symbols to an alphabet $X$ does not change the reduced form of words already in $\mathcalli{F}(X)$. And since each word equivalence class in $\mathcalli{F}(X_i)$ has a unique reduced form (see \inLinkRap{idk reference 9}{page \_\_\_} for more on this), we know that $j_i$ is an embedding. That said, the fact that $j_i$ is an injection isn't important to the proof.\retTwo
-	\end{myIndent}
-	
-	Then we know that $j_i^{-1}({\ll}j_i(R_i){\gg})$ is a normal subgroup of $\mathcalli{F}(X_i)$ containing $R_i$. Hence, there is a well-defined map $\overline{j_i} : \langle X_i \mid R_i\rangle \to \langle X_1 \cup X_2 \mid j_i(R_i)\rangle$ such that:
-	
-	{\centering$\overline{j_i}(\omega {\ll} R_i{\gg}) = j_i(\omega) {\ll} j_i(R_i){\gg}$ for all words $\omega$.\retTwo\par}
-
-	Furthermore, since ${\ll} j_i(R_i){\gg} \subseteq {\ll} j_1(R_1) \cup j_2(R_2){\gg}$ for both $i$, we know that there are well defined maps $k_i: \langle X_1 \cup X_2 \mid j_i(R_i) \rangle\to \langle X_1 \cup X_2 \mid j_1(R_1) \cup j_2(R_2) \rangle$ with $k_i(\omega {\ll} j_i(R_i){\gg}) = \omega {\ll} j_1(R_1) \cup j_2(R_2){\gg}$ for all words $\omega$.\retTwo
-
-	Now by setting $\theta_i = k_i \circ \overline{j_i}$ for both $i$, we now have shown that the obvious inclusion function $\langle X_i \mid R_i\rangle \to \langle X_1 \cup X_2 \mid j_1(R_1) \cup j_2(R_2)\rangle$ given by $\theta_i(\omega) = j_i(\omega){\ll} j_1(R_1) \cup j_2(R_2){\gg}$ is a well-defined group homomorphism.
-
-	\begin{myDindent}\color{red}
-		With that out of the way I'm now going to identify $j_i(\omega)$ with $\omega$ for all\\ $\omega \in \mathcalli{F}(X_i)$. Also, I'll just write $\theta_i(\omega)$ as $\omega$.\retTwo
-	\end{myDindent}
-
-	By the universal property of free products there exists a group homomorphism\\ $\theta : \langle X_1 \mid R_1\rangle * \langle X_2 \mid R_2 \rangle \to \langle X_1 \cup X_2 \mid R_1 \cup R_2 \rangle$ such that $\theta(x_1) = x_1$ and $\theta(x_2) = x_2$ in $\langle X_1 \cup X_2 \mid R_1 \cup R_2\rangle$ for all $x_1 \in X_1$ and $x_2 \in X_2$.\retTwo
-
-	Meanwhile, by the universal property of free groups there exists a group homomorphism $\phi : \mathcalli{F}(X_1 \cup X_2) \to \langle X_1 \mid R_1\rangle * \langle X_2 \mid R_2 \rangle$ such that $\phi(x_1) = x_1$ and $\phi(x_2) = x_2$ in $\langle X_1 \mid R_1\rangle * \langle X_2 \mid R_2 \rangle$ for all $x_1 \in X_1$ and $x_2 \in X_2$. Also, note that if $\omega \in R_1 \cup R_2$ then $\phi(\omega) = 1$. Hence, by quotienting out ${\ll} R_1 \cup R_2 {\gg}$ we get a well-defined map 
-	
-	{\centering$\widetilde{\phi} : \langle X_1 \cup X_2 \mid R_1 \cup R_2 \rangle \to \langle X_1 \mid R_1\rangle * \langle X_2 \mid R_2 \rangle$\retTwo\par}
-	
-	\dots with $\widetilde{\phi}(x_1) = x_1$ and $\widetilde{\phi}(x_2) = x_2$ in $\langle X_1 \mid R_1\rangle * \langle X_2 \mid R_2 \rangle$ for all $x_1 \in X_1$ and $x_2 \in X_2$.\retTwo
-
-	Finally, $\widetilde{\phi} \circ \theta(x) = x$ and $\theta \circ \widetilde{\phi}(x) = x$ for all $x \in X_1 \cup X_2$. And as $X_1 \cup X_2$ is a generating subset of both $\langle X_1 \mid R_1\rangle * \langle X_2 \mid R_2 \rangle$ and $\langle X_1 \cup X_2 \mid R_1 \cup R_2 \rangle$, we can extrapolate that $\widetilde{\phi} \circ \theta = \myId$ and $\theta \circ \widetilde{\phi} = \myId$. So, $\theta$ and $\widetilde{\phi}$ are isomorphisms. $\blacksquare$\retTwo
-\end{myIndent}
-
-\blab{Set 8 Problem 3:} Prove that the subgroup of $\PSL_2(\mathbb{Z})$ which is generated by $\overline{\left[\begin{smallmatrix}
-	1 & 2 \\ 0 & 1
-\end{smallmatrix}\right]}$ and $\overline{\left[\begin{smallmatrix}
-	0 & 1 \\ -1 & 0
-\end{smallmatrix}\right]}$ has the presentation $\langle a, b \mid b^2 \rangle$.
-
-\begin{myIndent}\HexOne
-	Recall from \inLinkRap{Alireza page 417 Theorem}{page 417} that $\langle \overline{\left[\begin{smallmatrix}
-	1 & 2 \\ 0 & 1
-\end{smallmatrix}\right]}$ and $\overline{\left[\begin{smallmatrix}
-	0 & 1 \\ -1 & 0
-\end{smallmatrix}\right]} \rangle = \mathbb{Z} * \mathbb{Z} / 2\mathbb{Z}$. Then as $\mathbb{Z} \cong \langle a \mid \emptyset \rangle$ and $\mathbb{Z} / 2\mathbb{Z} \cong \langle b \mid b^2 \rangle$, we have by the prior problem that $\mathbb{Z} * \mathbb{Z} / 2\mathbb{Z} \cong \langle a, b \mid b^2\rangle$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\myComment Before moving on to the next problem, I want to show that $\PSL_2(\mathbb{Z})$ is generated by the matrices $\sigma \coloneqq \overline{\left[\begin{smallmatrix}
-	1 & 1 \\ 0 & 1
-\end{smallmatrix}\right]}$ and $\tau \coloneqq \overline{\left[\begin{smallmatrix}
-	0 & 1 \\ -1 & 0
-\end{smallmatrix}\right]}$.
-
-\begin{myIndent}\pracTwo
-	Why?\\
-	Note that $\sigma^n = \overline{\left[\begin{smallmatrix}
-		1 & n \\ 0 & 1
-	\end{smallmatrix}\right]}$. In turn, given any matrix $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} \in \PSL_2(\mathbb{Z})$ we have that:
-	
-	{\centering$\sigma^n \overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		a + nc & b + nd \\ c & d
-	\end{smallmatrix}\right]}$ and $\tau\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		c & d \\ -a & -b
-	\end{smallmatrix}\right]}$.\retTwo\par}
-
-	This suggests the following construction. Suppose $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]}$ is any matrix in $\PSL_2(\mathbb{Z})$ such that $|a| \geq |c| > 0$. Then we know there exists $n \in \mathbb{Z}$ such that $\sigma^n\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		a + nc & b + nd \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		a^\prime & b^\prime \\ c & d
-	\end{smallmatrix}\right]}$\\ [3pt] where $|a^\prime| < |c^\prime|$. (This is a consequence of the division algorithm). In turn:
-	
-	{\centering$\tau \sigma^n \overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		c & d \\ -a^\prime & -b^\prime
-	\end{smallmatrix}\right]}$, where $|-a^\prime| < c \leq |a|$.\retTwo\par}
-	
-	As for the case that $|a| < |c|$ initially, then we can just apply the prior reasoning to $\tau  \overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]}$. Either way, if $G \coloneqq \langle \sigma, \tau\rangle \subseteq \PSL_2(\mathbb{Z})$ and $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} \in \PSL_2(\mathbb{Z})$, then we've proven that there is a matrix $g \in G$ such that $g\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		a^\prime & b^\prime \\ c^\prime & d^\prime
-	\end{smallmatrix}\right]}$ satisfies that $|c^\prime| < c$.\retTwo
-
-	By induction on $|c|$, we can thus conclude for any $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} \in \PSL_2(\mathbb{Z})$ that there exists\\ $g_1, \ldots, g_n \in G$ such that $g_n \cdots g_1\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		a^\prime & b^\prime \\ 0 & d^\prime
-	\end{smallmatrix}\right]}$.\retTwo
-
-	But as $a^\prime d^\prime - 0b^\prime = a^\prime d^\prime = 1$ and both $a^\prime$ and $d^\prime$ are integers, we may assume $a^\prime = d^\prime = 1$. Hence, we actually have that:
-
-	{\centering$g_n \cdots g_1\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		1 & b^\prime \\ 0 & 1
-	\end{smallmatrix}\right]} = \sigma^{b^\prime}$\retTwo\par}
-
-	And finally $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} = g_1^{-1} \cdots g_n^{-1}\sigma^{b^\prime} \in G$. This proves that $\PSL_2(\mathbb{Z}) = \langle \overline{\left[\begin{smallmatrix}
-	1 & 1 \\ 0 & 1
-\end{smallmatrix}\right]}, \overline{\left[\begin{smallmatrix}
-	0 & 1 \\ -1 & 0
-\end{smallmatrix}\right]} \rangle$.\retTwo
-\end{myIndent}
-
-\Hstatement\blab{Set 8 Problem 4:} Prove that $\PSL_2(\mathbb{Z}) = \langle a, b \mid a^2, b^3 \rangle$.
-\begin{myIndent}\HexOne
-	Let $\sigma \coloneqq \overline{\left[\begin{smallmatrix}
-		1 & 1 \\ 0 & 1
-	\end{smallmatrix}\right]}$ and $\tau \coloneqq \overline{\left[\begin{smallmatrix}
-		0 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]}$ like before. Then set $\omega = \sigma \tau$ and define $G_1 \coloneqq \langle \tau \rangle$ and $G_2 \coloneqq \langle \omega \rangle$.\retTwo
-
-	Claim 1: $\langle G_1, G_2\rangle = \langle \tau, \omega \rangle = \PSL_2(\mathbb{Z})$.
-	\begin{myIndent}\HexTwoP
-		Why? We already know $\PSL_2(\mathbb{Z}) = \langle \tau, \sigma\rangle$. Also, $\tau = \tau^{-1}$. Therefore, $\sigma = \omega \tau$ is in $\langle \tau, \omega\rangle$. And this proves that:
-
-		{\centering $\PSL_2(\mathbb{Z}) = \langle \tau, \sigma \rangle \subseteq \langle \tau, \omega \rangle \subseteq \PSL_2(\mathbb{Z})$ \retTwo\par}
-	\end{myIndent}
-
-	Claim 2: $G_1 \cong C_2$ and $G_2 \cong C_3$.
-	\begin{myIndent}\HexTwoP
-		Why? We already know from class that $\tau^2 = \overline{\left[\begin{smallmatrix}
-		1 & 0 \\ 0 & 1
-	\end{smallmatrix}\right]}$. Meanwhile $\omega = \sigma \tau = \overline{\left[\begin{smallmatrix}
-		-1 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]}$. In turn, $\omega^3 = \overline{\left[\begin{smallmatrix}
-		-1 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]}\phantom{.}\overline{\left[\begin{smallmatrix}
-		-1 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]}\phantom{.}\overline{\left[\begin{smallmatrix}
-		-1 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		-1 & 1 \\ -1 & 0
-	\end{smallmatrix}\right]}\phantom{.}\overline{\left[\begin{smallmatrix}
-		0 & -1 \\ 1 & -1
-	\end{smallmatrix}\right]} = \overline{\left[\begin{smallmatrix}
-		1 & 0 \\ 0 & 1
-	\end{smallmatrix}\right]}$. And as $o(\omega)$ divides $3$ and doesn't equal $1$, we know $o(\omega) = 3$.\retTwo
-	\end{myIndent}
-
-	Now consider the action $\PSL_2(\mathbb{Z}) \curvearrowright \mathbb{R} \cup \{\infty\}$ by Möbius transformations.
-	\begin{myIndent}\HexPPP
-		In other words, $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} \cdot x = \frac{ax + b}{cx + d}$ for all $x \in \mathbb{R}$ and $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]} \cdot \infty = \frac{a}{c}$ (and if any of the right-hand expressions are undefined, then $\overline{\left[\begin{smallmatrix}
-		a & b \\ c & d
-	\end{smallmatrix}\right]}$ sends the element of $\mathbb{R} \cup \{\infty\}$ to $\infty$.)\retTwo
-
-	Recall from \inLinkRap{page 335 reference}{page 335} that if $T(x) = \frac{a_1x + b_1}{c_1 x + d_1}$ and $S(x) = \frac{a_2 x + b_2}{c_2 x + d_2}$, then:
-	
-	{\center$(T \circ S)(x) = \frac{(a_1a_2 + b_1 c_2)x + (a_1 b_2 + b_1 d_2)}{(c_1 a_2 + d_1c_2)x + (c_1 b_2 + d_1 d_2)}$.\retTwo\par}
-
-	So, we do have that $\overline{\left[\begin{smallmatrix}
-		a_1 & b_1 \\ c_1 & d_1
-	\end{smallmatrix}\right]} \cdot (\overline{\left[\begin{smallmatrix}
-		a_2 & b_2 \\ c_2 & d_2
-	\end{smallmatrix}\right]} \cdot x) = (\overline{\left[\begin{smallmatrix}
-		a_1 & b_1 \\ c_1 & d_1
-	\end{smallmatrix}\right]}\phantom{.}\overline{\left[\begin{smallmatrix}
-		a_2 & b_2 \\ c_2 & d_2
-	\end{smallmatrix}\right]}) \cdot x$ and $\overline{\left[\begin{smallmatrix}
-		1 & 0 \\ 0 & 1
-	\end{smallmatrix}\right]} \cdot x = x$.\retTwo
-	\end{myIndent}
-
-	Let $X_1 = (-\infty, 0]$ and $X_2 = (0, \infty) \cup \{\infty\}$. Then $\tau \cdot x = \frac{1}{-x}$ and so\\ [-2pt] $(G_1 - \{\overline{I}\}) \cdot X_2 \subseteq X_1$. Meanwhile, $\omega \cdot x = \frac{x - 1}{x}$ and $\omega^2 \cdot x = \frac{-1}{x - 1}$ and so\\ [-2pt] $(G_2 - \{\overline{I}\}) \cdot X_1 \subseteq X_2$. Thus by ping pong lemma, we have that:
-	
-	{\center$C_2 * C_3 \cong G_1 * G_2 = \langle G_1, G_2\rangle = \PSL_2(\mathbb{Z})$.\retTwo\par}
-
-	Finally, by problem 2 we know that $C_2 * C_3 \cong \langle a \mid a^2\rangle * \langle b \mid b^3 \rangle \cong \langle a, b \mid a^2, b^3 \rangle$. $\blacksquare$\newpage
-
-	\begin{myIndent}\myComment
-		Interestingly, this and the last problem shows that $\langle a, b \mid a^2\rangle$ is isomorphic to a\\ subgroup of $\langle a, b \mid a^2, b^3 \rangle$. So that's cool.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\blab{Set 8 Problem 5:} Prove that the group of Euclidean symmetries of the integers is isomorphic to $\langle a, b \mid a^2, b^2\rangle$.
-\begin{myIndent}\HexOne
-	To start off, a \udefine{Euclidean symmetry of the integers} is an isometry $\theta: \mathbb{R} \to \mathbb{R}$ satisfying that $\theta(\mathbb{Z}) = \mathbb{Z}$. Note that all isometries are equal to an orthogonal linear function followed by translation by constant. So, we must have that $\theta(x) = ax + b$ where $a \in \{\pm 1\}$ and $b \in \mathbb{R}$. Also, as $\theta(0) \in \mathbb{Z}$ we must have that $b \in \mathbb{Z}$. Hence, the group the problem is asking us about is $D_\infty$ from \inLinkRap{Math 200a Problem 5 Set 6}{problem 5 of the sixth problem set}.\retTwo
-
-	Now, we already know from that prior homework set that $D_\infty$ is generated by the maps $r(x) = -x$ and $s(x) = -x + 1$ where both $r$ and $s$ have order $2$. So using the universal property of free groups, let $\Phi : F_{\{a, b\}} \to D_\infty$ be a group homomorphism such that\\ $\Phi(a) = r$ and $\Phi(b) = s$. This map is surjective because $r$ and $s$ generate $D_\infty$. Also, since $\Phi(a^2) = \myId = \Phi(b^2)$ we know there is a well-defined surjective group homomorphism $\overline{\Phi} : \langle a, b \mid a^2, b^2 \rangle \to D_\infty$ with $\overline{\Phi}(a) = r$ and $\overline{\Phi}(b) = s$.\retTwo
-
-	But now because $a^2 = b^2 = 1$, all words in $\langle a, b \mid a^2, b^2 \rangle$ can be reduced to the form $(ab)^k a$, $(ab)^k$, $(ba)^k b$ or $(ba)^k$ where $k$ is a nonnegative integer. Also, note that:
-	
-	{\centering$(ab)^{-k} = ((ab)^k)^{-1} = (ba)^k$ and $(ab)^{-k}a = (ba)^k a = (ba)^{k-1}b$\retTwo\par}
-
-	Therefore, we can actually write that:
-	
-	{\centering$\langle a, b \mid a^2, b^2 \rangle = \{(ab)^n : n \in \mathbb{Z}\} \cup \{(ab)^n : n \in \mathbb{Z}\}a$\retTwo\par}
-
-	And finally, $\overline{\Phi}$ sends each of the elements in the above two cosets to different isometries in $D_\infty$. Specifically, $(\overline{\Phi}((ab)^n))(x) = x - n$ while $(\overline{\Phi}((ab)^n a))(x) = -x - n$. (This was shown in my write up for that prior homework set).\retTwo
-
-	So, $\overline{\Phi}$ is an injection and we are done.\retTwo
-\end{myIndent}
-
-\blab{Set 8 Problem 6:} Let $G_n \coloneqq \langle s_1, \ldots, s_{n-1} \mid s_i^2, (s_is_j)^2 \text{ if } |i-j| > 1; (s_is_{i+1})^3\rangle$ (where $n \geq 2$). Prove that $G_n \cong S_n$.
-\begin{myIndent}\HexOne
-	Let $\tau_i \coloneqq (i\gap i+1)$ for all $1 \leq i < n$. Then using the universal property of free groups, let $\Phi : F_{\{s_1, \ldots, s_{n-1}\}} \to S_n$ be the unique group homomorphism such that $\Phi(s_i) = \tau_i$ for each $i$. Note that $\Phi$ is surjective since the $\tau_i$ generate all of $S_n$.
-	\begin{myTindent}\HexPPP
-		If you really doubt that, recall that $\tau_1 = (1 \gap 2)$ and $\tau_1 \tau_2 \cdots \tau_n = (1 \gap 2 \gap \cdots \gap n)$ generate all of $S_n$.\retTwo
-	\end{myTindent}
-
-	Also note that $\tau_i^2 = \myId$. And if $|i - j| > 1$ then $\tau_i \tau_j$ has cycle type $(2 \geq 2 \geq 1 \geq \cdots \geq 1)$. So, $(\tau_i \tau_j)^2 = \myId$. And finally, $\tau_{i}\tau_{i+1}$ is a three cycle so $(\tau_{i}\tau_{i+1})^{3} = \myId$ for each $i$. All in all, this shows that all the defining relations of the proposed presentation are in the kernel of $\Phi$. Hence, after quotienting out the normal subgroup generated by them we get a well defined surjective group homomorphism $\overline{\Phi} : G_n \to S_n$ such that $\overline{\Phi}(s_i) = \tau_i$ for each $1 \leq i < n$.\retTwo
-
-	Now to prove that $\overline{\Phi}$ is injective, we proceed by induction on $n$ to show that $|G_n| \leq n!$. That way the only way for $\overline{\Phi}$ to also be surjective is if $|G_n| = n!$ and $\overline{\Phi}$ is one-to-one. For\\ [1pt] our base case, note that $G_2 = \langle s_1 \mid s_1^2\rangle \cong C_2$ and $|C_2| = 2 = 2!$\retTwo
-
-	Meanwhile for the inductive step, let $H_{n-1}$ be the subgroup of $G_n$ generated by $s_1, \ldots, s_{n-2}$. Then using the universal property of free groups, let $\Psi : F_{\{s_1, \ldots, s_{n-2}\}} \to H_{n-1}$ be the unique\\ [-2pt] group homomorphism such that $\Psi(s_i) = s_i$ for each $i$. Again, $\Psi$ is surjective.\newpage
-
-	It's clear that all the relations defining $G_{n-1}$ are in the kernel of $\Psi$. Thus, after quotienting them out we get a well-defined surjective group homomorphism $\overline{\Psi} : G_{n-1} \to H_{n-1}$ such that $\overline{\Psi}(s_i) = s_i$ for all $i$. And by induction, this proves that $|H_{n-1}| \leq (n-1)!$.\retTwo
-
-	Next let $H^{(n-j)}_{n-1}$ be the coset $s_{n-j}\cdots s_{n-1}H_{n-1}$ and also denote $H_{n-1}^{(n)} = H_{n-1}$. Then set $X_n \coloneqq \{H_{n-1}^{(1)}, \ldots, H_{n-1}^{(n)}\} \subseteq G_n / H_{n-1}$. We can easily see that $s_i H_{n-1}^{(i+1)} = H_{n-1}^{(i)}$. And as $s_i^2 = 1$ we can also see that $s_iH_{n-1}^{(i)} = H_{n-1}^{(i+1)}$.\retTwo
-	
-	To show the other cases, note that if $j \leq i - 2$, then $s_j s_i = s_i s_j$. Thus since $s_j \in H_{n-1}$ for all $j \leq n-2$, we know that:
-
-	{\centering\begin{tabular}{l}
-	$s_j H_{n-1}^{(i)} = s_j s_i s_{i+1}\cdots s_{n-1}H_{n-1} = s_i s_{i+1}\cdots s_{n-1} s_jH_{n-1}$\\
-	$\phantom{s_j H_{n-1}^{(i)} = s_j s_i s_{i+1}\cdots s_{n-1}H_{n-1}} = s_i s_{i+1}\cdots s_{n-1}H_{n-1} = H_{n-1}^{(i)}$ when $j \leq i - 2$. 
-	\end{tabular}\retTwo\par}
-
-	As for if $j > i$, then we can write $s_j s_i s_{i+1}\cdots s_{n-1} = s_i \cdots s_{j-2} s_j s_{j-1} s_j \cdots s_{n-1}$ using the identity from the previous paragraph. After that, as $(s_{j-1} s_{j})^3 = 1$, we know that $s_j s_{j-1} s_j = s_{j-1} s_j s_{j-1}$. Hence:
-
-	{\centering\begin{tabular}{l}
-	$s_i \cdots s_{j-2}s_j s_{j-1}s_j s_{j+1}\cdots s_{n-1} = s_i \cdots s_{j-2} s_{j-1} s_j s_{j-1} s_{j+1}\cdots s_{n-1}$\\
-	$\phantom{s_i \cdots s_{j-2}s_j s_{j-1}s_j s_{j+1}\cdots s_{n-1}} = s_i \cdots s_{j-2} s_{j-1} s_j s_{j+1}\cdots s_{n-1} s_{j-1}$
-	\end{tabular}\retTwo\par}
-	
-	And as $s_{j-1} \in H_{n-1}$, this shows that $s_jH_{n-1}^{(i)} = H_{n-1}^{(i)}$ when $j > i$.\retTwo
-
-	All in all, this proves that $s_j X_n = X_n$ for all $1 \leq j < n$. And since the $s_j$ generate all of $G_n$, we in turn know that $\omega X_n = X_n$ for all words $\omega \in G_n$. In particular, this means $\omega H_{n-1} \in X_n$ for all $\omega \in G_n$. So, $[G_{n} : H_{n-1}] \leq |X_n| \leq n$.\retTwo
-	
-	Thus $|G_n| = |H_{n-1}|[G_{n} : H_{n-1}] \leq (n-1)!\cdot n = n!$. $\blacksquare$
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-\blect{Math 200a notes:}\retTwo
-
-In this class, we define a ring to be a set $A$ equipped with operations $+, \cdot$ such that $(A, +)$ is an abelian group and $(A, \cdot)$ is a semigroup (i.e. a set with an associative operation) such that $0 \cdot a = 0 = a \cdot 0$, $c \cdot (a + b) = ca + cb$, and $(a + b) \cdot c = ac + bc$.\retTwo
-
-Note, that we shall make a distinction between \udefine{unital rings} and \udefine{non-unital rings} (also called rng's). Specifically, a unital ring has a multiplicative identity element $1$ whereas a non-unital ring doesn't. {\myComment(So in other words we won't take it by definition that a ring has an  element $1$.)}\retTwo
-
-Usually, we shall assume we are working with commutative unital rings. That said, there are cases where we sometimes want to drop those assumptions.
+\Hstatement\blab{Problem 2 From Fall 2024 Midterm:} Suppose $G$ is a finite group, $p$ is a prime integer,  and $H, K$ are $2$ subgroups of $G$ such that $G = HK$.
 \begin{itemize}
-	\item Given any ring $A$, we can define a ring $M_n(A)$ of $n\times n$ matrices of $A$ using standard matrix addition and multiplication. In other words, $[a_{i,j}] + [b_{i,j}] = [(a_{i,j} + b_{i,j})]$ and $[a_{i,j}]\cdot[b_{i,j}] = [(\sum_{k = 1}^n a_{i,k}b_{k,j})]$. Note that $M_n(A)$ is usually not a commutative even if $A$ is.
-	
-	\begin{myIndent}\pracTwo
-		I'm not gonna show these operations satisfy the ring axioms.
-	\end{myIndent}
-
-	\item A common counter example is the rng where multiplication sends all pairs of elements to $0$.\newpage
-\end{itemize}
-
-If $G$ is a group or $M$ is a monoid, then given a ring $A$ we call $A[M]$ or $A[G]$ the \udefine{monoid ring} or \udefine{group ring} where $A[M]$ (resp. $A[G]$) is the collection of formal sums $\sum_{m\in M} a_m m$ (resp. $\sum_{g \in G} a_g g$) where each $a_m \in A$ and $a_m = 0$ for all but finitely many $m \in M$. To turn $A[M]$ (resp. $A[G]$) into a ring, we define:
-\begin{itemize}
-	\item $\sum\limits_{m \in M} a_m m + \sum\limits_{m \in M} a_m^\prime m \coloneqq \sum\limits_{m \in M}(a_m + a^\prime_m)m$,
-	\item $(\sum\limits_{m \in M} a_m m)(\sum\limits_{m \in M} a_m^\prime m) = \sum\limits_{m\in M}\left(\sum\limits_{m_1 \cdot m_2 = m} a_{m_1} a^\prime_{m_2}\right)m$. {\myComment(This is called a convolution\dots)}
-\end{itemize}
-
-\begin{myIndent}\pracTwo
-	I'm not gonna show these operations satisfy the ring axioms.\retTwo
-
-	\myComment(Also note that if $A$ is a commutative ring and $M$ (or $G$) is abelian, then $A[M]$ (resp. $A[G]$) is a commutative ring.)\retTwo
-\end{myIndent}
-
-If $M = (\mathbb{Z}_{\geq 0})^k \cong \{x_1^{i_1}x_2^{i_2}\cdots x_k^{i_k} : (i_1, \ldots, i_k) \in (\mathbb{Z}_{\geq 0})^k\}$, then $A[(\mathbb{Z}_{\geq 0})^k] \cong A[x_1, \ldots, x_k]$ is the polynomial ring.\retTwo
-
-\mySepTwo
-
-Given two rings $A_1, A_2$, we say $\phi: A_1 \to A_2$ is a \udefine{ring homomorphism} if\\ $\phi(x + y) = \phi(x) + \phi(y)$ and $\phi(xy) = \phi(x)\phi(y)$ for all $x, y \in A_1$. Also, we say $\phi$\\ is a \udefine{unital ring homomorphism} if $A_1, A_2$ are unital rings and $\phi(1_{A_1}) = 1_{A_2}$.
-\begin{myIndent}\myComment
-	In other words, unlike in math 100b we are not assuming by default that ring\\ homomorphisms are unital.\retTwo
-\end{myIndent}
-
-\pracOne For example: if $B$ is a commutative ring and $A \subseteq B$ is a subring, then for all $b \in B$ we have that the map $e_b : A[x] \to B$ given by $e_b(f) \coloneqq f(b)$ is a ring homomorphism. And if $B$ and $A$ share a multiplicative identity, then $e_b$ is also unital. 
-
-\begin{myIndent}\pracTwo
-	You can see my 100b notes on why this is a homomorphism.\retTwo
-
-	Also, something that's not at all clear is how the professor defines a subring since we've loosened our definition of a ring and ring homomorphism. In this class we say $A \subseteq B$ is a \udefine{subring} if $A$ is closed under multiplication and a subgroup of $B$ with respect to addition.\retTwo
-\end{myIndent}
-
-\hTwo We say $\mathfrak{a}$ is an \udefine{ideal} of $A$ (also written as $\mathfrak{a} \lhd A$) if $(\mathfrak{a}, +)$ is a subgroup of $(A, +)$ and $ax, xa \in \mathfrak{a}$ for all $x \in \mathfrak{a}$ and $a \in A$.
-\begin{myIndent}\myComment
-	Note that if $A$ is a unital ring then it suffices to show $A$ is closed under addition and has the mentioned multiplication property. After all, we then have that $-x = (-1)\cdot x \in \mathfrak{a}$ for all $x \in \mathfrak{a}$.\retTwo
-\end{myIndent}
-
-\exTwo\ul{Lemma:} If $\phi : A_1 \to A_2$ is a ring homomorphism then $\myIm(\phi)$ is a subring of $A_2$ and $\ker(\phi)$ is an ideal of $A$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Since $\phi: (A_1, +) \to (A_2, +)$ is a group homomorphism, we know that $\myIm(\phi)$ and $\ker(\phi)$ are subgroups of $A_1$ and $A_2$ respectively with respect to $+$. To show that $\ker(\phi)$ is an ideal, note that $\phi(ax) = \phi(a)\phi(x) = 0_{A_2} = \phi(x)\phi(a) = \phi(xa)$ for all $x \in A_1$ and $a \in \ker(\phi)$. Meanwhile, to show that $\myIm(\phi)$ is a subring, note that if $\phi(x) = a$ and $\phi(y) = b$ then $\phi(xy) = ab$. $\blacksquare$\newpage
-\end{myIndent}
-
-\hTwo Switching our perspective, note that if $\mathfrak{a}$ is an ideal of a ring $A$, then we can define a\\ quotient ring $A/\mathfrak{a}$ by defining $(x + \mathfrak{a}) \cdot (y + \mathfrak{a}) = xy + \mathfrak{a}$ on the abelian quotient group\\ $(A/\mathfrak{a}, +)$.
-\begin{myIndent}\myComment
-	See my math 100b notes for why this is well-defined.\retTwo
-\end{myIndent}
-
-Then the natural projection map $j : A \rightarrowdbl A/\mathfrak{a}$ satisfies that $\ker(j) = \mathfrak{a}$. Hence, all ideals are kernels of some ring homomorphism.\retTwo
-
-\pracOne Returning to the evaluation map $e_b : A[x] \to B$ where $B$ is a commutative ring and $A \subseteq B$ is a subring, one can fairly easy see that $\myIm(e_b)$ is the smallest subring of $B$ containing $A$ and $b$. We denote $\myIm(e_b)$ as $A[b]$.\retTwo
-
-\hTwo\mySepTwo
-
-\dispDate{11/24/2025}
-
-\blect{Math 220a Notes:}\retTwo
-
-If $G$ is an open set, then we say $\gamma$ is \udefine{homologous to zero} (denoted $\gamma \approx_G 0$) iff $n(\gamma; w) = 0$ for all $w \in \mathbb{C} - G$.
-\begin{myIndent}\pracTwo
-	Note that by the first corollary on \inLinkRap{Page 415 reference}{page 415}, we have that $\gamma \sim_G 0 \Longrightarrow \gamma \approx_G 0$.
-	\retTwo
-\end{myIndent}
-
-Suppose $G \subseteq \mathbb{C}$ is a region and $f : G \to \mathbb{C}$ is analytic on $G$ with the zeros $a_1, \ldots, a_n$ (where the $a_k$ are allowed to be repeated). As noted on \inLinkRap{page 382 reference}{page 382} of my journal as well as my spring notes,
-we can then find an analytic function $g : G \to \mathbb{C}$ with no zeros such that $f(z) = (z - a_1)\cdots (z-a_n)g(z)$. Then by product rule, we get that:
-
-{\centering $f^\prime(z) = \sum\limits_{k=1}^n (\prod\limits_{i \neq k}(z - a_i))g(z) + g^\prime(z)\prod\limits_{k=1}^n(z - a_k)$ \retTwo\par}
-
-And dividing both sides by $f(z)$ we get that:
-
-{\centering $\frac{f^\prime(z)}{f(z)} = \frac{g^\prime(z)}{g(z)} + \sum\limits_{k=1}^n (z - a_k)^{-1}$ when $z \neq a_1, \ldots, a_n$\retTwo\par}
-
-\exTwo\ul{(Conway) Theorem IV.7.2:} Let $G$ be a region and let $f$ be an analytic function on $G$ with zeros $a_1, \ldots, a_n$ (repeated according to multiplicity) like above. If $\gamma$ is a closed piecewise $C^1$ curve in $G$ which does not pass through any point $a_k$ and if $\gamma \approx_G 0$ then:
-
-{\centering $\frac{1}{2\pi i}\int_\gamma\frac{f^\prime(z)}{f(z)}\df z = \sum\limits_{k=1}^m n(\gamma; a_k)$. \retTwo\par}
-
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Letting $g$ be as above, we know that:
-
-	{\centering $\frac{1}{2\pi i}\int_\gamma\frac{f^\prime(z)}{f(z)}\df z = \frac{1}{2\pi i}\int_\gamma\frac{g^\prime(z)}{g(z)}\df z + \sum\limits_{k=1}^n\frac{1}{2\pi i}\int_\gamma \frac{1}{z - a_k}\df z = \frac{1}{2\pi i}\int_\gamma\frac{g^\prime(z)}{g(z)}\df z + \sum\limits_{k=1}^m n(\gamma; a_k)$ \retTwo\par}
-
-	Then since $g(z) \neq 0$ for any $z \in G$, we know that $\frac{g^\prime}{g}$ is analytic on $G$. Hence, we have that $\int_\gamma\frac{g^\prime(z)}{g(z)}\df z = 0$. $\blacksquare$\newpage
-\end{myIndent}
-
-\exTwo\ul{(Conway) Corollary IV.7.3:} Let $f, G, \gamma$ be as in the last theorem but let $a_1, \ldots, a_n$ (repeated according to multiplicity) be all the points where $f$ equals $\alpha$. In other words, $a_1, \ldots, a_n$ are the zeros of $f(z) - \alpha$. Then:
-
-{\centering $\frac{1}{2\pi i}\int_\gamma\frac{f^\prime(z)}{f(z) - \alpha}\df z = \sum\limits_{k=1}^m n(\gamma; a_k)$. \retTwo\par}
-
-\hTwo Note that if $f: G \to \mathbb{C}$ is an analytic non-constant function on $G$, it is possible for $f$ to have infinitely many zeros in $G$. That said, because the set of zeros can't have a limit point in $G$, we know that if $K \subseteq G$ is compact then $f$ can only have finitely many limit points in $K$. Consequently, if $\gamma \approx_G 0$ we can show that $f(z) = \alpha$ must have only finitely many solutions in $G$ such that $n(\gamma;z) \neq 0$.\retTwo
-
-\Hstatement\mySepTwo 
-
-\blab{Exercise IV.7.2:} Let $G \subseteq \mathbb{C}$  be open and suppose $\gamma$ is a closed piecewise $C^1$ curve in $G$ such that $\gamma \approx_G 0$. Set $H \coloneqq \{z \in \mathbb{C} : n(\gamma;z) = 0\}$.
-\begin{enumerate}
-	\item[(a)] Suppose $G$ is a proper subset of $\mathbb{C}$ and define $r \coloneqq \inf(\{|z - w| : z \in \{\gamma\}, w \in \partial G\})$. Note that $r$ exists and is positive because $\partial G, \{\gamma\}$ are closed disjoint nonempty sets with $
-	\{\gamma\}$ compact. Now show that $\{z \in \overline{G} : \inf\{|z - w| : w \in \partial G\} < \frac{r}{2}\} \subseteq H$
-	
-	\begin{myIndent}\HexOne
-		It suffices to show that if $\inf\{|z - w| : w \in \partial G\} < \frac{r}{2}$ then $z$ is in the same component\\ of $G - \{\gamma\}$ as some $w \in \partial G$. After all, as $w \in G^\comp$ and $f \approx_G 0$ we know that $n(\gamma;w) = 0$. Also, as $n(\gamma;z)$ is constant on each component of $\mathbb{C} - G$, we would thus have that $n(\gamma; z) = n(\gamma;w)$.  Fortunately, we can just pick $w \in \partial G$ such that\\ $|z - w| < \frac{1}{2}r$. Next, we note that the line segment $[z, w]$ can't intercept $\{\gamma\}$ as\\ that would contradict how we defined $r$. So, $z, w$ must be in the same component of $\mathbb{C} - \{\gamma\}$.\retTwo
-	\end{myIndent}
-	
-	\item[(b)] Use part (a) to show that if $f: G \to \mathbb{C}$ is analytic and non-constant then $f(z) = \alpha$ has at most a finite number of solutions $z$ such that $n(\gamma;z) \neq 0$.
-	
-	\begin{myIndent}\HexOne
-		Since $\gamma$ is bounded, we can find an open ball $B \subseteq \mathbb{C}$ of finite radius with $\{\gamma\} \subseteq B$. Then as $B$ is convex, we know that $\gamma \sim_B 0$. Hence $G - B \subseteq H$.\retTwo
-
-		Meanwhile, let $r \coloneqq \inf(\{|z - w|\} : z \in \{\gamma\}, w \in \partial (B \cap G))$. Then by part (a) we know that $V \coloneqq \{z \in \overline{B \cap G}: \inf\{|z-w| \in \overline{B \cap G} : w \in \partial(B \cap G)\} < \frac{r}{2}\} \subseteq H$. Hence $K \coloneqq \overline{B \cap G} - V$ must contain $H^\comp$. But also note that $V$ is an open subset of\\ [2pt] $\overline{B \cap G}$. Hence, $K$ is a closed subset relative to the compact set $\overline{B \cap G}$. In turn, $K$ is\\ [2pt] compact. Also as $\partial (B \cap G) \subseteq V$ we know that $K \subseteq B \cap G$.\retTwo
-
-		With that, we've proven there is a compact set $K \subseteq G$ with $n(\gamma; z) = 0$ outside of $K$. And as noted before, $f(z) = \alpha$ can only have finitely many solution on $K$ as any infinite subset of a compact set has a limit point. $\blacksquare$
-	\end{myIndent}
-\end{enumerate}
-
-\mySepTwo\newpage
-
-\hTwo A \udefine{simple root} of $f(z) = \xi$ is a zero of $f(z) - \xi$ with multiplicity $1$.\retTwo
-
-\exTwo\ul{(Conway) Theorem IV.7.4:} Suppose $f: G \to \mathbb{C}$ is analytic and $z_0 \in G$ is such that $f(z) - w_0$ has a zero of multiplicity $m$ at $z_0$. Then there exists $\varepsilon, \delta > 0$ such that for all $w \in B_\varepsilon(w_0)$ the equation $f(z) - w$ has exactly $m$ zeros in $B_\delta(z_0)$ which furthermore are all simple if $w \neq w_0$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	To start off, we may pick $\delta > 0$ such that $f(z) - w_0 \neq 0$ for all $z \in \overline{B_{\delta}(z_0)} - \{z_0\} \subseteq G$.\\ Then let $\gamma(s) = z_0 + \delta e^{is}$ and note that $\sigma \coloneqq f \circ \gamma$ is a closed piecewise $C^1$ curve not passing through $w_0$. Hence, $\varepsilon \coloneqq \inf\{|w - w_0| : w \in \{\sigma\}\} > 0$ and in turn $g(w) \coloneqq \frac{1}{2\pi i}\int_{\gamma} \frac{f^\prime(z)}{f(z) - w} \df z$ is continuous (by Leibniz's rule) as $w$ ranges over $B_\varepsilon(w_0)$. Yet also\\ [-2pt] recall from our prior theorems that $g(w)$ is integer valued. Hence, we know $g$ is constant on $B_\varepsilon(w_0)$.\retTwo
-	
-	But now note that $n(\gamma; z) = 1$ for all $z \in B_\delta(z_0)$ and $n(\gamma;z) = 0$ for all other\\ $z \in \mathbb{C} - \{\gamma\}$. Therefore, we can calculate that $g(w_0) = \sum_{k=1}^m n(\gamma; z_0) = m \cdot 1$. And\\ this proves that $g(w) = \frac{1}{2\pi i} \int_{\gamma} \frac{f^\prime(z)}{f(z) - w} \df z = m$ for all $w \in B_\varepsilon(w_0)$.\retTwo
-	
-	Next note that if $a_1, \ldots, a_n$ are the zeros in $B_\delta(z_0)$ (repeated according to multiplicity) of $f(z) - w$, then since $n(\gamma; a_k) = 1$ for each $k$, we have for all $w \in B_\varepsilon(w_0)$ that:
-
-	{\centering $m = g(w) = \sum_{k=1}^n n(\gamma ; a_k) = n$\retTwo\par}
-
-	So, there are exactly $m$ solutions in $B_\delta(z_0)$ to the equation $f(z) = w$ for all $w \in B_\varepsilon(w_0)$.\retTwo
-
-	Finally, if $m = 1$ then there is nothing to prove. Meanwhile, if $m > 1$ then we can easily show that $f^\prime(z_0) = 0$ (see the exercise below). In turn, as $f^\prime$ is analytic we can say that if we had initially started with a small enough $\delta$ then we'd have that $f^\prime(z) \neq 0$ for all $z \in \overline{B}_\delta(z_0) - \{z_0\}$. In turn, each root of $f(z) - w$ must be simple when $w \neq w_0$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\Hstatement\mySepTwo
-
-\blab{Exercise IV.7.3:} Let $f$ be analytic in $B_R(a)$ and suppose that $f(a) = 0$. Show that $a$ is a zero of multiplicity $m$ iff $f^{(m-1)}(a) = \cdots = f^{(1)}(a) = f(a) = 0$ and $f^{(m)}(a) \neq 0$.
-\begin{myIndent}\HexOne
-	$(\Longleftarrow)$\\
-	Write $f$ as a power series $\sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!}(z - a)^n$. If $f^{(m-1)}(a) = \cdots = f^{(1)}(a) = f(a) = 0$ and $f^{(m)}(a) \neq 0$ then we can factor out $(z-a)^m$ and get a power series which is nonzero at $a$.\retTwo
-
-	$(\Longrightarrow)$\\
-	Write $f(z) =  (z-a)^m g(z)$ where $g(a) \neq 0$ and both $f$ and $g$ are analytic. Then we can express $g$ as a power series $\sum_{n=0}^\infty \frac{g^{(n)}(a)}{n!}(z - a)^n$. In turn: 
-	
-	{\centering$f(z) =  \sum_{n=0}^{m-1} \frac{0}{n!}(z-a)^n + \sum_{n=0}^\infty \frac{g^{(n)}(a)}{(n)!}(z - a)^{n+m}$.\retTwo\par}
-	
-	And by looking at each coefficient in the power series, we see that $f^{(n)}(a) = 0$ for all $n < m$ and $f^{(m)}(a) = m! g(a) \neq 0$. $\blacksquare$\newpage
-\end{myIndent}
-
-\exTwo\ul{Open Mapping Theorem:} Let $G$ be a region and suppose that $f: G \to \mathbb{C}$ is a non-constant analytic function on $G$. Then for any open set $U \subseteq G$ we have that $f(U)$ is open in $\mathbb{C}$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	By the last theorem, for all $z \in G$ we can find $\varepsilon, \delta > 0$ such that:
-	
-	{\centering$B_\varepsilon(f(z)) \subseteq f(B_\delta(z)) \subseteq f(G)$.\retTwo\par}
-\end{myIndent}
-
-\hTwo One more comment before I start with the 220 homework. Conway finally proves that being complex differentiable a single time on an open set makes a function holomoprhic on that open set. The proof he uses doesn't have any new ideas from my notes from last Spring though.\retTwo
-
-\Hstatement\mySepTwo
-
-\blect{Math 220a Homework:}\retTwo
-
-\blab{Exercise IV.6.1:} Let $G$ be a region and let $\sigma_1, \sigma_2 : [0, 1] \to G$ be the constant curves at $a$ and $b$ in $G$. Show that if $\gamma$ is a closed piecewise $C^1$ curve and $\gamma \sim_G \omega_1$ then $\gamma \sim_G \omega_2$.
-\begin{myIndent}\HexOne
-	Proof:\\
-	Since $G$ is a connected open subset of $\mathbb{C}$, we know $G$ is path connected. Then letting $\omega : [0, 1] \to G$ be any path going from $a$ to $b$, we have that $\Gamma(s, t) = \omega(t)$ is a homotopy from $\sigma_1$ to $\sigma_2$. Hence, $\sigma_1 \sim_G \sigma_2$.\retTwo
-
-	Then as $\sim_G$ is an equivalence relation and $\gamma \sim_G \sigma_1 \sim_G \sigma_2$, we are done. $\blacksquare$\retTwo
-\end{myIndent}
-
-\blab{Exercise IV.6.4:} Let $G = \mathbb{C} - \{0\}$ and show that every closed curve in $G$ is homotopic to a closed curve whose trace is contained in $\{z : |z| = 1\}$.
-\begin{myIndent}\HexOne
-	Define $\Gamma(s, t) \coloneqq (1-t)\gamma(s) + t\frac{\gamma(s)}{|\gamma(s)|}$. Since $\gamma(s) \neq 0$ ever, we know that $\Gamma$ is continuous. Also, $\Gamma(s, 0) = \gamma(s)$ and $|\Gamma(s, 1)| = |0 + 1\frac{\gamma(s)}{|\gamma(s)|}| = 1$. So, the curve $\gamma_1(s) = \Gamma(s, 1)$ is a continuous curve whose trace is contained in $\{z : |z| = 1\}$. Finally, as $\gamma(0) = \gamma(1)$ we\\ [3pt] know that $\Gamma(0, t) = \Gamma(1, t)$ for all $t$. Hence, $\Gamma$ is a homotopy.\retTwo
-\end{myIndent}
-
-\blab{Exercise IV.6.5:} Evaluate the integral $\int_{\gamma} \frac{\df z}{z^2 + 1}$ where $\gamma(\theta) = 2|\cos(2\theta)| e^{i\theta}$ for $0 \leq \theta \leq 2\pi$.
-\begin{myIndent}\HexOne
-	Note that $\frac{1}{z^2 + 1} = \frac{1}{(z + i)(z - i)}$. Then if $a(z + i) + b(z - i) = 1$, we must have that $a + b = 0$\\ [-1pt] and $i(a - b) = 1$. In particular $a = -b$ and so $i(2a) = 1$. In turn $a = \frac{1}{2i}$ and $b = \frac{-1}{2i}$. And\\ [2pt] this lets us conclude that:
-
-	{\centering $\int_{\gamma} \frac{\df z}{z^2 + 1} = \frac{1}{2i}\int_{\gamma} \frac{\df z}{z - i} - \frac{1}{2i}\int_{\gamma} \frac{\df z}{z + i} = \pi n(\gamma ; i) - \pi n(\gamma; -i)$ \retTwo\par}
-
-	\begin{tabular}{p{3.5in} p{2.5in}}
-	But now note that $\gamma(\theta) = 2|\cos(2\theta)| e^{i\theta}$\newline traces out the same curve as the polar graph\newline $r(\theta) = 2|cos(2\theta)|$. Specifically, that curve has\newline 4 equally spaced petals flower drawn counter-\newline clockwise about the origin as shown to the right.\newline
-
-	From here it is clear that $n(\gamma;i) = 1$ and $n(\gamma;-i) = 1$. So:
-	
-	{\centering$\pi n(\gamma ; i) - \pi n(\gamma; -i) = \pi - \pi = 0$.\par}
-	&
-	{\center\includegraphics[scale=0.45]{Proof1_HW8_math220a.png}\retTwo\par}
-	\end{tabular}\newpage
-\end{myIndent}
-
-\blab{Exercise IV.7.4:} Suppose that $f: G \to \mathbb{C}$ is analytic and injective. Then $f^\prime(z) \neq 0$ for any $z \in G$.
-\begin{myIndent}\HexOne
-	Proof:\\
-	Suppose to the contrary that $f^\prime(z_0) = 0$ for some $z_0 \in G$ and let $w_0 = f(z_0)$. Then we'd know that $f(z) - w_0$ has a zero of multiplicity $m > 1$ at $z = z_0$. So in turn, there exists $\varepsilon, \delta > 0$ such that $f(z) - w$ has two simple roots for in $B_\delta(z_0)$ for all $w \in B_\varepsilon(w_0)$. But that also means that $f$ isn't injective on $B_\delta(z_0) \subseteq G$.\retTwo
-
-	This proves that $f^\prime(z) \neq 0$ anywhere on $G$ is a necessary condition for an analytic function $f: G \to \mathbb{C}$ to be injective.\retTwo
-\end{myIndent}
-
-\blab{Exercise IV.7.5:} Let $X$ and $\Omega$ be metric spaces and suppose that $f: X \to \Omega$ is a bijection. Then $f$ is an open map iff $f$ is a closed map.
-\begin{myIndent}\HexOne
-	To start off, for any set $E \subseteq X$ we have that $f(E^\comp) = f(X) - f(E)$ since $f$ is injective. Then as $f$ is surjective we have that $f(X) - f(E) = (f(E))^\comp$. Hence, we've shown that set complements commute in and out of the function.\retTwo
-
-	$(\Longrightarrow)$\\
-	Suppose $f(U)$ is open for all open $U$. Then given any closed set $C$, we know that $f(C^\comp)$ is open. But we also know that $f(C^\comp) = (f(C))^\comp$. So, $f(C)$ is closed.\retTwo
-
-	$(\Longleftarrow)$\\
-	Literally do the same reasoning but swap the words open and closed.
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-\hypertarget{idk reference 6}{I} want to finish taking notes on Haar measures now. See \inLinkRap{page 364 Haar measure reference}{page 364} for where I'm starting from. As a reminder, I'm following Folland's real analysis book. Also, if $G$ is a topological group then $e$ is the identity element of $G$.\retTwo
-
-\exTwo\ul{Theorem 11.9:} If $\mu$ and $\nu$ are left Haar measures on a locally compact group $G$ then there exists $c > 0$ such that $\mu = c \nu$.
-\begin{myIndent}\exThreeP
-	(Proof for when $\mu$ is both left- and right-invariant [which will for example happen if $G$ is abelian]):
-	\begin{myIndent}
-		Pick $h \in C_c^+(G)$ such that $h(x) = h(x^{-1})$. (One way of doing this would be to just define $h(x) = g(x) + g(x^{-1})$ where $g \in C_c^+(G)$). Then for any $f \in C_c(G)$, we have that:
-
-		{\centering\begin{tabular}{l}
-			$\int h \df\nu \cdot \int f \df \mu = \iint h(y)f(x)\df \mu(x)\df \nu(y)$\\ [4pt]
-			$\phantom{\int h \df\nu \cdot \int f \df \mu} = \iint h(y)f(xy)\df \mu(x)\df \nu(y)$ {\exPPP(by right-invariance of $\mu$)}\\ [4pt]
-			$\phantom{\int h \df\nu \cdot \int f \df \mu} = \iint h(y)f(xy)\df \nu(y)\df \mu(x)$ {\exPPP(by Fubini's theorem)}\\ [4pt]
-			$\phantom{\int h \df\nu \cdot \int f \df \mu} = \iint h(x^{-1}y)f(x^{-1}xy)\df \nu(y)\df \mu(x)$ {\exPPP(by left invariance of $\nu$)}\\ [4pt]
-			$\phantom{\int h \df\nu \cdot \int f \df \mu} = \iint h(y^{-1}x)f(y)\df \nu(y)\df \mu(x)$ {\exPPP(by how we chose $h$)}\\ [4pt]
-			$\phantom{\int h \df\nu \cdot \int f \df \mu} = \iint h(y^{-1}x)f(y)\df \mu(x)\df \nu(y)$ {\exPPP(by Fubini's theorem)}\\ [4pt]
-			$\phantom{\int h \df\nu \cdot \int f \df \mu} = \iint h(yy^{-1}x)f(y)\df \mu(x)\df \nu(y)$ {\exPPP(by left-invariance of $\mu$)}\\ [4pt]
-			$\phantom{\int h \df\nu \cdot \int f \df \mu} = \iint h(x)f(y)\df \mu(x)\df \nu(y) = \int h \df \mu \cdot \int f\df \nu$\\ [4pt]
-		\end{tabular}\retTwo\par}
-
-		Hence $\int f \df \mu = c\int f \df \nu$ for all $f \in C_c^+(G)$ where $c = (\int h \df \mu)/(\int h \df \nu)$. (Recall that $\int h \df \nu > 0$ by \inLinkRap{Folland proposition 11.4(c)}{proposition 11.4(c) on page 353}). In turn, this implies that $\mu = c\nu$ (since $\mu$ and $\nu$ are Radon measures).\newpage
-	\end{myIndent}
-
-	(General Proof:)
-	\begin{myIndent}
-		Note that $\mu = c\nu$ iff the ratio $r_f \coloneqq (\int f \df \mu) / (\int f \df \nu)$ is independent of\\ $f \in C_c^+(G)$.
-		\begin{myIndent}\exPPP
-			The $(\Longleftarrow)$ implication is obvious. Meanwhile, to see the other direction,\\ note that for any nonempty open set we can find a sequence of functions such that $(\int f_n \df \mu) / (\int f_n \df \nu) \to \mu(U)/ \nu(U)$ as $n \to \infty$ (again, $U$ has nonzero $\nu$ measure by \inLinkRap{Folland proposition 11.4(c)}{proposition 11.4(c)}). So the right side statement would imply $\mu(U) = r_f \nu(U)$ for all open sets $U$. Then by the outer regularity of $\mu$ and $\nu$ we'd have that $\mu = r_f \nu$.\retTwo
+	\item[(a)] Prove that there exists $P \in \Syl_p(G)$ such that $P \cap H \in \Syl_p(H)$ and $P \cap K \in \Syl_p(K)$.
+	\begin{myIndent}\HexOne 
+		Pick $Q_H \in \Syl_p(H)$ and $Q_k \in \Syl_p(K)$. By Sylow's second theorem, there exists $P_1, P_2 \in \Syl_p(G)$ such that $Q_H \subseteq P_1$ and $Q_k \subseteq P_2$.\newpage
+
+		We claim that $Q_H = P_1 \cap H$.
+		\begin{myIndent}\HexTwoP
+			To see why, note that $P_1 \cap H$ must be a $p$-group containing $Q_H$. Furthermore, if $P_1 \cap H$ properly contained $Q_H$ then that would contradict that $Q_H$ is a Sylow $p$-subgroup.\retTwo
 		\end{myIndent}
 
-		So, suppose $f, g \in C_c^+(G)$. Then fix a compact symmetric neighborhood $V_0$ of $e$ and set $A \coloneqq (\supp(f))V_0 \cup V_0(\supp(f))$ and $B \coloneqq (\supp(g))V_0 \cup V_0(\supp(g))$.
-		\begin{myIndent}\exPPP
-			Note by the continuity of $x \mapsto x^{-1}$  that if $N$ is a compact neighborhood of $e$ then so is $N^{-1}$. So, we have no issue defining $V_0 = N \cap N^{-1}$ like in \inLinkRap{Folland proposition 11.1}{proposition 11.1(b)}. Similarly, $A$ and $B$ are compact by proposition 11.1(f).\retTwo
-		\end{myIndent}
+		Similarly, we have that $Q_K = P_2 \cap K$.\retTwo
 
-		Now for any $y \in V_0$ the functions $x \mapsto f(xy) - f(yx)$ and $x \mapsto g(xy) - g(yx)$ are supported in $A$ and $B$. Also by \inLinkRap{Folland Proposition 11.2}{proposition 11.2}, given any $\varepsilon > 0$ we can get a symmetric compact neighborhood $V \subseteq V_0$ of $e$ such that:
+		But now note by Sylow's second theorem plus the fact $G = HK$ that there must exist $h \in H$ and $k \in K$ such that $P_1 = hkP_2k^{-1}h^{-1}$. Hence, we may let $P \coloneqq h^{-1}P_1 h = kP_2 k^{-1}$ and know that $P \in \Syl_p(G)$.\retTwo
+
+		Finally, $P \cap H = h^{-1}(P_1 \cap H)h = h^{-1}Q_H h \in \Syl_p(H)$ and 
 		
-		{\centering$\sup_{x \in G} |f(xy) - f(yx)| < \varepsilon$ and $\sup_{x \in G} |g(xy) - g(yx)| < \varepsilon$ for all $y \in V$.\retTwo\par}
+		{\centering$P \cap K = k(P_2 \cap K)k^{-1} = kQ_K k^{-1} \in \Syl_p(K)$.\par}
 
-		\begin{myIndent}\exPPP
-			To get $V$, first just take the intersection of $V_0$ with four different neighborhoods gotten by proposition 11.2. Then use LCH space properties to get compact neighborhood of $e$ contained in that intersection. And finally, use proposition 11.1(b) to get a compact symmetric neighborhood.\retTwo
-		\end{myIndent}
-
-		Pick $h \in C_C^+(G)$ with $\supp(h) \subseteq V$ and $h(x) = h(x^{-1})$. Similarly to the last page, you can do this by defining $h(x) = g(x) + g(x^{-1})$ where $g \in C_c^+(G)$ satisfies that $\supp(g) \subseteq V$. Then:
-
-		{\centering\begin{tabular}{l}
-			$\int h \df \nu \int f \df \mu = \iint h(y)f(x)\df \mu(x)\df \nu(y)$\\ [4pt]
-			$\phantom{\int h \df \mu \int f \df \nu} = \iint h(y)f(yx)\df \mu(x)\df \nu(y)$ {\exPPP (by the left-invariance of $\mu$)}
-		\end{tabular}\retTwo\par}
-
-		But also note that:
-
-		{\centering\begin{tabular}{l}
-			$\int h \df \mu \int f \df \nu = \iint h(x)f(y)\df \mu(x)\df \nu(y)$\\ [4pt]
-			$\phantom{\int h \df \mu \int f \df \nu} = \iint h(y^{-1}x)f(y)\df \mu(x)\df \nu(y)$ {\exPPP (by the left-invariance of $\mu$)}\\ [4pt]
-			$\phantom{\int h \df \mu \int f \df \nu} = \iint h(y^{-1}x)f(y)\df \nu(y)\df \mu(x)$ {\exPPP (by Fubini's theorem)}\\ [4pt]
-			$\phantom{\int h \df \mu \int f \df \nu} = \iint h(x^{-1}y)f(y)\df \nu(y)\df \mu(x)$ {\exPPP (by how we chose $h$)}\\ [4pt]
-			$\phantom{\int h \df \mu \int f \df \nu} = \iint h(xx^{-1}y)f(xy)\df \nu(y)\df \mu(x)$ {\exPPP (by left-invariance of $\nu$)}\\ [4pt]
-			$\phantom{\int h \df \mu \int f \df \nu} = \iint h(y)f(xy)\df \mu(x)\df \nu(y)$ {\exPPP (by Fubini's theorem)}\\ [4pt]
-		\end{tabular}\retTwo\par}
-
-		Therefore, we have that:
-
-		{\centering\begin{tabular}{l}
-			$\left|\int h \df \mu \int f \df \nu - \int h \df \nu \int f \df \mu\right| = \left| \iint h(y) \cdot (f(xy) - f(yx))\df \mu(x) \df \nu(y)\right|$\\ [4pt]
-			$\phantom{\left|\int h \df \nu \int f \df \mu - \int h \df \mu \int f \df \nu\right|} \leq \varepsilon \mu(A) \int h \df \nu$
-		\end{tabular} \retTwo\par}
-
-		By identical reasoning we can also conclude that:
-		
-		{\centering$\left|\int h \df \mu \int g \df \nu - \int h \df \nu \int g \df \mu\right| \leq \varepsilon \mu(B) \int h \df \nu$.\newpage\par}
-
-		So, divide these inequalities by $(\int h \df \nu)(\int f \df \nu)$ and $(\int h \df \nu)(\int g \df \nu)$ respectively to get that:
-
-		{\centering
-		$\left|\frac{\int h \df \mu}{\int h \df \nu} - \frac{\int f \df \mu}{\int f \df \nu}\right| \leq \frac{\varepsilon\mu(A)}{\int f \df \nu}$ and $\left|\frac{\int h \df \mu}{\int h \df \nu} - \frac{\int g \df \mu}{\int g \df \nu}\right| \leq \frac{\varepsilon\mu(B)}{\int g \df \nu}$\retTwo\par}
-
-		In turn, by triangle inequality we know that $\left|\frac{\int f \df \mu}{\int f \df \nu} - \frac{\int g \df \mu}{\int g \df \nu}\right| \leq \varepsilon(\frac{\mu(A)}{\int f \df \nu} + \frac{\mu(B)}{\int g \df \nu})$. And to finish the proof we take $\varepsilon \to 0$ (which we can do because $A$ and $B$ were chosen before we considered $\varepsilon$). $\blacksquare$\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-If $\mu$ is a left Haar measure on $G$ and $x \in G$, then the measure $\mu_x(E) = \mu(Ex)$ is another left Haar measure. Hence by the prior theorem there exists a number $\Delta(x)$ such that $\mu_x = \Delta(x)\mu$. Also by the prior theorem, $\Delta(x)$ is independent of our choice of left Haar measure $\mu$.\retTwo
-
-We call $\Delta : G \to (0, \infty)$ the \udefine{modular function} of $G$.\retTwo
-
-\exTwo\ul{Proposition 11.10:} $\Delta$ is a continuous homomorphism from $G$ to the multiplicative group of positive real numbers. Moreover, if $\mu$ is a left Haar measure on $G$, for any $f \in L^1(\mu)$ and $y \in G$ we have that $\int (R_y f)\df \mu = \Delta(y^{-1})\int f \df \mu$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	For any $x, y \in G$ and $E \in \mathcalli{B}_G$ we have that:
-	
-	{\centering$\Delta(xy)\mu(E) = \mu(Exy) = \Delta(y)\mu(Ex) = \Delta(y)\Delta(x)\mu(E) = \Delta(x)\Delta(y)\mu(E)$.\retTwo\par}
-
-	Hence, $\Delta$ is a group homomorphism from $G$ to $(0, \infty)$.\retTwo
-
-	Next note that $\mu_{y^{-1}}$ is just the image (or pushfoward) measure of the function $x \mapsto xy$. Hence by \inLinkRap{Folland Proposition 10.1}{proposition 10.1 on page 193}:
-
-	{\centering$\int (R_y f)\df \mu = \int f \df \mu_{y^{-1}} = \Delta(y^{-1})\int f \df \mu$\retTwo\par}
-
-	Finally, the below exercise plus the above formula shows that the map $y \mapsto \Delta(y^{-1})\int f \df \mu$ is continuous for any $f \in L^1(\mu)$. After fixing $f$ so that $\int f \df \mu = 1$ and composing this map from the inside with the continuous inversion map, we get that $\Delta$ is continuous.\retTwo
-\end{myIndent}
-
-\Hstatement\blab{Exercise 11.2:} If $\mu$ is a Radon measure on the locally compact group $G$ and $f \in C_c(G)$ then the functions $x \mapsto \int (L_x f) \df \mu$ and $x \mapsto \int (R_x f) \df \mu$ are continuous.
-\begin{myIndent}\HexOne 
-	The proof is analogous for the left translation and right translation cases. So I'll just focus on the map $x \mapsto \int (R_x f) \df \mu$.\retTwo
-
-	Given $f \in C_c(G)$, consider any fixed $x_0 \in G$ and $\varepsilon > 0$. By \inLinkRap{Folland Proposition 11.2}{proposition 11.2} we can find a neighborhood $V$ of $e$ such that for all $y \in V$:
-	
-	{\centering$\|R_y(R_{x_0}f) - (R_{x_0}f)\|_u = \|R_{yx_0}f - (R_{x_0}f)\|_u < \frac{\varepsilon}{\mu(\supp(R_{x_0}f))}$.\retTwo\par}
-	
-	In particular, this means for any $x$ in the neighborhood $Vx_0$ of $x_0$ that
-
-	{\centering $|\int (R_x f)\df \mu - \int (R_{x_0}f)\df \mu| \leq \frac{\varepsilon}{\mu(\supp(R_{x_0}f))} \cdot \mu(\supp(R_{x_0}f)) = \varepsilon$. \retTwo\par}
-
-	And this proves that $x \mapsto \int (R_x f)\df \mu$ is continuous at $x = x_0$. $\blacksquare$\newpage
-\end{myIndent}
-
-\hTwo Any left Haar measure of a locally compact group $G$ is also a right Haar measure iff\\ $\myIm(\Delta) = 1$, in which case $G$ is called \udefine{unimodular}. Now it's obvious that all abelian locally compact groups are unimodular. But interestingly enough, we can also show that if a group becomes not abelian enough, then it's also guarenteed to be unimodular.\retTwo
-
-\exTwo\ul{Proposition 11.12:} Let $G$ be a locally compact group. If $G/ [G, G]$ is finite then $G$ is\\ unimodular.
-\begin{myIndent}\exThreeP
-	Since $\Delta$ is a homomorphism from $G$ to an abelian group, we must have that the\\ commutator subgroup $[G, G]$ is contained in the kernel of $\Delta$. Hence, by quotienting out $[G, G]$ we get a well-defined homomorphism $\widetilde{\Delta}: G/[G, G] \to (0, \infty)$. But now as $G/ [G, G]$ is finite, we must have that $\myIm(\widetilde{\Delta}) = \myIm(\Delta)$ is a finite subgroup of $(0, \infty)$. Yet, the only finite subgroup of the multiplicative group of positive real numbers is $\{1\}$. So, $\Delta(g) = 1$ for all $g \in G$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo Another useful case is as follows:\retTwo
-
-\exTwo\ul{Proposition 11.13:} If $G$ is a compact group then $G$ is unimodular.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Let $\mu$ be a left Haar measure. Then for any $x \in G$ we have that\\ $\mu(G) = \mu(Gx^{-1}) = \Delta(x)\mu(G)$. And since $0 < \mu(G) < \infty$, this means\\ that $\Delta(x) = 1$ for all $x \in G$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo This is where I'm going to stop covering Folland again and instead switch over to the math 241 class (which I'm still in by the way).\retTwo
-
-\mySepTwo
-
-\dispDate{11/26/2025}
-
-\blect{Math 241a Notes:}\retTwo
-
-In this class we'll assume topological groups are always Hausdorff. Recall \inLinkRap{Folland Proposition 11.3}{page 351} for why this isn't must of a restriction.\retTwo
-
-\ul{(Example 1.3.4:)} Here are some relevant examples of topological groups. 
-\begin{itemize}
-	\item Note that $\GL_n(\mathbb{R})$ is a group with an obvious embedding into $\mathbb{R}^{n^2}$. Furthermore, matrix multiplication and inversion can be written such that each component of the resulting matrix is a rational function of the components of the input matrices. Hence, giving $\GL_n(\mathbb{R})$ the Euclidean topology induced by $\mathbb{R}^{n^2}$ turns $\GL_n(\mathbb{R})$ into a topological group.
-	
-	\item If $G$ is a topological group and $H < G$, then $H$ equipped with the subspace topology will be a topological group. In particular, this means any subgroup of $\GL_n(\mathbb{R})$ is a topological group.
-	\begin{myIndent}\myComment
-		Side note, on \inLinkRap{page 92 reference}{page 92} I showed that the set of all orthogonal $n$x$n$ matrices $O_n(\mathbb{R})$ is a smooth compact manifold in $\mathbb{R}^{n^2}$. And since the group operations on $O_n(\mathbb{R})$ are smooth, we say $O_n(\mathbb{R})$ is a \udefine{lie group}.\newpage
-	\end{myIndent}
-
-	\item If $\mathcalli{X}$ is a normed vector space, then $\Iso(\mathcalli{X})$ is a topological group when equipped with the strong operator topology.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		Let $\langle (T_i, S_i) \rangle_{i \in I}$ be a net in $\Iso(\mathcalli{X}) \times \Iso(\mathcalli{X})$ converging to $(T, S)$ operator strongly. Then we claim that $T_iS_i \to TS$ operator strongly. After all, fix any $x \in \mathcalli{X}$ and $\varepsilon > 0$. Then as $T_i$ is an isometry for each $i$, we have that:
-
-		{\centering\begin{tabular}{l}
-		$\|T_i(S_i(x)) - T(S(x))\| \leq \|T_i(S_i(x)) - T_i(S(x))\| + \|T_i(S(x)) - T(S(x))$\\ [3pt]
-		$\phantom{\|T_i(S_i(x)) - T(S(x))\|} = \|S_i(x) - S(x)\| + \|T_i(S(x)) - T(S(x))\|$
-		\end{tabular}\retTwo\par}
-
-		Then because $S_i \to S$ and $T_i \to T$ operator strongly, we know that\\ $\|S_i(x) - S(x)\| \to 0$ and $\|T_i(S(x)) - T(S(x))\| \to 0$.\retTwo
-
-		Next, let $\langle T_i\rangle_{i \in I}$ be a net in $\Iso(\mathcalli{X})$ converging to $T$ operator strongly. Then since $T_i$ is an isometry, for any fixed $x \in \mathcalli{X}$ we have that:
-
-		{\centering $\|T_i^{-1}(x) - T^{-1}(x)\| = \|x - T_i(T^{-1}(x))\| = \|T(T^{-1}(x)) - T_i(T^{-1}(x))\|$ \retTwo\par}
-
-		And since $T_i \to T$ operator strongly, $\|T(T^{-1}(x)) - T_i(T^{-1}(x))\| \to 0$. Hence $T_i^{-1} \to T^{-1}$ operator strongly. $\blacksquare$
-	\end{myIndent}
-\end{itemize}
-
-\Hstatement\mySepTwo
-
-\blab{(Zimmer) Exercise 1.21:} Let $\mathcalli{H}$ be a Hilbert space and let $U(\mathcalli{H})$ be the group of unitary linear operators on $\mathcalli{H}$. Then the strong and weak operator topologies are the same on $U(\mathcalli{H})$.
-
-\begin{myIndent}\HexOne
-	Proof:\\
-	We already know the strong operator topology is finer than the weak operator topology. Meanwhile, to show the other direction it suffices to show by the corollary on \inLinkRap{Corollary page 229}{page 229} that weak operator convergence in $U(\mathcalli{H})$ implies strong operator convergence in $U(\mathcalli{H})$.\retTwo
-
-	Let $\{e_i\}_{i \in I}$ be an orthonormal basis for $\mathcalli{H}$. Then consider any net $\langle T_\alpha\rangle_{\alpha \in A}$ in $U(\mathcalli{H})$\\ converging to $T$. Since $\|T_\alpha\|, \|T\| = 1$ for all $\alpha \in A$, we know by example 1.3.2 on\\ \inLinkRap{math 241a example 1.3.2}{pages 303-304} that if $\|T_\alpha e_i - Te_i\| \to 0$ for all $i$ then $T_\alpha \to T$ operator strongly.
-	\begin{myIndent}\HexPPP
-		As a side note, none of the reasoning I wrote on pages 303 and 304 breaks down if you use nets instead of sequences. I just used sequences because the professor prefers them.\retTwo
-	\end{myIndent}
-
-	Fortunately, note that:
-	
-	{\centering\begin{tabular}{l}
-	$\|T_\alpha e_i - T e_i\|^2 = \langle T_\alpha e_i - T e_i, T_\alpha e_i - T e_i\rangle$\\ [4pt]
-	$\phantom{\|T_\alpha e_i - T e_i\|^2} = \langle T_\alpha e_i, T_\alpha e_i - T e_i\rangle - \langle T e_i, T_\alpha e_i - T e_i\rangle$\\ [4pt]
-	$\phantom{\|T_\alpha e_i - T e_i\|^2} = \langle T_\alpha e_i, T_\alpha e_i\rangle - \langle T_\alpha e_i, T e_i\rangle - \langle T e_i, T_\alpha e_i\rangle + \langle T e_i, T e_i\rangle$\\ [4pt]
-	$\phantom{\|T_\alpha e_i - T e_i\|^2} = \langle  e_i, e_i\rangle - \langle T_\alpha e_i, T e_i\rangle - \langle T e_i, T_\alpha e_i\rangle + \langle e_i, e_i\rangle$\\ [4pt]
-	$\phantom{\|T_\alpha e_i - T e_i\|^2} = 2 - (\langle T_\alpha e_i, T e_i\rangle - \langle T e_i, T_\alpha e_i\rangle)$\\ [6pt]
-	$\phantom{\|T_\alpha e_i - T e_i\|^2} = 2 - (\langle T_\alpha e_i, T e_i\rangle - \overline{\langle T_\alpha e_i, Te_i\rangle})$
-	\end{tabular}\retTwo\par}
-
-	Since $T_\alpha \to T$ operator weakly, we know that $\langle T_\alpha x, y\rangle \to \langle T x, y\rangle$ for all $x, y \in \mathcalli{H}$. In particular, setting $x = e_i$ and $y = Te_i$ we have that $\langle T_\alpha e_i, T e_i\rangle \to \langle T e_i, T e_i\rangle$. And as $T$ is unitary, the latter is equal to $\langle e_i, e_i\rangle = 1$. This shows that:
-
-	{\centering $2 - (\langle T_\alpha e_i, T e_i\rangle - \overline{\langle T_\alpha e_i, Te_i\rangle}) \to 2 - (1 + 1) = 0$. $\blacksquare$ \newpage\par}
-\end{myIndent}
-
-\hTwo Given a topological group $G$ and a topological space $X$, we say an action $G \curvearrowright X$ is\\ \udefine{continuous} if it's corresponding induced map $G \times X \to X$ is continuous. Note in that\\ case that the map $\varphi_g(x) \coloneqq g\cdot x$ is a homeomorphism on $X$ with inverse $\varphi_{g^{-1}}$.\retTwo
-
-If $G$ is a group and $V$ is a vector space, a \udefine{representation} of $G$ on $V$ is a homomorphism $G \to \GL(V)$ where $\GL(V)$ is the group of invertible linear maps on $V$. If $\mathcalli{X}$ is a\\ topological vector space (which is always assumed to be over $\mathbb{R}$ or $\mathbb{C}$ in this class), a\\ representation of $G$ on $\mathcalli{X}$ is a homomorphism $\pi : G \to \Aut(\mathcalli{X})$. When $G$ is also a\\ topological group, we can talk about $\pi$ as being continuous with respect to an operator topology on $\Aut(\mathcalli{X})$.\retTwo
-
-If $\mathcalli{X}$ is a normed vector space, a representation $\pi : G \to \mathcalli{X}$ is called an \udefine{isometric\\ representation} if $\pi(G) \subseteq \Iso(\mathcalli{X})$. We similarly define \udefine{unitary representations} into Hilbert spaces.\retTwo
-
-\Hstatement\blab{(Zimmer) Exercise 1.12:} If $G$ is a topological group and $\mathcalli{X}$ is a normed space, show that a\\ representation $\pi: G \to \Aut(\mathcalli{X})$ is continuous iff it is continuous at the identity $e$ of $G$.
-\begin{myIndent}\HexOne
-	The $(\Longleftarrow)$ direction with respect to each of the three settings below is trivial. Meanwhile, given any net $\langle g_i \rangle_{i \in I}$ in $G$ converging to some element $g$, note that:
-
-	\begin{itemize}
-		\item $\|\pi(g_i) - \pi(g)\|_{\opnorm} = \|\pi(g_i g^{-1})\pi(g) - \pi(g)\|_{\opnorm} \leq \|\pi(g_ig^{-1}) - \myId\|_{\opnorm} \cdot \|\pi(g)\|_{\opnorm}$,\retTwo
-		
-		\item $\|(\pi(g_i))(x) - (\pi(g))(x)\| = \|(\pi(g_i g^{-1}))((\pi(g))(x)) - (\pi(g))(x)\|$\\ [6pt]
-		$\phantom{\|(\pi(g_i))(x) - (\pi(g))(x)\|} = \|(\pi(g_ig^{-1}) - \myId)((\pi(g))(x))\|$ for all $x \in \mathcalli{X}$\retTwo
-
-		\item $|f((\pi(g_i))(x) - (\pi(g))(x))| = |f((\pi(g_i g^{-1}))((\pi(g))(x)) - (\pi(g))(x))|$\\ [6pt]
-		$\phantom{|f\left((\pi(g_i))(x) - (\pi(g))(x)\right)|} = |f\left((\pi(g_ig^{-1}) - \myId)((\pi(g))(x))\right)|$ for all $x \in \mathcalli{X}$\\
-		\phantom{$\phantom{|f\left((\pi(g_i))(x) - (\pi(g))(x)\right)|} = |f\left((\pi(g_ig^{-1}) - \myId)((\pi(g))(x))\right)|$ for} and $f \in \mathcalli{X}^*$\retTwo
-	\end{itemize}
-
-	Thus, $\pi(g_i) \to \pi(g)$ in norm, operator strongly, or operator weakly if $\pi(g_ig^{-1}) \to \pi(e)$ in norm, operator strongly, or operator weakly respectively. Fortunately, the latter happens if $\pi$ is continuous at $e$. $\blacksquare$
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-\exTwo\ul{Proposition 1.3.9:} Let $G$ be a topological group acting continuously on an LCH space $X$. Then let $\pi : G \to \Iso(C_c(X))$ be given by $(\pi(g))(f) \coloneqq f(g^{-1} \cdot x)$. Now $\pi$ is a continuous representation when $\Iso(C_c(X))$ has the strong operator topology.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	To start off, recall \inLinkRap{Zimmer example 1.2.4 math 241}{example 1.2.4} on page 284 for why $\pi(g) \in \Iso(C_c(X))$ for each $g$.
-	\begin{myIndent}\exPPP
-		Technically, on page 284 I showed that $\pi(g)$ would be an isometric isomorphism on $BC(X)$. That said, as $x \mapsto g \cdot x$ and $x \mapsto g^{-1} \cdot x$ are continuous maps, we know that $\supp(f)$ is compact iff $g \cdot \supp(f)$ is compact. Hence, $\pi(g)$ maps $C_c(X)$ bijectively into $C_c(X)$.\retTwo 
-	\end{myIndent}
-
-	Meanwhile, it's easy to see $\pi$ is a group homomorphism. So, all that's left to show is that $\pi$ is continuous, and to do that it suffices by the prior exercise to show $\pi$ is continuous at $e \in G$. Thus, we want to show that if $f \in C_c(X)$ and $\varepsilon > 0$ then there is a neighborhood $V$ of $e$ with $\|(\pi(g))(f) - f\|_u < \varepsilon$ for all $g \in V$.\newpage
-
-	Fortunately, since $\supp(f)$ is compact and $X$ is locally compact, we can find a precompact open set $U \subseteq X$ containing $\supp(f)$. Then for each $x \in \supp(f)$, continuity of the group action implies there is an open neighborhood $U_x$ of $x$ in $X$ and an open neighborhood $W_x$ of $e$ in $G$ such that $W_x \cdot U_x \subseteq U$.
-	\begin{myIndent}\exPPP
-		$W_x \times U_x$ is an open neighborhood of $(e, x)$ which is in the preimage of $U$ with respect to the group action.\retTwo
-	\end{myIndent}
-
-	Next, by the compactness of $\supp(f)$ there exists $x_1, \ldots, x_n \in \supp(f)$ such that\\ $\supp(f) \subseteq \bigcup_{i = 1}^n U_{x_i}$. In turn, $W \coloneqq \bigcap_{i=1}^n W_{x_i}$ is an open neighborhood of $e$ such that\\ $W \cdot \supp(f) \subseteq U$. And in particular, after making $W$ symmetric (remember \inLinkRap{Folland proposition 11.1}{proposition\\ [-2pt] 11.1(b)} from Folland), we can say that $\supp((\pi(g))(f)) \subseteq \overline{U}$ for all $g \in W$.\retTwo
-
-	Now we just need to find an open neighborhood $V \subseteq W$ of $e$ such that:
-	
-	{\centering$|f(g^{-1}\cdot x) - f(x)| < \varepsilon$ for all $x \in \overline{U}$.\retTwo\par}
-
-	To do that, note by the continuity of $f$ that for each $x \in \overline{U}$ we can choose an open\\ neighborhood $U_x^\prime$ of $x$ such that $|f(y) - f(x)| < \sfrac{\varepsilon}{2}$ for all $y \in U_x^\prime$. Then by the continuity of the group action, we can find open neighborhoods $Z_x$ of $e$ in $G$ and $Y_x$ of $x$ in $X$ such that $Z_x \cdot Y_x \subseteq U_x^\prime$.\retTwo
-
-	Using the compactness of $\overline{U}$, choose a new finite set $x_1, \ldots, x_m \in \overline{U}$ such that\\ $\overline{U} \subseteq \bigcup_{i=1}^m Y_{x_i}$. Then set $W^\prime = W \cap \bigcap_{i=1}^m Z_{x_i}$ and define $V \coloneqq W^\prime \cap (W^\prime)^{-1}$. Now $V$ is an open neighborhood of $e$ in $G$. Also if $g \in V$ and $y \in \overline{U}$, then because $y \in Y_{x_i} \subseteq U_{x_i}$ for some $i$ (which also means $g^{-1} \cdot y \in Y_{X_i} \subseteq U_{x_i}$), we know that:
-
-	{\centering$|f(g^{-1} \cdot y) - f(y)| \leq |f(g^{-1}y) - f(x_i)| + |f(x_i) - f(y)| < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2}$. $\blacksquare$\retTwo\par}
-\end{myIndent}
-
-\myComment A basic corollary of the above proposition is that every $f \in C_c(\mathbb{R}^n)$ is uniformly continuous. After all, we can apply the above proposition to the action $\mathbb{R}^n \curvearrowright \mathbb{R}^n$ by translation. That said, I already proved this corollary in my notes from Spring 2025.\retTwo
-
-In a similar vein, the next two results will prove a generalization of Folland proposition 8.5 from my math 240c notes from last spring.\retTwo
-
-\Hstatement\blab{(Zimmer) exercise 1.13:} Suppose $\mathcalli{X}$ is a normed topology and $\langle T_i\rangle_{i \in I}$ is a net in $B(\mathcalli{X})$. Also suppose that $T \in B(\mathcalli{X})$ and there exists $C > 0$ with $\|T_i\|, \|T\| < C$ for all $i \in I$. Then $T_i \to T$ operator strongly if and only if there is a dense set $\mathcalli{X}_0 \subseteq \mathcalli{X}$ such that $T_i x \to Tx$ for all $x \in \mathcalli{X}$.
-\begin{myIndent}\HexOne
-	Proof:\\
-	The $(\Longrightarrow)$ direction is trivial. As for the other direction, consider any $x \in \mathcalli{X}$ and let $\{x_n\}_{n \in \mathbb{N}}$ be a sequence in $\mathcalli{X}_0$ converging to $x$. Then, we know that $\|x_n - x\| < \varepsilon/2C$ for some $n \in \mathbb{N}$. In turn:
-
-	{\centering\begin{tabular}{l}
-		$\|T_i x - Tx\| \leq \|T_i x - T_i x_n\| + \|T_i x_n - Tx_n\| + \|Tx_n - Tx\|$\\ [6pt]
-		$\phantom{\|T_i x - Tx\|} \leq \|T_i\|\|x - x_n\| + \|T_i x_n - Tx_n\| + \|T\|\|x_n - x\|$\\ [6pt]
-		$\phantom{\|T_i x - Tx\|} < C\frac{\varepsilon}{2C} + \|T_i x_n - Tx_n\| + C\frac{\varepsilon}{2C} = \|T_i x_n - Tx_n\| + \varepsilon$.
-	\end{tabular}\retTwo\par}
-
-	And since $T_i x_n \to T x_n$, we thus know that $\|T_i x - Tx\| < 2\varepsilon$ eventually for all $\varepsilon > 0$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\newpage
-
-\exTwo\ul{Proposition 1.3.10:} Let $G$ be a topological group acting continuously on an LCH space $X$. Suppose $\mu$ is a measure on $X$ which is $G$-invariant (i.e $\varphi_g$ is measure preserving for each $g \in G$ [recall \inLinkRap{Measure-preserving definition page 263}{page 263}]). Suppose further that $\mu(K) < \infty$ for every compact $K \subseteq X$ (which is true if $\mu$ is Radon). Then for $1 \leq p < \infty$, the representation $\pi : G \to \Iso(L^p(X))$ given by $(\pi(g)(f))(x) \coloneqq f(g^{-1} \cdot x)$ is continuous for the strong operator topology.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	To see that $\pi$ really does map $G$ into $\Iso(L^p(X))$ just apply lemma 2.6 on \inLinkRap{Lemma 2.6 page 264 reference}{page 264} to $|f(x)|^p$ and $|f(g^{-1} \cdot x)|^p$. Also, $\pi$ is seen to be a group homomorphism identically as in the last proposition. So, we just need to show that $\pi$ is continuous for the strong operator topology. This is equivalent to saying that $g \mapsto (\pi(g))(f)$ is a continuous map from $G$ to $L^p(X)$ for all $f \in L^p(X)$. \retTwo
-
-	Fortunately, like in the last proposition it suffices to show that $\|(\pi(g_i))(f) - f\|_p \to 0$ for any net $\langle g_i\rangle_{i \in I}$ converging to $e$ in $G$. Also, by the prior exercise plus the fact that $C_c(X)$ is dense in $L^p(X)$ for $1 \leq p < \infty$ (see my math 240c notes), it suffices to assume that $f \in C_c(X)$.\retTwo
-
-	But now we already know from the proof of the last proposition that $(\pi(g_i))(f) \to f$\\ uniformly and that we can find a compact set $\overline{U}$ such that $\supp(f) \subseteq \overline{U}$ and\\ $\supp((\pi(g_i))(f)) \subseteq \overline{U}$ eventually. This implies $L^p$ convergence. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-Note that every representation $\pi : G \to \Aut(\mathcalli{X})$ is a group action $G \times \mathcalli{X} \to \mathcalli{X}$ by linear automorphisms (i.e. $g \cdot x = (\pi(g))x$) and vice versa. Thus, when we talk about fixed points of representations we are really talking about the fixed points of their\\ induced group action.\retTwo
-
-\exTwo\ul{Kakutani-Markov Fixed Point Theorem:} Let $\mathcalli{X}$ be a topological vector space whose\\ topology is defined by a sufficient family of seminorms. Suppose $G$ is an abelian group and $\pi : G \to \Aut(\mathcalli{X})$ is a representation. Let $A \subseteq \mathcalli{X}$ be a compact convex set that is $G$-invariant (i.e. $(\pi(g))(A) \subseteq A$ for all $g \in G$). Then there is a $G$-fixed point in $A$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	For each $g \in G$ and $n \geq 0$, define $M_{n,g} \in B(\mathcalli{X})$ by $M_{n,g} = \frac{1}{n} \sum_{i=0}^{n-1} \pi(g^i)$. Since $A$ is convex and $G$-invariant, we have that $M_{n,g}(A) \subseteq A$ for all $n, g$. Next, let $G^*$ be the semigroup of operators generated by $\{M_{n,g} : n \geq 0, g \in G\}$ (i.e. the collection of all finite compositions of such operators).
-	\begin{myIndent}\exPPP
-		(Technically $G^*$ would be a monoid as $M_{1, e} = \myId$. That said, we don't necessarily know if the operators in $G^*$ have inverses, or if they do have inverses which aren't in $G^*$).\retTwo
-	\end{myIndent}
-	
-	Since $G$ is abelian we know that $G^*$ is commutative. After all:
-	
-	{\centering\begin{tabular}{l}
-		$M_{n_1, g_1}M_{n_2, g_2} = \left(\frac{1}{n_1}\sum\limits_{i=0}^{n_1 - 1} \pi(g_1^i)\right)\left(\frac{1}{n_2}\sum\limits_{j=0}^{n_2 - 1} \pi(g_2^j)\right)$\\ [14pt]
-		$\phantom{M_{n_1, g_1}M_{n_2, g_2}} = \frac{1}{n_1n_2}\sum\limits_{i=0}^{n_1 - 1}\sum\limits_{j=0}^{n_2 - 1} \pi(g_1^i)\pi(g_2^j) = \frac{1}{n_2n_1}\sum\limits_{i=0}^{n_1 - 1}\sum\limits_{j=0}^{n_2 - 1} \pi(g_2^j)\pi(g_1^i)$\phantom{aaaaaaaaa}
-	\end{tabular}\newpage
-	\begin{tabular}{l}
-		$\phantom{M_{n_1, g_1}M_{n_2, g_2} = \frac{1}{n_1n_2}\sum\limits_{i=0}^{n_1 - 1}\sum\limits_{j=0}^{n_2 - 1} \pi(g_1^i)\pi(g_2^j)} = \left(\frac{1}{n_2}\sum\limits_{j=0}^{n_2 - 1} \pi(g_2^j)\right)\left(\frac{1}{n_1}\sum\limits_{i=0}^{n_1 - 1} \pi(g_1^i)\right)$\\ [14pt]
-		$\phantom{M_{n_1, g_1}M_{n_2, g_2} = \frac{1}{n_1n_2}\sum\limits_{i=0}^{n_1 - 1}\sum\limits_{j=0}^{n_2 - 1} \pi(g_1^i)\pi(g_2^j)} = M_{n_2, g_2}M_{n_1, g_1}$
-	\end{tabular}\retTwo\par}
-
-	Now we claim that $F \coloneqq \bigcap_{T \in G^*}T(A) \neq \emptyset$ and that every element of $F$ is a $G$-fixed point. To see this, note that as $A$ is compact and each $T \in G^*$ is continuous, we know that $T(A)$ is compact for each $T \in G^*$. Then since $\mathcalli{X}$ is Hausdorff, we know that $T(A)$ is closed for each $T \in G^*$. And since $T(A) \subseteq A$ for each $T \in G^*$ and $A$ is compact, we will be able to use the finite intersection property to prove $F$ is nonempty if for any finite set $T_1, \ldots, T_n \in G^*$ we have that $\bigcap_{i=1}^n T_i(A) \neq \emptyset$.\retTwo
-
-	Fortunately, if we let $S = T_1 \circ \cdots \circ T_n \in G^*$ then we know that:
-	
-	{\centering$S(A) = T_1(T_2 \circ \cdots \circ T_n(A)) \subseteq T_1(A)$.\retTwo\par}
-	
-	Also note that as $G^*$ is commutative, we can rewrite $S = T_i \circ T_1 \circ \dots \circ T_{i-1} \circ T_{i+1} \circ \cdots \circ T_n$ and apply the prior line's reasoning to get that $S(A) \subseteq T_i(A)$ for any $i$. Therefore:
-
-	{\centering $\emptyset \neq S(A) \subseteq \bigcap_{i=1}^n T_i(A)$. \retTwo\par}
-
-	With that we know $F$ is nonempty. So, we now consider any $y \in F$. By the definition of $F$, for each $n \geq 0$ and $g \in G$ there is some $x \in A$ such that $y = \frac{1}{n}(x + \cdots + \pi(g^{n-1})x)$. In turn:
-
-	{\centering $\pi(g)y - y = \frac{\pi(g)x + \cdots + \pi(g^{n})x}{n} - \frac{x + \cdots + \pi(g^{n-1})x}{n} = \frac{\pi(g^n)x - x}{n}$ \retTwo\par}
-
-	Now if $p$ is any of the seminorms defining the topology, then for each $n$ we have\\ that $p(\pi(g)y - y) \leq 2B_p / n$ where $B_p = \sup \{p(a) : a \in A\}$. (Note that $B_p$ is well-\\defined (and finite) since $A$ is compact and $p$ is continuous.) As $n$ was arbitrary, we can take $n \to \infty$ to get that $p(\pi(g)y - y) = 0$. And since $p$ was an arbitrary seminorm in the sufficient family defining the topology on $\mathcalli{X}$, we have that $\pi(g)y = y$. Finally, as $g$ was arbitrary we know $y$ is a $G$-fixed point. $\blacksquare$\retTwo
-
-	\begin{myIndent}\myComment
-		As a side note, I proved a similar fact on the second problem set for math 200a (see \inLinkRap{Math 200a Set 2 Problem 4}{page 287}). To briefly compare the two results, this result doesn't assume $G$ is a finite group like the homework problem did, or that we are working in $\mathbb{R}^n$. That said, the homework problem didn't require $A$ to be compact and $G$ to be abelian. Also, the homework problem assumed $G$ acted by affine transformations as opposed to linear transformations.
 		\begin{myIndent}\color{red}
-			Although, it is worth noting that none of the reasoning in this proof breaks down if we assume $\pi(g)$ is a continuous affine transformation on $\mathcalli{X}$ instead of a linear transformation.\retTwo
-			
-			As shown on page 286, every affine transformation is a linear transformation minus a constant and vice versa. So, we know that summing, scaling, and\\ composing continuous affine transformations always yields a continuous affine transformation. Furthermore, our evaluation of $\pi(g)y - y$ doesn't change and we still have that each $M_{n,g}$ maps $A$ into $A$.\newpage
+			By the way I got the final three sentences of this proof from Hagan.\retTwo
 		\end{myIndent}
 	\end{myIndent}
-\end{myIndent}
 
-\hTwo One particular compact convex subset of a topological vector space we care about is the set of probability measures $M(X) \subseteq C(X)^*$ (where $X$ is a compact metric space). (It is easy to see that $M(X)$ is convex and we know from \inLinkRap{Math 241a corollary 1.1.29}{corollary 1.1.29 (see page 283)} that $M(X)$ is compact in the \weakst topology.)
+	\item[(b)] Suppose $P \in \Syl_p(G)$, $P_H \coloneqq P \cap H \in \Syl_p(H)$, and $P_K \coloneqq P \cap K \in \Syl_p(K)$. Then prove that $P = P_HP_K$.
+	\begin{myIndent}\HexOne
+		To start off, we know that $|P_H| = p^{r_1}$, $|P_K| = p^{r_2}$, and $|P_H \cap P_K| = p^{r_3}$ where\\ $r_3 \leq \min(r_1, r_2)$. It follows that  $|P_HP_K| = |P_H||P_K| / |P_H \cap P_K| = p^\ell$ where\\ [1pt] $\ell = r_1 + r_2 - r_3 \geq 0$. Also note that $P_H \subseteq P$ and $P_K \subseteq P$ implies that $P_HP_K \subseteq P$.\\ [1pt] It follows that $p^\ell \leq |P| = p^{\nu_p(|G|)}$. Hence, we can conclude that $\ell \leq \nu_p(|G|)$. And from there it is clear that:
+		
+		{\centering $0 \leq \nu_p(\frac{|G|}{|P_HP_K|})$\retTwo\par}
 
-\pracOne\mySepTwo
+		At the same time, note that:
+		
+		{\centering\begin{tabular}{l}
+			$\nu_p(\frac{|G|}{|P_HP_K|}) = \nu_p(\frac{|H|}{|P_H|} \cdot \frac{|K|}{|P_K|} \cdot \frac{|P_H \cap P_K|}{H \cap K})$\\ [6pt]
+			$\phantom{\nu_p(\frac{|G|}{|P_HP_K|})} =  \nu_p(\frac{|H|}{|P_H|}) + \nu_p(\frac{|K|}{|P_K|}) + \nu_p(\frac{|P_H \cap P_K|}{H \cap K}) = 0 + \nu_p(\frac{|P_H \cap P_K|}{H \cap K})$
+		\end{tabular}\retTwo\par}
 
-\hypertarget{idk reference 10}{Before} continuing on, I want to actually prove that all probability measures on $X$ are\\ regular (and thus Radon) since I forgot to show that back on \inLinkRap{Math 241a corollary 1.1.29}{page 283}.\retTwo
+		Additionally, note that $P_H \cap P_K = (P \cap H) \cap (P \cap K) = P \cap (H \cap K)$. Hence, it follows that $P_H \cap P_K$ is $p$-subgroup of $H \cap K$ and therefore $\nu_p(\frac{|P_H \cap P_K|}{H \cap K}) \leq 0$.\retTwo
 
-\ul{Claim:} If $X$ is a compact metric space, then $X$ is second countable.
-\begin{myIndent}\pracTwo
-	Proof:\\
-	Since $X$ is totally bounded, we know that there is a finite collection $\mathcalli{U}_n$of open balls of radius $\sfrac{1}{n}$ covering $X$ for all $n \in \mathbb{N}$. Then we claim that $\mathcalli{U} = \bigcup_{n \in \mathbb{N}}\mathcalli{U}_n$ is a countable base for $X$. After all, we already know each $x \in X$ is contained in some $B \in \mathcalli{U}$. On the other hand, suppose $x \in X$ and $V \subseteq X$ is an open set containing $x$. Then we know $B_r(x) \subseteq V$ for some $r > 0$. In turn, if we fix $k \in \mathbb{N}$ such that $1/k < r/2$ then we know there is some ball $B$ of radius $1/k$ in $\mathcalli{U}$ satisfying that $x \in B \subseteq B_r(x) \subseteq V$.\retTwo
-\end{myIndent}
-
-Consequently, we know by Folland theorem 7.8 and the comment right after it in my math 240c notes that any Borel measure on a compact metric space $X$ that is finite on compact sets is regular. In particular, this means all finite Borel measures on compact metric spacess are regular.
-
-\mySepTwo
-
-\hTwo\ul{(Definition 1.3.12:)} If $\pi : G \to \GL(V)$ is a representation, we define the \udefine{adjoint} of $\pi$ by $\pi^* : G \to \GL(V^*)$ where $\pi^*(g) \coloneqq \pi(g^{-1})^*$. {\color{BrickRed} ($\pi(g^{-1})^*$ denotes the transpose of $\pi(g^{-1})$ [see \inLinkRap{Page 102 tangent reference}{page 102} and \inLinkRap{math 241a definition 1.2.19}{page 300}.])}\\ [-9pt]
-\begin{myIndent}\pracTwo
-	Note that $\pi^*$ is a representation. After all, recalling \inLinkRap{page 103 reference}{proposition 1.3.18 on page 103}, we know that:
-
-	{\centering $\pi^*(gh) = \pi(h^{-1}g^{-1})^* = (\pi(h^{-1})\pi(g^{-1}))^* = \pi(g^{-1})^*\pi(h^{-1})^* = \pi^*(g)\pi^*(h)$ \retTwo\par}
-\end{myIndent}
-
-When $V = \mathcalli{X}$ is a topological vector space (so that our definition of a representation\\ requires $\pi$ to map $G$ into $\Aut(\mathcalli{X})$), then $\pi^*$ still defines a representation if either:
-\begin{itemize}
-	\item $\mathcalli{X}^*$ has the \weakst topology;
-
-	\item $\mathcalli{X}$ is normed and $\mathcalli{X}^*$ has the operator norm topology.
-	
-	\begin{myIndent}\pracTwo
-		To see this just recall \inLinkRap{Adjoints are continuous page 301}{page 301} and also note that $\pi^*(g)$ has the continuous inverse $\pi^*(g^{-1})$ for all $g \in G$.\retTwo
+		With that we know that $\nu_p(\frac{|G|}{|P_HP_K|}) = 0$. Yet, we also know that $\nu_p(\frac{|G|}{|P|}) = 0$. It follows that $\nu_p(\frac{|P|}{|P_HP_K|}) = 0$, and this proves that $|P| = |P_HP_K|$. By invoking one last time that $P_H P_K \subseteq P$ we now know that $P = P_HP_K$. $\blacksquare$\retTwo
 	\end{myIndent}
 \end{itemize}
 
-Now let's return to considering a compact metric space $X$ and suppose $G$ is a topological\\ group acting continuously on $X$. By using \inLinkRap{Proposition 1.3.9 Math 241a Notes}{proposition 1.3.9} we get a representation\\ $\pi : G \to \Iso(C(X))$ given by $(\pi(g))(f) \coloneqq f(g^{-1} \cdot x)$. Then, by taking the adjoint of $\pi$\\ we get a representation $\pi^* : G \to \Aut(C(X)^*)$ given by:
-
-{\centering$(\pi^*(g))(\lambda) = (\pi(g^{-1}))^*(\lambda) = \lambda \circ \pi(g^{-1})$. {\color{red} (FYI this construction continues\\
-\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} on the next page\dots)}\retTwo\par}
-
-As a bit of notation, if $\mu$ is a measure on $X$ and $\varphi : X \to Y$ is a measurable function, then I'll follow Zimmer and denote $\varphi_* \mu(E) \coloneqq \mu(\varphi^{-1}(E))$ to be the pushforward / image measure of the function $\varphi$. Also, as $G$ is acting continuously on $X$ I'll let $g_*\mu$ denote the pushforward of $\varphi_g(x) \coloneqq g \cdot x$ (in other words $g_*\mu(E) = \mu(g^{-1} \cdot E)$).\retTwo
-
-Now recall by the Riesz-representation theorem that every linear functional in $C(X)^*$\\ corresponds to integration by a complex Radon measure and vice versa. (Also as\\ mentioned on the prior page, all complex Borel measures on $X$ are Radon.) Therefore,\\ we now ask what does the action of $\pi^*$ look like on a given measure $\mu$?\retTwo
-
-Note for any $f \in C(X)$ that:
-
-{\centering $((\pi^*(g))(\int \mathop{\cdot} \df \mu))(f) = \int (\pi(g^{-1}))(f) \df \mu = \int f(g \cdot x)\df \mu = \int f \df g_* \mu$ \retTwo\par}
-
-Thus $(\pi^*(g))(\mu) = g_* \mu$ for all $\mu \in C(X)^*$.\retTwo
-
-Importantly, recall that pushforwards preserve the positivity of a measure and the total measure of the space. Thus $M(X)$ is invariant under $\pi^*$ and we arrive at the following result:\retTwo
-
-\exTwo\ul{Corollary 2.1.6:} Let $G$ be an abelian group acting continuously on a compact metric space $X$. Then there is a $G$-invariant probability measure on $X$.
-\begin{myIndent}\exThreeP
+\blab{Problem 5(b) from a past final:} Suppose $A$ is a (commutative unital) Noetherian ring and $\phi : A \to A$ is a surjective ring homomorphism. Then $\phi$ is an isomorphism.
+\begin{myIndent}\HexOne
 	Proof:\\
-	Apply the Kakutani-Markov fixed point theorem to $M(X) \subseteq C(X)^*$ (equipped with the \weakst topology) and the representation $\pi^* : G \to \Aut(C(X)^*)$ described above. Then the resulting probability measure satisfies that $g_* \mu(E) \coloneqq \mu(g^{-1} \cdot E) = \mu(E)$ for all $g \in G$. $\blacksquare$\retTwo
+	We need to show $\phi$ is injective, and to do that it suffices to show $\ker(\phi) = \{0\}$. Luckily note that $\ker(\phi^n) \subseteq \ker(\phi^{n+1})$ for all integers $n \geq 0$ (where we consider $\phi^0$ to be the identity map). Thus since $A$ is Noetherian, there must exist some smallest nonnegative integer $N$ such that $\ker(\phi^{N + j}) = \ker(\phi^N)$ for all $j \in \mathbb{N}$.\newpage
+
+	Suppose $N > 0$. Then we can find $a \in A$ such that $\phi^{N-1}(a) = b \neq 0$ and\\ $\phi(b) = \phi^N(a) = 0$. Yet also note that because $\phi$ is surjective, we can find $c \in A$\\ such that $\phi(c) = a$. In turn, we have that $\phi^N(c) = \phi^{N-1}(\phi(a)) = b \neq 0$ but\\ $\phi^{N+1}(c) = \phi(\phi^N(c)) = \phi(b) = 0$. This contradicts that $\ker(\phi^{N+1}) = \ker(\phi^{N})$.\\ Hence, we conclude that we can't have that $N > 0$.\retTwo
+
+	But now in particular we must have that $\{0\} = \ker(\phi^0) = \ker(\phi^1)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\myComment Another miscellaneous note I want to make is that if $A, A^\prime$ are both unital rings and $\phi: A \to A^\prime$ is a ring homomorphism such that $1_{A^\prime} \in \myIm(\phi)$ then we must have that $\phi(1_A) = 1_{A^\prime}$.
+\begin{myIndent}
+	After all, suppose $\phi(b) = 1_{A^\prime}$ where $b$ is any element in $A$. Then:
+
+	{\centering $\phi(1_A) = \phi(1_A)1_{A^\prime} = \phi(1_A)\phi(b) = \phi(1_A b) = \phi(b) = 1_{A^\prime}$. \retTwo\par}
 \end{myIndent}
 
 \hTwo\mySepTwo
 
-\dispDate{11/27/2025}
-
-It's Thanksgiving so let's do some more representation theory before I have to go back to taking notes for the classes with actual due dates. (In other words I'm still taking math 241a notes\dots)\retTwo
-
-To start off, I already proved in math math 240b homework that there is only one norm topology for any finite dimensioned real or complex vector space. Now, I would like to prove the more general statement that there is only one Hausdorff topology on a finite\\ dimensioned real or complex vector space $\mathcalli{X}$ such that $\mathcalli{X}$ is a topological vector space.\retTwo
-
-\hTwo First, I'd like to go over some quick facts about topological vector spaces now that I've learned some topological group theory.\retTwo
-
-\exTwo\ul{Lemma 1:} If $G, G^\prime$ are topological groups and $\phi: G \to G^\prime$ is a group homomorphism, then $\phi$ is continuous iff $\phi$ is continuous at $e \in G$.\newpage
-\begin{myIndent}\exThreeP
-	Proof:\\
-	One direction is trivial. Meanwhile, to show the other direction suppose $\langle g_i\rangle_{i \in I}$ is any net in $G$ converging to $g$. Then $\phi(g_i) \to \phi(g)$ if and only if $\phi(g_i)\phi(g)^{-1} = \phi(g_ig^{-1}) \to e^\prime \in G^\prime$. But note that $g_i \to g$ implies that $g_ig^{-1} \to e \in G$. So, if $\phi$ is continuous at $e \in G$ then we know that $\phi(g_ig^{-1}) \to \phi(e) = e^\prime$. $\blacksquare$
-
-	\begin{myIndent}\myComment
-		A common application of this fact is that if $T: \mathcalli{X} \to \mathcalli{Y}$ is a linear map between topological vector spaces, then $T$ is continuous iff $T$ is continuous at $0$. After all, topological vector spaces are just abelian topological groups which also satisfy that scalar multiplication by numbers other than $\pm 1$ are continuous.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\ul{Lemma 2:} A topological vector space $\mathcalli{X}$ is Hausdorff iff $\{0\}$ is closed.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	By (Folland) proposition 11.3 on \inLinkRap{Folland Proposition 11.3}{page 351}, we know that $\mathcalli{X}$ is Hausdorff iff $\mathcalli{X}$ is $T_1$. And the latter is true iff every singleton is closed. Finally, note that as translation on $\mathcalli{X}$ is a homeomorphism, we have that all singletons in $\mathcalli{X}$ are closed iff $\{0\}$ is closed. $\blacksquare$\retTwo
-\end{myIndent} 
-
-\ul{Lemma 3:} Hausdorff topological groups (and therefore Hausdorff topological vector spaces) are regular (i.e. $T_3$). Specifically, given any closed subset $F$ of a topological group $G$ and $x \notin F$, we claim there is an open neighborhood $V$ of $e$ such that $xV$ and $FV$ are disjoint open sets containing $x$ and $F$ respectively.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	$U = F^\comp$ is an open neighborhood of $x$. In turn, $x^{-1}U$ is an open neighborhood of $e$. So, by applying (Folland) proposition 11.1(b) and (c) on \inLinkRap{Folland proposition 11.1}{page 333}, we can find a neighborhood $V$ of $e \in G$ such that $VV \subseteq x^{-1}U$ and $V$ is symmetric.\retTwo
-
-	Now $xV$ is a neighborhood of $x$ in $G$. Also we claim that $FV$ is disjoint from $xV$. After all, suppose $y \in xV \cap FV$. Then we can write $y = xv_1 = gv_2$ where $g \in F$ and $v_1, v_2 \in V$. But now $xv_1v_2^{-1} = g$. This is a contradiction as $V$ is symmetric and $VV \subseteq x^{-1}U$ implies $xVV \subseteq U = F^\comp$.\retTwo
-
-	Finally, $FV = \bigcup_{g \in F} gV$ is an open set containing $F$. This finishes showing that $G$ is $T_3$. $\blacksquare$\retTwo
-\end{myIndent} 
-
-\hTwo Next, I'm going to follow grandpa Rudin for a little bit. (see \inLinkRap{bib citation 19}{citation 19} in the\\ bibliography).\retTwo
-
-\exTwo\ul{Lemma (unnumbered):} Suppose $V$ and $W$ are $K$-vector spaces (where $K = \mathbb{R}$ or $\mathbb{C}$). Then suppose $T: V \to W$ is a linear map, $A \subseteq V$, and $B \subseteq W$. Then:
-\begin{itemize}
-	\item If $A$ is a subspace, convex set, or balanced set then so is $T(A)$.
-	\item If $B$ is a subspace, convex set, or balanced set then so is $T^{-1}(B)$.
-	
-	\begin{myIndent}\exThreeP
-		Proof:\\
-		I think the only nontrivial claim to see here is that the preimage of a balanced set with respect to $T$ is still balanced. (By the way see \inLinkRap{Page 230 definition of balanced sets}{page 230} for a reminder of what it means for a set to be balanced.)\retTwo
-
-		Suppose $c \in K$ With $|c| \leq 1$. Then if $x \in cT^{-1}(B)$ we know that $T(c^{-1}x) \in B$. In turn, $T(x) \in cB \subseteq B$ and hence $x \in T^{-1}(B)$. Thus, $cT^{-1}(B) \subseteq T^{-1}(B)$. $\blacksquare$\newpage
-	\end{myIndent}
-\end{itemize}
-
-\exTwo\ul{Theorem 1.18} Let $\lambda$ be a linear functional on a Hausdorff topological vector space $\mathcalli{X}$ such that $\lambda(x) \neq 0$ for some $x \in \mathcalli{X}$. Then the following are equivalent:
-\begin{enumerate}
-	\item[(a)] $\lambda$ is continuous,
-	\item[(b)] $\ker(\lambda)$ is closed,
-	\item[(c)] $\ker(\lambda)$ is not dense in $\mathcalli{X}$,
-	\item[(d)] $\lambda$ is bounded on some neighborhood $V$ of $0$ in $\mathcalli{X}$ (meaning $\sup_{x \in V}\lambda(x) < \infty$).
-\end{enumerate}
-
-\begin{myIndent}\exThreeP
-	$(a \Longrightarrow b)$\\
-	Since $\lambda$ is continuous and $\{0\}$ is closed, we know that $\lambda^{-1}(\{0\}) = \ker(\lambda)$ is closed.\retTwo
-
-	$(b \Longrightarrow c)$\\
-	Suppose $\ker(\lambda)$ is closed. Then since there exists $x \in \mathcalli{X}$ such that $x \notin \ker(\lambda)$, we know that $\ker(\lambda)$ is not dense in $\mathcalli{X}$.\retTwo
-
-	$(c \Longrightarrow d)$\\
-	Suppose $x \notin \overline{\ker(\lambda)}$. Then by lemma 3 on the prior page plus the reasoning on \inLinkRap{Page 230 definition of balanced sets}{pages 230-232}, we can find a balanced neighborhood $V$ of $0$ such that $x + V$ and $\overline{\ker(\lambda)} + V$ are disjoint open sets containing $x$ and $\overline{\ker(\lambda)}$ respectively. But also note that as $V$ is balanced,\\ [2pt] we know that $\lambda(V)$ is balanced. The only way this is possible is if $\lambda(V)$ is an open or closed\\ [2pt] ball in $\mathbb{R}$ or $\mathbb{C}$ about $0$ or if $\lambda(V)$ is all of $\mathbb{R}$ or $\mathbb{C}$.\retTwo
-
-	Suppose the latter is true (that $\lambda(V) = \mathbb{R}$ or $\mathbb{C}$). Then there exists $y \in V$ such that $\lambda(y) = - \lambda(x)$. But then $x + y \in \overline{\ker(\lambda)}$ and that contradicts that $x + V$ is disjoint from $\overline{\ker(\lambda)} + V$. Hence, we conclude that $\lambda$ is bounded on $V$.\retTwo
-
-	$(d \Longrightarrow a)$\\
-	Let $M > 0$ be such that $|\lambda(x)| \leq M$ for all $x \in V$. Then for any $r > 0$ we know that $W \coloneqq (r/M)V$ is a neighborhood of $0$ satisfying that $|\lambda(x)| < r$ for all $x \in W$. Hence, $\lambda$ is continuous at $0$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\ul{Lemma 1.20:} If $\mathcalli{X}$ is a topological $K$-vector space (where $K = \mathbb{R}$ or $\mathbb{C}$) and $f: K^n \to \mathcalli{X}$ is linear then $f$ is continuous.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Let $e_1, \ldots, e_n$ be the standard basis for $K^n$. Then put $u_k = f(e_k)$ for each $k$. Now $f(z_1, \ldots, z_n) = z_1u_1 + \ldots + z_nu_n$ and the latter expression is continuous since $\mathcalli{X}$ is a topological vector space. $\blacksquare$\retTwo
-\end{myIndent}
-
-\ul{Theorem 1.21:} If $n$ is a positive integer and $\mathcalli{Y}$ is an $n$-dimensional subspace of a Hausdorff topological $K$-vector space $\mathcalli{X}$, then:
-\begin{enumerate}
-	\item[(a)] every bijective linear map $f$ from $K^n$ to $\mathcalli{Y}$ is a homeomorphism,
-	\item[(b)] $\mathcalli{Y}$ is closed. 
-	
-	\begin{myIndent}\exThreeP
-		Proof:\\
-		Consider $S^{n-1} = \{z \in K^n : |z| = 1\}$ and $B^{n} = \{x \in K^n : |z| < 1\}$. Then put $F \coloneqq f(S^{n-1})$. Since $S^{n-1}$ is closed and $f$ is continuous by the last lemma, we know $F$ is a closed set. (In fact $F$ is compact.)\newpage
-		
-		Next, as $f$ is injective, $f(0) = 0$ and $0 \notin S^{n-1}$, we know $0 \notin F$. So, using the regularity of $\mathcalli{X}$ we can find an open neighborhood $V$ of $0$ in $\mathcalli{X}$ that is disjoint from $F$. Also, we'll choose $F$ to be balanced. Then, $E \coloneqq f^{-1}(V) = f^{-1}(V \cap \mathcalli{Y})$ is an open set disjoint from $S^{n-1}$ since $f$ is injective. Also, $E$ is balanced by the prior unnumbered lemma.\retTwo
-
-		\ul{Claim:} A balanced set $A$ in a topological vector space is path-connected.
-		\begin{myIndent}\exPPP
-			Why? Given any $x, y \in A$, we know that the functions $\gamma_1(t) = (1-t)x$ and $\gamma_2(t) = ty$ (where $0 \leq t \leq 1$) are continuous paths going from $x$ to $0$ and $0$ to $y$ respectively. Also, since $A$ is balanced, we know that $\gamma_1([0, 1])$ and $\gamma_2([0, 1])$ are contained in $A$. So, just concatenate those two paths.\retTwo
-		\end{myIndent}
-
-		Thus $E$ is connected. And as $0 \in B^n \cap E$ and $E$ is disjoint from $\partial B^n = S^{n-1}$, we must have that $E$ is entirely contained in $B^n$. This proves that there is an open neighborhood $V \cap \mathcalli{Y}$ of $0$ in $\mathcalli{Y}$ such that $\|f^{-1}(x)\| < 1$ for all $x \in V \cap \mathcalli{Y}$. Finally, note that $f^{-1}$ is an $n$-tuple of linear functionals on $\mathcalli{Y}$. By applying theorem 1.18 on the prior page to each linear functional in that $n$-tuple, we can thus show that $f^{-1}$ is continuous. Hence, $f$ is a homeomorphism.\retTwo
-
-		As for showing (b), consider any $p \in \overline{\mathcalli{Y}}$ and let $f$ and $V$ be as in the prior reasoning. 
-		\begin{myIndent}\exPPP
-			Note that it is a basic fact of linear algebra that if $\mathcalli{Y}$ is $n$-dimensional $K$-vector space then there always exists a bijective linear map $f : K^n \to \mathcalli{Y}$.\retTwo
-		\end{myIndent}
-
-		For some $t > 0$ we have that $p \in tV$.  In turn, we claim that $p \in \overline{\mathcalli{Y} \cap tV}$.
-		\begin{myIndent}\exPPP
-			To see why, observe the following result.\retTwo
-			
-			\ul{Lemma:} If $X$ is a topological space and $A, B \subseteq X$ satisfy that $B$ is open, then\\ [2pt] $\overline{A} \cap B \subseteq \overline{A \cap B}$.
-			\begin{myIndent}
-				Proof:\\
-				Suppose $x \in \overline{A} \cap B$ but $x \notin \overline{A \cap B}$. Then there must exist an open set $U \subseteq X$ such that $x \in U$ and $U$ is disjoint from $\overline{A \cap B}$. In turn we must have that $(U \cap B) \cap A = \emptyset$. But this is a contradiction. After all, $U \cap B$ is an open set containing $x$ and $x \in \overline{A}$. So, $x$ must either be in $A$ or be an accumulation point of $A$ (which would require $(U \cap B) \cap A \neq \emptyset$).\retTwo
-			\end{myIndent}
-		\end{myIndent}
-
-		But now $\overline{\mathcalli{Y} \cap tV} \subseteq \overline{f(tB^{n})} \subseteq \overline{f(t\overline{B^n})} = f(t\overline{B^n})$ (the final manipulation works because $f$ is continuous and $t\overline{B^n}$ is closed). Hence, $p \in f(t\overline{B^n}) \subseteq \mathcalli{Y}$. This proves that $\overline{\mathcalli{Y}} = \mathcalli{Y}$. $\blacksquare$
-	\end{myIndent}
-\end{enumerate}
-
-\hTwo\mySepTwo 
-
-Well I'm on the topic of classifying topological vector spaces, something that's been bugging me in the back of my mind is whether there are non-locally convex topological vector spaces. As it turns out, yes there are.\newpage
-
-Let $(X, \mathcal{M}, \mu)$ be a finite measure space. Then recall (Folland) exercise 2.32 that I did for homework in math 240a [see pages 58-59 of my math 240a latex notes]. There I proved that:
-\begin{myIndent}\exTwo
-	If $(X, \mu)$ is a finite measure space and $L^0(X)$ is the space of all complex-valued measurable functions on $X$ (where $f$ and $g$ are identified with each other if $f = g$ a.e.), then $\rho(f, g) = \int \frac{|f - g|}{1 + |f - g|}\df \mu$ is a metric on $L^0(X)$ such that $f_n \to f$ with respect to $\rho$ iff $f_n \to f$ in measure.\retTwo
-\end{myIndent}
-
-Also, by applying exercise 2.38 in that same homework assignment [see pages 60-61 of my math 240a latex notes], we know that the topology of convergence in measure does turn $L^0(X)$ into a topological vector space.\retTwo
-
-\pracOne\mySepTwo
-
-Given a measure space $(X, \mathcal{M}, \mu)$ we say a set $A \in \mathcal{M}$ is an \udefine{atom} if $\mu(A) > 0$ and for any $B \in \mathcal{M}$ with $B \subseteq A$, either $\mu(B) = 0$ or $\mu(B) = \mu(A)$. We say a measure space is \udefine{non-atomic} if it has no atoms.\retTwo
-
-\ul{Claim:} The Lebesgue measure $m$ on $\mathbb{R}^n$ is atomless.
-\begin{myIndent}\pracTwo
-	Proof:\\
-	Suppose for the sake of contradiction that $A$ is an atom of the Lebesgue measure. Then by the inner regularity of the Lebesgue measure we can find a compact subset $K \subseteq A$ such that $m(K) = m(A)$ and $K$ is an atom. But importantly, since $K$ is compact we know that $K$ is bounded. Hence, there is some $R > 0$ such that $K \subseteq B_R(0)$.\retTwo
-
-	Now define the function $f : [0, \infty) \to [0, \infty)$ by $f(r) = m(B_r(0) \cap K)$. Then $f$ is continuous. After all, if $r > s$ then there is a constant $\sigma(S^{n-1})$ such that:
-	
-	{\centering$|f(r) - f(s)| \leq m(\{x : s \leq |x| < r\}) = (r^n - s^n)\sigma(S^{n-1})$\retTwo\par}
-
-	Clearly the latter expression goes to $0$ as $r \to s$ for any $s \in [0, \infty)$.\retTwo
-
-	But now since $f$ is continuous, $f(0) = 0$ and $f(R) = m(K)$, we must have by the intermediate value theorem that $f$ attains every value between $0$ and $m(K)$ on the interval $[0, R]$. This contradicts that $K$ is an atom. $\blacksquare$\retTwo
-\end{myIndent}
-
-More generally, if $X$ is an LCH space and $\mu$ is a regular measure on $X$, then any atom $A \subseteq X$ contains a point $\{a\}$ such that $\mu(\{a\}) = \mu(A)$
-\begin{myIndent}\pracTwo
-	Proof:\\
-	By the inner regularity of $\mu$ we can find a compact set $K \subseteq A$ such that $\mu(K) = \mu(A)$ and $K$ is an atom. Now, suppose for the sake of contradiction that $\mu(\{x\}) = 0$ for all $x \in K$. Then, for each $x \in K$ we can find an open set $V_x$ containing $x \in K$ such that $\mu(V_x) < \mu(K)/2$. In turn, since $V_x \cap K$ is a subset of $K$ with measure less than $\mu(K)$ and $K$ is an atom, we know that $\mu(V_x \cap K) = 0$. But now as $\{V_x \cap K\}_{x\in K}$ is an open cover (relative to $K$) of the compact set $K$, we know that there is a finite set $x_1, \ldots, x_n$ with $K \subseteq \bigcup_{i=1}^n V_{x_i} \cap K$. This is a contradiction as it implies that:
-	
-	{\centering$0 < \mu(K) \leq \sum_{i=1}^n \mu(V_{x_i} \cap K) = 0$.\newpage}
-
-	So, we conclude that there must exist $x \in K \subseteq A$ with $\mu(\{x\}) > 0$. Since, $A$ is an atom, we must have that $\mu(\{x\}) = \mu(A)$. $\blacksquare$
-	\begin{myIndent}\color{RawerSienna}
-		Also note that then $\mu(A - \{x\}) = 0$.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-Thus as a corollary, if $X$ is an LCH space and $\mu$ is a nonzero regular measure on $X$ such that every singleton is a null set, we know that $\mu$ is atomless.\retTwo
-
-An obvious property of atomless measures is as follows:
-\begin{myIndent}
-	Suppose $(X, \mathcal{M}, \mu)$ is an atomless measure space and $E \in \mathcal{M}$ satisfies that\\ $\mu(E) > 0$. Then there is a decreasing sequence of sets $E = E_1 \supseteq E_2 \supseteq \cdots$\\ such that $\mu(E_1) > \mu(E_2) > \cdots > 0$.\retTwo
-\end{myIndent}
-
-Using the above property, we can also show that if $(X, \mathcal{M}, \mu)$ is an atomless measure space and $E \in \mathcal{M}$ satisfies that $\mu(E) > 0$, then there is a countabley infinite collection of disjoint sets $\{F_n\}_{n \in \mathbb{N}}$ with positive measure such that $E = \bigcup_{n \in \mathbb{N}} F_n$.
-\begin{myIndent}\pracTwo
-	Proof:\\
-	Let $E = E_1 \supseteq E_2 \supseteq \cdots$ be a decreasing sequence of sets such that\\ $\mu(E_1) > \mu(E_2) > \cdots > 0$. Then define $F_1 \coloneqq (E_1 - E_2) \cup (\bigcap_{n \in \mathbb{N}} E_n)$ and\\ $F_k \coloneqq E_k - E_{k+1}$ when $k \geq 2$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\mySepTwo
-
-\exTwo\ul{Proposition:} Let $(X, \mathcal{M}, \mu)$ be a finite atomless measure space. Then $L^0(X)$ contains no open convex sets.
-\begin{myIndent}\exThreeP
-	\ul{Lemma:} A topological vector space $\mathcalli{X}$ has no open convex sets if and only if $\mathcalli{X}^* = \{0\}$.
-	\begin{myIndent}\exPPP
-		I already went over the $(\Longrightarrow)$ direction in an observation on \inLinkRap{page 252 observation reference}{page 252}. To show the other direction, note that if $\mathcalli{X}$ had a convex open set then we'd able to find a nontrivial continuous seminorm $p$ on $\mathcalli{X}$ (via a Minkowski functional). Next, let $x \in \mathcalli{X}$ satisfy that $p(x) \neq 0$ and define a linear functional $f$ on the span of $x$ by\\ $f(cx) = c \cdot p(x)$. By the Hahn-Banach theorem we are then able to get a\\ nonzero linear functional $F$ on $\mathcalli{X}$ such that $|F(y)| \leq p(y)$ for all $y \in \mathcalli{X}$.\retTwo
-
-		Finally, note that $F$ is continuous at $0$. After all, suppose $\langle y_i\rangle_{i \in I}$ is any net converging to $0$. Since $p$ is continuous, we know that $p(y_i) \to p(0) = 0$. In turn, $F(y_i) \to 0$ as well. But now this means that $F \in \mathcalli{X}^*$. $\blacksquare$\retTwo
-	\end{myIndent}
-
-	Now we go to prove our claim about $L^0(X)$ by showing that $L^0(X)$ has no nonzero\\ continuous linear functionals. Suppose $\lambda \in L^0(X)^*$ and let $\pi: L^1(X) \hookrightarrow L^0(X)$ be the natural inclusion map. Then note that $\lambda \circ \pi \in L^1(X)^*$.
-	\begin{myIndent}\exPPP
-		To see why just note that $\pi$ is a linear map from $L^1(X)$ to $L^0(X)$ that is continuous because $L^1$-convergence implies convergence in measure.\retTwo
-	\end{myIndent}
-
-	By (Folland) theorem 6.15 in my math 240b notes plus the fact that $\mu$ is finite, we know that $L^1(X)^* \cong L^\infty(X)$. Hence, there is a function $g \in L^\infty(X)$ such that $\lambda \circ \pi(f) = \int g f \df \mu$ for all $f \in L^1(X)$.\retTwo
-
-	Now suppose for the sake of contradiction that $g \neq 0$. Then there is some $\varepsilon > 0$ such that $E \coloneqq \{x \in X : |g(x)| > \varepsilon\}$ has positive measure. In turn, as $\mu$ is atomless we can a sequence of disjoint sets $\{E_n\}_{n \in \mathbb{N}}$ with positive measure such that $E = \bigcup_{n \in \mathbb{N}}E_n$.\newpage
-
-	Let $f_n = \sum_{k=1}^n \frac{\chi_{E_k}}{\mu(E_k)g}$ and then set $f = \lim_{n \to \infty} f_n$. Importantly each $f_n$ is in $L^1(X)$. Therefore $\lambda(f_n) = \int g f_n \df \mu = \sum_{k=1}^n \int_{E_k} \frac{g}{\mu(E_n)g} \df \mu = n$. But also note that since $f_n \to f$ pointwise and $\mu$ is finite, we know that $f_n \to f$ in measure.
-	\begin{myIndent}\exPPP
-		(See \inLinkRap{(Folland) Exercise 2.39}{pages 213-214}\dots)\retTwo
-	\end{myIndent}
-
-	Now we have a contradiction since $f \in L^0(X)$ and yet $\lambda(f) = \lim_{n \to \infty} \lambda(f_n) = \infty$. Hence, we conclude that we must have that $g = 0$ a.e. But in turn, we must have that $\lambda(f) = 0$ for all $f \in L^1(X) \subseteq L^0(X)$.\retTwo
-
-	Finally, note that any measurable function $f$ in $X$ is a pointwise limit of a sequence of simple functions $\{\phi_n\}_{n \in \mathbb{N}}$ (which are all in $L^1(X)$.)
-	\begin{myIndent}\exPPP
-		(See the theorem on page 44 of my latex math 240a notes\dots)\retTwo
-	\end{myIndent}
-
-	By the reasoning on \inLinkRap{(Folland) Exercise 2.39}{pages 213-214} again, we know that that $\phi_n \to f$ in measure. So, $L^1(X)$ is dense in $L^0$. And since $\lambda$ is continuous and $\lambda = 0$ on a dense subset of it's domain, we know $\lambda$ is the zero functional. $\blacksquare$\retTwo
-
-	\begin{myIndent}\myComment
-		By the way, I'm not smart enough to have come up with this proof by myself. Instead, I adapted a proof from math stack exchange by the user David Gao (see \inLinkRap{bib citation 20}{citation 20 in the bibliography}).\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\hTwo One more note I want to make before stopping for the day is that $L^0(X)$ is complete. After all, we proved in math 240a that if a sequence $\{f_n\}_{n \in \mathbb{N}}$ is Cauchy in measure (meaning $f_n - f_m \to 0$ in measure as $m, n \to \infty$), then there exists $f \in L^0(X)$ such that $f_n \to f$ in measure. (Recall Folland real analysis theorem 2.30).\retTwo
-
-All of this is to say that there does exist complete Hausdorff topological vector spaces with no continuous seminorms. Furthermore, those spaces aren't entirely useless to study\\ either.
-
-\mySepTwo
-
-
-\hypertarget{Math 220a Theorem 2.30}{}
-\hypertarget{Leibniz Rule Analog Contour Integrals}{}
-
-\hypertarget{idk reference 9}{}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
+Here's some homework problems from the past that I never finished.\retTwo
 
 \Hstatement\blab{Set 6 Problem 6:} Suppose $G$ is a group. For all $x, y \in G$, let $[x, y] \coloneqq xyx^{-1}y^{-1}$ and\\ $\prescript{x}{}{y} \coloneqq xyx^{-1}$. Then Hall's equation asserts that:
 
@@ -1891,38 +486,149 @@ All of this is to say that there does exist complete Hausdorff topological vecto
 
 Next consider the lower central series $\gamma_1(G) = G$ and $\gamma_{i+1}(G) = [G, \gamma_{i}(G)]$ for all $i$.
 \begin{myIndent}\color{BrickRed}
-	Note that $[H_1, H_2] = [H_2, H_1]$ for any subgroups $H_1, H_2 < G$ since\\ $([h_1, h_2])^{-1} = [h_2, h_1]$. So this definition is equivalent to the one in class.
+	Note that $[H_1, H_2] = [H_2, H_1]$ for any subgroups $H_1, H_2 < G$ since\\ $([h_1, h_2])^{-1} = [h_2, h_1]$. So this definition is equivalent to the one in class.\retTwo
 \end{myIndent}
 
-\newpage
+\begin{enumerate}
+	\item[(a)] Suppose $H, K, L \lhd G$ and prove that $[[H, K], L] < [[K, L], H][[L, H], K]$.
+	\begin{myIndent}\HexOne
+		To start off, as $H, K, L \lhd G$ we know that $[H, K]$, $[K, L]$, and $[L, H]$ are normal\\ [1pt] subgroups of $G$. In turn, we also know that $[[H, K], L]$, $[[K, L], H]$, and $[[L, H], K]$\\ [1pt] are normal subgroups of $G$. And finally, this tells us that $[[K, L], H][[L, H], K]$ is a\\ [1pt] normal subgroup of $G$.
+
+		\begin{myIndent}\HexPPP
+			(See the lemma at the bottom of \inLinkRap{Page 378 Reference}{page 378}. Also, I think I forgot to ever prove that if $N_1 \lhd G$ and $N_2 \lhd G$ then $N_1N_2 \lhd G$. Fortunately, the proof is incredibly simple. $xN_1N_2x^{-1} = xN_1x^{-1}xN_2x = N_1N_2$ for all $x \in G$.)\newpage
+		\end{myIndent}
+
+		Consider $\overline{G} \coloneqq \frac{G}{[[K, L], H][[L, H], K]}$. Then if $\pi: G \to \overline{G}$ is the natural projection\\ [2pt] homomorphism, let $\overline{H} = \pi(H)$, $\overline{K} = \pi(K)$, and $\overline{L} = \pi(L)$.\retTwo
+		
+		We claim for all $\overline{h} \in \overline{H}$, $\overline{k} \in \overline{K}$, and $\overline{l} \in \overline{L}$ that $[\overline{h}, \overline{k}]$ and $\overline{l}$ commute (where\\ $\overline{x} = \pi(x) = x[[K, L], H][[L, H], K]$).
+		\begin{myIndent}\HexTwoP
+			Note that $[[k, l], \prescript{l}{}{h}][[l, h], \prescript{h}{}{k}] \in [[K, L], H][[L, H], K]$ whenever $h \in H$, $k \in K$, and $l \in L$. This is because $H$ and $K$ are normal subgroups.\retTwo
+
+			In turn, we can apply Hall's equation from the last page to get that:
+
+			{\centering $\overline{[[h, k], \prescript{k}{}{l}]} = \overline{[[h, k], \prescript{k}{}{l}][[k, l], \prescript{l}{}{h}][[l, h], \prescript{h}{}{k}]} = \overline{1}$ \retTwo\par}
+
+			Therefore, we have that $[\overline{h}, \overline{k}]$ and $\overline{\prescript{k}{}{l}}$ commute.\retTwo
+
+			Finally, note that because $L$ is a normal subgroup we know that conjugation by $k$ is an automorphism on $L$. Hence, for any $l_1 \in L$ there exists $l_0 \in L$ with $kl_0k^{-1} = l$. Hence, substituting in $l_0$ for $l$ in the above reasoning we've shown that $[\overline{h}, \overline{k}]$ and $\overline{l}$ commute  for all $\overline{h} \in \overline{H}$, $\overline{k} \in \overline{K}$, and $\overline{l} \in \overline{L}$.\retTwo
+		\end{myIndent}
+
+		Going a step further, we claim that any element in $[\overline{H}, \overline{K}]$ commutes with any $\overline{l}$ in $\overline{L}$.
+		\begin{myIndent}\HexTwoP
+			Suppose $x_1, \ldots, x_n$ are all commutators of $\overline{H}$ and $\overline{K}$. Then since each $x_i$ individually commutes with $\overline{l}$, it's clear that:
+
+			{\centering $x_1 \cdots x_{n-1}x_n \overline{l} = x_1 \cdots x_{n-1} \overline{l} x_n = \cdots = \overline{l} x_1 \cdots x_n$\retTwo\par}
+		\end{myIndent}
+
+		But now we've shown that $[[\overline{H}, \overline{K}], \overline{L}] = \{1\}$. And since surjective group\\ [1pt] homomorphisms pass in and out of the brackets in commutator subgroups, we know that $[[\overline{H}, \overline{K}], \overline{L}] = \pi([[H, K], L])$. Hence, $\overline{x} = \overline{1}$ in $\overline{G}$ for all $x \in [[H, K], L]$.\\ [2pt] And this proves that $[[H, K], L] < [[K, L], H][[L, H], K]$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Prove for every positive integers $m$ and $n$ that $[\gamma_m(G), \gamma_n(G)] \subseteq \gamma_{m + n}(G)$.
+	\begin{myIndent}\HexOne
+		We shall proceed by induction on $m$.
+		\begin{myIndent}\HexTwoP
+			Note by definition that $[\gamma_1(G), \gamma_n(G)] = [G, \gamma_n(G)] = \gamma_{n+1}(G)$. Thus our base case of $m = 1$ holds trivially.\retTwo
+
+			Next, suppose $m > 1$ and that $[\gamma_k(G), \gamma_n(G)] \subseteq \gamma_{k + n}(G)$ for all $n \in \mathbb{N}$ and $k < m$. Then by part (a) we have for any $n \in \mathbb{N}$ that:
+
+			{\centering\fontsize{11}{13} \begin{tabular}{l}
+				$[\gamma_m(G), \gamma_n(G)] = [[G, \gamma_{m-1}(G)], \gamma_n(G)] \subseteq [[\gamma_{m-1}(G), \gamma_n(G)], G][[\gamma_n(G), G], \gamma_{m-1}(G)]$\\ [4pt] 
+				$\phantom{[\gamma_m(G), \gamma_n(G)] = [[G, \gamma_{m-1}(G)], \gamma_n(G)]} \subseteq [\gamma_{m+n-1}(G), G][\gamma_{n+1}(G), \gamma_{m-1}(G)]$\\ [4pt]
+				$\phantom{[\gamma_m(G), \gamma_n(G)] = [[G, \gamma_{m-1}(G)], \gamma_n(G)]} \subseteq \gamma_{m+n}(G)\gamma_{m+n}(G) = \gamma_{m+n}(G)$. $\blacksquare$
+			\end{tabular}\newpage\par}
+		\end{myIndent}
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Problem 3 From Fall 2024 Midterm:} 
+\begin{enumerate}
+	\item[(a)] Let $G$ be a finite group and suppose $P, Q \in \Syl_p(G)$ are distinct. Then show that\\ $P \cap N_G(Q) = P \cap Q$.
+	\begin{myIndent}\HexOne
+		We know $\Syl_p(N_G(Q)) = \{Q\}$. Also, $P \cap N_G(Q)$ is a $p$-group in $N_G(Q)$. Hence, by Sylow's second theorem we must have that $P \cap N_G(Q) \subseteq Q$. Since $P \cap N_G(Q) \subseteq P$ as well we know that $P \cap N_G(Q) \subseteq P \cap Q$. And as $Q \subseteq N_G(Q)$ we trivially know that $P \cap Q \subseteq P \cap N_G(Q)$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Suppose $P \in \Syl_p(G)$ and consider the action of $P$ on $\Syl_p(G)$ by conjugation. Prove that the $P$-orbit of $Q \in \Syl_p(G)$ (which I'll hereafter denote $P \cdot Q$) has $[P : P \cap Q]$ many elements.
+	\begin{myIndent}\HexOne
+		By the orbit-stabilizer theorem we have that $|P \cdot Q| = [P : P_Q]$ where $P_Q$ is the stabilizer of $Q$. But note that $x \in P$ is in $P_Q$ if and only if $xQx^{-1} = Q$. Hence $P_Q = P \cap N_G(Q) = P \cap Q$.\retTwo
+	\end{myIndent}
+
+	\item[(c)] Let $s_p = |\Syl_p(G)|$. Then suppose $p^e \divides (s_p - 1)$ and $p^{e+1} \not{\divides}\gap (s_p - 1)$ (where $e$ is some\\ integer). Prove that there are distinct $P, Q \in \Syl_p(G)$ such that $[P : P \cap Q] \leq p^e$.
+	\begin{myIndent}\HexOne
+		Suppose $[P : P \cap Q] > p^e$ for all distinct pairs $P, Q \in \Syl_p(G)$. This means by part (b) that if we fix any $P \in \Syl_p(G)$ then the orbit of every $Q \in \Syl_p(G) - \{P\}$ has more than $p^e$ elements. Also note that if $\Syl_p(G)/P$ denotes the set of all $P$-orbits of the action $P \curvearrowright \Syl_p(G)$ described in part (b), then:
+		
+		{\centering$s_p = \hspace{-1.5em}\sum\limits_{P \cdot Q \in \Syl_p(G)/P}\hspace{-1.5em} |P \cdot Q|$\retTwo\par}
+
+		This hints at how we can derive a contradiction. Firstly, note that $P \cdot P = \{P\}$. Hence, we can say that:
+
+		{\centering$s_p - 1 = \hspace{-1.5em}\sum\limits_{\begin{smallmatrix}
+	P \cdot Q \in \Syl_p(G)/P \\ Q \neq P
+\end{smallmatrix}}\hspace{-1.5em} |P \cdot Q|$\retTwo\par}
+		
+		Next note for any $Q \in \Syl_p(G) - \{P\}$ that $|P \cdot Q| = [P : P \cap Q]$ is a power of $p$. Thus, in order for $|P \cdot Q|$ to have more than $p^e$ elements we must have that $|P \cdot Q| = p^{e + 1}p^{k_Q}$ where $k_Q$ is some nonnegative integer. As a result, we can now factor out a $p^{e+1}$ term from the sum above to get that:
+		
+		{\centering$s_p - 1 = p^{e+1}(\hspace{0em}\sum\limits_{\begin{smallmatrix}
+	P \cdot Q \in \Syl_p(G)/P \\ Q \neq P
+\end{smallmatrix}}\hspace{-2em} p^{k_Q})$\retTwo\par}
+
+		But now we've shown that $p^{e + 1}$ divides $s_p -1$. This is a contradiction. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Problem 2 From Fall 2025 Midterm:} Suppose $G$ is a finite group and $p$ is a prime divisor of $|G|$. Let $P$ be a Sylow $p$-subgroup of $G$ and let $x, y \in C_G(P) \coloneqq \{g \in G : \forall a \in P, ga = ag\}$. Prove that if $x$ and $y$ are conjugate in $G$ then they are conjugate in $N_G(P)$.
+
+\begin{myIndent}\HexOne
+	Write $y = gxg^{-1}$ where $g \in G$. Then note that since $xa = ax$ for all $a \in P$ we know that $P \subseteq C_G(x)$. Furthermore, since $ya = pa$ for all $a \in P$ we know $gxg^{-1}a = agxg^{-1}$ for all $a \in P$. Equivalently, this means that $xg^{-1}ag = g^{-1}agx$ for all $a \in P$. So, we can conclude that $g^{-1}Pg \subseteq C_G(x)$.\newpage
+
+	Now we must have that both $P, g^{-1}Pg \in \Syl_p(C_G(x))$. Hence, by Sylow's second\\ theorem there exists $h \in C_G(x)$ such that $hPh^{-1} = g^{-1}Pg$. In turn we know that\\ $P = ghPh^{-1}g^{-1}$. Hence $gh \in N_G(P)$. Also note that $ghxh^{-1}g^{-1} = gxg^{-1} = y$ since\\ $h \in C_G(x)$. $\blacksquare$\retTwo 
+\end{myIndent}
+
+\blab{Set 7 Problem 3:} Suppose $G$ is a finite group and $H$ is a nontrivial subgroup of $G$.
+\begin{itemize}
+	\item[(a)] Show that there exists a function $f: \Syl_p(H) \to \Syl_p(G)$ such that for all $\overline{P} \in \Syl_p(H)$ we have that $\overline{P} = f(\overline{P}) \cap H$. Deduce that $|\Syl_p(H)| \leq |\Syl_p(G)|$.
+	
+	\begin{myIndent}\HexOne
+		By Sylow's second theorem, for each $\overline{P} \in \Syl_p(H)$ we can choose some\\ $f(\overline{P}) \in \Syl_p(G)$ such that $\overline{P} \subseteq f(\overline{P})$. Then as $f(\overline{P}) \cap H$ is a $p$-subgroup in $H$ containing $\overline{P}$, we must have that $f(\overline{P}) \cap H = \overline{P}$. This proves that the function $f$ we want exists.\retTwo
+
+		To show the other inequality, we just note that $f$ is injective. After all, if we know that $f(\overline{P}) = f(\overline{Q})$ then $\overline{P} = f(\overline{P}) \cap H = f(\overline{Q}) \cap H = \overline{Q}$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Suppose $G$ does not have a non-trivial normal $p$-subgroup. Then suppose $\overline{P}$ is a non-trivial $p$-subgroup of $G$ and prove that $|\Syl_p(N_G(\overline{P}))| < |\Syl_p(G)|$.
+	
+	\begin{myIndent}\HexOne
+		Note that because $\overline{P}$ is a non-trivial $p$-subgroup which isn't normal, we know that $\{1\} \lneqq N_G(\overline{P}) \lneqq G$. Now construct a function $f: \Syl_p(N_G(\overline{P})) \to \Syl_p(G)$ as in part (a). Since we already know $f$ is injective, it suffices to now show that $f$ isn't also surjective.\retTwo
+
+		Suppose for the sake of contradiction that $f$ is a bijection. Then define:
+		
+		{\centering$O_p(G) \coloneqq \bigcap_{P \in \Syl_p(G)} P$.\retTwo\par}
+
+		It's easy to see that $O_p(G)$ is a normal $p$-subgroup of $G$. Therefore, by assumption we know that $O_p(G) = \{1\}$.\retTwo
+
+		Yet also note that because $f$ is a bijection we know that every $P \in \Syl_p(G)$ is uniquely identified with a group $Q \in \Syl_p(N_G(\overline{P}))$ such that $Q = N_G(\overline{P}) \cap P$. It follows that $O_p(G) \cap N_G(\overline{P}) = O_p(N_G(\overline{P})) =  \bigcap_{Q \in \Syl_p(N_G(\overline{P}))} Q$.\retTwo
+
+		Finally, note that that for every $Q \in \Syl_p(N_G(\overline{P}))$ we must have that $\overline{P} \subseteq Q$. After all, we know by Sylow's second theorem that there exists $g \in N_G(\overline{P})$ such that $\overline{P} \subseteq gQg^{-1}$. Equivalently, $\overline{P} = g^{-1}\overline{P}g \subseteq g^{-1}gQg^{-1}g = Q$. This proves that:
+
+		{\centering $\overline{P} \subseteq \bigcap_{Q \in \Syl_p(N_G(\overline{P}))} Q \subseteq O_p(G)$.\retTwo\par}
+
+		That contradicts that $O_p(G)$ is trivial since we know that $\overline{P}$ isn't. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
 
 
-% \ul{Lemma 2:} If $\mathcalli{X}$ is a non-Hausdorff topological $K$-vector space (where $K = \mathbb{R}$ or $\mathbb{C}$), then there is a closed vector subspace $\mathcalli{M} \subseteq \mathcalli{X}$ such that the quotient vector space $\mathcalli{X}/\mathcalli{M}$ (equipped with the quotient topology) is Hausdorff.
-% \begin{myIndent}\exThreeP
-% 	Proof:\\
-% 	Let $\mathcalli{M}$ be the closure of $\{0\}$. Then we have that $\mathcalli{M}$ is a closed subspace 
-% \end{myIndent}
 
 
-% \newpage 
+% \blab{Set 7 Problem 4:} Suppose $G$ is a group of order $p^n q$ where $p$ and $q$ are primes. Prove that $G$ is solvable.
+% \begin{myIndent}\HexOne
+% 	We proceed by strong induction on $n$. If $n = 0$ then we know $G$ is cyclic with prime order and hence $G$ is trivially solvable. Meanwhile, suppose $n > 0$.\retTwo
+	
+% 	If $G$ is abelian then we automatically have that $G$ is solvable. Meanwhile, if $G$ is nonabelian but also nonsimple, then after picking a subgroup $N$ such that $\{1\} \lneqq N \lhd G$ we know that $N$ and $G/N$ are either a $p$-subgroup or have order $p^k q$ where $k < n$. Thus, either by our inductive hypothesis or the fact that $p$-groups are nilpotent and thus solvable, we know that both $N$ and $G/N$ are solvable. And now by \inLinkRap{Math 200a Set 6 Problem 3}{problem 3 on the sixth problem set}, we know that $G$ is solvable.\retTwo
 
+% 	This leaves the case that $G$ is nonabelian and simple. We claim that if $|G| = p^nq$ then this case never happens.
+% 	\begin{myIndent}\HexTwoP
+% 		To prove this, suppose to the contrary that $|G| = p^nq$ and that $G$ is nonabelian and simple. Then let $s_p = |\Syl_p(G)|$. We must have that $s_p \divides q$ but also that $s_p \neq 1$ (since $s_p$ equaling $1$ would contradict the simplicity of $G$). Hence as $q$ is prime we know that $G$ has exactly $q$ Sylow $p$-subgroups.\retTwo
 
-% \exTwo\ul{Corollary 2.2.8:} Let $G$ be a compact group and $V$ a finite dimensional real or complex vector space. Let $\pi : G \to \GL(V)$ be a continuous representation. Then there is a (positive definite) inner product $\langle\phantom{.},\phantom{.} \rangle$ on $V$ which is $G$-invariant (meaning $\langle (\pi(g))v, (\pi(g))w\rangle = \langle v, w\rangle$ for all $v, w \in V$ and $g \in G$).
-% \begin{myIndent}\exThreeP
-% 	Proof:\\
-% 	Let $\langle\phantom{.},\phantom{.}\rangle_{0}$ be any (positive definite) inner product on $V$. Note that one certainly exists since we can construct one as follows:
-% 	\begin{myIndent}\exPPP
-% 		Let $u_1, \ldots, u_n$ be a basis for $V$. Then if $v = \sum_{i=1}^n a_i u_i$ and $w = \sum_{i=1}^n b_i u_i$ where each $a_i, b_i$ is in $\mathbb{R}$ or $\mathbb{C}$, we define $\langle v, w\rangle_0$ by taking the standard inner product of $(a_1, \ldots, a_n)$ and $(b_1, \ldots, b_n)$ in $\mathbb{R}^n$ or $\mathbb{C}^n$. This is easily seen to define an inner\\ product on $V$.\newpage
+% 		Let $\overline{P}$ be equal to the intersection of some $P_1, P_2 \in \Syl_p(G)$ such that\\ $|\overline{P}| \geq |P_i \cap P_j|$ for all $P_i, P_j \in \Syl_p(G)$. Then suppose $\overline{P} \neq \{1\}$ and let\\ $H \coloneqq N_G(P)$.
 % 	\end{myIndent}
-
-% 	Next, we define $\langle v, w\rangle \coloneqq \int_G \langle(\pi(g))v, (\pi(g))w\rangle_1 \df \mu(g)$ where $\mu$ is a Haar measure on $G$.
 % \end{myIndent}
-
-
-
-
-
-
 
 
 
@@ -1984,5 +690,5 @@ Next consider the lower central series $\gamma_1(G) = G$ and $\gamma_{i+1}(G) = 
 
 % \hTwo Suppose $|G| = pq$ where $p < q$ are prime numbers. Then $s_q = 1$. Hence there exists a unique Sylow $q$-subgroup $Q$. Furthermore, $Q \lhd G$ and $Q$ is cylic with order $q$.\retTwo
 
-% Next, let $P$ by a Sylow $p$-subgroup. Then because $Q \lhd G$, we have that $PQ < G$. Also, $|P \cap Q| \divides \gcd(p, q) = 1$. So, $P \cap Q = \{1\}$ and from there it follows that $|PQ| = pq = |G|$. So $G / Q = PQ / Q \cong P / (P \cap Q) \cong P$.
+% Next, let $P$ by a Sylow $p$-subgroup. Then because $Q \lhd G$, we have that $PQ < G$. Also, $|P \cap Q| \dividesDeprecated \gcd(p, q) = 1$. So, $P \cap Q = \{1\}$ and from there it follows that $|PQ| = pq = |G|$. So $G / Q = PQ / Q \cong P / (P \cap Q) \cong P$.
 
