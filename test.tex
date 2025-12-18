@@ -313,6 +313,7 @@
 \newcommand{\Ideal}{\mathrm{Ideal}}
 \newcommand{\Spec}{\mathrm{Spec}}
 \newcommand{\Res}{\mathrm{Res}}
+\newcommand{\exConv}{\mathrm{ex}}
 
 
 \DeclareMathOperator{\lcm}{lcm}
@@ -363,276 +364,51 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\hTwo Note that we can also show the converse of Hilbert's basis theorem. In other words, $A$ is a Noetherian ring if $A[x]$ is Noetherian.
-\begin{myIndent}\pracTwo
-	Proof:\\
-	Suppose $A$ isn't a Noetherian ring. Then there exists a sequence $\{\mathfrak{a}_n\}_{n \in \mathbb{N}}$ of ideals in $A$ such that $\mathfrak{a}_1 \subsetneqq \mathfrak{a}_2 \subsetneqq \cdots$. In turn, $\{\mathfrak{a}_n[x]\}_{n \in \mathbb{N}}$ is also a sequence of ideals in $A[x]$ such that $\mathfrak{a}_1[x] \subsetneqq \mathfrak{a}_2[x] \subsetneqq \cdots$. This proves that $A[x]$ isn't a Noetherian ring. $\blacksquare$\retTwo
-\end{myIndent}
+\hTwo\dispDate{12/14/2025}
 
-Also note that if $A$ is Noetherian and $\mathfrak{a} \lhd A$, then we have that $A/\mathfrak{a}$ is Noetherian.
-\begin{myIndent}\pracTwo
+\blect{Math 241a Notes:}\retTwo
+
+Suppose $V$ is a finite dimensional vector space and $\pi: G \to \GL(V)$ is a representation. Then $\pi$ is called \udefine{irreducible} if the only $\pi(G)$-invariant subspaces are $\{0\}$ and $V$. $\pi$ is called \udefine{completely reducible} if $V = \bigoplus V_i$ where $V_i$ is a $\pi(G)$-invariant irreducible subspace.\retTwo
+
+Also if $V = \mathbb{C}^n$ or $\mathbb{R}^n$, then I shall denote $\GL(V)$ as $\GL_n(\mathbb{C})$ or $\GL_n(\mathbb{R})$ respectively. Similarly, I shall denote $U(V)$ as $U(n)$.\retTwo
+
+\exTwo\ul{Proposition 2.2.11:} If $G$ is a group and $\pi: G \to U(n)$ is a unitary representation, then:
+\begin{itemize}
+	\item[(i)] every $\pi(G)$-invariant subspace has a $\pi(G)$-invariant orthogonal complement.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Suppose $V$ is invariant and $w \in V^\perp$. Then as $\pi(g)$ is unitary (which means\\ $\pi(g)^* = \pi(g)^{-1}$) for each $g \in G$, we know:
+		
+		{\centering$\langle \pi(g)w, v\rangle = \langle w, \pi(g)^* v\rangle = \langle w, \pi(g^{-1})v \rangle = 0$.\retTwo\par}
+		
+		It follows that $V^\perp$ is $G$-invariant.\retTwo
+	\end{myIndent}
+
+	\item[(ii)] $\pi$ is completely reducible.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		We can prove this by induction. If $\mathbb{C}^n$ isn't irreducible then we can write\\ $\mathbb{C}^n = V \oplus V^\perp \cong \mathbb{C}^{k} \oplus \mathbb{C}^{n-k}$ where both $V$ and $V^\perp$ are $G$-invariant. Then\\ we just repeat this reasoning on the smaller subspaces. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\ul{Proposition 2.2.12:} If $G$ is a compact group, $V$ is a finite dimensional real or complex\\ Hausdorff topological vector space, and $\pi: G \to \GL(V)$ is a (strong operator) continuous representation, then $\pi$ is completely reducible.
+\begin{myIndent}\exThreeP
 	Proof:\\
-	By the correspondance theorem we know that any ideal of $A/\mathfrak{a}$ is of the form $\mathfrak{b}/\mathfrak{a}$ where $\mathfrak{b} \lhd A$ with $\mathfrak{a}\subseteq \mathfrak{b}$. Since $A$ is Noetherian, we know that $\mathfrak{b}$ is finitely generated. In turn, we also know that $\mathfrak{b}/\mathfrak{a}$ is finitely generated. $\blacksquare$\retTwo
+	Using \inLinkRap{G-invariant inner product page 485}{corollary 2.2.8 on page 485}, let $\langle\phantom{.},\phantom{.}\rangle$ be a $G$-invariant inner product on $V$. Then $\pi$ is a unitary representation with respect to this inner product. So, we can apply the prior proposition. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo\mySepTwo
 
-\dispDate{12/10/2025}
-
-Today I'm preparing for the math 200a final and also taking some miscellaneous notes on topics that came up while I was doing practice problems.\retTwo
-
-Recall how if $n$ is an integer and $p$ is a prime then we defined:
-
-{\centering$\nu_p(n) = \max\{k \in \mathbb{Z}_{\geq 0} : p^k \divides n\}$.\retTwo\par}
-
-We can extend $\nu_p$ to being defined on $\mathbb{Q}$ as follows. Given any rational number $\sfrac{m}{n} \neq 0$ we define $\nu_p(\sfrac{m}{n}) = \nu_p(m) - \nu_p(n)$.
-\begin{myIndent}\pracTwo
-	To prove this is well-defined, suppose $\frac{m_1}{n_1} = \frac{m_2}{n_2}$. Then after canceling common prime\\ [-3pt] factors of $m_i$ and $n_i$, we can find pairs of integers $m_i^\prime, n^\prime_i$ such that for each $i$:
-	
-	{\centering$\frac{m_i^\prime}{n_i^\prime} = \frac{m_i}{n_i}$, $\gcd(m_i, n_i) = 1$, and $\nu_p(m_i^\prime) - \nu_p(n_i^\prime) = \nu_p(m_i) - \nu_p(n_i)$\retTwo\par}
-
-	But now it is easy to check that $m_1^\prime = m_2^\prime$ and $n^\prime_1 = n_2^\prime$. After all, we know that\\ [-1pt] $\frac{m_1^\prime}{n_1^\prime} = \frac{m_2^\prime}{n_2^\prime} \Longleftrightarrow m_1^\prime n_2^\prime = m_2^\prime n_1^\prime$. Then by comparing the prime factorings of both sides\\ [-1pt] of the latter equation and noting that $m_i^\prime$ and $n_i^\prime$ are coprime for each $i$, we can show that $m_1^\prime = \pm m_2^\prime$ and $n^\prime_1 = \pm n_2^\prime$. Yet the sign of $m_1^\prime$ doesn't effect $\nu_p(m_1^\prime)$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo Note that since $\nu_p(n_1 n_2) = \nu_p(n_1)\nu_p(n_2)$ when $n_1, n_2 \in \mathbb{Z}$, we can easily show that $\nu_p(rs) = \nu_p(r) + \nu_p(s)$ for all $r, s \in \mathbb{Q} - \{0\}$. We can also easily see that $\nu_p(r^{-1}) = -\nu_p(r)$ for all $r \in \mathbb{Q}$.\retTwo
-
-\Hstatement\blab{Problem 2 From Fall 2024 Midterm:} Suppose $G$ is a finite group, $p$ is a prime integer,  and $H, K$ are $2$ subgroups of $G$ such that $G = HK$.
+Let $\mathcalli{X}$ be a real or complex vector space and let $A \subseteq \mathcalli{X}$ be convex.
 \begin{itemize}
-	\item[(a)] Prove that there exists $P \in \Syl_p(G)$ such that $P \cap H \in \Syl_p(H)$ and $P \cap K \in \Syl_p(K)$.
-	\begin{myIndent}\HexOne 
-		Pick $Q_H \in \Syl_p(H)$ and $Q_k \in \Syl_p(K)$. By Sylow's second theorem, there exists $P_1, P_2 \in \Syl_p(G)$ such that $Q_H \subseteq P_1$ and $Q_k \subseteq P_2$.\newpage
-
-		We claim that $Q_H = P_1 \cap H$.
-		\begin{myIndent}\HexTwoP
-			To see why, note that $P_1 \cap H$ must be a $p$-group containing $Q_H$. Furthermore, if $P_1 \cap H$ properly contained $Q_H$ then that would contradict that $Q_H$ is a Sylow $p$-subgroup.\retTwo
-		\end{myIndent}
-
-		Similarly, we have that $Q_K = P_2 \cap K$.\retTwo
-
-		But now note by Sylow's second theorem plus the fact $G = HK$ that there must exist $h \in H$ and $k \in K$ such that $P_1 = hkP_2k^{-1}h^{-1}$. Hence, we may let $P \coloneqq h^{-1}P_1 h = kP_2 k^{-1}$ and know that $P \in \Syl_p(G)$.\retTwo
-
-		Finally, $P \cap H = h^{-1}(P_1 \cap H)h = h^{-1}Q_H h \in \Syl_p(H)$ and 
-		
-		{\centering$P \cap K = k(P_2 \cap K)k^{-1} = kQ_K k^{-1} \in \Syl_p(K)$.\par}
-
-		\begin{myIndent}\color{red}
-			By the way I got the final three sentences of this proof from Hagan.\retTwo
-		\end{myIndent}
-	\end{myIndent}
-
-	\item[(b)] Suppose $P \in \Syl_p(G)$, $P_H \coloneqq P \cap H \in \Syl_p(H)$, and $P_K \coloneqq P \cap K \in \Syl_p(K)$. Then prove that $P = P_HP_K$.
-	\begin{myIndent}\HexOne
-		To start off, we know that $|P_H| = p^{r_1}$, $|P_K| = p^{r_2}$, and $|P_H \cap P_K| = p^{r_3}$ where\\ $r_3 \leq \min(r_1, r_2)$. It follows that  $|P_HP_K| = |P_H||P_K| / |P_H \cap P_K| = p^\ell$ where\\ [1pt] $\ell = r_1 + r_2 - r_3 \geq 0$. Also note that $P_H \subseteq P$ and $P_K \subseteq P$ implies that $P_HP_K \subseteq P$.\\ [1pt] It follows that $p^\ell \leq |P| = p^{\nu_p(|G|)}$. Hence, we can conclude that $\ell \leq \nu_p(|G|)$. And from there it is clear that:
-		
-		{\centering $0 \leq \nu_p(\frac{|G|}{|P_HP_K|})$\retTwo\par}
-
-		At the same time, note that:
-		
-		{\centering\begin{tabular}{l}
-			$\nu_p(\frac{|G|}{|P_HP_K|}) = \nu_p(\frac{|H|}{|P_H|} \cdot \frac{|K|}{|P_K|} \cdot \frac{|P_H \cap P_K|}{H \cap K})$\\ [6pt]
-			$\phantom{\nu_p(\frac{|G|}{|P_HP_K|})} =  \nu_p(\frac{|H|}{|P_H|}) + \nu_p(\frac{|K|}{|P_K|}) + \nu_p(\frac{|P_H \cap P_K|}{H \cap K}) = 0 + \nu_p(\frac{|P_H \cap P_K|}{H \cap K})$
-		\end{tabular}\retTwo\par}
-
-		Additionally, note that $P_H \cap P_K = (P \cap H) \cap (P \cap K) = P \cap (H \cap K)$. Hence, it follows that $P_H \cap P_K$ is $p$-subgroup of $H \cap K$ and therefore $\nu_p(\frac{|P_H \cap P_K|}{H \cap K}) \leq 0$.\retTwo
-
-		With that we know that $\nu_p(\frac{|G|}{|P_HP_K|}) = 0$. Yet, we also know that $\nu_p(\frac{|G|}{|P|}) = 0$. It follows that $\nu_p(\frac{|P|}{|P_HP_K|}) = 0$, and this proves that $|P| = |P_HP_K|$. By invoking one last time that $P_H P_K \subseteq P$ we now know that $P = P_HP_K$. $\blacksquare$\retTwo
-	\end{myIndent}
+	\item Given any $x, y \in \mathcalli{X}$ we let $[x, y] \coloneqq \{ty + (1-t)x : 0 \leq t \leq 1\}$. Also, we let $(x, y) \coloneqq \{ty + (1-t)x : 0 < t < 1\}$. 
+	\item We say $x \in A$ is an \udefine{extreme point} if for any $y, z \in A$ we have that $x \in [y, z]$ iff\\ $x = y$ or $x = z$. We denote the set of such points as $\exConv(A)$.
+	\item We say $\emptyset \neq B \subseteq A$ is an \udefine{extreme set} if for any $y, z \in A$ we have that:
+	
+	{\centering$(y, z) \cap B \neq \emptyset \Longrightarrow [y, z] \cap B \neq \emptyset$.\newpage\par}
 \end{itemize}
 
-\blab{Problem 5(b) from a past final:} Suppose $A$ is a (commutative unital) Noetherian ring and $\phi : A \to A$ is a surjective ring homomorphism. Then $\phi$ is an isomorphism.
-\begin{myIndent}\HexOne
-	Proof:\\
-	We need to show $\phi$ is injective, and to do that it suffices to show $\ker(\phi) = \{0\}$. Luckily note that $\ker(\phi^n) \subseteq \ker(\phi^{n+1})$ for all integers $n \geq 0$ (where we consider $\phi^0$ to be the identity map). Thus since $A$ is Noetherian, there must exist some smallest nonnegative integer $N$ such that $\ker(\phi^{N + j}) = \ker(\phi^N)$ for all $j \in \mathbb{N}$.\newpage
-
-	Suppose $N > 0$. Then we can find $a \in A$ such that $\phi^{N-1}(a) = b \neq 0$ and\\ $\phi(b) = \phi^N(a) = 0$. Yet also note that because $\phi$ is surjective, we can find $c \in A$\\ such that $\phi(c) = a$. In turn, we have that $\phi^N(c) = \phi^{N-1}(\phi(a)) = b \neq 0$ but\\ $\phi^{N+1}(c) = \phi(\phi^N(c)) = \phi(b) = 0$. This contradicts that $\ker(\phi^{N+1}) = \ker(\phi^{N})$.\\ Hence, we conclude that we can't have that $N > 0$.\retTwo
-
-	But now in particular we must have that $\{0\} = \ker(\phi^0) = \ker(\phi^1)$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\myComment Another miscellaneous note I want to make is that if $A, A^\prime$ are both unital rings and $\phi: A \to A^\prime$ is a ring homomorphism such that $1_{A^\prime} \in \myIm(\phi)$ then we must have that $\phi(1_A) = 1_{A^\prime}$.
-\begin{myIndent}
-	After all, suppose $\phi(b) = 1_{A^\prime}$ where $b$ is any element in $A$. Then:
-
-	{\centering $\phi(1_A) = \phi(1_A)1_{A^\prime} = \phi(1_A)\phi(b) = \phi(1_A b) = \phi(b) = 1_{A^\prime}$. \retTwo\par}
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-Here's some homework problems from the past that I never finished.\retTwo
-
-\Hstatement\blab{Set 6 Problem 6:} Suppose $G$ is a group. For all $x, y \in G$, let $[x, y] \coloneqq xyx^{-1}y^{-1}$ and\\ $\prescript{x}{}{y} \coloneqq xyx^{-1}$. Then Hall's equation asserts that:
-
-{\centering$[[x, y], \prescript{y}{}{z}][[y, z], \prescript{z}{}{x}][[z,x], \prescript{x}{}{y}] = 1$.\retTwo\par}
-
-\begin{myIndent}\color{BrickRed}
-	To prove this, first note that:
-
-	{\centering\begin{tabular}{l}
-		$[[a, b], \prescript{b}{}{c}] = (aba^{-1}b^{-1})(bcb^{-1})(bab^{-1}a^{-1})(bc^{-1}b^{-1})$\\
-		$\phantom{[[a, b], \prescript{b}{}{c}]} = (aba^{-1})c(ab^{-1}a^{-1})(bc^{-1}b^{-1}) = \prescript{a}{}{b} \cdot c \cdot \prescript{a}{}{(b^{-1})} \cdot \prescript{b}{}{(c^{-1})}$
-	\end{tabular} \retTwo\par}
-
-	Also note that $\prescript{b}{}{(a^{-1})} \cdot \prescript{b}{}{a} = bab^{-1} \cdot ba^{-1}b^{-1} = 1$. Therefore:
-
-	{\center\begin{tabular}{l}
-		$[[x, y], \prescript{y}{}{z}][[y, z], \prescript{z}{}{x}][[z,x], \prescript{x}{}{y}]$\\ [6pt]
-		$\phantom{aaaaaa} = (\prescript{x}{}{y} \cdot z \cdot \prescript{x}{}{(y^{-1})} \cdot \prescript{y}{}{(z^{-1})})(\prescript{y}{}{z} \cdot x \cdot \prescript{y}{}{(z^{-1})} \cdot \prescript{z}{}{(x^{-1})})(\prescript{z}{}{x} \cdot y \cdot \prescript{z}{}{(x^{-1})} \cdot \prescript{x}{}{(y^{-1})})$\\ [6pt]
-		$\phantom{aaaaaa} = (\prescript{x}{}{y} \cdot z \cdot \prescript{x}{}{(y^{-1})})(x \cdot \prescript{y}{}{(z^{-1})})(y \cdot \prescript{z}{}{(x^{-1})} \cdot \prescript{x}{}{(y^{-1})})$\\ [6pt]
-		$\phantom{aaaaaa} = (xyx^{-1}zxy^{-1}x^{-1})(xyz^{-1}y^{-1})(yzx^{-1}z^{-1}xy^{-1}x^{-1})$\\ [6pt]
-		$\phantom{aaaaaa} = (xyx^{-1}zxy^{-1})(yz^{-1})(zx^{-1}z^{-1}xy^{-1}x^{-1})$\\ [6pt]
-		$\phantom{aaaaaa} = (xyx^{-1}zx)(x^{-1}z^{-1}xy^{-1}x^{-1}) = 1$
-	\end{tabular} \retTwo\par}
-\end{myIndent}
-
-Next consider the lower central series $\gamma_1(G) = G$ and $\gamma_{i+1}(G) = [G, \gamma_{i}(G)]$ for all $i$.
-\begin{myIndent}\color{BrickRed}
-	Note that $[H_1, H_2] = [H_2, H_1]$ for any subgroups $H_1, H_2 < G$ since\\ $([h_1, h_2])^{-1} = [h_2, h_1]$. So this definition is equivalent to the one in class.\retTwo
-\end{myIndent}
-
-\begin{enumerate}
-	\item[(a)] Suppose $H, K, L \lhd G$ and prove that $[[H, K], L] < [[K, L], H][[L, H], K]$.
-	\begin{myIndent}\HexOne
-		To start off, as $H, K, L \lhd G$ we know that $[H, K]$, $[K, L]$, and $[L, H]$ are normal\\ [1pt] subgroups of $G$. In turn, we also know that $[[H, K], L]$, $[[K, L], H]$, and $[[L, H], K]$\\ [1pt] are normal subgroups of $G$. And finally, this tells us that $[[K, L], H][[L, H], K]$ is a\\ [1pt] normal subgroup of $G$.
-
-		\begin{myIndent}\HexPPP
-			(See the lemma at the bottom of \inLinkRap{Page 378 Reference}{page 378}. Also, I think I forgot to ever prove that if $N_1 \lhd G$ and $N_2 \lhd G$ then $N_1N_2 \lhd G$. Fortunately, the proof is incredibly simple. $xN_1N_2x^{-1} = xN_1x^{-1}xN_2x = N_1N_2$ for all $x \in G$.)\newpage
-		\end{myIndent}
-
-		Consider $\overline{G} \coloneqq \frac{G}{[[K, L], H][[L, H], K]}$. Then if $\pi: G \to \overline{G}$ is the natural projection\\ [2pt] homomorphism, let $\overline{H} = \pi(H)$, $\overline{K} = \pi(K)$, and $\overline{L} = \pi(L)$.\retTwo
-		
-		We claim for all $\overline{h} \in \overline{H}$, $\overline{k} \in \overline{K}$, and $\overline{l} \in \overline{L}$ that $[\overline{h}, \overline{k}]$ and $\overline{l}$ commute (where\\ $\overline{x} = \pi(x) = x[[K, L], H][[L, H], K]$).
-		\begin{myIndent}\HexTwoP
-			Note that $[[k, l], \prescript{l}{}{h}][[l, h], \prescript{h}{}{k}] \in [[K, L], H][[L, H], K]$ whenever $h \in H$, $k \in K$, and $l \in L$. This is because $H$ and $K$ are normal subgroups.\retTwo
-
-			In turn, we can apply Hall's equation from the last page to get that:
-
-			{\centering $\overline{[[h, k], \prescript{k}{}{l}]} = \overline{[[h, k], \prescript{k}{}{l}][[k, l], \prescript{l}{}{h}][[l, h], \prescript{h}{}{k}]} = \overline{1}$ \retTwo\par}
-
-			Therefore, we have that $[\overline{h}, \overline{k}]$ and $\overline{\prescript{k}{}{l}}$ commute.\retTwo
-
-			Finally, note that because $L$ is a normal subgroup we know that conjugation by $k$ is an automorphism on $L$. Hence, for any $l_1 \in L$ there exists $l_0 \in L$ with $kl_0k^{-1} = l$. Hence, substituting in $l_0$ for $l$ in the above reasoning we've shown that $[\overline{h}, \overline{k}]$ and $\overline{l}$ commute  for all $\overline{h} \in \overline{H}$, $\overline{k} \in \overline{K}$, and $\overline{l} \in \overline{L}$.\retTwo
-		\end{myIndent}
-
-		Going a step further, we claim that any element in $[\overline{H}, \overline{K}]$ commutes with any $\overline{l}$ in $\overline{L}$.
-		\begin{myIndent}\HexTwoP
-			Suppose $x_1, \ldots, x_n$ are all commutators of $\overline{H}$ and $\overline{K}$. Then since each $x_i$ individually commutes with $\overline{l}$, it's clear that:
-
-			{\centering $x_1 \cdots x_{n-1}x_n \overline{l} = x_1 \cdots x_{n-1} \overline{l} x_n = \cdots = \overline{l} x_1 \cdots x_n$\retTwo\par}
-		\end{myIndent}
-
-		But now we've shown that $[[\overline{H}, \overline{K}], \overline{L}] = \{1\}$. And since surjective group\\ [1pt] homomorphisms pass in and out of the brackets in commutator subgroups, we know that $[[\overline{H}, \overline{K}], \overline{L}] = \pi([[H, K], L])$. Hence, $\overline{x} = \overline{1}$ in $\overline{G}$ for all $x \in [[H, K], L]$.\\ [2pt] And this proves that $[[H, K], L] < [[K, L], H][[L, H], K]$.\retTwo
-	\end{myIndent}
-
-	\item[(b)] Prove for every positive integers $m$ and $n$ that $[\gamma_m(G), \gamma_n(G)] \subseteq \gamma_{m + n}(G)$.
-	\begin{myIndent}\HexOne
-		We shall proceed by induction on $m$.
-		\begin{myIndent}\HexTwoP
-			Note by definition that $[\gamma_1(G), \gamma_n(G)] = [G, \gamma_n(G)] = \gamma_{n+1}(G)$. Thus our base case of $m = 1$ holds trivially.\retTwo
-
-			Next, suppose $m > 1$ and that $[\gamma_k(G), \gamma_n(G)] \subseteq \gamma_{k + n}(G)$ for all $n \in \mathbb{N}$ and $k < m$. Then by part (a) we have for any $n \in \mathbb{N}$ that:
-
-			{\centering\fontsize{11}{13} \begin{tabular}{l}
-				$[\gamma_m(G), \gamma_n(G)] = [[G, \gamma_{m-1}(G)], \gamma_n(G)] \subseteq [[\gamma_{m-1}(G), \gamma_n(G)], G][[\gamma_n(G), G], \gamma_{m-1}(G)]$\\ [4pt] 
-				$\phantom{[\gamma_m(G), \gamma_n(G)] = [[G, \gamma_{m-1}(G)], \gamma_n(G)]} \subseteq [\gamma_{m+n-1}(G), G][\gamma_{n+1}(G), \gamma_{m-1}(G)]$\\ [4pt]
-				$\phantom{[\gamma_m(G), \gamma_n(G)] = [[G, \gamma_{m-1}(G)], \gamma_n(G)]} \subseteq \gamma_{m+n}(G)\gamma_{m+n}(G) = \gamma_{m+n}(G)$. $\blacksquare$
-			\end{tabular}\newpage\par}
-		\end{myIndent}
-	\end{myIndent}
-\end{enumerate}
-
-\blab{Problem 3 From Fall 2024 Midterm:} 
-\begin{enumerate}
-	\item[(a)] Let $G$ be a finite group and suppose $P, Q \in \Syl_p(G)$ are distinct. Then show that\\ $P \cap N_G(Q) = P \cap Q$.
-	\begin{myIndent}\HexOne
-		We know $\Syl_p(N_G(Q)) = \{Q\}$. Also, $P \cap N_G(Q)$ is a $p$-group in $N_G(Q)$. Hence, by Sylow's second theorem we must have that $P \cap N_G(Q) \subseteq Q$. Since $P \cap N_G(Q) \subseteq P$ as well we know that $P \cap N_G(Q) \subseteq P \cap Q$. And as $Q \subseteq N_G(Q)$ we trivially know that $P \cap Q \subseteq P \cap N_G(Q)$.\retTwo
-	\end{myIndent}
-
-	\item[(b)] Suppose $P \in \Syl_p(G)$ and consider the action of $P$ on $\Syl_p(G)$ by conjugation. Prove that the $P$-orbit of $Q \in \Syl_p(G)$ (which I'll hereafter denote $P \cdot Q$) has $[P : P \cap Q]$ many elements.
-	\begin{myIndent}\HexOne
-		By the orbit-stabilizer theorem we have that $|P \cdot Q| = [P : P_Q]$ where $P_Q$ is the stabilizer of $Q$. But note that $x \in P$ is in $P_Q$ if and only if $xQx^{-1} = Q$. Hence $P_Q = P \cap N_G(Q) = P \cap Q$.\retTwo
-	\end{myIndent}
-
-	\item[(c)] Let $s_p = |\Syl_p(G)|$. Then suppose $p^e \divides (s_p - 1)$ and $p^{e+1} \not{\divides}\gap (s_p - 1)$ (where $e$ is some\\ integer). Prove that there are distinct $P, Q \in \Syl_p(G)$ such that $[P : P \cap Q] \leq p^e$.
-	\begin{myIndent}\HexOne
-		Suppose $[P : P \cap Q] > p^e$ for all distinct pairs $P, Q \in \Syl_p(G)$. This means by part (b) that if we fix any $P \in \Syl_p(G)$ then the orbit of every $Q \in \Syl_p(G) - \{P\}$ has more than $p^e$ elements. Also note that if $\Syl_p(G)/P$ denotes the set of all $P$-orbits of the action $P \curvearrowright \Syl_p(G)$ described in part (b), then:
-		
-		{\centering$s_p = \hspace{-1.5em}\sum\limits_{P \cdot Q \in \Syl_p(G)/P}\hspace{-1.5em} |P \cdot Q|$\retTwo\par}
-
-		This hints at how we can derive a contradiction. Firstly, note that $P \cdot P = \{P\}$. Hence, we can say that:
-
-		{\centering$s_p - 1 = \hspace{-1.5em}\sum\limits_{\begin{smallmatrix}
-	P \cdot Q \in \Syl_p(G)/P \\ Q \neq P
-\end{smallmatrix}}\hspace{-1.5em} |P \cdot Q|$\retTwo\par}
-		
-		Next note for any $Q \in \Syl_p(G) - \{P\}$ that $|P \cdot Q| = [P : P \cap Q]$ is a power of $p$. Thus, in order for $|P \cdot Q|$ to have more than $p^e$ elements we must have that $|P \cdot Q| = p^{e + 1}p^{k_Q}$ where $k_Q$ is some nonnegative integer. As a result, we can now factor out a $p^{e+1}$ term from the sum above to get that:
-		
-		{\centering$s_p - 1 = p^{e+1}(\hspace{0em}\sum\limits_{\begin{smallmatrix}
-	P \cdot Q \in \Syl_p(G)/P \\ Q \neq P
-\end{smallmatrix}}\hspace{-2em} p^{k_Q})$\retTwo\par}
-
-		But now we've shown that $p^{e + 1}$ divides $s_p -1$. This is a contradiction. $\blacksquare$\retTwo
-	\end{myIndent}
-\end{enumerate}
-
-\blab{Problem 2 From Fall 2025 Midterm:} Suppose $G$ is a finite group and $p$ is a prime divisor of $|G|$. Let $P$ be a Sylow $p$-subgroup of $G$ and let $x, y \in C_G(P) \coloneqq \{g \in G : \forall a \in P, ga = ag\}$. Prove that if $x$ and $y$ are conjugate in $G$ then they are conjugate in $N_G(P)$.
-
-\begin{myIndent}\HexOne
-	Write $y = gxg^{-1}$ where $g \in G$. Then note that since $xa = ax$ for all $a \in P$ we know that $P \subseteq C_G(x)$. Furthermore, since $ya = pa$ for all $a \in P$ we know $gxg^{-1}a = agxg^{-1}$ for all $a \in P$. Equivalently, this means that $xg^{-1}ag = g^{-1}agx$ for all $a \in P$. So, we can conclude that $g^{-1}Pg \subseteq C_G(x)$.\newpage
-
-	Now we must have that both $P, g^{-1}Pg \in \Syl_p(C_G(x))$. Hence, by Sylow's second\\ theorem there exists $h \in C_G(x)$ such that $hPh^{-1} = g^{-1}Pg$. In turn we know that\\ $P = ghPh^{-1}g^{-1}$. Hence $gh \in N_G(P)$. Also note that $ghxh^{-1}g^{-1} = gxg^{-1} = y$ since\\ $h \in C_G(x)$. $\blacksquare$\retTwo 
-\end{myIndent}
-
-\blab{Set 7 Problem 3:} Suppose $G$ is a finite group and $H$ is a nontrivial subgroup of $G$.
-\begin{itemize}
-	\item[(a)] Show that there exists a function $f: \Syl_p(H) \to \Syl_p(G)$ such that for all $\overline{P} \in \Syl_p(H)$ we have that $\overline{P} = f(\overline{P}) \cap H$. Deduce that $|\Syl_p(H)| \leq |\Syl_p(G)|$.
-	
-	\begin{myIndent}\HexOne
-		By Sylow's second theorem, for each $\overline{P} \in \Syl_p(H)$ we can choose some\\ $f(\overline{P}) \in \Syl_p(G)$ such that $\overline{P} \subseteq f(\overline{P})$. Then as $f(\overline{P}) \cap H$ is a $p$-subgroup in $H$ containing $\overline{P}$, we must have that $f(\overline{P}) \cap H = \overline{P}$. This proves that the function $f$ we want exists.\retTwo
-
-		To show the other inequality, we just note that $f$ is injective. After all, if we know that $f(\overline{P}) = f(\overline{Q})$ then $\overline{P} = f(\overline{P}) \cap H = f(\overline{Q}) \cap H = \overline{Q}$.\retTwo
-	\end{myIndent}
-
-	\item[(b)] Suppose $G$ does not have a non-trivial normal $p$-subgroup. Then suppose $\overline{P}$ is a non-trivial $p$-subgroup of $G$ and prove that $|\Syl_p(N_G(\overline{P}))| < |\Syl_p(G)|$.
-	
-	\begin{myIndent}\HexOne
-		Note that because $\overline{P}$ is a non-trivial $p$-subgroup which isn't normal, we know that $\{1\} \lneqq N_G(\overline{P}) \lneqq G$. Now construct a function $f: \Syl_p(N_G(\overline{P})) \to \Syl_p(G)$ as in part (a). Since we already know $f$ is injective, it suffices to now show that $f$ isn't also surjective.\retTwo
-
-		Suppose for the sake of contradiction that $f$ is a bijection. Then define:
-		
-		{\centering$O_p(G) \coloneqq \bigcap_{P \in \Syl_p(G)} P$.\retTwo\par}
-
-		It's easy to see that $O_p(G)$ is a normal $p$-subgroup of $G$. Therefore, by assumption we know that $O_p(G) = \{1\}$.\retTwo
-
-		Yet also note that because $f$ is a bijection we know that every $P \in \Syl_p(G)$ is uniquely identified with a group $Q \in \Syl_p(N_G(\overline{P}))$ such that $Q = N_G(\overline{P}) \cap P$. It follows that $O_p(G) \cap N_G(\overline{P}) = O_p(N_G(\overline{P})) =  \bigcap_{Q \in \Syl_p(N_G(\overline{P}))} Q$.\retTwo
-
-		Finally, note that that for every $Q \in \Syl_p(N_G(\overline{P}))$ we must have that $\overline{P} \subseteq Q$. After all, we know by Sylow's second theorem that there exists $g \in N_G(\overline{P})$ such that $\overline{P} \subseteq gQg^{-1}$. Equivalently, $\overline{P} = g^{-1}\overline{P}g \subseteq g^{-1}gQg^{-1}g = Q$. This proves that:
-
-		{\centering $\overline{P} \subseteq \bigcap_{Q \in \Syl_p(N_G(\overline{P}))} Q \subseteq O_p(G)$.\retTwo\par}
-
-		That contradicts that $O_p(G)$ is trivial since we know that $\overline{P}$ isn't. $\blacksquare$\retTwo
-	\end{myIndent}
-\end{itemize}
-
-
-
-
-% \blab{Set 7 Problem 4:} Suppose $G$ is a group of order $p^n q$ where $p$ and $q$ are primes. Prove that $G$ is solvable.
-% \begin{myIndent}\HexOne
-% 	We proceed by strong induction on $n$. If $n = 0$ then we know $G$ is cyclic with prime order and hence $G$ is trivially solvable. Meanwhile, suppose $n > 0$.\retTwo
-	
-% 	If $G$ is abelian then we automatically have that $G$ is solvable. Meanwhile, if $G$ is nonabelian but also nonsimple, then after picking a subgroup $N$ such that $\{1\} \lneqq N \lhd G$ we know that $N$ and $G/N$ are either a $p$-subgroup or have order $p^k q$ where $k < n$. Thus, either by our inductive hypothesis or the fact that $p$-groups are nilpotent and thus solvable, we know that both $N$ and $G/N$ are solvable. And now by \inLinkRap{Math 200a Set 6 Problem 3}{problem 3 on the sixth problem set}, we know that $G$ is solvable.\retTwo
-
-% 	This leaves the case that $G$ is nonabelian and simple. We claim that if $|G| = p^nq$ then this case never happens.
-% 	\begin{myIndent}\HexTwoP
-% 		To prove this, suppose to the contrary that $|G| = p^nq$ and that $G$ is nonabelian and simple. Then let $s_p = |\Syl_p(G)|$. We must have that $s_p \divides q$ but also that $s_p \neq 1$ (since $s_p$ equaling $1$ would contradict the simplicity of $G$). Hence as $q$ is prime we know that $G$ has exactly $q$ Sylow $p$-subgroups.\retTwo
-
-% 		Let $\overline{P}$ be equal to the intersection of some $P_1, P_2 \in \Syl_p(G)$ such that\\ $|\overline{P}| \geq |P_i \cap P_j|$ for all $P_i, P_j \in \Syl_p(G)$. Then suppose $\overline{P} \neq \{1\}$ and let\\ $H \coloneqq N_G(P)$.
-% 	\end{myIndent}
-% \end{myIndent}
-
-
-
-
+Given a set $E \subseteq \mathcalli{X}$ where $\mathcalli{X}$ is a topological real or complex vector space, we define $\overline{\conv}(A)$ to be the smallest closed convex set containing $A$. This is well-defined because arbitrary intersections of closed convex sets are closed and convex.
 
 
 
