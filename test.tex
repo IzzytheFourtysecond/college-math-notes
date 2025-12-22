@@ -405,16 +405,124 @@ Let $\mathcalli{X}$ be a real or complex vector space and let $A \subseteq \math
 	\item We say $x \in A$ is an \udefine{extreme point} if for any $y, z \in A$ we have that $x \in [y, z]$ iff\\ $x = y$ or $x = z$. We denote the set of such points as $\exConv(A)$.
 	\item We say $\emptyset \neq B \subseteq A$ is an \udefine{extreme set} if for any $y, z \in A$ we have that:
 	
-	{\centering$(y, z) \cap B \neq \emptyset \Longrightarrow [y, z] \cap B \neq \emptyset$.\newpage\par}
+	{\centering$(y, z) \cap B \neq \emptyset \Longrightarrow [y, z] \subseteq B$.\newpage\par}
 \end{itemize}
 
-Given a set $E \subseteq \mathcalli{X}$ where $\mathcalli{X}$ is a topological real or complex vector space, we define $\overline{\conv}(A)$ to be the smallest closed convex set containing $A$. This is well-defined because arbitrary intersections of closed convex sets are closed and convex.
+Given a set $E \subseteq \mathcalli{X}$ where $\mathcalli{X}$ is a topological real or complex vector space, we define $\overline{\conv}(A)$ to be the smallest closed convex set containing $A$. This is well-defined because arbitrary intersections of closed convex sets are closed and convex.\retTwo
 
+\pracOne Clearly, if one has a convex polyhedron in $\mathbb{R}^3$, then the faces of the polyhedron are extreme sets and the extreme points are precisely the vertices.\retTwo
 
+\ul{Exercise 2.2.10:} Let $X$ be a compact Hausdorff space and let $M(X)$ denote the set of Radon probability measures on $X$. Then $\exConv(M(X)) = \{\delta_x : x \in X\}$ where $\delta_x$ is the Dirac delta measure at $x$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Let $\mu_0$ and $\mu_1$ be probability measures on $X$, and suppose that $\delta_x \in [\mu_0, \mu_1]$. Hence, there exists $t \in [0, 1]$ such that $t\mu_1 + (1 - t)\mu_0 = \delta_x$. If $t = 0$ or $t = 1$, there is nothing to show. So suppose $t \in (0, 1)$. As $\delta_x(\{x\}^\comp) = 0$, we know that $t\mu_1(\{x\}^\comp) = -(1 - t)\mu_0(\{x\}^\comp)$. That said, we also must have that $\mu_1(\{x\}^\comp) \geq 0$ and $\mu_0(\{x\}^\comp) \geq 0$. In turn, the left side of our equation must be nonnegative and the right side must be nonpositive. The only way this works out is if $t\mu_1(\{x\}^\comp) = 0 = -(1 - t)\mu_0(\{x\}^\comp)$. And since $t \neq 0$ and $-(1 - t) \neq 0$, we can conclude that $\mu_1(\{x\}^\comp) = 0 = \mu_0(\{x\}^\comp)$. And now it is clear that $\mu_0 = \delta_x = \mu_1$ since all three have total measure $1$. This proves that $\delta_x \in \exConv(M(X))$ for any Dirac delta measure $\delta_x$.\retTwo
 
+	To show the converse, we first introduce a lemma. Suppose $\nu$ is a Borel Radon probability measure on $X$. Then $\nu(E) \in \{0, 1\}$ for all sets $E \in \mathcalli{B}_X$ if and only if  $\nu$ is a Dirac delta measure.
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		The $(\Longleftarrow)$ claim is obvious. To show the other claim, you could just use the reasoning on \inLinkRap{Pages 444-445 Atomless Measures}{pages 444-445}. However, I wrote a different proof before realizing that.\retTwo
+		
+		Let $\mathcalli{F}$ be the set of all compact subsets of $X$ with measure $1$. This collection is\\ partially ordered by inclusion, and by Zorn's lemma we can conclude that there is\\ a minimal set $F$ in $\mathcalli{F}$.
+		\begin{myIndent}\pracTwo
+			Suppose $\mathcalli{F}_0$ is a chain in $\mathcalli{F}$ and let $K^\prime = \bigcap_{K \in \mathcalli{F}_0}$. I claim that $\mu(K^\prime) = 1$. This will be a compact subset of $X$ since it is a closed subset of $X$. We also claim $\mu(K^\prime) = 1$. After all, if not then by the outer regularity of $\mu$ plus the fact that $\mu(E) \in \{0, 1\}$ for all sets $E \in \mathcalli{B}_X$  we know there exists an open set $U \supseteq K^\prime$ with $\mu(U) = 0$. Next, by the compactness of $X$ we know there are finitely many sets $K_1 \supseteq K_2 \supseteq \cdots \supseteq K_n$ in $\mathcalli{F}_0$ such that $X = U \cup \bigcup_{j=1}^n K_j^\comp$. Finally, we know that $K^\prime \neq K_n$ since $\mu(K^\prime) \neq \mu(K_n)$. So, there must exist $K \in \mathcalli{F}_0$ with $K^\prime \subseteq K \subsetneq K_n$. But in turn we must have that $K \subseteq U$. This implies that $\mu(K) = 0$, which is a contradiction as $K \in \mathcalli{F}_0$ means that $\mu(K) = 1$.\retTwo
 
+			We conclude that $K^\prime \in \mathcalli{F}$. And clearly $K^\prime$ is a bound to $\mathcalli{F}_0$.\retTwo
+		\end{myIndent}
 
+		Finally, suppose there exists distinct $x, y \in F$. Then we know that $\{x\}$ is a proper compact subset of $F$. Hence, $\mu(\{x\}) = 0$. Also, by similar arguments to before we know that there is an open set $V \supseteq \{x\}$ such that $\mu(V) = 0$. And, by intersecting $V$ with a neighborhood of $x$ not containing $y$ (which we know exists since $X$ is $T_1$), we can assume $y \notin V$. But now $F - V$ is a compact subset of $X$ properly contained in $F$ such that $\mu(F - V) = 1$. This contradicts the minimality of $F$. Hence, we conclude that there does not exist two distinct elements in $F$.\retTwo
 
+		That said, $F$ isn't empty since otherwise we'd have that $\mu(F) = 0$. So, we conclude that $F$ is a singleton $\{x\}$ and $\mu = \delta_x$.\retTwo
+	\end{myIndent}
+
+	Now suppose for the sake of contradiction that $\nu$ is any measure in $M(X)$ that isn't a Dirac delta measure. Then by our prior lemma we know that there exists a set $E \subseteq X$ such that $0 < \nu(E) < 1$. In turn, we now know there exists well-defined probability measures $\mu_0(A) \coloneqq (\nu(E))^{-1}\nu(A \cap E)$ and $\mu_1(A) \coloneqq (\nu(X - E))^{-1}\nu(A - E)$ which are distinct from $\nu$. Finally, by setting $t = \nu(X - E)$ we have that $0 < t < 1$ and $\nu(E) = 1 - t$. And then for all $A \in \mathcalli{B}_X$ we have that:
+
+	{\centering\begin{tabular}{l}
+		$\nu(A) = \nu(A \cap E) + \nu(A - E) = \nu(E)\mu_0(A) + \nu(X - E)\mu_1(A)$\\ [4pt]
+		$\phantom{\nu(A) = \nu(A \cap E) + \nu(A - E)} = (1 - t)\mu_0(A) + t\mu_1(A)$ 
+	\end{tabular}\retTwo\par}
+
+	This shows that $\nu \in [\mu_0, \mu_1]$ but $\nu \neq \mu_0$ and $\nu \neq \mu_1$. So, $\nu$ is not an extreme point of $M(X)$ if $\nu$ is not a Dirac delta measure. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\exTwo\ul{Lemma 2.3.5:} Suppose $\mathcalli{X}$ is a locally convex topological real vector space, $A \subseteq \mathcalli{X}$ is closed and convex, and $x \in \mathcalli{X} - A$. Then there exists $f \in \mathcalli{X}^*$ and $c \in \mathbb{R}$ with $f(y) < c < f(x)$ for all $y \in A$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $U$ be an open neighborhood of $0 \in \mathcalli{X}$ such that $(x + U) \cap A = \emptyset$. By local convexity we can restrict $U$ to a convex open subset containing $0$. And by the reasoning on \inLinkRap{Page 230 definition of balanced sets}{page 230-232}, we can further restrict $U$ to also ensure that $U$ is balanced.\retTwo
+
+	Next note that because $U$ is balanced, we can equivalently say that $x \notin U + A$. But we want slightly more wiggle room so we'll instead consider the set $\frac{1}{2} U + A$. A fact we will use later is that because because $U$ is convex, we have that $\frac{1}{2}U + \frac{1}{2}U \subseteq U$.\retTwo
+	
+	Note that $\frac{1}{2}U + A$ is open since $\frac{1}{2}U + A = \bigcup_{a \in A}(a + \frac{1}{2}U)$. It's also convex because $t(a_1 + \frac{1}{2}u_1) + (1 - t)(a_0 + \frac{1}{2}u_0) = (ta_1 + (1-t)a_0) + \frac{1}{2}(tu_1 + (1-t)u_0) \in A + \frac{1}{2}U$ for all $t \in [0, 1]$, $a \in A$, and $u \in U$ since both $U$ and $A$ are convex. Going a step further, we can assume without loss of generality that $0 \in \frac{1}{2}U + A$.
+	\begin{myIndent}\exPPP
+		To see why, note that if $0 \notin \frac{1}{2}U + A$ then we can translate our entire vector space by some fixed $\frac{1}{2}u + a \in U + A$. Then after doing the later reasoning, we will have a\\ linear functional $f$ and $c \in \mathbb{R}$ such that $f(y - (a + \frac{1}{2}u)) < c < f(x - (a + \frac{1}{2}u))$ for all $y \in A$. In turn $f(y - x) < c - f(x - (a + \frac{1}{2}u)) < 0$ and thus:\\ [-8pt]
+		
+		{\centering$f(y) < c - f(x - (a + \frac{1}{2}u)) + f(x) < f(x)$ for all $y \in A$\\ [6pt]\par}
+		
+		where $c - f(x - (a + \frac{1}{2}u)) + f(x)$ is another fixed constant in $\mathbb{R}$.\retTwo
+	\end{myIndent}
+
+	But now if $p$ is the Minkowski functional associated to $\frac{1}{2}U + A$, we can follow the reasoning on \inLinkRap{Minkowski functional reference}{page 233} to see that $p$ satisfies the triangle inequality and is continuous. And while\newpage $p(cy) \neq |c|p(y)$ if $c$ is negative since $U + A$ isn't balanced, we do at least have that\\ $p(cy) = cp(y)$ if $c \geq 0$.  Hence, we know that $p$ is a well-defined sublinear functional on $\mathcalli{X}$.\retTwo
+
+	Now it's obvious that $p(x) \geq 1$ and that $p(y) \leq 1$ for all $y \in A$. What's less obvious is that these inequalities are strict.
+	\begin{itemize}
+		\item	To see that $p(x) > 1$, suppose to the contrary that $x \in c(\frac{1}{2}U + A)$ for all $c > 1$. Equivalently, this means that $cx \in \frac{1}{2}U + A$ for all $c < 1$. But now as $cx - x \to 0$ as $c \to 1$ and $\frac{1}{2}U$ is a neighborhood of $0$ in $\mathcalli{X}$, we know that eventaully $cx - x \in \frac{1}{2}U$. So, we can pick $c$ close enough to $1$ such that $cx - x = \frac{1}{2}u^\prime$ for some $u^\prime \in U$. At the same time, as $cx \in \frac{1}{2}U + A$ we know there exists $u \in U$ and $a \in A$ such that $cx = \frac{1}{2}u + a$. Hence, we get a contradiction as:
+		
+		{\centering$x = \frac{1}{2}u - \frac{1}{2}u^\prime + a \in \frac{1}{2}U + \frac{1}{2}U + A \subseteq U + A$.\retTwo\par}
+
+		\item To see that $p(y) < 1$ for any fixed $y \in A$, note again that because $cy - y \to 0$ as $c \to 1$ and $\frac{1}{2}U$ is a neighborhood of $0$, we know that there is some $\varepsilon_y > 0$ such that $cy - y \in \frac{1}{2}U$ when $c < 1 + \varepsilon_y$. In turn, $cy \in \frac{1}{2}U + y \subseteq \frac{1}{2}U + A$ when $c < 1 + \varepsilon_y$. And finally, we have that $y \in c(\frac{1}{2}U + A)$ if $c > (1 + \varepsilon_y)^{-1}$ where the latter is strictly less than $1$.\retTwo
+	\end{itemize}
+
+	Finally, we actually create our linear functional. Let $\mathcalli{M} = \{cx : c \in \mathbb{R}\}$ and then define $g: \mathcalli{M} \to \mathbb{R}$ by $g(cx) = cp(x)$. Then $g$ is a linear functional on the subspace $\mathcalli{M}$. Also since $p(cx) \geq 0 > g(cx)$ when $c < 0$ and we know from the sublinearity of $p$ that $g(cx) = p(cx)$ when $c \geq 0$, we can conclude that $g \leq p$ on $\mathcalli{M}$. So, by the real Hahn-Banach theorem we know there exists a linear functional $f: \mathcalli{X} \to \mathbb{R}$ with $f(y) \leq p(y)$ for all $y \in \mathcalli{X}$ and $f(cx) = g(cx)$ for all $c \in \mathbb{R}$.\retTwo
+
+	Note that $|f(y)| = \max(-f(y), f(y)) = \max(f(-y), f(y)) \leq \max(p(-y), p(y))$ and that $p$ is continuous, meaning that $p(-y) \to 0$ and $p(y) \to 0$ as $y \to 0$. Hence, we can conclude that $f$ is continuous. Also, $f(x) = p(x) > 1 > p(y) \geq f(y)$ for all $y \in A$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Krein-Millman Theorem:} Let $\mathcalli{X}$ be a topological vector space whose topology is defined by a sufficient family of seminorms. If $A \subseteq \mathcalli{X}$ is compact and convex, then $\overline{\conv}(\exConv(A)) = A$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Without loss of generality, we may assume $\mathcalli{X}$ is a real vector space.\retTwo
+
+	Claim: If $B$ is a closed convex extreme subset of $A$, then $B \cap \exConv(A) \neq \emptyset$.
+	\begin{myIndent}\exPPP
+		To prove this we use Zorn's lemma. Let $\mathcalli{F}$ be the collection of all closed convex\\ extreme subsets of $A$. Also partially order $\mathcalli{F}$ by inclusion. Then we claim $\mathcalli{F}$ has a minimal element.
+		\begin{myIndent}
+			Let $\mathcalli{F}_0$ be a chain in $\mathcalli{F}$ and set $C = \bigcap_{B \in \mathcalli{F}_0} B$. Then $C$ is not empty by the finite intersection property of $A$ (since $A$ is compact). Also $C$ is closed and convex since it is the intersection of closed convex sets. Finally, suppose $y, z \in A$ satisfy that $(y, z) \cap C \neq \emptyset$. Then for any $B \in \mathcalli{F}_0$ we know $(y, z) \cap B \neq \emptyset$. In turn, $[y, z] \subseteq B$ for all $B \in \mathcalli{F}_0$. And this proves that $[y,z] \subseteq C$. All of this shows that $C \in \mathcalli{F}$.\newpage
+		\end{myIndent}
+
+		Now let $D$ be a minimal set in $\mathcalli{F}$. If $D$ is a singleton $\{x\}$, then we will be done as $x \in B \cap \exConv(A)$.\retTwo
+
+		Suppose for the sake of contradiction that $x, y$ are distinct elements of $D$. Then by lemma 2.3.5, there exists $f \in \mathcalli{X}^*$ such that $f(x) < f(y)$. Since $D$ is compact, we know that $M = \max\{f(z) : z \in D\}$ exists. So, let $E = \{z \in D : f(z) = M\}$. Then $E$ is a proper subset of $D$ as $x \notin E$. We also claim that $E$ is an extreme set, thus contradicting that minimality of $D$.
+		\begin{myIndent}
+			$E$ is compact since it is a closed subset of $D$. Also note that $E$ is convex\\ because if $z_0, z_1 \in D$ and $t \in [0, 1]$ then:
+			
+			{\centering$f(tz_1 + (1 - t)z_0) = tf(z_1) + (1-t)z_0 = tM + (1 - t)M = M$.\retTwo\par}
+			
+			Finally, suppose $z_0, z_1 \in A$ and $tz_1 + (1 - t)z_0 \in E$ for some $t \in (0, 1)$. As $D \supseteq E$ is an extreme set we must have that $z_0, z_1 \in D$. And now as $M = f(tz_1 + (1- t)z_0) = tf(z_1) + (1 - t)f(z_0)$ and both $f(z_0) \leq M$ and $f(z_1) \leq M$, we must have that $f(z_0) = M = f(z_1)$. So $[z_0, z_1] \subseteq E$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	Now it's clear that $\overline{\conv}(\exConv(A)) \subseteq A$ (since $A$ is a closed convex set containing $\exConv(A)$). But suppose for the sake of contradiction that there exists $x \in A$ with $x \notin \overline{\conv}(\exConv(A))$. By lemma 2.3.5. again we can find a linear functional $f \in \mathcalli{X}^*$ such that $f(y) < \alpha < f(x)$ for all $y \in \overline{\conv}(\exConv(A))$ (where $\alpha \in \mathbb{R}$). And since $A$ is compact we know like before that $M = \max\{f(x) : x \in A\}$ exists.\retTwo
+	
+	By identical reasoning to before we know that $B = \{x \in A : f(x) = M\}$ is an extreme set. So by our claim, we have that $B \cap \exConv(A) \neq \emptyset$. Yet this is a contradiction because $\exConv(A) \subseteq \overline{\conv}(\exConv(A))$ is disjoint from $B$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Obvious Corollary:} If $A$ is a compact convex subset of a topological vector space $\mathcalli{X}$ whose topology is generated by a sufficient family of seminorms, then $\exConv(A) \neq \emptyset$.
+
+\pracOne\mySepTwo
+
+A small lemma worth noting is that if $\mathcalli{X}$ is a topological vector space and $A \subseteq \mathcalli{X}$ is convex, then so is $\overline{A}$.
+\begin{myIndent}\pracTwo
+	To see this, suppose $x, y \in \overline{A}$. Then we know that there are nets $\langle x_i\rangle_{i \in I}$ and $\langle y_J\rangle_{j \in J}$ contained in $A$ and converging to $x$ and $y$ respectively. In turn, by considering the product net $\langle x_i, y_j\rangle_{I \times J}$ we have for any $t \in [0, 1]$ that $ty_j + (1 - t)x_i \to ty + (1 - t)x$. And since $ty_j + (1 - t)x_i \in A$ for all $(i, j) \in I \times J$ we have shown that $ty + (1 - t)x \in \overline{A}$. So, $\overline{A}$ is convex.\retTwo
+\end{myIndent}
+
+Consequently, we always have that $\overline{\conv(E)} \supseteq \overline{\conv}(E)$ for any set $E \subseteq \mathcalli{X}$. And this lets us rephrase the Krein Millman theorem in a slightly more useful way. If $\mathcalli{X}$ is as stated in the theorem and $A \subseteq \mathcalli{X}$ is compact and convex, then $\overline{\conv(\exConv(A))} = A$.
+
+\hTwo\mySepTwo
+
+\dispDate{12/22/2025}\newpage
+
+Suppose $\mathcalli{X}, \mathcalli{Y}$ are Banach spaces. Then a bounded linear operator $T: \mathcalli{X} \to \mathcalli{Y}$ is called \udefine{compact} if $\overline{T(\mathcalli{X}_1)}$ is compact in $\mathcalli{Y}$. (See \inLinkRap{page 469 reference}{page 469} for a reminder of what $\mathcalli{X}_1$ means\dots)\retTwo
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
