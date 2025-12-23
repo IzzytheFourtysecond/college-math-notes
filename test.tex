@@ -520,9 +520,115 @@ Consequently, we always have that $\overline{\conv(E)} \supseteq \overline{\conv
 
 \hTwo\mySepTwo
 
-\dispDate{12/22/2025}\newpage
+\dispDate{12/22/2025}
+
+For this section assume that all vector spaces are Banach spaces.\newpage
 
 Suppose $\mathcalli{X}, \mathcalli{Y}$ are Banach spaces. Then a bounded linear operator $T: \mathcalli{X} \to \mathcalli{Y}$ is called \udefine{compact} if $\overline{T(\mathcalli{X}_1)}$ is compact in $\mathcalli{Y}$. (See \inLinkRap{page 469 reference}{page 469} for a reminder of what $\mathcalli{X}_1$ means\dots)\retTwo
+
+\pracOne Note: if $T$ has \underline{finite rank} (meaning $T(\mathcalli{X})$ has finitely many dimensions), then $T$ is compact. 
+\begin{myIndent}\pracTwo
+	Why?\\
+	Since $T(\mathcalli{X})$ is a finite dimensional subspace, we know by (Rudin) Theorem 1.21 on \inLinkRap{Rudin Functional Analysis Theorem 1.21}{page 442} that $T(\mathcalli{X})$ is a closed set. Hence, $C \coloneqq \overline{T(\mathcalli{X}_1)}$ is a closed subset of $T(\mathcalli{X})$. Furthermore, $C \subseteq \{y \in T(\mathcalli{X}) : \|y\| \leq \|T\|_{\opnorm}\}$. So, if we consider any bijective linear isometric map between $\mathbb{C}^n$ (or $\mathbb{R}^n$) and $T(\mathcalli{X})$, then we will get that $C$ is homeomorphic to a closed and bounded subset of $\mathbb{C}^n$ (or $\mathbb{R}^n$). By Heine-Borel we thus have that $C$ is compact. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		As a side note, you can use similar reasoning to show that any closed and bounded set in a finite dimensioned normed vector space is compact.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Lemma 3.1.3:} Suppose $\{T_n\}_{n \in \mathbb{N}}$ is a sequence of compact maps in $B(\mathcalli{X}, \mathcalli{Y})$ and\\ $\|T_n - T\|_{\opnorm} \to 0$ as $n \to \infty$. Then $T$ is also compact.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	It suffices to prove that $T(\mathcalli{X}_1)$ is totally bounded since that will imply $\overline{T(\mathcalli{X}_1)}$ is totally bounded (and we already have completeness just from the fact it's a closed set in a\\ complete metric space $\mathcalli{Y}$). Note that for all $x, y \in \mathcalli{X}_1$, we have that:
+
+	{\centering\begin{tabular}{l}
+		$\|Tx - Ty\| \leq \|Tx - T_nx\| + \|T_nx - T_ny\| + \|T_n y - Ty\|$\\ [4pt]
+		$\phantom{\|Tx - Ty\|} \leq \|T - T_n\|_{\opnorm}\|x\| + \|T_nx - T_ny\| + \|T_n - T\|_\opnorm \|y\|$\\ [4pt]
+		$\phantom{\|Tx - Ty\|} \leq 2\|T - T_n\|_{\opnorm} + \|T_nx - T_ny\|$.
+	\end{tabular} \retTwo\par}
+
+	Given any $\varepsilon > 0$, fix $n$ large enough so that $\|T_n - T\|_{\opnorm} < \sfrac{\varepsilon}{4}$. Then using the fact that $T_n$ is a compact operator, pick $x_1, \ldots, x_m \in \mathcalli{X}_1$ such that any $y \in T_n(\mathcalli{X}_1)$ is within $\sfrac{\varepsilon}{2}$ from some $T_n x_i$. It then follows that any $y \in T(\mathcalli{X}_1)$ is within $\varepsilon$ from some $T x_i$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+As an application of the above points, suppose $\mathcalli{H}$ is a Hilbert space with orthonormal basis $\{e_i\}_{i \in I}$ and $T \in B(\mathcalli{H})$ is given by a diagonal matrix $ \begin{bmatrix}
+	\phantom{.}\lambda_i\delta_{i,j}\phantom{.}
+\end{bmatrix}$ (in other words $Te_i = \lambda e_i$ for all $i \in I$). Then $T$ is compact iff $\{i \in I : |\lambda_i| > \varepsilon\}$ is finite for all $\varepsilon > 0$.
+\begin{myIndent}\pracTwo
+	\ul{Lemma:} If $S$ is a linear operator on $\mathcalli{H}$ given by a diagonal matrix $ \begin{bmatrix}
+	\phantom{.}\mu_i\delta_{i,j}\phantom{.}
+	\end{bmatrix}$ where the $\mu_i$ are bounded, then $\|S\|_{\opnorm} = \sup_{i \in I} |\mu_i|$.
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		We can use \inLinkRap{page 284 reference example 1.2.1}{example 1.2.1 on page 284}. Specifically, recall that $\mathcalli{H}$ is unitarily\\ isomorphic to $\ell^2(I)$ by a natural map $U$. Furthermore, $S$ is unitarily equivalent to\\ multiplication by the element $\mu \in \ell^\infty(I)$ where $\mu = \{\mu_i\}_{i \in I}$.
+		\begin{myTindent}\myComment
+			In other words, $S = U^{-1} M_\mu U$.\retTwo
+		\end{myTindent}
+
+		Therefore, we have that $\|S\|_{\opnorm} = \|M_\mu\|_{\opnorm} = \|\mu\|_{\opnorm} = \sup_{i \in I} |\mu_i|$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	$(\Longleftarrow)$\\
+	If the latter is true then the set of $i$ for which $\lambda_i \neq 0$ must be countable. Hence we can enumerate those $i$ as $\{i_n\}_{n \in \mathbb{N}} \subseteq I$. Next, for each $n$ we define $T_n$ by letting $T_n e_{i_k} = \lambda_{i_k}$ for all $k \leq n$ and $T_n e_i = 0$ for all other $i \in I$. Then each $T_n$ is bounded with finite rank, and is thus compact. Also, $\|T - T_n\|_{\opnorm} = \sup_{k > n} |\lambda_{i_k}| \to 0$ as $n \to \infty$. So, $T$ is compact.\newpage
+
+	$(\Longrightarrow)$\\
+	Suppose that there is some $\varepsilon > 0$ such that $S = \{i \in I : \lambda_i \geq \varepsilon\}$ is an infinite set. Then for all $i, j \in S$ we have that $\|Te_i - Te_j\|^2 = |\lambda_i|^2 + |\lambda_j|^2 \geq 2\varepsilon^2$. So if we pick a nonrepeating sequence $\{e_{i_n}\}_{n \in \mathbb{N}}$ where each $i_n \in S$, then this sequence has no subsequential limits. This proves that $\overline{T(\mathcalli{X}_1)}$ is not compact. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo Recall from my math 240b notes that if $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ are $\sigma$-finite measure spaces, $p \in [1, \infty]$, $K$ is a $(\mathcal{M} \otimes \mathcal{N})$-measurable function on $X \times Y$, and there exists $C > 0$ such that $\int |K(x, y)|\df \mu(x) \leq C$ for a.e. $y$ and $\int |K(x, y)|\df \nu(y)$ for a.e. $x$, then we have that $(T_Kf)(x) \coloneqq \int_Y K(x, y)f(y)\df \nu(y)$ is a linear operator in $B(L^p(\nu), L^p(\mu))$ such that $\|T_K\|_{\opnorm} \leq C$.
+\begin{myIndent}\hThree
+	(This was Folland theorem 6.18).\retTwo
+\end{myIndent}
+
+The following theorem goes into more depth on this linear operator.\retTwo
+
+\exTwo\ul{Theorem 3.1.5:} Let $X$ and $Y$ be LCH spaces with $\sigma$-finite Borel measure $\mu$ and $\nu$. Also assume $\mu$ and $\nu$ are finite on compact sets. If $K \in C_c(X \times Y)$ and $p \in [1, \infty]$ then the integral operator $T_K: L^p(\nu) \to L^p(\mu)$ is compact.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Firstly, recall (Folland) proposition 7.22 on \inLinkRap{Folland Proposition 7.21 page 183}{pages 183-184} to see that $K$ is $(\mathcal{M} \otimes \mathcal{N})$-\\measurable. Furthermore, let $U\subseteq X$ and $V \subseteq Y$ be precompact open sets such\\ that $\supp(K) \subseteq U \times V$. Then given any $\widetilde{K} \in C_c(X, Y)$ with $\supp(\widetilde{K}) \subseteq U \times V$,\\ we have that:
+
+	{\center $\int |\widetilde{K}(x, y)|\df \nu(y)  \leq \|\widetilde{K}\|_u \nu(\overline{V})$ and $\int |\widetilde{K}(x, y)|\df \mu(x)  \leq \|\widetilde{K}\|_u \mu(\overline{U})$ \retTwo\par}
+
+	Therefore, for all $\widetilde{K} \in C_c(X, Y)$ with $\supp(\widetilde{K}) \subseteq U \times V$, we have that:
+	
+	{\centering$\|T_{\widetilde{K}}\|_{\opnorm} \leq \|\widetilde{K}\|_u \cdot \max(\mu(\overline{U}), \nu(\overline{V}))$.\retTwo\par}
+
+	But also note by (Folland) proposition 7.21 (also on \inLinkRap{Folland Proposition 7.21 page 183}{page 183}) that there is a sequence of functions $\{K_n\}_{n \in \mathbb{N}}$ in $C_c(X)$ converging uniformly to $K$ and satisfying for all $n \in \mathbb{N}$ that:
+	\begin{itemize}
+		\item $\supp(K_n) \subseteq U \times V$
+		\item there exists $m \in \mathbb{N}$ such that $K_n(x, y) = \sum_{i=1}^m  \phi(x)\psi(y)$ where $\phi_i \in C_c(X)$ and $\psi_i \in C_c(Y)$ for all $i \in \{1, \ldots, n\}$.\retTwo
+	\end{itemize}
+	
+	Importantly, note that $(T_{K_n} f)(x) = \sum_{i=1}^n (\int_X \psi_i f \df \mu) \phi_i(x)$. It thus follows that each $T_{K_n}$ is a bounded linear operator with finite rank. Additionally,
+	
+	{\centering$\|T_K - T_{K_n}\|_{\opnorm} = \|T_{(K - K_n)}\|_{\opnorm} \leq \|K - K_n\|_u \cdot \max(\mu(\overline{U}), \nu(\overline{V})) \to 0$ as $n \to \infty$.\retTwo\par}
+
+	By lemma 3.1.3 we thus know that $T_K$ is compact. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo There are some other theorems for determining when an integral operator\\ $T_K f(x) = \int K(x, y)f(y)\df \nu(y)$ is a well-defined bounded map.\newpage
+
+\exTwo\ul{Example 1.2.14:} Let $p \in [1, \infty)$. Then suppose $(X, \mu)$ and $(Y, \nu)$ are $\sigma$-finite measure spaces and $K \in L^p(X \times Y, \mu \times \nu)$. If $q$ is the conjugate exponent of $p$, then we have that $T_K : L^q(Y) \to L^p(X)$ defined by $(T_K f)(x) = \int_Y K(x, y)f(y)\df \nu(y)$ is a bounded linear map with $\|T_K\|_{\opnorm} \leq \|K\|_{L^p(X \times Y)}$.
+
+\begin{myIndent}\exThreeP
+	This is because for all $f \in L^q(Y)$:\\ [-24pt]
+
+	{\center\begin{tabular}{l}
+		$\|T_K f\|_p^p = \int | \int K(x, y)f(y)\df \nu(y)|^p\df \mu(x)$\\[4pt]
+		$\phantom{\|T_K f\|_p^p} \leq \int \left( \int |K(x, y)f(y)|\df \nu(y)\right)^{p} \df \mu(x)$\\ [4pt]
+		$\phantom{\|T_K f\|_p^p} \leq \int \left(\int |K(x, y)|^p\df \nu(y)\right)^{p/p} \cdot \|f\|_q^p\df \mu(x) = \|f\|_q^p \iint |K(x, y)|^p \df \nu(y) \df \mu(x)$\\ [4pt]
+		$\phantom{\|T_K f\|_p^p \leq \int \left(\int |K(x, y)|^p\df \nu(y)\right)^{p/p} \cdot \|f\|_q^p\df \mu(x)} = \|f\|_q^p\|K\|_{L^p(X \times Y)}^p$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+
+
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
