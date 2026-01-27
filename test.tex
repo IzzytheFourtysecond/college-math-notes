@@ -93,6 +93,15 @@
    \textrm{\MakeUppercase{\romannumeral #1}}%
 }
 
+\newcommand{\locUConverges}{%
+	\xrightarrow{\ell.u.}
+}
+\newcommand{\UConverges}{%
+	\xrightarrow{u.}
+}
+
+
+
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -313,11 +322,14 @@
 \newcommand{\Ideal}{\mathrm{Ideal}}
 \newcommand{\Spec}{\mathrm{Spec}}
 \newcommand{\Res}{\mathrm{Res}}
+\newcommand{\prim}{\mathrm{prim}}
 \newcommand{\exConv}{\mathrm{ex}}
-
+\newcommand{\mRank}{\mathrm{rank}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
 \DeclareMathOperator{\symdif}{\triangle}
 \DeclareMathOperator{\Average}{Average}
 \DeclareMathOperator*{\AverageAst}{Average}
@@ -364,269 +376,239 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\hTwo\dispDate{12/14/2025}
+\hTwo\dispDate{1/26/2025}
 
-\blect{Math 241a Notes:}\retTwo
+\blect{Math 220b Notes:}\retTwo
 
-Suppose $V$ is a finite dimensional vector space and $\pi: G \to \GL(V)$ is a representation. Then $\pi$ is called \udefine{irreducible} if the only $\pi(G)$-invariant subspaces are $\{0\}$ and $V$. $\pi$ is called \udefine{completely reducible} if $V = \bigoplus V_i$ where $V_i$ is a $\pi(G)$-invariant irreducible subspace.\retTwo
+Given a collection of points $a_1, \ldots, a_N \in \mathbb{C}$ and positive integers $m_1, \ldots, m_N$, we can\\ always find an entire function $f: \mathbb{C} \to \mathbb{C}$ which only has zeros at the $a_n$ and with\\ multiplicities given by $m_n$. After all, we can just consider the polynomial:
 
-Also if $V = \mathbb{C}^n$ or $\mathbb{R}^n$, then I shall denote $\GL(V)$ as $\GL_n(\mathbb{C})$ or $\GL_n(\mathbb{R})$ respectively. Similarly, I shall denote $U(V)$ as $U(n)$.\retTwo
+{\center$f(z) = \prod_{n=1}^n (z - a_n)^{m_n}$.\retTwo\par}
 
-\exTwo\ul{Proposition 2.2.11:} If $G$ is a group and $\pi: G \to U(n)$ is a unitary representation, then:
-\begin{itemize}
-	\item[(i)] every $\pi(G)$-invariant subspace has a $\pi(G)$-invariant orthogonal complement.
-	\begin{myIndent}\exThreeP
-		Proof:\\
-		Suppose $V$ is invariant and $w \in V^\perp$. Then as $\pi(g)$ is unitary (which means\\ $\pi(g)^* = \pi(g)^{-1}$) for each $g \in G$, we know:
-		
-		{\centering$\langle \pi(g)w, v\rangle = \langle w, \pi(g)^* v\rangle = \langle w, \pi(g^{-1})v \rangle = 0$.\retTwo\par}
-		
-		It follows that $V^\perp$ is $G$-invariant.\retTwo
-	\end{myIndent}
+A natural folowup question to ask is if we can find an entire function with infinitely many prescribed zeros of varying multiplicities. As it turns out the answer is yes.
+\begin{myIndent}\color{BrickRed}
+	A natural first idea one might have for proving this is to try setting:
+	
+	{\centering$f(z) = \prod_{a=1}^\infty (1 - \frac{z}{a_n})^{m_n}$.\retTwo\par}
+	
+	The issue with this approach though is that that product may diverge. As an\\ example, consider setting $a_n = -n$ and $m_n = 1$ for all $n \in \mathbb{N}$. Then the product\\ $f(z) \coloneqq \prod_{n=1}^\infty (1 - \frac{z}{a_n})^{m_n} = \prod_{n=1}^\infty (1 + \frac{z}{n})$ diverges to $\infty$ at $z = 1$. After all, we\\ get that $f(1) = 2(\frac{3}{2})(\frac{4}{3})(\frac{5}{4})\cdots$.\retTwo
 
-	\item[(ii)] $\pi$ is completely reducible.
-	\begin{myIndent}\exThreeP
-		Proof:\\
-		We can prove this by induction. If $\mathbb{C}^n$ isn't irreducible then we can write\\ $\mathbb{C}^n = V \oplus V^\perp \cong \mathbb{C}^{k} \oplus \mathbb{C}^{n-k}$ where both $V$ and $V^\perp$ are $G$-invariant. Then\\ we just repeat this reasoning on the smaller subspaces. $\blacksquare$\retTwo
-	\end{myIndent}
-\end{itemize}
-
-\ul{Proposition 2.2.12:} If $G$ is a compact group, $V$ is a finite dimensional real or complex\\ Hausdorff topological vector space, and $\pi: G \to \GL(V)$ is a (strong operator) continuous representation, then $\pi$ is completely reducible.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Using \inLinkRap{G-invariant inner product page 485}{corollary 2.2.8 on page 485}, let $\langle\phantom{.},\phantom{.}\rangle$ be a $G$-invariant inner product on $V$. Then $\pi$ is a unitary representation with respect to this inner product. So, we can apply the prior proposition. $\blacksquare$\retTwo
+	By noting that $\ord(\prod_{k=1}^\infty g_k, a) = \sum_{k=1}^\infty \ord(g_k, a)$, a natural way of modifying our first idea is to try and multiply each $(1 - \frac{z}{a_n})^{m_n}$ term by some other function with no zeros. That way, we don't add any unwanted zeros to the function we are\\ constructing and we can maybe coerce the product into converging.\retTwo
+	
+	It turns out this modified approach will work. Although surprisingly, by the\\ homework problem on \inLinkRap{Math 220b Set 2 Problem 5}{pages 549-550}, we know these other function we're\\ multiplying onto $(1 - \frac{z}{a_n})^{m_n}$  would have to have the form $e^{g_n}$ where $g_n \in O(\mathbb{C})$\\ for all $n$.\retTwo
 \end{myIndent}
 
-\hTwo\mySepTwo
+Given any $p \in \mathbb{Z}_{\geq 0}$, we define the \udefine{$p$th. Weierstrass primary/elementary factor} to be:
 
-Let $\mathcalli{X}$ be a real or complex vector space and let $A \subseteq \mathcalli{X}$ be convex.
-\begin{itemize}
-	\item Given any $x, y \in \mathcalli{X}$ we let $[x, y] \coloneqq \{ty + (1-t)x : 0 \leq t \leq 1\}$. Also, we let $(x, y) \coloneqq \{ty + (1-t)x : 0 < t < 1\}$. 
-	\item We say $x \in A$ is an \udefine{extreme point} if for any $y, z \in A$ we have that $x \in [y, z]$ iff\\ $x = y$ or $x = z$. We denote the set of such points as $\exConv(A)$.
-	\item We say $\emptyset \neq B \subseteq A$ is an \udefine{extreme set} if for any $y, z \in A$ we have that:
-	
-	{\centering$(y, z) \cap B \neq \emptyset \Longrightarrow [y, z] \subseteq B$.\newpage\par}
-\end{itemize}
+{\centering$E_p(z) = \left\{\begin{matrix}
+	(1 - z) & \text{ if } p = 0 \\ (1 - z)\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{z}) & \text{ if } p \neq 0
+\end{matrix}\right.$.\retTwo\par}
 
-Given a set $E \subseteq \mathcalli{X}$ where $\mathcalli{X}$ is a topological real or complex vector space, we define $\overline{\conv}(A)$ to be the smallest closed convex set containing $A$. This is well-defined because arbitrary intersections of closed convex sets are closed and convex.\retTwo
+Note that if $a \in \mathbb{C} - \{0\}$, then $E_p(\frac{z}{a})$ is entire and it's only zero is a a simple one at $z = a$.
 
-\pracOne Clearly, if one has a convex polyhedron in $\mathbb{R}^3$, then the faces of the polyhedron are extreme sets and the extreme points are precisely the vertices.\retTwo
-
-\ul{Exercise 2.2.10:} Let $X$ be a compact Hausdorff space and let $M(X)$ denote the set of Radon probability measures on $X$. Then $\exConv(M(X)) = \{\delta_x : x \in X\}$ where $\delta_x$ is the Dirac delta measure at $x$.
-\begin{myIndent}\pracTwo
-	Proof:\\
-	Let $\mu_0$ and $\mu_1$ be probability measures on $X$, and suppose that $\delta_x \in [\mu_0, \mu_1]$. Hence, there exists $t \in [0, 1]$ such that $t\mu_1 + (1 - t)\mu_0 = \delta_x$. If $t = 0$ or $t = 1$, there is nothing to show. So suppose $t \in (0, 1)$. As $\delta_x(\{x\}^\comp) = 0$, we know that $t\mu_1(\{x\}^\comp) = -(1 - t)\mu_0(\{x\}^\comp)$. That said, we also must have that $\mu_1(\{x\}^\comp) \geq 0$ and $\mu_0(\{x\}^\comp) \geq 0$. In turn, the left side of our equation must be nonnegative and the right side must be nonpositive. The only way this works out is if $t\mu_1(\{x\}^\comp) = 0 = -(1 - t)\mu_0(\{x\}^\comp)$. And since $t \neq 0$ and $-(1 - t) \neq 0$, we can conclude that $\mu_1(\{x\}^\comp) = 0 = \mu_0(\{x\}^\comp)$. And now it is clear that $\mu_0 = \delta_x = \mu_1$ since all three have total measure $1$. This proves that $\delta_x \in \exConv(M(X))$ for any Dirac delta measure $\delta_x$.\retTwo
-
-	To show the converse, we first introduce a lemma. Suppose $\nu$ is a Borel Radon probability measure on $X$. Then $\nu(E) \in \{0, 1\}$ for all sets $E \in \mathcalli{B}_X$ if and only if  $\nu$ is a Dirac delta measure.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		The $(\Longleftarrow)$ claim is obvious. To show the other claim, you could just use the reasoning on \inLinkRap{Pages 444-445 Atomless Measures}{pages 444-445}. However, I wrote a different proof before realizing that.\retTwo
-		
-		Let $\mathcalli{F}$ be the set of all compact subsets of $X$ with measure $1$. This collection is\\ partially ordered by inclusion, and by Zorn's lemma we can conclude that there is\\ a minimal set $F$ in $\mathcalli{F}$.
-		\begin{myIndent}\pracTwo
-			Suppose $\mathcalli{F}_0$ is a chain in $\mathcalli{F}$ and let $K^\prime = \bigcap_{K \in \mathcalli{F}_0}$. I claim that $\mu(K^\prime) = 1$. This will be a compact subset of $X$ since it is a closed subset of $X$. We also claim $\mu(K^\prime) = 1$. After all, if not then by the outer regularity of $\mu$ plus the fact that $\mu(E) \in \{0, 1\}$ for all sets $E \in \mathcalli{B}_X$  we know there exists an open set $U \supseteq K^\prime$ with $\mu(U) = 0$. Next, by the compactness of $X$ we know there are finitely many sets $K_1 \supseteq K_2 \supseteq \cdots \supseteq K_n$ in $\mathcalli{F}_0$ such that $X = U \cup \bigcup_{j=1}^n K_j^\comp$. Finally, we know that $K^\prime \neq K_n$ since $\mu(K^\prime) \neq \mu(K_n)$. So, there must exist $K \in \mathcalli{F}_0$ with $K^\prime \subseteq K \subsetneq K_n$. But in turn we must have that $K \subseteq U$. This implies that $\mu(K) = 0$, which is a contradiction as $K \in \mathcalli{F}_0$ means that $\mu(K) = 1$.\retTwo
-
-			We conclude that $K^\prime \in \mathcalli{F}$. And clearly $K^\prime$ is a bound to $\mathcalli{F}_0$.\retTwo
-		\end{myIndent}
-
-		Finally, suppose there exists distinct $x, y \in F$. Then we know that $\{x\}$ is a proper compact subset of $F$. Hence, $\mu(\{x\}) = 0$. Also, by similar arguments to before we know that there is an open set $V \supseteq \{x\}$ such that $\mu(V) = 0$. And, by intersecting $V$ with a neighborhood of $x$ not containing $y$ (which we know exists since $X$ is $T_1$), we can assume $y \notin V$. But now $F - V$ is a compact subset of $X$ properly contained in $F$ such that $\mu(F - V) = 1$. This contradicts the minimality of $F$. Hence, we conclude that there does not exist two distinct elements in $F$.\retTwo
-
-		That said, $F$ isn't empty since otherwise we'd have that $\mu(F) = 0$. So, we conclude that $F$ is a singleton $\{x\}$ and $\mu = \delta_x$.\retTwo
-	\end{myIndent}
-
-	Now suppose for the sake of contradiction that $\nu$ is any measure in $M(X)$ that isn't a Dirac delta measure. Then by our prior lemma we know that there exists a set $E \subseteq X$ such that $0 < \nu(E) < 1$. In turn, we now know there exists well-defined probability measures $\mu_0(A) \coloneqq (\nu(E))^{-1}\nu(A \cap E)$ and $\mu_1(A) \coloneqq (\nu(X - E))^{-1}\nu(A - E)$ which are distinct from $\nu$. Finally, by setting $t = \nu(X - E)$ we have that $0 < t < 1$ and $\nu(E) = 1 - t$. And then for all $A \in \mathcalli{B}_X$ we have that:
-
-	{\centering\begin{tabular}{l}
-		$\nu(A) = \nu(A \cap E) + \nu(A - E) = \nu(E)\mu_0(A) + \nu(X - E)\mu_1(A)$\\ [4pt]
-		$\phantom{\nu(A) = \nu(A \cap E) + \nu(A - E)} = (1 - t)\mu_0(A) + t\mu_1(A)$ 
-	\end{tabular}\retTwo\par}
-
-	This shows that $\nu \in [\mu_0, \mu_1]$ but $\nu \neq \mu_0$ and $\nu \neq \mu_1$. So, $\nu$ is not an extreme point of $M(X)$ if $\nu$ is not a Dirac delta measure. $\blacksquare$\retTwo
+\begin{myIndent}\color{BrickRed}
+	For motivation on why we are defining $E_p(z)$, note that the Taylor series for\\ $-\Log(1 - z)$ about $0$ is $\sum_{n=1}^\infty \frac{z^n}{n}$. Therefore, we'll ideally have that $E_p(z)$ is\\ approximately equal to $1 = \frac{1 - z}{1 - z}$ when $p$ is large and $|z|$ is small. The next lemma\\ will make this idea more concrete.\retTwo
 \end{myIndent}
 
-\mySepTwo
-
-\exTwo\ul{Lemma 2.3.5:} Suppose $\mathcalli{X}$ is a locally convex topological real vector space, $A \subseteq \mathcalli{X}$ is closed and convex, and $x \in \mathcalli{X} - A$. Then there exists $f \in \mathcalli{X}^*$ and $c \in \mathbb{R}$ with $f(y) < c < f(x)$ for all $y \in A$.
+\exTwo\ul{Lemma A:} $|E_p(z) - 1| \leq |z|^{p + 1}$ if $|z| \leq 1$.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	Let $U$ be an open neighborhood of $0 \in \mathcalli{X}$ such that $(x + U) \cap A = \emptyset$. By local convexity we can restrict $U$ to a convex open subset containing $0$. And by the reasoning on \inLinkRap{Page 230 definition of balanced sets}{page 230-232}, we can further restrict $U$ to also ensure that $U$ is balanced.\retTwo
+	If $p = 0$, then $|E_p(z) - 1| = |-z| = |z|$. So our proposed inequality trivialy holds.\retTwo
 
-	Next note that because $U$ is balanced, we can equivalently say that $x \notin U + A$. But we want slightly more wiggle room so we'll instead consider the set $\frac{1}{2} U + A$. A fact we will use later is that because because $U$ is convex, we have that $\frac{1}{2}U + \frac{1}{2}U \subseteq U$.\retTwo
-	
-	Note that $\frac{1}{2}U + A$ is open since $\frac{1}{2}U + A = \bigcup_{a \in A}(a + \frac{1}{2}U)$. It's also convex because $t(a_1 + \frac{1}{2}u_1) + (1 - t)(a_0 + \frac{1}{2}u_0) = (ta_1 + (1-t)a_0) + \frac{1}{2}(tu_1 + (1-t)u_0) \in A + \frac{1}{2}U$ for all $t \in [0, 1]$, $a \in A$, and $u \in U$ since both $U$ and $A$ are convex. Going a step further, we can assume without loss of generality that $0 \in \frac{1}{2}U + A$.
+	Suppose $p > 0$ and set $u(z) = z + \frac{z^2}{2} + \cdots + \frac{z^p}{z}$. Then $E_p(z) = (1 - z)e^{u(z)}$ and we want to express $E_p(z)$ as a power series $\sum_{k=0}^\infty a_k z^k$ (which will have infinite radius of\\ [1pt] convergence since $E_p(z)$ is entire).\newpage
+
+	\ul{Claim 1:} $a_0 = 1$.
 	\begin{myIndent}\exPPP
-		To see why, note that if $0 \notin \frac{1}{2}U + A$ then we can translate our entire vector space by some fixed $\frac{1}{2}u + a \in U + A$. Then after doing the later reasoning, we will have a\\ linear functional $f$ and $c \in \mathbb{R}$ such that $f(y - (a + \frac{1}{2}u)) < c < f(x - (a + \frac{1}{2}u))$ for all $y \in A$. In turn $f(y - x) < c - f(x - (a + \frac{1}{2}u)) < 0$ and thus:\\ [-8pt]
-		
-		{\centering$f(y) < c - f(x - (a + \frac{1}{2}u)) + f(x) < f(x)$ for all $y \in A$\\ [6pt]\par}
-		
-		where $c - f(x - (a + \frac{1}{2}u)) + f(x)$ is another fixed constant in $\mathbb{R}$.\retTwo
+		Note that $a_0 = E_p(0) = (1 - 0)e^{u(0)} = 1$.\retTwo
 	\end{myIndent}
 
-	But now if $p$ is the Minkowski functional associated to $\frac{1}{2}U + A$, we can follow the reasoning on \inLinkRap{Minkowski functional reference}{page 233} to see that $p$ satisfies the triangle inequality and is continuous. And while\newpage $p(cy) \neq |c|p(y)$ if $c$ is negative since $U + A$ isn't balanced, we do at least have that\\ $p(cy) = cp(y)$ if $c \geq 0$.  Hence, we know that $p$ is a well-defined sublinear functional on $\mathcalli{X}$.\retTwo
-
-	Now it's obvious that $p(x) \geq 1$ and that $p(y) \leq 1$ for all $y \in A$. What's less obvious is that these inequalities are strict.
-	\begin{itemize}
-		\item	To see that $p(x) > 1$, suppose to the contrary that $x \in c(\frac{1}{2}U + A)$ for all $c > 1$. Equivalently, this means that $cx \in \frac{1}{2}U + A$ for all $c < 1$. But now as $cx - x \to 0$ as $c \to 1$ and $\frac{1}{2}U$ is a neighborhood of $0$ in $\mathcalli{X}$, we know that eventaully $cx - x \in \frac{1}{2}U$. So, we can pick $c$ close enough to $1$ such that $cx - x = \frac{1}{2}u^\prime$ for some $u^\prime \in U$. At the same time, as $cx \in \frac{1}{2}U + A$ we know there exists $u \in U$ and $a \in A$ such that $cx = \frac{1}{2}u + a$. Hence, we get a contradiction as:
+	\ul{Claim 2:} $a_1 = a_2 = \cdots = a_p = 0$.
+	\begin{myIndent}\exPPP
+		By differentiating $u(z)$, we get that $u^\prime(z) = 1 + z + \ldots + z^{p-1}$. In turn:
 		
-		{\centering$x = \frac{1}{2}u - \frac{1}{2}u^\prime + a \in \frac{1}{2}U + \frac{1}{2}U + A \subseteq U + A$.\retTwo\par}
+		{\centering$(1 - z)u^\prime(z) = 1 - z^p$.\retTwo\par}
 
-		\item To see that $p(y) < 1$ for any fixed $y \in A$, note again that because $cy - y \to 0$ as $c \to 1$ and $\frac{1}{2}U$ is a neighborhood of $0$, we know that there is some $\varepsilon_y > 0$ such that $cy - y \in \frac{1}{2}U$ when $c < 1 + \varepsilon_y$. In turn, $cy \in \frac{1}{2}U + y \subseteq \frac{1}{2}U + A$ when $c < 1 + \varepsilon_y$. And finally, we have that $y \in c(\frac{1}{2}U + A)$ if $c > (1 + \varepsilon_y)^{-1}$ where the latter is strictly less than $1$.\retTwo
+		But that implies that:
+		
+		{\centering$E_p^\prime(z) = -e^{u(z)} + (1 - z)u^\prime(z)e^{u(z)} = -e^{u(z)} + (1 - z^p)e^{u(z)} = -z^p e^{u(z)}$\retTwo\par}
+
+		Therefore, if we look at the taylor expansion $\sum_{k=1}^\infty ka_k z^{k-1}$ for $E_p^\prime(z)$ about $0$ and note that $e^{u(0)} = 1 \neq 0$, we must have that the lowest degree term in that power series is the $z^p$ term. In other words, $a_1 = a_2 = \cdots = a_p = 0$.\retTwo
+	\end{myIndent}
+
+	\ul{Claim 3:} $a_k \leq 0$ in $\mathbb{R}$ for all $k \geq p + 1$.
+	\begin{myIndent}\exPPP
+		We showed in claim 2 that:
+		
+		{\centering$\sum_{k=p+1}^\infty ka_k z^{k-1} = -z^p e^{u(z)}$.\retTwo\par}
+
+		In turn, $\sum_{k=p+1}^\infty ka_k z^{k - (p + 1)} = -e^{u(z)} = -\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{p})$. Or in other words, we have that $a_k$ equals $\frac{-1}{k}$ times the $(k - (p + 1))$th. coefficient in the Taylor expansion of $\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{p})$ for all $k \geq p + 1$.\retTwo
+
+		If we can show that all coefficients in the Taylor expansion of $\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{p})$ are positive, we will be done. Fortunately, note that:
+
+		{\centering $\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{p}) = e^z e^{\frac{z^2}{2}} \cdots e^{\frac{z^p}{p}} = \prod\limits_{n = 1}^p\left(\sum\limits_{\ell = 0}^\infty \frac{1}{\ell! n^\ell}z^{n\ell}\right)$.\retTwo\par}
+
+		By taking successive Cauchy products of those series (i.e. foiling), we'll get that the coefficients of the power series for $\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{p})$ are all sums of products of the $\frac{1}{\ell! n^\ell}$ (which are all positive). Hence, those coefficients are positive.
+	\end{myIndent}
+\end{myIndent}
+
+\pracTwo\mySepTwo
+Unnecessary tangent: Here's how we can actually calculate the power series expansion $\sum_{k=0}^\infty c_k z^k$ for $e^{u(z)}$.
+\begin{myIndent}
+	To start off, the derivative of $e^{u(z)}$ is $(1 + z + \ldots + z^{p-1})e^{u(z)}$. Therefore, we must have that $\sum_{k=0}^\infty (k+1)c_{k+1} z^k = (1 + z + \ldots + z^{p-1})\sum_{k=0}^\infty c_{k} z^k$. Also, when you consider that $e^{u(0)} = 1$, we thus get the following recurrence relation:
+	\begin{itemize}
+		\item $c_0 = 1$
+		\item $c_{k+1} = \frac{1}{k+1}\hspace{-0.5em}\sum\limits_{\ell = 0}^{\min(k, p-1)}\hspace{-0.9em} c_{k - \ell}$\retTwo
 	\end{itemize}
 
-	Finally, we actually create our linear functional. Let $\mathcalli{M} = \{cx : c \in \mathbb{R}\}$ and then define $g: \mathcalli{M} \to \mathbb{R}$ by $g(cx) = cp(x)$. Then $g$ is a linear functional on the subspace $\mathcalli{M}$. Also since $p(cx) \geq 0 > g(cx)$ when $c < 0$ and we know from the sublinearity of $p$ that $g(cx) = p(cx)$ when $c \geq 0$, we can conclude that $g \leq p$ on $\mathcalli{M}$. So, by the real Hahn-Banach theorem we know there exists a linear functional $f: \mathcalli{X} \to \mathbb{R}$ with $f(y) \leq p(y)$ for all $y \in \mathcalli{X}$ and $f(cx) = g(cx)$ for all $c \in \mathbb{R}$.\retTwo
-
-	Note that $|f(y)| = \max(-f(y), f(y)) = \max(f(-y), f(y)) \leq \max(p(-y), p(y))$ and that $p$ is continuous, meaning that $p(-y) \to 0$ and $p(y) \to 0$ as $y \to 0$. Hence, we can conclude that $f$ is continuous. Also, $f(x) = p(x) > 1 > p(y) \geq f(y)$ for all $y \in A$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\ul{Krein-Millman Theorem:} Let $\mathcalli{X}$ be a topological vector space whose topology is defined by a sufficient family of seminorms. If $A \subseteq \mathcalli{X}$ is compact and convex, then $\overline{\conv}(\exConv(A)) = A$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Without loss of generality, we may assume $\mathcalli{X}$ is a real vector space.\retTwo
-
-	Claim: If $B$ is a closed convex extreme subset of $A$, then $B \cap \exConv(A) \neq \emptyset$.
-	\begin{myIndent}\exPPP
-		To prove this we use Zorn's lemma. Let $\mathcalli{F}$ be the collection of all closed convex\\ extreme subsets of $A$. Also partially order $\mathcalli{F}$ by inclusion. Then we claim $\mathcalli{F}$ has a minimal element.
-		\begin{myIndent}
-			Let $\mathcalli{F}_0$ be a chain in $\mathcalli{F}$ and set $C = \bigcap_{B \in \mathcalli{F}_0} B$. Then $C$ is not empty by the finite intersection property of $A$ (since $A$ is compact). Also $C$ is closed and convex since it is the intersection of closed convex sets. Finally, suppose $y, z \in A$ satisfy that $(y, z) \cap C \neq \emptyset$. Then for any $B \in \mathcalli{F}_0$ we know $(y, z) \cap B \neq \emptyset$. In turn, $[y, z] \subseteq B$ for all $B \in \mathcalli{F}_0$. And this proves that $[y,z] \subseteq C$. All of this shows that $C \in \mathcalli{F}$.\newpage
-		\end{myIndent}
-
-		Now let $D$ be a minimal set in $\mathcalli{F}$. If $D$ is a singleton $\{x\}$, then we will be done as $x \in B \cap \exConv(A)$.\retTwo
-
-		Suppose for the sake of contradiction that $x, y$ are distinct elements of $D$. Then by lemma 2.3.5, there exists $f \in \mathcalli{X}^*$ such that $f(x) < f(y)$. Since $D$ is compact, we know that $M = \max\{f(z) : z \in D\}$ exists. So, let $E = \{z \in D : f(z) = M\}$. Then $E$ is a proper subset of $D$ as $x \notin E$. We also claim that $E$ is an extreme set, thus contradicting that minimality of $D$.
-		\begin{myIndent}
-			$E$ is compact since it is a closed subset of $D$. Also note that $E$ is convex\\ because if $z_0, z_1 \in D$ and $t \in [0, 1]$ then:
-			
-			{\centering$f(tz_1 + (1 - t)z_0) = tf(z_1) + (1-t)z_0 = tM + (1 - t)M = M$.\retTwo\par}
-			
-			Finally, suppose $z_0, z_1 \in A$ and $tz_1 + (1 - t)z_0 \in E$ for some $t \in (0, 1)$. As $D \supseteq E$ is an extreme set we must have that $z_0, z_1 \in D$. And now as $M = f(tz_1 + (1- t)z_0) = tf(z_1) + (1 - t)f(z_0)$ and both $f(z_0) \leq M$ and $f(z_1) \leq M$, we must have that $f(z_0) = M = f(z_1)$. So $[z_0, z_1] \subseteq E$.\retTwo
-		\end{myIndent}
-	\end{myIndent}
-
-	Now it's clear that $\overline{\conv}(\exConv(A)) \subseteq A$ (since $A$ is a closed convex set containing $\exConv(A)$). But suppose for the sake of contradiction that there exists $x \in A$ with $x \notin \overline{\conv}(\exConv(A))$. By lemma 2.3.5. again we can find a linear functional $f \in \mathcalli{X}^*$ such that $f(y) < \alpha < f(x)$ for all $y \in \overline{\conv}(\exConv(A))$ (where $\alpha \in \mathbb{R}$). And since $A$ is compact we know like before that $M = \max\{f(x) : x \in A\}$ exists.\retTwo
+	Next, we can easily calculate from that relation that $c_1 = \cdots = c_p = 1$. Furthermore, note that for any $k \geq p - 1$ that:
 	
-	By identical reasoning to before we know that $B = \{x \in A : f(x) = M\}$ is an extreme set. So by our claim, we have that $B \cap \exConv(A) \neq \emptyset$. Yet this is a contradiction because $\exConv(A) \subseteq \overline{\conv}(\exConv(A))$ is disjoint from $B$. $\blacksquare$\retTwo
+	{\centering$c_{k+2} - \frac{k+1}{k+2}c_{k+1} = \frac{1}{k+2}c_{k+1} - \frac{1}{k+2}c_{k-p+1}$.\retTwo\par}
+
+	In other words, $c_{k+2} = c_{k+1} - \frac{1}{k+2}c_{k-p+1}$. So finally (and this is how much simplified I'm capable of getting it before my attention span runs out), we have that the coefficients $c_k$ are given by the following recurrence relation:\newpage
+	\begin{itemize}
+		\item $c_0 = c_1 = \cdots = c_p = 1$;
+		\item $c_{k+1} = c_k - \frac{1}{k+1}c_{k - p}$ if $k \geq p$.
+	\end{itemize}
 \end{myIndent}
+\pracTwo\mySepTwo
 
-\ul{Obvious Corollary:} If $A$ is a compact convex subset of a topological vector space $\mathcalli{X}$ whose topology is generated by a sufficient family of seminorms, then $\exConv(A) \neq \emptyset$.
-
-\pracOne\mySepTwo
-
-A small lemma worth noting is that if $\mathcalli{X}$ is a topological vector space and $A \subseteq \mathcalli{X}$ is convex, then so is $\overline{A}$.
-\begin{myIndent}\pracTwo
-	To see this, suppose $x, y \in \overline{A}$. Then we know that there are nets $\langle x_i\rangle_{i \in I}$ and $\langle y_J\rangle_{j \in J}$ contained in $A$ and converging to $x$ and $y$ respectively. In turn, by considering the product net $\langle x_i, y_j\rangle_{I \times J}$ we have for any $t \in [0, 1]$ that $ty_j + (1 - t)x_i \to ty + (1 - t)x$. And since $ty_j + (1 - t)x_i \in A$ for all $(i, j) \in I \times J$ we have shown that $ty + (1 - t)x \in \overline{A}$. So, $\overline{A}$ is convex.\retTwo
-\end{myIndent}
-
-Consequently, we always have that $\overline{\conv(E)} \supseteq \overline{\conv}(E)$ for any set $E \subseteq \mathcalli{X}$. And this lets us rephrase the Krein Millman theorem in a slightly more useful way. If $\mathcalli{X}$ is as stated in the theorem and $A \subseteq \mathcalli{X}$ is compact and convex, then $\overline{\conv(\exConv(A))} = A$.
-
-\hTwo\mySepTwo
-
-\dispDate{12/22/2025}
-
-For this section assume that all vector spaces are Banach spaces.\newpage
-
-Suppose $\mathcalli{X}, \mathcalli{Y}$ are Banach spaces. Then a bounded linear operator $T: \mathcalli{X} \to \mathcalli{Y}$ is called \udefine{compact} if $\overline{T(\mathcalli{X}_1)}$ is compact in $\mathcalli{Y}$. (See \inLinkRap{page 469 reference}{page 469} for a reminder of what $\mathcalli{X}_1$ means\dots)\retTwo
-
-\pracOne Note: if $T$ has \underline{finite rank} (meaning $T(\mathcalli{X})$ has finitely many dimensions), then $T$ is compact. 
-\begin{myIndent}\pracTwo
-	Why?\\
-	Since $T(\mathcalli{X})$ is a finite dimensional subspace, we know by (Rudin) Theorem 1.21 on \inLinkRap{Rudin Functional Analysis Theorem 1.21}{page 442} that $T(\mathcalli{X})$ is a closed set. Hence, $C \coloneqq \overline{T(\mathcalli{X}_1)}$ is a closed subset of $T(\mathcalli{X})$. Furthermore, $C \subseteq \{y \in T(\mathcalli{X}) : \|y\| \leq \|T\|_{\opnorm}\}$. So, if we consider any bijective linear isometric map between $\mathbb{C}^n$ (or $\mathbb{R}^n$) and $T(\mathcalli{X})$, then we will get that $C$ is homeomorphic to a closed and bounded subset of $\mathbb{C}^n$ (or $\mathbb{R}^n$). By Heine-Borel we thus have that $C$ is compact. $\blacksquare$\retTwo
-
-	\begin{myIndent}\myComment
-		As a side note, you can use similar reasoning to show that any closed and bounded set in a finite dimensioned normed vector space is compact.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\exTwo\ul{Lemma 3.1.3:} Suppose $\{T_n\}_{n \in \mathbb{N}}$ is a sequence of compact maps in $B(\mathcalli{X}, \mathcalli{Y})$ and\\ $\|T_n - T\|_{\opnorm} \to 0$ as $n \to \infty$. Then $T$ is also compact.
 \begin{myIndent}\exThreeP
-	Proof:\\
-	It suffices to prove that $T(\mathcalli{X}_1)$ is totally bounded since that will imply $\overline{T(\mathcalli{X}_1)}$ is totally bounded (and we already have completeness just from the fact it's a closed set in a\\ complete metric space $\mathcalli{Y}$). Note that for all $x, y \in \mathcalli{X}_1$, we have that:
+	\ul{Claim 4:} $\sum_{k=p+1}^\infty |a_k| = 1$
+	\begin{myIndent}\exPPP
+		Note that $0 = E_p(1) = 1 + \sum_{k=p+1}^\infty a_k$. Therefore:
+		
+		{\centering$\sum_{k=p+1}^\infty |a_k| = -\sum_{k=p+1}^\infty a_k = 1$\retTwo\par}
+	\end{myIndent}
+
+	Finally, note that when $|z| \leq 1$, we have that:
 
 	{\centering\begin{tabular}{l}
-		$\|Tx - Ty\| \leq \|Tx - T_nx\| + \|T_nx - T_ny\| + \|T_n y - Ty\|$\\ [4pt]
-		$\phantom{\|Tx - Ty\|} \leq \|T - T_n\|_{\opnorm}\|x\| + \|T_nx - T_ny\| + \|T_n - T\|_\opnorm \|y\|$\\ [4pt]
-		$\phantom{\|Tx - Ty\|} \leq 2\|T - T_n\|_{\opnorm} + \|T_nx - T_ny\|$.
-	\end{tabular} \retTwo\par}
-
-	Given any $\varepsilon > 0$, fix $n$ large enough so that $\|T_n - T\|_{\opnorm} < \sfrac{\varepsilon}{4}$. Then using the fact that $T_n$ is a compact operator, pick $x_1, \ldots, x_m \in \mathcalli{X}_1$ such that any $y \in T_n(\mathcalli{X}_1)$ is within $\sfrac{\varepsilon}{2}$ from some $T_n x_i$. It then follows that any $y \in T(\mathcalli{X}_1)$ is within $\varepsilon$ from some $T x_i$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\pracOne\mySepTwo
-
-As an application of the above points, suppose $\mathcalli{H}$ is a Hilbert space with orthonormal basis $\{e_i\}_{i \in I}$ and $T \in B(\mathcalli{H})$ is given by a diagonal matrix $ \begin{bmatrix}
-	\phantom{.}\lambda_i\delta_{i,j}\phantom{.}
-\end{bmatrix}$ (in other words $Te_i = \lambda e_i$ for all $i \in I$). Then $T$ is compact iff $\{i \in I : |\lambda_i| > \varepsilon\}$ is finite for all $\varepsilon > 0$.
-\begin{myIndent}\pracTwo
-	\ul{Lemma:} If $S$ is a linear operator on $\mathcalli{H}$ given by a diagonal matrix $ \begin{bmatrix}
-	\phantom{.}\mu_i\delta_{i,j}\phantom{.}
-	\end{bmatrix}$ where the $\mu_i$ are bounded, then $\|S\|_{\opnorm} = \sup_{i \in I} |\mu_i|$.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		We can use \inLinkRap{page 284 reference example 1.2.1}{example 1.2.1 on page 284}. Specifically, recall that $\mathcalli{H}$ is unitarily\\ isomorphic to $\ell^2(I)$ by a natural map $U$. Furthermore, $S$ is unitarily equivalent to\\ multiplication by the element $\mu \in \ell^\infty(I)$ where $\mu = \{\mu_i\}_{i \in I}$.
-		\begin{myTindent}\myComment
-			In other words, $S = U^{-1} M_\mu U$.\retTwo
-		\end{myTindent}
-
-		Therefore, we have that $\|S\|_{\opnorm} = \|M_\mu\|_{\opnorm} = \|\mu\|_{\opnorm} = \sup_{i \in I} |\mu_i|$. $\blacksquare$\retTwo
-	\end{myIndent}
-
-	$(\Longleftarrow)$\\
-	If the latter is true then the set of $i$ for which $\lambda_i \neq 0$ must be countable. Hence we can enumerate those $i$ as $\{i_n\}_{n \in \mathbb{N}} \subseteq I$. Next, for each $n$ we define $T_n$ by letting $T_n e_{i_k} = \lambda_{i_k}$ for all $k \leq n$ and $T_n e_i = 0$ for all other $i \in I$. Then each $T_n$ is bounded with finite rank, and is thus compact. Also, $\|T - T_n\|_{\opnorm} = \sup_{k > n} |\lambda_{i_k}| \to 0$ as $n \to \infty$. So, $T$ is compact.\newpage
-
-	$(\Longrightarrow)$\\
-	Suppose that there is some $\varepsilon > 0$ such that $S = \{i \in I : \lambda_i \geq \varepsilon\}$ is an infinite set. Then for all $i, j \in S$ we have that $\|Te_i - Te_j\|^2 = |\lambda_i|^2 + |\lambda_j|^2 \geq 2\varepsilon^2$. So if we pick a nonrepeating sequence $\{e_{i_n}\}_{n \in \mathbb{N}}$ where each $i_n \in S$, then this sequence has no subsequential limits. This proves that $\overline{T(\mathcalli{X}_1)}$ is not compact. $\blacksquare$\retTwo
-\end{myIndent}
-
-\mySepTwo
-
-\hTwo Recall from my math 240b notes that if $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ are $\sigma$-finite measure spaces, $p \in [1, \infty]$, $K$ is a $(\mathcal{M} \otimes \mathcal{N})$-measurable function on $X \times Y$, and there exists $C > 0$ such that $\int |K(x, y)|\df \mu(x) \leq C$ for a.e. $y$ and $\int |K(x, y)|\df \nu(y)$ for a.e. $x$, then we have that $(T_Kf)(x) \coloneqq \int_Y K(x, y)f(y)\df \nu(y)$ is a linear operator in $B(L^p(\nu), L^p(\mu))$ such that $\|T_K\|_{\opnorm} \leq C$.
-\begin{myIndent}\hThree
-	(This was Folland theorem 6.18).\retTwo
-\end{myIndent}
-
-The following theorem goes into more depth on this linear operator.\retTwo
-
-\exTwo\ul{Theorem 3.1.5:} Let $X$ and $Y$ be LCH spaces with $\sigma$-finite Borel measure $\mu$ and $\nu$. Also assume $\mu$ and $\nu$ are finite on compact sets. If $K \in C_c(X \times Y)$ and $p \in [1, \infty]$ then the integral operator $T_K: L^p(\nu) \to L^p(\mu)$ is compact.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Firstly, recall (Folland) proposition 7.22 on \inLinkRap{Folland Proposition 7.21 page 183}{pages 183-184} to see that $K$ is $(\mathcal{M} \otimes \mathcal{N})$-\\measurable. Furthermore, let $U\subseteq X$ and $V \subseteq Y$ be precompact open sets such\\ that $\supp(K) \subseteq U \times V$. Then given any $\widetilde{K} \in C_c(X, Y)$ with $\supp(\widetilde{K}) \subseteq U \times V$,\\ we have that:
-
-	{\center $\int |\widetilde{K}(x, y)|\df \nu(y)  \leq \|\widetilde{K}\|_u \nu(\overline{V})$ and $\int |\widetilde{K}(x, y)|\df \mu(x)  \leq \|\widetilde{K}\|_u \mu(\overline{U})$ \retTwo\par}
-
-	Therefore, for all $\widetilde{K} \in C_c(X, Y)$ with $\supp(\widetilde{K}) \subseteq U \times V$, we have that:
-	
-	{\centering$\|T_{\widetilde{K}}\|_{\opnorm} \leq \|\widetilde{K}\|_u \cdot \max(\mu(\overline{U}), \nu(\overline{V}))$.\retTwo\par}
-
-	But also note by (Folland) proposition 7.21 (also on \inLinkRap{Folland Proposition 7.21 page 183}{page 183}) that there is a sequence of functions $\{K_n\}_{n \in \mathbb{N}}$ in $C_c(X)$ converging uniformly to $K$ and satisfying for all $n \in \mathbb{N}$ that:
-	\begin{itemize}
-		\item $\supp(K_n) \subseteq U \times V$
-		\item there exists $m \in \mathbb{N}$ such that $K_n(x, y) = \sum_{i=1}^m  \phi(x)\psi(y)$ where $\phi_i \in C_c(X)$ and $\psi_i \in C_c(Y)$ for all $i \in \{1, \ldots, n\}$.\retTwo
-	\end{itemize}
-	
-	Importantly, note that $(T_{K_n} f)(x) = \sum_{i=1}^n (\int_X \psi_i f \df \mu) \phi_i(x)$. It thus follows that each $T_{K_n}$ is a bounded linear operator with finite rank. Additionally,
-	
-	{\centering$\|T_K - T_{K_n}\|_{\opnorm} = \|T_{(K - K_n)}\|_{\opnorm} \leq \|K - K_n\|_u \cdot \max(\mu(\overline{U}), \nu(\overline{V})) \to 0$ as $n \to \infty$.\retTwo\par}
-
-	By lemma 3.1.3 we thus know that $T_K$ is compact. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo There are some other theorems for determining when an integral operator\\ $T_K f(x) = \int K(x, y)f(y)\df \nu(y)$ is a well-defined bounded map.\newpage
-
-\exTwo\ul{Example 1.2.14:} Let $p \in [1, \infty)$. Then suppose $(X, \mu)$ and $(Y, \nu)$ are $\sigma$-finite measure spaces and $K \in L^p(X \times Y, \mu \times \nu)$. If $q$ is the conjugate exponent of $p$, then we have that $T_K : L^q(Y) \to L^p(X)$ defined by $(T_K f)(x) = \int_Y K(x, y)f(y)\df \nu(y)$ is a bounded linear map with $\|T_K\|_{\opnorm} \leq \|K\|_{L^p(X \times Y)}$.
-
-\begin{myIndent}\exThreeP
-	This is because for all $f \in L^q(Y)$:\\ [-24pt]
-
-	{\center\begin{tabular}{l}
-		$\|T_K f\|_p^p = \int | \int K(x, y)f(y)\df \nu(y)|^p\df \mu(x)$\\[4pt]
-		$\phantom{\|T_K f\|_p^p} \leq \int \left( \int |K(x, y)f(y)|\df \nu(y)\right)^{p} \df \mu(x)$\\ [4pt]
-		$\phantom{\|T_K f\|_p^p} \leq \int \left(\int |K(x, y)|^p\df \nu(y)\right)^{p/p} \cdot \|f\|_q^p\df \mu(x) = \|f\|_q^p \iint |K(x, y)|^p \df \nu(y) \df \mu(x)$\\ [4pt]
-		$\phantom{\|T_K f\|_p^p \leq \int \left(\int |K(x, y)|^p\df \nu(y)\right)^{p/p} \cdot \|f\|_q^p\df \mu(x)} = \|f\|_q^p\|K\|_{L^p(X \times Y)}^p$
+		$|E_p(z) - 1| = |z^{p+1}\sum\limits_{k = p + 1}^\infty a_k z^{k - p - 1}|$\\ [14pt]
+		$\phantom{|E_p(z) - 1|} \leq |z|^{p+1}\sum\limits_{k = p + 1}^\infty |a_k||z^{k-p-1}| \leq |z|^{p+1}\sum\limits_{k = p + 1}^\infty 1|a_k| = |z|^{p+1}$. $\blacksquare$
 	\end{tabular}\retTwo\par}
 \end{myIndent}
 
-\hTwo\mySepTwo
+\exTwo\ul{Lemma B:} Given any sequence $\{a_n\}_{n \in \mathbb{N}} \subseteq \mathbb{C} - \{0\}$ such that $|a_n| \to \infty$, we have for all\\ $r > 0$ that $\sum_{n=1}^\infty (\frac{r}{|a_n|})^n < \infty$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Since $|a_n| \to \infty$, we know there exists $N$ such that $|a_n| \geq 2r$ for all $n \geq N$. In turn, for all $n \geq N$ we have that $(\frac{r}{|a_n|})^{n} \leq \frac{1}{2^n}$. And since $\sum_{n=0}^\infty \frac{1}{2^n} < \infty$, we can conclude by the comparison test that $\sum_{n=1}^\infty (\frac{r}{|a_n|})^n < \infty$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo With that we are ready to prove our desired theorem:\retTwo
+
+\exTwo\ul{Weierstraß Factorization Problem:} Let $\{a_n\}_{n \in \mathbb{N}}$ be any sequence of distinct elements in $\mathbb{C}$ with $|a_n| \to \infty$, and also let $\{m_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{> 0}$.
+
+\begin{myIndent}\myComment
+	Note that the condition that $|a_n| \to \infty$ is equivalent to guarenteeing that the set\\ $\{a_n : n \in \mathbb{N}\}$ has no limit points in $\mathbb{C}$.\retTwo
+\end{myIndent}
+
+We claim there exists an entire function $f: \mathbb{C} \to \mathbb{C}$ which only has zeros at the $a_n$ and with multiplicities given by $m_n$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, it will be convenient (for the sake of notation) to replace $\{a_k\}_{k \in \mathbb{N}}$ with the sequence:
+
+	{\centering $\underbrace{a_1, \ldots, a_1}_{m_1 \text{ times}}, \underbrace{a_2, \ldots, a_2}_{m_2 \text{ times}}, \underbrace{a_3, \ldots, a_3}_{m_3 \text{ times}} \ldots$ \retTwo\par}
+
+	Importantly, doing this relabeling won't change the fact that $|a_n| \to \infty$ as $n \to \infty$. One other note is that we can without loss of generality assume $a_n \neq 0$ for any $n$. After all, if not we can just remove those terms from our sequence, solve the factorization problem to get an entire function $h(z)$, and then finally set $f(z) = z^m h(z)$ where $m$ is the number of zero terms we removed from the sequence.\retTwo
+
+	Now our goal is to pick a sequence $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$ such that $f(z) = \prod_{n=1}^\infty E_{p_n}(\frac{z}{a_n})$\\ converges absolutely locally uniformly. Equivalently, we need $\sum_{n=1}^\infty |E_{p_n}(\frac{z}{a_n}) - 1|$ to\\ converge locally uniformly.\newpage
+
+	Set $p_n = n - 1$ for all $n$. This will guarentee that $\sum_{n=1}^\infty |E_{p_n}(\frac{z}{a_n}) - 1|$ converges normally (and hence locally uniformly).
+	\begin{myIndent}\exPPP
+		Indeed let $K \subseteq \mathbb{C}$ be compact. Then there exists $r > 0$ such that $K \subseteq \overline{\Delta}(0, r)$. Since $|a_n| \to \infty$, there exists $N$ such that $|a_n| \geq r$ if $n \geq N$. And now by lemma A, we have that:
+
+		{\centering $|E_{p_n}(\frac{z}{a_n}) - 1| \leq |\frac{z}{a_n}|^{p_n+1} \leq (\frac{r}{|a_n|})^{n}$ for all $z \in K$ \retTwo\par}
+
+		Finally normal converge follows from lemma B.\retTwo
+	\end{myIndent}
+
+	It follows that $f(z) \coloneqq \prod_{n=1}^\infty E_{p_n}(\frac{z}{a_n})$ is an entire function with a zero at each $a_n$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Note that by no means did we show that the $p_n$ used in the above proof are unique. On the contrary, it is easy to justify that we can always modify at least finitely many of the $p_n$.\retTwo
+
+By combining the above proof with the homework problem on \inLinkRap{Math 220b Set 2 Problem 5}{pages 549-550}, we can rewrite our prior result in the following more versatile form:\retTwo
+
+\exTwo\ul{Theorem:} If $f$ is entire with countably many zeros, then $f(z) = z^m e^{h(z)} \prod_{n \in \mathbb{N}} E_{p_n}(\frac{z}{a_n})$ for some $h \in O(\mathbb{C})$, $\{a_n\}_{n \in \mathbb{N}} \subseteq \mathbb{C} - \{0\}$, $m \in \mathbb{Z}_{\geq 0}$ and $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$.
 
 
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \exTwo\ul{Theorem 3.18:} In a locally convex topological vector space $\mathcalli{X}$, $E \subseteq \mathcalli{X}$ is weakly (von\\ Neumann) bounded iff $E$ is originally (von Neumann) bounded.
+
+% \begin{myIndent}\exThreeP
+% 	Proof:\\
+% 	Since the weak topology on $\mathcalli{X}$ is coarser then the original topology, it's trivial that being originally bounded means that a set is weakly bounded.\retTwo
+
+% 	Meanwhile, suppose $E \subseteq \mathcalli{X}$ is weakly bounded and $U$ is any neighborhood of $0$ in the original topology on $\mathcalli{X}$. Since $\mathcalli{X}$ is locally convex, we can find a convex balanced open set $V$ in the original topology such that $0 \in V \subseteq \overline{V} \subseteq U$.
+% 	\begin{myIndent}\exPPP
+% 		Specifically, first let $V_1$ be an open set in $\mathcalli{X}$ such that $e \in V_1 \subseteq \overline{V_1} \subseteq U$. (We can do this by the above corollary). Secondly, we can use local convexity to find a convex open set $V_2$ such that $e \in V_2 \subseteq V_1$. Thirdly, by the work on \inLinkRap{Page 230 definition of balanced sets}{pages 230-232} we can find a balanced convex open set $V$ such that $e \in V \subseteq V_2$ Finally, as $V \subseteq V_2 \subseteq V_1 \subseteq \overline{V_1} \subseteq U$, we have that $\overline{V} \subseteq U$.\retTwo
+
+% 		\begin{myIndent}\color{RawerSienna}
+% 			I should note by the way that $\overline{V}$ is the closure of $V$ in the original topology.\retTwo
+% 		\end{myIndent}
+% 	\end{myIndent}
+
+% 	Let $K \coloneqq \{\lambda \in \mathcalli{X}^* : |\lambda(x)| \leq 1 \text{ for all } x \in V\}$. Then we claim that:
+
+% 	{\centering $\overline{V} = \{x \in \mathcalli{X} : |\lambda(x)| \leq 1 \text{ for all } \lambda \in K\}$ \retTwo\par}
+
+% 	\begin{myIndent}\exPPP
+% 		By the definition of $K$ we know that $V \subseteq \{x \in \mathcalli{X} : |\lambda(x)| \leq 1 \text{ for all } \lambda \in K\}$. Also, we know the latter set is closed since it is the intersection of a bunch of closed sets. Hence, we've proven that $\overline{V} \subseteq \{x \in \mathcalli{X} : |\lambda(x)| \leq 1 \text{ for all } \lambda \in K\}$.\retTwo
+
+% 		To show the other inclusion, suppose $x \in X - \overline{V}$.
+
+
+
+% 	\end{myIndent}
+
+
+% \end{myIndent}
+
+
+
+
+
+
+
+
+% Another vector-valued integral is the \udefine{Pettis integral}. To establish this integral, I shall follow Rudin's functional analysis book.\retTwo
+
+% \exTwo\ul{T}
 
 
 
@@ -681,4 +663,3 @@ The following theorem goes into more depth on this linear operator.\retTwo
 % \hTwo Suppose $|G| = pq$ where $p < q$ are prime numbers. Then $s_q = 1$. Hence there exists a unique Sylow $q$-subgroup $Q$. Furthermore, $Q \lhd G$ and $Q$ is cylic with order $q$.\retTwo
 
 % Next, let $P$ by a Sylow $p$-subgroup. Then because $Q \lhd G$, we have that $PQ < G$. Also, $|P \cap Q| \dividesDeprecated \gcd(p, q) = 1$. So, $P \cap Q = \{1\}$ and from there it follows that $|PQ| = pq = |G|$. So $G / Q = PQ / Q \cong P / (P \cap Q) \cong P$.
-
