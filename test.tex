@@ -325,6 +325,9 @@
 \newcommand{\prim}{\mathrm{prim}}
 \newcommand{\exConv}{\mathrm{ex}}
 \newcommand{\mRank}{\mathrm{rank}}
+\newcommand{\DivGroup}{\mathrm{Div}}
+\newcommand{\divGroup}{\mathrm{div}}
+\newcommand{\PrinGroup}{\mathrm{Prin}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Log}{Log}
@@ -409,7 +412,7 @@ Note that if $a \in \mathbb{C} - \{0\}$, then $E_p(\frac{z}{a})$ is entire and i
 	For motivation on why we are defining $E_p(z)$, note that the Taylor series for\\ $-\Log(1 - z)$ about $0$ is $\sum_{n=1}^\infty \frac{z^n}{n}$. Therefore, we'll ideally have that $E_p(z)$ is\\ approximately equal to $1 = \frac{1 - z}{1 - z}$ when $p$ is large and $|z|$ is small. The next lemma\\ will make this idea more concrete.\retTwo
 \end{myIndent}
 
-\exTwo\ul{Lemma A:} $|E_p(z) - 1| \leq |z|^{p + 1}$ if $|z| \leq 1$.
+\exTwo\ul{Lemma A:}$|E_p(z) - 1| \leq |z|^{p + 1}$ \hypertarget{Page 575 Lemma A reference}{if} $|z| \leq 1$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	If $p = 0$, then $|E_p(z) - 1| = |-z| = |z|$. So our proposed inequality trivialy holds.\retTwo
@@ -501,11 +504,11 @@ Unnecessary tangent: Here's how we can actually calculate the power series expan
 	Note that the condition that $|a_n| \to \infty$ is equivalent to guarenteeing that the set\\ $\{a_n : n \in \mathbb{N}\}$ has no limit points in $\mathbb{C}$.\retTwo
 \end{myIndent}
 
-We claim there exists an entire function $f: \mathbb{C} \to \mathbb{C}$ which only has zeros at the $a_n$ and with multiplicities given by $m_n$.
+We claim there exists an entire function $f: \mathbb{C} \to \mathbb{C}$ which only has zeros at the $a_n$ and with multiplicity given by $m_n$.
 
 \begin{myIndent}\exThreeP
 	Proof:\\
-	To start off, it will be convenient (for the sake of notation) to replace $\{a_k\}_{k \in \mathbb{N}}$ with the sequence:
+	To start off, it will be convenient (for the sake of notation) to replace $\{a_n\}_{n \in \mathbb{N}}$ with the sequence:
 
 	{\centering $\underbrace{a_1, \ldots, a_1}_{m_1 \text{ times}}, \underbrace{a_2, \ldots, a_2}_{m_2 \text{ times}}, \underbrace{a_3, \ldots, a_3}_{m_3 \text{ times}} \ldots$ \retTwo\par}
 
@@ -529,7 +532,149 @@ We claim there exists an entire function $f: \mathbb{C} \to \mathbb{C}$ which on
 
 By combining the above proof with the homework problem on \inLinkRap{Math 220b Set 2 Problem 5}{pages 549-550}, we can rewrite our prior result in the following more versatile form:\retTwo
 
-\exTwo\ul{Theorem:} If $f$ is entire with countably infinite zeros, then $f(z) = z^m e^{h(z)} \prod_{n \in \mathbb{N}} E_{p_n}(\frac{z}{a_n})$ for some $h \in O(\mathbb{C})$, $\{a_n\}_{n \in \mathbb{N}} \subseteq \mathbb{C} - \{0\}$, $m \in \mathbb{Z}_{\geq 0}$ and $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$.
+\exTwo\ul{Theorem:} If $f$ is entire with countably infinite zeros, then $f(z) = z^m e^{h(z)} \prod_{n \in \mathbb{N}} E_{p_n}(\frac{z}{a_n})$ for some $h \in O(\mathbb{C})$, $\{a_n\}_{n \in \mathbb{N}} \subseteq \mathbb{C} - \{0\}$, $m \in \mathbb{Z}_{\geq 0}$ and $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$.\retTwo
+
+\hTwo Taking a break from the lecture and looking at (Conway) Theorem VII.5.15, we can also solve the Weierstraß factorization problem on an arbitrary region $G \subseteq \mathbb{C}$.\retTwo
+
+\exTwo\ul{Theorem VII.5.15:} Let $G$ be a region and let $\{a_n\}_{n \in \mathbb{N}}$ be a sequence of distinct points in $G$ with no limit point in $G$. Also let $\{m_n\}_{n \in \mathbb{N}}$ be a sequence of positive integers. Then there is a function $f \in O(G)$ whose only zeros are at the $a_n$ and with multiplicity given by $m_n$
+\begin{myIndent}\exThreeP
+	Proof:\retTwo
+	\ul{Part 1:} Suppose there exists $R > 0$ such that $\{z \in \mathbb{C} : |z| > R\} \subseteq G$ and $|a_n| \leq R$ for all $n$.
+	\begin{myIndent}\myComment
+		Note that this guarentees that $G^\comp$ is a nonempty compact set. After all, $G^\comp$ is clearly closed and bounded. Also, $G^\comp$ can't be empty as $G^\comp$ must contain at least one limit point of the $a_n$ in the comapct set $\overline{\Delta}(0, R)$.\retTwo
+	\end{myIndent}
+
+	Then we claim there is a function $f \in H(G)$ solving the Weierstraß problem and which has the further property that $\lim_{z \to \infty}f(z) = 1$.
+	\begin{myIndent}\exPPP
+		Like in the proof of the Weierstraß problem for entire functions, we replace $\{a_n\}_{n \in \mathbb{N}}$ with the sequence:
+		
+		{\centering $\underbrace{a_1, \ldots, a_1}_{m_1 \text{ times}}, \underbrace{a_2, \ldots, a_2}_{m_2 \text{ times}}, \underbrace{a_3, \ldots, a_3}_{m_3 \text{ times}} \ldots$\retTwo\par}
+
+		Doing this will not change the fact that $\{a_n\}_{n \in \mathbb{N}}$ has no limit points. Next as $G^\comp$ is compact, we know for each $n \in \mathbb{N}$ that there exists a point $b_n \in G^\comp$ with:
+		
+		{\centering$|b_n - a_n| = \min_{w \in G^\comp}|w - a_n|$.\retTwo\par}
+
+		Also $\min_{w \in G^\comp}|w - a_n| \to 0$ as $n \to \infty$ or else we'd know the $a_n$ have a limit point in $G$. Therefore, $|a_n - b_n| \to 0$ as $n \to \infty$.\retTwo
+
+		Now set $p_n = n$ and define $f(z) \coloneqq \prod_{n=1}^\infty E_{p_n}(\frac{a_n - b_n}{z - b_n})$\newpage
+
+		\begin{myIndent}\pracTwo
+			Note that:
+			
+			{\centering$E_{p}(\frac{a_n - b_n}{z - b_n}) = (1 - \frac{a_n - b_n}{z - b_n})\exp(\frac{a_n - b_n}{z - b_n} + \frac{1}{2}\left(\frac{a_n - b_n}{z - b_n}\right)^2 + \cdots + \frac{1}{p}\left(\frac{a_n - b_n}{z - b_n}\right)^p)$.\retTwo\par}
+			
+			The exponential factor contributes no zeros. Meanwhile $(1 - \frac{a_n - b_n}{z - b_n})$ only has\\ [-2pt] a zero at $z = a_n$. And since $(1 - \frac{a_n - b_n}{z - b_n})^\prime = \frac{-(a_n - b_n)}{(z - b_n)^2}$, we also know that zero\\ [0pt] is simple.\retTwo
+		\end{myIndent}
+
+		Based on the above reasoning, we know that if $f$ converges absolutely locally\\ uniformly on $G$, then the only zeros of $f$ will be at the $a_n$ and with the multiplicity we want. In other words, it suffices to show that if $K \subseteq G$ is compact, then:
+		
+		{\centering$\sum_{n=1}^\infty |E_{p_n}(\frac{a_n - b_n}{z - b_n}) - 1|$ converges uniformly on $K$.\retTwo\par}
+
+		Let $\varepsilon = \inf\{|z - w| : z \in K, w \in G^\comp\}$ and note that $\varepsilon > 0$. Then:
+		
+		{\centering$|\frac{a_n - b_n}{z - b_n}| \leq |a_n - b_n|\varepsilon^{-1}$.\retTwo\par}
+
+		Next as $|a_n - b_n| \to 0$, we know there exists $N$ such that $|a_n - b_n| < \varepsilon / 2$ for\\ all $n \geq N$. So, by \inLinkRap{Page 575 Lemma A reference}{lemma A}, we have for $n \geq N$
+
+		{\centering $|E_{p_n}(\frac{a_n - b_n}{z - b_n}) - 1| \leq (\frac{\varepsilon}{2} \cdot \varepsilon^{-1})^{p_n + 1} = \frac{1}{2^{n+1}}$. \retTwo\par}
+
+		By the Weierstrass M-test, we can conclude that $\sum_{n=1}^\infty |E_{p_n}(\frac{a_n - b_n}{z - b_n}) - 1|$ converges uniformly on $K$.\retTwo
+
+		\mySepThree 
+
+		To finish this part, we need to show $f(z) = \prod_{n=1}^\infty E_{p_n}(\frac{a_n - b_n}{z - b_n}) \to 1$ as $|z| \to \infty$. Therefore, consider any $\varepsilon > 0$ and let $\kappa_1 > 0$ satisfy that $|e^w - 1| < \varepsilon$ when $|w| < \kappa_1$.\retTwo
+		
+		Like on page 546 (see \inLinkRap{Random Equation hyperlink 1}{{\color{Cyan}$(*)$}}), we can choose some $\delta \in (0, 1)$ such that:
+
+		{\centering $\frac{1}{2}|z| \leq |\Log(1 + z)| \leq \frac{3}{2}|z|$ when $|z| < \delta$. \retTwo\par}
+
+		Next note that if we fix $0 < \kappa_2 < \delta$, then we can set $R_1 > 0$ large enough so that $2R < \kappa_2(R_1 - R)$. And since $a_n, b_n \in \overline{\Delta}(0, R)$ for all $n$ we know that:
+		
+		{\centering$|\frac{a_n - b_n}{z - b_n}| \leq \frac{2R}{R_1 - R} < \kappa_2$ for all $n \in \mathbb{N}$ and $|z| \geq R_1$.\retTwo\par}
+
+		In particular, this has the advantage that since $|E_{p_n}(\frac{a_n - b_n}{z - b_n}) - 1| < \kappa_2^{p_n + 1} < 1$, we know $\Log(E_{p_n}(\frac{a_n - b_n}{z - b_n}))$ is well-defined for all $n \in \mathbb{N}$ and $|z| \geq R_1$. So, we can write $f(z) = \exp(\sum_{n=1}^\infty \Log(E_{p_n}(\frac{a_n - b_n}{z - b_n})))$ when $|z| \geq R_1$ and then note for all $|z| \geq R_1$ that:
+
+		{\centering\begin{tabular}{l}
+			$|\sum\limits_{n=1}^\infty \Log(E_{p_n}(\frac{a_n - b_n}{z - b_n}))| \leq \sum\limits_{n=1}^\infty |\Log(E_{p_n}(\frac{a_n - b_n}{z - b_n}))|$\\ [14pt]
+			$\phantom{|\sum\limits_{n=1}^\infty \Log(E_{p_n}(\frac{a_n - b_n}{z - b_n}))|} \leq \frac{3}{2}\sum\limits_{n=1}^\infty |E_{p_n}(\frac{a_n - b_n}{z - b_n}) - 1| \leq \frac{3}{2}\sum\limits_{n=1}^\infty |\frac{a_n - b_n}{z - b_n}|^{p_n + 1} \leq \frac{3}{2}\sum\limits_{n=1}^\infty \kappa_2^{n+1} $\\ [14pt]
+			$\phantom{|\sum\limits_{n=1}^\infty \Log(E_{p_n}(\frac{a_n - b_n}{z - b_n}))| \leq \frac{3}{2}\sum\limits_{n=1}^\infty |E_{p_n}(\frac{a_n - b_n}{z - b_n}) - 1| \leq \frac{3}{2}\sum\limits_{n=1}^\infty |\frac{a_n - b_n}{z - b_n}|^{p_n + 1}} = \frac{3}{2}\cdot\frac{\kappa_2^2}{1 - \kappa_2} $\\ [14pt]
+		\end{tabular}\newpage\par}
+
+		By choosing $\kappa_2$ small enough, we can guarentee that $\frac{3}{2} \cdot \frac{\kappa_2^{2}}{1 - \kappa_2} < \kappa_1$. Therefore, $|f(z) - 1| < \varepsilon$ when $|z| \geq R_1$.\retTwo
+	\end{myIndent}
+
+	\ul{Part 2:}\\
+	Now suppose $G$ is an arbitrary region in $\mathbb{C}$ with $\{a_n\}_{n \in \mathbb{N}}$ a sequence of distinct points in $G$ with no limit point, and let $\{m_n\}_{n \in \mathbb{N}}$ be a sequence of positive integers. Then there is some disk $\overline{\Delta}(a, r) \subseteq G$ with $\Delta(a, r)$ containing none of the $a_n$. So, consider the Möbius transformation $Tz = (z - a)^{-1}$ and put $G_1 = T(G)$ and $b_n = Ta_n = (a_n - a)^{-1}$ for all $n$.\retTwo
+
+	Part 1 clearly applies to the region $G_1$ and the sequences $\{b_n\}_{n \in \mathbb{N}}$ and $\{m_n\}_{n \in \mathbb{N}}$.
+	\begin{myIndent}\exPPP
+		We know $\{b_n\}_{n \in \mathbb{N}}$ has no limit points in $G_1$ because $T$ has a continuous inverse\\ Möbius transformation. Suppose $b_{n_k} \to \beta$ where there exists $\alpha \in G$ with $T\alpha = \beta$.\\ Then $a_{n_k} = T^{-1}(b_{n_k}) \to T^{-1}\beta = \alpha$. But that's a contradiction.\retTwo
+	\end{myIndent}
+	
+	So, we can pick a function $g \in O(G_1)$ whose only zeros are at the $b_n$ and with multiplicity $m_n$. Next, we set $f(z) = g(Tz)$. Then $f \in O(G - \{a\})$ and has only zeros at the $a_n$ and with multiplicity $m_n$.\retTwo
+
+	Finally, $f(z) = g(\frac{1}{z - a}) \to 1$ as $z \to a$, we know $f$ has a removable singularity at $a$. So, we can extend $f$ to be a function in $O(G)$ that has exactly the zeros we want. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+One example of the significance of the Weierstraß factorization problem is as follows:
+\begin{myIndent}\hThree
+	Suppose that $G \subseteq \mathbb{C}$ is a region and then note that $O(G)$ is an integral domain. \begin{myIndent}\pracTwo
+		To see why, note that $G$ cannot be countable as any open ball contained in $G$ is not meager (recall the Baire category theorem). That said, any set $S$ without a limit point in $G$ must be countable. This is because $G$ is $\sigma$-compact. As a consequence, if $f, g \in O(G)$ are not the constant zero functions, then $fg$ can only have countably many zeros and is thus also not the constant zero function.\retTwo
+	\end{myIndent}
+
+	\exThree\ul{Claim:} The field of fractions of $O(G)$ is precisely the set of all meromorphic functions on $G$.
+	\begin{myIndent}\exFourP
+		Proof:\\
+		It's easy to see that if $g, h \in O(G)$ with $h \not\equiv 0$, then $g/h$ is meromorphic in $G$. So, the field of fractions of $O(G)$ can be embedded in the set of meromorphic functions on $G$.\retTwo
+
+		Conversely, suppose $f$ is meromorphic in $G$ and let $S$ be the set of poles of $f$. Then there exists a function $h \in O(G)$ with zeros only at the points in $S$ and which satisfies that the multiplicity of any zero in $S$ of $h$ in equal to the order of the corresponding pole of $f$.\retTwo
+
+		Next set $g = fh$ on $G - S$. Then as all the singularities of $g$ are removable, we can\\ holomorphically extend $g$ to being a function in $O(G)$. At last, we have found two\\  holomorphic functions $g, h \in O(G)$ with $f = \frac{g}{h}$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+Another interpretation goes as follows:\newpage
+
+A \udefine{divisor} on $G$ is a formal sum $D = \sum_{p \in G} n_p[p]$ where $n_p \in \mathbb{Z}$ for all $p \in G$ and the set $\{p \in G : n_p \neq 0\}$ does not have a limit point.\retTwo
+
+We say a divisor $D = \sum_{p \in G} n_p[p]$ is \udefine{effective} (denoted $D \geq 0$) if $n_p \geq 0$ for all $p$.\retTwo
+
+Note that divisors can be added formally. 
+\begin{myIndent}\pracTwo
+	In particular, if $S_1$ and $S_2$ are sets in $G$ without a limit point, then $S_1 \cup S_2$ also can't have a limit point. After all, if $p$ was a limit point of $S_1 \cup S_2$, then any open set $U$ containing $p$ would have to contain infinitely many points in $S_1 \cup S_2$. But by making $U$ small enough, we can guarentee that $U$ contains only finitely many points in $S_1$ or $S_2$.\retTwo
+\end{myIndent}
+
+It follows that the divisors form an abelian group which we'll denote $(\DivGroup, +)$.\retTwo
+
+A divisor $D$ is \udefine{principal} if there exists a meromorphic function $f$ on $G$ with:
+
+{\centering$D = \sum_{p \in G} \ord(f, p)[p]$.\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Note: We define $\ord(f, p)$ to be a negative integer if $f$ has a pole at $p$ and $\ord(f, p)$ is a positive integer if $f$ has a zero at $p$.\retTwo
+\end{myIndent}
+
+We shall denote $\sum_{p \in G} \ord(f, p)[p] = \divGroup(f)$.\retTwo
+
+Importantly, note that $\divGroup(fg) = \divGroup(f) + \divGroup(g)$. Therefore, the collection of principal divisors forms a subgroup $(\PrinGroup, +)$ of $(\DivGroup, +)$.\retTwo
+
+Finally, we define the \udefine{divisor class subgroup} to be quotient group $(\Cl, +) \coloneqq (\DivGroup / \PrinGroup, +)$.\retTwo
+
+\exTwo\ul{Corollary of Weierstraß:} $\Cl = \{0\}$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We show $\DivGroup = \PrinGroup$. To start off, if $D$ is a divisor, then we can write $D = D_+ - D_-$ where both $D_+$ and $D_-$ are effective. Next, by Weierstraß there exists $g, h \in O(G)$ with $D_+ = \divGroup(g)$ and $D_- = \divGroup(h)$. Finally, $\divGroup(g/h) = D$. $\blacksquare$
+\end{myIndent}
+
+\begin{myDindent}\myComment
+	You may wonder why mathematicians went to the effort of defining $\Cl$. Essentially, it's because we can more generally define holomorphic and meromorphic functions on objects called Riemann surfaces.
+\end{myDindent}
+
+\hTwo\mySepTwo
+
+\Hstatement\blab{Math 220b Homework:}\retTwo
 
 
 
