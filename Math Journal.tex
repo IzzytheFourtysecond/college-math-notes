@@ -330,6 +330,9 @@
 \newcommand{\DivGroup}{\mathrm{Div}}
 \newcommand{\divGroup}{\mathrm{div}}
 \newcommand{\PrinGroup}{\mathrm{Prin}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Tor}{\mathrm{Tor}}
+\newcommand{\diag}{\mathrm{diag}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Log}{Log}
@@ -13988,7 +13991,7 @@ I somehow just realized something really helpful that I want to write down:\newp
 	\arrow["\phi", shift left, from=2-2, to=1-2]
 \end{tikzcd}\]
 
-If $\theta f = g\phi$, then $f\phi^{-1} = \theta^{-1} g$. (i.e. if the vertical arrows are isomorphisms, then we only need to check if going around one way commutes).
+If $\theta f = g\phi$, then $f\phi^{-1} = \theta^{-1} g$. (i.e. if the vertical arrows are isomorphisms, then we only need to check if the diagram commutes going around one way).
 \begin{myIndent}\pracTwo
 	Proof:\\
 	$f\phi^{-1} = (\theta^{-1}\theta) f \phi^{-1} = \theta^{-1}(\theta f) \phi^{-1} = \theta^{-1}(g \phi)\phi^{-1} = \theta^{-1} g (\phi \phi^{-1}) = \theta^{-1} g$. $\blacksquare$\retTwo
@@ -21856,7 +21859,7 @@ There is more depth to go in here. I'll return to this topic on \inLinkRap{idk r
 
 \mySepTwo
 
-\dispDate{1/6/2025}
+\dispDate{1/6/2026}
 
 \hypertarget{integrability on separable banach sapces page 514 reference}{I} want to start off today by doing an exercise from Folland. The purpose of this exercise is to generalize integration to functions with values in a separable Banach space.\newpage
 
@@ -21986,9 +21989,12 @@ In other words, the ring homomorphism $\mathbb{Z}[x_1, \ldots, x_n] \to A$ defin
 	We know there is a surjective ring homomorphism $f: \mathbb{Z}[x_1, \ldots, x_n]$ to $A$ for some\\ $n$. Futhermore we know $\mathbb{Z}[x_1, \ldots, x_n]$ is Noetherian by Hilbert's basis theorem. {\exPPP($\mathbb{Z}$ is\\ easily checked to be a P.I.D. and is thus Noetherian)}. Finally, if $\mathfrak{a}$ is any ideal in $A$, then we know $f^{-1}(\mathfrak{a})$ is an ideal in $\mathbb{Z}[x_1, \ldots, x_n]$. In turn, there are finitely many polynomials $p_1, \ldots, p_m \in \mathbb{Z}[x_1, \ldots, x_n]$ generating $f^{-1}(\mathfrak{a})$. So, $f(p_1),\ldots,f(p_m)$ generate $\mathfrak{a}$. $\blacksquare$\newpage
 \end{myIndent}
 
-\hTwo Suppose $F$ is a field. Then $A$ is a called an $F$-algebra if $A$ is a unital commutative ring and there exists a ring homomorphism $f: F \to A$ such that $f(1_F) = f(1_A)$.\retTwo
+\hTwo Suppose $F$ is a field. \hypertarget{Definition of F-algebra page 518}{Then} $A$ is a called an \udefine{$F$-algebra} if $A$ is a unital commutative ring and there exists a ring homomorphism $f: F \to A$ such that $f(1_F) = f(1_A)$. Note that if $A$ is an $F$-algebra then we also have that $A$ is an $F$-vector space with $c \cdot a = f(c) a$ for all $c \in F$ and $a \in A$.
 
-Note that if $A$ is an $F$-algebra then we also have that $A$ is an $F$-vector space with\\ $c \cdot a = f(c) a$ for all $c \in F$ and $a \in A$.\retTwo
+\begin{myIndent}\color{red}
+	I go into more depth on $F$-algebras on \inLinkRap{page 602 reference math 200b}{page 602}.
+	\retTwo
+\end{myIndent}
 
 Let $f : F \to A$ be the ring homomorphism given to define $A$ as an $F$-algebra. We say $A$ is a f.g. $F$-algebra if $\exists a_1, \ldots, a_n$ such that:
 
@@ -22011,7 +22017,7 @@ Firstly, if $p \in D$ is irreducible then we define $\nu_p(a) \coloneqq \max\{n 
 	$\nu_p$ is well-defined because $D$ is a U.F.D. and so every nonzero element in $D$ has a unique\\ factorization in terms of irreducibles (we consider a unit as having a factorization with zero terms). Also note that since $D$ is a U.F.D and $p$ is irreducible, we also know that $p$ is prime. Hence, if $a = p^{\nu_p(a)}x$ and $b = p^{\nu_p(b)}y$ then $p$ doesn't divide $xy$. And since $ab = p^{\nu_p(a) + \nu_p(b)}xy$ this proves that $\nu_p(ab) = \nu_p(a)\nu_p(b)$. $\blacksquare$\retTwo 
 \end{myIndent}
 
-\hTwo Let $\mathcal{P}_0 \subseteq D$ contain precisely one  element from each equivalence class of companions (see \inLinkRap{Math 200a Lemma page 458}{page 458}) containing irreducible elements. Then for all $a \in D - (\{0\} \cup D^\times)$ we define $|a| \coloneqq \prod_{p \in \mathcal{P}_0} p^{\nu_p(a)}$ and let $\sgn(a)$ denote the element in $D^\times$ such that $a = \sgn(a)|a|$. It's easy to see based on the last lemma that $\sgn(ab) = \sgn(a)\sgn(b)$ and $|ab| = |a||b|$.\retTwo
+\hTwo \hypertarget{Math 200b Page 518 reference}{Let} $\mathcal{P}_0 \subseteq D$ contain precisely one  element from each equivalence class of companions (see \inLinkRap{Math 200a Lemma page 458}{page 458}) containing irreducible elements. Then for all $a \in D - (\{0\} \cup D^\times)$ we define $|a| \coloneqq \prod_{p \in \mathcal{P}_0} p^{\nu_p(a)}$ and let $\sgn(a)$ denote the element in $D^\times$ such that $a = \sgn(a)|a|$. It's easy to see based on the last lemma that $\sgn(ab) = \sgn(a)\sgn(b)$ and $|ab| = |a||b|$.\retTwo
 
 \exTwo\ul{Lemma:} For any $p \in \mathcal{P}_0$ we have that $\nu_p(a + b) \geq \min(\nu_p(a), \nu_p(b))$.
 \begin{myIndent}\exThreeP
@@ -22036,7 +22042,7 @@ Firstly, if $p \in D$ is irreducible then we define $\nu_p(a) \coloneqq \max\{n 
 	{\centering$b = \sgn(b)\prod_{p \in \mathcal{P}_0} p^{\nu_p(b)} = (\sgn(b)\sgn(a)^{-1}\prod_{p \in \mathcal{P}_0}p^{\nu_p(b) - \nu_p(a)})a$.\retTwo\par}
 \end{myIndent}
 
-\hTwo Now let $\gcd(a_1, \ldots, a_n) \coloneqq \prod_{p \in \mathcal{P}_0} p^{\min(\nu_p(a_1), \ldots, \nu_p(a_n))}$.\retTwo
+\hTwo \hypertarget{Math 200b Definition of GCD}{Now} let $\gcd(a_1, \ldots, a_n) \coloneqq \prod_{p \in \mathcal{P}_0} p^{\min(\nu_p(a_1), \ldots, \nu_p(a_n))}$.\retTwo
 
 \exTwo\ul{Lemma:}
 \begin{itemize}
@@ -22237,7 +22243,7 @@ The last task we need to do before proving our desired theorem is that we need t
 
 \hTwo\mySepTwo
 
-\dispDate{1/10/2025}
+\dispDate{1/10/2026}
 
 \blect{Finishing up week 1 math 200b notes:}
 
@@ -22560,7 +22566,7 @@ One final notation quirk of this professor is that if $U \subseteq \mathbb{C}$ i
 
 \hTwo\mySepTwo
 
-\dispDate{1/14/2025}
+\dispDate{1/14/2026}
 
 \blect{Math 200B Homework Set 1:}\retTwo
 
@@ -22884,7 +22890,7 @@ Prove that $A$ is not Noetherian.
 
 \hTwo\mySepTwo
 
-\dispDate{1/17/2025}
+\dispDate{1/17/2026}
 
 \hypertarget{idk reference 14}{To} start off today, I want to do some more stuff with topological vector spaces. That said, I'll be taking a bit of a detour in Rudin functional analysis from what I was working on back on \inLinkRap{Page 528 reference end of functional section}{page 528}.\retTwo
 
@@ -23173,22 +23179,22 @@ Before getting to the next theorem, note in this class that if $g \in O(U)$ and 
 
 \exTwo\ul{Theorem:}\\ [-20pt]
 \begin{enumerate}
-	\item[1.] The product converges locally uniformly to a holomorphic function. 
+	\item[1.] The product converges absolutely and locally uniformly to a holomorphic function. 
 	\item[2.] $F(a) = 0$ if and only if there exists $k$ such that $1 + f_k(a) = 0$. Moreover;
 	
 	{\centering$\ord(F, a) = \sum_{k=1}^\infty \ord(1 + f_{k}, a)$.\retTwo\par}
 	
 	\begin{myIndent}\exThreeP
 		Proof:\\
-		Consider any $a \in u$ and fix $r > 0$ such that $\overline{\Delta}(a, 2r) \subseteq U$. Then $\sum |f_k|$ converges uniformly on $\overline{\Delta}(a, 2r)$, which in turn tells us that $|f_k|$ converges uniformly to $0$ on $\overline{\Delta}(a, 2r)$. But now recall the constant $\delta$ from \inLinkRap{Random Equation hyperlink 1}{{\color{Cyan}$(*)$}}. We know there must exist $N$ such that $|f_k(z)| < \delta$ for all $k \geq N$ and $z \in \overline{\Delta}(a, 2r)$. Thus by comparison test, we can conclude that $\sum_{k=N}^\infty \Log(1 + f_k)$ converges uniformly on $\overline{\Delta}(a, 2r)$ to a function $h$.\retTwo
+		Consider any $a \in u$ and fix $r > 0$ such that $\overline{\Delta}(a, 2r) \subseteq U$. Then $\sum |f_k|$ converges uniformly on $\overline{\Delta}(a, 2r)$, which in turn tells us that $|f_k|$ converges uniformly to $0$ on $\overline{\Delta}(a, 2r)$. But now recall the constant $\delta$ from \inLinkRap{Random Equation hyperlink 1}{{\color{Cyan}$(*)$}}. We know there must exist $N$ such that $|f_k(z)| < \delta$ for all $k \geq N$ and $z \in \overline{\Delta}(a, 2r)$. Thus by comparison test, we can conclude that $\sum_{k=N}^\infty \Log(1 + f_k)$ converges absolutely uniformly on $\overline{\Delta}(a, 2r)$ to a function $h$.\retTwo
 
-		By the Weierstraß convergence theorem, we know that $h$ is holomorphic on $\Delta(a, 2r)$. In turn:\\ [-20pt]
+		By definition this shows that $F$ converges absolutely on $\overline{\Delta}(a, 2r)$. Also by the\\ Weierstraß convergence theorem, we know that $h$ is holomorphic on $\Delta(a, 2r)$. In\\ turn:\\ [-20pt]
 
 		{\centering $F \coloneqq (\prod_{k=1}^{N-1} (1 + f_k))\exp(\sum_{k=N}^\infty \Log(1 + f_k)) = (\prod_{k=1}^{N-1} (1 + f_k))e^h$\\ [4pt]\par}
 
 		is also holomorphic on $\Delta(a, 2r)$.\retTwo
 
-		Finally, we rely on two lemmas I shall prove before.\\ [-28pt]
+		Finally, we rely on two lemmas I shall prove below.\\ [-28pt]
 	\end{myIndent}
 \end{enumerate}
 
@@ -23248,7 +23254,7 @@ Note that if $g_1, \ldots, g_n$ are holomorphic functions and $h = \prod_{k=1}^n
 
 We shall see that this generalizes to the case of infinite products.\newpage
 
-\exTwo\ul{Theorem:} Let $f_k: U \to \mathbb{C}$ be holomorphic and suppose $\sum_{k=1}^\infty f_k$ converges absolutely locally uniformly. Then after setting $g_k = 1 + f_k$ for all $k$, we have that $F(x) \coloneqq \prod_{k=1}^\infty g_k$ converges locally uniformly. We claim that:
+\exTwo\ul{Theorem:} \hypertarget{Math 220b Page 549 Logarithmic Derivatives}{Let} $f_k: U \to \mathbb{C}$ be holomorphic and suppose $\sum_{k=1}^\infty f_k$ converges absolutely locally uniformly. Then after setting $g_k = 1 + f_k$ for all $k$, we have that $F(x) \coloneqq \prod_{k=1}^\infty g_k$ converges absolutely and locally uniformly. We claim that:
 
 {\centering $\frac{F^\prime}{F} = \sum_{k=1}^\infty \frac{g_k^\prime}{g_k}$ with the latter converging locally uniformly on $U - F^{-1}(\{0\})$. \retTwo\par}
 
@@ -23280,7 +23286,7 @@ In 1734, as part of writing the original "proof" that $\sum_{n=1}^\infty \frac{1
 $$\sin(\pi z) = \pi z \prod\limits_{k=1}^\infty (1 - \frac{z^2}{k^2})\text{. \inLinkRap{Random Equation hyperlink 2}{{\color{red} $(*)$}}}$$
 
 \phantom{.}\\
-We shall rigorously prove this product converges absolutely locally uniformly. But first a homework problem will be useful.\retTwo
+We shall rigorously prove this product converges absolutely and locally uniformly. But first a homework problem will be useful.\retTwo
 
 \Hstatement\blab{Math 220b Set 2 Problem 5:} \hypertarget{Math 220b Set 2 Problem 5}{Show} that if $f, g : G \to \mathbb{C}$ are holomorphic functions in a\\ simply connected region $G$ that have the same zeros with the same multiplicty, then there exists a holomorphic function $h: G \to \mathbb{C}$ such that $f = e^h g$.
 
@@ -23428,7 +23434,7 @@ Unfortunately we now need to bound $\cot(\pi z)$ on the path of $\gamma$. So wha
 
 		Meanwhile:
 		
-		{\centering$|\cot(\pi(\pm (m + \frac{1}{2}) + iy))|^2 = \frac{\cos^2(\pm\pi m \pm \frac{\pi}{2}) + \sinh^2(\pi x)}{\sin^2(\pm\pi m \pm \frac{\pi}{2}) + \sinh^2(\pi x)} = \frac{\sinh^2(\pi x)}{1 + \sinh^2(\pi x)} \leq 1$\retTwo\par}
+		{\centering$|\cot(\pi(\pm (m + \frac{1}{2}) + iy))|^2 = \frac{\cos^2(\pm\pi m \pm \frac{\pi}{2}) + \sinh^2(\pi y)}{\sin^2(\pm\pi m \pm \frac{\pi}{2}) + \sinh^2(\pi y)} = \frac{\sinh^2(\pi y)}{1 + \sinh^2(\pi y)} \leq 1$\retTwo\par}
 
 		It follows that there is some $M_1$ such that for all $m \geq M_1$ we have that:
 		
@@ -23852,7 +23858,7 @@ I'm struggling to focus on the notes so I'm going to do a homework problem and t
 		Now it's a simple corollary of the Weierstraß convergence theorem that $\zeta$ is\\ holomorphic.\retTwo
 	\end{myIndent}
 
-	\item[(ii)] Let $p_1 < p_2 < \cdots$ be the sequence of positive prime integers. Show that the infinite product\\ [1pt] $\prod_{n=1}^\infty (1 - \frac{1}{p_n^s})$ converges absolutely locally uniformly for $\rea{s} > 1$ to $\frac{1}{\zeta(s)}$.
+	\item[(ii)] Let $p_1 < p_2 < \cdots$ be the sequence of positive prime integers. Show that the infinite product\\ [1pt] $\prod_{n=1}^\infty (1 - \frac{1}{p_n^s})$ converges absolutely and locally uniformly for $\rea{s} > 1$ to $\frac{1}{\zeta(s)}$.
 	\begin{myIndent}\HexOne
 		We can easily conclude by the comparison test with the series $\sum_{n=1}^\infty \frac{1}{n^{\rea{s}}}$ that:
 		
@@ -23860,7 +23866,7 @@ I'm struggling to focus on the notes so I'm going to do a homework problem and t
 
 		Going a step further, if $K$ is any compact set in $\{s \in \mathbb{C} : \rea{s} > 1\}$ then we can show via identical reasoning as in part (i) that $\sum_{n = 1}^\infty \frac{1}{p_n^s}$ converges uniformly on $K$. Therefore, we can conclude that $\sum_{n = 1}^\infty \frac{1}{p_n^s}$ converges absolutely locally uniformly.\retTwo
 
-		It follows that $\prod_{n=1}^\infty (1 - \frac{1}{p_n^s})$ also converges absolutely locally uniformly on\\ $\{s \in \mathbb{C} : \rea{s} > 1\}$.\retTwo
+		It follows that $\prod_{n=1}^\infty (1 - \frac{1}{p_n^s})$ also converges absolutely and locally uniformly\\ on $\{s \in \mathbb{C} : \rea{s} > 1\}$.\retTwo
 
 		Next note for all $n \in \mathbb{N}$ and $s \in \mathbb{C}$ with $\rea{s} > 1$, we have that:
 
@@ -23888,7 +23894,7 @@ I'm struggling to focus on the notes so I'm going to do a homework problem and t
 	\end{myIndent}
 \end{enumerate}
 
-\blab{Set 2 Problem 3:} This question introduces the entire function $G$, which is closely related to the $\Gamma$-function.
+\blab{Set 2 Problem 3:} This question introduces the entire function $G$, which \hypertarget{Math 220b Set 2 Problem 3}{is} closely related to the $\Gamma$-function.
 \begin{enumerate}
 	\item[(i)] Possibly using Taylor expansion, show that if $|w| \leq \frac{1}{2}$ then $|\Log(1 + w) - w| \leq 2|w|^2$.
 	
@@ -24148,7 +24154,7 @@ Side note: One difference between linear algebra and general module theorey is t
 
 {\color{red}(Disclaimer: I'm doing this this after the assignment was due.)}\retTwo
 
-\blab{Set 2 Problem 4:} Given a matrix $[a_{i,j}] \in M_{n}(A)$, let $\det [a_{i,j}] \coloneqq \sum_{\sigma \in S_n}\sgn(\sigma)\prod_{i=1}^n a_{i,\sigma(i)}$\\ wehere $S_n$ is the symmetric group and $\sgn: s_n \to \{\pm 1\}$ is the sign function.\retTwo
+\blab{Set 2 Problem 4:} Suppose $A$ is a commutative unital ring. Given a matrix $[a_{i,j}] \in M_{n}(A)$, let\\ $\det [a_{i,j}] \coloneqq \sum_{\sigma \in S_n}\sgn(\sigma)\prod_{i=1}^n a_{i,\sigma(i)}$ where $S_n$ is the symmetric group and $\sgn: s_n \to \{\pm 1\}$ is the sign function.\retTwo
 
 The \udefine{$(\ell, k)$-minor} of $x \coloneqq [a_{i,j}]$ is the determinant of the $(n-1)$x$(n-1)$ matrix $x(\ell, k)$ obtained after removing the $\ell$-th. row and the $k$-th. column of $x$.\retTwo
 
@@ -24179,9 +24185,9 @@ Let $\adj(x) \coloneqq [(-1)^{i + j}\det (x(j, i))] \in M_n(A)$ be the \udefine{
 			\item Lemma B: Let $f$ and $g$ be the ring homomorphisms described in the prior lemma.\\ Then $\det(g(A)) = f(\det(A))$.\newpage
 		\end{itemize}
 
-		\ul{Final Step:} Let $x = [a_{i,j}]$ and $y = [b_{i,j}]$ be matrices in $M_n(A)$. Then consider\\ the evaluation homomorphism $f: S \to A$ satisfying that $f(x_{i,j}) = a_{i,j}$ and\\ $f(y_{i,j}) = b_{i,j}$. Then let $g: M_n(S) \to M_n(A)$ be the ring homomorphism given\\ by lemma (a).\retTwo
+		\ul{Final Step:} Let $x = [a_{i,j}]$ and $y = [b_{i,j}]$ be matrices in $M_n(A)$. Then consider\\ the evaluation homomorphism $f: R \to A$ satisfying that $f(x_{i,j}) = a_{i,j}$ and\\ $f(y_{i,j}) = b_{i,j}$. Then let $g: M_n(R) \to M_n(A)$ be the ring homomorphism given\\ by lemma (a).\retTwo
 
-		If we let $x^\prime = [x_{i,j}]$ and $y^\prime = [y_{i,j}]$ be matrices in $M_n(S)$, then $g(x^\prime) = x$ and $g(y^\prime) = y$. By lemma (b), we have that:
+		If we let $x^\prime = [x_{i,j}]$ and $y^\prime = [y_{i,j}]$ be matrices in $M_n(R)$, then $g(x^\prime) = x$ and $g(y^\prime) = y$. By lemma (b), we have that:
 
 		{\centering\begin{tabular}{l}
 			$\det(xy) = \det(g(x^\prime y^\prime)) = f(\det(x^\prime y^\prime))$\\ [4pt]
@@ -24217,7 +24223,7 @@ Let $\adj(x) \coloneqq [(-1)^{i + j}\det (x(j, i))] \in M_n(A)$ be the \udefine{
 			\item $\det(x) = \sum\limits_{i=1}^n a_{i, k} \cdot (-1)^{i + k}\det(x(i, k)) = $ the $(k, k)$th. entry of $\adj(x)x$.\retTwo
 			
 			\begin{myIndent}\HexPPP
-				For a reminder on how to prove this, see my MITx $n$x$n$ systems of equations notes from highschool.\retTwo
+				For a reminder on how to prove this, see my MITx $n$x$n$ systems of equations notes from highschool. The proof definitely requires $A$ to be commutative.\retTwo
 			\end{myIndent}
 		\end{itemize}
 
@@ -24298,7 +24304,7 @@ Now the actual problem:
 
 \blab{Set 2 Problem 5} was proved as a proposition in lecture.\retTwo
 
-\blab{Set 2 Problem 6:} An $A$-module $M$ is called \udefine{Noetherian} if the following equivalent statements hold:
+\blab{Set 2 Problem 6:}  \hypertarget{Math 200b Set 2 Problem 6}{An} $A$-module $M$ is called \udefine{Noetherian} if the following equivalent statements hold:
 \begin{enumerate}
 	\item[1.] Every chain $\{N_i\}_{i \in I}$ of submodules of $M$ (ordered by inclusion) has a maximum.
 	\item[2.] Every non-empty family of submodules of $M$ has a maximal element.
@@ -24316,12 +24322,12 @@ Also notice that a ring $A$ is Noetherian if and only if it is a Noetherian $A$-
 
 Now the actual problem:
 \begin{enumerate}
-	\item[(a)] Suppose $N$ is submodule of $M$. Prove that $M$ is Noetherian if and only if $M/N$ and $N$ are Noetherian.
+	\item[(a)] Suppose $N$ is a submodule of $M$. Prove that $M$ is Noetherian if and only if $M/N$ and $N$\\ are Noetherian.
 	\begin{myIndent}\HexOne
-		\ul{Submodule Correspondance Lemma:} There is a bijective correspondance from the submodules of $M$ containing $N$ to the submodules of $M/N$ given by $L \mapsto L/N$.
+		\ul{Submodule Correspondance Lemma:} There is a bijective correspondance from the\\ submodules of $M$ containing $N$ to the submodules of $M/N$ given by $L \mapsto L/N$.
 		\begin{myIndent}\HexTwoP
 			Proof:\\
-			From math 100a we already know that $L \mapsto L/N$ is a bijective correspondance between subgroups of $(M/N, +)$ and subgroups of $(M, +)$ containing $N$. Therefore, it now suffices to show that $L$ is a submodule iff $L/N$ is a submodule. Or in other words, we need to show that for any $a \in A$ and $x \in L$ we have that $ax \in L$ iff $ax + N \in L/N$.\retTwo
+			From math 100a we already know $L \mapsto L/N$ is a bijective correspondance\\ between subgroups of $(M/N, +)$ and subgroups of $(M, +)$ containing $N$.\\ Therefore, it now suffices to show that $L$ is a submodule iff $L/N$ is a submodule. Or in other words, we need to show that for any $a \in A$ and $x \in L$ we have that $ax \in L$ iff $ax + N \in L/N$.\retTwo
 
 			The $\Longrightarrow$ direction is trivial. As for the other direction, note that:
 			
@@ -24338,7 +24344,7 @@ Now the actual problem:
 		
 		Since it is easy to see that intersections of modules are modules, we have that\\ $L_1 \cap N \subseteq L_2 \cap N \subseteq \cdots$ is an increasing sequence of submodules of $N$. As $N$ is Noetherian, we can conclude that there exists $j$ such that $L_j \cap N = L_{j+k} \cap N$ for all $k \in \mathbb{N}$.\retTwo
 
-		Next, note that as the image of a submodule under a module homomorphism is\\ another submodule, we have that $\frac{L_1 + N}{N} \subseteq \frac{L_2 + N}{N} \subseteq \cdots$ is another increasing of\\ submodules in $M/N$. As $M/N$ is Noetherian, we similarly know there exists $j^\prime$\\ such that $\frac{L_j + N}{N} = \frac{L_{j + k} + N}{N}$ for all $k \in \mathbb{N}$.\retTwo
+		Next, note that as the image of a submodule under a module homomorphism is\\ another submodule, we have that $\frac{L_1 + N}{N} \subseteq \frac{L_2 + N}{N} \subseteq \cdots$ is another increasing of\\ submodules in $M/N$. As $M/N$ is Noetherian, we similarly know there exists $j^\prime$\\ such that $\frac{L_{j^\prime} + N}{N} = \frac{L_{j^\prime + k} + N}{N}$ for all $k \in \mathbb{N}$.\retTwo
 
 		Finally, set $i_0 = \max(j, j^\prime)$. I claim $L_{i_0 + k} = L_{i_0}$ for all $k \in \mathbb{N}$.
 		\begin{myIndent}\HexTwoP
@@ -24411,7 +24417,7 @@ In this problem we shall prove that $m \leq n$ even if $A$ is not a domain.\\ [-
 	\end{myIndent}
 \end{enumerate}
 
-\blab{Set 2 Problem 8:} Prove that $\mRank(M) \leq d(M)$.\\ [-10pt]
+\blab{Set 2 Problem 8:} \hypertarget{Math 200b Set 2 Problem 8}{Prove} that $\mRank(M) \leq d(M)$.\\ [-10pt]
 \begin{myIndent}\HexOne
 	Suppose $d(M) = n$ and $\mRank(M) = m$. Then there exists a surjective $A$-module\\ [1pt] homomorphism $\phi : A^n \to M$ and an injective $A$-module homomorphism $\psi : A^m \to M$.\\ [1pt] In turn, if $\{e_1, \ldots, e_m\}$ is the standard $A$-basis of $A^m$ then there exists $v_1, \ldots, v_n \in A^n$\\ [1pt] such that $\phi(v_i) = \psi(e_i)$ for all $i$.\retTwo
 
@@ -24502,7 +24508,7 @@ In this problem we shall prove that $m \leq n$ even if $A$ is not a domain.\\ [-
 
 \mySepTwo\newpage
 
-\hTwo\dispDate{1/26/2025}
+\hTwo\dispDate{1/26/2026}
 
 \blect{Math 220b Notes:}\retTwo
 
@@ -24535,7 +24541,7 @@ Note that if $a \in \mathbb{C} - \{0\}$, then $E_p(\frac{z}{a})$ is entire and i
 	For motivation on why we are defining $E_p(z)$, note that the Taylor series for\\ $-\Log(1 - z)$ about $0$ is $\sum_{n=1}^\infty \frac{z^n}{n}$. Therefore, we'll ideally have that $E_p(z)$ is\\ approximately equal to $1 = \frac{1 - z}{1 - z}$ when $p$ is large and $|z|$ is small. The next lemma\\ will make this idea more concrete.\retTwo
 \end{myIndent}
 
-\exTwo\ul{Lemma A:}$|E_p(z) - 1| \leq |z|^{p + 1}$ \hypertarget{Page 575 Lemma A reference}{if} $|z| \leq 1$.
+\exTwo\ul{Lemma A:} $|E_p(z) - 1| \leq |z|^{p + 1}$ \hypertarget{Page 575 Lemma A reference}{if} $|z| \leq 1$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	If $p = 0$, then $|E_p(z) - 1| = |-z| = |z|$. So our proposed inequality trivialy holds.\retTwo
@@ -24637,7 +24643,7 @@ We claim there exists an entire function $f: \mathbb{C} \to \mathbb{C}$ which on
 
 	Importantly, doing this relabeling won't change the fact that $|a_n| \to \infty$ as $n \to \infty$. One other note is that we can without loss of generality assume $a_n \neq 0$ for any $n$. After all, if not we can just remove those terms from our sequence, solve the factorization problem to get an entire function $h(z)$, and then finally set $f(z) = z^m h(z)$ where $m$ is the number of zero terms we removed from the sequence.\retTwo
 
-	Now our goal is to pick a sequence $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$ such that $f(z) = \prod_{n=1}^\infty E_{p_n}(\frac{z}{a_n})$\\ converges absolutely locally uniformly. Equivalently, we need $\sum_{n=1}^\infty |E_{p_n}(\frac{z}{a_n}) - 1|$ to\\ converge locally uniformly.\newpage
+	Now our goal is to pick a sequence $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$ such that $f(z) = \prod_{n=1}^\infty E_{p_n}(\frac{z}{a_n})$\\ converges absolutely and locally uniformly. Equivalently, we need $\sum_{n=1}^\infty |E_{p_n}(\frac{z}{a_n}) - 1|$ to\\ converge locally uniformly.\newpage
 
 	Set $p_n = n - 1$ for all $n$. This will guarentee that $\sum_{n=1}^\infty |E_{p_n}(\frac{z}{a_n}) - 1|$ converges normally (and hence locally uniformly).
 	\begin{myIndent}\exPPP
@@ -24655,7 +24661,7 @@ We claim there exists an entire function $f: \mathbb{C} \to \mathbb{C}$ which on
 
 By combining the above proof with the homework problem on \inLinkRap{Math 220b Set 2 Problem 5}{pages 549-550}, we can rewrite our prior result in the following more versatile form:\retTwo
 
-\exTwo\ul{Theorem:} If $f$ is entire with countably infinite zeros, then $f(z) = z^m e^{h(z)} \prod_{n \in \mathbb{N}} E_{p_n}(\frac{z}{a_n})$ for some $h \in O(\mathbb{C})$, $\{a_n\}_{n \in \mathbb{N}} \subseteq \mathbb{C} - \{0\}$, $m \in \mathbb{Z}_{\geq 0}$ and $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$.\retTwo
+\exTwo\ul{Theorem:} \hypertarget{Page 578 Theorem Weierstraß entire functions}{If} $f$ is entire with countably infinite zeros, then $f(z) = z^m e^{h(z)} \prod_{n =1}^\infty E_{p_n}(\frac{z}{a_n})$ for some $h \in O(\mathbb{C})$, $\{a_n\}_{n \in \mathbb{N}} \subseteq \mathbb{C} - \{0\}$, $m \in \mathbb{Z}_{\geq 0}$ and $\{p_n\}_{n \in \mathbb{N}} \subseteq \mathbb{Z}_{\geq 0}$.\retTwo
 
 \hTwo Taking a break from the lecture and looking at (Conway) Theorem VII.5.15, we can also solve the Weierstraß factorization problem on an arbitrary region $G \subseteq \mathbb{C}$.\retTwo
 
@@ -24797,6 +24803,1111 @@ Finally, we define the \udefine{divisor class subgroup} to be quotient group $(\
 
 \hTwo\mySepTwo
 
+One more note from the lecture. Suppose an entire function $f$ is given with countably infinite zeros. Then by the theorem on \inLinkRap{Page 578 Theorem Weierstraß entire functions}{page 578}, we may write $f$ in the form:
+
+{\centering $f(z) = z^m e^{g(z)} \prod_{n =1}^\infty E_{p_n}(\frac{z}{a_n})$ \retTwo\par}
+
+A way of trying to make this form canonical is as follows:
+\begin{myIndent}\hThree
+	Assume there exists $h \geq 0$ such that $\sum \frac{1}{|a_n|^{h+1}} < \infty$. Then pick the smallest $h \in \mathbb{Z}_{\geq 0}$ with $\sum \frac{1}{|a_n|^{h+1}} < \infty$. Now we claim that the following product (which we call the \udefine{canonical product of genus $h$}): $\prod_{n=1}^\infty E_h(\frac{z}{a_n})$, converges absolutely and locally uniformly.
+
+	\begin{myIndent}\pracTwo
+		To show that it converges and absolutely locally uniformly, just note for any $r > 0$ that there exists $N$ with $|a_n| > r$ for all $n \geq N$. In turn:
+		
+		{\centering$\sum_{n=N}^\infty |E_h(\frac{z}{a_n}) - 1| \leq r^{h+1}\sum_{n=N}^\infty \frac{1}{|a_n|^{h+1}} < \infty$ for all $z \in \overline{\Delta(0, r)}$.\newpage\par}
+	\end{myIndent}
+\end{myIndent}
+
+\Hstatement\blab{Math 220b Homework:}\retTwo
+
+\blab{Set 3 Problem 1 (Greatest Common Divisor):} Assume that $f$ and $g$ are entire functions. Show that there exists entire functions $h$, $F$, and $G$ such that:
+
+{\centering $f(z) = h(z)F(z)$, $g(z) = h(z)G(z)$, and $F$ and $G$ have no zommon zeros. \retTwo\par}
+
+\begin{myIndent}\HexOne
+	Proof:\\
+	If either $f$ or $g$ is the constant zero function, then the problem is trivial. After all, suppose $f \equiv 0$. Then $f = g \cdot 0$ and $g = g \cdot 1$. A similar trivial solution holds if both $f$ and $g$ are the constant zero function.\retTwo
+
+	Now suppose that neither $f$ nor $g$ is the constant zero function. Then if $S$ is a multiset containing all the zeros shared by both $f$ and $g$, we may let $h \in O(\mathbb{C})$ be a solution to the Weierstraß problem based on that $S$. To put that into other words, we are picking an entire function $h$ satisfying that $\ord(h, a) = \min(\ord(f, a), \ord(g, a))$ for all $a \in \mathbb{C}$.\retTwo
+
+	Next, we claim that all the singularities of the functions $\frac{f}{h}$ and $\frac{g}{h}$ are removable. After\\ all, if $h(a) = 0$ then we know that we can pick integers $m_1, m_2 > 0$ as well as entire\\ functions $\widetilde{f}, \widetilde{g}, \widetilde{h}$ approaching nonzero limits as $z \to a$ such that:
+	
+	{\centering$f(z) = (z - a)^{m_1}\widetilde{f}(z)$, $g(z) = (z - a)^{m_2}\widetilde{g}(z)$, and $h(z) = (z - a)^{\min(m_1, m_2)}\widetilde{h}(z)$.\retTwo\par}
+
+	Now $\frac{f}{h} = (z - a)^{m_1 - \min(m_1, m_2)}\frac{\widetilde{f}(z)}{\widetilde{h}(z)} \to$ something finite as $z \to a$. And a similar story holds for $\frac{g}{h}$. So, we may holomorphically extend $\frac{f}{h}$ and $\frac{g}{h}$ to being entire functions $F(z)$ and $G(z)$.\retTwo
+
+	Finally, $F(z)$ and $G(z)$ have no common zeros. After all, $F(a) = 0$ if and only if\\ $\ord(f, a) > \ord(g, a)$ so that $\ord(h, a) \neq \ord(f, a)$. Similarly, $G(a) = 0$ if and\\ only if $\ord(g, a) > \ord(f, a)$ so that $\ord(h, a) \neq \ord(g, a)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 3 Problem 2:} Let $f$ be an entire function and $n \geq 1$. Show that there exists an entire function $g$ such that $g^n = f$ if and only if the orders of all zeros of $f$ are divisible by $n$.
+\begin{myIndent}\HexOne
+	$(\Longrightarrow)$\\
+	Suppose $g^n = f$. Then $\ord(f, a) = n \cdot \ord(g, a)$ for all $a \in \mathbb{C}$. Hence, all order of all zeros\\ of $f$ are divisible by $n$.\retTwo
+
+	$(\Longleftarrow)$\\
+	Let $h$ be an entire function whose zeros are precisely the same as $f$ and which satisfies for each zero $a$ that $\ord(h, a) = \frac{1}{n} \cdot \ord(f, a)$. Then $h^n$ will have precisely the same zeros as $f$ and with the same multiplicities as $f$. Hence, we know there is some entire function $u$ such that $f(z) = \exp(u(z))h^n(z)$. Finally, set $g(z) = \exp(\frac{1}{n} u(z))h(z)$. Then $g$ is entire and $g^n(z) = \exp(u(z))h^n(z) = f(z)$. $\blacksquare$.\retTwo
+\end{myIndent}
+
+\blab{Set 3 Problem 3 (The Weierstraß $\sigma$ and $\zeta$ functions):} Let $\omega_1, \omega_2 \in \mathbb{C} - \{0\}$ satisfy that $\omega_2 / \omega_1 \notin \mathbb{R}$. Then consider the lattice $\Lambda = \{m\omega_1 + n\omega_2 : m,n \in \mathbb{Z}\}$.
+
+\begin{enumerate}
+	\item[(i)] Show that $\sum_{\lambda \in \Lambda - \{0\}} \frac{1}{|\lambda|^3}$ converges.
+	\begin{myIndent}\HexOne
+		Consider the function $f: \mathbb{R}^2 \to \mathbb{C}$ given by $f(x, y) = \frac{|x\omega_1 + y\omega_2|}{|x| + |y|}$. Notably, $f$ is\\ [-1pt] continuous on $\mathbb{R}^2 - \{0\}$. Also, because $\omega_1$ and $\omega_2$ are $\mathbb{R}$-linearly independent, we\\ [2pt] have that $|x\omega_1 + y\omega_2| = 0$ if and only if $x = y = 0$. As a result, $f$ is nonzero on its\\ [1pt] domain.\newpage
+
+		Now as the set $S^1 \coloneqq \{(x, y) : x^2 + y^2 = 1\} \subseteq \mathbb{R}^2$ is compact, we know that $f$ achieves a minimum $c$ on $S^1$ (which must be strictly positive.) In other words, we know that if $(x, y)$ is a unit vector in $\mathbb{R}^2$, then:
+
+		{\centering $|x\omega_1 + y\omega_2| \geq c(|x| + |y|)$ \retTwo\par}
+
+		By multiplying both sides by any $r > 0$, we can extend this result to applying to any vector in $\mathbb{R}^2 - \{0\}$. And finally, this result is trivially true when $x = y = 0$.\retTwo
+
+		As for the significance of this, note that there are $4k$ many integer solutions of\\ $|m| + |n| = k$.
+		\begin{myIndent}\HexTwoP
+			If we require both $m$ and $n$ to be strictly, positive, then there are $k - 1$ solutions. By flipping the sign of $m$ and $n$, we can then get that there are $4(k - 1)$ solutions to $|m| + |n| = k$ where $m, n \neq 0$. Finally, we can manually count that there are $4$ more solutions when we let either $m$ or $n$ be $0$.\retTwo
+		\end{myIndent}
+
+		So at last we get that:
+
+		{\centering$\sum\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.2em}\frac{1}{|\lambda|^3} \leq c^{-3}\hspace{-0.5em}\sum\limits_{ \begin{smallmatrix}
+			m,n \in \mathbb{Z} \\ (m, n) \neq 0
+		\end{smallmatrix}}\hspace{-0.5em} \frac{1}{(|m| + |n|)^3} = c^{-3}\sum\limits_{k=1}^\infty \frac{4k}{k^3} = \frac{2\pi^2}{3c^3} < \infty$\retTwo\par}
+	\end{myIndent}
+\end{enumerate}
+
+We now define the Weierstraß $\sigma$-function as the infinite product:
+
+{\centering $\sigma(z) = z\hspace{-0.7em}\prod\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.7em} (1 - \frac{z}{\lambda})\exp(\frac{z}{\lambda} + \frac{z^2}{2\lambda^2}) = z\hspace{-0.7em}\prod\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.7em} E_2(\frac{z}{\lambda})$\par}
+
+\begin{enumerate}
+	\item[(ii)] Show that $\sigma$ is an entire function with simple zeros only at the points of $\Lambda$.
+	\begin{myIndent}\HexOne
+		To show that $\sigma$ is entire, it suffices to show that $\hspace{-0.7em}\sum\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.7em} |E_2(\frac{z}{\lambda}) - 1|$ converges locally\\ [-9pt] uniformly on $\mathbb{C}$.\retTwo
+
+		Suppose $K \subseteq \mathbb{C}$ is compact and choose $r > 0$ such that $K \subseteq \Delta(0, r)$. Then if $c$ is the constant from part (i), and $\min(|n|, |m|) \geq \frac{r}{c}$, we know that $|m\omega_1 + n \omega_2| \geq r$. Therefore, for all $z \in K$ we have that:
+
+		{\centering\begin{tabular}{l}
+			$\sum\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.7em} |E_2(\frac{z}{\lambda}) - 1| = \hspace{-1.1em}\sum\limits_{\begin{smallmatrix}
+				|m|, |n| < \frac{r}{c} \\ (m, n) \neq (0, 0)
+			\end{smallmatrix}}\hspace{-0.9em} |E_2(\frac{z}{m\omega_1 + n\omega_2}) - 1| + \hspace{-0.7em}\sum\limits_{|m|, |n| \geq \frac{r}{c}}\hspace{-0.7em} |E_2(\frac{z}{m\omega_1 + n\omega_2}) - 1|$\\ [32pt]
+
+			$\phantom{\sum\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.7em} |E_2(\frac{z}{\lambda}) - 1|} \leq \hspace{-1.1em}\sum\limits_{\begin{smallmatrix}
+				|m|, |n| < \frac{r}{c} \\ (m, n) \neq (0, 0)
+			\end{smallmatrix}}\hspace{-0.9em} |E_2(\frac{z}{m\omega_1 + n\omega_2}) - 1| + \hspace{-0.7em}\sum\limits_{|m|, |n| \geq \frac{r}{c}}\hspace{-0.4em} |\frac{z}{m\omega_1 + n\omega_2}|^3$\\ [32pt]
+
+			$\phantom{\sum\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.7em} |E_2(\frac{z}{\lambda}) - 1|} \leq \hspace{-1.1em}\sum\limits_{\begin{smallmatrix}
+				|m|, |n| < \frac{r}{c} \\ (m, n) \neq (0, 0)
+			\end{smallmatrix}}\hspace{-0.2em} \max\limits_{z \in K}|E_2(\frac{z}{m\omega_1 + n\omega_2}) - 1| + r^3\hspace{-0.7em}\sum\limits_{\lambda \in \Lambda - \{0\}}\hspace{-0.2em} \frac{1}{|\lambda|^3}$\\ [32pt]
+		\end{tabular}\retTwo\par}
+
+		By the Weierstraß M-test, we can conclude that $\sum_{\lambda \in \Lambda - \{0\}} |E_2(\frac{z}{\lambda}) - 1|$ converges\\ uniformly on $K$. So, the product $\sigma(z)$ also converges absolutely and locally uniformly. And by the Weierstraß convergence theorem, we can conclude that $\sigma$ is entire.\retTwo
+
+		It's also clear that $\sigma$ has zeros only at the points of $\Lambda$ and all those zeros are simple since each $E_2(\frac{z}{\lambda})$ has only a simple zero at $\lambda$ and $z$ has a simple zero at $0$.\newpage
+	\end{myIndent}
+\end{enumerate}
+
+Weierstraß also defined the function $\zeta$ (not to be confused with the Reimann zeta function) by taking the logarithmic derivative $\zeta(z) = \frac{\sigma^\prime(z)}{\sigma(z)}$.
+
+\begin{enumerate}
+	\item[(iii)] Show that $\zeta(z) = \frac{1}{z} + \sum_{\lambda \in \Lambda - \{0\}}(\frac{1}{z - \lambda} + \frac{1}{\lambda} + \frac{z}{\lambda^2})$ and conclude that $\zeta$ is a meromorphic function with poles at $\lambda \in \Lambda$ with residue equal to $1$.
+	\begin{myIndent}\HexOne
+		Let $\{\lambda_n\}_{n \in \mathbb{N}}$ be any enumeration of the points in $\Lambda - \{0\}$. Then by a prior theorem in class (see \inLinkRap{Math 220b Page 549 Logarithmic Derivatives}{page 549}), we have that:
+
+		{\centering $\zeta(z) = \frac{1}{z} + \sum_{n =1}^\infty \frac{(E_2(\frac{z}{\lambda_n}))^\prime}{E_2(\frac{z}{\lambda_n})}$ where the latter converges locally uniformly on $\mathbb{C} - \Lambda$.\retTwo\par}
+
+		Yet note that that same theorem also shows that for any permutation $\sigma: \mathbb{N} \to \mathbb{N}$, we have that:
+		
+		{\centering$\zeta(z) = \frac{1}{z} + \sum_{n =1}^\infty \frac{(E_2(\frac{z}{\lambda_{\sigma(n)}}))^\prime}{E_2(\frac{z}{\lambda_{\sigma(n)}})}$ where the latter converges locally uniformly on $\mathbb{C} - \Lambda$.\retTwo\par}
+
+		It follows that $\sum_{n =1}^\infty \frac{(E_2(\frac{z}{\lambda_n}))^\prime}{E_2(\frac{z}{\lambda_n})}$ converges absolutely on $\mathbb{C} - \Lambda$. So, we can say without\\ [-4pt] any problems that:
+
+		{\centering $\zeta(s) = \frac{1}{z} + \sum_{\lambda \in \Lambda - \{0\}} \frac{(E_2(\frac{z}{\lambda}))^\prime}{E_2(\frac{z}{\lambda})}$ \retTwo\par}
+
+		\begin{myIndent}\myComment
+			More generally, this reasoning shows that the series $\sum \frac{g_k^\prime}{g_k}$ in the theorem\\ statement on \inLinkRap{Math 220b Page 549 Logarithmic Derivatives}{page 549} converges absolutely on it's domain. I mention that here cause I may need that fact later (maybe).\retTwo
+		\end{myIndent}
+
+		Next, note that if $u(z) = z + \frac{z^2}{2}$, then
+		
+		{\centering$\frac{(E_2(\frac{z}{\lambda}))^\prime}{E_2(\frac{z}{\lambda})} = \frac{\frac{-1}{\lambda} (\frac{z}{\lambda})^2 \exp(u(\frac{z}{\lambda}))}{(1 - \frac{z}{\lambda})\exp(u(\frac{z}{\lambda}))} = \frac{\frac{-z^2}{\lambda^3}}{1 - \frac{z}{\lambda}} = \frac{\frac{-z^2}{\lambda^3}}{\frac{\lambda - z}{\lambda}} = \frac{1}{\lambda^2} \cdot \frac{z^2}{z - \lambda} = \frac{1}{\lambda^2} \cdot \frac{\lambda^2 + z^2 - \lambda^2}{z - \lambda} = \frac{1}{z - \lambda} + \frac{z + \lambda}{\lambda^2}$\retTwo\par}
+
+		Therefore, we've shown that $\zeta(z) = \frac{1}{z} + \sum_{\lambda \in \Lambda - \{0\}}(\frac{1}{z - \lambda} + \frac{1}{\lambda} + \frac{z}{\lambda^2})$.\retTwo
+
+		Finally, $\zeta$ is meromorphic on $\mathbb{C}$ because it is the quotient of two holomorphic functions where the denominator is not the constant zero function. $\zeta$ clearly has poles precisely at each $\lambda \in \Lambda$ since that's where $\sigma$ evaluates to zero.\retTwo
+
+		Also, suppose $\gamma(t) = \lambda + re^{it}$ *(with $t \in [0, 2\pi]$) where $r$ is small enough so that no other $\lambda^\prime \in \Lambda$ are in $\overline{\Delta}(\lambda, r)$. Then by the residue theorem, we have that:
+
+		{\centering $\Res(\zeta, \lambda) = \frac{1}{2\pi i}\int_\gamma \zeta(z) = \frac{1}{2\pi i}\int_\gamma \left(\frac{1}{z} + \sum_{\lambda^\prime \in \Lambda - \{0\}}(\frac{1}{z - \lambda^\prime} + \frac{1}{\lambda^\prime} + \frac{z}{(\lambda^\prime)^2})\right) $ \retTwo\par}
+
+		Since $\{\gamma\}$ is compact and the series defining $\zeta$ converges locally uniformly, we can equivalently say that:
+
+		{\centering $\Res(\zeta, \lambda) = \frac{1}{2\pi i}\int_\gamma \zeta(z) = \frac{1}{2\pi i}\left(\int_\gamma \frac{1}{z} + \sum_{\lambda^\prime \in \Lambda - \{0\}}\int_\gamma(\frac{1}{z - \lambda^\prime} + \frac{1}{\lambda^\prime} + \frac{z}{(\lambda^\prime)^2})\right)$ \retTwo\par}
+
+		Finally, by applying the residue theorem to each of those smaller integral seperately, we get that:
+
+		{\centering $\frac{1}{2\pi i}\int_\gamma \zeta(z) = \frac{1}{2\pi i}\left(\int_\gamma \frac{1}{z} + \sum_{\lambda^\prime \in \Lambda - \{0\}}\int_\gamma(\frac{1}{z - \lambda^\prime} + \frac{1}{\lambda^\prime} + \frac{z}{(\lambda^\prime)^2})\right) = 1$. $\blacksquare$ \newpage\par}
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 3 Problem 4 (The $\Gamma$ function):} In set 2 problem 3 (see \inLinkRap{Math 220b Set 2 Problem 3}{pages 562-563}), we introduced the entire function $G$ defined by $G(z) = \prod_{n=1}^\infty ((1 + \frac{z}{n})e^{-\frac{z}{n}}) = \prod_{n=1}^\infty E_1(\frac{z}{-n})$
+\begin{enumerate}
+	\item[(i)] Using the definition of $G$, show that $G(z)G(-z) = \frac{\sin(\pi z)}{\pi z}$.
+	\begin{myIndent}\HexOne
+		Since $G$ converges absolutely, we have that:
+		
+		{\centering\begin{tabular}{l}
+			$G(z)G(-z) = \left(\prod_{n=1}^\infty ((1 + \frac{z}{n})e^{-\frac{z}{n}})\right) \cdot \left(\prod_{n=1}^\infty ((1 - \frac{z}{n})e^{\frac{z}{n}})\right)$\\ [6pt]
+
+			$\phantom{G(z)G(-z)} = \prod_{n=1}^\infty (1 - \frac{z^2}{n^2}) = \frac{\sin(\pi z)}{\pi z}$\\ [4pt]
+		\end{tabular}\par}
+	\end{myIndent}
+
+	\item[(ii)] By inspecting the locations of the zeros, show that $G(z - 1) = zG(z)e^{\gamma(z)}$ for some entire function $\gamma$.
+	\begin{myIndent}\HexOne
+		Note that both $G(z - 1)$ and $zG(z)$ have only the nonpositive integers as zeros\\ (and those zeros are simple for both functions). Therefore, as $\mathbb{C}$ is simply connected\\ we can conclude by problem 5 on the second homework set (see \inLinkRap{Math 220b Set 2 Problem 5}{page 549}) that\\ $G(z - 1) = zG(z)e^{\gamma(z)}$ for some entire function $\gamma$.
+	\end{myIndent}
+	
+	\item[(iii)] Using logarithmic derivatives, show $\gamma^\prime(z) = 0$. Thus, $\gamma$ is a constant and ${G(z - 1) = zG(z)e^{\gamma}\text{.}}$
+	\begin{myIndent}\HexOne
+		By taking logarithmic derivatives, we get that:
+
+		{\centering $\frac{G^\prime(z - 1)}{G(z - 1)} = \frac{1}{z} + \frac{G^\prime(z)}{G(z)} + \gamma^\prime(z)$ \retTwo\par}
+
+		Next note that $E_1^\prime(z) = -ze^z$. In turn, we can say that:
+		
+		{\centering$\frac{E_1^\prime(\frac{z}{-n})}{E_1(\frac{z}{-n})} = \frac{\frac{1}{-n} \cdot \frac{-z}{-n} e^{\frac{z}{-n}}}{(1  + \frac{z}{n})e^{\frac{z}{-n}}} = \frac{\frac{-z}{n^2}}{1  + \frac{z}{n}} = \frac{1}{n} \cdot \frac{-z}{z + n} = \frac{1}{n} \cdot \frac{-z + n - n}{z + n} = \frac{-1}{n} + \frac{1}{z + n}$\retTwo\par}
+
+		But now $\frac{G^\prime(z)}{G(z)} = \sum_{n=1}^\infty \left(\frac{1}{z + n} - \frac{1}{n}\right)$. Similarly, $\frac{G^\prime(z - 1)}{G(z - 1)} = \sum_{n=1}^\infty \left(\frac{1}{z - 1 + n} - \frac{1}{n}\right)$.\\ Therefore, we can conclude that:
+
+		{\centering $\gamma^\prime(z) = \sum_{n=1}^\infty \left(\frac{1}{z - 1 + n} - \frac{1}{n}\right) - \sum_{n=1}^\infty \left(\frac{1}{z + n} - \frac{1}{n}\right) - \frac{1}{z}$. \retTwo\par}
+
+		Finally, note that $\sum_{n=1}^\infty \left(\frac{1}{z - 1 + n} - \frac{1}{n}\right) = \frac{1}{z} + \sum_{n=1}^\infty \left(\frac{1}{z + n} - \frac{1}{n}\right)$
+
+		\begin{myIndent}\HexTwoP
+			This is because the limit of the following  partial sums are the same:
+
+			{\centering\begin{tabular}{l}
+				$\left(\frac{1}{z - 1 + (1)} - \frac{1}{(1)}\right) + \left(\frac{1}{z - 1 + (2)} - \frac{1}{(2)}\right) + \cdots$\\ [6pt]
+				$\phantom{aaaaaaaaaaaa} = \frac{1}{z - 1 + (1)} + \left(- \frac{1}{(1)} + \frac{1}{z - 1 + (2)}\right) + \left(- \frac{1}{(2)} + \frac{1}{z - 1 + (3)}\right) + \cdots$
+			\end{tabular}\retTwo\par}
+
+			\begin{myIndent}\HexPPP
+				Note that I'm trying to be careful because $\sum_{n=1}^\infty \frac{1}{z - 1 + n}$ and $\sum_{n=1}^\infty\frac{1}{n}$ are\\ divergent series.
+			\end{myIndent}
+		\end{myIndent}
+
+		It follows that $\gamma^\prime(z) = 0$ for all $z$.
+	\end{myIndent}
+
+	\item[(iv)] Show $G(0) = 1$ and use (iii) to conclude that $G(1) = e^{-\gamma}$.
+	\begin{myIndent}\HexOne
+		From the definition of $G$ we have that $G(0) = \prod_{n=1}^\infty ((1 + 0)e^{0}) = 1$. Then by plugging in $z = 1$ into the identity shown in part (iii), we get that $G(1) = e^{-\gamma}$.
+	\end{myIndent}
+
+	\item[(v)] Using the definition of $G$ as an infinite product and (iv), show that\\ $\gamma = \lim_{n \to \infty}(1 + \frac{1}{2} + \cdots + \frac{1}{n} - \log(n))$. (This is called the \udefine{Euler-Mascheroni constant}).\newpage
+	\begin{myIndent}\HexOne
+		Firstly, by the definition of $G$ we can see that $G(1)$ is a positive real number. It follows by part (iv) that $\gamma = -\log(G(1)) = \log(\frac{1}{G(1)})$.\retTwo
+
+		But now:
+		
+		{\centering\begin{tabular}{l}
+			$\log(\frac{1}{G(1)}) = \log(\lim\limits_{N \to \infty}\prod_{n=1}^N(1 + \frac{1}{n})^{-1}e^{1/n})$\\ [8pt]
+			$\phantom{\log(\frac{1}{G(1)})} = \lim\limits_{N \to \infty}\log(\prod_{n=1}^N(1 + \frac{1}{n})^{-1}e^{1/n})$\\ [8pt]
+			$\phantom{\log(\frac{1}{G(1)})} = \lim\limits_{N \to \infty}\left(\sum_{n=1}^N \frac{1}{n} + \log(n) - \log(n + 1)\right)$\\ [8pt]
+			$\phantom{\log(\frac{1}{G(1)})} = \lim\limits_{N \to \infty}\left((\sum_{n=1}^N \frac{1}{n}) - \log(N) + \log(N) - \log(N + 1)\right)$\\ [8pt]
+			$\phantom{\log(\frac{1}{G(1)})} = \lim\limits_{N \to \infty}\left((\sum_{n=1}^N \frac{1}{n}) - \log(N)\right) + \lim\limits_{N \to \infty} \left(\log(N) - \log(N + 1)\right)$\\ [8pt]
+			$\phantom{\log(\frac{1}{G(1)})}= \lim\limits_{N \to \infty}\left((\sum_{n=1}^N \frac{1}{n}) - \log(N)\right) + 0$
+		\end{tabular}\par}
+	\end{myIndent}
+
+	\item[(vi)] Define the meromorphic function $\Gamma(z) \coloneqq \frac{e^{-\gamma z}}{z}\frac{1}{G(z)}$. Show that $\Gamma$ has poles only at the non-\\positive integers and that these poles are simple.
+	\begin{myIndent}\HexOne
+		$\Gamma$ only has a pole at $z$ satisfying that $zG(z) = 0$. But that precisely happens at the non-positive integers. Also, all the zeros of $z$ and $G(z)$ are simple, and $z$ and $G(z)$ have no shared zeros. Hence, all the poles are also simple.
+	\end{myIndent}
+
+	\item[(vii)] Show $\Gamma(1) = 1$. Then using part (iii) show that $\Gamma(z + 1) = z\Gamma(z)$. In particular, this means that $\Gamma(n + 1) = n!$. Thus, the $\Gamma$ function is a generalization of the factorial.
+	\begin{myIndent}\HexOne
+		By part (iii), we know that when $z$ is not a non-positive integer then:
+		
+		{\centering$\Gamma(z + 1) = \frac{e^{-\gamma (z + 1)}}{(z + 1)G(z + 1)} = \frac{e^{-\gamma z}}{e^\gamma(z + 1)G(z + 1)} = \frac{e^{-\gamma z}}{G(z)} = z\Gamma(z)$\retTwo\par}
+
+		Also, $\Gamma(1) = \frac{e^{-\gamma}}{G(1)} = 1$ by part (iv). By induction we can thus conclude that\\ $\Gamma(n + 1) = n!$ for all $n \in \mathbb{Z}_{\geq 0}$.
+	\end{myIndent}
+
+	\item[(viii)] Find the residue of $\Gamma$ at $z = 0$. Then using (vii) find the residues of $\Gamma$ at all non-positive integers.
+	\begin{myIndent}\HexOne
+		Since all the poles of $\Gamma$ are simple, we have that $\Res(\Gamma, -n) = \lim_{z \to n}(z + n)\Gamma(z)$ for all $n \in \mathbb{Z}_{\geq 0}$. In particular, this means that:
+
+		{\centering$\Res(\Gamma, 0) = \lim_{z \to 0} z\Gamma(z) = \lim_{z \to 0} \Gamma(z + 1) = \Gamma(1) = 1$.\retTwo\par}
+		
+		Meanwhile, if $n \in \mathbb{Z}_{> 0}$, then on some punctured disk about $n$ we have that:
+
+		{\centering $\Gamma(z) = \frac{\Gamma(z + 1)}{z} = \cdots = \frac{\Gamma(z + n + 1)}{z(z + 1) \cdots (z + n - 1)(z + n)}$\retTwo\par}
+
+		Therefore:
+
+		{\centering\begin{tabular}{l}
+			$\Res(\Gamma, -n) = \lim\limits_{z \to -n} (z + n)\Gamma(z) = \lim\limits_{z \to -n} \frac{\Gamma(z + n + 1)}{z(z + 1) \cdots (z + n - 1)} = \frac{\Gamma(1)}{(-n)(-n + 1)\cdots(-2)(-1)} = \frac{(-1)^n}{n!}$.
+		\end{tabular}\par}
+	\end{myIndent}
+
+	\item[(ix)] Using the definition (vi) as well as the results in (i), (vii), show that $\Gamma(z)\Gamma(1 - z) = \frac{\pi}{\sin(\pi z)}$.
+	\begin{myIndent}\HexOne
+		${\Gamma(z)\Gamma(1 - z) = \frac{e^{-\gamma z}}{zG(z)} \cdot \frac{e^{+\gamma z - \gamma}}{(1 - z)G(1 - z)} = \frac{1}{zG(z) \cdot e^{\gamma}(1 - z)G(1 - z)} = \frac{1}{zG(z)G(-z)} = \frac{\pi z}{z\sin(\pi z)} = \frac{\pi}{\sin(\pi z)}}$\newpage
+	\end{myIndent}
+
+	\item[(x)] Deduce that $\Gamma(\frac{1}{2}) = \sqrt{\pi}$
+	\begin{myIndent}\HexOne
+		Note that $\Gamma(\frac{1}{2})^2 = \Gamma(\frac{1}{2})\Gamma(1 - \frac{1}{2}) = \frac{\pi}{\sin(\frac{\pi}{2})} = \pi$. Thus, we have that $\Gamma(\frac{1}{2}) = \pm \sqrt{\pi}$.\\ Furthermore as $G(\frac{1}{2})$ is positive (since it's a product of positive things), we can\\ conclude from the definition of $\Gamma$ that $\Gamma(\frac{1}{2})$ is also positive. Therefore, we have that:
+
+		{\centering$\Gamma(\frac{1}{2}) = + \sqrt{\pi}$\retTwo\par}
+
+		\begin{myIndent}\myComment
+			A different definition of the $\Gamma$ function seen in Math 240 is given by\\ $\Gamma(z) = \int_0^\infty e^{-t} t^{z - 1}\df t$. That other definition is only defined when $\rea{z} > 0$. Also, it can be shown (although I won't here) that both definitions agree with each other on their shared domain. If I ever show their equivalence, it will be on \inLinkRap{idk reference 16}{page \_\_\_\_\_\_}.
+		\end{myIndent}
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo I'm going to switch to cramming algebra now.\retTwo
+
+\mySepTwo
+
+\blect{Math 200b Notes:}\retTwo
+
+Note that if $A$ is a unital commutative ring and $\mathfrak{a} \lhd A$, then $\mathfrak{a}$ is an $A$-module.\retTwo
+
+\exTwo\ul{Lemma:} $A$ is a P.I.D. if and only if for all $\mathfrak{a} \lhd A$ with $\mathfrak{a} \neq \{0\}$, $\mathfrak{a} \cong A$ as an $A$-module.
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	Let $\mathfrak{a} \lhd A$ with $\mathfrak{a} \neq \{0\}$. Since $A$ is a P.I.D., $\mathfrak{a} = Ax$ for some $x \in A - \{0\}$. Now, define $\theta: A \to \mathfrak{a}$ by $\theta(c) = cx$. Clearly $\theta$ is a surjective $A$-module homomorphism. Also, $c \in \ker(\theta) \Longleftrightarrow cx = 0 \Longleftarrow c = 0$ since $A$ is a domain and $x \neq 0$.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $0 \neq \mathfrak{a} \lhd A$. Then there exists an $A$-module isomorphism $\theta: A \to \mathfrak{a}$. In turn, for all $x \in \mathfrak{a}$ there exists $c \in A$ such that $\theta(c) = x$. In particular, $x = \theta(c) = c\theta(1)$. Thus $x \in A\theta(1)$ for all $x \in \mathfrak{a}$. Or in other words $\mathfrak{a} \subseteq A\theta(1)$. Since $\theta(1) \in \mathfrak{a}$, we also know $A\theta(1) \subseteq \mathfrak{a}$. Hence, we have proven that $\mathfrak{a}$ is principal and equals $\langle \theta(1)\rangle$.\retTwo
+
+	With that we've shown that every ideal of $A$ is principal. To finish off, we need to show that $A$ is a domain. So, suppose for the sake of contradiction that $ab = 0$ but $a \neq 0$ and $b \neq 0$. Then let $\mathfrak{a} = Aa \lhd A$. By assumption, there exists an $A$-module isomorphism $\theta: \mathfrak{a} \to A$. In particular, $\myIm(\theta) = \{\theta(ca) : c \in A\} = \{c\theta(a) : c \in A\} = A\theta(a)$.\retTwo
+
+	Since $\myIm(\theta) = A$, this means that $\theta(a) = A^\times$. In particular, this means that $\theta(a)$ is not a zero divisor of $A$. Yet now we have a contradiction as:
+
+	{\centering $0 = \theta(0) = \theta(ba) = b\theta(a) \Longrightarrow b = 0$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\exTwo\ul{Theorem:} \hypertarget{Math 200b page 587-591 theorem}{Suppose} $D$ is a P.I.D. and $\{0\} \neq M \subseteq D^n$ is a $D$-submodule. Then:
+\begin{enumerate}
+	\item[1.] $M$ is a free $D$-module;
+	\item[2.] There exists $x_1, \ldots, x_n \in D^n$ and $a_1, \ldots, a_m \in D - \{0\}$ (with $m \leq n$) such that:
+	\begin{enumerate}
+		\item[2-a.] $D^n = Dx_1 \oplus \cdots \oplus Dx_n$,\newpage
+		\item[2-b.] $a_1 \divides a_2 \divides \cdots \divides a_m$,
+		\item[2-c.] $M = Da_1x_1 \oplus \cdots \oplus Da_m x_m$.   
+	\end{enumerate}
+\end{enumerate}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\Sigma \coloneqq \{\phi(M) : \phi \in \Hom_D(D^n, D)\}$. Importantly, note for all $\phi \in \Hom_D(D^n, D)$ that $\phi(M)$ is an ideal of $D$. This is because $\phi(M)$ is a submodule of $D$. As a result, for each $\phi \in \Hom_D(D^n, D)$ we can write $\phi(M) = \langle a_\phi\rangle$ for some $a_\phi \in D$ (since $D$ is a P.I.D.).\retTwo
+
+	Since P.I.D.s are Noetherian, we know $\Sigma$ has a maximal element, say $\phi_1(M) = \langle a_1\rangle$.\retTwo
+	
+	\ul{Claim 0:} $a_1 \neq 0$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Since $M \neq \{0\}$, we know there exists some $y = (y^{(1)}, \ldots, y^{(n)}) \in M$ with $y^{(i)} \neq 0$ for some $i$. In turn, if we consider the projection homomorphism $P_i : D^n \to D$ onto the $i$th. coordinate, we have that $0 \neq y^{(i)} \in P_i(M) \in \Sigma$. So, $\{0\}$ is not a maximal ideal in $\Sigma$ and in turn we can't possibly have that $a_1 = 0$.\retTwo
+	\end{myIndent}
+	
+	Next pick $y_1 \in M$ such that $\phi_1(y_1) = a_1$.\retTwo
+
+	\ul{Claim 1:} For all $\phi \in \Hom_D(D^n, D)$, we have that $a_1 \divides \phi(y_1)$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Since $D$ is a P.I.D., write $\langle a_1, \phi(y_1)\rangle = \langle d\rangle$ where $d \in D$. Then note that there exists $r, s \in D$ such that $d = ra_1 + s\phi(y_1) = (r\phi_1 + s\phi)(y_1)$. But note that $r\phi_1 + s\phi \in \Hom_D(D^n, D)$. Also, we have that:
+
+		{\centering $(r\phi_1 + s\phi)(M) \supseteq \langle (r\phi_1 + s\phi)(y_1)\rangle = \langle d\rangle \supseteq \langle a_1\rangle$ \retTwo\par}
+
+		Since $(r\phi_1 + s\phi)(M)$, $\langle a_1\rangle \in \Sigma$ and $\langle a_1\rangle$ is maximal in $\Sigma$, we can conclude that $(r\phi_1 + s\phi)(M) = \langle a_1\rangle$. In particular, this let's us conclude that $\langle a_1\rangle = \langle d\rangle$. So, we can conclude that $a_1 \divides \phi(y_1)$.\retTwo
+	\end{myIndent}
+
+	\ul{Corollary of claim 1:} $y_1 = a_1 x_1$ for some $x_1 \in D^n$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Consider the projection homomorphism $P_i : D^n \to D$ which maps\\ $(c^{(1)}, \ldots, c^{(n)}) \mapsto c^{(i)}$. By claim 1, we get that $y_1^{(i)} = a_1x_1^{(i)}$ for some\\ $x_1^{(i)} \in D$. By doing this for all $i$, we get that $x_1 = (x_1^{(1)}, \ldots, x_1^{(n)})$\\ satisfies that $a_1x_1 = y_1$.\retTwo
+	\end{myIndent}
+
+	Also note that $a_1 = \phi_1(y_1) = \phi_1(a_1x_1) = a_1\phi_1(x_1)$. Since $a_1 \neq 0$ and $D$ is a domain, we can conclude that $\phi_1(x_1) = 1$. This also means $x_1 \neq 0$ since $\phi_1(0) = 0 \neq 1$\retTwo
+
+	\ul{Claim 2:} $D^n = Dx_1 \oplus \ker(\phi_1)$ and $M = Da_1x_1 \oplus (\ker(\phi_1) \cap M)$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		For all $v \in D^n$:
+		
+		{\centering$\phi_1(v - \phi_1(v)x_1) = \phi_1(v) - \phi_1(v)\phi_1(x_1) = \phi_1(v) - \phi_1(v) = 0$.\retTwo\par}
+
+		Therefore, $w = v - \phi_1(v)x_1 \in \ker(\phi_1)$ and $v = \phi_1(v)x_1 + w \in Dx_1 + \ker(\phi_1)$. Also, if $v \in Dx_1 \cap \ker(\phi_1)$ then $v = cx_1$ and $\phi_1(v) = 0$. But that implies that $0 = \phi_1(cx_1) = c$. So, $v = cx_1 = 0$.\newpage
+
+		This proves that $D = Dx_1 \oplus \ker(\phi_1)$ where the latter is an internal direct sum.\retTwo
+
+		Next suppose $v \in M$. Then like before we may write $v = \phi_1(v)x_1 + w$ where $w \in \ker(\phi_1)$. But now $\phi_1(v) \in \phi_1(M) = \langle a_1\rangle$. So, $\phi_1(v) = a_1 c$ for some $c \in D$. In turn, $v = ca_1 x_1 + w$. Since both $ca_1 x_1$ and $v$ are in $M$, we must have that $w$ is in $M$ as well. Hence, we can say that $v \in Da_1x_1 + (\ker(\phi_1) \cap M)$.\retTwo
+
+		The above reasoning shows that $M \subseteq Da_1 x_1 + (\ker(\phi_1) \cap M)$. Since\\ $Da_1 x_1 = Dy_1 \subseteq M$, we can also see that $M \supseteq Da_1 x_1 + (\ker(\phi_1) \cap M)$. Finally, note that $Da_1 x_1 \cap (\ker(\phi_1) \cap M) \subseteq Dx_1 \cap \ker(\phi_1) = \{0\}$. This completes the proof that $M = Da_1x_1 \oplus (\ker(\phi_1) \cap M)$ where the latter is an internal direct sum.\retTwo
+	\end{myIndent}
+
+	We are now ready to prove the theorem statement. Firstly, we proceed by induction on $\mRank(M)$ to prove part 1 of the theorem. As a side note, $\mRank(M)$ will be finite because $D^n$ is a Noetherian module and so $d(M)$ must be finite (see \inLinkRap{Math 200b Set 2 Problem 6}{set 2 problem 6 on page 570}). In turn, by \inLinkRap{Math 200b Set 2 Problem 8}{set 2 problem 8 on page 573}, we have that $\mRank(M) \leq d(M)$ is finite. So, we run into no issues while doing induction.\retTwo
+
+	\begin{myIndent}\exPPP
+		First note that if $0 \neq v \in D^n$ and $D$ is a domain, then $\{v\}$ is a $D$-linearly\\ independent set. After all, if $v = (c^{(1)}, \ldots, c^{(n)})$ and $c^{(i)} \neq 0$ for some $i$, then $dc^{(i)} \neq 0$ unless $d = 0$. In turn, $dv \neq 0$ unless $d = 0$. The significance of this result is that any submodule $M \neq \{0\}$ of $D^n$ must have strictly positive rank.\retTwo
+
+		Next, recall from claim 2 that $M = Da_1x_1 \oplus (\ker(\phi_1) \cap M)$. For our base case, note that the following are equivalent:
+		\begin{itemize}
+			\item[(i)] $\mRank(M) = 1$;
+			\item[(ii)] $Da_1x_1 = M$;
+			\item[(iii)] $(\ker(\phi_1) \cap M) = \{0\}$.
+		\end{itemize}
+
+		\begin{myIndent}\exPPP
+			$(\text{i} \Longrightarrow \text{ii})$\\
+			If $Da_1x_1 \neq M$, then we must have that $(\ker(\phi_1) \cap M) \neq \{0\}$ as\\ $M = Da_1x_1 \oplus (\ker(\phi_1) \cap M)$. But now if we pick $0 \neq v \in \ker(\phi_1) \cap M$,\\ we have that $\{a_1x_1, v\}$ is a $D$-linearly independent set in $M$. After all,\\ $a_1x_1 \neq 0$ and $v \neq 0$. Therefore $ca_1 x_1 = 0 = c^\prime v$ iff $c = c^\prime = 0$. At the same time, by the definition of an internal direct sum we have that $ca_1x_1 = c^\prime v$ iff $ca_1x_1 = 0 = c^\prime v$. Hence, $\mRank(M) \geq 2$.\retTwo
+
+			$(\text{ii} \Longleftrightarrow \text{iii})$\\
+			Because $M = Da_1x_1 \oplus (\ker(\phi_1) \cap M)$, we must have that 
+			
+			{\centering$(\ker(\phi_1) \cap M) = \{0\}$ if and only if $M = Da_1x_1$.\retTwo\par}
+
+			$(\text{ii} \Longrightarrow \text{i})$\\
+			If $Da_1x_1 = M$ then we know that $d(M) = 1$. By set 2 problem 8 (on \inLinkRap{Math 200b Set 2 Problem 8}{page 573}), we in turn know that $\mRank(M) \leq d(M) = 1$. And as $\mRank(M) \geq 1$, we can conclude that $\mRank(M) = 1$.\retTwo
+		\end{myIndent}
+
+		Now it is clear that if $\mRank(M) = 1$ then $M = Da_1x_1$ is a free $D$-module.\\ Meanwhile, if $\mRank(M) > 1$ then we have that:
+		
+		{\centering$1 \leq \mRank(\ker(\phi_1) \cap M) \leq \mRank(M) - 1$.\newpage\par}
+
+		By an inductive hypothesis, we can conclude there is a $D$-module isomorphism\\ $\theta : D^r \to \ker(\phi_1) \cap M$. Next, we define:
+		
+		{\centering$\tilde{\theta}(c_1, \ldots, c_{r+1}) = \theta(c_1, \ldots, c_r) + c_{r+1}(a_1 x_1)$.\retTwo\par}
+
+		Observe that $\tilde{\theta}$ is a $D$-module homomorphism and that $\myIm(\theta) \subseteq \myIm(\tilde{\theta})$ and\\ $Da_1x_1 \subseteq \myIm(\tilde{\theta})$. It follows that $\tilde{\theta}$ is surjective. Furthermore, suppose\\ $\tilde{\theta}(c_1, \ldots, c_{r+1}) = 0$. Then we must have that:
+		
+		{\centering$\theta(c_1, \ldots, c_r) = -c_{r+1}a_1x_1 \in Da_1x_1 \cap (\ker(\phi_1) \cap M) = \{0\}$.\retTwo\par}
+		
+		As $\theta$ is injective, we thus know that $c_i = 0$ for all $i$. So, $\tilde{\theta}$ is also injective. And this proves that $M \cong D^{r + 1}$.\retTwo
+	\end{myIndent}
+
+	As for proving part 2 of the theorem, we similarly proceed by induction on $\mRank(M)$.
+
+	\begin{myIndent}\exPPP
+		For our base case, again suppose $\mRank(M) = 1$. Then by the prior section of the proof we know that $M = Da_1x_1$. 
+		\begin{myIndent}
+			Note that because $D^n = Dx_1 \oplus \ker(\phi_1)$, we can conclude like in the prior\\ section of the proof that $\ker(\phi_1) = \{0\}$ iff $D^n = Dx_1$. But if the latter holds true, we're already done. Thus, suppose $\ker(\phi_1) \neq \{0\}$. Then we know\\ by part 1 of theorem (which we just proved) that there is a $D$-module\\ isomorphism $\theta: D^r \to \ker(\phi_1)$ where $r \geq 1$.\retTwo
+			
+			Like in the prior section, we can next define $\tilde{\theta} : D^{r + 1} \to \ker(\phi_1) \oplus Dx_1$\\ by $\tilde{\theta}(c_1, \ldots, c_{r+1}) = \theta(c_1, \ldots, c_{r}) + c_{r+1}x_1$ to get another $D$-module\\ isomorphism. As $D^{r + 1} \cong D^n$, we can conclude that $r + 1 = n$. In other\\ words, $\ker(\phi_1) \cong D^r = D^{n-1}$.\retTwo
+
+			Finally, if $e_1, \ldots, e_{n-1}$ is the standard basis of $D^{n-1}$, then we can now see that $\ker(\phi_1) = D\theta(e_1) \oplus \cdots \oplus D\theta(e_{n-1})$. So at last, we have that $a_1$ as well as $x_1, \theta(e_1), \ldots, \theta(e_{n - 1})$ satisfy part 2 of the theorem.\retTwo
+		\end{myIndent}
+
+		As for the induction step, assume $\mRank(M) > 1$. Then we know $\ker(\phi_1) \cap M \neq \{0\}$ and in turn also that $\ker(\phi_1) \neq \{0\}$. Also by repeating some of the reasoning in our base case, we can see that $\ker(\phi_1) \cong D^{n-1}$\retTwo
+
+		By an inductive hypothesis applied to $\ker(\phi_1)$ and $\ker(\phi_1) \cap M$, we can conclude that there exists $x_2, \ldots, x_n \in \ker(\phi_0)$ as well as $a_2, \ldots, a_m \in D - \{0\}$ (with $m \leq n$) such that:
+		\begin{itemize}
+			\item $\ker(\phi_1) = Dx_2 \oplus \cdots \oplus Dx_n$,
+			\item $a_2 \divides a_3 \divides \cdots \divides a_m$,
+			\item $\ker(\phi_1) \cap M = Da_2x_2 \oplus \cdots \oplus Da_mx_m$.\retTwo
+		\end{itemize}
+
+		It's easy to see from there that $D^n = Dx_1 \oplus \ker(\phi_1) = Dx_1 \oplus Dx_2 \oplus \cdots \oplus Dx_n$ and that $M = Da_1x_1 \oplus (\ker(\phi_1) \cap M) = Da_1x_1 \oplus  Da_2x_2 \oplus \cdots \oplus Da_mx_m$. The missing step is to show that $a_1 \divides a_2$.\newpage
+
+		Let $\langle d\rangle = \langle a_1, a_2\rangle$. Then $d = ra_1 + sa_2$ for some $r, s \in D$. But now consider the $D$-module homomorphism $\psi : D^n \to D$ such that $\psi(x_1) = r$, $\psi(x_2) = s$, and $\psi(x_i) = 0$ for all $i \geq 3$. We have that:
+		
+		{\centering$\psi(M) \ni \psi(a_1x_1 + a_2x_2) = a_1\psi(x_1) + a_2\psi(x_2) = a_1r + a_2 s = d$.\retTwo\par} 
+		
+		Hence, $\langle a_1 \rangle \subseteq \langle d\rangle \subseteq \psi(M) \in \Sigma$. Yet $\langle a_1\rangle$ is maximal in $\Sigma$. So, $\psi(M) = \langle a_1\rangle$ and in particular this means that $\langle d\rangle = \langle a_1\rangle$. So, $a_1 \divides a_2$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo Before moving on, I think it's worth stating for the next theorem that I'll let $A^0$ denote the module $\{0\}$.\retTwo
+
+\exTwo\ul{Fundamental Theorem of finitely generated modules over a PID:}
+\begin{myIndent}
+	(Existence): \hypertarget{math 200b page 591 reference}{If} $D$ is a P.I.D. and $M$ is a finitely generated $D$-module, then there exists $r \in \mathbb{Z}_{\geq 0}$ as well as $a_1, \ldots, a_m \in D - \{D^\times \cup \{0\}\}$ such that:
+	\begin{itemize}
+		\item[1.] $a_1 \divides a_2 \divides \cdots \divides a_m$
+		\item[2.] $M \cong D^r \oplus \frac{D}{\langle a_1\rangle} \oplus \cdots \oplus \frac{D}{\langle a_m \rangle}$.
+	\end{itemize}
+
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $m_1, \ldots, m_n$ be a set of generators for $M$. Then there exists a surjective\\  $D$-module homomorphism $\phi : D^n \to M$. By the first isomorphism theorem, we have that $M \cong \frac{D^n}{\ker(\phi)}$. If $\ker(\phi) = \{0\}$, we are done as $M \cong D^n$. Otherwise, by\\ [-3pt] our prior theorem there exists $x_1, \ldots, x_n \in D^n$ and $a_1, \ldots, a_m \in D - \{0\}$ such that:
+		\begin{itemize}
+			\item $D^n = Dx_1 \oplus \cdots \oplus Dx_n$,
+			\item $a_1 \divides a_2 \divides \cdots \divides a_m$,
+			\item $\ker(\phi) = Da_1x_1 \oplus \cdots \oplus Da_m x_m$.\retTwo
+		\end{itemize}
+
+		\ul{Lemma:} If $\{M_i\}_{i \in I}$ is a family of $A$-modules with submodules $N_i \subseteq M_i$, then:
+		
+		{\centering$\frac{\oplus_{i \in I} M_i}{\oplus_{i \in I} N_i} \cong \oplus_{i \in I} \frac{M_i}{N_i}$.\par}
+		\begin{myIndent}\exPPP
+			Proof:\\
+			Consider the map $\phi: \frac{\oplus_{i \in I} M_i}{\oplus_{i \in I} N_i} \to \oplus_{i \in I} \frac{M_i}{N_i}$ given by:
+			
+			{\center$\phi((x_i)_{i \in I} + \oplus_{i \in I} N_i) = (x_i + N_i)_{i \in I}$. \retTwo\par}
+
+			This is easily checked to be an $A$-module isomorphism.\retTwo
+		\end{myIndent}
+
+		It follows from that lemma that:
+
+		{\center\begin{tabular}{l}
+			$\frac{D^n}{\ker(\phi)} = \frac{Dx_1 \oplus \cdots \oplus Dx_n}{Da_1x_1 \oplus \cdots \oplus Da_m x_m \oplus \{0\} \oplus \cdots \oplus \{0\}} \cong \frac{Dx_1}{Da_1 x_1} \oplus \cdots \oplus \frac{Dx_m}{Da_m x_m} \oplus \underbrace{D \oplus \cdots \oplus D}_{n-m \text{ times}}$\\ [9pt]
+			$\phantom{\frac{D^n}{\ker(\phi)} = \frac{Dx_1 \oplus \cdots \oplus Dx_n}{Da_1x_1 \oplus \cdots \oplus Da_m x_m \oplus \{0\} \oplus \cdots \oplus \{0\}}} \cong D^{n-m} \oplus \frac{D}{\langle a_1\rangle} \oplus \cdots \oplus \frac{D}{\langle a_m\rangle}$.
+		\end{tabular} \retTwo\par}
+
+		Also if $a_1, \ldots, a_k$ are units (where $k \leq m$), then we can safely remove them since $\frac{D}{\langle u\rangle} \cong \{0\}$ for all $u \in D^\times$.\retTwo
+	\end{myIndent}
+
+	(Uniqueness): $(r, \langle a_1\rangle, \ldots, \langle a_m\rangle)$ are unique.
+
+	\begin{myIndent}\color{red}
+		We are not ready to prove this yet. But we will be working towards proving it.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo Given a P.I.D. $D$, let $M(r; a_1, \ldots, a_m) \coloneqq D^r \oplus \bigoplus_{i=1}^m \frac{D}{\langle a_i\rangle}$ where $r \in \mathbb{Z}_{\geq 0}$ and\\ $a_i \in D - (D^\times \cup \{0\})$ satisfies that $a_1 \divides a_2 \divides \cdots \divides a_m$.\retTwo
+
+\pracOne\mySepTwo
+If $M$ is an $A$-module, then the \udefine{annihilator} of $M$ is:
+
+{\centering$\Ann_A(M) \coloneqq \{a \in A : am = 0 \text{ for all }m \in M\}$.\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Note that $\Ann_A(M)$ is always an ideal of $A$. After all:
+	
+	{\centering$\Ann_A(M) = \bigcap_{m \in M} \ker(a \mapsto am)$.\retTwo\par}
+\end{myIndent}
+
+Similarly, if $m \in M$ then we define $\Ann_A(m) \coloneqq \{a \in A : am = 0\}$. This is also an ideal\\ of $A$.
+
+\mySepTwo
+
+\exTwo\ul{Lemma:} $\mRank(M(r; a_1, \ldots, a_m)) = r$.
+\begin{myIndent}\exThreeP
+	Since there is an injection $D^r \hookrightarrow M(r; a_1, \ldots, a_m) \eqqcolon M$, we know that:
+	
+	{\centering$r = \mRank(D^r) \leq \mRank(M)$.\retTwo\par}
+	
+	Meanwhile, suppose $v_1, \ldots, v_{r+1} \in M$. Then note that $a_m \in \Ann_D(\bigoplus_{i=1}^m \frac{D}{\langle a_i\rangle}) - \{0\}$. Thus we can get that $a_m v_1, \ldots, a_m v_{r+1}$ are in $D^r \oplus \{0\}$. And since $\mRank(D^r) = r$, there exists $c_1, \ldots, c_{r + 1}$ not all zero such that $c_1 a_m v_1 + \ldots + c_{r+1} a_m v_r = 0$. Thus, the $v_i$ are $D$-linearly dependent. And this proves that $\mRank(M) < r + 1$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Suppose $D$ is an integral domain and $M$ is a $D$-module. Then the \udefine{torsion} of $M$ is defined to be:
+
+{\centering$\Tor(M) \coloneqq \{m \in M : \exists a \in D - \{0\} \suchthat am = 0\}$ \retTwo\par}
+
+\begin{myIndent}\pracTwo
+	In other words, $m \in \Tor(M)$ if $\Ann_D(m) \neq \{0\}$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} $\Tor(M)$ is a submodule of $M$. (note this requires $D$ to be a domain\dots)
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $m_1, m_2 \in \Tor(M)$ and $a_1, a_2 \in D$. We know there exists $c_1, c_2 \in D - \{0\}$ such that $c_1 m_1 = c_2 m_2 = 0$. Also as $D$ is a domain, we know that $c_1 c_2 \neq 0$. That said:
+
+	{\centering $c_1c_2(a_1m_1 + a_2m_2) = c_2a_1(c_1m_1) + c_1a_2(c_2m_2) = 0$ \retTwo\par}
+
+	Therefore $a_1m_1 + a_2m_2 \in \Tor(M)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\ul{Remark:} If $\theta: M_1 \to M_2$ is a $D$-module isomorphism, then $\theta(\Tor(M_1)) = \Tor(M_2)$.
+\begin{myIndent}\pracTwo
+	Why:\\
+	Suppose $\exists c \in D - \{0\}$ such that $cm = 0$. Then $c\theta(m) = \theta(cm) = \theta(0) = 0$. He
+	
+	nce, $\theta(m) \subseteq \Tor(M_2)$\retTwo
+
+	This proves that $\theta(\Tor(M_1)) \subseteq \Tor(M_2)$. By symmetric reasoning, we can see that $\theta^{-1}(\Tor(M_2)) \subseteq \Tor(M_1)$. By applying $\theta$ to both sides, we get $\Tor(M_2) \subseteq \theta(\Tor(M_1))$. So, we can conclude that $\theta(\Tor(M_1)) = \Tor(M_2)$.\retTwo
+\end{myIndent}
+
+Consequently, if $\theta: M_1 \to M_2$ is a $D$-module isomorphism then $\Tor(M_1) \cong \Tor(M_2)$.\newpage
+
+\exTwo\ul{Lemma:} $\Tor(M(r; a_1, \ldots, a_m)) = \frac{D}{\langle a_1\rangle} \oplus \cdots \oplus \frac{D}{\langle a_m\rangle}$ (where the latter is an internal direct sum).
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		Note that we also write $\frac{D}{\langle a_1\rangle} \oplus \cdots \oplus \frac{D}{\langle a_m\rangle} = M(0, a_1, \ldots, a_m)$.\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	Note that $a_1\cdots a_m \cdot x = 0$ for any $x \in M(0, a_1, \ldots, a_m)$. Hence, the $\supseteq$ inclusion is clear.\retTwo
+
+	On the other hand, suppose that $(v, x) \in \Tor(M)$ where $v \in D^r$ and ${x \in M(0, a_1, \ldots, a_m)}$. Then there exists $c \in D - \{0\}$ such that $(cv, cx) = 0$. But $cv = 0 \Longrightarrow v = 0$ as $c \neq 0$. So, $(v, x) \in M(0, a_1, \ldots, a_m)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo 
+
+If $A$ is a unital commutative ring, we say $\mathfrak{a}_1, \ldots, \mathfrak{a}_m \lhd A$ are \udefine{coprime} if $\mathfrak{a}_i + \mathfrak{a}_j = A$\\ whenever $i \neq j$.
+\begin{myIndent}\pracTwo
+	As a side note, suppose $D$ is a P.I.D and let $a, b \in D$. Also let $d = \gcd(a, b)$ (see \inLinkRap{Math 200b Definition of GCD}{page 519}). Then we claim that $\langle a\rangle + \langle b\rangle = \langle a, b\rangle$ is precisely equal to $\langle d\rangle$.\retTwo
+
+	To see why, note that because $d \divides a$ and $d \divides b$, we know that $\langle a, b\rangle \subseteq \langle d\rangle$. On the other hand, as $D$ is a P.I.D. we know that $\langle a, b\rangle = \langle c \rangle$ for some $c \in D$. But now as $c \divides a$ and $c \divides b$, we must have that $c \divides d$. Therefore, $\langle d \rangle \subseteq \langle c \rangle = \langle a, b\rangle$.\retTwo
+
+	As a consequence, $\langle a \rangle + \langle b \rangle = A$ iff $\gcd(a, b) \in A^\times$. So this new definition of coprimeness purely generalizes the original definition.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Generalized Chinese Remainder Theorem:} Suppose $A$ is a unital commutative ring and $\mathfrak{a}_1, \ldots, \mathfrak{a}_m \lhd A$ are coprime. Then $\frac{A}{\mathfrak{a}_1 \cap \cdots \cap \mathfrak{a}_m} \cong \frac{A}{\mathfrak{a}_1} \oplus \cdots \oplus \frac{A}{\mathfrak{a}_m}$ via the $A$-algebra isomorphism $x + (\mathfrak{a}_1 \cap \cdots \cap \mathfrak{a}_m) \mapsto (x + \mathfrak{a}_1, \ldots, x + \mathfrak{a_m})$
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	\ul{Step 1:} For all $i$, we have that $\mathfrak{a}_i + \bigcap_{j \neq i}\mathfrak{a}_j = A$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		For all $j \neq i$, there exists $x_j \in \mathfrak{a}_j$ such that $x_j \equiv 1 \mMod{\mathfrak{a}_i}$. Then, $y \coloneqq \prod_{j \neq i} x_j$ is in $\bigcap_{j \neq i}\mathfrak{a}_j$ and satisfies that $y \equiv 1 \mMod{\mathfrak{a}_i}$. It follows that there exists $x_i \in \mathfrak{a}_i$ with $y + x = 1$. And that shows that $\mathfrak{a}_i + \bigcap_{j \neq i}\mathfrak{a}_j = A$.\retTwo
+	\end{myIndent}
+
+	\ul{Step 2:} $\theta : A \to \bigoplus_{i=1}^m \frac{A}{\mathfrak{a}_i}$ given by $\theta(x) = (x + \mathfrak{a}_1, \ldots, x + \mathfrak{a}_m)$ is a surjective \udefine{$A$-algebra homomorphism} (meaning it is an $A$-module homomorphism and a ring homomorphism). 
+
+	\begin{myIndent}\myComment
+		As a side note, we can view $\bigoplus_{i = 1}^m\frac{A}{\mathfrak{a}_i}$ as a ring by identifying it with the product ring $\prod_{i=1}^m \frac{A}{\mathfrak{a}_i}$. In general, an \udefine{$A$-algebra} $M$ is an $A$-module such that $M$ is also a ring and $a(m_1m_2) = (am_1)m_2 = m_1(am_2)$ for all $a \in A$ and $m_1, m_2 \in M$.\retTwo
+	\end{myIndent}
+
+	\begin{myIndent}\exPPP
+		Proof:\\
+		The fact that $\theta$ is a homomorphism is obvious. What is less obvious is that $\theta$ is\\ surjective. To prove this, it is necessary and sufficient to show that:
+		
+		{\centering$(0, \ldots, 0, 1 + \mathfrak{a}_i, 0, \ldots, 0) \in \myIm(\theta)$ for all $i$.\retTwo\par}
+
+		Fortunately by step 1, we know there exists $y_i \in \bigcap_{j \neq i} \mathfrak{a_j}$ such that $y_i \equiv 1 \mMod{\mathfrak{a}_i}$. In turn $\theta(y_i) = (0, \ldots, 0, 1 + \mathfrak{a}_i, 0, \ldots, 0) \in \myIm(\theta)$.\newpage
+	\end{myIndent}
+
+	\ul{Step 3:} $\ker(\theta) = \bigcap_{i=1}^m \mathfrak{a}_i$.
+	\begin{myIndent}\exPPP
+		Hopefully this is obvious.\retTwo
+	\end{myIndent}
+
+	To finish, just use the first isomorphism theorem for rings as well as the first isomorphism theorem for $A$-modules. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\exTwo\ul{Corollary:} If $M$ is a finitely generated $D$-module and $D$ is a PID, then $M$ is torsion-free (meaning $\Tor(M) = \{0\}$) if and only if $M$ is free.
+
+\begin{myIndent}\exThree
+	$(\Longleftarrow)$\\
+	If $M$ is free then we know that $M \cong D^r$ for some positive integer $r$. But $\Tor(D^r) = \{0\}$ since $D$ is a domain. Therefore, $\Tor(M) = \{0\}$ as well.\retTwo
+
+	$(\Longrightarrow)$\\
+	Using the fundamental theorem of finitely generated modules over a PID, write\\ $M \cong D^r \oplus M(0, a_1, \ldots, a_m)$. Then $\{0\} = \Tor(M) = M(0, a_1 \ldots, a_m)$ implies that $M \cong D^r$. So, $M$ is free. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Other remarks:
+\begin{itemize}
+	\item I used multiple times throughout the proof on \inLinkRap{Math 200b page 587-591 theorem}{pages 588-591} that if $D$ is an integral domain, then every ideal of $D$ is torsion free. 
+	
+	\item Note that if $D$ is not a P.I.D then there exists an ideal $\mathfrak{a} \lhd D$ that is not principle. In turn, $\mathfrak{a}$ is not free.
+	\begin{myIndent}\pracTwo
+		To see why, first note that $\mRank(\mathfrak{a}) = 1$. After all, we clearly have that $\{a\}$ is $D$-linearly independent for any $a \in \mathfrak{a} - \{0\}$. Meanwhile suppose $b$ is another element in $\mathfrak{a}$. Then, $b(a) + (-a)b = 0$ but $-a \neq 0$. So, $\{a, b\}$ is not $D$-linearly independent.\retTwo
+
+		As isomorphisms preserve the rank of modules and $\mRank(D^n) = n$ for all integers $n$, we must have that if $\mathfrak{a}$ were free then we'd have that $\mathfrak{a} \cong D$ via a $D$-module homomorphism $\theta : D \to \mathfrak{a}$. But now we'd have a contradiction as $\mathfrak{a} = \langle \theta(1)\rangle$ is principal.\retTwo
+	\end{myIndent}
+
+	\item By combining these remarks, we have shown that the $(\Longrightarrow)$ implication of the above corollary is false if $D$ is merely a domain instead of a P.I.D.
+\end{itemize}
+
+\mySepTwo 
+
+Let $D$ be a P.I.D. and let $\mathcal{P}_0 \subseteq D$ contain precisely one element from each equivalence class of companions containing irreducible elements (see \inLinkRap{Math 200b Page 518 reference}{page 518} and recall that all P.I.Ds are U.F.Ds).\retTwo
+
+Note that when $D$ is a U.F.D. and $\gcd(a, b) = 1$, then $\langle ab\rangle = \langle a \rangle \cap \langle b\rangle$.
+\begin{myIndent}\pracTwo
+	After all, the $\subseteq$ inclusion is trivial. Meanwhile, if $a \divides x$ and $b \divides x$, then because\\ $\gcd(a, b) = 1$, the only way to not violate the unique factorization of $x$ is if $ab \divides x$.\\ This shows that $\langle a \rangle \cap \langle b\rangle \subseteq \langle ab\rangle$.\newpage
+\end{myIndent}
+
+By induction we can conclude that $\langle a \rangle = \bigcap_{p \in \mathcal{P}_0}\langle p^{\nu_p(a)}\rangle$. And since $D$ is a P.I.D., we know from two pages ago that all the ideals $\langle p^{\nu_p(a)}\rangle$ are coprime. Hence by the generalized\\ [2pt] Chinese remainder theorem, we have that:
+
+{\centering $\frac{D}{\langle a\rangle} = \frac{D}{\bigcap_{p \in \mathcal{P}_0}\langle p^{\nu_p(a)}\rangle} \cong \bigoplus_{p \in \mathcal{P}_0} \frac{D}{\langle p^{\nu_p(a)}\rangle}$.\retTwo\par}
+
+
+Now at last we are going to prove the uniqueness part of the theorem on \inLinkRap{math 200b page 591 reference}{page 591}.\retTwo
+
+\exTwo\ul{Theorem:} If $M(r; a_1, \ldots, a_m) \cong M(r^\prime, b_1, \ldots, b_\ell)$, then $r = r^\prime$, $m = \ell$, and $\langle a_i \rangle = \langle b_i \rangle$  for all $i$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start out, we know that $r = \mRank(M(r; a_1, \ldots, a_m)) = \mRank(M(r^\prime, b_1, \ldots, b_\ell)) = r^\prime$. Also, we know that:
+
+	{\centering\begin{tabular}{l}
+		$M(0; a_1, \ldots, a_m) = \Tor(M(r; a_1, \ldots, a_m))$\\ [4pt]
+		$\phantom{M(0; a_1, \ldots, a_m)}\cong \Tor(M(r^\prime, b_1, \ldots, b_\ell)) = M(0; b_1, \ldots, b_\ell)$.
+	\end{tabular}\retTwo\par}
+
+	Hence, it now suffices to show that if $M(0; a_1, \ldots, a_m) \cong M(0; b_1, \ldots, b_\ell)$ then $m = \ell$ and $\langle a_i \rangle = \langle b_i \rangle$  for all $i$.\retTwo
+
+	\ul{Part 1: Building a Counting Machine}\\
+	Consider that:
+
+	{\centering\begin{tabular}{l}
+		$M \coloneqq M(0; c_1, \ldots, c_m) = \bigoplus\limits_{i=1}^m \frac{D}{\langle c_i\rangle} \cong \bigoplus\limits_{i=1}^m \left(\bigoplus\limits_{p \in \mathcal{P}_0}\frac{D}{\langle p^{\nu_p(c_i)}\rangle}\right) \cong \bigoplus\limits_{p \in \mathcal{P}_0} \left(\bigoplus\limits_{i=1}^m\frac{D}{\langle p^{\nu_p(c_i)}\rangle}\right)$
+	\end{tabular}\retTwo\par}
+
+	We shall denote $M(c_1, \ldots, c_m; p) \coloneqq \bigoplus_{i=1}^m\frac{D}{\langle p^{\nu_p(c_i)}\rangle}$.\retTwo
+	
+	Importantly note that as $c_1 \divides c_2 \divides \cdots \divides c_m$, we know that $\nu_p(c_1) \leq \cdots \leq \nu_p(c_m)$ for all $p \in \mathcal{P}_0$. Since $M(c_1, \ldots, c_m ; p)$ has that additional structure, we'll try studying it.
+	\begin{itemize}\exPPP
+		\item Note that if $A$ is a commutative ring, then for any $A$-module $N$ and $b \in A$ we have that $\ell_b(m) \coloneqq bm$ is an $A$-module homomorphism from $N$ to itself. It follows that $b \cdot M = \myIm(\ell_b)$ is an $A$-module.\retTwo
+		
+		\item If $\{M_i\}_{i \in I}$ is a family of $A$-modules and $b \in A$, then $b \cdot \bigoplus\limits_{i \in I} M_i = \bigoplus\limits_{i \in I}(b \cdot M_i)$.\retTwo
+		
+		\item Suppose $\theta: M_1 \to M_2$ is an $A$-module isomorphism. Then $\theta(b \cdot M_1) = b \cdot M_2$. 
+		\begin{myIndent}\color{Orange}
+			Hopefully this is easy to see.\retTwo
+		\end{myIndent}
+		
+		\item In particular, if $D$ is a P.I.D. and $a \in D$, then we have that
+		
+		{\centering $ b \cdot \frac{D}{\langle a \rangle} = \frac{bD + \langle a \rangle}{\langle a\rangle} = \frac{\langle b, a \rangle}{\langle a\rangle} = \frac{\langle \gcd(a, b)\rangle}{\langle a\rangle} $\retTwo\par}
+
+		Consequently, if $p_0, p$ are prime elements and $r, k$ are nonnegative integers, then:
+
+		{\centering $p_0^{r} \cdot \frac{D}{\langle p^k\rangle} = \left\{ \begin{matrix}
+		\frac{D}{\langle p^k\rangle} & \text{ if } p_0 \neq p \\ \\ \frac{\langle p^{\min(r, k)}\rangle}{\langle p^{k}\rangle} & \text{ if } p_0 = p
+		\end{matrix}\right.$ \newpage\par}
+
+		\item $\frac{\langle\gcd(a, b)\rangle}{\langle a\rangle} \cong \frac{D}{\langle \frac{a}{\gcd(a, b)}\rangle}$ as $D$-modules.
+		\begin{myIndent}\color{Orange}
+			Proof:\\
+			Let $d = \gcd(a, b)$ and define $\widehat{\theta} : D \to \frac{\langle d\rangle}{\langle a\rangle}$ by $\widehat{\theta}(x) \coloneqq dx + \langle a \rangle$. Then $\widehat{\theta}$ is a surjective $D$-module homomorphism.\\ [-9pt]
+			
+			Also, $x \in \ker(\widehat{\theta})$ iff $dx \in \langle a \rangle$, and that happens iff $dx = ay$ for some $y \in D$. But now as $d \divides a$ and $D$ is an integral domain, we can say that $x = \frac{a}{d} y$ for some $y \in D$.\\ [-9pt]
+			
+			Hence, $\ker(\widehat{\theta}) = \langle \frac{a}{d}\rangle$ and we finish by invoking the first isomorphism theorem. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{itemize}
+
+	Now for all integers $r \geq 0$ and $p_0 \in \mathcal{P}_0$, we have that:
+
+	{\center\begin{tabular}{l}
+		$p_0^r \cdot M \cong \bigoplus_{p \in \mathcal{P}_0} p_0^r \cdot M(c_1, \ldots, c_m ; p)$\\ [8pt]
+		$\phantom{p_0^r \cdot M} = \bigoplus_{p \in \mathcal{P}_0}  \left(\bigoplus_{i=1}^m p_0^r \cdot \frac{D}{\langle p^{\nu_p(c_i)}\rangle}\right)$\\ [8pt]
+		$\phantom{p_0^r \cdot M} \cong \left(\bigoplus_{p \in \mathcal{P}_0 - \{p_0\}}  \left(\bigoplus_{i=1}^m \frac{D}{\langle p^{\nu_p(c_i)}\rangle}\right)\right) \oplus \bigoplus_{i=1}^m \frac{\langle {p_0}^{\min(r, \nu_{p_0}(c_i))}\rangle}{\langle {p_0}^{\nu_{p_0}(c_i)}\rangle}$
+	\end{tabular}\retTwo\par}
+
+	In order to cancel out the first ugly direct sum, we do an algebraic trick (which is referred to as taking a \udefine{graded filtration}). Consider the submodules:
+
+	{\centering $M \supseteq p_0 \cdot M \supseteq p_0^2 \cdot M \supseteq \cdots$ \retTwo\par}
+
+	Now by recalling the lemma on \inLinkRap{math 200b page 591 reference}{page 591}, we get that:
+
+	{\centering$\frac{p_0^r \cdot M}{p_0^{r+1} \cdot M} \cong \frac{\bigoplus_{i=1}^m \frac{\langle {p_0}^{\min(r, \nu_{p_0}(c_i))}\rangle}{\langle {p_0}^{\nu_{p_0}(c_i)}\rangle}}{\bigoplus_{i=1}^m \frac{\langle {p_0}^{\min(r + 1, \nu_{p_0}(c_i))}\rangle}{\langle p_0^{\nu_{p_0}(c_i)}\rangle}} \cong \bigoplus_{i=1}^m \frac{\left(\frac{\langle p_0^{\min(r, \nu_{p_0}(c_i))}\rangle}{\langle {p_0}^{\nu_{p_0}(c_i)}\rangle}\right)}{\left(\frac{\langle p_0^{\min(r + 1, \nu_{p_0}(c_i))}\rangle}{\langle p_0^{\nu_{p_0}(c_i)}\rangle}\right)}$.\retTwo\par}
+
+	\ul{Lemma:} Suppose $M \supseteq N \supseteq L$ are $D$-modules. Then $(M/L)/(N/L) \cong (M/N)$
+	\begin{myIndent}\exPPP
+		Proof:\\
+		We already know from the third isomorphism theorem for groups that\\ $(x + L) + N/L \mapsto  x + N$ is a group isomorphism. Then it's trivial to further\\ check that this group isomorphism is also $A$-module homomorphism.\retTwo
+	\end{myIndent}
+
+	So, $\frac{p_0^r \cdot M}{p_0^{r+1} \cdot M} \cong \bigoplus_{i=1}^m \frac{\langle {p_0}^{\min(r, \nu_{p_0}(c_i))}\rangle}{\langle {p_0}^{\min(r + 1, \nu_{p_0}(c_i))}\rangle}$.\retTwo
+
+	But now consider that $\frac{\langle p_0^{\min(r, \nu_{p_0}(c_i))}\rangle}{\langle {p_0}^{\min(r + 1, \nu_{p_0}(c_i))}\rangle} \cong \left\{\begin{matrix}
+	\{0\} & \text{ if } \nu_{p_0}(c_i) \leq r \\ \\ \frac{D}{\langle p_0 \rangle} & \text{ if } \nu_{p_0}(c_i) > r
+	\end{matrix}\right.$\retTwo
+
+	Therefore, we have that $\frac{p_0^r \cdot 
+	M}{p_0^{r+1} \cdot M} \cong \left(\frac{D}{\langle p_0\rangle}\right)^{\#\{i\phantom{.} :\phantom{.} \nu_{p_0}(c_i) > r\}}$ {\exPPP(where $\#S$ denotes the\\ [-5pt]\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} cardinality of the set $S$)}.\retTwo
+
+	\ul{Lemma:} If $M$ is an $A$-module, $\mathfrak{b} \lhd A$, and $\theta: M \to (A/\mathfrak{b})^k$ is an $A$-module isomorphism, then we can view $M$ as an $(A/\mathfrak{b})$-module by defining $(a + \mathfrak{b})m = am$. Furthermore, $\theta$\\ is then an $(A/\mathfrak{b})$-module isomorphism when $M$ is equipped with this multiplication\\ operation.\newpage
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Suppose $a_1 \equiv a_2 \mMod{\mathfrak{b}}$. Then $a_1 - a_2 \equiv 0 \mMod{\mathfrak{b}}$. In turn, for any $m \in M$ we must have that
+		
+		{\centering$\theta((a_1 - a_2)m) = (a_1 - a_2)\theta(m) = 0$\retTwo\par}
+
+		And because $\theta$ is an isomorphism, that implies that $(a_1 - a_2)m = 0$. So, $a_1m = a_2m$ and we've proven that our scalar multiplication operation is well-defined. All the needed properties of this scalar multiplication are now easily seen as being inherited from the old scalar multiplication.\retTwo
+	\end{myIndent}
+
+	At last we get to the key observation. Note that as $D$ is a P.I.D. and $p_0$ is irreducible, we\\ [1pt] know that $\frac{D}{\langle p_0\rangle}$ is a field. Hence, our prior lemma says that $\frac{p_0^r \cdot M}{p_0^{r+1} \cdot M}$ is a $\frac{D}{\langle p_0\rangle}$-vector space\\ [-0pt] whose dimension is precisely the number of $c_i$ for which $p_0^r \divides c_i$.\retTwo
+
+	\mySepThree 
+
+	\ul{Part 2: Counting the irreducible factors of $a_1, \ldots, a_m$ and $b_1, \ldots, b_\ell$}\\
+	Let $N_1 \coloneqq M(0; a_1, \ldots, a_m)$ and $N_2 \coloneqq M(0; b_1, \ldots, b_\ell)$, and suppose $N_1 \cong N_2$.\retTwo
+	
+	\ul{Remark:} If $M_1, M_2$ are $A$-modules, $N \subseteq M_1$ is a submodule, and $\theta: M_1 \to M_2$ is an $A$-module isomorphism, then $\frac{M_1}{N} \cong \frac{M_2}{\theta(N)}$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Let $\pi: M_2 \to M_2/\theta(N)$ be the $A$-module homomorphism $m \mapsto m + \theta(N)$. Then, consider the map $\phi \coloneqq \pi \circ \theta$. Clearly $\phi$ is surjective since both $\theta$ and $\pi$ are. Also, $x \in \ker(\phi)$ iff $\theta(x) \in \theta(N)$. And since $\theta$ is injective, that happens iff $x \in N$. To finish off, we invoke the first isomorphism theorem.\retTwo
+	\end{myIndent}
+
+	As a result of the above remark plus an earlier remark that if $\theta: M_1 \to M_2$ is an $A$-module isomorphism then $\theta(b \cdot M_1) = b \cdot M_2$, we can now conclude for all for all $p \in \mathcal{P}_0$ and $r \in \mathbb{Z}_{\geq 0}$, we have that:
+
+	{\centering $\left(\frac{D}{\langle p\rangle}\right)^{\#\{i\phantom{.} :\phantom{.} \nu_{p}(a_i) > r\}} \cong \frac{p^r \cdot N_1}{p^{r+1} \cdot N_1} \cong \frac{p^r \cdot N_2}{p^{r+1} \cdot N_2} \cong \left(\frac{D}{\langle p\rangle}\right)^{\#\{i\phantom{.} :\phantom{.} \nu_{p}(b_i) > r\}}$ \retTwo\par}
+
+	Since vector space isomorphisms preserve dimension, we can conclude that:
+
+	{\centering $\#\{i\phantom{.} :\phantom{.} \nu_{p}(a_i) > r\} = \#\{i\phantom{.} :\phantom{.} \nu_{p}(b_i) > r\}$ for all $p \in \mathcal{P}_0$ and $r \in \mathbb{Z}_{\geq 0}$ \retTwo\par}
+
+	This let's us show that $m = \ell$ and that $\langle a_i\rangle = \langle b_i\rangle$ for all $i$.
+	\begin{myIndent}\exPPP
+		To start off, let $M = \max\{ \#\{i\phantom{.} :\phantom{.} \nu_{p}(a_i) > 0\} : p \in \mathcal{P}_0\}$.\retTwo
+		
+		It's clear that $M \leq m$. Meanwhile, because $a_1 \notin A^\times$, there must exists some irreducible element $p_0$ such that $p_0 \divides a_1$. In turn, as $a_1 \divides a_2 \divides \cdots \divides a_m$, we have that $\#\{i\phantom{.} :\phantom{.} \nu_{p_0}(a_i) > 0\} = m$. Hence, we've proven that $M = m$.\retTwo
+
+		By similar reasoning with the quantity $\max\{ \#\{i\phantom{.} :\phantom{.} \nu_{p}(b_i) > 0\} : p \in \mathcal{P}_0\}$, we can thus conclude that:
+		
+		{\centering\fontsize{11}{11} $m = \max\{ \#\{i\phantom{.} :\phantom{.} \nu_{p}(a_i) > 0\} : p \in \mathcal{P}_0\} = \max\{ \#\{i\phantom{.} :\phantom{.} \nu_{p}(b_i) > 0\} : p \in \mathcal{P}_0\} = \ell$ \retTwo\par}
+
+		Next, for any fixed $p \in \mathcal{P}_0$ consider the Young diagram such that the number of boxes in the $(r + 1)$th column is equal to $\#\{i\phantom{.} :\phantom{.} \nu_{p}(a_i) > r\} = \#\{i\phantom{.} :\phantom{.} \nu_{p}(b_i) > r\}$.\newpage Then the number of boxes in the $k$th row is precisely equal to $\nu_p(a_{-k + m + 1})$ and $\nu_p(b_{-k + m + 1})$. Below I've attached a sample diagram to show what I mean.
+
+		{\centering\includegraphics[scale=0.9]{math 200b awful obnoxious uniqueness proof.png}\retTwo\par}
+
+		This proves that $\nu_p(a_i) = \nu_p(b_i)$ for all $p \in \mathcal{P}_0$ and $i \in \{1, \ldots, m\}$. The only way this is possible is if $a_i, b_i$ are companions for each $i$. \exThreeP $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Suppose $M$ is an $F[x]$-module where $F$ is a field. Then $\ell_x : M \to M$ defined by\\ $\ell_x(m) = xm$ is an $F$-linear map. Also if $f(x) = c_nx^n + \ldots + c_1x + c_0 \in F[x]$,\\ then $f(x) \cdot m = \sum_{i=0}^n c_i \ell_x^i(m)$. Hence, the $F$-linear map $\ell_x$ uniquely determines\\ the $F[x]$-module structure of $M$.\retTwo
+
+In a similar vein, if $M_1, M_2$ are $F[x]$-modules then $\theta: M_1 \to M_2$ is an $F[x]$-module\\ homomorphism if and only if $\theta$ is an $F$-linear map, and $\theta(x \cdot m_1) = x \cdot \theta(m_1)$. To put another $\theta$ is an $F[x]$-module homomorphism iff if the following commutative diagram of $F$-module homomorphisms holds:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNXzEiXSxbMSwwLCJNXzIiXSxbMSwxLCJNXzIiXSxbMCwxLCJNXzEiXSxbMCwxLCJcXHRoZXRhIl0sWzMsMiwiXFx0aGV0YSJdLFswLDMsIlxcZWxsX3giLDJdLFsxLDIsIlxcZWxsX3giXV0=
+\[\begin{tikzcd}
+	{M_1} & {M_2} \\
+	{M_1} & {M_2}
+	\arrow["\theta", from=1-1, to=1-2]
+	\arrow["{\ell_x}"', from=1-1, to=2-1]
+	\arrow["{\ell_x}", from=1-2, to=2-2]
+	\arrow["\theta", from=2-1, to=2-2]
+\end{tikzcd}\]
+
+\begin{myIndent}\pracTwo
+	$(\Longrightarrow)$\\
+	This is obvious.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $f(x) = c_nx^n + \ldots + c_1x + c_0$. Then:
+	
+	{\centering$\theta(f(x) \cdot m) = \theta(\sum\limits_{i=0}^n c_i \ell_x^i(m)) = \sum\limits_{i=0}^n c_i \theta(\ell_x^i(m)) = \sum\limits_{i=0}^n c_i \ell_x^i(\theta(m)) = f(x) \cdot \theta(m)$.\retTwo\par}
+\end{myIndent}
+
+We're going to use this to study linear algebra. Suppose $F$ is a field and $a \in M_n(F)$. Then we are interested in the map $a : F^n \to F^n$ given by $| v {\rangle} \mapsto a\phantom{.} | v {\rangle}$. So, we define the $F[x]$-\newpage module $V_a$ by taking the $F$-vector space $F^n$ and defining $\ell_x(v) = a\phantom{.} |v {\rangle}$. Hence:
+
+{\centering$(c_nx^n + \cdots + c_1x + c_0) \cdot v = (c_n a^n + \cdots + c_1 a + c_0 I) | v {\rangle}$\retTwo\par}
+
+\exTwo\ul{Lemma:} $V_a \cong V_b$ as $F[x]$-modules if and only if $a$ and $b$ are similar matrices.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$V_a \cong V_b$ as $F[x]$-modules iff there exists an $F[x]$ module isomorphism $\theta: V_a \to V_b$. But that happens iff there exists a bijective $F$-linear map $\theta: V_a \to V_b$ such that the below diagram commutes:
+
+	% https://q.uiver.app/#q=WzAsOCxbMSwwLCJWX2EiXSxbMCwwLCJGXm4iXSxbMCwxLCJGXm4iXSxbMSwxLCJWX2EiXSxbMiwwLCJWX2IiXSxbMiwxLCJWX2IiXSxbMywwLCJGXm4iXSxbMywxLCJGXm4iXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsMSwiIiwyLHsib2Zmc2V0IjoxLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiIiwyLHsib2Zmc2V0IjoxLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzMsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDMsIlxcZWxsX3giXSxbMSwyLCJhIl0sWzAsNCwiXFx0aGV0YSJdLFszLDUsIlxcdGhldGEiXSxbNCw1LCJcXGVsbF94Il0sWzYsNywiYiJdLFs0LDYsIiIsMCx7Im9mZnNldCI6LTEsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw2LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzUsNywiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDcsIiIsMCx7Im9mZnNldCI6LTEsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+	{F^n} & {V_a} & {V_b} & {F^n} \\
+	{F^n} & {V_a} & {V_b} & {F^n}
+	\arrow["a", from=1-1, to=2-1]
+	\arrow[no head, from=1-2, to=1-1]
+	\arrow[shift right, no head, from=1-2, to=1-1]
+	\arrow["\theta", from=1-2, to=1-3]
+	\arrow["{\ell_x}", from=1-2, to=2-2]
+	\arrow[shift left, no head, from=1-3, to=1-4]
+	\arrow[no head, from=1-3, to=1-4]
+	\arrow["{\ell_x}", from=1-3, to=2-3]
+	\arrow["b", from=1-4, to=2-4]
+	\arrow[shift right, no head, from=2-2, to=2-1]
+	\arrow[no head, from=2-2, to=2-1]
+	\arrow["\theta", from=2-2, to=2-3]
+	\arrow[no head, from=2-3, to=2-4]
+	\arrow[shift left, no head, from=2-3, to=2-4]
+	\end{tikzcd}\]
+
+	\begin{myIndent}\exPPP
+		As a side note, if $a \in M_{n_1}(F)$, $b \in M_{n_2}(F)$, and $n_1 \neq n_2$, then there doesn't exists an $F$-linear bijection $\theta: F^{n_1} \to F^{n_2}$. Hence, we lose nothing by assuming both $V_a$ and $V_b$ are equal as sets to $F^n$.\retTwo
+	\end{myIndent}
+
+	Equivalently, we can say there is some $g \in \GL_n(F)$ with $\theta(v) = g\phantom{.} | v {\rangle}$ such that the below diagram commutes:
+
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGXm4iXSxbMSwwLCJGXm4iXSxbMSwxLCJGXm4iXSxbMCwxLCJGXm4iXSxbMCwxLCJnIl0sWzMsMiwiZyJdLFswLDMsImEiXSxbMSwyLCJiIl1d
+	\[\begin{tikzcd}
+		{F^n} & {F^n} \\
+		{F^n} & {F^n}
+		\arrow["g", from=1-1, to=1-2]
+		\arrow["a", from=1-1, to=2-1]
+		\arrow["b", from=1-2, to=2-2]
+		\arrow["g", from=2-1, to=2-2]
+	\end{tikzcd}\]
+
+	In other words, there exists an invertible matrix $g$ such that $ga = bg$. And finally, we get that $b = gag^{-1}$ for some $g \in \GL_n(F)$. Hence, $a$ and $b$ are similar matrices. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Suppose $a \in M_{n_1}(F)$ and $b \in M_{n_2}(F)$. Then if we consider the direct sum $V_a \oplus V_b$ note that for any $(v, w) \in V_a \oplus V_b$ we have that:
+
+{\centering$x \cdot (v, w) = (a\phantom{.} | v{\rangle}, b\phantom{.} | v{\rangle}) = \begin{bmatrix}a & \bm{0} \\ \bm{0} & b\end{bmatrix}\begin{bmatrix}v \\ w\end{bmatrix}  $\retTwo\par}
+
+In particular, if we denote the block matrix $\begin{bmatrix}a & \bm{0} \\ \bm{0} & b\end{bmatrix}$ as $\diag(a, b)$, then we've shown that\\ [-4pt] $V_a \oplus V_b \cong V_{\diag(a, b)}$.\retTwo
+
+Hopefully it is clear how this generalizes to larger finite direct sums, and how one would define a block matrix $\diag(a_1, \ldots, a_n)$.
+
+\mySepTwo
+
+Given a field $F$, we know that $F[x]$ is a P.I.D. Also if $a \in M_n(F)$ then we trivially have that $V_a$ is finitely generated (because the standard basis for $F^n$ will always generate all of $V_a$).
+Therefore, by the \inLinkRap{Fundamental Theorem of finitely generated modules over a P.I.D.}{fundamental theorem of finitely generated modules over a P.I.D}, we know that there exists a unique $r \in \mathbb{Z}_{\geq 0}$ as well as unique ideals $\langle f_1 \rangle \supseteq \langle f_2\rangle \supseteq \cdots \supseteq \langle f_m\rangle$ in $F[x]$ such that:
+
+{\centering $V_a \cong (F[x])^r \oplus \frac{F[x]}{\langle f_1\rangle} \oplus \cdots \oplus \frac{F[x]}{\langle f_m\rangle}$ as $F[x]$-modules. \newpage\par}
+
+Equivalently, there exists unique monic polynomials $f_1 \divides f_2 \divides \cdots \divides f_m$ in $F[x]$ such that:
+
+{\centering $V_a \cong (F[x])^r \oplus \frac{F[x]}{\langle f_1\rangle} \oplus \cdots \oplus \frac{F[x]}{\langle f_m\rangle}$ as $F[x]$-modules.\retTwo\par}
+
+But now we can immediately deduce that $r = 0$.
+\begin{myIndent}\pracTwo
+	To see why compare the dimensions of both sides of the above equation as $F$-vector spaces. $V_a$ would be an $n$-dimensional $F$-vector but $F[x]^r$ would be an infinite-dimensional $F$-vector space for any $r > 0$.\retTwo
+\end{myIndent}
+
+So, we can further refine our conclusion to the following:
+\begin{myIndent}\exTwo
+	\ul{Corollary:} Suppose $F$ is a field and $a \in M_n(F)$. There exists unique monic positive degree polynomials $f_1 \divides f_2 \divides \cdots \divides f_m$ such that $V_a \cong \frac{F[x]}{\langle f_1\rangle} \oplus \cdots \oplus \frac{F[x]}{\langle f_m\rangle}$ as $F[x]$-modules.\retTwo
+\end{myIndent}
+
+We call the polynomials $f_1, \ldots, f_m$ above the \udefine{invariant factors} of the matrix $a$.\retTwo
+
+\exTwo\ul{Corollary:} If $F$ is a field and $a, b \in M_n(F)$, then $a$ is similar to $b$ iff $a$ and $b$ have the same invariant factors.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$a$ is similar to $b$ iff $V_a \cong V_b$ as $F[x]$-modules. But by the \inLinkRap{Fundamental Theorem of finitely generated modules over a P.I.D.}{fundamental theorem of finitely generated modules over a P.I.D}, the latter statement is equivalent to both $a$ and $b$ having the same invariant factors. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo 
+
+Question? Given any $f \in F[x]$, can we find a matrix $a \in M_n(F)$ such that $V_a \cong \frac{F[x]}{\langle f\rangle}$.
+\begin{myIndent}\myComment
+	A reason to ask this question is that after finding matrices $a_1, \ldots, a_m$ such that $V_{a_i} \cong \frac{F[x]}{\langle f_i\rangle}$ for each $i \in \{1, \ldots, m\}$, we could then conclude that:
+
+	{\centering $V_a \cong \frac{F[x]}{\langle f_1\rangle} \oplus \cdots \oplus \frac{F[x]}{\langle f_m\rangle} \cong V_{a_1} \oplus \cdots \oplus V_{a_m} \cong V_{\diag(a_1, \ldots, a_m)}$ \retTwo\par}
+\end{myIndent}
+
+The answer to the above question is yes. To show this, first recall from math 100b and 100c that if $f(x) = c_n x^n + \cdots + c_1 x + c_0$ (where $c_n \neq 0$) then $\frac{F[x]}{\langle f\rangle}$ has the following $F$-basis (where $\overline{x^i}$ is just the equivalence class of $x^i$\hspace{-0.3em} $\mMod{\langle f\rangle}$):\\ [-18pt]
+
+{\center $\mathcalli{B} = (\overline{1}, \overline{x}, \ldots, \overline{x^{n-1}})$\par}
+
+\begin{myIndent}\pracTwo
+	To see why, first note that by the long division theorem we can conclude that every\\ equivalence class in $F[x] / \langle f\rangle$ contains a unique polynomial with degree less than $n$. It easily follows that $\mathcalli{B}$ spans all of $F[x] / \langle f\rangle$. Also, as the unique polynomial of degree less than $n$ equivalent to $0 \mMod{\langle f\rangle}$ is $0$, we know that:
+	
+	{\centering$c_{n-1}\overline{x^{n-1}} + \cdots + c_{1}\overline{x^{1}} + c_0\overline{1} \equiv 0 \mMod{\langle f\rangle}$ iff all $c_i = 0$.\retTwo\par}
+\end{myIndent}
+
+Thus, we identify $\frac{F[x]}{\langle f\rangle} \to F^n$ as $F$-vector spaces via the mapping $\overline{g} \mapsto | \overline{g} {\rangle}_{\mathcalli{B}}$ (where $| \overline{g} {\rangle}_{\mathcalli{B}}$ is just the column vector for $\overline{g}$ with respect to the basis $\mathcalli{B}$).
+
+\begin{myIndent}\myComment
+	In other words, $a_{m-1}x^{m-1} + \cdots + a_1x + a_0 + \langle f\rangle \mapsto | (a_0, a_1, \ldots, a_{m-1}) {\rangle}$.\newpage
+\end{myIndent}
+
+We want to find a matrix $[\ell_x]_{\mathcalli{B}} \in M_n(F)$ such that $[\ell_x]_{\mathcalli{B}} | \overline{g} {\rangle}_{\mathcalli{B}} = |\ell_x(\overline{g}) {\rangle}_{\mathcalli{B}}$. In other words, we want the following diagram to commute:
+
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGZyYWN7Rlt4XX17XFxsYW5nbGUgZlxccmFuZ2xlfSJdLFsxLDAsIkZebiJdLFsxLDEsIkZebiJdLFswLDEsIlxcZnJhY3tGW3hdfXtcXGxhbmdsZSBmXFxyYW5nbGV9Il0sWzAsMywiXFxlbGxfeCIsMl0sWzEsMiwiW1xcZWxsX3hdX1xcbWF0aGNhbGxpe0J9Il0sWzAsMSwifFxcY2RvdFxccmFuZ2xlX3tcXG1hdGhjYWxsaXtCfX0iXSxbMywyLCJ8XFxjZG90XFxyYW5nbGVfe1xcbWF0aGNhbGxpe0J9fSIsMl1d
+\[\begin{tikzcd}
+	{\frac{F[x]}{\langle f\rangle}} & {F^n} \\
+	{\frac{F[x]}{\langle f\rangle}} & {F^n}
+	\arrow["{|\cdot\rangle_{\mathcalli{B}}}", from=1-1, to=1-2]
+	\arrow["{\ell_x}"', from=1-1, to=2-1]
+	\arrow["{[\ell_x]_\mathcalli{B}}", from=1-2, to=2-2]
+	\arrow["{|\cdot\rangle_{\mathcalli{B}}}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+But this is easy. After all, given any linear map $T: V \to V$ and basis vectors $v_1, \ldots, v_n$,\\ we can always write the matrix of $T$ with respect to that basis as $\begin{bmatrix}T(v_1) & \cdots & T(v_n) \end{bmatrix}$.\\ Hence we must have that:
+
+{\center\begin{tabular}{l}
+	$[\ell_x]_{\mathcalli{B}} = \begin{bmatrix} |\ell_x(\overline{1}){\rangle}_{\mathcalli{B}} & |\ell_x(\overline{x}){\rangle}_{\mathcalli{B}} & \cdots & |\ell_x(\overline{x^{n-2}}){\rangle}_{\mathcalli{B}} & |\ell_x(\overline{x^{n-1}}){\rangle}_{\mathcalli{B}} \end{bmatrix}$\\ [10pt]
+
+	$\phantom{[\ell_x]_{\mathcalli{B}}} = \begin{bmatrix} |\overline{x}{\rangle}_{\mathcalli{B}} & |\overline{x^2}{\rangle}_{\mathcalli{B}} & \cdots & |\overline{x^{n-1}}{\rangle}_{\mathcalli{B}} & |\overline{x^{n}}{\rangle}_{\mathcalli{B}} \end{bmatrix}$\\ [10pt]
+
+	$\phantom{[\ell_x]_{\mathcalli{B}}} = \begin{bmatrix} 0 & 0 & \cdots & 0 & -c_0/c_n \\ 1 & 0 & \cdots & 0 & -c_1/c_n \\ 0 & 1 & \cdots & 0 & -c_2/c_n \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & \cdots & 1 & -c_{n-1} / c_n\end{bmatrix}$\\ [10pt]
+\end{tabular}\retTwo\par}
+
+\begin{myDindent}\myComment
+	This matrix is called the \udefine{companion matrix} of $f(x)$ and we denote it by $c_f$. (Note that if $f$ is monic then $c_n = 1$\dots)\retTwo
+\end{myDindent}
+
+Thus we can conclude that $\frac{F[x]}{\langle f\rangle} \cong V_{c_f}$. Also, this leads to the following theorem.\retTwo
+
+\exTwo\ul{Theorem (Rational Canonical Form):} If $a \in M_n(F)$ and $f_1, \ldots, f_m$ are the invariant factors of $a$ then $a$ is similar to $\diag(c_{f_1}, \ldots, c_{f_m})$.\retTwo
+
+\hTwo\mySepTwo
+
+\color{red}(This is the beginning of the final lecture I need to get through to fully catch up to the class. Unfortunately I didn't have time to do the third problem set.)\retTwo
+
+\hTwo Firstly, we prove a uniqueness result related to the prior theorem. Note that given a matrix of the form:\\ [-34pt]
+
+$$a  = \begin{bmatrix} 0 & 0 & \cdots & 0 & -c_0 \\ 1 & 0 & \cdots & 0 & -c_1 \\ 0 & 1 & \cdots & 0 & -c_2 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & \cdots & 1 & -c_{n-1}\end{bmatrix} \in M_n(F)\text{,}$$
+
+we can find a unique monic polynomial $f \in F[x]$ such that $a = c_f$.\retTwo
+
+\exTwo\ul{Theorem (Uniqueness of the Rational Canonical Form):} Suppose $f_1, \ldots, f_m \in F[x]$\\ are monic polynomials satisfing that $f_1 \divides f_2 \divides \cdots \divides f_m$ and the matrix $a$ is similar to\\ $\diag(c_{f_1}, \ldots, c_{f_m})$. Then $f_1, \ldots, f_m$ are the invariant factors of the matrix $a$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$V_a \cong V_\diag(c_{f_1}, \ldots, c_{f_m}) \cong \bigoplus_{i=1}^m V_{c_{f_i}} \cong \bigoplus_{i=1}^m\frac{F[x]}{\langle f_i\rangle}$. Then as $f_1 \divides f_2 \divides \cdots \divides f_m$, we\\ can conclude by the uniqueness part of the fundamental theorem of finitely generated\\ modules over a P.I.D. that $f_1, \ldots, f_m$ are the invariant polynomials. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\hypertarget{page 602 reference math 200b}{On} \inLinkRap{Definition of F-algebra page 518}{page 518} I wrote what it means for a unital commutative ring to be an $F$-algebra.\\ However, for this next section it will be necessary to define what it means for a non-\\commutative unit ring to be an $F$-algebra. Also in general I want to prove some things\\ I didn't think of proving back on page 518.\retTwo
+
+If $F$ is a field and $A$ is a noncommutative unital ring, we say that $A$ is an \udefine{$F$-algebra} if there exists a ring homomorphism $f : F \to A$ such that $f(1_f) = f(1_A)$ and $f(c)a = af(c)$ for all $a \in A$ and $c \in F$.
+\begin{itemize}
+	\item Note that if $A \neq \{0\}$ then $f$ is necessarily injective. This is because $\ker(f)$ is an ideal of $F$. That said, the only ideals of $F$ are $F$ and $\{0\}$, and we know that $\ker(f) \neq F$. After all, $1_F \notin \ker(f)$ since $f(1_F) = 1_A \neq 0_A$. It follows that $\ker(f) = \{0\}$ and that proves that $f$ is injective.
+	\begin{myIndent}\myComment
+		The significance of the prior result is that if $A$ is an $F$-algebra then we can view $F$ as being a field embedded into $A$.
+	\end{myIndent}
+
+	\item If $c \in F$ and $a \in A$ satisfy that $ca = 0$, then we must have that either $c = 0$ or $a = 0$. After all, suppose $c \neq 0$ but $ca = 0$. Then $a = c^{-1}ca = c^{-1}0 = 0$.
+
+	\item I mentioned on page 518 that $A$ is an $F$-vector space when we consider defining\\ $c \cdot a = f(c)a$ for all $c \in F$ and $a \in A$. This is easy to show. That said, we do need to explicity assume that $f(c)a = af(c)$ for all $a \in A$ and $c \in F$ in order for us to have that $c \cdot (a_1 a_2) = (c \cdot a_1)a_2 = a_1(c \cdot a_2)$.
+	
+	\item For an example of a non-commutative  $F$-algebra that we'll be caring about, consider the set of matrices $M_n(F)$ and define $f: F \to M_n(F)$ by $c \mapsto cI$.\retTwo
+\end{itemize}
+
+\exTwo\ul{Lemma:} Suppose $A$ is an $F$-algebra (and $A \neq \{0\}$). If $\dim_F(A) < \infty$ then for all $a \in A$ there exists a unique nonconstant monic polynomial $m_{a;F}(x) \in F[x]$ such that for all $g \in F[x]$ we have that $g(a) = 0 \Longleftrightarrow m_{a;F}(x) \divides g(x)$ in $F[x]$.
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		Note that $m_{a;F}$ is called the \udefine{minimal polynomial} of $a$ over $F$.\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	Let $e_a: F[x] \to A$ be the evaluation homomorphism given by $e_a(f(x)) \coloneqq f(a)$. Then $e_a$ is an $F$-algebra homomorphism (meaning it is a ring homomorphism from $F[x]$ into $A$ and an $F$-linear map).
+	\begin{myIndent}\exPPP
+		Note that $e_a$ is a ring homomorphism specifically because $ca = ac$ for all $c \in F$ and $a \in A$. I won't prove that $e_a$ is a homomorphism though.\newpage
+	\end{myIndent}
+
+	We thus have that $\ker(e_a) \lhd F[x]$. Also, by the first isomorphism theorems for $F$-modules and rings, we have that $\frac{F[x]}{\ker(e_a)} \cong \myIm(e_a) \subseteq A$ as an $F$-algebra. Since $\dim_F(A) < \infty$ and $\dim_F(F[x]) = \infty$, we must have that $\ker(e_a) \neq \{0\}$. Hence as $F[x]$ is a P.I.D. and $F$ is a\\ [2pt] field, there must exist a unique monic polynomial $m_{a;F}(x) \in F[x]$ such that:
+	
+	{\centering$\ker(e_a) = \langle m_{a;F}\rangle$.\retTwo\par}
+	
+	Also note that $\ker(e_a) \neq F[x]$ as the only constant polynomial contained in $\ker(e_a)$ is the zero polynomial. Therefore, we can conclude that $m_{a;F} \neq 1$. And finally, $g \in \ker(e_a)$ iff $m_{a;F} \divides g$ in $F[x]$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo For an application of the prior lemma, note that if $a \in M_n(F)$ then $\Ann(V_a) = \langle m_{a;F}(x)\rangle$.
+\begin{myIndent}\pracTwo
+	Why?\\
+	$g(x) \cdot V_a = 0$ iff $\forall v \in F^n$, $g(a) |v{\rangle} = 0$. But the latter happens iff $g(a) = 0$, and that happens iff $m_{a;F}(x) \divides g(x)$.
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Given a field $F$ and $f \in F[x]$, we have that $\Ann(\frac{F[x]}{\langle f \rangle}) = \langle f \rangle$ (where we are viewing $\frac{F[x]}{\langle f \rangle}$\\ [-3pt] as an $F[x]$-module).
+\begin{myIndent}\pracTwo
+	Why?\\
+	If $g \in \langle f\rangle$ then $g(x) = f(x)h(x)$. In turn, for any $s(x) + \langle f\rangle$ in $F[x]/\langle f\rangle$ we have that $g(x)(s(x) + \langle f\rangle) = f(x)h(x)s(x) + \langle f\rangle \equiv 0 \mMod{f(x)}$. And this proves that $\langle f\rangle \subseteq \Ann(\frac{F[x]}{\langle f \rangle})$. To show the other inclusion, suppose $g \in \Ann(\frac{F[x]}{\langle f \rangle})$. Then $g(x)\left( 1 + \langle f\rangle\right) = g(x) + \langle f\rangle = 0 + \langle f\rangle$. The only way this is possible is if $g \in \langle f\rangle$.\retTwo
+
+	\begin{myIndent}\myComment
+		More generally, the above reasoning shows that if $A$ is a ring and $\mathfrak{a} \lhd A$, then\\ $\Ann(\frac{A}{\mathfrak{a}}) = \mathfrak{a}$ (where we are viewing $A/\mathfrak{a}$ as an $A$-module).\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+Suppose $\{M_i\}_{i \in I}$ is a family of $A$-modules. Then $\Ann(\bigoplus_{i \in I} M_i) = \bigcap_{i \in I}\Ann(M_i)$.
+\begin{myIndent}\pracTwo
+	Why?\\
+	If $a \in \Ann(\bigoplus_{i^\prime \in I} M_{i^\prime})$ and we consider the projection $P_i: \bigoplus_{i^\prime \in I} M_{i^\prime} \to M_i$, then we know that $a \cdot m_i = P_i(a \cdot (m_{i^\prime})_{i^\prime \in I}) = P_i((0)_{i^\prime \in I}) = 0$. In particular, this shows that $a \cdot m_i = 0$ for all $i \in I$ and $m_i \in M_i$. Hence $a \in \bigcap_{i \in I}\Ann(M_i)$.\retTwo
+	
+	Conversely, if $a \in \bigcap_{i \in I}\Ann(M_i)$ then we know that $a \cdot m_i = 0$ for any $m_i \in M_i$ and $i \in I$. In turn, $a \cdot (m_{i^\prime})_{i^\prime \in I} = (a \cdot m_{i^\prime})_{i^\prime \in I} = 0$.\retTwo
+\end{myIndent}
+
+As a corollary, if $F$ is a field and $f_1, \ldots, f_m \in F[x]$, then:
+
+{\centering$\Ann(\bigoplus_{i=1}^m \frac{F[x]}{\langle f_i\rangle}) = \bigcap_{i=1}^m \langle f_i\rangle = \langle \lcm(f_1, \ldots, f_m)\rangle$.\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	To see what I specifically mean by a least common multiple, note that if $D$ is a P.I.D.\\ and $\langle d_1\rangle, \ldots, \langle d_m\rangle$ are ideals in $D$, then there must exist some element $\ell \in D$ with\\ $\langle \ell\rangle = \bigcap_{i=1}^m \langle d_i\rangle$. In turn, $\ell$ satisfies the property that $d_i \divides \ell$ for all $i$. Furthermore,\\ if $x$ satisfies that $d_i \divides x$ for all $i$, then $\ell \divides x$.\newpage
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Suppose $F$ is a field. Then for all $a \in M_n(F)$ we have that $m_{a;F}(x) \in F[x]$ is the largest invariant factor of $a$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $f_1 \divides f_2 \divides \cdots \divides f_m$ are the invariant factors of $a$. Then, we know that:
+
+	{\centering $\langle m_{a;F}(x)\rangle = \Ann(V_a) = \Ann(\frac{F[x]}{\langle f_1\rangle} \oplus \cdots \oplus \frac{F[x]}{\langle f_m\rangle}) = \bigcap_{i=1}^m \langle f_i\rangle = \langle f_m\rangle$ \retTwo\par}
+
+	\begin{myIndent}\exPPP
+		As a side note, if $M_1 \cong M_2$ as $A$-modules, then both $\Ann(M_1)$ and $\Ann(M_2)$ are equal subsets of $A$. In other words, it would be incorrect (or at least incredibly\\ misleading) to write $\Ann(M_1) \cong \Ann(M_2)$ as opposed to $\Ann(M_1) =\Ann(M_2)$.\retTwo
+	\end{myIndent}
+
+	It follows that $m_{a;F}(x)$ and $f_m(x)$ are companion elements of $F[x]$. Yet as both are monic, the only way this is possible is if $m_{a;F}(x) = f_m(x)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+The \udefine{characteristic polynomial} of a matrix $a \in M_n(A)$ (where $A$ is commutative unital ring) is defined as the polynomial $\chi_a(t) \coloneqq \det(tI - a)$ (where $tI - a \in M_n(A[t])$).\retTwo
+
+\exTwo\ul{Lemma:} If $a_1, \ldots, a_m$ are square matrices over some ring $A$, then:
+
+{\centering$\det(\diag(a_1, \ldots, a_m)) = \prod_{i=1}^m \det(a_i)$.\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By noting that $\diag(a_1, \ldots, a_{m-1}, a_m) = \diag(\diag(a_1, \ldots, a_{m-1}), a_m)$, it suffices to prove that $\det(\diag(a, b)) = \det(a)\det(b)$ where $a \in M_{n_1}(A)$ and $b \in M_{n_2}(A)$ for some integers $n_1$ and $n_2$.\retTwo
+
+	Next, we proceed by induction on $n_1$. For our base case, note that if $n_1 = 1$ (so that $a$ is just a scalar in $A$), then we can take the Laplace expansion of the determinant formula to get that:
+
+	{\centering $\det(\diag(a, b)) = (-1)^{1 + 1}a \det(b) + \sum_{i=1}^{n_2} 0 = \det(a)\det(b)$. \retTwo\par}
+
+	As for the induction step, note again by the Laplace expansion formula that:
+
+	{\center\begin{tabular}{l}
+		$\det(\diag(a, b)) = \sum_{i=1}^{n_1}(-1)^{1 + i}a_{1, i} \det(\diag(a(1, i), b))$ \\ [4pt]
+
+		$\phantom{\det(\diag(a, b))} = \sum_{i=1}^{n_1}(-1)^{1 + i}a_{1, i} \det(a(1, i))\det(b)$\\ [4pt]
+		$\phantom{\det(\diag(a, b))} = \left( \sum_{i=1}^{n_1}(-1)^{1 + i}a_{1, i} \det(a(1, i))\right) \cdot \det(b) = \det(a)\det(b)$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\exTwo\ul{Lemma:} If $b = gag^{-1}$ where $a, b, g \in M_n(A)$, then $\chi_a = \chi_{b}$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	\begin{tabular}{l}
+	$\chi_b = \det(tI - b) = \det(bI - gag^{-1}) = \det(g(tI - a)g^{-1})$\\
+	$\phantom{\chi_b = \det(tI - b) = \det(bI - gag^{-1})} = \det(g)\det(tI - a)\det(g^{-1}) = \det(tI - a) = \chi_a$.
+	\end{tabular}
+\end{myIndent}
+
+\ul{Lemma:} Suppose $f$ is a monic nonconstant polynomial in $F[t]$ (where $F$ is a field). If $c_f$ is the companion matrix then $\chi_{c_f} = f$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $f(t) = t^n + c_{n-1}t^{n-1} + \ldots + c_1t + c_0$, then:\newpage
+
+	{\centering $tI - c_f = \begin{bmatrix} t & 0 & \cdots & 0 & c_0 \\ -1 & t & \cdots & 0 & c_1 \\ 0 & -1 & \cdots & 0 & c_2 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & \cdots & t & c_{n-2} \\ 0 & 0 & \cdots & -1 & t+c_{n-1}\end{bmatrix}$ \retTwo\par}
+
+	By the laplace expansion formula, we get that:
+
+	{\center\begin{tabular}{l}
+		$\chi_{c_f}(t) = t\det\left(\begin{bmatrix} t & \cdots & 0 & c_1 \\ -1 & \cdots & 0 & c_2 \\ \vdots & \ddots & \vdots & \vdots \\ 0 & \cdots & t & c_{n-2} \\ 0 & \cdots & -1 & t+c_{n-1}\end{bmatrix}\right) + (-1)^{1 + n}c_0\det\left(\begin{bmatrix} -1 & t & \cdots & 0  \\ 0 & -1 & \cdots & 0  \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & t \\ 0 & 0 & \cdots & -1\end{bmatrix}\right)$\\ [40pt]
+
+		$\phantom{\chi_{c_f}(t)} = t\chi_{c_{\left(\frac{f - c_0}{t}\right)}} + (-1)^{1 + n}c_0 (-1)^{n-1} = t\chi_{c_{\left(\frac{f - c_0}{t}\right)}} + c_0$
+	\end{tabular}\retTwo\par}
+
+	And now it follows by doing induction on the degree of $f$ that $\chi_{c_f} = f$.
+
+	\begin{myIndent}\exPPP
+		Technically I still need to show a base case. Suppose $f(t) = t + c_0$. Then\\ $tI - c_f = [t + c_0]$ and we trivially have that $\chi_{c_f}(t) = t + c_0 = f(t)$. \exThreeP $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Corollary:} If $f_1 \divides f_2 \divides \cdots \divides f_m$ are the invariant factors of a matrix $a \in M_n(F)$ then:
+
+{\centering$m_{a;F}(x) = f_m(x)$ and $\chi_a(x) = \prod_{i=1}^m f_i(x)$.\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We already proved that $m_{a;F}(x) = f_m(x)$. To show the other equality, note that as $a$ is similar to $\diag(c_{f_1}, \ldots, c_{f_m})$ we have that:
+	
+	{\centering$\chi_a = \chi_{\diag(c_{f_1}, \ldots, c_{f_m})} = \prod_{i=1}^m \chi_{c_{f_i}} = \prod_{i=1}^m f_i$. $\blacksquare$\retTwo\par}
+
+	\begin{myIndent}\exPPP
+		(Note that $\chi_{\diag(c_{f_1}, \ldots, c_{f_m})} = \prod_{i=1}^m \chi_{c_{f_i}}$ because of the first of our three prior lemmas plus the fact that $tI - \diag(c_{f_1}, \ldots, c_{f_m}) = \diag(tI - c_{f_1}, \ldots, tI - c_{f_m})$.)\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo Consequently, we get the following theorem:\retTwo
+
+\exTwo\ul{Cayley Hamilton Theorem:} Suppose $F$ is a field and $a \in M_n(F)$. Then:
+\begin{itemize}
+	\item $m_{a;F}(x) \divides \chi_a(x)$,
+	\item If $p(x)$ is an irreducible factor of $\chi_a(x)$ then $p(x) \divides m_{a;F}(x)$.
+\end{itemize}
+
+\hTwo\mySepTwo
+
+
+
+
+
 
 
 
@@ -24812,6 +25923,8 @@ Finally, we define the \udefine{divisor class subgroup} to be quotient group $(\
 \hypertarget{idk reference 13}{}
 
 \hypertarget{idk reference 15}{}
+
+\hypertarget{idk reference 16}{}
 
 
 
