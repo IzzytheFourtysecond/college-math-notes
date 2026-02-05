@@ -1022,13 +1022,13 @@ The \udefine{characteristic polynomial} of a matrix $a \in M_n(A)$ (where $A$ is
 
 \blect{Math 220b Lecture Notes:}\retTwo
 
-The \udefine{Mittag-Leffler Problem on an open set $G$} goes as follows:\newpage
+The \udefine{Mittag-Leffler Problem on $\mathbb{C}$} goes as follows:\newpage
 
-Suppose $\{a_n\}_{n \in \mathbb{N}}$ is a sequence of distinct elments in $G$ with no subsequential limits in $G$, and for each $n$ suppose we have a function of the form:
+Suppose $\{a_n\}_{n \in \mathbb{N}}$ is a sequence of distinct elments in $\mathbb{C}$ with $|a_n| \to \infty$ as $n \to \infty$, and for each $n$ suppose we have a function of the form:
 
 {\center$g_n(z) = \frac{A_{n,m_n}}{(z - a_n)^{m_n}} + \frac{A_{n,m_n-1}}{(z - a_n)^{m_n - 1}} + \cdots + \frac{A_{n,1}}{(z - a_n)^{1}}$,\\ [6pt]\par}
 
-where $A_{n,m_n} \neq 0$ and $m_n \in \mathbb{Z}_{> 0}$ for all $n$. Then, does there exists a meromorphic function $f$ on $\mathbb{C}$ with poles only at $a_n$ and Laurent principal parts $g_n$ on punctured disks about any $a_n$.\retTwo
+where $A_{n,m_n} \neq 0$ and $m_n \in \mathbb{Z}_{> 0}$ for all $n$. Then, does there exists a meromorphic function $f$ on $\mathbb{C}$ with poles only at the $a_n$ and Laurent principal parts $g_n$ on punctured disks about any $a_n$.\retTwo
 
 As we will show, the answer is yes.
 \begin{myIndent}\pracOne
@@ -1036,18 +1036,263 @@ As we will show, the answer is yes.
 	\begin{itemize}
 		\item If we only have finitely many $a_n$ and $g_n$, then the problem is trivial. After all, we can then just set $f = \sum g_n$. This is why we now focus on the infinite case.\retTwo
 		
-		\item In the infinite case, we can no longer guarentee that $\sum_{n=1}^\infty g_n$ converges.\\ However, notice that if we subtract a function $h_n$ which is holomorphic on $G$ (i.e. has no poles), then that will not effect the principal part of the Laurent expansion about any particular point. Therefore, the general idea of the following proof is that we will try to find \udefine{convergence enhancing corrections} $h_n \in O(G)$ such that $\sum_{n=1}^\infty (g_n - h_n)$ converges.
+		\item In the infinite case, we can no longer guarentee that $\sum_{n=1}^\infty g_n$ converges.\\ However, notice that if we subtract a function $h_n$ which is holomorphic on $\mathbb{C}$ (i.e. has no poles), then that will not effect the principal part of the Laurent expansion about any particular point. Therefore, the general idea of the following proof is that we will try to find \udefine{convergence enhancing corrections} $h_n \in O(\mathbb{C})$ such that $\sum_{n=1}^\infty (g_n - h_n)$ converges.
 		\begin{myIndent}\pracTwo
 			As a side note, the $h_n$ will not be unique.\retTwo
 		\end{myIndent}
 
-		\item One other observation is that if both $f_1$ and $f_2$ solve the same Mittag-Leffler problem, then we must have that $f_1 - f_2$ are entire functions. This is because the principal part of $f_1 - f_2$ about any singularity cancels and we are left with a power series.
+		\item One other observation is that if both $f_1$ and $f_2$ solve the same Mittag-Leffler problem, then we must have that $f_1 - f_2$ are entire functions. This is because the principal part of $f_1 - f_2$ about any singularity cancels and we are left with a power series.\retTwo
 	\end{itemize}
 \end{myIndent}
 
+\exTwo\ul{Proof that we can solve the Mittag-Leffler problem:}
+\begin{myIndent}\exThreeP
+	To start off, without loss of generality assume no $a_n$ is equal to $0$. After all, we can just add $\frac{A_m}{z^m} + \cdots + \frac{A_1}{z}$ at the end if needed.\retTwo
 
+	Let $\{r_n\}_{n \in \mathbb{N}}$ be a sequence such that $r_n \to \infty$ as $n \to \infty$ and $r_n < |a_n|$ for all $n$. Also let $\{c_n\}_{n \in \mathbb{N}}$ be any sequence in $(0, \infty)$ satisfying that $\sum_{n=1}^\infty c_n < \infty$.\retTwo
 
+	Consider $g_n(z) = \frac{A_{n,m_n}}{(z - a_n)^{m_n}} + \frac{A_{n,m_n-1}}{(z - a_n)^{m_n - 1}} + \cdots + \frac{A_{n,1}}{z - a_n}$. Since $a_n \neq 0$, $g_n$ is\\ holomorphic on $\Delta(0, |a_n|)$. So, consider the Taylor expansion of $g_n$ in $\Delta(0, |a_n|)$ around $0$. Since $\overline{\Delta}(0, r_n) \subseteq \Delta(0, |a_n|)$, the Taylor series of $g_n$ converges uniformly in $\overline{\Delta}(0, r_n)$. So, we can pick a Taylor polynomial $h_n$ such that $|g_n - h_n| < c_n$ in $\overline{\Delta}(0, r_n)$.\retTwo
 
+	Let $f = \sum_{n=1}^\infty (g_n - h_n)$.\retTwo
+
+	Claim: $f$ is meromorphic on $\mathbb{C}$ with poles only at the $a_n$ and with principal parts $g_n$ near\\ $a_n$ for each $n$.
+	\begin{myIndent}\exPPP
+		Proof:\newpage
+		Let $r > 0$. Since $r_n \to \infty$, we know that there exists $N$ with $r_n > r$ if $n \geq N$. In turn: $|g_n - h_n| < c_n$ in $\overline{\Delta}(0, r) \subseteq \Delta(0, r_n)$ for all $n \geq N$, and by the Weierstraß $M$-test we can conclude that $\sum_{n=N}^\infty (g_n - h_n)$ converges uniformly on $\overline{\Delta}(0, r)$. Also since $|a_n| > r_n > r$ for all $n \geq N$, we have that $g_n - h_n$ is holomorphic in $\Delta(0, r)$. Thus the sum $\sum_{n=N}^\infty (g_n - h_n)$ is also holomorphic in $\Delta(0, r)$.\retTwo
+
+		Meanwhile, the sum $\sum_{n=1}^{N-1} (g_n - h_n)$ is meromorphic in $\Delta(0, r)$ since it is a finite sum of meromorphic functions. It's poles are only at the $a_j$ with $|a_j| < r$, and the Laurent principal parts around each of those $a_j$ are $g_j$.\retTwo
+
+		Finally, $f = (\sum_{n=1}^{N-1} (g_n - h_n)) + (\sum_{n=N}^\infty (g_n - h_n))$ is meromorphic since on $\Delta(0, r)$ since is the sum of a meromorphic and a holomorphic function. Also adding the holomorphic term doesn't change the poles and principal parts of the meromorphic term. Hence, $f$ has poles at $|a_j| < r$ with the desired principal parts about those poles.\retTwo 
+
+		By taking $r \to \infty$ we finish the proof. \exThreeP$\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo You may note that the prior proof also gives us an algorithm for finding a solution\\ to a Mittag-Leffler problem.\retTwo
+
+\ul{Example 1:} Let's find a function $f$ solving the Mittag-Leffler problem associated with\\ $(-n, \frac{1}{z + n} : n \in \mathbb{Z})$.
+
+{\centering\includegraphics[scale=0.9]{Mittag-Leffler example 1.png}\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Step 0:\\
+	We ignore the pole at $n = 0$ for now since at the end we can just add $\frac{1}{z}$ to whatever function we get.\retTwo
+
+	Step 1 (Taylor Expand):\\
+	When $|z| < n$, we have that:
+	
+	{\centering$g_n(z) = \frac{1}{z + n} = \frac{1}{n} \cdot \frac{1}{1 + \frac{z}{n}} = \frac{1}{n}\left(1 - \frac{z}{n} + \frac{z^2}{n^2} - \cdots\right) = \frac{1}{n} - \frac{z}{n^2} + \frac{z^2}{n^3} - \cdots$\retTwo\par}
+
+	It would be convenient if our convergence enhancing correction $h_n$ is just $\frac{1}{n}$ since then all the corrections would cancel in our final sum. So, let's try setting $h_n = \frac{1}{n}$.\retTwo
+
+	Step 2:\\
+	When we pick our $r_n$, we must have that $r_n < |n|$. But then for all $|z| \leq r_n$ we shall have that:
+	
+	{\centering $|g_n - h_n| = |\frac{1}{z + n} - \frac{1}{n}| = \frac{|z|}{|n||n + z|} \leq \frac{r_n}{|n|\cdot \left||n| - |z|\right|} \leq \frac{r_n}{|n|\cdot (|n| - r_n)} = \frac{r_n}{|n|^2 - |n|r_n} \eqqcolon c_n$. \retTwo\par}
+
+	Set $r_n = \frac{1}{2}|n|^{1/2}$. Then $r_n \to \infty$ as $|n| \to \infty$. Also,
+	
+	{\centering$\sum_{n \in \mathbb{Z} - \{0\}} c_n = \frac{1}{2}\sum_{n \in \mathbb{Z} - \{0\}} \frac{1}{|n|^{3/2} - \frac{1}{2}|n|} < \infty$\newpage\par}
+
+	Step 3:\\
+	Our solution to the Mittage-Leffler problem is now $f(z) = \frac{1}{z} + \sum_{n \in \mathbb{Z} - \{0\}} (\frac{1}{z + n} - \frac{1}{n})$. After grouping together the terms for $n$ and $-n$, we get that:
+
+	{\centering $f(z) = \frac{1}{z} + \sum_{n=1}^\infty (\frac{1}{z + n} + \frac{1}{z - n}) = \frac{1}{z} + \sum_{n=1}^\infty \frac{2z}{z^2 - n^2}$ \retTwo\par}
+
+	On \inLinkRap{Math 220b Conway exercise V.2.8}{pages 550-553}, we showed that the latter expression is equal to $\pi \cot( \pi z)$.\retTwo
+
+	\begin{myIndent}\myComment
+		As a side note, while the sum $\sum_{n \in \mathbb{Z} - \{0\}} (\frac{1}{z + n} - \frac{1}{n})$ with the convergence\\ enhancing corrections as well as the sum $\sum_{n=1}^\infty \frac{2z}{z^2 - n^2}$ converge absolutely locally\\ uniformly on it's domain, clearly $\sum_{n \in \mathbb{Z} - \{0\}} \frac{1}{z + n}$ does not converge absolutely.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Example 2:} Let's find a function $f$ solving the Mittag-Leffler problem associated with\\ $(-n, \frac{1}{(z + n)^k}: n \in \mathbb{Z})$ where $k$ is an integer greater than $1$.
+
+{\centering\includegraphics[scale=0.9]{Mittag-Leffler example 2.png}\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Step 1:\\
+	Given $g_n = \frac{1}{(z + n)^k}$, set $h_n = 0$.\retTwo
+
+	Step 2:\\
+	Set $r_n = \frac{1}{2}|n|^{1/2}$. Then $r_n \to \infty$ as $|n| \to \infty$. Also if $|z| \leq r_n$ then:
+
+	{\centering $|g_n - h_n| = |\frac{1}{(z +n)^k}|\ \leq \frac{1}{(|n| - r_n)^k} \eqqcolon c_n$ \retTwo\par}
+
+	Also $\sum_{n \in \mathbb{Z} - \{0\}} c_n = \sum_{n \in \mathbb{Z} - \{0\}} \frac{1}{(|n| - \frac{1}{2}|n|^{1/2})^k} < \infty$.\retTwo
+
+	Step 3:\\
+	We get the solution to our Mittag-Leffler problem:
+
+	{\centering $f = \sum_{n=-\infty}^\infty \frac{1}{(z + n)^2}$ \retTwo\par}
+
+	\begin{myIndent}\myComment
+		As a side note, $G_k(z) = \sum_{n \in \mathbb{Z}}\frac{1}{(z+n)^k}$ is called the $k$th \udefine{($1$-dimensional) Eisenstein\\ [-2pt] series}.\retTwo
+
+		Also note in the special case of $G_2(z)$:
+		
+		\begin{myIndent}
+			Since $\pi \cot(\pi z) = \frac{1}{z} + \sum_{n \in \mathbb{Z} - \{0\}}(\frac{1}{z + n} - \frac{1}{n})$ where the latter converges\\ absolutely locally uniformly on it's domain, we can term-by-term differentiate to get that:
+
+			{\centering $\frac{-\pi^2}{\sin^2(\pi z)} = -\frac{1}{z^2} + \sum_{n \in \mathbb{Z} - \{0\}} \frac{-1}{(z + n)^2} = -G_2(z)$. \retTwo\par}
+
+			So, $G_2(z) = \pi^2\csc^2(\pi z)$.\retTwo
+
+			By analogous reasoning we also get that $G_k(z) = \frac{(-1)^{k-1}}{(k-1)!} \cdot \frac{\df^{k-1}}{\df z^{k-1}}(\pi \cot(\pi z))$.\newpage
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+If $X$ is a topological space, we say a collection of functions $\mathcal{F} = \{f_{\alpha} : X \to \mathbb{C}\}_{\alpha \in A}$ is:
+\begin{itemize}
+	\item[(1.)]	\udefine{pointwise bounded} if for all $x \in X$ there exists $M(x) > 0$ such that $|f_\alpha(x)| \leq M(x)$ for all $\alpha \in A$;
+	\item[(2.)] \udefine{uniformly bounded} if there exists $M > 0$ such that $|f_\alpha(x)| \leq M$ for all $x \in X$;
+	\item[(3.)] \udefine{locally uniformly bounded} if for all $x \in X$ there exists a neighborhood $N$ such that $\{f_\alpha|_N\}_{\alpha \in A}$ are uniformly bounded;
+	\item[(4.)] \udefine{uniformly bounded on compact sets} if for all compact sets $K$ there exists $M(K) > 0$ such that $|f_\alpha(x)| \leq M(K)$ for all $\alpha \in A$ and $x \in K$.\retTwo
+\end{itemize}
+
+Note that (3.) and (4.) are equivalent if $X$ is locally compact.\retTwo
+
+\pracOne\ul{Example:} $\{f_n(z) = nz^n : n \in \mathbb{N}\}$ is locally uniformly bounded on $\Delta(0, 1)$ but not\\ uniformly bounded.
+\begin{myIndent}\pracTwo
+	For $0 \leq r < 1$, $|f_n(z)| \leq nr^n$ in $\overline{\Delta}(0, r)$. Since $\lim_{n \to \infty}nr^n = 0$, we know that there is some $M$ such that $\{nr^n\}$ is bounded by $M$. So $|f_n(z)| \leq M$ in $\overline{\Delta}(0, r)$. This proves that $\{f_n\}_{n \in \mathbb{N}}$ is uniformly bounded on comapct sets in $\Delta(0, 1)$. After all, if $K \subseteq \delta(0, 1)$ is compact, then $K \subseteq \overline{\Delta}(0, r)$ for some $r < 1$.\retTwo
+
+	That said, since $f_n(\frac{1}{\sqrt[n]{2}}) = \frac{n}{2} \to \infty$ as $n \to \infty$, we know that $\{f_n\}_{n \in \mathbb{N}}$ is not uniformly bounded on $\Delta(0, 1)$.\retTwo
+\end{myIndent}
+
+\hTwo For sequences in $\mathbb{C}$, we have that boundedness implies that there is some convergent subsequence. We'd like to generalize this notion to sequences of functions.\retTwo
+
+Our dream statement would be that if $\{f_n : U \to \mathbb{C}\}_{n \in \mathbb{N}}$ is a locally uniformly bounded sequence of functions, then $\{f_n\}_{n \in \mathbb{N}}$ would admit a locally convergent subsequence.\\ Unfortunately this statement does not hold in real analysis.
+\begin{myIndent}\pracTwo
+	For example, let $U = \mathbb{R}$ and define $f_n(x) = \sin(nx)$. Then $f_n$ is uniformly bounded (by $1$) but it has no pointwise convergent subsequence.\retTwo
+\end{myIndent}
+
+In math 240b, we were able to partially rescue this goal with the Arzelà-Ascoli theorems.
+\begin{myIndent}\exTwo
+	\begin{itemize}
+		\item \ul{(Folland) Theorem 4.43:} Let $X$ be a compact Hausdorff space. If $\mathcal{F}$ is a\\ (pointwise) equicontinuous, pointwise bounded subset of $C(X)$, then\\ $\mathcal{F}$ is totally bounded in the uniform metric. Hence, the closure of $\mathcal{F}$ in $C(X)$\\ is compact.
+		\begin{myIndent}\exPPP
+			(As a result of that compactness, any sequence in $\mathcal{F}$ must have a uniformly\\ convergent subsequence).\retTwo
+		\end{myIndent}
+		
+		\item \ul{(Folland) Theorem 4.44:} Let $X$ be a $\sigma$-compact LCH space. If $\{f_n\}_{n \in \mathbb{N}}$ is\\ a (pointwise) equicontinuous, pointwise bounded sequence in $C(X)$, then there\\ exists $f \in C(X)$ and a subsequence of $\{f_n\}_{n \in \mathbb{N}}$ converging to $f$ uniformly on compact sets.
+		\begin{myIndent}\exPPP
+			(Note that any open set $U \subseteq \mathbb{C}$ or $\mathbb{R}$ is a $\sigma$-compact LCH space.)\retTwo
+		\end{myIndent}
+	\end{itemize}
+\end{myIndent}
+
+In math 220b, we shall prove our dream statement holds when all $f_n$ are holomorphic.\newpage
+
+We say a family of functions $\mathcal{F}$ is \udefine{normal} if all sequences in $\mathcal{F}$ admit a locally uniformly convergent subsequence.\retTwo
+
+\exTwo\ul{Lemma:} If $\mathcal{F}$ is a normal family of holomorphic functions then $\mathcal{F}^\prime \coloneqq \{f^\prime : f \in \mathcal{F}\}$ is also normal.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\{f_n^\prime\}_{n \in \mathbb{N}}\subseteq \mathcal{F}^\prime$ be any sequence. Then $\{f_n\}_{n \in \mathbb{N}}$ is a sequence in $\mathcal{F}$. So by the\\ normality of $\mathcal{F}$ we can find a subseqeunce $\{f_{n_k}^\prime\}_{k \in \mathbb{N}}$ such that $f_{n_k} \locUConverges f$ as $k \to \infty$.\\ By the Weierstraß convergence theorem, we thus have that $f_{n_k}^\prime \locUConverges f^\prime$. So, $\mathcal{F}^\prime$ is\\ [2pt] also normal. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} If $U \subseteq \mathbb{C}$ is open and $\mathcal{F} \subseteq O(U)$ is locally uniformly bounded, then so is $\mathcal{F}^\prime$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $a \in U$. Then there exists $r, M > 0$ such that $\Delta(a, r) \subseteq U$ and for all $f \in \mathcal{F}$ we have that $|f| \leq M$ over $\Delta(a, r)$.\retTwo
+
+	Now we can use Cauchy's estimate to bound $|f^\prime|$ over $\Delta(a, r/2)$. Let $b \in \Delta(a, r/2)$. Then as $\Delta(b, r/2) \subseteq \Delta(a, r)$, we know by Cauchy's estimate (see \inLinkRap{Conway Cauchy's Estimate}{page 368})  that:
+
+	{\centering $|f^\prime(b)| \leq \frac{2M}{r}$. $\blacksquare$ \retTwo\par}
+\end{myIndent}
+
+\pracOne\mySepTwo
+\ul{Example:} Let $\mathcal{F} = \{f \in O(\Delta(0, 1)) : f = \sum_{k=1}^\infty a_k z^k \text{ where each } |a_k| \leq k\}$. Then $\mathcal{F}$ is locally uniformly bounded.
+\begin{myIndent}\pracTwo
+	Why?\\
+	If $K \subseteq \Delta(0, 1)$ is compact then there exists $0 < r < 1$ such that $K \subseteq \overline{\Delta}(0, r)$. But then if $|z| \leq r$ we have that:
+
+	{\centering $|f(z)| \leq \sum_{k=1}^\infty |a_k||z|^k \leq \sum_{k=1}^\infty k r^k = r(\sum_{k=1}^\infty kr^{k-1}) = \frac{r}{(1 - r)^2}$ \retTwo\par}
+\end{myIndent}
+
+\mySepTwo
+
+\color{red} Here is something important I just noticed. In Math 140b and also apparently in math 220b, we define that a collection of functions $\mathcal{F}$ from one metric space $(X, d)$ to another metric space $(\Omega, \rho)$ are \udefine{equicontinuous} if:
+
+{\centering$\forall \varepsilon > 0,\hspace{0.4em} \exists \delta > 0 \suchthat \forall f \in \mathcal{F} \text{ and } x, y \in X \text{ with } d(x, y) < \delta,\hspace{0.4em} \rho(f(x), f(y)) < \varepsilon$.\retTwo\par}
+
+This is different from the definition used in my functional analysis notes in this journal and my math 240b notes where we'd say $\mathcal{F}$ is equicontinuous if:
+
+{\centering$\forall \varepsilon > 0 \text{ and } x \in X,\hspace{0.4em} \exists \delta > 0 \suchthat \forall f \in \mathcal{F} \text{ and } y \in X \text{ with } d(x, y) < \delta,\hspace{0.4em} \rho(f(x), f(y)) < \varepsilon$.\par}
+
+\begin{myTindent}
+	\color{orange}(In the language of the Math 220b, this would instead define pointwise equicontinuity.)\retTwo
+\end{myTindent}
+
+I think the reason for this difference in terminology is that the 140b and 220b definition of equicontinuity only makes sense in metric spaces while the 240b and functional analysis definition makes sense in general topological spaces where we are typically working in those subjects. The convention I will follow is that I'll try to explicity distinguish between these two definitions by writing (uniformly) or (pointwise) whenever there is ambiguity.\newpage
+
+\exTwo\ul{Lemma:} Suppose $(X, d)$ is a locally compact metric space and $(\Omega, \rho)$ is another metric space. Then given a collection $\mathcal{F} \subseteq C(X, \Omega)$, we have that the following are equivalent:
+\begin{itemize}
+	\item[1.] $\mathcal{F}$ is (pointwise) equicontinuous;
+	\item[2.] $\mathcal{F}$ is \udefine{locally equicontinuous}, meaning for all $x \in X$ there exists some $r > 0$ such that $\mathcal{F}$ is (uniformly) equicontinuous on the ball $\Delta(x, r)$.
+	\item[3.] $\mathcal{F}$ is (uniformly) equicontinuous on each compact set $K \subseteq X$.
+\end{itemize}
+
+\begin{myIndent}\exThreeP
+	$(1. \Longrightarrow 3.)$\\
+	Suppose $K \subseteq X$ is compact. Then we claim that $\mathcal{F}$ is (uniformly) equicontinuous on $K$.
+	\begin{myIndent}\exPPP
+		Given any $\varepsilon > 0$, we can pick $\delta_w > 0$ for each $w \in K$ such that for any $z \in K$ and $f \in \mathcal{F}$, we have that $d(z, w) < \delta_w \Longrightarrow \rho(f(z), f(w)) < \sfrac{\varepsilon}{2}$. By the Lebesgue number lemma (see \inLinkRap{Page 124 reference Lebesgue Number Lemma}{page 124}), we can then find some $\delta > 0$ such that for all $z \in K$ there exists $w \in K$ with $\Delta(z, \delta) \subseteq \Delta(w, \delta_w)$.\retTwo
+
+		In particular, consider any $f \in \mathcal{F}$ and $z, z^\prime \in K$ with $d(z, z^\prime) < \delta$. Then after picking $w \in K$ with $z^\prime \in \Delta(z, \delta) \subseteq \Delta(w, \delta_w)$ we have that:
+
+		{\centering $\rho(f(z), f(z^\prime)) \leq \rho(f(z), f(w)) + \rho(f(w), f(z^\prime)) < \sfrac{\varepsilon}{2} + \sfrac{\varepsilon}{2}$. \retTwo\par}
+	\end{myIndent}
+
+	$(3. \Longrightarrow 2.)$\\
+	Given $x \in X$, we can (by assumption) find a compact neighborhood $K$ containing $x$.\\ In turn, there exists $r > 0$ such that $\Delta(x, r) \subseteq K$. And finally as $\mathcal{F}$ is (uniformly)\\ equicontinuous on $K$, we also have $\mathcal{F}$ is (uniformly) equicontinuous on $\Delta(x, r)$.\retTwo
+
+	$(2. \Longrightarrow 1.)$\\
+	This is trivial. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Suppose $X$ is an LCH space and $\mathcal{F} = \{f_\alpha : X \to \mathbb{C}\}_{\alpha \in A}$ is a pointwise\\ bounded and (pointwise) equicontinuous collection of functions. Then $\mathcal{F}$ is uniformly\\ bounded on compact sets.
+\begin{myIndent}\exThreeP 
+	Proof:\\
+	Suppose $K$ is any compact set. Then by the equicontinuity of $\mathcal{F}$ we can find for each\\ $x \in K$ a neighborhood $U_x \subseteq X$ such that $y \in U_x \Longrightarrow |f(y) - f(x)| < 1$. Next, by the compactness of $K$, we can find $x_1, \ldots, x_m$ such that $K \subseteq \bigcup_{i=1}^m U_{x_i}$. Because $\mathcal{F}$ is pointwise bounded, we can find for $i =1, \ldots, m$ some $M_i > 0$ such that $|f(x_i)| \leq M_i$ for all $f \in \mathcal{F}$. Finally, by setting $M = \max(M_1, \ldots, M_m)$, we have that $|f(x)| < M + 1$ for all $x \in K$ and $f \in \mathcal{F}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo The converse of the last proposition also holds if $\mathcal{F} \subseteq O(U)$ where $U \subseteq \mathbb{C}$ is an open set.\retTwo
+
+\exTwo\ul{Proposition:} Suppose $U \subseteq \mathbb{C}$ is an open set $\mathcal{F} \subseteq O(U)$ is a locally bounded family\\ of holomorphic functions. Then $\mathcal{F}$ is locally equicontinuous (and also trivially pointwise\\ bounded).
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Fix any $a \in U$. Then there exists $r, M > 0$ such that $\overline{\Delta}(a, 2r) \subseteq U$ and $f|_{\overline{\Delta}(a, 2r)}$ is bounded by $M$ for all $f \in \mathcal{F}$. We claim from this that $\mathcal{F}$ is (uniformly) equicontinuous on $\Delta(a, r)$.\newpage
+	\begin{myIndent}\exPPP
+		Let $\varepsilon > 0$. Then if $z, w \in \Delta(a, r)$ we have by Cauchy's integral formula (after letting $\gamma = a + 2re^{it}$ where $t \in [0, 2\pi]$) that:
+		
+		{\centering\begin{tabular}{l}
+			$|f(z) - f(w)| = \left|\frac{1}{2\pi i}\int_{\gamma} \frac{f(\xi)}{\xi - z} \df \xi- \frac{1}{2\pi i}\int_{\gamma} \frac{f(\xi)}{\xi - w}\df \xi \right|$\\ [8pt]
+			$\phantom{|f(z) - f(a)|} = \frac{1}{2\pi}\left|\int_{\gamma} \frac{f(\xi)}{\xi - z} - \frac{f(\xi)}{\xi - w} \df \xi\right|$\\ [8pt]
+			$\phantom{|f(z) - f(a)|} = \frac{|z - w|}{2\pi}\left|\int_{\gamma} \frac{f(\xi)}{(\xi - z)(\xi - w)} \df \xi\right| \leq \frac{|z - w|}{2\pi} \cdot \frac{4\pi rM}{r^2} = \frac{2M}{r}|z - w|$\\ [4pt]
+		\end{tabular} \retTwo\par}
+
+		Now just set $\delta = \frac{r\varepsilon}{2M}$. Then if $z, w \in \Delta(a, r)$ satisfy that $|z - w| < \delta$ then we have that $|f(z) - f(w)| < \varepsilon$. \exTwoP$\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Corollary (Montel's Theorem):} If $U \subseteq \mathbb{C}$ is open and $\mathcal{F} \subseteq O(U)$ is a family of holomorphic functions, then $\mathcal{F}$ is normal if and only if $\mathcal{F}$ is locally bounded.
+\begin{myIndent}\exTwoP
+	$(\Longleftarrow)$\\
+	By Arzelà-Ascoli plus the prior proposition, we can see that if $\mathcal{F}$ is locally bounded then $\mathcal{F}$ is normal.\retTwo
+
+	$(\Longrightarrow)$\\
+	Suppose for the sake of contradiction that $\mathcal{F}$ is normal but that $\mathcal{F}$ is not locally bounded. Then since $\mathcal{F}$ is not locally bounded, we know there exists some $z \in U$ such that $\mathcal{F}$ is not uniformly bounded on $\Delta(z, r)$ for all $r > 0$. In particular, if we pick $R > 0$ such that $\Delta(z, R) \subseteq U$, then for all $n \in \mathbb{N}$ we can find some $f_n \in \mathcalli{F}$ and $w_n \in \Delta(z, \sfrac{R}{n})$ with $|f_n(w_n)| > n$.\retTwo
+
+	But now as $\mathcal{F}$ is normal, we know that $\{f_n\}_{n \in \mathbb{N}}$ has a subsequence $\{f_{n_k}\}_{k \in \mathbb{N}}$ locally uniformly converging to some $f$. In particular, we must have that $f$ is continuous. Hence, there must exist $\delta > 0$ such that $|f(w) - f(z)| < 1$ whenever $|w - z| < \delta$.\retTwo
+
+	Yet we also know from the local uniform convergence of $\{f_{n_k}\}_{k \in \mathbb{N}}$ that there exists $N \in \mathbb{N}$ such that $|f_{n_k}(w) - f(w)| < 1$ for all $k \geq N$. Furthermore, by increasing $N$ if necessary, we can make it so that for all $k \geq N$ we have that:
+	
+	{\centering$\sfrac{R}{n_k} < \delta$ and $n_k > |f(z)| + 2$\retTwo\par}
+
+	In turn, if we pick any $k \geq N$ we know $|w_{n_k} - z| < \delta$ and thus $|f(w_{n_k}) - f(z)| < 1$.\\ Yet at the same time, $|f(w_n)| > |f_{n_k}(w_{n_k})| - 1 > |f(z)| + 1$. Hence, we have that $|f(w_{n_k}) - f(z)| \geq |f(w_n)| - |f(z)| \geq 1$. This is a contradiction. $\blacksquare$\retTwo
+\end{myIndent}
 
 
 \newpage
