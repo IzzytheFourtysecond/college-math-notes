@@ -544,9 +544,194 @@ Given two functors $L: \mcateg{C} \to \mcateg{D}$  and $R: \mcateg{D} \to \mcate
 	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.4}{0.6}, equals, from=4, to=3]
 \end{tikzcd}\]
 
+\pracOne\mySepTwo 
+
+For an example of left and right adjoints, recall that $h_{M_2} \circ h_{M_1} \cong h_{M_1 \otimes M_2}$ by the natural isomorphisms induced by $\eta_{(N, M_1, M_2)}$:\\ [-15pt]
+% https://q.uiver.app/#q=WzAsNCxbMSwwLCJcXEhvbV9BKE1fMiwgaF97TV8xfShOKSkiXSxbMCwwLCJcXEhvbV9BKFRfe01fMX0oTV8yKSwgTikiXSxbMSwxXSxbMCwxXSxbMSwwLCJcXHNpbSJdLFswLDIsIlxccGhpIDogTV8yIFxcdG8gXFxIb21fQShNXzEsIE4pIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiwwLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwwLCIoXFxwaGkobV8yKSkobV8xKSA9IGYobV8xIFxcb3RpbWVzIG1fMikiLDIseyJyYWRpdXMiOi0zLCJjb2xvdXIiOlsxODAsNjAsMzldLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsxODAsNjAsMzksMV1dLFsxLDMsImY6IE1fMSBcXG90aW1lcyBNXzIgXFx0byBOIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbOCw2LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6NDB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+\[\begin{tikzcd}
+	{\Hom_A(T_{M_1}(M_2), N)} & {\Hom_A(M_2, h_{M_1}(N))} \\
+	{} & {}
+	\arrow["\sim", from=1-1, to=1-2]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{f: M_1 \otimes M_2 \to N}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-1]
+	\arrow["{(\phi(m_2))(m_1) = f(m_1 \otimes m_2)}"', color={rgb,255:red,40;green,159;blue,159}, draw=none, from=1-2, to=1-2, loop, in=305, out=235, distance=10mm]
+	\arrow["{\phi : M_2 \to \Hom_A(M_1, N)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-2, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, draw=none, from=2-2, to=1-2]
+	\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.6}, maps to, from=0, to=1]
+\end{tikzcd}\]
+
+\phantom{,}\\ [-5pt] In fact though, we can actually go a step further and define functors
+
+{\centering$H_1, H_2: (A\text{-}\mcateg{mod}) \times (A\text{-}\mcateg{mod})^\mathrm{op} \times (A\text{-}\mcateg{mod})^\mathrm{op} \to A\text{-}\mcateg{mod}$ by:\\ [-30pt]\par}
+
+% https://q.uiver.app/#q=WzAsMTQsWzAsMSwiTiJdLFsxLDEsIk5eXFxwcmltZSJdLFswLDIsIk1fMSJdLFswLDMsIk1fMiJdLFsxLDIsIk1fMV5cXHByaW1lIl0sWzEsMywiTV8yXlxccHJpbWUiXSxbNCwxLCJoXk4gXFxjaXJjIFRfe01fMX0oTV8yKSJdLFs0LDMsImhee05eXFxwcmltZX0gXFxjaXJjIFRfe01fMV5cXHByaW1lfShNXzJeXFxwcmltZSkiXSxbMiwwXSxbMiw0XSxbNCw0XSxbNCwwXSxbMiwzXSxbMiwxXSxbMCwxLCJmIl0sWzIsNCwiZ18xXntcXG1hdGhybXtvcH19Il0sWzMsNSwiZ18yXntcXG1hdGhybXtvcH19Il0sWzYsNywiSF8xKChmLCBnXzFee1xcbWF0aHJte29wfX0sIGdfMl57XFxtYXRocm17b3B9fSkpIl0sWzExLDYsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs4LDEzLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTAsNywiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzksMTIsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxNiwxNCwiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzE4LDE5LCJoIiwxLHsibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzIwLDIxLCJmIFxcY2lyYyBoIFxcY2lyYyAoZ18xIFxcb3RpbWVzIGdfMikiLDEseyJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMjIsMTcsIkhfMSIsMCx7InNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFsyMywyNCwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+\[\begin{tikzcd}[sep=scriptsize]
+	&& {} && {} \\
+	N & {N^\prime} & {} && {h^N \circ T_{M_1}(M_2)} \\
+	{M_1} & {M_1^\prime} \\
+	{M_2} & {M_2^\prime} & {} && {h^{N^\prime} \circ T_{M_1^\prime}(M_2^\prime)} \\
+	&& {} && {}
+	\arrow[""{name=0, anchor=center, inner sep=0}, draw=none, from=1-3, to=2-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, draw=none, from=1-5, to=2-5]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "f", from=2-1, to=2-2]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{H_1((f, g_1^{\mathrm{op}}, g_2^{\mathrm{op}}))}", from=2-5, to=4-5]
+	\arrow["{g_1^{\mathrm{op}}}", from=3-1, to=3-2]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{g_2^{\mathrm{op}}}", from=4-1, to=4-2]
+	\arrow[""{name=5, anchor=center, inner sep=0}, draw=none, from=5-3, to=4-3]
+	\arrow[""{name=6, anchor=center, inner sep=0}, draw=none, from=5-5, to=4-5]
+	\arrow[""{name=7, anchor=center, inner sep=0}, "h"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1, to=0]
+	\arrow[""{name=8, anchor=center, inner sep=0}, draw=none, from=4, to=2]
+	\arrow[""{name=9, anchor=center, inner sep=0}, "{f \circ h \circ (g_1 \otimes g_2)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=6, to=5]
+	\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=7, to=9]
+	\arrow["{H_1}", between={0.3}{0.9}, squiggly, from=8, to=3]
+\end{tikzcd}\]
+
+\phantom{,}\\ [-20pt] and:\\ [-30pt]
+% https://q.uiver.app/#q=WzAsMTQsWzAsMSwiTiJdLFsxLDEsIk5eXFxwcmltZSJdLFswLDIsIk1fMSJdLFswLDMsIk1fMiJdLFsxLDIsIk1fMV5cXHByaW1lIl0sWzEsMywiTV8yXlxccHJpbWUiXSxbNCwxLCJcXGhzcGFjZXsxZW19aF97TV8yfShoX3tNXzF9KE4pKSJdLFs0LDMsIlxcaHNwYWNlezFlbX1oX3tNXzJeXFxwcmltZX0oaF97TV8xXlxccHJpbWV9KE5eXFxwcmltZSkpIl0sWzMsMF0sWzMsNF0sWzMsMV0sWzQsMF0sWzMsM10sWzQsNF0sWzAsMSwiZiJdLFsyLDQsImdfMV57XFxtYXRocm17b3B9fSJdLFszLDUsImdfMl57XFxtYXRocm17b3B9fSJdLFs2LDcsIkhfMigoZiwgZ18xXntcXG1hdGhybXtvcH19LCBnXzJee1xcbWF0aHJte29wfX0pKSJdLFsxMyw3LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOSwxMiwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsMTEsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMCw4LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTYsMTQsIiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxOCwxOSwiKFxcb3ZlcmxpbmV7XFxwaGl9KG1fMl5cXHByaW1lKSkobV8xXlxccHJpbWUpID0gKGYgXFxjaXJjIFxccGhpKGdfMihtXzJeXFxwcmltZSkpIFxcY2lyYyBnXzEpKG1eXFxwcmltZV8xKSIsMSx7ImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyMCwyMSwiKFxccGhpKG1fMikpKG1fMSkiLDEseyJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMjIsMTcsIkhfMiIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJzcXVpZ2dseSJ9fX1dLFsyNCwyMywiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+\[\begin{tikzcd}[sep=scriptsize]
+	&&& {} & {} \\
+	N & {N^\prime} && {} & {\hspace{1em}h_{M_2}(h_{M_1}(N))} \\
+	{M_1} & {M_1^\prime} \\
+	{M_2} & {M_2^\prime} && {} & {\hspace{1em}h_{M_2^\prime}(h_{M_1^\prime}(N^\prime))} \\
+	&&& {} & {}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "f", from=2-1, to=2-2]
+	\arrow[""{name=1, anchor=center, inner sep=0}, draw=none, from=2-4, to=1-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, draw=none, from=2-5, to=1-5]
+	\arrow[""{name=3, anchor=center, inner sep=0}, "{H_2((f, g_1^{\mathrm{op}}, g_2^{\mathrm{op}}))}", from=2-5, to=4-5]
+	\arrow["{g_1^{\mathrm{op}}}", from=3-1, to=3-2]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{g_2^{\mathrm{op}}}", from=4-1, to=4-2]
+	\arrow[""{name=5, anchor=center, inner sep=0}, draw=none, from=5-4, to=4-4]
+	\arrow[""{name=6, anchor=center, inner sep=0}, draw=none, from=5-5, to=4-5]
+	\arrow[""{name=7, anchor=center, inner sep=0}, "{(\phi(m_2))(m_1)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2, to=1]
+	\arrow[""{name=8, anchor=center, inner sep=0}, draw=none, from=4, to=0]
+	\arrow[""{name=9, anchor=center, inner sep=0}, "{(\overline{\phi}(m_2^\prime))(m_1^\prime) = (f \circ (\phi \circ g_2)(m_2^\prime) \circ g_1)(m^\prime_1)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=6, to=5]
+	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=7, to=9]
+	\arrow["{H_2}", between={0.2}{0.9}, squiggly, from=8, to=3]
+\end{tikzcd}\]
+\newpage
+
+I do not feel like proving that $H_1, H_2$ are well-defined functors. Anyways, it's easy to see that the $\eta_{(N, M_1, M_2)}$ define a natural isomorphism between $H_1$ and $H_2$. In the special case that we fix $M_1$ and set $g_1^{\mathrm{op}} = \myId_{M_1}^{\mathrm{op}}$, then this proves that $T_{M_1}$ and $h_{M_1}$ are left and right adjoints of each other for all fixed $M_1$.\retTwo
+
+\mySepTwo
+
+\exTwo\ul{Proposition:} If $L, R: A\text{-}\mcateg{mod} \to A\text{-}\mcateg{mod}$ are left and right adjoints respectively of each\\ other, then $L$ is right-exact and $R$ is left-exact.
+\begin{myIndent}\exThreeP
+	Proof:\\ [-4pt]
+	Let % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV8xIl0sWzIsMCwiTV8yIl0sWzMsMCwiTV8zIl0sWzQsMCwiXFx7MFxcfSJdLFswLDFdLFsxLDIsImZfMSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiZl8yIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNF1d
+	$\begin{tikzcd}
+		{\{0\}} & {M_1} & {M_2} & {M_3} & {\{0\}}
+		\arrow[from=1-1, to=1-2]
+		\arrow["{f_1}", hook, from=1-2, to=1-3]
+		\arrow["{f_2}", two heads, from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}$ be an SES. Then we want to\\  show that the following are both SES's:\\ [-5pt]
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXHswXFx9Il0sWzEsMCwiUihNXzEpIl0sWzIsMCwiUihNXzIpIl0sWzMsMCwiUihNXzMpIl0sWzEsMSwiTChNXzEpIl0sWzIsMSwiTChNXzIpIl0sWzMsMSwiTChNXzMpIl0sWzQsMSwiXFx7MFxcfSJdLFswLDFdLFsxLDIsIlIoZl8xKSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiUihmXzIpIl0sWzYsN10sWzUsNiwiTChmXzIpIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzQsNSwiTChmXzEpIl1d
+	\[\begin{tikzcd}[row sep=tiny]
+		{\{0\}} & {R(M_1)} & {R(M_2)} & {R(M_3)} & \\
+		& {L(M_1)} & {L(M_2)} & {L(M_3)} & {\{0\}}
+		\arrow[from=1-1, to=1-2]
+		\arrow["{R(f_1)}", hook, from=1-2, to=1-3]
+		\arrow["{R(f_2)}", from=1-3, to=1-4]
+		\arrow["{L(f_1)}", from=2-2, to=2-3]
+		\arrow["{L(f_2)}", two heads, from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+	\end{tikzcd}\]
+
+	Fortunately, by the proposition on \inLinkRap{Math 200b Proposition pages 638-640}{pages 638-640}  we know that it is enough to argue for every $A$-module $N$ that the following sequences are exact:\\ [-5pt]
+	% https://q.uiver.app/#q=WzAsOCxbMCwwLCJcXHswXFx9Il0sWzEsMCwiaF9OIFxcY2lyYyBSKE1fMSkiXSxbMywwLCJoX04gXFxjaXJjIFIoTV8yKSJdLFs1LDAsImhfTiBcXGNpcmMgUihNXzMpIl0sWzEsMSwiaF5OIFxcY2lyYyBMKE1fMSkiXSxbMywxLCJoXk4gXFxjaXJjIEwoTV8yKSJdLFs1LDEsImheTiBcXGNpcmMgTChNXzMpIl0sWzYsMSwiXFx7MFxcfSJdLFswLDFdLFsxLDIsImhfTiBcXGNpcmMgUihmXzEpIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJoX04gXFxjaXJjIFIoZl8yKSJdLFs3LDZdLFs2LDUsImheTiBcXGNpcmMgTChmXzIpIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNSw0LCJoXk4gXFxjaXJjIEwoZl8xKSIsMl1d
+	\[\begin{tikzcd}[row sep=tiny]
+		{\{0\}} & {h_N \circ R(M_1)} && {h_N \circ R(M_2)} && {h_N \circ R(M_3)} & \\
+		& {h^N \circ L(M_1)} && {h^N \circ L(M_2)} && {h^N \circ L(M_3)} & {\{0\}}
+		\arrow[from=1-1, to=1-2]
+		\arrow["{h_N \circ R(f_1)}", hook, from=1-2, to=1-4]
+		\arrow["{h_N \circ R(f_2)}", from=1-4, to=1-6]
+		\arrow["{h^N \circ L(f_1)}"', from=2-4, to=2-2]
+		\arrow["{h^N \circ L(f_2)}"', hook', from=2-6, to=2-4]
+		\arrow[from=2-7, to=2-6]
+	\end{tikzcd}\]
+
+	Yet by the definition of a left and right adjoint, we know that $h_N \circ R(M) \cong h_{L(N)}(M)$ and $h^N \circ L(M) \cong h^{R(N)}(M)$ naturally (in both $N$ and $M$). And since $h_{L(N)}$ and $h^{R(N)}$ are both left exact functors for all $N$, this proves that the above sequences are exact. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} The tensor functor $T_M$ is right-exact.\retTwo
+
+\hTwo Now one may ask about when $T_M$ is fully exact. We know it is possible for this to happen since we already proved on \inLinkRap{Math 200b proposition page 701}{page 701} that $T_A$ is naturally isomorphic to the identity functor on the category of $A$-modules and is in turn an exact functor.\retTwo
+
+We say $M$ is a \udefine{flat} $A$-module if $T_M$ is an exact functor.
+\begin{myIndent}\myComment
+	Observe that $T_M$ is an exact functor iff $T_M(f) = \myId_M \otimes f$ is injective when $f$ is injective.\retTwo
+\end{myIndent}
+
+Before going into some theorems on flat modules, we'll need to prove some other results.\retTwo
+
+\hspace{1.5em}\mySepThree
+
+\exTwo\ul{Lemma:} $T_M \circ T_{M^\prime} \cong T_{M \otimes M^\prime}$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By set 7 problem 3 (on \inLinkRap{Math 200b set 7 Problem 3}{pages 705-708}), it suffices to prove that:
+	
+	{\centering$h^N \circ (T_M \circ T_{M^\prime}) \cong h^N \circ T_{M \otimes M^\prime}$ naturally in $N$.\retTwo\par}
+
+	Fortunately, we already know that $h^N \circ T_M \cong h^{h_M(N)}$ naturally in $N$. In turn, by composing functors into the above identity, we can conclude that:
+	
+	{\centering$h^N \circ (T_M \circ T_{M^\prime}) \cong h^{h_M(N)} \circ T_{M^\prime} \cong h^{h_{M^\prime}(h_M(N))}$ naturally in $N$.\newpage\par}
+
+	Also, we can easily see that $h^{h_{M^\prime}(h_M(N))} \cong h^{h_{M \otimes_A M^\prime}(N)}$ naturally in $N$. In turn:
+
+	{\centering$h^{h_{M \otimes_A M^\prime}(N)} \cong h^N \circ T_{M \otimes_A M^\prime}$ naturally in $N$.\retTwo\par}
+
+	Therefore $h^N \circ (T_{M} \circ T_{M^\prime}) \cong h^N \circ T_{M \otimes_A M^\prime}$ naturally in $N$. $\blacksquare$\retTwo
+	\begin{myIndent}\myComment
+		On a homework problem which I'll later do on  \inLinkRap{idk reference 20}{page \_\_\_\_}, I'll give an explicit\\ construction of an isomorphism between $T_M \circ T_{M^\prime}$ and $T_{M \otimes_A M^\prime}$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Lemma:} $T_{\bigoplus_{i \in I}M_i} \cong \bigoplus_{i \in I}T_{M_i}$.\\ [-10pt]
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Similarly to the prior lemma, we have that:
+
+	{\center\begin{tabular}{l}
+		$h^N \circ T_{\bigoplus_{i \in I} M_i} \cong h^{h_{\bigoplus_{i \in I}M_i}} \cong h^{\prod_{i \in I} h_{M_i}(N)}$\\ [4pt]
+		$\phantom{h^N \circ T_{\bigoplus_{i \in I} M_i} \cong h^{h_{\bigoplus_{i \in I}M_i}}} \cong \prod_{i \in I}h^{h_{M_i}(N)} \cong \prod_{i \in I}(h^N \circ T_{M_i}) \cong h^N \circ \bigoplus_{i \in I} T_{M_i}$
+	\end{tabular}\par}
+
+	naturally in $N$.\retTwo
+	\begin{myIndent}\exPPP
+		These natural isomorphisms are easy to justify. I don't want to write down the\\ arguments though cause it's late. \exThreeP$\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Lemma:} $\bigoplus_{i \in I}F_i$ is exact iff $F_i$ is exact for all $i \in I$.\\ [-10pt]
+\begin{myIndent}\pracTwo 
+	Hopefully this is obvious.\retTwo
+\end{myIndent}
+
+\hTwo\hspace{1.5em}\mySepThree
+
+As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-module, we can conclude the following results.
+\begin{enumerate}
+	\item If $\bigoplus_{i \in I} M_i$ is flat iff $\forall i \in I$ we have that $M_i$ is flat.
+	\begin{myIndent}\pracTwo
+		\why $\bigoplus_{i \in I}M_i$ is flat iff $T_{\bigoplus_{i \in I}M_i}$ is exact, which in turn happens iff $\bigoplus_{i \in I} T_{M_i}$ is exact, and that happens iff for all $i \in I$ we have that $T_{M_i}$ is exact, and finally that happens iff for all $i \in I$ we have that $M_i$ flat.
+	\end{myIndent}
+
+	\item Free $A$-modules are flat.
+	
+	\item Any projective $A$-module is flat.
+	\begin{myIndent}\pracTwo
+		\why If $P$ is projective then there exists an $A$-module $K$ such that $P \oplus K$ is a free module. Thus $P \oplus K$ is flat, and in turn both $P$ and $K$ are flat.
+	\end{myIndent}
+
+	\item If $M_1, M_2$ are flat then so is $M_1 \otimes_A M_2$.
+	\begin{myIndent}\pracTwo
+		\why If both $M_i$ are flat then both $T_{M_i}$ are exact. In turn, $T_{M_1} \circ T_{M_2}$ is exact, which means that $T_{M_1 \otimes_A M_2}$ is exact. And finally, this implies that $M_1 \otimes_A M_2$ is flat.\retTwo
+	\end{myIndent}
+\end{enumerate}
 
 
-% Note $\Hom_A(M_2, \Hom_A(M_1, N)) = h_{M_2} \circ h_{M_1}(N) \cong h_{M_1 \otimes M_2}(N) = \Hom_A(M_1 \otimes M_2, N)$
+
+% Note $\Hom_A(M_2, \Hom_A)(M_1, N)) = h_{M_2} \circ h_{M_1}(N) \cong h_{M_1 \otimes M_2}(N) = \Hom_A(M_1 \otimes M_2, N)$
 
 
 
