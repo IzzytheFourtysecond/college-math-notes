@@ -729,25 +729,99 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 	\end{myIndent}
 \end{enumerate}
 
+\hTwo\mySepTwo
 
+\exTwo\ul{Proposition:} If $D$ is an integral domain, then a $D$-module $M$ being flat implies $M$ is\\ torsion-free.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $M$ is not torsion-free. Then there exists $m_0 \in M - \{0\}$ and $a_0 \in D - \{0\}$\\ such that $a_0 m_0 = 0$. Thus, consider the map $\ell_{a_0} : D \hookrightarrow D$ given by $d \mapsto a_0 d$. $\ell_{a_0}$ is\\ injective since $D$ is a domain. So if $M$ were flat, then we'd have that the map\\ $1_M \otimes \ell_{a_0} : M \otimes_D D \hookrightarrow M \otimes_D D$ is also injective. Yet note the following\\ commuting diagram.
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJNXFxvdGltZXNfRCBEIl0sWzIsMCwiTVxcb3RpbWVzX0QgRCJdLFsyLDIsIk0iXSxbMCwyLCJNIl0sWzEsMV0sWzAsMywiXFxzaW0iLDMseyJvZmZzZXQiOi0zLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyXSxbMSwyLCJcXHNpbSIsMyx7Im9mZnNldCI6LTMsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDIsIlxcZWxsX3thXzB9XnsoTSl9Il0sWzAsNCwibSBcXG90aW1lcyBkIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMCwxLCIxX00gXFxvdGltZXMgXFxlbGxfe2FfMH0iXSxbMSw0LCJtXFxvdGltZXMgYWQiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDQsImFkbSIsMSx7Im9mZnNldCI6LTEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzAsM10sWzMsNCwiZG0iLDEseyJvZmZzZXQiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzksMTQsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE0LDEyLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMSwxMiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbOSwxMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+	\[\begin{tikzcd}
+		{M\otimes_D D} && {M\otimes_D D} \\
+		& {} \\
+		M && M
+		\arrow["{1_M \otimes \ell_{a_0}}", from=1-1, to=1-3]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{m \otimes d}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-2]
+		\arrow["\sim"{marking, allow upside down}, shift left=3, draw=none, from=1-1, to=3-1]
+		\arrow[from=1-1, to=3-1]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{m\otimes ad}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-3, to=2-2]
+		\arrow[from=1-3, to=3-3]
+		\arrow["\sim"{marking, allow upside down}, shift left=3, draw=none, from=1-3, to=3-3]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "dm"{description}, shift right, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-1, to=2-2]
+		\arrow["{\ell_{a_0}^{(M)}}", from=3-1, to=3-3]
+		\arrow[""{name=3, anchor=center, inner sep=0}, "adm"{description}, shift left, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=2-2]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=0, to=2]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.7}, maps to, from=0, to=1]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=1, to=3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=3]
+	\end{tikzcd}\]
 
-% Note $\Hom_A(M_2, \Hom_A)(M_1, N)) = h_{M_2} \circ h_{M_1}(N) \cong h_{M_1 \otimes M_2}(N) = \Hom_A(M_1 \otimes M_2, N)$
+	This suggests that the function $\ell_{a_0}^(M): M \to M$ given by $m \mapsto a_0 m$ is an injective function. But that contradicts that $a_0 m_0 = 0$ and $m_0 \neq 0$. $\blacksquare$\retTwo
+\end{myIndent}
 
+\hTwo\mySepTwo
 
+Up to this point in the class, I've used two different definitions of an $A$-algebra (where\\ $A$ is a unital commutative ring).
+\begin{itemize}
+	\item[1.] $B$ is an $A$-algebra if $B$ is both an $A$-module and a ring (perhaps not commutative), and satisfies that $a(m_1 m_2) = (am_1)m_2 = m_1(am_2)$ for all $a \in A$ and $m_1, m_2 \in M$.
+	\item[2.] $B$ is an $A$-algebra if $B$ is a ring (perhaps not commutative) and there exists a ring\\ homomorphism $f : A \to B$ such that $f(1_A) = 1_B$ and $f(a)b = bf(a)$ for all $a \in A$\\ and $b \in B$.
+\end{itemize}
 
+\begin{myIndent}\pracTwo
+	Definition 2 only makes sense if $B$ is a unital ring. That said, one can easily check that\\ definition 2 implies definition 1. After all, we can turn $B$ into an $A$ module by defining\\ $a \cdot b = f(a)b$ for all $a \in A$ and $b \in B$. Then this satisfies all requirements of definition\\ 1.\retTwo
 
+	Meanwhile, if $B$ is unital then definition 1 implies definition 2 when we set $f(a) = a \cdot 1_B$.\retTwo
+\end{myIndent}
 
+For our coming purposes, the second definition will be more helpful.\retTwo
 
+Suppose $B$ is a unital $A$-algebra. Then we claim that the tensor functor $T_B$ can be enriched to be a functor $A$-$\mcateg{mod} \to B$-$\mcateg{mod}$.\\ [-8pt]
+\begin{myIndent}\hThree
+	Suppose $M$ is an $A$-module. Then $T_B(M) = B \otimes_A M$. We define multiplication by $b$\\ (i.e. $\ell_b : B \otimes_A M \to B \otimes_A M)$ on $T_B(M)$ such that:
+	
+	{\center$\ell_b(b^\prime \otimes m) = bb^\prime \otimes m$.\retTwo\par}
 
+	This is a well-defined $A$-linear map.
+	\begin{myIndent}\color{orange}
+		Let $\ell^\prime : B \times M \to B \otimes_A M$ be given by $(b^\prime, m) \mapsto bb^\prime \otimes m$. It is easily checked that $\ell^\prime$ is an $A$-bilinear map. In turn, by the universal property of tensor prdocuts we have that $\ell_b$ is a well-defined $A$-linear map.\newpage
+	\end{myIndent}
 
+	Now we claim that $B \otimes_A M$ is a $B$-module when for all $b \in B$ and $x \in B \otimes_A M$\\ we define $b \cdot x \coloneqq \ell_b(x)$.
+	\begin{myIndent}\color{orange}
+		Note from before that:
+		
+		{\centering$b \cdot (x_1 + x_2) = \ell_b(x_1 + x_2) = \ell_b(x_1) + \ell_b(x_2) = (b \cdot x_1) + (b \cdot x_2)$.\retTwo\par}
 
+		As for the other three properties we need to show, it suffices to check them only for pure tensors $x = b^\prime \otimes m$ since they generate they span the entire tensor product.
 
+		\begin{itemize}
+			\item $1_B \cdot (b^\prime \otimes m) = (1_B b^\prime) \otimes m = b^\prime \otimes m$
+			\item $b_1b_2 \cdot (b^\prime \otimes m) = (b_1b_2b^\prime) \otimes m = b_1 \cdot ((b_2b^\prime) \otimes m) = b_1 \cdot (b_2 \cdot (b^\prime \otimes m))$.
+			\item $(b_1 + b_2) \cdot (b^\prime \otimes m) = ((b_1 + b_2)b^\prime) \otimes m$\\
+			$\phantom{(b_1 + b_2) \cdot (b^\prime \otimes m)} = (b_1b^\prime \otimes m) + (b_2b^\prime \otimes m) = b_1 \cdot (b^\prime \otimes m)  + b_2 \cdot (b^\prime \otimes m)$.\retTwo
+		\end{itemize}
+	\end{myIndent}
 
+	As for the arrows of the category, we claim that if $f: M \to M^\prime$ is an $A$-module\\ homomorphism then $1_B \otimes f : B \otimes_A M \to B \otimes_A M^\prime$ is a $B$-module homomorphism.
+	\begin{myIndent}\color{orange}
+		After all, for any pure tensor $b^\prime \otimes m \in B \otimes_A M$ we have that:
 
+		{\centering \begin{tabular}{l}
+			$b^\prime \cdot (1_B \otimes f)(b \otimes m) = b^\prime \cdot (b \otimes f(m))$\\
+			$\phantom{b^\prime \cdot (1_B \otimes f)(b \otimes m)} = (b^\prime b) \otimes f(m) = (1_B \otimes f)(b^\prime b \otimes m)$\\
+			$\phantom{b^\prime \cdot (1_B \otimes f)(b \otimes m) = (b^\prime b) \otimes f(m)} = (1_B \otimes f)(b^\prime \cdot ( b \otimes m)) $
+		\end{tabular} \retTwo\par}
+	\end{myIndent}
+\end{myIndent}
 
-\newpage
+On the other hand, we can define a \udefine{forgetful functor} $\mathcal{F} : B$-$\mcateg{mod} \to A$-$\mcateg{mod}$ as follows:
+\begin{myIndent}\pracTwo
+	Suppose $f: A \to B$ is the ring homomorphism satisfying that $f(1_A) = 1_B$ which defines the $A$-algebra structure of $B$. Then given any $B$-module $M$, define $\mathcal{F}(M)$ to be the $A$-module whose elements are the same as $M$ and in which $a \cdot m =f(a)m$ for all $a \in A$. We can then see that any $B$-linear map $\phi:M \to M^\prime$ is also $A$-linear. So, $\mathcal{F}$ is a functor.\retTwo
+\end{myIndent}
 
-\blect{Math 200b Homework:}\retTwo
+\Hstatement\mySepTwo
+
+\hTwo Here are two homework exercises I already turned in.\retTwo
 
 \Hstatement\blab{Set 7 Problem 4:} Suppose $A$ is a unital commutative ring and $S \subseteq A$ is a multiplicatively closed subset, and $M$ is an $A$-modules.
 \begin{enumerate}
@@ -765,7 +839,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			\end{tabular}\retTwo\par}
 
 			Similarly, $f(\frac{a}{s}, a_1m + a_2m) = \frac{a}{s} \cdot \frac{a_1m + a_2m^\prime}{1} = \frac{a_1}{1} \cdot (\frac{a}{s} \cdot \frac{m}{1}) + \frac{a_2}{1} \cdot (\frac{a}{s} \cdot \frac{m^\prime}{1})$\\ [4pt]
-			$\phantom{\text{Similarly,}\hspace{0.2em}f(\frac{a}{s}, a_1m + a_2m) = \frac{a}{s} \cdot \frac{a_1m + a_2m^\prime}{1}} = \frac{a_1}{1}f(\frac{a}{s}, m) + \frac{a_2}{1} f(\frac{a}{s}, m)$.\retTwo
+			$\phantom{\text{Similarly,}\hspace{0.2em}f(\frac{a}{s}, a_1m + a_2m) = \frac{a}{s} \cdot \frac{a_1m + a_2m^\prime}{1}} = \frac{a_1}{1}f(\frac{a}{s}, m) + \frac{a_2}{1} f(\frac{a}{s}, m)$.\newpage
 		\end{myIndent}
 
 		By the universal property of the tensor product, there thus exists a unique $A$-module homomorphism $\widehat{f}: S^{-1}A \otimes_A M \to S^{-1}M$ such that $\widehat{f}(\frac{a}{s} \otimes m) = \frac{a}{s} \cdot \frac{m}{1}$ for all pure tensor elements $\frac{a}{s} \otimes m$.\retTwo
@@ -787,7 +861,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			$\phantom{g((\frac{a_1}{1} \cdot \frac{m}{s}) + (\frac{a_2}{1} \cdot \frac{m^\prime}{s^\prime}))} = \frac{a_1}{s_1}(\frac{1}{s} \otimes m) + \frac{a_2}{s_2}(\frac{1}{s^\prime} \otimes m^\prime) = \frac{a_1}{s_1}g(\frac{m}{s}) + \frac{a_2}{s_2}g(\frac{m^\prime}{s^\prime})$.
 		\end{tabular}\retTwo\par}
 
-		Finally, $\widehat{f}(g(\frac{m}{s})) = \widehat{f}(\frac{1}{s} \otimes m) = \frac{1}{s} \cdot \frac{m}{1}$ implies that $\widehat{f} \circ g = \myId_{S^{-1}M}$. Meanwhile,\\ as $S^{-1}A \otimes M$ is generated by pure tensor elements it suffices to prove that\\ $g(\widehat{f}(\frac{a}{s} \otimes m)) = \frac{a}{s} \otimes m$ for all pure tensor elements in order to prove that\\ $g \circ \widehat{f} = \myId_{S^{-1}A \otimes_A M}$. Fortunately, $g(\widehat{f}(\frac{a}{s} \otimes m)) = g(\frac{a}{s} \cdot \frac{m}{1})  = \frac{1}{s} \otimes am = \frac{a}{s} \otimes m$.\newpage
+		Finally, $\widehat{f}(g(\frac{m}{s})) = \widehat{f}(\frac{1}{s} \otimes m) = \frac{1}{s} \cdot \frac{m}{1}$ implies that $\widehat{f} \circ g = \myId_{S^{-1}M}$. Meanwhile,\\ as $S^{-1}A \otimes M$ is generated by pure tensor elements it suffices to prove that\\ $g(\widehat{f}(\frac{a}{s} \otimes m)) = \frac{a}{s} \otimes m$ for all pure tensor elements in order to prove that\\ $g \circ \widehat{f} = \myId_{S^{-1}A \otimes_A M}$. Fortunately, $g(\widehat{f}(\frac{a}{s} \otimes m)) = g(\frac{a}{s} \cdot \frac{m}{1})  = \frac{1}{s} \otimes am = \frac{a}{s} \otimes m$.\retTwo
 
 		Since $\widehat{f}$ is the inverse of an $S^{-1}A$-module homomorphism, we thus know that $\widehat{f}$ is $S^{-1}A$-linear. And now this proves that $S^{-1}A \otimes_A M \cong S^{-1}M$ as $S^{-1}A$-modules via an isomorphism identifying $\frac{a}{s} \otimes m$ with $\frac{am}{s}$.
 
@@ -816,7 +890,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.4}{0.7}, equals, from=3, to=4]
 		\end{tikzcd}\]
 
-		Since localization by $S$ is an exact functor, it follows $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to S^{-1}A\text{-}\mcateg{mod}$\\ is an exact functor. Also note that the forgetful functor from $S^{-1}A$-$\mcateg{mod}$ to $A$-$\mcateg{mod}$\\ is an exact functor. Hence, we can conclude that the non-enriched tensor functor\\ $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to A\text{-}\mcateg{mod}$ is exact. This proves that $S^{-1}A$ is a flat $A$-module.\retTwo
+		Since localization by $S$ is an exact functor, it follows $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to S^{-1}A\text{-}\mcateg{mod}$\\ is an exact functor. Also note that the forgetful functor from $S^{-1}A$-$\mcateg{mod}$ to $A$-$\mcateg{mod}$\newpage is an exact functor. Hence, we can conclude that the non-enriched tensor functor\\ $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to A\text{-}\mcateg{mod}$ is exact. This proves that $S^{-1}A$ is a flat $A$-module.\retTwo
 	\end{myIndent}
 
 	\item[(d)] Prove that $\frac{m_1 \otimes m_2}{1} \mapsto \frac{m_1}{1} \otimes \frac{m_2}{1}$ gives us a well-defined isomorphism:
@@ -838,7 +912,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			Suppose $\frac{1}{s}m = 0$ in $M$. Then $m = \frac{s}{1} \cdot (\frac{1}{s}m) = \frac{s}{1} \cdot 0 = 0$. In turn, we have that $\frac{m}{s} = 0$ in $S^{-1}\mathcal{F}(M)$.\retTwo
 
 			(Surjective):\\
-			For any $m \in M$ we have that $\frac{m}{1} \in S^{-1}\mathcal{F}(M)$ maps to $m$.\newpage
+			For any $m \in M$ we have that $\frac{m}{1} \in S^{-1}\mathcal{F}(M)$ maps to $m$.\retTwo
 		\end{myIndent}
 
 		In particular, we have that $S^{-1}\mathcal{F}$ is naturally isomorphic to the identity functor\\ on the category $S^{-1}A$-$\mcateg{mod}$. After all, given any $S^{-1}A$-module homomorphism\\ $f: M \to M^\prime$ we have the following diagram:\\ [-20pt]
@@ -870,7 +944,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 		
 		{\centering$f: M_1 \times M_2 \to (S^{-1}M_1) \otimes_{S^{-1}A} (S^{-1}M_2)$ by $f(m_1, m_2) = \frac{m_1}{1} \otimes \frac{m_2}{1}$.\retTwo\par}
 
-		It's obvious that $f$ is $A$-bilinear. Hence, by the universal property of the tensor product there exists a unique $A$-module homomorphism:
+		It's obvious that $f$ is $A$-bilinear. Hence, by the universal property of the tensor product there exists a unique $A$-module homomorphism:\newpage
 		
 		{\center$\widehat{f}: M_1 \otimes_A M_2 \to (S^{-1}M_1) \otimes_{S^{-1}A} (S^{-1}M_2)$\par}
 		
@@ -897,7 +971,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 				\item $g(\frac{a}{s} \cdot \frac{m_1}{s_1}, \frac{m_2}{s_2}) = \frac{(am_1) \otimes m_2}{ss_1 s_2} = \frac{a}{s} \cdot \frac{m_1 \otimes m_2}{s_1s_2} = \frac{a}{s} g(\frac{m_1}{s_1}, \frac{m_2}{s_2})$.
 				\item $g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2}) = \frac{(s_1^\prime m_1 + s_1m_1^\prime) \otimes m_2}{s_1s_1^\prime s_2}$\\ [6pt]
 				$\phantom{g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2})} = \frac{(s_1^\prime m_1 \otimes m_2) + (s_1m_1^\prime \otimes m_1)}{s_1s_1^\prime s_2} = \frac{m_1 \otimes m_2}{s_1s_2} + \frac{m_1^\prime \otimes m_2}{s_1^\prime s_2}$\\ [6pt]
-				$\phantom{g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2}) = \frac{(s_1^\prime m_1 \otimes m_2) + (s_1m_1^\prime \otimes m_1)}{s_1s_1^\prime s_2}} = g(\frac{m_1}{s_1}, \frac{m_2}{s_2}) + g(\frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2})$\newpage
+				$\phantom{g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2}) = \frac{(s_1^\prime m_1 \otimes m_2) + (s_1m_1^\prime \otimes m_1)}{s_1s_1^\prime s_2}} = g(\frac{m_1}{s_1}, \frac{m_2}{s_2}) + g(\frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2})$\retTwo
 			\end{itemize}
 		\end{myIndent}
 
@@ -914,7 +988,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 		Similarly, $S^{-1}(M_1 \otimes_A M_2)$ is generated by elements of the form $\frac{m_1 \otimes m_2}{1}$ where\\ $m_1 \otimes m_2$ is a pure tensor in $M_1 \otimes_A M_2$. Hence, it suffices to show that\\ $\widehat{g}(S^{-1}\widehat{f}(\frac{m_1 \otimes m_2}{1})) = \frac{m_1 \otimes m_2}{1}$ for all pure tensors $m_1 \otimes m_2$ in order to prove\\ that $\widehat{g} \circ S^{-1}\widehat{f} = \myId_{S^{-1}(M_1 \otimes_A M_2)}$.
 
 		\begin{myIndent}\HexTwoP
-			Fortunately $\widehat{g}(S^{-1}\widehat{f}(\frac{m_1 \otimes m_2}{1})) = \widehat{g}(\frac{m_1}{1} \otimes \frac{m_2}{1}) = \frac{m_1 \otimes m_2}{1}$.\retTwo
+			Fortunately $\widehat{g}(S^{-1}\widehat{f}(\frac{m_1 \otimes m_2}{1})) = \widehat{g}(\frac{m_1}{1} \otimes \frac{m_2}{1}) = \frac{m_1 \otimes m_2}{1}$.\newpage
 		\end{myIndent}
 	\end{myIndent}
 
@@ -949,7 +1023,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 	\item[(e)] Prove that if $M_\mathfrak{p}$ is a flat $A_\mathfrak{p}$-module for every $\mathfrak{p} \in \Spec(A)$, then $M$ is flat.
 	
 	\begin{myIndent}\HexOne
-		Recall that $M$ is flat if and only if $f: N \to N^\prime$ being an injective $A$-module\\ homomorphism implies $\mathrm{Id}_M \otimes f: M \otimes N \to M \otimes N^\prime$ is an injective $A$-module\\ homomorphism. Also by set 4 problem 2 (see \inLinkRap{Math 200b Set 4 Problem 2}{pages 623-624}), we have that\\ $\mathrm{Id}_M \otimes f$ is injective if and only if $(\mathrm{Id}_M \otimes f)_\mathfrak{p}$ is injective for all $\mathfrak{p} \in \Spec(A)$.\newpage
+		Recall that $M$ is flat if and only if $f: N \to N^\prime$ being an injective $A$-module\\ homomorphism implies $\mathrm{Id}_M \otimes f: M \otimes N \to M \otimes N^\prime$ is an injective $A$-module\\ homomorphism. Also by set 4 problem 2 (see \inLinkRap{Math 200b Set 4 Problem 2}{pages 623-624}), we have that\\ $\mathrm{Id}_M \otimes f$ is injective if and only if $(\mathrm{Id}_M \otimes f)_\mathfrak{p}$ is injective for all $\mathfrak{p} \in \Spec(A)$.\retTwo
 
 		Fortunately for any $\mathfrak{p} \in \Spec(A)$, if we let $S_\mathfrak{p}^{-1}$ denote the localization functor then the isomorphisms from part (d) induce a natural isomorphism between $S_\mathfrak{p}^{-1} \circ T_M$ and $T_{M_\mathfrak{p}} \circ S_\mathfrak{p}^{-1}$. In particular, this gives us the following commuting diagram:\\ [-10pt]
 		% https://q.uiver.app/#q=WzAsOCxbMSwxLCIoTSBcXG90aW1lc19BIE4pX1xcbWF0aGZyYWt7cH0iXSxbMSwyLCIoTSBcXG90aW1lc19BIE5eXFxwcmltZSlfXFxtYXRoZnJha3twfSJdLFswLDBdLFs0LDBdLFs0LDNdLFswLDNdLFszLDIsIk1fXFxtYXRoZnJha3twfSBcXG90aW1lc197QV9cXG1hdGhmcmFre3B9fSBOXlxccHJpbWVfXFxtYXRoZnJha3twfSJdLFszLDEsIk1fXFxtYXRoZnJha3twfSBcXG90aW1lc197QV9cXG1hdGhmcmFre3B9fSBOX1xcbWF0aGZyYWt7cH0iXSxbMCwxLCIoXFxtYXRocm17SWR9X00gXFxvdGltZXMgZilfXFxtYXRoZnJha3twfSJdLFswLDIsIlxcZnJhY3ttIFxcb3RpbWVzIG59ezF9IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMSw1LCJcXGZyYWN7bSBcXG90aW1lcyBmKG4pfXsxfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNiwiXFxzaW0iLDJdLFs2LDQsIlxcZnJhY3ttfXsxfSBcXG90aW1lcyBcXGZyYWN7ZihuKX17MX0iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFswLDcsIlxcc2ltIl0sWzcsNiwiXFxtYXRocm17SWR9X3tNX1xcbWF0aGZyYWt7cH19IFxcb3RpbWVzIGZfXFxtYXRoZnJha3twfSIsMl0sWzcsMywiXFxmcmFje219ezF9IFxcb3RpbWVzIFxcZnJhY3tufXsxfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzksMTAsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEwLDEyLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs5LDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxNSwxMiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
@@ -972,7 +1046,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=2, to=3]
 		\end{tikzcd}\]
 
-		But now as $f$ is injective, we know that $f_\mathfrak{p}$ is also injective. Next, as $M_\mathfrak{p}$ is flat, we know that $\myId_{M_\mathfrak{p}} \otimes f_\mathfrak{p}$ is injective. And finally, by the above commuting diagram this means that $(\myId_{M} \otimes f)_\mathfrak{p}$ is injective. Since $\mathfrak{p}$ was an arbitrary prime ideal, this proves that $\myId_M \otimes f$ is injective. $\blacksquare$\retTwo
+		But now as $f$ is injective, we know that $f_\mathfrak{p}$ is also injective. Next, as $M_\mathfrak{p}$ is flat, we know that $\myId_{M_\mathfrak{p}} \otimes f_\mathfrak{p}$ is injective. And finally, by the above commuting diagram this means that $(\myId_{M} \otimes f)_\mathfrak{p}$ is injective. Since $\mathfrak{p}$ was an arbitrary prime ideal, this proves that $\myId_M \otimes f$ is injective. $\blacksquare$\newpage
 	\end{myIndent}
 \end{enumerate}
 
@@ -1003,7 +1077,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 	\item[(b)] Suppose $A$ is a local ring. Suppose $M$ and $N$ are finitely generated $A$-modules, and\\ $M \otimes_A N = \{0\}$. Prove that either $M = 0$ or $N = 0$.
 	
 	\begin{myIndent}\HexOne
-		Suppose $\Max(A) = \{\mathfrak{m}\}$ and let $k \coloneqq A/\mathfrak{m}$. Note that $k$ is a field and an $A$-algebra. Hence, we can enrich the tensor functor $T_k$ to be mapping from the category $A$-$\mcateg{mod}$ to the category $k$-$\mcateg{vect}$.\newpage
+		Suppose $\Max(A) = \{\mathfrak{m}\}$ and let $k \coloneqq A/\mathfrak{m}$. Note that $k$ is a field and an $A$-algebra. Hence, we can enrich the tensor functor $T_k$ to be mapping from the category $A$-$\mcateg{mod}$ to the category $k$-$\mcateg{vect}$.\retTwo
 
 		Next, by the proposition on \inLinkRap{Math 200b Proposition page 699}{page 699} we know that $k \otimes_A M = \frac{A}{\mathfrak{m}} \otimes_A M \cong \frac{M}{\mathfrak{m}M}$ as\\ $A$-modules via the isomorphism sending $(a + \mathfrak{m}) \otimes x$ to $ax + \mathfrak{m}M$. Yet also recall from set 5 problem 3(b) (see \inLinkRap{Math 200b Set 5 problem 3b}{page 658}) that $\frac{M}{\mathfrak{m}M}$ is a well-defined $k$-vector space when we define $(a + \mathfrak{m})(x + \mathfrak{m}M) = ax + \mathfrak{m}M$. In particular, this means that
 		
@@ -1021,7 +1095,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 
 		Yet now define a map $f: M \times N \to \frac{M}{\mathfrak{m}M} \otimes_k \frac{N}{\mathfrak{m}N}$ given by:
 		
-		{\centering$f(x, y) = (x + \mathfrak{m}M) \otimes (y + \mathfrak{m}N)$.\retTwo\par}
+		{\centering$f(x, y) = (x + \mathfrak{m}M) \otimes (y + \mathfrak{m}N)$.\newpage\par}
 
 		\begin{myIndent}\HexTwoP
 			Here we view $\frac{M}{\mathfrak{m}M} \otimes_k \frac{N}{\mathfrak{m}N}$ as an $A$-module. As a reminder, if $M^\prime$ is an $\frac{A}{\mathfrak{m}}$-module then we can view $M^\prime$ as an $A$-module by setting $a \cdot x = (a + \mathfrak{m})x$ for all $a \in A$ and $x \in M^\prime$.\retTwo
@@ -1038,24 +1112,429 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 	\end{myIndent}
 \end{enumerate}
 
+\hTwo\mySepTwo
+
+\dispDate{3/6/2026}
+
+\blect{More Math 200b Notes}:\retTwo
+
+Firsly a homework exercise:\retTwo
+
+\Hstatement\blab{Set 8 Problem 1:} Suppose $B$ is a (unital) $A$-algebra and let $\mathcal{F}: B$-$\mcateg{mod} \to A$-$\mcateg{mod}$ be the\\ forgetful functor.
+\begin{enumerate}
+	\item[(a)] Prove that $\Hom_A(M, \mathcal{F}(N)) \cong \Hom_B(T_B(M), N)$ as $A$-modules.
+	
+	\begin{myIndent}\HexOne
+		We start by giving two functions $\Phi$ and $\Psi$ between the two sets. Firstly, given\\ any $A$-module $M$, let $i_M : M \to B \otimes_A M$ be the $A$-module homomorphism\\ given by $m \mapsto 1_B \otimes m$. Then define:
+
+		{\centering\begin{tabular}{l}
+			$\Phi: \Hom_B(T_B(M), N) \to \Hom_A(M, \mathcal{F}(N))$ by $\Phi(f: B \otimes_A M \to N) = f \circ i_M$.
+		\end{tabular}\retTwo\par}
+
+		On the other hand, given any $A$-module homomorphism $f: M \to \mathcal{F}(N)$, consider the map $f^\prime : B \times M \to N$ given by $f^\prime(b, m) \mapsto bf(m)$. This is easily checked to be $A$-bilinear. Hence by the universal property of the tensor product, we get a unique map $\widehat{f} : B \otimes_A M \to N$ such that $b \otimes m \mapsto bm$. I also claim that $\widehat{f}$ is $B$-linear.
+
+		\begin{myIndent}\HexTwoP
+			Since pure tensors span $B \otimes_A M$ as an $A$-module and we already know that $\widehat{f}$ is $A$-linear, it suffices to show that $\widehat{f}(b^\prime x) = b^\prime \widehat{f}(x)$ for any pure tensor $x$. But fortunately if $x = b \otimes m$ we have that:
+
+			{\centering\begin{tabular}{l}
+				$\widehat{f}(b^\prime (b \otimes m)) = \widehat{f}((b^\prime b) \otimes m) = b^\prime b f(m) = b^\prime \widehat{f}(b \otimes m)$.
+			\end{tabular}\newpage\par}
+		\end{myIndent}
+		
+		Thus, we define $\Psi: \Hom_A(M , \mathcal{F}(N)) \to \Hom_B(T_B(M), N)$ by $\Psi(f) = \widehat{f}$.\retTwo
+
+		Note that $\Phi$ and $\Psi$ are both $A$-linear maps.
+		\begin{myIndent}\HexTwoP
+			I'll skip the proof that $\Phi$ is $A$-linear since it's obvious and I'm short on time. As\\ for showing that $\Psi$ is $A$-linear, suppose $f_1, f_2 \in \Hom_A(M , \mathcal{F}(N))$ and\\ $a_1, a_2 \in A$. Then for all pure tensors $b \otimes m$ we have that:
+
+			{\centering\begin{tabular}{l}
+				$(a_1f_1 + a_2f_2)^\wedge(b \otimes m) = b(a_1f_1 + a_2f_2)(m)$\\ [4pt]
+				$\phantom{(a_1f_1 + a_2f_2)^\wedge(b \otimes m)} = a_1bf_1(m) + a_2b f_2(m) = a_1 \widehat{f_1}(b \otimes m) + a_2 \widehat{f_2}(b \otimes m)$.
+			\end{tabular}
+			\retTwo\par}
+
+			In turn as the pure tensors span all of $B \otimes_A M$, we can conclude that:
+			
+			{\centering$(a_1f_1 + a_2f_2)^\wedge = a_1 \widehat{f}_1 + a_2 \widehat{f}_2$\retTwo\par}
+		\end{myIndent}
+
+		To finish off, we show that $\Phi$ and $\Psi$ are inverses.
+		\begin{myIndent}\HexTwoP
+			\begin{itemize}
+				\item For all $m \in M$ we have that:
+				
+				{\center$(\Phi(\Psi(f)))(m) = (\widehat{f} \circ i_M)(m) = \widehat{f}(1_B \otimes m) = f(m)$.\retTwo\par}
+				
+				Hence $\Phi \circ \Psi = \myId_{\Hom_A(M , \mathcal{F}(N))}$.\retTwo
+
+				\item Note that given any pure tensor $b \otimes m$ in $B \otimes_A M$, we have that:
+				
+				{\center$(\Psi(\Phi(f)))(b \otimes m) = b(\Phi(f))(m) = b f(1_B \otimes m) = f(b \otimes m)$.\retTwo\par}
+
+				Since the pure tensors span all of $B \otimes_A M$ and we know $f$ is $B$ linear,\\ we can thus conclude that $(\Psi \circ \Phi)(f) = f$. And this proves that\\ $\Psi \circ \Phi = \myId_{\Hom_B(T_B(M), N)}$.\retTwo
+			\end{itemize}
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] Convince yourself that $(M, N) \mapsto \Hom_A(M, \mathcal{F}(N))$ and {$(M, N) \mapsto \mathcal{F}(\Hom_B(T_B(M), N))$} can be extended to functors:
+	
+	{\center $G_1, G_2 : (A\text{-}\mcateg{mod})^{\mathrm{op}} \times (B\text{-}\mcateg{mod}) \to A\text{-}\mcateg{mod}$ \retTwo\par}
+
+	\begin{myIndent}\HexOne\color{red}
+		I'm not required to write anything for this part so I won't. :\rparen
+	\end{myIndent}
+
+	\item[(c)] Prove that $G_1 \cong G_2$.
+	\begin{myIndent}\HexOne
+		Firstly, for each pair of $A$-modules $M$ and $N$ define like in part (a) the $A$-module\\ isomorphism $\Phi_{(M, N)}: \Hom_B(T_B(M), N) \to \Hom_A(M, \mathcal{F}(N))$. Then to prove\\ that the $\Phi_{(M, N)}$ induce a natural transformation from $G_2$ to $G_1$, it suffices to prove\\ the below commuting diagram for all $A$-linear maps $f: M^\prime \to M$ and $B$-linear maps $g: N \to N^\prime$:\\ [-10pt]
+		% https://q.uiver.app/#q=WzAsOSxbMywxLCJcXEhvbV9BKE0sIFxcbWF0aGNhbHtGfShOKSkiXSxbMSwxLCJcXG1hdGhjYWx7Rn0oXFxIb21fQihUX0IoTSksIE4pKSJdLFszLDIsIlxcSG9tX0EoTV5cXHByaW1lLCBcXG1hdGhjYWx7Rn0oTl5cXHByaW1lKSkiXSxbMSwyLCJcXG1hdGhjYWx7Rn0oXFxIb21fQihUX0IoTV5cXHByaW1lKSwgTl5cXHByaW1lKSkiXSxbNCwwXSxbMCwwXSxbMCwzXSxbNCwzLCIgIl0sWzUsMl0sWzAsMiwiR18xKChmXlxcbWF0aHJte29wfSwgZykpIiwyXSxbMSwzLCJHXzIoKGZeXFxtYXRocm17b3B9LCBnKSkiXSxbMCw0LCJoIFxcY2lyYyBpX00iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDUsImgiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFszLDYsImcgXFxjaXJjIGggXFxjaXJjKFxcbWF0aHJte0lkfV9CIFxcb3RpbWVzIGYpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMSwwLCJcXFBoaV97KE0sIE4pfSIsMl0sWzMsMiwiXFxQaGlfeyhNXlxccHJpbWUsIE5eXFxwcmltZSl9IiwyXSxbMiw4LCJnIFxcY2lyYyBoIFxcY2lyYyBpX00gXFxjaXJjIGYiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDcsImcgXFxjaXJjIGggXFxjaXJjKFxcbWF0aHJte0lkfV9CIFxcb3RpbWVzIGYpIFxcY2lyYyBpX3tNXlxccHJpbWV9IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMTIsMTEsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEyLDEzLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMSwxNiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTMsMTcsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+		\[\begin{tikzcd}
+			{} &&&& {} & \\
+			& {\mathcal{F}(\Hom_B(T_B(M), N))} && {\Hom_A(M, \mathcal{F}(N))} \\
+			& {\mathcal{F}(\Hom_B(T_B(M^\prime), N^\prime))} && {\Hom_A(M^\prime, \mathcal{F}(N^\prime))} && {} \\
+			{} &&&& { }
+			\arrow[""{name=0, anchor=center, inner sep=0}, "h"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
+			\arrow["{\Phi_{(M, N)}}"', from=2-2, to=2-4]
+			\arrow["{G_2((f^\mathrm{op}, g))}", from=2-2, to=3-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{h \circ i_M}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-5]
+			\arrow["{G_1((f^\mathrm{op}, g))}"', from=2-4, to=3-4]
+			\arrow["{\Phi_{(M^\prime, N^\prime)}}"', from=3-2, to=3-4]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "{g \circ h \circ(\mathrm{Id}_B \otimes f)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-2, to=4-1]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{g \circ h \circ i_M \circ f}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=3-6]
+			\arrow[""{name=4, anchor=center, inner sep=0}, "{g \circ h \circ(\mathrm{Id}_B \otimes f) \circ i_{M^\prime}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=4-5]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=2]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=1, to=3]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.15}{0.85}, maps to, from=2, to=4]
+		\end{tikzcd}\]
+
+		\newpage
+
+		Fortuntately for any $m^\prime \in M^\prime$ we have that:
+
+		{\centering $(i_M \circ f)(m^\prime) = 1_B \otimes f(m^\prime) = (\myId_{B} \otimes f)(1_B \otimes m^\prime) = ((\myId_{B} \otimes f) \circ i_{M^\prime})(m^\prime)$ \retTwo\par}
+
+		So, this square does commute. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo As a consequence of this homework exercise, we have that $T_B$ and $\mathcal{F}$ are left and right adjoints for any $A$-algebra $B$.
+
+As an application of this exercise, suppose $A \stackrel{f}{\subseteq} B \stackrel{g}{\subseteq} C$ is a \udefine{tower of algebras}.
+\begin{myIndent}\hThree
+	This means that $B$ is an $A$-algebra with structure determined by $f: A \to B$ and $C$ is a $B$-algebra with structure determined by $g: B \to C$. Note that $C$ is also an $A$-algebra with structure determined by $g \circ f$.\retTwo
+
+	Often (especially as we transition to talking about field theory), we will write $B/A$ to refer to the $A$-algebra $B$. Don't confuse this with a quotient ring (which uses identical notation). *sigh*\retTwo
+\end{myIndent}
+
+I claim that $T_{C/A} \cong T_{C/B} \circ T_{B/A}$.
+\begin{myIndent}\pracTwo
+	Why?\\
+	We know from the prior exercise that:
+
+	{\centering\begin{tabular}{l}
+		$\Hom_C(T_{C/B} \circ T_{B/A}(M), N) \cong \Hom_B(T_{B/A}(M), N) \cong \Hom_A(M, N)$\\
+		$\phantom{\Hom_C(T_{C/B} \circ T_{B/A}(M), N) \cong \Hom_B(T_{B/A}(M), N)} \cong \Hom_C(T_{C/A}(M), N)$
+	\end{tabular}\retTwo\par}
+
+	naturally in both $M$ and $N$. Thus by set 7 problem 3 (on \inLinkRap{Math 200b set 7 Problem 3}{pages 705-708}), we have that $T_{C/B} \circ T_{B/A}$ is naturally isomorphic to $T_{C/A}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\newpage
 
 
 
 
 
+\Hstatement\blab{Set 8 Problem 2:} Suppose $A$ is a unital commutative ring, and $\mathfrak{a} \lhd A$.
+\begin{enumerate}
+	\item[(a)] Suppose $M$ is a flat $A$-module. Prove that $\mathfrak{a} \otimes_A M \cong \mathfrak{a}M$.
+	\begin{myIndent}\HexOne
+		Consider the standard S.E.S. % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiXFxtYXRoZnJha3thfSJdLFsyLDAsIkEiXSxbMywwLCJBL1xcbWF0aGZyYWt7YX0iXSxbNCwwLCJcXHswXFx9Il0sWzAsMV0sWzEsMiwiaSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDRdXQ==
+		$\begin{tikzcd}
+			{\{0\}} & {\mathfrak{a}} & A & {A/\mathfrak{a}} & {\{0\}}
+			\arrow[from=1-1, to=1-2]
+			\arrow["i", hook, from=1-2, to=1-3]
+			\arrow["\pi", two heads, from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+		\end{tikzcd}$. As $M$ is a flat $A$ module, we know that applying a tensor functor doesn't destroy the\\ exactness of the sequence. So, we can get an S.E.S.:
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTSBcXG90aW1lc19BIFxcbWF0aGZyYWt7YX0iXSxbMiwwLCJNIFxcb3RpbWVzX0EgQSJdLFszLDAsIk0gXFxvdGltZXNfQSBcXGZyYWN7QX17XFxtYXRoZnJha3thfX0iXSxbNCwwLCJcXHswXFx9Il0sWzAsMV0sWzEsMiwiXFxtYXRocm17SWR9X00gXFxvdGltZXMgaSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiXFxtYXRocm17SWR9X00gXFxvdGltZXNcXHBpIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNF1d
+		\[\begin{tikzcd}
+			{\{0\}} & {M \otimes_A \mathfrak{a}} & {M \otimes_A A} & {M \otimes_A \frac{A}{\mathfrak{a}}} & {\{0\}}
+			\arrow[from=1-1, to=1-2]
+			\arrow["{\mathrm{Id}_M \otimes i}", hook, from=1-2, to=1-3]
+			\arrow["{\mathrm{Id}_M \otimes\pi}", two heads, from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+		\end{tikzcd}\]
+
+		But now recall from \inLinkRap{Math 200b proposition page 701}{page 701} that we have isomorphisms $M \otimes_A \frac{A}{\mathfrak{a}} \to \frac{M}{\mathfrak{a}M}$ and\\ $M  \otimes_A A \to M$ such that $m \otimes (a + \mathfrak{a}) \mapsto am + \mathfrak{a}M$ and $m \otimes a \mapsto am$. By\\ considering the quotient map $\widetilde{\pi}: M \rightarrowdbl M/\mathfrak{a}M$, we thus get the following\\ commuting diagram:\\ [-15pt]
+		% https://q.uiver.app/#q=WzAsOCxbMSwxLCJNIFxcb3RpbWVzX0EgQSJdLFszLDEsIk0gXFxvdGltZXNfQSBcXGZyYWN7QX17XFxtYXRoZnJha3thfX0iXSxbMSwyLCJNIl0sWzMsMiwiTS9cXG1hdGhmcmFre2F9TSJdLFswLDBdLFs0LDBdLFs0LDNdLFswLDNdLFswLDEsIlxcbWF0aHJte0lkfV9NIFxcb3RpbWVzXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDMsIlxcd2lkZXRpbGRle1xccGl9Il0sWzAsMl0sWzEsM10sWzAsMiwiXFxzaW0iLDMseyJvZmZzZXQiOi0yLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzLCJcXHNpbSIsMyx7Im9mZnNldCI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDQsIm1cXG90aW1lcyBhIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw3LCJhbSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNSwibSBcXG90aW1lcyAoYSArIFxcbWF0aGZyYWt7YX0pIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMyw2LCJhbSArIFxcbWF0aGZyYWt7YX1NIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMTQsMTYsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE0LDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxNSwxNywiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTYsMTcsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+		\[\begin{tikzcd}
+			{} &&&& {} \\
+			& {M \otimes_A A} && {M \otimes_A \frac{A}{\mathfrak{a}}} \\
+			& M && {M/\mathfrak{a}M} \\
+			{} &&&& {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{m\otimes a}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
+			\arrow["{\mathrm{Id}_M \otimes\pi}", two heads, from=2-2, to=2-4]
+			\arrow[from=2-2, to=3-2]
+			\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=2-2, to=3-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{m \otimes (a + \mathfrak{a})}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-5]
+			\arrow[from=2-4, to=3-4]
+			\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=2-4, to=3-4]
+			\arrow["{\widetilde{\pi}}", from=3-2, to=3-4]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "am"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-2, to=4-1]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{am + \mathfrak{a}M}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=4-5]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.8}, maps to, from=0, to=1]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=2]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=1, to=3]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.8}, maps to, from=2, to=3]
+		\end{tikzcd}\]
+
+		\phantom{,}\\ [-20pt]It follows that:
+		
+		{\centering$M \otimes_A \mathfrak{a} \cong \myIm(\myId_M \otimes i) = \ker(\myId_M \otimes \pi) \cong \ker(\widetilde{\pi}) = \mathfrak{a}M$\retTwo\par}
+
+		In particular, we can trace out that our isomorphism is given by:\\ [-10pt]
+		% https://q.uiver.app/#q=WzAsMTAsWzIsMSwiXFxtYXRocm17aW19KFxcbWF0aHJte0lkfV9NIFxcb3RpbWVzIGkpIl0sWzIsMiwiXFxtYXRoZnJha3thfU0iXSxbMCwxLCJNIFxcb3RpbWVzX0EgXFxtYXRoZnJha3thfSJdLFswLDIsIlxcbWF0aGZyYWt7YX1NIl0sWzAsMF0sWzQsMF0sWzMsMiwiXFxrZXIoXFx3aWRldGlsZGV7XFxwaX0pIl0sWzMsMSwiXFxrZXIoXFxtYXRocm17SWR9X00gXFxvdGltZXMgXFxwaSkiXSxbNCwzXSxbMCwzXSxbMiwwLCJcXG1hdGhybXtJZH1fTSBcXG90aW1lcyBpIl0sWzMsMSwiaSJdLFsyLDQsIlxcc3VtX3tpPTF9XmsgKG1faSBcXG90aW1lcyBhX2kpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiwwLCJcXHNpbSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDEsIlxcc2ltIiwyXSxbMSw2LCIiLDIseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs3LDZdLFs3LDYsIlxcc2ltIiwzLHsib2Zmc2V0IjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNywiIiwzLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNyw1LCJcXHN1bV97aT0xfV5rIChtX2kgXFxvdGltZXMgYV9pKSIsMSx7Im9mZnNldCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbNiw4LCJcXHN1bV97aT0xfV5rIGFfaW1faSIsMSx7Im9mZnNldCI6LTEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzMsOSwiXFxzdW1fe2k9MX1eayBhX2kgbV9pIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiwzLCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMTIsMTksIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE5LDIwLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsyMCwyMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+		\[\begin{tikzcd}
+			{} &&&& {} \\
+			{M \otimes_A \mathfrak{a}} && {\mathrm{im}(\mathrm{Id}_M \otimes i)} & {\ker(\mathrm{Id}_M \otimes \pi)} \\
+			{\mathfrak{a}M} && {\mathfrak{a}M} & {\ker(\widetilde{\pi})} \\
+			{} &&&& {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{\sum_{j=1}^k (m_j \otimes a_j)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-1, to=1-1]
+			\arrow["{\mathrm{Id}_M \otimes i}", from=2-1, to=2-3]
+			\arrow["\sim"', draw=none, from=2-1, to=2-3]
+			\arrow[dashed, from=2-1, to=3-1]
+			\arrow[equals, from=2-3, to=2-4]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{\sum_{j=1}^k (m_j \otimes a_j)}"{description}, shift right, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-5]
+			\arrow[from=2-4, to=3-4]
+			\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=2-4, to=3-4]
+			\arrow["i", from=3-1, to=3-3]
+			\arrow["\sim"', from=3-1, to=3-3]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "{\sum_{j=1}^k a_j m_j}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-1, to=4-1]
+			\arrow[equals, from=3-3, to=3-4]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{\sum_{j=1}^k a_jm_j}"{description}, shift left, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=4-5]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.14}{0.86}, maps to, from=0, to=1]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=1, to=3]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=3, to=2]
+		\end{tikzcd}\]
+		\phantom{.}\\ [-30pt]
+	\end{myIndent}
+
+	\item[(b)] Suppose $0 \to M_1 \xrightarrow{i} M_2$ is injective and $M_1$ and $M_2$ are flat $A$-modules. Prove that\\ $\myId_\mathfrak{a} \otimes i : \mathfrak{a} \otimes_A M_1 \to \mathfrak{a} \otimes_A M_2$ is injective.
+	
+	\begin{myIndent}\HexOne
+		Recall that if $f: N \to N^\prime$ is an $A$-module homomorphism, then $f(\mathfrak{a}N) = \mathfrak{a}f(N)$. Hence, we know that $i(\mathfrak{a}M_1) \subseteq \mathfrak{a}M_2$, and in turn the following commuting diagram is well-defined.\newpage
+		% https://q.uiver.app/#q=WzAsOCxbMSwxLCJcXG1hdGhmcmFre2F9IFxcb3RpbWVzX0EgTV8xIl0sWzMsMSwiXFxtYXRoZnJha3thfSBcXG90aW1lc19BIE1fMiJdLFszLDIsIlxcbWF0aGZyYWt7YX1NXzIiXSxbMSwyLCJcXG1hdGhmcmFre2F9TV8xIl0sWzAsMF0sWzQsMF0sWzQsM10sWzAsM10sWzAsMSwiXFxtYXRocm17SWR9X1xcbWF0aGZyYWt7YX0gXFxvdGltZXMgaSJdLFswLDNdLFsxLDJdLFszLDIsImkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDMsIlxcc2ltIiwzLHsib2Zmc2V0IjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiXFxzaW0iLDMseyJvZmZzZXQiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDQsIlxcc3VtX3tqPTF9XmsgKGFfaiBcXG90aW1lcyBtX2opIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMyw3LCJcXHN1bV97aj0xfV5rIGFfaiBtX2oiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDYsIlxcc3VtX3tqPTF9XmsgYV9qIGkobV9qKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNSwiXFxzdW1fe2o9MX1eayAoYV9qIFxcb3RpbWVzIGkobV9qKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzE0LDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxNSwxNiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTQsMTcsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE3LDE2LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+		\[\begin{tikzcd}
+			{} &&&& {} \\
+			& {\mathfrak{a} \otimes_A M_1} && {\mathfrak{a} \otimes_A M_2} \\
+			& {\mathfrak{a}M_1} && {\mathfrak{a}M_2} \\
+			{} &&&& {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{\sum_{j=1}^k (a_j \otimes m_j)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
+			\arrow["{\mathrm{Id}_\mathfrak{a} \otimes i}", from=2-2, to=2-4]
+			\arrow[from=2-2, to=3-2]
+			\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=2-2, to=3-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{\sum_{j=1}^k (a_j \otimes i(m_j))}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-5]
+			\arrow[from=2-4, to=3-4]
+			\arrow["\sim"{marking, allow upside down}, shift right=2, draw=none, from=2-4, to=3-4]
+			\arrow["i|_{\mathfrak{a}M_1}", hook, from=3-2, to=3-4]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "{\sum_{j=1}^k a_j m_j}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-2, to=4-1]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{\sum_{j=1}^k a_j i(m_j)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=4-5]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=0, to=1]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=2]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=1, to=3]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=3]
+		\end{tikzcd}\]
+
+		But now this proves that $\ker(\myId_{\mathfrak{a}} \otimes i) \cong \ker(i|_{\mathfrak{a}M}) \subseteq \ker(i) = \{0\}$. Hence $\myId_{\mathfrak{a}} \otimes i$ has a trivial kernel and is thus injective.
+	\end{myIndent}
+
+	\item[(c)] Suppose % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTl8xIl0sWzIsMCwiTl8yIl0sWzMsMCwiTl8zIl0sWzQsMCwiXFx7MFxcfSJdLFszLDRdLFsyLDMsImYiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwyLCJpIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxXV0=
+	$\begin{tikzcd}
+		{\{0\}} & {N_1} & {N_2} & {N_3} & {\{0\}}
+		\arrow[from=1-1, to=1-2]
+		\arrow["i", hook, from=1-2, to=1-3]
+		\arrow["f", two heads, from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}$ is an SES and $N_2$ and $N_3$ are\\ [-4pt] flat $A$-modules. (Note by set 7 problem 8 on \inLinkRap{idk reference 21}{page \_\_\_} that $N_1$ must then also be flat). Prove\\ [2pt] that $\mathfrak{a}N_2 \cap i(N_1) = i(\mathfrak{a}N_1)$.
+
+	\begin{myIndent}\HexOne
+		Since $N_1, N_2$ are flat, we can conclude by part (b) plus the right-exactness of the tensor functor $T_\mathfrak{a}$ that the following is an S.E.S.:
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiXFxtYXRoZnJha3thfSBcXG90aW1lc19BIE5fMSJdLFszLDAsIlxcbWF0aGZyYWt7YX1cXG90aW1lc19BIE5fMiJdLFs1LDAsIlxcbWF0aGZyYWt7YX0gXFxvdGltZXNfQSBOXzMiXSxbNiwwLCJcXHswXFx9Il0sWzMsNF0sWzIsMywiXFxtYXRocm17SWR9X1xcbWF0aGZyYWt7YX0gXFxvdGltZXMgZiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDIsIlxcbWF0aHJte0lkfV9cXG1hdGhmcmFre2F9IFxcb3RpbWVzIGkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDFdXQ==
+		\[\begin{tikzcd}
+			{\{0\}} & {\mathfrak{a} \otimes_A N_1} && {\mathfrak{a}\otimes_A N_2} && {\mathfrak{a} \otimes_A N_3} & {\{0\}}
+			\arrow[from=1-1, to=1-2]
+			\arrow["{\mathrm{Id}_\mathfrak{a} \otimes i}", hook, from=1-2, to=1-4]
+			\arrow["{\mathrm{Id}_\mathfrak{a} \otimes f}", two heads, from=1-4, to=1-6]
+			\arrow[from=1-6, to=1-7]
+		\end{tikzcd}\]
+
+		Yet also by analogous reasoning to part (b) we have that the above SES is isomorphic to the sequence:
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiXFxtYXRoZnJha3thfU5fMSJdLFsyLDAsIlxcbWF0aGZyYWt7YX0gTl8yIl0sWzMsMCwiXFxtYXRoZnJha3thfU5fMyJdLFs0LDAsIlxcezBcXH0iXSxbMyw0XSxbMiwzLCJmfF97XFxtYXRoZnJha3thfU5fMn0iXSxbMSwyLCJpfF97XFxtYXRoZnJha3thfU5fMX0iXSxbMCwxXV0=
+		\[\begin{tikzcd}
+			{\{0\}} & {\mathfrak{a}N_1} & {\mathfrak{a} N_2} & {\mathfrak{a}N_3} & {\{0\}}
+			\arrow[from=1-1, to=1-2]
+			\arrow["{i|_{\mathfrak{a}N_1}}", from=1-2, to=1-3]
+			\arrow["{f|_{\mathfrak{a}N_2}}", from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+		\end{tikzcd}\]
+
+		It follows that this latter sequence is exact. So:
+		
+		{\centering$i(\mathfrak{a}N_1) = \ker(f|_{\mathfrak{a}N_2}) = \ker(f) \cap \mathfrak{a}N_2 = i(N_1) \cap \mathfrak{a}N_2$.\retTwo\par}
+	\end{myIndent}
+
+	\item[(d)] Suppose $M \coloneqq F/K$ where $F$ is a free $A$-module and $K$ is a submodule of $F$. Also suppose $M$ is flat. Then $\mathfrak{a}F \cap K = \mathfrak{a}K$.
+	
+	\begin{myIndent}\HexOne
+		This is just a special case of part (c) applied to the standard SES:
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiSyJdLFsyLDAsIkYiXSxbMywwLCJNIl0sWzQsMCwiXFx7MFxcfSJdLFszLDRdLFsxLDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMV0sWzIsMywiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
+		\[\begin{tikzcd}
+			{\{0\}} & K & F & M & {\{0\}}
+			\arrow[from=1-1, to=1-2]
+			\arrow[hook, from=1-2, to=1-3]
+			\arrow[two heads, from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+		\end{tikzcd} \blacksquare\]
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 8 Problem 3:} Suppose $A$ is a local unital commutative ring and $\Max(A) = \{\mathfrak{m}\}$.
+\begin{enumerate}
+	\item[(a)] Suppose $K$ is a finitely generated submodule of $A^n$ and $\mathfrak{m}^n \cap K = \mathfrak{m}K$. Prove that $K$\\ is a free $A$-module and $A^n = K \oplus N$ for some finitely generated submodule $N$ of $A^n$.
+	
+	\begin{myIndent}\HexOne
+		Notice that we have an injective $(A/\mathfrak{m})$-linear map from $\frac{K}{\mathfrak{m}K}$ to $\frac{A^n}{\mathfrak{m}^n}$ given by\\ $x + \mathfrak{m}K \mapsto x + \mathfrak{m}^n$
+		\begin{myIndent}\HexTwoP
+			This map is well-defined because $\mathfrak{m}K \subseteq \mathfrak{m}^n$. Next, as scaling by a coset\\ representive turns $\frac{N}{\mathfrak{a}N}$ into a well-defined $A/\mathfrak{a}$-module for any $\mathfrak{a}\lhd A$ and\\ $A$-module $N$ we know that this map is $\frac{A}{\mathfrak{m}}$-linear. Finally, injectivity follows from\\ the fact that $\mathfrak{m}^n \cap K = \mathfrak{m}K$.\retTwo
+		\end{myIndent}
+
+		Also notice that $\frac{A}{\mathfrak{m}^n} \cong (\frac{A}{\mathfrak{m}})^n$ and $\frac{A}{\mathfrak{m}}$ is a field. Hence, using linear algebra arguments there exists $m \leq n$ as well as $x_1, \ldots, x_m \in K$ and $x_{m+1}, \ldots, x_n \in A^n$ such that\\ the $\overline{x}_i \coloneqq x_i + \mathfrak{m}K$ for $1 \leq i \leq m$ form an $\frac{A}{\mathfrak{m}}$-basis of $\frac{K}{\mathfrak{m}K}$ and $\overline{x}_i^\prime \coloneqq x_i + \mathfrak{m}^n$ form\\ an $\frac{A}{\mathfrak{m}}$-basis of $\frac{A^n}{\mathfrak{m}^n}$.\retTwo
+
+		By the final section of the proof of set 5 problem 3b (see \inLinkRap{Math 200b Set 5 problem 3b}{page 658}), we in turn know that $x_1, \ldots, x_m$ span $K$ and $x_1, \ldots, x_n$ span $A^n$ with $m = d(K)$ and $n = d(A^n)$.
+		\begin{myIndent}\color{red}
+			Note: I just realized this is the primary result people refer to as "Nakayama's lemma".\retTwo
+		\end{myIndent}
+
+		Yet now recall from set 2 problem 4b (see \inLinkRap{Actual Problem Set 2 Problem 4 Math 200b}{pages 569-570}) that if $\phi: A^n \to A^n$ is a surjective $A$-module homomorphism, then $\phi$ is also injective. Using this fact, we can conclude $x_1, \ldots, x_n$ are linearly independent. And finally, this gives us that:
+
+		{\centering $K = \bigoplus_{i=1}^m Ax_i$  and $M = \bigoplus_{i=1}^n Ax_i$.\retTwo\par}
+
+		This proves that $K$ is free and we can just set $N = \bigoplus_{i=m+1}^n Ax_i$.
+	\end{myIndent}
 
 
+	\item[(b)] Suppose $M$ is a finitely presented flat $A$-module. Then prove that $M$ is free.
+	
+	\begin{myIndent}\HexOne
+		Firstly, as $M$ is finitely presented we know there is a positive integer $n$ and a finitely generated submodule $K$ of $A^n$ such that we have the following SES:
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiSyJdLFsyLDAsIkFebiJdLFszLDAsIk0iXSxbNCwwLCJcXHswXFx9Il0sWzMsNF0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxXSxbMiwzLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
+		\[\begin{tikzcd}
+			{\{0\}} & K & {A^n} & M & {\{0\}}
+			\arrow[from=1-1, to=1-2]
+			\arrow[hook, from=1-2, to=1-3]
+			\arrow[two heads, from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+		\end{tikzcd}\]
+
+		Since both $M$ and $A^n$ are flat, we can conclude from the prior problem that\\ $\mathfrak{m}^n \cap K = \mathfrak{m}K$. In turn because $K$ is finitely generated, we can conclude from\\ part (a) of this problem that $A^n = K \oplus N$ where $N$ is a free submodule of $A^n$.\retTwo
+
+		Finally $M \cong \frac{A^n}{K} = \frac{K \oplus N}{K} \cong N$. So, $M$ is a free module. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 8 Problem 4:} Suppose $A$ is a unital commutative ring and $M$ is a finitely presented $A$-module. Prove that the following statements are equivalent:
+\begin{enumerate}
+	\item[(a)] $M$ is flat;
+	\item[(b)] $M_\mathfrak{p}$ is flat for every $\mathfrak{p} \in \Spec(A)$; 
+	\item[(c)] $M_\mathfrak{p}$ is free for every $\mathfrak{p} \in \Spec(A)$;
+	\item[(d)] $M$ is projective.  
+\end{enumerate}
+
+\begin{myIndent}\HexOne
+	$(a \Longleftrightarrow b)$\\
+	This was proven in set 7 problem 4 on \inLinkRap{Math 200b Set 7 Problem 4e}{page 722}. Also, this doesn't require that $M$ is finitely presented.\retTwo
+
+	$(b \Longrightarrow c)$\\
+	Part (b) of the last problem proves this result. Note that this implication \textit{does} require $M$ to be finitely presented.\retTwo
+
+	$(c \Longrightarrow d)$
+	This was proven in set 6 problem 6 on \inLinkRap{Math 200b Set 6 Problem 6}{pages 676-677}. Note that this implication \textit{does} require $M$ to be finitely presented.\retTwo
+
+	$(d \Longrightarrow a)$
+	This was proven on \inLinkRap{Math 200b Main Flatness results}{page 716}. Also, this doesn't require that $M$ is finitely\\ presented.\newpage
+\end{myIndent}
 
 
+\newpage
 
+\blab{Set 8 Problem 8:} suppose $\alpha, \beta \in \mathbb{C}$ are algebraic over $\mathbb{Q}$. Let $f \coloneqq m_{\alpha; \mathbb{Q}}$ and $g \coloneqq m_{\beta; \mathbb{Q}}$. Prove that $f$ is irreducible in $(\mathbb{Q}[\beta])[x]$ if and only if $g$ is irreducible in $(\mathbb{Q}[\alpha])[x]$.\\ [-10pt]
+\begin{myIndent}\HexOne
+	To start off, we show that $f$ is irreducible in $(\mathbb{Q}[\beta])[x]$ iff $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = \deg(f)\deg(g)$.
 
+	\begin{myIndent}\HexTwoP
+		Note that if $f$ is irreducible in $(\mathbb{Q}[\beta])[x]$, then as $f(\alpha) = 0$ and $f$ is monic we\\ have that $f = m_{\alpha; \mathbb{Q}[\beta]}$. Hence by the tower formula we can conclude that:
 
+		{\centering $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = [\mathbb{Q}[\alpha, \beta], \mathbb{Q}[\beta]] \cdot [\mathbb{Q}[\beta] : \mathbb{Q}] = \deg(f)\deg(g)$. \retTwo\par}
 
+		Conversely, suppose $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = \deg(f)\deg(g)$. Then by the tower formula we can guarentee that $\deg(m_{\alpha; \mathbb{Q}[\beta]}) = \frac{[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}]}{\deg(g)} = \deg(f)$. Since $m_{\alpha ; \mathbb{Q}[\beta]}$ divides $f$ (as both evaluate to $0$ at $\alpha$) and both polynomials are monic, we can conclude that $f = m_{\alpha ; \mathbb{Q}[\beta]}$. And this proves that $f$ is irreducible in $\mathbb{Q}[\beta]$.\retTwo
+	\end{myIndent}
 
+	By symmetric reasoning, we have that $g$ is irreducible in $(\mathbb{Q}[\alpha])[x]$ iff\\ $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = \deg(f)\deg(g)$. And this let's us conclude what we wanted. $\blacksquare$\retTwo
+\end{myIndent}
 
+\blab{Set 8 Problem 7:} Prove that $\mathbb{Q}[\sqrt{2}]$ and $\mathbb{Q}[\sqrt{3}]$ are not isomorphic (as fields).
+\begin{myIndent}\HexOne
+	Suppose for the sake of contradiction that $\theta: \mathbb{Q}[\sqrt{2}] \to \mathbb{Q}[\sqrt{3}]$ is a field isomorphism, then note that since $\theta(1) = 1$ and $\theta$ preserves sums and differences, we can conclude that $\theta(n) = n$ for all $n \in \mathbb{Z}$. In turn, since $\theta$ preserves division we must have that $\theta(q) = q$ for all $q \in \mathbb{Q}$.\retTwo
 
+	Next, consider that $\theta(\sqrt{2})^2 = \theta(2) = 2$. Yet simultaneously since the minimal polynomial of $\sqrt{3}$ over $\mathbb{Q}$ is $x^2 - 3$, we know that $\{1, \sqrt{3}\}$ is a $\mathbb{Q}$-basis of $\mathbb{Q}[\sqrt{3}]$ and in turn that\\ $\theta(\sqrt{2}) = p + q\sqrt{3}$ for some $p, q \in \mathbb{Q}$. So, we can conclude that:
 
+	{\centering $p^2 + 2pq\sqrt{3} + 3q^2 = 2$ \retTwo\par}
 
+	Equivalently, this means that $(p^2 + 3q^2 - 2) + (2pq)\sqrt{3} = 0$. And since $1$ and $\sqrt{3}$ are $\mathbb{Q}$-linearly independent, we know $p^2 + 3q^2 - 2 = 0$ and $2pq = 0$. But now this implies that either $p = 0$ or $q = 0$. We can check as follows that both of these possibilities lead to a contradiction. 
+	\begin{itemize}
+		\item If $q = 0$ then we must have that $p^2 = 2$. Yet this is impossible as no $p \in \mathbb{Q}$ satisfies that $p^2 = 2$.
+		\item If $p = 0$ then we have that $q^2 = \frac{2}{3}$ Yet once again no $q \in \mathbb{Q}$ satisfies this.
+	\end{itemize}
+
+	Thus we conclude no such $\theta$ can exist. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 8 Problem 6:} Let $A_\mathfrak{p} \coloneqq \frac{\mathbb{Z}[x]}{\langle x^2 + x + 1\rangle} \otimes_\mathbb{Z} \frac{\mathbb{Z}}{p\mathbb{Z}}$ where $p$ is a prime number.
+\begin{enumerate}
+	\item[(a)] Prove that $A_\mathfrak{p}$ is a field if and only if $p \not\equiv 1 \mMod{3}$ and $p \neq 3$.
+	\item[(b)] Prove that $A_\mathfrak{p} \cong (\mathbb{Z}/ p\mathbb{Z})^2$ as rings if and only if $p \equiv 1 \mMod{3}$.
+	\item[(c)] Prove that $A_\mathfrak{p}$ has a nonzero nilpotent element if and only if $p = 3$.
+	
+	\begin{myIndent}\HexOne
+		To start off, by the theorem on \inLinkRap{idk reference 22}{page \_\_\_} we know that:
+		
+		{\centering$A_\mathfrak{p} \cong \frac{\mathbb{Z} / p\mathbb{Z}[x]}{\langle x^2 + x + 1\rangle}$ as $\frac{\mathbb{Z}}{p \mathbb{Z}}$-algebras.\retTwo\par}
+
+		Note that $x^2 + x + 1$ is irreducible in $\mathbb{Z} / p\mathbb{Z}[x]$ if and only if $x^2 + x + 1$ has no roots\\ [2pt] in $\mathbb{Z} / p\mathbb{Z}$. Also $A_\mathfrak{p}$ will be a field only if $\langle x^2 + x + 1\rangle$ is a maximal ideal, and that will happen iff $x^2 + x + 1$ is irreducible in $\mathbb{Z} / p\mathbb{Z}[x]$. So, our first goal is to figure out what the roots of $x^2 + x + 1$ look like depending on what $p$ is.\newpage
+		\begin{itemize}
+			\item Suppose $p = 3$. Then $(x^2 + x + 1) = (x - 1)^2$. Hence, we get that $A_p \cong \frac{\mathbb{Z}/p\mathbb{Z}[x]}{\langle (x - 1)^2 \rangle}$ as $\mathbb{Z}/p\mathbb{Z}$-algebras and we know the coset represented by $(x - 1)$ in the latter ring\\ [2pt] is nonzero and nilpotent.\retTwo
+			
+			\item Suppose $p \neq 3$ and that $x^2 + x + 1$ is not irreducible in $\mathbb{Z}/p\mathbb{Z}[x]$. Then we may pick $a \in \mathbb{Z}/p\mathbb{Z}$ with $a^2 + a + 1 = 0$. Notably, because $p \neq 3$ we know that $a \neq 1$. Also, clearly $a \neq 0$, meaning that $a \in (\mathbb{Z}/p\mathbb{Z})^\times$.\retTwo
+			
+			By Lagranges theorem we must have that $o(a) \divides |(\mathbb{Z}/p\mathbb{Z})^\times| = p - 1$. Yet\\ [2pt] also because $x^3 - 1 = (x - 1)(x^2 + x + 1)$, we can guarentee that $a^3 - 1 = 0$\\ [2pt] and in turn that $o(a) \divides 3$. As $o(a) \neq 1$ since $a \neq 1$, this proves that $o(a) = 3$.\\ [2pt] Thus $3 \divides p - 1$. Or in other words, $p \equiv 1 \mMod{3}$.\retTwo
+
+			\item Conversely, suppose $p \equiv 1 \mMod{3}$. Then we know that $3 \divides p - 1 = |(\mathbb{Z}/p\mathbb{Z})^\times|$. Also note that because $(\mathbb{Z}/p\mathbb{Z})^\times$ is a cyclic group, there exists $b \in (\mathbb{Z}/p\mathbb{Z})^\times$ with $o(b) = p - 1$. Now just let $a \coloneqq b^{(p-1)/3}$. Then we have that $a^3 \equiv 1 \mMod{p}$ but $a \not\equiv 1 \mMod{p}$. It follows that $a$ is a root of $x^2 + x + 1$ instead of $x - 1$ and this proves that $x^2 + x + 1$ is not irreducible.
+
+			\begin{myIndent}\HexTwoP
+				As a side note, in case that $p \equiv 1 \mMod{3}$, then $a_1 = b^{(p-1)/3}$ and\\ $a_2 = b^{2(p-1)/3}$ would be two distinct zeros of $x^2 + x + 1$. Hence, we've proven that if $p \neq 3$ and  $\langle x^2 + x + 1\rangle$ is not irreducible, then there are distinct $a_1, a_2 \in \mathbb{Z}/p\mathbb{Z}$ with $x^2 + x + 1 = (x - a_1)(x - a_2)$.
+			\end{myIndent}
+		\end{itemize}
+
+		\color{red} I've run out of time to finish the argument so just use chinese remainder theorem in the case that $p \equiv 1 \mMod{3}$ to get the desired result.
+	\end{myIndent}
+\end{enumerate}
+
+\hypertarget{idk reference 21}{}
+\hypertarget{idk reference 22}{}
 
 
 

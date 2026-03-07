@@ -5787,8 +5787,8 @@ This notation also extends to trivial Euclidean manifolds where (for example) Jo
 	\end{myIndent}
 \end{myIndent}
 
-\exOne\ul{Lemma 1.10:} Every topological manifold  $M$
-without boundary has a countable basis of precompact \udefine{coordinate balls} (i.e. sets that are homeomorphic to an open ball in $\mathbb{R}^n$) and \udefine{coordinate half-balls} (i.e. sets that are homeomorphic to $B_r(x) \cap H^n$ where $B_r(x)$ is a ball centered at a point in $\partial H^n$).
+\exOne\ul{Lemma 1.10:} Every topological manifold $M$
+without boundary has a countable basis of precompact \udefine{coordinate balls} (i.e. sets that are homeomorphic to an open ball in $\mathbb{R}^n$). If $M$ has a boundary then this countable basis may also include \udefine{coordinate half-balls} (i.e. sets that are homeomorphic to $B_r(x) \cap H^n$ where $B_r(x)$ is a ball centered at a point in $\partial H^n$).
 
 \begin{myIndent}\exTwoP
 	Proof:\\
@@ -5860,7 +5860,7 @@ Now due to my patchy background, I'm only sorta familiar with how topological co
 		\item $E$ being path-connected does not necessarily mean that $\overline{E}$ is. 
 		\begin{myIndent}\pracTwo
 			Proof:\\
-			Let $S = \{(t, \sin(1/t)) \in \mathbb{R}^2 : t > 0\}$. Then $S$ is clearly path connected. Also, we can see that $\overline{S} = S \cup (\{0\} \times [-1, 1])$. But, there is no continuous path going from any point in $\{0\} \times [-1, 1]$ to any point in $S$. Hence $\overline{S}$ is not connected. $\blacksquare$\retTwo
+			Let $S = \{(t, \sin(1/t)) \in \mathbb{R}^2 : t > 0\}$. Then $S$ is clearly path connected. Also, we can see that $\overline{S} = S \cup (\{0\} \times [-1, 1])$. But, there is no continuous path going from any point in $\{0\} \times [-1, 1]$ to any point in $S$. Hence $\overline{S}$ is not path-connected. $\blacksquare$\retTwo
 		\end{myIndent}
 		
 		\item For every $x \in X$ there is a maximal path connected set $E \subseteq X$ containing $x$. This set is called a \udefine{path component} of $X$.
@@ -5877,7 +5877,7 @@ Now due to my patchy background, I'm only sorta familiar with how topological co
 
 		\item The previous bullet point also holds if we replace "maximal connected\\ component" with "maximal path connected component".\retTwo
 
-		\item Two sets $A$ and $B$ are \udefine{separated} if $A \cap \overline{B} = \emptyset$ and $\overline{A} \cap B = \emptyset$. A topological space $X$ is connected if and only if no two nonempty sets whose union is all of $X$ are disconnected. (This is the definition in math 140a\dots)
+		\item Two sets $A$ and $B$ are \udefine{separated} if $A \cap \overline{B} = \emptyset$ and $\overline{A} \cap B = \emptyset$. A topological space $X$ is connected if and only if no two nonempty sets whose union is all of $X$ are separated. (This is the definition in math 140a\dots)
 		\begin{myIndent}\pracTwo
 			$(\Longrightarrow)$\\
 			Let $A$ and $B$ be two nonempty separated sets satisfying that $A \cup B = X$.\\ Then since $\overline{A} \cup B = X$ and $\overline{A} \cap B = \emptyset$, it's clear that $B = (\overline{A})^\comp$. Similarly,\\ it's clear that $A = (\overline{B})^\comp$. So, both $A$ and $B$ are open. But now $A$ and $B$ are\\ disjoint nonempty open sets partitioning $X$. This means that $X$ is not\\ connected.\newpage
@@ -15877,7 +15877,7 @@ Unfortunately I now need to do homework. So\dots\newpage
 		Note that $|T_1| = \frac{n(n-1)}{2}$. Meanwhile, we claim that $\frac{(2k-2)!}{k!2^{k-1}} > 1$ whenever $k \geq 3$.
 
 		\begin{myIndent}\HexTwoP
-			After all, it is easy to check that $\frac{(2k-2)!}{k!2^{k-1}} = 1$ when $k = 1$ or $3$. Meanwhile, $\frac{(2j - 2)(2j - 3)}{2j} > \frac{(2j - 2)(2j - 3)}{(2j - 3)} = 2j - 2 > 1$ for all $j \geq 2$. Hence, we can easily show by induction that $\frac{(2k-2)!}{k!2^{k-1}} > 1$ when $k > 3$.\retTwo 
+			After all, it is easy to check that $\frac{(2k-2)!}{k!2^{k-1}} = 1$ when $k = 1$ or $3$. Meanwhile,\\ $\frac{(2j - 2)(2j - 3)}{2j} > \frac{(j - 1)(2j - 3)}{j+1} \geq \frac{2j - 3}{2} > 1$ for all $j \geq 3$. Hence, we can easily show by induction that $\frac{(2k-2)!}{k!2^{k-1}} > 1$ when $k > 3$.\retTwo 
 		\end{myIndent}
 
 		Hence, by part (c) we know that $|T_k| > |T_1|$ for all $k > 3$. And so, all we need to show is that $|T_1| \neq |T_2|$ and $|T_1| \neq |T_3|$.\retTwo
@@ -15947,7 +15947,7 @@ Let $\Cl(G)$ be the set of conjugacy classes of $G$.
 		So we can manually calculate out the following table:
 
 		{\centering\begin{tabular}{c|c c c c c c}
-			& $n = 1$ & $n = 2$ & $n = 3$ & $n = 4$ & $n - 5$ & $n = 6$ \\ \hline
+			& $n = 1$ & $n = 2$ & $n = 3$ & $n = 4$ & $n = 5$ & $n = 6$ \\ \hline
 			$\vphantom{\int^b}|T_1|$ & $0$ & $1$ & $3$ & $6$ & $10$ & $15$ \\ [4pt]
 			$|T_2|$ & $0$ & $0$ & $0$ & $3$ & $15$ & $45$ \\ [4pt]  
 			$|T_3|$ & $0$ & $0$ & $0$ & $0$ & $0$ & $15$
@@ -16564,7 +16564,7 @@ Let $\{G_i\}_{i \in I}$ be a family of groups. By modifying each $G_i$ by some t
 	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJYIl0sWzEsMCwiQyhYKSJdLFsxLDEsIk0iXSxbMCwxLCJpIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyLCJmIiwyXSxbMSwyLCJcXGhhdHtmfSJdXQ==
 	\[\begin{tikzcd}
 		& {P} \\
-		X & G
+		G_i & G
 		\arrow["{\widehat{f}}", from=1-2, to=2-2]
 		\arrow["j_i", hook, from=2-1, to=1-2]
 		\arrow["f_i"', from=2-1, to=2-2]
@@ -16696,7 +16696,7 @@ Note that it is pretty easy to see that if $\omega \sim \omega^\prime$ then $g \
 	\item[(a)] Find the composition factors of $S_n$.
 	
 	\begin{myIndent}\HexOne
-		We know that $S_n \rhd A_n \rhd \{\myId\}$ is a composition series for $S_n$. After all, $S_n / A_n \cong C_2$ (the cyclic group of order $2$) since $C_2$ is the only group of order $2$. Meanwhile $A_n / \{\myId\} \cong A_n$. And both $C_2$ and $A_n$ are simple.\retTwo
+		We know $S_n \rhd A_n \rhd \{\myId\}$ is a composition series for $S_n$. After all, $S_n / A_n \cong C_2$\\ (the cyclic group of order $2$) since $C_2$ is the only group of order $2$. Meanwhile\\ $A_n / \{\myId\} \cong A_n$. And both $C_2$ and $A_n$ are simple.\retTwo
 
 		It follows that $C_2$ and $A_n$ are the composition factors of $S_n$.
 	\end{myIndent}
@@ -25753,7 +25753,7 @@ we can find a unique monic polynomial $f \in F[x]$ such that $a = c_f$.\retTwo
 
 \hypertarget{page 602 reference math 200b}{On} \inLinkRap{Definition of F-algebra page 518}{page 518} I wrote what it means for a unital commutative ring to be an $F$-algebra.\\ However, for this next section it will be necessary to define what it means for a non-\\commutative unit ring to be an $F$-algebra. Also in general I want to prove some things\\ I didn't think of proving back on page 518.\retTwo
 
-If $F$ is a field and $A$ is a noncommutative unital ring, we say that $A$ is an \udefine{$F$-algebra} if there exists a ring homomorphism $f : F \to A$ such that $f(1_f) = f(1_A)$ and $f(c)a = af(c)$ for all $a \in A$ and $c \in F$.
+If $F$ is a field and $A$ is a noncommutative unital ring, we say $A$ is an \udefine{$F$-algebra} if there\\ exists a ring homomorphism $f : F \to A$ such that $f(1_f) = 1_A$ and $f(c)a = af(c)$ for\\ all $a \in A$ and $c \in F$.
 \begin{itemize}
 	\item Note that if $A \neq \{0\}$ then $f$ is necessarily injective. This is because $\ker(f)$ is an ideal of $F$. That said, the only ideals of $F$ are $F$ and $\{0\}$, and we know that $\ker(f) \neq F$. After all, $1_F \notin \ker(f)$ since $f(1_F) = 1_A \neq 0_A$. It follows that $\ker(f) = \{0\}$ and that proves that $f$ is injective.
 	\begin{myIndent}\myComment
@@ -28663,7 +28663,7 @@ Also, we say $F: A\text{-}\mcateg{mod} \to  A\text{-}\mcateg{mod}$ is \udefine{e
 
 		On the other hand, suppose $y_1 + \mathfrak{m}M, \ldots, y_d + \mathfrak{m}M$ is an $\frac{A}{\mathfrak{m}}$-basis of $\frac{M}{\mathfrak{m}M}$, and let $N$ be the submodule of $M$ that is generated by the $y_i$'s. Our goal will be to show that $\mathfrak{m}\frac{M}{N} = \frac{M}{N}$ since then we can conclude from part (a) that $\frac{M}{N} = \{0\}$ and in turn that $N = M$, thus implying that $d(M) \leq d = \dim_{\frac{A}{\mathfrak{m}}}(\frac{M}{\mathfrak{m}M})$.
 		\begin{myIndent}\HexTwoP
-			Fortunately, given any $x \in M$, we know there exists $a_1, \ldots, a_d \in A$ such that that $x - \sum_{i=1}^d a_iy_i \in  \mathfrak{m}M$. After letting $z \in \mathfrak{m}M$ satisfy that $x - \sum_{i=1}^d a_iy_i = z$, we can in turn conclude that $x - z \in N$. So, $x + N = z + N$ and we've proven that $\frac{M}{N} = \frac{\mathfrak{m}M + N}{N}$.\retTwo
+			Fortunately, given any $x \in M$, we know there exists $a_1, \ldots, a_d \in A$ such that\\ $x - \sum_{i=1}^d a_iy_i \in  \mathfrak{m}M$. After letting $z \in \mathfrak{m}M$ satisfy that $x - \sum_{i=1}^d a_iy_i = z$,\\ we can in turn conclude  $x - z \in N$. So, $x + N = z + N$ and we've proven\\ that $\frac{M}{N} = \frac{\mathfrak{m}M + N}{N}$.\retTwo
 
 			Also note that:
 
@@ -29338,7 +29338,7 @@ The following is a slight tangent that ended up being unnecessary for solving pa
 \begin{myIndent}\HexOne
 	Using the fact that $M$ is finitely generated, let $f: A^n \to M$ be a surjective map. Then from my tangent on \inLinkRap{Pages 666-667 tangent}{pages 666-667}, we know that $f_\mathfrak{p} : (A^n)_{\mathfrak{p}} \cong (A_\mathfrak{p})^n \to M_\mathfrak{p}$ is also surjective. And this proves that $M_\mathfrak{p}$ is a finitely generated module.\retTwo
 
-	Yet now note from that aforementioned tangent that $M_\mathfrak{p}$ is a projective $A_\mathfrak{p}$-module which is also a local ring (which we proved in set 4 problem 6 on \inLinkRap{Math 200b Set 4 Problem 6}{page 626}). Since $M_\mathfrak{p}$ is also finitely generated it follows by problem 3c on the previous 200b problem set (see \inLinkRap{Math 200b Set 5 Problem 3c}{pages 658-659}) that $M_\mathfrak{p}$ is a free $A_\mathfrak{p}$-module.\retTwo
+	Yet now note from that aforementioned tangent that $M_\mathfrak{p}$ is a projective $A_\mathfrak{p}$-module and $A_\mathfrak{p}$ is a local ring (which we proved in set 4 problem 6 on \inLinkRap{Math 200b Set 4 Problem 6}{page 626}). Since $M_\mathfrak{p}$ is also finitely generated it follows by problem 3c on the previous 200b problem set (see \inLinkRap{Math 200b Set 5 Problem 3c}{pages 658-659}) that $M_\mathfrak{p}$ is a free $A_\mathfrak{p}$-module.\retTwo
 
 	Finally, $\mRank_{A_\mathfrak{p}}(M_\mathfrak{p}) = d_{A_\mathfrak{p}}(M_\mathfrak{p}) \leq n$ since the surjection $f_{\mathfrak{p}}: (A_\mathfrak{p})^n \to M_\mathfrak{p}$ exists. $\blacksquare$\retTwo
 \end{myIndent}
@@ -29361,10 +29361,10 @@ Let $M$ be a finitely presented $A$-module given by the SES \inLinkRap{finitely 
 Prove that $U_d^\circ(M) = U_d(M) \cap U_{n-d}(K)$ and deduce that $\Spec(A) = \bigcup_{d=0}^n U_d^\circ(M)$ is a\\ partition of $\Spec(A)$ into Zariski-open sets.
 
 \begin{myIndent}\HexOne
-	 First we prove $U_d^\circ(M) = U_d(M) \cap U_{n-d}(K)$. The significance of this fact to the rest of the problem is that it means $U_d^\circ(M)$ is an open set in the Zariski topology. After all, by problem 2c applied to $M$ and $K$, we know that $U_d^\circ(M)$ is the intersection of two open sets.\\ [-10pt]
+	First we prove $U_d^\circ(M) = U_d(M) \cap U_{n-d}(K)$. The significance of this fact to the rest of the problem is that it means $U_d^\circ(M)$ is an open set in the Zariski topology. After all, by problem 2c applied to $M$ and $K$, we know that $U_d^\circ(M)$ is the intersection of two open sets.\\ [-10pt]
 	\begin{myIndent}\HexTwoP
 		\begin{myIndent}\color{red}
-			Note that needing $K$ to be finitely generated in order to apply problem 2c is the entire reason we need $M$ to be finitely presented for this problem.\retTwo
+			Note that needing $K$ to be finitely generated in order to apply problem 2c is the only reason we need $M$ to be finitely presented for this problem.\retTwo
 		\end{myIndent}
 
 		Proving $\subseteq$:\\
@@ -29572,7 +29572,7 @@ Also suppose $S$ is a multiplicatively closed subset of $A$. Prove for any $A$-m
 	$\blacksquare$\retTwo
 \end{myIndent}
 
-\blab{Set 6 Problem 6:} Suppose $M$ is a finitely presented locally free $A$-module. Prove that $M$ is\\ projective.\newpage
+\blab{Set 6 Problem 6:} \hypertarget{Math 200b Set 6 Problem 6}{Suppose} $M$ is a finitely presented locally free $A$-module. Prove that $M$ is\\ projective.\newpage
 
 \begin{myIndent}\HexOne
 	Suppose $f: N \to N^\prime$ is any surjective $A$-module homomorphism. If we can show that $h_M(f)$ is a surjective $A$-module homomorphism then this will prove that $M$ is projective. Equivalently it suffices to show that $(h_M(f))_\mathfrak{p}$ for all $\mathfrak{p} \in \Spec(A)$ (see problem 3 on set 4 [\inLinkRap{Math 200b Set 4 Problem 3}{pages 623-624}]).\retTwo
@@ -31738,8 +31738,8 @@ Before going into some theorems on flat modules, we'll need to prove some other 
 	Similarly to the prior lemma, we have that:
 
 	{\center\begin{tabular}{l}
-		$h^N \circ T_{\bigoplus_{i \in I} M_i} \cong h^{h_{\bigoplus_{i \in I}M_i}} \cong h^{\prod_{i \in I} h_{M_i}(N)}$\\ [4pt]
-		$\phantom{h^N \circ T_{\bigoplus_{i \in I} M_i} \cong h^{h_{\bigoplus_{i \in I}M_i}}} \cong \prod_{i \in I}h^{h_{M_i}(N)} \cong \prod_{i \in I}(h^N \circ T_{M_i}) \cong h^N \circ \bigoplus_{i \in I} T_{M_i}$
+		$h^N \circ T_{\bigoplus_{i \in I} M_i} \cong h^{h_{\bigoplus_{i \in I}M_i}(N)} \cong h^{\prod_{i \in I} h_{M_i}(N)}$\\ [4pt]
+		$\phantom{h^N \circ T_{\bigoplus_{i \in I} M_i} \cong h^{h_{\bigoplus_{i \in I}M_i}(N)}} \cong \prod_{i \in I}h^{h_{M_i}(N)} \cong \prod_{i \in I}(h^N \circ T_{M_i}) \cong h^N \circ \bigoplus_{i \in I} T_{M_i}$
 	\end{tabular}\par}
 
 	naturally in $N$.\retTwo
@@ -31755,7 +31755,7 @@ Before going into some theorems on flat modules, we'll need to prove some other 
 
 \hTwo\hspace{1.5em}\mySepThree
 
-As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-module, we can conclude the following results.
+\hypertarget{Math 200b Main Flatness results}{As} an application of the prior lemmas plus that the fact that $A$ is a flat $A$-module, we can conclude the following results.
 \begin{enumerate}
 	\item $\bigoplus_{i \in I} M_i$ is flat iff $\forall i \in I$ we have that $M_i$ is flat.
 	\begin{myIndent}\pracTwo
@@ -31775,30 +31775,99 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 	\end{myIndent}
 \end{enumerate}
 
+\hTwo\mySepTwo
 
+\exTwo\ul{Proposition:} If $D$ is an integral domain, then a $D$-module $M$ being flat implies $M$ is\\ torsion-free.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $M$ is not torsion-free. Then there exists $m_0 \in M - \{0\}$ and $a_0 \in D - \{0\}$\\ such that $a_0 m_0 = 0$. Thus, consider the map $\ell_{a_0} : D \hookrightarrow D$ given by $d \mapsto a_0 d$. $\ell_{a_0}$ is\\ injective since $D$ is a domain. So if $M$ were flat, then we'd have that the map\\ $1_M \otimes \ell_{a_0} : M \otimes_D D \hookrightarrow M \otimes_D D$ is also injective. Yet note the following\\ commuting diagram.
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJNXFxvdGltZXNfRCBEIl0sWzIsMCwiTVxcb3RpbWVzX0QgRCJdLFsyLDIsIk0iXSxbMCwyLCJNIl0sWzEsMV0sWzAsMywiXFxzaW0iLDMseyJvZmZzZXQiOi0zLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyXSxbMSwyLCJcXHNpbSIsMyx7Im9mZnNldCI6LTMsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDIsIlxcZWxsX3thXzB9XnsoTSl9Il0sWzAsNCwibSBcXG90aW1lcyBkIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMCwxLCIxX00gXFxvdGltZXMgXFxlbGxfe2FfMH0iXSxbMSw0LCJtXFxvdGltZXMgYWQiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDQsImFkbSIsMSx7Im9mZnNldCI6LTEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzAsM10sWzMsNCwiZG0iLDEseyJvZmZzZXQiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzksMTQsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE0LDEyLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMSwxMiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbOSwxMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+	\[\begin{tikzcd}
+		{M\otimes_D D} && {M\otimes_D D} \\
+		& {} \\
+		M && M
+		\arrow["{1_M \otimes \ell_{a_0}}", from=1-1, to=1-3]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{m \otimes d}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-2]
+		\arrow["\sim"{marking, allow upside down}, shift left=3, draw=none, from=1-1, to=3-1]
+		\arrow[from=1-1, to=3-1]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{m\otimes ad}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-3, to=2-2]
+		\arrow[from=1-3, to=3-3]
+		\arrow["\sim"{marking, allow upside down}, shift left=3, draw=none, from=1-3, to=3-3]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "dm"{description}, shift right, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-1, to=2-2]
+		\arrow["{\ell_{a_0}^{(M)}}", from=3-1, to=3-3]
+		\arrow[""{name=3, anchor=center, inner sep=0}, "adm"{description}, shift left, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=2-2]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=0, to=2]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.7}, maps to, from=0, to=1]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=1, to=3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=3]
+	\end{tikzcd}\]
 
+	This suggests that the function $\ell_{a_0}^(M): M \to M$ given by $m \mapsto a_0 m$ is an injective function. But that contradicts that $a_0 m_0 = 0$ and $m_0 \neq 0$. $\blacksquare$\retTwo
+\end{myIndent}
 
+\hTwo\mySepTwo
 
+Up to this point in the class, I've used two different definitions of an $A$-algebra (where\\ $A$ is a unital commutative ring).
+\begin{itemize}
+	\item[1.] $B$ is an $A$-algebra if $B$ is both an $A$-module and a ring (perhaps not commutative), and satisfies that $a(m_1 m_2) = (am_1)m_2 = m_1(am_2)$ for all $a \in A$ and $m_1, m_2 \in M$.
+	\item[2.] $B$ is an $A$-algebra if $B$ is a ring (perhaps not commutative) and there exists a ring\\ homomorphism $f : A \to B$ such that $f(1_A) = 1_B$ and $f(a)b = bf(a)$ for all $a \in A$\\ and $b \in B$.
+\end{itemize}
 
+\begin{myIndent}\pracTwo
+	Definition 2 only makes sense if $B$ is a unital ring. That said, one can easily check that\\ definition 2 implies definition 1. After all, we can turn $B$ into an $A$ module by defining\\ $a \cdot b = f(a)b$ for all $a \in A$ and $b \in B$. Then this satisfies all requirements of definition\\ 1.\retTwo
 
+	Meanwhile, if $B$ is unital then definition 1 implies definition 2 when we set $f(a) = a \cdot 1_B$.\retTwo
+\end{myIndent}
 
+For our coming purposes, the second definition will be more helpful.\retTwo
 
-\newpage
+Suppose $B$ is a unital $A$-algebra. Then we claim that the tensor functor $T_B$ can be enriched to be a functor $A$-$\mcateg{mod} \to B$-$\mcateg{mod}$.\\ [-8pt]
+\begin{myIndent}\hThree
+	Suppose $M$ is an $A$-module. Then $T_B(M) = B \otimes_A M$. We define multiplication by $b$\\ (i.e. $\ell_b : B \otimes_A M \to B \otimes_A M)$ on $T_B(M)$ such that:
+	
+	{\center$\ell_b(b^\prime \otimes m) = bb^\prime \otimes m$.\retTwo\par}
 
+	This is a well-defined $A$-linear map.
+	\begin{myIndent}\color{orange}
+		Let $\ell^\prime : B \times M \to B \otimes_A M$ be given by $(b^\prime, m) \mapsto bb^\prime \otimes m$. It is easily checked that $\ell^\prime$ is an $A$-bilinear map. In turn, by the universal property of tensor prdocuts we have that $\ell_b$ is a well-defined $A$-linear map.\newpage
+	\end{myIndent}
 
+	Now we claim that $B \otimes_A M$ is a $B$-module when for all $b \in B$ and $x \in B \otimes_A M$\\ we define $b \cdot x \coloneqq \ell_b(x)$.
+	\begin{myIndent}\color{orange}
+		Note from before that:
+		
+		{\centering$b \cdot (x_1 + x_2) = \ell_b(x_1 + x_2) = \ell_b(x_1) + \ell_b(x_2) = (b \cdot x_1) + (b \cdot x_2)$.\retTwo\par}
 
+		As for the other three properties we need to show, it suffices to check them only for pure tensors $x = b^\prime \otimes m$ since they generate they span the entire tensor product.
 
+		\begin{itemize}
+			\item $1_B \cdot (b^\prime \otimes m) = (1_B b^\prime) \otimes m = b^\prime \otimes m$
+			\item $b_1b_2 \cdot (b^\prime \otimes m) = (b_1b_2b^\prime) \otimes m = b_1 \cdot ((b_2b^\prime) \otimes m) = b_1 \cdot (b_2 \cdot (b^\prime \otimes m))$.
+			\item $(b_1 + b_2) \cdot (b^\prime \otimes m) = ((b_1 + b_2)b^\prime) \otimes m$\\
+			$\phantom{(b_1 + b_2) \cdot (b^\prime \otimes m)} = (b_1b^\prime \otimes m) + (b_2b^\prime \otimes m) = b_1 \cdot (b^\prime \otimes m)  + b_2 \cdot (b^\prime \otimes m)$.\retTwo
+		\end{itemize}
+	\end{myIndent}
 
+	As for the arrows of the category, we claim that if $f: M \to M^\prime$ is an $A$-module\\ homomorphism then $1_B \otimes f : B \otimes_A M \to B \otimes_A M^\prime$ is a $B$-module homomorphism.
+	\begin{myIndent}\color{orange}
+		After all, for any pure tensor $b^\prime \otimes m \in B \otimes_A M$ we have that:
 
+		{\centering \begin{tabular}{l}
+			$b^\prime \cdot (1_B \otimes f)(b \otimes m) = b^\prime \cdot (b \otimes f(m))$\\
+			$\phantom{b^\prime \cdot (1_B \otimes f)(b \otimes m)} = (b^\prime b) \otimes f(m) = (1_B \otimes f)(b^\prime b \otimes m)$\\
+			$\phantom{b^\prime \cdot (1_B \otimes f)(b \otimes m) = (b^\prime b) \otimes f(m)} = (1_B \otimes f)(b^\prime \cdot ( b \otimes m))$.
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+\end{myIndent}
 
+On the other hand, we can define a \udefine{forgetful functor} $\mathcal{F} : B$-$\mcateg{mod} \to A$-$\mcateg{mod}$ as follows:
+\begin{myIndent}\pracTwo
+	Suppose $f: A \to B$ is the ring homomorphism satisfying that $f(1_A) = 1_B$ which defines the $A$-algebra structure of $B$. Then given any $B$-module $M$, define $\mathcal{F}(M)$ to be the $A$-module whose elements are the same as $M$ and in which $a \cdot m =f(a)m$ for all $a \in A$. We can then see that any $B$-linear map $\phi:M \to M^\prime$ is also $A$-linear. So, $\mathcal{F}$ is a functor.\retTwo
+\end{myIndent}
 
+\Hstatement\mySepTwo
 
-
-
-
-\newpage
-
-\blect{Math 200b Homework:}\retTwo
+\hTwo Here are two homework exercises I already turned in.\retTwo
 
 \Hstatement\blab{Set 7 Problem 4:} Suppose $A$ is a unital commutative ring and $S \subseteq A$ is a multiplicatively closed subset, and $M$ is an $A$-modules.
 \begin{enumerate}
@@ -31816,7 +31885,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			\end{tabular}\retTwo\par}
 
 			Similarly, $f(\frac{a}{s}, a_1m + a_2m) = \frac{a}{s} \cdot \frac{a_1m + a_2m^\prime}{1} = \frac{a_1}{1} \cdot (\frac{a}{s} \cdot \frac{m}{1}) + \frac{a_2}{1} \cdot (\frac{a}{s} \cdot \frac{m^\prime}{1})$\\ [4pt]
-			$\phantom{\text{Similarly,}\hspace{0.2em}f(\frac{a}{s}, a_1m + a_2m) = \frac{a}{s} \cdot \frac{a_1m + a_2m^\prime}{1}} = \frac{a_1}{1}f(\frac{a}{s}, m) + \frac{a_2}{1} f(\frac{a}{s}, m)$.\retTwo
+			$\phantom{\text{Similarly,}\hspace{0.2em}f(\frac{a}{s}, a_1m + a_2m) = \frac{a}{s} \cdot \frac{a_1m + a_2m^\prime}{1}} = \frac{a_1}{1}f(\frac{a}{s}, m) + \frac{a_2}{1} f(\frac{a}{s}, m)$.\newpage
 		\end{myIndent}
 
 		By the universal property of the tensor product, there thus exists a unique $A$-module homomorphism $\widehat{f}: S^{-1}A \otimes_A M \to S^{-1}M$ such that $\widehat{f}(\frac{a}{s} \otimes m) = \frac{a}{s} \cdot \frac{m}{1}$ for all pure tensor elements $\frac{a}{s} \otimes m$.\retTwo
@@ -31838,7 +31907,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			$\phantom{g((\frac{a_1}{1} \cdot \frac{m}{s}) + (\frac{a_2}{1} \cdot \frac{m^\prime}{s^\prime}))} = \frac{a_1}{s_1}(\frac{1}{s} \otimes m) + \frac{a_2}{s_2}(\frac{1}{s^\prime} \otimes m^\prime) = \frac{a_1}{s_1}g(\frac{m}{s}) + \frac{a_2}{s_2}g(\frac{m^\prime}{s^\prime})$.
 		\end{tabular}\retTwo\par}
 
-		Finally, $\widehat{f}(g(\frac{m}{s})) = \widehat{f}(\frac{1}{s} \otimes m) = \frac{1}{s} \cdot \frac{m}{1}$ implies that $\widehat{f} \circ g = \myId_{S^{-1}M}$. Meanwhile,\\ as $S^{-1}A \otimes M$ is generated by pure tensor elements it suffices to prove that\\ $g(\widehat{f}(\frac{a}{s} \otimes m)) = \frac{a}{s} \otimes m$ for all pure tensor elements in order to prove that\\ $g \circ \widehat{f} = \myId_{S^{-1}A \otimes_A M}$. Fortunately, $g(\widehat{f}(\frac{a}{s} \otimes m)) = g(\frac{a}{s} \cdot \frac{m}{1})  = \frac{1}{s} \otimes am = \frac{a}{s} \otimes m$.\newpage
+		Finally, $\widehat{f}(g(\frac{m}{s})) = \widehat{f}(\frac{1}{s} \otimes m) = \frac{1}{s} \cdot \frac{m}{1}$ implies that $\widehat{f} \circ g = \myId_{S^{-1}M}$. Meanwhile,\\ as $S^{-1}A \otimes M$ is generated by pure tensor elements it suffices to prove that\\ $g(\widehat{f}(\frac{a}{s} \otimes m)) = \frac{a}{s} \otimes m$ for all pure tensor elements in order to prove that\\ $g \circ \widehat{f} = \myId_{S^{-1}A \otimes_A M}$. Fortunately, $g(\widehat{f}(\frac{a}{s} \otimes m)) = g(\frac{a}{s} \cdot \frac{m}{1})  = \frac{1}{s} \otimes am = \frac{a}{s} \otimes m$.\retTwo
 
 		Since $\widehat{f}$ is the inverse of an $S^{-1}A$-module homomorphism, we thus know that $\widehat{f}$ is $S^{-1}A$-linear. And now this proves that $S^{-1}A \otimes_A M \cong S^{-1}M$ as $S^{-1}A$-modules via an isomorphism identifying $\frac{a}{s} \otimes m$ with $\frac{am}{s}$.
 
@@ -31867,7 +31936,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.4}{0.7}, equals, from=3, to=4]
 		\end{tikzcd}\]
 
-		Since localization by $S$ is an exact functor, it follows $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to S^{-1}A\text{-}\mcateg{mod}$\\ is an exact functor. Also note that the forgetful functor from $S^{-1}A$-$\mcateg{mod}$ to $A$-$\mcateg{mod}$\\ is an exact functor. Hence, we can conclude that the non-enriched tensor functor\\ $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to A\text{-}\mcateg{mod}$ is exact. This proves that $S^{-1}A$ is a flat $A$-module.\retTwo
+		Since localization by $S$ is an exact functor, it follows $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to S^{-1}A\text{-}\mcateg{mod}$\\ is an exact functor. Also note that the forgetful functor from $S^{-1}A$-$\mcateg{mod}$ to $A$-$\mcateg{mod}$\newpage is an exact functor. Hence, we can conclude that the non-enriched tensor functor\\ $T_{S^{-1}A} : A\text{-}\mcateg{mod} \to A\text{-}\mcateg{mod}$ is exact. This proves that $S^{-1}A$ is a flat $A$-module.\retTwo
 	\end{myIndent}
 
 	\item[(d)] Prove that $\frac{m_1 \otimes m_2}{1} \mapsto \frac{m_1}{1} \otimes \frac{m_2}{1}$ gives us a well-defined isomorphism:
@@ -31889,7 +31958,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			Suppose $\frac{1}{s}m = 0$ in $M$. Then $m = \frac{s}{1} \cdot (\frac{1}{s}m) = \frac{s}{1} \cdot 0 = 0$. In turn, we have that $\frac{m}{s} = 0$ in $S^{-1}\mathcal{F}(M)$.\retTwo
 
 			(Surjective):\\
-			For any $m \in M$ we have that $\frac{m}{1} \in S^{-1}\mathcal{F}(M)$ maps to $m$.\newpage
+			For any $m \in M$ we have that $\frac{m}{1} \in S^{-1}\mathcal{F}(M)$ maps to $m$.\retTwo
 		\end{myIndent}
 
 		In particular, we have that $S^{-1}\mathcal{F}$ is naturally isomorphic to the identity functor\\ on the category $S^{-1}A$-$\mcateg{mod}$. After all, given any $S^{-1}A$-module homomorphism\\ $f: M \to M^\prime$ we have the following diagram:\\ [-20pt]
@@ -31921,7 +31990,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 		
 		{\centering$f: M_1 \times M_2 \to (S^{-1}M_1) \otimes_{S^{-1}A} (S^{-1}M_2)$ by $f(m_1, m_2) = \frac{m_1}{1} \otimes \frac{m_2}{1}$.\retTwo\par}
 
-		It's obvious that $f$ is $A$-bilinear. Hence, by the universal property of the tensor product there exists a unique $A$-module homomorphism:
+		It's obvious that $f$ is $A$-bilinear. Hence, by the universal property of the tensor product there exists a unique $A$-module homomorphism:\newpage
 		
 		{\center$\widehat{f}: M_1 \otimes_A M_2 \to (S^{-1}M_1) \otimes_{S^{-1}A} (S^{-1}M_2)$\par}
 		
@@ -31948,7 +32017,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 				\item $g(\frac{a}{s} \cdot \frac{m_1}{s_1}, \frac{m_2}{s_2}) = \frac{(am_1) \otimes m_2}{ss_1 s_2} = \frac{a}{s} \cdot \frac{m_1 \otimes m_2}{s_1s_2} = \frac{a}{s} g(\frac{m_1}{s_1}, \frac{m_2}{s_2})$.
 				\item $g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2}) = \frac{(s_1^\prime m_1 + s_1m_1^\prime) \otimes m_2}{s_1s_1^\prime s_2}$\\ [6pt]
 				$\phantom{g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2})} = \frac{(s_1^\prime m_1 \otimes m_2) + (s_1m_1^\prime \otimes m_1)}{s_1s_1^\prime s_2} = \frac{m_1 \otimes m_2}{s_1s_2} + \frac{m_1^\prime \otimes m_2}{s_1^\prime s_2}$\\ [6pt]
-				$\phantom{g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2}) = \frac{(s_1^\prime m_1 \otimes m_2) + (s_1m_1^\prime \otimes m_1)}{s_1s_1^\prime s_2}} = g(\frac{m_1}{s_1}, \frac{m_2}{s_2}) + g(\frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2})$\newpage
+				$\phantom{g(\frac{m_1}{s_1} + \frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2}) = \frac{(s_1^\prime m_1 \otimes m_2) + (s_1m_1^\prime \otimes m_1)}{s_1s_1^\prime s_2}} = g(\frac{m_1}{s_1}, \frac{m_2}{s_2}) + g(\frac{m_1^\prime}{s_1^\prime}, \frac{m_2}{s_2})$\retTwo
 			\end{itemize}
 		\end{myIndent}
 
@@ -31965,7 +32034,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 		Similarly, $S^{-1}(M_1 \otimes_A M_2)$ is generated by elements of the form $\frac{m_1 \otimes m_2}{1}$ where\\ $m_1 \otimes m_2$ is a pure tensor in $M_1 \otimes_A M_2$. Hence, it suffices to show that\\ $\widehat{g}(S^{-1}\widehat{f}(\frac{m_1 \otimes m_2}{1})) = \frac{m_1 \otimes m_2}{1}$ for all pure tensors $m_1 \otimes m_2$ in order to prove\\ that $\widehat{g} \circ S^{-1}\widehat{f} = \myId_{S^{-1}(M_1 \otimes_A M_2)}$.
 
 		\begin{myIndent}\HexTwoP
-			Fortunately $\widehat{g}(S^{-1}\widehat{f}(\frac{m_1 \otimes m_2}{1})) = \widehat{g}(\frac{m_1}{1} \otimes \frac{m_2}{1}) = \frac{m_1 \otimes m_2}{1}$.\retTwo
+			Fortunately $\widehat{g}(S^{-1}\widehat{f}(\frac{m_1 \otimes m_2}{1})) = \widehat{g}(\frac{m_1}{1} \otimes \frac{m_2}{1}) = \frac{m_1 \otimes m_2}{1}$.\newpage
 		\end{myIndent}
 	\end{myIndent}
 
@@ -31997,10 +32066,10 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 		Similarly, $T_{S^{-1}M} \circ S^{-1} \circ \mathcal{F} \cong T_{S^{-1}M}$ since we already showed $S^{-1} \circ \mathcal{F}$ is naturally\\ isomorphic to the identity functor. And this proves that $T_{S^{-1}M}$ is an exact functor. So, $S^{-1}M$ is a flat $S^{-1}A$-module.\retTwo
 	\end{myIndent}
 
-	\item[(e)] Prove that if $M_\mathfrak{p}$ is a flat $A_\mathfrak{p}$-module for every $\mathfrak{p} \in \Spec(A)$, then $M$ is flat.
+	\item[(e)] \hypertarget{Math 200b Set 7 Problem 4e}{Prove} that if $M_\mathfrak{p}$ is a flat $A_\mathfrak{p}$-module for every $\mathfrak{p} \in \Spec(A)$, then $M$ is flat.
 	
 	\begin{myIndent}\HexOne
-		Recall that $M$ is flat if and only if $f: N \to N^\prime$ being an injective $A$-module\\ homomorphism implies $\mathrm{Id}_M \otimes f: M \otimes N \to M \otimes N^\prime$ is an injective $A$-module\\ homomorphism. Also by set 4 problem 2 (see \inLinkRap{Math 200b Set 4 Problem 2}{pages 623-624}), we have that\\ $\mathrm{Id}_M \otimes f$ is injective if and only if $(\mathrm{Id}_M \otimes f)_\mathfrak{p}$ is injective for all $\mathfrak{p} \in \Spec(A)$.\newpage
+		Recall that $M$ is flat if and only if $f: N \to N^\prime$ being an injective $A$-module\\ homomorphism implies $\mathrm{Id}_M \otimes f: M \otimes N \to M \otimes N^\prime$ is an injective $A$-module\\ homomorphism. Also by set 4 problem 2 (see \inLinkRap{Math 200b Set 4 Problem 2}{pages 623-624}), we have that\\ $\mathrm{Id}_M \otimes f$ is injective if and only if $(\mathrm{Id}_M \otimes f)_\mathfrak{p}$ is injective for all $\mathfrak{p} \in \Spec(A)$.\retTwo
 
 		Fortunately for any $\mathfrak{p} \in \Spec(A)$, if we let $S_\mathfrak{p}^{-1}$ denote the localization functor then the isomorphisms from part (d) induce a natural isomorphism between $S_\mathfrak{p}^{-1} \circ T_M$ and $T_{M_\mathfrak{p}} \circ S_\mathfrak{p}^{-1}$. In particular, this gives us the following commuting diagram:\\ [-10pt]
 		% https://q.uiver.app/#q=WzAsOCxbMSwxLCIoTSBcXG90aW1lc19BIE4pX1xcbWF0aGZyYWt7cH0iXSxbMSwyLCIoTSBcXG90aW1lc19BIE5eXFxwcmltZSlfXFxtYXRoZnJha3twfSJdLFswLDBdLFs0LDBdLFs0LDNdLFswLDNdLFszLDIsIk1fXFxtYXRoZnJha3twfSBcXG90aW1lc197QV9cXG1hdGhmcmFre3B9fSBOXlxccHJpbWVfXFxtYXRoZnJha3twfSJdLFszLDEsIk1fXFxtYXRoZnJha3twfSBcXG90aW1lc197QV9cXG1hdGhmcmFre3B9fSBOX1xcbWF0aGZyYWt7cH0iXSxbMCwxLCIoXFxtYXRocm17SWR9X00gXFxvdGltZXMgZilfXFxtYXRoZnJha3twfSJdLFswLDIsIlxcZnJhY3ttIFxcb3RpbWVzIG59ezF9IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMSw1LCJcXGZyYWN7bSBcXG90aW1lcyBmKG4pfXsxfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNiwiXFxzaW0iLDJdLFs2LDQsIlxcZnJhY3ttfXsxfSBcXG90aW1lcyBcXGZyYWN7ZihuKX17MX0iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFswLDcsIlxcc2ltIl0sWzcsNiwiXFxtYXRocm17SWR9X3tNX1xcbWF0aGZyYWt7cH19IFxcb3RpbWVzIGZfXFxtYXRoZnJha3twfSIsMl0sWzcsMywiXFxmcmFje219ezF9IFxcb3RpbWVzIFxcZnJhY3tufXsxfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzksMTAsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEwLDEyLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFs5LDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxNSwxMiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
@@ -32023,7 +32092,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=2, to=3]
 		\end{tikzcd}\]
 
-		But now as $f$ is injective, we know that $f_\mathfrak{p}$ is also injective. Next, as $M_\mathfrak{p}$ is flat, we know that $\myId_{M_\mathfrak{p}} \otimes f_\mathfrak{p}$ is injective. And finally, by the above commuting diagram this means that $(\myId_{M} \otimes f)_\mathfrak{p}$ is injective. Since $\mathfrak{p}$ was an arbitrary prime ideal, this proves that $\myId_M \otimes f$ is injective. $\blacksquare$\retTwo
+		But now as $f$ is injective, we know that $f_\mathfrak{p}$ is also injective. Next, as $M_\mathfrak{p}$ is flat, we know that $\myId_{M_\mathfrak{p}} \otimes f_\mathfrak{p}$ is injective. And finally, by the above commuting diagram this means that $(\myId_{M} \otimes f)_\mathfrak{p}$ is injective. Since $\mathfrak{p}$ was an arbitrary prime ideal, this proves that $\myId_M \otimes f$ is injective. $\blacksquare$\newpage
 	\end{myIndent}
 \end{enumerate}
 
@@ -32054,7 +32123,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 	\item[(b)] Suppose $A$ is a local ring. Suppose $M$ and $N$ are finitely generated $A$-modules, and\\ $M \otimes_A N = \{0\}$. Prove that either $M = 0$ or $N = 0$.
 	
 	\begin{myIndent}\HexOne
-		Suppose $\Max(A) = \{\mathfrak{m}\}$ and let $k \coloneqq A/\mathfrak{m}$. Note that $k$ is a field and an $A$-algebra. Hence, we can enrich the tensor functor $T_k$ to be mapping from the category $A$-$\mcateg{mod}$ to the category $k$-$\mcateg{vect}$.\newpage
+		Suppose $\Max(A) = \{\mathfrak{m}\}$ and let $k \coloneqq A/\mathfrak{m}$. Note that $k$ is a field and an $A$-algebra. Hence, we can enrich the tensor functor $T_k$ to be mapping from the category $A$-$\mcateg{mod}$ to the category $k$-$\mcateg{vect}$.\retTwo
 
 		Next, by the proposition on \inLinkRap{Math 200b Proposition page 699}{page 699} we know that $k \otimes_A M = \frac{A}{\mathfrak{m}} \otimes_A M \cong \frac{M}{\mathfrak{m}M}$ as\\ $A$-modules via the isomorphism sending $(a + \mathfrak{m}) \otimes x$ to $ax + \mathfrak{m}M$. Yet also recall from set 5 problem 3(b) (see \inLinkRap{Math 200b Set 5 problem 3b}{page 658}) that $\frac{M}{\mathfrak{m}M}$ is a well-defined $k$-vector space when we define $(a + \mathfrak{m})(x + \mathfrak{m}M) = ax + \mathfrak{m}M$. In particular, this means that
 		
@@ -32072,7 +32141,7 @@ As an application of the prior lemmas plus that the fact that $A$ is a flat $A$-
 
 		Yet now define a map $f: M \times N \to \frac{M}{\mathfrak{m}M} \otimes_k \frac{N}{\mathfrak{m}N}$ given by:
 		
-		{\centering$f(x, y) = (x + \mathfrak{m}M) \otimes (y + \mathfrak{m}N)$.\retTwo\par}
+		{\centering$f(x, y) = (x + \mathfrak{m}M) \otimes (y + \mathfrak{m}N)$.\newpage\par}
 
 		\begin{myIndent}\HexTwoP
 			Here we view $\frac{M}{\mathfrak{m}M} \otimes_k \frac{N}{\mathfrak{m}N}$ as an $A$-module. As a reminder, if $M^\prime$ is an $\frac{A}{\mathfrak{m}}$-module then we can view $M^\prime$ as an $A$-module by setting $a \cdot x = (a + \mathfrak{m})x$ for all $a \in A$ and $x \in M^\prime$.\retTwo
