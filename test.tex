@@ -1406,29 +1406,261 @@ Here is one more tangent before I switch to doing homework problems from last we
 
 \Hstatement\mySepTwo
 
-\blect{Math 200b Homework:}
+\blect{Math 200b Homework:}\retTwo
 
+\blab{Set 7 Problem 6:} \hypertarget{idk reference 20}{Suppose} $A$ is a unital commutative ring and $M_1, M_2$ are $A$-modules. Explicitely construct a natural isomorphism between $T_{M_1} \circ T_{M_2}$ and $T_{M_1 \otimes M_2}$.
+\begin{myIndent}\HexOne
+	\begin{myIndent}\color{RawerSienna}
+		Recall for any $A$-module $N$ that:
 
+		{\centering$(T_{M_1} \circ T_{M_2})(N) = M_1 \otimes (M_2 \otimes N)$ and $T_{M_1 \otimes M_2}(N) = (M_1 \otimes M_2) \otimes N$.\retTwo\par}
+	\end{myIndent}
 
+	Suppose $N$ is any $A$-module. Then for each $x_1 \in M_1$, define:
+	
+	{\centering$f_{x_1}: M_2 \times N \to (M_1 \otimes M_2) \otimes N$ by $f_{x_1}(x_2, y) \coloneqq (x_1 \otimes x_2) \otimes y$.\retTwo\par}
 
+	It's easy to see by spamming $A$-balance a few times that $f_{x_1}$ is $A$-bilinear. So by the\\ universal property of tensor products, there exists a unique $A$-module homomorphism\\ $\phi_{x_1} : M_2 \otimes N \to (M_1 \otimes M_2) \otimes N$ such that $\phi_{x_1}(x_2 \otimes y) = (x_1 \otimes x_2) \otimes y$.\retTwo
 
+	Next define $f: M_1 \times (M_2 \otimes N) \to (M_1 \otimes M_2) \otimes N$ by $f(x_1, z) \coloneqq \phi_{x_1}(z)$. I claim\\ that $f$ is $A$-bilinear.
+	\begin{myIndent}\HexTwoP
+		It's trivial that $f$ is $A$-linear with respect to the variable $z$. Meanwhile, consider that for any pure tensor $x_2 \otimes y \in M_2 \otimes N$ as well as $a, a^\prime \in A$ and $x_1, x_1^\prime \in M_1$ we have that:
 
+		{\centering\begin{tabular}{l}
+			$\phi_{ax_1 + a^\prime x^\prime_1}(x_2 \otimes y) = ((ax_1 + a^\prime x_1^\prime) \otimes x_2) \otimes y$\\ [4pt]
+			$\phantom{\phi_{ax_1 + a^\prime x^\prime_1}(x_2 \otimes y)} = (a(x_1 \otimes x_2) + a^\prime(x_1^\prime \otimes x_2)) \otimes y$\\ [4pt]
+			$\phantom{\phi_{ax_1 + a^\prime x^\prime_1}(x_2 \otimes y)} = a((x_1 \otimes x_2) \otimes y) + a^\prime((x_1^\prime \otimes x_2) \otimes y)$\\ [4pt]
+			$\phantom{\phi_{ax_1 + a^\prime x^\prime_1}(x_2 \otimes y)} = a\phi_{x_1}(x_2 \otimes y) + a^\prime \phi_{x_1^\prime}(x_2 \otimes y)$.\\ [4pt]
+		\end{tabular}\retTwo\par}
 
+		Therefore $f(ax_1 + a^\prime x_1^\prime, x_2 \otimes y) = af(x_1, x_2 \otimes y) + a^\prime f(x_1^\prime, x_2 \otimes y)$. And now by the $A$-linearity in its second argument of $f$ as well as the fact that pure tensors span all of $M_2 \otimes N$, we can conclude that $f$ is $A$-linear in its first argument as well.\retTwo
+	\end{myIndent}
 
+	Thus by the universal property of tensor products, there exists a unique $A$-module\\ homomorphism $\phi: M_1 \otimes (M_2 \otimes N) \to (M_1 \otimes M_2) \otimes N$ with $\phi(x_1 \otimes z) = \phi_{x_1}(z)$.\\ In particular, we have that $\phi(x_1 \otimes (x_2 \otimes y)) = (x_1 \otimes x_2) \otimes y$ for all $x_1 \in M_1$, $x_2 \in M_2$,\\ and $y \in N$.\retTwo
 
+	By analogous reasoning, there exists an $A$-module homomorphism:
+	
+	{\center$\psi: (M_1 \otimes M_2) \otimes N \to M_1 \otimes (M_2 \otimes N)$\\ [2pt]\par}
+	
+	such that $\psi((x_1 \otimes x_2) \otimes y) = x_1 \otimes (x_2 \otimes y)$ for all $x_1 \in M_1$, $x_2 \in M_2$, and $y \in N$. We can then easily see that $\psi$ and $\phi$ are inverses.\retTwo
+	
+	Finally, by defining $\phi_N$ as above for all $A$-modules $N$, we get a natural transformation from $T_{M_1} \circ T_{M_2}$ to $T_{M_1 \otimes M_2}$. After all, we can fairly easily justify that elements of the form\\ $x_1 \otimes (x_2 \otimes y)$ span $M_1 \otimes (M_2 \otimes N)$ for any $A$-module $N$. Thus, we are done after noting the following commuting diagram:\newpage
+	% https://q.uiver.app/#q=WzAsNixbMCwwLCJUX3tNXzF9IFxcY2lyYyBUX3tNXzJ9KE4pIl0sWzMsMCwiVF97TV8xIFxcb3RpbWVzIE1fMn0oTikiXSxbMywyLCJUX3tNXzEgXFxvdGltZXMgTV8yfShOXlxccHJpbWUpIl0sWzAsMiwiVF97TV8xfSBcXGNpcmMgVF97TV8yfShOXlxccHJpbWUpIl0sWzEsMV0sWzIsMV0sWzAsMSwiXFxwaGlfTiJdLFszLDIsIlxccGhpX3tOXlxccHJpbWV9IiwyXSxbMCwzLCJcXG1hdGhybXtJZH1fe01fMX0gXFxvdGltZXMgKFxcbWF0aHJte0lkfV97TV8yfSBcXG90aW1lcyBmKSIsMl0sWzEsMiwiXFxtYXRocm17SWR9X3tNXzEgXFxvdGltZXMgTV8yfSBcXG90aW1lcyBmIl0sWzAsNCwieF8xIFxcb3RpbWVzKHhfMiBcXG90aW1lcyB5KSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzMsNCwieF8xIFxcb3RpbWVzICh4XzIgXFxvdGltZXMgZih5KSkiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDUsIih4XzEgXFxvdGltZXMgeF8yKVxcb3RpbWVzIHkiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDUsIih4XzEgXFxvdGltZXMgeF8yKSBcXG90aW1lcyBmKHkpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMCwxLCJcXHNpbSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDIsIlxcc2ltIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzExLDEzLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6NDAsInRhcmdldCI6NDB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMCwxMiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTIsMTMsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEwLDExLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{T_{M_1} \circ T_{M_2}(N)} &&& {T_{M_1 \otimes M_2}(N)} \\
+		& {} & {} \\
+		{T_{M_1} \circ T_{M_2}(N^\prime)} &&& {T_{M_1 \otimes M_2}(N^\prime)}
+		\arrow["{\phi_N}", from=1-1, to=1-4]
+		\arrow["\sim"', draw=none, from=1-1, to=1-4]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{x_1 \otimes(x_2 \otimes y)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-2]
+		\arrow["{\mathrm{Id}_{M_1} \otimes (\mathrm{Id}_{M_2} \otimes f)}"', from=1-1, to=3-1]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{(x_1 \otimes x_2)\otimes y}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-4, to=2-3]
+		\arrow["{\mathrm{Id}_{M_1 \otimes M_2} \otimes f}", from=1-4, to=3-4]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "{x_1 \otimes (x_2 \otimes f(y))}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-1, to=2-2]
+		\arrow["{\phi_{N^\prime}}"', from=3-1, to=3-4]
+		\arrow["\sim", draw=none, from=3-1, to=3-4]
+		\arrow[""{name=3, anchor=center, inner sep=0}, "{(x_1 \otimes x_2) \otimes f(y)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=2-3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=0, to=2]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.7}, maps to, from=0, to=1]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=1, to=3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.4}{0.6}, maps to, from=2, to=3]
+	\end{tikzcd}\]
 
+	$\blacksquare$\retTwo
+\end{myIndent}
 
+\blab{Set 7 Problem 7:} Suppose we have an SES of $A$-modules:\\ [-10pt]
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV8xIl0sWzIsMCwiTV8yIl0sWzMsMCwiTV8zIl0sWzQsMCwiXFx7MFxcfSJdLFswLDFdLFsxLDIsImZfMSJdLFsyLDMsImZfMiJdLFszLDRdXQ==
+\[\begin{tikzcd}
+	{\{0\}} & {M_1} & {M_2} & {M_3} & {\{0\}}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{f_1}", from=1-2, to=1-3]
+	\arrow["{f_2}", from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}\]
+where $M_3$ is a flat $A$-module. Also suppose $N$ is any $A$-module. Then prove that the following\\ is also an SES:\\ [-10pt]
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV8xIFxcb3RpbWVzIE4iXSxbMywwLCJNXzIgXFxvdGltZXMgTiJdLFs1LDAsIk1fMyBcXG90aW1lcyBOIl0sWzYsMCwiXFx7MFxcfSJdLFswLDFdLFsxLDIsImZfMSBcXG90aW1lcyBcXG1hdGhybXtJZH1fTiJdLFsyLDMsImZfMiBcXG90aW1lcyBcXG1hdGhybXtJZH1fTiJdLFszLDRdXQ==
+\[\begin{tikzcd}
+	{\{0\}} & {M_1 \otimes N} && {M_2 \otimes N} && {M_3 \otimes N} & {\{0\}}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{f_1 \otimes \mathrm{Id}_N}", from=1-2, to=1-4]
+	\arrow["{f_2 \otimes \mathrm{Id}_N}", from=1-4, to=1-6]
+	\arrow[from=1-6, to=1-7]
+\end{tikzcd}\]
 
+\begin{myIndent}\HexOne
+	To start off, let $F = \bigoplus_{n \in N} An$ be the free $A$-module generated by $N$. Then by the\\ universal property of free modules there is a unique $A$-module homomorphism\\ $\phi: F \to N$ with $\phi(1n) = n$ for all $n \in N$. Clearly, $\phi$ is a surjective map. So finally,\\ if we set $K = \ker(\phi)$ and let $i: K \to F$ be the inclusion map, then we have the\\ following SES:
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiSyJdLFsyLDAsIkYiXSxbMywwLCJOIl0sWzQsMCwiXFx7MFxcfSJdLFswLDFdLFsxLDIsImkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsIlxccGhpIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNF1d
+	\[\begin{tikzcd}
+		{\{0\}} & K & F & N & {\{0\}}
+		\arrow[from=1-1, to=1-2]
+		\arrow["i", hook, from=1-2, to=1-3]
+		\arrow["\phi", two heads, from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd}\]
 
+	By the right exactness of tensor functors in general plus the left exactness of $T_{M_3}$ and $T_F$, we can say that every row and column in the below diagram is exact (although I've not yet proven that the {\color{cyan}vertical} and {\color{magenta} horizontal} arrows commute).
+	% https://q.uiver.app/#q=WzAsMTcsWzAsMiwiXFx7MFxcfSJdLFsxLDIsIk1fMSBcXG90aW1lcyBGIl0sWzIsMiwiTV8yIFxcb3RpbWVzIEYiXSxbMywyLCJNXzMgXFxvdGltZXMgRiJdLFs0LDIsIlxcezBcXH0iXSxbMywzLCJNXzMgXFxvdGltZXMgSyJdLFsyLDMsIk1fMiBcXG90aW1lcyBLIl0sWzEsMywiTV8xIFxcb3RpbWVzIEsiXSxbNCwzLCJcXHswXFx9Il0sWzMsNCwiXFx7MFxcfSJdLFsxLDEsIk1fMSBcXG90aW1lcyBOIl0sWzIsMSwiTV8yIFxcb3RpbWVzIE4iXSxbMywxLCJNXzIgXFxvdGltZXMgTiJdLFs0LDEsIlxcezBcXH0iXSxbMSwwLCJcXHswXFx9Il0sWzIsMCwiXFx7MFxcfSJdLFszLDAsIlxcezBcXH0iXSxbMCwxLCIiLDAseyJjb2xvdXIiOlszMDQsOTYsNDldfV0sWzEsMiwiZl8xIFxcb3RpbWVzIFxcbWF0aHJte0lkfV9GIiwwLHsiY29sb3VyIjpbMzA0LDk2LDQ5XX0sWzMwNCw5Niw0OSwxXV0sWzIsMywiZl8yIFxcb3RpbWVzIFxcbWF0aHJte0lkfV9GIiwwLHsiY29sb3VyIjpbMzA0LDk2LDQ5XX0sWzMwNCw5Niw0OSwxXV0sWzMsNCwiIiwwLHsiY29sb3VyIjpbMzA0LDk2LDQ5XX1dLFs1LDgsIiIsMCx7ImNvbG91ciI6WzMwNCw5Niw0OV19XSxbNiw1LCJmXzIgXFxvdGltZXMgXFxtYXRocm17SWR9X0siLDAseyJjb2xvdXIiOlszMDQsOTYsNDldfSxbMzA0LDk2LDQ5LDFdXSxbNyw2LCJmXzEgXFxvdGltZXMgXFxtYXRocm17SWR9X0siLDAseyJjb2xvdXIiOlszMDQsOTYsNDldfSxbMzA0LDk2LDQ5LDFdXSxbMTAsMTEsImZfMSBcXG90aW1lcyBcXG1hdGhybXtJZH1fTiIsMCx7ImNvbG91ciI6WzMwNCw5Niw0OV19LFszMDQsOTYsNDksMV1dLFsxMSwxMiwiZl8yIFxcb3RpbWVzIFxcbWF0aHJte0lkfV9OIiwwLHsiY29sb3VyIjpbMzA0LDk2LDQ5XX0sWzMwNCw5Niw0OSwxXV0sWzEyLDEzLCIiLDAseyJjb2xvdXIiOlszMDQsOTYsNDldfV0sWzEwLDE0LCIiLDIseyJjb2xvdXIiOlsxODAsNjAsNjBdfV0sWzEsMTAsIlxcbWF0aHJte0lkfV97TV8xfSBcXG90aW1lcyBcXHBoaSIsMCx7ImNvbG91ciI6WzE4MCw2MCw2MF19LFsxODAsNjAsNjAsMV1dLFs3LDEsIlxcbWF0aHJte0lkfV97TV8xfSBcXG90aW1lcyBpIiwwLHsiY29sb3VyIjpbMTgwLDYwLDYwXX0sWzE4MCw2MCw2MCwxXV0sWzYsMiwiXFxtYXRocm17SWR9X3tNXzJ9IFxcb3RpbWVzIGkiLDAseyJjb2xvdXIiOlsxODAsNjAsNjBdfSxbMTgwLDYwLDYwLDFdXSxbMiwxMSwiXFxtYXRocm17SWR9X3tNXzJ9IFxcb3RpbWVzIFxccGhpIiwwLHsiY29sb3VyIjpbMTgwLDYwLDYwXX0sWzE4MCw2MCw2MCwxXV0sWzExLDE1LCIiLDAseyJjb2xvdXIiOlsxODAsNjAsNjBdfV0sWzEyLDE2LCIiLDAseyJjb2xvdXIiOlsxODAsNjAsNjBdfV0sWzMsMTIsIlxcbWF0aHJte0lkfV97TV8zfSBcXG90aW1lcyBcXHBoaSIsMCx7ImNvbG91ciI6WzE4MCw2MCw2MF19LFsxODAsNjAsNjAsMV1dLFs1LDMsIlxcbWF0aHJte0lkfV97TV8zfSBcXG90aW1lcyBpIiwwLHsiY29sb3VyIjpbMTgwLDYwLDYwXX0sWzE4MCw2MCw2MCwxXV0sWzksNSwiIiwwLHsiY29sb3VyIjpbMTgwLDYwLDYwXX1dXQ==
+	\[\begin{tikzcd}[column sep=large]
+		& {\{0\}} & {\{0\}} & {\{0\}} & \\
+		& {M_1 \otimes N} & {M_2 \otimes N} & {M_2 \otimes N} & {\{0\}} \\
+		{\{0\}} & {M_1 \otimes F} & {M_2 \otimes F} & {M_3 \otimes F} & {\{0\}} \\
+		& {M_1 \otimes K} & {M_2 \otimes K} & {M_3 \otimes K} & {\{0\}} \\
+		&&& {\{0\}}
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, from=2-2, to=1-2]
+		\arrow["{f_1 \otimes \mathrm{Id}_N}", color={rgb,255:red,245;green,5;blue,229}, from=2-2, to=2-3]
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, from=2-3, to=1-3]
+		\arrow["{f_2 \otimes \mathrm{Id}_N}", color={rgb,255:red,245;green,5;blue,229}, from=2-3, to=2-4]
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, from=2-4, to=1-4]
+		\arrow[color={rgb,255:red,245;green,5;blue,229}, from=2-4, to=2-5]
+		\arrow[color={rgb,255:red,245;green,5;blue,229}, from=3-1, to=3-2]
+		\arrow["{\mathrm{Id}_{M_1} \otimes \phi}", color={rgb,255:red,92;green,214;blue,214}, from=3-2, to=2-2]
+		\arrow["{f_1 \otimes \mathrm{Id}_F}", color={rgb,255:red,245;green,5;blue,229}, from=3-2, to=3-3]
+		\arrow["{\mathrm{Id}_{M_2} \otimes \phi}", color={rgb,255:red,92;green,214;blue,214}, from=3-3, to=2-3]
+		\arrow["{f_2 \otimes \mathrm{Id}_F}", color={rgb,255:red,245;green,5;blue,229}, from=3-3, to=3-4]
+		\arrow["{\mathrm{Id}_{M_3} \otimes \phi}", color={rgb,255:red,92;green,214;blue,214}, from=3-4, to=2-4]
+		\arrow[color={rgb,255:red,245;green,5;blue,229}, from=3-4, to=3-5]
+		\arrow["{\mathrm{Id}_{M_1} \otimes i}", color={rgb,255:red,92;green,214;blue,214}, from=4-2, to=3-2]
+		\arrow["{f_1 \otimes \mathrm{Id}_K}", color={rgb,255:red,245;green,5;blue,229}, from=4-2, to=4-3]
+		\arrow["{\mathrm{Id}_{M_2} \otimes i}", color={rgb,255:red,92;green,214;blue,214}, from=4-3, to=3-3]
+		\arrow["{f_2 \otimes \mathrm{Id}_K}", color={rgb,255:red,245;green,5;blue,229}, from=4-3, to=4-4]
+		\arrow["{\mathrm{Id}_{M_3} \otimes i}", color={rgb,255:red,92;green,214;blue,214}, from=4-4, to=3-4]
+		\arrow[color={rgb,255:red,245;green,5;blue,229}, from=4-4, to=4-5]
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, from=5-4, to=4-4]
+	\end{tikzcd}\]
 
+	My next goal will be to show that the above diagram does actually commute, and to prove that it suffices to show that each square commutes. Fortunately, since tensor products are spanned by pure tensor elements, it suffices to show each square commutes just for pure tensor elements. And this let's us easily prove the lower two squares commute since $(\mathrm{Id}_{M_i} \otimes i)(x_i \otimes k) = (x_i \otimes k)$ for all $x_i \in M_i$ and $k \in K$.\retTwo
+	
+	As for showing that the upper two squares commutes, consider that since $F$ is spanned by elements of the form $1n$, we actually have that pure tensors of the form $x_i \otimes 1n$ span $M_i \otimes F$ where $x_i \in M_i$ and $n \in N$. So, it suffices to check that the two squares commute for such elements. But this easy.
+	% https://q.uiver.app/#q=WzAsNSxbMCwyLCJNX2kgXFxvdGltZXMgRiJdLFsyLDIsIk1fe2krMX0gXFxvdGltZXMgRiJdLFswLDAsIk1faSBcXG90aW1lcyBOIl0sWzIsMCwiTV97aSsxfSBcXG90aW1lcyBOIl0sWzEsMV0sWzAsMSwiZl9pIFxcb3RpbWVzIFxcbWF0aHJte0lkfV9GIl0sWzIsMywiZl9pIFxcb3RpbWVzIFxcbWF0aHJte0lkfV9OIl0sWzAsMiwiXFxtYXRocm17SWR9X3tNX3tpfX0gXFxvdGltZXMgXFxwaGkiXSxbMSwzLCJcXG1hdGhybXtJZH1fe01fe2krMX19IFxcb3RpbWVzIFxccGhpIiwyXSxbMiw0LCJ4X2kgXFxvdGltZXMgbiIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzQsMywiZl9pKHhfaSkgXFxvdGltZXMgbiIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzQsMSwiZl9pKHhfaSkgXFxvdGltZXMgMW4iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFswLDQsInhfaSBcXG90aW1lcyAxbiIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEyLDksIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzksMTAsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0Ijo0MH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzExLDEwLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMiwxMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjQwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+	\[\begin{tikzcd}
+		{M_i \otimes N} && {M_{i+1} \otimes N} \\
+		& {} \\
+		{M_i \otimes F} && {M_{i+1} \otimes F}
+		\arrow["{f_i \otimes \mathrm{Id}_N}", from=1-1, to=1-3]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{x_i \otimes n}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-2]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{f_i(x_i) \otimes n}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-3]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "{f_i(x_i) \otimes 1n}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=3-3]
+		\arrow["{\mathrm{Id}_{M_{i}} \otimes \phi}", from=3-1, to=1-1]
+		\arrow[""{name=3, anchor=center, inner sep=0}, "{x_i \otimes 1n}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-1, to=2-2]
+		\arrow["{f_i \otimes \mathrm{Id}_F}", from=3-1, to=3-3]
+		\arrow["{\mathrm{Id}_{M_{i+1}} \otimes \phi}"', from=3-3, to=1-3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.6}, maps to, from=0, to=1]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=1]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=3, to=0]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.6}, maps to, from=3, to=2]
+	\end{tikzcd}\]
 
+	\phantom{.}\\
+	Finally, I need to prove that $f_1 \otimes \myId_{N}$ is injective. To accomplish this, I will diagram chase around the entire diagram on the last page.\retTwo
+	
+	Suppose ${\color{BrickRed}x \in \ker(f_1 \otimes \myId_N)}$. Then $x \in \myIm(\myId_{M_1} \otimes \phi)$. Hence, there exists ${\color{magenta}y \in M_1 \otimes F}$ with $(\myId_{M_1} \otimes \phi)(y) = x$. If we then set ${\color{magenta}z = (f_1 \otimes \myId_{F})(y)}$, we can travel around the commuting diagram to get that:
 
+	{\center\begin{tabular}{l}
+		$(\myId_{M_2} \otimes \phi)(z) = ((\myId_{M_2} \otimes \phi) \circ (f_1 \otimes \myId_{F}))(y)$\\ [4pt]
+		$\phantom{(\myId_{M_2} \otimes \phi)(z)} = ((f_1 \otimes \myId_{N}) \circ (\myId_{M_1} \otimes \phi))(y) = (f_1 \otimes \myId_{N})(x) = 0$
+	\end{tabular}\retTwo\par}
 
-\newpage
+	This proves that $z \in \ker(\myId_{M_2} \otimes \phi) = \myIm(\myId_{M_2} \otimes i)$. Hence there exists ${\color{cyan}u \in M_2 \otimes K}$ with $(\myId_{M_2} \otimes i)(u) = z$. But also note that $z \in \myIm(f_1 \otimes \myId_{F}) = \ker(f_2 \otimes \myId_F)$. Hence, if we set ${\color{cyan}v = (f_2 \otimes \myId_K)(u)}$, we can travel around the commuting diagram to get that:
 
+	{\center\begin{tabular}{l}
+		$(\myId_{M_3} \otimes i)(v) = ((\myId_{M_3} \otimes i) \circ (f_2 \otimes \myId_K))(u)$\\ [4pt]
+		$\phantom{(\myId_{M_3} \otimes i)(v)} = ((f_2 \otimes \myId_F) \circ (\myId_{M_2} \otimes i))(u) = (f_2 \otimes \myId_{F})(z) = 0$
+	\end{tabular}\retTwo\par}
 
+	Yet as $\myId_{M_3} \otimes i$ is injective, we thus know $v = 0$. So, we've proven that\\ $u \in \ker(f_2 \otimes \myId_{K}) = \myIm(f_1 \otimes \myId_K)$. Hence, there exists ${\color{green!50!black}w \in M_1 \otimes K}$ with\\ $(f_1 \otimes \myId_K)(w) = u$. All of these steps are summarized in the below diagram:\\ [-28pt]
+	% https://q.uiver.app/#q=WzAsMTUsWzEsMSwiTV8xIFxcb3RpbWVzIE4iXSxbMSwyLCJNXzEgXFxvdGltZXMgRiJdLFsyLDIsIk1fMiBcXG90aW1lcyBGIl0sWzIsMSwiTV8yIFxcb3RpbWVzIE4iXSxbMCwyLCJcXHBoYW50b217TV8wIFxcb3RpbWVzIEZ9Il0sWzAsMSwiXFxwaGFudG9te01fMCBcXG90aW1lcyBOfSJdLFswLDAsIlxccGhhbnRvbXtNXzAgXFxvdGltZXMgRn0iXSxbMSwwLCJcXHBoYW50b217TV8wIFxcb3RpbWVzIEZ9Il0sWzIsMCwiXFxwaGFudG9te01fMCBcXG90aW1lcyBGfSJdLFsyLDMsIk1fMiBcXG90aW1lcyBLIl0sWzEsMywiTV8xIFxcb3RpbWVzIEsiXSxbMywzLCJNXzMgXFxvdGltZXMgSyJdLFszLDIsIk1fMyBcXG90aW1lcyBGIl0sWzMsMSwiXFxwaGFudG9te01fMyBcXG90aW1lcyBOfSJdLFswLDMsIlxccGhhbnRvbXtNXzAgXFxvdGltZXMgS30iXSxbMSwwXSxbMCwzXSxbMSwyLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDNdLFs3LDgsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs2LDcsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDAsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs0LDEsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMCw5XSxbOSwxMV0sWzIsMTIsIiIsMSx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxMSwxMiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbOSwyXSxbMywxMywiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEwLDFdLFsxNCwxMCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIwLDIxLCJ4IiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwiY29sb3VyIjpbMCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzAsNjAsNjAsMV1dLFsxOSwxNiwiMCIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImNvbG91ciI6WzAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFswLDYwLDYwLDFdXSxbMjIsMjEsIlxcZXhpc3RzIHkiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMzAxLDkyLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMzAxLDkyLDYwLDFdXSxbMTcsMTYsInoiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJjb2xvdXIiOlszMDEsOTIsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFszMDEsOTIsNjAsMV1dLFsyMywxNywiXFxleGlzdHMgdSIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImNvbG91ciI6WzE4MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzE4MCw2MCw2MCwxXV0sWzI0LDI1LCJ2PTAiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJjb2xvdXIiOlsxODAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsxODAsNjAsNjAsMV1dLFsyOCwyNSwiMCIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImNvbG91ciI6WzE4MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzE4MCw2MCw2MCwxXV0sWzMwLDIyLCJcXGV4aXN0cyB3IiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwiY29sb3VyIjpbMTIwLDYwLDI2XSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMTIwLDYwLDI2LDFdXSxbMzEsMzIsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlswLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFszMywzMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzMwMSw5Miw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMzQsMzIsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlszMDEsOTIsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzM1LDM0LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMTgwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFszNSwzNiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzE4MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMzYsMzcsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsxODAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzM0LDM3LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMTgwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFszOCwzNSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzEyMCw2MCwyNl0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMzMsMzQsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlszMDEsOTIsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+	\[\begin{tikzcd}
+		{\phantom{M_0 \otimes F}} & {\phantom{M_0 \otimes F}} & {\phantom{M_0 \otimes F}} & \\
+		{\phantom{M_0 \otimes N}} & {M_1 \otimes N} & {M_2 \otimes N} & {\phantom{M_3 \otimes N}} \\
+		{\phantom{M_0 \otimes F}} & {M_1 \otimes F} & {M_2 \otimes F} & {M_3 \otimes F} \\
+		{\phantom{M_0 \otimes K}} & {M_1 \otimes K} & {M_2 \otimes K} & {M_3 \otimes K}
+		\arrow[""{name=0, anchor=center, inner sep=0}, draw=none, from=1-1, to=1-2]
+		\arrow[""{name=1, anchor=center, inner sep=0}, draw=none, from=1-2, to=1-3]
+		\arrow[""{name=2, anchor=center, inner sep=0}, draw=none, from=2-1, to=2-2]
+		\arrow[""{name=3, anchor=center, inner sep=0}, from=2-2, to=2-3]
+		\arrow[""{name=4, anchor=center, inner sep=0}, draw=none, from=2-3, to=2-4]
+		\arrow[""{name=5, anchor=center, inner sep=0}, draw=none, from=3-1, to=3-2]
+		\arrow[from=3-2, to=2-2]
+		\arrow[""{name=6, anchor=center, inner sep=0}, hook, from=3-2, to=3-3]
+		\arrow[from=3-3, to=2-3]
+		\arrow[""{name=7, anchor=center, inner sep=0}, two heads, from=3-3, to=3-4]
+		\arrow[""{name=8, anchor=center, inner sep=0}, draw=none, from=4-1, to=4-2]
+		\arrow[from=4-2, to=3-2]
+		\arrow[""{name=9, anchor=center, inner sep=0}, from=4-2, to=4-3]
+		\arrow[from=4-3, to=3-3]
+		\arrow[""{name=10, anchor=center, inner sep=0}, from=4-3, to=4-4]
+		\arrow[hook, from=4-4, to=3-4]
+		\arrow[""{name=11, anchor=center, inner sep=0}, "x"{description}, color={rgb,255:red,214;green,92;blue,92}, draw=none, from=0, to=2]
+		\arrow[""{name=12, anchor=center, inner sep=0}, "0"{description}, color={rgb,255:red,214;green,92;blue,92}, draw=none, from=1, to=3]
+		\arrow[""{name=13, anchor=center, inner sep=0}, "0"{description}, color={rgb,255:red,92;green,214;blue,214}, draw=none, from=4, to=7]
+		\arrow[""{name=14, anchor=center, inner sep=0}, "{\exists y}"{description}, color={rgb,255:red,247;green,59;blue,244}, draw=none, from=5, to=2]
+		\arrow[""{name=15, anchor=center, inner sep=0}, "z"{description}, color={rgb,255:red,247;green,59;blue,244}, draw=none, from=6, to=3]
+		\arrow[""{name=16, anchor=center, inner sep=0}, "{\exists w}"{description}, color={rgb,255:red,27;green,106;blue,27}, draw=none, from=8, to=5]
+		\arrow[""{name=17, anchor=center, inner sep=0}, "{\exists u}"{description}, color={rgb,255:red,92;green,214;blue,214}, draw=none, from=9, to=6]
+		\arrow[""{name=18, anchor=center, inner sep=0}, "{v=0}"{description}, color={rgb,255:red,92;green,214;blue,214}, draw=none, from=10, to=7]
+		\arrow[color={rgb,255:red,214;green,92;blue,92}, between={0.2}{0.8}, maps to, from=11, to=12]
+		\arrow[color={rgb,255:red,247;green,59;blue,244}, between={0.2}{0.8}, maps to, from=14, to=11]
+		\arrow[color={rgb,255:red,247;green,59;blue,244}, between={0.2}{0.8}, maps to, from=14, to=15]
+		\arrow[color={rgb,255:red,247;green,59;blue,244}, between={0.2}{0.8}, maps to, from=15, to=12]
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, between={0.2}{0.8}, maps to, from=15, to=13]
+		\arrow[color={rgb,255:red,27;green,106;blue,27}, between={0.2}{0.8}, maps to, from=16, to=17]
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, between={0.2}{0.8}, maps to, from=17, to=15]
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, between={0.2}{0.8}, maps to, from=17, to=18]
+		\arrow[color={rgb,255:red,92;green,214;blue,214}, between={0.2}{0.8}, maps to, from=18, to=13]
+	\end{tikzcd}\]
 
+	To finish off, let $y^\prime = (\myId_{M_1} \otimes i)(w)$. Then by traveling around the commuting diagram, we can see that:
 
+	{\center\begin{tabular}{l}
+		$(f_1 \otimes \myId_F)(y^\prime) = ((f_1 \otimes \myId_F) \circ (\myId_{M_1} \otimes i))(w)$\\ [4pt]
+		$\phantom{(f_1 \otimes \myId_F)(y^\prime)} = ((\myId_{M_2} \otimes i) \circ (f_1 \otimes \myId_K))(w) = (\myId_{M_2} \otimes i)(u) = z$
+	\end{tabular}\retTwo\par}
+
+	Yet as $f_1 \otimes \myId_F$ is injective and maps $y$ to $z$, this let's us conclude that $y = y^\prime$.\newpage
+
+	With that, we've shown that $y \in \myIm(\myId_{M_1} \otimes i) = \ker(\myId_{M_1} \otimes \phi)$. And this proves\\ that $x = 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 7 Problem 8:} \hypertarget{idk reference 21}{Suppose} $\{0\} \to M_1 \xrightarrow{f_1} M_2 \xrightarrow{f_2} M_3 \to \{0\}$ is an SES of $A$-modules and $M_3$ is flat. Then prove that $M_1$ is flat if and only if $M_2$ is flat.
+
+\begin{myIndent}\HexOne
+	Let $\{0\} \to N_1 \xrightarrow{g_1} N_2 \xrightarrow{g_2} N_3 \to \{0\}$ be any arbitrary SES of $A$-modules. Then we\\ can easily conclude from the definition of a tensor functor that the below commuting\\ diagram holds where every row and column is exact. (Also we prove that the necessary\\ homomorphisms are injective by using the prior problem plus the flatness of $M_3$.)
+	% https://q.uiver.app/#q=WzAsMTksWzEsMSwiTV8xIFxcb3RpbWVzIE5fMyJdLFsxLDIsIk1fMSBcXG90aW1lcyBOXzIiXSxbMSwzLCJNXzEgXFxvdGltZXMgTl8xIl0sWzIsMywiTV8yIFxcb3RpbWVzIE5fMSJdLFszLDMsIk1fMyBcXG90aW1lcyBOXzEiXSxbMiwyLCJNXzIgXFxvdGltZXMgTl8yIl0sWzMsMiwiTV8zIFxcb3RpbWVzIE5fMiJdLFsyLDEsIk1fMiBcXG90aW1lcyBOXzMiXSxbMywxLCJNXzMgXFxvdGltZXMgTl8zIl0sWzEsMCwiXFx7MFxcfSJdLFsyLDAsIlxcezBcXH0iXSxbMywwLCJcXHswXFx9Il0sWzQsMSwiXFx7MFxcfSJdLFswLDEsIlxcezBcXH0iXSxbMCwyLCJcXHswXFx9Il0sWzAsMywiXFx7MFxcfSJdLFs0LDIsIlxcezBcXH0iXSxbNCwzLCJcXHswXFx9Il0sWzMsNCwiXFx7MFxcfSJdLFs0LDYsIlxcbWF0aHJte0lkfV97TV8zfSBcXG90aW1lcyBnXzEiXSxbNiw4LCJcXG1hdGhybXtJZH1fe01fM30gXFxvdGltZXMgZ18yIl0sWzgsMTFdLFszLDUsIlxcbWF0aHJte0lkfV97TV8yfSBcXG90aW1lcyBnXzEiXSxbNSw3LCJcXG1hdGhybXtJZH1fe01fMn0gXFxvdGltZXMgZ18yIl0sWzcsMTBdLFswLDldLFsxLDAsIlxcbWF0aHJte0lkfV97TV8xfSBcXG90aW1lcyBnXzIiXSxbMiwxLCJcXG1hdGhybXtJZH1fe01fMX0gXFxvdGltZXMgZ18xIl0sWzE0LDFdLFsxNSwyXSxbMiwzLCJmXzEgXFxvdGltZXMgXFxtYXRocm17SWR9X3tOXzF9Il0sWzMsNCwiZl8yIFxcb3RpbWVzIFxcbWF0aHJte0lkfV97Tl8xfSJdLFs0LDE3XSxbMTgsNF0sWzEzLDBdLFswLDcsImZfMSBcXG90aW1lcyBcXG1hdGhybXtJZH1fe05fM30iXSxbNyw4LCJmXzIgXFxvdGltZXMgXFxtYXRocm17SWR9X3tOXzN9Il0sWzgsMTJdLFs2LDE2XSxbMSw1LCJmXzEgXFxvdGltZXMgXFxtYXRocm17SWR9X3tOXzJ9Il0sWzUsNiwiZl8yIFxcb3RpbWVzIFxcbWF0aHJte0lkfV97Tl8yfSJdXQ==
+	\[\begin{tikzcd}[column sep=large]
+		& {\{0\}} & {\{0\}} & {\{0\}} & \\
+		{\{0\}} & {M_1 \otimes N_3} & {M_2 \otimes N_3} & {M_3 \otimes N_3} & {\{0\}} \\
+		{\{0\}} & {M_1 \otimes N_2} & {M_2 \otimes N_2} & {M_3 \otimes N_2} & {\{0\}} \\
+		{\{0\}} & {M_1 \otimes N_1} & {M_2 \otimes N_1} & {M_3 \otimes N_1} & {\{0\}} \\
+		&&& {\{0\}}
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-2, to=1-2]
+		\arrow["{f_1 \otimes \mathrm{Id}_{N_3}}", from=2-2, to=2-3]
+		\arrow[from=2-3, to=1-3]
+		\arrow["{f_2 \otimes \mathrm{Id}_{N_3}}", from=2-3, to=2-4]
+		\arrow[from=2-4, to=1-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow[from=3-1, to=3-2]
+		\arrow["{\mathrm{Id}_{M_1} \otimes g_2}", from=3-2, to=2-2]
+		\arrow["{f_1 \otimes \mathrm{Id}_{N_2}}", from=3-2, to=3-3]
+		\arrow["{\mathrm{Id}_{M_2} \otimes g_2}", from=3-3, to=2-3]
+		\arrow["{f_2 \otimes \mathrm{Id}_{N_2}}", from=3-3, to=3-4]
+		\arrow["{\mathrm{Id}_{M_3} \otimes g_2}", from=3-4, to=2-4]
+		\arrow[from=3-4, to=3-5]
+		\arrow[from=4-1, to=4-2]
+		\arrow["{\mathrm{Id}_{M_1} \otimes g_1}", from=4-2, to=3-2]
+		\arrow["{f_1 \otimes \mathrm{Id}_{N_1}}", from=4-2, to=4-3]
+		\arrow["{\mathrm{Id}_{M_2} \otimes g_1}", from=4-3, to=3-3]
+		\arrow["{f_2 \otimes \mathrm{Id}_{N_1}}", from=4-3, to=4-4]
+		\arrow["{\mathrm{Id}_{M_3} \otimes g_1}", from=4-4, to=3-4]
+		\arrow[from=4-4, to=4-5]
+		\arrow[from=5-4, to=4-4]
+	\end{tikzcd}\]
+
+	If $M_1$ is flat (thus giving us that $\mathrm{Id}_{M_1} \otimes g_1$ is injective), then we can conclude by the short $5$ lemma that $\mathrm{Id}_{M_2} \otimes g_1$ is also injective. Hence, the tensor functor $T_{M_2}$ maps the arbitrary\\ [-2pt] short exact sequence $\{0\} \to N_1 \xrightarrow{g_1} N_2 \xrightarrow{g_2} N_3 \to \{0\}$ to another short exact sequence.\\ [2pt] And this proves that $M_2$ is also flat.\retTwo
+
+	Meanwhile, if $M_2$ is flat (which in turn means $\myId_{M_2} \otimes g_1$ is injective), then we can further conclude from the fact that $f_1 \otimes \myId_{N_2}$ and $f_1 \otimes \myId_{N_1}$ are guarenteed to be injective that $\myId_{M_1} \otimes g_1$ must be injective. Hence, we similarly have that the tensor functor $T_{M_1}$ maps\\ [-2pt] the arbitrary short exact sequence $\{0\} \to N_1 \xrightarrow{g_1} N_2 \xrightarrow{g_2} N_3 \to \{0\}$ to another short\\ [2pt] exact sequence. And this proves that $M_1$ is also flat. $\blacksquare$\retTwo
+\end{myIndent}
 
 \Hstatement\blab{Set 8 Problem 2:} Suppose $A$ is a unital commutative ring, and $\mathfrak{a} \lhd A$.
 \begin{enumerate}
@@ -1451,7 +1683,7 @@ Here is one more tangent before I switch to doing homework problems from last we
 			\arrow[from=1-4, to=1-5]
 		\end{tikzcd}\]
 
-		But now recall from \inLinkRap{Math 200b proposition page 701}{page 701} that we have isomorphisms $M \otimes_A \frac{A}{\mathfrak{a}} \to \frac{M}{\mathfrak{a}M}$ and\\ $M  \otimes_A A \to M$ such that $m \otimes (a + \mathfrak{a}) \mapsto am + \mathfrak{a}M$ and $m \otimes a \mapsto am$. By\\ considering the quotient map $\widetilde{\pi}: M \rightarrowdbl M/\mathfrak{a}M$, we thus get the following\\ commuting diagram:\\ [-15pt]
+		But now recall from \inLinkRap{Math 200b proposition page 701}{page 701} that we have isomorphisms $M \otimes_A \frac{A}{\mathfrak{a}} \to \frac{M}{\mathfrak{a}M}$ and\\ $M  \otimes_A A \to M$ such that $m \otimes (a + \mathfrak{a}) \mapsto am + \mathfrak{a}M$ and $m \otimes a \mapsto am$. By\newpage considering the quotient map $\widetilde{\pi}: M \rightarrowdbl M/\mathfrak{a}M$, we thus get the following\\ commuting diagram:\\ [-15pt]
 		% https://q.uiver.app/#q=WzAsOCxbMSwxLCJNIFxcb3RpbWVzX0EgQSJdLFszLDEsIk0gXFxvdGltZXNfQSBcXGZyYWN7QX17XFxtYXRoZnJha3thfX0iXSxbMSwyLCJNIl0sWzMsMiwiTS9cXG1hdGhmcmFre2F9TSJdLFswLDBdLFs0LDBdLFs0LDNdLFswLDNdLFswLDEsIlxcbWF0aHJte0lkfV9NIFxcb3RpbWVzXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDMsIlxcd2lkZXRpbGRle1xccGl9Il0sWzAsMl0sWzEsM10sWzAsMiwiXFxzaW0iLDMseyJvZmZzZXQiOi0yLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwzLCJcXHNpbSIsMyx7Im9mZnNldCI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDQsIm1cXG90aW1lcyBhIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw3LCJhbSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNSwibSBcXG90aW1lcyAoYSArIFxcbWF0aGZyYWt7YX0pIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMyw2LCJhbSArIFxcbWF0aGZyYWt7YX1NIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMTQsMTYsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE0LDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxNSwxNywiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTYsMTcsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
 		\[\begin{tikzcd}
 			{} &&&& {} \\
@@ -1502,13 +1734,17 @@ Here is one more tangent before I switch to doing homework problems from last we
 			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=1, to=3]
 			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=3, to=2]
 		\end{tikzcd}\]
+
 		\phantom{.}\\ [-30pt]
+		\begin{myIndent}\HexPPP
+			(As a side note because for any $a \in A$ and $a_j \in \mathfrak{a}$ we have that $a a_j \in \mathfrak{a}$, we do not need to worry about having coefficients on the terms of the sum $\sum_{j=1}^k (a_j \otimes m_j)$. I also totally realized this before I turned this in without an explanation for my oversight.)\retTwo
+		\end{myIndent}
 	\end{myIndent}
 
 	\item[(b)] Suppose $0 \to M_1 \xrightarrow{i} M_2$ is injective and $M_1$ and $M_2$ are flat $A$-modules. Prove that\\ $\myId_\mathfrak{a} \otimes i : \mathfrak{a} \otimes_A M_1 \to \mathfrak{a} \otimes_A M_2$ is injective.
 	
 	\begin{myIndent}\HexOne
-		Recall that if $f: N \to N^\prime$ is an $A$-module homomorphism, then $f(\mathfrak{a}N) = \mathfrak{a}f(N)$. Hence, we know that $i(\mathfrak{a}M_1) \subseteq \mathfrak{a}M_2$, and in turn the following commuting diagram is well-defined.\newpage
+		Recall that if $f: N \to N^\prime$ is an $A$-module homomorphism, then $f(\mathfrak{a}N) = \mathfrak{a}f(N)$. Hence, we know that $i(\mathfrak{a}M_1) \subseteq \mathfrak{a}M_2$, and in turn the following commuting diagram is well-defined.\\ [-10pt]
 		% https://q.uiver.app/#q=WzAsOCxbMSwxLCJcXG1hdGhmcmFre2F9IFxcb3RpbWVzX0EgTV8xIl0sWzMsMSwiXFxtYXRoZnJha3thfSBcXG90aW1lc19BIE1fMiJdLFszLDIsIlxcbWF0aGZyYWt7YX1NXzIiXSxbMSwyLCJcXG1hdGhmcmFre2F9TV8xIl0sWzAsMF0sWzQsMF0sWzQsM10sWzAsM10sWzAsMSwiXFxtYXRocm17SWR9X1xcbWF0aGZyYWt7YX0gXFxvdGltZXMgaSJdLFswLDNdLFsxLDJdLFszLDIsImkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDMsIlxcc2ltIiwzLHsib2Zmc2V0IjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiXFxzaW0iLDMseyJvZmZzZXQiOjIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFswLDQsIlxcc3VtX3tqPTF9XmsgKGFfaiBcXG90aW1lcyBtX2opIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMyw3LCJcXHN1bV97aj0xfV5rIGFfaiBtX2oiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDYsIlxcc3VtX3tqPTF9XmsgYV9qIGkobV9qKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNSwiXFxzdW1fe2o9MX1eayAoYV9qIFxcb3RpbWVzIGkobV9qKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzE0LDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxNSwxNiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTQsMTcsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE3LDE2LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
 		\[\begin{tikzcd}
 			{} &&&& {} \\
@@ -1531,7 +1767,7 @@ Here is one more tangent before I switch to doing homework problems from last we
 			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=3]
 		\end{tikzcd}\]
 
-		But now this proves that $\ker(\myId_{\mathfrak{a}} \otimes i) \cong \ker(i|_{\mathfrak{a}M}) \subseteq \ker(i) = \{0\}$. Hence $\myId_{\mathfrak{a}} \otimes i$ has a trivial kernel and is thus injective.
+		But now this proves that $\ker(\myId_{\mathfrak{a}} \otimes i) \cong \ker(i|_{\mathfrak{a}M}) \subseteq \ker(i) = \{0\}$. Hence $\myId_{\mathfrak{a}} \otimes i$ has a trivial kernel and is thus injective.\newpage
 	\end{myIndent}
 
 	\item[(c)] Suppose % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTl8xIl0sWzIsMCwiTl8yIl0sWzMsMCwiTl8zIl0sWzQsMCwiXFx7MFxcfSJdLFszLDRdLFsyLDMsImYiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwyLCJpIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxXV0=
@@ -1541,7 +1777,7 @@ Here is one more tangent before I switch to doing homework problems from last we
 		\arrow["i", hook, from=1-2, to=1-3]
 		\arrow["f", two heads, from=1-3, to=1-4]
 		\arrow[from=1-4, to=1-5]
-	\end{tikzcd}$ is an SES and $N_2$ and $N_3$ are\\ [-4pt] flat $A$-modules. (Note by set 7 problem 8 on \inLinkRap{idk reference 21}{page \_\_\_} that $N_1$ must then also be flat). Prove\\ [2pt] that $\mathfrak{a}N_2 \cap i(N_1) = i(\mathfrak{a}N_1)$.
+	\end{tikzcd}$ is an SES and $N_2$ and $N_3$ are\\ [-4pt] flat $A$-modules. (Note by set 7 problem 8 on the prior page that $N_1$ must then also be flat).\\ [2pt] Prove that $\mathfrak{a}N_2 \cap i(N_1) = i(\mathfrak{a}N_1)$.
 
 	\begin{myIndent}\HexOne
 		Since $N_1, N_2$ are flat, we can conclude by part (b) plus the right-exactness of the tensor functor $T_\mathfrak{a}$ that the following is an S.E.S.:
@@ -1598,7 +1834,7 @@ Here is one more tangent before I switch to doing homework problems from last we
 
 		By the final section of the proof of set 5 problem 3b (see \inLinkRap{Math 200b Set 5 problem 3b}{page 658}), we in turn know that $x_1, \ldots, x_m$ span $K$ and $x_1, \ldots, x_n$ span $A^n$ with $m = d(K)$ and $n = d(A^n)$.
 		\begin{myIndent}\color{red}
-			Note: I just realized this is the primary result people refer to as "Nakayama's lemma".\retTwo
+			Note: I just realized this is the primary result people refer to as "Nakayama's lemma".\newpage
 		\end{myIndent}
 
 		Yet now recall from set 2 problem 4b (see \inLinkRap{Actual Problem Set 2 Problem 4 Math 200b}{pages 569-570}) that if $\phi: A^n \to A^n$ is a surjective $A$-module homomorphism, then $\phi$ is also injective. Using this fact, we can conclude $x_1, \ldots, x_n$ are linearly independent. And finally, this gives us that:
@@ -1647,8 +1883,49 @@ Here is one more tangent before I switch to doing homework problems from last we
 	This was proven in set 6 problem 6 on \inLinkRap{Math 200b Set 6 Problem 6}{pages 676-677}. Note that this implication \textit{does} require $M$ to be finitely presented.\retTwo
 
 	$(d \Longrightarrow a)$
-	This was proven on \inLinkRap{Math 200b Main Flatness results}{page 716}. Also, this doesn't require that $M$ is finitely\\ presented.\newpage
+	This was proven on \inLinkRap{Math 200b Main Flatness results}{page 716}. Also, this doesn't require that $M$ is finitely\\ presented.\retTwo
 \end{myIndent}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \newpage
@@ -1692,7 +1969,7 @@ Here is one more tangent before I switch to doing homework problems from last we
 	\item[(c)] Prove that $A_\mathfrak{p}$ has a nonzero nilpotent element if and only if $p = 3$.
 	
 	\begin{myIndent}\HexOne
-		To start off, by the theorem on \inLinkRap{idk reference 22}{page \_\_\_} we know that:
+		To start off, by the theorem on \inLinkRap{idk reference 22}{page 728} we know that:
 		
 		{\centering$A_\mathfrak{p} \cong \frac{\mathbb{Z} / p\mathbb{Z}[x]}{\langle x^2 + x + 1\rangle}$ as $\frac{\mathbb{Z}}{p \mathbb{Z}}$-algebras.\retTwo\par}
 
@@ -1715,8 +1992,44 @@ Here is one more tangent before I switch to doing homework problems from last we
 	\end{myIndent}
 \end{enumerate}
 
-\hypertarget{idk reference 21}{}
-\hypertarget{idk reference 22}{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\blab{Set 7 Problem 1:} \hypertarget{Math 200b Set 7 Problem 1}{Prove} that $\langle 2, \sqrt{-10}\rangle$ is a projective $\mathbb{Z}[\sqrt{-10}]$-module.
+\begin{myIndent}\HexOne
+	Firstly, consider that the minimal polynomial of $\sqrt{-10}$ in $\mathbb{Q}[x]$ is $m_{\sqrt{-10}; \mathbb{Q}}(x) = x^2 + 10$. (For a reminder of how this is defined )
+\end{myIndent}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
