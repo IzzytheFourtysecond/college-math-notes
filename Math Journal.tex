@@ -335,6 +335,11 @@
 \newcommand{\Tor}{\mathrm{Tor}}
 \newcommand{\diag}{\mathrm{diag}}
 \newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\Embed}{\mathrm{Embed}}
+\newcommand{\Isom}{\mathrm{Isom}}
+\newcommand{\mChar}{\mathrm{char}}
+\newcommand{\Gal}{\mathrm{Gal}}
+\newcommand{\Int}{\mathrm{Int}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Log}{Log}
@@ -10823,7 +10828,7 @@ This leads to the equation:
 	\end{itemize}
 \end{myIndent}
 
-\blab{Set 1 Problem 2:} Suppose $G$ is a finite group and that for every positive integer $n$:\\ [-16pt]
+\blab{Set 1 Problem 2:} \hypertarget{Math 200a Set 1 Problem 2}{Suppose} $G$ is a finite group and that for every positive integer $n$:\\ [-16pt]
 
 {\center$|\{g \in G : g^n = e\}| \leq n$\\ [9pt]\par}
 
@@ -13549,12 +13554,12 @@ I need to first do the rest of my math 200a homework. Then I think there is a di
 	\begin{myIndent}\HexOne
 		Suppose $\theta \in \Aut(G)$. Then since $H$ is normal, we know that $\theta(H)H$ is a subgroup of $G$ and $H \lhd \theta(H)H$. So by the correspondance theorem, we know that $|\frac{\theta(H)H}{H}|$ divides $|G/H| = [G : H]$. At the same time, $|\theta(H)H| = \frac{|H||\theta(H)|}{|H \cap \theta(H)}$. So, $|\frac{\theta(H)H}{H}| = \frac{|\theta(H)|}{|H \cap \theta(H)|}$ divides $|\theta(H)| = |H|$.\retTwo
 
-		This shows that $|\frac{\theta(H)H}{H}| \dividesDeprecated \gcd(|H|, [G : H]) = 1$. And hence, $\theta(H)H = H$. Since $|\theta(H)| = |H|$ and $\theta(H) \subseteq \theta(H)H$, we can thus conclude that $\theta(H) = H$. $\blacksquare$\retTwo
+		This shows that $|\frac{\theta(H)H}{H}|$ divides $\gcd(|H|, [G : H]) = 1$. Hence, $\theta(H)H = H$.\\ And since $|\theta(H)| = |H|$ and $\theta(H) \subseteq \theta(H)H$, we conclude that $\theta(H) = H$. $\blacksquare$\retTwo
 	\end{myIndent}
 \end{enumerate}
 
 \blab{Set 3 Problem 4:} Suppose $G$ is a finite group, $N \lhd G$, and $p$ is a prime factor of $|N|$.
-\begin{myIndent}
+\begin{itemize}
 	\item[(a)] Suppose $P \in \Syl_p(G)$ and $Q \in \Syl_p(N)$. Prove there exists $g \in G$ such that\\ $Q = (gPg^{-1}) \cap N$.
 	
 	\begin{myIndent}\HexOne
@@ -13564,7 +13569,7 @@ I need to first do the rest of my math 200a homework. Then I think there is a di
 
 		So, $Q \subseteq (gPg^{-1}) \cap N$ and $|Q| = p^{\nu_p(|N|)} = |(gPg^{-1}) \cap N|$. It follows that\\ $Q = (gPg^{-1}) \cap N$.
 		\begin{myIndent}\myComment
-			Side note: none of the reasoning in this part requires having $N$ be normal.\retTwo
+			Side note: none of the reasoning in this part requires having $N$ be normal.
 		\end{myIndent}
 	\end{myIndent}
 	
@@ -13614,7 +13619,7 @@ I need to first do the rest of my math 200a homework. Then I think there is a di
 
 		Hence, if we consider the action $N_G(\Phi(P)) \curvearrowright \Syl_p(G)$ by conjugation, then\\ [-1pt] $\Phi^{-1}(\Phi(P))$ is precisely the orbit of $P$ with respect to this action. Also, $x$ is in the stabilizer of $P$ with respect to this action precisely when $xPx^{-1} = P$. Or in other\\ words, $x \in (N_G(\Phi(P)))_P$ when $x \in N_G(\Phi(P)) \cap N_G(P) = N_G(P)$. By the\\ orbit-stabilizer theorem, we thus can conclude that:
 		
-		{\centering$|\Phi^{-1}(\Phi(P))| = [N_G(\Phi(P)) : N_G(P)]$.\retTwo\par}
+		{\centering$|\Phi^{-1}(\Phi(P))| = [N_G(\Phi(P)) : N_G(P)]$.\par}
 	\end{myIndent}
 
 	\item[(d)] Prove that $|\Syl_p(N)|$ divides $|\Syl_p(G)|$.
@@ -13638,7 +13643,7 @@ I need to first do the rest of my math 200a homework. Then I think there is a di
 
 		And since $G$ acts transitively on $\Syl_p(G)$ by conjugation, this means that there exists\\ $r \in \mathbb{N}$ such that $r = |\Phi^{-1}(\Phi(P))|$ for all $P \in \Syl_p(G)$. And since $\Phi$ is surjective,\\ we have that $\Phi^{-1}(Q) = r$ for all $Q \in \Syl_p(G)$. $\blacksquare$\newpage
 	\end{myIndent}
-\end{myIndent}
+\end{itemize}
 
 \hTwo I'm now going to follow the paper: \textit{The Milnor-Rogers Proof of the Brouwer Fixed Point Theorem}, by Ralph Howard (see bibliography \inLinkRap{bib citation 18}{item 18}).\retTwo
 
@@ -16384,11 +16389,11 @@ Meanwhile, it's clear from the definition of a central series that $\{Z_i(G)\}$ 
 		$\phantom{gZ_i(G) = hZ_i(G) \Longrightarrow gh^{-1} \in Z_i(G)} \Longrightarrow gZ_i(G) = hZ_i(G)$
 	\end{tabular}\retTwo\par}
 
-	In problem 4 of the sixth problem set I go into more detail on showing that $\overline{\theta}$ is an\\ automorphism.\retTwo
+	Also $\overline{\theta}$ has $\overline{\theta^{-1}}$ as it's inverse. So, $\overline{\theta}$ is a group automorphism.\retTwo
 
 	Next, note that if $G^\prime$ is any group then $Z(G^\prime)$ is a characteristic subgroup of $G^\prime$. 
 	\begin{myIndent}
-		This is because if $\phi \in \Aut(G^\prime)$, then $xy = yx$ for all $x \in G^\prime$ implies that $\phi(x)\phi(y) = \phi(y)\phi(x)$ for all $x \in G^\prime$. Hence $\phi(Z(G^\prime)) \subseteq Z(G^\prime)$. And by repeating the same reasoning with $\phi^{-1}$ we get that $\phi(Z(G^\prime)) = Z(G^\prime)$.\retTwo
+		This is because if $\phi \in \Aut(G^\prime)$, then $xy = yx$ for all $x \in G^\prime$ implies that\\ $\phi(x)\phi(y) = \phi(y)\phi(x)$ for all $x \in G^\prime$. Hence $\phi(Z(G^\prime)) \subseteq Z(G^\prime)$. And by\\ repeating the same reasoning with $\phi^{-1}$ we get that $\phi(Z(G^\prime)) = Z(G^\prime)$.\retTwo
 	\end{myIndent}
 
 	In particular, this means that $\overline{\theta}(Z(G/Z_i(G))) = Z(G/Z_i(G))$ for all $\theta \in \Aut(G)$.\\ So if $Z_{i+1}(G) / Z_i(G) = Z(G/ Z_{i}(G))$ then $\theta(x)Z_i(G) \in Z_{i+1}(G) / Z_i(G)$ for all\\ $x \in Z_{i+1}(G)$ and $\theta \in \Aut(G)$. And in particular this means that $\theta(Z_{i+1}(G)) \subseteq Z_{i+1}(G)$ for all $\theta \in \Aut(G)$.\newpage
@@ -16763,7 +16768,7 @@ Note that it is pretty easy to see that if $\omega \sim \omega^\prime$ then $g \
 
 	Now consider the action $G \curvearrowright [G, G]$ by conjugation. This gives a group homomorphism $\phi : G \to \Aut([G, G])$. And if $\eta: [G, G] \to S_4$ is an isomorphism, we know there exists a group homomorphism $\phi^\prime : G \to \Aut(S_4)$ given by $\phi^\prime(g) = \eta \circ (\phi(g)) \circ \eta^{-1}$.\retTwo
 	
-	But note that if $\theta \in \Aut(S_4)$ then there is a well-defined automorphism $\overline{\theta}$ on $A_4 / P$ given by $\overline{\theta}(\sigma P) \mapsto \theta(P)$.
+	But note that if $\theta \in \Aut(S_4)$ then there is a well-defined automorphism $\overline{\theta}$ on $A_4 / P$ given by $\overline{\theta}(\sigma P) \mapsto \theta(\sigma)P$.
 	\begin{myIndent}\exPPP
 		To see that $\overline{\theta}$ is well defined, suppose $\sigma_1 P = \sigma_2 P$. Then $\sigma_1 \sigma{2}^{-1} \in P$, and because $P$ is a characteristic subgroup we have that $\theta(\sigma_1)\theta(\sigma_2)^{-1} = \theta(\sigma_1 \sigma_2^{-1}) \in P$ as well. Hence, we can conclude that $\theta(\sigma_1)P = \theta(\sigma_2)P$. And since $A_4$ is a characteristic subgroup of $S_4$, we know that $\theta(\sigma_i) \in A_4$ for each $i$. This finishes the proof that $\overline{\theta}$ is a well-defined function from $A_4 / P$ to $A_4 / P$\retTwo
 
@@ -25767,7 +25772,7 @@ If $F$ is a field and $A$ is a noncommutative unital ring, we say $A$ is an \ude
 	\item For an example of a non-commutative  $F$-algebra that we'll be caring about, consider the set of matrices $M_n(F)$ and define $f: F \to M_n(F)$ by $c \mapsto cI$.\retTwo
 \end{itemize}
 
-\exTwo\ul{Lemma:} Suppose $A$ is an $F$-algebra (and $A \neq \{0\}$). If $\dim_F(A) < \infty$ then for all $a \in A$ there exists a unique nonconstant monic polynomial $m_{a;F}(x) \in F[x]$ such that for all $g \in F[x]$ we have that $g(a) = 0 \Longleftrightarrow m_{a;F}(x) \divides g(x)$ in $F[x]$.
+\exTwo\ul{Lemma:} \hypertarget{Math 200b lemma pages 602-603}{Suppose} $A$ is an $F$-algebra (and $A \neq \{0\}$). If $\dim_F(A) < \infty$ then for all $a \in A$ there exists a unique nonconstant monic polynomial $m_{a;F}(x) \in F[x]$ such that for all $g \in F[x]$ we have that $g(a) = 0 \Longleftrightarrow m_{a;F}(x) \divides g(x)$ in $F[x]$.
 \begin{myIndent}\exThreeP
 	\begin{myIndent}\myComment
 		Note that $m_{a;F}$ is called the \udefine{minimal polynomial} of $a$ over $F$.\retTwo
@@ -27469,7 +27474,7 @@ Meanwhile, we say $F: \mcateg{C} \to \mcateg{D}$ is a \udefine{contravariant fun
 	\arrow["F", between={0.2}{0.8}, squiggly, from=0, to=1]
 \end{tikzcd}\]
 
-\pracOne Given a collection of polynomials $\{f_i\}_{i \in I} \subseteq \mathbb{Z}[x_1, \ldots, x_n]$ We can give an example of a\\ functor $V \coloneqq V_{\{f_i\}_{i \in I}} : \mcateg{CRing} \to \mcateg{Set}$ as follows:\newpage
+\pracOne\hypertarget{Page 635 functor example}{Given} a collection of polynomials $\{f_i\}_{i \in I} \subseteq \mathbb{Z}[x_1, \ldots, x_n]$ We can give an example of a\\ functor $V \coloneqq V_{\{f_i\}_{i \in I}} : \mcateg{CRing} \to \mcateg{Set}$ as follows:\newpage
 \begin{myIndent}
 	\begin{itemize}
 		\item Given any ring $A$ let $V(A) = \{(a_1, \ldots, a_n) \in A^n : \forall i \in I, f_i(a_1, \ldots, a_n) = 0\}$.
@@ -27546,7 +27551,9 @@ In a similar vein, we define $\GL_n : \mcateg{CRing} \to \mcateg{Grp}$ such that
 		
 		{\centering$\GL_n(A) = \{[a_{i,j}] \in M_n(A) : \det([a_{i,j}]) \in A^\times\}$ under matrix multiplication.\par}
 
-		\item Given any ring homomorphism $f: A \to B$, define $\GL_n(f) : \GL_n(A) \to \GL_n(B)$ by $[a_{i,j}] \mapsto [f(a_{i,j})]$.\retTwo
+		\item Given any ring homomorphism $f: A \to B$, define:
+		
+		{\centering $\GL_n(f) : \GL_n(A) \to \GL_n(B)$ by $[a_{i,j}] \mapsto [f(a_{i,j})]$.\retTwo\par}
 	\end{itemize}
 
 	\pracTwo Similarly to the last construction, $\GL_n(A)$ is a group because $a \in M_n(A)$ is invertible iff\\ $\det(a) \in A^\times$ (see \inLinkRap{Math 200b Set 2 Problem 4}{pages 567-570}). The rest of the reasoning for showing this is a well-\\defined functor is identical to the last example.\retTwo
@@ -29656,7 +29663,7 @@ Also suppose $S$ is a multiplicatively closed subset of $A$. Prove for any $A$-m
 
 \blect{Back to Math 200b Notes:}\retTwo
 
-\exTwo\ul{Proposition:} Suppose $D$ is a domain and $\mathfrak{a} \lhd D$ is a finitely generated ideal. Let $F$ be the field of fractions of $D$. Then $\mathfrak{a}$ is a projective $D$-module if and only if there exists a finitely generated submodule $M$ of $F$ (viewed as a $D$-module) such that $\mathfrak{a}M = D$.
+\exTwo\ul{Proposition:} \hypertarget{Math 200b bottom of page 678 reference}{Suppose} $D$ is a domain and $\mathfrak{a} \lhd D$ is a finitely generated ideal. Let $F$ be the field of fractions of $D$. Then $\mathfrak{a}$ is a projective $D$-module if and only if there exists a finitely generated submodule $M$ of $F$ (viewed as a $D$-module) such that $\mathfrak{a}M = D$.
 \begin{myIndent}\exThreeP
 	\begin{myIndent}\myComment
 		Recall from \inLinkRap{Math 200b Set 5 Problem 3 beginning}{set 5 problem 3 on page 657} on how $\mathfrak{a}M$ is defined.\newpage
@@ -29689,7 +29696,7 @@ Also suppose $S$ is a multiplicatively closed subset of $A$. Prove for any $A$-m
 
 	In particular, since $\mathfrak{a} \neq \{0\}$ we can choose some nonzero $x \in \mathfrak{a}$. Then after canceling out $x$ we get that $\beta_1 a_1 + \cdots + \beta_n a_n = 1$.\retTwo
 
-	Define $M = D\beta_1 + \cdots + D\beta_n$ be a $D$-submodule of $F$. It is easy to see that\\ $\mathfrak{a}M = \langle a_j \beta_i: i, j \in \{1, \ldots, n\} \rangle$. But as $a_j \beta_i = g_i(a_j) \in D$ for all $j$ and $i$, we know\\ that $\mathfrak{a}M \subseteq D$. Also, we showed above that $1 \in \mathfrak{a}M$. So, $\mathfrak{a}M = D$.\retTwo
+	Define $M = D\beta_1 + \cdots + D\beta_n$ as a $D$-submodule of $F$. It is easy to see that\\ $\mathfrak{a}M = \langle a_j \beta_i: i, j \in \{1, \ldots, n\} \rangle$. But as $a_j \beta_i = g_i(a_j) \in D$ for all $j$ and $i$, we know\\ that $\mathfrak{a}M \subseteq D$. Also, we showed above that $1 \in \mathfrak{a}M$. So, $\mathfrak{a}M = D$.\retTwo
 
 	$(\Longleftarrow)$\\
 	Suppose $\mathfrak{a}M = D$ for some $D$-submodule $M$ of $F$. Then:
@@ -29707,7 +29714,7 @@ Also suppose $S$ is a multiplicatively closed subset of $A$. Prove for any $A$-m
 
 \hTwo We can use this proposition to show that the assumptions on the arrows of the diagram on \inLinkRap{Handy Diagram page 665}{page 665} were necessary. For example, the professor stated (without proof) that $\langle 2, \sqrt{-10}\rangle$ is a projective $\mathbb{Z}[\sqrt{-10}]$-module that is not free.
 \begin{myIndent}\myComment
-	For a proof of this see \inLinkRap{Math 200b Set 7 Problem 1}{page \_\_\_}.
+	For a proof of this see \inLinkRap{Math 200b Set 7 Problem 1}{pages 765-766}.
 	\newpage
 \end{myIndent}
 
@@ -32278,7 +32285,7 @@ As an application of this exercise, suppose $A \stackrel{f}{\subseteq} B \stackr
 \begin{myIndent}\hThree
 	This means that $B$ is an $A$-algebra with structure determined by $f: A \to B$ and $C$ is a $B$-algebra with structure determined by $g: B \to C$. Note that $C$ is also an $A$-algebra with structure determined by $g \circ f$.\retTwo
 
-	Often (especially as we transition to talking about field theory), we will write $B/A$ to refer to the $A$-algebra $B$. Don't confuse this with a quotient ring (which uses identical notation). *sigh*\retTwo
+	\hypertarget{Math 200b page 726 sigh}{Often} (especially as we transition to talking about field theory), we will write $B/A$ to refer to the $A$-algebra $B$. Don't confuse this with a quotient ring (which uses identical notation). *sigh*\retTwo
 \end{myIndent}
 
 I claim that $T_{C/A} \cong T_{C/B} \circ T_{B/A}$.
@@ -33757,13 +33764,796 @@ Using entirely topological arguments, we can also formulate a version of Runge's
 
 \dispDate{3/14/2026}
 
+\blect{Math 200b Notes:}\retTwo
+
+The class is now done with module theory and is moving on to field theory. Some of these notes may be retreading my 100c notes. That said, I actually should have failed math 100c. So, I won't be skipping over notes from this class.\retTwo
+
+Firstly, here are some quick observations about ring homomorphisms from fields.
+\begin{myIndent}\myComment
+	If $\phi: F \to A$ is a ring homomorphism and $F$ is a field, then $\phi$ must be either injective or the zero map since $\ker(\phi) \lhd F$ and the only two ideals of $F$ are $\{0\}$ and $F$.\retTwo
+
+	Also suppose $A$ is a unital ring and $A^\prime$ is an integral domain. If $\psi: A \to A^\prime$ is a ring homomorphism that isn't the zero map, then we must have that $\psi(1_A) = 1_{A^\prime}$.
+	\begin{myIndent}\color{orange}
+		After all, pick $a \in A$ with $\psi(a) \neq 0$. Then as:
+		
+		{\center$1_{A^\prime}\psi(a) = \psi(a) = \psi(1_A a) = \psi(1_A)\psi(a)$,\par}
+		
+		we can cancel out $\psi(a)$ to get that $1_{A^\prime} = \psi(1_A)$.\retTwo
+	\end{myIndent}
+
+	In particular, we thus know that that if $\phi: F_1 \to F_2$ is a ring homomorphism between fields that isn't the zero map, then $\phi$ is injective and unital.\retTwo
+\end{myIndent}
+
+We say $E/F$ is a \udefine{field extension} if $E, F$ are fields and we are given a nonzero embedding\\ homomorphism $i: F \hookrightarrow E$.
+\begin{myIndent}\myComment
+	Note that essentially $E$ is an $F$ algebra and this notation is just a special case of my\\ comment on \inLinkRap{Math 200b page 726 sigh}{page 726} that I ended with a sigh. Since $i$ is injective, we'll often do an\\ abuse of notation and just write $F$ as a subset of $E$.\retTwo
+\end{myIndent}
+
+If $E/F$ and $E^\prime/F^\prime$ are field extensions and $\theta: F \xrightarrow{\sim} F^\prime$, then we say $\phi: E \to E^\prime$ is a \udefine{$\theta$-embedding} if the below diagram commutes:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFIl0sWzEsMCwiRV5cXHByaW1lIl0sWzAsMSwiRiJdLFsxLDEsIkZeXFxwcmltZSJdLFsyLDAsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzMsMSwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJcXHRoZXRhIiwyXSxbMCwxLCJcXHBoaSIsMl0sWzIsMywiXFxzaW0iLDEseyJvZmZzZXQiOi0yLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	E & {E^\prime} \\
+	F & {F^\prime}
+	\arrow["\phi"', from=1-1, to=1-2]
+	\arrow[hook, from=2-1, to=1-1]
+	\arrow["\theta"', from=2-1, to=2-2]
+	\arrow["\sim"{description}, shift left=2, draw=none, from=2-1, to=2-2]
+	\arrow[hook, from=2-2, to=1-2]
+\end{tikzcd}\]
+
+The set of all $\theta$-embeddings is denoted $\Hom_\theta(E, E^\prime)$ or $\Embed_{\theta}(E, E^\prime)$. If the\\ $\theta$-embedding $\phi$ is an isomorphism, we call $\phi$ a \udefine{$\theta$-isomorphism}. Also, we denote the\\ set of all $\theta$-isomorphisms as $\Isom_\theta(E, E^\prime)$.\retTwo
+
+Given a field extension $E/F$, we say $\alpha \in E$ is \udefine{algebraic over $F$} if $\exists f(x) \in F[x] - \{0\}$\\ such that $f(\alpha) = 0$. If $\alpha$ is not algebraic over $F$, we say it is \udefine{transcendental} over $F$.\newpage
+
+Note that $\alpha \in E$ is algebraic over $F$ iff $e_\alpha: F[x] \to E$ given by $e_\alpha(f) \coloneqq f(\alpha)$ has a\\ nonzero kernel. But then as $F[x]$ is a PID, the latter is the case iff there exists a unique\\ monic polynomial $m_{\alpha ; F} \in F[x]$ of degree $\geq 1$ with $\ker(e_\alpha) = \langle m_{\alpha ; F}\rangle$.\retTwo
+
+\exTwo\ul{Proposition:}\\ [-20pt]
+\begin{enumerate}
+	\item[1.] $m_{\alpha; F}$ is irreducible in $F[x]$.\\ [-20pt]
+	\item[2.] If $p$ is monic and irreducible in $F[x]$ and $p(\alpha) = 0$, then $p = m_{\alpha ; F}$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		First suppose to the contrary that $m_{\alpha ; F}(x) = g(x)h(x)$ where $g, h \in F[x] - \{0\}$ and $\deg(g), \deg(h) < \deg(m_{\alpha; F})$. Yet note that:
+
+		{\centering $0 = m_{\alpha ; F}(\alpha) = g(\alpha)h(\alpha) \Longrightarrow g(\alpha) = 0 \text{ or } h(\alpha) = 0$.\retTwo\par}
+
+		Without loss of generality assume $g(\alpha) = 0$. Then $g(x) = m_{\alpha ; F}(x)k(x)$ for some $k(x) \in F[x]$. Since $m_{\alpha; F}(x)$ is not the zero polynomial and $m_{\alpha; F}(x) = g(x)h(x)$, we know that $g(x)$ is not the zero polynomial. In turn, $k(x)$ is also not the zero\\ polynomial. But now we have a contradiction as $\deg(g) \geq \deg(m_{\alpha; F})$. This proves claim 1.\retTwo
+
+		As for claim 2, since $p(\alpha) = 0$ we know that $p(x) = m_{\alpha;F}(x)h(x)$ for some\\ $h(x) \in F[x]$. But then as $p$ is irreducible, we know that $h$ must be a constant. Finally, as both $p$ and $m_{\alpha; F}$ are monic, the constant $h$ must be $1$. So, $p = m_{\alpha;F}$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\ul{Theorem:} If $\alpha \in E$ is algebraic over $F$, then:\\ [-20pt]
+\begin{enumerate}
+	\item[1.] $F[\alpha]$ is a field.\\ [-20pt]
+	\item[2.] $(1, \alpha, \ldots, \alpha^{d-1})$ is an $F$-basis of $F[\alpha]$ over $F$ where $d = \deg(m_{\alpha; F})$.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Consider the evaluation homomorphism $e_\alpha: F[x] \to E$. Then by the first\\ isomorphism theorem, we have that:
+
+		{\centering $F[\alpha] = \myIm(e_\alpha) \cong \frac{F[x]}{\ker(e_\alpha)} = \frac{F[x]}{\langle m_{\alpha ; F}\rangle}$ \retTwo\par}
+
+		Yet as $m_{\alpha ; F}$ is irreducible and all ideals of $F[x]$ are principal, we can conclude that $\langle m_{\alpha; F}\rangle$ is a maximal ideal. So, $\frac{F[x]}{\langle m_{\alpha ; F}\rangle}$ is a field.\retTwo
+
+		Next, note by the long division theorem that every element of $\frac{F[x]}{\langle m_{\alpha ; F}\rangle}$ has a unique representive of the form $\sum_{i=0}^{d-1} a_i x^i$ where $d = \deg(m_{\alpha; F})$. Thus, $(1, \overline{x}, \ldots, \overline{x^{d-1}})$ is\\ [3pt] an $F$-basis of this quotient.
+		\begin{myIndent}\myComment
+			As a side note, this paragraph also works for any commutative unital ring $A$ and monic polynomial $f \in A[x]$ at getting an $A$-basis for $\frac{A[x]}{\langle f\rangle}$.\retTwo
+		\end{myIndent}
+
+		In turn, by applying the evaluation homomorphism we get that $(1, \alpha, \ldots, \alpha^{d-1})$ is an $F$-basis of $F[\alpha]$. $\blacksquare$\newpage
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo We say a field extension $E/F$ is a \udefine{finite extension} if $\dim_F(E) < \infty$, and we denote\\ $\dim_F(E) = [E : F]$.\retTwo
+
+Meanwhile, $E/F$ is said to be an \udefine{algebraic extension} if all $\alpha \in E$ are algebraic over $F$. 
+\begin{myIndent}\pracTwo
+	Note from the lemma on \inLinkRap{Math 200b lemma pages 602-603}{pages 602-603} that if $E/F$ is a finite extension, then $E/F$\\ is an algebraic extension.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+Suppose $K/E$ and $E/F$ are fields extensions. Then $K/F$ is also a field extension.\retTwo
+
+\exTwo\ul{The Tower Lemma:} $[K : F] = [K : E][E : F]$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $\{e_i\}_{i \in I}$ is an $F$-basis of $E$ and $\{k_j\}_{j \in J}$ is an $E$-basis of $K$. Then we claim that $\{e_i k_j\}_{(i, j) \in I \times J}$ is an $F$-basis of $K$.
+	\begin{myIndent}\exPPP
+		After all, for all $k \in K$ there exists $c_1, \ldots, c_n \in E$ and $j_1, \ldots, j_n \in J$ such that $K = c_1 k_{j_1} + \ldots + c_n k_{j_n}$. Next, for all $s$ we can find $f_1^{(s)}, \ldots, f_{m_s}^{(s)} \in F$ and $i_1^{(s)}, \ldots, i_{m_s}^{(s)} \in I$ with $c_s = f_1^{(s)}e_{i_1^{(s)}} + \ldots + f_{m_s}^{(s)} e_{i_{m_s}^{(s)}}$. And now:
+
+		{\centering $k = \sum_{s=1}^n \sum_{\ell = 1}^{m_s}f_\ell^{(s)} \cdot e_{i_\ell^{(s)}}k_{j_s}$ \retTwo\par}
+
+		This proves our proposed basis spans all of $K$.\retTwo
+
+		Meanwhile to show linear independence, suppose:
+		
+		{\centering$\sum_{i, j} f_{i,j} e_j k_j = \sum_{j} (\sum_i f_{i,j} e_i) k_j = 0$.\retTwo\par}
+
+		As the $k_j$ are $E$-linearly independent, we can thus conclude that $\sum_i f_{i,j} e_i = 0$ for\\ every fixed $j$. Next, because the $e_i$ are $F$-linearly independent, we can conclude\\ $f_{i,j} = 0$ for all $i$ and $j$. \exThreeP $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Theorem:} If $f \in F[x] - F$ is irreducible, then there exists a field extension $E/F$ and element $\alpha \in E$ such that $E = F[\alpha]$ and $f(\alpha) = 0$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $E \coloneqq \frac{F[x]}{\langle f\rangle}$. Since $F[x]$ is a PID and $f$ is irreducible, $\langle f\rangle$ is a maximal ideal. Hence, $E$ is a field. Also note that $i: F \hookrightarrow E$ given by $i(c) = c + \langle f\rangle$ is an injective unital ring homomorphism. Thus, $E/F$ is a field extension.\retTwo
+
+	Let $\alpha \coloneqq x + \langle f\rangle \in E$. Then as $\frac{F[x]}{\langle f\rangle}$ is generated by $i(F)$ and $\alpha$, we have that $E = F[\alpha]$. Also note that $f(\alpha) = f + \langle f\rangle = 0 + \langle f\rangle$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Given an irreducible $f \in F[x] - F$, we shall write $f \rightsquigarrow (E/F, \alpha)$ to denote a field extension such that $E = F[\alpha]$ and $f(\alpha) = 0$.\retTwo
+
+\exTwo\ul{Theorem:} \hypertarget{Math 200b Theorem end of page 762}{Suppose} $\theta : F \xrightarrow{\sim} F^\prime$ and $f \in F[x]$ is irreducible. Given extensions\\ $f \rightsquigarrow (E/F, \alpha)$ and $f^\theta \rightsquigarrow (E^\prime/ F^\prime, \alpha^\prime)$ there exists a unique $\widehat{\theta} \in \Isom_\theta(E, E^\prime)$ such\\ that $\widehat{\theta}(\alpha) = \alpha^\prime$.
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		(Recall \inLinkRap{idk reference 22}{page 728} on what $f^\theta$ means\dots)\newpage
+	\end{myIndent}
+
+	Proof:\\
+	Since $f$ is irreducible and $f(\alpha) = 0$ we know that $f(x) = \lt(f) \cdot m_{\alpha; F}(x)$.\\ Hence $\langle f\rangle = \langle m_{\alpha ; F}\rangle$. Also, because isomorphisms must take irreducible polynomials\\ to irreducible polynomials, we have that $f^\theta$ is irreducible. Therefore, by analogous\\ reasoning to before we know that $\langle f^\theta \rangle = \langle m_{\alpha^\prime; F^\prime}\rangle$.\retTwo
+
+	Now evaluation at $\alpha$ gives us an isomorphism $\frac{F[x]}{\langle m_{\alpha; F}\rangle} \cong F[\alpha ] = E$. Similarly, we have that\\ [-4pt]$\frac{F^\prime[x]}{\langle m_{\alpha^\prime; F^\prime}\rangle} \cong F^\prime[\alpha^\prime] = E^\prime$ via evaluation at $\alpha^\prime$.\retTwo
+
+	Extend $\theta: F \to F^\prime$ to the unique ring isomorphism $\phi: F[x] \to F^\prime[x]$ satisfying that $\phi(c) = \theta(c)$ for all constants $c$ and that $\phi(x) = x$. Then as $\phi(f) = f^\theta$ implies that $\phi(\langle f\rangle) = \langle f^\theta\rangle$, we can conclude that $\overline{\phi}(p + \langle f\rangle) = \phi(p) + \langle f^\theta \rangle$ is also a well-defined ring isomorphism. Clearly $\overline{\phi}$ is the unique homomorphism from $F[x]/\langle f\rangle$ to $F^\prime[x]/\langle f^\theta\rangle$ taking $c + \langle f\rangle$ to $\theta(c) + \langle f\theta\rangle$ for all $c \in F$ and $x + \langle f\rangle$ to $x + \langle f^\theta \rangle$.\retTwo
+
+	Finally, note that any $\widehat{\theta} \in \Isom_\theta(E, E\prime)$ satisfying that $\widehat{\theta}(\alpha) = \alpha^\prime$ must fit into the below commuting diagram:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFIl0sWzEsMCwiRV5cXHByaW1lIl0sWzAsMSwiXFxmcmFje0ZbeF19e1xcbGFuZ2xlIGZcXHJhbmdsZX0iXSxbMSwxLCJcXGZyYWN7Rl5cXHByaW1lW3hdfXtcXGxhbmdsZSBmXlxcdGhldGFcXHJhbmdsZX0iXSxbMiwwLCJlX1xcYWxwaGEiXSxbMywxLCJlX3tcXGFscGhhXlxccHJpbWV9IiwyXSxbMiwzLCJcXG92ZXJsaW5le1xccGhpfSIsMl0sWzAsMSwiXFx3aWRlaGF0e1xcdGhldGF9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiXFxzaW0iLDEseyJvZmZzZXQiOi0yLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywxLCJcXHNpbSIsMyx7Im9mZnNldCI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDAsIlxcc2ltIiwzLHsib2Zmc2V0IjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+	\[\begin{tikzcd}
+		E & {E^\prime} \\
+		{\frac{F[x]}{\langle f\rangle}} & {\frac{F^\prime[x]}{\langle f^\theta\rangle}}
+		\arrow["{\widehat{\theta}}"', dashed, from=1-1, to=1-2]
+		\arrow["{e_\alpha}", from=2-1, to=1-1]
+		\arrow["\sim"{marking, allow upside down}, shift right=2, draw=none, from=2-1, to=1-1]
+		\arrow["{\overline{\phi}}"', from=2-1, to=2-2]
+		\arrow["\sim"{description}, shift left=2, draw=none, from=2-1, to=2-2]
+		\arrow["{e_{\alpha^\prime}}"', from=2-2, to=1-2]
+		\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=2-2, to=1-2]
+	\end{tikzcd}\]
+
+	This shows that the unique isomorphism that $\widehat{\theta}$ can be is $e_\alpha^\prime \circ \overline{\phi} \circ e_\alpha^{-1}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+We shall refer to multisets using square brackets: $[\phantom{\cdot}]$.\retTwo
+
+\exTwo\ul{Theorem (Existence of Splitting Fields):} Suppose $f(x) \in F[x] - F$. Then there\\ exists $(E/F, [\alpha_1, \ldots, \alpha_d])$ with $d = \deg(f)$. In other words:
+\begin{itemize}
+	\item[1.] $E/F$ is a field extensions, $\alpha_1, \ldots, \alpha_d \in E$, and $E = F[\alpha_1, \ldots, \alpha_d]$.
+	\item[2.] $f(x) = \lt(f) \prod_{i=1}^d (x-\alpha_i)$. 
+\end{itemize}
+
+$E$ is called a \udefine{splitting field} of $f$ over $F$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We proceed by induction on $d = \deg(f)$. For our base case, if $d = 1$ then we can just set $E = F$ and $\alpha$ to be the zero of $f$ (which is guarenteed to exist).\retTwo
+	
+	Meanwhile, suppose $d > 1$ and let $f_1(x) \in F[x]$ be an irreducible factor of $f(x)$. Then by a theorem on the prior page there exists a field extension $(E/F, \alpha_1)$ such that $E_1 = F[\alpha_1]$ and $f_1(\alpha_1) = 0$. Yet then as $f(\alpha_1) = 0$, we can conclude there exists $g(x) \in E_1[x]$ such that $f(x) = (x - \alpha_1)g(x)$. Also note that $\lt(f) = \lt(g)$ and $\deg(g) = d - 1$.\retTwo
+
+	By the induction hypothesis, there exists a field extension $(E/E_1, [\alpha_2, \ldots, \alpha_d])$ such that\\ $E = E_1[\alpha_2, \ldots, \alpha_d]$ and $g(x) = \lt(f)\prod_{i=2}^d (x - \alpha_i)$. It follows that $E = F[\alpha_1, \ldots, \alpha_d]$ and $f(x) = (x-\alpha_1)g(x) = \lt(f)\prod_{i=1}^d (x-\alpha_i)$. $\blacksquare$\newpage
+\end{myIndent}
+
+\ul{Theorem (Uniqueness of Splitting Fields):} Suppose $\theta: F \xrightarrow{\sim} F^\prime$ and $f \in F[x]$. If\\ $(E/F, [\alpha_1, \ldots, \alpha_d])$ is a splitting field of $f$ and $(E^\prime / F^\prime, [\alpha_1^\prime, \ldots, \alpha_d^\prime])$ is a splitting\\ field of $f^\theta$, then there exists $\widehat{\theta} \in \Isom_\theta(E, E^\prime)$.
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		In particular, this shows splitting fields are unique up to isomorphism.\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	We again proceed by induction on $d = \deg(f)$. Like before, if $d = 1$ then the problem is trivial. Any degree $1$ polynomial in $F[x]$ has a zero in $F$. Similarly, any degree $1$ polynomial in $F^\prime[x]$ has a zero in $F^\prime$. Thus, we'd have that $F[\alpha_1] = F$ and $F^\prime[\alpha_1^\prime] = F^\prime$. In turn, $\theta$ gives us a $\theta$-isomorphism between $E$ and $E^\prime$.\retTwo
+	
+	Now suppose $d > 1$ and let $f_1$ be an irreducible factor of $f$. Then note that $f_1^\theta$ is an\\ irreducible factor of $f^\theta$. After all, isomorphisms must send factors to factors and irreducible elements to irreducible elements. Since $f_1 \divides f$ and $f(x) = \lt(f)\prod_{i=1}^d (x - \alpha_i)$, there must exists $i_0$ such that $f_1(\alpha_{i_0}) = 0$. Without loss of generality we may assume $f_1(\alpha_1) = 0$.\\ Similarly, as $f_1^{\theta} \divides f^\theta$ and $f^{\theta}(x) = \theta(\lt(f))\prod_{j=1}^d (x- \alpha_j^\prime)$, there must exist $j_0$ with\\ $f_1^{\theta}(\alpha^\prime_{j_0}) = 0$, and without loss of generality we may say that $j_0 = 1$.\retTwo
+
+	Let $E_1 \coloneqq F[\alpha_1]$ and $E_1^\prime \coloneqq F^\prime[\alpha_1^\prime]$. By a prior theorem, there exists a unique\\ $\theta_1 \in \Isom_\theta(E_1, E_1^\prime)$ with $\theta_1(\alpha_1) = \alpha^\prime$. Then since $f_1(\alpha_1) = 0$, we can conclude\\ $f(\alpha_1) = 0$ and thus there exists $h \in E_1[x]$ with $f(x) = (x - \alpha_1)h(x)$. Also, we can\\ then see that $f^\theta(x) = f^{\theta_1}(x) = (x - \alpha_1^\prime)h^{\theta_1}(x)$ and that $\deg(h)= d - 1$\retTwo
+
+	Now $(E/E_1, [\alpha_2, \ldots, \alpha_d])$ is a splitting field of $h$ and $(E^\prime/E_1^\prime, [\alpha_2^\prime, \ldots, \alpha_d^\prime])$ is a splitting field of $h^{\theta_1}$. Therefore, by our induction hypothesis we can conclude that there is a\\ $\theta_1$-isomorphism $\widehat{\theta}: E \xrightarrow{\sim} E^\prime$. Yet we then also have that $\widehat{\theta} \in \Isom_\theta(E, E^\prime)$.\retTwo
+\end{myIndent}
+
+Moreover, any such $\widehat{\theta}$ sends $[\alpha_1, \ldots, \alpha_d]$ to $[\alpha_1^\prime, \ldots, \alpha_d^\prime]$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $f \in F[x]$ and $\alpha \in E$ satisfies that $f(\alpha) = 0$, then we must have that $f^\theta(\widehat{\theta}(\alpha)) = 0$ as well. Similarly, we have that if $f^\theta(\alpha^\prime) = 0$, then $f(\widehat{\theta}^{-1}(\alpha^\prime)) = 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo We call $(E/F, [\alpha_1, \ldots, \alpha_d])$ the \udefine{splitting data} of a polynomial $f$. 
+
+\hTwo\mySepTwo
+
+Now's a good time to finally include some homework exercises I turned in a while ago.\retTwo
+
+\Hstatement\blab{Set 8 Problem 8:} Suppose $\alpha, \beta \in \mathbb{C}$ are algebraic over $\mathbb{Q}$. Let $f \coloneqq m_{\alpha; \mathbb{Q}}$ and $g \coloneqq m_{\beta; \mathbb{Q}}$. Prove that $f$ is irreducible in $(\mathbb{Q}[\beta])[x]$ if and only if $g$ is irreducible in $(\mathbb{Q}[\alpha])[x]$.\\ [-10pt]
+\begin{myIndent}\HexOne
+	To start off, we show that $f$ is irreducible in $(\mathbb{Q}[\beta])[x]$ iff $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = \deg(f)\deg(g)$.
+
+	\begin{myIndent}\HexTwoP
+		Note that if $f$ is irreducible in $(\mathbb{Q}[\beta])[x]$, then as $f(\alpha) = 0$ and $f$ is monic we\\ have that $f = m_{\alpha; \mathbb{Q}[\beta]}$. Hence by the tower formula we can conclude that:
+
+		{\centering $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = [\mathbb{Q}[\alpha, \beta], \mathbb{Q}[\beta]] \cdot [\mathbb{Q}[\beta] : \mathbb{Q}] = \deg(f)\deg(g)$. \newpage\par}
+
+		Conversely, suppose $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = \deg(f)\deg(g)$. Then by the tower formula we can guarentee that $\deg(m_{\alpha; \mathbb{Q}[\beta]}) = \frac{[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}]}{\deg(g)} = \deg(f)$. Since $m_{\alpha ; \mathbb{Q}[\beta]}$ divides $f$ (as both evaluate to $0$ at $\alpha$) and both polynomials are monic, we can conclude that $f = m_{\alpha ; \mathbb{Q}[\beta]}$. And this proves that $f$ is irreducible in $\mathbb{Q}[\beta]$.\retTwo
+	\end{myIndent}
+
+	By symmetric reasoning, we have that $g$ is irreducible in $(\mathbb{Q}[\alpha])[x]$ iff\\ $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = \deg(f)\deg(g)$. And this let's us conclude what we wanted. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 8 Problem 7:} Prove that $\mathbb{Q}[\sqrt{2}]$ and $\mathbb{Q}[\sqrt{3}]$ are not isomorphic (as fields).
+\begin{myIndent}\HexOne
+	Suppose for the sake of contradiction that $\theta: \mathbb{Q}[\sqrt{2}] \to \mathbb{Q}[\sqrt{3}]$ is a field isomorphism, then note that since $\theta(1) = 1$ and $\theta$ preserves sums and differences, we can conclude that $\theta(n) = n$ for all $n \in \mathbb{Z}$. In turn, since $\theta$ preserves division we must have that $\theta(q) = q$ for all $q \in \mathbb{Q}$.\retTwo
+
+	Next, consider that $\theta(\sqrt{2})^2 = \theta(2) = 2$. Yet simultaneously since the minimal polynomial of $\sqrt{3}$ over $\mathbb{Q}$ is $x^2 - 3$, we know that $\{1, \sqrt{3}\}$ is a $\mathbb{Q}$-basis of $\mathbb{Q}[\sqrt{3}]$ and in turn that\\ $\theta(\sqrt{2}) = p + q\sqrt{3}$ for some $p, q \in \mathbb{Q}$. So, we can conclude that:
+
+	{\centering $p^2 + 2pq\sqrt{3} + 3q^2 = 2$ \retTwo\par}
+
+	Equivalently, this means that $(p^2 + 3q^2 - 2) + (2pq)\sqrt{3} = 0$. And since $1$ and $\sqrt{3}$ are $\mathbb{Q}$-linearly independent, we know $p^2 + 3q^2 - 2 = 0$ and $2pq = 0$. But now this implies that either $p = 0$ or $q = 0$. We can check as follows that both of these possibilities lead to a contradiction. 
+	\begin{itemize}
+		\item If $q = 0$ then we must have that $p^2 = 2$. Yet this is impossible as no $p \in \mathbb{Q}$ satisfies that $p^2 = 2$.
+		\item If $p = 0$ then we have that $q^2 = \frac{2}{3}$ Yet once again no $q \in \mathbb{Q}$ satisfies this.
+	\end{itemize}
+
+	Thus we conclude no such $\theta$ can exist. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 7 Problem 1:} \hypertarget{Math 200b Set 7 Problem 1}{Prove} that $\langle 2, \sqrt{-10}\rangle$ is a projective $\mathbb{Z}[\sqrt{-10}]$-module.
+\begin{myIndent}\HexOne
+	Firstly, note that the minimal polynomial of $\sqrt{-10}$ in $\mathbb{Q}[x]$ is $m_{\sqrt{-10}; \mathbb{Q}}(x) = x^2 + 10$.\\ Therefore, we can conclude that $\mathbb{Q}[\sqrt{-10}] = \{a + b\sqrt{-10} : a, b \in \mathbb{Q}\}$. Also, we can\\ similarly conclude that $\mathbb{Z}[\sqrt{-10}] = \{a + b\sqrt{-10} : a, b \in \mathbb{Z}\}$.\retTwo
+
+	Another important note is that $\mathbb{Q}[\sqrt{-10}]$ is isomorphic to the field of fractions of $\mathbb{Z}[-10]$ via the maps:
+	% https://q.uiver.app/#q=WzAsNixbMCwxLCJRKFxcbWF0aGJie1p9W1xcc3FydHstMTB9XSkiXSxbMiwxLCJcXG1hdGhiYntRfVtcXHNxcnR7LTEwfV0iXSxbMCwwXSxbMiwwXSxbMiwyXSxbMCwyXSxbMCwxLCJcXHNpbSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6ImFycm93aGVhZCJ9fX1dLFswLDIsIlxcZnJhY3thZCArIGJjXFxzcXJ0ey0xMH19e2NkfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsMywiXFxmcmFje2F9e2N9ICsgXFxmcmFje2J9e2R9XFxzcXJ0ey0xMH0iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDQsIlxcZnJhY3thYyArIDEwYmR9e2NeMiArIDEwZF4yfSArIFxcZnJhY3tiYyAtIGFkfXtjXjIgKyAxMGReMn1cXHNxcnR7LTEwfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzAsNSwiXFxmcmFje2EgKyBiXFxzcXJ0ey0xMH19e2MgKyBkXFxzcXJ0ey0xMH19IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMTAsOSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjQwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbOCw3LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MzAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{} && {} \\
+		{Q(\mathbb{Z}[\sqrt{-10}])} && {\mathbb{Q}[\sqrt{-10}]} \\
+		{} && {}
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{\frac{ad + bc\sqrt{-10}}{cd}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-1, to=1-1]
+		\arrow["\sim", tail reversed, from=2-1, to=2-3]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{\frac{a + b\sqrt{-10}}{c + d\sqrt{-10}}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-1, to=3-1]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "{\frac{a}{c} + \frac{b}{d}\sqrt{-10}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=1-3]
+		\arrow[""{name=3, anchor=center, inner sep=0}, "{\frac{ac + 10bd}{c^2 + 10d^2} + \frac{bc - ad}{c^2 + 10d^2}\sqrt{-10}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=3-3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.6}, maps to, from=1, to=3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.8}, maps to, from=2, to=0]
+	\end{tikzcd}\]
+
+	Thus by the proposition on \inLinkRap{Math 200b bottom of page 678 reference}{pages 678-679}, we can conclude that $\mathfrak{a} \coloneqq \langle 2, \sqrt{-10}\rangle$ is a\\ projective $\mathbb{Z}[\sqrt{-10}]$-module iff there exists a finitely generated $\mathbb{Z}[\sqrt{-10}]$-submodule $M$ of $\mathbb{Q}[\sqrt{-10}]$ with $\mathfrak{a}M = \mathbb{Z}[\sqrt{-10}]$.\newpage
+
+	Note that $2(a + b\sqrt{-10}) + \sqrt{-10}(c + d(\sqrt{-10})) = (a - 5d)2 + (2b + c)\sqrt{-10}$. Also, it's easy to check that the diophantine equations $a - 5d = m$ and $2b + c = n$ have solutions for all $m, n \in \mathbb{Z}$. Therefore, we can conclude that:
+
+	{\centering $2\mathbb{Z}[\sqrt{-10}] + \sqrt{-10}\mathbb{Z}[\sqrt{-10}] = 2\mathbb{Z} + \sqrt{-10}\mathbb{Z}$. \retTwo\par}
+
+	Next note for any $a, b \in \mathbb{Z}$ that:
+
+	{\centering $(1 + \frac{1}{2}\sqrt{-10})(2a + b\sqrt{-10}) = (2a - 5b) + (a + b)\sqrt{-10}$ \retTwo\par}
+
+	Therefore, if we let $M$ be the $\mathbb{Z}[\sqrt{-10}]$-module generated by $1 + \frac{1}{2}\sqrt{-10}$ and $1$, we have that $\mathfrak{a}M \subseteq \mathbb{Z}[\sqrt{-10}]$ Also note that $1 \in \mathfrak{a}M$ since:
+
+	{\centering $(1 + \frac{1}{2}\sqrt{-10})(2 - \sqrt{-10}) + 1(-3(2) + 0\sqrt{-10}) = 7 - 6 = 1$.\retTwo\par}
+
+	Therefore $\mathfrak{a}M = \mathbb{Z}[\sqrt{-10}]$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\color{RawerSienna}
+		Meanwhile so long as we can show that $\langle 2, \sqrt{-10}\rangle$ is not a principal ideal, we know that $\langle 2, \sqrt{-10}\rangle$ is not a free module. To prove this, I will recall some stuff from my math 100b notes.\retTwo
+
+		Given any $d \in \mathbb{Z}$ with $\sqrt{d} \notin \mathbb{Q}$, we can define $N: \mathbb{Z}[\sqrt{d}] \to \mathbb{Z}_{\geq 0}$ by\\ $N(a + b\sqrt{d}) = |a^2 - db^2|$. Then:
+		\begin{itemize}
+			\item $N(zw) = N(z)N(w)$ for all $z, w \in \mathbb{Z}[\sqrt{d}]$.
+			\item $N(z) = 1$ iff $z \in (\mathbb{Z}[\sqrt{d}])^{\times}$.\retTwo
+		\end{itemize}
+
+		Suppose $\langle 2, \sqrt{-10}\rangle = \langle \alpha\rangle$ for some $\alpha \in \mathbb{Z}[\sqrt{-10}]$. Then we must have\\ that $\alpha \divides 2$ and $\alpha \divides \sqrt{-10}$. In turn, this means that $N(\alpha) \divides N(2) = 4$ and\\ $N(\alpha) \divides N(-\sqrt{10}) = 10$. So, we can conclude that $N(\alpha) = 1$ or $N(\alpha) = 2$.
+		\begin{itemize}
+			\item Yet as $\langle 2, \sqrt{-10}\rangle \neq \mathbb{Z}[\sqrt{-10}]$, we can't have that $\alpha$ is a unit. So $N(\alpha) \neq 1$.
+			\item Meanwhile, suppose $N(\alpha) = 2$.  Then as $\alpha = 2a + b\sqrt{-10}$ for some $a, b \in \mathbb{Z}$, we can conclude that $4a^2 + 10b^2 = 2$ for some $a, b \in \mathbb{Z}$. But this is also easily checked to be impossible.\retTwo
+		\end{itemize}
+
+		This proves that no such $\alpha$ can exist.
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Recall the very first example of a funtor I wrote down on \inLinkRap{Page 635 functor example}{pages 635-636}. Using similar notation, given any $f \in F[x]$ and any field extension $E/F$ we define:
+
+{\centering$V_{f}(E) \coloneqq \{\alpha \in E : f(\alpha) = 0\}$.\retTwo\par}
+
+Note that if $\theta: F \xrightarrow{\sim} F^\prime$ and $E/F$ and $E^\prime/F^\prime$ are field extensions, then for any\\ $\widehat{\theta} \in \Embed_\theta(E, E^\prime)$ we have that $\widehat{\theta}(V_f(E)) \subseteq V_{f^\theta}(E^\prime)$.\retTwo
+
+Given a field $F$, we'll denote it's characteristic as $\mChar(F) \coloneqq \min\{n \in \mathbb{Z}_{>0} : n1_F = 0_F\}$ if such an $n$ exists. Otherwise, we say $\mChar(F) = 0$.\newpage
+
+\begin{myIndent}\pracTwo
+	Note that because $F$ is an integral domain, $\mChar(F)$ must be a prime number if it is not zero. After all, suppose $\mChar(F) = mn$ where $1 < m, n < \mChar(F)$. Then we'd have that $(m 1_F)$ and $(n 1_F)$ are two nonzero elements of $F$ whose product is zero. But this contradicts that $F$ is an integral domain.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+In this section, we establish the existence and uniqueness of finite fields.\retTwo
+
+Let $F$ be a finite field.
+\begin{myIndent}\hThree
+	Then $\mChar(F)$ must be nonzero and in turn a prime number $p$ by the reasoning above. It follows that there is a field extension $i: \mathbb{Z}/p\mathbb{Z} \hookrightarrow F$ given by $n + p\mathbb{Z} \mapsto n 1_F$.
+	\begin{myTindent}\myComment
+		(We write $\mathbb{F}_p \coloneqq \mathbb{Z}/p\mathbb{Z}$\dots)\retTwo
+	\end{myTindent}
+
+	Let $[F : \mathbb{F}_p] = d$. Then $|F| = p^d \eqqcolon q$.\retTwo
+
+	Here's also a proof that $F^\times$ is cyclic (which is slightly different from the proof I\\ summarized in my math 100b notes.)
+	\begin{myIndent}\pracTwo
+		Recall from set 1 problem 2 in math 200a (see \inLinkRap{Math 200a Set 1 Problem 2}{pages 259-260}) that if $G$ is a finite group satisfying that $|\{g \in G : g^n = e\}| \leq n$ for every positive integer $n$, then $G$ is a cylic group. Also note by factoring the polynomial $x^n - 1$ and noting that it has at most $n$ zeros, we can thus see that $|\{c \in F^\times : c^n = 1\}| \leq n $. Therefore, we can apply the exercise from a long time ago to see that $F^\times$ is cyclic.\retTwo
+	\end{myIndent}
+
+	Note by Lagrange's theorem that for all $\alpha \in F^\times$ we have that $\alpha^{q-1} = 1$. In turn, we can conclude for all $\alpha \in F$ that $\alpha^q = \alpha$. So, every $\alpha \in F$ is a zero of $x^q - x$. Since $F$ has $q$-elements, we can conclude that $F$ is a splitting field of $x^q - x$ over $\mathbb{F}_p$.\retTwo
+\end{myIndent}
+
+Question, can we go in reverse? Given any power of a prime number $q = p^d$, is there a finite field of size $q$?
+\begin{myIndent}\hThree
+	Let $E$ be the splitting field of $x^q - x$ over $\mathbb{F}_p$. Thus $E = \mathbb{F}_q[\alpha_1, \ldots, \alpha_q]$ and\\ $x^q - x = \prod_{i=1}^q (x - \alpha_i)$ for some $\alpha_1, \ldots, \alpha_1 \in E$.\retTwo
+
+	\exThree\ul{Claim:} $V_{x^q - x}(E)$ is a subfield of $E$.
+	\begin{myIndent}\exFourP
+		Suppose $\alpha, \beta \in V_{x^q - x}(E)$. Then $\alpha^q = \alpha$ and $\beta^q = \beta$ implies that $(\alpha \beta)^q = \alpha\beta$. Also if\\ $\alpha \neq 0$ then $(\alpha^{-1})^q = \alpha^{-1}$. Hence $\alpha\beta \in V_{x^q - x}(E)$ and $\alpha^{-1} \in V_{x^q - x}(E) - \{0\}$.\retTwo
+
+		Next note that as $\mathbb{F}_p$ and $E$ have characteristic $p$ we can conclude that:
+		
+		{\centering\begin{tabular}{l}
+			$(\alpha + \beta)^p = \sum\limits_{k=0}^p \binom{p}{k}\alpha^k \beta^{p - k} = \alpha^p + \beta^p + \sum\limits_{k=1}^{p-1} \binom{p}{k}\alpha^k \beta^{p-k}$\\ [12pt]
+			$\phantom{(\alpha + \beta)^p = \sum\limits_{k=0}^p \binom{p}{k}\alpha^k \beta^{p - k}} = \alpha^p + \beta^p + \sum\limits_{k=1}^{p-1} \frac{p}{k} \cdot \binom{p-1}{k-1}\alpha^k \beta^{p-k} = \alpha^p + \beta^p + 0$
+		\end{tabular}\retTwo\par}
+
+		\begin{myIndent}\color{orange}
+			In other words, the map $x \mapsto x^p$ is a unital ring homomorphism in any field (or integral domain) with characteristic $p$.\retTwo
+		\end{myIndent}
+
+		Therefore if $\alpha^q = \alpha$ and $\beta^q = \beta$, then as $q = p^d$ we can conclude that:
+		
+		{\centering$(\alpha + \beta)^q = \alpha^q + \beta^q = \alpha + \beta$.\newpage\par}
+
+		Also note that if $\alpha^q = \alpha$ then $(-\alpha)^q = (-1)^q\alpha^q = -\alpha$. In particular, we know that\\ $(-1)^q = -1$ since either $q$ is odd or $-1 = +1$ because $E$ and $\mathbb{F}_p$ have characteristic $2$.\retTwo
+
+		Finally, note that $1_{\mathbb{F}_p}$ and $0_{\mathbb{F}_p}$ are in $V_{x^q - x}(E)$.\retTwo
+	\end{myIndent}
+
+	\hThree Now it's also easy to see that $V_{x^q - x}(E)$ contains $\mathbb{F}_p$. Thus we can conclude that\\ $E = V_{x^q - x}(E)$ since $E$ is generated by $\mathbb{F}_p$ as well as the zeros of $x^q - x$.\retTwo
+
+	Finally, we ask how many elements $E$ has.\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+A polynomial $f \in F[x]$ is called \udefine{separable} if it has distinct zeros in its splitting field.\retTwo
+
+Also given any field $F$ and $f \in F[x]$, we define the \udefine{formal derivative} of $f = \sum_{i=0}^n c_i x^i$\\ by $\frac{\df }{\df x} f(x) = f^\prime(x) \coloneqq \sum_{i=0}^{n-1} (i+1) c_{i+1} x^i$.
+\begin{myIndent}\pracTwo
+	Note that $\frac{\df}{\df x} : F[x] \to F[x]$ is an $F$-linear map. Also you can prove (although I won't here) that $\frac{\df}{\df x}$ has the typical product, power, and chain rules from normal calculus.\retTwo
+\end{myIndent}
+
+Using formal derivatives, we can come up with a nifty test for if a polynomial $f \in F[x]$\\ is separable. First, notice the following:
+\begin{itemize}
+	\item Suppose $f(x) = (x - \alpha)^2 h(x)$. Then $f^\prime(x) = 2(x - \alpha)h(x) + (x - \alpha)^2 h^\prime(x)$,\\ thus implying that $f^\prime(\alpha) = 0$.
+	\item Meanwhile suppose $f(x) = (x - \alpha)g(x)$ where $g(\alpha) \neq 0$. Then\\ $f^\prime(x) = g(x) + (x - \alpha)g^\prime(x)$, thus implying that $f^\prime(\alpha) = g(\alpha) \neq 0$.\retTwo
+\end{itemize}
+
+Therefore for any $\alpha \in V_f(E)$ where $E$ is a splitting field of $f$, we have that $(x - \alpha)^2 \divides f$\\ iff $f^\prime(\alpha) = 0$. Yet also note that $f^\prime(\alpha) = 0$ and $f(\alpha) = 0$ iff $m_{\alpha; F} \in F[x]$ is a common divisor of $f$ and $f^\prime$. This proves that if $f$ is not separable, then $\gcd(f, f^\prime) \neq 1$.\retTwo
+
+Conversely, suppose $h = \gcd(f, f^\prime) \neq 1$. Then as $h \divides f$, we know that $h(\alpha) = 0$ for some $\alpha \in V_f(E)$. In turn, $f^\prime(\alpha) = 0$ as well. So by our prior reasoning, we  know $(x - \alpha)^2$ divides $f$, thus showing that $f$ is not separable.\retTwo
+
+Thus, we have the following theorem:
+\begin{myIndent}
+	$f \in F[x]$ is separable if and only if $\gcd(f, f^\prime) = 1$.\retTwo
+
+	\begin{myIndent}\myComment
+		Note that this theorem is useful because $\gcd(f, f^\prime)$ can be calculated without\\ knowing anything about the splitting field of $f$.
+	\end{myIndent}
+\end{myIndent}
+\mySepTwo
+
+\hTwo
+\begin{myIndent}\hThree 
+	Returning now to the question of how many elements $E$ has, we claim that $x^q - x$ is a separable polynomial.
+	\begin{myIndent}\exFourP
+		After all, $\frac{\df}{\df x}(x^q - x) = qx^{q-1} - 1 = -1$ (since $E$ has characteristic $p$ and thus\\ $q = p^d = 0^d = 0$). Also we clearly have that $\gcd(x^q - x, -1) = 1$.\newpage
+	\end{myIndent}
+
+	Because of that, we know that $\alpha_1, \ldots, \alpha_q$ are all distinct elements of $E$. Hence, we've shown that $|E| = q = p^d$.\retTwo
+\end{myIndent}
+
+To summarize, we've proven that any finite field has size $p^d$ for some prime number $p$ and positive integer $d$. Also conversely, we've shown that we can get a finite field of size $p^d$ by considering the splitting field of $x^{p^d} - x$ over $\mathbb{F}_p$. This finishes establishing the existence of finite fields.\retTwo
+
+As for the uniqueness of finite fields, we have the following theorem:\retTwo
+
+\exTwo\ul{Theorem:} If $F_1$ and $F_2$ are both finite fields with $q = p^d$ many elements, then there is\\ a field isomorphism $\theta: F_1 \xrightarrow{\sim} F_2$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By Lagrange's theorem we know that $\mChar(F_i) \divides p^d$. Also as $F_i$ is an integral domain, we know that $\mChar(F_i)$ is a prime number. It follows that $\mChar(F_i) = p$ for both $i$. And as mentioned before, this means there we can define field extensions $F_1/\mathbb{F}_p$ and $F_2/\mathbb{F}_p$.\retTwo
+
+	Now from before, we know that both $F_1$ and $F_2$ are splitting fields of $x^{p^d} - x$ over $\mathbb{F}_p$. Thus by the uniqueness of splitting fields, we know that $F_1$ and $F_2$ are isomorphic. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Since there is a unique field of order $q = p^d$ (up to isomorphism), we denote that field\\ as $\mathbb{F}_q$.\retTwo
+
+\mySepTwo
+
+\dispDate{3/17/2026}
+
+\blect{Math 200b Week 10 Notes:}\retTwo
+
+Firstly we establish some more tests for the separableness of a polynomial. 
+\begin{itemize}
+	\item If $f \in F[x]$ is separable and $g \divides f$, then we must have that $g$ is also separable.
+	
+	\item If $\mChar(F) = 0$ and $f \in F[x]$ is irreducible, then $f$ is separable.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		$f$ is separable iff $\gcd(f, f^\prime) = 1$. Yet as $f$ is irreducible, we have that $\gcd(f, f^\prime) \neq 1$ if and only if $f^\prime = 0$. Finally, since $\mChar(F) = 0$, we have that $f^\prime = 0$ if and only if $f$ is a constant function.
+		\begin{myIndent}\pracTwo
+			After all, suppose that $f(x) = \sum_{i=0}^n c_i x^i$ and $f^\prime = 0$. Then $i c_i = 0$ for all $i > 0$. Since $\mChar(F) = 0$, we know that $i \neq 0$. Thus instead $c_i = 0$ for all $i > 0$.\retTwo
+		\end{myIndent}
+
+		Yet irreducible elements of a ring are now allowed to be units. So, we can conclude that $f^\prime \neq 0$ and thus $f$ is separable.\newpage
+	\end{myIndent}
+
+	\item If $\mChar(F) = p > 0$ and $f \in F[x]$ is irreducible, then there is a unique irreducible\\ and separable polynomial $f_\mathrm{sep}(x) \in F[x]$ and nonnegative integer $s$ such that\\ $f(x) = f_\mathrm{sep}(x^{p^s})$. In particular, $f = f_\mathrm{sep}$ if $f$ has any term with degree that isn't\\ a multiple of $p$.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		Like before, because $f$ is irreducible we have that $\gcd(f, f^\prime) \neq 1$ if and only if $f^\prime = 0$. Yet since $\mChar(F) = p \neq 0$, we now have that $f^\prime = 0$ if and only if $f(x) = f_1(x^p)$ for some $f_1 \in F[x]$. Thus, $f$ is separable so long as $f$ can't be written as $f(x) = f_1(x^p)$.\retTwo
+
+		Suppose $f$ is irreducible and $f^\prime = 0$. Then $f(x) = f_1(x^p)$ for some $f_1 \in F[x]$. Also note that $f_1$ is irreducible. After all, if $f_1(x) = g(x)h(x)$ where neither $g$ nor $h$ are constant polynomials, then $f(x) = g(x^p)h(x^p)$ where neither $g(x^p)$ or $h(x^p)$ are constant polynomials. By repeating this argument more times if necessary (or more rigorously by doing induction on the degree of $f$), we can find a separable irreducible polynomial $f_\mathrm{sep}(x) \in F[x]$ as well as a positive integer $s$ with $f(x) = f_\mathrm{sep}(x^{p^s})$.\retTwo
+
+		Hopefully it's also obvious why $f_\mathrm{sep}$ and $s$ are unique. The coefficients of $f_\mathrm{sep}$ must match those of $f$. Also, if $s$ isn't big enough then $f_\mathrm{sep}$ will fail to be separable.\\ Meanwhile, the equation $f(x) = f_\mathrm{sep}(x^{p^s})$ will become impossible if $s$ is too big.\retTwo
+	\end{myIndent}
+
+	\item If $\mChar(F) = p > 0$ and the \udefine{Frobenius homomorphism} $x \mapsto x^p$ is surjective, then all irreducible $f \in F[x]$ are separable.
+	\begin{myIndent}\pracTwo
+		Proof:\\
+		Write $f(x) = f_\mathrm{sep}(x^{p^s})$ where $f_\mathrm{sep}(x) = \sum_{i=0}^n c_i x^i$. Since the Frobenius\\ homomorphism is surjective, we can write $c_i = a_i^p$ for each $i$. In turn, if\\ $f \neq f_\mathrm{sep}$ (which equivalently means that $s \neq 0$), then:
+
+		{\centering $f(x) = \sum\limits_{i=0}^n a_i^{p}x^{ip^s} = (\sum\limits_{i=0}^n a_i x^{ip^{s-1}})^p$ \retTwo\par}
+
+		This contradicts that $f$ is irreducible. $\blacksquare$
+
+		\begin{myIndent}\myComment
+			Note that because ring homomorphisms from fields are always injective so long as they are not the zero map and $1^p = 1 \neq 0$, we know that the Frobenius homomorphism is always injective. In turn, by a simple cardinality arguement we have that the Frobenius homomorphism from $F$ to $F$ is always surjective so long as $F$ is a finite field.\retTwo
+
+			Now, there are still fields of characteristic $p$ that aren't finite. For example, given any finite field $\mathbb{F}_{p^d}$ we can consider the field of rational functions over $\mathbb{F}_{p^d}$\\ (which we denote as $\mathbb{F}_{p^d}(x)$). That said, we've thus proven that for most of the fields that we care about, irreducibility implies separableness.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item If $\mChar(F) = p > 0$ and the Frobenius homomorphism is not surjective, then for any $a \in F - F^p = F - \{c^p : c \in F\}$ we have that $f(x) = x^p - a$ is irreducible in $F[x]$ but not separable.\newpage
+	\begin{myIndent}\pracTwo
+		Why?\\
+		It's clear that $f_\mathrm{sep} = x - a \neq f$. Hence, $f$ is not separable. That said, we also\\ have the following lemma:\retTwo
+
+		\exThreeP\ul{Lemma:} Suppose $F$ is any field and $p$ is a prime number. Then for any $c \in F$ we\\ have that $x^p - c$ is irreducible in $F$ if and only if $x^p - c$ has no zeros in $F$.
+		\begin{myIndent}\exPPP
+			$(\Longrightarrow)$\\
+			This direction is trivial.\retTwo
+
+			$(\Longleftarrow)$\\
+			Let $E$ be a splitting field of $x^p - c$ over $F$. That way, we can write\\ $x^p - c = \prod_{i=1}^p (x - \alpha_i)$ for some $\alpha_1, \ldots, \alpha_p \in E$. Now if $x^p - c$ is\\ not irreducible, then we know that there exists some polynomial $f \in F[x]$\\ dividing $x^p - c$ with degree between $1$ and $p - 1$. Without loss of generality, we can thus write $f(x) = \prod_{i=1}^n (x - \alpha_i)$ where $n$ is an integer less than $p$.\retTwo
+
+			Set $\beta = \prod_{i=1}^n \alpha_i$. Then $\beta \in F$ because $\beta$ equal the constant term of the\\ polynomial $f$. At the same time though, because $\alpha_i^p = c$ for all $i$, we have that $\beta^p = c^n$.\retTwo
+
+			Pick integers $r, s \in \mathbb{Z}$ with $1 = rn + sp$. (We can do this because $p$ being prime and $n < p$ implies that $p$ and $n$ are coprime\dots) In turn:
+
+			{\centering $(\beta^r c^s)^p = \beta^{rp}c^{sp} = c^{rn}c^{sp} = 1$. \retTwo\par}
+
+			Since $\beta^r c^s \in F$, this proves that $x^p - c$ has a zero in $F$. $\blacksquare$\retTwo
+		\end{myIndent}
+
+		\pracTwo Since $a$ is not in the image of the Frobenius homomorphism, we know that $x^p - a$\\ has no zeros in $F$. Hence, by this lemma we know that $x^p - a$ is irreducible.
+	\end{myIndent}
+\end{itemize}
+
+\hTwo\mySepTwo
+
+\exTwo\ul{Lemma:} Suppose $E/F$ and $E^\prime/F^\prime$ are field extensions, $\theta: F \to F^\prime$ is an isomorphism, and $\alpha \in E$ is algebraic over $F$. Then we have the following bijection:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEVtYmVkX1xcdGhldGEoRltcXGFscGhhXSwgRV5cXHByaW1lKSJdLFsyLDAsIlZfe21fe1xcYWxwaGE7IEZ9XlxcdGhldGF9KEVeXFxwcmltZSkiXSxbMCwxXSxbMiwxXSxbMCwxLCJcXHNpbSJdLFswLDIsIlxcd2lkZWhhdHtcXHRoZXRhfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsMywiXFx3aWRlaGF0e1xcdGhldGF9KFxcYWxwaGEpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbNSw2LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+\[\begin{tikzcd}
+	{\Embed_\theta(F[\alpha], E^\prime)} && {V_{m_{\alpha; F}^\theta}(E^\prime)} \\
+	{} && {}
+	\arrow["\sim", from=1-1, to=1-3]
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\widehat{\theta}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-1]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{\widehat{\theta}(\alpha)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-3, to=2-3]
+	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
+\end{tikzcd}\]
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	This is a well-defined function because $\widehat{\theta}$ must send zeros of $m_{\alpha; F}$ in $F[\alpha]$ to zeros of\\ $m_{\alpha; F}^\theta$ in $E^\prime$. After all, $\widehat{\theta}(m_{\alpha; F}(\beta)) = m_{\alpha; F}^\theta(\widehat{\theta}(\beta))$. So if $m_{\alpha; F}(\beta) = 0$ we must have\\ that $m_{\alpha; F}^\theta(\widehat{\theta}(\beta)) = \widehat{\theta}(0) = 0$.\retTwo
+
+	Next suppose $\widehat{\theta}_1(\alpha) = \widehat{\theta}_2(\alpha)$. Then as $\widehat{\theta}_i |_F = \theta$ for both $i$ and also because $F[\alpha]$ is the field generated by $F$ and $\alpha$, we can conclude that $\widehat{\theta}_1(c) = \widehat{\theta}_2(c)$ for all $c$ in their domain $F[\alpha]$. This proves that our proposed mapping is injective.\newpage
+
+	Finally, given any $\alpha^\prime \in V_{m_{\alpha; F}^\theta}$, recall that by applying the theorem on \inLinkRap{Math 200b Theorem end of page 762}{pages 762-763} to\\ $m_{\alpha; F}$ we know that there is a unique $\widehat{\theta} \in \Isom_\theta(F[\alpha], F^\prime[\alpha^\prime])$ with $\widehat{\theta}(\alpha) = \alpha^\prime$. By\\ expanding the codomain of $\widehat{\theta}$ we get a $\theta$-embedding in $\Embed_\theta(F[\alpha], E^\prime)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Based on the bijection we just proved, we shall write $\widetilde{\theta}_{\alpha^\prime}$ to denote the unique map in\\ $\Embed_\theta(F[\alpha], E^\prime)$ sending $\alpha$ to $\alpha^\prime$.\retTwo
+
+\exTwo\ul{Theorem:} Suppose $E/F$ is a finite extension, $\theta: F \to F^\prime$ is a field isomorphism, and\\ $E^\prime/ F^\prime$ is an arbitrary field extension. Then $|\Embed_\theta(E, E^\prime)| \leq [E: F]$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We proceed by induction on $[E : F]$. Firstly, if $[E : F] = 1$ then $E = F$. Hence,\\ $\Embed_\theta(E, E^\prime) = \{\theta\}$.
+	\begin{myIndent}\exPPP
+		(Technically we need to expand the codomain of $\theta$ to get a map into $E^\prime \supseteq F^\prime$\dots)\retTwo
+	\end{myIndent}
+
+	Next suppose that $[E : F] > 1$ and pick $\alpha \in E - F$. Then consider the map:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEVtYmVkX1xcdGhldGEoRSwgRV5cXHByaW1lKSJdLFsyLDAsIlxceyhcXGFscGhhXlxccHJpbWUsIFxcdmFycGhpKSA6IFxcYWxwaGFeXFxwcmltZSBcXGluIFZfe21eXFx0aGV0YV97XFxhbHBoYTtGfX0oRV5cXHByaW1lKSBcXHRleHR7IGFuZCB9IFxcdmFycGhpIFxcaW4gXFxFbWJlZF97XFx3aWRldGlsZGV7XFx0aGV0YX1fe1xcYWxwaGFeXFxwcmltZX19KEUsIEVeXFxwcmltZSlcXH0iXSxbMCwxXSxbMiwxXSxbMCwxLCJcXHNpbSJdLFswLDIsIlxcd2lkZWhhdHtcXHRoZXRhfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsMywiKFxcd2lkZWhhdHtcXHRoZXRhfShcXGFscGhhKSxcXHBoYW50b217LH0gXFx3aWRlaGF0e1xcdGhldGF9KSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzUsNiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+	\[\begin{tikzcd}
+		{\Embed_\theta(E, E^\prime)} && {\{(\alpha^\prime, \varphi) : \alpha^\prime \in V_{m^\theta_{\alpha;F}}(E^\prime) \text{ and } \varphi \in \Embed_{\widetilde{\theta}_{\alpha^\prime}}(E, E^\prime)\}} \\
+		{} && {}
+		\arrow["\sim", from=1-1, to=1-3]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{\widehat{\theta}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-1]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{(\widehat{\theta}(\alpha),\phantom{,} \widehat{\theta})}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-3, to=2-3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
+	\end{tikzcd}\]
+
+	This map is well-defined for basically the same reason as the map on the previous page. Also, it's trivially injective as it outputs a copy of its input. Therefore:
+
+	{\centering $|\Embed_\theta(E, E^\prime)| \leq \hspace{-0.5em}\sum\limits_{\alpha^\prime \in V_{m^\theta_{\alpha ; F}}} \hspace{-0.5em}|\Embed_{\widetilde{\theta}_{\alpha^\prime}}(E, E^\prime)|$ \retTwo\par}
+
+	But now for any $\alpha^\prime \in V_{m^\theta_{\alpha ; F}}$ we have that $\widetilde{\theta}_{\alpha^\prime}$ is an isomorphism between $F[\alpha]$ and $F^\prime[\alpha^\prime]$. Also by the tower lemma, we can see that $[E : F[\alpha]] = \frac{[E : F]}{[F[\alpha] : F]} < [E : F]$. Thus by our induction hypothesis, we can conclude that $|\Embed_{\widetilde{\theta}_{\alpha^\prime}}(E, E^\prime)| \leq [E : F[\alpha]]$.\retTwo
+
+	This let's us conclude that $|\Embed_\theta(E, E^\prime)| \leq |V_{m_{\alpha; F}^\theta}| \cdot [E : F[\alpha]]$\retTwo
+
+	Finally, $|V_{m_{\alpha; F}^\theta}| \leq \deg(m_{\alpha; F}^\theta) = \deg(m_{\alpha; F}) = [F[\alpha] : F]$. Therefore, by the tower lemma we have that:
+	
+	{\centering$|V_{m_{\alpha; F}^\theta}| \cdot [E : F[\alpha]] \leq [F[\alpha] : F] \cdot [E : F[\alpha]] = [E : F]$. $\blacksquare$\retTwo\par}
+
+	\begin{myIndent}\myComment
+		An important observation is that clearly for equality to hold, we must have\\ that $|V_{m^\theta_{\alpha; F}}| = \deg(m_{\alpha; F}^\theta)$ for whichever $\alpha \in E$ we picked during the proof. Also,\\ because $[E: F]$ and $|\Embed_\theta(E, E^\prime)|$ don't depend on the particular $\alpha$ chosen,\\ we can actually conclude that:
+		
+		{\centering$|\Embed_\theta(E, E^\prime)| = [E : F] \Longrightarrow |V_{m^\theta_{\alpha; F}}| = \deg(m_{\alpha; F}^\theta)$ for all $\alpha \in E$.\retTwo\par}
+
+		One other related observation is that $|V_{m^\theta_{\alpha; F}}| = \deg(m_{\alpha; F}^\theta)$ if and only if $E^\prime$\\ contains a splitting field of $m^\theta_{\alpha; F}$ and $m^\theta_{\alpha; F}$ is a separable polynomial.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo Suppose $E/F$ is an algebraic field extension. then $E/F$ is called:
+\begin{itemize}
+	\item \udefine{separable} if for all $\alpha \in E$ we have that $m_{\alpha; F}$ is a separable polynomiall;
+	\item \udefine{normal} if for all $\alpha \in E$, $m_{\alpha; F}(x) = \prod_{i=1}^n (x - \alpha_i)$ for some $\alpha_1, \ldots, \alpha_n \in E$.\retTwo
+\end{itemize}
+
+We also let $\Aut_F(E)$ denote the set of field isomorphisms of $E$ such that $\phi|_F = \myId_F$.\retTwo
+
+\exTwo\ul{Corollary:} If $E/F$ is a finite extension then $|\Aut_F(E)| \leq [E : F]$. And if equality holds\\ then $E/F$ is a separable and normal extension.
+\begin{myIndent}\exThreeP
+	Apply the prior theorem and observation while letting $E^\prime = E$, $F^\prime = F$, and $\theta = \myId_F$.
+	\retTwo
+\end{myIndent}
+
+\hTwo If a field extension is algebraic, separable, and normal, then we say that extension is \udefine{Galois}.\retTwo
+
+\mySepTwo
+
+Intuitively, a Galois extension is supposed to be an extension with the maximum number of symmetries. That said, it would be nice to have a more constructive way of knowing if an extension is Galois or not.\retTwo
+
+Given a field $F$, we shall say a polynomial $f(x) \in F[x]$ is \udefine{irreducible-separable} if all the irreducible factors of $f$ in $F[x]$ are separable.
+\begin{myIndent}\color{BrickRed}
+	Be aware that this definition depends on the base field $F$. For example, every\\ polynomial is irreducible-separable over its splitting field. Also, this term is not a\\ standard term.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} If $\theta: F \to F^\prime$ is a field isomorphism, $f(x) \in F[x] - F$ is irreducible-separable,\\ $E$ is a splitting field of $f$ over $F$, and $E^\prime$ is a splitting field of $f^\theta$ over $F^\prime$, then:
+
+{\centering$|\Isom_\theta(E, E^\prime)| = [E : F]$.\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We proceed by induction on $\deg(f)$. If $\deg(f) = 1$, then we already know from the last theorem that $[E: F] = 1$ and $|\Isom_\theta(E, E^\prime)| = |\{\theta\}| = 1$. So, we can assume now that $\deg(f) > 1$.\retTwo
+	
+	Let $\alpha$ be a zero of $f$. Then similarly to the proof of the theorem before, define the following injection:
+	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXElzb21fXFx0aGV0YShFLCBFXlxccHJpbWUpIl0sWzIsMCwiXFx7KFxcYWxwaGFeXFxwcmltZSwgXFx2YXJwaGkpIDogXFxhbHBoYV5cXHByaW1lIFxcaW4gVl97bV5cXHRoZXRhX3tcXGFscGhhO0Z9fShFXlxccHJpbWUpIFxcdGV4dHsgYW5kIH0gXFx2YXJwaGkgXFxpbiBcXElzb21fe1xcd2lkZXRpbGRle1xcdGhldGF9X3tcXGFscGhhXlxccHJpbWV9fShFLCBFXlxccHJpbWUpXFx9Il0sWzAsMV0sWzIsMV0sWzAsMSwiXFxzaW0iXSxbMCwyLCJcXHdpZGVoYXR7XFx0aGV0YX0iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDMsIihcXHdpZGVoYXR7XFx0aGV0YX0oXFxhbHBoYSksXFxwaGFudG9teyx9IFxcd2lkZWhhdHtcXHRoZXRhfSkiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFs1LDYsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+	\[\begin{tikzcd}
+		{\Isom_\theta(E, E^\prime)} && {\{(\alpha^\prime, \varphi) : \alpha^\prime \in V_{m^\theta_{\alpha;F}}(E^\prime) \text{ and } \varphi \in \Isom_{\widetilde{\theta}_{\alpha^\prime}}(E, E^\prime)\}} \\
+		{} && {}
+		\arrow["\sim", from=1-1, to=1-3]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{\widehat{\theta}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-1]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{(\widehat{\theta}(\alpha),\phantom{,} \widehat{\theta})}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-3, to=2-3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
+	\end{tikzcd}\]
+
+	A fact which I didn't use in the prior proof but which I do want to use now is that the mapping above is in fact a bijection. After all, an inverse map is given by $(\alpha^\prime, \varphi) \mapsto \varphi$.
+	\begin{myIndent}\exPPP
+		(This inverse is easy to verify\dots)\retTwo
+	\end{myIndent}
+
+	Therefore, $|\Isom_\theta(E, E^\prime)| = \hspace{-0.4em} \sum\limits_{\alpha^\prime \in V_{m_{\alpha; F}^\theta}} \hspace{-0.4em} | \Isom_{\widetilde{\theta}_\alpha^\prime}(E, E^\prime)|$.\newpage
+
+	Yet now note that as $\widetilde{\theta}_\alpha: F[\alpha] \xrightarrow{\sim} F^\prime[\alpha^\prime]$ is a $\theta$-isomorphism which sends $\alpha$ to $\alpha^\prime$, we\\ can conclude that $E$ is a splitting field of $\frac{f(x)}{x - \alpha}$ over $F[\alpha]$ and $E^\prime$ is a splitting field of\\ $\frac{f^\theta(x)}{x - \alpha^\prime}$ over $F^\prime[\alpha^\prime]$.\retTwo
+	
+	Also note that $f(x) = \prod f_i(x)^{m_i}$ where each $f_i$ is a distinct irreducible polynomials\\ (which is thus by assumption separable). If we replace $f$ with its \udefine{square free radical /\\ factor} $g = \prod f_i(x)$, then we still have that $E$ is a splitting field of $g$ over $F$. And before I worry, it's also easy to see that $f^\theta(x) = \prod f_i^\theta(x)^{m_i}$ and in turn the square free radical of $f^\theta$ is $g^\theta = \prod f_i^\theta(x)$. Thus, $E^\prime$ is a splitting field of $g^\theta$ over $F^\prime$.\retTwo 
+	
+	\hypertarget{Page 774 Why we can assume irreducible separable}{Thirdly}, we have the following claim.\retTwo
+
+	\ul{Claim:} If $f_1, \ldots, f_n$ are distinct, irreducible, and separable polynomials in $F[x]$, then\\ $\prod_{i=1}^n f_i$ is also separable.
+	\begin{myIndent}\exPPP
+		Why?\\
+		If $\prod f_i$ is not separable, then $(x - \alpha)^2 \divides \prod f_i$ for some $\alpha$ in the splitting field. Since each $f_i$ is separable, this means there must exist $i \neq j$ with $(x - \alpha) \divides f_i$ and\\ $(x - \alpha) \divides f_j$. Yet in turn we have that $m_{\alpha; F} \divides f_i$ and $m_{\alpha; F} \divides f_j$ in $F[x]$. It follows that $f_j = m_{\alpha; F} = f_i$, and this contradicts our initial assumption that $f_i$ and $f_j$ are distinct.\retTwo
+	\end{myIndent}
+
+	Consequently, we know $g$ is separable. In turn, $\frac{g(x)}{x - \alpha}$ is also separable. Furthermore, $E$ is\\ [-2pt] the splitting field of $\frac{g(x)}{x - \alpha}$ over $F[\alpha]$ and $E^\prime$ is the splitting field of $\frac{g^\theta(x)}{x - \alpha^\prime}$ over $F^\prime[\alpha^\prime]$. By strong induction, we can conclude that:
+
+	{\centering $\Isom_{\widetilde{\theta}_{\alpha^\prime}}(E, E^\prime) = [E : F[\alpha]]$ for all $\alpha^\prime \in V_{m_{\alpha; F}^\theta}(E^\prime)$. \retTwo\par}
+
+	Thus, we've proven that $|\Isom_\theta(E, E^\prime)| = |V_{m_{\alpha; F}^\theta}(E^\prime)| \cdot [E : F[\alpha]]$.\retTwo
+
+	Finally, note that $m_{\alpha; F} \divides g$ and $g$ being separable implies that $m_{\alpha; F}$ is separable. In turn, we must also have $m_{\alpha; F}^\theta$ is separable.
+	\begin{myIndent}\exPPP
+		An easy way to see this is by noting that if $1 \neq h(x)$ divides both $m_{\alpha; F}^\theta$ and\\ $\frac{\df}{\df x} m_{\alpha; F}^\theta$,  then $1 \neq h^{\theta^{-1}}(x)$ divides both $m_{\alpha; F}$ and $\frac{\df}{\df x} m_{\alpha; F}$. Yet this would\\ contradict what I just said about $m_{\alpha; F}$ being separable.\retTwo
+	\end{myIndent}
+
+	Also as $m_{\alpha; F}^\theta \divides g^\theta \divides f^\theta$ and $E^\prime$ is a splitting field of $f^\theta$ over $F^\prime$, we can thus conclude that:
+
+	{\centering $m_{\alpha; F}^\theta(x) = \prod (x - \alpha_j)$ where each $\alpha_j \in E^\prime$ is distinct.\retTwo\par}
+
+	This proves that $|V_{m_{\alpha; F}^\theta}(E^\prime)| = \deg(m_{\alpha; F}^\theta) = \deg(m_{\alpha; F}) = [F[\alpha] : E]$. Now the\\ theorem follows by the tower lemma. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} Suppose $E/F$ is a finite extension. Then the following are equivalent:
+\begin{enumerate}
+	\item[(a)] $E$ is a splitting field of an irreducible-separable polynomial $f$ over $F$;
+	\item[(b)] $|\Aut_F(E)| = [E : F]$;
+	\item[(c)] $E/F$ is a Galois extension.\newpage
+\end{enumerate}
+
+\begin{myIndent}\exThreeP
+	$(a \Longrightarrow b)$\\
+	Set $F^\prime = F$, $\theta = \myId$, $E^\prime = E$, and then use the last theorem.\retTwo
+
+	$(b \Longrightarrow c)$\\
+	See the top of page 773.\retTwo
+
+	$(c \Longrightarrow a)$\\
+	Suppose $(\alpha_1, \ldots, \alpha_n)$ is an $F$-basis of $E$ and let $f(x) \coloneqq \prod_{i=1}^n m_{\alpha_i; F}(x)$. Since $E/F$ is a Galois extension and hence a separable extension, we know that each $m_{\alpha_i; F}$ is a separable polynomial. It follows that $f$ is irreducible-separable. Also $E/F$ is a normal extension, meaning that each $m_{\alpha_i; F}$ has all it's zeros in $E$.\retTwo
+
+	\ul{Claim:} $E$ is a splitting field of $f$ over $F$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		For all $i$ there exists $\alpha_{i, j} \in E$ such that $m_{\alpha_i; F}(x) = \prod_{j} (x - \alpha_{i,j})$. In turn, we can write:
+
+		{\centering $f(x) = \prod_{i, j} (x - \alpha_{i,j})$ \retTwo\par}
+
+		This shows that $E$ splits $f$. Also note that as $m_{\alpha_i; F}(\alpha_i) = 0$, we can see that for each $i$ there exists $j$ with $\alpha_{i,j} = \alpha_i$. It thus follows that:
+
+		{\centering $E = F[\alpha_1, \ldots, \alpha_n] \subseteq F[\{\alpha_{i, j}\}_{i,j}] \subseteq E$ \retTwo\par}
+
+		Hence $F[\{\alpha_{i, j}\}_{i,j}] = E$ and we've proven that $E$ is a splitting field of $f$ over $F$. \exThreeP$\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo If $E/F$ is a Galois extension, we typically write $\Gal(E/F)$ instead of $\Aut_F(E)$. (Unlike\\ in my notes from 100c though, we'll only write $\Gal(E/F)$ if $E/F$ is actually a Galois\\ extension).\retTwo
+
+\mySepTwo
+
+Suppose $E/F$ is a field extension. The final section of this course concerns the\\ correspondance between the set $\Sub(\Aut_F(E))$ of subgroups of $\Aut_F(E)$ and the\\ set $\Int(E/F)$ of intermediate subfields between $E$ and $F$.\retTwo
+
+Define the maps $\Phi$ and $\Psi$ as shown below:\\ [-20pt]
+% https://q.uiver.app/#q=WzAsOCxbMCwxLCJcXG1hdGhybXtTdWJ9KFxcbWF0aHJte0F1dH1fRihFKSkiXSxbMywxLCJcXG1hdGhybXtJbnR9KEUvRikiXSxbMCwyXSxbMywyXSxbMCwwXSxbMywwXSxbMiwxXSxbMiwyXSxbMCwxXSxbMiwwLCJHIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMywxLCJcXG1hdGhybXtGaXh9KEcpID0gRV5HIFxcY29sb25lcXEgXFx7ZSBcXGluIEUgOiBcXGZvcmFsbCBcXHNpZ21hIFxcaW4gRyxcXGhzcGFjZXswLjRlbX1cXHNpZ21hKGUpID0gZVxcfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNSwiSyIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzAsNCwiXFxtYXRocm17QXV0fV9LKEUpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbNyw2LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOSwxMCwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjYwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTEsMTIsIlxcUHNpIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19LFsyNDAsNjAsNjAsMV1dLFsxMyw5LCJcXFBoaSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV1d
+\[\begin{tikzcd}
+	{} &&& {} \\
+	{\mathrm{Sub}(\mathrm{Aut}_F(E))} && {} & {\mathrm{Int}(E/F)} \\
+	{} && {} & {}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{\mathrm{Aut}_K(E)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-1, to=1-1]
+	\arrow[from=2-1, to=2-4]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "K"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "G"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-1, to=2-1]
+	\arrow[""{name=3, anchor=center, inner sep=0}, draw=none, from=3-3, to=2-3]
+	\arrow[""{name=4, anchor=center, inner sep=0}, "{\mathrm{Fix}(G) = E^G \coloneqq \{e \in E : \forall \sigma \in G,\hspace{0.4em}\sigma(e) = e\}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=2-4]
+	\arrow["\Psi"', color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.8}, maps to, from=1, to=0]
+	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.5}, maps to, from=2, to=4]
+	\arrow["\Phi", color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3, to=2]
+\end{tikzcd}\]
+\phantom{.}\\ [-20pt]
+\begin{itemize}\pracTwo
+	\item It's clear that $\Psi$ is a well-defined map as any $\sigma \in \Aut_K(E)$ also fixes $F$ and is thus in $\Aut_F(E)$.\retTwo
+	
+	\item To see that $\Phi$ is a well-defined map, suppose $G < \Aut_F(E)$ and $e_1, e_2 \in \Fix(G)$. Then for all $\sigma \in G$ we have that $\sigma(e_i) = e_i$. In turn $\sigma(e_1 \pm e_2) = e_1 \pm e_2$ and $\sigma(e_1 e_2^{\pm 1}) = e_1 e_2^{\pm 1}$. Also we trivially have that $\sigma(0) = 0$ and $\sigma(1) = 1$ for all $\sigma \in G$ Hence, this proves that $\Fix(G)$ is a subfield of $E$.\newpage
+	
+	Also note that as $G \subseteq \Aut_F(E)$, we know that $\sigma(f) = f$ for all $f \in F$ and $\sigma \in G$. Hence $F \subseteq \Fix(G)$. And this proves that $\Phi$ is well-defined.\retTwo
+\end{itemize}
+
+Note the following observations:
+\begin{itemize}
+	\item $(\Psi \circ \Phi)(G) = \Aut_{\Fix(G)}(E) \geq G$
+	\item $(\Phi \circ \Psi)(K) = \Fix(\Aut_K(E)) \supseteq K$.
+	\item $G_1 \leq G_2 \Longrightarrow \Fix(G_2) \subseteq \Fix(G_1) \Longrightarrow \Phi(G_1) \supseteq \Phi(G_2)$.
+	\item $K_1 \subseteq K_2 \Longrightarrow \Aut_{K_1}(E) \supseteq \Aut_{K_2}(E) \Longrightarrow \Psi(K_1) \geq \Psi(K_2)$.\retTwo
+\end{itemize}
+
+Also by a prior theorem plus the first observation above, we know that:
+
+{\centering$[E : \Fix(G)] \geq |\Aut_{\Fix(G)}(E)| \geq |G|$ for all $G \in \Sub(\Aut_F(E))$.\retTwo\par}
+
+\exTwo\ul{Theorem:} We also have that $|G| \geq [E : \Fix(G)]$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	For all $e_1, \ldots, e_{n+1}$ where $n = |G|$, we must show that there exists\\ $(c_1, \ldots, c_{n+1}) \in \Fix(G)^{n+1} - \{(0, \ldots, 0)\}$ with $c_1 e_1 + \ldots + c_{n+1} e_{n+1} = 0$.\retTwo
+
+	\ul{Lemma:} Suppose $\{0\} \neq V \subseteq E^m$ is an $E$-subspace. Also suppose $G \curvearrowright E^m$\\ componentwise via field-automorphisms and $V$ is $G$-invariant. Then the set $V^G$ of\\ $G$-fixed points in $V$ is nonempty.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Let $v_0 \in V - \{0\}$ be a vector with smallest support (i.e. fewest nonzero coordinates). Without loss of generality, we may assume the first component of $v_0$ is nonzero. Then after multiplying by the inverse of the first component, we may assume that\\ $v_0 = (1, c_1, \ldots, c_m)$.\retTwo
+
+		Now $v_0 \in V^G$. After all, for all $g \in G$ we have that $(g \cdot v_0) - v_0 \in V$ and has a smaller support then $v_0$. This is because $g$ will send the $0$ coordinates to $0$ and the $1$ coordinates to $1$. It follows by the minimality of our choice of $v_0$ that $(g \cdot v_0) - v_0 = 0$. In turn, $g \cdot v_0 = v_0$ for all $g \in G$.\retTwo
+	\end{myIndent}
+
+	Now write $G = \{1_G, g_2, \ldots, g_n\}$ and set:
+
+	{\centering $V \coloneqq \left\{ (c_1, \ldots, c_{n+1}) \in E^{n+1}\hspace{1em} : \hspace{1em} \begin{matrix} c_1 e_1 + \ldots + c_{n+1}e_{n+1} = 0 \\ c_1 g_2(e_1) + \ldots + c_{n+1}g_2(e_{n+1}) = 0 \\ \vdots \\ c_1 g_n(e_1) + \ldots + c_{n+1}g_n(e_{n+1}) = 0\end{matrix}\right\}$\retTwo\par}
+
+	Note that $V$ is $G$-invariant. After all, if $(c_1, \ldots, c_{n+1}) \in V$ then:
+
+	{\centering\begin{tabular}{l}
+		$g(c_1)g_i(e_1) + \ldots + g(c_{n+1})g_i(e_{n+1}) = g(c_1(g^{-1}g_i)(e_1) + \ldots + c_{n+1}(g^{-1}g_i)(e_{n+1}))$\\ [4pt]
+		$\phantom{g(c_1)g_i(e_1) + \ldots + g(c_{n+1})g_i(e_{n+1})} = g(0) = 0$ for all $g_i \in G$.
+	\end{tabular} \retTwo\par}
+
+	Yet also note that $V$ is the kernel of an $n$x$(n+1)$ matrix. It follows that $\dim_E(V) \geq 1$. So $V \neq \{0\}$ and in turn $V^G \neq \emptyset$ by our lemma above.\newpage
+
+	Finally, note that $V^G \subseteq \Fix(G)^{n+1}$. Thus, there exists $(c_1, \ldots, c_{n+1}) \in \Fix(G) \cap V$.\\ And by the first linear equation in the definition of $V$, this proves that $e_1, \ldots, e_{n+1}$ are\\ linearly dependent over $\Fix(G)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Corollary:} If $G \in \Sub(\Aut_F(E))$, then:
+\begin{enumerate}
+	\item[(a)] $E/\Fix(G)$ is a Galois extension.
+	\item[(b)] $G = \Aut_{\Fix(G)}(E)$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Since $|G| = [E: \Fix(G)] \geq |\Aut_{\Fix(G)}(E)| \geq |G|$, we know that:
+		\begin{itemize}
+			\item $|\Aut_{\Fix(G)}(E)| = [E : \Fix(G)]$. Hence $E/\Fix(G)$ is a Galois extension.\\ [-6pt]
+			
+			\item $|G| = |\Aut_{\Fix(G)}(E)|$. And since we also know that $G \leq \Aut_{\Fix(G)}(E)$, this proves that $G = \Aut_{\Fix(G)}(E)$. $\blacksquare$\retTwo
+		\end{itemize}
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo One consequence of the prior corollary is that $\Psi \circ \Phi = \myId_{\Sub(\Aut_F(E))}$ no matter what.\\ Unfortunately, things work out less nice for $\Phi \circ \Psi$ as we actually need our extensions to be Galois in order to get results.\retTwo
+
+\exTwo\ul{Theorem:} Given any $K \in \Int(E/F)$, if $E/K$ is a Galois extension then:
+
+{\centering$(\Phi \circ \Psi)(K) = \Fix(\Aut_K(E)) = K$.\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	I already noted prior that $K \subseteq \Fix(\Aut_K(E))$. Thus, all we need to show is that\\ $K \supseteq \Fix(\Aut_K(E))$. Fortunately, because $E/K$ is Galois and $K \subseteq \Fix(\Aut_K(E))$\\ we know that:
+	
+	{\centering$|\Aut_K(E)| = [E : K] = [E : \Fix(\Aut_K(E))] \cdot [\Fix(\Aut_K(E)) : K]$\retTwo\par}
+	
+	Also note by our prior results that $|\Aut_K(E)| = [E : \Fix(\Aut_K(E))]$. Thus, we can conclude that:
+
+	{\centering $[\Fix(\Aut_K(E)) : K] = 1$ \retTwo\par}
+
+	Hence, $K = \Fix(\Aut_K(E))$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Also here's a relevant lemma:\retTwo
+
+\exTwo\ul{Lemma:} If $K/F$ and $E/K$ are field extensions such that $E/F$ is a Galois extension, then $E/K$ is also a Galois extension.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $E/F$ is a Galois extension then we know that $E$ is the splitting field of an irreducible-separable polynomial $f \in F[x]$. Yet then by considering the square-free radical of $f$ (see \inLinkRap{Page 774 Why we can assume irreducible separable}{page 774}) we can assume that $f$ is separable.\retTwo
+	
+	Now let $[\alpha_1, \ldots, \alpha_n]$ be the roots of $f$ in $E$. Then we have that:
+	
+	{\centering $E = F[\alpha_1, \ldots, \alpha_n] \subseteq K[\alpha_1, \ldots, \alpha_n] \subseteq E \Longrightarrow E = K[\alpha_1, \ldots, \alpha_n]$\newpage\par}
+
+	Also, if we view $f$ as a polynomial in $K[x]$, then it still has the same roots in $E$. This proves that $E$ is still a splitting field of $f$ over $K$. Finally, it's trivial that $f(x) = \lt(f)\prod_{i=1}^n (x - \alpha_i)$ is separable no matter if $f(x)$ is considered as a polynomial in $F[x]$ or $K[x]$. This proves that $E/K$ is a Galois extension. $\blacksquare$
+
+	\begin{myIndent}\myComment
+		As a corollary of this lemma and the prior theorem, we can thus conclude that if $E/F$ is a Galois extension then $\Phi \circ \Psi = \myId_{\Int(E/F)}$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo This finishes math 200b although I will certainly try to do some more exercises to prepare for the final exam.\retTwo
+
+\mySepTwo
 
 
 
 
 
 
-\hypertarget{Math 200b Set 7 Problem 1}{}
 
 \hypertarget{page idk 1 reference}{}
 \hypertarget{idk reference 2}{}
