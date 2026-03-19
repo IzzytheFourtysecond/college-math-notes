@@ -22089,7 +22089,7 @@ Observations:
 
 \ul{Gauss's Lemma v2:} $\alpha(fg) = \alpha(f)\alpha(g)$.
 \begin{myIndent}\exThreeP
-	$f = \alpha(f)f_\prim$ and $g = \alpha(g)g_\prime$ implies that $fg = \alpha(f)\alpha(g)f_\prim g_\prim$. Taking the contents of both sides, we get that $\alpha(fg) = |\alpha(f)\alpha(g)| \alpha(f_\prim g_\prim)$. But now note by definition that $|\alpha(f)\alpha(g)| = \alpha(f)\alpha(g)$. Furthermore, by Gauss's lemma v1 we have that $\alpha(f_\prim g_\prim) = 1$. So, $\alpha(fg) = \alpha(f)\alpha(g)$. $\blacksquare$\retTwo
+	$f = \alpha(f)f_\prim$ and $g = \alpha(g)g_\prim$ implies that $fg = \alpha(f)\alpha(g)f_\prim g_\prim$. Taking the contents of both sides, we get that $\alpha(fg) = |\alpha(f)\alpha(g)| \alpha(f_\prim g_\prim)$. But now note by definition that $|\alpha(f)\alpha(g)| = \alpha(f)\alpha(g)$. Furthermore, by Gauss's lemma v1 we have that $\alpha(f_\prim g_\prim) = 1$. So, $\alpha(fg) = \alpha(f)\alpha(g)$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo Next let $F$ be the field of fractions of $D$. For a reminder of what that is, see my math 100b notes.\retTwo
@@ -23770,7 +23770,7 @@ We claim $\mathcal{F}(X) \coloneqq \oplus_{x \in X} Ax$ is the free $A$-module o
 
 I'm struggling to focus on the notes so I'm going to do a homework problem and then read a book for a different class.\retTwo
 
-\Hstatement\blab{Math 200b Set 2 Problem 1:} Prove that the following polynomials are irreducible:
+\Hstatement\blab{Math 200b Set 2 Problem 1:} \hypertarget{Math 200b Set 2 Problem 1}{Prove} that the following polynomials are irreducible:
 \begin{enumerate}
 	\item[(a)] $f(x) \coloneqq x^{p-1} + x^{p-2} + \cdots + 1$ in $\mathbb{Q}[x]$ where $p$ is a prime number;
 	\begin{myIndent}\HexOne
@@ -23778,7 +23778,7 @@ I'm struggling to focus on the notes so I'm going to do a homework problem and t
 		
 		{\centering$\deg(h(x + a)) = \deg(h(x))$.\par}
 		\begin{myIndent}\HexTwoP
-			This is a because of the fact that $a_k(x + a)^k = a_k x^k + (\text{ lower degree terms })$ for all $k$.\retTwo
+			This is because of the fact that $a_k(x + a)^k = a_k x^k + (\text{ lower degree terms })$ for all $k$.\retTwo
 		\end{myIndent}
 
 		As a result, we can see that $f(x) = g_1(x)g_2(x)$ where $\deg(g_1), \deg(g_2) > 0$ if and only if $f(x + 1) = g_1(x + 1)g_2(x + 1)$ where $\deg(g_1(x + 1)), \deg(g_2(x + 2)) > 0$.\retTwo
@@ -24426,10 +24426,10 @@ In this problem we shall prove that $m \leq n$ even if $A$ is not a domain.\\ [-
 
 		Because $\phi$ is given by matrix multiplication by $x_\phi$, we can restrict the domain and codomain of $\phi$ to get an $A_0$-module homomorphism $\widetilde{\phi} : A_0^m \to A_0^n$. Also as $\phi$ is injective, so is $\widetilde{\phi}$.\newpage
 
-		Importantly though, $A_0$ is a finitely generated ring and thus Noetherian (see \inLinkRap{Math 200a Every f.g. ring is Noetherian}{page 517}) After all, it is simple to see that:
+		Importantly though, $A_0$ is a finitely generated ring and thus Noetherian (see \inLinkRap{Math 200a Every f.g. ring is Noetherian}{page 517}) After all, if $a_1, \ldots, a_{nm}$ are the entries of $x_\phi$, it is simple to see that:
 
 		{\centering\begin{tabular}{l}
-			$A_0 = \{\sum\limits_{I = (i_1, \ldots, i_n)}\hspace{-1em}c_I a_1^{i_1}\cdots a_n^{i_n} : c_I \in \mathbb{Z}1_A, \text{ each } i_j \in \mathbb{Z}^{\geq 0}, \text{ and all but finitely many } c_I = 0\}$.
+			$A_0 = \{\sum\limits_{I = (i_1, \ldots, i_n)}\hspace{-1em}c_I a_1^{i_1}\cdots a_{nm}^{i_{nm}} : c_I \in \mathbb{Z}1_A, \text{ each } i_j \in \mathbb{Z}^{\geq 0}, \text{ and all but finitely many } c_I = 0\}$.
 		\end{tabular}\retTwo\par}
 
 		By part (a) applied to $\widetilde{\phi}$ we can thus conclude that $m \leq n$.\retTwo
@@ -25197,6 +25197,12 @@ Note that if $A$ is a unital commutative ring and $\mathfrak{a} \lhd A$, then $\
 		
 		{\centering$1 \leq \mRank(\ker(\phi_1) \cap M) \leq \mRank(M) - 1$.\newpage\par}
 
+		\begin{myIndent}\color{orange}
+			\lparen After all, given $A$-modules $N_1$ and $N_2$, we know:
+			
+			{\centering$\mRank(N_1 \oplus N_2) \geq \mRank(N_1) + \mRank(N_2)$.\rparen\retTwo\par}
+		\end{myIndent}
+
 		By an inductive hypothesis, we can conclude there is a $D$-module isomorphism\\ $\theta : D^r \to \ker(\phi_1) \cap M$. Next, we define:
 		
 		{\centering$\tilde{\theta}(c_1, \ldots, c_{r+1}) = \theta(c_1, \ldots, c_r) + c_{r+1}(a_1 x_1)$.\retTwo\par}
@@ -25220,7 +25226,7 @@ Note that if $A$ is a unital commutative ring and $\mathfrak{a} \lhd A$, then $\
 			Finally, if $e_1, \ldots, e_{n-1}$ is the standard basis of $D^{n-1}$, then we can now see that $\ker(\phi_1) = D\theta(e_1) \oplus \cdots \oplus D\theta(e_{n-1})$. So at last, we have that $a_1$ as well as $x_1, \theta(e_1), \ldots, \theta(e_{n - 1})$ satisfy part 2 of the theorem.\retTwo
 		\end{myIndent}
 
-		As for the induction step, assume $\mRank(M) > 1$. Then we know $\ker(\phi_1) \cap M \neq \{0\}$ and in turn also that $\ker(\phi_1) \neq \{0\}$. Also by repeating some of the reasoning in our base case, we can see that $\ker(\phi_1) \cong D^{n-1}$\retTwo
+		As for the induction, assume $\mRank(M) > 1$. Then we know $\ker(\phi_1) \cap M \neq \{0\}$\\ and in turn also that $\ker(\phi_1) \neq \{0\}$. Also by repeating some reasoning in our base case and part 1, we know $\ker(\phi_1) \cong D^{n-1}$ and $\mRank(\ker(\phi_1) \cap M) < \mRank(M)$.\retTwo
 
 		By an inductive hypothesis applied to $\ker(\phi_1)$ and $\ker(\phi_1) \cap M$, we can conclude that there exists $x_2, \ldots, x_n \in \ker(\phi_0)$ as well as $a_2, \ldots, a_m \in D - \{0\}$ (with $m \leq n$) such that:
 		\begin{itemize}
@@ -27076,7 +27082,7 @@ Prove that $\Theta$ and $\Psi$ are well-defined and inverses of each other.
 		To start off, since $S_{f_i}^{-1}M$ is a finitely generated $S_{f_i}^{-1}A$-module, we know there exists $\frac{m_{i, 1}}{f_i^{j_1}}, \cdots, \frac{m_{i, k_i}}{f_i^{j_{k_i}}} \in S_{f_i}^{-1}M$ spanning the entire module. Also importantly, note that:
 
 		{\centering $\langle \frac{m_{i,1}}{1}, \cdots, \frac{m_{i, k_i}}{1} \rangle \supseteq \langle \frac{m_{i,1}}{f_i^{k_1}}, \cdots, \frac{m_{i,k_i}}{f_i^{k_\ell}} \rangle$ \retTwo\par}
-d
+
 		So, without loss of generality, we can just say that there exists $m_{i_1}, \ldots, m_{i,k_i} \in M$ such that $S_{f_i}^{-1}M$ is generated by the $\frac{m_{i,j}}{1}$.\retTwo
 
 		Let $N$ be the submodule of $M$ generated by the $m_{i,j}$ for all $i, j$. Then hopefully it's obvious $N$ satisfies the hypothesis of part (b). So, we can conclude that $N = M$ and hence $M$ is finitely generated.\retTwo
@@ -29280,7 +29286,7 @@ The following is a slight tangent that ended up being unnecessary for solving pa
 \begin{enumerate}
 	\item[(a)] Prove that for a finitely generated $A$-module $M$,
 	
-	{\centering$\supp(M) \coloneqq \{\mathfrak{p} \in \Spec(A) : \Ann(M) \subseteq \mathfrak{p}\}$.\retTwo\par}
+	{\centering$\supp(M) = \{\mathfrak{p} \in \Spec(A) : \Ann(M) \subseteq \mathfrak{p}\}$.\retTwo\par}
 
 	\begin{myIndent}\HexOne
 		Suppose $\mathfrak{p} \in \Spec(A)$ and $a \in \Ann(M) \cap S_\mathfrak{p}$. Then for all $\frac{m}{s} \in M_\mathfrak{p}$ we have that $a(1m - s0) = am = 0$. Hence every fraction of $M_\mathfrak{p}$ is equivalent to $\frac{0}{1}$ and we've shown that $\mathfrak{p} \notin \supp(M)$.\retTwo
@@ -29304,11 +29310,11 @@ The following is a slight tangent that ended up being unnecessary for solving pa
 	\begin{myIndent}\HexOne
 		Let $M_{\mathfrak{p}_0} \coloneqq \langle \frac{x_1}{s_1}, \cdots, \frac{x_d}{s_d} \rangle$. Without loss of generality we can assume each $s_i = 1$\\ since $\frac{x_i}{1} \in M_{\mathfrak{p}_0}$ and $\frac{1}{s_i} \in A_\mathfrak{p}$ satisfies that $\frac{1}{s_i} \cdot \frac{x_i}{1} = \frac{x_i}{s_i}$. Hence, $M_{\mathfrak{p}_0} = \langle \frac{x_1}{1}, \ldots, \frac{x_d}{1}\rangle$\retTwo
 
-		Let $N = \langle x_1, \ldots, x_d\rangle \subseteq M$ and note from how we got $x_1, \ldots, x_d$ that $N_{\mathfrak{p}_0} = M_{\mathfrak{p}_0}$. It follows that $\{0\} = \frac{M_{\mathfrak{p}}}{N_{\mathfrak{p}}} \cong (\frac{M}{N})_{\mathfrak{p}}$. Since $M$ is finitely generated, we also know that $\frac{M}{N}$ is finitely generated. In turn, by part (a), we can conclude that $\Ann(\frac{M}{N}) \not\subseteq \mathfrak{p}_0$. So, pick $a_0 \in A - \mathfrak{p}$ with $a_0 \in \Ann(\frac{M}{N})$.\newpage
+		Let $N = \langle x_1, \ldots, x_d\rangle \subseteq M$ and note from how we got $x_1, \ldots, x_d$ that $N_{\mathfrak{p}_0} = M_{\mathfrak{p}_0}$. It follows that $\{0\} = \frac{M_{\mathfrak{p}}}{N_{\mathfrak{p}}} \cong (\frac{M}{N})_{\mathfrak{p}}$. Since $M$ is finitely generated, we also know that $\frac{M}{N}$ is finitely generated. In turn, by part (a) we can conclude that $\Ann(\frac{M}{N}) \not\subseteq \mathfrak{p}_0$. So, pick $a_0 \in A - \mathfrak{p}$ with $a_0 \in \Ann(\frac{M}{N})$.\newpage
 
 		To finish off, let $U = \{\mathfrak{q} \in \Spec(A) : a_0 \notin \mathfrak{q}\} = \Spec(A) - V(\langle a_0\rangle)$.
 		\begin{myIndent}\myComment
-			Remark: Recall from \inLinkRap{Zarisky topology tangent math 200a page 455}{page 455} that $V(\mathfrak{a}) \coloneqq \{\mathfrak{p} \in \Spec(A) : \mathfrak{a} \subseteq \mathfrak{p}\}$, and that the Zariski topology on $\Spec(A)$ is defined by considering $\{V(\mathfrak{a}) : \mathfrak{a} \lhd A\}$ to be the collection of closed sets on $\Spec(A)$.\retTwo 
+			Remark: Recall from \inLinkRap{Zarisky topology tangent math 200a page 455}{page 455} that $V(\mathfrak{a}) \coloneqq \{\mathfrak{p} \in \Spec(A) : \mathfrak{a} \subseteq \mathfrak{p}\}$ and that the Zariski topology on $\Spec(A)$ is defined by considering $\{V(\mathfrak{a}) : \mathfrak{a} \lhd A\}$ to be the collection of closed sets on $\Spec(A)$.\retTwo 
 			
 			It follows that $U$ is an open set in the Zarisky topology on $\Spec(A)$. Also as $a_0 \notin \mathfrak{p}_0$, we can conclude that $U$ is a neighborhood of $\mathfrak{p}_0$.\retTwo
 		\end{myIndent}
@@ -34549,8 +34555,126 @@ Also by a prior theorem plus the first observation above, we know that:
 
 \mySepTwo
 
+\blect{Optional 200b Problems:}\retTwo
 
+\Hstatement\blab{Set 9 Problem 1:} Suppose $E/F$ is a field extension, $\alpha \in E$, and $[F[\alpha] : F]$ is odd. Then\\ prove that $F[\alpha^2] = F[\alpha]$.\retTwo
+\begin{myIndent}\HexOne
+	\begin{tabular}{p{4.5in} p{1in}}
+		To start off, we trivially have the tower of fields to the right (i.e.\newline $F[\alpha^2]/F$ is a field extension and $F[\alpha]/F[\alpha^2]$ is a field extension).\newline\newline Now by the tower lemma we know that:
+		
+		{\centering$[F[\alpha] : F] = [F[\alpha] : F[\alpha^2]] \cdot [F[\alpha^2] : F]$.\newline\par}
 
+		Suppose $F[\alpha] \neq F[\alpha^2]$. Then we have that $m_{\alpha; F[\alpha^2]} = x^2 -\alpha^2$.\newline In turn, this tells us that $[F[\alpha] : F[\alpha^2]] = 2$. Yet this then forces\newline $[F[\alpha]: F]$ to be even, which contradicts our initial assumption.\newline
+
+		Hence, we can conclude that $F[\alpha] = F[\alpha^2]$. $\blacksquare$
+		\\ [-170pt] &
+		% https://q.uiver.app/#q=WzAsMyxbMCwyLCJGIl0sWzAsMSwiRltcXGFscGhhXjJdIl0sWzAsMCwiRltcXGFscGhhXSJdLFswLDEsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+		\[\begin{tikzcd}
+			{F[\alpha]} \\
+			{F[\alpha^2]} \\
+			F
+			\arrow[no head, from=2-1, to=1-1]
+			\arrow[no head, from=3-1, to=2-1]
+		\end{tikzcd}\]
+	\end{tabular}
+\end{myIndent}
+\phantom{.}\\ [32pt]
+
+\blab{Set 9 Problem 2}: Suppose $a_1, \ldots, a_n \in \mathbb{Q}_{> 0}$. Then for any $b \in \mathbb{Q}_{> 0}$ with $\sqrt[3]{b} \notin \mathbb{Q}$, prove\\ that $\sqrt[3]{b} \notin \mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}]$.\\ [-6pt]
+\begin{myIndent}\HexOne
+	To start off, note that given any field extension $E/F$ and $\alpha \in E$ with $\alpha^2 \in F$, we have that the minimal polynomial $m_{\alpha; F}$ either equals $x^2 - \alpha^2$ if $\alpha \notin F$ or $x - \alpha$ if $\alpha \in F$. In turn, we have that either $[F[\alpha] : F] = 2$ or $[F[\alpha] : F] = 1$.\retTwo
+
+	By applying the above observation as well as the tower lemma to $[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}]$, we can conclude that:
+
+	{\centering $[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}] = 2^m$ for some $0 \leq m \leq n$.\retTwo\par}
+
+	Meanwhile, suppose for the sake of contradiction that $\sqrt[3]{b} \in \mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}]$. Then by another application of the tower lemma, we'd have that:
+
+	{\centering\begin{tabular}{l}
+		$[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}] = [\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}[\sqrt[3]{b}]] \cdot [\mathbb{Q}[\sqrt[3]{b}] : \mathbb{Q}]$\\ [6pt]
+		$\phantom{[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}]} = [\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}[\sqrt[3]{b}]] \cdot \deg(m_{\sqrt[3]{b}; \mathbb{Q}})$.
+	\end{tabular}\retTwo\par}
+
+	Yet now note that $m_{\sqrt[3]{b}; \mathbb{Q}} = x^3 - b$.\newpage
+	\begin{myIndent}\exPPP
+		We know $x^3 - b$ is irreducible in $\mathbb{Q}[x]$ because if it weren't, then it'd have to have a zero in $\mathbb{Q}$ since the polynomial has degree $\leq 3$. Yet none of the zeros of this polynomial are in $\mathbb{Q}$.\retTwo
+	\end{myIndent}
+
+	Thus we have a contradiction as $3$ divides $[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}] = 2^m$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 9 Problem 4:} Suppose $E \subseteq \mathbb{C}$ is a splitting field of $x^p - 2$ over $\mathbb{Q}$ where $p$ is an odd prime number.
+\begin{enumerate}
+	\item[(a)] Prove that $E = \mathbb{Q}[\sqrt[p]{2}, \zeta_p]$ where $\zeta_p \coloneqq e^{2\pi i/ p}$.
+	\begin{myIndent}\HexOne
+		To start off, note that $E = \mathbb{Q}[\sqrt[p]{2} \cdot \zeta_p^k : k \in \{0, \ldots, p - 1\}]$. Based on that, it's easy to see that $E \subseteq \mathbb{Q}[\sqrt[p]{2}, \zeta_p]$ since all the generating elements of the left field are\\ [2pt] contained in the right field. As for the other inclusion, it suffices to show that $\sqrt[p]{2}$\\ [2pt] and $\zeta_p$ are in $E$. Fortunately, we trivially have that $\sqrt[p]{2} \in E$. Also $\zeta_p = \frac{\sqrt[p]{2} \cdot \zeta_p^1}{\sqrt[p]{2}} \in E$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Prove that $[E : \mathbb{Q}] = p(p - 1)$.
+	\begin{myIndent}\HexOne
+		Note by the tower lemma that:
+		\begin{itemize}
+			\item \begin{tabular}{l}
+				$[\mathbb{Q}[\sqrt[p]{2}, \zeta_p], \mathbb{Q}] = [\mathbb{Q}[\sqrt[p]{2}, \zeta_p] : \mathbb{Q}[\zeta_p]] \cdot [\mathbb{Q}[\zeta_p] : \mathbb{Q}] = \deg(m_{\sqrt[p]{2}; \mathbb{Q}[\zeta_p]}) \cdot \deg(m_{\zeta_p ; \mathbb{Q}})$,
+			\end{tabular}
+			
+			\item \begin{tabular}{l}
+				$[\mathbb{Q}[\sqrt[p]{2}, \zeta_p], \mathbb{Q}] =  [\mathbb{Q}[\sqrt[p]{2}, \zeta_p] : \mathbb{Q}[\sqrt[p]{2}]] \cdot [\mathbb{Q}[\sqrt[p]{2}] : \mathbb{Q}] = \deg(m_{\zeta_p; \mathbb{Q}[\sqrt[p]{2}]}) \cdot \deg(m_{\sqrt[p]{2} ; \mathbb{Q}})$.\retTwo
+			\end{tabular}
+		\end{itemize}
+
+		Yet also note that $m_{\sqrt[p]{2}; \mathbb{Q}[\zeta_p]}$ divides $m_{\sqrt[p]{2}; \mathbb{Q}}$ and similarly $m_{\zeta_p; \mathbb{Q}[\sqrt[p]{2}]}$ divides $m_{\zeta_p; \mathbb{Q}}$.\\ Therefore, we can conclude that $[E : \mathbb{Q}] \leq \deg(m_{\sqrt[p]{2}; \mathbb{Q}}) \cdot \deg(m_{\zeta_p ; \mathbb{Q}})$.\retTwo
+
+		I claim that $m_{\zeta_p; \mathbb{Q}} = x^{p-1} + x^{p-2} + \ldots + x + 1 = \frac{x^p - 1}{x - 1}$.
+		\begin{myIndent}\HexTwoP
+			(For a proof that this polynomial is irreducible, see set 2 problem 1a on \inLinkRap{Math 200b Set 2 Problem 1}{page 559}\dots)\retTwo
+		\end{myIndent}
+
+		I also claim that $m_{\sqrt[p]{2}; \mathbb{Q}} = x^p - 2$.
+		\begin{myIndent}\HexTwoP
+			(You can use Eisenstein's criterion with $p = 2$ in order to prove this polynomial is irreducible\dots)\retTwo
+		\end{myIndent}
+
+		As a result, we've shown that both $p$ and $p - 1$ divide $[E : \mathbb{Q}]$. Also, we've shown that $[E : \mathbb{Q}] \leq p(p - 1)$. Since $p$ and $p - 1$ are coprime, this guarentees that $[E : \mathbb{Q}] = p(p - 1)$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo\mySepTwo 
+
+\dispDate{3/18/2025}
+
+Well the algebra final went ok. Anyways before I start doing practice problems for math 220b, I want to write down some of my algebra problems/solutions I did this morning. I'll try to move on to complex analysis soon.\newpage
+
+\Hstatement\blab{Problem 1 from my Algebra Midterm:} Suppose $F$ is a field, the characteristic of $F$ is not $2$, $f(x), g(x), h(x)$ are nonzero polynomials in $F[x]$, $\gcd(f, g, h) = 1$, and $g(x)^2 - 4f(x)h(x)$ is not a perfect square in $F[x]$. Prove that $y^2 f(x) + yg(x) + h(x)$ is irreducible in $(F(y))[x]$ where $F(y)$ is the field of rational functions over $F$.
+\begin{myIndent}\HexOne
+	Firstly, note that if $\deg(f), \deg(g), \deg(h) < 2$, then we automatically have that\\ $y^2 f(x) + yg(x) + h(x)$ is a linear or constant polynomial in $(F(y))[x]$ and thus is\\ irreducible. So without loss of generality we can assume that at least one of those\\ polynomials has degree at least 2. Next note that we can consider $F(y)$ as the field of\\ fractions of the integral domain $F[y]$. Therefore, if $y^2 f(x) + yg(x) + h(x)$ was not\\ irreducible in $(F(y))[x]$, then by using Gauss' lemma we'd be able to find two polynomials\\ $r_1, r_2 \in (F[y])[x]$ with $\deg_x(r_1), \deg_x(r_2) \geq 1$ and:
+	
+	{\centering$y^2f(x) + yg(x) + h(x) = r_1(x, y)r_2(x, y)$.\retTwo\par}
+
+	Now reinterpret $y^2f(x) + yg(x) + h(x) = r_1(y, x)r_2(y, x)$ as polynomials in $(F[x])[y]$ and note that $\deg_y(r_1) + \deg_y(r_2) = 2$. Thus we have two cases to consider:
+	\begin{itemize}
+		\item[1.] Suppose $r_1(x, y) = y^2p_1(x) + yp_2(x) + yp_3(x)$ and $r_2(x, y) = p_4(x)$. Then we must have that $f = p_1p_4$, $g = p_2p_4$, and $h = p_3p_4$. In turn $p_4 \divides \gcd(f, g, h) = 1$ and in turn $p_4$ must be a constant polynomial in $F[x]$. This contradicts the prior statement that $\deg_x(r_2) \geq 1$.\retTwo
+		
+		\item[2.] Suppose $r_1(x, y) = yp_1(x) + p_2(x)$ and $r_2(x, y) = yp_3(x) + p_4(x)$. Then we have that $f = p_1p_3$, $g = p_1p_4 + p_2p_3$, and $h = p_2p_4$. Yet now as $\mChar(F) \neq 2$ (which in turn means that $4 \neq 0$), we can see that:
+		
+		{\centering$g(x)^2 - 4f(x)h(x) = (p_1p_4 + p_2p_3)^2 - 4p_1p_4p_2p_3 = (p_1p_4 - p_2p_3)^2$.\retTwo\par}
+		
+		This contradicts that $g(x)^2 - 4f(x)h(x)$ is not a perfect square in $F[x]$.\retTwo
+	\end{itemize}
+
+	Thus we've proven that $r_1, r_2$ can't exist. So, $y^2 f(x) + yg(x) + h(x)$ is irreducible. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 9 Problem 14:} Prove that $\Gal(\mathbb{F}_{p^n} : \mathbb{F}_p) = \langle \sigma_p\rangle$ where $\sigma_p: \mathbb{F}_{p_n} \to \mathbb{F}_{p_n}$ is the Frobenius\\ homomorphism $\sigma_p(x) = x^p$.
+\begin{myIndent}\HexOne
+	To start off, as $\sigma_p$ is an injective map between sets with the same finite cardinality, we must have that $\sigma_p$ is a bijection and thus an isomorphism. Furthermore, as $|\mathbb{F}_p^\times| = p - 1$, we can see by Lagrange's theorem that $x^{p-1} = 1$ for all $x \in \mathbb{F}_p^\times$ and in turn $x^p = x$ for all $x \in \mathbb{F}_p$. This proves that $\sigma_p$ fixes the subfield $\mathbb{F}_p$. So, we can conclude that $\sigma_p \in \Gal(\mathbb{F}_{p^n})$.\retTwo
+
+	Now as $\mathbb{F}_{p^n}$ is the splitting field of $x^{p^n} - x$ over $\mathbb{F}_p$, we know that the field extension $\mathbb{F}_{p^n}/ \mathbb{F}_p$ is Galois. Also, by comparing cardinalities we can see that $[\mathbb{F}_{p^n} : \mathbb{F}_p] = n$. Therefore\\ $|\Gal(\mathbb{F}_{p^n}/ \mathbb{F}_p)| = n$.\retTwo
+
+	At the same time, recall that $\mathbb{F}_{p^n}^\times$ is cyclic and therefore generated by some nonzero element $\alpha$. Yet now since $k = p^n - 1$ is the least positive integer such that $\alpha^{k} = 1$, we know that $p^n$ is the first integer greater than $1$ such that $\alpha^{p^n} = \alpha$. It following that the order of $\sigma_p$ is the same as that of $\Gal(\mathbb{F}_{p^n}/ \mathbb{F}_p)$. This proves that the Galois group is cyclic and generated by $\sigma_p$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage
 
 
 

@@ -1513,11 +1513,244 @@ Also by a prior theorem plus the first observation above, we know that:
 
 \mySepTwo
 
+\blect{Optional 200b Problems:}\retTwo
+
+\Hstatement\blab{Set 9 Problem 1:} Suppose $E/F$ is a field extension, $\alpha \in E$, and $[F[\alpha] : F]$ is odd. Then\\ prove that $F[\alpha^2] = F[\alpha]$.\retTwo
+\begin{myIndent}\HexOne
+	\begin{tabular}{p{4.5in} p{1in}}
+		To start off, we trivially have the tower of fields to the right (i.e.\newline $F[\alpha^2]/F$ is a field extension and $F[\alpha]/F[\alpha^2]$ is a field extension).\newline\newline Now by the tower lemma we know that:
+		
+		{\centering$[F[\alpha] : F] = [F[\alpha] : F[\alpha^2]] \cdot [F[\alpha^2] : F]$.\newline\par}
+
+		Suppose $F[\alpha] \neq F[\alpha^2]$. Then we have that $m_{\alpha; F[\alpha^2]} = x^2 -\alpha^2$.\newline In turn, this tells us that $[F[\alpha] : F[\alpha^2]] = 2$. Yet this then forces\newline $[F[\alpha]: F]$ to be even, which contradicts our initial assumption.\newline
+
+		Hence, we can conclude that $F[\alpha] = F[\alpha^2]$. $\blacksquare$
+		\\ [-170pt] &
+		% https://q.uiver.app/#q=WzAsMyxbMCwyLCJGIl0sWzAsMSwiRltcXGFscGhhXjJdIl0sWzAsMCwiRltcXGFscGhhXSJdLFswLDEsIiIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMSwyLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+		\[\begin{tikzcd}
+			{F[\alpha]} \\
+			{F[\alpha^2]} \\
+			F
+			\arrow[no head, from=2-1, to=1-1]
+			\arrow[no head, from=3-1, to=2-1]
+		\end{tikzcd}\]
+	\end{tabular}
+\end{myIndent}
+\phantom{.}\\ [32pt]
+
+\blab{Set 9 Problem 2}: Suppose $a_1, \ldots, a_n \in \mathbb{Q}_{> 0}$. Then for any $b \in \mathbb{Q}_{> 0}$ with $\sqrt[3]{b} \notin \mathbb{Q}$, prove\\ that $\sqrt[3]{b} \notin \mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}]$.\\ [-6pt]
+\begin{myIndent}\HexOne
+	To start off, note that given any field extension $E/F$ and $\alpha \in E$ with $\alpha^2 \in F$, we have that the minimal polynomial $m_{\alpha; F}$ either equals $x^2 - \alpha^2$ if $\alpha \notin F$ or $x - \alpha$ if $\alpha \in F$. In turn, we have that either $[F[\alpha] : F] = 2$ or $[F[\alpha] : F] = 1$.\retTwo
+
+	By applying the above observation as well as the tower lemma to $[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}]$, we can conclude that:
+
+	{\centering $[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}] = 2^m$ for some $0 \leq m \leq n$.\retTwo\par}
+
+	Meanwhile, suppose for the sake of contradiction that $\sqrt[3]{b} \in \mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}]$. Then by another application of the tower lemma, we'd have that:
+
+	{\centering\begin{tabular}{l}
+		$[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}] = [\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}[\sqrt[3]{b}]] \cdot [\mathbb{Q}[\sqrt[3]{b}] : \mathbb{Q}]$\\ [6pt]
+		$\phantom{[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}]} = [\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}[\sqrt[3]{b}]] \cdot \deg(m_{\sqrt[3]{b}; \mathbb{Q}})$.
+	\end{tabular}\retTwo\par}
+
+	Yet now note that $m_{\sqrt[3]{b}; \mathbb{Q}} = x^3 - b$.\newpage
+	\begin{myIndent}\exPPP
+		We know $x^3 - b$ is irreducible in $\mathbb{Q}[x]$ because if it weren't, then it'd have to have a zero in $\mathbb{Q}$ since the polynomial has degree $\leq 3$. Yet none of the zeros of this polynomial are in $\mathbb{Q}$.\retTwo
+	\end{myIndent}
+
+	Thus we have a contradiction as $3$ divides $[\mathbb{Q}[\sqrt{a_1}, \ldots, \sqrt{a_n}] : \mathbb{Q}] = 2^m$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 9 Problem 4:} Suppose $E \subseteq \mathbb{C}$ is a splitting field of $x^p - 2$ over $\mathbb{Q}$ where $p$ is an odd prime number.
+\begin{enumerate}
+	\item[(a)] Prove that $E = \mathbb{Q}[\sqrt[p]{2}, \zeta_p]$ where $\zeta_p \coloneqq e^{2\pi i/ p}$.
+	\begin{myIndent}\HexOne
+		To start off, note that $E = \mathbb{Q}[\sqrt[p]{2} \cdot \zeta_p^k : k \in \{0, \ldots, p - 1\}]$. Based on that, it's easy to see that $E \subseteq \mathbb{Q}[\sqrt[p]{2}, \zeta_p]$ since all the generating elements of the left field are\\ [2pt] contained in the right field. As for the other inclusion, it suffices to show that $\sqrt[p]{2}$\\ [2pt] and $\zeta_p$ are in $E$. Fortunately, we trivially have that $\sqrt[p]{2} \in E$. Also $\zeta_p = \frac{\sqrt[p]{2} \cdot \zeta_p^1}{\sqrt[p]{2}} \in E$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Prove that $[E : \mathbb{Q}] = p(p - 1)$.
+	\begin{myIndent}\HexOne
+		Note by the tower lemma that:
+		\begin{itemize}
+			\item \begin{tabular}{l}
+				$[\mathbb{Q}[\sqrt[p]{2}, \zeta_p], \mathbb{Q}] = [\mathbb{Q}[\sqrt[p]{2}, \zeta_p] : \mathbb{Q}[\zeta_p]] \cdot [\mathbb{Q}[\zeta_p] : \mathbb{Q}] = \deg(m_{\sqrt[p]{2}; \mathbb{Q}[\zeta_p]}) \cdot \deg(m_{\zeta_p ; \mathbb{Q}})$,
+			\end{tabular}
+			
+			\item \begin{tabular}{l}
+				$[\mathbb{Q}[\sqrt[p]{2}, \zeta_p], \mathbb{Q}] =  [\mathbb{Q}[\sqrt[p]{2}, \zeta_p] : \mathbb{Q}[\sqrt[p]{2}]] \cdot [\mathbb{Q}[\sqrt[p]{2}] : \mathbb{Q}] = \deg(m_{\zeta_p; \mathbb{Q}[\sqrt[p]{2}]}) \cdot \deg(m_{\sqrt[p]{2} ; \mathbb{Q}})$.\retTwo
+			\end{tabular}
+		\end{itemize}
+
+		Yet also note that $m_{\sqrt[p]{2}; \mathbb{Q}[\zeta_p]}$ divides $m_{\sqrt[p]{2}; \mathbb{Q}}$ and similarly $m_{\zeta_p; \mathbb{Q}[\sqrt[p]{2}]}$ divides $m_{\zeta_p; \mathbb{Q}}$.\\ Therefore, we can conclude that $[E : \mathbb{Q}] \leq \deg(m_{\sqrt[p]{2}; \mathbb{Q}}) \cdot \deg(m_{\zeta_p ; \mathbb{Q}})$.\retTwo
+
+		I claim that $m_{\zeta_p; \mathbb{Q}} = x^{p-1} + x^{p-2} + \ldots + x + 1 = \frac{x^p - 1}{x - 1}$.
+		\begin{myIndent}\HexTwoP
+			(For a proof that this polynomial is irreducible, see set 2 problem 1a on \inLinkRap{Math 200b Set 2 Problem 1}{page 559}\dots)\retTwo
+		\end{myIndent}
+
+		I also claim that $m_{\sqrt[p]{2}; \mathbb{Q}} = x^p - 2$.
+		\begin{myIndent}\HexTwoP
+			(You can use Eisenstein's criterion with $p = 2$ in order to prove this polynomial is irreducible\dots)\retTwo
+		\end{myIndent}
+
+		As a result, we've shown that both $p$ and $p - 1$ divide $[E : \mathbb{Q}]$. Also, we've shown that $[E : \mathbb{Q}] \leq p(p - 1)$. Since $p$ and $p - 1$ are coprime, this guarentees that $[E : \mathbb{Q}] = p(p - 1)$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo\mySepTwo 
+
+\dispDate{3/18/2025}
+
+Well the algebra final went ok. Anyways before I start doing practice problems for math 220b, I want to write down some of my algebra problems/solutions I did this morning. I'll try to move on to complex analysis soon.\newpage
+
+\Hstatement\blab{Problem 1 from my Algebra Midterm:} Suppose $F$ is a field, the characteristic of $F$ is not $2$, $f(x), g(x), h(x)$ are nonzero polynomials in $F[x]$, $\gcd(f, g, h) = 1$, and $g(x)^2 - 4f(x)h(x)$ is not a perfect square in $F[x]$. Prove that $y^2 f(x) + yg(x) + h(x)$ is irreducible in $(F(y))[x]$ where $F(y)$ is the field of rational functions over $F$.
+\begin{myIndent}\HexOne
+	Firstly, note that if $\deg(f), \deg(g), \deg(h) < 2$, then we automatically have that\\ $y^2 f(x) + yg(x) + h(x)$ is a linear or constant polynomial in $(F(y))[x]$ and thus is\\ irreducible. So without loss of generality we can assume that at least one of those\\ polynomials has degree at least 2. Next note that we can consider $F(y)$ as the field of\\ fractions of the integral domain $F[y]$. Therefore, if $y^2 f(x) + yg(x) + h(x)$ was not\\ irreducible in $(F(y))[x]$, then by using Gauss' lemma we'd be able to find two polynomials\\ $r_1, r_2 \in (F[y])[x]$ with $\deg_x(r_1), \deg_x(r_2) \geq 1$ and:
+	
+	{\centering$y^2f(x) + yg(x) + h(x) = r_1(x, y)r_2(x, y)$.\retTwo\par}
+
+	Now reinterpret $y^2f(x) + yg(x) + h(x) = r_1(y, x)r_2(y, x)$ as polynomials in $(F[x])[y]$ and note that $\deg_y(r_1) + \deg_y(r_2) = 2$. Thus we have two cases to consider:
+	\begin{itemize}
+		\item[1.] Suppose $r_1(x, y) = y^2p_1(x) + yp_2(x) + yp_3(x)$ and $r_2(x, y) = p_4(x)$. Then we must have that $f = p_1p_4$, $g = p_2p_4$, and $h = p_3p_4$. In turn $p_4 \divides \gcd(f, g, h) = 1$ and in turn $p_4$ must be a constant polynomial in $F[x]$. This contradicts the prior statement that $\deg_x(r_2) \geq 1$.\retTwo
+		
+		\item[2.] Suppose $r_1(x, y) = yp_1(x) + p_2(x)$ and $r_2(x, y) = yp_3(x) + p_4(x)$. Then we have that $f = p_1p_3$, $g = p_1p_4 + p_2p_3$, and $h = p_2p_4$. Yet now as $\mChar(F) \neq 2$ (which in turn means that $4 \neq 0$), we can see that:
+		
+		{\centering$g(x)^2 - 4f(x)h(x) = (p_1p_4 + p_2p_3)^2 - 4p_1p_4p_2p_3 = (p_1p_4 - p_2p_3)^2$.\retTwo\par}
+		
+		This contradicts that $g(x)^2 - 4f(x)h(x)$ is not a perfect square in $F[x]$.\retTwo
+	\end{itemize}
+
+	Thus we've proven that $r_1, r_2$ can't exist. So, $y^2 f(x) + yg(x) + h(x)$ is irreducible. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 9 Problem 14:} Prove that $\Gal(\mathbb{F}_{p^n} : \mathbb{F}_p) = \langle \sigma_p\rangle$ where $\sigma_p: \mathbb{F}_{p_n} \to \mathbb{F}_{p_n}$ is the Frobenius\\ homomorphism $\sigma_p(x) = x^p$.
+\begin{myIndent}\HexOne
+	To start off, as $\sigma_p$ is an injective map between sets with the same finite cardinality, we must have that $\sigma_p$ is a bijection and thus an isomorphism. Furthermore, as $|\mathbb{F}_p^\times| = p - 1$, we can see by Lagrange's theorem that $x^{p-1} = 1$ for all $x \in \mathbb{F}_p^\times$ and in turn $x^p = x$ for all $x \in \mathbb{F}_p$. This proves that $\sigma_p$ fixes the subfield $\mathbb{F}_p$. So, we can conclude that $\sigma_p \in \Gal(\mathbb{F}_{p^n})$.\retTwo
+
+	Now as $\mathbb{F}_{p^n}$ is the splitting field of $x^{p^n} - x$ over $\mathbb{F}_p$, we know that the field extension $\mathbb{F}_{p^n}/ \mathbb{F}_p$ is Galois. Also, by comparing cardinalities we can see that $[\mathbb{F}_{p^n} : \mathbb{F}_p] = n$. Therefore\\ $|\Gal(\mathbb{F}_{p^n}/ \mathbb{F}_p)| = n$.\retTwo
+
+	At the same time, recall that $\mathbb{F}_{p^n}^\times$ is cyclic and therefore generated by some nonzero element $\alpha$. Yet now since $k = p^n - 1$ is the least positive integer such that $\alpha^{k} = 1$, we know that $p^n$ is the first integer greater than $1$ such that $\alpha^{p^n} = \alpha$. It following that the order of $\sigma_p$ is the same as that of $\Gal(\mathbb{F}_{p^n}/ \mathbb{F}_p)$. This proves that the Galois group is cyclic and generated by $\sigma_p$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+% \blab{Set 9 Problem 3:} Given a set $A$ of points in $\mathbb{R}^2$, we say:
+% \begin{itemize}
+% 	\item a line is \udefine{$1$-constructible with respect to $A$} if it passes through two points in $A$;
+% 	\item a circle is \udefine{$1$-constructible with respect to $A$} if its center is in $A$ and its radius is the distance between it's center and some other point in $A$;
+% 	\item a point $p$ is \udefine{$1$-constructible with respect to $A$} if it is an intersection point of either two $1$-constructible lines, two $1$-constructible circles, or one of each.\retTwo
+% \end{itemize}
+
+% Let $A_0 = \{(0, 0), (1, 0)\}$. We say $p \coloneqq (\alpha, \beta)$ is a \udefine{constructible point} if there exists a\\ sequence of points $p_0, \ldots, p_n$ such that $p_0 \in A_0$ and $p_{i+1}$ is $1$-constructible with respect\\ to $A_i \coloneqq A_0 \cup \{p_1, \ldots, p_i\}$.
+% \begin{myDindent}\color{BrickRed}
+% 	Essentially, constructible points are precisely the points one can reach while only using a straight-edge and compass. Note that often it is convenient to identify $\mathbb{C}$ with $\mathbb{R}^2$.\retTwo
+% \end{myDindent}
+
+% \begin{myIndent}\HexOne
+% 	Before getting into the problem proper, I want to play around with constructible points\\ briefly. Firstly, note that once we show a given point $p_n$ is constructible, then we can use\\ it to construct more points without worrying what sequence of points $p_0, \ldots, p_n$ gave\\ us that point. After all, it's obviously not weaker to say that a point is $1$-constructible\\ with respect to $A_0 \cup \{p_n, \ldots, p_{n+m}\}$ than to say a point is $1$-constructible with respect\\ to $A_0 \cup \{p_0, \ldots, p_n, \ldots, p_{n+m}\}$.
+
+% 	\begin{itemize}
+% 		\item Claim 1: $(n, 0)$ is constructible for all $n \in \mathbb{Z}$.
+% 		\begin{myIndent}\HexTwoP
+% 			Proof:\\
+% 			First we proceed by induction on the postive integers. For our base case, note that $(0, 0)$ and $(1, 0)$ are trivially constructible. Meanwhile, suppose $n > 1$ we've already shown $(n - 1, 0)$ and $(n, 0)$ are constructible. Then let $l_1$ be the line passing through $(n - 1, 0)$ and $(n, 0)$ and let $C_1$ be the circle centered at $(n, 0)$ and with radius going out to $(n - 1, 0)$. $C_1$ and $l_1$ will then intercept at the point $(n + 1, 0)$ as shown below.
+
+% 			{\centering\includegraphics[scale=0.5]{Math_200b_Image_1.png} \retTwo\par}
+
+% 			This proves that $(n, 0)$ is constructible for all nonnegative integers $n$. Mirror reasoning shows that $(n, 0)$ is constructible if $n$ is negative.\retTwo
+% 		\end{myIndent}
+
+% 		\item Claim 2: $(0, n)$ is constructible for all $n \in \mathbb{Z}$\newpage
+% 		\begin{myIndent}\HexTwoP
+% 			Proof:\\
+% 			Firstly, follow the construction below (starting with the points $(0, 0)$, $(1, 0)$,\\ and $(-1, 0)$) in order to show that $(0, 1)$ is constructible. I numbered the\\ geometric objects in the order I constructed them so hopefully the following\\ image is enlightening enough.
+
+% 			{\centering\includegraphics[scale=0.5]{Math_200b_Image_2.png} \retTwo\par}
+
+% 			After this, we can use near identical reasoning as in claim 1 to prove the rest\\ of claim 2.\retTwo
+% 		\end{myIndent}
+
+% 		\item Claim 3: $(m, n)$ is constructible for all $m, n \in \mathbb{Z}$.
+% 		\begin{myIndent}\HexTwoP
+% 			Proof:\\
+% 			In the construction on the prior claim, we could have started with the points $(m, 0)$, $(m + 1, 0)$ and $(m - 1, 0)$ and then done anlogous steps to constructs $(m, 1)$. Then once again, reasoning as in claim 1 gives us $(m, n)$ for all remaining $n$.\retTwo
+% 		\end{myIndent}
+% 	\end{itemize}
+% \end{myIndent}
+
+% \begin{enumerate}
+% 	\item[(a)]
+% \end{enumerate}
 
 
 
