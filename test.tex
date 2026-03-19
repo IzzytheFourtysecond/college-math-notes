@@ -1634,11 +1634,52 @@ Well the algebra final went ok. Anyways before I start doing practice problems f
 
 \hTwo\mySepTwo\newpage
 
+Firstly I'm going to do the homeworks I missed to prepare for my 220b final. Let $\Delta$ denote the unit disk and $\mathfrak{h}^+$ denote the upper half plane.\retTwo
 
+\Hstatement\blab{Set 7 Problem 1:} Let $G_1, G_2$ be two simply connected proper regions in $\mathbb{C}$. Let $z_1 \in G_1$ and\\ $z_2 \in G_2$.
+\begin{itemize}
+	\item[(i)] Show that there exists a biholomorphism $f: G_1 \to G_2$ such that $f(z_1) = z_2$.
+	\begin{myIndent}\HexOne
+		By the Riemann mapping theorem, there exists biholomorphisms $\theta_1: G_1 \to \Delta$ and $\theta_2 : G_2 \to \Delta$ such that $\theta_1(z_1) = 0$ and $\theta_2(z_2) = 0$. In turn, if we let $f = \theta_2^{-1} \circ \theta_1$, we have that $f$ is a biholomorphism from $G_1$ to $G_2$. Also:
+		
+		{\centering$f(z_1) = (g_2^{-1} \circ g_1)(z_1) = g_2^{-1}(0) = z_2$.\retTwo\par}
+	\end{myIndent}
 
+	\item[(ii)] Show if $g: G_1 \to G_2$ is any holomorphic map with $g(z_1) = z_2$ then $|g^\prime(z_1)| \leq |f^\prime(z_1)|$.
+	\begin{myIndent}\HexOne
+		Let $f$ and $\theta_2$ be the same functions from the prior part. Then recall from the second remark on \inLinkRap{Remark 2 Page 710 reference}{page 710} that if $h: G_1 \to \Delta$ is any holomorphic function satisfying that $h(z_1) = 0$, then $|h^\prime(z_1)| \leq |(\theta_2 \circ f)^\prime(z_1)|$. In particular, if $h = \theta_2 \circ g$, then we have that:
 
+		{\centering $|\theta_2^\prime(z_2) g^\prime(z_1)| = |(\theta_2 \circ g)^\prime(z_1)| \leq |(\theta_2 \circ f)^\prime(z_1)| = |\theta_2^\prime(z_2)f^\prime(z_1)|$ \retTwo\par}
 
+		Next, because $\theta$ is injective, we know that $\theta^\prime$ is nonzero on $G_2$. Therefore, we can cancel out $|\theta_2^\prime(z_2)|$ in order to conclude that $|g^\prime(z_1)| \leq |f^\prime(z_1)|$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
 
+\blab{Set 7 Problem 2:} Exhibit a biholomorphic map from the strip $S = \{z : -1 < \rea{z} < +1\}$ to the unit disk.
+\begin{myIndent}\HexOne
+	We shall get our biholomorphism by composing a bunch of other biholomorphisms.
+	\begin{itemize}
+		\item First consider the rotation $R(z) \coloneqq iz$. Note that $R(z)$ is an injective map\\ which maps $S$ to $\widetilde{S} \coloneqq \{z : -1 < \ima{z} < 1\}$.\\ [-6pt]
+		\item Next note that the exponential function maps $\widetilde{S}$ to: 
+		
+		{\centering$\widetilde{A} \coloneqq \{re^{i\theta} : r > 0 \text{ and } -1 < \theta < 1\}$.\\ [8pt]\par}
+
+		\item Thirdly, let $f(z) \coloneqq z^{\sfrac{\pi}{2}} = \exp(\frac{\pi}{2}\Log(z))$.
+		\begin{myIndent}\HexTwoP
+			Note that $f$ is holomorphic. Also $f(re^i\theta) = r^{\frac{\pi}{2}}e^{i\frac{\pi \theta}{2}}$. In particular, notice that\\ $f$ bijectively maps $\widetilde{A}$ to $A \coloneqq \{z : \rea{z} > 0\}$.\\ [-6pt]
+		\end{myIndent}
+
+		\item Fourthly, note that the function $R$ from before maps $A$ to $\mathfrak{h}^+$.\\ [-6pt]
+		
+		\item Finally, let $C(z) = \frac{z - i}{z + i}$ be the Cayley transform. Then $C$ is a biholomorphism from\\ $\mathfrak{h}^+$ to $\Delta$.\retTwo
+	\end{itemize}
+
+	Now if we set $\theta \coloneqq C \circ R \circ f \circ \exp \circ R$, we have that $\theta$ is a biholomorphism from $S$\\ to $\Delta$. $\blacksquare$
+
+	\begin{myIndent}\color{RawerSienna}
+		In particular, if we work out the composition above, we get that $\theta(z) = \frac{e^{i \pi z / 2} - 1}{e^{i \pi z / 2} + 1}$. Interestingly, note that $\tan(z) = -i \frac{e^{iz} - e^{-iz}}{e^{iz} + e^{-iz}} = -i\frac{e^{2iz} - 1}{e^{2iz} + 1}$. Therefore, we can conclude that $\theta(z) = i \tan(\frac{\pi}{4}z)$.
+	\end{myIndent}
+\end{myIndent}
 
 
 
