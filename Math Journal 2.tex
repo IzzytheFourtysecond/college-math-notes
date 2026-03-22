@@ -1,0 +1,403 @@
+\documentclass{book}
+
+\usepackage{fontspec} % used to import Calibri
+\usepackage{anyfontsize} % used to adjust font size
+
+% needed for inch and other length measurements
+% to be recognized
+\usepackage{calc}
+
+% for colors and text effects as is hopefully obvious
+\usepackage[dvipsnames]{xcolor}
+\usepackage{soul}
+
+% control over margins
+\usepackage[margin=1in]{geometry}
+\usepackage[strict]{changepage}
+
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{bm}
+
+\usepackage[scr=rsfso, scrscaled=.96]{mathalpha}
+
+% This is how I'm getting the nice caligraphy font :(
+\DeclareMathAlphabet{\eulerscr}{U}{eus}{m}{n}
+\newcommand{\mathcalli}[1]{\text{\scalebox{1.11}{$\eulerscr{#1}$}}}
+
+
+\usepackage{amssymb} % originally imported to get the proof square
+\usepackage{xfrac}
+\usepackage[overcommands]{overarrows} % Get my preferred vector arrows...
+\usepackage{relsize}
+
+% Just am using this to get a dashed line in a table...
+% Also you apparently want this to be inactive if you aren't
+% using it because it slows compilation.
+\usepackage{arydshln} \ADLinactivate 
+\newenvironment{allowTableDashes}{\ADLactivate}{\ADLinactivate}
+
+\usepackage{graphicx}
+\graphicspath{{./158_Images/}}
+
+\usepackage{tikz}
+   \usetikzlibrary{arrows.meta}
+   \usetikzlibrary{graphs, graphs.standard}
+
+\usepackage{quiver} %commutative diagrams
+
+\usepackage[hidelinks]{hyperref}
+\newcommand{\inLinkRap}[2]{{\color{blue}\hyperlink{#1}{\textit{#2}}}}
+
+
+
+\newfontfamily{\calibri}{Calibri}
+\setlength{\parindent}{0pt}
+\definecolor{RawerSienna}{HTML}{945D27}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%Arrow Commands:
+
+% Thank you Bernard, gernot, and Sigur who I copied this from:
+% https://tex.stackexchange.com/questions/364096/command-for-longhookrightarrow
+\renewcommand{\hookrightarrow}{\lhook\joinrel\rightarrow}
+\renewcommand{\hookleftarrow}{\leftarrow\joinrel\rhook}
+\newcommand{\hooklongrightarrow}{\lhook\joinrel\longrightarrow}
+\newcommand{\hooklongleftarrow}{\longleftarrow\joinrel\rhook}
+\newcommand{\hookxlongrightarrow}[2][]{\lhook\joinrel\xrightarrow[#1]{#2}}
+\newcommand{\hookxlongleftarrow}[2][]{\xleftarrow[#1]{#2}\joinrel\rhook}
+
+% Thank you egreg who I copied from:
+% https://tex.stackexchange.com/questions/260554/two-headed-version-of-xrightarrow
+\newcommand{\longrightarrowdbl}{\longrightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\rightarrowdbl}{\rightarrow\mathrel{\mkern-14mu}\rightarrow}
+\newcommand{\longleftarrowdbl}{\leftarrow\mathrel{\mkern-14mu}\longleftarrow}
+
+\newcommand{\xrightarrowdbl}[2][]{%
+  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
+}
+\newcommand{\xleftarrowdbl}[2][]{%
+  \leftarrow\mathrel{\mkern-14mu}\xleftarrow[#1]{#2}
+}
+
+\newcommand{\locUConverges}{%
+	\xrightarrow{\ell.u.}
+}
+\newcommand{\UConverges}{%
+	\xrightarrow{u.}
+}
+
+
+
+
+
+\newcommand{\mRoman}[1]{%
+   \textrm{\MakeUppercase{\romannumeral #1}}%
+}
+
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\hOne}{%
+   \color{Black}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\hTwo}{%
+\color{Black}%
+   \fontsize{13}{15}\selectfont%
+}
+% \newcommand{\scratchWork}{%
+%    \color{PineGreen!85!Orange}
+%    \fontsize{12}{14}\selectfont%
+% }
+\newcommand{\hThree}{%
+   \color{Black}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\myComment}{%
+   \color{RawerSienna}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\pracOne}{
+   \color{BrickRed}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\pracTwo}{
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\why}{%
+   \color{Orange}%
+   \fontsize{12}{14}\selectfont%
+	Why:
+}
+\newcommand{\exOne}{%
+   \color{Purple}%
+   \fontsize{14}{16}\selectfont%
+}
+\newcommand{\exTwo}{%
+   \color{Purple}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exThree}{%
+   \color{Purple}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exP}{%
+   \color{Purple}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exTwoP}{%
+   \color{RedViolet}%
+   \fontsize{13}{15}\selectfont%
+}
+\newcommand{\exThreeP}{%
+   \color{RedViolet}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exFourP}{%
+   \color{RedViolet}%
+   \fontsize{11}{13}\selectfont%
+}
+\newcommand{\exPP}{%
+   \color{RedViolet}%
+   \fontsize{12}{14}\selectfont%
+}
+\newcommand{\exPPP}{%
+   \color{VioletRed}%
+   \fontsize{12}{14}\selectfont%
+}
+
+% Homework standard below (God the bloat in the header is absurd...)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\newcommand{\Hstatement}{%
+   \color{MidnightBlue!90!Black}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexOne}{%
+   \color{Purple}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexTwoP}{%
+   \color{RedViolet}%
+   \fontsize{12}{13}\selectfont%
+}
+\newcommand{\HexPPP}{%
+   \color{VioletRed}%
+   \fontsize{11}{12}\selectfont%
+}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\newcommand{\cyPen}[1]{{\vphantom{.}\color{Cerulean}#1}}
+\newcommand{\redPen}[1]{{\vphantom{.}\color{Red}#1}}
+
+\newenvironment{myIndent}{%
+   \begin{adjustwidth}{2.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myDindent}{%
+   \begin{adjustwidth}{5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myTindent}{%
+   \begin{adjustwidth}{7.5em}{0em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newenvironment{myConstrict}{%
+   \begin{adjustwidth}{2.5em}{2.5em}%
+}{%
+   \end{adjustwidth}%
+}
+
+\newcommand{\udefine}[1]{{%
+   \setulcolor{Red}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1}%
+}}
+
+\newcommand{\uprop}[1]{{%
+   \setulcolor{Purple}%
+   \setul{0.14em}{0.07em}%
+   \ul{#1} 
+}}
+
+\newcommand{\blab}[1]{\textbf{#1}}
+\newcommand{\blect}[1]{{\color{MidnightBlue}\textbf{#1}}}
+
+
+\newcommand{\uuline}[2][.]{%
+{\vphantom{a}\color{#1}%
+\rlap{\rule[-0.18em]{\widthof{#2}}{0.06em}}%
+\rlap{\rule[-0.32em]{\widthof{#2}}{0.06em}}}%
+#2}
+
+\newcommand{\pprime}{{\prime\prime}}
+\newcommand{\suchthat}{ \hspace{0.3em}s.t.\hspace{0.3em}}
+\newcommand{\rea}[1]{\mathrm{Re}(#1)}
+\newcommand{\ima}[1]{\mathrm{Im}(#1)}
+\newcommand{\comp}{\mathsf{C}}
+\newcommand{\trans}{\mathsf{T}}
+\newcommand{\myHS}{ \hspace{0.5em}}
+\newcommand{\gap}{\phantom{2}}
+
+\newcommand{\GenLin}{\ensuremath{\mathrm{GL}}}
+\newcommand{\Cay}{\ensuremath{\mathrm{Cay}}}
+
+\newcommand{\myId}{\mathrm{Id}}
+\newcommand{\myIm}{\mathrm{im}}
+\newcommand{\Obj}{\mathrm{Obj}}
+\newcommand{\Hom}{\mathrm{Hom}}
+\newcommand{\End}{\mathrm{End}}
+\newcommand{\Aut}{\mathrm{Aut}}
+
+\newcommand{\df}{\mathrm{d}}
+\newcommand{\Df}{\mathrm{D}}
+
+\newcommand{\mcateg}[1]{{\bm{\mathsf{#1}}}}
+
+\newcommand{\mdeg}{\mathrm{mdeg}\phantom{.}}
+
+\newcommand{\dividesDeprecated}{\mathop{\mid}}
+\newcommand{\divides}{\mathrel{\mid}}
+
+\newcommand{\card}{\mathrm{card}}
+\newcommand{\supp}{\mathrm{supp}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\conv}{\mathrm{conv}}
+\newcommand{\opnorm}{\mathrm{op}}
+\newcommand{\loc}{\mathrm{loc}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\acc}{\mathrm{acc}}
+\newcommand{\mSpan}{\mathrm{span}}
+\newcommand{\Interior}{\mathop{\mathrm{Int}}}
+
+\newcommand{\mMat}[1]{\mathbf{#1}}
+
+\newcommand{\NBV}{\ensuremath{\mathrm{NBV}}}
+\newcommand{\Acc}{\mathrm{Acc}}
+\newcommand{\BV}{\ensuremath{\mathrm{BV}}}
+\newcommand{\Var}{\ensuremath{\mathrm{Var}}}
+
+\newcommand{\Alt}{\mathrm{Alt}}
+\newcommand{\Sym}{\mathrm{Sym}}
+
+\newcommand{\weakst}{weak$^*$ }
+
+\newcommand{\radtimes}{\mathop{\widehat{\times}}}
+
+\newcommand{\mMod}[1]{\phantom{a}(\mathrel{\mathrm{mod}} #1)}
+\newcommand{\Fun}{\mathrm{Fun}}
+\newcommand{\act}{\mathrm{act}}
+\newcommand{\Fix}{\mathrm{Fix}}
+\newcommand{\Sub}{\mathrm{Sub}}
+\newcommand{\Cl}{\mathrm{Cl}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\core}{\mathrm{core}}
+\newcommand{\Syl}{\mathrm{Syl}}
+\newcommand{\Iso}{\mathrm{Iso}}
+\newcommand{\Homeo}{\mathrm{Homeo}}
+\newcommand{\Inn}{\mathrm{Inn}}
+\newcommand{\Out}{\mathrm{Out}}
+\newcommand{\ab}{\mathrm{ab}}
+\newcommand{\Max}{\mathrm{Max}}
+\newcommand{\lt}{\mathrm{lt}}
+\newcommand{\Nil}{\mathrm{Nil}}
+\newcommand{\Ideal}{\mathrm{Ideal}}
+\newcommand{\Spec}{\mathrm{Spec}}
+\newcommand{\Res}{\mathrm{Res}}
+\newcommand{\prim}{\mathrm{prim}}
+\newcommand{\exConv}{\mathrm{ex}}
+\newcommand{\mRank}{\mathrm{rank}}
+\newcommand{\DivGroup}{\mathrm{Div}}
+\newcommand{\divGroup}{\mathrm{div}}
+\newcommand{\PrinGroup}{\mathrm{Prin}}
+\newcommand{\Ann}{\mathrm{Ann}}
+\newcommand{\Tor}{\mathrm{Tor}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\Nat}{\mathrm{Nat}}
+\newcommand{\Embed}{\mathrm{Embed}}
+\newcommand{\Isom}{\mathrm{Isom}}
+\newcommand{\mChar}{\mathrm{char}}
+\newcommand{\Gal}{\mathrm{Gal}}
+\newcommand{\Int}{\mathrm{Int}}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Log}{Log}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\symdif}{\triangle}
+\DeclareMathOperator{\Average}{Average}
+\DeclareMathOperator*{\AverageAst}{Average}
+
+
+
+
+% Thank you Gonzalo Medina and Moriambar who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/74125/how-do-i-put-text-over-symbols%
+\newcommand{\myequiv}[1]{\stackrel{\mathclap{\mbox{\footnotesize{$#1$}}}}{\equiv}}
+
+% Thank you chs who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/89821/how-to-draw-a-solid-colored-circle%
+\newcommand{\filledcirc}[1][.]{\ensuremath{\hspace{0.05em}{\color{#1}\bullet}\mathllap{\circ}\hspace{0.05em}}}
+
+%Thank you blerbl who wrote this on stack exchange:
+%https://tex.stackexchange.com/questions/25348/latex-symbol-for-does-not-divide
+\newcommand{\ndiv}{\hspace{-0.3em}\not|\hspace{0.35em}}
+
+\newcommand{\mySepOne}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{1mm}}}\\%
+}
+\newcommand{\mySepTwo}[1][.]{%
+   {\noindent\color{#1}{\rule{6.5in}{0.5mm}}}\\%
+}
+\newcommand{\mySepThree}[1][.]{%
+   {\noindent\color{#1}{\rule{6in}{0.25mm}}}\\%
+}
+
+\newenvironment{myClosureOne}[2][.]{%
+   \color{#1}%
+   \begin{tabular}{|p{#2in}|} \hline \\%
+}{%
+   \\ \hline \end{tabular}%
+}
+
+\newcommand{\retTwo}{\hfill\bigbreak}
+
+\newcommand{\dispDate}[1]{{
+   \color{Black}%
+   \fontsize{20}{18}\selectfont%
+   #1\retTwo
+}}
+
+
+\title{Math Journal 2}
+\author{Isabelle Mills}
+
+\begin{document}
+   \maketitle{}
+   \setul{0.14em}{0.07em}
+   \calibri\hOne
+
+	\setcounter{page}{791}\dispDate{3/22/2026}
+
+	\hypertarget{placeholder}{I'm} finally starting a new pdf since the old one was getting so long. Unfortunately I won't be able to have hyperlinks directly to pages in the prior pdf. But oh well. If a hyperlink goes to this page, it means you should look at a previous journal.\retTwo
+
+	Journal 1 contains pages 1-790.\retTwo
+
+	\mySepTwo
+
+	The first thing I want to do now that it is Spring break is finally give a formal\\ justification to the assertion I wrote on \inLinkRap{placeholder}{page 759}.
+
+
+\end{document}
