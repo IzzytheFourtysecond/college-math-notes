@@ -385,19 +385,245 @@
 \author{Isabelle Mills}
 
 \begin{document}
-   \maketitle{}
-   \setul{0.14em}{0.07em}
-   \calibri\hOne
+\maketitle{}
+\setul{0.14em}{0.07em}
+\calibri\hTwo
 
-	\setcounter{page}{791}\dispDate{3/22/2026}
+\setcounter{page}{791}\dispDate{3/22/2026}
 
-	\hypertarget{placeholder}{I'm} finally starting a new pdf since the old one was getting so long. Unfortunately I won't be able to have hyperlinks directly to pages in the prior pdf. But oh well. If a hyperlink goes to this page, it means you should look at a previous journal.\retTwo
+\hypertarget{placeholder}{I'm} finally starting a new pdf since the old one was getting so long. Unfortunately I won't be able to have hyperlinks directly to pages in the prior pdf. But oh well. If a hyperlink goes to this page, it means you should look at a previous journal.\retTwo
 
-	Journal 1 contains pages 1-790.\retTwo
+Journal 1 contains pages 1-790.\retTwo
 
-	\mySepTwo
+\mySepTwo
 
-	The first thing I want to do now that it is Spring break is finally give a formal\\ justification to the assertion I wrote on \inLinkRap{placeholder}{page 759}.
+The first thing I want to do now that it is Spring break is finally give a formal justification to the assertion I wrote on \inLinkRap{placeholder}{page 759}.\retTwo
 
+Recall the construction from \inLinkRap{placeholder}{page 753}.
+\begin{itemize}
+	\item Given a compact set $K \subseteq \mathbb{C}$, and $\delta > 0$, we overlay a grid of squares with side-length $\delta$.
+	\item Next, we consider the closed squares $Q_1, \ldots, Q_m$ that intersect $K$.
+	\item Having oriented the boundary of each $Q_i$ to be traveling counter-clockwise, we finally let $\sigma_1, \ldots, \sigma_n$ be the edges of $\partial Q_1, \ldots \partial Q_m$ which are not shared by distinct squares.\retTwo
+\end{itemize}
+
+\exTwo\ul{Claim:} We can strategically concatenate the $\sigma_j$ in order to get a bunch of continuous closed polygonal paths $\pi_1, \ldots, \pi_\ell$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, note that an edge $\sigma_j$ will move up, left, down, or right if and only if the square the edge borders to the left, below, right, or above (respectively) intersects $K$. By using this observation plus the fact that no $\sigma_j$ are shared by two squares which both intersect $K$, we can thus eliminate many possible arrangements of lines. For example, here are all possible cases we can have of four adjacent squares and their shared edges:
+
+	{\centering\includegraphics[scale=0.55]{Math_220b_Image_9.png}\newpage\par}
+
+	Based on the prior image, we can assign each edge $\sigma_j$ a successor edge $s(\sigma_j)$ and a\\ predecessor edge $p(\sigma_j)$ such that $p(\sigma_j) + \sigma_j + s(\sigma_j)$ form a connected path. The only times we have any ambiguity on how we can choose $s(\sigma_j)$ and $p(\sigma_j)$ is in the two cases that we have squares diagonal to each other but not sharing any sides. Yet this isn't a big issue since for those two specific cases I can just declare the following convention.
+
+	{\centering\includegraphics[scale=0.30]{Math_220b_Image_10.png}\retTwo\par}
+
+	With that, we now have that every edge has a unique predecessor and successor edge. Also, we can easily see that $p(s(\sigma_j)) = \sigma_j = s(p(\sigma_j))$. In other words, $s$ and $p$ are inverse functions.\retTwo
+
+	Finally, consider the group action $\mathbb{Z} \curvearrowright \{\sigma_j : 1 \leq j \leq n\}$ given by $k \cdot \sigma_j = s^k(\sigma_j)$. Because there are only finitely many $\sigma_j$, we know every orbit of this group action has only finitely many elements. In particular, given any fixed $\sigma_j$ we claim there exists $N \in \mathbb{N}$ such that $s^{k_1}(\sigma_j) = s^{k_2}(\sigma_j)$ iff $k_2 - k_1 \equiv 0 \mMod{N}$.
+	\begin{myIndent}\exPPP
+		Why?\\
+		Since the orbit of $\sigma_j$ is finite, we know that there exists $0 < k_1^\prime < k_2^\prime$ such that $s^{k_1^\prime}(\sigma_j) = s^{k_2^\prime}(\sigma_j)$. Then by composing on $p^{k_1} = s^{-k_1}$, we get that $\sigma_j = s^{k_2^\prime - k_1^\prime}(\sigma_j)$ where $k_2^\prime - k_1^\prime > 0$. This proves that the set of $k \in \mathbb{N}_{> 0}$ such that $s^k(\sigma_j) = \sigma_j$ is nonempty. So, we can pick a minimal positive $N$ such that $s^N(\sigma_j) = \sigma_j$. It's a basic algebra proof to go from here\dots\retTwo
+	\end{myIndent}
+
+	But now the orbit of $\sigma_j$ consists of the collection $\{\sigma_j, s(\sigma_j), \ldots, s^{N-1}(\sigma_j)\}$. This orbit also does not intersect any distinct orbits. Also the concatenated path:
+	
+	{\center$\sigma_j + s(\sigma_j) + \ldots + s^{N-1}(\sigma_j)$\\ [4pt]\par}
+	
+	is connected, closed, and does not repeat any distinct edges.\retTwo
+
+	Thus, we define $\pi_1, \ldots, \pi_\ell$ by considering the paths above defined from the orbits of our group action. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo 
+
+The next rabbit hole I want to descend is about $\mathrm{weak}$-$L^p$. After all, this is the one topic from math 240 that even now I've not spent any time trying to learn now that the class is over and my life is somewhat solidified again.\newpage
+
+Let $(X, \mathcalli{M}, \mu)$ be a measure space. Then recall that given any measurable $f: X \to \mathbb{C}$, we define:
+\begin{itemize}
+	\item the \udefine{distribution function} $\lambda_f: (0, \infty) \to [0, \infty]$ of $f$ to be:
+	
+	{\centering$\lambda_f(\alpha) \coloneqq \mu(\{x \in X : |f(x)| > \alpha\})$;\retTwo\par}
+
+	\item the \udefine{$\mathrm{weak}$-$L^p$ quasinorm} of $f$ to be:
+	
+	{\centering $[f]_p \coloneqq \left(\sup\limits_{\alpha > 0} \alpha^p \lambda_f(\alpha)\right)^{1/p} = \sup\limits_{\alpha > 0} \alpha (\lambda_f(\alpha))^{1/p}$ (where $0 < p < \infty$).\retTwo\par}
+\end{itemize}
+
+Finally, $\mathrm{weak}$-$L^p$ (also denoted $L^{p,\infty}$) is the collection of all measurable functions $f$ on $X$ such that $[f]_p < \infty$.
+\begin{myIndent}\myComment
+	Note that by rearranging terms, we can equivalently see that:
+
+	{\centering $[f]_p = \min \{C \in [0, \infty] : \lambda_f(\alpha) \leq \frac{C^p}{\alpha^p} \text{ for all } \alpha > 0\}$ \retTwo\par}
+
+	\begin{myIndent}\pracTwo
+		Note that the latter set will in fact always have a minimum. The easiest\\ way to see this is by noting that the latter set's complement (given by\\ $\{C \geq 0 : \lambda_f(\alpha) > \frac{C^p}{\alpha^p} \text{ for some } \alpha > 0\}$) is an open set.
+		\retTwo
+	\end{myIndent}
+
+	Thus, a function is in $\mathrm{weak}$-$L^p$ precisely iff there is some constant $D > 0$ such that\\ $\mu(\{x : |f(x)| > \alpha\}) \leq \frac{D}{\alpha^p}$ for all $\alpha > 0$.\retTwo
+\end{myIndent}
+
+Unsurprisingly we have that $L^p \subseteq \mathrm{weak}$-$L^p$. After all, by Chebishev's inequality we know that $\lambda_f(\alpha) \leq \frac{\|f\|_p^p}{\alpha^p}$ for all $\alpha > 0$. Therefore, it follows that $[f]_p \leq \|f\|_p$. That said, the converse inclusion doesn't generally hold. 
+\begin{myIndent}\pracTwo
+	For example, consider the sequence $\{\frac{1}{n^{1/p}}\}_{n \in \mathbb{N}}$ as a function in $l^{p}(\mathbb{N})$. Its $l^p$ norm is given by the harmonic series $\sum_{n \in \mathbb{N}} \frac{1}{n}$ which diverges. That said it is in $\mathrm{weak}$-$l^p$. After all:
+	
+	{\centering$\lambda(\alpha) = \begin{cases} \lfloor \alpha^{-p} \rfloor & \text{ if }\alpha^{-p} \notin \mathbb{N} \\ \alpha^{-p} - 1 & \text{ if } \alpha^{-p} \in \mathbb{N} \end{cases}$\retTwo\par}
+
+	Importantly, this means that $\lambda(\alpha) < \alpha^{-p}$ for all $\alpha > 0$ and we can make their difference arbitrarily small. In turn, we can show that $\sup_{\alpha > 0} \alpha^{p}\lambda(\alpha) = 1$.\retTwo
+\end{myIndent}
+
+The big use case of $\mathrm{weak}$-$L^p$ is as follows. Recall that for any $0 < p < \infty$ and measurable function $f$ on $X$ we have that:
+
+{\centering $\int |f|^p \df \mu = p\int_0^\infty \alpha^{p-1}\lambda_f(\alpha) \df \alpha$ \retTwo\par}
+
+But now if $f \in \mathrm{weak}$-$L^p$, we can say that:
+
+{\centering $p\int_0^\infty \alpha^{p-1}\lambda_f(\alpha) \df \alpha \leq p[f]_p^p\int_0^\infty \frac{1}{\alpha} \df \alpha$ \retTwo\par}
+
+In some sense, the latter integral only just barely doesn't converge. So, given slightly more information bounding our function, we can say that $f$ is in $L^p$. To further explore this, here is an exercise from Folland's \textit{Real Analysis}.\newpage
+
+\Hstatement\blab{(Folland) Exercise 6.36:} If $f \in \mathrm{weak}$-$L^p$ and $\mu(\{x : f(x) \neq 0\}) < \infty$, then $f \in L^q$ for\\ all $q < p$.
+\begin{myIndent}\HexOne
+	Proof:\\
+	If $C \coloneqq \mu(\{x : f(x) \neq 0\}) < \infty$, then we know that $\lambda_f(\alpha) \leq C$ for all $\alpha > 0$. In turn,\\ for all $0 < q < p$ we have that:
+
+	{\centering\begin{tabular}{l}
+		$\int |f|^q \df \mu = q\int_0^\infty \alpha^{q-1}\lambda_f(\alpha)\df \alpha = q\int_0^1 \alpha^{q-1} \lambda_f(\alpha)\df \alpha + q \int_1^\infty \alpha^{q-1}\lambda_f(\alpha)\df \alpha$\\ [6pt]
+		$\phantom{\int |f|^q \df \mu = q\int_0^\infty \alpha^{q-1}\lambda_f(\alpha)\df \alpha} \leq qC\int_0^1 \alpha^{q-1} \df \alpha + q\int_1^\infty \frac{\alpha^{q-1}}{\alpha^p}[f]_p^p \df \alpha$\\ [6pt]
+		$\phantom{\int |f|^q \df \mu = q\int_0^\infty \alpha^{q-1}\lambda_f(\alpha)\df \alpha} = C + [f]_p^p \frac{q}{p-q}$.\\ [6pt]
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+On the other hand, if $f \in (\mathrm{weak}$-$L^p) \cap L^\infty$, then $f \in L^q$ for all $q > p$.
+\begin{myIndent}\HexOne
+	Proof:\\
+	If $C \coloneqq \|f\|_\infty < \infty$, then we know that $\lambda_f(\alpha) = 0$ for all $\alpha \geq C$. Hence, we can say for all $p < q < \infty$ that:
+
+	{\centering\begin{tabular}{l}
+		$\int |f|^q \df \mu = q\int_0^\infty \alpha^{q-1} \lambda_f(\alpha)\df \alpha = q\int_0^C \alpha^{q-1} \lambda_f(\alpha)\df \alpha$\\ [6pt]
+		$\phantom{\int |f|^q \df \mu = q\int_0^\infty \alpha^{q-1} \lambda_f(\alpha)\df \alpha} \leq q\int_0^C [f]_p^p\frac{\alpha^{q-1}}{\alpha^p}\df \alpha = \frac{q}{q - p}C^{q-p}$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\hTwo One other thing on this topic I'd like to note is that $[\cdot]_p$ is in fact a \udefine{quasinorm}. After all:
+\begin{itemize}
+	\item $[f]_p = 0$ if and only if $f = 0$ a.e.
+	\begin{myIndent}\pracTwo
+		This is because since $\alpha^p > 0$ for all $\alpha > 0$, we have that $\sup_{\alpha > 0}\alpha^p \lambda_f(\alpha) = 0$ if and only if $\lambda_f(\alpha) = 0$ for all $\alpha > 0$. Yet the latter will only happen if and only if $\mu(\{x : f(x) \neq 0\}) = 0$.\retTwo
+	\end{myIndent}
+
+	\item For any $c \in \mathbb{C}$ we have that $[cf]_p = |c|[f]_p$.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		If $c = 0$ then this is trivial from the last bullet point. Meanwhile, if $c \neq 0$ then:
+		
+		{\centering$\lambda_{cf}(\alpha) = \mu(\{x : |cf(x)| > \alpha\}) = \mu(\{x : |f(x)| > \frac{\alpha}{|c|}\}) = \lambda_f(\frac{\alpha}{|c|})$\retTwo\par}
+
+		Therefore:
+
+		{\centering $\sup\limits_{\alpha > 0}\alpha^p \lambda_{cf}(\alpha) = \sup\limits_{\alpha > 0} \alpha^p \lambda_{f}(\frac{\alpha}{|c|}) = |c|^p \sup\limits_{\alpha > 0}(\frac{\alpha}{|c|})^p \lambda_f(\frac{\alpha}{|c|}) = |c|^p \sup\limits_{\beta > 0} \beta^p \lambda_f(\beta)$ \retTwo\par}
+	\end{myIndent}
+
+	\item There exists $B \geq 1$ such that $[f + g]_p \leq B([f]_p + [g]_p)$ for all measurable functions $f$ and $g$.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		First note that:
+		
+		{\centering\begin{tabular}{l}
+			$\lambda_{f + g}(\alpha) = \mu(\{x : |f(x) + g(x)| > \alpha\}) \leq \mu(\{x : |f(x)| + |g(x)| > \alpha\})$\\ [6pt]
+			$\phantom{\lambda_{f + g}(\alpha) = \mu(\{x : |f(x) + g(x)| > \alpha\})} \leq \mu(\{x : |f(x)| > \frac{\alpha}{2}\} \cup \{x : |g(x)| > \frac{\alpha}{2}\})$\\ [6pt]
+			$\phantom{\lambda_{f + g}(\alpha) = \mu(\{x : |f(x) + g(x)| > \alpha\})} \leq \mu(\{x : |f(x)| > \frac{\alpha}{2}\}) + \mu(\{x : |g(x)| > \frac{\alpha}{2}\})$\\ [6pt]
+			$\phantom{\lambda_{f + g}(\alpha) = \mu(\{x : |f(x) + g(x)| > \alpha\})} = \lambda_f(\frac{\alpha}{2}) + \lambda_g(\frac{\alpha}{2})$
+		\end{tabular}\retTwo\par}
+
+		In turn $\sup\limits_{\alpha > 0} \alpha^p \lambda_{f + g}(\alpha) \leq \sup\limits_{\alpha > 0} \alpha^p (\lambda_f(\frac{\alpha}{2}) + \lambda_g(\frac{\alpha}{2})) \leq \sup\limits_{\alpha > 0}\alpha^p \lambda_f(\frac{\alpha}{2}) + \sup\limits_{\beta > 0}\beta^p \lambda_g(\frac{\beta}{2})$.\newpage
+
+		Next note that $\sup\limits_{\alpha > 0}\alpha^p \lambda_f(\frac{\alpha}{2}) = 2^p \sup\limits_{\alpha > 0} (\frac{\alpha}{2})^p \lambda_f(\frac{\alpha}{2}) = 2^p[f]_p^p$.\retTwo Similarly, we have that $\sup\limits_{\beta > 0}\beta^p \lambda_f(\frac{\beta}{2}) = 2^p [g]_p^p$. Thus, we can conclude:
+
+		{\centering $[f + g]_p^p \leq 2^p([f]^p_p + [g]_p^p)$ \retTwo\par}
+
+		In other words, $[f + g]_p \leq 2([f]_p^p + [g]_p^p)^{1/p}$. To finish off, if $p \geq 1$ then this proves that $[f + g]_p \leq 2([f]_p + [g]_p)$.
+		\begin{myIndent}\color{VioletRed}
+			You can justify to yourself that $(a^p + b^p)^{1/p} \leq a + b$ for all $a, b \geq 0$ when $p \geq 1$ by considering that the $p$-norm on $\mathbb{R}^2$ satisfies the triangle inequality.\retTwo
+		\end{myIndent}
+
+		Meanwhile, if $0 < p < 1$, then we need to find a constant $A > 1$ such that\\ $([f]_p^p + [g]_p^p)^{1/p} \leq A([f]_p + [g]_p)$.
+	\end{myIndent}
+\end{itemize}
+
+\pracOne\mySepTwo
+Tangent: While I'm finding this constant $A$, I shall also prove that $L^p$ is a quasinormed space when $0 < p < 1$.\retTwo
+
+\ul{Lemma 1:} If $a, b \geq 0$ and $0 < p < 1$, then $(a + b)^p \leq a^p + b^p$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	If $a = 0$ then this is obvious. Meanwhile, if $a \neq 0$ then we have that $(a + b)^p \leq a^p + b^p$ if and only if $(1 + \frac{b}{a})^p = (\frac{a + b}{a})^p \leq \frac{a^p + b^p}{a^p} = 1 + (\frac{b}{a})^p$. Therefore, it suffices to show that $(1 + t)^p \leq 1 + t^p$ for all $t \geq 0$.\retTwo
+
+	Set $h(t) = 1 + t^p - (1 + t)^p$. We want to show that $h(t) \geq 0$ for all $t \geq 0$. Fortunately, note that $h(0) = 0$. Also $h^\prime(t) = pt^{p-1} - p(1 + t)^{p-1}$. Since $p - 1 < 0$ and $0 < t < 1 + t$ implies that $(1 + t)^{p-1} < t^{p-1}$, we can conclude that $h^\prime(t) > 0$ for all $t > 0$. This proves that $h$ is strictly increasing for $t > 0$. Hence, we can conclude that $h(t) \geq 0$ for all $t \geq 0$. $\blacksquare$
+	\begin{myIndent}\color{VioletRed}
+		As a side note, mirror reasoning shows that $h(t)$ is strictly decreasing for $t > 0$\\ if $p > 1$. So, the opposite inequality will hold if $p > 1$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Lemma 2:} If $a, b \geq 0$ and $q \geq 1$, then $(a + b)^q \leq 2^{q - 1}(a^q + b^q)$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	In order to make it clear how someone might have discovered this lemma without seeing the constant $2^{q-1}$ on a google search, I shall specifically write down the process for finding some $A \geq 1$ such that $(a + b)^q \leq A(a^q + b^q)$. Then, it will just so happen to work out that the minimal $A$ that works is $2^{q-1}$.\retTwo
+	
+	Firstly, note for any $A \geq 1$ that if $a = 0$ then we always have that $(a + b)^q \leq A(a^q + b^q)$. So like before, it suffices to assume $a \neq 0$. Then because $(a + b)^q \leq A(a^q + b^q)$ if and only if $(1 + \frac{b}{a})^q \leq A(1 + (\frac{b}{a})^q)$, it suffices to show that $(1 + t)^q \leq A(1 + t^q)$ for all $t \geq 0$.\retTwo
+
+	Let $h(t) = \frac{A(1 + t^q)}{(1 + t)^q}$. We want to fix $A \geq 1$ such that $h(t) \geq 1$ for all $t \geq 0$. Fortunately, note that $h(0) = A \geq 1$. Also, we can calculate for $t \geq 0$ that:
+
+	{\centering $h^\prime(t) = \frac{Aqt^{q-1}(1 + t)^q - Aq(1 + t^q)(1 + t)^{q-1}}{(1 + t)^{2q}} = \frac{Aq(t^{q-1}(1 + t) - (1 + t^q))}{(1 + t)^{q + 1}} = \frac{Aq(t^{q-1} - 1)}{(1 + t)^{q+1}}$ \newpage\par}
+
+	It follows that $h$ achieves an absolute minimum on $[0, \infty)$ at $t = 1$. So, it suffices to pick $A$ with $h(1) = \frac{2A}{2^q} \geq 1$. The smallest $A$ satisfying this is $A = 2^{q - 1}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+As a result of these two lemmas, we can now say for any measurable functions\\ $f, g : X \to \mathbb{C}$ and $0 < p < 1$ that:
+
+{\centering $\|f + g\|_p \leq 2^{\frac{1}{p} - 1}(\|f\|_p + \|g\|_p)$. \retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	As $t \mapsto t^p$ is a strictly increasing function, we can conclude from the triangle inequality that $|f(x) + g(x)|^p \leq (|f(x)| + |g(x)|)^p$ for all $x \in X$. In turn, by applying lemma 1 we get that:
+
+	{\centering\begin{tabular}{l}
+		$\int |f(x) + g(x)|^p \df \mu \leq \int (|f(x)| + |g(x)|)^p \df \mu$\\ [6pt]
+		$\phantom{\int |f(x) + g(x)|^p \df \mu} \leq \int |f(x)|^p + |g(x)|^p \df \mu = \int |f|^p \df \mu + \int |g|^p \df \mu$
+	\end{tabular}\retTwo\par}
+
+	Next, as $\frac{1}{p} > 1$, we can conclude by lemma 2 plus the fact that $t \mapsto t^{1/p}$ is a strictly\\ increasing function that:
+
+	{\centering\begin{tabular}{l}
+		$(\int |f(x) + g(x)|^p \df \mu)^{1/p} \leq (\int |f|^p \df \mu + \int |g|^p \df \mu)^{1/p}$\\ [6pt]
+		$\phantom{(\int |f(x) + g(x)|^p \df \mu)^{1/p}} \leq 2^{\frac{1}{p} - 1} \left((\int |f|^p \df \mu)^{1/p} + (\int |g|^p \df \mu)^{1/p}\right)$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo\begin{itemize}
+	\item[\phantom{.}]
+	\begin{myIndent}\pracTwo
+		Going back to the problem of finding $A$ such that $([f]_p^p + [g]_p^p)^{1/p} \leq A([f]_p + [g]_p)$,\\ [-1pt] note that lemma 2 from the prior tangent tells us that $A = 2^{\frac{1}{p} - 1}$ works. In turn this\\ [2pt] means that $[f + g]_p \leq 2^{1/p}([f]_p + [g]_p)$ if $0 < p < 1$.
+
+		\begin{myIndent}\myComment
+			As a side note, in general the $\mathrm{weak}$-$L^p$ quasinorm will not be a true norm (i.e. it won't in general satisfy the triangle inequality). For an example of this, see my notes from math 240b.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{itemize}
+
+The significance of knowing that $[\cdot]_p$ is a quasinorm is that any vector space $\mathcalli{X}$ equipped with a quasinorm $[\cdot]$ is a topological vector space when considering the topology generated by balls of the form $\{y \in \mathcalli{X} : [y - x] < r\}$ (where $x \in \mathcalli{X}$ and $r > 0$).
+\begin{myIndent}\HexOne
+	
+\end{myIndent}
+
+
+\newpage
+
+\hThree\dispDate{Bibliography:}
+\begin{enumerate}
+	\item Folland, G. B. (1999). \textit{Real Analysis : Modern Techniques and Their Applications} (2nd ed.). John Wiley And Sons.
+\end{enumerate}
 
 \end{document}
