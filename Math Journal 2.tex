@@ -809,7 +809,7 @@ Recall from \inLinkRap{placeholder}{page 332} that if $G \subseteq \mathbb{C}$ i
 	For example, if $f \in O(G)$ then $u = \rea{f}$ and $v = \ima{f} = \rea{-i f}$ are both harmonic functions. In this case, we say $u$ and $v$ are \udefine{harmonic conjugates}.\retTwo
 \end{myIndent}
 
-\exTwo\ul{Lemma:} If $G$ is simply connected, then any harmonic $u: G \to \mathbb{R}$ admits a harmonic\\ conjugate.
+\exTwo\ul{Lemma:} If $G$ is simply connected, then any harmonic function $u: G \to \mathbb{R}$ admits a\\ harmonic conjugate.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	Let $F = u_x - iu_y$ be a function from $G$ to $\mathbb{C}$. Then note that $F \in C^1(G)$ and satisfies the Cauchy-Riemann equations. After all $(u_{x})_x = (-u_y)_y$ by the \udefine{Laplace equation} (i.e. the PDE defining harmonic functions). Meanwhile $(u_x)_y = -(-u_y)_x$ is true since $u \in C^2(G)$. It follows that $F$ is a holomorphic function. And since $G$ is simply connected, we in turn know that $F = f^\prime$ for some $f \in O(G)$.\retTwo
@@ -823,7 +823,7 @@ Recall from \inLinkRap{placeholder}{page 332} that if $G \subseteq \mathbb{C}$ i
 
 \Hstatement\mySepTwo 
 
-\blab{Set 1 Problem 1:} If $U, V$ are connected open sets in $\mathbb{C}$, $g: V \to U$ is holomorphic, and\\ $u: U \to \mathbb{R}$ is harmonic, then $u \circ g: V \to \mathbb{R}$ is harmonic in $V$.
+\blab{Set 1 Problem 1:} \hypertarget{Math 220c Set 1 Problem 1}{If} $U, V$ are connected open sets in $\mathbb{C}$, $g: V \to U$ is holomorphic, and\\ $u: U \to \mathbb{R}$ is harmonic, then $u \circ g: V \to \mathbb{R}$ is harmonic in $V$.
 \begin{myIndent}\HexOne
 	Proof:\\
 	Given any $z \in V$, by the continuity of $g$ we can find disks $\Delta_z \subseteq V$ and $\Delta_{g(z)} \subseteq U$ centered at $z$ and $g(z)$ respectively such that $g(\Delta_{z}) \subseteq \Delta_{g(z)}$. Then as $\Delta_{g(z)}$ is simply connected, we know $u$ has a harmonic conjugate on $\Delta_{g(z)}$. So, we can consider a holomorphic function $f: \Delta_{g(z)} \to \mathbb{C}$ satisfying that $\rea{f} = u$.\retTwo
@@ -831,7 +831,7 @@ Recall from \inLinkRap{placeholder}{page 332} that if $G \subseteq \mathbb{C}$ i
 	To finish off, by chain rule we know that $f \circ g$ is a holomorphic function on $\Delta_z$. Also, we have that $\rea{f \circ g} = u \circ g$. This proves that $u \circ g$ is a harmonic function on $\Delta_z$. Since $z$ was arbitrary, this proves that $(u \circ g)_{x,x} + (u \circ g)_{y,y} = 0$ everywhere on $U$. So, $u \circ g$ is harmonic in $V$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\blab{Set 1 Problem 3:} Let $G \subseteq \mathbb{C}$ be open and connected.\newpage
+\blab{Set 1 Problem 3:} \hypertarget{Math 220c Set 1 Problem 3}{Let} $G \subseteq \mathbb{C}$ be open and connected.\newpage
 \begin{enumerate}
 	\item[(i)] Show that if $h : G \to \mathbb{C}$ is holomorphic and nowhere zero in $G$, then $u(z) = \log |h(z)|$ is harmonic in $G$.
 	\begin{myIndent}\HexOne
@@ -866,7 +866,394 @@ Recall from \inLinkRap{placeholder}{page 332} that if $G \subseteq \mathbb{C}$ i
 
 \mySepTwo\newpage
 
-\hTwo
+\exTwo\ul{Corollary (Elliptic Regularity):} If $U \subseteq \mathbb{C}$ is open and $u: U \to \mathbb{R}$ is a harmonic function then $u$ is smooth.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Given any $x \in U$ we can consider a disk $\Delta_x \subseteq U$ centered at $x$. Then $u|_{\Delta_x} = \rea{f}$ for\\ [-2pt] some $f \in O(\Delta_x) \subseteq C^\infty(\Delta_x)$. Since $f$ is smooth, we thus know that $u = \rea{f} = \frac{f + \overline{f}}{2}$ is also smooth on $\Delta_x$ (and in particular at $x$). $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Given a continuous function $u: G \to \mathbb{R}$, we say $u$ has the \udefine{mean value property} if for all $a \in G$ and $r > 0$ such that $\overline{\Delta}(a, r) \subseteq G$ we have that $u(a) = \frac{1}{2\pi}\int_0^{2\pi} u(a + re^{it})\df t$.\retTwo
+
+\exTwo\ul{Theorem:} If $u: G \to \mathbb{R}$ is harmonic then $u$ satisfies the mean value property.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $\overline{\Delta}(a, r) \subseteq G$. Then there exists $R > r$ such that $\Delta(a, R) \subseteq G$. And since $\Delta(a, R)$ is simply connected, there exists a holomorphic function $f \in O(a, R)$ such that $u = \rea{f}$.\retTwo
+
+	By Cauchy's formula, we have that:
+	
+	{\centering$f(a) = \frac{1}{2\pi i}\int_{|z - a| = r}\frac{f(z)}{z - a}\df z = \frac{1}{2\pi i}\int_0^{2\pi} \frac{f(a + re^{it})}{re^{it}}ire^{it}\df t = \frac{1}{2\pi}\int_0^{2\pi} f(a + re^{it})\df t$.\retTwo\par}
+
+	Then by taking the real parts of both sides, we get that $u(a) = \frac{1}{2\pi}\int_0^{2\pi}u(a + re^{it})\df t$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} Let $G \subseteq \mathbb{C}$ be open and connected. If $u: G \to \mathbb{R}$ is continuous and satisfies the mean value property, then $u$ satisfies the \udefine{maximal principle}, meaning that if there exists $a \in G$ with $u(a) \geq u(z)$ for all $z \in G$ then $u$ is a constant function.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose such an $a$ exists and set $\Omega \coloneqq \{z \in G : u(z) = u(a)\}$. Note that $a \in \Omega$ implies that $\Omega \neq \emptyset$. Also, $\Omega$ is closed as it is the preimage of a closed set under the continuous function $u$. Thus, if we can also show that $\Omega$ is open then we will know that $\Omega = G$ since $G$ is connected.\retTwo
+
+	Let $z_0 \in \Omega$. Then there exists a closed disk $\overline{\Delta}(z_0, r) \subseteq G$. We want to show $\Delta(z_0, r) \subseteq \Omega$. So let $w \in \Delta(z_0, r)$ and pick $\rho = |w - z_0|$. Then as $\overline{\Delta}(z_0, \rho) \subseteq G$, we know by the mean value property that $u(a) = u(z_0) = \frac{1}{2\pi}\int_0^{2\pi} u(z_0 + \rho e^{it})\df t$. In turn, we also have that $\frac{1}{2\pi}\int_0^{2\pi} u(a) - u(z_0 + \rho e^{it})\df t = 0$. Yet as $f(t) \coloneqq u(a) - u(z_0 + \rho e^{it}) \geq 0$, this implies that $f(t) = 0$ a.e. Also because $f$ is continuous, this implies $f = 0$ everwhere. So, $u(a) = u(z_0 + \rho e^{it})$ for all $t$. In particular, this proves that $u(w) = u(a)$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		Remark: This also shows that if there exists $a \in G$ with $u(a) \leq u(z)$ for all $z \in G$, then $u$ is a constant function. After all, if $u$ satisfies the mean value property then so does $-u$. Then $u$ having a minimum implies $-u$ has a maximum, which in turn implies $-u$ is constant.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage
+
+Given an open connected set $G \subseteq \mathbb{C}$, we define its extended boundary:
+
+{\centering $\partial_\infty G \coloneqq \begin{cases} \partial G & \text{ if } G \text{ is bounded} \\ \{\infty\} \cup \partial G & \text{ if } G \text{ is not bounded.}\end{cases}$\retTwo\par}
+
+\exTwo\ul{Another Maximum Modulus Theorem:} Let $G \subseteq \mathbb{C}$ be a region and $f: G \to \mathbb{C}$ a\\ holomorphic function. Assume $\exists M > 0$ with $\limsup\limits_{z \to a} |f(z)| \leq M$ for all $a \in \partial_\infty G$.\\ [-8pt] Then $|f(z)| \leq M$ for all $z \in G$.
+\begin{myIndent}\exThreeP
+	\begin{myDindent}\myComment
+		Note, if $a \in \mathbb{C}$ then:
+		
+		{\centering$\limsup\limits_{z \to a} |f(z)| \coloneqq \lim\limits_{r \to 0^+}(\sup(\{|f(z)| : z \in G \text{ and } |z - a| < r\}))$
+		\retTwo\par}
+
+		Meanwhile, we define:
+		
+		{\centering$\limsup\limits_{z \to \infty} |f(z)| \coloneqq \lim\limits_{r \to \infty}(\sup(\{|f(z)| : z \in G \text{ and } |z| > r\}))$\retTwo\par}
+	\end{myDindent}
+
+	Proof:\\
+	Consider any $\varepsilon > 0$ and put $\Omega \coloneqq \{z \in G : |f(z)| > M + \varepsilon\}$. Our goal will be to prove that $\Omega = \emptyset$. After all, this will let us say that $|f(z)| \leq M + \varepsilon$ for all $z \in G$. And since $\varepsilon$ was arbitrary, we can take $\varepsilon \to 0$ to get that $|f(z)| \leq M$ for all $z \in G$.\retTwo
+
+	To start off, because $|f|$ is a continuous function we know that $\Omega$ is an open set. This is\\ important because it means it makes sense to talk about a function being holomorphic\\ on $\Omega$. Next, note that if $G$ is bounded then so is $\Omega$ automatically. Meanwhile, if $G$ is\\ unbounded then we still know from the fact that $\limsup_{z \to \infty}|f(z)| \leq M$ that $\Omega$ is\\ bounded. This all proves that $\overline{\Omega}$ is a compact subset of $\mathbb{C}$. Thirdly, we can show that\\ $\overline{\Omega} \subseteq G$. After all, as every $a \in \partial G$ has some disk $\Delta_a$ such that $\Delta_a \cap G \subseteq \Omega^\comp$, we know that no point on the boundary of $G$ is an accumulation point of $\Omega$. And since $\Omega \subseteq G$, this implies that $\overline{\Omega} \subseteq \overline{G} - \partial G = G$.\retTwo
+
+	Now if $\Omega$ were nonempty, then we'd be able to conclude by the maximum modulus\\ theorem that:\\ [-20pt]
+
+	{\centering$M + \varepsilon < \max\limits_{z \in \overline{\Omega}}|f(z)| = \max\limits_{z \in \partial \Omega} |f(z)|$\\ [6pt]\par}
+
+	Yet this is a contradiction. After all as $\Omega$ doesn't include its boundary (since $\Omega$ is open), we'd have to have that $|f(z)| \leq M + \varepsilon$ for all $z \in \partial \Omega$.\retTwo
+
+	Thus, we conclude like we wanted that $\Omega = \emptyset$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem (Max modulus Principle $+$):} If $G \subseteq \mathbb{C}$ is a region and $u : G \to \mathbb{R}$ is continuous and has the mean value property, then the following holds. If $\forall a \in \partial_{\infty}G$ we have that $\limsup\limits_{z \to a}u(z) \leq 0$, then either $u < 0$ on $G$ or $u \equiv 0$ on $G$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	It suffices to prove that $u \leq 0$ in $G$. After all, we can then conclude from the theorem on the bottom of the prior page that if there exists any $z \in G$ with $u(z) = 0$, then $u \equiv 0$ everywhere.\retTwo
+
+	Suppose for the sake of contradiction that there exists $\alpha \in G$ such that $\varepsilon \coloneqq u(\alpha) > 0$.\\ Then let $K \coloneqq \{z \in G : u(z) \geq \varepsilon\}$. We know $K \neq \emptyset$ as $\alpha \in K$. Also because $u$ is\\ continuous, we know that $K$ is closed. Thirdly, if $G$ is bounded then $K$ is automatically bounded as well. Meanwhile, if $G$ is unbounded then we get that $K$ is bounded from the\newpage fact that $\limsup_{z \to \infty} u(z) \leq 0$. Thus, we can conclude that $K$ is compact.\retTwo
+
+	It follows that $u$ achieves a maximum on $K$ and in turn on $G$. Yet by the priorly mentioned theorem on page 804, this means that $u$ is constant on $G$. So, $u \equiv \varepsilon > 0$ on $G$. This contradicts that $\limsup_{z \to a}u(z) \leq 0$ for all $a \in \partial_\infty G$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} If $G$ is a bounded open set, $u : \overline{G} \to \mathbb{R}$ is continuous and has the mean value property on $G$, and $u \equiv 0$ on $\partial G$, then $u \equiv 0$ in $G$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By the prior theorem applied to $u$ and $-u$ on each connected component of $G$, we have that:
+	\begin{itemize}
+		\item $u < 0$ or $u \equiv 0$ for each component,
+		\item $-u < 0$ or $-u \equiv 0$ for each component.\retTwo
+	\end{itemize}
+
+	The only way we don't have a contradiction is if $u \equiv 0$ everywhere on $G$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary 2:} If $u, v : \overline{G} \to \mathbb{R}$ are continuous functions that are harmonic in $G$ (where $G$ is a bounded open set), then $u|_{\partial G} \equiv v|_{\partial G} \Longrightarrow u \equiv v$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Apply the previous corollary to the function $u - v$. $\blacksquare$
+	\begin{myIndent}\exPPP
+		As a side note, it is easily checked that linear combinations of functions with the mean value property still have the mean value property. Thus, $u - v$ does have the mean value property.
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo 
+
+A major consequence of the corollary right above is that if $u : \overline{G} \to \mathbb{R}$ is continuous and also harmonic on $G$, then $u$ is uniquely determined by its restriction to $\partial G$. This raises two questions (of which only the first will be partially answered during week 1). Suppose $G \subseteq \mathbb{C}$ is a bounded region.
+\begin{itemize}
+	\item[1.] Given a continuous function $u: \overline{G} \to \mathbb{R}$ that is harmonic on $G$, can we find a formula for $u$ in terms of $u|_{\partial G}$?
+	\item[2.] (The \udefine{Dirichlet Problem}) Given a continuous function $f: \partial G \to \mathbb{R}$, can we find a continuous function $u: \overline{G} \to \mathbb{R}$ that is harmonic on $G$ and satisfying that $u|_{\partial G} = f$?\retTwo
+\end{itemize}
+
+For now, we will focus on the case that $G = \Delta \coloneqq \Delta(0, 1)$.
+\begin{myIndent}\pracOne
+	\ul{Remark:} If $u: \overline{\Delta} \to \mathbb{R}$ is continuous and also harmonic on $\Delta$, then:
+	
+	{\centering$u(0) = \frac{1}{2\pi}\int_0^{2\pi} u(e^{it})\df t$.\par}
+
+	\begin{myIndent}\pracTwo
+		Why?\\
+		Since $u$ has the mean value property in $\Delta$, we know that $u(0) = \frac{1}{2\pi}\int_0^{2\pi} u(re^{it})\df t$ for all $r \in (0, 1)$. Yet also note that as $u$ is uniformly continuous on $\overline{\Delta}$, we have that $u(re^{it}) \to u(e^{it})$ uniformly as $r \to 1$. Therefore, we can conclude that:
+
+		{\centering $u(0) = \lim\limits_{r \to 1^-}\frac{1}{2\pi}\int_0^{2\pi} u(re^{it})\df t = \frac{1}{2\pi}\int_{0}^{2\pi}\lim\limits_{r \to 1^-}u(re^{it})\df t = \frac{1}{2\pi}\int_0^{2\pi} u(e^{it})\df t$.\retTwo\par}
+	\end{myIndent}
+
+	As for any other $a = re^{i\theta} \in \Delta$, recall that $\varphi(z) \coloneqq \frac{z + a}{1 + \overline{a}z}$ is a biholomorphism of $\Delta$ which bijectively maps $\partial \Delta$ to $\partial \Delta$, sends $0$ to $a$, and whose inverse is given by\newpage $\psi(z) \coloneqq \frac{z - a}{1 - \overline{a}z}$.\retTwo
+
+	Let $\widetilde{u} \coloneqq u \circ \varphi$. Then $\widetilde{u}: \overline{\Delta} \to \mathbb{R}$ is continuous. Also by set 1 problem 1 (see \inLinkRap{Math 220c Set 1 Problem 1}{page 802}), we know that $\widetilde{u}$ is harmonic on $\Delta$. Therefore, by the prior remark we know that $u(a) = \widetilde{u}(0) = \frac{1}{2\pi}\int_0^{2\pi} \widetilde{u}(e^{it})\df t = \frac{1}{2\pi}\int_0^{2\pi} u(\varphi(e^{it}))\df t$.\retTwo
+
+	We can still do better with this formula however. After noting that $\psi(\partial \Delta) = \partial \Delta$, let's try to do a change of variables.
+	\begin{myIndent}\pracTwo
+		In particular, note that there is a smooth bijective function $f: [\alpha, \beta] \to [0, 2\pi]$ satisfying that $\beta - \alpha = \pm 2\pi$ and $e^{if(s)} = \psi(e^{is})$ for all $s$.\retTwo
+
+		For example, if increasing $s$ causes the argument of $\psi(e^{is})$ to increase then we\\ can pick real numbers $s_0 < s_{\frac{\pi}{2}} < s_{\pi} < s_{\frac{3\pi}{2}} < s_{2\pi} = s_0 + 2\pi$ satisfying that\\ [-2pt] $\psi(e^{is_{(*)}}) = e^{i(*)}$. Then after letting $\Log_{\alpha}$ denote the obvious branch of the\\ logarithm on the set $\{re^{i\xi} : r > 0 \text{ and } \xi \in (\alpha, \alpha + 2\pi)\}$, we define:
+
+		{\centering $f(s) = \begin{cases} -i \Log_{-\frac{\pi}{2}}(\psi(e^{is})) & \text{ if } s \in [s_0, s_\pi) \\ -i \Log_{0}(\psi(e^{is})) & \text{ if } s \in (s_{\frac{\pi}{2}}, s_{\frac{3\pi}{2}}) \\ -i \Log_{\frac{\pi}{2}}(\psi(e^{is})) & \text{ if } s \in (s_{\pi}, s_{0} + 2\pi]  \end{cases}$ \retTwo\par}
+
+		Every subcase of this definition gives a smooth increasing function, every point in $[s_0, s_0 + 2\pi]$ is contained in the interior of one of the domains of the subcases, and the subcases agree with each other on their shared domains due to how we chose the branches of the logarithm. Therefore, by the pasting lemma we can see that $f$ is a well-defined smooth injective function. By the intermediate value theorem it is also then easily seen that $f$ surjectively maps onto $[0, 2\pi]$.\retTwo
+
+		As for the case that increasing $s$ causes the argument of $\psi(e^{is})$ to decrease, then we can do similar reasoning to get a smooth decreasing function $f$.\retTwo
+	\end{myIndent}
+
+	Now letting $f$ be from the above note, we have that:
+	
+	{\centering$\frac{1}{2\pi}\int_{0}^{2\pi} u(\varphi(e^{it}))\df t = \frac{1}{2\pi}\int_{f^{-1}(0)}^{f^{-1}(2\pi)} u(\varphi(e^{if(s)}))f^\prime(s)\df s = \frac{1}{2\pi}\int_{f^{-1}(0)}^{f^{-1}(2\pi)} u(e^{is})f^\prime(s)\df s$\retTwo\par}
+
+	Also, we can see that $f^\prime(s) = \frac{-i\psi^\prime(e^{is})}{\psi(e^{is})} \cdot ie^{is} = \frac{\psi^\prime(z)}{\psi(z)}z$ (where $z = e^{is}$).\retTwo
+
+	To quickly take the logarithmic derivative of $\psi(z) = \frac{z - a}{1 - \overline{a}z}$, it suffices to sum the logarithmic derivatives of $z - a$ and $(1 - \overline{a}z)^{-1}$. Therefore, we get that:
+
+	{\centering $\frac{\psi^\prime(z)}{\psi(z)} = \frac{1}{z - a} + \frac{-(1 - \overline{a}z)^{-2} \cdot -\overline{a}}{(1 - \overline{a}z)^{-1}} = \frac{1}{z - a} + \frac{\overline{a}}{1 - \overline{a}z}$ \retTwo\par}
+
+	In turn, $f^\prime(s) = \frac{z}{z - a} + \frac{\overline{a} z}{1 - \overline{a}z} = \frac{z}{z - a} + \frac{\overline{a} z}{1 - \overline{a}z}\phantom{.}{\color{VioletRed} - \frac{1}{2} + \frac{1}{2}}$.\retTwo
+
+	Next note $\frac{z}{z - a} - \frac{1}{2} = \frac{z + a}{2(z - a)}$. Similarly $\frac{1}{2} + \frac{\overline{a}z}{1 - \overline{a}z} = \frac{1 + \overline{a}z}{2(1 - \overline{a}z)} = \frac{\overline{z}z + \overline{a}z}{2(\overline{z}z - \overline{a}z)} = \frac{\overline{z} + \overline{a}}{2(\overline{z} - \overline{a})}$. (For one of those steps recall that $z\overline{z} = |z| = 1$).\retTwo
+
+	Thus, we get that $f^\prime(s) = \rea{\frac{z + a}{z - a}} = \rea{\frac{1 + \frac{a}{z}}{1 - \frac{a}{z}}}$. And using the fact that $z = e^{is}$ and $a = re^{i\theta}$, we get that $f^\prime(s) = \rea{\frac{1 + re^{i(\theta - s)}}{1 - re^{i(\theta - s)}}}$.\newpage
+
+	To finish off, by rearranging things we get that $\rea{\frac{1 + re^{i(\theta - s)}}{1 - re^{i(\theta - s)}}} = \frac{1 - r^2}{|1 - re^{i(\theta - s)}|^2} > 0$ since $0 < r < 1$. This shows that $f$ is in fact increasing. Hence $f^{-1}(2\pi) > f^{-1}(0)$. So, there are $\beta, \alpha \in \mathbb{R}$ with $\beta - \alpha = +2\pi$ satisfying that:
+	
+	{\centering$u(a) = \frac{1}{2\pi}\int_\alpha^{\beta} u(e^{is}) \rea{\frac{1 + re^{i(\theta - s)}}{1 - re^{i(\theta - s)}}} \df s$ \retTwo\par}
+
+	As the integrand of this expression is $2\pi$-periodic, we can without loss of generality make $\alpha = 0$ and $\beta = 2\pi$.\retTwo
+	
+	Thus, our final simplified equation is that for any $a = re^{i\theta} \in \Delta$ we have that:
+
+	{\centering $u(a) = \frac{1}{2\pi}\int_0^{2\pi} u(e^{is}) \rea{\frac{1 + re^{i(\theta - s)}}{1 - re^{i(\theta - s)}}} \df s$. $\blacksquare$ \retTwo\par}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+We define the \udefine{Poisson kernel} as $P_r(\theta) = \sum_{n \in \mathbb{Z}}r^{|n|}e^{in\theta}$. Note that $P_r(\theta)$ converges\\ absolutely on $\mathbb{R}$ for all $r \in [0, 1)$.\retTwo
+
+\exTwo\ul{Lemma:} If $z = re^{i\theta}$, then:
+\begin{itemize}
+	\item[(a)] $P_r(\theta) = \rea{\frac{1 + z}{1 - z}}$
+	\item[(b)] $P_r(\theta) = \frac{1 - |z|^2}{|1 - z|^2}$
+	\item[(c)] $P_r(\theta) = \frac{1 - r^2}{1 - 2r\cos(\theta) + r^2}$  
+\end{itemize}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To show (a) note $\frac{1 + z}{1 - z} = 1 + \frac{2z}{1 - z} = 1 + 2z\sum_{k=0}^\infty z^k$. (Since $z = re^{i\theta}$ where $0 \leq r < 1$, we know $|z| < 1$ and thus the last equality holds.) It follows that:
+
+	{\centering $\frac{1 + z}{1 - z} = 1 + 2\sum\limits_{k=1}^\infty r^k e^{i k \theta}$ \retTwo\par}
+
+	Taking the real parts of both sides, we get that:
+
+	{\centering $\rea{\frac{1 + z}{1 - z}} = 1 + 2\sum\limits_{k=1}^\infty r^k \cos(k\theta) = 1 + \sum\limits_{k=1}^\infty r^k (e^{ik\theta} + e^{-ik\theta}) = \sum\limits_{k \in \mathbb{Z}}r^{|k|}e^{ik\theta} = P_r(\theta)$ \retTwo\par}
+
+	Next, to show (b) note that $\rea{\frac{1 + z}{1 - z}} = \rea{\frac{(1 + z)(1 - \overline{z})}{|1 - z|^2}} = \rea{\frac{(1 - |z|^2) + (z - \overline{z})}{|1 - z|^2}} = \frac{1 - |z|^2}{|1 - z|^2}$.\retTwo
+
+	Finally, to prove (c) just note that:
+	
+	{\centering$|1 - z|^2 = (1 - r\cos(\theta))^2 + (r\sin(\theta))^2 = 1 - 2r\cos(\theta) + r^2(\cos^2(\theta) + \sin^2(\theta))$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\hTwo We can write our prior result about harmonic functions on the unit disk using the Poisson kernel. Namely:\retTwo
+
+\exTwo\ul{Theorem:} Let $\Delta$ be the unit disk. Given a continuous function $u: \overline{\Delta} \to \mathbb{R}$ that is harmonic on $\Delta$, we have for all $a = re^{i\theta} \in \Delta$ that:
+
+{\centering $u(a) = \frac{1}{2\pi}\int_0^{2\pi} P_r(\theta - s) u(e^{is})\df s$. \newpage\par}
+
+\hTwo\dispDate{4/2/2026}
+
+\blect{Math 220c Homework:}\retTwo
+
+\Hstatement\blab{Set 1 Problem 2:} Let $u : G \to \mathbb{R}$ be a nonconstant harmonic function on a region $G \subseteq \mathbb{C}$. Show that $u$ is an open map.
+\begin{myIndent}\HexOne
+	\ul{Lemma:} \hypertarget{Page 809 lemma}{Let} $G \subseteq \mathbb{C}$ be an open region and $u: G \to \mathbb{R}$ be a harmonic function. If there is an open set $U \subseteq G$ such that $u|_U \equiv 0$, then $u \equiv 0$ on $G$.
+	\begin{myIndent}\HexTwoP
+		Proof:\\
+		Let $\Omega$ be the interior of the set $u^{-1}(\{0\})$ in $G$. Then $\Omega$ is automatically an open set. Also, $U \subseteq \Omega$ implies that $\Omega$ is nonempty. So, if, we can show that $\Omega$ is closed (relative to $G$), then we will know from the connectedness of $G$ that $\Omega = G$ and thus $u \equiv 0$ on $G$.\retTwo
+
+		Suppose $a \in G$ is a limit point of $\Omega$, and pick $r > 0$ such that $\Delta(a, r) \subseteq G$ Then there is a holomorphic function $f$ such that $u = \rea{f}$ on $\Delta(a, r)$. Also, we know that there exists $b \in \Delta(a, r) \cap \Omega$. Hence, we can we find some $\rho > 0$ such that $\Delta(b, \rho) \subseteq \Delta(a, r)$ and $u(z) = \rea{f(z)} = 0$ if $|z - b| < \rho$.\retTwo
+
+		However, as $f$ is purely imaginary on the open set $\Delta(b, \rho)$, we must have by the Cauchy-Riemann equations that $f^\prime = 0$ on that disk. Hence, $f|_{\Delta(b, \rho)} \equiv iC$ for some $C \in \mathbb{R}$. In turn, by the identity principle we know $f \equiv iC$ on $\Delta(a, r)$. And then this means that $u \equiv 0$ on $\Delta(a, r)$. This proves that $a \in \Omega$.\retTwo
+
+		Since $\Omega$ contains all its limit points in $G$, we thus know that $\Omega$ is closed in $G$.\retTwo
+	\end{myIndent}
+
+	\ul{Corollary:} Suppose $G \subseteq \mathbb{C}$ is an open region and $u: G \to \mathbb{R}$ is harmonic. If $u$ is constant an open set $U \subseteq G$ then $u$ is constant everywhere on $G$.
+	\begin{myIndent}\HexTwoP
+		Proof:\\
+		Applying the prior lemma to the harmonic function $u - C$ where $C \in \mathbb{R}$ is a constant.\retTwo
+	\end{myIndent}
+
+	Now we can finally do the problem proper.
+	\begin{myIndent}\HexTwoP
+		Given any open set $U \subseteq G$, consider any $a \in U$ and let $r > 0$ be such that $\Delta(a, r) \subseteq U$. Then $u = \rea{f}$ for some holomorphic function $f$ on $\Delta(a, r)$. By the prior corollary, we know $u$ is nonconstant on $\Delta(a, r)$. In turn, $f$ is nonconstant on $\Delta(a, r)$. Hence, by the open mapping theorem we know that $f(\Delta(a, r))$ is an open subset of $\mathbb{C}$.\retTwo
+
+		Finishing off, since $z \mapsto \rea{z}$ is an open map from $\mathbb{C} \to \mathbb{R}$, we can conclude that $u(\Delta(a, r)) = \rea{f(\Delta(a, r))}$ is an open subset of $\mathbb{R}$ containing $u(a)$. Also as $\Delta(a, r) \subseteq U$ we have that $u(\Delta(a, r)) \subseteq u(U)$. This proves that for any $a \in U$ there is an open neighborhood of $u(a)$ contained in $u(U)$. Hence, $u(U)$ is open. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\blab{Set 1 Problem 4:} Let $G \subseteq \mathbb{C}$ be a region.
+\begin{enumerate}
+	\item[(i)] Show that if $u: G \to \mathbb{R}$ is harmonic and $e^u + e^{2u}$ is also harmonic, then $u$ is constant.
+	\begin{myIndent}\HexOne
+		Since $u$ is harmonic we know that $u_{x,x} + u_{y,y} = 0$. Yet also since $e^u + e^{2u}$ is harmonic, we can calculate that:
+		
+		{\centering\begin{tabular}{l}
+			$0 =(u_{x,x} + u_{y,y})e^u + (u_x^2 + u_y^2)e^u + 2(u_{x,x} + u_{y,y})e^{2u} + 4(u_x^2 + u_y^2)e^{2u}$\\ [6pt]
+			$\phantom{0} = 0 + (u_x^2 + u_y^2)e^u + 0 + 4(u_x^2 + u_y^2)e^{2u}$
+		\end{tabular}\newpage\par}
+
+		Now as $e^u$, and $e^{2u}$ are strictly positive and $(u_x^2 + u_y^2)$ is nonnegative, we must have that $u_x^2 + u_y^2 = 0$ on $G$. In turn, this implies that $u_x = 0 = u_y$ on $G$. And now as $G$ is connected, this implies that $u$ is constant on $G$.\retTwo
+	\end{myIndent}
+
+	\item[(ii)] Show that if $h: G \to \mathbb{C}$ is holomorphic and $|h| + |h|^2$ is harmonic, then $h$ is constant.
+	\begin{myIndent}\HexOne
+		Note that without loss of generality we can assume there exists $a \in G$ such that $h(a) \neq 0$. After all, if no such $a$ existed then we'd already be done as $h$ is trivially the constant zero function. Next, by the continuity of $h$ as well as the openness of $G$, we can pick $r > 0$ such that $\Delta(a, r) \subseteq G$ and $h$ is nowhere zero on $\Delta(a, r)$.\retTwo
+
+		By set 1 problem 3(i) (see \inLinkRap{Math 220c Set 1 Problem 3}{page 803}), we then know that $u(z) \coloneqq \log|h(z)|$ is\\ harmonic on $\Delta(a, r)$. Yet by the assumption of the problem we also know that\\ $e^{u} + e^{2u} = |h| + |h|^2$ is harmonic on $\Delta(a, r)$. So by part (i) we can conclude that\\ $u(z)$ is constant on $\Delta(a, r)$. As $\log$ is injective, this in turn implies that there exists some $R > 0$ such that $|h(z)| = R$ for all $z \in \Delta(a, r)$.\retTwo
+
+		By the maximum modulus principle, this then implies that $h$ is constant on $G$.
+	\end{myIndent}
+\end{enumerate}
+
+\pracOne\mySepTwo
+I had a different very overcomplicated proof of the prior problem that I wrote out before replacing it with the current solution shown. That said, I thought I should keep one of the results I showed during that proof.\retTwo
+
+\ul{Lemma:} Suppose $G \subseteq \mathbb{C}$ is a connected open set and $F \subseteq G$ is a closed set with no limit points in $G$. Then $G - F$ is also connected and open.
+\begin{myIndent}\pracTwo
+	It's clear that $G - F$ is open. So, we just need to show that it is connected.\retTwo
+
+	Suppose for the sake of contradiction that there exists nonempty open\\ disjoint sets $U_1, U_2$ whose union is $G - F$. Then consider any $a \in F$. By\\ the openness of $G$ plus the fact each point in $F$ is isolated, we can find\\ some $r > 0$ such that $\Delta(a, r) \subseteq G$ and $\Omega \coloneqq \Delta(a, r) - \{a\} \subseteq G - F$.\\ Yet now as $\Omega$ is connected and $\Omega \cap U_1, \Omega \cap U_2$ are disjoint open subsets\\ of $\Omega$ covering $\Omega$, we must have that $\Omega \subseteq U_1$ or $\Omega \subseteq U_2$. It follows that\\ $a \in \overline{U}_j$ for exactly one $j$. Also for the $j$ such that $a \in \overline{U}_j$, we also have\\ that $U_j \cup \{a\}$ is an open subset of $G$ disjoint from $U_{j^\prime} \cup (F - \{a\})$ where\\ $j^\prime \in \{1, 2\} - \{j\}$.\retTwo
+
+	For both $j$ let $A_j \coloneqq \{a \in F : a \in \overline{U}_i\}$ and $V_j \coloneqq \bigcup_{a \in A_i}(U_i \cup \{a\})$. Then:
+	\begin{itemize}
+		\item Each $V_j$ is open as it is a union of sets which we proved are open in the prior paragraph.
+		\item Also as $A_1 \cup A_2 = F$, we know that $V_1 \cup V_2 = G$.
+		\item Thirdly, as $U_1 \cup \{a_1\}$ and $U_2 \cup \{a_2\}$ is disjoint for all $a_1 \in A_1$ and $a_2 \in A$, we have that $V_1 \cap V_2 = \emptyset$.
+		\item Fourthly, as $\emptyset \neq U_j \subseteq V_j$ for both $j$, we have that neither $V_1$ nor $V_2$ is empty.\retTwo
+	\end{itemize}
+
+	This contradicts that $G$ is connected. So, we can conclude no such $U_1, U_2$ exist and thus $G - F$ is also connected. $\blacksquare$\newpage
+	\begin{myDindent}\myComment
+		The other way I tried going about this proof before I tried this approach was that you can show that any path $\gamma$ in $G$ going between two points $a, b \in G - F$ can be rerouted so as to avoid $F$. I stopped with that approach though because the exact expressions in that rerouting were symbolically messy.
+	\end{myDindent}
+\end{myIndent}
+
+\mySepTwo
+
+\Hstatement\blab{Set 1 Problem 5:}
+\begin{enumerate}
+	\item[(i)] (Liouville's theorem) Show that if $u: \mathbb{R}^2 \to \mathbb{R}$ is harmonic and bounded either from below or from above, then $u$ is constant.
+	\begin{myIndent}\HexOne
+		To start off, it suffices to prove that $u$ is constant if $u$ is harmonic on $\mathbb{R}^2$ and $u \geq 0$. After all:
+		\begin{itemize}
+			\item $u$ is harmonic and bounded above if and only if $-u$ is harmonic and\\ bounded below. And similarly $u$ is constant if and only if $-u$ is constant.\\ So by replacing $u$ with $-u$ if necessary we can assume without loss of\\ generality that $u$ is bounded below.
+			\item Also $u$ is harmonic with $u \geq C$ iff $u - C$ is harmonic with $u - C \geq 0$.\\ Similarly, $u - C$ is constant if and only if $u$ is constant. So, by replacing $u$\\ with $u - C$ we can assume without loss of generality that $u$ is bounded below\\ by $0$.\retTwo
+		\end{itemize}
+
+		Now as $\mathbb{R}^2 \cong \mathbb{C}$ is simply connected, there exists an entire function $f \in O(\mathbb{C})$\\ such that $u(x, y) = \rea{f(x + iy)}$. In turn, if we consider the entire function\\ $g(z) \coloneqq e^{-f(z)}$, we have that $|g(x + iy)| = |e^{-f(x + iy)}| = e^{-u(x + iy)} \leq 1$ for\\ all $x, y \in \mathbb{R}$. By Liouville's theorem for holomorphic functions, we can thus\\ conclude that $g = e^{-f} \equiv C$ for some constant $C$.\retTwo
+
+		Since $\{z \in \mathbb{C} : e^z = C\}$ consists entirely of isolated points and $-f$ is\\ continuous, this in turn implies that $f$ must also be consant. So, $u = \rea{f}$\\ is also a constant function.\retTwo
+	\end{myIndent}
+	
+	\item[(ii)] Let $G \subseteq \mathbb{C}$ be a simply connected region. Then show that $G = \mathbb{C}$ if and only if every\\ positive harmonic function $h: G \to \mathbb{R}$ is constant.
+	\begin{myIndent}\HexOne
+		$(\Longrightarrow)$\\
+		This is just a special case of part (i).\retTwo
+
+		$(\Longleftarrow)$\\
+		Suppose $G \neq \mathbb{C}$. Then by composing the Cayley transform with a biholomorphism given by the Riemann mapping theorem, we can find a biholomorphism $\varphi: G \to \mathfrak{h}^+$ where $\mathfrak{h}^+$ is the upper half plane. In turn, $u \coloneqq \ima{\varphi}$ is a strictly positive nonconstant harmonic function on $G$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 1 Problem 6 (Hadamard's Three Circle Theorem):} Let $\Delta$ be the unit disk and $f \in O(\Delta)$. Also assume $f(z) \neq 0$ for $z \neq 0$, and for $0 \leq r < 1$ let $M(r) \coloneqq \max\limits_{|z| = r}|f(z)|$.
+\begin{enumerate}
+	\item[(i)] Show that the function $h_s(z) = s \log |z| + \log|f(z)|$ is harmonic in $\Delta - \{0\}$ for all $s \in \mathbb{R}$.\newpage
+	\begin{myIndent}\HexOne
+		Firstly, real linear combinations of harmonic functions are also harmonic functions. Also we already showed in problem 3(i) (see \inLinkRap{Math 220c Set 1 Problem 3}{page 803}) that $\log |f(z)|$ and $\log |z|$ are harmonic in $\Delta - \{0\}$ since $f(z)$ and $z$ are holomorphic functions that are nowhere zero on that set. Thus, we can conclude that $h_s$ is harmonic on $\Delta - \{0\}$.\retTwo
+	\end{myIndent}
+	
+	\item[(ii)] Show that there exists $s \in \mathbb{R}$ such that $\max\limits_{|z| = \frac{1}{2}} (h_s(z)) = \max\limits_{|z| = \frac{1}{8}}(h_s(z))$.
+	\begin{myIndent}\HexOne
+		Note that $\max_{|z| = \frac{1}{2}} (h_s(z)) = -\log(2)s + C$ where $C = \max_{|z| = \frac{1}{2}}(\log |f(z)|)$ is\\ constant with respect to $s$. Similarly, $\max_{|z| = \frac{1}{8}}(h_s(z)) = -3\log(2)s + C^\prime$ where\\ $C^\prime = \max_{|z| = \frac{1}{8}}(\log |f(z)|)$ is constant with respect to $s$.\retTwo
+
+		Next, since $\log$ is an increasing function, we can see that:
+		
+		{\centering$C = \max_{|z| = \frac{1}{2}}(\log |f(z)|) = \log(\max_{|z| = \frac{1}{2}} |f(z)|) = \log(M(\frac{1}{2}))$.\retTwo\par}
+
+		Similarly, we have that $C^\prime = \log(M(\frac{1}{8}))$.\retTwo
+
+		Finally, we now solve for $s$ such that:
+		
+		{\centering$-\log(2)s + \log(M(\frac{1}{2})) = -3\log(2)s + \log(M(\frac{1}{8}))$.\retTwo\par}
+
+		The unique $s$ that works is $s = \frac{\log(M(\frac{1}{8})) - \log(M(\frac{1}{2}))}{2\log(2)} = \frac{\log\left(\frac{M(\frac{1}{8})}{M(\frac{1}{2})}\right)}{2\log(2)}$.
+		\retTwo
+	\end{myIndent}
+	
+	\item[(iii)] Show that $M(\frac{1}{4})^2 \leq M(\frac{1}{2})M(\frac{1}{8})$.
+	\begin{myIndent}\HexOne
+		Consider the annulus $G \coloneqq \{z \in \Delta : \frac{1}{8} < z < \frac{1}{2}\}$. As $h_s$ is a continuous function\\ [-2pt] and $\overline{G}$ is a compact subset of $\Delta$, we know that $\max_{z \in \overline{G}} (h_s(z))$ exists. Yet also note that as $G$ is open and connected and $h_s$ is harmonic on $G$, we know that $h_s$ acheives a maximum on $G$ iff $h_s$ is constant on $G$. Yet if the latter happens, then $h_s$ is also constant on $\overline{G}$ by the continuity of $h_s$. So no matter if $h_s$ acheives a maximum on $G$ or not, we can conclude that:
+
+		{\centering $\max_{z \in \overline{G}} (h_s(z)) = \max_{z \in \partial G} (h_s(z))$ \retTwo\par}
+
+		In particular, if we let $s$ be the real number we found in part (ii), then we can say that:
+
+		{\centering\begin{tabular}{l}
+			$\max_{z \in \partial G} (h_s(z)) = \max_{|z| = \frac{1}{2}} (h_s(z)) = -\left(\frac{\log\left(\frac{M(\frac{1}{8})}{M(\frac{1}{2})}\right)}{2\log(2)}\right)\log(2) + \log(M(\frac{1}{2}))$\\ [18pt]
+			$\phantom{\max_{z \in \partial G} (h_s(z)) = \max_{|z| = \frac{1}{2}} (h_s(z))} = -\frac{1}{2}(\log(M(\frac{1}{8})) - \log(M(\frac{1}{2}))) + \log(M(\frac{1}{2}))$\\ [6pt]
+			$\phantom{\max_{z \in \partial G} (h_s(z)) = \max_{|z| = \frac{1}{2}} (h_s(z))} = \frac{3}{2}\log(M(\frac{1}{2})) - \frac{1}{2}\log(M(\frac{1}{8}))$\\ [6pt]
+		\end{tabular}\retTwo\par}
+
+		To finish off, note that:\\ [-26pt]
+		
+		{\centering\begin{tabular}{l}
+			$\max_{|z| = \frac{1}{4}}(h_s(z)) = -2\left(\frac{\log\left(\frac{M(\frac{1}{8})}{M(\frac{1}{2})}\right)}{2\log(2)}\right)\log(2) + \log(M(\frac{1}{4}))$\\ [18pt]
+			$\phantom{\max_{|z| = \frac{1}{4}}(h_s(z))} = \log(M(\frac{1}{2}))-\log(M(\frac{1}{8})) + \log(M(\frac{1}{4}))$.
+		\end{tabular}\newpage\par}
+		
+		Therefore, as $\max_{|z| = \frac{1}{4}}(h_s(z)) \leq \max_{z \in G}(h_s(z)) \leq \max_{z \in \overline{G}}(h_s(z)) = \max_{|z| = \frac{1}{2}}(h_s(z))$, we've proven that:
+
+		{\centering $\log(M(\frac{1}{4})) \leq \frac{1}{2}\log(M(\frac{1}{2})) + \frac{1}{2}\log(M(\frac{1}{8})) = \log\left(\sqrt{M(\frac{1}{2})M(\frac{1}{8})}\right)$ \retTwo\par}
+
+		This proves that $M(\frac{1}{4})^2 \leq M(\frac{1}{2})M(\frac{1}{8})$.\retTwo
+	\end{myIndent}
+
+	\item[(iv)] Show that equality in (iii) holds if and only if $f(z) = az^n$ for some $a \in \mathbb{C}$ and integer $n \geq 0$.
+	\begin{myIndent}\HexOne
+		$(\Longrightarrow)$\\
+		Let $G$ be the annulus from part (iii) and let $s$ be the real number from part (ii). If equality holds then we know $h_s$ acheives a maximum on $G$ and is therefore a constant function on $G$. By the lemma I wrote in my answer to problem 2 (see \inLinkRap{Page 809 lemma}{page 809}), this also in turn lets us conclude that $h_s(z) = s\log|z| + \log|f(z)|$ is constant on $\Delta - \{0\}$. After some rearranging, we can thus conclude that there exist $C > 0$ such that $|f(z)| = C|z|^{-s}$ when $z \in \Delta - \{0\}$.\retTwo
+		
+		Next, as $f$ is holomorphic on $\Delta$, there exists $\{c_k\}_{k \in \mathbb{N}} \subseteq \mathbb{C}$ such that $f(z) = \sum_{k=0}^\infty c_k z^k$ (where the latter infinite sum converges absolutely when $|z| < 1$). Also let $n$ be the least integer for which $c_k \neq 0$.
+		\begin{itemize}
+			\item By observing that $c_n = \lim_{z \to 0} |z^{-n}f(z)| = \lim_{z \to 0}C|z|^{-s - n}$, we can see that $-s - n \geq 0$. Or in other words, $-n \geq s$.
+			\item Also by observing for any $r > n$ that $\infty = \lim_{z \to 0} |z^{-r}f(z)| = \lim_{z \to 0}C|z|^{-s - r}$, we can see that $-s - r < 0$ for all $r > n$. In particular, for all $\varepsilon > 0$ this shows that $-n - \varepsilon < s$. And by taking $\varepsilon \to 0$ this proves that $-n \leq s$.\retTwo
+		\end{itemize}
+
+		This proves that $|f(z)| = C|z|^n = |Cz^n|$ for some integer $n \geq 0$ and $C > 0$.\retTwo
+
+		To finish off, set $g(z) = \frac{f(z)}{z^n}$ when $z \in \Delta - \{0\}$. Then as $|g(z)| = C$ for all $z \in \Delta - \{0\}$, we know by the maximum modulus principle that $g(z) = a$ for some $a \in \mathbb{C}$. In turn, this proves that $f(z) = az^n$ on $\Delta - \{0\}$. By taking the limit as $z \to 0$, we can also then see that $f(z) = az^n$ holds when $z = 0$.
+		\retTwo
+
+		$(\Longleftarrow)$\\
+		Note that if $f(z) = az^n$ where $a \in \mathbb{C}$ and $n \geq 0$ is an integer, then we can calculate that $M(r) = \max_{|z| = r} |az^n| = |a|r^n$. In particular, this tells us that:
+		
+		{\centering $M(\frac{1}{4})^2 = |a|^2 (\frac{1}{4})^{2n} = |a|^2(\frac{1}{16})^n = |a|^2 (\frac{1}{2})^n (\frac{1}{8})^n = M(\frac{1}{2})M(\frac{1}{8})$\retTwo\par}
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo\mySepTwo
+
+\dispDate{4/3/2026}
+
+I'm choosing to audit math 240c this quarter just cause I'm not particularly happy with the amount of Fourier analysis I digested last Spring. And while I'm not planning on fully redoing all my notes for that class, I will be solving some things out which I feel motivated to do so. Also the professor this time for math 240c is the same person as my math 241a professor.\newpage
+
+
+
+
+
+
 
 
 

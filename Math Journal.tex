@@ -7857,7 +7857,7 @@ And since $|\nu_1 \times \nu_2| = |\nu_1| \times |\nu_2|$ is finite, it's clear 
 
 {\centering $\int_E f * \mu(x) \df x = \iint \chi_E(x) f(x - y)\df \mu(y)\df x = \iint \chi_E(x + y) (f(x)\df x)\df \mu(y)$. \retTwo\par}
 
-Thus, consider equipping $M(\mathbb{R}^n)$ with the convolution operator in addition to its other vector space operations. Then it's easy to see that $\mu * (\nu + \lambda) = (\mu * \nu) + (\mu * \lambda)$ for all $\mu, \nu, \lambda \in M(\mathbb{R}^n)$. Also, consider the point mass measure $\mu$ defined by $\iota(E) = 1$ if $0 \in E$ and $\iota(E) = 0$ otherwise. Clearly $\iota \in M(X)$ since $\iota$ is a measure on $\mathbb{R}^n$ that is finite on all compact sets. Also, if $\mu$ is any other measure in $M(\mathbb{R}^n)$ then we have that $\iota * \mu = \mu$. After all:
+Thus, consider equipping $M(\mathbb{R}^n)$ with the convolution operator in addition to its other vector space operations. Then it's easy to see that $\mu * (\nu + \lambda) = (\mu * \nu) + (\mu * \lambda)$ for all $\mu, \nu, \lambda \in M(\mathbb{R}^n)$. Also, consider the point mass measure $\iota$ defined by $\iota(E) = 1$ if $0 \in E$ and $\iota(E) = 0$ otherwise. Clearly $\iota \in M(X)$ since $\iota$ is a measure on $\mathbb{R}^n$ that is finite on all compact sets. Also, if $\mu$ is any other measure in $M(\mathbb{R}^n)$ then we have that $\iota * \mu = \mu$. After all:
 
 {\centering$\iota * \mu(E) = \iint \chi_E(x + y)\df \iota(x) \df \mu(y) = \int \chi_E(y)\df \mu(y) = \mu(E)$\retTwo\par}
 
@@ -18401,9 +18401,7 @@ And dividing both sides by $f(z)$ we get that:
 \exTwo\ul{Open Mapping Theorem:} \hypertarget{Open Mapping theorem page 429}{Let} $G$ be a region and suppose that $f: G \to \mathbb{C}$ is a non-constant analytic function on $G$. Then for any open set $U \subseteq G$ we have that $f(U)$ is open in $\mathbb{C}$.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	By the last theorem, for all $z \in G$ we can find $\varepsilon, \delta > 0$ such that:
-	
-	{\centering$B_\varepsilon(f(z)) \subseteq f(B_\delta(z)) \subseteq f(G)$.\retTwo\par}
+	By the last theorem applied to a connected component of $U$, for all $z \in U$ we can find $\varepsilon, \delta > 0$ such that $B_\varepsilon(f(z)) \subseteq f(B_\delta(z)) \subseteq f(U)$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo One more comment before I start with the 220 homework. Conway finally proves that being complex differentiable a single time on an open set makes a function holomoprhic on that open set. The proof he uses doesn't have any new ideas from my notes from last Spring though.\retTwo
@@ -18434,7 +18432,7 @@ And dividing both sides by $f(z)$ we get that:
 	\begin{tabular}{p{3.5in} p{2.5in}}
 	But now note that $\gamma(\theta) = 2|\cos(2\theta)| e^{i\theta}$\newline traces out the same curve as the polar graph\newline $r(\theta) = 2|\cos(2\theta)|$. Specifically, that curve has\newline 4 equally spaced petals flower drawn counter-\newline clockwise about the origin as shown to the right.\newline
 
-	From here it is clear that $n(\gamma;i) = 1$ and $n(\gamma;-i) = 1$. So:
+	From here it is clear that $n(\gamma;i) = 1$ and\newline $n(\gamma;-i) = 1$. So:
 	
 	{\centering$\pi n(\gamma ; i) - \pi n(\gamma; -i) = \pi - \pi = 0$.\par}
 	&
@@ -19994,13 +19992,13 @@ Recall that if $\mathfrak{a}$ is an ideal of a ring $A$, then there is a bijecti
 	But now we know that $Z(g)$ can have no limit points in the open set $G - Z(f)$. {\HexPPP(Note: we know $Z(f)$ is closed in $G$ because we can view $f$ as a continuous well-defined function from $G$ to $\mathbb{C}_\infty$)} Equivalently, this means that $P(f)$ can have no limits point in $G - Z(f)$. Finally, since $f$ is continuous at all points in $Z(f)$, we can find a pole-free neighborhood of $z_0$ for each $z_0 \in Z(f)$ (namely by just taking a neighborhood of $z_0$ where $f$ is bounded). So $P(f)$ has no limit points in $Z(f)$ either. $\blacksquare$\retTwo
 \end{myIndent}
 
-\blab{Exercise V.1.7:} Let $f$ be an analytic function with an isolated singularity at $z = a$ and suppose $f$ is not the constant zero function around $a$. Show that if either of the two following equations hold:
+\blab{Exercise V.1.7:} Let $f$ be an analytic function with an isolated singularity at $z = a$ and suppose $f$ is not the constant zero function around $a$. Show that if $\exists s \in \mathbb{R}$ such that either holds:
 \begin{itemize}
 	\item[{\color{red} $(\ast)$}] $\lim_{z \to a}|z - a|^s \cdot |f(z)| = 0$,
 	\item[{\color{red} $(\ast\ast)$}] $\lim_{z \to a}|z - a|^s \cdot |f(z)| = \infty$,
 \end{itemize}
 
-then there is an integer $m$ such that {\color{red} $(\ast)$} holds if $s > m$ and {\color{red} $(\ast\ast)$} holds if $s < m$.\\ [-6pt]
+then there is an integer $m$ such that {\color{red} $(\ast)$} holds $\forall s > m$ and {\color{red} $(\ast\ast)$} holds $\forall s < m$.\\ [-6pt]
 \begin{myIndent}\HexOne
 	Note that if $\lim_{z \to a}|z - a|^s \cdot |f(z)| = 0$ then we also know that $\lim_{z \to a}|z - a|^r \cdot |f(z)| = 0$ for any $r > s$. After all, $|z - a|^r \cdot |f(z)| = |z - a|^{r-s} \cdot (|z - a|^s \cdot |f(z)|)$ and $|z - a|^{b} \to 0$ as $z \to a$ so long as $b > 0$. Consequently, if {\color{red} $(\ast)$} holds for some $s$ then we can find a positive integer $n$ such that $|z - a|^n \cdot |f(z)| = |(z-a)^nf(z)| \to 0$ as $z \to a$. Next, note that $g(z) = (z - a)^nf(z)$ when $z \neq a$ and $g(z) = 0$ is analytic on some ball around $a$. Hence, we can find coefficients $\{b_k\}_{k \in \mathbb{Z}}$ such that:
 
