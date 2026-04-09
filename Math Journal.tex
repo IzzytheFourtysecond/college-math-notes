@@ -7201,7 +7201,7 @@ Before covering the next theorem in Folland, I'm gonna do another side quest con
 
 \hOne Today I want to clean up my knowledge about product measures by doing some exercises from Folland that I never got around to while I was taking math 240.\newpage
 
-\Hstatement\blab{Exercise 2.11:} If $f : \mathbb{R} \times \mathbb{R}^k \to \mathbb{C}$ satisfies that $f(x, \cdot)$ is measurable on $\mathbb{R}^k$ for all $x \in \mathbb{R}$ and that $f(\cdot, y)$ is continuous on $\mathbb{R}$ for all $y \in \mathbb{R}^k$, then $f$ is Borel measurable on $\mathbb{R} \times \mathbb{R}^k$.
+\Hstatement\blab{Exercise 2.11:} If $f : \mathbb{R} \times \mathbb{R}^k \to \mathbb{C}$ satisfies that $f(x, \cdot)$ is Borel measurable on $\mathbb{R}^k$ for all $x \in \mathbb{R}$\\ and that $f(\cdot, y)$ is continuous on $\mathbb{R}$ for all $y \in \mathbb{R}^k$, then $f$ is Borel measurable on $\mathbb{R} \times \mathbb{R}^k$.
 
 \begin{myIndent}\HexOne
 	Proof:\\
@@ -7467,7 +7467,7 @@ One more thing I want to do before finally moving onto new content is finally pr
 		Proof:\\ 
 		Let $A = \{(x, y) \in X \times Y : f(x, y) \neq 0\}$. Then since $(X \times Y, \mathcal{L}, \lambda)$ is the completion of $(X \times Y, \mathcal{M} \otimes \mathcal{N}, \mu \times \nu)$, we know there exists a set $E \in \mathcal{M} \otimes \mathcal{N}$ such that $\mu \times \nu(E) = 0$ and $A \subseteq E$.\retTwo
 
-		By our last lemma, $\nu(E_x) = 0$ for a.e. $x$ and $\mu(E^y) = 0$ for a.e. $y$. Also, $f_x = \chi_{E_x}$\\ [-1pt] on $(E_x)^\comp$ and $f^y = \chi_{E^y}$ on $(E^y)^\comp$. Hence for a.e. $y$ and a.e. $x$ respectively, we\\ have that $f_x = \chi_{E_x}$ $\nu$-a.e. and $f^y = \chi_{E^y}$ $\mu$-a.e. Because $\mu$ and $\nu$ are complete,\\ we can in turn conclude by exercise 2.10 in my latex math 240a notes that $f_x$ is\\ $\nu$-measurable and $f^y$ is $\mu$-measurable for a.e. $x$ and a.e. $y$ respectively.\retTwo
+		By our last lemma, $\nu(E_x) = 0$ for a.e. $x$ and $\mu(E^y) = 0$ for a.e. $y$. Also, $f_x = \chi_{E_x}$\\ [-1pt] on $(E_x)^\comp$ and $f^y = \chi_{E^y}$ on $(E^y)^\comp$. Hence for a.e. $x$ and a.e. $y$ respectively, we\\ have that $f_x = \chi_{E_x}$ $\nu$-a.e. and $f^y = \chi_{E^y}$ $\mu$-a.e. Because $\mu$ and $\nu$ are complete,\\ we can in turn conclude by exercise 2.10 in my latex math 240a notes that $f_x$ is\\ $\nu$-measurable and $f^y$ is $\mu$-measurable for a.e. $x$ and a.e. $y$ respectively.\retTwo
 		
 		Also, since $|f_x| = \chi_{E_x}$ on $(E_x)^\comp$ and $|f^y| = \chi_{E^y}$ on $(E^y)^\comp$, and both $|f_x|$ and $|f^y|$\\ are measurable, we know for a.e. $x$ that $\int |f_x| \df \nu(y) = \int \chi_{E_x} \df \nu(y) = \nu(E_x) = 0$.\\ And similarly for a.e. $y$ we know that $\int |f^y| \df \mu(x) = \int \chi_{E^y} \df \mu(x) = \mu(E^y) = 0$.\\ Hence, we know that $f_x$ and $f^y$ are integrable for a.e. $x$ and a.e. $y$, and that\\ $\int f_x \df \nu(y) = 0$ and $\int f^y \df \mu(x) = 0$ for a.e. $x$ and a.e. $y$.\retTwo
 	\end{myIndent}
@@ -7486,9 +7486,9 @@ One more thing I want to do before finally moving onto new content is finally pr
 		$\phantom{\iint f_x \df \nu \df \mu = \iint (f - g)_x + g_x \df \nu \df \mu} = \int 0 + (\int g_x \df \nu) \df \mu$\\ [6pt]
 		$\phantom{\iint f_x \df \nu \df \mu = \iint (f - g)_x + g_x \df \nu \df \mu} = \iint g_x \df \nu \df \mu = \int g \df (\mu \times \nu)$\retTwo
 
-		\item $\iint f_y \df \mu \df \nu = \iint (f - g)^y + g^y \df \mu \df \nu = \int (\int (f - g)^y \df \mu) + (\int g^y \df \mu) \df \nu$\\ [6pt]
-		$\phantom{\iint f_y \df \mu \df \nu = \iint (f - g)^y + g^y \df \mu \df \nu} = \int 0 + (\int g^y \df \mu) \df \nu$\\ [6pt]
-		$\phantom{\iint f_y \df \mu \df \nu = \iint (f - g)^y + g^y \df \mu \df \nu} = \iint g^y \df \mu \df \nu = \int g \df (\mu \times \nu)$\retTwo
+		\item $\iint f^y \df \mu \df \nu = \iint (f - g)^y + g^y \df \mu \df \nu = \int (\int (f - g)^y \df \mu) + (\int g^y \df \mu) \df \nu$\\ [6pt]
+		$\phantom{\iint f^y \df \mu \df \nu = \iint (f - g)^y + g^y \df \mu \df \nu} = \int 0 + (\int g^y \df \mu) \df \nu$\\ [6pt]
+		$\phantom{\iint f^y \df \mu \df \nu = \iint (f - g)^y + g^y \df \mu \df \nu} = \iint g^y \df \mu \df \nu = \int g \df (\mu \times \nu)$\retTwo
 	\end{itemize}
 	
 	This proves the theorem for when $f \geq 0$.\newpage
@@ -7574,7 +7574,7 @@ Let $X$ and $Y$ be LCH spaces and let $\pi_X$ and $\pi_Y$ denote the projections
 	
 	\begin{myIndent}\exThreeP
 		Proof:\\
-		Since we showed in part (b) that $\mu \times \nu$ is a Borel measure on $X \times Y$ and that $X \times Y$ is second countable, we know by Folland theorem 7.8 (see my math 240c notes) that it suffices to show that $\mu \times \nu$ is finite on any compact subset $K$ of $X \times Y$ in order to show that $\mu \times \nu$ is regular and thus Radon. But fortunately since $\pi_X$ and $\pi_Y$ are continuous, we know that $\pi_X(K)$ and $\pi_Y(K)$ are compact subsets in $X$ and $Y$ respectively. And since both $\mu$ and $\nu$ are Radon, we know that $\mu(\pi_X(K)) < \infty$ and $\nu(\pi_Y(K)) < \infty$. Also, $K \subseteq \pi_1(K) \times \pi_2(K)$. So:
+		Since we showed in part (b) that $\mu \times \nu$ is a Borel measure on $X \times Y$ and that $X \times Y$ is second countable, we know by Folland theorem 7.8 (see my math 240c notes) that if $\mu \times \nu$ is finite on all compact subsets $K$ of $X \times Y$ then  $\mu \times \nu$ is regular and thus Radon. But fortunately since $\pi_X$ and $\pi_Y$ are continuous, we know that $\pi_X(K)$ and $\pi_Y(K)$ are compact subsets in $X$ and $Y$ respectively. And since both $\mu$ and $\nu$ are Radon, we know that $\mu(\pi_X(K)) < \infty$ and $\nu(\pi_Y(K)) < \infty$. Also, $K \subseteq \pi_1(K) \times \pi_2(K)$. So:
 		
 		{\centering$(\mu \times \nu)(K) \leq (\mu \times \nu)(\pi_1(K) \times \pi_2(K)) = \mu(\pi_1(K))\nu(\pi_2(K)) < \infty$. $\blacksquare$\newpage\par}
 	\end{myIndent}
@@ -10837,12 +10837,12 @@ This leads to the equation:
 	\item[(a)] Prove that if there is an element of order $d$ in $G$, then there are exactly $\phi(d)$ elements of\\ order $d$ in $G$ where $\phi(d)$ is the Euler $\phi$-function {\color{BrickRed}(where as a reminder $\phi(d)$ equals the\\ number of integers between $1$ and $d$ inclusive which are coprime to $d$)}.
 	
 	\begin{myIndent}\HexOne
-		Suppose $g \in G$ with $o(g) = d$ and then consider the cyclic subgroup $\langle g \rangle \subseteq G$. We\\ [1pt] know that $o(g^k) = \frac{o(g)}{\gcd(o(g), k)} = \frac{d}{\gcd(d, k)} = d$ iff $\gcd(k, d) = 1$. So by considering $g^k$\\ for each $k \in \{1, \ldots, d\}$ with $\gcd(d, k) = d$ we get that there are at least $\phi(d)$\\ [3pt] distinct elements of $G$ with order $d$.\newpage
+		Suppose $g \in G$ with $o(g) = d$ and then consider the cyclic subgroup $\langle g \rangle \subseteq G$. We\\ [1pt] know that $o(g^k) = \frac{o(g)}{\gcd(o(g), k)} = \frac{d}{\gcd(d, k)} = d$ iff $\gcd(k, d) = 1$. So by considering $g^k$\\ for each $k \in \{1, \ldots, d\}$ with $\gcd(d, k) = 1$ we get that there are at least $\phi(d)$\\ [3pt] distinct elements of $G$ with order $d$.\newpage
 
 		That said, all $g^k$ where $k \in \{0, \ldots, d - 1\}$ are distinct elements of $\{g \in G : g^d = e\}$. And since $|\{g \in G : g^d = e\}| \leq d$, this proves that $h \in G$ can satisfy that $h^d = e$ only if $h = g^k$ for some integer $k$. And also because $h^d$ equaling $e$ is a necessary condition for us to have $o(h) = d$, we know that the $\phi(d)$ elements of $G$ we found before are the only elements of $G$ with order $d$.\retTwo
 	\end{myIndent}
 	
-	\item[(b)] For every positive number $d$, let $\psi(d)$ be the number of elements of $G$ that have order $d$. Show that $\psi(d) \leq \phi(d)$ and that $\psi(d) \neq 0$ implies that $d \dividesDeprecated |G|$.
+	\item[(b)] For every positive number $d$, let $\psi(d)$ be the number of elements of $G$ that have order $d$. Show that $\psi(d) \leq \phi(d)$ and that $\psi(d) \neq 0$ implies that $d \divides |G|$.
 	
 	\begin{myIndent}\HexOne
 		We know that $\phi(d) \geq 1$ for all positive $d$ since $\gcd(1, d) = 1$. So, if $\psi(d) = 0$, then we trivially know that $\psi(d) \leq \phi(d)$. Meanwhile, if $\psi(d) > 0$ then we showed in part (a) that $\psi(d) = \phi(d)$. Hence in either case we have that $\psi(d) \leq \phi(d)$.\retTwo
@@ -10855,9 +10855,7 @@ This leads to the equation:
 	\begin{myIndent}\HexOne
 		Let $n = |G|$ and note that $\sum_{d \dividesDeprecated n} \psi(d) = n$ since every element of $G$ has some order dividing $n$. At the same time, it is a somewhat well known result that $\sum_{d \dividesDeprecated n} \phi(d) = n$ for all $n \in \mathbb{N}$.
 		\begin{myIndent}\HexTwoP
-			I can't find a proof of this result anywhere in my notes so I guess I'll prove it here.\retTwo
-
-			Let $S = \{1, \ldots, n\}$ and define $S_d \coloneqq \{k \in S : \gcd(k, n) = d\}$ for each\\ $d$. Clearly, the $S_d$ form a partition of $S$ as we range over all the divisors\\ of $n$. Also note that there is a bijective correspondence between $S_d$ and\\ $E_{n/d} \coloneqq \{k \in \{1, \ldots, \frac{n}{d}\} : \gcd(k, \frac{n}{d}) = 1\}$.
+			I can't find a proof of this result anywhere in my notes so I guess I'll prove it here. Let $S = \{1, \ldots, n\}$ and define $S_d \coloneqq \{k \in S : \gcd(k, n) = d\}$ for each\\ $d$. Clearly, the $S_d$ form a partition of $S$ as we range over all the divisors\\ of $n$. Also note that there is a bijective correspondence between $S_d$ and\\ $E_{n/d} \coloneqq \{k \in \{1, \ldots, \frac{n}{d}\} : \gcd(k, \frac{n}{d}) = 1\}$.
 			\begin{myIndent}\HexPPP
 				Specifically note that $\gcd(m, n) = d \Longrightarrow \frac{m}{d}, \frac{n}{d} \in \mathbb{Z}$ with $\gcd(\frac{m}{d}, \frac{n}{d}) = 1$. And if we also have that $m \leq n$ then clearly $\frac{m}{d} \leq \frac{n}{d}$. So, $m \in S_d \Longrightarrow \frac{m}{d} \in E_{n/d}$. Meanwhile, if $\gcd(m, \frac{n}{d}) = 1$, then we know that $\gcd(dm, n) = d$. And also if $m \leq \frac{n}{d}$, then we know that $md \leq n$ Hence $m \in E_{n/d} \Longrightarrow dm \in S_d$. It now follows that the map $m \mapsto \frac{m}{d}$ is an invertible map from $S_d$ to $E_{n/d}$.\retTwo
 			\end{myIndent}
@@ -10865,11 +10863,11 @@ This leads to the equation:
 			Now $|S_d| = |E_{n/d}| = \phi(\frac{n}{d})$. Also, we know that $n = |S| = \sum_{d \dividesDeprecated n} |S_d|$. So we have shown that $n = \sum_{d \dividesDeprecated n} \phi(\frac{n}{d}) = \sum_{d \dividesDeprecated n} \phi(d)$.\retTwo
 		\end{myIndent}
 
-		Since $\psi(d) \leq \phi(d)$ for all $d$, we thus have that:
+		This proves that $\sum_{d \dividesDeprecated n} \psi(d) = n =  \sum_{d \dividesDeprecated n} \phi(d)$. Going even further, since\\ $0 \leq \psi(d) \leq \phi(d)$ for all $d$, the two sums can only equal if $\psi(d) = \phi(d)$ for all $d$ being summed over. In particular, we must have that $\phi(n) = \psi(n) \geq 1$. So, there is some element of order $n = |G|$ in $G$. This is equivalent to saying that $G$ is cyclic. $\blacksquare$\retTwo
 
-		{\centering $n = \sum_{d \dividesDeprecated n} \psi(d) \leq \sum_{d \dividesDeprecated n} \phi(d) = n$.\retTwo\par}
-
-		And this proves that $\sum_{d \dividesDeprecated n} \psi(d) = \sum_{d \dividesDeprecated n} \phi(d)$. Going even further, since\\ $0 \leq \psi(d) \leq \phi(d)$ for all $d$, the two sums can only equal if $\psi(d) = \phi(d)$ for all $d$ being summed over. In particular, we must have that $\phi(n) = \psi(n) \geq 1$. So, there is some element of order $n = |G|$ in $G$. This is equivalent to saying that $G$ is cyclic. $\blacksquare$\retTwo
+		\begin{myIndent}\myComment
+			The converse of this problem also holds. After all, if $G = \langle g\rangle$ then we know like in part (a) that there are $\phi(d)$ elements of $G$ of order $d$ if one exists at all. Also $|\{g \in G : g^n = e\}| = \sum_{d \divides n} \psi(d)$, and like in part (b) we know $\sum_{d \divides n} \psi(d) \leq \sum_{d \divides n}\phi(d) = n$. So, $|\{g \in G : g^n = e\}| \leq n$.\retTwo
+		\end{myIndent}
 	\end{myIndent}
 \end{enumerate}
 
@@ -12623,7 +12621,7 @@ So here are some uses of Sylow's theorems:
 	\begin{myIndent}\pracTwo
 		Let $s_q$ and $s_p$ be shorthand for $|\Syl_q(G)|$ and $|\Syl_p(G)|$. Now we know by Sylow's third theorem that $s_q \equiv 1 \mMod{q}$.\newpage
 		
-		Also, we know that $s_q \dividesDeprecated p$ by Sylow's second theorem. And since $p < q$, we must have that $s_q = 1$. Hence $\Syl_q(G) = \{Q\}$ for some $Q \lhd G$ such that $|Q| = q$ and $Q$ is cylic of order $q$.\retTwo
+		Also, we know that $s_q \dividesDeprecated p$ by Sylow's second theorem. And since $p < q$, we must have that $s_q = 1$. Hence $\Syl_q(G) = \{Q\}$ for some $Q \lhd G$ such that $|Q| = q$ and $Q$ is cyclic of order $q$.\retTwo
 
 		Next, note once again by Sylow's second theorem that $s_p \dividesDeprecated q$. Hence, we must have that either $s_p = 1$ or $s_p = q$. That said, we know $q - 1 \not\equiv 0 \mMod{p}$ by assumption and that $s_p \equiv 1 \mMod{p}$ by Sylow's third theorem. So, we must have that $s_p = 1$ and it follows that $\Syl_p(G) = \{P\}$ for some $P \lhd G$ such that $|P| = p$ and $P$ is cyclic of order $p$.\retTwo
 
@@ -19408,7 +19406,7 @@ Also here are some other facts:
 	\ul{Lemma:} Suppose $D$ is an integral domain and $|D| < \infty$. Then $D$ is a field.
 	\begin{myIndent}\exFourP
 		Proof:\\
-		If $D$ is finite, then for any $x \in D - \{0\}$ there must exists positive integers $m > n$ such $x^m = x^n$. In turn, we can conclude that $x^{m-n} = 1$ where $m-n$ is a positive integer. So, $x^{-1}$ exists and equals $x^{m-n-1}$. $\blacksquare$
+		If $D$ is finite, then for any $x \in D - \{0\}$ there must exist positive integers $m > n$ such $x^m = x^n$. In turn, we can conclude that $x^{m-n} = 1$ where $m-n$ is a positive integer. So, $x^{-1}$ exists and equals $x^{m-n-1}$. $\blacksquare$
 		\begin{myIndent}\exPPP
 			As a side note, to see why $x^m = x^n \Longrightarrow x^{m-n} = 1$, note that if $a, b, c \in D$ where $c \neq 0$ and $D$ is an integral domain then $ac = bc \Longrightarrow a = b$. This is because $ac = bc \Longrightarrow (a - b)c = 0$. Then, as $D$ is an integral domain and $c \neq 0$, we must have that $a - b = 0$. Or in other words, $a = b$.
 			\begin{myIndent}\exPPP
@@ -23143,7 +23141,7 @@ Based on the above lemma, we shall now define $\prod_{k=1}^\infty (1 + a_k)$ as 
 	\mySepThree
 	Before proving the above lemma, it will help to define a constant. Also, I will be continuing to use this constant in other proofs so I will be marking this result with an asterisk.\retTwo
 
-	Note that the power series expansion for $\Log(1 + z)$ about $0$ is $z - \frac{1}{2}z^2 + \cdots$. In turn, $\frac{\Log(1 + z)}{z} = 1 - \frac{1}{2}z + \cdots$. And by taking the limit of the latter expression as $z \to 0$ (and using the fact that power series are continuous), we get that: $\lim_{z \to \infty} \frac{\Log(1 + z)}{z} = 1$.\retTwo
+	Note that the power series expansion for $\Log(1 + z)$ about $0$ is $z - \frac{1}{2}z^2 + \cdots$. In turn, $\frac{\Log(1 + z)}{z} = 1 - \frac{1}{2}z + \cdots$. And by taking the limit of the latter expression as $z \to 0$ (and using the fact that power series are continuous), we get that: $\lim_{z \to 0} \frac{\Log(1 + z)}{z} = 1$.\retTwo
 
 	It follows that there exists $0 < \delta < 1$ such that $\frac{1}{2} \leq \left|\frac{\Log(1 + z)}{z}\right| \leq \frac{3}{2}$ when $|z| < \delta$. In turn we also have \hypertarget{Random Equation hyperlink 1}{that:}
 
@@ -25563,7 +25561,7 @@ Now at last we are going to prove the uniqueness part of the theorem on \inLinkR
 	\begin{myIndent}\exPPP
 		To start off, let $M = \max\{ \#\{i\phantom{.} :\phantom{.} \nu_{p}(a_i) > 0\} : p \in \mathcal{P}_0\}$.\retTwo
 		
-		It's clear that $M \leq m$. Meanwhile, because $a_1 \notin A^\times$, there must exists some irreducible element $p_0$ such that $p_0 \divides a_1$. In turn, as $a_1 \divides a_2 \divides \cdots \divides a_m$, we have that $\#\{i\phantom{.} :\phantom{.} \nu_{p_0}(a_i) > 0\} = m$. Hence, we've proven that $M = m$.\retTwo
+		It's clear that $M \leq m$. Meanwhile, because $a_1 \notin A^\times$, there must exist some irreducible element $p_0$ such that $p_0 \divides a_1$. In turn, as $a_1 \divides a_2 \divides \cdots \divides a_m$, we have that $\#\{i\phantom{.} :\phantom{.} \nu_{p_0}(a_i) > 0\} = m$. Hence, we've proven that $M = m$.\retTwo
 
 		By similar reasoning with the quantity $\max\{ \#\{i\phantom{.} :\phantom{.} \nu_{p}(b_i) > 0\} : p \in \mathcal{P}_0\}$, we can thus conclude that:
 		
@@ -29033,7 +29031,7 @@ A natural next question is if we can weaken the conditions on the arrows of the 
 
 	Also note that $\mathbb{Q}$ is a $\mathbb{Z}$-module that is torsion-free but not finitely-generated. That said, $\mathbb{Q}$ is not a free $\mathbb{Z}$-module.
 	\begin{myIndent}\pracTwo
-		If $\mathbb{Q}$ were free then there'd be some $\mathbb{Z}$-module isomorphism $\theta:  \bigoplus_{i \in I}\mathbb{Z} \to \mathbb{Q}$. But now consider any standard basis vector $e_i \in \bigoplus_{i \in I}\mathbb{Z}$ and fix $q = \theta(e_i)$. As $\theta$ is surjective, there must exists some $x \in \bigoplus_{i \in I}\mathbb{Z}$ with $\theta(x) = q/2$. But then as $\theta$ is injective and $\theta(2x) = q = \theta(e_1)$, we must have that $2x = e_i$. This is a contradiction as no such $x$ can exist.\newpage
+		If $\mathbb{Q}$ were free then there'd be some $\mathbb{Z}$-module isomorphism $\theta:  \bigoplus_{i \in I}\mathbb{Z} \to \mathbb{Q}$. But now consider any standard basis vector $e_i \in \bigoplus_{i \in I}\mathbb{Z}$ and fix $q = \theta(e_i)$. As $\theta$ is surjective, there must exist some $x \in \bigoplus_{i \in I}\mathbb{Z}$ with $\theta(x) = q/2$. But then as $\theta$ is injective and $\theta(2x) = q = \theta(e_1)$, we must have that $2x = e_i$. This is a contradiction as no such $x$ can exist.\newpage
 	\end{myIndent}
 \end{myIndent}
 
@@ -32965,7 +32963,7 @@ where $M_3$ is a flat $A$-module. Also suppose $N$ is any $A$-module. Then prove
 			
 			\item Suppose $p \neq 3$ and that $x^2 + x + 1$ is not irreducible in $\mathbb{Z}/p\mathbb{Z}[x]$. Then we may pick $a \in \mathbb{Z}/p\mathbb{Z}$ with $a^2 + a + 1 = 0$. Notably, because $p \neq 3$ we know that $a \neq 1$. Also, clearly $a \neq 0$, meaning that $a \in (\mathbb{Z}/p\mathbb{Z})^\times$.\retTwo
 			
-			By Lagranges theorem we must have that $o(a) \divides |(\mathbb{Z}/p\mathbb{Z})^\times| = p - 1$. Yet\\ [2pt] also because $x^3 - 1 = (x - 1)(x^2 + x + 1)$, we can guarentee that $a^3 - 1 = 0$\\ [2pt] and in turn that $o(a) \divides 3$. As $o(a) \neq 1$ since $a \neq 1$, this proves that $o(a) = 3$.\\ [2pt] Thus $3 \divides p - 1$. Or in other words, $p \equiv 1 \mMod{3}$.\retTwo
+			By Lagrange's theorem we must have that $o(a) \divides |(\mathbb{Z}/p\mathbb{Z})^\times| = p - 1$. Yet\\ [2pt] also because $x^3 - 1 = (x - 1)(x^2 + x + 1)$, we can guarentee that $a^3 - 1 = 0$\\ [2pt] and in turn that $o(a) \divides 3$. As $o(a) \neq 1$ since $a \neq 1$, this proves that $o(a) = 3$.\\ [2pt] Thus $3 \divides p - 1$. Or in other words, $p \equiv 1 \mMod{3}$.\retTwo
 
 			\item Conversely, suppose $p \equiv 1 \mMod{3}$. Then we know that $3$ divides $p - 1$ which equals $|(\mathbb{Z}/p\mathbb{Z})^\times|$. Also note that because $(\mathbb{Z}/p\mathbb{Z})^\times$ is a cyclic group, there exists $b \in (\mathbb{Z}/p\mathbb{Z})^\times$ with $o(b) = p - 1$. Now just let $a \coloneqq b^{(p-1)/3}$. Then we have that $a^3 \equiv 1 \mMod{p}$ but $a \not\equiv 1 \mMod{p}$. It follows that $a$ is a root of $x^2 + x + 1$ instead of $x - 1$ and this proves that $x^2 + x + 1$ is not irreducible.
 
@@ -33948,7 +33946,7 @@ $E$ is called a \udefine{splitting field} of $f$ over $F$.
 	Proof:\\
 	We again proceed by induction on $d = \deg(f)$. Like before, if $d = 1$ then the problem is trivial. Any degree $1$ polynomial in $F[x]$ has a zero in $F$. Similarly, any degree $1$ polynomial in $F^\prime[x]$ has a zero in $F^\prime$. Thus, we'd have that $F[\alpha_1] = F$ and $F^\prime[\alpha_1^\prime] = F^\prime$. In turn, $\theta$ gives us a $\theta$-isomorphism between $E$ and $E^\prime$.\retTwo
 	
-	Now suppose $d > 1$ and let $f_1$ be an irreducible factor of $f$. Then note that $f_1^\theta$ is an\\ irreducible factor of $f^\theta$. After all, isomorphisms must send factors to factors and irreducible elements to irreducible elements. Since $f_1 \divides f$ and $f(x) = \lt(f)\prod_{i=1}^d (x - \alpha_i)$, there must exists $i_0$ such that $f_1(\alpha_{i_0}) = 0$. Without loss of generality we may assume $f_1(\alpha_1) = 0$.\\ Similarly, as $f_1^{\theta} \divides f^\theta$ and $f^{\theta}(x) = \theta(\lt(f))\prod_{j=1}^d (x- \alpha_j^\prime)$, there must exist $j_0$ with\\ $f_1^{\theta}(\alpha^\prime_{j_0}) = 0$, and without loss of generality we may say that $j_0 = 1$.\retTwo
+	Now suppose $d > 1$ and let $f_1$ be an irreducible factor of $f$. Then note that $f_1^\theta$ is an\\ irreducible factor of $f^\theta$. After all, isomorphisms must send factors to factors and irreducible elements to irreducible elements. Since $f_1 \divides f$ and $f(x) = \lt(f)\prod_{i=1}^d (x - \alpha_i)$, there must exist $i_0$ such that $f_1(\alpha_{i_0}) = 0$. Without loss of generality we may assume $f_1(\alpha_1) = 0$.\\ Similarly, as $f_1^{\theta} \divides f^\theta$ and $f^{\theta}(x) = \theta(\lt(f))\prod_{j=1}^d (x- \alpha_j^\prime)$, there must exist $j_0$ with\\ $f_1^{\theta}(\alpha^\prime_{j_0}) = 0$, and without loss of generality we may say that $j_0 = 1$.\retTwo
 
 	Let $E_1 \coloneqq F[\alpha_1]$ and $E_1^\prime \coloneqq F^\prime[\alpha_1^\prime]$. By a prior theorem, there exists a unique\\ $\theta_1 \in \Isom_\theta(E_1, E_1^\prime)$ with $\theta_1(\alpha_1) = \alpha^\prime$. Then since $f_1(\alpha_1) = 0$, we can conclude\\ $f(\alpha_1) = 0$ and thus there exists $h \in E_1[x]$ with $f(x) = (x - \alpha_1)h(x)$. Also, we can\\ then see that $f^\theta(x) = f^{\theta_1}(x) = (x - \alpha_1^\prime)h^{\theta_1}(x)$ and that $\deg(h)= d - 1$\retTwo
 
@@ -33980,6 +33978,8 @@ Now's a good time to finally include some homework exercises I turned in a while
 	\end{myIndent}
 
 	By symmetric reasoning, we have that $g$ is irreducible in $(\mathbb{Q}[\alpha])[x]$ iff\\ $[\mathbb{Q}[\alpha, \beta] : \mathbb{Q}] = \deg(f)\deg(g)$. And this let's us conclude what we wanted. $\blacksquare$\retTwo
+
+	\myComment Note that we can replace $\mathbb{C}/\mathbb{Q}$ with a different field extension as well and still get this result.\retTwo
 \end{myIndent}
 
 \blab{Set 8 Problem 7:} Prove that $\mathbb{Q}[\sqrt{2}]$ and $\mathbb{Q}[\sqrt{3}]$ are not isomorphic (as fields).
@@ -34082,7 +34082,7 @@ Let $F$ be a finite field.
 
 	Here's also a proof that $F^\times$ is cyclic (which is slightly different from the proof I\\ summarized in my math 100b notes.)
 	\begin{myIndent}\pracTwo
-		Recall from set 1 problem 2 in math 200a (see \inLinkRap{Math 200a Set 1 Problem 2}{pages 259-260}) that if $G$ is a finite group satisfying that $|\{g \in G : g^n = e\}| \leq n$ for every positive integer $n$, then $G$ is a cylic group. Also note by factoring the polynomial $x^n - 1$ and noting that it has at most $n$ zeros, we can thus see that $|\{c \in F^\times : c^n = 1\}| \leq n $. Therefore, we can apply the exercise from a long time ago to see that $F^\times$ is cyclic.\retTwo
+		Recall from set 1 problem 2 in math 200a (see \inLinkRap{Math 200a Set 1 Problem 2}{pages 259-260}) that if $G$ is a finite group satisfying that $|\{g \in G : g^n = e\}| \leq n$ for every positive integer $n$, then $G$ is a cyclic group. Also note by factoring the polynomial $x^n - 1$ and noting that it has at most $n$ zeros, we can thus see that $|\{c \in F^\times : c^n = 1\}| \leq n $. Therefore, we can apply the exercise from a long time ago to see that $F^\times$ is cyclic.\retTwo
 	\end{myIndent}
 
 	Note by Lagrange's theorem that for all $\alpha \in F^\times$ we have that $\alpha^{q-1} = 1$. In turn, we can conclude for all $\alpha \in F$ that $\alpha^q = \alpha$. So, every $\alpha \in F$ is a zero of $x^q - x$. Since $F$ has $q$-elements, we can conclude that $F$ is a splitting field of $x^q - x$ over $\mathbb{F}_p$.\retTwo
@@ -34215,7 +34215,7 @@ Firstly we establish some more tests for the separableness of a polynomial.
 		This contradicts that $f$ is irreducible. $\blacksquare$
 
 		\begin{myIndent}\myComment
-			Note that because ring homomorphisms from fields are always injective so long as they are not the zero map and $1^p = 1 \neq 0$, we know that the Frobenius homomorphism is always injective. In turn, by a simple cardinality arguement we have that the Frobenius homomorphism from $F$ to $F$ is always surjective so long as $F$ is a finite field.\retTwo
+			Note that because ring homomorphisms from fields are always injective so long as they are not the zero map and $1^p = 1 \neq 0$, we know that the Frobenius homomorphism is always injective. In turn, by a simple cardinality argument we have that the Frobenius homomorphism from $F$ to $F$ is always surjective so long as $F$ is a finite field.\retTwo
 
 			Now, there are still fields of characteristic $p$ that aren't finite. For example, given any finite field $\mathbb{F}_{p^d}$ we can consider the field of rational functions over $\mathbb{F}_{p^d}$\\ (which we denote as $\mathbb{F}_{p^d}(x)$). That said, we've thus proven that for most of the fields that we care about, irreducibility implies separableness.\retTwo
 		\end{myIndent}
@@ -34238,7 +34238,7 @@ Firstly we establish some more tests for the separableness of a polynomial.
 
 			Pick integers $r, s \in \mathbb{Z}$ with $1 = rn + sp$. (We can do this because $p$ being prime and $n < p$ implies that $p$ and $n$ are coprime\dots) In turn:
 
-			{\centering $(\beta^r c^s)^p = \beta^{rp}c^{sp} = c^{rn}c^{sp} = 1$. \retTwo\par}
+			{\centering $(\beta^r c^s)^p = \beta^{rp}c^{sp} = c^{rn}c^{sp} = c^1 = c$. \retTwo\par}
 
 			Since $\beta^r c^s \in F$, this proves that $x^p - c$ has a zero in $F$. $\blacksquare$\retTwo
 		\end{myIndent}
@@ -34266,7 +34266,7 @@ Firstly we establish some more tests for the separableness of a polynomial.
 
 	Next suppose $\widehat{\theta}_1(\alpha) = \widehat{\theta}_2(\alpha)$. Then as $\widehat{\theta}_i |_F = \theta$ for both $i$ and also because $F[\alpha]$ is the field generated by $F$ and $\alpha$, we can conclude that $\widehat{\theta}_1(c) = \widehat{\theta}_2(c)$ for all $c$ in their domain $F[\alpha]$. This proves that our proposed mapping is injective.\newpage
 
-	Finally, given any $\alpha^\prime \in V_{m_{\alpha; F}^\theta}$, recall that by applying the theorem on \inLinkRap{Math 200b Theorem end of page 762}{pages 762-763} to\\ $m_{\alpha; F}$ we know that there is a unique $\widehat{\theta} \in \Isom_\theta(F[\alpha], F^\prime[\alpha^\prime])$ with $\widehat{\theta}(\alpha) = \alpha^\prime$. By\\ expanding the codomain of $\widehat{\theta}$ we get a $\theta$-embedding in $\Embed_\theta(F[\alpha], E^\prime)$. $\blacksquare$\retTwo
+	Finally, given any $\alpha^\prime \in V_{m_{\alpha; F}^\theta}(E^\prime)$, recall that by applying the theorem on \inLinkRap{Math 200b Theorem end of page 762}{pages 762-763} to\\ $m_{\alpha; F}$ we know that there is a unique $\widehat{\theta} \in \Isom_\theta(F[\alpha], F^\prime[\alpha^\prime])$ with $\widehat{\theta}(\alpha) = \alpha^\prime$. By\\ expanding the codomain of $\widehat{\theta}$ we get a $\theta$-embedding in $\Embed_\theta(F[\alpha], E^\prime)$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo Based on the bijection we just proved, we shall write $\widetilde{\theta}_{\alpha^\prime}$ to denote the unique map in\\ $\Embed_\theta(F[\alpha], E^\prime)$ sending $\alpha$ to $\alpha^\prime$.\retTwo
@@ -34313,7 +34313,7 @@ Firstly we establish some more tests for the separableness of a polynomial.
 
 \hTwo Suppose $E/F$ is an algebraic field extension. then $E/F$ is called:
 \begin{itemize}
-	\item \udefine{separable} if for all $\alpha \in E$ we have that $m_{\alpha; F}$ is a separable polynomiall;
+	\item \udefine{separable} if for all $\alpha \in E$ we have that $m_{\alpha; F}$ is a separable polynomial;
 	\item \udefine{normal} if for all $\alpha \in E$, $m_{\alpha; F}(x) = \prod_{i=1}^n (x - \alpha_i)$ for some $\alpha_1, \ldots, \alpha_n \in E$.\retTwo
 \end{itemize}
 
@@ -34364,11 +34364,11 @@ Given a field $F$, we shall say a polynomial $f(x) \in F[x]$ is \udefine{irreduc
 
 	Yet now note that as $\widetilde{\theta}_\alpha: F[\alpha] \xrightarrow{\sim} F^\prime[\alpha^\prime]$ is a $\theta$-isomorphism which sends $\alpha$ to $\alpha^\prime$, we\\ can conclude that $E$ is a splitting field of $\frac{f(x)}{x - \alpha}$ over $F[\alpha]$ and $E^\prime$ is a splitting field of\\ $\frac{f^\theta(x)}{x - \alpha^\prime}$ over $F^\prime[\alpha^\prime]$.\retTwo
 	
-	Also note that $f(x) = \prod f_i(x)^{m_i}$ where each $f_i$ is a distinct irreducible polynomials\\ (which is thus by assumption separable). If we replace $f$ with its \udefine{square free radical /\\ factor} $g = \prod f_i(x)$, then we still have that $E$ is a splitting field of $g$ over $F$. And before I worry, it's also easy to see that $f^\theta(x) = \prod f_i^\theta(x)^{m_i}$ and in turn the square free radical of $f^\theta$ is $g^\theta = \prod f_i^\theta(x)$. Thus, $E^\prime$ is a splitting field of $g^\theta$ over $F^\prime$.\retTwo 
+	Also note that $f(x) = \prod f_i(x)^{m_i}$ where each $f_i$ is a distinct irreducible polynomial\\ (which is thus by assumption separable). If we replace $f$ with its \udefine{square free radical /\\ factor} $g = \prod f_i(x)$, then we still have that $E$ is a splitting field of $g$ over $F$. And before I worry, it's also easy to see that $f^\theta(x) = \prod f_i^\theta(x)^{m_i}$ and in turn the square free radical of $f^\theta$ is $g^\theta = \prod f_i^\theta(x)$. Thus, $E^\prime$ is a splitting field of $g^\theta$ over $F^\prime$.\retTwo 
 	
 	\hypertarget{Page 774 Why we can assume irreducible separable}{Thirdly}, we have the following claim.\retTwo
 
-	\ul{Claim:} If $f_1, \ldots, f_n$ are distinct, irreducible, and separable polynomials in $F[x]$, then\\ $\prod_{i=1}^n f_i$ is also separable.
+	\ul{Claim:} If $f_1, \ldots, f_n$ are distinct irreducible and separable polynomials in $F[x]$, then\\ $\prod_{i=1}^n f_i$ is also separable.
 	\begin{myIndent}\exPPP
 		Why?\\
 		If $\prod f_i$ is not separable, then $(x - \alpha)^2 \divides \prod f_i$ for some $\alpha$ in the splitting field. Since each $f_i$ is separable, this means there must exist $i \neq j$ with $(x - \alpha) \divides f_i$ and\\ $(x - \alpha) \divides f_j$. Yet in turn we have that $m_{\alpha; F} \divides f_i$ and $m_{\alpha; F} \divides f_j$ in $F[x]$. It follows that $f_j = m_{\alpha; F} = f_i$, and this contradicts our initial assumption that $f_i$ and $f_j$ are distinct.\retTwo
@@ -34428,7 +34428,7 @@ Given a field $F$, we shall say a polynomial $f(x) \in F[x]$ is \udefine{irreduc
 
 \mySepTwo
 
-Suppose $E/F$ is a field extension. The final section of this course concerns the\\ correspondance between the set $\Sub(\Aut_F(E))$ of subgroups of $\Aut_F(E)$ and the\\ set $\Int(E/F)$ of intermediate subfields between $E$ and $F$.\retTwo
+Suppose $E/F$ is a finite extension. The final section of this course concerns the\\ correspondance between the set $\Sub(\Aut_F(E))$ of subgroups of $\Aut_F(E)$ and the\\ set $\Int(E/F)$ of intermediate subfields between $E$ and $F$.\retTwo
 
 Define the maps $\Phi$ and $\Psi$ as shown below:\\ [-20pt]
 % https://q.uiver.app/#q=WzAsOCxbMCwxLCJcXG1hdGhybXtTdWJ9KFxcbWF0aHJte0F1dH1fRihFKSkiXSxbMywxLCJcXG1hdGhybXtJbnR9KEUvRikiXSxbMCwyXSxbMywyXSxbMCwwXSxbMywwXSxbMiwxXSxbMiwyXSxbMCwxXSxbMiwwLCJHIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMywxLCJcXG1hdGhybXtGaXh9KEcpID0gRV5HIFxcY29sb25lcXEgXFx7ZSBcXGluIEUgOiBcXGZvcmFsbCBcXHNpZ21hIFxcaW4gRyxcXGhzcGFjZXswLjRlbX1cXHNpZ21hKGUpID0gZVxcfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNSwiSyIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzAsNCwiXFxtYXRocm17QXV0fV9LKEUpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbNyw2LCIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOSwxMCwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjYwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTEsMTIsIlxcUHNpIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19LFsyNDAsNjAsNjAsMV1dLFsxMyw5LCJcXFBoaSIsMCx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV1d

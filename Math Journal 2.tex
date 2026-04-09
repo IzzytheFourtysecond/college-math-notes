@@ -364,6 +364,9 @@
 \newcommand{\mySepThree}[1][.]{%
    {\noindent\color{#1}{\rule{6in}{0.25mm}}}\\%
 }
+\newcommand{\mySepFour}[1][.]{%
+   {\noindent\color{#1}{\rule{5.5in}{0.12mm}}}\\%
+}
 
 \newenvironment{myClosureOne}[2][.]{%
    \color{#1}%
@@ -1233,7 +1236,7 @@ I had a different very overcomplicated proof of the prior problem that I wrote o
 
 		This proves that $|f(z)| = C|z|^n = |Cz^n|$ for some integer $n \geq 0$ and $C > 0$.\retTwo
 
-		To finish off, set $g(z) = \frac{f(z)}{z^n}$ when $z \in \Delta - \{0\}$. Then as $|g(z)| = C$ for all $z \in \Delta - \{0\}$, we know by the maximum modulus principle that $g(z) = a$ for some $a \in \mathbb{C}$. In turn, this proves that $f(z) = az^n$ on $\Delta - \{0\}$. By taking the limit as $z \to 0$, we can also then see that $f(z) = az^n$ holds when $z = 0$.
+		To finish off, set $g(z) = \frac{f(z)}{z^n}$ when $z \in \Delta - \{0\}$. Then as $|g(z)| = C$ for all\\ $z \in \Delta - \{0\}$, we know by the maximum modulus principle that $g(z) = a$ for\\ some $a \in \mathbb{C}$. In turn, this proves that $f(z) = az^n$ on $\Delta - \{0\}$. By taking the\\ limit as $z \to 0$, we can also then see that $f(z) = az^n$ holds when $z = 0$.
 		\retTwo
 
 		$(\Longleftarrow)$\\
@@ -1249,14 +1252,435 @@ I had a different very overcomplicated proof of the prior problem that I wrote o
 
 I'm choosing to audit math 240c this quarter just cause I'm not particularly happy with the amount of Fourier analysis I digested last Spring. And while I'm not planning on fully redoing all my notes for that class, I will be solving some things out which I feel motivated to do so. Also the professor this time for math 240c is the same person as my math 241a professor.\newpage
 
+Given any positive integer $n$, we let $(\mathbb{R}^n, \mathcalli{L}_n, m)$ denote the completion of the Lebesgue measure on the Borel $\sigma$-algebra $\mathcalli{B}_{\mathbb{R}^n}$ of $\mathbb{R}^n$. As a reminder, we say a function $f: \mathbb{R}^{m} \to \mathbb{R}^n$ is:
+\begin{itemize}
+	\item \udefine{Borel measurable} if $f$ is $(\mathcalli{B}_{\mathbb{R}^m}, \mathcalli{B}_{\mathbb{R}^n})$-measurable;
+	\item \udefine{Lebesgue measurable} if $f$ is $(\mathcalli{L}_m, \mathcalli{B}_{\mathbb{R}^n})$-measurable.\retTwo
+\end{itemize}
 
+An issue I didn't think to address last Spring was about proving that the measurability of $f * g(x) \coloneqq \int f(x - y)g(y)\df y$ is never an issue. So, I'm going to address that now.\retTwo
 
+Firstly define $s: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}^n$ by $s(x, y) \coloneqq x - y$. Since $s$ is continuous, we always have that $s$ is Borel-measurable. Hence, if $f, g : \mathbb{R}^n \to \mathbb{R}^n$ are also Borel measurable then we have that $f(s(x, y))g(y)$ is $(\mathcalli{B}_{\mathbb{R}^{n} \times \mathbb{R}^n}, \mathcalli{B}_{\mathbb{R}^n})$-measurable.\retTwo
 
+That said, if $f$ and $g$ are merely Lebesgue measurable then we need the following exercise in order to show that $f(s(x, y))g(y)$ is $(\mathcalli{L}_{2n}, \mathcalli{B}_{\mathbb{R}^n})$-measurable.
+\begin{myIndent}\myComment
+	As a side note $\mathcalli{L}_{2n}$ is equivalently the completion of $\mathcalli{L}_n \otimes \mathcalli{L}_n$ and the completion of\\ $\mathcalli{B}_{\mathbb{R}^n} \otimes \mathcalli{B}_{\mathbb{R}^n}$ (when we identify $\mathbb{R}^{2n}$ with $\mathbb{R}^n \times \mathbb{R}^n$).
+\end{myIndent}
+\retTwo
 
+\Hstatement\blab{(Folland) Exercise 8.5:} Show that $s$ is $(\mathcalli{L}_{2n}, \mathcalli{L}_n)$-measurable.
+\begin{myIndent}\HexOne
+	Let $E \subseteq \mathbb{R}^n$ be a Lebesgue measurable set and consider the invertible linear map\\ $T(x, y) = (x - y, x + y)$. It is easy to see that $T(s^{-1}(E)) = E \times \mathbb{R}^n$ and is\\ thus in $\mathcalli{L}_{n} \otimes \mathcalli{L}_n \subseteq \mathcalli{L}_{2n}$. In turn, as $T$ is $(\mathcalli{L}_{2n}, \mathcalli{L}_{2n})$-measurable, we have that\\ $s^{-1}(E) \in \mathcalli{L}_{2n}$. $\blacksquare$\retTwo
 
+	\hThree\mySepFour
+\end{myIndent}
 
+\hTwo Now in either the case that $f, g$ are Borel or Lebesgue measurable, we know that\\ $y \mapsto f(x - y)g(y)$ is Lebesgue measurable for all fixed $x$. This is because affine maps of\\ $y$ are both $(\mathcalli{B}_{\mathbb{R}^n}, \mathcalli{B}_{\mathbb{R}^n})$-measurable and $(\mathcalli{L}_{n}, \mathcalli{L}_{n})$-measurable.\retTwo
 
+Also let $E \subseteq \mathbb{R}^n$ be the set of all $x$ such that $\int |f(x, y)g(y)|\df y < \infty$.
+\begin{myIndent}\myComment
+	As a side note, $K(x, y) \coloneqq f(x, y)g(y)$ being measurable implies $|K(x, y)|$ is as well. Then by either Tonelli's theorem for complete measures (see \inLinkRap{placeholder}{pages 179-181}) or the Tonelli's theorem for product measures in my paper math 240a notes, we can conclude that\\ $H(x) \coloneqq \int |K(x, y)| \df (m \times m)$ is a measurable function into $[0, \infty]$. Therefore,\\ $E = H^{-1}([0, \infty))$ is guarenteed to be a measurable set.\retTwo
+\end{myIndent}
 
+Similarly to in that side note, we can also apply Tonelli's theorem to the positive and\\ negative parts of the real and imaginary parts individually and then restrict to $E$ in\\ order to show that the integral of each part is measurable on $E$. In turn, their sum\\ $x \mapsto \int f(x - y)g(y) \df y$ is a Lebesgue measurable function on $E$.\retTwo
+
+\mySepTwo\newpage
+
+\dispDate{4/4/2026}
+
+\blect{Math 200c Lecture Notes:}\retTwo
+
+I would like to start off with an exercise from the optional homework at the end of last quarter. As a side note, while professor Alireza used the convention for field extensions that $F \subseteq K \subseteq E$, professor Rogalski uses the convention that $F \subseteq E \subseteq K$. \retTwo
+
+\Hstatement\blab{(Math 200b) Set 9 Problem 10:} \hypertarget{Math 200b Set 9 Problem 10}{Suppose} $K$ is a splitting field of $f \in F[x]$ over $F$.
+\begin{itemize}
+	\item[(a)] Prove that $K/F$ is a normal extension.
+	
+	\begin{myIndent}\HexOne 
+		Suppose $\alpha \in K$ and let $g(x) \coloneqq f(x)m_{\alpha; F}(x)$. We need to show $m_{\alpha; F}(x)$ splits\\ into a product of linear polynomials in $K[x]$. In order to do this let $K^\prime$ be a splitting field of $g(x)$ over $F$. Notably, we can embed the field $K$ into $K^\prime$. After all, $f \divides g$. So, $K^\prime$ must contain a splitting subfield of $f$ which is thus isomorphic to $K$.\retTwo
+
+		Consider any $\alpha^\prime \in V_{m_{\alpha; F}}(K^\prime)$. Then there exists a unique isomorphism\\ $\theta: F[\alpha] \to F[\alpha^\prime]$ fixing $F$ and sending $\alpha$ to $\alpha^\prime$ (see \inLinkRap{placeholder}{pages 762-763}). Next,\\ because $g = g^\theta$ and $K^\prime$ is a splitting field of $g$, we can thus conclude that\\ there is a $\theta$-isomorphism $\widetilde{\theta} \in \Aut_\theta(K^\prime)$.\retTwo
+
+		Finally, note that $\widetilde{\theta}$ must permute the zeros of $f$. Hence, $\widetilde{\theta}(K) = K$. Consequently, as $\alpha \in K$ we also know that $\alpha^\prime = \widetilde{\theta}(\alpha) \in K$. This proves that every zero of $m_{\alpha; F}$ is actually in $K$. And now we are done.
+		\begin{myIndent}\HexPPP
+			As a side note, this also shows $K$ is a splitting field of $f(x)m_{\alpha; F}(x)$ for any $\alpha \in K$\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] Prove that for every $\alpha \in K$, $\Aut_F(K)$ acts transitively on $V_{m_{\alpha; F}}(K)$. 
+	
+	\begin{myIndent}\HexOne 
+		In the proof of the prior part, $\widetilde{\theta}$ gives us an element of $\Aut_F(K)$ sending $\alpha$ to $\alpha^\prime$ where $\alpha^\prime$ was an arbitrary element of $V_{m_{\alpha; F}}(K)$. Thus if we consider $\Aut_F(K)$ as acting on\\ [-1pt] $V_{m_{\alpha; F}}(K)$ via permuting the elements of that set, then this shows that there is only one orbit.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hTwo Let $K/F$ be a finite extension. On \inLinkRap{placeholder}{pages 775-778}, I wrote down a bunch of theorems\\ concerning a correspondance between $\Sub(\Aut_F(K))$ and $\Int(K/F)$. There are two other theorems related to this correspondance to be aware of.\retTwo
+
+\exTwo\ul{Theorem:} Let $K/F$ be a finite Galois extension and let $G = \Gal(K/F)$. Also let\\ $E \in \Int(K/F)$.
+\begin{enumerate}
+	\item[1.] The following are equivalent:
+	\begin{enumerate}
+		\item[(i)] $E/F$ is a Galois extension;
+		\item[(ii)] $E/F$ is a normal extension;
+		\item[(iii)] $\sigma(E) = E$ for all $\sigma \in G$
+		\item[(iv)] $\Gal(K/E) \lhd G$.\newpage 
+	\end{enumerate}
+
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		$(i \Longleftrightarrow ii)$\\
+		$K/F$ being Galois means that $K/F$ is separable. This in turn automatically means $E/F$ is separable. And since $E/F$ is also a finite extension, the only condition of $E/F$ being Galois that is not immediate is that $E/F$ is normal.\retTwo
+
+		$(ii \Longleftrightarrow iii)$\\
+		Suppose (ii) and given any $\sigma \in G$, let $a \in E$ and $f = m_{a;F}$. Since $E/F$ is normal we know $f$ splits in $E$. Also $\sigma(a)$ is another root of $f$. So, $\sigma(a) \in E$. And this proves that $\sigma(E) \subseteq E$ for all $\sigma \in G$. Since this reasoning also applies to $\sigma^{-1}$, we can in turn conclude $\sigma(E) = E$.\retTwo
+
+		Conversely, suppose $\sigma(E) = E$ for all $\sigma \in G$. Then pick $a \in E$ with $f = m_{a; F}$. Since $K/F$ is a normal extension, we know $f$ has distinct roots $a_1, \ldots, a_n \in K$ (where $n = \deg(f)$). Yet for each $i$ there also exists some $\sigma \in G$ such that $\sigma(a) = a_i$. (This is a consequence of the problem on the last page). So, every $a_i \in \sigma(E) = E$. And this proves that $f$ splits over $E$.\retTwo
+
+		$(iii \Longleftrightarrow iv)$\\
+		Suppose (iii) and then consider any $\tau \in H = \Gal(K/E)$ and $\sigma \in G$. Then if $a \in E$, we have that $\sigma^{-1} \tau \sigma(a) = a$. Hence $\sigma^{-1} \tau \sigma \in H$ and we've shown that $H \lhd G$.\retTwo
+
+		Conversely, if $H \lhd G$, $a \in E$, $\sigma \in G$, and $\tau \in H$, then;
+		
+		{\centering$\sigma^{-1}\tau \sigma(a) = a \Longrightarrow \tau\sigma(a) = \sigma(a) \Longrightarrow \sigma(a) \in \Fix(H)$.\retTwo\par}
+		
+		Finally, as $K/E$ is Galois, we have that $\Fix(H) = E$. So, $\sigma(a) \in E$ for all $a \in E$ and $\sigma \in G$. This proves that $\sigma(E) \subseteq E$ for all $\sigma$. By applying this to $\sigma^{-1}$ we also get that $\sigma(E) = E$.
+	\end{myIndent}
+
+	\item[2.] If $E/F$ is a normal extension, then $\frac{\Gal(K/F)}{\Gal(K/E)} \cong \Gal(E/F)$.
+	
+	\begin{myIndent}\exThreeP
+		Consider the map $\Phi: \Gal(K/F) \to \Gal(E/F)$ given by $\sigma \mapsto \sigma|_E$.
+		\begin{itemize}
+			\item This is well-defined because $\sigma(E) = E$ for all $\sigma \in G$.
+			\item Also, this is a group homomorphism as $(\sigma \circ \tau)|_E = \sigma|_E \circ \tau|_E$.
+			\item $\ker(\Phi) = \{\sigma \in \Gal(K/F) : \sigma|_E = \myId_E\} = \Gal(K/E)$.
+			\item $\Phi$ is onto. After all, if $\tau \in \Gal(E/F)$ then since $K$ is a splitting field of some $f(x)$ over $E$, there exists a lif $\widetilde{\tau} \in \Gal(K/E)$ such that $\widetilde{\tau}|_E = \tau$.\retTwo
+		\end{itemize}
+
+		Now just apply the first isomorphism theorem. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\Hstatement\blab{Set 1 Problem 4:} Let $K/F$ be a finite Galois extension and let $E, L$ be intermediate subfields of $F$ and $K$. Then there's an isomorphism of fields $\theta: E \to L$ with $\theta: E \to L$ with $\theta|_F = \myId_F$ if and only if the subgroups $\Gal(K/L)$ and $\Gal(K/E)$ are conjugate subgroups of $G \coloneqq \Gal(K/F)$.
+\begin{myIndent}\HexOne
+	$(\Longrightarrow)$\\
+	Since $K/F$ is a Galois extension, we know that $K$ is a splitting field of some separable polynomial $f(x) \in F[x]$. In turn, we can also say $K$ is a splitting field of $f$ over both $E$\newpage and $L$. So by the theorem on \inLinkRap{placeholder}{page 764}, there is some automorphism $\widetilde{\theta}: K \to K$ such that $\widetilde{\theta}|_E = \theta$. Because $\theta|_F = \myId_F$, we know that $\widetilde{\theta} \in \Gal(K/F)$. And thus, we've proven that there exists some $\sigma \in \Gal(K/F)$ such that $L = \sigma(K)$.\retTwo
+
+	To finish off, I establish the following result.\retTwo
+	
+	\ul{Lemma:} Given a Galois extension $K/F$ and an intermediate field $F \subseteq E \subseteq K$, we have that $\Gal(K/\sigma(E)) = \sigma \Gal(K/E)\sigma^{-1}$ for every $\sigma \in \Gal(K/F)$.
+	\begin{myIndent}\HexTwoP
+		Proof:\\
+		Suppose $\tau \in \Gal(K/E)$ and consider any $a \in \sigma(E)$. Then there exists $b \in E$ such that $a = \sigma(b)$. Therefore $(\sigma \circ \tau \circ \sigma^{-1})(a) = (\sigma \circ \tau)(b) = \sigma(b) = a$, and this proves that $\sigma \circ \tau \circ \sigma^{-1} \in \Gal(K/\sigma(E))$ for all $\tau \in \Gal(K/E)$. Hence, $\sigma \Gal(K/E) \sigma^{-1} \subseteq \Gal(K/\sigma(E))$.\retTwo
+
+		As for the other containment, just note that $\sigma^{-1}(\sigma(E)) = E$. So, by the above reasoning we also have that $\sigma^{-1}\Gal(K/\sigma(E))\sigma \subseteq \Gal(K/E)$. Equivalently, this gives us that $\sigma \Gal(K/E) \sigma^{-1} \supseteq \Gal(K/\sigma(E))$.\retTwo
+	\end{myIndent}
+
+	As a consequence of the above lemma, we have that $\Gal(K/L) = \sigma \Gal(K/E) \sigma^{-1}$\\ for some $\sigma \in \Gal(L/F)$. In other words, $\Gal(K/L)$ and $\Gal(K/E)$ are conjugate\\ subgroups.\retTwo
+
+	$(\Longleftarrow)$\\
+	If $\Gal(K/L)$ and $\Gal(K/E)$ are conjugate subgroups, then we know there exists\\ $\sigma \in \Gal(K/F)$ such that $\Gal(K/L) = \sigma \Gal(K/E)\sigma^{-1}$. Yet by the prior lemma we\\ also know that $\sigma \Gal(K/E)\sigma^{-1} = \Gal(K/\sigma(E))$. Therefore, we must have that:
+
+	{\centering $L = \Fix(\Gal(K/L)) = \Fix(\Gal(K/\sigma(E))) = \sigma(E)$ \retTwo\par}
+
+	It follows that $\sigma|_E$ is an isomorphism of fields from $E$ to $L$ satisfying that $(\sigma|_E)|_F = \myId_F$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\HexPPP
+		As a side note which I hopefully will never say again:
+		\begin{myIndent}
+			The theorem on \inLinkRap{placeholder}{page 774} says $K/F$ is a Galois extension iff $K$ is a splitting field of an irreducible-separable polynomial $f$. Yet by taking the square-free radical of $f$, we are then also able to say that $K/F$ is a splitting field of a separable polynomial. So without loss of generality we can just assume $f$ is a separable polynomial.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Given field extensions $F \subseteq E \subseteq K$, we often want to write $E = F[\alpha]$ for some $\alpha$. (We call $\alpha$ a \udefine{primitive element}.) As we will show next, in most cases that we care about we can do this.\retTwo
+
+\exTwo\ul{Lemma:} If $V$ is a finite dimension vector space over an infinite field $F$, then we cannot write $V = \bigcup_{i=1}^m W_i$ where each $W_i$ is a proper $F$-subspace of $V$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We proceed by induction on $\dim_F(V)$. In the trivial case that $V = \{0\}$, then there are no proper $F$-subspaces. So the lemma is trivially true. Meanwhile if $\dim_F(V) = 1$, then the only proper subspace of $V$ is $\{0\}$. So, we'd have that $\bigcup_{i=1}^m W_i = \{0\} \neq V$.\newpage
+
+	The actual non-trivial base case we need to prove is when $\dim_F(V) = 2$. As we will see, this is where we need $F$ to be infinite.
+	\begin{myIndent}\exPPP
+		Let $v_1, v_2$ be a basis of $V$ and suppose for the sake of contradiction that $V = \bigcup_{i=1}^m W_i$ where each $W_i$ is a proper subspace. Without loss of generality we can assume each $W_i$ has dimension $1$. After all, at least one $W_i$ has dimension $1$ (lest  $\bigcup_{i=1}^m W_i = \{0\} \neq V$). Then, the dimension $1$ subspaces each contain all of the dimension $0$\\ subspaces.\retTwo
+		
+		Write $W_i = \mSpan(a_iv_1 + b_iv_2)$ for some $a_i, b_i \in F$. Then given any $av_1 + b v_2 \in V$ we must have that either $b = 0$ or $a/b = a_i/ b_i$ for some $i$ since $V = \bigcup_{i=1}^m W_i$. Yet as $F$ is infinite, there exists some $c \in F$ such that $c \neq a_i / b_i$ for any $i$. And now we have a contradiction since for any nonzero $d \in F$ we know that $cd v_1 + dv_2 \in V$ but not in $\bigcup_{i=1}^m W_i$.\retTwo
+	\end{myIndent}
+
+	Finally, we now assume $\dim_F(V) = n \geq 3$ and that the lemma holds for all finite\\ dimension $F$-vector spaces $W$ where $\dim_F(W) < n$. If the lemma was not true for $V$, then there'd have to exist some minimum $m \in \mathbb{N}$ for which there exists proper subspaces $W_1, \ldots, W_m$ satisfying that $V = \bigcup_{i=1}^m W_i$.\retTwo
+
+	\ul{Claim:} For any fixed $j \in \{1, \ldots, m\}$, we have that $W_j \not\subseteq \bigcup_{i \neq j} W_i$.
+	\begin{myIndent}\exPPP
+		To see why, note that if $W_j \subseteq \bigcup_{i\neq j} W_i$ then we'd also know $W_j = \bigcup_{i \neq j} (W_j \cap W_i)$. Yet now by our inductive hypothesis, the only way this would be possible is if\\ $W_j \cap W_{i^\prime} = W_j$ for some $i^\prime \neq j$. So, we'd have that $W_j \subseteq W_{i^\prime}$. And this\\ contradicts the minimality assumption about $m$.\retTwo
+	\end{myIndent}
+
+	Because of the above claim, we can pick $w \in W_m - \bigcup_{i=1}^{m-1}W_i$ and $w^\prime \in W_1 - \bigcup_{i=2}^m W_i$. Then, after setting $W = \mSpan(w, w^\prime)$, we know that $W$ is a proper subspace of $V$ since $\dim_{F}(V) > 2$. At the same time though, we know that $W \cap W_i \neq W$ for any $i$. Thus, we have a contradiction to our inductive hypothesis since:
+
+	{\centering $W = W \cap V = W \cap (\bigcup_{i=1}^m W_i) = \bigcup_{i=1}^m (W \cap W_i)$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Let $K/F$ be a finite extension of fields. Then the following are equivalent:
+\begin{enumerate}
+	\item[(a)] $K = F[\alpha]$ for some $\alpha \in K$.
+	\item[(b)] There exists finitely many intermediate fields $E$ with $F \subseteq E \subseteq K$. 
+	
+	\begin{myIndent}\exThreeP
+		$(b \Longrightarrow a)$\\
+		If $F$ is finite field, then so is $K$ since $K/F$ is a finite extension. In turn, we know that $K^\times$ is cyclic. And if $\alpha \in K$ is a generator for $K^\times$, we know $F[\alpha] = K$.\retTwo
+
+		Meanwhile if $F$ is infinite, then since there are finitely many intermediate fields we can index them to say that $E_1, \ldots, E_m$ are all the proper (i.e. $\neq K$) intermediate fields. By the prior lemma, we then know $K \neq \bigcup_{i=1}^m E_i$. So, if we pick $\alpha \in K - \bigcup_{i=1}^m E_i$ we have that $F[\alpha] = K$.\retTwo
+
+		$(a \Longrightarrow b)$\\
+		Assume $K = F[\alpha]$ and consider any intermediate field $F \subseteq E \subseteq K$. Also note that $K = F[\alpha] \subseteq E[\alpha] = K$.\newpage
+
+		Let $f(x) = m_{\alpha; E}(x) = x^m + a_{m-1}x^{m-1} + \ldots + a_1 x + a_0 \in E[x]$. Then if we consider the field $E^\prime \coloneqq F[a_0, a_1, \ldots, a_{m-1}] \subseteq E$, we have that $m_{\alpha; E^\prime} = f$. Hence, it follows that $[K : E] = \deg(f) = [K : E^\prime]$, and in turn we know that $E = E^\prime$.\retTwo
+
+		Also note though that if $g = m_{\alpha; F} \in F[x]$, then we must have that $f \divides g$ in\\ $E[x] \subseteq K[x]$. Therefore, every intermediate field $E$ is given by the coefficients\\ of some monic divisor of $g$ in $K[x]$. But since $K[x]$ is a UFD, $g$ only has finitely\\ many monic divisors. So, there only are finitely many intermediate fields $E$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo This proposition is useful because we can show as an easy consequence of the following lemma that if $K/F$ is a finite separable extension, then there are guarenteed to be only finitely many intermediate fields $E$ with $F \subseteq E \subseteq K$. Hence, we only possibly have that $K \neq F[\alpha]$ for any $\alpha \in K$ if $K/F$ is \textit{not} a separable extension.\retTwo
+
+\exTwo\ul{Lemma} (Existence of \udefine{Galois closures}): If $K/F$ is a finite separable extension, then there exists a finite extension $L/K$ such that $L/F$ is a Galois extension.
+\begin{myIndent}\exThreeP
+	Since $K/F$ is a finite extension, we can write $K = F[\alpha_1 , \ldots, \alpha_n]$. Next, we let\\ $f_i \coloneqq m_{\alpha_i ; F}$. Then each $f_i$ is separable since $K/F$ is a separable extension. If we let $g$\\ be the product of all distinct $f_i$, then $g$ will be separable too.\retTwo
+
+	Let $L$ be a splitting field of $g$ over $K$. In other words, if $\beta_1, \ldots, \beta_m$ are roots of $g$ then $L = K[\beta_1, \ldots, \beta_m]$. Yet also note that each of the $\alpha_i$ are included in the $\beta_j$. So, we have that $F[\beta_1, \ldots, \beta_m] = L$ as well. Hence, $L$ is a splitting field of $g(x)$ over $F$. And this proves that $L/F$ is a Galois extension. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		Importantly, as $\Gal(L/F)$ has finitely many subgroups, we know there are only finitely many intermediate fields $E$ with $F \subseteq E \subseteq L$. In turn, we also know there are only finitely many intermediate fields $E$ with $F \subseteq E \subseteq K \subseteq L$.
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Here's one more topic I want to cover before switching to the homework.\retTwo
+
+Let $n$ be a positive integer and let $K$ be the splitting field of $f(x) = x^n - 1$ over $\mathbb{Q}$. The roots of $f(x)$ are $1, \zeta, \ldots, \zeta^{n-1}$ where $\zeta \coloneqq e^{2\pi i / n}$. Hence, $K = \mathbb{Q}[\zeta]$.\retTwo
+
+We define the \udefine{$n$th cyclotomic polynomial} to be $\Phi_n(x) = \hspace{-1em}\prod\limits_{\substack{ 1 \leq i \leq n \\ \gcd(i, n) = 1}}\hspace{-1em} (x - \zeta^i)$.\retTwo
+
+In other words, $\Phi_n(x)$ has as roots all \udefine{primitive} $n$th roots of $1$ (meaning the $\alpha \in \mathbb{C}$ such that $\alpha^n = 1$ and $\alpha^k \neq 1$ for all $1 \leq k < n$).
+\begin{myIndent}\pracTwo
+	As an example, you can easily work out that $\Phi_1(x) = x - 1$, $\Phi_2(x) = x + 1$,\\ $\Phi_3(x) = x^2 + x + 1$, and $\Phi_4(x) = x^2 + 1$.
+	\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} For all $n$ we have that:
+\begin{enumerate}
+	\item[1.] $x^n - 1 = \prod_{d \divides n} \Phi_d(x)$
+	\item[2.] $\Phi_n(x) \in \mathbb{Z}[x]$ as is monic.\newpage
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		To start off, note that
+		
+		{\centering\begin{tabular}{l}
+			$x^n - 1 = \hspace{-0.8em}\prod\limits_{0 \leq k \leq n - 1}\hspace{-0.8em} (x - e^{2\pi i k / n}) = \prod\limits_{d \divides n}(\prod\limits_{\substack{0 \leq k \leq n - 1 \\ \gcd(k, n) = \frac{n}{d}}} \hspace{-1em} (x - e^{2\pi i k / n}))$
+		\end{tabular}\retTwo\par}
+
+		% = \prod\limits_{d \divides n}(\prod\limits_{\substack{0 \leq k \leq n - 1 \\ \gcd(\frac{kd}{n}, d) = 1}} \hspace{-1em} (x - e^{\frac{2\pi i (kd/n)}{ d}}))$.
+
+		Next, note that if $0 \leq k \leq n -1$ and $\gcd(k, n) = \frac{n}{d}$, then we know that $\frac{kd}{n}$ is\\ an integer in $\{0, 1, \ldots, d-1\}$ satisfying that $\gcd(\frac{kd}{n}, d) = 1$. Conversely, if\\ $\gcd(j, d) = 1$ and $0 \leq j \leq d - 1$  Then $j\frac{n}{d}$ is an integer in $\{0, 1, \ldots, n\}$ and\\  $\gcd(j\frac{n}{d}, n) = \frac{n}{d}$. Therefore, we can write:
+
+		{\centering $\prod\limits_{\substack{0 \leq k \leq n - 1 \\ \gcd(k, n) = \frac{n}{d}}} \hspace{-1em} (x - e^{2\pi i k / n}) = \prod\limits_{\substack{0 \leq k \leq n - 1 \\ \gcd(k, n) = \frac{n}{d}}} \hspace{-1em} (x - e^{\frac{2\pi i (kd/n)}{ d}}) = \prod\limits_{\substack{0 \leq j \leq d - 1 \\ \gcd(j, d) = 1}} \hspace{-1em} (x - e^{\frac{2\pi i j}{ d}}) = \Phi_d(x)$ \retTwo\par}
+
+		And this proves part 1.\retTwo
+
+		To show part 2 just do induction on $n$ and use the long division theorem on\\ $\frac{x^n - 1}{\prod_{\substack{d \divides n \\ d \neq n}} \Phi_d(x)}$. Our base case is clear since I wrote $\Phi_1$ through $\Phi_4$ on the last page. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\exTwo\ul{Theorem:} $\Phi_n(x)$ is irreducible over $\mathbb{Q}[x]$ for each $n$. Hence, $\Phi_n(x) = m_{\zeta_n ; \mathbb{Q}}$ where\\ $\zeta_n = e^{2\pi i / n}$. Also $[\mathbb{Q}[\zeta_n] : \mathbb{Q}] = \det(\Phi_n(x)) = \varphi(n)$ (where $\varphi$ is Euler's totient function).
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Write $\Phi_n(x) = f(x)g(x)$ where $f$ is an irreducible monic polynomial in $\mathbb{Q}[x]$ and\\ $f(\zeta_n) = 0$. By Gauss' lemma, we know $f, g \in \mathbb{Z}[x]$ and are monic.\retTwo
+
+	Given any root $\zeta$ of $f$, notice if $p$ is a prime number with $\gcd(p, n) = 1$, then $\zeta^p$ is another root of $\Phi_n(x)$. We can show as follows that $\zeta^p$ is a root of $f$ and not $g$.
+	\begin{myIndent}\exPPP
+		Suppose for the sake of contradiction that $\zeta^p$ is a root of $g(x)$, Then as $g(\zeta^p) = 0$, we know that $g(x^p)$ has $\zeta$ as a root. Thus, it follows that $f(x) \divides g(x^p)$. So, let\\ $g(x^p) = f(x)h(x)$ where $h \in \mathbb{Z}[x]$.\retTwo
+
+		By passing to $(\mathbb{Z}/p\mathbb{Z})[x]$, we get that $\overline{g(x^p)} = \overline{f(x)} \cdot \overline{h(x)}$. Yet now since $\overline{a_i}^p = \overline{a_i}$ for all $\overline{a_i} \in \mathbb{Z}/p\mathbb{Z}$, we can conclude by the Frobenius homomorphism on $(\mathbb{Z}/p\mathbb{Z})[x]$ that $\overline{g(x^p)} = \overline{g(x)}^p$. Thus, $\overline{g}^p = \overline{f} \cdot \overline{h}$. And now we can conclude that any irreducible factor of $\overline{f}$ must also divide $\overline{g}$. (After all, $(\mathbb{Z}/p\mathbb{Z})[x]$ is a PID and thus a UFD. So all irreducible factors are prime factors.)\retTwo
+
+		Since $f$ and $g$ must be monic, neither $\overline{f}$ nor $\overline{g}$ are constant polynomials. Hence, they must have a shared irreducible factor. But now that implies that $\overline{\Phi_n(x)} = \overline{f(x)} \cdot \overline{g(x)}$ is not separable, and in turn $\overline{x^n - 1}$ is not separable. This is a contradiction.
+
+		\begin{myIndent}\color{orange}
+			In $(\mathbb{Z}/p\mathbb{Z})[x]$ we have that $(\overline{x^n - 1})^\prime = \overline{n}x^{n-1}$. Since $\overline{n} \neq \overline{p}$ since\\ $\gcd(n, p) = 1$, we know that $\overline{n}x^{n-1}$ is not the zero polynomial. Hence,\\ any nonconstant monic factor of $\overline{n}x^{n-1}$ will be of the form $x^j$ for some\\ $j \in \{1, \ldots, n-1\}$. At the same time, $x \not\hspace{0.3em}\divides \overline{x^n - 1}$ as $0^n - 1 \neq 0$ in $\mathbb{Z}/p\mathbb{Z}$. Thus, we know that $\gcd(\overline{x^n - 1}, \overline{n}x^{n-1}) = \overline{1}$. And this proves $\overline{x^n - 1}$ is separable in $(\mathbb{Z}/p\mathbb{Z})[x]$.\newpage
+		\end{myIndent}
+	\end{myIndent}
+
+	To finish off, suppose $f \neq \Phi_n(x)$ and let $j$ be the minimal positive integer such that $\zeta_n^j$ is not a root of $f$ and $\gcd(j, n) = 1$. Write $j = p_1^{e_1} \cdots p_\ell^{e_\ell}$ where each $p_k$ is a prime number less than $n$ and each $e_k$ is a positive integer.\retTwo
+
+	By our minimality assumption, we know $\zeta^s$ is a root of $f$ where $s = p_1^{e_1} \cdots p_\ell^{e_\ell - 1}$. But then by the reasoning on the prior page, we have that $(\zeta^s)^{p_m} = \zeta^j$ is a root of $f$. This is a contradiction.\retTwo
+
+	Hence, we conclude $f = \Phi_n$ is irreducible over $\mathbb{Q}[x]$. And from there all the other claims of the theorem are obvious from past results. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} \hypertarget{Galois group of cyclotomic polynomials over Q}{Let} $K$ be a splitting field of $x^n - 1$ over $\mathbb{Q}$. I.e. $K = \mathbb{Q}[\zeta]$ where $\zeta = e^{2\pi i /n }$. Then $\Gal(K/\mathbb{Q}) \cong (\mathbb{Z}/n\mathbb{Z})^\times$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $\sigma \in G \coloneqq \Gal(K/\mathbb{Q})$, then $\sigma(\zeta) = \zeta^i$ for some $1 \leq i \leq n -1$ such that $\gcd(i, n) = 1$. This is because $\sigma$ permutes the roots of $\Phi_n(x) = m_{\zeta; \mathbb{Q}}$. Also as $|\Gal(K/\mathbb{Q})| = [K: \mathbb{Q}] = \varphi(n) = \#\text{ roots of }\Phi_n$, we know all choices of $i$ do actually occur for some $\sigma \in G$.\retTwo
+	
+	Define $\Psi : (\mathbb{Z}/n\mathbb{Z})^\times \to \Gal(K/\mathbb{Q})$ such that $\overline{j} \mapsto \sigma_j$ where $\sigma_j$ is the unique\\ automorphism sending $\zeta$ to $\zeta^j$.
+	\begin{itemize}
+		\item To see that this is well-defined, just note that $\zeta^{j + kn} = \zeta^j$ for all $k \in \mathbb{Z}$. Also\\ as mentioned before, through a simple cardinality argument we know there does\\ exist an automorphism $\sigma_j$ such that $\sigma(\zeta) = \zeta^j$ for every $j$ such that\\ $\gcd(j, n) = 1$.
+		\item Surjectivity is obvious and injectivity then follows because 
+		
+		{\centering$|(\mathbb{Z}/n\mathbb{Z})^\times| = \varphi(n) = |\Gal(K/\mathbb{Q})|$.\retTwo\par}
+
+		\item To see that $\Psi$ is a group homomorphism, note that both $\Psi(\overline{jk})$ and $\Psi(\overline{j}) \circ \Psi(\overline{k})$\\ send $\zeta$ to $\zeta^{jk}$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\blect{Math 200c Homework:}\retTwo
+
+\Hstatement\blab{Set 1 Problem 3:} Let $\alpha = \sqrt{3 + \sqrt{7}} \in \mathbb{C}$. Let $K$ be a splitting field of $f(x) = m_{\alpha; F}(x)$ over $\mathbb{Q}$. Calculate $[K : \mathbb{Q}]$ and show that $G = \Gal(K/ \mathbb{Q})$ is isomorphic to a familiar group.
+\begin{myIndent}\HexOne
+	Note that $(\alpha^2 - 3)^2 - 7 = 0$. Hence, $\alpha$ is a zero of the polynomial\\ $(x^2 - 3)^2 - 7 = x^4 - 6x^2 + 2$. Furthermore, the latter polynomial is\\ irreducible by Eisenstein's criterion (using $p = 2$). Hence, we know that\\ $f(x) = x^4 - 6x^2 + 2$.\retTwo
+
+	By the quadratic formula, we know that if $x^4 - 6x^2 + 2 = 0$ then $x^2 = 3 \pm \sqrt{7}$.\\ Hence, the roots of $f$ are $\pm \sqrt{3 \pm \sqrt{7}}$. In particular, if we let $\beta = \sqrt{3 - \sqrt{7}}$, then\\ this shows that $K = \mathbb{Q}[\alpha, \beta]$ ($= \mathbb{Q}[\pm \alpha, \pm\beta]$).\retTwo
+
+	Also note that $\alpha \beta = \sqrt{9 - 7} = \sqrt{2}$. So, we can conclude that $K = \mathbb{Q}[\alpha, \beta] = \mathbb{Q}[\alpha, \sqrt{2}]$.\\ And now it follows by the tower lemma that:
+
+	{\centering\begin{tabular}{l}
+		$[K : \mathbb{Q}] = [\mathbb{Q}[\alpha, \sqrt{2}] : \mathbb{Q}[\alpha]] \cdot [\mathbb{Q}[\alpha], \mathbb{Q}] = [\mathbb{Q}[\alpha, \sqrt{2}] : \mathbb{Q}[\alpha]] \cdot \deg(f)$\\ [4pt]
+		$\phantom{[K : \mathbb{Q}] = [\mathbb{Q}[\alpha, \sqrt{2}] : \mathbb{Q}[\alpha]] \cdot [\mathbb{Q}[\alpha], \mathbb{Q}]} = [\mathbb{Q}[\alpha, \sqrt{2}] : \mathbb{Q}[\alpha]] \cdot 4$
+	\end{tabular}\retTwo\par}
+
+	We can also show that $\sqrt{2} \notin \mathbb{Q}[\alpha]$ and thus $[\mathbb{Q}[\alpha, \sqrt{2}] : \mathbb{Q}[\alpha]] = \deg(x^2 + 2) = 2$.\\ [-8pt]
+	\begin{myIndent}\HexTwoP
+		Note that $m_{\sqrt{2} ; \mathbb{Q}} = x^2 + 2$ is irreducible in $\mathbb{Q}[\alpha]$ if and only if $m_{\alpha; \mathbb{Q}} = x^4 - 6x^2 + 2$ is irreducible in $\mathbb{Q}[\sqrt{2}]$ as either statements hold iff $[\mathbb{Q}[\alpha, \sqrt{2}] : \mathbb{Q}] = 8$.
+		\begin{myIndent}\HexPPP
+			(This was also a homework result on \inLinkRap{placeholder}{pages 764-765}.)\retTwo
+		\end{myIndent}
+
+		But now as $(\pm \sqrt{3 \pm \sqrt{7}})^2 = 3\pm \sqrt{7}$, we know that if any root of $m_{\alpha; \mathbb{Q}}$ was in $\mathbb{Q}[\sqrt{2}]$ then that would imply $\mathbb{Q}[\sqrt{7}] \subseteq \mathbb{Q}[\sqrt{2}]$. Yet as that is not true, we can conclude that $m_{\alpha; \mathbb{Q}} = x^4 - 6x^2 + 2$ has no linear divisors in $\mathbb{Q}[\sqrt{2}]$.\retTwo
+
+		To show that $m_{\alpha; \mathbb{Q}}$ has no quadratic divisors in $\mathbb{Q}[\sqrt{2}]$, it suffices to show that\\ $(x - \alpha)(x + \alpha)$, $(x + \alpha)(x + \beta)$, and $(x + \alpha)(x - \beta)$ are not in $(\mathbb{Q}[\sqrt{2}])[x]$.\\ [-8pt]
+		\begin{itemize}
+			\item $(x - \alpha)(x + \alpha) = x^2 - \alpha^2 = x^2 - 3 - \sqrt{7}$. Yet as $\sqrt{7} \notin \mathbb{Q}[\sqrt{2}]$, we thus have that $(x - \alpha)(x + \alpha) \notin (\mathbb{Q}[\sqrt{2}])[x]$.\retTwo
+			
+			\item Note that $(x + \alpha)(x + \beta) = x^2 + (\alpha + \beta)x + \sqrt{2}$ and similarly that\\ $(x + \alpha)(x - \beta) = x^2 + (\alpha - \beta)x - \sqrt{2}$. Thus, it suffices to show that\\ $\alpha \pm \beta \notin \mathbb{Q}[\sqrt{2}]$ in order to show that our two polynomials are not in $(\mathbb{Q}[\sqrt{2}])[x]$.
+			\begin{myIndent}\HexPPP
+				Fortunately, note that $g(x) \coloneqq x^4 - 12x^2 + 28$ satisfies that $g(\alpha \pm \beta) = 0$. Also, we can see that $g$ is irreducible in $\mathbb{Q}[x]$ via the$\mMod{3}$ irreducibility criterion (see \inLinkRap{placeholder}{page 523}).\retTwo
+
+				\begin{myIndent}\color{orange}
+					By passing to $(\mathbb{Z}/3\mathbb{Z})[x]$, we get that $\overline{g}(x) = x^4 + 1$. We can check that $\overline{g}(x)$ has no linear divisors since $g(0) = 1$, $g(1) = 2$, and $g(2) = 17 \equiv 2$. Also note that the only irreducible monic quadratics in $(\mathbb{Z}/3\mathbb{Z})[x]$ are $x^2 + 1$, $x^2 + x + 2$, and $x^2 + 2x + 2$. Yet by long division we can see that none of those divide $x^4 + 1$ either. So, $x^4 + 1$ is irreducible in $(\mathbb{Z}/3\mathbb{Z})[x]$.\retTwo
+				\end{myIndent}
+
+				It follows that $[\mathbb{Q}[\alpha + \beta] : \mathbb{Q}] = 4 = [\mathbb{Q}[\alpha - \beta] : \mathbb{Q}]$. So, we can't have that $\alpha \pm \beta \in \mathbb{Q}[\sqrt{2}]$ since that would contradict that $[\mathbb{Q}[\sqrt{2}] : \mathbb{Q}] = 2$.\retTwo
+			\end{myIndent}
+		\end{itemize}
+
+		This finishes showing that $m_{\alpha; \mathbb{Q}}$ is irreducible in $\mathbb{Q}[\sqrt{2}]$. So, we can also conclude that $m_{\sqrt{2}; \mathbb{Q}}$ is irreducible in $\mathbb{Q}[\alpha]$.\retTwo
+	\end{myIndent}
+
+	With that, we've proven that $[K : \mathbb{Q}] = 8$.\retTwo
+
+	\mySepThree 
+
+	Now since $K = \mathbb{Q}[\alpha, \sqrt{2}]$, every $\sigma \in \Gal(K/\mathbb{Q})$ is uniquely determined by where it sends $\alpha$ and $\sqrt{2}$. Yet we also must have that $\sigma(\alpha) \in \{\pm \alpha, \pm \beta\}$ and $\sigma(\sqrt{2}) = \pm \sqrt{2}$ for every $\sigma \in \Gal(K/\mathbb{Q})$. Thus there are eight possible choices for where we could send $\alpha$ and $\sqrt{2}$.\newpage And since $K/\mathbb{Q}$ is a Galois extension since $K$ is the splitting field of the separable polynomial $x^4 - 6x^2 + 2$, we also know that $|\Gal(K/\mathbb{Q})| = [K : \mathbb{Q}] = 8$. Hence, all possible choices occur.\retTwo
+
+	Let us fix $\tau, \sigma \in \Gal(K/ \mathbb{Q})$ such that:
+
+	{\centering $\tau(\sqrt{2}) = -\sqrt{2}$, $\tau(\alpha) = \alpha$ and $\sigma(\sqrt{2}) = -\sqrt{2}$, $\sigma(\alpha) = \beta$. \retTwo\par}
+
+	Now it's immediate that $\tau^2 = \myId_K$. Meanwhile, we can show from the following scratch work that $o(\sigma) = 4$.
+
+	{\centering\begin{tabular}{l}
+		$\sigma^2(\alpha) = \sigma(\beta) = \sigma(\frac{\sqrt{2}}{\alpha}) = \frac{-\sqrt{2}}{\beta} = \frac{-\sqrt{2}}{\frac{\sqrt{2}}{\alpha}} = -\alpha$\\ [6pt]
+		$\phantom{\sigma^2(\alpha) = \sigma(\beta) = \sigma(\frac{\sqrt{2}}{\alpha}) = \frac{-\sqrt{2}}{\beta}} \Longrightarrow \sigma^3(\alpha) = -\beta \Longrightarrow \sigma^4(\alpha) = \alpha$.\\ [12pt]
+
+		$\sigma^4(\sqrt{2}) = \sigma^3(-\sqrt{2}) = \sigma^2(\sqrt{2}) = \sigma(-\sqrt{2}) = \sqrt{2}$.
+	\end{tabular}\retTwo\par}
+
+	Also note that:
+	
+	{\centering$\tau \circ \sigma \circ \tau(\alpha) = \tau \circ \sigma(\alpha) = \tau(\frac{\sqrt{2}}{\alpha}) = \frac{-\sqrt{2}}{\alpha} = -\beta$ and $\tau \circ \sigma \circ \tau(\sqrt{2}) = -\sqrt{2}$.\retTwo\par}
+
+	Therefore we have that $\tau \circ \sigma \circ \tau = \sigma^3$. As for one last observation, note that $\tau \notin \langle \sigma\rangle$.\\ After all, $\tau$ fixes $\alpha$ but $\sigma^k(\alpha) \neq \alpha$ whenever $k \not\equiv 0 \mMod{4}$. It follows that $\tau \langle \sigma\rangle$ and $\langle \sigma \rangle$ are distinct cosets.\retTwo
+
+	This lets us say that $\Gal(K/\mathbb{Q})$ is isomorphic to the dihedral group $D_8$.
+
+	\begin{myIndent}\myComment
+		I'm moving on even though I haven't constructed that isomorphism. Sorry.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\Hstatement\blab{Set 1 Problem 5:} Let $\zeta \in \mathbb{C}$ be a primitive $p$th. root of $1$ for some prime $p \geq 3$. Let $K = \mathbb{Q}[\zeta]$ be the splitting field of $x^p - 1$ inside $\mathbb{C}$.
+\begin{enumerate}
+	\item[1.] Let $\alpha = \sum_{i=0}^{p-1} \zeta^{i^2}$. This is called a \udefine{Gauss sum}. Prove that $E = \mathbb{Q}[\alpha]$ is the unique subfield of $K$ such that $[E : \mathbb{Q}] = 2$.
+	
+	\begin{myIndent}\HexOne
+		Recall from \inLinkRap{Galois group of cyclotomic polynomials over Q}{page 821} that $ (\mathbb{Z}/p\mathbb{Z})^\times \cong \Gal(K / \mathbb{Q})$ by the isomorphism such that $\overline{j}$\\ maps to the unique automorphism sending $\zeta$ to $\zeta^j$. In particular, as $\Gal(K/\mathbb{Q})$ is cyclic with order $p - 1$, there exists a unique subgroup with order $\frac{p-1}{2}$. By the Galois\\ correspondance, that then means that there is a unique intermediate field\\ $\mathbb{Q} \subseteq E \subseteq K$ with $[K : E] = \frac{p-1}{2}$. Equivalently, by tower lemma that $E$ is the\\ unique intermediate field with $[E : \mathbb{Q}] = 2$.\retTwo
+
+		So now that we know there is a unique intermediate field $E$ with $[E : \mathbb{Q}] = 2$, it suffices to prove that $E = \mathbb{Q}[\alpha]$. Since it's obvious that $\alpha \in K$, we in turn just need to show that $m_{\alpha ; \mathbb{Q}}(x)$ is a quadratic. Also because $\mathbb{Q}$ has characteristic $0$ and $m_{\alpha ; \mathbb{Q}}(x)$ is irreducible, we know that $m_{\alpha ; \mathbb{Q}}(x)$ is separable. Therefore, we merely need to show that $m_{\alpha ; \mathbb{Q}}(x)$ has two roots. And finally, because $\Gal(K/\mathbb{Q})$ acts transitively on the roots of $m_{\alpha ; \mathbb{Q}}(x)$ (see \inLinkRap{Math 200b Set 9 Problem 10}{page 815}), it suffices to show that the orbit of $\alpha$ under the action of $\Gal(K/\mathbb{Q})$ has two elements.
+		\begin{myIndent}\color{red}
+			Thanks @hchan for telling me to think in terms of the orbit of the group action of $\Gal(K/\mathbb{Q})$ on $\alpha$. I was completely stuck before being told that idea.\retTwo
+		\end{myIndent}
+
+		Now I establish some important facts.\newpage
+		\begin{enumerate}
+			\item[(a)] $\sum_{i=0}^{p-1} \zeta^i = 0$.
+			\begin{myIndent}\HexTwoP
+				Why?\\
+				For a rigorous reason why this is true, notice that $-(\sum_{i=0}^{p-1} \zeta^i)$ is the\\ coefficient of the $x^{p-1}$ term of the polynomial $\prod_{i=0}^{p-1}(x - \zeta^i) = x^p - 1$. As for an intuitive reason why this is true, note that the $\zeta^i$ are equally spaced around the unit circle. So, we should expect their average point to be the center of the unit circle.\retTwo
+			\end{myIndent}
+
+			\item[(b)] We say $k \in \mathbb{Z}/p\mathbb{Z}$ is a \udefine{square residue} if $x^2 - k$ has a zero in $\mathbb{Z}/p\mathbb{Z}$. Otherwise, we say $k$ is a \udefine{square nonresidue}. I shall denote the subset of square residues in $(\mathbb{Z}/p\mathbb{Z})^\times$ as $S$, and similarly I shall denote the subset of square nonresidues in $(\mathbb{Z}/p\mathbb{Z})^\times$ as $N$. Clearly, $\mathbb{Z}/p\mathbb{Z} = \{0\} \cup S \cup N$.\retTwo
+			
+			\ul{Observation:} $H < (\mathbb{Z}/p\mathbb{Z})^\times$ with $[(\mathbb{Z}/p\mathbb{Z})^\times : H] = 2$.
+			\begin{myIndent}\HexTwoP
+				Proof:\\
+				Consider the group homomorphism $\varphi: (\mathbb{Z}/p\mathbb{Z})^\times \to (\mathbb{Z}/p\mathbb{Z})^\times$ such that $\varphi(j) = j^2$. Then $H = \myIm(\varphi)$. Also $j \in \ker(\varphi)$ iff $j^2 = 1$. As $p$ is an odd prime (so $1 \neq -1$), we thus know that $|\ker(\varphi)| = 2$. Now just apply Lagrange's theorem.\retTwo
+			\end{myIndent}
+
+			It follows that $H$ and $N$ are two cosets partitioning $(\mathbb{Z}/p\mathbb{Z})^\times$. In particular if\\ $k \in N$ then the map $j \mapsto kj$ is a bijective map from $H$ to $N$.\retTwo
+
+			\item[(c)] Note that $(p - x)^2 = p^2 - 2px + x^2 = x^2 \mMod{p}$. It follows that the squares of $1, 2, \ldots, \frac{p-1}{2}$ are all distinct and correspond in a bijective fashion to the squares of $\frac{p-1}{2} + 1, \ldots, p-1$. Hence, we may write:
+			
+			{\centering $\alpha = 1 + \sum_{i=1}^{p-1} \zeta^{i^2} = 1 + 2\sum_{j \in H}\zeta^j$ \retTwo\par}
+		\end{enumerate}
+
+		Now we know for any $\sigma \in \Gal(K/\mathbb{Q})$ that there exists $k$ such that:
+		
+		{\centering$\sigma(\alpha) = 1 + 2\sum_{j \in H} \sigma(\zeta)^{j} = 1 + 2\sum_{j \in H} \zeta^{kj} = 1 + 2\sum_{j \in kH} \zeta^{j}$\retTwo\par}
+
+		Thus, the orbit of $\alpha$ is precisely:
+
+		{\centering $\alpha = 1 + 2\sum_{j \in H} \zeta^{j}$ and $\beta \coloneqq 1 + 2\sum_{j \in N}\zeta^j$ \retTwo\par}
+
+		If we can prove that $\alpha$ and $\beta$ are distinct then we will be done. So, suppose for the sake of contradiction that $\alpha = \beta$.
+		\begin{myIndent}\HexTwoP
+			Since $\alpha + \beta = 2(\sum_{j=0}^{p-1} \zeta^j) = 2(0)$, we in turn must have that $\alpha = -\beta$. So, we can conclude that both $\alpha$ and $\beta$ are equal to $0$. Yet now that means there exists constants $\epsilon_1, \ldots, \epsilon_{p-1} \in \{0, 2\}$ such that:
+
+			{\centering $\alpha = 0 = 1 + \epsilon_1 \zeta + \epsilon_2 \zeta^{2} + \ldots + \epsilon_{p-1} \zeta^{p-1}$ \retTwo\par}
+
+			This is a contradiction because $1, \zeta, \zeta^2, \ldots, \zeta^{p-1}$ is a $\mathbb{Q}$-basis for $K$ (because $p$ is prime). So, a $\mathbb{Q}$-linear combination of these numbers can only equal $0$ if all coefficients are $0$.
+
+			\begin{myIndent}\myComment
+				And yay I managed to figure this all out without resorting to calculating $\alpha$ explicitely (which according to the internet is actually possible).\newpage
+			\end{myIndent}
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[2.] Show that $L = \mathbb{Q}[\zeta + \zeta^{-1}]$ is the unique subfield of $K$ such that $[K : L] = 2$. Show that in fact $L = K \cap \mathbb{R}$. 
+	\begin{myIndent}\HexOne
+		We can conclude via identical reasoning as in part 1 there there is a unique\\ intermediate field $\mathbb{Q} \subseteq L \subseteq K$ such that $[K : L] = 2$. So, it suffices to\\ show that $L = \mathbb{Q}[\zeta + \zeta^{-1}]$ and $L = K \cap \mathbb{R}$.\retTwo
+
+		First we establish that $L = \mathbb{Q}[K \cap \mathbb{R}]$. Let $\tau: \mathbb{C} \to \mathbb{C}$ be the map $z \mapsto \overline{z}$. Importantly, $\tau$ is a field automorphism fixing $\mathbb{R} \supseteq \mathbb{Q}$. Also note that $\tau(\zeta^j) = 1/\zeta^{j}$ for all integers $j$. Thus since every element of $K$ is a $\mathbb{Q}$-linear combination of $1, \zeta, \ldots, \zeta^{p-1}$, we know that $\tau$ maps $K$ to $K$. After all, $\tau$ fixes the coefficients of that linear combination while mapping each spanning element into $K$. This proves that $\tau$ restricted to $K$ is an element of $\Gal(K/ \mathbb{Q})$.\retTwo
+
+		Now $\tau$ has order $2$ in the Galois group. Thus by the Galois correspondance, it follows that $L = \Fix(\langle \tau\rangle) = K \cap \mathbb{R}$.\retTwo
+
+		As for the claim that $L = \mathbb{Q}[\zeta + \zeta^{-1}]$, note that $\tau(\zeta + \zeta^{-1}) = \zeta^{-1} + \zeta$ and thus\\ $\mathbb{Q}[\zeta + \zeta^{-1}] \subseteq L$. At the same time though, I claim that no automorphisms in $\Gal(K/ \mathbb{Q})$ other than the identity and $\tau$ fix $\mathbb{Q}[\zeta + \zeta^{-1}]$. As a result, by the Galois correspondance we can conclude that $\zeta + \zeta^{-1}$ is not in any intermediate field properly contained in $L$. Thus, $\mathbb{Q}[\zeta + \zeta^{-1}] = L$.
+		\begin{myIndent}\HexTwoP
+			To see why $\sigma \in \Gal(K/ \mathbb{Q})$ fixes $\zeta + \zeta^{-1}$ iff $\sigma \in \langle \tau\rangle$, recall that $1, \zeta, \zeta^2, \ldots, \zeta^{p-1}$ is a $\mathbb{Q}$-basis for $K$. Thus fix $k$ such that $\sigma(\zeta) = \zeta^k$. Then after  writing $\zeta^{-1} = \zeta^j$ for some integer $j$ (which we can do since $\zeta^{-1}$ is a $p$th roots of unity), we know by the linear independence of our basis that $\zeta + \zeta^j = \sigma(\zeta) + \sigma(\zeta^j) = \zeta^{k} + \zeta^{jk}$ iff $\{1, j\} = \{k, jk\}$. Equivalently, this means that either $\sigma(\zeta) = \tau(\zeta)$ or $\sigma(\zeta) = \zeta$. And since $\sigma$ is uniquely determined by where it sends $\zeta$, we are done. $\blacksquare$
+		\end{myIndent}
+	\end{myIndent}
+\end{enumerate}
 
 \newpage
 
