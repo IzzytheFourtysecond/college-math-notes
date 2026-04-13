@@ -12262,7 +12262,7 @@ Suppose $(M_1, d_1)$, $(M_2, d_2)$ are metric spaces and $F: M_1 \to M_2$ is a m
 	Proof:\\
 	To start off, by shrinking $U$ we can assume without loss of generality that $V$ is Lipschitz continuous on $U$. Or in other words, there exists $C > 0$ such that 
 	
-	{\centering $\|V(x) - V(\widetilde{x})\|_2 \leq C\|y - \widetilde{y}\|_2$ for all $x, \widetilde{x} \in U$.\retTwo\par}
+	{\centering $\|V(y) - V(\widetilde{y})\|_2 \leq C\|y - \widetilde{y}\|_2$ for all $x, \widetilde{x} \in U$.\retTwo\par}
 
 	Next, given $t_0 \in \mathbb{R}$ and $x_0 \in U$, choose $r > 0$ small enough that $\overline{B_r(x_0)} \subseteq U$ (where $B_r(x_0)$ denotes the Euclidean ball of radius $r$ about $x_0$ in $\mathbb{R}^n$). Then because $\overline{B_r(x_0)}$ is compact, we know that $M \coloneqq \sup_{x \in B_r(x_0)}\|V(x)\|$ exists. So, pick $\delta > 0$ and $\varepsilon > 0$ small enough so that $\delta < \frac{r}{2}$ and $\varepsilon < \min(\frac{r}{2M}, \frac{1}{C})$. And finally, set $J_0 \coloneqq (t_0 - \varepsilon, t_0 + \varepsilon)$ and $U_0 \coloneqq B_\delta(x_0)$. These will be the restricted sets we work with.\retTwo
 
@@ -12346,7 +12346,7 @@ Suppose $(M_1, d_1)$, $(M_2, d_2)$ are metric spaces and $F: M_1 \to M_2$ is a m
 
 \hTwo The big application of the last theorem is that if we were to find solutions for initial value problems like {\color{red}$(**)$} but on much larger domains than just $(t_0 - \varepsilon, t_0 + \varepsilon)$, then we'd be able to conclude that our solution is unique on that larger domain as well.\retTwo
 
-\hypertarget{page 294 reference}{I} am not done working through appendix D of \textit{Introduction to Smooth Manifolds}. That said, I have other things I need to focus on for now. So I'll continue working on this later on \inLinkRap{existence and uniqueness diff eq notes}{page \_\_\_}.
+\hypertarget{page 294 reference}{I} am not done working through appendix D of \textit{Introduction to Smooth Manifolds}. That said, I have other things I need to focus on for now. So I'll continue working on this later on \inLinkRap{existence and uniqueness diff eq notes}{page 832}.
 
 \mySepTwo
 
@@ -15640,7 +15640,7 @@ Actually I have another comment to make as well.
 
 The next topic covered by math 220a is proving Cauchy's formula and then doing a bunch of stuff with that such as proving that holomorphic functions are analytic.  Since I already took notes on a bunch of this last Spring, I'm going to intentionally skip over a lot of this.\retTwo
 
-\exTwo\ul{(Conway) Proposition IV.2.1:} Let $\varphi : [a, b] \times [c, d] \to \mathbb{C}$ be a continuous function and define $g : [c, d] \to \mathbb{C}$ by $g(t) = \int_a^b \varphi(s, t)\df s$. Then $g$ is continuous. Moreover, if $\frac{\partial \varphi}{\partial t}(s, t)\df s$ and is continuous on $[a, b] \times [c, d]$ then $g$ is continuously differentiable with $g^\prime(t) = \int_a^b \frac{\partial \varphi}{\partial t}(s, t)\df s$.
+\exTwo\ul{(Conway) Proposition IV.2.1:} Let $\varphi : [a, b] \times [c, d] \to \mathbb{C}$ be a continuous function and define $g : [c, d] \to \mathbb{C}$ by $g(t) = \int_a^b \varphi(s, t)\df s$. Then $g$ is continuous. Moreover, if $\frac{\partial \varphi}{\partial t}(s, t)$ exists and is continuous on $[a, b] \times [c, d]$ then $g$ is continuously differentiable with $g^\prime(t) = \int_a^b \frac{\partial \varphi}{\partial t}(s, t)\df s$.
 \begin{myIndent}\exThreeP
 	Why? Just use the fact that $\varphi$ or $\frac{\partial \varphi}{\partial t}$ is continuous on a compact domain in order to get an upper bound and then apply the theorem from math 240a (see \inLinkRap{Generalization page 189}{page 189}).\retTwo
 \end{myIndent}
@@ -21261,11 +21261,11 @@ Given a set $E \subseteq \mathcalli{X}$ where $\mathcalli{X}$ is a topological r
 	
 	Note that $\frac{1}{2}U + A$ is open since $\frac{1}{2}U + A = \bigcup_{a \in A}(a + \frac{1}{2}U)$. It's also convex because $t(a_1 + \frac{1}{2}u_1) + (1 - t)(a_0 + \frac{1}{2}u_0) = (ta_1 + (1-t)a_0) + \frac{1}{2}(tu_1 + (1-t)u_0) \in A + \frac{1}{2}U$ for all $t \in [0, 1]$, $a \in A$, and $u \in U$ since both $U$ and $A$ are convex. Going a step further, we can assume without loss of generality that $0 \in \frac{1}{2}U + A$.
 	\begin{myIndent}\exPPP
-		To see why, note that if $0 \notin \frac{1}{2}U + A$ then we can translate our entire vector space by some fixed $\frac{1}{2}u + a \in U + A$. Then after doing the later reasoning, we will have a\\ linear functional $f$ and $c \in \mathbb{R}$ such that $f(y - (a + \frac{1}{2}u)) < c < f(x - (a + \frac{1}{2}u))$ for all $y \in A$. In turn $f(y - x) < c - f(x - (a + \frac{1}{2}u)) < 0$ and thus:\\ [-8pt]
+		To see why, note that if $0 \notin \frac{1}{2}U + A$ then we can translate our entire vector space by some fixed $\frac{1}{2}u + a \in \frac{1}{2}U + A$. Then after doing the later reasoning, we will have a\\ linear functional $f$ and $c \in \mathbb{R}$ such that $f(y - (a + \frac{1}{2}u)) < c < f(x - (a + \frac{1}{2}u))$ for all $y \in A$. In turn $f(y - x) < c - f(x - (a + \frac{1}{2}u)) < 0$ and thus:\\ [-8pt]
 		
-		{\centering$f(y) < c - f(x - (a + \frac{1}{2}u)) + f(x) < f(x)$ for all $y \in A$\\ [6pt]\par}
+		{\centering$f(y) < c + f(a + \frac{1}{2}u) < f(x)$ for all $y \in A$\\ [6pt]\par}
 		
-		where $c - f(x - (a + \frac{1}{2}u)) + f(x)$ is another fixed constant in $\mathbb{R}$.\retTwo
+		where $c + f(a + \frac{1}{2}u)$ is another fixed constant in $\mathbb{R}$.\retTwo
 	\end{myIndent}
 
 	But now if $p$ is the Minkowski functional associated to $\frac{1}{2}U + A$, we can do the reasoning on \inLinkRap{Minkowski functional reference}{page 233} and in the second claim on \inLinkRap{Katz alternate proof of continuity of Minkowski functional}{page 319} to see that $p$ satisfies the triangle\newpage inequality and is continuous. And while $p(cy) \neq |c|p(y)$ necessarily if $c$ is negative since $\frac{1}{2}U + A$ isn't balanced, we do at least have that  $p(cy) = cp(y)$ if $c \geq 0$. Hence, we know that $p$ is a well-defined sublinear functional on $\mathcalli{X}$.\retTwo
@@ -21384,7 +21384,7 @@ Suppose $\mathcalli{X}, \mathcalli{Y}$ are Banach spaces. Then a bounded linear 
 
 \mySepTwo
 
-\hTwo Recall from my math 240b notes that if $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ are $\sigma$-finite measure spaces, $p \in [1, \infty]$, $K$ is a $(\mathcal{M} \otimes \mathcal{N})$-measurable function on $X \times Y$, and there exists $C > 0$ such that $\int |K(x, y)|\df \mu(x) \leq C$ for a.e. $y$ and $\int |K(x, y)|\df \nu(y)$ for a.e. $x$, then we have that $(T_Kf)(x) \coloneqq \int_Y K(x, y)f(y)\df \nu(y)$ is a linear operator in $B(L^p(\nu), L^p(\mu))$ such that $\|T_K\|_{\opnorm} \leq C$.
+\hTwo Recall from my math 240b notes that if $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ are $\sigma$-finite measure spaces, $p \in [1, \infty]$, $K$ is a $(\mathcal{M} \otimes \mathcal{N})$-measurable function on $X \times Y$, and there exists $C > 0$ such that $\int |K(x, y)|\df \mu(x) \leq C$ for a.e. $y$ and $\int |K(x, y)|\df \nu(y) \leq C$ for a.e. $x$, then we have that $(T_Kf)(x) \coloneqq \int_Y K(x, y)f(y)\df \nu(y)$ is a linear operator in $B(L^p(\nu), L^p(\mu))$ such that $\|T_K\|_{\opnorm} \leq C$.
 \begin{myIndent}\hThree
 	(This was Folland theorem 6.18).\retTwo
 \end{myIndent}
@@ -21509,7 +21509,7 @@ Clearly $T$ is Hilbert-Schmidt iff $\|T\|_2 < \infty$. Also note that $\|T\|_2 =
 \ul{Proposition 3.1.11:} If $T$ is Hilbert-Schmidt then $T$ is compact.
 
 \begin{myIndent}\exThreeP
-	Let $\{e_i\}_{i \in I}$ be an orthonormal basis. Since $\sum_{i \in I}\| Te_i\|^2$ is finite, we know that there is a countably many $i \in I$ such that $Te_i \neq 0$. So, let $\{i_k\}_{k \in \mathbb{N}}$ be an enumeration of all those $i$ for which $Te_i \neq 0$.\retTwo
+	Let $\{e_i\}_{i \in I}$ be an orthonormal basis. Since $\sum_{i \in I}\| Te_i\|^2$ is finite, we know that there are countably many $i \in I$ such that $Te_i \neq 0$. So, let $\{i_k\}_{k \in \mathbb{N}}$ be an enumeration of all those $i$ for which $Te_i \neq 0$.\retTwo
 
 	Next, for each $n$ define $T_n \in \mathbb{N}$ by $T_ne_{i_k} = Te_{i_k}$ if $k \leq n$ and $T_n e_i = 0$ for all other $i$. Then note that each $T_n$ has finite rank and is thus compact. Also note that each $T - T_n$ is Hilbert-Schmidt with $\|T - T_n\|_2^2 = \sum_{k > n} \|Te_{i_k}\|^2$. It follows that $\|T - T_n\|_2 \to 0$ as $n \to \infty$. By the last lemma this means that $\|T - T_n\|_{\opnorm} \to 0$ as $n\to\infty$. So, by lemma 3.1.3 we know that $T$ is compact. $\blacksquare$\retTwo
 
@@ -29010,7 +29010,7 @@ Question: Is there a version of Schwarz' lemma if $f(0) \neq 0$?\retTwo
 
 To start off, by property (e) in the theorem on \inLinkRap{Math 200b Page 651 theorem}{page 651}, we can see that any free module is automatically a projective module.\retTwo
 
-Also note that if $A$ is an integral domain, then any free module of $A$ is torsion free. After all, $\bigoplus_{x \in X} A$ is torsion free, any two free modules of a set $X$ are isomorphic, and module isomorphisms preserve torsion submodules. This is especially relavant because if an $A$-module $M$ is torsion free and $N \subseteq M$ is a submodule, then $N$ is also torsion free. And as any projective module is a submodule of a free group, this proves that if $A$ is an integral domain and $P$ is a projective $A$-module, then $P$ is torsion free.\retTwo
+Also note that if $A$ is an integral domain, then any free module of $A$ is torsion free. After all, $\bigoplus_{x \in X} A$ is torsion free, any two free modules of a set $X$ are isomorphic, and module isomorphisms preserve torsion submodules. This is especially relevant because if an $A$-module $M$ is torsion free and $N \subseteq M$ is a submodule, then $N$ is also torsion free. And as any projective module is a submodule of a free group, this proves that if $A$ is an integral domain and $P$ is a projective $A$-module, then $P$ is torsion free.\retTwo
 
 Thirdly, if $D$ is a PID an $M$ is a finitely generated $D$-module, then by the fundamental theorem of finitely generated PIDs we have that $M$ is a free-module iff $M$ is torsion free (see \inLinkRap{Corollary page 594 reference}{page 594}).\retTwo
 
@@ -34663,9 +34663,9 @@ Well the algebra final went ok. Anyways before I start doing practice problems f
 	Thus we've proven that $r_1, r_2$ can't exist. So, $y^2 f(x) + yg(x) + h(x)$ is irreducible. $\blacksquare$\retTwo
 \end{myIndent}
 
-\blab{Set 9 Problem 14:} Prove that $\Gal(\mathbb{F}_{p^n} : \mathbb{F}_p) = \langle \sigma_p\rangle$ where $\sigma_p: \mathbb{F}_{p_n} \to \mathbb{F}_{p_n}$ is the Frobenius\\ homomorphism $\sigma_p(x) = x^p$.
+\blab{Set 9 Problem 14:} Prove that $\Gal(\mathbb{F}_{p^n}/\mathbb{F}_p) = \langle \sigma_p\rangle$ where $\sigma_p: \mathbb{F}_{p_n} \to \mathbb{F}_{p_n}$ is the Frobenius\\ homomorphism $\sigma_p(x) = x^p$.
 \begin{myIndent}\HexOne
-	To start off, as $\sigma_p$ is an injective map between sets with the same finite cardinality, we must have that $\sigma_p$ is a bijection and thus an isomorphism. Furthermore, as $|\mathbb{F}_p^\times| = p - 1$, we can see by Lagrange's theorem that $x^{p-1} = 1$ for all $x \in \mathbb{F}_p^\times$ and in turn $x^p = x$ for all $x \in \mathbb{F}_p$. This proves that $\sigma_p$ fixes the subfield $\mathbb{F}_p$. So, we can conclude that $\sigma_p \in \Gal(\mathbb{F}_{p^n})$.\retTwo
+	To start off, as $\sigma_p$ is an injective map between sets with the same finite cardinality, we must have that $\sigma_p$ is a bijection and thus an isomorphism. Furthermore, as $|\mathbb{F}_p^\times| = p - 1$, we can see by Lagrange's theorem that $x^{p-1} = 1$ for all $x \in \mathbb{F}_p^\times$ and in turn $x^p = x$ for all $x \in \mathbb{F}_p$. This proves that $\sigma_p$ fixes the subfield $\mathbb{F}_p$. So, we can conclude that $\sigma_p \in \Gal(\mathbb{F}_{p^n}/\mathbb{F}_p)$.\retTwo
 
 	Now as $\mathbb{F}_{p^n}$ is the splitting field of $x^{p^n} - x$ over $\mathbb{F}_p$, we know that the field extension $\mathbb{F}_{p^n}/ \mathbb{F}_p$ is Galois. Also, by comparing cardinalities we can see that $[\mathbb{F}_{p^n} : \mathbb{F}_p] = n$. Therefore\\ $|\Gal(\mathbb{F}_{p^n}/ \mathbb{F}_p)| = n$.\retTwo
 
@@ -35018,6 +35018,8 @@ Stuff in Journal 2:
 \begin{itemize}
 	\item \hypertarget{idk reference 25}{A} formal justification for the claim on \inLinkRap{page 759 reference}{page 759}.
 	
+	\item \hypertarget{existence and uniqueness diff eq notes}{More} diff-eq notes following up what I did on \inLinkRap{page 294 reference}{pages 289-294}
+	
 	\phantom{.}
 \end{itemize}
 
@@ -35026,8 +35028,6 @@ Stuff in no journal yet:
 	\item \hypertarget{page idk 1 reference}{A} follow-up to the conics tangent on \inLinkRap{Conics Tangent}{page 254}.
 	
 	\item I stopped taking \hypertarget{Ergodic reading group notes 3}{Ergoic theory notes}  after \inLinkRap{page 281 reference}{page 281} because I got into a fight with the leader of this reading group. If I ever start study Ergodic theory again you should look in this journal.
-	
-	\item \hypertarget{existence and uniqueness diff eq notes}{More} diff-eq notes following up what I did on \inLinkRap{page 294 reference}{pages 289-294}
 	
 	\item \hypertarget{idk reference 2}{A} proof of the fact about operator weak convergence on \inLinkRap{page 304 reference}{page 304}.
 	
