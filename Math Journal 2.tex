@@ -1667,14 +1667,12 @@ In other words, $\Phi_n(x)$ has as roots all \udefine{primitive} $n$th roots of 
 
 		If we can prove that $\alpha$ and $\beta$ are distinct then we will be done. So, suppose for the sake of contradiction that $\alpha = \beta$.
 		\begin{myIndent}\HexTwoP
-			Since $\alpha + \beta = 2(\sum_{j=0}^{p-1} \zeta^j) = 2(0)$, we in turn must have that $\alpha = -\beta$. So, we can conclude that both $\alpha$ and $\beta$ are equal to $0$. Yet now that means there exists constants $\epsilon_1, \ldots, \epsilon_{p-1} \in \{0, 2\}$ such that:
-
-			{\centering $\alpha = 0 = 1 + \epsilon_1 \zeta + \epsilon_2 \zeta^{2} + \ldots + \epsilon_{p-1} \zeta^{p-1}$ \retTwo\par}
-
-			This is a contradiction because $1, \zeta, \zeta^2, \ldots, \zeta^{p-1}$ is a $\mathbb{Q}$-basis for $K$ (because $p$ is prime). So, a $\mathbb{Q}$-linear combination of these numbers can only equal $0$ if all coefficients are $0$.
+			Since $\alpha + \beta = 2(\sum_{j=0}^{p-1} \zeta^j) = 2(0)$, we in turn must have that $\alpha = -\beta$.\\ So, we can conclude that both $\alpha$ and $\beta$ are equal to $0$. This implies\\ $\sum_{j \in H} \zeta^j = \frac{-1}{2} = \sum_{j \in N} \zeta^j$. Yet as $1, \zeta, \zeta^2, \ldots, \zeta^{p-2}$ are $\mathbb{Q}$-linearly\\ independent (since $\deg(m_{\zeta; \mathbb{Q}}) = p - 1$), one of the sums over those\\ cosets equaling $\frac{-1}{2}$ will give a contradiction to the linear independence\\ of our $\mathbb{Q}$-basis.
 
 			\begin{myIndent}\myComment
-				And yay I managed to figure this all out without resorting to calculating $\alpha$ explicitely (which according to the internet is actually possible).\newpage
+				And yay I managed to figure this all out without resorting to calculating $\alpha$ explicitely (which according to the internet is actually possible).\retTwo
+				
+				As a side note, since $0 = \sum_{i=0}^{p-1}\zeta^i$ we know $\zeta^{p-1} = - \sum_{i=0}^{p-2} \zeta^{i}$. This lets us then shown that $\zeta^1, \ldots, \zeta^{p-1}$ is a $\mathbb{Q}$-basis for $K$.\newpage
 			\end{myIndent}
 		\end{myIndent}
 	\end{myIndent}
@@ -1683,13 +1681,13 @@ In other words, $\Phi_n(x)$ has as roots all \udefine{primitive} $n$th roots of 
 	\begin{myIndent}\HexOne
 		We can conclude via identical reasoning as in part 1 there there is a unique\\ intermediate field $\mathbb{Q} \subseteq L \subseteq K$ such that $[K : L] = 2$. So, it suffices to\\ show that $L = \mathbb{Q}[\zeta + \zeta^{-1}]$ and $L = K \cap \mathbb{R}$.\retTwo
 
-		First we establish that $L = \mathbb{Q}[K \cap \mathbb{R}]$. Let $\tau: \mathbb{C} \to \mathbb{C}$ be the map $z \mapsto \overline{z}$. Importantly, $\tau$ is a field automorphism fixing $\mathbb{R} \supseteq \mathbb{Q}$. Also note that $\tau(\zeta^j) = 1/\zeta^{j}$ for all integers $j$. Thus since every element of $K$ is a $\mathbb{Q}$-linear combination of $1, \zeta, \ldots, \zeta^{p-1}$, we know that $\tau$ maps $K$ to $K$. After all, $\tau$ fixes the coefficients of that linear combination while mapping each spanning element into $K$. This proves that $\tau$ restricted to $K$ is an element of $\Gal(K/ \mathbb{Q})$.\retTwo
+		First we establish that $L = \mathbb{Q}[K \cap \mathbb{R}]$. Let $\tau: \mathbb{C} \to \mathbb{C}$ be the map $z \mapsto \overline{z}$. Importantly, $\tau$ is a field automorphism fixing $\mathbb{R} \supseteq \mathbb{Q}$. Also note that $\tau(\zeta^j) = 1/\zeta^{j}$ for all integers $j$. Thus since every element of $K$ is a $\mathbb{Q}$-linear combination of $\zeta, \ldots, \zeta^{p-1}$, we know that $\tau$ maps $K$ to $K$. After all, $\tau$ fixes the coefficients of that linear combination while mapping each spanning element into $K$. This proves that $\tau$ restricted to $K$ is an element of $\Gal(K/ \mathbb{Q})$.\retTwo
 
 		Now $\tau$ has order $2$ in the Galois group. Thus by the Galois correspondance, it follows that $L = \Fix(\langle \tau\rangle) = K \cap \mathbb{R}$.\retTwo
 
 		As for the claim that $L = \mathbb{Q}[\zeta + \zeta^{-1}]$, note that $\tau(\zeta + \zeta^{-1}) = \zeta^{-1} + \zeta$ and thus\\ $\mathbb{Q}[\zeta + \zeta^{-1}] \subseteq L$. At the same time though, I claim that no automorphisms in $\Gal(K/ \mathbb{Q})$ other than the identity and $\tau$ fix $\mathbb{Q}[\zeta + \zeta^{-1}]$. As a result, by the Galois correspondance we can conclude that $\zeta + \zeta^{-1}$ is not in any intermediate field properly contained in $L$. Thus, $\mathbb{Q}[\zeta + \zeta^{-1}] = L$.
 		\begin{myIndent}\HexTwoP
-			To see why $\sigma \in \Gal(K/ \mathbb{Q})$ fixes $\zeta + \zeta^{-1}$ iff $\sigma \in \langle \tau\rangle$, recall that $1, \zeta, \zeta^2, \ldots, \zeta^{p-1}$ is a $\mathbb{Q}$-basis for $K$. Thus fix $k$ such that $\sigma(\zeta) = \zeta^k$. Then after  writing $\zeta^{-1} = \zeta^j$ for some integer $j$ (which we can do since $\zeta^{-1}$ is a $p$th roots of unity), we know by the linear independence of our basis that $\zeta + \zeta^j = \sigma(\zeta) + \sigma(\zeta^j) = \zeta^{k} + \zeta^{jk}$ iff $\{1, j\} = \{k, jk\}$. Equivalently, this means that either $\sigma(\zeta) = \tau(\zeta)$ or $\sigma(\zeta) = \zeta$. And since $\sigma$ is uniquely determined by where it sends $\zeta$, we are done. $\blacksquare$\retTwo
+			To see why $\sigma \in \Gal(K/ \mathbb{Q})$ fixes $\zeta + \zeta^{-1}$ iff $\sigma \in \langle \tau\rangle$, recall that $\zeta, \ldots, \zeta^{p-1}$ is a $\mathbb{Q}$-basis for $K$. Thus fix $k$ such that $\sigma(\zeta) = \zeta^k$. Then after  writing $\zeta^{-1} = \zeta^j$ for some integer $j$ (which we can do since $\zeta^{-1}$ is a $p$th roots of unity), we know by the linear independence of our basis that $\zeta + \zeta^j = \sigma(\zeta) + \sigma(\zeta^j) = \zeta^{k} + \zeta^{jk}$ if and only if $\{1, j\} = \{k, jk\}$ in $(\mathbb{Z}/p\mathbb{Z})^\times$. Equivalently, this means that either\\ $\sigma(\zeta) = \tau(\zeta)$ or $\sigma(\zeta) = \zeta$. And since $\sigma$ is uniquely determined by where\\ it sends $\zeta$, we are done. $\blacksquare$\retTwo
 		\end{myIndent}
 	\end{myIndent}
 \end{enumerate}
@@ -1728,7 +1726,7 @@ In other words, $\Phi_n(x)$ has as roots all \udefine{primitive} $n$th roots of 
 
 	Another consequence of this is that the $G$-orbit of $\alpha$ has only three elements, and similarly the $G$ action of $\beta$ has only four elements.
 	\begin{myIndent}\HexPPP
-		Note that $\sum_{j \in k_1 H^s}\zeta_{13}^j \neq \sum_{j \in k_2 H^s}\zeta_{13}^j$ if $k_1 H^s \neq k_2 H^s$ since otherwise would contradict the $\mathbb{Q}$-linear independence of $1, \zeta_{13}, \zeta_{13}^2, \ldots, \zeta_{13}^{12}$.\retTwo
+		Note that $\sum_{j \in k_1 H^s}\zeta_{13}^j \neq \sum_{j \in k_2 H^s}\zeta_{13}^j$ if $k_1 H^s \neq k_2 H^s$ since otherwise would contradict the $\mathbb{Q}$-linear independence of $\zeta_{13}, \zeta_{13}^2, \ldots, \zeta_{13}^{12}$.\retTwo
 	\end{myIndent}
 
 	By mirror reasoing to that in problem 5a, we thus know that $[\mathbb{Q}[\alpha] : \mathbb{Q}] = 3$ and\\ $[\mathbb{Q}[\beta] : \mathbb{Q}] = 4$. Hence, we may write $E_3 = \mathbb{Q}[\alpha]$ and $E_4 = \mathbb{Q}[\beta]$. $\blacksquare$
@@ -1784,7 +1782,7 @@ Before doing problem 7, here is a result that will be helpful from lecture today
 	\begin{myIndent}\HexOne
 		To start off, we have that $|S| = \varphi(p^n - 1)$. Yet also note that since for every $\alpha \in S$ we have that $\mathbb{F}_p[\alpha] = \mathbb{F}_{p_n}$, we in turn must have that $\deg(m_{\alpha; \mathbb{F}_p}) = n$. Thus every element of $S$ is the root of some irreducible polynomial of degree $n$ in $\mathbb{F}_p[x]$.\retTwo
 
-		By part (a), we thus know that $S$ is a disjoint union zero sets of certain irreducible\\ degree $n$ polynomials. Finally, as every irreducible polynomial in $\mathbb{F}_p$ is separable (or\\ alternatively because our polynomials divide the separable polynomial $x^{p^n} - x$),\\ we can conclude that each zero set has $n$ elements. This proves that:
+		By part (a), we thus know that $S$ is a disjoint union of zero sets of certain irreducible\\ degree $n$ polynomials. Finally, as every irreducible polynomial in $\mathbb{F}_p$ is separable (or\\ alternatively because our polynomials divide the separable polynomial $x^{p^n} - x$),\\ we can conclude that each zero set has $n$ elements. This proves that:
 		
 		{\centering$|S| = n \cdot (\# \text{polynomials with roots in }S)$.\retTwo\par}
 	\end{myIndent}
@@ -2468,9 +2466,9 @@ Now I'm going back to taking lecture notes.\retTwo
 
 \ul{Corollary:} If $G$ is a bounded region, $\varphi: \overline{G} \to \mathbb{R}$ is a continuous function that is\\ subharmonic on $G$, and $\varphi|_{\varphi G} \leq 0$, then $\varphi < 0$ or $\varphi \equiv 0$ on $G$.\retTwo
 
-\hTwo We can also use the following lemma to come up with a useful construction.\retTwo
+\hTwo We also have the following property:\retTwo
 
-\exTwo\ul{Lemma:} If $\varphi_1, \varphi_2$ is subharmonic then so is $\varphi \coloneqq \max(\varphi_1, \varphi_2)$.
+\exTwo\ul{Proposition:} If $\varphi_1, \varphi_2$ is subharmonic then so is $\varphi \coloneqq \max(\varphi_1, \varphi_2)$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	Firstly note that $\varphi$ is continuous. Also, if $a \in G$ then we can find $R_1, R_2$ such that:
@@ -2486,17 +2484,144 @@ Now I'm going back to taking lecture notes.\retTwo
 	Thus $\varphi$ is subharmonic. $\blacksquare$.\retTwo
 \end{myIndent}
 
-\hTwo Now suppose $G$ is a region, $\varphi: G \to \mathbb{R}$ is subharmonic, and $\overline{\Delta} \subseteq G$ is any closed disk. If we set $f = \varphi|_{\partial \Delta}$, then we can solve the Dirichlet problem on $\overline{\Delta}$ to get a continuous function $h: \overline{\Delta} \to \mathbb{R}$ that is harmonic on $\Delta$ and satisfies that $h|_{\partial \Delta} = f$. Then we set:
+\hTwo I'm going to switch to taking lecture notes on a different class now.
 
-{\centering $\widetilde{\varphi} = \begin{cases} \varphi & \text{ in } G - \overline{\Delta} \\ h & \text{ in } \overline{\Delta}\text{.} \end{cases}$ \retTwo\par}
+\mySepTwo
 
-\begin{myIndent}\myComment
-	This procedure is called \udefine{Poisson modification / bumping}.\retTwo
+\dispDate{4/13/2026}
+
+\blect{Math 200c Lecture Notes:}\retTwo
+
+The particular topic I'm about to take notes on is a branch of Galois theory called \udefine{Kummer theory}. Specifically, Kummer theory studies the case where Galois groups are cyclic.\retTwo
+
+\exTwo\ul{Proposition:} Let $F$ be a field such that $x^{n} - 1$ splits in $F[x]$. Assume $\mChar(F) = 0$ or $p > 0$ and $p \not\hspace{0.27em}\divides n$. Then let $L/F$ be a field extension where $L$ has a root $\alpha$ of $f(x) = x^n - a$ for some $a \in F$. If $K = F[\alpha]$ then $K/F$ is a Galois extension and $\Gal(K/F)$ is cyclic with\\ some order dividing $n$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	The assumption on $\mChar(F)$ guarentees that $(x^n - 1)^\prime = nx^{n-1} \neq 0$. Hence\\ $\gcd(x^n - 1, nx^{n-1}) = 1$ and so $x^n - 1$ is separable with roots in $F$ by assumption.\\ If we let $C$ be the $n$th roots of $1$, then $C$ is a subgroup of $F^\times$ with order $n$. In turn,\\ $C$ is cyclic by the following lemma.\retTwo
+
+	\ul{Lemma:} A finite subgroup of the multiplicative group of a field is always cyclic.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Suppose $G < F^\times$ is a finite subgroup. For any positive integer $n$, we know that $|\{a \in G : a^n = 1\}| = |V_{x^n - 1}(F)| \leq \deg(x^n - 1) = n$. Thus, we can apply set 1 problem 2 from math 200a (see \inLinkRap{placeholder}{pages 259-260}) to see that $G$ is a cyclic.\retTwo
+	\end{myIndent}
+
+	Thus $\mathbb{Z}/n\mathbb{Z} \cong C = \langle \zeta\rangle$ for some $\zeta \in F$. Also, we may write $C = \{1, \zeta, \ldots, \zeta^{n-1}\} \subseteq F$.\retTwo
+
+	Now, the $n$ distinct roots of $x^n - a$ are given by $\alpha, \alpha\zeta, \alpha\zeta^2, \ldots, \alpha\zeta^{n-1}$. Hence, we can say that $K = F[\alpha]$ is a splitting field of $x^n - a$ over $F$. Also $x^n - a$ is separable (for the same reason that $x^n - 1$ is). Thus, $K/F$ is Galois.\newpage
+
+	To finish off, if $\sigma \in G \coloneqq \Gal(K/F)$, then $\sigma(\alpha) = \zeta^i \alpha$ for some $i$. But $\sigma$ is uniquely determined on $K$ by where it sends $\alpha$. So, we have a well-defined injective function\\ $\Phi: G \to C$ such that $\sigma \mapsto \zeta^i$ where $\sigma(\alpha) = \zeta^i \alpha$.\retTwo
+	
+	Furthermore, it is easy to check that $\Phi$ is a group homomorphism. After all, if $\sigma_1(\alpha) = \zeta^{i_1}\alpha$ and $\sigma_2(\alpha) = \zeta^{i_2}\alpha$, then since both $\sigma_k$ fix $\zeta \in F$, we know $(\sigma_1 \circ \sigma_2)(\alpha) = \zeta^{i_1 + i_2}\alpha$.\retTwo
+
+	Thus $G \cong \Phi(G)$ which is a subgroup of $C$. So, $G$ is cyclic of some order dividing $n$. $\blacksquare$\retTwo
 \end{myIndent}
 
+\hTwo Let $G$ be a group. A \udefine{character} of $G$ with values in a field $F$ is a group homomorphism $\chi: G \to F^\times$. Importantly, any character lies in the $F$-vector space $F^G \coloneqq \Hom_{\mcateg{Set}}(G, F)$ (equipped with pointwise addition and scalar multiplication).\retTwo
+
+\exTwo\ul{Proposition:} Let $\chi_1, \ldots, \chi_n$ be $n$ distinct characters from $G$ to $F^\times$. Then they are linearly independent in $F^G$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose not. Then there must exist some minimal $d \leq n$ such that there exists constants $a_1, \ldots, a_d \in F^\times$ and distinct characteristics $\chi_{i_1}, \ldots, \chi_{i_d}$ in our collection of characteristics satisfying that $a_1 \chi_{i_1} + \ldots + a_d \chi_{i_d} = 0$.
+	\begin{myIndent}\exPPP 
+		(For ease of notation, I'll henceforth relabel $\chi_{i_k}$ as $\chi_k$.)\retTwo
+	\end{myIndent}
+	
+	Firstly, note that $d \geq 2$ since $a_1 \chi_1 \equiv 0$ and $a_1 \neq 0$ would imply $\chi_1 \equiv 0$ (which\\ contradicts that $\chi_1$ maps $G$ into $F^\times$). Next, note that $a_1 \chi_1(g) + \ldots + a_d \chi_d(g) = 0$\\ for all $g \in G$. By plugging in $gh$ into this expression (where $h \in G$), we thus get that:
+
+	{\centering $a_1 \chi_1(g)\chi_1(h) + a_2\chi_2(g)\chi_2(h) + \ldots + a_d \chi_d(g)\chi_d(h) = 0$ for all $g \in G$\retTwo\par}
+
+	We can also multiply both sides of our original linear combination by $\chi_d(h)$ to get that:
+
+	{\centering $a_1 \chi_1(g)\chi_d(h) + a_2\chi_2(g)\chi_d(h) + \ldots + a_d \chi_d(g)\chi_d(h) = 0$ for all $g \in G$\retTwo\par}
+
+	Then by subtracting these expressions, we get for all $g\in G$ that:
+
+	{\centering $a_1(\chi_1(h) - \chi_d(h))\chi_1(g) + \ldots + a_{d-1}(\chi_{d-1}(h) - \chi_d(h))\chi_{d-1}(g) + 0 = 0$ \retTwo\par}
+
+	This would contradict the minimality of $d$ unless $a_i(\chi_i(h) - \chi_d(h)) = 0$ for all $i$. Or in other words, we must have that $\chi_i(h) = \chi_d(h)$ for all $i$. But since our characteristics are all distinct and $d \geq 2$, we know there exists some $h$ such that $\chi_1(h) \neq \chi_d(h)$. By choosing that $h$, we can guarentee our contradiction happens. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Given a finite Galois extension $K/F$, we define the \udefine{(field) norm} of any $\alpha \in K$ as:
+
+{\centering $N_{K/F}(\alpha) = \hspace{-1em}\prod\limits_{\sigma \in \Gal(K/F)}\hspace{-1em} \sigma(\alpha)$ \retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Note that $N_{K/F}$ maps $K$ into $F$. After all, given any $\tau \in \Gal(K/F)$ we can easily check that $\tau(N_{K/F}(\alpha)) = N_{K/F}(\alpha)$. Hence, $N_{K/F}(\alpha) \in \Fix(\Gal(K/F)) = F$.\retTwo
+
+	It's also easy to check that $N_{K/F}(\alpha \beta) = N_{K/F}(\alpha) \cdot N_{K/F}(\beta)$, and that $N_{K/F}(\alpha) = 0$ iff $\alpha = 0$. So, $N_{K/F}$ restricted to $K^\times$ is a characteristic into $F^\times$.\newpage
+\end{myIndent}
+
+\pracOne\mySepTwo
+As an example of a field norm, note that if we consider the extension $\mathbb{Q}[\sqrt{d}]/\mathbb{Q}$\\ where $d \in \mathbb{Z}$ is square-free, then $\Gal(\mathbb{Q}[\sqrt{d}]/\mathbb{Q}) = \{\myId, \sigma\}$ where $\sigma$ sends $\sqrt{d}$ to\\ $\sqrt{-d}$. It follows that:
+
+{\centering $N_{\mathbb{Q}[\sqrt{d}]/\mathbb{Q}}(a + b\sqrt{d}) = (a + b\sqrt{d})(a - b\sqrt{d}) = a^2 - b^2d$ \retTwo\par}
+
+This norm should be familiar from math 100b.
+
+\mySepTwo
 
 
+\exTwo\ul{Theorem (Hilbert Theorem 90):} Let $K/F$ be a Galois extension with $\Gal(K/F) = \langle \sigma \rangle$\\ for some element $\sigma$ of order $n$. Suppose $\alpha \in K$ satisfies that $N_{K/F}(\alpha) = 1$. Then\\ $\alpha = \sigma(\beta)\beta^{-1}$ for some $\beta \in K$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Pick any $\gamma \in K$. Then let:
+	
+	{\centering\begin{tabular}{l}
+		$\epsilon = \gamma + \alpha \sigma(\gamma) + \alpha \sigma(\alpha)\sigma^2(\gamma) + \ldots + \alpha \sigma(\alpha) \cdots \sigma^{n-2}(\alpha)\sigma^{n-1}(\gamma)$.
+	\end{tabular}\retTwo\par}
 
+	In turn, we have that:
+
+	{\centering\begin{tabular}{l}
+		$\alpha\sigma(\epsilon) = \alpha\sigma(\gamma) + \alpha\sigma(\alpha) \sigma^2(\gamma) + \ldots + \alpha \sigma(\alpha) \cdots \sigma^{n-2}(\alpha)\sigma^{n-1}(\gamma) + N_{K/F}(\alpha)\gamma$.\\ [4pt]
+		$\phantom{\alpha\sigma(\epsilon) = \alpha\sigma(\gamma) + \alpha\sigma(\alpha) \sigma^2(\gamma) +} = \epsilon$ (since $N_{K/F}(\alpha) = 1$).
+	\end{tabular}\retTwo\par}
+
+	So assuming $\epsilon \neq 0$, then we can set $\beta \coloneqq \epsilon^{-1}$ to get that $\alpha = \sigma(\beta)\beta^{-1}$.\retTwo
+
+	What if $\epsilon = 0$ though?
+	\begin{myIndent}\exPPP
+		Notice that $\sigma^i : K^\times \to K^\times$ is a character of $K^\times$. By the linear independence\\ of characters we thus have that:
+		
+		{\centering$\myId_K + \alpha \sigma + \alpha \sigma(\alpha)\sigma^2 + \ldots + \alpha \sigma(\alpha)\cdots \sigma^{n-2}(\alpha)\sigma^{n-1} \not\equiv 0$.\retTwo\par}
+		
+		Hence, there must exist some $\gamma \in K^\times$ such that $\epsilon \neq 0$. \exThreeP $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Theorem:} Let $K/F$ be a Galois extension where $x^n - 1$ splits in $F$. Suppose $\mChar(F) = 0$ or $\mChar(F) = p$ (with $p \not\hspace{0.27em}\divides n$). Also suppose $\Gal(K/F) = \langle \sigma\rangle$ is cyclic of order $n$. Then $K = F[\alpha]$ for some $\alpha \in K$ such that $\alpha^n \in F$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	The roots of $x^n - 1$ in $F$ are a subgroup of $F^\times$ with order $n$ (since our assumptions about $\mChar(F)$ guarentee that $x^n -1$ is separable). Thus, by the lemma proven on page 843, we know that that group is cyclic. In other words, there exists a primitive root $\zeta$ such that $\{1, \zeta, \ldots, \zeta^{n-1}\}$ are the distinct $n$th roots of unity in $F$.\retTwo
+
+	Next, note that because $\zeta \in F$ we know that $\sigma(\zeta) = \zeta$. As a result, we can calculate that:
+
+	{\centering $N_{K/F}(\zeta) = \zeta \sigma(\zeta) \cdots \sigma^{n-1}(\zeta) = \zeta^{n} = 1$ \retTwo\par}
+
+	By Hilbert theorem 90 there thus exists some $\alpha \in K$ such that $\zeta = \sigma(\alpha)\alpha^{-1}$. In other words, $\sigma(\alpha) = \alpha \zeta$. Also note then that $\sigma(\alpha^n) = \zeta^n \alpha^n = \alpha^n$. Therefore, $\alpha^n \in \Fix(\langle \sigma \rangle) = F$.\retTwo
+
+	Finally, write $F \subseteq F[\alpha] \subseteq K$. Then $\Gal(K/F[\alpha]) \leq \langle \sigma\rangle$. If this subgroup is nontrivial, there must exist some $d$ such that $\sigma^d \neq \myId_K$ and $\sigma^d$ fixes $F[\alpha]$. But $\sigma^d(\alpha) = \zeta^d \alpha \neq \alpha$ unless $n \divides d$. Hence, $\Gal(K/F[\alpha])$ is trivial and this proves that $F[\alpha] = K$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo A finite degree extension $K/F$ is a \udefine{root extension} if there exists field extensions\\ $F = K_0 \subseteq K_1 \subseteq \cdots \subseteq K_m = K$ such that $K_{i+1} = K_i[\alpha_i]$ and $\alpha_i^{n_i} \in K_i$ for some\\ $\alpha_i \in K_i$ and integer $n_i$. Also, we say $f(x) \in F[x]$ is \udefine{solvable by radicals} if $f(x)$ splits\\ in $K[x]$ where $K/F$ is a root extension.\retTwo
+
+Now-a-days the following result is more of a curiousity (even if the tools needed to prove it are useful elsewhere). As a result, until I switch to doing algebra homework, from here on out we'll just assume $\mChar(F) = 0$ for any field $F$ we are working with.\retTwo
+
+\exTwo\ul{Theorem (Galois):} Let $\mChar(F) = 0$. Then $f \in F[x]$ is solvable by radicals if and only if $\Gal(K/F)$ is a solvable group (where $K$ is a splitting field of $f$ over $F$).
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, if $K/F$ is a field extension and $E, L \in \Int(K/F)$, then the \udefine{composite} of $E$ and $L$ (denoted $EL$) is defined as the smallest subfield of $K$ containing both $E$ and $L$.
+	\begin{myIndent}\exPPP\color{orange}
+		In the case that $E = F[\alpha_1, \ldots, \alpha_n]$ and $L = F[\beta_1, \ldots, \beta_m]$, we have that\\ $EL = F[\alpha_1, \ldots, \alpha_n, \beta_1, \ldots, \beta_m]$.\retTwo
+	\end{myIndent}
+
+	\ul{Lemma:} Suppose $F \subseteq E$ is a root extension and let $E \subseteq K$ be a Galois closure (i.e. $K/F$ is a finite Galois extension). Then $K/F$ is a root extension.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Choose $\alpha \in E$ such that $E = F[\alpha]$. Then let $f = m_{\alpha; f}$ and let $K = 
+	\end{myIndent}
+\end{myIndent}
 
 \hypertarget{idk reference 1}{}
 
@@ -2526,6 +2651,14 @@ Now I'm going back to taking lecture notes.\retTwo
 
 
 
+
+% \hTwo Now suppose $G$ is a region, $\varphi: G \to \mathbb{R}$ is subharmonic, and $\overline{\Delta} \subseteq G$ is any closed disk. If we set $f = \varphi|_{\partial \Delta}$, then we can solve the Dirichlet problem on $\overline{\Delta}$ to get a continuous function $h: \overline{\Delta} \to \mathbb{R}$ that is harmonic on $\Delta$ and satisfies that $h|_{\partial \Delta} = f$. Then we set:
+
+% {\centering $\widetilde{\varphi} = \begin{cases} \varphi & \text{ in } G - \overline{\Delta} \\ h & \text{ in } \overline{\Delta}\text{.} \end{cases}$ \retTwo\par}
+
+% \begin{myIndent}\myComment
+% 	This procedure is called \udefine{Poisson modification / bumping}.\retTwo
+% \end{myIndent}
 
 
 
