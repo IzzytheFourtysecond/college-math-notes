@@ -12285,13 +12285,13 @@ Suppose $(M_1, d_1)$, $(M_2, d_2)$ are metric spaces and $F: M_1 \to M_2$ is a m
 
 	Importantly, any fixed point of $I$ is a solution to {\color{red}$(*)$}. So, if we could apply the Banach fixed point theorem somehow (see page 26 of my math 140c notes), then we'd be done.\retTwo
 
-	Thus, let $\mathcalli{M}_c$ be the collection of all continuous maps $y : J_0 \to \overline{B_r(x)}$ satisfying that\\ $y(t_0) = c$. We know $\mathcalli{M}_c$ is nonempty since we can just consider the constant map $y = c$. Also, it is easy to see that $\mathcalli{M}_c$ is complete with respect to the uniform norm.\newpage
+	Thus, let $\mathcalli{M}_c$ be the collection of all continuous maps $y : J_0 \to \overline{B_r(x_0)}$ satisfying that\\ $y(t_0) = c$. We know $\mathcalli{M}_c$ is nonempty since we can just consider the constant map $y = c$. Also, it is easy to see that $\mathcalli{M}_c$ is complete with respect to the uniform norm.\newpage
 	
 	We claim $I$ maps $\mathcalli{M}_c$ into itself. After all, if $y \in \mathcalli{M}_c$ then for any $t \in J_0$ we have that:
 
 	{\centering\begin{tabular}{l}
 		$\|Iy(t) - x_0\|_2 = \|c + \int_{t_0}^t V(y(s)) \df s - x_0\|_2$\\ [6pt]
-		$\phantom{\|Iy(t) - x_0\|_2} \leq \|c - x_0\|_2 + \int_{t_0}^t \|V(y(x))\|_2 \df s\gap$ {\exPPP (hehe, used Minkowski's inequality)}\\ [6pt]
+		$\phantom{\|Iy(t) - x_0\|_2} \leq \|c - x_0\|_2 + \int_{t_0}^t \|V(y(s))\|_2 \df s\gap$ {\exPPP (hehe, used Minkowski's inequality)}\\ [6pt]
 		$\phantom{\|Iy(t) - x_0\|_2} < \delta + M\varepsilon < r$\\ [6pt]
 	\end{tabular}\retTwo\par}
 
@@ -12303,10 +12303,10 @@ Suppose $(M_1, d_1)$, $(M_2, d_2)$ are metric spaces and $F: M_1 \to M_2$ is a m
 	$\phantom{\| Iy - I\widetilde{y}\|_u} \leq \sup_{t \in J_0} \int_{t_0}^t C\|y(s) - \widetilde{y}(s)\|_2 \df s \leq C\varepsilon \|y - \widetilde{y}\|_u$\\ [6pt]
 	\end{tabular} \retTwo\par}
 
-	And because $\varepsilon < \frac{1}{C}$, this proves that $I$ is a contraction. So, we can apply the Banach fixed point theorem to get a solution to {\color{red}$(*)$}. $\blacksquare$\retTwo
+	And because $\varepsilon < \frac{1}{C}$, this proves that $I$ is a contraction. So, we can apply the Banach fixed point theorem to get a solution to {\color{red}$(*)$} on $J_0$. {\myComment(Unfortunately, we only know currently that this solution is the unique solution in $\mathcalli{M}_c$ though.)} $\blacksquare$\retTwo
 \end{myIndent}
 
-\ul{Theorem D.4: (Uniqueness of ODE Solutions):} Let $U \subseteq \mathbb{R}^n$ be an open subset and\\ suppose $V : U \to \mathbb{R}^n$ is locally Lipschitz continuous. For any $t_0 \in \mathbb{R}$ and $c \in U$, any\\ two differentiable solutions to the initial value problem $y^\prime(t) = V(y(t))$ and $y(t_0) = c$\\ {\color{red} $(**)$} are equal on their common domain.
+\ul{Theorem D.4: (Uniqueness of ODE Solutions):} Let $U \subseteq \mathbb{R}^n$ be an open subset and\\ suppose $V : U \to \mathbb{R}^n$ is locally Lipschitz continuous. For any $t_0 \in \mathbb{R}$ and $c \in U$, any\\ two differentiable solutions (with open intervals as domains) to the initial value\\ problem $y^\prime(t) = V(y(t))$ and $y(t_0) = c$ {\color{red} $(**)$} are equal on their common domain.
 
 \begin{myIndent}\exTwoP
 	Proof:\\
@@ -12314,7 +12314,7 @@ Suppose $(M_1, d_1)$, $(M_2, d_2)$ are metric spaces and $F: M_1 \to M_2$ is a m
 
 	Let $J_0^\prime$ be any bounded open interval containing $t_0$ such that $\overline{J_0^\prime} \subseteq J_0$. Then the\\ union of $y(\overline{J_0^\prime})$ and $\widetilde{y}(\overline{J_0^\prime})$ is a compact subset of $U$. And since $V$ is locally Lipschitz continuous on $U$, we can find a constant $C$ such that:
 
-	{\centering $\|\frac{\df}{\df t} (\widetilde{y}(t) - y(t))\|_2 = \|V(\widetilde{y}(t)) - V(y(t))\|_2 \leq C\|\widetilde{y}(t) - y(t)\|_2$. \retTwo\par}
+	{\centering $\|\frac{\df}{\df t} (\widetilde{y}(t) - y(t))\|_2 = \|V(\widetilde{y}(t)) - V(y(t))\|_2 \leq C\|\widetilde{y}(t) - y(t)\|_2$ for all $t \in \overline{J_0^\prime}$ \retTwo\par}
 
 	\begin{myIndent}\exPPP
 		Why? Suppose $(M_1, d_1)$, $(M_2, d_2)$ are metric spaces and $F: M_1 \to M_2$ is a locally Lipschitz continuous map. Then if $K \subseteq M_1$ is compact, we know $F|_{K}$ is Lipschitz\\ continuous.
@@ -26265,7 +26265,7 @@ The next question to ask is if there is a square matrix $b$ such that $\frac{F[x
 	{\center$\left[\begin{smallmatrix} \alpha & &  & & \\ 1 & \alpha & &  &  \\ & 1 & & & \\ & & & \ddots & & \\  &&& & & & \alpha &  \\  &  && && & 1 & \alpha\end{smallmatrix}\right] \in M_k(F)$.\retTwo\par}
 \end{myIndent}
 
-With that, we can now conclude that $V_a \cong V_{\diag(J_{n_{i,j}}(\alpha_j)) : 1 \leq i \leq m, 1 \leq j \leq r}$. And this gives a shorter proof than in my math 100b notes that any matrix has a \udefine{Jordan form}.\newpage
+With that, we can now conclude that $V_a \cong V_{\diag(J_{n_{i,j}}(\alpha_j)\phantom{.} : \phantom{.}1 \leq i \leq m, 1 \leq j \leq r)}$. And this gives\\ a shorter proof than in my math 100b notes that any matrix has a \udefine{Jordan form}.\newpage
 
 It's also easy to see this form is unique up to reordering the blocks, and that it truely\\ requires $m_{a;F}$ to be factorable into a product of degree 1 polynomials in $F[x]$ in order\\ to exist.
 \begin{myIndent}\pracTwo
@@ -33900,7 +33900,7 @@ Suppose $K/E$ and $E/F$ are fields extensions. Then $K/F$ is also a field extens
 
 	Extend $\theta: F \to F^\prime$ to the unique ring isomorphism $\phi: F[x] \to F^\prime[x]$ satisfying that $\phi(c) = \theta(c)$ for all constants $c$ and that $\phi(x) = x$. Then as $\phi(f) = f^\theta$ implies that $\phi(\langle f\rangle) = \langle f^\theta\rangle$, we can conclude that $\overline{\phi}(p + \langle f\rangle) = \phi(p) + \langle f^\theta \rangle$ is also a well-defined ring isomorphism. Clearly $\overline{\phi}$ is the unique homomorphism from $F[x]/\langle f\rangle$ to $F^\prime[x]/\langle f^\theta\rangle$ taking $c + \langle f\rangle$ to $\theta(c) + \langle f\theta\rangle$ for all $c \in F$ and $x + \langle f\rangle$ to $x + \langle f^\theta \rangle$.\retTwo
 
-	Finally, note that any $\widehat{\theta} \in \Isom_\theta(E, E\prime)$ satisfying that $\widehat{\theta}(\alpha) = \alpha^\prime$ must fit into the below commuting diagram:
+	Finally, note that any $\widehat{\theta} \in \Isom_\theta(E, E^\prime)$ satisfying that $\widehat{\theta}(\alpha) = \alpha^\prime$ must fit into the below commuting diagram:
 	% https://q.uiver.app/#q=WzAsNCxbMCwwLCJFIl0sWzEsMCwiRV5cXHByaW1lIl0sWzAsMSwiXFxmcmFje0ZbeF19e1xcbGFuZ2xlIGZcXHJhbmdsZX0iXSxbMSwxLCJcXGZyYWN7Rl5cXHByaW1lW3hdfXtcXGxhbmdsZSBmXlxcdGhldGFcXHJhbmdsZX0iXSxbMiwwLCJlX1xcYWxwaGEiXSxbMywxLCJlX3tcXGFscGhhXlxccHJpbWV9IiwyXSxbMiwzLCJcXG92ZXJsaW5le1xccGhpfSIsMl0sWzAsMSwiXFx3aWRlaGF0e1xcdGhldGF9IiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiXFxzaW0iLDEseyJvZmZzZXQiOi0yLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywxLCJcXHNpbSIsMyx7Im9mZnNldCI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDAsIlxcc2ltIiwzLHsib2Zmc2V0IjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
 	\[\begin{tikzcd}
 		E & {E^\prime} \\
