@@ -400,7 +400,7 @@
    \calibri\hOne
    
    \dispDate{8/31/2024}
-   My goal for today is to work through the appendix to chapter 1 in Baby Rudin. This appendix focuses on constructing the real numbers using Dedikind cuts.\retTwo
+   My goal for today is to work through the appendix to chapter 1 in Baby Rudin. This appendix focuses on constructing the real numbers using Dedekind cuts.\retTwo
    
    \hTwo
    \begin{myIndent}
@@ -1236,9 +1236,10 @@
 
       
       \begin{myIndent}\myComment
-         Note that the maximal simply ordered subset $B$ is not unique. In fact, choosing a different well-ordering of $J$ is likely to give a completely different maximal simply ordered subset.\retTwo
+         Note that the maximal simply ordered subset $B$ is not unique. In fact, by choosing a different indexing of $A$ by $J$, we can force $B$ to contain a specific point in $J$. After all, $B$ will always contain $a_{\alpha_0}$ where $\alpha_0$ is the smallest element of $J$ (which as a side note means $B$ is always nonempty).\retTwo
          
-         Also, $B$ is not empty because any set with one element is simply ordered by $\prec$.\retTwo\retTwo
+			Thus by swapping which elements are indexed by $\alpha_0$ and $\beta$ for some $\beta \in J$, we've actually proven that for any $a \in A$ there exists a maximal simply order subset $B$\\ of $A$ containing $a$.
+         \retTwo
       \end{myIndent}
    \end{myIndent}
 
@@ -1248,7 +1249,10 @@
 
    \begin{myIndent}\hTwo
       Proof:\\
-      By the Hausdorff maximum principle, there exists a maximal simply ordered subset $B$ of $A$. Let $c$ be an element of $A$ that is an upperbound to $B$. We claim that $c$ is a maximal element of $A$. For suppose there exists $d \in A$ such that $c \prec d$. We know $d \notin B$ since that would imply $d \prec c$. But by the transitivity of $\prec$, we know that $b \preceq c \prec d \Longrightarrow b \prec d$ for all $b \in B$. Hence, $B \cup \{d\}$ is simply ordered by $\prec$. This contradicts that $B$ is a maximal simply ordered subset of $A$.\retTwo\retTwo
+      By the Hausdorff maximum principle, there exists a maximal simply ordered subset $B$ of $A$. Let $c$ be an element of $A$ that is an upperbound to $B$. We claim that $c$ is a maximal element of $A$. For suppose there exists $d \in A$ such that $c \prec d$. We know $d \notin B$ since that would imply $d \prec c$. But by the transitivity of $\prec$, we know that $b \preceq c \prec d \Longrightarrow b \prec d$ for all $b \in B$. Hence, $B \cup \{d\}$ is simply ordered by $\prec$. This contradicts that $B$ is a maximal simply ordered subset of $A$.
+		\begin{myIndent}\myComment
+         Note in particular that for any $a \in A$ we can find a maximal $c \in A$ with $a \prec c$. This is because in the above proof, we know from my comment on the Hausdorff maximum principle that $B$ can be chosen to contain $a$.\retTwo
+      \end{myIndent}
    \end{myIndent}
 
    \exOne\blab{Exercise 11.1:} If $a$ and $b$ are real numbers, define $a \prec b$ if $b - a$ is positive and rational. 
@@ -2454,7 +2458,7 @@ If $I$ is a bounded interval and $\alpha \in (0, 1)$, then call the open interva
 \end{myIndent}
 
 \hOne
-Trying to explicitely write out the bijection between $[0, 1]$ and a generalized Cantor set $K = \bigcap K_j$ would be really time consuming and awkward. So I'm going to be more handwavey
+Trying to explicitly write out the bijection between $[0, 1]$ and a generalized Cantor set $K = \bigcap K_j$ would be really time consuming and awkward. So I'm going to be more handwavey
 
 \begin{myIndent}\hTwo
 	We can define an injection from $\{0, 1\}^\omega$ to $K$ as follows:
@@ -2974,7 +2978,7 @@ Hint: By a change of variables it suffices to assume $a = 0$ and $b = \frac{1}{2
 
 \blab{Exercise 8.16:} Let $f_k = \chi_{[-1, 1]} * \chi_{[-k, k]}$. (Also assume $k \in \mathbb{N}$ with $k > 0$).
 \begin{enumerate}
-	\item[(a)] Compute $f_k(x)$ explicitely and show that $\|f\|_u = 2$.
+	\item[(a)] Compute $f_k(x)$ explicitly and show that $\|f\|_u = 2$.
 	\begin{myIndent}\HexOne
 		You can fairly easily see that for any $x \in \mathbb{R}$, $f_k(x) = \int_{-k}^k \chi_{[-1, 1]}(x - y)\df y$. Evaluating that gives the formula:
 
@@ -3955,7 +3959,7 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 
 \hOne Note, we trivially have that $H^k$ is a $k$-manifold of class $C^\infty$ in $\mathbb{R}^k$ (just define the coordinate patch to be the identity map on $H^k$.) Then, $\partial H^k = \mathbb{R}^{k-1} \times 0$ by the prior lemma.\newpage
 
-\exOne\ul{Theorem 24.3:} Let $M$ be a $k$-manifold in $\mathbb{R}^n$ of class $C^r$. If $\partial M$ is nonempty, then $\partial M$ is a $k-1$ manifld without boundary in $\mathbb{R}^n$ of class $C^r$.
+\exOne\ul{Theorem 24.3:} Let $M$ be a $k$-manifold in $\mathbb{R}^n$ of class $C^r$. If $\partial M$ is nonempty, then $\partial M$ is a $k-1$ manifold without boundary in $\mathbb{R}^n$ of class $C^r$.
 
 \begin{myIndent}\exTwoP
 	Proof:\\
@@ -6266,7 +6270,7 @@ The significance of the above lemma is that we can cut up and smoothly reparamet
 	Also, you can manually check that the transition map also equals $F_{s/t}(0)$ at $x = 0$. And since $F_{s/t}$ is a diffeomorphism of any class iff $s/t = 1$, we know that the two charts are $C^r$ compatible if and only if $s = t$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\hOne In a sense this exercise proves how important it is to keep in mind that we consider a manifold to be smooth with respect to a specific structure. That said, if we're not working with multiple different structures, then it's annoying to explicitely mention the structure over and over. So, we take the approach of calling a chart a \udefine{smooth chart} if it's in our structure.\retTwo
+\hOne In a sense this exercise proves how important it is to keep in mind that we consider a manifold to be smooth with respect to a specific structure. That said, if we're not working with multiple different structures, then it's annoying to explicitly mention the structure over and over. So, we take the approach of calling a chart a \udefine{smooth chart} if it's in our structure.\retTwo
 
 To finish off today, I want to briefly address the boundary of a manifold.\newpage
 
@@ -6942,7 +6946,7 @@ It is here that Hewitt and Stromberg mostly stop being useful. So, I will give o
 
 I'm not gonna lie, while going down research rabbitholes is really fun, I feel like Folland\\ really oversold the significance of this result. When I went into this rabbithole, I was under the impression from Folland that I'd be proving that if $\mu$ is an arbitrary Radon measure and $\nu \ll \mu$, then $\nu$ always has the form $f \df \mu$. But that is not what was proven in theorems 19.27 and 19.32 so I don't know what Folland was yappin about. Considering the lack of specific details that Folland gives, I can't help but suspect that Folland didn't entirely understand what Hewitt and Stromberg actually proved. Although, I don't necessarily blame Folland for that.\retTwo
 
-Hewitt and Stromberg were difficult for me to understand partly because they had a lot of (in my opinion) very questionable conventions. For example, I tried my best to hide it away as much as possible but Hewitt and Stromberg explicitely treated every measure as the restriction of an outer measure to the $\sigma$-algebra of $\mu^*$-measurable sets rather than abstracting that away because I guess they always wanted their $\sigma$-algebras to be as large as possible. In fact, while I was skimming the book I even saw some other sections where they talked about extending their measures to even larger $\sigma$-algebras. Never mind that there are advantages to working on a smaller $\sigma$-algebra (see for instance page 55 of my journal: when working on a larger $\sigma$-algebra we lose that continuity implies measurability\dots).\newpage
+Hewitt and Stromberg were difficult for me to understand partly because they had a lot of (in my opinion) very questionable conventions. For example, I tried my best to hide it away as much as possible but Hewitt and Stromberg explicitly treated every measure as the restriction of an outer measure to the $\sigma$-algebra of $\mu^*$-measurable sets rather than abstracting that away because I guess they always wanted their $\sigma$-algebras to be as large as possible. In fact, while I was skimming the book I even saw some other sections where they talked about extending their measures to even larger $\sigma$-algebras. Never mind that there are advantages to working on a smaller $\sigma$-algebra (see for instance page 55 of my journal: when working on a larger $\sigma$-algebra we lose that continuity implies measurability\dots).\newpage
 
 I'll also mention that the choice of math font in their book is awful and I couldn't help but wonder if they knew what kerning is. Anyways I guess my review of their book is that it feels dated and very clunky. Although, maybe I only had a mixed experience because I'm not an intended reader. (cough cough)\retTwo
 
@@ -9556,7 +9560,7 @@ So, I wanted to say that the proof I did above was completely unnecessary becaus
 
 \hTwo One final note for today. If $U \subseteq \mathbb{R}^n$ is open, then $C_c^\infty(U)$ is the union of all the $C_c^\infty(K)$ where $K$ is a compact subset of $U$. Now for any open $U \subseteq X$ we state the following as definitions (technically there is a topology such that all these things are true but Folland says it's not really important to know):
 \begin{enumerate}
-	\item A sequence $(\phi_j)_{j \in \mathbb{N}}$ in $C_c^\infty(U)$ \udefine{converges in $C_c^\infty$} to $\phi$ if $\{\phi_j\}_{j \in \mathbb{N}} \subseteq C_c^\infty(K)$ for some compact $K \subseteq U$ and $\phi_j \to \phi$ in the topology of $C_c^\infty(K)$.
+	\item A sequence $(\phi_j)_{j \in \mathbb{N}}$ in $C_c^\infty(U)$ \udefine{converges in $C_c^\infty(U)$} to $\phi$ if $\{\phi_j\}_{j \in \mathbb{N}} \subseteq C_c^\infty(K)$ for\\ some compact $K \subseteq U$ and $\phi_j \to \phi$ in the topology of $C_c^\infty(K)$.
 	
 	\item If $\mathcalli{X}$ is a locally convex topological vector space and $T: C_c^\infty(U) \to \mathcalli{X}$ is a linear map, $T$ is \udefine{continuous} if $T|_{C_c^\infty(K)}$ is continuous for each compact set $K \subseteq U$. In other words, $T$ is continuous if whenever $(\phi_j)_{j \in \mathbb{N}}$ is a sequence in $C_c^\infty(U)$ converging in $C_c^\infty$ to $\phi$, then $T \phi_j \to T \phi$.\newpage
 	
@@ -9673,7 +9677,7 @@ Let $\mathcalli{X}$ denote a $K$-vector space where $K$ is either $\mathbb{R}$ o
 
 		As for the annoying case of $c = 0$, note that $0E^\circ = \{0\} \subseteq E^\circ$. $\blacksquare$
 		\begin{myIndent}\color{VioletRed}
-			As a side note, we do have to explicitely assume that $E$ is a neighborhood of $0 \in \mathcalli{X}$ because there are loads of examples of balanced sets which don't have $0$ as an interior point. For example, if $K = \mathbb{R}$, then consider the closure of the first and third quadrants in the real number plane (equipped with the euclidean norm). There are other examples online for when $K = \mathbb{C}$.\newpage
+			As a side note, we do have to explicitly assume that $E$ is a neighborhood of $0 \in \mathcalli{X}$ because there are loads of examples of balanced sets which don't have $0$ as an interior point. For example, if $K = \mathbb{R}$, then consider the closure of the first and third quadrants in the real number plane (equipped with the euclidean norm). There are other examples online for when $K = \mathbb{C}$.\newpage
 		\end{myIndent}
 	\end{myIndent}
 
@@ -10594,7 +10598,7 @@ I'll continue with this class on \inLinkRap{math 241a lecture 3}{page 281}.
 		$\phantom{0} = (B - A)\sin(2\theta) + C\cos(2\theta)$.
 	\end{tabular}\retTwo\par}
 
-	Since we were originally motivated by the possibility that $B \neq 0$, for now I'm just going to assume $B \neq 0$. That way, we can explicitely calculate that $\theta = \frac{1}{2}\cot^{-1}(\frac{A - C}{B})$. And now by plugging that $\theta$ into our matrix $R$ we can find a rotation matrix such that $(f \circ R)(x, y)$ is another degree two polynomial but with $0$ for its $xy$ coefficient. And this proves that it is always possible to rotate our conic so that the $B$ term is $0$.\retTwo
+	Since we were originally motivated by the possibility that $B \neq 0$, for now I'm just going to assume $B \neq 0$. That way, we can explicitly calculate that $\theta = \frac{1}{2}\cot^{-1}(\frac{A - C}{B})$. And now by plugging that $\theta$ into our matrix $R$ we can find a rotation matrix such that $(f \circ R)(x, y)$ is another degree two polynomial but with $0$ for its $xy$ coefficient. And this proves that it is always possible to rotate our conic so that the $B$ term is $0$.\retTwo
 
 	\mySepThree\newpage
 	
@@ -12060,7 +12064,7 @@ A corollary that is now easy to see is that for any $x_1, \ldots, x_n \in \mathc
 \Hstatement\blab{Set 2 Problem 4:} \hypertarget{Math 200a Set 2 Problem 4}{Suppose} $G$ is a finite group, $C \subseteq \mathbb{R}^n$ is nonempty and convex, and $G$ acts on $C$ by affine transformations. Then prove that $G$ has a fixed point. Or in other words, prove there exists $x \in C$ such that $g \cdot x = x$ for all $g \in G$.
 
 \begin{myIndent}\HexOne
-	Based on the provided hints for the problem, I think the professor wants me to explicitely prove these facts first.\retTwo
+	Based on the provided hints for the problem, I think the professor wants me to explicitly prove these facts first.\retTwo
 
 	\ul{Lemma 1:} If $c_1, \ldots, c_n \in C$, then $\frac{c_1 + \ldots + c_n}{n} \in C$.
 
@@ -19388,7 +19392,7 @@ Given a ring $A$, we let $\Ideal(A)$ denote the collection of all ideals of $A$.
 Let $G$ be finite group of odd order and suppose $N \lhd G$ with $|N| = 5$. Then $N \subseteq Z(G)$.
 \begin{myIndent}\HexOne
 	Proof:\\
-	Consider the action $G \curvearrowright N$ by conjugation. This gives us an induced group homomorphism $\Phi : G \to \Aut(N)$. Furthermore, because $N \cong C_5$, we know that $\Aut(N) \cong C_4$. Therefore, we must have that $\myIm(\Phi) \in \{1, 2, 4\}$.\retTwo
+	Consider the action $G \curvearrowright N$ by conjugation. This gives us an induced group homomorphism $\Phi : G \to \Aut(N)$. Furthermore, because $N \cong C_5$, we know that $\Aut(N) \cong C_4$. Therefore, we must have that $|\myIm(\Phi)| \in \{1, 2, 4\}$.\retTwo
 
 	That said, we know $|\myIm(\Phi)|$ divides $|G|$ and $|G|$ is odd. The only way this is possible is $|\myIm(\Phi)|$ is odd. Hence we must have that $\myIm(\Phi) = \{\myId\}$. In other words, $gng^{-1} = n$ for all $n \in N$ and $g \in G$. This is the same as saying $N \subseteq Z(G)$.
 \end{myIndent}
@@ -19734,10 +19738,10 @@ Recall the following definitions:
 		With that the other claim is now easy. If $(x + \mathfrak{a})^n = 0 + \mathfrak{a}$ then we know that\\ $x^n \in \mathfrak{a}$. Hence, $\Nil(A/\mathfrak{a}) \subseteq \sqrt{\mathfrak{a}}/\mathfrak{a}$. On the other hand, if $x^n \in \mathfrak{a}$ then we know\\ that $(x + \mathfrak{a})^n = 0 + \mathfrak{a}$. Therefore, $x + \mathfrak{a} \in \Nil(A/\mathfrak{a})$ and we've shown that\\ $\Nil(A/\mathfrak{a}) \supseteq \sqrt{\mathfrak{a}}/\mathfrak{a}$.\newpage
 	\end{myIndent}
 
-	\item[(b)] Prove that $\sqrt{\mathfrak{a}} = \bigcap_{\mathfrak{p} \in V(\mathfrak{a})}\mathfrak{p}$.
+	\item[(b)] Prove that $\sqrt{\mathfrak{a}} = \bigcap_{\mathfrak{p} \in V(\mathfrak{a})}\mathfrak{p}$ (where if $V(\mathfrak{a}) = \emptyset$ (meaning $\mathfrak{a} = A$) then $\bigcap_{\mathfrak{p} \in \emptyset}\mathfrak{p} = A$).
 	
 	\begin{myIndent}\HexOne
-		To prove this statement it is helpful to refine our statement of the correspondance\\ theorem for ring ideals.\\ [-20pt]
+		The statement is trivial if $\mathfrak{a} = A$. So we now assume $\mathfrak{a} \neq A$. Then it is helpful to refine our statement of the correspondance theorem for ring ideals.\\ [-20pt]
 	\end{myIndent}
 \end{enumerate}
 \pracOne\mySepTwo
@@ -24551,7 +24555,7 @@ A natural followup question to ask is if we can find an entire function with inf
 Given any $p \in \mathbb{Z}_{\geq 0}$, we define the \udefine{$p$th. Weierstrass primary/elementary factor} to be:
 
 {\centering$E_p(z) = \left\{\begin{matrix}
-	(1 - z) & \text{ if } p = 0 \\ (1 - z)\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{z}) & \text{ if } p \neq 0
+	(1 - z) & \text{ if } p = 0 \\ (1 - z)\exp(z + \frac{z^2}{2} + \cdots + \frac{z^p}{p}) & \text{ if } p \neq 0
 \end{matrix}\right.$.\retTwo\par}
 
 Note that if $a \in \mathbb{C} - \{0\}$, then $E_p(\frac{z}{a})$ is entire and its only zero is a simple one at $z = a$.
@@ -24761,7 +24765,7 @@ By combining the above proof with the homework problem on \inLinkRap{Math 220b S
 	
 	So, we can pick a function $g \in O(G_1)$ whose only zeros are at the $b_n$ and with multiplicity $m_n$. Next, we set $f(z) = g(Tz)$. Then $f \in O(G - \{a\})$ and has only zeros at the $a_n$ and with multiplicity $m_n$.\retTwo
 
-	Finally, $f(z) = g(\frac{1}{z - a}) \to 1$ as $z \to a$, we know $f$ has a removable singularity at $a$. So, we can extend $f$ to be a function in $O(G)$ that has exactly the zeros we want. $\blacksquare$\retTwo
+	Finally, as $f(z) = g(\frac{1}{z - a}) \to 1$ as $z \to a$, we know $f$ has a removable singularity at $a$.\\ So, we can extend $f$ to be a function in $O(G)$ that has exactly the zeros we want. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo\mySepTwo
@@ -25773,7 +25777,7 @@ If $F$ is a field and $A$ is a noncommutative unital ring, we say $A$ is an \ude
 
 	\item If $c \in F$ and $a \in A$ satisfy that $ca = 0$, then we must have that either $c = 0$ or $a = 0$. After all, suppose $c \neq 0$ but $ca = 0$. Then $a = c^{-1}ca = c^{-1}0 = 0$.
 
-	\item I mentioned on page 518 that $A$ is an $F$-vector space when we consider defining\\ $c \cdot a = f(c)a$ for all $c \in F$ and $a \in A$. This is easy to show. That said, we do need to explicitely assume $f(c)a = af(c)$ for all $a \in A$ and $c \in F$ in order for us to have\\ that $c \cdot (a_1 a_2) = (c \cdot a_1)a_2 = a_1(c \cdot a_2)$.
+	\item I mentioned on page 518 that $A$ is an $F$-vector space when we consider defining\\ $c \cdot a = f(c)a$ for all $c \in F$ and $a \in A$. This is easy to show. That said, we do need to explicitly assume $f(c)a = af(c)$ for all $a \in A$ and $c \in F$ in order for us to have\\ that $c \cdot (a_1 a_2) = (c \cdot a_1)a_2 = a_1(c \cdot a_2)$.
 	
 	\item For an example of a non-commutative  $F$-algebra that we'll be caring about, consider the set of matrices $M_n(F)$ and define $f: F \to M_n(F)$ by $c \mapsto cI$.\retTwo
 \end{itemize}
@@ -26134,7 +26138,7 @@ This is different from the definition used in my functional analysis notes in th
 	\color{orange}(In the language of the Math 220b, this would instead define pointwise equicontinuity.)\retTwo
 \end{myTindent}
 
-I think the reason for this difference in terminology is that the 140b and 220b definition of equicontinuity only makes sense in metric spaces while the 240b and functional analysis definition makes sense in general topological spaces where we are typically working in those subjects. The convention I'll follow is that I'll try to explicitely distinguish between these two definitions by writing (uniformly) or (pointwise) whenever there is ambiguity.\newpage
+I think the reason for this difference in terminology is that the 140b and 220b definition of equicontinuity only makes sense in metric spaces while the 240b and functional analysis definition makes sense in general topological spaces where we are typically working in those subjects. The convention I'll follow is that I'll try to explicitly distinguish between these two definitions by writing (uniformly) or (pointwise) whenever there is ambiguity.\newpage
 
 \exTwo\ul{Lemma:} Suppose $(X, d)$ is a locally compact metric space and $(\Omega, \rho)$ is another metric space. Then given a collection $\mathcal{F} \subseteq C(X, \Omega)$, we have that the following are equivalent:
 \begin{itemize}
@@ -27032,11 +27036,10 @@ Prove that $\Theta$ and $\Psi$ are well-defined and inverses of each other.
 	\item[(a)] Prove that $\Max(A) = \{\mathfrak{m}\}$ iff $A^\times = A - \mathfrak{m}$.
 	\begin{myIndent}\HexOne
 		\begin{myIndent}\myComment
-			Note: A ring with only one maximal ideal is called a \udefine{local ring}.\retTwo
+			Note: A ring with only one maximal ideal is called a \udefine{local ring}.
 		\end{myIndent}
-
 		$(\Longrightarrow)$\\
-		Suppose $\Max(A) = \{m\}$. As $\mathfrak{m}$ is a proper ideal, we know that $A^\times \subseteq A - \mathfrak{m}$. But now suppose for the sake of contradiction that $x \in A - \mathfrak{m}$ with $x \notin A^\times$. Then we know that the ideal $\langle x\rangle$ is disjoint from the multiplicately closed set $S = \{1\}$. Hence, there is a maximal ideal $\mathfrak{m}^\prime$ containing $\langle x\rangle$. Yet now we have a contradiction because as $x \in \mathfrak{m}^\prime$ but $x \notin \mathfrak{m}$, we know that $\mathfrak{m}^\prime \neq \mathfrak{m}$. In other words, we have found an element of $\Max(A)$ not equal to $\mathfrak{m}$
+		Suppose $\Max(A) = \{m\}$. As $\mathfrak{m}$ is a proper ideal, we know that $A^\times \subseteq A - \mathfrak{m}$. But now suppose for the sake of contradiction that $x \in A - \mathfrak{m}$ with $x \notin A^\times$. Then we know the ideal $\langle x\rangle$ is disjoint from the multiplicatively closed set $S = \{1\}$. Hence, there is a maximal ideal $\mathfrak{m}^\prime$ containing $\langle x\rangle$. Yet now we have a contradiction because as $x \in \mathfrak{m}^\prime$ but $x \notin \mathfrak{m}$, we know that $\mathfrak{m}^\prime \neq \mathfrak{m}$. In other words, we have found an element of $\Max(A)$ not equal to $\mathfrak{m}$\retTwo
 
 		$(\Longleftarrow)$\\
 		Suppose $A^\times = A - \mathfrak{m}$. Then note that as $A^\times \neq \emptyset$, we must have that $\mathfrak{m} \neq A$. In turn, this guarentees $A^\times \cap \mathfrak{m} = \emptyset$. And now we can conclude that $A^\times$ and $\mathfrak{m}$ partition $A$. Finally, suppose $\mathfrak{a}$ is any proper ideal of $A$. Then as $A^\times \cap \mathfrak{a} = \emptyset$, we must have that $\mathfrak{a} \subseteq \mathfrak{m}$. This proves that $\mathfrak{m}$ is the only maximal ideal.\retTwo
@@ -32472,7 +32475,7 @@ Here is one more tangent before I switch to doing homework problems from last we
 
 \blect{Math 200b Homework:}\retTwo
 
-\blab{Set 7 Problem 6:} \hypertarget{idk reference 20}{Suppose} $A$ is a unital commutative ring and $M_1, M_2$ are $A$-modules. Explicitely construct a natural isomorphism between $T_{M_1} \circ T_{M_2}$ and $T_{M_1 \otimes M_2}$.
+\blab{Set 7 Problem 6:} \hypertarget{idk reference 20}{Suppose} $A$ is a unital commutative ring and $M_1, M_2$ are $A$-modules. Explicitly construct a natural isomorphism between $T_{M_1} \circ T_{M_2}$ and $T_{M_1 \otimes M_2}$.
 \begin{myIndent}\HexOne
 	\begin{myIndent}\color{RawerSienna}
 		Recall for any $A$-module $N$ that:

@@ -332,6 +332,7 @@
 \newcommand{\Gal}{\mathrm{Gal}}
 \newcommand{\Int}{\mathrm{Int}}
 \newcommand{\myTr}{\mathrm{Tr}}
+\newcommand{\genus}{\mathrm{genus}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Log}{Log}
@@ -865,7 +866,7 @@ Recall from \inLinkRap{placeholder}{page 332} that if $G \subseteq \mathbb{C}$ i
 	\begin{myIndent}\HexOne
 		Let $h \in O(G)$ be any nowhere zero holomorphic function on $G$. To prove that $G$ is simply connected, it suffices to proves that $G$ is a logarithm domain, and to do that it suffices to prove that there exists a function $g \in O(G)$ with $h(z) = e^{g(z)}$.\retTwo
 
-		Yet since every harmonic function in $G$ admits a harmonic conjugate and we know from part (i) that $\log |h(z)|$ is harmonic in $G$, we know that there is a holomorphic function $g \in O(G)$ with $\rea{g(z)0} = \log|h(z)|$. Next, we consider the function $f(z) \coloneqq \frac{h(z)}{e^{g(z)}}$. Importantly, $f \in O(G)$ and $|f(z)| = \frac{|h(z)|}{e^{\rea{g(z)}}} = \frac{|h(z)|}{e^{\log|h(z)|}} = 1$ for all $z \in G$. By the maximum modulus principle, we can thus conclude that $f$ is a constant function (with magnitude $1$). And this proves that there exists some $C \in \mathbb{C}$ with $|C| = 1$ and $Ce^{g(z)} = h(z)$. Finally, write $C = e^{is}$ for some $s \in [-\pi, \pi)$. Then $h(z) = e^{g(z) + is}$. This proves that $h$ has a logarithm.\retTwo
+		Yet since every harmonic function in $G$ admits a harmonic conjugate and we know from part (i) that $\log |h(z)|$ is harmonic in $G$, we know that there is a holomorphic function $g \in O(G)$ with $\rea{g(z)} = \log|h(z)|$. Next, we consider the function $f(z) \coloneqq \frac{h(z)}{e^{g(z)}}$. Importantly, $f \in O(G)$ and $|f(z)| = \frac{|h(z)|}{e^{\rea{g(z)}}} = \frac{|h(z)|}{e^{\log|h(z)|}} = 1$ for all $z \in G$. By the maximum modulus principle, we can thus conclude that $f$ is a constant function (with magnitude $1$). And this proves that there exists some $C \in \mathbb{C}$ with $|C| = 1$ and $Ce^{g(z)} = h(z)$. Finally, write $C = e^{is}$ for some $s \in [-\pi, \pi)$. Then $h(z) = e^{g(z) + is}$. This proves that $h$ has a logarithm.\retTwo
 	\end{myIndent}
 	
 	\item[(iii)] Show that $u(z) = \log|z|$ admits no harmonic conjugate in $G = \mathbb{C} - \{0\}$.
@@ -1003,7 +1004,7 @@ For now, we will focus on the case that $G = \Delta \coloneqq \Delta(0, 1)$.
 
 	Let $\widetilde{u} \coloneqq u \circ \varphi$. Then $\widetilde{u}: \overline{\Delta} \to \mathbb{R}$ is continuous. Also by set 1 problem 1 (see \inLinkRap{Math 220c Set 1 Problem 1}{page 802}), we know that $\widetilde{u}$ is harmonic on $\Delta$. Therefore, by the prior remark we know that $u(a) = \widetilde{u}(0) = \frac{1}{2\pi}\int_0^{2\pi} \widetilde{u}(e^{it})\df t = \frac{1}{2\pi}\int_0^{2\pi} u(\varphi(e^{it}))\df t$.\retTwo
 
-	We can still do better with this formula however. After noting that $\psi(\partial \Delta) = \partial \Delta$, let's try to do a change of variables.
+	\hypertarget{Poisson Kernel change of variables page 808}{We} can still do better with this formula however. After noting that $\psi(\partial \Delta) = \partial \Delta$, let's try to do a change of variables.
 	\begin{myIndent}\pracTwo
 		In particular, note that there is a smooth bijective function $f: [\alpha, \beta] \to [0, 2\pi]$ satisfying that $\beta - \alpha = \pm 2\pi$ and $e^{if(s)} = \psi(e^{is})$ for all $s$.\retTwo
 
@@ -1671,7 +1672,7 @@ In other words, $\Phi_n(x)$ has as roots all \udefine{primitive} $n$th roots of 
 			Since $\alpha + \beta = 2(\sum_{j=0}^{p-1} \zeta^j) = 2(0)$, we in turn must have that $\alpha = -\beta$.\\ So, we can conclude that both $\alpha$ and $\beta$ are equal to $0$. This implies\\ $\sum_{j \in H} \zeta^j = \frac{-1}{2} = \sum_{j \in N} \zeta^j$. Yet as $1, \zeta, \zeta^2, \ldots, \zeta^{p-2}$ are $\mathbb{Q}$-linearly\\ independent (since $\deg(m_{\zeta; \mathbb{Q}}) = p - 1$), one of the sums over those\\ cosets equaling $\frac{-1}{2}$ will give a contradiction to the linear independence\\ of our $\mathbb{Q}$-basis.
 
 			\begin{myIndent}\myComment
-				And yay I managed to figure this all out without resorting to calculating $\alpha$ explicitely (which according to the internet is actually possible).\retTwo
+				And yay I managed to figure this all out without resorting to calculating $\alpha$ explicitly (which according to the internet is actually possible).\retTwo
 				
 				As a side note, since $0 = \sum_{i=0}^{p-1}\zeta^i$ we know $\zeta^{p-1} = - \sum_{i=0}^{p-2} \zeta^{i}$. This lets us then shown that $\zeta^1, \ldots, \zeta^{p-1}$ is a $\mathbb{Q}$-basis for $K$.\newpage
 			\end{myIndent}
@@ -1693,7 +1694,7 @@ In other words, $\Phi_n(x)$ has as roots all \udefine{primitive} $n$th roots of 
 	\end{myIndent}
 \end{enumerate}
 
-\blab{Set 1 Problem 6:} Let $\zeta = \zeta_{13}$ be a primitive $13$th root of unity and let $K = \mathbb{Q}(\zeta) \subseteq \mathbb{C}$. Find all intermediate subfields $E$ with $\mathbb{Q} \subseteq E \subseteq K$ and write each $E$ explicitely as $E = \mathbb{Q}[\alpha]$ for some $\alpha \in K$.
+\blab{Set 1 Problem 6:} Let $\zeta = \zeta_{13}$ be a primitive $13$th root of unity and let $K = \mathbb{Q}(\zeta) \subseteq \mathbb{C}$. Find all intermediate subfields $E$ with $\mathbb{Q} \subseteq E \subseteq K$ and write each $E$ explicitly as $E = \mathbb{Q}[\alpha]$ for some $\alpha \in K$.
 \begin{myIndent}\HexOne
 	Let $C_k$ denote the cyclic group with $k$ elements. Then from \inLinkRap{Galois group of cyclotomic polynomials over Q}{page 821} we know that\\ $G \coloneqq \Gal(K/\mathbb{Q}) \cong C_{12}$. Also, the below diagram gives the subgroups of $C_{12}$ (with\\ the lines denoting containement as you go upwards).
 	% https://q.uiver.app/#q=WzAsNixbMSwwLCJDX3sxMn0iXSxbMiwxLCJDXzQiXSxbMCwxLCJDXzYiXSxbMiwyLCJDXzIiXSxbMCwyLCJDXzMiXSxbMSwzLCJcXHtlXFx9Il0sWzEsMCwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsyLDAsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiw0LCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMywiIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDUsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCw1LCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIsMywiIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
@@ -2010,7 +2011,7 @@ There's a stronger result I want to prove specifically in the case of linear ODE
 
 Recall that if $\Delta \subseteq \mathbb{C}$ is the unit disk, then given a continuous function $u: \overline{\Delta} \to \mathbb{R}$ that is harmonic on $\Delta$ we gave a formula for $u$ in terms of $u|_{\partial \Delta}$. This was on \inLinkRap{Math 220c Poisson Integral Formula}{page 808}. This formula is called the \udefine{Poisson integral formula}.\retTwo
 
-Since $u|_\Delta = \rea{f}$ for some $f \in O(\Delta)$, a natural next question is if we can write down $f$ explicitely in terms of $u|_{\partial \Delta}$\retTwo
+Since $u|_\Delta = \rea{f}$ for some $f \in O(\Delta)$, a natural next question is if we can write down $f$ explicitly in terms of $u|_{\partial \Delta}$\retTwo
 
 \exTwo\ul{Theorem (Schwarz Integral Formula):} Suppose $u: \overline{\Delta} \to \mathbb{R}$ is continuous and that $u$ is harmonic on $\Delta$. Then for any $a \in \Delta$ set:
 
@@ -2142,7 +2143,7 @@ we have that $u|_{\partial \Delta} = f$ and that $u$ is harmonic in $\Delta$.
 	Finally by triangle inequality we know that $|u(re^{i\theta}) - u(1)| < 3\varepsilon$ whenever $|\theta| < \delta$ and $\rho < r < 1$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\myComment As an interesting side note, if we consider the Poisson kernel $P_r(\theta - t)$ as being a function\\ $P(re^{i\theta}, t)$ from $\Delta \times \mathbb{T}$ to $\mathbb{R}$, then $f \mapsto \frac{1}{2\pi}\int_0^{2\pi} P(re^{i\theta}, t)f(t)\df t$ will be a bounded integral\\ operator from $L^\infty(\mathbb{T})$ to $L^\infty(\Delta)$. I won't go into further depth on this here. But it is good to see connections to stuff I've already done. Also, this proves that the Dirichlet problem on $\overline{\Delta}$ is well-posed.\retTwo
+\myComment As an interesting side note, if we consider the Poisson kernel $P_r(\theta - t) = \rea{\frac{e^{it} + z}{e^{it} - z}}$ where $z = re^{i\theta}$ as being a function $P: \Delta \times S^1 \to \mathbb{R}$, then $f \mapsto \frac{1}{2\pi}\int_0^{2\pi} P(z, e^{it})f(t)\df t$ will be a bounded integral operator from $L^\infty(S^1)$ to $L^\infty(\Delta)$. I won't go into further depth on this here. But it is good to see connections to stuff I've already done. Also, this proves that the Dirichlet problem on $\overline{\Delta}$ is well-posed.\retTwo
 
 \hTwo\mySepTwo\newpage
 
@@ -2165,7 +2166,7 @@ As a special case of this, we can solve for the Poisson integral Formula on $\De
 
 	satisfies that $h$ is continuous on $\overline{\Delta}$, harmonic on $\Delta$, and equals $f \circ \varphi^{-1}$ on $\partial \Delta$. In turn $u \coloneqq h \circ \varphi$ satisfies that $u$ is continuous on $\overline{\Delta(a, R)}$, harmonic on $\Delta(a, R)$, and equals $f$ on $\partial \Delta(a, R)$.\retTwo
 
-	As for explicitely calculating $u$, note for any $r < R$ that:
+	As for explicitly calculating $u$, note for any $r < R$ that:
 
 	{\centering\begin{tabular}{l}
 		$u(a + re^{i\theta}) = h(\frac{r}{R}e^{i\theta}) = \frac{1}{2\pi}\int_{0}^{2\pi} P_{r/R}(\theta - t)f(a + Re^{it})\df t$\\ [4pt]
@@ -2731,7 +2732,7 @@ in order to prove that the nonautonomous initial value problem $y^\prime(t) = V(
 	This fact is called the \udefine{Picard-Lindelöf Theorem} (if you want to look it up).\retTwo
 \end{myIndent}
 
-In the special case that $U = \mathbb{R}^n$, we can simplify the argument of the Picard-Lindelöf theorem and get a stronger result (which I will need in a moment). Hence, I'll explicitely write out this argument.\retTwo
+In the special case that $U = \mathbb{R}^n$, we can simplify the argument of the Picard-Lindelöf theorem and get a stronger result (which I will need in a moment). Hence, I'll explicitly write out this argument.\retTwo
 
 \exTwo\ul{Theorem:} Let $J \subseteq \mathbb{R}$ be an open interval and let $V: J \times \mathbb{R}^n \to \mathbb{R}^n$ be a function\\ satisfying that $V(t, \mVecAst{y})$ is continuous with respect to $t$ and Lipschitz with respect to $\mVecAst{y}$\\ by some constant $C$ (which is independent of $t$).
 \begin{enumerate}
@@ -2884,7 +2885,7 @@ Now $u \in C^1(\Omega)$ solves the PDE iff for each characteristic $x: (s_0, s_1
 
 The next subject covered in lecture is the \udefine{wave equation} on $\mathbb{R}$. Specifically, given any $c > 0$ we consider $C^2$ solutions of the PDE: $u_{t,t} = c^2 u_{x,x}$.\retTwo
 
-\exTwo\ul{Theorem:} If $c > 0$ and $\Omega = \mathbb{R} \times \mathbb{R}$ or $\mathbb{R} \times \mathbb{R}_{> 0}$, then all solutions to $u_{t,t} = c^2 u_{x,x}$ from $C^2(\Omega)$ are precisely given by:
+\exTwo\ul{Theorem:} \hypertarget{General solution to the wave equation page 853}{If} $c > 0$ and $\Omega = \mathbb{R} \times \mathbb{R}$ or $\mathbb{R} \times \mathbb{R}_{> 0}$, then all solutions to $u_{t,t} = c^2 u_{x,x}$ from $C^2(\Omega)$ are precisely given by:
 
 {\centering $u(x, t) = f(x + ct) + g(x - ct)$ where $f,g \in C^2(\mathbb{R})$. \retTwo\par}
 
@@ -3070,7 +3071,7 @@ An important result which I didn't give a fully correct proof to in my math 100b
 
 \hTwo A less important result is that the algebraic closure of a field is unique up to isomorphism.\retTwo
 
-\exTwo\ul{Lemma 1:} \hypertarget{Lemma 1 pages 857-858}{Suppose} $F, F^\prime$ are fields, $\theta : F \to F^\prime$ is a field isomorphism, $K/F$ is an algebraic extension, and $L/F$ is another extension such that $L$ is algebraically closed. Then there exists a field homomorphism $\phi \in \Embed_{\theta}(K, L)$.
+\exTwo\ul{Lemma 1:} \hypertarget{Lemma 1 pages 857-858}{Suppose} $F, F^\prime$ are fields, $\theta : F \to F^\prime$ is a field isomorphism, $K/F$ is an algebraic extension, and $L/F^\prime$ is another extension such that $L$ is algebraically closed. Then there exists a field homomorphism $\phi \in \Embed_{\theta}(K, L)$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	Let $\mathcal{F} \coloneqq \{\varphi \in \Embed_{\theta}(E, L) : E \in \Int(K/F)\}$. Also note that $\mathcal{F}$ is a poset when ordered by inclusion. Furthermore, $\mathcal{F} \neq \emptyset$ since if $j$ is the embedding $F^\prime \hookrightarrow L$ then $j \circ \theta \in \mathcal{F}$. Finally, if we have a chain of embeddings $\{\varphi_\beta : E_\beta \to L\}_{\beta \in I}$ then we can take their union to get an upper bound in $\mathcal{F}$.\newpage
@@ -3655,12 +3656,1677 @@ That said, $S_n$ is not solvable when $n \geq 5$. And since we can generally fin
 
 \hTwo\mySepTwo
 
-\blect{Math 148 Lecture Notes:}
+\blect{Math 148 Lecture Notes:}\retTwo
+
+To start off, I want to give a slightly more generalized way of proving the form of all\\ solutions to the wave equation on $\mathbb{R}$ than what I gave on \inLinkRap{General solution to the wave equation page 853}{page 853}. Namely, note that\\ the $1$-dimension wave equation can be factorized as:
+
+{\centering$0 = (\partial_t^2 - c^2\partial_x^2)u = (\partial_t - c\partial_x)(\partial_t + c\partial_x)u$.\retTwo\par}
+
+Using standardizable arguements, we can solve many PDEs of the form:
+
+{\centering$(\partial_t + a_1\partial_x)(\partial_t + a_2\partial_x)\cdots(\partial_t + a_n\partial_x)u = 0$.\retTwo\par}
+
+\exTwo\ul{Lemma 1:} Any solution to a PDE of the form $au_x + bu_t = 0$ where $a, b \in \mathbb{R}$ and $b \neq 0$ has the form $u(x, t) = f(x - \frac{a}{b}t)$ where $f$ is a $C^1$ function such that $f(x) = u(x, 0)$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	First we solve that the characteristic passing through any $(x_0, t_0)$ is given by\\ $(x(s), t(s)) = (as + x_0, bs + t_0)$. Supposing $b \neq 0$, then if we set $t_0 = 0$\\ we get that $v(x_0, 0) = v(as + x_0, bs)$ for all $x_0$ and $s$. Yet we can then solve\\ that $x_0 = x - \frac{a}{b}t$. Hence, we get that:
+
+	{\centering $v(x, t) = v(as + x_0, bs) = v(x_0, 0) = f(x_0) = f(x - \frac{a}{b}t)$\\ [4pt]\par}
+
+	where $f \in C^1$ satisfies that $u(x, 0) = f(x)$ for all $x$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Lemma 2:} Given any PDE of the form $au_x + bu_t = f(x - ct)$ where $a - bc \neq 0$ and $f$ is continuous, we can find a particular solution of the form $g(x - ct)$ where $g$ is a $C^1$ function.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If a function $u(x, t) = g(x - ct)$ where $g$ is any $C^1$ function is to satisfy our lemma, then we need to have that:
+
+	{\centering $(a - bc)g^\prime(x - ct) = f(x - ct)$ \newpage\par}
+
+	In other words, we need $g^\prime = \frac{1}{a - bc}f$. But this is doable since $f$ is continuous and thus has an antiderivative. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} Suppose we are given the PDE $(\partial_t + a_1\partial_x) \cdots (\partial_t + a_n\partial_x)u = 0$ where all $a_i$ are distinct real numbers. Then any solution will have the form $u(x, t) = \sum_{i=1}^n f_i(x - a_i t)$ where each $f_i$ is a $C^n$ function.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Write $v_1 = (\partial_t + a_2\partial_x) \cdots (\partial_t + a_n \partial_x)u$. Then we know that $(\partial_t + a_1\partial_x)v_1 = 0$. Hence, by lemma 1 we can solve that $v_1(x, t) = f(x - a_1 t)$ for some $C_1$ function $f$.\retTwo
+
+	Next, we set $v_k = (\partial_t + a_{k + 1}\partial_x)\cdots (\partial_t + a_{n}\partial_x)$ where $2 \leq k \leq n - 1$. Then suppose by induction that $v_{k-1}(x, t) = \sum_{i=1}^{k-1} g_i(x - a_i t)$. Then we know that:
+
+	{\centering $\sum_{i=1}^{k-1} g_i(x - a_i t) = (\partial_t + a_{k}\partial_x)v_k$ \retTwo\par}
+
+	To solve for $v_k$ is suffices to write $v_k$ as a sum of inhomogenous solutions plus one\\ homogenous solution. Fortunately, by lemma 1 we know any homogenous solution is\\ given by $f_k(x - a_k t)$ for some $C^1$ function $f$. Meanwhile, as $a_k \neq a_i$ for any $i < k$,\\ we can conclude by lemma 2 that there exists a particular solution for the PDE\\ $g_i(x - a_i t) = (\partial_t + a_{k}\partial_x)v$ of the form $f_i(x - a_i t)$ for all $i$. Hence, we've proven\\ that $v_k = \sum_{i=1}^{k} f_i(x - a_i t)$.
+
+	\begin{myIndent}\exPPP
+		As a side note, the difference between two different particular solutions to the PDE $g_i(x - a_i t) = (\partial_t + a_{k}\partial_x)v$ will be a solution to the homogeneous PDE\\ $0 = (\partial_t + a_{k}\partial_x)v$. Hence, so long as we know the form of one particular solution and all homogenous solutions, we know the form of all particular solutions.\retTwo
+	\end{myIndent}
+
+	Now once we reach $k = n - 1$, we will have that $v_k = u$. Hence, we will be done. $\blacksquare$
+	\begin{myIndent}\myComment
+		(As a side note, we force all the $f_i$ to be $C^n$ functions at the end just because we want $u$ to be $C^n$.)\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo In the specific case of the wave equation on the real number line, we have that\\ $0 = u_{t,t} - c^2 u_{x,x} = (\partial_t + c\partial_x)(\partial_t - c\partial_x)u$. Thus, this gives another explanation of why\\ all solutions to this PDE have the form $f(x - ct) + g(x + ct)$.\retTwo
+
+\hTwo\mySepTwo
+
+One particular fruitful way of studying the wave equation comes from physics. Namely, suppose $u$ is any solution to $u_{t,t} - c^2u_{x,x} = 0$ such that $u_x(\cdot, t), u_t(\cdot, t)$ are in $L^2(\mathbb{R}$) for all $t$. Then define:
+\begin{itemize}
+	\item $E_k(t) \coloneqq \int u_t(x, t)^2 \df x$ (this is \udefine{kinetic energy}),
+	\item $E_p(t) \coloneqq c^2 \int u_x(x, t)^2 \df x$ (this is \udefine{potential energy}),
+	\item $E(t) = E_k(t) + E_p(t)$ (this is \udefine{total energy}).\retTwo
+\end{itemize}
+
+Assuming the first and second derivatives of $u$ go to zero fast enough so that on some neighborhood of $t_0$ we have that $|2u_t u_{t,t} + 2c^2 u_x u_{x,t}|$ is bounded by a nonnegative $L^1$ function, then we can conclude by Leibniz's rule plus the fact that $u_{t,t} = c^2 u_{x,x}$ that:\newpage
+
+{\centering\begin{tabular}{l}
+	$E^\prime(t_0) = \int 2u_t u_{t,t} + 2c^2 u_x u_{x,t}\df x = 2c^2\int u_t u_{x,x} + u_x u_{x,t}\df x$.
+\end{tabular}\retTwo\par}
+
+Next, assuming $u_t(x, t), u_x(x, t) \to 0$ as $x \to \pm \infty$ for all $t$, then we can show via\\ integration by parts that:
+
+{\centering $\int u_t u_{x,x}\df x = u_t u_x\left|\vphantom{\int^\int}\right._{-\infty}^\infty - \int u_{t,x}u_x \df x = 0 - \int u_{t,x}u_x \df x$ \retTwo\par}
+
+Hence, we can conclude that $E^\prime(t_0) = 2c^2\int -u_{t,x} u_{x} + u_x u_{x,t}\df x = 2c^2 \int 0 \df x = 0$.\retTwo
+
+In turn, we've shown that $E(t)$ is constant.
+
+\hTwo\mySepTwo
+
+I think for now I'm going to skip taking notes in this pdf at least on the wave equation in higher dimensions. My reasoning for this is that the proofs use the divergence theorem, something I've not proven and don't have a good grasp on. In fact, in general I've kinda been realizing today that I do not know enough vector calculus and am not comfortable enough with manifolds, differential forms, and etc. Hence, the next topic for me to cram is the diffusion equation in $\mathbb{R}^N$.\retTwo
+
+We shall consider solutions to the equation $u_t = \kappa\triangle u$ (where $\kappa > 0$) in $C_b^{2,1}(\Omega) \cap C(\overline{\Omega})$\\ where $\Omega \subseteq \mathbb{R}^N \times \mathbb{R}_{>0}$
+\begin{myIndent}\pracTwo
+	Note that $C_b^{2,1}(\Omega)$ denotes the space of bounded continuous functions on $\Omega$ which\\ are twice continuously partial differentiable in space and once continuously partial\\ diffferentiable in time.\retTwo
+
+	(If we want to remove the bounded condition, we just write $C^{2,1}$).\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem (Maximum Principle):} Let $\Omega = \Omega^\prime \times (a, b)$ where $\Omega^\prime \subseteq \mathbb{R}^N$ is an open bounded set. Also let $\kappa > 0$. If $u \in C^{2, 1}(\Omega) \cap C(\overline{\Omega})$ and satisfies $u_t = \kappa \triangle u$ on $\Omega$, then:
+
+{\centering$\max\limits_{(x, t) \in \overline{\Omega}} u(x, t) = \max\limits_{(x, t) \in \Gamma} u(x, t)$\\ [4pt]\par} 
+
+where $\Gamma = (\Omega^\prime \times \{a\}) \cup (\partial \Omega^\prime \times [a, b])$.
+
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		Caution: $\Gamma$ does not include the entire boundary set of $\Omega$. Also, this theorem does not prove anything about when the local maximum is attained inside $\Omega$ (though it is possible to show if $\Omega^\prime$ is connected then that happens iff $u$ is a constant function).\retTwo
+	\end{myIndent}
+	Proof:\\
+	To start off, since $\overline{\Omega}$ is compact in $\mathbb{R}^{N+1}$, we know $M \coloneqq \max\limits_{(x, t) \in \overline{\Omega}} u(x, t)$ exists.\retTwo
+
+	Similarly, $\Gamma$ is a compact set (since we can write $\Gamma$ as a union of two compact sets\\ $\overline{\Omega^\prime} \times \{a\}$ and $\partial \Omega^\prime \times [a, b]$). Therefore, we know $m \coloneqq \max\limits_{(x, t) \in \Gamma} u(x, t)$ exists.\retTwo
+
+	Clearly $m \leq M$. But assume $m < M$. Then we know $u$ acheieves its maximum on either $\Omega$ or $\Omega \times \{b\}$. Hence, there must exist some $\delta > 0$ such that $\Omega_\delta \coloneqq \Omega^\prime \times (a, b - \delta)$ and $M_\delta \coloneqq \max\limits_{(x, t) \in \overline{\Omega_\delta}}u(x, t) > m$.
+	\begin{myIndent}\exPPP
+		This works because $u$ is continuous on $\overline{\Omega}$. So, if $u$ acheieves a global maximum in $\Omega^\prime \times (a, b)$, we just set $\delta$ small enough so that $M_\delta$ includes that global maximum.\newpage Meanwhile, if $u$ acheieves its global maximum in $\Omega \times \{b\}$, then so long as $\Omega_{\delta}$\\ contains points sufficiently close to that maximum, then $M_\delta$ will be larger than $m$.\retTwo
+	\end{myIndent}
+
+	Let $v(x, t) = u(x, t) + \varepsilon \|x\|_2^2$ for any $\varepsilon > 0$. Then in $\Omega$ we have that:
+	
+	{\centering$(\partial_t - \kappa \triangle)v = (\partial_t - \kappa \triangle)u + \varepsilon(\partial_t - \kappa \triangle)\|x\|_2^2 = 0 + \varepsilon(0 - 2\kappa N) = -2\varepsilon \kappa N < 0$.\retTwo\par}
+
+	Meanwhile if we let $R > 0$ be such that $\Omega^\prime \subseteq B_R(0)$ and we fix $\varepsilon \in (0, \frac{M_\delta - m}{R^2})$, then we\\ can conclude that $\max\limits_{(x, t) \in \Gamma} v(x, t) \leq m + \varepsilon R^2 < M_\delta$.\retTwo
+
+	Yet also note that $v \geq u$ on $\Omega$. So, if $(x_0, t_0) \in \overline{\Omega_\delta}$ is such that $v(x_0, t_0) = \max\limits_{(x, t) \in \overline{\Omega_{\delta}}} v(x, t) $,\\ [-7pt] then we know that $v(x_0, t_0) \geq M_{\delta} > \max\limits_{(x, t) \in \Gamma}v(x, t)$. Hence:
+	
+	{\centering$(x_0, t_0) \in \overline{\Omega_\delta} - \Gamma \subseteq \Omega$.\retTwo\par}
+
+	But now we must have $v_t(x_0, t_0) \geq 0$ and $v_{x_i}(x_0, t_0) = 0$ for all $i$.
+	\begin{myIndent}\exPPP
+		The reason why we only know $v_t(x_0, t_0) \geq 0$ is that it could be that\\ $(x_0, t_0) \in \Omega \times \{b - \delta\}$ That said, if the first partial derivatives don't satisfy\\ these relations then we can follow the gradiant of the function $v$ (staying inside\\ $\Omega_\delta$) to get another point contradicting the maximality of $v(x_0, t_0)$.\retTwo
+	\end{myIndent}
+
+	Also, we must have that $v_{x_i, x_i}(x_0, t_0) = 0$ for all $i$.
+	\begin{myIndent}\exPPP
+		This is because the function $f(s) = v(x_0 + se_i, t_0)$ must have a maximum\\ at $s = 0$. Yet by chain rule we can calculate that $f^\prime(s) = v_{x_i}(x_0 + se_i, t_0)$\\ and $f^\pprime(s) = v_{x_i, x_i}(x_0 + se_i, t_0)$. So $f^\pprime(0) = v_{x_i, x_i}(x_0, t_0) \leq 0$.\retTwo
+	\end{myIndent}
+
+	And now we have a contradiction because we've proven that $(\partial_t - \kappa \triangle)v \geq 0$ and\\ $(\partial_t - \kappa \triangle)v < 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\myComment Some remarks:
+\begin{itemize}
+	\item If $u$ satisfies the PDE $u_t - \kappa \triangle u = 0$, then any scalar multiple of $u$ also satisfies the PDE. Hence, by applying the maximum principle to $-u$, we get an analogous minimum principle for $u$.
+	\item A physics description for the maximum and minimum principles would be that entropy is increasing.\retTwo
+\end{itemize}
+
+\exTwo\ul{Corollary (Comparison Principle):} Let $\Omega = \Omega^\prime \times (a, b)$ where $\Omega^\prime \subseteq \mathbb{R}^N$ is an open bounded set. Also let $\kappa > 0$. If $u, \widetilde{u} \in C^{2, 1}(\Omega) \cap C(\overline{\Omega})$ solve the PDE $u_t = \kappa \triangle u$ on $\Omega$, then:
+
+{\centering$u \leq \widetilde{u}$ on $\Gamma$ implies $u \leq \widetilde{u}$ on $\overline{\Omega}$,\\ [4pt]\par} 
+
+where $\Gamma = (\Omega^\prime \times \{a\}) \cup (\partial \Omega^\prime \times [a, b])$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Apply the maximum principle to $u - \widetilde{u}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo This also leads to the following uniqueness result on bounded domains in space.\newpage
+
+\exTwo\ul{Theorem (Uniqueness of bounded solutions):} Suppose $\Omega^\prime$ is an open bounded subset of $\mathbb{R}^N$ and $\kappa > 0$. Then after setting $\Omega = \Omega^\prime \times (0, \infty)$, given the initial value problem:
+\begin{itemize}
+	\item $u_t - \kappa \triangle u = g(x, t)$ on $\Omega$,
+	\item $u(x, 0) = \varphi(x)$ for all $x \in \overline{\Omega^\prime}$,
+	\item $u(x, t) = h(x, t)$ for all $(x, t) \in \partial \Omega^\prime \times (0, \infty)$,
+	\begin{myTindent}\exPPP
+		(where $\varphi, h$ are continuous functions\dots)
+	\end{myTindent}
+\end{itemize}
+there is at most one solution in $C^{2,1}(\Omega) \cap C(\overline{\Omega})$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $u, \widetilde{u}$ are two solutions to this initial value problem. Then notice that both $u - \widetilde{u}$ and $0$ solve the same initial value problem except with $g, \varphi, h$ replaced by the constant zero function. If we now apply the comparison principle on the set $\Omega^\prime \times (0, b)$ to the solutions $u - \widetilde{u}$ and $0$, we get that $u - \widetilde{u} \equiv 0$ on $\Omega^\prime \times (0, b)$. Then to finish, just take $b \to \infty$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{4/21/2026}
+
+\blect{Math 220c Lecture Notes:}\retTwo
+
+Suppose $f: G \to \mathbb{C}$ is a holomorphic function, $f$ is nowhere zero on $G$, and $\overline{\Delta}(a, r) \subseteq G$. By set 1 problem 3(i) on \inLinkRap{Math 220c Set 1 Problem 3}{page 803}, we thus know $\log|f(z)|$ is a harmonic function in $G$. And by the mean value property, we can conclude that:
+
+{\centering $\log|f(a)| = \frac{1}{2\pi}\int_0^{2\pi}\log|f(a + re^{it})|\df t$ \retTwo\par}
+
+What if $f$ has zeros around $a$ though?\retTwo
+
+\exTwo\ul{Theorem:} Suppose $f: G \to \mathbb{C}$ is a holomorphic function, $\overline{\Delta}(a, r) \subseteq G$, and $f(a) \neq 0$. Let $b_1, \ldots, b_n$ be all the zeros of $f$ in $\Delta(a, r)$ repeated according to their multiplicity (there can only be finitely many). Then:
+
+{\centering $\log|f(a)| + \sum\limits_{j=1}^n \log(\frac{r}{|b_j - a|}) = \frac{1}{2\pi}\int_0^{2\pi} \log|f(a + re^{it})|\df t$ \retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Without loss of generality we can assume $a = 0$. Otherwise just translate everything. Next, by restricting $G$ we can assume without loss of generality that $G = \Delta(0, R)$ where $R > r$. Additionally, we can assume without loss of generality that $r = 1$. After all, if not then we can just consider the function $f^{\mathrm{new}}(z) \coloneqq f(rz)$ defined on $G^{\mathrm{new}} = \Delta(0, \frac{R}{r})$.\\ This leaves us the job of proving that:
+
+	{\centering $\log|f(0)| + \sum\limits_{j=1}^n \log(\frac{1}{|b_j|}) = \log|f(0)| - \sum\limits_{j=1}^n \log |b_j| = \frac{1}{2\pi}\int_0^{2\pi} \log|f(e^{it})|\df t$ \retTwo\par}
+
+	In addition to letting $b_1, \ldots, b_n$ be the zeros of $f$ in $\Delta(0, 1)$, let $c_1, \ldots, c_m$ be the zeros of $f \in \partial\Delta(0, 1)$ (repeated according to multiplicity).\newpage
+
+	Recall that $\varphi_b(z) \coloneqq \frac{z - b}{1 - \overline{b}z}$ is a biholomorphism mapping $\Delta(0, 1)$ to $\Delta(0, 1)$, $\partial\Delta(0, 1)$ to $\partial \Delta(0, 1)$, $b$ to $0$, and $0$ to $-b$. Now set:
+
+	$$F(z) \coloneqq f(z) \cdot \frac{1}{\prod_{j=1}^n \varphi_{b_j}(z)} \cdot \prod_{k=1}^m \frac{c_k}{c_k - z}$$
+
+	Then $F$ has no zeroes in $\overline{\Delta}(0, 1)$, and so by the observation at the start of lecture, we know:
+
+	{\centering $\log|F(0)| = \frac{1}{2\pi}\int_0^{2\pi} \log|F(e^{it})|\df t$\retTwo\par}
+
+	Yet $F(0) = \frac{f(0)}{\prod_{j=1}^n (-b_j)} \cdot 1$. Hence, we know that:
+
+	{\centering $\log|F(0)| = \log|f(0)| - \sum_{j=1}^n \log|b_j|$.\retTwo\par}
+
+	Similarly, we can see that:
+
+	{\centering\begin{tabular}{l}
+		$\int_0^{2\pi}\log|F(e^{it})|\df t = \int_0^{2\pi} \log|f(e^{it})|\df - \sum\limits_{j=1}^n \int_0^{2\pi} \log|\varphi_{b_j}(e^{it})|\df t + \sum\limits_{k=1}^m \int_0^{2\pi} \log|\frac{c_k}{c_k - e^{it}}|\df z$
+	\end{tabular}\retTwo\par}
+
+	\ul{Claim 1:} If $c \in \mathbb{C}$ satisfies that $|c| = 1$ then $\int_0^{2\pi}\log|\frac{c}{c - e^{it}}|\df t = 0$.
+	\begin{myIndent}\exPPP
+		Let $c = e^{i\alpha}$. Then $\int_0^{2\pi}\log|\frac{c}{c - e^{it}}|\df t = \int_0^{2\pi}\log|\frac{e^{i\alpha}}{e^{i\alpha} - e^{it}}|\df t = \int_0^{2\pi}\log|\frac{1}{1 - e^{i(t - \alpha)}}|\df t$. The last integral can be simplified to $\int_0^{2\pi}\log|\frac{1}{1 - e^{it}}|\df t$ since $\log|\frac{1}{1 - e^{i(t - \alpha)}}|$ is $2\pi$-periodic.\\ And thus, it suffices to prove that $-\int_0^{2\pi} \log|1 - e^{it}|\df t = 0$.\retTwo
+
+		Now's a good time to mention that $\log|1 - e^{it}|$ is definitely integrable on $[0, 2\pi]$ since it's positive part is bounded by $2\pi \log(2)$. Thus if this integral converges to a finite value, it will converge abolutely. Next note that:\\ [-20pt]
+		
+		{\center\begin{tabular}{l}
+			$|1 - e^{it}|^2 = (1 - \cos(t))^2 + \sin^2(t)$\\ [4pt]
+			$\phantom{|1 - e^{it}|^2} = 2 - 2\cos(t) = 2(\cos^2(\frac{t}{2}) + \sin^2(\frac{t}{2})) - 2(\cos^2(\frac{t}{2}) - \sin^2(\frac{t}{2})) = 4\sin^2(\frac{t}{2})$
+		\end{tabular}\retTwo\par}
+
+		Therefore $\int_0^{2\pi}\log|1 - e^{it}|\df t = \int_0^{2\pi}\log|2\sin(\frac{t}{2})|\df t = \frac{1}{2}\int_0^{\pi} \log|2\sin(u)|\df u$. In turn, it suffices to show $0 = \int_0^{\pi} \log|2\sin(u)|\df u = \pi \log(2) + \int_0^{\pi} \log|\sin(u)|\df u$. Or in other words, we need to show that:
+
+		{\centering $\int_0^{\pi}\log|\sin(u)|\df u = -\pi \log(2)$ \retTwo\par}
+
+		But $\sin(u) \in [0, 1]$ for all $u \in [0, \pi]$. Thus $\int_0^{\pi}\log|\sin(u)|\df u = \int_0^{\pi}\log(\sin(u))\df u$ is integrable and there exists $I \in [-\infty, 0]$ such that $I = \int_0^{\pi}\log(\sin(u))\df u$. By a\\ change of variables as well as some further manipulations, we then get:
+		
+		{\centering\begin{tabular}{l}
+			$I = 2\int_0^{\sfrac{\pi}{2}}\log(\sin(2v))\df v$\\ [4pt]
+			$\phantom{I} = 2\int_0^{\sfrac{\pi}{2}}\log(2\sin(v)\cos(v))\df v$\\ [4pt]
+			$\phantom{I} = 2\int_0^{\sfrac{\pi}{2}}\log(2)\df v + 2\int_0^{\sfrac{\pi}{2}}\log(\sin(v))\df v + 2\int_0^{\sfrac{\pi}{2}}\log(\cos(v))\df v$\\ [4pt]
+			$\phantom{I} = \pi\log(2) + 2\int_0^{\sfrac{\pi}{2}}\log(\sin(v))\df v + 2\int_0^{\sfrac{\pi}{2}}\log(\sin(\frac{\pi}{2} + v))\df v$\\ [4pt]
+			$\phantom{I} = \pi\log(2) + 2\int_0^{\pi}\log(\sin(v))\df v = \pi\log(2) + 2I$\\ [4pt]
+		\end{tabular}\retTwo\par}
+
+		So, either $I = -\infty$ or $I = -\pi\log(2)$. To disprove the former case, recall that $\sin(u) \geq \frac{2}{\pi}u$ for all $u \in [0, \frac{\pi}{2}]$. And since $\sin(\frac{\pi}{2} - u) = \sin(\frac{\pi}{2} + u)$, we can thus conclude that:\newpage
+
+		{\centering\begin{tabular}{l}
+			$I = 2\int_0^{\sfrac{\pi}{2}}\log(\sin(u)) \df u \geq 2\int_0^{\sfrac{\pi}{2}}\log(\frac{2}{\pi}u)\df u$\\ [4pt]
+			$\phantom{I = 2\int_0^{\sfrac{\pi}{2}}\log(\sin(u)) \df u} = \pi \int_0^1 \log(v)\df v$\\ [4pt]
+			$\phantom{I = 2\int_0^{\sfrac{\pi}{2}}\log(\sin(u)) \df u} = \pi(v\log(v) - v)\left|\vphantom{\int^\int}\right._0^1 = -\pi - \pi\lim\limits_{v \to 0^+}(v\log(v) - v)$\\ [4pt]
+		\end{tabular}\retTwo\par}
+
+		By a single application of L'Hôpital's rule applied $v\log(v) = \frac{\log(v)}{v^{-1}}$ we can show the latter limit equals $0$. Hence $I \geq -\pi$ and this proves that $I \neq -\infty$.\retTwo
+	\end{myIndent}
+
+	\ul{Claim 2:} $\int_0^{2\pi}\log|\varphi_{b_j}(e^{it})|\df t = 0$ for all $b_j$.
+	\begin{myIndent}\exPPP
+		This is because $|\varphi_{b_j}(e^{it})| = 1$ for all $t$ and hence $\log|\varphi_{b_j}(e^{it})| = 0$ for all $t$.\retTwo
+	\end{myIndent}
+
+	Therefore, we've proven that $\int_0^{2\pi}\log|F(e^{it})|\df t = \int_0^{2\pi}\log|f(e^{it})|\df t$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo The formula proved in the prior theorem is called \udefine{Jensen's Formula}. The most important case for our purposes will be when $a = 0$. So from now on I will just assume our closed disk of radius $r$ is centered at $0$. A natural next question for us to ask is if we can find an equation for $\log(f(z_0))$ when $z_0 \neq 0$.\retTwo
+
+\exTwo\ul{Theorem (The Poisson-Jensen Formula):} \hypertarget{math 220c Poisson-Jensen Formula}{Let} $f: G \to \mathbb{C}$ be holomorphic, $\overline{\Delta}(0, r) \subseteq G$, $z_0 \in \Delta(0, r)$, and $f(z_0) \neq 0$. Also let $b_1, \ldots, b_n$ be the zeros (repeated according to multiplicity) of $f$ in $\Delta(0, r)$. Then:
+
+{\centering $\log|f(z_0)| + \sum\limits_{j=1}^n \log\left|\frac{r^2 - \overline{b_j}z_0}{r(z_0 - b_j)}\right| = \frac{1}{2\pi}\int_0^{2\pi}\rea{\frac{re^{it} + z_0}{re^{it} - z_0}}\log|f(re^{it})|\df t$ \retTwo\par}
+
+\begin{myIndent}\exThreeP
+	\begin{myDindent}\myComment
+		Some Remarks:
+		\begin{itemize}
+			\item If $z_0 = \rho e^{i\theta}$, then:
+			
+			{\centering$\rea{\frac{re^{it} + z_0}{re^{it} - z_0}} = \rea{\frac{1 + \frac{\rho}{r}e^{i(\theta - t)}}{1 - \frac{\rho}{r}e^{i(\theta - t)}}} = P_{\sfrac{\rho}/r}(\theta - t)$\retTwo\par}
+
+			Thus, if there are no zeros of $f$ in $\Delta(0, r)$, then this formula simplifies to just being the Poisson integral formula (on $\overline{\Delta}(0, r)$) applied to $\log|f|$.\retTwo
+
+			\item Meanwhile, if $z_0 = 0$ then this formula simplifies to just being Jensen's formula.\retTwo
+		\end{itemize}
+	\end{myDindent}
+
+	Proof:\\
+	Like before, by restricting $G$ we can assume without loss of generality that $G = \Delta(0, R)$ where $R > r$. Then, we can assume without loss of generality that $r = 1$. After all, if not then we can just consider the function $f^{\mathrm{new}}(z) \coloneqq f(rz)$ defined on the region $G^{\mathrm{new}} = \Delta(0, \frac{R}{r})$. But now the proposed formula we want to prove becomes:
+
+	{\centering\begin{tabular}{l}$\log|f(z_0)| + \sum\limits_{j=1}^n \log\left|\frac{1 - \overline{b_j}z_0}{z_0 - b_j}\right| = \frac{1}{2\pi}\int_0^{2\pi}\rea{\frac{e^{it} + z_0}{e^{it} - z_0}}\log|f(e^{it})|\df t$\end{tabular}\retTwo\par}
+
+	Our solution path will now be to recenter our function using a biholomorphism. Namely, consider the functions $L(w) = \frac{w + z_0}{1 + \overline{z_0}w}$ and $M(w) = \frac{w - z_0}{1 - \overline{z_0}w}$. Then let $\widetilde{f} \coloneqq f \circ L$. By\newpage noting that $L$ and $M$ are inverse biholomorphisms on $\Delta(0, 1)$, we can see the zeros of $\widetilde{f}$ in $\Delta(0, 1)$ are given by $M(b_1), \ldots M(b_n)$. In turn, by Jensen's formula applied to $\widetilde{f}$, we have that:
+
+	{\centering $\log|\widetilde{f}(0)| - \sum\limits_{j=1}^n \log|\frac{1}{M(b_j)}| = \frac{1}{2\pi}\int_0^{2\pi} \log |\widetilde{f}(e^{it})|\df t$ \retTwo\par}
+
+	Or to put in other words, we have that:
+
+	{\centering $\log|f(z_0)| - \sum\limits_{j=1}^n \log|\frac{1 - \overline{z_0}b_j}{b_j - z_0}| = \frac{1}{2\pi}\int_0^{2\pi} \log |(f \circ L)(e^{it})|\df t$ \retTwo\par}
+
+	But now by the same change of variables as on \inLinkRap{Poisson Kernel change of variables page 808}{pages 807-808}, we can conclude that $\frac{1}{2\pi}\int_0^{2\pi} \log |(f \circ L)(e^{it})|\df t = \frac{1}{2\pi}\int_0^{2\pi} \rea{\frac{e^{is} + z_0}{e^{is} - z_0}}\log|f(e^{is})\df s$
+	\begin{myTindent}\exPPP
+		(where $\rea{\frac{e^{is} + z_0}{e^{is} - z_0}} = P_\rho(\theta - s)$ and $z_0 = \rho e^{i\theta}$)\exThreeP.
+	\end{myTindent}
+
+	Also $|1 - \overline{z_0}b_j| = |1 - z_0\overline{b_j}|$ and $|b_j - z_0| = |z_0 - b_j|$. And thus the proof follows. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo \hypertarget{Math 220c Quick Application Jensen's Formula}{For} a quick application of Jensen's formula, suppose $f: \mathbb{C} \to \mathbb{C}$ is an entire function and $f(0) = 1$. Then if:
+\begin{itemize}
+	\item $M(R) = \sup_{|z| = R}|f(z)|$,
+	\item $N(R) = \#$ of zeros of $f$ in $\overline{\Delta}(0, R)$ (counted according to multiplicities),\retTwo
+\end{itemize}
+
+by Jensen's formula applied to $\overline{\Delta}(0, 3R)$, we have that:
+
+{\centering\begin{tabular}{l}$0 + \sum\limits_{j=1}^{N(3R)}\log|\frac{3R}{a_j}| = \log|f(0)| + \sum\limits_{j=1}^{N(3R)}\log|\frac{3R}{a_j}| = \frac{1}{2\pi}\int_0^{2\pi} \log|f(3Re^{it})|\df t \leq \log(M(3R))$\end{tabular}\retTwo\par}
+
+But now in turn we have $N(R) \leq N(R)\log(3) \leq \sum_{j=1}^{N(R)}\log|\frac{3R}{a_j}| \leq \log(M(3R))$.\retTwo
+
+\hTwo\mySepTwo
+
+The quick application that the prior lecture ended with shows that the growth of\\ holomorphic functions and the distribution of their zeros is positively correlated.\retTwo
+
+For another illustration of this correlation, suppose $f$ is a polynomial of degree $d$. Then if $M(R)$ and $N(R)$ are defined as before, $N(R) = d$ and $M(R) \approx |\lt(f)|R^d$ when $R$ is large. Therefore,
+
+{\centering $\lim\limits_{R \to \infty}\frac{\log(M(R))}{\log(R)} = \lim\limits_{R \to \infty}\frac{\log|\lt(f)| + d\log(R)}{\log(R)} = d$ \retTwo\par}
+
+Conversely, suppose $f$ is an entire function and $\lim\limits_{R \to \infty}\frac{\log(M(R))}{\log(R)} = d$. Then for any $\varepsilon > 0$,
+
+{\centering $\log(M(R)) < (1 + \varepsilon)d\log(R)$ when $R$ is large enough. \retTwo\par}
+
+Hence, we can conclude that $|f(z)| < e^{1 + \varepsilon}|z|^{d}$ for $|z| \gg 0$. By (Conway) exercise IV.3.1 on \inLinkRap{placeholder}{page 397}, this lets us conclude $f$ is a polynomial of degree at most $d$. By our prior calculation though, we know that if $f$ is a polynomial then the limit is exactly the degree\\ of $f$. So, we can conclude $f$ is a polynomial of exactly degree $d$.\newpage
+
+Since our end-goal is to vastly strengthen the Weierstraß factorization theorem (see \inLinkRap{placeholder}{pages 575-581}) and recalling the definition of the Weierstraß elementary factors, it would be especially helpful to get a measure of the growth of functions of the form $e^{p(z)}$ where $p$ is a polynomial. But note that by taking one log of $M(R)$, we can reduce our problem to the polynomial case at the end of the last page. This motivates the following definition.\retTwo
+
+\begin{myIndent}
+	\hypertarget{Definition of order of a function page 881}{If} $f:\mathbb{C} \to \mathbb{C}$ is entire and $f \not\equiv c$ where $|c| \leq 1$, then after letting\\ $M(R) = \sup_{|z| = R}|f(z)|$ we define the \udefine{order} of $f$ to be:
+
+	{\centering $\lambda(f) \coloneqq \limsup\limits_{R \to \infty} \frac{\log(\log(M(R)))}{\log(R)}$. {\color{red}(Note $\lambda(f)$ can be infinite.)} \retTwo\par}
+
+	\begin{myIndent}\myComment
+		To show that this is well-defined, it suffices to show that if $f \not\equiv c$ with $|c| \leq 1$\\ then $M(R) > 1$ for all $R$ large enough. If $f \equiv C$ with $|C| > 1$, then this is trivial. So from now on, we can assume $f$ is not a constant function.\retTwo
+
+		Without loss of generality, suppose there exists a sequence $\{R_n\}_{n \in \mathbb{N}} \subseteq \mathbb{R}_{> 0}$ with $R_n \to \infty$ and $M(R_n) \leq 1$ for all $n$. Then by Cauchy's estimate, we know that:
+
+		{\centering $|f^{(1)}(0)| \leq \frac{k!}{R_n^{k}}$ for all $R_n$.\retTwo\par}
+
+		But now this would imply $f^k(0) = 0$ for all $k$. In turn, we'd know that $f$ is a constant function, contradicting our assumption about $f$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\pracOne Note: To prove that the function $f$ has order $\lambda$ that is finite (when we can't easily calculate a limit of $\frac{\log(\log(M(R)))}{\log(R)}$ as $R \to \infty$), it suffices to show the \hypertarget{page 881 reference}{following}:
+\begin{enumerate}
+	\item[1.] $\forall \varepsilon > 0, \exists r > 0$ such that $|f(z)| < e^{|z|^{\lambda + \varepsilon}}$ for all $|z| > r$.
+	\begin{myIndent}\pracTwo
+		This equivalently means $M(R) < e^{R^{\lambda + \varepsilon}}$ for all $R > r$. Thus in turn, we have that:
+
+		{\centering $\lambda(f) = \limsup\limits_{R \to \infty} \frac{\log(\log(M(R)))}{\log(R)} \leq \lambda + \varepsilon$ \retTwo\par}
+
+		And by taking $\varepsilon \to 0$ we get that $\lambda(f) \leq \lambda$.\retTwo
+	\end{myIndent}
+
+	\item[2.] $\forall \varepsilon > 0, \exists \{z_n\}_{n \in \mathbb{N}} \subseteq \mathbb{C}$ such that $z_n \to \infty$ and $|f(z_n)| > e^{|z_n|^{\lambda - \varepsilon}}$.
+	\begin{myIndent}\pracTwo
+		This proves that:
+		
+		{\centering$\lambda(f) = \limsup\limits_{R \to \infty}\frac{\log(\log(M(R)))}{\log(R)} \geq \limsup\limits_{n \to \infty}\frac{\log(\log|f(z_n)|)}{\log|z_n|} \geq \lambda - \varepsilon$.\retTwo\par}
+
+		And by taking $\varepsilon \to 0$, we get that $\lambda(f) \geq \lambda$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+For example, $\lambda(z^m) = 0$ for all $m \geq 0$. After all, $M(R) = R^m$. Therefore:
+
+{\centering$\frac{\log(\log(M(R)))}{\log(R)} = \frac{\log(m) + \log(\log(R))}{\log(R)} \to 0$ as $R \to \infty$.\newpage\par}
+
+\hypertarget{Order of polynomials math 220c page 882}{More} generally, given any polynomial $p(z) \in \mathbb{C}[z]$ not equal to a constant in $\overline{\Delta}(0, 1)$, we have that $\lambda(p) = 0$.
+\begin{myIndent}\pracTwo
+	To see why, first note $\frac{\log(\log(M(R)))}{\log(R)} \to 0$ trivially when the numerator is constant. So,\\ without loss of generality we can assume $d \coloneqq \deg(p) > 0$.\retTwo
+
+	Next note that $\lim_{z \to \infty}\frac{p(z)}{z^d} = \lt(f)$. Thus if $|z| = R$ is large and $\alpha \coloneqq |\lt(f)|$, we\\ know $e < |P(z)| < (\alpha + 1)R^d$. In turn, for any $\varepsilon > 0$ we have for $R \gg 0$ that\\ $e^{R^{-\varepsilon}} \leq e \leq M(R) \leq e^{R^{\varepsilon}}$. This verifies the two conditions needed for proving\\ that $\lambda(p) = 0$.\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{4/25/2026}
+
+Before taking more complex analysis notes, I'm going to do some homework problems. Given a function $f: G \to \mathbb{C}$ with $\overline{\Delta}(0, r) \subseteq G$, $M(R)$ and $N(R)$ will be defined as in the prior section.\retTwo
+
+\Hstatement\blab{Set 4 Problem 1:} Let $f: G \to \mathbb{C}$ be holomorphic and let $\overline{\Delta}(0, r) \subseteq G$. Assume that $f(0) \neq 0$ and $z_1, \ldots, z_k$ are some of the zeros of $f$ in $\Delta(0, r)$ (which are allowed to repeated up to their corresponding multiplicities).
+\begin{enumerate}
+	\item[(i)] Using Jensen's formula, show that $|f(0)| \leq |z_1 \cdots z_k| \cdot \frac{M(r)}{r^k}$.
+	\begin{myIndent}\HexOne
+		Let $z_{k+1}, \ldots, z_n$ be the remaining zeros in $\Delta(0, r)$. Then by Jensen's formula we have that:\\ [-20pt]
+
+		{\centering $\log|f(0)| + \sum\limits_{j=1}^n \log(\frac{r}{|z_j|}) = \frac{1}{2\pi}\int_0^{2\pi} \log|f(re^{it})|\df t \leq \log(M(r))$. \retTwo\par}
+
+		But now since $\frac{r}{|z_j|} > 1$ for all $j$, we know that:\\ [-14pt]
+
+		{\centering\begin{tabular}{l}
+			$\log|f(0)| \leq \log(M(r)) - \sum\limits_{j=1}^n \log(\frac{r}{|z_j|}) \leq \log(M(r)) - \sum\limits_{j=1}^k \log(\frac{r}{|z_j|})$\\ [12pt]
+			$\phantom{\log|f(0)| \leq \log(M(r)) - \sum\limits_{j=1}^n \log(\frac{r}{|z_j|})} = \log(M(r)\frac{|z_1\cdots z_k|}{r^k})$
+		\end{tabular} \retTwo\par}
+
+		By exponentiating both sides, this proves that  $|f(0)| \leq M(r)\frac{|z_1\cdots z_k|}{r^k}$.
+	\end{myIndent}
+
+	\item[(ii)] Assume $f: G \to \mathbb{C}$ is holomorphic, $\overline{\Delta}(0, 1) \subseteq G$, and $|f(z)| \leq 1$ for all $z \in G$. Assume $f(\frac{1}{2}) = f(\frac{i}{2}) = 0$. Then $|f(0)| \leq \frac{1}{4}$. 
+	\begin{myIndent}\HexOne
+		If $f(0) = 0$, we have nothing to prove. Otherwise, we know by part 1 that\\ $|f(0)| \leq 1\cdot\frac{|\frac{1}{2} \cdot \frac{i}{2}|}{1^2} = \frac{1}{4}$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 4 Problem 2:} Assume $f$ is a bounded holomorphic function $f: \Delta(0, 1) \to \mathbb{C}$ with zeros\\ $a_1, a_2, \ldots$ listed with multiplicity. Show that $\sum\limits_{n}(1 - |a_n|) < \infty$.
+\begin{myIndent}\HexOne
+	To start off, the problem is trivial if there are only finitely many zeros. So, we can assume without loss of generality now that $f$ has countably infinitely many zeros. Also let $M > 0$ satisfy that $|f| \leq M$ on $\Delta(0, 1)$.\newpage
+
+	First we'll assume the case that $f(0) \neq 0$. Then notice that since $f^{-1}(\{0\})$ can't have any limit points in $\Delta(0, 1)$, we know for any $r \in (0, 1)$ that $S_r \coloneqq \{n \in \mathbb{N} : a_n \in \Delta(0, r)\}$ is a finite set. Plus, by Jensen's formula we have that:
+	
+	{\centering $|f(0)| + \sum\limits_{n \in S_r}\log(\frac{r}{|a_n|}) = \frac{1}{2\pi}\int_0^{2\pi} \log|f(re^{it})| \leq M$ \retTwo\par}
+	
+	In other words, $\sum_{n \in S_r}\log(\frac{r}{|a_n|}) \leq M - |f(0)|$. But now since the left side is positive and strictly increasing as $r \to 1$, we know $\lim_{r \to 1^-}\sum_{n \in S_r}\log(\frac{r}{|a_n|})$ exists and is at most $M - |f(0)|$. Also by the monotone convergence theorem, we know:
+	
+	{\center$\lim\limits_{r \to 1^-}\sum\limits_{n \in S_r}\log(\frac{r}{|a_n|}) = \sum\limits_{n \in \mathbb{N}}\log(\frac{1}{|a_n|}) = \sum\limits_{n \in \mathbb{N}}-\log|a_n|$.\retTwo\par}
+
+	So, $\sum_{n \in \mathbb{N}}-\log|a_n|$ converges absolutely.\retTwo
+
+	To finish off the argument for when $f(0) \neq 0$, note that when $|a_n| \in (0, 1]$ we have that\\ $1 - |a_n| \leq -\log|a_n|$.
+	\begin{myIndent}\HexPPP
+		To prove this inequality, set $f(x) = -\log(x) - 1 + x$ then we can see that $f^\prime(x) = \frac{-1}{x} + 1 \leq 0$ for $x \leq 1$ and that $f(1) = 0$. So, $f \geq 0$ for $x \leq 1$.\retTwo
+	\end{myIndent}
+
+	Thus by the comparison test (and using the fact that $1 - |a_n| \geq 0$ for all $n$), we can\\ conclude $\sum_{n \in \mathbb{N}}(1 - |a_n|)$ converges.
+
+	\begin{myIndent}
+		\mySepFour
+	\end{myIndent}
+
+	As for the case that $f(0) = 0$, note that since $f$ is not identically zero (since $f$ was assumed to have countably many zeros), we can write $f(z) = z^dg(z)$ where $g: \Delta(0, 1) \to \mathbb{C}$ is another holomorphic function.\retTwo
+
+	By the continuity of $g$ on the compact set $\overline{\Delta(0, \frac{1}{2})}$, we know $g$ acheieves a maximum on\\ [-1pt] $\overline{\Delta(0, \frac{1}{2})}$. Meanwhile $g(z) = z^{-d}f(z) \leq \frac{M}{2^d}$ on $\Delta(0, 1) - \overline{\Delta(0, \frac{1}{2})}$. Hence, we can conclude\\ [2pt] that $g$ is also bounded on the unit disk.\retTwo
+
+	By the prior case I proved, we thus know if $S \coloneqq \{n \in \mathbb{N} : a_n = 0\}$ then:
+	
+	{\centering $\sum\limits_{n \in \mathbb{N} - S} (1 - |a_n|) < \infty$ \retTwo\par}
+	
+	And now we just add $|S| = d$ to our series to prove that $\sum_{n \in \mathbb{N}}(1 - |a_n|) < \infty$.\retTwo
+\end{myIndent}
+
+In particular, show that there is no bounded holomorphic function $f: \Delta(0, 1) \to \mathbb{C}$ with zeros only at $a_n = 1 - \frac{1}{n}$ for all $n \geq 1$.
+
+\begin{myIndent}\HexOne
+	If a function $f$ had zeros as described here, then we'd have that:
+	
+	{\centering$\sum_{n \in \mathbb{N}}(1 - |a_n|) = \sum_{n \in \mathbb{N}}\frac{1}{n} = \infty$.\retTwo\par}
+	
+	But now if $f$ is also bounded, then that would contradict the prior part of the problem. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 4 Problem 3:} Let $f: \mathbb{C} \to \mathbb{C}$ be an entire function with $f(0) = 1$.
+\begin{enumerate}
+	\item[(i)] Show that $N(r)\log(2) \leq \log(M(2r))$.
+	\begin{myIndent}\HexOne
+		Let $a_1, \ldots, a_{N(r)}$ denote the zeros of $f$ in $\overline{\Delta}(0, r)$, and let $a_{N(r) + 1}, \ldots, a_{N(2r)}$ denote the zeros of $f$ in $\overline{\Delta}(0, 2r) - \overline{\Delta}(0, r)$. Since $\log|f(0)| = 0$, we can conclude by Jensen's formula that:\newpage
+
+		{\centering $\sum\limits_{j=1}^{N(r)}\log(\frac{2r}{|a_j|}) \leq \sum\limits_{j=1}^{N(2r)}\log(\frac{2r}{|a_j|}) = \frac{1}{2\pi}\int_0^{2\pi} \log|f(2re^{it})|\df t \leq \log(M(2r))$.\retTwo\par}
+
+		But now $\sum\limits_{j=1}^{N(r)}\log(\frac{2r}{|a_j|}) \geq \sum\limits_{j=1}^{N(r)}\log(2) = N(r)\log(2)$. This proves what we wanted.\retTwo
+	\end{myIndent}
+
+	\item[(ii)] Assume that $|f(z)| \leq \exp(A|z|^k)$ where $A > 0$ and $k$ is a natural number. Then show that:
+	
+	{\centering $\limsup\limits_{r \to \infty} \frac{\log(N(r))}{\log(r)} \leq k$ \retTwo\par}
+
+	\begin{myIndent}\HexOne
+		\begin{myIndent}\color{red}
+			Note: This problem has a slight error in that we need to explicitly assume $|f(z)|$ has a zero (lest $\log(N(r))$ be just not defined for any $r$). After all, if $f(z) = e^z$, then we'd know $f$ is an entire function with $f(0) = 1$. Also $|f(z)| = e^{\rea{z}} \leq e^{|z|}$. But $f$ has no zeros and hence the aforementioned problem occurs.\retTwo
+		\end{myIndent}
+
+		By part (i), we know that:
+		
+		{\centering\begin{tabular}{l}$\limsup\limits_{r \to \infty}\frac{\log(N(r))}{\log(r)} \leq \limsup\limits_{r \to \infty}\frac{\log(\frac{\log(M(2r))}{\log(2)})}{\log(r)} = \limsup\limits_{r \to \infty}(\frac{\log(\log(M(2r)))}{\log(r)} - \frac{\log(\log(2))}{\log(r)})$\\ [8pt]
+		$\phantom{\limsup\limits_{r \to \infty}\frac{\log(N(r))}{\log(r)} \leq \limsup\limits_{r \to \infty}\frac{\log(\frac{\log(M(2r))}{\log(2)})}{\log(r)}} = \limsup\limits_{r \to \infty}\frac{\log(\log(M(2r)))}{\log(r)} - 0$\end{tabular}\retTwo\par}
+
+		Next, given any $\varepsilon > 0$, note that $2^kAr^k < r^{k+\varepsilon}$ when $r \gg 0$. In turn, for $r \gg 0$ we can say that $M(2r) \leq e^{A(2r)^k} < e^{r^{k + \varepsilon}}$ and thus $\limsup\limits_{r \to \infty}\frac{\log(\log(M(2r)))}{\log(r)} \leq k + \varepsilon$.\retTwo
+
+		By taking $\varepsilon \to 0$, this proves what we wanted. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 4 Problem 4:} \hypertarget{Math 220c Set 4 Problem 4}{Let} $f: \mathbb{C} \to \mathbb{C}$ be an entire function with finite order $\lambda$.
+\begin{enumerate}
+	\item[(i)] Show that for all $\varepsilon > 0$, there exists $r > 0$ such that $M(R) < e^{R^{\lambda + \varepsilon}}$ for all $R > r$. {\color{BrickRed}(This is the converse of the first claim on \inLinkRap{page 881 reference}{page 881.})}
+	
+	\begin{myIndent}\HexOne
+		We know for any $\varepsilon > 0$ that there exists $r > 0$ such that for all $R > r$ we have that\\ [1pt] $\frac{\log(\log(M(R)))}{\log(R)} < \lambda + \varepsilon$. In turn $\log(\log(M(R))) < \log(R^{\lambda + \varepsilon})$. And by exponentiating twice we get that $M(R) < e^{R^{\lambda + \varepsilon}}$.\retTwo
+	\end{myIndent}
+
+	\item[(ii)] Using (i), show that if $f, g$ are entire functions of orders $\lambda_1, \lambda_2$, then $fg$ has order at most $\max(\lambda_1, \lambda_2)$ {\color{red}(assuming $\lambda(fg)$ is well-defined)}.
+	
+	\begin{myIndent}\HexOne
+		To start off, the theorem is trivial if $\lambda_1$ or $\lambda_2$ is $\infty$. So, we can assume both are finite. Then let $M_{f}(R)$, $M_g(R)$, $M_{fg}(R)$ be the maximum of the respective functions on the cirle $\partial \Delta(0, r)$. Also consider any $\varepsilon > 0$. Now $M_{fg}(R) \leq M_f(R)M_g(R)$, and by part (i) we know that there is some $r > 0$ such that for all $R> r$ we have that:
+
+		{\centering $M_f(R)M_g(R) < e^{R^{\lambda_1 + \sfrac{\varepsilon}{2}} + R^{\lambda_2 + \sfrac{\varepsilon}{2}}}$ \retTwo\par}
+
+		Now set $\lambda \coloneqq \max(\lambda_1, \lambda_2)$. Then for some $\widetilde{r} > 0$ we know that:
+		
+		{\centering$R^{\lambda + \varepsilon} > R^{\lambda_1 + \sfrac{\varepsilon}{2}} + R^{\lambda_2 + \sfrac{\varepsilon}{2}}$ for all $R > \widetilde{r}$.\newpage\par}
+
+		And now we can conclude for all $M_{fg}(R) < e^{R^{\lambda + \varepsilon}}$ when $R > \widetilde{r}$. Hence the degree of $fg$ is at most $\lambda = \max(\lambda_1, \lambda_2)$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 4 Problem 5:} \hypertarget{Set 4 Problem 5 Math 220c}{Let} $|a_1| \leq |a_2| \leq \cdots$ be a sequence of non-zero complex numbers converging to $\infty$. (Repetitions are allowed but repeated values appear only finitely many times.) Let:
+
+{\centering $\alpha \coloneqq \inf\left\{t > 0 : \sum\limits_{n \in \mathbb{N}} \frac{1}{|a_n|^t} < \infty\right\}$\\ [4pt]\par}
+
+(assuming such a $t$ exists). The exponent of convergence $\alpha$ is a measure of the growth of the sequence $\{a_n\}$.
+\begin{enumerate}
+	\item[(i)] Show that for any $\varepsilon > 0$, we have that $\sum\limits_{n \in \mathbb{N}} \frac{1}{|a_n|^{\alpha + \varepsilon}} < \infty$ and $\sum\limits_{n \in \mathbb{N}} \frac{1}{|a_n|^{\alpha - \varepsilon}} = \infty$.
+	\begin{myIndent}\HexOne
+		Firstly, by the infimum definition of $\alpha$ we know for any $\varepsilon > 0$ that\\ $\sum_{n \in \mathbb{N}} \frac{1}{|a_n|^{\alpha - \varepsilon}} = \infty$. After all, otherwise $\alpha$ would be smaller.\retTwo
+
+		Also note from the infimum definition of $\alpha$ that for any $\varepsilon > 0$ there must exist\\ $\beta \in (\alpha, \alpha + \varepsilon)$ with $\sum_{n \in \mathbb{N}} \frac{1}{|a_n|^{\beta}} < \infty$. But now we must have that $\frac{1}{|a_n|^{\beta}} \to 0$ and in turn there exists $N \in \mathbb{N}$ with $|a_n| > 1$ for all $n \geq N$. Then for all $n \geq N$ we also know $\frac{1}{|a_n|^{\beta}} \geq \frac{1}{|a_n|^{\alpha + \varepsilon}}$. So, $\sum_{n \geq N} \frac{1}{|a_n|^{\alpha + \varepsilon}} < \infty$. Finally, by adding the remaining $N$ terms we get what we wanted.\retTwo
+	\end{myIndent}
+
+	\item[(ii)] Next assume $f$ is an entire function with zeros only at $a_1, a_2, \ldots$ (with corresponding\\ multiplicities if repeated values occur). Let $\lambda$ be the order of $f$ and show that $\alpha \leq \lambda$. This is an application of problem 3 and establishes a connection between the growth of zeros (measured by $\alpha$) and the growth of $f$ (measured by $\lambda$).
+	\begin{myIndent}\HexOne
+		If $\lambda = \infty$ there is nothing to prove. So assume $\lambda < \infty$ and consider any $\varepsilon > 0$. Then by problem 3(i) we know that $n \leq N(|a_n|) \leq \frac{\log(M(2|a_n|))}{\log(2)}$.\retTwo
+		
+		Also note by problem 4(i) that $\log(M(r)) \leq r^{\lambda + \varepsilon}$ when $r \gg 0$. Therefore, for $n$ sufficiently large so that $|a_n|$ is sufficently large, we can guarentee that:
+
+		{\centering $n \leq \frac{(2|a_n|)^{\lambda + \varepsilon}}{\log(2)}$ \retTwo\par}
+
+		After some rearranging, this shows there exists some $N \in \mathbb{N}$ such that:
+		
+		{\centering$\frac{1}{|a_n|^{\lambda + 2\varepsilon}} \leq \left(\frac{n\log(2)}{2^{\lambda + \varepsilon}}\right)^{\frac{-(\lambda + 2\varepsilon)}{\lambda + \varepsilon}}$ for all $n \geq N$.\retTwo\par}
+
+		And since $\frac{-(\lambda + 2\varepsilon)}{\lambda + \varepsilon} < -1$, we can conclude that:
+
+		{\centering $\sum\limits_{n \geq N} \frac{1}{|a_n|^{\lambda + 2\varepsilon}} \leq \left(\frac{\log(2)}{2^{\lambda + \varepsilon}}\right)^{\frac{-(\lambda + 2\varepsilon)}{\lambda + \varepsilon}} \cdot \sum\limits_{ n \geq N} n^{\frac{-(\lambda + 2\varepsilon)}{\lambda + \varepsilon}} < \infty$ \retTwo\par}
+
+		This proves that $\alpha \leq \lambda + 2\varepsilon$. And by taking $\varepsilon \to 0$ we get that $\alpha \leq \lambda$. $\blacksquare$\newpage
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo\dispDate{4/27/2026}
+
+I haven't studied math 200c in a while so I'm going to do that right now.\retTwo
+
+\blect{Math 200c Lecture Notes:}\retTwo
+
+We're now going to move on to talking about ring theory again. A different convention\\ of Rogalski versus Alireza is that Rogalski says that rings are unital and commutative\\ unless explicitly mentioned otherwise. Also, ring homomorphisms are assumed to be\\ unital unless explicitly mentioned otherwise.\retTwo
+
+Consider a ring homomorphism $\phi: A \to B$. If $I \lhd A$ then I defined its \udefine{extension} to $B$ (denoted $I^e$) on \inLinkRap{placeholder}{page 728}. Meanwhile, if $J \lhd B$ then its \udefine{contraction} to $A$ is $J^c \coloneqq \phi^{-1}(J)$.\retTwo
+
+\exTwo\ul{Lemma:} If $P \lhd B$ is a prime ideal, then $P^c \lhd A$ is also a prime ideal.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider the map $A/P^{c} \hookrightarrow B/P$ given by $a +  P^c \mapsto \phi(a) + P$. This map is well-defined because $\phi$ maps $P^c$ into $P$. It's a clearly a ring homomorphism. And thirdly, it's injective. After all if $\phi(a - b) \in P$ then $a - b \in \phi^{-1}(P) = P^c$. Therefore:
+	
+	{\centering$\phi(a) + P = \phi(b) + P \Longrightarrow a + P^c = b + P^c$.\retTwo\par}
+
+	As a result, we know $A/P^c$ is isomorphic to a subgroup of $B/P$. And since the latter is an integral domain, this also proves $A/P^c$ is an integral domain. So, $P^c$ is a prime ideal of $A$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo As an immediate corollary of the prior lemma, we can say that $\phi$ induces a map\\ $\phi^* : \Spec(B) \to \Spec(A)$ given by $P \mapsto P^c$.\retTwo
+
+\exTwo\ul{Proposition:} $\phi^*$ is a continuous function with respect to the Zarisiki topologies on\\ $\Spec(A)$ and $\Spec(B)$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	It suffices to prove that for any closed set $V(I) = \{P \in \Spec(A) : I \subseteq P\}$ that\\ $(\phi^{*})^{-1}(V(I))$ is also closed in $\Spec(B)$. Fortunately, note that:
+
+	{\centering\begin{tabular}{l}
+		$\{Q \in \Spec(B) : \phi^*(Q) \in V(I)\} = \{Q \in \Spec(B) : \phi^{-1}(Q) \in V(I)\}$\\ [4pt]
+		$\phantom{\{Q \in \Spec(B) : \phi^*(Q) \in V(I)\}} = \{Q \in \Spec(B) : \phi(I) \subseteq Q\} = V(I^e)$
+	\end{tabular}\retTwo\par}
+
+	So $(\phi^{*})^{-1}(V(I)) = V(I^e)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne A question we can also ask about $\phi^*$ is if the function is closed. Sometimes it is. For\\ example, suppose $I \lhd A$ and $\phi : A \to A/I$ is the quotient map.
+\begin{myIndent}\pracTwo
+	By the ideal correspondence theorem, any ideal of $A/I$ can be written $J/I$ where\\ $I \subseteq J \lhd A$. Also, $P/I \in \Spec(A/I)$ is prime iff $P \in V(I) \subseteq \Spec(A)$. {\color{red} (I technically\\ showed this on \inLinkRap{placeholder}{page 462} but the below proof is better\dots)}
+	\begin{myIndent}
+		$(\Longrightarrow)$\\
+		To show this direction just apply the first lemma on this page.\retTwo
+
+		$(\Longleftarrow)$\\
+		Recall that $(A/I) / (P/I) \cong A/P$. Thus if $P$ is prime we know that $(A/I) / (P/I)$ is an integral domain, and this proves that $P/I$ is a prime ideal in $A/I$.\newpage
+	\end{myIndent}
+
+	Therefore if $V(J/I)$ is a closed set in $\Spec(A/I)$, and $P/I \in V(J/I)$ we know\\ that $\phi^*(P/I) = P \supseteq J$. Hence $\phi^*(V(J/I)) \subseteq V(J)$. On the other hand, suppose\\ $P \in V(J)$. Then $P/I \in \Spec(A/I)$ and $P/I \supseteq J/I$. Hence, $P/I \in V(J/I)$. Also,\\ $\phi^*(P/I) = P$. This proves that $V(J) \subseteq \phi^*(V(J/I))$.\retTwo
+
+	Since $\phi^*(V(J/I)) = V(J)$ this finishes the proof that $\phi^*$ is a closed map.\retTwo
+\end{myIndent}
+
+It's also worth noting that $\phi^*: \Spec(A/I) \to \Spec(A)$ is injective with an image of $V(I)$. Therefore, $\Spec(A/I)$ is homeomorphic to $V(I)$ equipped with the subspace topology.\retTwo
+
+\hTwo\mySepTwo 
+
+\pracOne Another interesting case is when $S \subseteq A$ is a multiplicatively closed set and $\phi: A \to S^{-1}A$ is the map $a \mapsto \frac{a}{1}$. Then we can recall from \inLinkRap{placeholder}{pages 624-625} that:\\ [-18pt]
+\begin{itemize}
+	\item There is a bijection $\mathscr{O}_S \coloneqq \{P \in \Spec(A) : P \cap S = \emptyset\} \longleftrightarrow \Spec(S^{-1}A)$ such that $P \in \mathscr{O}_S \mapsto P^e$ and $Q \in \Spec(S^{-1}A) \mapsto Q^c$.
+	\item If $J$ is a proper ideal of $S^{-1}A$ then $J = S^{-1}I = I^e$ where $I = J^c$ and $I \cap S = \emptyset$.
+	\begin{myIndent}\pracTwo
+		But then $J = I^e = J^{ce} = I^{ece}$. This proves for any $I \lhd A$ with $I \cap S = \emptyset$ that $I^e = I^{ece}$ (at least according to this particular $\phi$).
+	\end{myIndent}
+\end{itemize}
+
+\hTwo\mySepTwo 
+
+Let $B/A$ be an \udefine{extension of rings}. In other words, we have an injective unital ring\\ homomorphism $\varphi: A \to B$. Usually, we'll just view $A$ as a subring of $B$.\retTwo
+
+We say $b \in B$ is \udefine{integral} over $A$ if $f(b) = 0$ for some monic polynomial $f(x) \in A[x]$.\retTwo
+
+We $B/A$ is a \udefine{module-finite} (or just finite) extension if $B$ is a finitely generated $A$-module.\retTwo
+
+\exTwo\ul{Theorem:} Let $B/A$ be an extension of rings. The following are equivalent:
+\begin{enumerate}
+	\item[1.] $b \in B$ is integral over $A$;
+	\item[2.] The ring generated by $A$ and $b$ inside $B$ (denoted $A[b]$) is a finitely generated\\ $A$-module;
+	\item[3.] There is a subring $A \subseteq C \subseteq B$ such that $C/A$ is a module finite extension and $b \in C$.
+	\begin{myIndent}\exThreeP
+		$(1 \Longrightarrow 2)$\\
+		If $f(b) = 0$ for $f(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0$ where each $a_i \in A[x]$, then $b^n = -a_{n-1} b^{n-1} - \cdots - a_1 b - a_0$. By induction, we can then show $b^{n-k} \in Ab^{n-1} + \ldots + Ab + A$ for all $k \in \mathbb{N}$. So, $A[b] = \sum Ab^i = Ab^{n-1} + \ldots + Ab + A$.\retTwo
+
+		$(2 \Longrightarrow 3)$ is obvious.\retTwo
+
+		$(3 \Longrightarrow 1)$\\
+		Write $C = \sum_{i=1}^n Ac_i$. Then multiplication by $b$ is a homomorphism $C \to C$. And\\ if we write $bc_i = \sum_{j=1}^n d_{i,j}c_j$ and let $D$ be the matrix $[d_{i,j}]$, then we have that\\ $(bI - D)|(c_1, \ldots, c_n){\rangle} = 0$. From there we know that $\det(bI - D) = 0$ Hence, the characteristic polynomial of $D$ is a monic polynomial in $A[x]$ such that $f(b) = 0$. $\blacksquare$\newpage
+	\end{myIndent}
+
+	\begin{myDindent}\myComment
+		As a side note, we say a ring extension $B/A$ is \udefine{integral} if every $b \in B$ is\\ integral over $A$. The implication $(3 \Longrightarrow 1)$ tells us that any module-finite\\ extension $B/A$ is an integral extension.
+	\end{myDindent}
+\end{enumerate}
+
+\exTwo\ul{Corollary:} If $B/A$ is a ring extension and $b_1, \ldots, b_n \in B$ are integral over $A$, then\\ $A[b_1, \ldots, b_n]$ is a finitely generated $A$-module.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We do induction. The base case of when $n = 1$ is covered by the last theorem.\\ Meanwhile, if we've proven the corollary true for $n - 1$ many $b$'s, then set $B^\prime = A[b_1]$.\\ We know $A[b_1, \ldots, b_n] = B^\prime[b_2, \ldots, b_n]$ where the latter is a finitely generated $B^\prime$-module\\ by induction. Also $B^\prime$ is a finitely generated $A$-module by our base case. It then follows that $A[b_1, \ldots, b_n] = B^\prime[b_2, \ldots, b_n]$ is a finitely generated $A$-module.
+	\begin{myIndent}\exPPP
+		The proof of the last assertion follows just like in the first part of the proof of the tower lemma on \inLinkRap{placeholder}{page 762}.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Corollary:} If $A \subseteq B \subseteq B^\prime$ are ring extensions, $B$ is integral over $A$, and $B^\prime$ is integral over $B$, then $B^\prime$ is integral over $A$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $b^\prime \in B^\prime$ and let $f(x) = x^n + b_{n-1}x^{n-1} + \ldots + b_1x + b_0$ satisfy that all\\ $b_i \in B$ and $f(b^\prime) = 0$. Then we know $b^\prime$ is integral over $A[b_0, \ldots, b_{n-1}]$. Hence,\\ $A[b_0, \ldots, b_{n-1}][b^\prime]$ is a finitely generated $A[b_0, \ldots, b_{n-1}]$-module.\retTwo
+	
+	Simultaneously though, because each $b_i$ is integral over $A$, we know from the prior\\ corollary that $A[b_0, \ldots, b_{n-1}]$ is a finitely generated $A$-module. Therefore, we can conclude that $C \coloneqq A[b_0, b_1, \ldots, b_{n-1}, b^\prime]$ is a finitely generated $A$-module. Yet since $A \subseteq C \subseteq B^\prime$, $b^\prime \in C$, and $C/A$ is a finite extension, we can conclude that $b^\prime$ is integral over $A$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} Given a ring extension $B/A$, define $C \coloneqq \{b \in B : b \text{ is integral over } A\}$. Then $C$ is a subring of $B$ and if $b \in B$ is integral over $C$, then $b \in C$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Given $b_1, b_2 \in C$, we know that $A[b_1, b_2]$ is a finitely generated $A$-module. And since\\ $b_1 - b_2$ and $b_1b_2$ are in this ring, we thus know $b_1 - b_2$ and $b_1b_2$ are integral over $A$. It follows that $b_1 - b_2$ and $b_1b_2$ are in $C$. It's also trivial that $A \subseteq C$ and in particular $1_A = 1_B \in C$. Thus, we've proven that $A \subseteq C \subseteq B$ are ring extensions.\retTwo
+
+	To finish off, if $b \in B$ is integral over $C$, then $C[b]$ is a finitely generated $C$-module. Hence, $C[b]$ is integral over $C$. Also, $C$ is integral over $A$. Hence by our prior lemma, we know $C[b]$ is integral over $A$. In turn, $b$ is integral over $A$ and this proves that $b \in C$. $\blacksquare$\retTwo
+	\begin{myIndent}\myComment
+		We call the ring $C$ the \udefine{integral closure} of $A$ inside $B$. Also, because of the property that $b \in B$ being integral over $C$ implies $b \in C$, we say $C$ is \udefine{integrally closed} in $B$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\pracOne Be aware that there is a more specific meaning of the phrase integrally closed that gets\\ used. Specifically, if $D$ is an integral domain then we say $D$ is \udefine{integrally closed} if $D$ is\\ integrally closed (in the prior sense) inside the field of fractions $K$ of $D$.\newpage
+
+\exTwo\ul{Lemma:} Let $D$ be a UFD. Then $D$ is integrally closed.
+\begin{myIndent}\exThreeP
+	(This was set 1 problem 3(b) in math 200b. See \inLinkRap{placeholder}{pages 534-535} for a proof.)\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Here is an important construction. Let $K/\mathbb{Q}$ be a finite degree field extension. Then while we know $\mathbb{Z}$ is integrally closed inside $\mathbb{Q}$, we don't necessarily have that $\mathbb{Z}$ is integrally closed inside $K$. Hence, it is not pointless to define $\mathcal{O}_K$ to be the integral closure of $\mathbb{Z}$ inside $K$.\retTwo
+
+We often call $K$ a \udefine{number field} and $\mathcal{O}_K$ the \udefine{ring of algebraic integers} inside $K$.\retTwo
+
+\Hstatement\blab{Set 3 Problem 6:}
+\begin{enumerate}
+	\item[(a)] Let $\alpha \in K$. Prove that $\alpha \in \mathcal{O}_K$ if and only if $m_{\alpha; \mathbb{Q}} \in \mathbb{Z}[x]$.
+	\begin{myIndent}\HexOne
+		$(\Longrightarrow)$\\
+		If $\alpha \in \mathcal{O}_K$ then we know there is a monic polynomial $f \in \mathbb{Z}[x]$ such that $f(\alpha) = 0$. In turn, we must have that $m_{\alpha; \mathbb{Q}}$ divides $f$ in $\mathbb{Q}[x]$. Hence, there exists a polynomial $g \in \mathbb{Q}[x]$ such that $f(x) = g(x)m_{\alpha;\mathbb{Q}}(x)$. Also, because both $f$ and $m_{\alpha;\mathbb{Q}}$ are monic, we must have that $g$ is monic as well.\retTwo
+
+		But now by Gauss' lemma, we know there are constants $c_1, c_2 \in \mathbb{Q}^\times$ such that\\ $c_1 c_2 = 1$ and $c_1g$ and $c_2m_{\alpha; \mathbb{Q}}$ are in $\mathbb{Z}[x]$. Yet since $g, m_{\alpha;\mathbb{Q}}$ are monic, the only way we don't have a contradiction is if $c_1, c_2 \in \mathbb{Z}^{\times} = \{-1, 1\}$. This proves that $g$ and $m_{\alpha;\mathbb{Q}}$ are in $\mathbb{Z}[x]$.\retTwo
+
+		$(\Longleftarrow)$\\
+		This direction is trivial.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Consider the case $K = \mathbb{Q}[\sqrt{d}]$ where $d$ is a squarefree integer (i.e. no prime integer divides $d$ twice). Then show that $\mathcal{O}_K = \mathbb{Z} + \mathbb{Z}\omega$ where:
+	
+	{\centering $\omega = \begin{cases} \sqrt{d} & \text{ if } d \not\equiv 1 \mMod{4} \\ \frac{1 + \sqrt{d}}{2} & \text{ if } d \equiv 1 \mMod{4}\end{cases}$\retTwo\par}
+
+	\begin{myIndent}\HexOne
+		Since $[K : \mathbb{Q}] = 2$, we know for any $\alpha \in K - \mathbb{Q}$ that $\deg(m_{\alpha;\mathbb{Q}}) = 2$. Hence, we\\ can solve for any $\alpha = a + b\sqrt{d} \in K$ where $a, b \in \mathbb{Q}$ and $b \neq 0$ that:
+		
+		{\centering$m_{\alpha;\mathbb{Q}}(x) = x^2 - 2ax + (a^2 - db^2)$.\retTwo\par}
+
+		By part (a), we can then conclude $a + b\sqrt{d} \in \mathcal{O}_K$ if and only if $-2a \in \mathbb{Z}$ and\\ $a^2 - db^2 \in \mathbb{Z}$. Yet as $-2a \in \mathbb{Z}$, we must have that $a = \frac{n}{2}$ where $n \in \mathbb{Z}$.\retTwo
+		
+		Next, because $a^2 - db^2 = \frac{n^2 - 4db^2}{4} \in \mathbb{Z}$, we must have that $n^2 - 4db^2 \in 4\mathbb{Z}$. One consequence of this is that $4db^2 \in \mathbb{Z}$. So if we write $b = \sfrac{r}{s}$, we must have that $\frac{4d}{s^2} \in \mathbb{Z}$. Yet as $d$ is square free, this is only possible if $s \divides 4$. After all, $d$ can only cancel out each prime factor of $s$ at most one time. So, it's then up to $4$ to cancel out all the of the prime factors of $s$ a second time. Next, we can manually check that $s = 4$ doesn't work. After all, $\frac{4d}{4^2} \in \mathbb{Z}$ iff $4 \divides d$. But that violates that $d$ is square-free. Thus in conclusion, we can write $b = \frac{m}{2}$ where $m \in \mathbb{Z}$.\newpage
+
+		To summarize my work so far, we've shown that if $a + b\sqrt{d} \in \mathcal{O}_K$ where $b \neq 0$, then $a = \frac{n}{2}$ and $b = \frac{m}{2}$ where $n, m \in \mathbb{Z}$, and also that $n^2 - 4d(\frac{m}{2})^2 = n^2 - dm^2 \in 4\mathbb{Z}$.\retTwo
+
+		\ul{Case 1:} Suppose $d \not\equiv 1 \mMod{4}$. Then since $d$ is square free, we know\\ $d \equiv 2 \mMod{4}$ or $d \equiv 3\mMod{4}$.
+		\begin{myIndent}\HexTwoP
+			Note that $n^2 \equiv 1 \mMod{4}$ if $n$ is odd and $n^2 \equiv 0 \mMod{4}$ if $n$ is even. Thus, we can check that $n^2 - dm^2 \equiv 0 \mMod{4}$ iff both $n$ and $m$ are even. Yet this then guarentees that $a, b \in \mathbb{Z}$. So, $a + b\sqrt{d} \in \mathcal{O}_K$ (where $b \neq 0$) iff $a, b \in \mathbb{Z}$ and $b \neq 0$.\retTwo
+		\end{myIndent}
+
+		\ul{Case 2:} Suppose $d \equiv 1 \mMod{4}$.
+		\begin{myIndent}\HexTwoP
+			Then by similar manual checking, we can see that $n^2 - dm^2 \equiv 0 \mMod{4}$ iff either both $n$ and $m$ are even or both $n$ and $m$ are odd. Or to put in other words, if we defined $\omega = \frac{1 + \sqrt{d}}{2}$, then every $a + b\sqrt{d} \in \mathcal{O}_K$ (where $b \neq 0$) can be written as $k + \ell \omega$ where $k, \ell \in \mathbb{Z}$ and $\ell \neq 0$. Also, for every such $k, \ell$ we have that $k + \ell\omega \in \mathcal{O}_K$.\retTwo
+		\end{myIndent}
+
+		To finish off, if $b = 0$ then the minimal polynomial of $a + 0\sqrt{d}$ is just $x - a$. Hence by part (a), $a + 0\sqrt{d} \in \mathcal{O}_K$ iff $a \in \mathbb{Z}$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo\mySepTwo
+
+Here are some more facts about integral extensions.\retTwo
+
+\exTwo\ul{Lemma:} Suppose $B/A$ is an integral extension of rings.
+\begin{enumerate}
+	\item[(1)] $A$ is a field iff $B$ is a field.
+	\item[(2)] If $J \subseteq B$ is an ideal, then $B/J$ is integral over $A/J^c = A/(J \cap A)$.
+	\item[(3)] If $S \subseteq A$ is multiplicatively closed then $S^{-1}B$ is integral over $S^{-1}A$.  
+\end{enumerate}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Claim 2 is easy. The embedding $A \hookrightarrow B$ uniquely quotients to an embedding\\ $A/J^c \hookrightarrow B / J$. Also, if $b \in B$ is a zero of a monic polynomial $f \in A[x]$, we\\ can just consider $f \mMod{J}$ to get a monic polynomial with $b + J$ as a zero.\retTwo
+
+	Similarly, claim 3 is also easy since if $\phi: A \to B$ is our embedding, then we can extend $\phi$ to being an embedding $S^{-1}A \to S^{-1}B$ (technically equal to $\phi(S)^{-1}B$) by defining $\phi(\frac{a}{s}) = \frac{\phi(a)}{\phi(s)}$.
+	\begin{myIndent}\exPPP
+		It is trivial to check that $\phi(S)$ is multiplicatively closed, and that $\phi$ is a unital ring homomorphism.\retTwo
+	\end{myIndent}
+
+	Then if $\frac{b}{s} \in S^{-1}B$, we can consider a monic polynomial:
+	
+	{\centering$f(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0 \in A[x]$ such that $f(b) = 0$.\retTwo\par}
+
+	If we replace each $a_{n-k}$ with $\frac{a_{n-k}}{s^k}$, we get another monic polynomial in $S^{-1}A$ with $\frac{b}{s}$ as a zero.\newpage
+
+	This leaves claim 1 for us to prove.\retTwo
+
+	$(\Longrightarrow)$\\
+	If $A$ is a field, then $b$ being integral over $A$ is equivalent to $b$ being algebraic over $A$. Hence, we know that $A[b]$ is a subfield of $B$ which in particulr contains $b^{-1}$ if $b \neq 0$. This proves every nonzero element of $B$ has an inverse. So, $B$ is a field.\retTwo
+	
+	$(\Longleftarrow)$\\
+	Suppose $B$ is a field and $a \in A - \{0\}$. We know $a^{-1}$ exists in $B$ and is thus integral over $A$. Thus, we can find constants $a_0, \ldots, a_{n-1} \in A$ such that:
+	
+	{\centering$(a^{-1})^n + a_{n-1}(a^{-1})^{n-1} + \ldots + a_1 a^{-1} + a_0 = 0$\retTwo\par}
+
+	By rearranging, we thus get that $a^{-1} = -a_{n-1} - a_{n-2}a - \ldots - a_1 a^{n-2} - a_0 a^{n-1} \in A$. So, $a^{-1} \in A$ and we've proven that $A$ is a field. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Corollary:} Let $B/A$ be an integral extension and let $Q \in \Spec(B)$. Then $Q^c = Q \cap A$ is\\ maximal in $A$ if and only if $Q$ is maximal in $B$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$Q$ is maximal in $B$ iff $B/Q$ is a field. But that happens iff $A/Q^c$ is a field, which in turn happens iff $Q^c$ is maximal in $A$. $\blacksquare$
+	\begin{myIndent}\exPPP
+		(Here I used parts 1 and 2 of the prior lemma\dots)\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Proposition:} If $B/A$ is an integral extension:
+\begin{enumerate}
+	\item[(1)] \ul{(Lying over):} If $P \in \Spec(A)$ there exists $Q \in \Spec(B)$ such that $Q^c = P$.
+	\item[(2)] \ul{(Incomparability):} If $Q_1 \subseteq Q_2$ are primes in $B$ and $Q_1^c = Q_2^c$, then $Q_1 = Q_2$.
+	\item[(3)] \ul{(Going up):} If $P_1 \subseteq P_2$ are prime ideals in $A$ and $Q_1 \in \Spec(B)$ satisfies that $Q_1^c = P_1$, then there exists $Q_2 \in \Spec(B)$ with $Q_1 \subseteq Q_2$ such that $Q_2^c = P_2$.  
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		We start with (2). Let $P \coloneqq Q_1^c = Q_2^c$, and then let $S \coloneqq A - P$. Then by\\ considering the localizations $A_P = S^{-1}A$ as well as $S^{-1}B$, we get an integral\\ extension $S^{-1}B / A_P$. Also importantly, $A_p$ is a local ring whose only maximal ideal\\ is $S^{-1}P$.\retTwo
+
+		But now note that $Q_i \cap S = Q_i \cap (A \cap S) = (Q_i \cap A) \cap S = P \cap S = \emptyset$ for both $i$. It follows that $S^{-1}Q_1$ and $S^{-1}Q_2$ are in $\Spec(S^{-1}B)$. Also, we can show for both $i$ that $S^{-1}Q_i \cap S^{-1}A = S^{-1}(Q_i \cap A) = S^{-1}P$.
+		\begin{myIndent}\exPPP
+			It's obvious that $S^{-1}(Q_i \cap A) \subseteq S^{-1}A \cap S^{-1}Q_i$. Meanwhile, suppose $\frac{a}{s_1} = \frac{q}{s_2}$ where $a \in A$, $q \in Q_i$, and $s_1, s_2 \in S$. Then there additionally exists $t \in S$ such that $as_2t = qs_1t$. But now we know $as_2 t = qs_1 t \in Q_i$ since $Q_i$ is an ideal. And since $Q_i$ is prime and $s_2, t \notin Q_i$, the only way for $as_2 t$ to be in $Q_i$ is if $a$ is in $Q$. So, we've proven that $\frac{a}{s_1} \in S^{-1}(A \cap Q_i)$. And this proves that $S^{-1}A \cap S^{-1}Q_i \subseteq S^{-1}(A \cap Q_i)$.
+			\begin{myIndent}\myComment
+				\hypertarget{Argument about contractions over localizations page 891}{More} generally, this argument shows for any ring extension $B/A$, any\\ multiplicatively closed set $S \subseteq A$, and any prime ideal $Q \in \Spec(B)$ such that $Q \cap S = \emptyset$, we have that $S^{-1}Q \cap S^{-1}A = S^{-1}(Q \cap A)$. As\newpage for the case that $Q \cap S \neq \emptyset$, then we trivally have that:
+				
+				{\centering$S^{-1}(Q \cap A) = S^{-1}A = S^{-1}Q \cap S^{-1}A$.\retTwo\par}
+			\end{myIndent}
+		\end{myIndent}
+
+		By the prior corollary, we can thus conclude that $S^{-1}Q_1$ and $S^{-1}Q_2$ are both maximal ideals in $S^{-1}B$. And since $S^{-1}Q_1 \subseteq S^{-1}Q_2$, this implies $S^{-1}Q_1 = S^{-1}Q_2$. Finally, as localization induces a bijection $\Spec(S^{-1}B) \to \{Q \in \Spec(B) : Q \cap S = \emptyset\}$, this proves that $Q_1 = Q_2$.\retTwo
+
+		\mySepFour
+		
+		Next we prove (1). Let $S \coloneqq A - P$ and consider the integral extension $S^{-1}B / A_P$. Then let $M$ be any maximal ideal of the ring $S^{-1}B$. By our prior corollary, we know $M \cap A_p$ is a maximal ideal in $A_P$. Hence, $M \cap A_p = S^{-1}P$. Yet we also know that $M = S^{-1}Q$ for some $Q \in \Spec(B)$ such that $Q \cap S = \emptyset$. Hence, we claim that $P = Q \cap A$.
+		\begin{myIndent}\exPPP
+			We know $S^{-1}Q \cap S^{-1}A = S^{-1}P$. At the same time, we can conclude through identical reasoning to before that $S^{-1}(Q \cap A) = S^{-1}Q \cap S^{-1}A$. Hence, we know that $S^{-1}(Q \cap A) = S^{-1}P$. And by using the fact that localization induces a bijection from the proper ideal of $S^{-1}A$ to the ideals of $A$ not intercepting $S$, we know that $Q \cap A = P$.\retTwo
+		\end{myIndent}
+
+		\mySepFour 
+
+		Finally, we prove (3). Note that $B/Q_1$ is integral over $A/P_1$. Also by the ideal\\ correspondance theorem, we know $P_2/P_1 \in \Spec(A/P_1)$. In turn, by (lying over) we know that there exists $Q_2/Q_1 \in \Spec(B/Q_1)$ (which has this form by the ideal correspondance theorem) such that $(Q_2/Q_1)^c = P_2/P_1$.\retTwo
+		
+		Yet now $Q_2 \in \Spec(B)$ and $Q_1 \subseteq Q_2$ by the ideal correspondance theorem. Also, note that $(Q_2/Q_1)^c = \{a + P_1 \in A/P_1 : a \in Q_2 \cap A\} = (Q_2 \cap A)/P_1$. Therefore $(Q_2 \cap A)/P_1 = P_2/P_1$. And by the ideal correspondance theorem this proves $Q_2 \cap A = P_2$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\exTwo\ul{Corollary:} Let $B/A$ be an integral extension. Then $\dim(A) = \dim(B)$.
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		Here $\dim(\cdot)$ denotes the Krull dimension of a ring (see \inLinkRap{placeholder}{page 487}).\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	Suppose $Q_0 \subsetneqq Q_1 \subsetneqq \cdots \subsetneqq Q_n$ is a chain of prime ideals in $B$. Then if we set\\ $P_i = Q_i^c = Q_i \cap A$, we know that $P_0 \subseteq P_1 \subseteq \cdots \subseteq P_n$. Yet also note that by\\ incomparability, $P_k = P_{k+1}$ for some $k$ would imply $Q_k = Q_{k+1}$. Hence, we can\\ actually conclude the $P_k$ are strictly increasing. And this proves that\\ $\dim(A) \geq \dim(B)$.\retTwo
+
+	Conversely, if $P_0 \subsetneqq P_1 \subsetneqq \cdots \subsetneqq P_n$ is a chain of prime ideals in $A$, we can construct another strictly increasing chain of prime ideals in $B$ as follows.
+	\begin{myIndent}\exPPP
+		Choose $Q_0 \in \Spec(B)$ lying over $P_0$. Then by inductively applying (going up), we\newpage can choose primes $Q_1, \ldots, Q_n$ such that $Q_0 \subseteq Q_1 \subseteq \cdots \subseteq Q_n$ and $Q_k \cap A = P_k$ for all $k$. Yet because $Q_k \cap A$ is strictly increasing with $k$, we must have that the $Q_k$ are strictly increasing.\retTwo
+	\end{myIndent}
+
+	This proves that $\dim(B) \geq \dim(A)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Returning to the topic of rings of algebraic integers, given a number field $K$ containing $\mathbb{Q}$, we now can say due to the prior corollary that $\dim(\mathcal{O}_K) = \dim(\mathbb{Z}) = 1$. Also note that the field of fractions can be embedded as a subfield $F$ of $K$. And since $\mathcal{O}_K$ is integrally closed in $K$, we know $\mathcal{O}_K$ is also integrally closed in $F$.\retTwo
+
+This finishes two parts of proving that $\mathcal{O}_K$ is a \udefine{Dedekind ring}, meaning that $\mathcal{O}_K$ is an\\ integral domain that is Noetherian, has Krull dimension $1$, and is integrally closed.\retTwo
+\begin{myIndent}\myComment
+	We aren't going to give a proof yet that $\mathcal{O}_K$ is Noetherian. That said, in the specific case that $K = \mathbb{Q}[\sqrt{d}]$ where $d$ s a squarefree integer, we can already see that $\mathcal{O}_K$ is finitely generated and thus Noetherian.\retTwo
+
+	Dedekind rings have an incredibly versatile theory of factorization of ideals (which work independently of being a UFD) and are thus very important to number theory.\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+
+\exTwo\ul{Lemma (Prime Avoidance):} Let $A$ be a ring, let $P_1, \ldots, P_n \in \Spec(A)$, and let $I$ be an\\ ideal of $A$ such that $I \subseteq \bigcup_{i=1}^n P_i$. Then $I \subseteq P_i$ for some $i$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We shall proceed by induction in order to prove the contrapositive of the lemma. In other words, we want to show that if $I \not\subseteq P_i$ for all $i$, then $I \not\subseteq \bigcup_{i=1}^n P_i$.\retTwo
+	
+	If $n = 1$, this is trivial. Meanwhile suppose $n > 1$ and that $I \not\subseteq P_i$ for any $i$. By our induction hypothesis, we know that:
+
+	{\centering$\displaystyle I \not\subseteq \bigcup_{\substack{i=1 \\ i \neq j}}^n P_i$ for every $j \in \{1, \ldots, n\}$.\retTwo\par}
+
+	Thus for every $j$, we can pick $x_j \in I - \bigcup\limits_{\substack{i=1 \\ i \neq j}}^n P_i$.\retTwo
+
+	Now if $x_j \notin P_j$ for some $j$, then we automatically know that $x_j \notin \bigcup_{i=1}^n P_i$ and thus $I \not\subseteq \bigcup_{i=1}^n P_i$. Therefore, we can now assume $x_j \in P_j$ for all $j$.\retTwo
+
+	Finally, let $y = \sum_{k=1}^n (\prod_{k \neq j} x_j) \in I$. Then we have that $y \in I$. That said, we can't have that $y \in P_j$ for any $j$. After all, if $y \in P_j$ then we must have that $\prod_{i \neq j} x_i \in P_j$. Yet as each $x_i \notin P_j$ unless $i = j$, this would contradict that $P_j$ is a prime ideal.\retTwo
+
+	This proves that $I \not\subseteq \bigcup_{i=1}^n P_i$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo\dispDate{4/30/2026}
+
+Before anything else, I want to do my remaining 200c homework.\retTwo
+
+\Hstatement\blab{Set 3 Problem 1:} Let $A$ be a nonzero ring.
+\begin{enumerate}
+	\item[(a)] Let $\Sigma$ be the set of all multiplicatively closed subsets $S$ in $A$ such that $0 \notin S$. Show that $\Sigma$ has maximal elements, and that $S \in \Sigma$ is maximal iff $A - S = P$ for a minimal prime ideal $P$ of $A$.
+	\begin{myIndent}\HexOne
+		\begin{myIndent}\color{RawerSienna}
+			Note: We say $P$ is a \udefine{minimal prime ideal} of $A$ if for every $Q \in \Spec(A)$ we have that $Q \subseteq P \Longrightarrow Q = P$.\retTwo
+		\end{myIndent}
+
+		We prove $\Sigma$ has maximal elements by invoking Zorn's lemma. To start off, $\Sigma$ is nonempty\\ because $\{1\} \in \Sigma$. Next, suppose $\{S_\alpha\}_{\alpha \in A}$ is chain in $\Sigma$. Then I claim $\bigcup_{\alpha \in A}S_\alpha$ is in $\Sigma$.
+		\begin{myIndent}\HexTwoP
+			After all, $1 \in S_\alpha$ for each $\alpha$. Hence, $1 \in \bigcup_{\alpha \in A}S_\alpha$. Furthermore, since $0 \notin S_\alpha$ for any $\alpha$, we know that $0 \notin \bigcup_{\alpha \in A}S_\alpha$. Finally, given any $s_1, s_2 \in \bigcup_{\alpha \in A} S_\alpha$, we know there exists some $\alpha^\prime$ such that $s_1, s_2 \in S_{\alpha^\prime}$. (This works because $\{S_\alpha\}_{\alpha \in A}$ is a chain.) But now $s_1 s_2 \in S_{\alpha^\prime} \subseteq \bigcup_{\alpha \in A} S_\alpha$.\retTwo
+		\end{myIndent}
+
+		With that we've shown Zorn's lemma applies, and hence it makes sense to talk about a maximal element $S \in \Sigma$. To finish, I shall show $S \in \Sigma$ is maximal if and only if $A - S = P$ for a minimal prime ideal $P$.
+		\begin{myIndent}\HexTwoP
+			$(\Longrightarrow)$\\
+			Suppose $S$ is maximal in $\Sigma$ and let $P \coloneqq A - S$. I first claim that $P$ is an ideal.
+			\begin{myIndent}\HexPPP
+				To see why, first suppose $a \in A$ and $p \in P$. Then note that\\ $S^\prime \coloneqq \{sp^k : k \in \mathbb{N}_{\geq 0} \text{ and } s \in S\}$ is a multiplicatively closed set\\ containing $S$ as well as $p$ which is not in $S$. Thus by the maximality of\\ $S$, we must have that $S^\prime$ contains $0$, and hence there exists $s \in S$ and $k \geq 0$\\ such that $sp^k = 0$. In particular, we can guarentee that $k \neq 0$ since\\ $0 \notin S$.\retTwo
+
+				But now $s(ap)^k = a^k \cdot (sp^k) = a^k \cdot 0 = 0$. So if $ap \in A - P = S$, that would\\ contradict that $S$ is multiplicatively closed and doesn't contain zero. Hence,\\ we've proven that $P$ is closed under multiplication by scalars in $A$.\retTwo
+
+				Next, suppose $p_1, p_2 \in P$. By repeating the reasoning two paragraphs ago, we can find $s_i \in S$ and $k_i \in \mathbb{N}_{>0}$ such that $s_i p_i^{k_i} = 0$. Then by taking $s = s_1s_2$ and $k = k_1 + k_2$, we get that $sp_1^k = sp_2^k = 0$. Thus in turn, we have that:
+				
+				{\centering$s(p_1 + p_2)^{2k} = sp_2^k \left(\sum\limits_{i=0}^k \binom{2k}{i} p_1^i p_2^{2k - i}\right) + sp_1^k\left(\sum\limits_{i=k+1}^{2k} p_1^{i - k}p_2^{2k - i}\right) = 0$\retTwo\par}
+
+				But now this shows that $p_1 + p_2 \notin A - P = S$ since otherwise would\\ contradict that $S$ is multplicatively closed and doesn't contain zero. Hence,\\ $P$ is also closed under addition.\retTwo
+			\end{myIndent}
+
+			Now since $P$ doesn't contain $1$ (since $1 \in S$), we know $P$ is a proper ideal.\\ Also, $P \in \Spec(A)$ since if $s_1, s_2 \notin P$ then $s_1s_2 \notin P$ as well. Finally, suppose\newpage $P$ is not a minimal prime ideal. Then there exists $Q \in \Spec(A)$ such that\\ $Q \subsetneqq P$. Yet now $S^\prime = A - Q$ would be a multiplicatively closed set not containing $0$ but also properly containing $S$. This contradicts the maximality of $S$. Hence, we must have that $P$ is a minimal prime ideal.\retTwo
+
+			$(\Longleftarrow)$\\
+			Suppose $P$ is a minimal prime ideal in $A$ and let $S = A - P$. Then $S \in \Sigma$. Hence by using Zorn's lemma, we can in particular find a maximal element $S^\prime \in \Sigma$ such that $S \subseteq S^\prime$. 
+			\begin{myIndent}\HexPPP
+				If the TA is unhappy about me using this slightly strengthened version of Zorn's lemma, I can foward them a proof on \inLinkRap{placeholder}{pages 20-21} of this journal.\retTwo
+			\end{myIndent}
+			
+			Yet now by the forward direction of the proof, we know that $P^\prime = A - S^\prime$ is a prime ideal in $A$. Also $P^\prime \subseteq P$. Thus by the minimality of $P$ we know that $P^\prime = P$. Hence, $S = S^\prime$ and we've proven that $S$ is a maximal element of $\Sigma$.\retTwo
+
+			\begin{myIndent}\color{RawerSienna}
+				As a side note, the fact that $\Sigma$ has maximal elements guarentees that\\ any nonzero ring $A$ has a minimal prime ideal. More strongly, by using\\ the slightly strengthened Zorn's lemma we can show that any prime ideal\\ contains a minimal prime ideal. 
+				\begin{myIndent}
+					\color{orange}After all, if $P \in \Spec(A)$ and $S \coloneqq A - P$, then we can find a set $S^\prime \supseteq S$ such that $P^\prime \coloneqq A - S^\prime$ is a minimal prime ideal. Yet we also have that $P^\prime \subseteq P$.\retTwo
+				\end{myIndent}
+			\end{myIndent}
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] A multiplicatively closed subset $S \subseteq A$ is called \udefine{saturated} if $xy \in S$ implies that $x \in S$ and $y \in S$. Prove that $S$ is saturated if and only if $A - S$ is a union of prime ideals.
+	\begin{myIndent}\HexOne
+		$(\Longrightarrow)$\\
+		Suppose $x \in A - S$. Then because $S$ is saturated we know that $\langle x \rangle \cap S = \emptyset$. In turn, by a theorem from math 200a (see \inLinkRap{placeholder}{pages 456-457}), we know there is some ideal $P_x \in \Spec(A)$ such that $\langle x \rangle \subseteq P_x$ and $P_x \cap S = \emptyset$. But now $A - S = \bigcup_{x \in A - S} P_x$. This proves the right hand side.\retTwo
+
+		$(\Longleftarrow)$\\
+		Suppose $A - S = \bigcup_{\beta \in B}I_\beta$ where $\{I_\beta\}_{\beta \in B}$ is a collection of ideals. (Our argument won't actually require the $I_\beta$ to be prime). Then to show that $S$ is saturated, it suffices to note that for any $x \notin S$, we know $\langle x\rangle \cap S = \emptyset$.
+		\begin{myIndent}\HexTwoP
+			For a proof this just note that $x \in I_\beta$ for some $\beta$. Hence, $\langle x \rangle \subseteq I_\beta \subseteq A - S$.\retTwo
+		\end{myIndent}
+
+		Consequently, if $x \notin S$ then $xy \notin S$ for any $y \in A$. $\blacksquare$.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 3 Problem 2:} The set $S_0$ of all nonzero-divisors in $A$ is a saturated multiplicatively closed set. Thus by problem 1(b) we know the set $D$ of zero-divisors of $A$ is a union of prime ideals.
+\begin{enumerate}
+	\item[(a)] Show that every minimal prime ideal of $A$ is contained in $D$.
+	\begin{myIndent}\HexOne
+		Suppose $P$ is a minimal prime ideal in $A$. Then we know that $S \coloneqq A - P$ is a maximal multiplicatively closed set. Also note that $S_0 S \coloneqq \{xy : x \in S_0, y \in S\}$ is a multiplicatively closed set as well which contains both $S$ and $S_0$. Yet $S_0 S$ doesn't contain $0$ because if $xy = 0$ then that would require $y = 0$ by the definition of $S_0$. Thus $0 \notin S$ and so we'll never have that $y = 0$.\newpage
+
+		By the maximality of $S$, we can conclude $S_0 S = S$. Hence, $S_0 \subseteq S$ and this proves that $P \subseteq A - S_0 = D$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] The ring $S_0^{-1}A$ is called the \udefine{total ring} of fractions of $A$. Prove that $S = S_0$ is the unique\\ largest multiplicatively closed subset of $A$ such that the map $A \to S^{-1}A$ given by $a \mapsto \frac{a}{1}$\\ is injective.
+	\begin{myIndent}\HexOne
+		For the adjective "largest" to even make sense, we would want to prove that the map $A \to S_0^{-1}A$ is injective, and that if $S$ is any other multiplicatively closed set with the map $A \to S^{-1}A$ being injective, then we know $S \subseteq S_0$.
+		\begin{itemize}
+			\item To show the first claim, suppose $\frac{a_1}{1} = \frac{a_2}{1}$ in $S_0^{-1}A$. Then there exists $t \in S_0$ such that $t(a_1 - a_2) = 0$. Yet since $t$ is not a zero-divisor, the only way this is possible is if $a_1 - a_2 = 0$. So, $a_1 = a_2$.\retTwo
+			
+			\item As for the second claim, suppose $S$ is a multiplicatively closed set containing any element $t \in A - S_0$. Then there exists $a \in A - \{0\}$ such that $t(a - 0) = 0$. In turn, the map $A \to S^{-1}A$ is not injective as $\frac{a}{1} = \frac{0}{1}$.
+		\end{itemize}
+	\end{myIndent}
+	
+	\item[(c)] Prove that every element of $S_0^{-1}A$ is either a zero divisor or a unit.
+	\begin{myIndent}\HexOne
+		Consider any $\frac{a}{s} \in S_0^{-1}A$. Then we have two cases. If $a \in S_0$, we know that $\frac{s}{a} \in S_0^{-1}A$ and $\frac{a}{s} \cdot \frac{s}{a} = 1$. Hence $\frac{a}{s}$ is a unit. Meanwhile, if $a \notin S_0$ then we know $ab = 0$ for some $b \neq 0$. Since the map $b \mapsto \frac{b}{1}$ is injective, we thus know $\frac{b}{1} \neq 0$. Yet $\frac{a}{s} \cdot \frac{b}{1} = \frac{0}{s} = 0$. Hence $\frac{a}{s}$ is a zero-divisor. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 3 Problem 3:} Let $A$ be a ring and let $S$ be a multiplicatively closed subset. Consider the ring homomorphism $\phi: A \to S^{-1}A$ given by $a \mapsto \frac{a}{1}$ and let $\phi^*$ be the induced  spectra map from $\Spec(S^{-1}A) \to \Spec(A)$.
+\begin{enumerate}
+	\item[(a)] Let $\mathscr{O}_S \coloneqq \{P \in \Spec(A) : P \cap S = \emptyset\}$ be the image of $\phi^*$ considered as a subspace of $\Spec(A)$. Show that $\phi^*$ is a homeomorphism from $\Spec(S^{-1}A)$ to $\mathscr{O}_S$.
+	\begin{myIndent}\HexOne
+		I've already shown in math 200b that $\phi^*$ is a bijection from $\Spec(S^{-1}A)$ to $\mathscr{O}_S$ (see \inLinkRap{placeholder}{page 625}). Also, we automatically have that $\phi^*$ is continuous. Hence, all we need to do now is show $(\phi^*)^{-1}$ is also continuous.\retTwo
+
+		Fortunately, if $V(S^{-1}I)$ is a closed set in $\Spec(S^{-1}A)$, then $S^{-1}P \in V(S^{-1}I)$ iff $I \subseteq P$ and $P \cap S = \emptyset$. Therefore $\phi^*(V(S^{-1}I)) = V(I) \cap \mathscr{O}_S$ is open in the subspace topology of $\mathscr{O}_S$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] In the case that $S = A - P$ for some prime ideal $P$, show that $\mathscr{O}_S$ is also equal to the intersection of all open subsets $U$ of $\Spec(A)$ such that $P \in U$.
+	\begin{myIndent}\HexOne
+		In the case that $S = A - P$, we know that $\mathscr{O}_S = \{Q \in \Spec(A) : Q \subseteq P\}$.\\ Meanwhile, any open subset $U$ of $\Spec(A)$ containing $P$ has the form\\ $\Spec(A) - V(I)$ where $P \notin V(I)$, which equivalently means that $I \not\subseteq P$.\\ If we let $\{I_\beta\}_{\beta \in B}$ be the collection of all ideals of $A$ such that $I_\beta - P \neq \emptyset$,\\ our goal according to the problem is thus to show that:
+
+		{\centering $\{Q \in \Spec(A) : Q \subseteq P\} = \bigcap\limits_{\beta \in B} (\Spec(A) - V(I_\beta))$ \newpage\par}
+
+		\begin{itemize}
+			\item Suppose $Q \in \Spec(A)$ satisfies that $Q \subseteq P$. Then for any $I_\beta \lhd A$ satisfying that $I_\beta - P \neq \emptyset$, we also know $I_\beta - Q \neq \emptyset$. Hence, $Q \notin V(I_{\beta})$ and, this proves that:
+			
+			{\centering$\{Q \in \Spec(A) : Q \subseteq P\} \subseteq \bigcap\limits_{\beta \in B} (\Spec(A) - V(I_\beta))$\retTwo\par}
+
+			\item Meanwhile, suppose $Q \in \Spec(A)$ satisfies that $Q \not\subseteq P$. Then we can find $x \in Q - P$. And since $\langle x\rangle \not\subseteq P$, we know that $\langle x\rangle = I_{\beta_0}$ for some $\beta_0$. That said, $\langle x\rangle \subseteq Q$ and thus $Q \in V(I_{\beta_0})$. It follows that:
+			
+			{\centering$\{Q \in \Spec(A) : Q \subseteq P\}^\comp \subseteq \left(\bigcap_{\beta \in B} (\Spec(A) - V(I_\beta))\right)^\comp$.\retTwo\par}
+		\end{itemize}
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 3 Problem 4:} Let $A$ be a ring and put the Zariski topology on $X = \Spec(A)$. For any $f \in A$ define $X_f = X - V(\langle f\rangle)$. The sets $X_f$ are called the \udefine{principal open subsets of $X$}.
+\begin{enumerate}
+	\item[(a)] The sets $\{X_f : F \in A\}$ form a basis for the Zariski topology.
+	\begin{myIndent}\HexOne
+		To prove we have a basis, we need to show that given any open set $U \subseteq X$ and $P \in U$, there exists $f$ such that $P \in X_f \subseteq U$. Equivalently, it suffices to show for any closed set $V(I)$ not containing $P$ that there exists $f \in A$ such that $V(I) \subseteq V(\langle f\rangle)$ and $P \notin V(\langle f\rangle)$. But this is easy (and in fact I already showed this in the prior problem).\retTwo
+
+		Suppose $P \in \Spec(A)$ and consider any $I \lhd A$ such that $I - P \neq \emptyset$. Then after picking $f \in I - P$, we have that $\langle f \rangle - P \neq \emptyset$ and hence $P \notin V(\langle f\rangle)$. That said, $\langle f \rangle \subseteq I$ and hence $V(I) \subseteq V(\langle f\rangle)$.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] $X_f \cap X_g = X_{fg}$.
+	\begin{myIndent}\HexOne
+		By DeMorgan's laws, we know that $V(\langle f\rangle)^\comp \cap V(\langle g\rangle)^\comp = (V(\langle f\rangle) \cup V(\langle g\rangle))^\comp$. Yet also note that $V(\langle f\rangle) \cup V(\langle g\rangle) = V(\langle f\rangle \cdot \langle g\rangle) = V(\langle fg\rangle)$. Thus, the identity we wanted falls out.\retTwo
+	\end{myIndent}
+	
+	\item[(c)] $X_f = \emptyset$ if and only if $f$ is nilpotent.
+	\begin{myIndent}\HexOne
+		Recall that $\Nil(A) = \bigcap_{P \in \Spec(A)} P$. Therefore:
+		
+		{\centering\begin{tabular}{l}
+			$X_f = \emptyset \iff \langle f\rangle \subseteq P \text{ for all } P \in \Spec(A)$\\ [4pt]
+			$\phantom{X_f = \emptyset} \iff f \in P \text{ for all } P \in \Spec(A)$\\ [4pt]
+			$\phantom{X_f = \emptyset} \iff f \in \bigcap_{P \in \Spec(A)}P = \Nil(A)$.
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+	
+	\item[(d)] $X_f = X_g$ if and only if $\sqrt{\langle f\rangle} = \sqrt{\langle g\rangle}$.
+	\begin{myIndent}\HexOne
+		\begin{myIndent}\color{RawerSienna}
+			As a reminder, if $I \lhd A$ then $\sqrt{I} \coloneqq \{x \in A : \exists n \in \mathbb{N}_{>0} \suchthat x^n \in I\}$. On \inLinkRap{placeholder}{pages 461-462} we found that $\sqrt{I} = \bigcap_{P \in V(I)} P$.\retTwo
+		\end{myIndent}
+
+		$(\Longrightarrow)$\\
+		Now $X_f = X_g$ if and only if $V(\langle f\rangle) = X_f^\comp = X_g^\comp = V(\langle g\rangle)$. It then follows that:
+
+		{\centering $\sqrt{\langle f\rangle} = \bigcap_{P \in V(\langle f\rangle)} P = \bigcap_{P \in V(\langle g\rangle)} P = \sqrt{\langle g\rangle}$ \retTwo\par}
+
+		$(\Longleftarrow)$\\
+		Conversely, if $\sqrt{\langle f\rangle} = \sqrt{\langle g\rangle}$ then we know that $\bigcap_{P \in V(\langle f\rangle)} P = \bigcap_{P \in V(\langle g\rangle)} P$. What we want to show however is that $V(\langle f\rangle) = V(\langle g\rangle)$ because then it will follow that\newpage $X_f = X_g$.\retTwo
+
+		Suppose for the sake of contradiction that $V(\langle f\rangle) \neq V(\langle g\rangle)$. Then without loss of generality we can assume there exists $P \in V(\langle f\rangle) - V(\langle g\rangle)$. Yet now since $\langle g \rangle \not\subseteq P$ we know $g \notin P$. Hence, $g \notin \bigcap_{P \in V(\langle f\rangle)} P$. This is a contradiction because we know $g \in \bigcap_{P \in V(\langle g\rangle)} P$ and the latter set equals $\bigcap_{P \in V(\langle f\rangle)} P$ by assumption.\retTwo
+	\end{myIndent}
+
+	
+	\item[(e)] $X$ is compact.
+	\begin{myIndent}\HexOne
+		Let $\mathcal{U}$ be an arbitrary open cover of $X$. Then because of part (a), we can define an open cover $\mathcal{V}$ of $X$ consisting entirely of principal open subsets of $X$ and which is a refinement of $\mathcal{U}$.
+		\begin{myIndent}\HexTwoP
+			Specifically, for each $x \in X$ let $U \in \mathcal{U}$ be an open set containing $P$. Then there is a principal open subset $X_{f_P}$ satisfying that $P \in X_{f_P} \subseteq U$. Hence, if we let $\mathcal{V} \coloneqq \{X_{f_P}\}_{P \in \Spec(A)}$, we have that $\mathcal{V}$ is also an open cover of $X$ and that every $V \in \mathcal{V}$ is contained in some $U \in \mathcal{U}$.\retTwo
+		\end{myIndent}
+
+		Yet now in order to find a finite subcover over $X$ using sets in $\mathcal{U}$, it suffices to instead find a finite subcover over $X$ using sets in $\mathcal{V}$. And thus, we've proven that we can\\ without loss of generality assume our open cover of $X$ is precisely of the form $\{X_{f_\beta}\}_{\beta \in B}$ where each $X_{f_\beta}$ is some principal open set.\retTwo
+
+		Next note that $X = \bigcup_{\beta \in B}X_{f_\beta}$ iff $\emptyset = \bigcap_{\beta \in B}V(\langle f_\beta\rangle)$. Yet also note:
+		
+		{\centering$\bigcap_{\beta \in B}V(\langle f_\beta\rangle) = V(\sum_{\beta \in B} \langle f_{\beta}\rangle) = V(\langle f_\beta : \beta \in B\rangle)$.\retTwo\par}
+
+		Since every proper ideal is contained in a maximal (and thus prime) ideal, the only way for $V(\langle f_\beta : \beta \in B\rangle)  = \emptyset$ is if $A = \langle f_\beta : \beta \in B \rangle$. Equivalently, we know $1 \in \langle f_\beta : \beta \in B \rangle$.\retTwo
+
+		But now to finish off, there must exist $\beta_1, \ldots, \beta_m \in B$ as well as $a_1, \ldots, a_m \in A$\\ such that $a_1 f_{\beta_1} + \ldots + a_m f_{\beta_m} = 1$. Hence, we can conclude $A =  \langle f_{\beta_1}, \ldots, f_{\beta_m} \rangle$. In turn, $\emptyset = V(\langle f_{\beta_1}, \ldots, f_{\beta_m} \rangle) = V(\sum_{i=1}^m \langle f_{\beta_i}\rangle) = \bigcap_{i=1}^m V(\langle f_{\beta_i}\rangle)$. Or in other words:
+
+		{\centering $X = \bigcup_{i=1}^m X_{f_{\beta_i}}$\retTwo\par}
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 3 Problem 5:} Let $B/A$ be an integral extension, let $\phi:A \to B$ be the inclusion map, and let $\phi^*: \Spec(B) \to \Spec(A)$ be the induced spectra map. Prove the following properties:
+\begin{enumerate}
+	\item[(a)] $\phi^*$ is surjective.
+	\begin{myIndent}\HexOne
+		Suppose $P \in \Spec(A)$. Then by lying over we know there exists $Q \in \Spec(B)$ such that $Q^c = P$. Hence, $P \in \phi^*(\Spec(B))$.\retTwo
+	\end{myIndent}
+
+	\item[(b)] $\phi^*$ is a closed map.
+	\begin{myIndent}\HexOne
+		Consider any closed set $V(I) \subseteq \Spec(B)$. Then $P \in \phi^*(V(I))$ iff $P = Q^c$ for some $Q \in V(I)$. But then as $I \subseteq Q$, we know that $I^c \subseteq Q^c = P$. So, we've proven that $P \in V(I^c)$. Hence, $\phi^*(V(I)) \subseteq V(I^c)$.\retTwo
+
+		Conversely, suppose $P \in V(I^c)$. Then note that $B/I$ is integral over $A/I^c$ (where the extension is given by the map $\psi: a + I^c \mapsto \phi(a) + I$). Also, $P/I^c \in \Spec(A/I^c)$.\newpage Hence, by lying over plus the correspondance theorem, we know there exists\\ $Q \in V(I)$ such that $\psi^{-1}(Q/I) = P/I^c$.\retTwo
+
+		Yet $a + I^c \in \psi^{-1}(Q/I)$ iff $\phi(a) \in Q$. Thus, $\psi^{-1}(Q/I) = \phi^{-1}(Q) / I^c = Q^c / I^c$. Hence, we've proven that $Q^c = P$. In turn, $P \in \phi^*(V(I))$ and so $V(I^c) \subseteq \phi^*(V(I))$.\retTwo
+
+		Since we've proven that $\phi^*(V(I)) = V(I^c)$, this proves that $\phi^*$ is a closed map.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo After going to office hours, I was made aware that there was a theorem from a class I skipped that I didn't take notes on that I really need here. So I shall deal with that now.\retTwo
+
+\exTwo\ul{Theorem:} Let $A$ be a Noetherian ring.
+\begin{enumerate}
+	\item[1.] We can write $0 = P_1 \cdots P_n$ as a product of prime ideals (where not all $P_i$ are\\ necessarily distinct).
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		For the sake of contradiction suppose not and let $S$ be the set of ideals of $A$ not\\ containing a product of prime ideals. Due to our supposing we know that $S \neq \emptyset$.\\ Then since $A$ is Noetherian we know that $S$ contains a maximal element $I$.\retTwo
+
+		Now $I$ can't be a prime ideal since then $I$ would trivially be a product of primes, thus contradicting that $I \in S$. Yet we can also show that $I$ must be prime. After all, if $I$ were not prime, we'd be able to find two ideal $J_1, J_2$ of $A$ such that $I \subsetneqq J_1$, $I \subsetneqq J_2$, but $J_1J_2 \subseteq I$.
+		\begin{myIndent}\exPPP
+			The professor claims this is the definition we received on \inLinkRap{placeholder}{page 541}. However, the professor is mistaken. So, I want to actually prove we can do this.\retTwo
+
+			\ul{Lemma:} $P \lhd A$ is prime if and only if there does not exist ideals $I, J \lhd A$ satisfying that $P \subsetneqq I$, $P \subsetneqq J$, but $IJ \subseteq P$.
+			\begin{myIndent}\color{orange}
+				$(\Longrightarrow)$\\
+				If $P$ is prime, then we know from the definition given on \inLinkRap{placeholder}{page 541} that $IJ \subseteq P \Longrightarrow I \subseteq P$ or $J \subseteq P$. Hence, the right side of the implication holds.\retTwo
+
+				$(\Longleftarrow)$\\
+				Suppose $P$ is not prime. Then we know there exists $\widetilde{I}, \widetilde{J} \lhd A$ such that $\widetilde{I} \not\subseteq P$, $\widetilde{J} \not\subseteq P$, and $\widetilde{I}\widetilde{J} \subseteq P$. Now let $x \in \widetilde{I} - P$ and $y \in \widetilde{J} - P$. Next, set $I \coloneqq \langle x, P\rangle$ and $J \coloneqq \langle y, P\rangle$. Then $P \subsetneqq I$ and $P \subsetneqq J$. That said, since $xy \in P$, we have that $IJ \subseteq P$.\retTwo
+			\end{myIndent}
+		\end{myIndent}
+
+		By the maximality of $I$ in $S$, we know that $J_1, J_2 \notin S$. Hence, we can write\\ $J_1 = P_1\cdots P_k$ and $J_2 = Q_1 \cdots Q_\ell$ as products of prime ideals. In turn, we know that $(P_1 \cdots P_k)(Q_1 \cdots Q_\ell) = J_1J_2 \subseteq I$. And this contradicts $I$ doesn't contain a product of primes.\newpage
+
+		\begin{myIndent}\myComment
+			As a side note, something I want to quickly mention is that given ideals\\ $P_1, \ldots, P_k$, we define the product $P_1 \cdots P_k$ to be the ideal:
+			
+			{\centering$\{\sum_{i=1}^n (\prod_{j=1}^k p_{j,i}) : n \in \mathbb{N}_{>0} \text{ and } p_{j,i} \in P_j \text{ for all } i, j\}$.\retTwo\par}
+
+			The proof that this is an ideal is equivalent to that on \inLinkRap{placeholder}{page 452} when we proved this works for $k = 2$. Also importantly, we can easily see that $(P_1 \cdots P_k)P_{k+1} = P_1 \cdots P_{k+1}$ and $P_0(P_1 \cdots P_k) = P_0 \cdots P_k$. Through an inductive argument we can then show the placement of parentheses in our product of primes doesn't matter.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[2.] $A$ has only finitely many minimal primes.
+	\begin{myIndent}\exThreeP
+		Write $0 = P_1\cdots P_k$ where each $P_j$ is a prime ideal in $A$. If $Q$ is a minimal prime ideal, then we automatically know from the fact $Q$ is an ideal that $\{0\} \subseteq Q$. In other words, $Q \divides P_1 \cdots P_k$. Next, because $Q$ is prime we can specifically conclude that $Q \divides P_j$ for some $j$. Yet now as $P_j \subseteq Q$, $Q$ is a minimal prime, and $P_j$ is another prime, we must have that $Q = P_j$. This proves that the set of all minimal prime ideals in $A$ is contained in $\{P_1, \ldots, P_k\}$. $\blacksquare$\retTwo
+
+		\begin{myIndent}\myComment
+			As a side note, apparently in the lecture I missed Rogalski also proved that every prime ideal contains a minimal prime ideal. To summarize his proof, essentially:
+			\begin{myIndent}
+				The intersection over any \textit{de}scending chain of prime ideals in a ring will be another prime ideal. Hence, given any prime ideal $P$ we can apply Zorn's lemma on the poset of prime ideals contained in $P$ ordered by reverse inclusion. This poset is nonempty since it contains $P$. Also, every chain has an upper bound due to the comment about intersections. I am stretched for time so I won't prove this.\retTwo
+			\end{myIndent}
+		\end{myIndent}
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo With that out of the way, we can now finish the prior homework problem.\retTwo
+
+\Hstatement\blab{Set 3 Problem 5(c):} If the ring $B$ is Noetherian, then $\phi^*$ has \udefine{finite fibers} (i.e. for any $P \in \Spec(A)$ the preimage $(\phi^*)^{-1}(P)$ is a finite set).
+\begin{myIndent}\HexOne
+	Quicker Proof (hinted in office hours):\\
+	Let $I = P^e = \phi(P)B$. Then we still have that the quotient ring $B/I$ is Noetherian.\\ Also, if $Q \in \Spec(B)$ lies over $P$, we must have that $I \subseteq Q$. After all $Q$ must contain $\phi(P)$ and $I$ is the smallest ideal containing $\phi(P)$. Hence, we will have that $Q/I \in \Spec(B/I)$.\retTwo
+	
+	Now note that if $I \subseteq Q_1 \subseteq Q_2$ where $Q_1, Q_2 \in \Spec(B)$ and $Q_2$ is lying over $P$, we can conclude that $Q_1$ also lying over $P$.
+	\begin{myIndent}\HexTwoP
+		To see why, first note $\phi^{-1}(I) = P$. After all, because $\phi$ is injective we know that $P = \phi^{-1}(\phi(P)) \subseteq \phi^{-1}(\phi(P)B) = \phi^{-1}(I)$. Also, by lying over we know that there exists $Q \in \Spec(B)$ such that $\phi^{-1}(Q) = P$. Yet as mentioned before, $I \subseteq Q$. Hence, $P \subseteq \phi^{-1}(I) \subseteq \phi^{-1}(Q) = P$ implies that $\phi^{-1}(I) = P$.
+		\begin{myIndent}\color{RawerSienna}
+			As a side note, this reasoning proves for any integral ring extension $B/A$ that $P^{ec} = P$ for all $P \in \Spec(A)$.\newpage
+		\end{myIndent}
+
+		Now since $I \subseteq Q_1 \subseteq Q_2$, we know that $P = \phi^{-1}(I) \subseteq \phi^{-1}(Q_1) \subseteq \phi^{-1}(Q_2) = P$. Hence $Q_1$ also lies over $P$.\retTwo
+	\end{myIndent}
+	
+	By incomparability, we thus must have that $Q_1 = Q_2$. And hence, we've proven by the correspondance theorem that if $Q \in \Spec(B)$ lies over $P$ then we must have that $Q/I$ is a \textit{minimal} prime ideal in $B/I$. But since $B/I$ is Noetherian, we know only finitely many $Q/I \in \Spec(B/I)$ are minimal. Hence, there can only be finitely many $Q \in \Spec(B)$ lying over $P$.
+
+	\begin{myIndent}\mySepFour\end{myIndent}
+
+	Longer Proof (following my idea before office hours):\\
+	Consider any $P \in \Spec(A)$ and let $S = A - P$. Then $S$ is a multiplicatively closed subset of $A$. Also $S^\prime \coloneqq \phi(S)$ is a multiplicatively closed subset of $B$. By localizing, we get that $(S^\prime)^{-1} B/ S^{-1}A$ is an integral extension via the embedding $\psi(\frac{a}{s}) = \frac{\phi(a)}{\phi(s)}$. Also, observe the following:
+	\begin{itemize}
+		\item Localizations of Noetherian rings are always still Noetherian and hence $(S^\prime)^{-1}$ is\\ Noetherian.
+		\begin{myIndent}\HexTwoP
+			To see why, note that a ring $C$ is Noetherian if and only if every ideal $I \lhd C$ is finitely generated. Yet given any multiplicatively closed set $T$, we have that $T^{-1}\langle x_1, \ldots, x_n \rangle = \langle \frac{x_1}{1}, \ldots, \frac{x_n}{1}\rangle$. Therefore, if every ideal of $C$ is\\ finitely generated then every ideal of $T^{-1}C$ is also finitely generated.\retTwo
+		\end{myIndent}
+
+		\item $\Max(S^{-1}A) = \{S^{-1}P\}$.\retTwo
+		
+		\item The map $Q \mapsto (S^\prime)^{-1}Q$ gives a bijection from the prime ideals $Q \in \Spec(B)$ lying over $P$ to the prime ideals of $(S^\prime)^{-1}B$ lying over $(S^\prime)^{-1}P$.
+		\begin{myIndent}\HexTwoP
+			We already proved in class (see \inLinkRap{Argument about contractions over localizations page 891}{pages 891-892}) that if $Q \cap S^\prime = \emptyset$ then\\ $\psi^{-1}((S^\prime)^{-1}Q) = S^{-1}(\phi^{-1}(Q))$. Also, any $Q \in \Spec(B)$ lying over $P$ would necessarily not intersect $S^\prime$, and thus $Q \mapsto (S^\prime)^{-1}Q$ is a bijection from a\\ subset containing all the $Q$ we care about to the prime spectrum of $(S^\prime)^{-1}B$.\\ The observation then follows.\retTwo
+		\end{myIndent}
+	\end{itemize}
+
+	Thus to keep my notation clean, I'll henceforth assume without loss of generality that $A$ is a local ring and $P$ is the unique maximal ideal of $A$. This gives us the advantage that since $B/A$ is an integral extension, any $Q \in \Spec(B)$ that contracts to $P$ must be maximal, and conversely any $Q \in \Max(B)$ must contract to a maximal ideal in $A$ (of which $P$ is the only option). Hence, we know $(\phi^*)^{-1}(P) = \Max(B)$.\retTwo
+
+	Also note that because $P$ is a maximal ideal, we know that $\{P\} = V(P)$ is a closed set in $\Spec(A)$. Hence, by the continuty of $\phi^*$, we know that $\Max(B)$ must be a closed set in $\Spec(B)$. Or in other words, there must exist some ideal $I \lhd B$ such that $\Max(B) = V(I)$.\retTwo
+
+	To finish off, since every prime ideal containing $I$ is maximal, we can conclude that $B/I$ is ring with Krull dimension $0$. In other words, every prime ideal of $B/I$ is both a maximal ideal and a minimal prime ideal. Also note that $B/I$ is Noetherian because $B$ is. Hence, by the theorem on the prior page, $B/I$ only has finitely many prime ideals. In turn, this also proves that $\Max(B)$ is finite, which is what we wanted. $\blacksquare$
+
+	\begin{myIndent}\myComment
+		As a side note, a commutative unital Noetherian ring with Krull dimension $0$ is called an \udefine{Artinian ring}. And now I actually know how one would come across one that isn't just a field.\newpage
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo I've already done problems 7(a) and 7(b) on \inLinkRap{Lemma 1 pages 857-858}{pages 857-858}. So, all that's left to do is problem 7(c).\retTwo
+
+\Hstatement\blab{Set 3 Problem 7(c):} Consider an integral ring extension $B/A$ and let $\phi: A \to F$ be a ring homomorphism where $F$ is an algebraically closed field. Then show that $\phi$ can be extended to a homomorphism $\psi : B \to F$ such that $\psi|_A = \phi$.
+\begin{myIndent}\HexOne
+	To start off, because Rogalski assumes by default that ring homomorphisms are unital,\\ we know $\varphi$ is not the zero map. In turn, because $F$ is an integral domain we know\\ that $P \coloneqq \ker(\phi) \in \Spec(A)$. Then as $B/A$ is an integral extension, we know that\\ there exists $Q \in \Spec(B)$ lying over $P$. Therefore, we can conclude $B/Q$ is\\ integral over $A/P$ by the homomorphism $a + P \mapsto a + Q$. Also importantly, we\\ know $\phi$ quotients to an injective homomorphism:
+	
+	{\centering$\overline{\phi} : A/P \to F$ given by $\overline{\phi}(a + P) = \phi(a)$.\retTwo\par}
+
+	Next, since $A/P$ and $B/Q$ are both integral domains, we can consider their fields of\\ fractions (which I will call $E$ and $K$ respectively).\retTwo
+
+	\ul{Lemma 1:} If $\varphi: A_1 \to A_2$ is an injective ring homomorphism and $A_1, A_2$ are integral\\ domains with fields of fractions $K_1, K_2$ respectively, then there exists a unique field\\ homomorphism $\widetilde{\varphi}: K_1 \to K_2$ such that the below diagram commutes:
+	% https://q.uiver.app/#q=WzAsOCxbMCwxLCJBXzEiXSxbMiwxLCJBXzIiXSxbMCwwLCJLXzEiXSxbMiwwLCJLXzIiXSxbMSwyXSxbMSwxXSxbMywyXSxbMywxXSxbMCwxLCJcXHZhcnBoaSIsMl0sWzEsM10sWzAsMl0sWzIsMywiXFxleGlzdHMhXFx3aWRldGlsZGV7XFx2YXJwaGl9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsNCwieCIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzIsNSwiXFxmcmFje3h9ezF9IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMSw2LCJcXHZhcnBoaSh4KSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzMsNywiXFxmcmFje1xcdmFycGhpKHgpfXsxfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEyLDEzLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMiwxNCwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjMwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTQsMTUsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjozMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEzLDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MzB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{K_1} && {K_2} & \\
+		{A_1} & {} & {A_2} & {} \\
+		& {} && {}
+		\arrow["{\exists!\widetilde{\varphi}}", dashed, from=1-1, to=1-3]
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{\frac{x}{1}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-1, to=2-2]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{\frac{\varphi(x)}{1}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1-3, to=2-4]
+		\arrow[from=2-1, to=1-1]
+		\arrow["\varphi"', from=2-1, to=2-3]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "x"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-1, to=3-2]
+		\arrow[from=2-3, to=1-3]
+		\arrow[""{name=3, anchor=center, inner sep=0}, "{\varphi(x)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=3-4]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=0, to=1]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=0]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=3]
+		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=3, to=1]
+	\end{tikzcd}\]
+
+	\begin{myIndent}\HexTwoP
+		Proof:\\
+		Clearly if $\widetilde{\varphi}$ is to be a homomorphism such that $\widetilde{\varphi}(\frac{x}{1}) = \frac{\varphi(x)}{1}$ for all $x \in A_1$, then we are forced to have that  $\widetilde{\varphi}(\frac{x}{y}) = \frac{\varphi(x)}{\varphi(y)}$ for all $\frac{x}{y} \in K_1$. This handles the uniqueness part of the claim. So, now we just need to prove that $\widetilde{\varphi}$ is actually a well-defined\\ [2pt] homomorphism.\retTwo
+		\begin{itemize}
+			\item To start off, because $\varphi$ is injective we know that $y \neq 0$ implies that $\varphi(y) \neq 0$. Hence, for any $\frac{x}{y} \in K_1$ we know that the fraction $\frac{\varphi(x)}{\varphi(y)}$ is well-defined in $K_2$.\retTwo
+			
+			\item Next suppose $\frac{x_1}{y_1} = \frac{x_2}{y_2}$ in $K_1$. Then $x_1y_2 - x_2y_1 = 0$, which in turn\\ [-2pt] means that $\varphi(x_1)\varphi(y_2) - \varphi(x_2)\varphi(y_1) = 0$. And this proves that $\frac{\varphi(x_1)}{\varphi(y_1)} = \frac{\varphi(x_2)}{\varphi(y_2)}$. Hence, we've shown that $\widetilde{\varphi}$ is a well-defined function on $K_1$.\retTwo
+			
+			\item Finally, we need to show that $\widetilde{\varphi}$ is a homomorphism. Fortunately, it's clear that $\widetilde{\varphi}$ respects multiplication and sends $\frac{1}{1}$ to $\frac{1}{1}$. As for addition, suppose $\frac{x_1}{y_1}, \frac{x_2}{y_2} \in K_1$. Then:
+			
+			{\centering\begin{tabular}{l}$\widetilde{\varphi}(\frac{x_1}{y_1} + \frac{x_2}{y_2}) = \frac{\varphi(x_1y_2 + x_2y_1)}{\varphi(y_1y_2)} = \frac{\varphi(x_1)\varphi(y_2) + \varphi(x_2)\varphi(y_1)}{\varphi(y_1)\varphi(y_2)} = \frac{\varphi(x_1)}{\varphi(y_1)} + \frac{\varphi(x_2)}{\varphi(y_2)} = \widetilde{\varphi}(\frac{x_1}{y_1}) + \widetilde{\varphi}(\frac{x_2}{y_2})$\end{tabular}\retTwo\par}
+		\end{itemize}
+	\end{myIndent}
+
+	Using the prior lemma, we can in particular conclude that $\overline{\phi}$ uniquely extends to a field homomorphism given by:\newpage
+	
+	{\centering$\widetilde{\overline{\phi}} : E \to F$ where $\widetilde{\overline{\phi}}(\frac{a_1 + P}{a_2 + P}) = \frac{\varphi(a_1)}{\varphi(a_2)}$.\retTwo\par}
+
+	Also by the prior lemma, we can conclude that we have a field extension $K/E$ given by\\ $\frac{a_1 + P}{a_2 + P} \mapsto \frac{a_1 + Q}{a_2 + Q}$. And since $B/Q$ is integral over $A/P$, we can conclude that $K/E$ is an algebraic extension.
+	\begin{myIndent}\HexTwoP
+		To explain why, I shall prove the following:\retTwo
+		
+		\ul{Lemma 2:} If $A, B$ are integral domains and $B/A$ is an integral extension, then after letting $E$ and $K$ be the fields of fractions of $A$ and $B$ respectively we have that $K/E$ is an algebraic extension (when given the embedding from lemma 1).
+		\begin{myIndent}\HexPPP
+			Proof:\\
+			Note that the algebraic elements of $K$ over $E$ form a subfield of $K$. After all, if\\ $\alpha, \beta \in K$, then $E[\alpha, \beta]$ will be a finite (and thus algebraic) extension from $E$. And since $\alpha \pm \beta$ and $\alpha \beta^{\pm 1}$ are in $E[\alpha, \beta]$, this proves that those four elements are also algebraic.\retTwo
+
+			Due to this, it suffices to show that $\frac{b}{1} \in K$ is algebraic over $E$ for all $b \in B$. Yet this is automatic from the fact that $B$ is integral over $A$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	Thus, we can now apply problem 7(a) (i.e. lemma 1 on \inLinkRap{Lemma 1 pages 857-858}{pages 857-858}) to the algebraic field extensions $K/E$  as well as the homomorphism $\widetilde{\overline{\phi}} : E \to F$ in order to say that there exists some embedding $\widetilde{\overline{\psi}} : K \to F$ such that $\widetilde{\overline{\psi}}|_E = \widetilde{\overline{\phi}}$.\retTwo
+
+	By restricting $\widetilde{\overline{\psi}}$ to the subring $B/Q$ of $K$, we get a well-defined ring homomorphism\\ $\overline{\psi}: B/Q \to F$. Also, it is easy to see that $\overline{\psi}|_{A/P} = \overline{\phi}$.\retTwo
+
+	Finally, define $\psi: B \to F$ by $\psi(b) = \overline{\psi}(b + Q)$. Then $\psi$ is a well-defined ring\\ homomorphism since it is the composition of two other ring homomorphisms. Also suppose $a \in A$. Then $\psi(a) = \overline{\psi}(a + Q) = \overline{\phi}(a + P) = \phi(a)$. This shows that $\psi|_A = \phi$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{5/2/2026}
+
+\blect{Math 220c Lecture Notes:}\retTwo
+
+
+Firstly, I want to make more observations about the order $\lambda(f)$ of an entire function\\ $f: \mathbb{C} \to \mathbb{C}$. Like before, for any $R > 0$ we'll denote $M(R) \coloneqq \sup \{|f(z)| : |z| = R\}$\\ and $N(R) \coloneqq $ the number of zeros of $f$ in $\overline{\Delta}(0, R)$ (counted with multiplicity). To make\\ it clear which function $M$ or $N$ is referring to, I'll also sometimes write $M_f$ or $N_f$.
+\begin{itemize}
+	\item Let $f$ be an entire function with a well-defined order $\lambda$. Then $\lambda \geq 0$.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		In \inLinkRap{Math 220c Set 4 Problem 4}{set 4 problem 4 on page 884} we proved that for all $\varepsilon > 0$ there exists $r > 0$ such that $M(R) < e^{R^{\lambda + \varepsilon}}$ for all $R > r$. In other words, $|f(z)| \leq e^{|z|^{\lambda + \varepsilon}}$ if $|z| > r$. But now if $\lambda < 0$, we'd be able take $\varepsilon$ to be small enough so that $\lambda + \varepsilon < 0$. Therefore, $|f(z)| \leq e^{|z|^{\lambda + \varepsilon}} \leq e^{|z|^0} = e$ for $|z| > \max(r, 1)$.\newpage
+
+		Yet by the extreme value theorem we also know $f$ is bounded on $\overline{\Delta}(0, r)$. Hence, we've proven that $f$ is bounded. By Liouville's theorem this proves that $f$ is a constant\\ function, and we showed on \inLinkRap{Order of polynomials math 220c page 882}{page 882} that constant functions have order $0$. This contradicts that $\lambda(f) < 0$.\retTwo
+	\end{myIndent}
+
+	\item Given any entire function $f$ with order $\lambda \coloneqq \lambda(f)$, if $\alpha \in \mathbb{C} - \{0\}$ then either\\ $\lambda(\alpha f) = \lambda(f)$ or $f \equiv c$ with $|c| \leq 1 / |\alpha|$.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		If $f$ is a constant function then this claim is obvious from the fact that $\alpha f$ is also a constant function and has order $0$ (assuming its order even exists). Hence, we'll now assume $f$ is nonconstant. This guarentees that the order of $\alpha f$ exists for any $\alpha \neq 0$\retTwo
+
+		Suppose $\lambda(f) < \infty$. Then given any $\varepsilon > 0$, we can find some $r_1 > 0$ such that $|f(z)| < e^{|z|^{\lambda + \sfrac{\varepsilon}{2}}}$ when $|z| > r_1$. In other words, $|\alpha f(z)| < |\alpha|e^{|z|^{\lambda + \sfrac{\varepsilon}{2}}}$. But now we can find some $r_2 > r_1$ such that $|\alpha|e^{|z|^{\lambda + \sfrac{\varepsilon}{2}}} < e^{|z|^{\lambda + \varepsilon}}$ when $|z| > r_2$. Hence, we've proven there exists $r_2 > 0$ such that $|\alpha f(z)| < e^{|z|^{\lambda + \varepsilon}}$.\retTwo
+		
+		This proves that $\lambda(\alpha f) \leq \lambda(f)$. To get the other inequality, just note that we can repeat all this reasoning but with the function $\alpha f$ and the constant $\alpha^{-1}$ in order to get that $\lambda(f) \leq \lambda(\alpha f)$.\retTwo
+
+		Meanwhile, suppose $\lambda(f) = \infty$. Then for all $N > 0$ we can find some $r_1 > 0$ such that $\frac{\log(\log(M_f(R)))}{\log(R)} > N$ when $R > r_1$. Equivalently, this means that $M_f(R) > e^{R^N}$ when $R > r_1$. Yet note that $|\alpha| M_f(R) = M_{\alpha f}(R)$. Hence, we've shown that $M_{\alpha f}(R) > |\alpha|e^{R^N}$ when $R > r_1$. And in turn there exists $r_2 > r_1$ such that when $R > r_2$ then $M_{\alpha f}(R) > e^{R^{N - 1}}$. This proves $\lambda(\alpha f) = \infty = \lambda(f)$.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+Because of these two observations, we'll make an ad hoc definition that if $f \equiv c$ where $0 < |c| \leq 1$, then $\lambda(f) \coloneqq 0$. Then:
+\begin{itemize}
+	\item For any entire $f \not\equiv 0$ and $\alpha \neq 0$ we have that $\lambda(f) = \lambda(\alpha f)$.
+	\item Also by \inLinkRap{Math 220c Set 4 Problem 4}{set 4 problem 4(ii) on page 884} plus my prior work, we know for\\ any entire functions $f, g$ with $f \not\equiv 0 \not\equiv g$ that $\lambda(fg)$ is well-defined and\\ $\lambda(fg) \leq \max(\lambda(f), \lambda(g))$.
+	\item Also $\lambda(P(z)) = 0$ for any nonzero polynomial $P(z)$.
+\end{itemize}
+\begin{myIndent}\color{red}
+	As a side note, in class the professor was saying that the limsup definition of $\lambda(f)$ was valid for any nonzero function. This was bugging me because the limsup doesn't exist when $f \equiv c$ where $0 < |c| \leq 1$. Also, part 2 of the procedure for calculating $\lambda(f)$ on \inLinkRap{page 881 reference}{page 881} does not work when $f \equiv c$ with $|c| \leq 1$. This is because $e^{R^{t}} > e^0 = 1$ for all $R > 0$ and $t \in \mathbb{R}$.
+	\begin{myIndent}\color{orange}
+		Interestingly, this same reasoning also shows that part 1 of the procedure on \inLinkRap{page 881 reference}{page 881} will never fail at "proving" that $\lambda(f) \leq 0$ if $f \equiv c$ where $0 < |c| < 1$. Similarly \inLinkRap{Math 220c Set 4 Problem 4}{set 4 problem 4(i) on page 884} won't fail either for such $f$.\newpage
+
+		Hence, it is still the case that if $0 \leq \lambda < \infty$ then the order of $f$ is at most $\lambda$ iff for all $\varepsilon > 0$ there exists $r > 9$ such that $M(R) < e^{R^{\lambda + \varepsilon}}$ when $R > r$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Lemma:} Given any two entire functions $f, g \in O(\mathbb{C}) - \{0\}$ such that $f \neq -g$, we have\\ that $\lambda(f + g) \leq \max(\lambda(f), \lambda(g))$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\lambda_1$ and $\lambda_2$ denote the orders of $f$ and $g$ respectively. There is nothing to show if either $\lambda_1$ or $\lambda_2$ is $\infty$. So, we can assume they are finite. Then by the triangle inequality, we can conclude that $M_{f + g}(R) \leq M_f(R) + M_g(R)$ for all $R$. Also, for any $\varepsilon > 0$ we know there exists some $r > 0$ such that $M_f(R) < e^{R^{\lambda_1 + \varepsilon}}$ and $M_g(R) < e^{R^{\lambda_2 + \varepsilon}}$ when $R > r$.\retTwo
+		
+	But now $M_{f + g}(R) < e^{R^{\lambda_1 + \varepsilon}} + e^{R^{\lambda_2 + \varepsilon}}$ when $R > r$. In turn, if $\lambda = \max(\lambda_1, \lambda_2)$, we know there exists $\widetilde{r} > 0$ with $e^{R^{\lambda_1 + \varepsilon}} + e^{R^{\lambda_2 + \varepsilon}} < e^{R^{\lambda + 2\varepsilon}}$ for all $R > \widetilde{r}$. This proves that $\lambda(f + g) < \lambda + 2\varepsilon$. $\blacksquare$
+
+	\begin{myIndent}\myComment
+		As a side note, if $f \in O(\mathbb{C}) - \{0\}$, $\alpha \in \mathbb{C}$, and $f \not\equiv -\alpha$, then we know\\ $\lambda(f + \alpha) = \lambda(f)$.
+		\begin{myIndent}
+			If $\alpha = 0$ this is trivial. Meanwhile, if $\alpha \neq 0$ then we can use the prior lemma to prove that $\lambda(f + \alpha) \leq \lambda(f)$ and $\lambda(f) \leq \lambda(f + \alpha)$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Lemma:} If $f$ is an entire function with $f \not\equiv 0$ and $P$ is a nonzero polynomial, then\\ $\lambda(f) = \lambda(Pf)$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We already proved the case when $P$ is a constant polynomial. So from now on assume $P$ is not a constant polynomial. Then $|f| \leq |Pf|$ if $|z| \gg 0$. hence $\lambda(f) \leq \lambda(Pf)$. On the other hand, $\lambda(Pf) \leq \max(\lambda(P), \lambda(f)) = \lambda(f)$. Hence, $\lambda(f) = \lambda(Pf)$.\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\Hstatement\blab{Set 5 Problem 2:} \hypertarget{Set 5 Problem 2 math 220c}{If} $f$ is a nonconstant entire function of finite order $\lambda$, then $f^\prime$ also has order $\lambda$.
+\begin{myIndent}\HexOne
+	Proof:\\
+	First we show $\lambda(f^\prime) \leq \lambda(f)$. Note that for any $\varepsilon > 0$ we can find some $r > 0$ such that $|f(z)| \leq e^{|z|^{\lambda + \varepsilon}}$ when $|z| > r$. Without loss of generality we'll take $r > 1$. Next consider any $a \in \mathbb{C}$ with $|a| > 2r$. Then by considering the disk $\Delta(a, r)$, we can conclude by Cauchy's estimate (see \inLinkRap{placeholder}{page 368}) that:
+
+	{\center $|f^\prime(a)| \leq \frac{\max_{z \in \overline{\Delta}(a, r)}|f(z)|}{r} \leq \frac{1}{r}\max_{z \in \overline{\Delta}(a, r)}e^{|z|^{\lambda + \varepsilon}} \leq e^{(|a| + r)^{\lambda + \varepsilon}}$ \retTwo\par}
+
+	Yet now we can find some $R > 0$ such that $e^{(x + r)^{\lambda + \varepsilon}} < e^{x^{\lambda + 2\varepsilon}}$ when $x > R$. Therefore, when $|a| > \max(2r, R)$ we have that $|f^\prime(a)| \leq e^{|a|^{\lambda + 2\varepsilon}}$. By bringing $\varepsilon \to 0$ this proves $\lambda(f^\prime) \leq \lambda$.\retTwo
+
+	Next we show $\lambda(f) \leq \lambda(f^\prime)$. To prove this, start by noting that if $f^\prime$ is a constant function then we trivially have that $f$ and $f^\prime$ are polynomials and have the same order. Therefore, we may assume now that $f^\prime$ is not constant. Then by the maximum modulus principle, we must have that $M_{f^\prime}(R)$ is increasing as $R \to \infty$.
+	\begin{myIndent}\myComment
+		As a side note, if I had made this connection earlier, I could have written a \textit{way}\\ shorter proof at the top of \inLinkRap{Definition of order of a function page 881}{page 881}.\newpage
+	\end{myIndent}
+	
+	By the fundamental theorem of calculus we know $f(z) - f(0) = z\int_0^1 f^\prime(tz)\df t$. Hence:
+
+	{\centering\begin{tabular}{l}
+		$|f(z)| = \left|z\int_0^1 f^\prime(tz)\df t + f(0)\right| \leq |z|\int_0^1 |f^\prime(tz)| \df t + |f(0)|$\\ [4pt]
+		$\phantom{|f(z)| = \left|z\int_0^1 f^\prime(tz)\df t + f(0)\right|} \leq |z|M_{f^\prime}(|z|) + |f(0)|$
+	\end{tabular}\retTwo\par}
+
+	Let $\mu$ be the order of $f^\prime$ (which we know is finite since it is less than $\lambda$). Then for any $\varepsilon > 0$ we know there exists $r > 0$ such that $M_{f^\prime}(R) < e^{R^{\mu + \varepsilon}}$ for all $R > r$. In turn:
+	
+	{\centering$|f(z)| < |z|e^{|z|^{\mu + \varepsilon}} + |f(0)|$.\retTwo\par}
+
+	Finally, we can find some $\widetilde{r} > r$ such that $Re^{R^{\mu + \varepsilon}} + |f(0)| < e^{R^{\mu + 2\varepsilon}}$ when $R > \widetilde{r}$. Hence, we've proven that $|f(z)| < e^{|z|^{\mu + 2\varepsilon}}$ when $|z| > \widetilde{r}$. In turn, the order of $f$ is at most $\mu$. $\blacksquare$
+	\begin{myIndent}\myComment
+		As a side note we can also conclude that if $f$ has order $\infty$ then so does $f^\prime$. After all, if $f^\prime$ had finite order then the reasoning that proved that $\lambda(f) \leq \lambda(f^\prime)$ could be applied to show that $f$ doesn't have infinite order. But that's a contradiction. So, we always have that $\lambda(f) = \lambda(f^\prime)$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\Hstatement\blab{Set 5 Problem 6:} \hypertarget{Set 5 Problem 6 Math 220c}{Show} that if $P$ is a polynomial of degree $d$, then $f = e^P$ has order exactly $d$.
+\begin{myIndent}\HexOne
+	To start off, if $d = 0$ then $f$ is a constant function and the problem is trivial. Hence, we can assume without loss of generality that $d > 1$. Now, I will first show that $\lambda(f) \geq d$.
+	\begin{myIndent}\HexTwoP
+		Consider any $\varepsilon > 0$ and write $P(z) = a_d z^d + \ldots + a_1 z + a_0$ where $a_d \neq 0$. Since $|a_d| > 0$, we crucially can find some $\delta \in (0, |a_d|)$. Next, because $\frac{P(z)}{z^d} \to a_d$ as $|z| \to \infty$, we can find some $r > 0$ such that $|\frac{P(z)}{z^d} - a_d| < \delta$ whenever $|z| > r$. Equivalently, this means that $|P(z) - a_dz^d| = |a_{d-1}z^{d-1} + \ldots + a_1z + a_0| < \delta |z|^d$\\ [1pt] when $|z| > r$.\retTwo
+
+		Next, note that $|f(z)| = e^{\rea{P(z)}} = e^{\rea{a_d z^d} + \rea{P(z) - a_d z^d}}$. Importantly, if\\ $a_d = |a_d|e^{i\alpha}$ and $z = |z|e^{i\theta}$ where $\alpha, \theta \in \mathbb{R}$, we have that:
+		
+		{\centering$\rea{a_d z^d} = |a_d| \cdot |z|^d \cdot \cos(\alpha + d\theta)$.\retTwo\par}
+		
+		Thus by strategicially picking the angle $\theta$ of $z$ we can guarentee $\cos(\alpha + d\theta) = 1$ and hence $\rea{a_d z^d} = |a_d| \cdot |z|^d$. At the same time, if $|z| > r$ then we can say that $\rea{P(z) - a_dz^d} \geq -|P(z) - a_dz^d| > -\delta |z|^d$. And thus, we've proven for all\\ $R > r$ that there exists some $z \in \mathbb{C}$ with $|z| = R$ and:
+		
+		{\centering$|f(z)| = e^{\rea{a_d z^d} + \rea{P(z) - a_d z^d}} \geq e^{(|a_d| - \delta)|z|^d}$\retTwo\par}
+
+		To finish off, because $|a_d| - \delta > 0$, we can find some $\widetilde{r} > 0$ such that:
+
+		{\centering $R^{d - \varepsilon} < (|a_d| - \delta)R^d$ whenever $R > \widetilde{r}$. \retTwo\par}
+
+		Thus, we've proven that $M(R) > e^{R^{d - \varepsilon}}$ whenever $R > \widetilde{r}$. This finishes showing that $\lambda(f) \geq d$.\retTwo
+	\end{myIndent}
+
+	The other inequality is easy. After all, if we write $P(z)$ as we did before, then we can see when $|z| > 1$ that:
+
+	{\centering\begin{tabular}{l}$\rea{P(z)} \leq |a_d||z|^d + \ldots + |a_1||z| + |a_0| \leq |z|^d \cdot (|a_d| + |a_{d-1}| + \ldots + |a_1| + |a_0|)$.\end{tabular}\newpage\par}
+
+	Therefore, we know there exists some $B > 0$ (with the inequality strict since $|a_d| > 0$) such that $|f(z)| \leq e^{B|z|^d}$ when $|z| > 1$. Then to finish off, given any $\varepsilon > 0$ we can find some $r > 0$ such that $e^{BR^d} < e^{R^{d + \varepsilon}}$ when $R > r$. In turn, when $|z| > r$ we've shown that $|f(z)| < e^{R^{d + \varepsilon}}$. And this finishes showing that $\lambda(f) \leq d$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Assume $f$ has zeros $|a_1| \leq |a_2| \leq \cdots \leq |a_n| \leq \cdots$ where $|a_n| \to \infty$ as $n \to \infty$ and no $a_n$ is equal to $0$. We define the following quantities to measure the growth of zeros:
+\begin{itemize}
+	\item We say $p$ is the \udefine{rank} of $f$ if $p$ is the smallest integer such that $\sum_{n=1}^\infty \frac{1}{|a_n|^{p+1}} < \infty$. If such a $p$ doesn't exist we we say the rank of $f$ is $\infty$.
+
+	\item We say $\alpha \coloneqq \inf\left\{t > 0 : \sum_{n=1}^\infty \frac{1}{|a_n|^t} < \infty\right\}$ is the \udefine{critical exponent} of $f$. If no such $t$ exists we set $\alpha = \infty$.
+	\begin{myIndent}\myComment
+		See \inLinkRap{Set 4 Problem 5 Math 220c}{set 4 problem 5 on page 885} for more information on this. Importantly, we know $p \leq \alpha \leq p + 1$. Thus, if $\alpha \notin \mathbb{Z}$ we know $\alpha$ uniquely determines $p$.\retTwo
+	\end{myIndent}
+
+	\item Also we still have the quantity $N(R)$ for any $R > 0$.
+	\begin{myIndent}\myComment
+		Interestingly enough, while we won't prove or use this equation in this class,\\ $\alpha = \limsup_{R \to \infty} \frac{\log(N(R))}{\log(R)}$. Hence, $N(R)$ uniquely determines $\alpha$ which often\\ uniquely determines $p$.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+Finally, if we now suppose $f$ has $m$ many zeros at $0$ (in addition to the zeros at $a_1, a_2, \ldots$), then recall from the Weierstraß factorization theorem and the note on \inLinkRap{placeholder}{page 581} that if $f(z)z^{-m}$ has rank $p$ then we can write $f(z) = z^m e^{g(z)} \prod_{n=1}^\infty E_p(\frac{z}{a_n})$ where $g$ is an entire function and
+
+{\centering$E_p(z) = \begin{cases} (1 - z) & \text{ if } p = 0 \\ (1 - z)\exp(z + \frac{z^2}{2} + \ldots + \frac{z^p}{p}) & \text{ if } p > 1\text{.}\end{cases}$\retTwo\par}
+
+Now we define $h = \genus(f) \coloneqq \begin{cases} \max(p, q) & \text{ if } g(z) \text{ is a polynomial of degree }q \\ \infty & \text{ if } g(z) \text{ is not a polynomial.} \end{cases}$\retTwo
+
+Meanwhile if $f(z)z^{-m}$ has infinite rank, we say $\genus(f) \coloneqq \infty$.\retTwo
+
+\exTwo\ul{Hadamard's Theorem:} If $\lambda$ is the order of $f$ then $h \leq \lambda \leq h + 1$.\retTwo
+\begin{myIndent}\exThreeP
+	\ul{Proof part 1:} $\lambda \leq h + 1$\\
+	Our key lemma is as follows.\retTwo
+
+	\ul{Lemma:} $\log |E_p(w)| \leq C_p|w|^{p+1}$ for some $C_p > 0$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		We do induction on $p$. When $p = 0$, $\log|1 - w| \leq \log(1 + |w|) \leq |w|$. So, we\\ can take $c_0 = 1$.\newpage
+
+		Meanwhile suppose $p \geq 1$. Then $E_p(w) = E_{p-1}(w)\exp(\frac{w^p}{p})$. Hence when\\ [-2pt] $|w| \neq 0$ we have that:
+
+		{\centering\begin{tabular}{l}
+			$\log|E_p(w)| = \log|E_{p-1}(w)| + \log|\exp(\frac{w^p}{p})|$\\ [4pt]
+			$\phantom{\log|E_p(w)|} \leq C_{p-1}|w|^p + \rea{\frac{w^p}{p}} \leq (C_{p-1} + \frac{1}{p})|w|^p$\\ [4pt]
+		\end{tabular}\retTwo\par}
+
+		In particular, if $|w| \geq \frac{1}{2}$ then we can say that $2(C_{p-1} + \frac{1}{p})|w|^{p+1} \geq (C_{p-1} + \frac{1}{p})|w|^{p}$.\retTwo
+
+		Meanwhile, when $|w| < 1$ then recall the taylor expenasion (where $\Log$ denote the principal branch): $\Log(1 - w) = -w - \frac{w^2}{2} - \cdots - \frac{w^k}{k} - \cdots$. Hence, when $|w| < 1$ we may write:
+
+		{\centering $E_p(w) = (1 - w)\exp(-\Log(1 - w) - \sum_{k=p+1}^{\infty} \frac{w^k}{k}) = \exp(-\sum_{k=p+1}^{\infty} \frac{w^k}{k})$ \retTwo\par}
+
+		In particular, if $|w| \leq \frac{1}{2}$ we can write:
+		
+		{\centering\begin{tabular}{l}
+			$\log|E_p(w)| = \rea{-\sum\limits_{k=p+1}^{\infty} \frac{w^k}{k}} \leq \sum\limits_{k \geq p + 1}\left|\frac{w^k}{k}\right| \leq |p|^{p+1}\sum\limits_{k \geq 0}\frac{|w|^k}{1} \leq 2|w|^{p+1}$.
+		\end{tabular}\retTwo\par}
+
+		By taking $C_p \coloneqq \max(2, 2(C_{p-1} + \frac{1}{p}))$, we thus get that $\log |E_p(w)| \leq C_p |w|^{p+1}$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	Now we can use this to prove $\lambda \leq h + 1$. To start off, without loss of generality we can assume $h$ is finite. Otherwise, there is nothing to prove. But then in turn, when we write $f(z) = z^m e^{g(z)} \prod_{n=1}^\infty E_p(\frac{z}{a_n})$ we must have that $g$ is a polynomial. By set 5 problem 6 on \inLinkRap{Set 5 Problem 6 Math 220c}{pages 906-907}, we know $\lambda(e^{g(z)}) = \deg(g(z)) \leq h$. Hence, all that we need to do to prove the order of $f$ is at most $h + 1$ is show that the order of $\prod_{n=1}^\infty E_p(\frac{z}{a_n})$ is at most $p + 1 \leq h+1$.\retTwo
+
+	Fortunately, $\log|\prod_{n \in \mathbb{N}} E_p(\frac{z}{a_n})| = \sum_{n \in \mathbb{N}} \log |E_p(\frac{z}{a_n})|$. Then by our prior lemma we have that $\sum_{n \in \mathbb{N}} \log |E_p(\frac{z}{a_n})| \leq C_p\sum_{n \in \mathbb{N}}|\frac{z}{a_n}|^{p+1} = K|z|^{p+1}$ where $K = C_p\sum_{n \in \mathbb{N}}\frac{1}{|a_n|^{p+1}}$ is finite.\retTwo
+
+	This proves that the order of $\prod_{n \in \mathbb{N}} E_p(\frac{z}{a_n})$ is at most $p + 1$.\retTwo
+
+	\begin{myIndent}\mySepFour\end{myIndent}
+
+	\ul{Proof part 2:} $h \leq \lambda$\\
+	To start off, without loss of generality we can assume $\lambda$ is finite. Otherwise, there is nothing to prove. Furthermore, we can assume $f(0) = 1$. After all, if not then we know there exists $f^{\mathrm{new}}(z)$ such that $f(z) = cz^m f^{\mathrm{new}}(z)$ and $f^{\mathrm{new}}(0) = 1$. Also, $\lambda(f^{\mathrm{new}}) = \lambda(f)$ and $\genus(f^{\mathrm{new}}) = \genus(f)$.\retTwo
+
+	Now if $\alpha$ is the critical exponent of $f$, recall from set 4 problem 5 on \inLinkRap{Set 4 Problem 5 Math 220c}{page 885} that $\alpha \leq \lambda$. In turn, this shows that $f$ is a function with finite rank $p \leq \alpha \leq \lambda$.\retTwo
+
+	After we write $f(z) = e^{g(z)}\prod_{n=1}^\infty E_p(\frac{z}{a_n})$ (where as a side note we know $g(0) = 0$ since $f(0) = 1$), it now suffices to prove that $g(z)$ is a polynomial of degree at most $\lambda$.\newpage
+
+	Let $m$ be an integer such that $0 \leq m \leq \lambda < m + 1$. Our goal will be to show that $\Df^{m+1}g \equiv 0$ in $\mathbb{C} - \{a_1, a_2, \ldots\}$ (where $\Df$ is the differentiation operator). By the identity principle, this will then let us conclude $D^{m+1}g \equiv 0$ everywhere. Hence, $g$ is a polynomial of degree at most $m \leq \lambda$.\retTwo
+
+	Write $P(z) = \prod_{n=1}^\infty E_p(\frac{z}{a_n})$ so that $f = e^g P$. By logarithmically diferentiating both sides we get that $\frac{f^\prime}{f} = g^\prime + \frac{P^\prime}{P} = g^\prime$ on the set of points where $P(z) \neq 0$. Next, by taking $m$ usual derivatives we get that:
+
+	{\centering $\Df^m \frac{f^\prime}{f} = \Df^{m+1} g + \Df^m \frac{P^\prime}{P}$ \retTwo\par}
+
+	\ul{Lemma A:} $\Df^m \frac{P^\prime}{P} = -m! \sum_{n \in \mathbb{N}}\frac{1}{(a_n - z)^{m+1}}$.
+
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Note that $\frac{P^\prime}{P} = \sum_{n \in \mathbb{N}}\frac{E_p^\prime(\frac{z}{a_n})}{a_n E_p(\frac{z}{a_n})}$ where the latter sum converges locally uniformly on $\mathbb{C} - \{a_1, a_2 \ldots\}$. (This is due to a theorem on \inLinkRap{placeholder}{page 549}.)\retTwo
+
+		By applying the Weierstraß convergence theorem $m$ times, we can thus conclude that $\Df^{m}\frac{P^\prime}{P} = \sum_{n \in \mathbb{N}}\Df^m\left(\frac{E_p^\prime(\frac{z}{a_n})}{a_n E_p(\frac{z}{a_n})}\right)$.\retTwo
+		
+		Next since $E_p(z) = (1 - z)\exp(z + \frac{z^2}{2} + \ldots + \frac{z^p}{p})$, we know that:
+		
+		{\centering$\frac{E_p^\prime(z)}{E_p(z)} = \frac{-1}{1 - z} + 1 + z + \cdots + z^{p-1} \Longrightarrow \frac{E_p^\prime(\frac{z}{a_n})}{a_n E_p(\frac{z}{a_n})} = \frac{-1}{a_n - z} + \frac{1}{a_n} + \frac{z}{a_n^2} + \cdots + \frac{z^{p-1}}{a_n^{p}}$.\retTwo\par}
+
+		But since $m$ is the largest integer $\leq \lambda$ and we know $p$ is another integer $\leq \lambda$, we can now conclude that:
+
+		{\centering$\Df^m\left(\frac{E_p^\prime(\frac{z}{a_n})}{a_n E_p(\frac{z}{a_n})}\right) = -\Df^m\left(\frac{1}{a_n - z}\right) + 0 = \frac{-m!}{(a_n - z)^{m+1}}$\retTwo\par}
+
+		This gives us the result we wanted.\retTwo
+	\end{myIndent}
+
+	One other other lemma we need (although I will state and prove it in a stronger form than is strictly required by this theorem) is as follows:\retTwo
+
+	\ul{Lemma B:} Suppose $f$ is an entire function, $f \not\equiv 0$, and $m + 1 > \lambda \coloneqq \lambda(f)$. If $\{a_n\}_{n \in S}$ is the set of all zeros of $f$ (where $S$ is either $\mathbb{N}$ or $\{1, \ldots, N\}$ for some $N \in \mathbb{N}$) with elements repeated according to multiplicity, then:
+
+	{\center $\Df^m \frac{f^\prime}{f} = -m! \sum_{n \in S} \frac{1}{(a_n - z)^{m+1}}$ \retTwo\par}
+
+	\begin{myIndent}\exPPP
+		\begin{myIndent}\myComment
+			As a side note, if $f$ is a polynomial then this lemma is obvious. This lemma is especially useful for letting us calculate derivatives of functions while only knowing the locations of zeros and growth rate of $f$.\retTwo
+		\end{myIndent}
+
+		Proof:\\
+		Without loss of generality we can assume $f(0) = 1$. After all, otherwise we could write $f(z) = cz^m F(z)$ where $F(z)$ is an entire function with $F(0) = 1$. Then $f$ and $F$ will have the same order. Also:
+		
+		{\centering$\frac{f^\prime}{f} = \frac{k}{z} + \frac{F^\prime}{F} \Longrightarrow \Df^m \frac{f^\prime}{f} = k \cdot \frac{m!(-1)^m}{ z^{m+1}} + \Df^m \frac{F^\prime}{F} = -k \frac{m!}{(-z)^{m+1}} + \Df^m \frac{F^\prime}{F}$.\retTwo\par}
+
+		So if we can prove the lemma for $F$ then we will have proven the lemma for $f$.\newpage
+
+		Without loss of generality suppose $|a_k|$ is nondecreasing as $k$ increases. If we recall the Poisson-Jensen formula on \inLinkRap{math 220c Poisson-Jensen Formula}{page 879}, we get for any $z \in \Delta(0, R)$ such that $z \neq a_k$ for any $k \in S$ that: 
+
+		{\centering $\log|f(z)| + \sum\limits_{k=1}^{N(R)} \log\left|\frac{R^2 - \overline{a_k}z}{R(z - a_k)}\right| = \frac{1}{2\pi}\int_0^{2\pi} \rea{\frac{Re^{it} + z}{Re^{it} - z}} \cdot \log|f(Re^{it})|\df t$ \retTwo\par}
+
+		\begin{myIndent}\color{orange}
+			As a side note, if $|z| = R$ then:
+
+			{\centering $|R^2 - \overline{a_k}z| = |R^2 - a_k \overline{z}| = R^2|1 - \frac{a_k}{z}| = \frac{R^2}{|z|}|z - a_k| = |R(z - a_k)|$ \retTwo\par}
+
+			As a result, if $a_k \in \partial \Delta(0, R)$ then $\log\left|\frac{R^2 - \overline{a_k}z}{R(z - a_k)}\right| = \log(1) = 0$. In turn, although the equation written on page 879 is only summing over the zeros of $\Delta(0, R)$, adding in the terms associated with the zeros in $\partial \Delta(0, R)$ doesn't change the validity of the formula.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+\ul{Tangent on Wirtinger derivatives:}\retTwo
+
+Given a function $f: \mathbb{C} \to X$, instead of thinking of $f$ as being a multivariable function $(x, y) \in \mathbb{R}^2 \mapsto f(x + iy)$, it is natural to perform a change of variables and write $f$ as a function of $z = x + iy$ and $\overline{z} = x - iy$.\retTwo
+
+To complete our formulation of this change of variables, we want to define what it means to partially differentiate a function $f: \mathbb{C} \to \mathbb{C}$ with respect to $z$ and $\overline{z}$ as variables. So, note that $f(x, y) = f(\frac{z + \overline{z}}{2}, -i\frac{z - \overline{z}}{2})$. Then by chain rule we "should" have that:
+
+{\center$\frac{\partial f}{\partial z} = \frac{1}{2}(\frac{\partial f}{\partial x} - i\frac{\partial f}{\partial y})$ and $\frac{\partial f}{\partial \overline{z}} = \frac{1}{2}(\frac{\partial f}{\partial x} + i\frac{\partial f}{\partial y})$ \retTwo\par}
+
+\begin{myIndent}\myComment
+	I say "should" with quotation marks because I've never actually defined what a partial derivative  with respect to a complex variable is. Hence, right now me invoking chain rule is just abstract symbol manipulation.\retTwo
+\end{myIndent}
+
+Based on that, given a $C^1$ function $f: \mathbb{R}^2 \to \mathbb{C}$ we define the derivative operators:
+
+{\centering $\partial_z = \frac{\partial}{\partial z} \coloneqq \frac{1}{2}(\partial_x - i\partial_y)$ and $\partial_{\overline{z}} = \frac{\partial}{\partial\overline{z}} \coloneqq \frac{1}{2}(\partial_x + i\partial_y)$\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	These operators are called \udefine{Wirtinger derivatives} and are easily checked to have the\\ following algebraic properties:
+	\begin{itemize}
+		\item $\partial_z$ and $\partial_{\overline{z}}$ are $\mathbb{C}$-linear.
+		\item $\partial_z(fg) = (\partial_z f)g + f(\partial_z g)$ and $\partial_{\overline{z}}(fg) = (\partial_{\overline{z}} f)g + f(\partial_{\overline{z}} g)$.
+		\item $\frac{\partial}{\partial z}z = 1$, $\frac{\partial}{\partial \overline{z}} z = 0$, $\frac{\partial}{\partial z}\overline{z} = 0$, and $\frac{\partial}{\partial \overline{z}} \overline{z} = 1$.
+		\item $\overline{(\frac{\partial}{\partial z} f)} = \frac{\partial}{\partial \overline{z}}\overline{f}$ and $\overline{(\frac{\partial}{\partial \overline{z}} f)} = \frac{\partial}{\partial z}\overline{f}$.\retTwo
+	\end{itemize}
+
+	There is also a chain rule in terms of Wirtinger derivatives but it is not perfectly analogous to the usual expression for chain rule unforunately. The details are not relevant enough for me to bring up here.\newpage
+\end{myIndent}
+
+Note that if we write $f(x, y) = u(x, y) + iv(x, y)$ then:
+\begin{itemize}
+	\item $\frac{\partial}{\partial z}f = \frac{1}{2}((u_x + iv_x) - i(u_y + iv_y)) = \frac{1}{2}((u_x + v_y) + i(v_x - u_y))$,
+	\item $\frac{\partial}{\partial \overline{z}}f = \frac{1}{2}((u_x + iv_x) + i(u_y + iv_y)) = \frac{1}{2}((u_x - v_y) + i(v_x + u_y))$.\retTwo
+\end{itemize}
+
+Now $\frac{\partial}{\partial \overline{z}}f \equiv 0$ iff $u_x - v_y \equiv 0$ and $v_x + u_y \equiv 0$. As a result, we can see that a function $f: \mathbb{C} \cong \mathbb{R}^2 \to \mathbb{C}$ is holomorphic iff $\frac{\partial}{\partial \overline{z}}f \equiv 0$. Furthermore, note that if $f$ is holomorphic then $\frac{1}{2}((u_x + v_y) + i(v_x - u_y)) = u_x + iv_x = f^\prime$. Thus $\frac{\partial}{\partial z} f = f^\prime$ when $f$ is holomorphic.\retTwo
+
+One last observation I want to to make is that if $f(x, y) = u(x, y) + iv(x, y)$ is holomorphic, then $\frac{\partial}{\partial z}u = \frac{1}{2}(u_x - iu_y) = \frac{1}{2}(u_x + iv_x) = \frac{1}{2}f^\prime$.\retTwo
+
+\mySepTwo\exTwo
+
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\exPPP
+		Returning to the lemma I was proving before, note that the principal branch of the logarithm satisfies $\Log(re^{-i\theta}) = \overline{\Log(re^{i\theta})}$ for all $r > 0$ and $-\pi < \theta < \pi$. Hence if $f(z) \notin \mathbb{R}_{\leq 0}$ , we get that:
+
+		{\centering\begin{tabular}{l}
+			$2\frac{\partial}{\partial z} \log|f(z)| = \frac{\partial}{\partial z} \log (|f(z)|^2) = \frac{\partial}{\partial z} \log (f(z) \overline{f(z)})$\\ [4pt]
+			$\phantom{2\frac{\partial}{\partial z} \log|f(z)| = \frac{\partial}{\partial z} \log (|f(z)|^2)} = \frac{\partial}{\partial z} \Log (f(z)) + \frac{\partial}{\partial z} \Log(\overline{f(z)})$\\ [4pt]
+			$\phantom{2\frac{\partial}{\partial z} \log|f(z)| = \frac{\partial}{\partial z} \log (|f(z)|^2)} = \frac{\partial}{\partial z}\Log(f(z)) + \overline{\frac{\partial}{\partial \overline{z}} \Log(f(z))} = \frac{f^\prime(z)}{f(z)} + \overline{0}$
+		\end{tabular}\retTwo\par}
+
+		Similarly, if $f(z) \in \mathbb{R}_{< 0}$ then we consider the branch of the logarithm $\Log_1$ and $\Log_2$ defined for angles in $(0, 2\pi)$ and $(-2\pi, 0)$ respectively. Then:
+
+		{\centering\begin{tabular}{l}
+			$2\frac{\partial}{\partial z} \log|f(z)| =  \frac{\partial}{\partial z}\log (f(z) \overline{f(z)}) = \frac{\partial}{\partial z}\Log_1(f(z)) + \frac{\partial}{\partial z}\Log_2(\overline{f(z)})$\\ [4pt]
+			$\phantom{2\frac{\partial}{\partial z} \log|f(z)| =  \frac{\partial}{\partial z}\log (f(z) \overline{f(z)})} = \frac{f^\prime}{f} + \frac{\partial}{\partial z}\Log_2(\overline{f(z)})$\\ [4pt]
+		\end{tabular}\retTwo\par}
+
+		But now for any $\theta \in (0, 2\pi)$ and $r > 0$ that we have that:
+		
+		{\centering$\Log_2(re^{-i\theta}) = \log(r) - i\theta = \overline{\log(r) + i\theta} = \overline{\Log_1(re^{i\theta})}$.\retTwo\par}
+
+		Thus $\frac{\partial}{\partial z}\Log_2(\overline{f(z)}) = \frac{\partial}{\partial z}\overline{\Log_1(f(z))} = \overline{\frac{\partial}{\partial \overline{z}}\Log_1(f(z))} = 0$.\retTwo
+
+		And in all cases we've thus proven that $2\frac{\partial}{\partial z}\log |f(z)| = \frac{f^\prime(z)}{f(z)}$ whenever $z \neq a_k$ for\\ [-2pt] any $k \in S$.\retTwo
+
+		By applying this formula to the special case that $f(z) = \frac{R^2 - \overline{a_k}z}{R(z - a_k)}$, we can in turn see that if $z \neq a_k$ then:
+
+		{\centering $2\frac{\partial}{\partial z}\log\left|\frac{R^2 - \overline{a_k}z}{R(z - a_k)}\right| = -\frac{\overline{a_k}}{R^2 - \overline{a_k}z} - \frac{1}{z - a_k}$ \retTwo\par}
+
+		Hence by applying $2\frac{\partial}{\partial z}$ to the Poisson-Jensen formula expression at the top of the prior page, we can conclude for $z \in \Delta(0, R) - f^{-1}(\{0\})$ that:
+
+		{\centering $\frac{f^\prime}{f} = \sum\limits_{k=1}^{N(R)} \frac{\overline{a_k}}{R^2 - \overline{a_k}z} - \sum\limits_{k=1}^{N(R)} \frac{1}{a_k - z} + \frac{1}{\pi} \left( \frac{\partial}{\partial z}\int_0^{2\pi}\rea{\frac{Re^{it} + z}{Re^{it} - z}} \cdot \log|f(Re^{it})|\df t\right)$\newpage\par}
+
+		We want to bring the derivative operator into the integral. To do this, note that: 
+		
+		{\centering$(\frac{Re^{it} + z}{Re^{it} - z})^\prime = (-1 + \frac{2Re^{it}}{Re^{it} - z})^\prime = \frac{2Re^{it}}{(Re^{it} - z)^2}$.\retTwo\par}
+
+		Also because $\frac{Re^{it} + z}{Re^{it} - z}$ is holomorphic, we know that:
+		
+		{\centering$\frac{\partial}{\partial x}(\frac{Re^{it} + z}{Re^{it} - z}) = (\frac{Re^{it} + z}{Re^{it} - z})^\prime =  -i\frac{\partial}{\partial y}(\frac{Re^{it} + z}{Re^{it} - z})$.\retTwo\par}
+
+		Now if $|z| < \rho$, we have that:
+		
+		{\centering$\left|\frac{\partial}{\partial x}\rea{\frac{Re^{it} + z}{Re^{it} - z}}\right| = \left|\rea{(\frac{Re^{it} + z}{Re^{it} - z})^\prime}\right| = \left|\rea{\frac{2Re^{it}}{(Re^{it} - z)^2}}\right| \leq \left|\frac{2Re^{it}}{(Re^{it} - z)^2}\right| \leq \frac{2R}{(R - \rho)^2}$\retTwo\par}
+
+		Similarly, if $|z| < \rho$ then:
+		
+		{\centering\begin{tabular}{l}
+			$\left|\frac{\partial}{\partial y}\rea{\frac{Re^{it} + z}{Re^{it} - z}}\right| = \left|\rea{i \cdot -i\frac{\partial}{\partial y} (\frac{Re^{it} + z}{Re^{it} - z})}\right|$\\ [8pt]
+			$\phantom{\left|\frac{\partial}{\partial y}\rea{\frac{Re^{it} + z}{Re^{it} - z}}\right|} = \left|\rea{i \cdot (\frac{Re^{it} + z}{Re^{it} - z})^\prime}\right| = \left|\rea{i \cdot \frac{2Re^{it}}{(Re^{it} - z)^2}}\right| \leq \left| \frac{2Re^{it}}{(Re^{it} - z)^2}\right| \leq \frac{2R}{(R - \rho)^2}$\\ [8pt]
+		\end{tabular}\retTwo\par}
+
+		Since $\frac{2R}{(R - \rho)^2}\log|f(Re^{it})|$ is an integrable function on $[0, 2\pi]$, we can apply Leibniz's rule (see \inLinkRap{placeholder}{pages 189-190}) to get that on $\Delta(0, \rho)$ that:
+
+		{\centering\begin{tabular}{l}
+			$\frac{1}{2}(\frac{\partial}{\partial x} - i\frac{\partial}{\partial y})\int_0^{2\pi}\rea{\frac{Re^{it} + z}{Re^{it} - z}} \cdot \log|f(Re^{it})|\df t$\\ [4pt]
+			$\phantom{aaaaaaaaaaa} = \int_0^{2\pi}\left(\frac{1}{2}(\frac{\partial}{\partial x} - i\frac{\partial}{\partial y})\rea{\frac{Re^{it} + z}{Re^{it} - z}}\right) \cdot \log|f(Re^{it})|\df t$
+		\end{tabular}\retTwo\par}
+
+		By taking $\rho \to R$, we can then conclude for all $z \in \Delta(0, R)$ that:
+
+		{\centering\begin{tabular}{l}
+			$\frac{\partial}{\partial z}\int_0^{2\pi}\rea{\frac{Re^{it} + z}{Re^{it} - z}} \cdot \log|f(Re^{it})|\df t = \int_0^{2\pi}\frac{\partial}{\partial z}\rea{\frac{Re^{it} + z}{Re^{it} - z}} \cdot \log|f(Re^{it})|\df t$\\ [4pt]
+			$\phantom{\frac{\partial}{\partial z}\int_0^{2\pi}\rea{\frac{Re^{it} + z}{Re^{it} - z}} \cdot \log|f(Re^{it})|\df t} = \int_0^{2\pi}\frac{1}{2}(\frac{Re^{it} + z}{Re^{it} - z})^\prime \cdot \log|f(Re^{it})|\df t$\\ [4pt]
+			$\phantom{\frac{\partial}{\partial z}\int_0^{2\pi}\rea{\frac{Re^{it} + z}{Re^{it} - z}} \cdot \log|f(Re^{it})|\df t} = \int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^2} \cdot \log|f(Re^{it})|\df t$\\ [4pt]
+		\end{tabular}\retTwo\par}
+
+		\begin{myIndent}\color{BrickRed}
+			As a side note, at this point in the calculation the professor has the integrand as being $\rea{\frac{2Re^{it}}{(Re^{it} - z)^2}} \cdot \log|f(Re^{it})|$. I think the cause of the difference in our integrands is that the professor got excited and forgot which derivative operator he was trying to move through the integral sign.\retTwo
+
+			Anyways a little further down in Oprea's notes he abruptly drops the real part, and once he does that his integrand is a scalar multiple of mine. Also it will go to $0$ at the end of this proof so that scalar discrepancy won't be impactful.\retTwo
+		\end{myIndent}
+
+		To summarize the calculation so far, we have proven that we have for all\\ $z \in \Delta(0, R) - f^{-1}(\{0\})$ that:
+
+		{\centering $\frac{f^\prime}{f} = \sum\limits_{k=1}^{N(R)} \frac{\overline{a_k}}{R^2 - \overline{a_k}z} - \sum\limits_{k=1}^{N(R)} \frac{1}{a_k - z} + \frac{1}{\pi} \int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^2} \cdot \log|f(Re^{it})|\df t$ \retTwo\par}
+
+		Now take $m$ (typical complex) derivatives of both sides to get that:
+
+		{\centering\begin{tabular}{l}$\Df^m \frac{f^\prime}{f} = m!\sum\limits_{k=1}^{N(R)} \frac{\overline{a_k}^{m+1}}{(R^2 - \overline{a_k}z)^{m+1}} - m!\sum\limits_{k=1}^{N(R)} \frac{1}{(a_k - z)^{m+1}} + \frac{1}{\pi} \Df^m\int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^2} \cdot \log|f(Re^{it})|\df t$\end{tabular}\newpage\par}
+
+		So long as $\left(\frac{Re^{it}}{(Re^{it} - z)^2}\right)^{(k)} \cdot \log|f(Re^{it})|$ is a continuous function jointly in $t$ and $z$\\ (where $1 \leq k \leq m$), we can apply Leibniz's rule for path integrals (see \inLinkRap{placeholder}{pages 380-\\ [3pt]381}) to bring a derivative operator with respect to $z$ through the integral. Luckily,\\ [3pt] this can be guarenteed if $R$ satisfies that $f(Re^{it}) \neq 0$ for any $t$.\retTwo
+
+		Since $f$ has at mostly countably infinite many zeros, we can choose some increasing sequence $\{R_j\}_{j \in \mathbb{N}} \subseteq \mathbb{R}_{> 0}$ such that $R_j \to \infty$ and $\partial \Delta(0, R_j) \cap f^{-1}(\{0\}) = \emptyset$ for all $j$. Then we can conclude for all $j \in \mathbb{N}$ and $z \in \Delta(0, R_j) - f^{-1}(\{0\})$ that:
+
+		{\centering\begin{tabular}{l}$\Df^m \frac{f^\prime}{f} = m!\sum\limits_{k=1}^{N(R_j)} \frac{\overline{a_k}^{m+1}}{(R_j^2 - \overline{a_k}z)^{m+1}} - m!\sum\limits_{k=1}^{N(R_j)} \frac{1}{(a_k - z)^{m+1}} + \frac{1}{\pi}\int_0^{2\pi}\frac{(m+1)!R_je^{it}}{(R_je^{it} - z)^{m+2}} \cdot \log|f(R_je^{it})|\df t$\end{tabular}\retTwo\par}
+		
+		To finish off, we need to show that:
+		
+		{\centering$\sum\limits_{k=1}^{N(R_j)} \frac{\overline{a_k}^{m+1}}{(R_j^2 - \overline{a_k}z)^{m+1}} \to 0$ and $\int_0^{2\pi}\frac{R_je^{it}}{(R_je^{it} - z)^{m+2}} \cdot \log|f(R_je^{it})|\df t \to 0$\\ [6pt]\par}
+
+		with convergence pointwise in $z$ as $R_j \to \infty$. Once we prove that, then we will be able to take $R_j \to \infty$ to finish proving that $\Df^m \frac{f^\prime}{f} = -m! \sum_{n \in S} \frac{1}{(a_n - z)^{m+1}}$ for all $z \in \mathbb{C} - f^{-1}(\{0\})$.\retTwo
+
+		\ul{Claim 1:} $\sum\limits_{k=1}^{N(R)} \frac{\overline{a_k}^{m+1}}{(R^2 - \overline{a_k}z)^{m+1}} \to 0$ (pointwise in $z$) as $R \to \infty$.\\ [-4pt]
+		\begin{myIndent}\color{orange}
+			Pick any fixed $z \in \mathbb{C} - f^{-1}(\{0\})$ and then consider any $R > 2|z|$. We have for any $a_k \in \Delta(0, R)$ that:
+
+			{\centering $|R^2 - \overline{a_k}z| \geq R^2 - |a_k||z| > R^2 - \frac{R^2}{2} = \frac{R^2}{2}$ \retTwo\par}
+			
+			As a result, $\left|\frac{\overline{a_k}}{R^2 - \overline{a_k}z}\right|^{m+1} \leq \frac{R^{m+1}}{(R^2/2)^{m+1}} = \frac{2^{m+1}}{R^{m+1}}$.\retTwo
+
+			Then in turn we can say:
+			
+			{\centering$\left|\sum\limits_{k=1}^{N(R)} \frac{\overline{a_k}^{m+1}}{(R^2 - \overline{a_k}z)^{m+1}}\right| \leq \sum\limits_{k=1}^{N(R)} \left|\frac{\overline{a_k}}{R^2 - \overline{a_k}z}\right|^{m+1} \leq N(R) \cdot \frac{2^{m+1}}{R^{m+1}}$\retTwo\par}
+			
+			Now since $m + 1 > \lambda$, we can pick some $\varepsilon > 0$ with $m + 1 > \lambda + \varepsilon$. In particular, by recalling the quick application of Jensen's formula on \inLinkRap{Math 220c Quick Application Jensen's Formula}{page 880}, we can thus say that:
+
+			{\centering $N(R) \leq \log(M(3R)) < \log(e^{(3R)^{\lambda + \varepsilon}}) = (3R)^{\lambda + \varepsilon}$ when $R \gg 0$. \retTwo\par}
+
+			But now when $R \gg 0$, we have that $\left|\sum\limits_{k=1}^{N(R)} \frac{\overline{a_k}^{m+1}}{(R^2 - \overline{a_k}z)^{m+1}}\right| \leq 3^{\lambda + \varepsilon} \cdot 2^{m+1} \cdot \frac{R^{\lambda + \varepsilon}}{R^{m+1}}$.\retTwo
+
+			Since $m+1 > \lambda + \varepsilon$ the last expression goes to zero as $R \to \infty$.\retTwo
+		\end{myIndent}
+
+		\ul{Claim 2:} $\int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^{m+2}} \cdot \log|f(Re^{it})|\df t \to 0$ (pointwise in $z$) as $R \to \infty$.
+		\begin{myIndent}\color{orange}
+			To start off, note that if $z \in \Delta(0, R)$ and $\gamma(t) = Re^{it}$ then:
+			
+			{\centering$\int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^{m+2}}\df t = \int_\gamma \frac{-i}{(w - z)^{m+2}}\df w = 0$.\newpage\par}
+
+			The prior equation works because $m + 2 \geq 2$ so the residue of $\frac{-i}{(w - z)^{m+2}}$ at $w = z$ is $0$. As a consequence of this relation, we can write:
+
+			{\centering\begin{tabular}{l}
+				$\int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^{m+2}} \cdot \log|f(Re^{it})|\df t$\\ [4pt]
+				$\phantom{aaaaaaaaaaaa} = \int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^{m+2}} \cdot \left(\log|f(Re^{it})| - \log(M(R))\right)\df t$
+			\end{tabular}\retTwo\par}
+
+			In turn, we get that:
+			
+			{\centering\begin{tabular}{l}
+				$\left|\int_0^{2\pi}\frac{Re^{it}}{(Re^{it} - z)^{m+2}} \cdot \log|f(Re^{it})|\df t\right|$\\ [4pt]
+				$\phantom{aaaaaaaaaaaa} \leq \int_0^{2\pi}\frac{R}{|Re^{it} - z|^{m+2}}\left(\log(M(R)) - \log|f(Re^{it})|\right)\df t$
+			\end{tabular}\retTwo\par}
+
+			Now suppose $R > 2|z|$. Then $|Re^{it} - z|^{m+2} \geq (R/2)^{m+2}$. In turn, we have\\ that:
+
+			{\centering\begin{tabular}{l}
+				$\frac{R}{|Re^{it} - z|^{m+2}}\left(\log(M(R)) - \log|f(Re^{it})|\right) \leq \frac{2^{m+2}}{R^{m+1}}\left(\log(M(R)) - \log|f(Re^{it})|\right)$.
+			\end{tabular}\retTwo\par}
+
+			Hence, we have that:
+
+			{\centering\begin{tabular}{l}
+				$\int_0^{2\pi}\frac{R}{|Re^{it} - z|^{m+2}}\left(\log(M(R)) - \log|f(Re^{it})|\right)\df t$\\ [4pt]
+				$\phantom{aaaaaaaaaaaa} = \frac{2^{m+3}\pi}{R^{m+1}}\log(M(R)) - \frac{2^{m+2}}{R^{m+1}}\int_0^{2\pi} \log|f(Re^{it})|\df t$
+			\end{tabular}\retTwo\par}
+
+			By Jensen's formula, we can write:
+
+			{\centering\begin{tabular}{l}
+				$\int_0^{2\pi} \log|f(Re^{it})|\df t = 2\pi\left(\sum\limits_{k=1}^{N(R)}\log(\frac{R}{|a_k|}) + \log|f(0)|\right) = 2\pi\sum\limits_{k=1}^{N(R)}\log(\frac{R}{|a_k|}) + 0$
+			\end{tabular}\retTwo\par}
+
+			Meanwhile, since $f$ has order $\lambda < m + 1$, we can find some $\varepsilon > 0$ such that $\lambda + \varepsilon < m + 1$. Then we also know for $R \gg 0$ that $\log(M(R)) < R^{\lambda + \varepsilon}$. In turn:
+
+			{\centering\begin{tabular}{l}
+				$\frac{2^{m+3}\pi}{R^{m+1}}\log(M(R)) - \frac{2^{m+2}}{R^{m+1}}\int_0^{2\pi} \log|f(Re^{it})|\df t$\\ [4pt]
+				$\phantom{aaaaaaaaaaaa} = \frac{2^{m+3}\pi}{R^{m+1}}\left(\log(M(R)) - \sum\limits_{k=1}^{N(R)}\log(\frac{R}{|a_k|})\right)$\\ [4pt]
+				$\phantom{aaaaaaaaaaaa} \leq \frac{2^{m+3}\pi}{R^{m+1}}\log(M(R)) \leq 2^{m+3}\pi \frac{R^{\lambda + \varepsilon}}{R^{m+1}} \to 0$ as $R \to \infty$. {\exPPP $\blacksquare$}
+			\end{tabular}\retTwo\par}
+		\end{myIndent}
+	\end{myIndent}
+
+	By combining lemmas A and B, we can conclude $\Df^{m+1} g \equiv 0$. And now we are done. $\blacksquare$
+\end{myIndent}
 
 
 
-
-
+\hypertarget{idk reference 3}{}
 
 
 
@@ -3672,12 +5338,91 @@ That said, $S_n$ is not solvable when $n \geq 5$. And since we can generally fin
 
 
 \newpage
+
+\Hstatement\blab{Set 5 Problem 3:} Let $f$ be an entire function satisfying that $|f^\prime(z)| \leq e^{|z|}$ and $f(\sqrt{n}) = 0$ for all $n \in \mathbb{N}_{> 0}$. Show that $f \equiv 0$.
+\begin{myIndent}\HexOne
+	Suppose for the sake of contradiction that $f \not\equiv 0$. Since $f$ has zeros we know $f$ is not a constant function. Hence $f^\prime \not\equiv 0$ either. Also recall from \inLinkRap{Set 5 Problem 2 math 220c}{set 5 problem 2 on pages 905-906} that the order of $f$ is equal to the order of $f^\prime$. Thus since $|f^\prime(z)| \leq e^{|z|}$, we know $f$ has order $1$. In turn, by Hadamard's theorem we know $f$ has rank $0$ or $1$.\retTwo
+
+	Yet simultaneously note that for any $t \leq 2$ we have that $\sum_{n=1}^\infty \frac{1}{(\sqrt{n})^t} = \infty$ Therefore, that would imply $f$ has order at least $2$, which is a contradiction. $\blacksquare$\retTwo
+\end{myIndent}
+
+\Hstatement\blab{Set 5 Problem 1:} 
+\begin{enumerate}
+	\item[(i)] Let $f, g$ be two entire functions of finite order $\leq \lambda$. Let $\varepsilon > 0$. Assume $f(a_n) = g(a_n)$ for a sequence $\{a_n\}_{n \in \mathbb{N}}$ of non-zero complex numbers with $\sum_{n=1}^\infty \frac{1}{|a_n|^{\lambda + \varepsilon}} = \infty$. Then show that\\ [-1pt] $f = g$.
+	\begin{myIndent}\HexOne
+		Consider the function $h = f - g$, and suppose for the sake of contradiction that\\ [2pt] $h \not\equiv 0$. Then by our assumption that $\sum_{n=1}^\infty \frac{1}{|a_n|^{\lambda + \varepsilon}} = \infty$ plus a prior homework\\ problem (\inLinkRap{Set 4 Problem 5 Math 220c}{set 4 problem 5 on page 885}) about the critical exponent $\alpha$ of $h$, we know\\ [3pt] that $\lambda + \varepsilon \leq \alpha \leq \lambda(h)$. In other words, $h$ has order at least $\lambda + \varepsilon$.\retTwo
+
+		Yet $h \not\equiv 0$ and is the difference of two functions with order at most $\lambda$. Thus by a\\ prior lemma from my notes today, we know the order of $h$ is at most $\lambda$. This is a\\ contradiction.\retTwo
+	\end{myIndent}
+
+	\item[(ii)] Find all entire functions of $f$ of finite order such that $f(\log(n)) = n^2$ for all integers $n \geq 1$.
+	\begin{myIndent}\HexOne
+		Firstly, fix $f(z) = e^{2z}$. Then $f$ is an entire function with order exactly equal to $1$ (see \inLinkRap{Set 5 Problem 6 Math 220c}{Set 5 Problem 6 on page 906} which I did prior to this problem).\retTwo
+
+		Next, I claim that $f$ is the only such function satisfying our claim. After all, if $g$ were a distinct finite order entire function also satisfying our problem, then $h \coloneqq f - g$ would have finite order as well as zeros at $\log(n)$ for every $n \geq 1$.\retTwo
+
+		Yet note that for every integer $k$ we have that $\sum_{n=2}^\infty \frac{1}{(\log(n))^k} = \infty$.
+		\begin{myIndent}\HexTwoP
+			To see, why first evaluate by L'Hôpital's rule that:
+
+			{\centering $\lim\limits_{n \to \infty}\frac{n}{(\log(n))^{k}} = \lim\limits_{x \to \infty}\frac{x}{(\log(x))^{k}} = \lim\limits_{x \to \infty}\frac{x}{k(\log(x))^{k-1}} = \cdots = \lim\limits_{x \to \infty}\frac{x}{k!} = \infty$ \retTwo\par}
+
+			Therefore, we know for large enough $N > 0$ that $\frac{1}{n} < \frac{1}{(\log(n))^k}$. In turn by the comparison test, we know $\sum_{n=2}^\infty \frac{1}{(\log(n))^k} = \infty$ diverges.\retTwo
+		\end{myIndent}
+
+		As a result, $h$ must have infinite genus, and in turn by Hadarmard's theorem $h$ must have infinite order. This is a contradiction. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 5 Problem 4:} Let $f: \mathbb{C} \to \mathbb{C}$ be given by $f(z) = z - \sin(z)$.
+\begin{enumerate}
+	\item[(i)] Show that $f$ is an odd entire function of order less or equal to $1$.
+	\begin{myIndent}\HexOne
+		Note that $f \not\equiv 0$ since $f(\frac{\pi}{2}) = \frac{\pi}{2}$ for example. In turn, because $-z$ has order $0$\\ and we showed in class (see \inLinkRap{idk reference 3}{page \_\_\_}) that $\sin(z)$ has order $1$, we know\\ $\lambda(f) \leq \max(0 , 1) = 1$.\newpage
+		
+		As for proving $f$ is an odd function, just observe that:
+		
+		{\centering$-f(-z) = -(-z) + \sin(-z) = z - \sin(z) = f(z)$.\retTwo\par}
+	\end{myIndent}
+	
+	\item[(ii)] Using (i), show that $f$ can be represented as a product $f(z) = \frac{z^3}{6}\prod_{n=1}^\infty (1 - \frac{z^2}{a_n^2})$ where $\{a_n\}_{n \in \mathbb{N}}$ is a sequence of non-zero complex numbers with $\sum_{n=1}^\infty \frac{1}{|a_n|^2} < \infty$.
+	
+	\begin{myIndent}\HexOne
+		The first thing I need to do is prove that $f(z)$ actually has infinitely many zeros.\\ Fortunately, note that if $f(z)$ only had finitely many zeros, we'd be able to write\\ $f(z) = e^{g(z)}P(z)$ where $g$ is an entire holomorphic function and $P(z)$ is a\\ polynomial. Next note that $\lambda(e^{g(z)}) = \lambda(f) \leq 1$. Hence, we can conclude that\\ for all $\varepsilon > 0$ there exists $r > 0$ such that $|z| > r \Longrightarrow |e^{g(z)}| = e^{\rea{g(z)}} < e^{|z|^{1 + \varepsilon}}$.\\ And by taking the logs of both sides, we get that $\rea{g(z)} < |z|^{1 + \varepsilon}$ when $|z| > r$\retTwo
+
+		\color{red} It is 11:47pm and I don't know how to show that $g(z)$ is a polynomial.
+
+		If you show $g(z)$ is a polynomial then it must be a linear one due to the degree of $e^{g(z)}$. Then as $z - sin(z) = e^{az + b}P(z)$, we can consider limit behaviors as $z = t$ goes to $\infty$ and $-\infty$ in $\mathbb{R}$ to conclude $a = 0$. But then this would imply $\sin(z)$ is a polynomial. And since $\sin(z)$ has infinite zeros but is not the zero function, this is a contradiction.\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \hypertarget{idk reference 2}{}
 
 \newpage
-
 
 \hThree\dispDate{Bibliography:}\phantom{.}\\ [-38pt]
 \begin{enumerate}
@@ -3695,7 +5440,10 @@ That said, $S_n$ is not solvable when $n \geq 5$. And since we can generally fin
 
 
 
-
+% 
+% \begin{myIndent}\color{RawerSienna}
+	% By the way, I realize I haven't ever mentioned this before but given a field\\ extension $L/F$ and any $\alpha \in L$, we write $F(\alpha)$ to denote the smallest field\\ containing $F$ and $\alpha$. Meanwhile, we write $F[\alpha]$ to denote the smallest ring\\ containing $F$ and $\alpha$. If $\alpha$ is algebraic over $F$, then $F(\alpha) = F[\alpha]$ (hence why\\ I haven't brought this up ever). That said, if $\alpha$ is transcendental then we'll\\ have that $F(\alpha) \neq F[\alpha]$. After all, $F[\alpha]$ is isomorphic to $F[x]$ mod the kernel of the evaluation map. But if that kernel is trivial, then we aren't quotienting out by a maximal ideal and hence $F[\alpha]$ won't be a field. The TLDR of this is that if we don't know if $\alpha$ is transcendental or not, it does actually matter to write $F(\alpha)$ instead of $F[\alpha]$.
+% \end{myIndent}
 
 
 
