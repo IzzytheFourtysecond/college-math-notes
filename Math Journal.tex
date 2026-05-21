@@ -3610,19 +3610,19 @@ Let $k \leq n$. Let $A$ be open in $\mathbb{R}^k$ and let $\alpha : A \to \mathb
 
 Next, we define a Borel measure on $Y_\alpha$. Given any set $E \in \mathcal{B}_{Y_\alpha}$, we define:
 
-{\centering $V(E) \coloneq \int_{\alpha^{-1}(E)} V(\Df \alpha)$\par}
+{\centering $S(E) \coloneqq \int_{\alpha^{-1}(E)} V(\Df \alpha)$\par}
 
 \begin{myTindent}\exPPP
-	(unfortunately the measure is typically called $V$ even though we already named another function that.)\retTwo
+	(Munkres for some reason calls this measure $V$ but I'm changing it's name to $S$ (since its a surface area measure))\retTwo
 \end{myTindent}
 
 \begin{myIndent}
 	Note, $V(\Df \alpha)$ is Borel measurable because the matrix determinant is a\\ continuous function with respect to all the matrix entries and all the entries of $\Df \alpha$ are continuous since $\alpha \in C^1$. It follows that our integral is well-defined.\retTwo
 
-	Since $V(\emptyset) = 0$ and $V$ is clearly countably additive, we know $V$ is a measure. Also, the naturalness of this measure is hopefully clear. After all, you can\\ imagine that we are approximating the $k$-dimensional volume using a bunch of tiny parallelepipeds.\retTwo
+	Since $S(\emptyset) = 0$ and $S$ is clearly countably additive, we know $S$ is a measure. Also, the naturalness of this measure is hopefully clear. After all, you can\\ imagine that we are approximating the $k$-dimensional surface area using a bunch of tiny parallelepipeds.\retTwo
 \end{myIndent}
 
-Then, given any measurable function $f: Y \to \mathbb{C}$ on our manifold, we can integrate via the formula: $\int_{Y_\alpha} f \df V = \int_A (f \circ \alpha)V(\Df \alpha) \df m$.
+Then, given any measurable function $f: Y \to \mathbb{C}$ on our manifold, we can integrate via the formula: $\int_{Y_\alpha} f \df S = \int_A (f \circ \alpha)V(\Df \alpha) \df m$.
 
 \begin{myIndent}
 	\why This formula clearly holds for simple functions. Then you can extend that to\\ nonnegative functions via the monotone convergence theorem and then to real and\\ complex functions in the standard way.\retTwo
@@ -3630,15 +3630,15 @@ Then, given any measurable function $f: Y \to \mathbb{C}$ on our manifold, we ca
 
 \exOne\ul{Theorem:} Let $g: A \to B$ be a diffeomorphism of open sets in $\mathbb{R}^k$ and let $\beta: B \to \mathbb{R}^n$ be an injective $C^r$ map (with $r \geq 1$). If we define $\alpha = \beta \circ g$, then $\alpha: A \to \mathbb{R}^n$ is also an injective $C_r$ map and $\alpha(A) = \beta(B) = Y$. Then, a function $f: Y \to \mathbb{C}$ is integrable over $Y_\beta$ if and only if it is integrable over $Y_\alpha$, in which case:
 
-{\centering $\int_{Y_\alpha} f\df V_\alpha = \int_{Y_\beta} f\df V_\beta$ \retTwo\par}
+{\centering $\int_{Y_\alpha} f\df S_\alpha = \int_{Y_\beta} f\df S_\beta$ \retTwo\par}
 
 \begin{myIndent}\exTwoP 
 	Proof:\\
 	The measurability of $f$ is independent of our parametrization since the topology of $Y_\alpha$ and $Y_\beta$ was not defined using $\alpha$ or $\beta$. Next note that by change of variables:
 
 	{\centering\begin{tabular}{l}
-		$\int_{Y_\beta} f \df V_\beta = \int_B (f \circ \beta)V(\Df \beta)\df m = \int_A (f \circ \beta \circ g)(V(\Df \beta)\circ g)|\det(\Df g)|\df m$\\ [6pt]
-		$\phantom{\int_{Y_\beta} f \df V_\beta = \int_B (f \circ \beta)V(\Df \beta)\df m} = \int_A (f \circ \alpha)(V(\Df \beta)\circ g)|\det(\Df g)|\df m$
+		$\int_{Y_\beta} f \df S_\beta = \int_B (f \circ \beta)V(\Df \beta)\df m = \int_A (f \circ \beta \circ g)(V(\Df \beta)\circ g)|\det(\Df g)|\df m$\\ [6pt]
+		$\phantom{\int_{Y_\beta} f \df S_\beta = \int_B (f \circ \beta)V(\Df \beta)\df m} = \int_A (f \circ \alpha)(V(\Df \beta)\circ g)|\det(\Df g)|\df m$
 	\end{tabular} \retTwo\par}
 
 	Thus, we just need to show that $(V(\Df \beta)\circ g)|\det(\Df g)| = V(\Df \alpha)$. To do that, note by chain rule that $\Df \alpha = ((\Df \beta) \circ g) \Df g$. Therefore:
@@ -3916,7 +3916,7 @@ And finally to finish off for tonight\ldots\newpage
 
 	First consider the case $U$ is open in $H^k$ but not in $\mathbb{R}^k$. Then, we can extend $\alpha$ to a $C^r$ map $\beta$ on an open set $U^\prime$ of $\mathbb{R}^k$. Now $\Df \alpha(x_0)$ has rank $k$. So after some suitable permutation of our standard basis vectors, we can assume the first $k$ rows of the matrix $\Df \alpha(x_0)$ are linearly independent. If we then define $\pi: \mathbb{R}^n \to \mathbb{R}^k$ to be the projection from $\mathbb{R}^n$ onto those first $k$ basis vector coordinates, we have that the map $g = \pi \circ \beta$ maps $U^\prime$ into $\mathbb{R}^k$ and $\Df g(x_0)$ is non-singular. So by the inverse function theorem, we know $g$ is a $C^r$ diffeomorphism on an open set $W$ of $\mathbb{R}^k$ about $x_0$ (meaning $g$ is $C^r$, $g$ has an inverse $g^{-1}$, and $g^{-1}$ is $C^r$).\retTwo
 
-	Now we claim $h = g^{-1} \circ \pi$ (which is a $C^r$ map) extends $\alpha^{-1}$ to a neighborhood $A$ of $p_0$. Firstly note $U_0 \coloneq W \cap U$ is open in $U$. Hence, $\alpha^{-1}$ being continuous implies that $V_0 \coloneq \alpha(U_0)$ is open in $V$. This means there is an open set $A \subseteq \mathbb{R}^n$ such that $A \cap V = V_0$. By intercepting $A$ with $\pi^{-1}(g(W))$ ($= \beta(W)$), we can force $A$ to be contained in the domain of $h$.\retTwo
+	Now we claim $h = g^{-1} \circ \pi$ (which is a $C^r$ map) extends $\alpha^{-1}$ to a neighborhood $A$ of $p_0$. Firstly note $U_0 \coloneq W \cap U$ is open in $U$. Hence, $\alpha^{-1}$ being continuous implies that $V_0 \coloneq \alpha(U_0)$ is open in $V$. This means there is an open set $A \subseteq \mathbb{R}^n$ such that $A \cap V = V_0$. By intercepting $A$ with $\pi^{-1}(g(W))$ (which contains $\beta(W)$) we can force $A$ to be contained in the domain of $h$.\retTwo
 
 	Now $h: A \to \mathbb{R}^k$ is of class $C^r$, and if $p \in A \cap V = V_0$, then when letting\\ $x = \alpha^{-1}(p)$ we have:
 
@@ -4002,8 +4002,7 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 	Consider the function $f(x) = a^2 - (\|x\|_2)^2$.\retTwo
 \end{myIndent}
 
-\hOne The next exercise gives us an important tool for constructing manifolds (which makes it kinda shocking that Munkres leaves it as an exercise).
-
+\hOne The next exercise gives us an important tool for constructing manifolds (which makes it kinda shocking that Munkres leaves it as an exercise).\retTwo
 
 \pracOne\ul{Exercise 24.2} Let $f: \mathbb{R}^{n + k} \to \mathbb{R}^n$ be of class $C^r$. Let $M$ be the set of all $x$ such that\\ $f(x) = 0$. Assume that $M$ is nonempty and $\Df f(x)$ has rank $n$ for all $x \in M$. Then $M$ is a $k$-manifold in $\mathbb{R}^{n+k}$ without boundary. Furthermore, if $N$ is the set of all $x$ such that $f_1(x) = \cdots = f_{n-1}(x) = 0$ and $f_n(x) \geq 0$, and the matrix $\partial(f_1, \ldots, f_{n-1})/\partial x$ has rank $n-1$ at each point of $N$, then $N$ is a $k+1$ manifold and $M = \partial N$.\\ [-4pt] 
 
@@ -4193,29 +4192,29 @@ In general though, $M$ probably can't be parametrized by just one coordinate pat
 
 	\hTwo\ul{Definition:} Let $(\phi_i)_{i \in \mathbb{N}}$ be a partition of unity on $M$ subordinate to the collection of coordinate patches $\{\alpha_i: U_i \to V_i\}_{i \in \mathbb{N}}$ which cover $M$. Without loss of generality, suppose $\supp(\phi_i) \cap M \subseteq V_i$. Then, we define a Borel measure on $M$ by:
 	
-	{\centering $V(E) \coloneqq \sum\limits_{i=1}^\infty \int_{E \cap V_i} \phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{\alpha_i^{-1}(E \cap V_i)} (\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
+	{\centering $S(E) \coloneqq \sum\limits_{i=1}^\infty \int_{E \cap V_i} \phi_i \df S_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{\alpha_i^{-1}(E \cap V_i)} (\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \retTwo\par}
 
 	From here it's pretty obvious that $V(\emptyset) = 0$ and that $V$ is countably additive. Also, similarly to before we can then deduce that:
 
-	{\centering $\int_M f \df V = \sum\limits_{i=1}^\infty \int_{V_i} f\phi_i \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{U_i} (f\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \newpage\par}
+	{\centering $\int_M f \df S = \sum\limits_{i=1}^\infty \int_{V_i} f\phi_i \df S_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{U_i} (f\phi_i \circ \alpha_i) V(\Df \alpha_i) \df m$ \newpage\par}
 
 	Now our first challenge is to show that this definition is independent of our choice of coordinate patches and partition of unity.
 
 	\begin{myIndent}\pracTwo
 		Let $(\psi_i)_{i \in \mathbb{N}}$ be another partition of unity on $M$ subordinate to another collection of coordinate patches $\{\beta_i: U^\prime_i \to V^\prime_i\}_{i \in \mathbb{N}}$ which cover $M$ (and like before suppose\\ $\supp(\psi_i) \cap M \subseteq V^\prime_i$).\retTwo
 
-		Now importantly, by our prior results about integration on manifolds parametrized by single coordinate patches, we know that $\int_{V_i \cap V_j^\prime } f \df V_{\alpha_i} = \int_{V_i \cap V_j^\prime } f \df V_{\beta_j}$ for all\\ [-2pt] integrable $f$ on $V_i \cap V_j^\prime$. Therefore, if $E \in \mathcal{B}_M$, we have that:
+		Now importantly, by our prior results about integration on manifolds parametrized by single coordinate patches, we know that $\int_{V_i \cap V_j^\prime } f \df S_{\alpha_i} = \int_{V_i \cap V_j^\prime } f \df S_{\beta_j}$ for all\\ [-2pt] integrable $f$ on $V_i \cap V_j^\prime$. Therefore, if $E \in \mathcal{B}_M$, we have that:
 
 		{\centering\begin{tabular}{l}
-			$\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \left(\sum\limits_{j=1}^\infty \psi_j \chi_{V^\prime_j}\right) \df V_{\alpha_i}$\\ [12pt]
+			$\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df S_{\alpha_i} = \sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \left(\sum\limits_{j=1}^\infty \psi_j \chi_{V^\prime_j}\right) \df S_{\alpha_i}$\\ [12pt]
 
-			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\alpha_i} \phantom{= \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \df V_{\beta_j}}$\\ [12pt]
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df S_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df S_{\alpha_i}$\\ [12pt]
 		
-			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\beta_j}$\\ [12pt]
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df S_{\alpha_i}} = \sum\limits_{i=1}^\infty \sum\limits_{j=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df S_{\beta_j}$\\ [12pt]
 
-			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{j=1}^\infty \sum\limits_{i=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df V_{\beta_j}$\\ [12pt]
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df S_{\alpha_i}} = \sum\limits_{j=1}^\infty \sum\limits_{i=1}^\infty \int_{V_i \cap V_j^\prime } \phi_i\psi_j\chi_E \df S_{\beta_j}$\\ [12pt]
 
-			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df V_{\alpha_i}} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \left(\sum\limits_{i=1}^\infty \phi_i \chi_{V_i}\right) \df V_{\beta_j} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \df V_{\beta_j}$
+			$\phantom{\sum\limits_{i=1}^\infty \int_{V_i} \phi_i\chi_E \df S_{\alpha_i}} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \left(\sum\limits_{i=1}^\infty \phi_i \chi_{V_i}\right) \df S_{\beta_j} = \sum\limits_{j=1}^\infty \int_{V_j^\prime} \psi_j\chi_E \df S_{\beta_j}$
 		\end{tabular}\retTwo\par}
 
 		\begin{myTindent}
@@ -5749,7 +5748,7 @@ By the last theorem, $\phi: \pi_1(B, b_0) \to p^{-1}(b_0)$ is a well-defined map
 
 \dispDate{8/18/2025}
 
-Today I want to start learning about general manifolds. So, I will switch over to following John Lee's book \ul{Introduction to Smooth Manifolds}. Soon I might switch back either to Munkres or Guillemin.\retTwo
+Today I want to start learning about general manifolds. So, I will switch over to\\ following John Lee's book \ul{Introduction to Smooth Manifolds}. Soon I might switch\\ back either to Munkres or Guillemin.\retTwo
 
 Suppose $M$ is a topological space. Then we say $M$ is a \udefine{topological manifold of\\ dimension $n$} (a.k.a a \udefine{topological $n$-manifold}) if:
 
@@ -8690,7 +8689,7 @@ I want to start today by doing some exercises to expand on some of the earlier r
 
 \Hstatement\blab{Exercise 10.17:} A collection or "population" of $N$ objects may be considered a sample space in\\ which each object individually has probability $N^{-1}$. Also let $X$ be a random variable on this space\\ with mean $\mu$ and variance $\sigma^2$. A central goal of statistics is to determine what $\mu$ and $\sigma^2$ are by\\ randomly sampling our population and measuring $X$ for each object sampled.\retTwo
 
-To mathematically model this process, we imagine generating a sequence $\{X_n\}_{n \in \mathbb{N}}$ of numbers that are values of independent random variables with the same distribution as $X$. (specifically we can think of $X_n$ as the value of $X$ for the $n$th. object we sampled). And now we want to infer what $\mu$ and $\sigma^2$ are using only the first however so many numbers of our sequence.\newpage
+To mathematically model this process, we imagine generating a sequence $\{X_n\}_{n \in \mathbb{N}}$ of numbers that are values of independent random variables with the same distribution as $X$. (Specifically we can think of $X_n$ as the value of $X$ for the $n$th. object we sampled). And now we want to infer what $\mu$ and $\sigma^2$ are using only the first however so many numbers of our sequence.\newpage
 
 The \udefine{$n$th sample mean} is defined as $M_n \coloneqq n^{-1}\sum_{j=1}^n X_j$. Note that $E(M_n) = \mu$ and\\ $\sigma^2(M_n) = n^{-1}\sigma^2$ for all $n$ and that $M_n \to \mu$ a.s. as $n \to \infty$.
 
@@ -19541,7 +19540,7 @@ This topology on $\Spec(A)$ is called the \udefine{Zariski topology} and it is s
 				If $\mathfrak{p} \notin \Max(A)$ then we know there exists $\mathfrak{m} \in \Max(A)$ such that\\ $\mathfrak{m} \in V(\mathfrak{p})$. In other words, $\mathfrak{p} \subseteq \mathfrak{m}$. Now if $V(\mathfrak{a})$ is any closed set containing $\mathfrak{p}$ then it must also contain $\mathfrak{m}$ as $\mathfrak{a} \subseteq \mathfrak{p} \subseteq \mathfrak{m} \Longrightarrow \mathfrak{a} \subseteq \mathfrak{m}$. Hence, $\{\mathfrak{p}\}$ is not closed.\retTwo
 			\end{myIndent}
 
-			Notably, this means that unless $\Spec(A) = \Max(A)$ we have that the Zariski topology is not $T_1$. Although, according to a Google search it is $T_0$. So, I guess this is the reason why we separately define $T_0$ versus $T_1$ spaces in a topology class.\retTwo
+			Notably, this means that unless $\Spec(A) = \Max(A)$ we have that the Zariski topology is not $T_1$. Although, it is always $T_0$. After all suppose $\mathfrak{p}_1, \mathfrak{p}_2$ are distinct prime ideals. If $\mathfrak{p}_1 \subseteq \mathfrak{p}_2$ then $V(\mathfrak{p}_2)$ contains $\mathfrak{p}_2$ but not $\mathfrak{p}_1$. Meanwhile, if $\mathfrak{p}_1 \not\subseteq \mathfrak{p}_2$ then $V(\mathfrak{p}_1)$ contains $\mathfrak{p}_1$ but not $\mathfrak{p}_2$.\retTwo
 		\end{myIndent}
 	\end{myIndent}
 \end{myIndent}
@@ -22332,7 +22331,7 @@ Firstly, I'll be establishing the Pettis integral. For a textbook I'll be follow
 
 \exTwo\ul{Theorem 3.4:} Suppose $A$ and $B$ are disjoint nonempty convex sets in a real or complex topological vector space $\mathcalli{X}$.\\ [-20pt]
 \begin{itemize}
-	\item[(a)] If $A$ is open there exists $\lambda \in \mathcalli{X}^*$ and $c \in \mathbb{R}$ such that $\rea{\lambda(x)} < c \leq \rea{\lambda y}$ for all $x \in A$ and $y \in B$.
+	\item[(a)] If $A$ is open there exists $\lambda \in \mathcalli{X}^*$ and $c \in \mathbb{R}$ such that $\rea{\lambda(x)} < c \leq \rea{\lambda (y)}$ for\\ all $x \in A$ and $y \in B$.
 	\item[(b)] If $A$ is compact, $B$ is closed, and $\mathcalli{X}$ is locally convex, then there exists $\lambda \in \mathcalli{X}^*$\\ and $c_1, c_2 \in \mathbb{R}$ such that $\rea{\lambda(x)} < c_1 < c_2 < \rea{\lambda(y)}$ for all $x \in A$ and $y \in B$.\newpage
 \end{itemize}
 
@@ -22916,7 +22915,7 @@ Recall the \udefine{Baire Category theorem} which says that a complete metric sp
 
 \exTwo\ul{Baire Category Theorem For LCH Spaces:} \hypertarget{Baire Category Theorem For LCH Spaces}{If} $X$ is an LCH space, then:
 \begin{enumerate}
-	\item[(a)] the intersection of any countable collection of open dense sets in $X$ is dense in $X$;
+	\item[(a)] The intersection of any countable collection of open dense sets in $X$ is dense in $X$;
 	\begin{myIndent}\exThreeP
 		Proof:\\
 		Let $\{U_n\}_{n \in \mathbb{N}}$ be a sequence of open dense sets in $X$. Then it suffices to show for any nonempty open set $W \subseteq X$ that $W \cap (\bigcap_{n \in \mathbb{N}} U_n) \neq \emptyset$.\retTwo
@@ -24387,12 +24386,12 @@ Now the actual problem:
 
 			{\centering $M_1 \oplus \cdots \oplus M_{n-1} \oplus M_n \cong (M_1 \oplus \cdots \oplus M_{n-1}) \oplus M_n$ \par}
 
-			So, we can just conclude by our simple case plus an inductive hypothesis that $\oplus_{i=1}^n M_i$.\retTwo
+			So, we can just conclude by our simple case plus an inductive hypothesis that $\oplus_{i=1}^n M_i$ is Noetherian.\retTwo
 
 			Fortuantely, if we view $M_1$ as a submodule of $M_1 \oplus M_2$ {\HexPPP(i.e. identify $M_1$ with the internal direct sum $M_1 \oplus \{0\} \subseteq M_1 \oplus M_2$)}, then we know by assumption that $M_1$ is Noetherian. Furthermore, it is easily seen that $\frac{M_1 \oplus M_2}{M_1} \cong M_2$ which is also Noetherian. By part (a) of the problem, we thus know that $M_1 \oplus M_2$ is\\ [1pt] Noetherian.\newpage
 		\end{myIndent}
 
-		So, we have a surjective $A$-module homomorphism $\phi : A^n \to M$ where $A_n$ is\\ Noetherian. By part (a), we know that $A_n / \ker(\phi)$ must also be Noetherian and\\ by the first isomorphism theorem we know that $M \cong A^n / \ker(\phi)$. So, $M$ is\\ Noetherian.\retTwo
+		So, we have a surjective $A$-module homomorphism $\phi : A^n \to M$ where $A_n$ is\\ Noetherian. By part (a), we know that $A^n / \ker(\phi)$ must also be Noetherian and\\ by the first isomorphism theorem we know that $M \cong A^n / \ker(\phi)$. So, $M$ is\\ Noetherian.\retTwo
 	\end{myIndent}
 \end{enumerate}
 
@@ -25310,7 +25309,7 @@ If $M$ is an $A$-module, then the \udefine{annihilator} of $M$ is:
 	{\centering$\Ann_A(M) = \bigcap_{m \in M} \ker(a \mapsto am)$.\retTwo\par}
 \end{myIndent}
 
-Similarly, if $m \in M$ then we define $\Ann_A(m) \coloneqq \{a \in A : am = 0\}$. This is also an ideal\\ of $A$.
+Similarly, if $m \in M$ then we define $\Ann_A(m) \coloneqq \{a \in A : am = 0\}$. This is also an ideal\\ of $A$. (Also if $A$ is clear sometimes we just write $\Ann(m)$ or $\Ann(M)$).
 
 \mySepTwo
 
@@ -27961,7 +27960,7 @@ $$\begin{matrix}\underline{\ker(a)}(F) \coloneqq \{v \in F^m : a|v{\rangle} = 0\
 		
 		{\centering$D^n = Dx_1 \oplus \cdots \oplus Dx_m$ and $\underline{\ker(a)}(D) = Dd_1x_1 \oplus \cdots \oplus Dd_k x_k$.\newpage\par}
 
-		Yet note that if $d_i \neq 0$ and $d_i \cdot a |x_i{\rangle} =  |d_1x_1{\rangle} = 0$ then $a | x_i{\rangle} = 0$ since $D$ is a domain and thus $D^n$ is torsion free. It follows that if $d_1 x_1 + \underline{\ker(a)}(D) = 0 + \underline{\ker(a)}(D)$ where $d_i \neq 0$, then $x_1 + \underline{\ker(a)}(D) = 0 + \underline{\ker(a)}(D)$. This proves that:
+		Yet note that since $D$ is a domain and thus $D^n$ is torsion-free, if $d \neq 0$ and\\ $dx \in \underline{\ker(a)}(D)$ then $d \cdot a |x{\rangle} =  a |d x_i{\rangle} = 0$ implies $a | x_i{\rangle} = 0$. This proves that:
 		\begin{itemize}
 			\item $D^m / \underline{\ker(a)}(D)$ is torsion free. And since this quotient module is also finitely\\ generated, it must be a free module.
 			\item $\underline{\ker(a)}(D) = Dd_1x_1 \oplus \cdots \oplus Dd_k x_k \subseteq Dx_1 \oplus \cdots \oplus Dx_k \subseteq \underline{\ker(a)}(D)$.\retTwo
@@ -29281,7 +29280,7 @@ The following is a slight tangent that ended up being unnecessary for solving pa
 
 \blect{Math 200b Homework:}\retTwo
 
-\Hstatement\blab{Set 6 Problem 2:} \hypertarget{Math 200b Set 6 Problem 2}{Suppose} $A$ is a unital commutative and $\Spec(A)$ is the set of all the prime ideals of $A$. For an $A$-module $M$ and $\mathfrak{p} \in \Spec(A)$, let $M_\mathfrak{p}$ be the localization of $M$ at $\mathfrak{p}$. Let $\supp(M) \coloneqq \{\mathfrak{p} \in \Spec(A) : M_\mathfrak{p} \neq 0\}$.
+\Hstatement\blab{Set 6 Problem 2:} \hypertarget{Math 200b Set 6 Problem 2}{Suppose} $A$ is a unital commutative ring and $\Spec(A)$ is the set of all the prime ideals of $A$. For an $A$-module $M$ and $\mathfrak{p} \in \Spec(A)$, let $M_\mathfrak{p}$ be the localization of $M$ at $\mathfrak{p}$. Let $\supp(M) \coloneqq \{\mathfrak{p} \in \Spec(A) : M_\mathfrak{p} \neq 0\}$.
 \begin{myIndent}
 	\color{RawerSienna} For a reminder of what localization is and how it behaves, see \inLinkRap{Math 200b Localization Homework}{pages 618-627}.
 \end{myIndent}
@@ -32119,7 +32118,9 @@ On the other hand, we can define a \udefine{forgetful functor} $\mathcal{F} : B$
 
 \blab{Set 7 Problem 5:} Suppose $A$ is a unital commutative ring and $K$ is a field.
 \begin{enumerate}
-	\item[(a)] Suppose $V$ and $W$ are two $K$-vector spaces. Prove that $\dim_K(V \otimes_K W) = \dim_K(V) \cdot \dim_K(W)$
+	\item[(a)] Suppose $V$ and $W$ are two $K$-vector spaces. Prove that
+	
+	{\centering$\dim_K(V \otimes_K W) = \dim_K(V) \cdot \dim_K(W)$\par}
 	
 	\begin{myIndent}\HexOne
 		Firstly, as every $K$-vector space has a $K$-basis we can find isomorphisms\\ $\theta: V \to \bigoplus_{i \in I} K$ and $\psi: W \to \bigoplus_{j \in J}K$. In turn, $\theta \otimes \psi$ is an isomorphism\\ from $V \otimes_K W$ to $(\bigoplus_{i \in I} K) \otimes_K (\bigoplus_{j \in J} K)$.
@@ -34273,7 +34274,7 @@ Firstly we establish some more tests for the separableness of a polynomial.
 
 	Next suppose $\widehat{\theta}_1(\alpha) = \widehat{\theta}_2(\alpha)$. Then as $\widehat{\theta}_i |_F = \theta$ for both $i$ and also because $F[\alpha]$ is the field generated by $F$ and $\alpha$, we can conclude that $\widehat{\theta}_1(c) = \widehat{\theta}_2(c)$ for all $c$ in their domain $F[\alpha]$. This proves that our proposed mapping is injective.\newpage
 
-	Finally, given any $\alpha^\prime \in V_{m_{\alpha; F}^\theta}(E^\prime)$, recall that by applying the theorem on \inLinkRap{Math 200b Theorem end of page 762}{pages 762-763} to\\ $m_{\alpha; F}$ we know that there is a unique $\widehat{\theta} \in \Isom_\theta(F[\alpha], F^\prime[\alpha^\prime])$ with $\widehat{\theta}(\alpha) = \alpha^\prime$. By\\ expanding the codomain of $\widehat{\theta}$ we get a $\theta$-embedding in $\Embed_\theta(F[\alpha], E^\prime)$. $\blacksquare$\retTwo
+	Finally, given any $\alpha^\prime \in V_{m_{\alpha; F}^\theta}(E^\prime)$, recall that by applying the theorem on \inLinkRap{Math 200b Theorem end of page 762}{pages 762-763}\\ to $m_{\alpha; F}$ we know that there is a unique $\widehat{\theta} \in \Isom_\theta(F[\alpha], F^\prime[\alpha^\prime])$ with $\widehat{\theta}(\alpha) = \alpha^\prime$. By\\ expanding the codomain of $\widehat{\theta}$ we get a $\theta$-embedding in $\Embed_\theta(F[\alpha], E^\prime)$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo Based on the bijection we just proved, we shall write $\widetilde{\theta}_{\alpha^\prime}$ to denote the unique map in\\ $\Embed_\theta(F[\alpha], E^\prime)$ sending $\alpha$ to $\alpha^\prime$.\retTwo

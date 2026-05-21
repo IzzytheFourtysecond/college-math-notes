@@ -333,6 +333,7 @@
 \newcommand{\Int}{\mathrm{Int}}
 \newcommand{\myTr}{\mathrm{Tr}}
 \newcommand{\genus}{\mathrm{genus}}
+\newcommand{\Ass}{\mathrm{Ass}}
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Log}{Log}
@@ -912,7 +913,7 @@ Recall from \inLinkRap{placeholder}{page 332} that if $G \subseteq \mathbb{C}$ i
 	\begin{myIndent}\myComment
 		Remark: This also shows that if there exists $a \in G$ with $u(a) \leq u(z)$ for all $z \in G$, then $u$ is a constant function. After all, if $u$ satisfies the mean value property then so does $-u$. Then $u$ having a minimum implies $-u$ has a maximum, which in turn implies $-u$ is constant.\retTwo
 
-		Remark 2: It will be relevent on \inLinkRap{Math 220c Converse to MVP}{page 837} to note that the proof of this theorem still works if we assume the weaker statement that for all $z \in G$ there is a closed disk $\overline{\Delta}(z, r) \subseteq G$ such that $u(a) = \frac{1}{2\pi} u(a + \rho e^{it})\df t$ for all $0 \leq \rho < r$.
+		Remark 2: It will be relevent on \inLinkRap{Math 220c Converse to MVP}{page 837} to note that the proof of this theorem still works if we assume the weaker statement that for all $z \in G$ there is a closed disk $\overline{\Delta}(z, r) \subseteq G$ such that $u(a) = \frac{1}{2\pi} \int_0^{2\pi} u(a + \rho e^{it})\df t$ for all $0 \leq \rho < r$.
 	\end{myIndent}
 \end{myIndent}
 
@@ -2210,9 +2211,9 @@ We'll briefly call the second property the \udefine{local mean value property}. 
 \exTwo\ul{Theorem (converse to the mean value property):} \hypertarget{Math 220c Converse to MVP}{If} $u: G \to \mathbb{R}$ is continuous and has the local mean value property, then $u$ is harmonic in $G$.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	Let $a \in G$. By the local mean value property of $u$, we can find $R > 0$ such that\\ $\overline{\Delta}(a, R) \subseteq G$ and for all $0 < r < R$, $u(a) = \frac{1}{2\pi}\int_0^{2\pi} u(a + re^{it})\df t$. Also, let\\ us set $f = u|_{\partial \Delta(a, R)}$. Then $f$ is continuous since $U$ is.\retTwo
+	Let $a \in G$. By the local mean value property of $u$, we can find $R > 0$ such that\\ $\overline{\Delta}(a, R) \subseteq G$ and for all $0 < r < R$, $u(a) = \frac{1}{2\pi}\int_0^{2\pi} u(a + re^{it})\df t$. Also, let\\ us set $f = u|_{\partial \Delta(a, R)}$. Then $f$ is continuous since $u$ is.\retTwo
 	
-	We can solve the Dirichlet problem in $\Delta(a, R)$ to find a continuous function $h: \overline{\Delta}(a, R)$ that is harmonic and $\Delta(a, R)$ and satisfies that $h|_{\partial \Delta(a, R)} = f$. If we let $\Phi \coloneqq u - h$ on $\overline{\Delta}(a, R)$ we then have that $\Phi$ is continuous, has the local mean value property on $\Delta(a, R)$, and satisfies that $\Phi|_{\partial \overline{\Delta}(a, R)} \equiv 0$.\retTwo
+	We can solve the Dirichlet problem in $\Delta(a, R)$ to find a continuous function $h: \overline{\Delta}(a, R)$ that is harmonic on $\Delta(a, R)$ and satisfies that $h|_{\partial \Delta(a, R)} = f$. If we let $\Phi \coloneqq u - h$ on $\overline{\Delta}(a, R)$ we then have that $\Phi$ is continuous, has the local mean value property on $\Delta(a, R)$, and satisfies that $\Phi|_{\partial \overline{\Delta}(a, R)} \equiv 0$.\retTwo
 
 	Now $\Phi$ must achieve a max and min on $\overline{\Delta}(a, r)$ since it is a continuous function on a\\ compact set. That said, by the theorem on the bottom half of \inLinkRap{220c Maximal Principle for harmonic functions}{page 804}, we know that if $\Phi$ achieves a max or min in $\Delta(a, r)$ then $\Phi$ is constant. So, we can always conclude that $\Phi$ achieves its min or max in $\partial \Delta(a, r)$. Hence, $\Phi \equiv 0$. In turn, $u \equiv h$ is harmonic in $\Delta(a, r)$. $\blacksquare$\retTwo
 \end{myIndent}
@@ -3101,7 +3102,7 @@ An important result which I didn't give a fully correct proof to in my math 100b
 
 \Hstatement\mySepTwo
 
-\blab{Set 2 Problem 6:} Suppose that $\mChar(F) = p > 0$. An algebraic extension $K/F$ is called \udefine{purely inseparable} if for all $\alpha \in K/F$, $m_{\alpha; F}$ is an inseparable polynomial.
+\blab{Set 2 Problem 6:} \hypertarget{Math 200c Set 2 Problem 6}{Suppose} that $\mChar(F) = p > 0$. An algebraic extension $K/F$ is called \udefine{purely inseparable} if for all $\alpha \in K/F$, $m_{\alpha; F}$ is an inseparable polynomial.
 \begin{enumerate}
 	\item[(a)] Prove that $K/F$ is purely inseparable if and only if every $\alpha \in K$ satisfies that $\alpha^{p^k} \in F$ for some $k \geq 0$.
 	\begin{myIndent}\HexOne
@@ -3250,7 +3251,7 @@ Also, we define the \udefine{Perron function} $u: G \to \mathbb{R}$ by:
 
 Also, if we take a Poisson modification of $\varphi \in \mathcal{P}(G, f)$ along $\overline{\Delta}$, then we have that\\ $\widetilde{\varphi} \in \mathcal{P}(G, f)$.\retTwo
 
-\exTwo\ul{Theorem:} The Perron function $u$ is harmonic.
+\exTwo\ul{Theorem:} The Perron function $u$ is harmonic on $G$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	Fix any $x \in G$ and let $\overline{\Delta} \subseteq G$ be a closed disk centered at $x$. Also for the sake of\\ convenience, write $\mathcal{P} = \mathcal{P}(G, f)$. We can show that $u$ is harmonic in $\Delta$.\retTwo
@@ -3743,7 +3744,7 @@ We shall consider solutions to the equation $u_t = \kappa\triangle u$ (where $\k
 	(If we want to remove the bounded condition, we just write $C^{2,1}$).\retTwo
 \end{myIndent}
 
-\exTwo\ul{Theorem (Maximum Principle):} Let $\Omega = \Omega^\prime \times (a, b)$ where $\Omega^\prime \subseteq \mathbb{R}^N$ is an open bounded set. Also let $\kappa > 0$. If $u \in C^{2, 1}(\Omega) \cap C(\overline{\Omega})$ and satisfies $u_t = \kappa \triangle u$ on $\Omega$, then:
+\exTwo\ul{Theorem (Maximum Principle):} \hypertarget{Heat Equation Weak Maximum Principle}{Let} $\Omega = \Omega^\prime \times (a, b)$ where $\Omega^\prime \subseteq \mathbb{R}^N$ is an open bounded set. Also let $\kappa > 0$. If $u \in C^{2, 1}(\Omega) \cap C(\overline{\Omega})$ and satisfies $u_t = \kappa \triangle u$ on $\Omega$, then:
 
 {\centering$\max\limits_{(x, t) \in \overline{\Omega}} u(x, t) = \max\limits_{(x, t) \in \Gamma} u(x, t)$\\ [4pt]\par} 
 
@@ -3789,10 +3790,10 @@ where $\Gamma = (\Omega^\prime \times \{a\}) \cup (\partial \Omega^\prime \times
 \myComment Some remarks:
 \begin{itemize}
 	\item If $u$ satisfies the PDE $u_t - \kappa \triangle u = 0$, then any scalar multiple of $u$ also satisfies the PDE. Hence, by applying the maximum principle to $-u$, we get an analogous minimum principle for $u$.
-	\item A physics description for the maximum and minimum principles would be that entropy is increasing.\retTwo
+	\item A physics description for the maximum and minimum principles would be that diffusion processes do not lead to clumping.\retTwo
 \end{itemize}
 
-\exTwo\ul{Corollary (Comparison Principle):} Let $\Omega = \Omega^\prime \times (a, b)$ where $\Omega^\prime \subseteq \mathbb{R}^N$ is an open bounded set. Also let $\kappa > 0$. If $u, \widetilde{u} \in C^{2, 1}(\Omega) \cap C(\overline{\Omega})$ solve the PDE $u_t = \kappa \triangle u$ on $\Omega$, then:
+\exTwo\ul{Corollary (Comparison Principle):} \hypertarget{Math 148 page 876 corollary}{Let} $\Omega = \Omega^\prime \times (a, b)$ where $\Omega^\prime \subseteq \mathbb{R}^N$ is an open bounded set. Also let $\kappa > 0$. If $u, \widetilde{u} \in C^{2, 1}(\Omega) \cap C(\overline{\Omega})$ solve the PDE $u_t = \kappa \triangle u$ on $\Omega$, then:
 
 {\centering$u \leq \widetilde{u}$ on $\Gamma$ implies $u \leq \widetilde{u}$ on $\overline{\Omega}$,\\ [4pt]\par} 
 
@@ -3804,7 +3805,7 @@ where $\Gamma = (\Omega^\prime \times \{a\}) \cup (\partial \Omega^\prime \times
 
 \hTwo This also leads to the following uniqueness result on bounded domains in space.\newpage
 
-\exTwo\ul{Theorem (Uniqueness of bounded solutions):} Suppose $\Omega^\prime$ is an open bounded subset of $\mathbb{R}^N$ and $\kappa > 0$. Then after setting $\Omega = \Omega^\prime \times (0, \infty)$, given the initial value problem:
+\exTwo\ul{Theorem (Uniqueness):} Suppose $\Omega^\prime$ is an open bounded subset of $\mathbb{R}^N$ and $\kappa > 0$. Then after setting $\Omega = \Omega^\prime \times (0, \infty)$, given the initial value problem:
 \begin{itemize}
 	\item $u_t - \kappa \triangle u = g(x, t)$ on $\Omega$,
 	\item $u(x, 0) = \varphi(x)$ for all $x \in \overline{\Omega^\prime}$,
@@ -3817,7 +3818,7 @@ there is at most one solution in $C^{2,1}(\Omega) \cap C(\overline{\Omega})$.
 
 \begin{myIndent}\exThreeP
 	Proof:\\
-	Suppose $u, \widetilde{u}$ are two solutions to this initial value problem. Then notice that both $u - \widetilde{u}$ and $0$ solve the same initial value problem except with $g, \varphi, h$ replaced by the constant zero function. If we now apply the comparison principle on the set $\Omega^\prime \times (0, b)$ to the solutions $u - \widetilde{u}$ and $0$, we get that $u - \widetilde{u} \equiv 0$ on $\Omega^\prime \times (0, b)$. Then to finish, just take $b \to \infty$. $\blacksquare$\retTwo
+	Suppose $u, \widetilde{u}$ are two solutions to this initial value problem. Then note that both $u - \widetilde{u}$\\ and $0$ solve the same initial value problem except with $g, \varphi, h$ replaced by the zero\\ function. If we now apply the comparison principle on the set $\Omega^\prime \times (0, b)$ to the solutions\\ $u - \widetilde{u}$ and $0$, we get that $u - \widetilde{u} \equiv 0$ on $\Omega^\prime \times (0, b)$. Then to finish, take $b \to \infty$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo\mySepTwo
@@ -4237,7 +4238,7 @@ Consider a ring homomorphism $\phi: A \to B$. If $I \lhd A$ then I defined its \
 	Since $\phi^*(V(J/I)) = V(J)$ this finishes the proof that $\phi^*$ is a closed map.\retTwo
 \end{myIndent}
 
-It's also worth noting that $\phi^*: \Spec(A/I) \to \Spec(A)$ is injective with an image of $V(I)$. Therefore, $\Spec(A/I)$ is homeomorphic to $V(I)$ equipped with the subspace topology.\retTwo
+It's also worth noting that $\phi^*: \Spec(A/I) \to \Spec(A)$ is injective with an image of $V(I)$. Therefore, $\Spec(A/I)$ is homeomorphic to $V(I)$ equipped with the subspace topology.
 
 \hTwo\mySepTwo 
 
@@ -4249,7 +4250,6 @@ It's also worth noting that $\phi^*: \Spec(A/I) \to \Spec(A)$ is injective with 
 		But then $J = I^e = J^{ce} = I^{ece}$. This proves for any $I \lhd A$ with $I \cap S = \emptyset$ that $I^e = I^{ece}$ (at least according to this particular $\phi$).
 	\end{myIndent}
 \end{itemize}
-
 \hTwo\mySepTwo 
 
 Let $B/A$ be an \udefine{extension of rings}. In other words, we have an injective unital ring\\ homomorphism $\varphi: A \to B$. Usually, we'll just view $A$ as a subring of $B$.\retTwo
@@ -4270,10 +4270,12 @@ We $B/A$ is a \udefine{module-finite} (or just finite) extension if $B$ is a fin
 		$(2 \Longrightarrow 3)$ is obvious.\retTwo
 
 		$(3 \Longrightarrow 1)$\\
-		Write $C = \sum_{i=1}^n Ac_i$. Then multiplication by $b$ is a homomorphism $C \to C$. And\\ if we write $bc_i = \sum_{j=1}^n d_{i,j}c_j$ and let $D$ be the matrix $[d_{i,j}]$, then we have that\\ $(bI - D)|(c_1, \ldots, c_n){\rangle} = 0$. From there we know that $\det(bI - D) = 0$ Hence, the characteristic polynomial of $D$ is a monic polynomial in $A[x]$ such that $f(b) = 0$. $\blacksquare$\newpage
+		Write $C = \sum_{i=1}^n Ac_i$. Then multiplication by $b$ is a homomorphism $C \to C$. And\\ if we write $bc_i = \sum_{j=1}^n d_{i,j}c_j$ and let $D$ be the matrix $[d_{i,j}]$, then we have that\\ $(bI - D)|(c_1, \ldots, c_n){\rangle} = 0$. From there we know that $\det(bI - D) = 0$. Hence,\\ the characteristic polynomial of $D$ is a monic polynomial in $A[x]$ with $f(b) = 0$. $\blacksquare$\newpage
 	\end{myIndent}
 
 	\begin{myDindent}\myComment
+		{\color{red}Note from 5/18/2026: If $(bI - D)\mVecAst{c} = 0$ then $\det(bI - D)\mVecAst{c}$\\$= \adj(bI - D) (bI - D)\mVecAst{c} = 0$. But now $\det(bI - D) c_i = 0$ for all\\ $i$. And since $1 \in \langle c_1, \ldots, c_n\rangle$, this implies $\det(bI - D) = 0$.\retTwo}
+
 		As a side note, we say a ring extension $B/A$ is \udefine{integral} if every $b \in B$ is\\ integral over $A$. The implication $(3 \Longrightarrow 1)$ tells us that any module-finite\\ extension $B/A$ is an integral extension.
 	\end{myDindent}
 \end{enumerate}
@@ -4315,7 +4317,7 @@ We $B/A$ is a \udefine{module-finite} (or just finite) extension if $B$ is a fin
 
 \hTwo\mySepTwo
 
-Here is an important construction. Let $K/\mathbb{Q}$ be a finite degree field extension. Then while we know $\mathbb{Z}$ is integrally closed inside $\mathbb{Q}$, we don't necessarily have that $\mathbb{Z}$ is integrally closed inside $K$. Hence, it is not pointless to define $\mathcal{O}_K$ to be the integral closure of $\mathbb{Z}$ inside $K$.\retTwo
+Here is an important construction. Let $K/\mathbb{Q}$ be a finite degree field extension. Then while we know $\mathbb{Z}$ is integrally closed inside $\mathbb{Q}$, we don't know that $\mathbb{Z}$ is integrally closed inside $K$. Hence, it is not pointless to define $\mathcal{O}_K$ to be the integral closure of $\mathbb{Z}$ inside $K$.\retTwo
 
 We often call $K$ a \udefine{number field} and $\mathcal{O}_K$ the \udefine{ring of algebraic integers} inside $K$.\retTwo
 
@@ -4367,7 +4369,7 @@ Here are some more facts about integral extensions.\retTwo
 
 \exTwo\ul{Lemma:} Suppose $B/A$ is an integral extension of rings.
 \begin{enumerate}
-	\item[(1)] $A$ is a field iff $B$ is a field.
+	\item[(1)] $A$ is a field iff $B$ is a field (assuming $B$ is an integral domain).
 	\item[(2)] If $J \subseteq B$ is an ideal, then $B/J$ is integral over $A/J^c = A/(J \cap A)$.
 	\item[(3)] If $S \subseteq A$ is multiplicatively closed then $S^{-1}B$ is integral over $S^{-1}A$.  
 \end{enumerate}
@@ -4385,12 +4387,10 @@ Here are some more facts about integral extensions.\retTwo
 	
 	{\centering$f(x) = x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0 \in A[x]$ such that $f(b) = 0$.\retTwo\par}
 
-	If we replace each $a_{n-k}$ with $\frac{a_{n-k}}{s^k}$, we get another monic polynomial in $S^{-1}A$ with $\frac{b}{s}$ as a zero.\newpage
-
-	This leaves claim 1 for us to prove.\retTwo
+	If we replace each $a_{n-k}$ with $\frac{a_{n-k}}{s^k}$, we get another monic polynomial in $S^{-1}A$ with $\frac{b}{s}$ as a zero. This finishes showing claim 2 and leaves us with claim 1.\newpage
 
 	$(\Longrightarrow)$\\
-	If $A$ is a field, then $b$ being integral over $A$ is equivalent to $b$ being algebraic over $A$. Hence, we know that $A[b]$ is a subfield of $B$ which in particulr contains $b^{-1}$ if $b \neq 0$. This proves every nonzero element of $B$ has an inverse. So, $B$ is a field.\retTwo
+	If $A$ is a field, then $A[x]$ is a PID. In turn for any $b \in B - \{0\}$ there exists a minimal monic polynomial $f \in A[x]$ such that $f(b) = b^n + a_{n-1}b^{n-1} + \ldots a_1 b + a_0 = 0$. By minimality we know $a_0 \neq 0$ (since $B$ is an integral domain). So, $1 = b \cdot -a_0^{-1}(b^{n-1} + a_{n-1}b^{n-2} + \ldots + a_1)$. This proves every nonzero element of $B$ has an inverse. So, $B$ is a field.\retTwo
 	
 	$(\Longleftarrow)$\\
 	Suppose $B$ is a field and $a \in A - \{0\}$. We know $a^{-1}$ exists in $B$ and is thus integral over $A$. Thus, we can find constants $a_0, \ldots, a_{n-1} \in A$ such that:
@@ -4403,10 +4403,7 @@ Here are some more facts about integral extensions.\retTwo
 \exTwo\ul{Corollary:} Let $B/A$ be an integral extension and let $Q \in \Spec(B)$. Then $Q^c = Q \cap A$ is\\ maximal in $A$ if and only if $Q$ is maximal in $B$.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	$Q$ is maximal in $B$ iff $B/Q$ is a field. But that happens iff $A/Q^c$ is a field, which in turn happens iff $Q^c$ is maximal in $A$. $\blacksquare$
-	\begin{myIndent}\exPPP
-		(Here I used parts 1 and 2 of the prior lemma\dots)\retTwo
-	\end{myIndent}
+	$Q$ is maximal in $B$ iff $B/Q$ is a field. But note that since $B/Q$ is an integral domain (since $Q \in \Spec(B)$), $B/Q$ is a field iff $A/Q^c$ is a field, which in turn happens iff $Q^c$ is maximal in $A$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \ul{Proposition:} If $B/A$ is an integral extension:
@@ -4417,7 +4414,7 @@ Here are some more facts about integral extensions.\retTwo
 	
 	\begin{myIndent}\exThreeP
 		Proof:\\
-		We start with (2). Let $P \coloneqq Q_1^c = Q_2^c$, and then let $S \coloneqq A - P$. Then by\\ considering the localizations $A_P = S^{-1}A$ as well as $S^{-1}B$, we get an integral\\ extension $S^{-1}B / A_P$. Also importantly, $A_p$ is a local ring whose only maximal ideal\\ is $S^{-1}P$.\retTwo
+		We start with (2). Let $P \coloneqq Q_1^c = Q_2^c$, and then let $S \coloneqq A - P$. Then by\\ considering the localizations $A_P = S^{-1}A$ as well as $S^{-1}B$, we get an integral\\ extension $S^{-1}B / A_P$. Also importantly, $A_P$ is a local ring whose only maximal ideal\\ is $S^{-1}P$.\retTwo
 
 		But now note that $Q_i \cap S = Q_i \cap (A \cap S) = (Q_i \cap A) \cap S = P \cap S = \emptyset$ for both $i$. It follows that $S^{-1}Q_1$ and $S^{-1}Q_2$ are in $\Spec(S^{-1}B)$. Also, we can show for both $i$ that $S^{-1}Q_i \cap S^{-1}A = S^{-1}(Q_i \cap A) = S^{-1}P$.
 		\begin{myIndent}\exPPP
@@ -4469,15 +4466,15 @@ Returning to the topic of rings of algebraic integers, given a number field $K$ 
 
 This finishes two parts of proving that $\mathcal{O}_K$ is a \udefine{Dedekind ring}, meaning that $\mathcal{O}_K$ is an\\ integral domain that is Noetherian, has Krull dimension $1$, and is integrally closed.\retTwo
 \begin{myIndent}\myComment
-	We aren't going to give a proof yet that $\mathcal{O}_K$ is Noetherian. That said, in the specific case that $K = \mathbb{Q}[\sqrt{d}]$ where $d$ s a squarefree integer, we can already see that $\mathcal{O}_K$ is finitely generated and thus Noetherian.\retTwo
+	We aren't going to give a proof yet that $\mathcal{O}_K$ is Noetherian. That said, in the specific case that $K = \mathbb{Q}[\sqrt{d}]$ where $d$ is a squarefree integer, we can already see that $\mathcal{O}_K$ is finitely generated and thus Noetherian.\retTwo
 
-	Dedekind rings have an incredibly versatile theory of factorization of ideals (which work independently of being a UFD) and are thus very important to number theory.\retTwo
+	Dedekind rings have an incredibly versatile theory of factorization of ideals (which works independently of being a UFD) and are thus very important to number theory.\retTwo
 \end{myIndent}
 
 \hTwo\mySepTwo
 
 
-\exTwo\ul{Lemma (Prime Avoidance):} Let $A$ be a ring, let $P_1, \ldots, P_n \in \Spec(A)$, and let $I$ be an\\ ideal of $A$ such that $I \subseteq \bigcup_{i=1}^n P_i$. Then $I \subseteq P_i$ for some $i$.
+\exTwo\ul{Lemma (Prime Avoidance):} \hypertarget{Prime Avoidence Lemma}{Let} $A$ be a ring, let $P_1, \ldots, P_n \in \Spec(A)$, and let $I$ be an\\ ideal of $A$ such that $I \subseteq \bigcup_{i=1}^n P_i$. Then $I \subseteq P_i$ for some $i$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	We shall proceed by induction in order to prove the contrapositive of the lemma. In other words, we want to show that if $I \not\subseteq P_i$ for all $i$, then $I \not\subseteq \bigcup_{i=1}^n P_i$.\retTwo
@@ -4699,7 +4696,7 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 
 \hTwo After going to office hours, I was made aware that there was a theorem from a class I skipped that I didn't take notes on that I really need here. So I shall deal with that now.\retTwo
 
-\exTwo\ul{Theorem:} Let $A$ be a Noetherian ring.
+\exTwo\ul{Theorem:} \hypertarget{Noetherian Rings allow prime factorization of ideals}{Let} $A$ be a Noetherian ring.
 \begin{enumerate}
 	\item[1.] We can write $0 = P_1 \cdots P_n$ as a product of prime ideals (where not all $P_i$ are\\ necessarily distinct).
 	\begin{myIndent}\exThreeP
@@ -5321,23 +5318,63 @@ One last observation I want to to make is that if $f(x, y) = u(x, y) + iv(x, y)$
 		\end{myIndent}
 	\end{myIndent}
 
-	By combining lemmas A and B, we can conclude $\Df^{m+1} g \equiv 0$. And now we are done. $\blacksquare$
+	By combining lemmas A and B, we can conclude $\Df^{m+1} g \equiv 0$. And now we are done. $\blacksquare$\retTwo
 \end{myIndent}
 
+\hTwo\mySepTwo
 
+Considering how much effort I put into proving lemma B, I'd like to use it to prove another random result. This wasn't part of lecture though so I'm just going on a random tangent.\retTwo
 
-\hypertarget{idk reference 3}{}
+An easy to see consequence of Hadamard is that if $f \not\equiv 0$ is any function of finite order that has an infinite set of zeros, then $f(z)$ can be written in the form $\frac{1}{z^m}e^{P(z)}\prod_{k=1}^\infty E_p(\frac{z}{a_k})$ where $P$ is a polynomial and $p$ and $\deg(P)$ are at most the order of $f$. But what about the the case where $f$ has only finitely many zeros?\retTwo
 
+\exTwo\ul{Proposition:} Suppose $f$ is an entire function with finite order $\lambda$ as well as only finitely\\ many zeros $a_1, \ldots, a_n$ (repeated according to multiplicity). Then $\lambda$ is an integer and\\ $f(z) = e^{P(z)} \cdot \prod_{k=1}^n (z - a_k)$ where $P(z)$ is a polynomial of degree $\lambda$.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, we know there exists an entire function $F$ with no zeros such that\\ $f(z) = F(z) \cdot \prod_{k=1}^n (z - a_k)$. Also because $F$ is nonzero everywhere on $\mathbb{C}$ and $\mathbb{C}$ is simply connected, we know that $F$ has some logarithm $P$. Therefore, we've proven that we can write $f(z) = e^{P(z)} \cdot \prod_{k=1}^n (z - a_k)$ where $P$ is an entire function.\retTwo
 
+	Now importantly $f$ and $e^P$ must both have order $\lambda$. Also $e^P \neq 0$ anywhere. Thus if $m \in \mathbb{N}$ satisfies that $m + 1 > \lambda$ then we know from lemma B that:
 
+	{\centering $P^{(m+1)} = \Df^m P^\prime = \Df^m \frac{(e^P)^\prime}{e^P} = -m! \cdot 0 = 0$. \retTwo\par}
 
+	This proves that $P(z)$ is a polynomial of degree at most $m$. Then to finish off, recall from \inLinkRap{Set 5 Problem 6 Math 220c}{set 5 problem 6 on page 906} that $e^{P(z)}$ has order exactly equal to $\deg(P(z))$. So, the order $\lambda$ of $f$ is an integer and $\deg(P(z)) = \lambda$. $\blacksquare$\retTwo
 
+	\begin{myIndent}\myComment
+		One corollary of this proposition is that if $f$ is any entire function of finite order\\ $\lambda \notin \mathbb{Z}$, then $f$ must assume each of the values in its range infinitely many times. After all, if $\alpha \in f(\mathbb{C})$ is assumed only finitely many times then we'd know from prior proposition that $f(z) - \alpha$ has an integer order. Yet that would contradict that $f$ doesn't have an integer order.\retTwo
+	\end{myIndent}
+\end{myIndent}
 
+\hTwo As a consequence of this, if $f$ has only finitely many zeros $a_1, \ldots, a_n$ then it is\\ natural to define $\genus(f) \coloneqq \deg(P)$ if there exists a polynomial $P$ such that\\ $f(z) = e^{P(z)}\prod_{k=1}^n (z - a_k)$. Otherwise, we define $\genus(f) \coloneqq \infty$. Then\\ Hadamard's theorem still trivially holds in this case.\retTwo
 
+\mySepTwo 
 
+There are two more results from lecture that are fair game for the qualifying exam.\retTwo
 
+\exTwo\ul{Proposition:} Suppose $f$ is entire, not constant, and of finite order. Then the image of $f$  in $\mathbb{C}$ omits at most one value. 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Assume $f$ omits distinct values $\alpha$ and $\beta$. By defining $f^{\mathrm{new}} \coloneqq \frac{f(z) - \alpha}{\beta - \alpha}$ we can assume without loss of generality that $\{\alpha, \beta\} = \{0, 1\}$.\retTwo
 
-\newpage
+	Next, since $f$ omits $0$ we know that $f = e^g$ for some entire function $g$. Also, since $f$ omits $1$ we know that $g$ omits $0$. Yet since the order of $f$ is finite, we know that $\genus(f) < \infty$ and thus $g$ is a polynomial. The only way a polynomial $g$ can have no zeros is if $g \equiv C$ for some constant $C$. Yet now we've proven that $f$ is constant, which contradicts our initial assumption. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		Remark: Picard's little theorem (which we won't prove in this class) strengthens this result by removing the assumption that $f$ is of finite order.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo One other result to be aware of is that the order of $\cos(z)$ and $\sin(z)$ is exactly $1$.
+\begin{myIndent}\pracTwo
+	To see why, note that $\cos(z) = \rea{e^{iz}} \leq |e^{iz}| = e^{\rea{iz}} \leq e^{|z|}$. A similar story holds for $\sin(z)$. Hence both functions have order at most $1$.\newpage
+
+	Meanwhile, let $z_n = ni$. Then for any $\varepsilon > 0$ we can see that:
+	
+	{\centering$\cos(z_n) = \frac{1}{2}(e^{-n} + e^{+n}) > e^{n^{1 - \varepsilon}} = e^{|z_n|^{1 - \varepsilon}}$ when $|z_n| \gg 0$.\retTwo\par}
+	
+	A similar proof works for $\sin$ since $|\sin(z_n)| = \frac{1}{2}|e^{-n} - e^{n}|$.\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo 
+
+I did not finish all the homework I was supposed to have. But here are two exercises I did do.\retTwo
 
 \Hstatement\blab{Set 5 Problem 3:} Let $f$ be an entire function satisfying that $|f^\prime(z)| \leq e^{|z|}$ and $f(\sqrt{n}) = 0$ for all $n \in \mathbb{N}_{> 0}$. Show that $f \equiv 0$.
 \begin{myIndent}\HexOne
@@ -5357,7 +5394,7 @@ One last observation I want to to make is that if $f(x, y) = u(x, y) + iv(x, y)$
 
 	\item[(ii)] Find all entire functions of $f$ of finite order such that $f(\log(n)) = n^2$ for all integers $n \geq 1$.
 	\begin{myIndent}\HexOne
-		Firstly, fix $f(z) = e^{2z}$. Then $f$ is an entire function with order exactly equal to $1$ (see \inLinkRap{Set 5 Problem 6 Math 220c}{Set 5 Problem 6 on page 906} which I did prior to this problem).\retTwo
+		Firstly, fix $f(z) = e^{2z}$. Then $f$ is an entire function with order exactly equal to $1$ (see \inLinkRap{Set 5 Problem 6 Math 220c}{set 5 problem 6 on page 906} which I did prior to this problem).\retTwo
 
 		Next, I claim that $f$ is the only such function satisfying our claim. After all, if $g$ were a distinct finite order entire function also satisfying our problem, then $h \coloneqq f - g$ would have finite order as well as zeros at $\log(n)$ for every $n \geq 1$.\retTwo
 
@@ -5365,44 +5402,1149 @@ One last observation I want to to make is that if $f(x, y) = u(x, y) + iv(x, y)$
 		\begin{myIndent}\HexTwoP
 			To see, why first evaluate by L'Hôpital's rule that:
 
-			{\centering $\lim\limits_{n \to \infty}\frac{n}{(\log(n))^{k}} = \lim\limits_{x \to \infty}\frac{x}{(\log(x))^{k}} = \lim\limits_{x \to \infty}\frac{x}{k(\log(x))^{k-1}} = \cdots = \lim\limits_{x \to \infty}\frac{x}{k!} = \infty$ \retTwo\par}
+			{\centering $\lim\limits_{n \to \infty}\frac{n}{(\log(n))^{k}} = \lim\limits_{x \to \infty}\frac{x}{(\log(x))^{k}} = \lim\limits_{x \to \infty}\frac{x}{k(\log(x))^{k-1}} = \cdots = \lim\limits_{x \to \infty}\frac{x}{k!} = \infty$ \newpage\par}
 
 			Therefore, we know for large enough $N > 0$ that $\frac{1}{n} < \frac{1}{(\log(n))^k}$. In turn by the comparison test, we know $\sum_{n=2}^\infty \frac{1}{(\log(n))^k} = \infty$ diverges.\retTwo
 		\end{myIndent}
 
-		As a result, $h$ must have infinite genus, and in turn by Hadarmard's theorem $h$ must have infinite order. This is a contradiction. $\blacksquare$\retTwo
+		As a result, $h$ must have infinite genus, and in turn by Hadarmard's theorem $h$ must have infinite order. This is a contradiction. $\blacksquare$
 	\end{myIndent}
 \end{enumerate}
 
-\blab{Set 5 Problem 4:} Let $f: \mathbb{C} \to \mathbb{C}$ be given by $f(z) = z - \sin(z)$.
+\hTwo\mySepTwo
+
+\dispDate{5/5/2026}
+
+\blect{Math 148 Lecture Notes:}\retTwo
+
+I am really far behind in this class so I'm probably going to spend several days catching up. The faster I catch up in this class the sooner I can copy down my notes on distributions from math 240c.\retTwo
+
+\hypertarget{page 917 reference}{Firstly}, here is a theorem from an earlier homework. Also for the sake of convenience, given any $x \in \mathbb{R}^N$ I will write $|x|$ to mean $\|x\|_2$.\retTwo
+
+\exTwo\ul{Theorem (Maximum Principle on $\mathbb{R}^N \times \mathbb{R}_{> 0}$):} Let $\Omega = \mathbb{R}^N \times \mathbb{R}_{> 0}$ and suppose $u$\\ is a $C_b^{2,1}(\Omega) \cap C(\overline{\Omega})$ solution to the heat equation $u_t = \kappa \triangle u$ on $\Omega$ (where $\kappa > 0$).\\ If $u(x, 0) \leq M$ for all $x \in \mathbb{R}^N$ then $u(x, t) \leq M$ for all $(x, t) \in \Omega$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	First consider any $T > 0$ and $\varepsilon > 0$, and then let:
+	
+	{\centering$v_{T,\varepsilon}(x, t) \coloneqq u(x, t) - \frac{\varepsilon}{(2T - t)^{N/2}}e^{\frac{|x|^2}{4\kappa(2T - t)}}$.\retTwo\par}
+
+	Then $v_{T,\varepsilon}$ satisfies the heat equation on $\mathbb{R}^N \times (0, 2T)$.
+	\begin{myIndent}\exPPP
+		It's clear that $v_{T,\varepsilon}$ is well defined and $C^{2,1}$ on $(0, 2T)$. The rest is just an annoying\\ computation:
+		\begin{itemize}
+			\item $\partial_t v_{T,\varepsilon}(x, t) = u_t(x, t) - \frac{N\varepsilon}{2(2T - t)^{(N/2) + 1}}e^{\frac{|x|_2^2}{4\kappa(2T - t)}} - \frac{\varepsilon|x|^2}{4\kappa(2T - t)^{(N/2) + 2}}e^{\frac{|x|^2}{4\kappa(2T - t)}}$\retTwo 
+			
+			\item $\partial_{x_i} v_{T,\varepsilon}(x, t) = u_{x_i}(x, t) - \frac{\varepsilon x_i}{2\kappa(2T - t)^{(N/2) + 1}}e^{\frac{|x|^2}{4\kappa(2T - t)}}$
+			
+			\item $\partial_{x_i,x_i} v_{T,\varepsilon}(x, t) = u_{x_i,x_i}(x, t) - \frac{\varepsilon}{2\kappa(2T - t)^{(N/2) + 1}} e^{\frac{|x|^2}{4\kappa(2T - t)}} - \frac{\varepsilon x_i^2}{4\kappa^2(2T - t)^{(N/2) + 2}} e^{\frac{|x|^2}{4\kappa(2T - t)}}$
+			
+			\item $\triangle v_{T,\varepsilon}(x, t) = \triangle u(x, t) - \frac{N\varepsilon}{2\kappa(2T - t)^{(N/2) + 1}}e^{\frac{|x|^2}{4\kappa(2T - t)}} - \frac{\varepsilon|x|^2}{4\kappa^2(2T - t)^{(N/2) + 2}}e^{\frac{|x|^2}{4\kappa(2T - t)}}$.\retTwo
+		\end{itemize}
+
+		Thus $\partial_t v_{T,\varepsilon} - \kappa\triangle v_{T,\varepsilon} = u_t - \kappa \triangle u + 0 = 0$.\retTwo
+	\end{myIndent}
+
+	\color{RawerSienna} (The motivation for us considering the function $v_{T,\varepsilon}$ is that the term we are subtracting from $u$ is always positive and in fact rapidly increases at $|x| \to \infty$. Hence, $v_{T,\varepsilon} < u$ for all $(x, t) \in \mathbb{R}^N \times [0, 2T)$ and it will hopefully be way easier to prove $v_{T,\varepsilon}$ is bounded by $M$. Also importantly, we can see that $v_{T,\varepsilon} \to u$ pointwise on $\mathbb{R}^N \times [0, 2T)$ as $\varepsilon \to 0$. So by taking $\varepsilon \to 0$ we can translate any boundedness result on $v_{T,\varepsilon}$ to a boundedness result on $u$.)\newpage
+
+	\exThreeP Since $u$ is bounded above on $\partial \Omega$ by the constant $M$, and also because we assumed in the theorem statement that $u$ is bounded on $\Omega$, we can overall say that there exists some $K > 0$ such that $u(x, t) \leq K$ for all $(x, t) \in \overline{\Omega}$. Without loss of generality we can specifically pick $K > M$.  Then I claim that there exists $R > 0$ such that $v_{T,\varepsilon}(x, t) \leq M$ for all $(x, t) \in (\mathbb{R}^N - B_R(0)) \times [0, T]$.
+	\begin{myIndent}\exPPP
+		To see why, notice that it suffices for $u - v_{T, \varepsilon} \geq K - M$ if we want to have that $v_{T,\varepsilon}(x, t) \leq M$. Therefore, we just need to find some $R$ such that:
+		
+		{\centering$u - v_{T,\varepsilon} = \frac{\varepsilon}{(2T - t)^{N/2}}e^{\frac{|x|^2}{4\kappa(2T - t)}} \geq K - M$ when $|x| > R$ and $t \in [0, T]$.\retTwo\par}
+		
+		
+		Fortunately, note that if $t \in [0, T]$ then $u - v_{T,\varepsilon} \geq \frac{\varepsilon}{(2T)^{N/2}}e^{\frac{|x|^2}{8\kappa T}}$.\retTwo
+
+		Next, note that: 
+		
+		{\centering$\frac{\varepsilon}{(2T)^{N/2}}e^{\frac{|x|^2}{8\kappa T}} \geq K - M \iff |x|^2 \geq 8\kappa T \cdot \log\left(\frac{(2T)^{N/2}}{\varepsilon}(K - M)\right) \eqqcolon \alpha$.\retTwo\par}
+
+		Therefore if $\alpha \leq 0$ we can set $R$ to anything. Otherwise, we set $R \geq \sqrt{\alpha}$.\retTwo
+	\end{myIndent}
+
+	Yet now by the maximum principle (see \inLinkRap{Heat Equation Weak Maximum Principle}{pages 875-876}) applied to $v_{T,\varepsilon}$ on the domain $\overline{B_R(0)} \times [0, T]$, we can conclude that:
+
+	{\centering$\max\limits_{\substack{x \in \overline{B_R(0)} \\ t \in [0, t]}}(v_{T,\varepsilon}(x, t)) = \max\limits_{(x, t) \in \Gamma}(v_{T,\varepsilon}(x, t))$\\ [4pt]\par}
+
+	where $\Gamma \coloneqq (\overline{B_R(0)} \times \{0\}) \cup (\partial B_{R}(0) \times [0, T])$.\retTwo
+
+	Furthermore, on the first set in the above union we know $v_{T,\varepsilon} \leq u \leq M$. Meanwhile, we know from our prior reasoning that $v_{T,\varepsilon} \leq M$ on the second set in the above union. This proves that $v_{T,\varepsilon} \leq M$ on $\overline{B_R(0)} \times [0, T]$.\retTwo
+
+	With that, we've shown that $v_{T,\varepsilon} \leq M$ on $\mathbb{R}^N \times [0, T]$. By taking $\varepsilon \to 0$ this then proves that $u \leq M$ on $\mathbb{R}^N \times [0, T]$ as well. And finally as $T$ was arbitrary, we can take $T \to \infty$ to get that $u \leq M$ on $\mathbb{R}^N \times \mathbb{R}_{\geq 0}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo The significance of this theorem is that we can conclude an analogous comparison principle and uniqueness theorem as on \inLinkRap{Math 148 page 876 corollary}{pages 876-877}.\retTwo
+
+\exTwo\ul{Corollary (Comparison Principle):} Let $\Omega = \mathbb{R}^N \times \mathbb{R}_{> 0}$. Also let $\kappa > 0$. If\\ $u, \widetilde{u} \in C^{2,1}_b(\Omega) \cap C(\overline{\omega})$ solve the PDE $u_t = \kappa \triangle u$ on $\Omega$, then $u \leq \widetilde{u}$ on $\mathbb{R}^N \times \{0\}$\\ implies that $u \leq \widetilde{u}$ on $\Omega$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Apply the maximum principle to $u - \widetilde{u}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem (Uniqueness of bounded solutions):} Let $\Omega = \mathbb{R}^N \times \mathbb{R}_{>0}$. Then given any $\kappa > 0$, $\varphi \in C_b(\mathbb{R}^N)$, and $h \in C(\Omega)$, there is at most one solution in $C_b^{2,1}(\Omega) \cap C(\overline{\Omega})$ to the initial value problem:
+
+{\centering $u_t = \kappa \triangle u + h$ on $\Omega$ and $u(x, 0) = \varphi(x)$ for all $x \in \mathbb{R}^N$.\newpage\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $u$ and $\widetilde{u}$ are two solutions, we can apply the comparison principle to $u - \widetilde{u}$ and $0$ as\\ well as $\widetilde{u} - u$ and $0$ to get that $u = \widetilde{u}$ on $\Omega$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Next, I want to follow Folland Real Analysis chapter 8.7 in order to give motivation for the solution to the heat equation.\retTwo
+
+\blab{The Time-Independent Case:}\\
+A \udefine{linear differential operator} $L$ is a linear map on some space of functions $\mathbb{R}^N \to \mathbb{R}$ of\\ the form $Lf(x) \coloneqq \sum\limits_{|\alpha| \leq m} a_\alpha(x)\partial^{\alpha} f(x)$ where each $a_\alpha \in C^\infty(\mathbb{R}^n)$.\retTwo
+
+If all the $a_\alpha$ are constant functions, we say $L$ is a \udefine{constant-coefficient operator}.
+\begin{myIndent}\myComment
+	Here $\alpha = (\alpha_1, \ldots, \alpha_N) \in (\mathbb{Z}_{\geq 0})^N$ is a multi-index. As a reminder, we say $|\alpha| \coloneqq \sum_{k=1}^N \alpha_k$, $\alpha! \coloneqq \prod_{k=1}^N \alpha_k!$, and $(x_1, \ldots, x_N)^{\alpha} \coloneqq \prod_{k=1}^N x_k^{\alpha_k}$. Also if $f \in C^{|\alpha|}(U)$ then $\partial^{\alpha}f$ is defined by differentiating $f$ $(\alpha_k)$-many times with respect to $x_k$ for each $k$.\retTwo
+\end{myIndent}
+
+In the special case of a constant-coefficient operator, note that by applying the Fourier transform on $L^1$ (see my math 240c notes), we have for well enough behaved $f$ that:
+
+{\centering $(Lf)^\wedge(\xi) = \sum\limits_{|\alpha| \leq m} a_\alpha (\partial^{\alpha} f)^\wedge(\xi) = \sum\limits_{|\alpha| \leq m} a_\alpha (2\pi i \xi)^{\alpha} \widehat{f}(\xi)$ \retTwo\par}
+
+\begin{myIndent}\myComment
+	As a reminder since different people have different conventions, if $f \in L^1(\mathbb{R}^n)$ then\\ $\widehat{f}(\xi) \coloneqq \int_{\mathbb{R}^N} f(x)e^{-2\pi i \xi \cdot x} \df x$. Also, if $f$ is Schwartz then $f$ will definitely be well enough behaved for the above reasoning.\retTwo
+\end{myIndent}
+
+In particular, define the constants $b_\alpha = (2\pi i)^{|\alpha|} a_\alpha$ and the operators $\Df^{\alpha} \coloneqq (2\pi i)^{-|\alpha|}\partial^{\alpha}$. Then $L = \hspace{-0.1em}\sum\limits_{|\alpha| \leq m}\hspace{-0.1em} b_\alpha D^\alpha$ and $(Lf)^{\wedge} = \hspace{-0.1em}\sum\limits_{|\alpha| \leq m}\hspace{-0.1em} b_\alpha \xi^{\alpha} \widehat{f}$.\retTwo
+
+If we write $P(\xi) = \hspace{-0.1em}\sum_{|\alpha| \leq m}\hspace{-0.1em} b_\alpha \xi^{\alpha}$, we call the polynomial $P$ the \udefine{symbol} of the operator $L$\\ [-1pt] (which we also write as $P(D)$). Then $(P(D)f)^\wedge = P\widehat{f}$.\retTwo
+
+This is useful for solving PDEs because if $P(D)u = f$ is a partial differential equation, then by applying the Fourier transform to both sides we get  $\widehat{u} = \frac{1}{P}\widehat{f}$ and in turn $u = (\frac{1}{P}\widehat{f})^{\vee}$. In particular, in the special case that $\frac{1}{P}$ is the Fourier transform of some function $\phi$ we get that $u = \phi * f$.
+\begin{myIndent}\myComment
+	Of course this method is heavily limited by the fact though that this reasoning only works if $u$ is well enough behaved and if it is well-defined to take the Fourier transform of $f$ and $\frac{1}{P}\widehat{f}$. Hence, none of this reasoning is very concrete yet.\retTwo
+\end{myIndent}
+
+Before moving on, another important observation is that:
+
+{\centering$\triangle = \sum_{k=1}^n \frac{\partial^2}{\partial x_k^2} = -4\pi^2 \sum_{k=1}^n D_k^2 = P(D)$.\retTwo\par}
+
+Hence, the symbol of the Laplacian is $P(\xi) = -4\pi^2|\xi|^2$.\newpage
+
+\blab{A Time-Dependent Case:}\\
+We next consider differential operators $L$ on a space of functions $f(x, t) : \mathbb{R}^N \times \mathbb{R} \to \mathbb{R}$ (or $\mathbb{R}^N \times \mathbb{R}_{>0} \to \mathbb{R}$). In particular, we consider the case where $L$ has no mixed spatial and temporal partial derivatives, and every coefficient is constant.
+\begin{myIndent}\myComment
+	Thus for any multi-index $\alpha \in (\mathbb{Z}_{\geq 0})^N$, we define $\partial^{\alpha}$ and $D^{\alpha}$ purely by taking\\ partial derivatives with respect to $x = (x_1, \ldots, x_N)$. Then we want to write\\ $L = P(D) + Q(\partial_t)$ where $P \in \mathbb{C}[\xi_1, \ldots, \xi_N]$ and $Q \in \mathbb{C}[t]$.\retTwo
+\end{myIndent}
+
+A general strategy we can then employ for solving the PDE $(Q(D) + P(\partial_t))u(x, t) = f(x, t)$ is that we shall take the Fourier transformation only with respect to the spatial argument. 
+\begin{myIndent}\myComment
+	For the sake of notation I will write $\widehat{u}(\xi, t) = \int_{\mathbb{R}^N} u(x, t)e^{-2\pi i \xi \cdot x}\df x$. Assuming $u$ is well-behaved enough to apply Leibniz's rule, we can show that $\widehat{u}$ is (jointly) continuous and that $\partial_t \widehat{u}(\xi, t) = (\partial_t u)^\wedge(\xi, t)$.\retTwo
+\end{myIndent}
+
+By applying the Fourier transformation in this way, we will get the equation that:
+
+{\centering $Q(\xi)\widehat{u}(\xi, t) + P(\partial_t)\widehat{u}(\xi, t) = \widehat{f}(\xi, t)$. \retTwo\par}
+
+But now for each fixed $\xi$ this is a linear ODE which will ideally let us solve for $\widehat{u}(\xi, t)$. Then hopefully by applying the (spatial) inverse Fourier transformation to $\widehat{u}$ we can solve for $u(x, t)$.\retTwo
+
+\begin{myIndent}\mySepFour\end{myIndent}
+
+Here is how the above ideas were used to originally "solve" the heat equation\\ $(\partial_t - \kappa \triangle) u = 0$ on $\mathbb{R}^{N} \times [0, \infty)$ where $\kappa > 0$ and we are given an initial condition $u(x, 0) = f(x)$. \color{BrickRed}(Also I'm intentionally being vague about which  assumptions are needed because all I'm trying to do right now is give intuition for the formulas which will be proven rigorously in the actual 148 lecture.)\retTwo
+\begin{myIndent}\pracTwo
+	To start off, by applying the Fourier transformation to the above PDE, we get that:
+	
+	{\centering$(\partial_t + 4\pi^2 \kappa |\xi|^2)\widehat{u}(\xi, t) = 0$.\retTwo\par}
+
+	Also note that $\widehat{u}(\xi, 0) = \widehat{f}(\xi)$.\retTwo
+
+	Thus for any fixed $\xi$ we consider the function $v(t) = \widehat{u}(\xi, t)$. Then we know $v$ satisfies the initial value problem $v^\prime(t) + 4\pi^2 \kappa |\xi|^2 v(t) = 0$ and $v(0) = \widehat{f}(\xi)$. By solving for $v$ we get that $v(t) = \widehat{f}(\xi)e^{-4\pi^2 \kappa |\xi|^2 t}$. Hence, we've "shown" that:
+
+	{\centering $\widehat{u}(\xi, t) = \widehat{f}(\xi) e^{-4\pi^2 \kappa t |\xi|^2}$ \retTwo\par}
+
+	Yet now recalling that $\mathcal{F}(e^{-a\pi |x|^2}) = a^{-N/2}e^{-\pi |\xi|^2/ a}$, we can solve that:
+
+	{\centering $S^{(N)}(x, t) \coloneqq (4\pi \kappa t)^{-N/2} e^{\frac{-|x|^2}{4\kappa t}}$ satisfies that $(S^{(N)})^\wedge(\xi, t) = e^{-4\pi^2 \kappa t |\xi|^2}$ \retTwo\par}
+
+	Therefore $\widehat{u}(\xi, t) = (f * S^{(N)})^\wedge(\xi, t)$.
+	\begin{myIndent}\myComment
+		(Here convolution is with respect to the spatial argument of our functions.)\retTwo
+	\end{myIndent}
+
+	In turn, we should have that:\newpage
+	
+	{\centering$u(x, t) = (f * S^{(N)})(x, t) = \int_{\mathbb{R}^N} f(y) \cdot (4\pi \kappa t)^{-N/2} e^{\frac{-|x - y|^2}{4\kappa t}}\df y$.\retTwo\par}
+\end{myIndent}
+
+\hTwo\mySepTwo 
+
+Going back to the actual lecture notes, we call $S^{(N)}(x, t) \coloneqq (4\pi \kappa t)^{-N/2} e^{\frac{-|x|^2}{4\kappa t}}$ the\\ \udefine{fundamental solution} of the heat equation $(\partial_t - \kappa\triangle)u = 0$ on $\mathbb{R}^N \times \mathbb{R}_{> 0}$.\retTwo
+
+One can manually check that $S^{(N)}(x, t)$ does satisfy the heat equation. I don't feel like doing that though because it's just a bunch of symbol pushing.
+\begin{myIndent}\myComment
+	A physicist would have just accepted the prior two pages of napkin math and then\\ concluded that $S^{(N)}$ satisfies the heat equation where we let the initial condition $f$\\ be the Dirac delta function. :P\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} Let $\kappa > 0$, $\Omega = \mathbb{R}^N \times \mathbb{R}_{>0}$, and $\varphi \in C_b(\mathbb{R}^N)$ Then the initial value\\ problem $u_t = \kappa \triangle u$ on $\Omega$ and $u(x, 0) = \varphi(x)$ on $\mathbb{R}^N$ is solved by:
+
+{\centering$u(x, t) = \int_{\mathbb{R}^N} \varphi(y) \cdot (4\pi \kappa t)^{-N/2} e^{\frac{-|x - y|^2}{4\kappa t}}\df y$.\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		As a side note, this integral is easily seen to be well-defined when $t > 0$. That said, the integrand isn't defined when $t = 0$. Thus, when we say $u(x, 0) = \varphi(x)$ what we really mean is that $\lim\limits_{\substack{x \to x_0 \\ t \to 0}} u(x, t) = \varphi(x_0)$ for all $x_0 \in \mathbb{R}^N$.
+	\end{myIndent}
+
+	Proof:\\
+	To start off, $u(x, t)$ is bounded by $\|\varphi\|_u \cdot 1$ due to Hölder's inequality. Also by Leibniz's rule on $\mathbb{R}^N \times \mathbb{R}_{>0}$ plus the fact that $S^{(n)}$ satisfies the equation on $\mathbb{R}^N \times \mathbb{R}_{>0}$, we can easily conclude that:
+
+	{\centering\begin{tabular}{l}$u_t(x, t) = \int_{\mathbb{R}^N}S_t^{(N)}(x - y, t) \cdot \varphi(y)\df y$\\ [4pt] $\phantom{u_t(x, t)} = \int_{\mathbb{R}^N}-\kappa\triangle S^{(N)}(x - y, t) \cdot \varphi(y)\df y = -\kappa\triangle u(x, t)$.\end{tabular}\retTwo\par}
+
+	Meanwhile, to prove the needed limit first note that since $\varphi$ is continuous we can find for any $\varepsilon > 0$ and $x_0 \in \mathbb{R}^N$ some $\delta > 0$ such that $|\varphi(x) - \varphi(x_0)| < \sfrac{\varepsilon}{4}$ when $x \in B_{2\delta}(x_0)$. Thus, it just suffices now to prove that there exists some $T > 0$ such that:
+	
+	{\centering$|u(x, t) - \varphi(x)| < \sfrac{3\varepsilon}{4}$ for all $x \in B_\delta(x_0)$ and $t \in (0, T)$.\retTwo\par}
+	
+	
+	Note that $\int_{\mathbb{R}^N} S^{(N)}(x, t)\df x = 1$ for all $t > 0$.
+	\begin{myIndent}\exPPP
+		To see why, first note by Tonelli's theorem that:
+
+		{\centering\begin{tabular}{l} $\int_{\mathbb{R}^N} (4\pi \kappa t)^{-N/2} e^{\frac{-|x|^2}{4\kappa t}}\df x = \prod_{k=1}^N \int_\mathbb{R} (4\pi \kappa t)^{-1/2} e^{\frac{-x_k^2}{4\kappa t}}\df x_k$\\ [4pt]$\phantom{\int_{\mathbb{R}^N} (4\pi \kappa t)^{-N/2} e^{\frac{-|x|^2}{4\kappa t}}\df x} = \left(\int_\mathbb{R} (4\pi \kappa t)^{-1/2} e^{\frac{-y^2}{4\kappa t}} \df y\right)^N$\end{tabular}\retTwo\par}
+		
+		Therefore, it suffices to prove that $\int_{\mathbb{R}} S^{(1)}(x, t)\df x = 1$. Fortunately, by an easy\\ $u$-substitution we get that:
+
+		{\centering $\int_{\mathbb{R}} S^{(1)}(x, t)\df x = \frac{1}{\sqrt{\pi}}\int_{\mathbb{R}} e^{-u^2}\df u = 1$ \retTwo\par}
+	\end{myIndent}
+	
+	Therefore, for any $x \in B_\delta(x_0)$ and $t \in \mathbb{R}_{> 0}$ we have that:
+
+	{\centering\begin{tabular}{l}
+		$|u(x, t) - \varphi(x)| = \left|\int_{\mathbb{R}^N} S^{(N)}(x - y, t)\varphi(y) \df y - \left(\int_{\mathbb{R}^N} S^{(N)}(x - y, t)\df y\right)\varphi(x)\right|$\\ [4pt]
+		$\phantom{|u(x, t) - \varphi(x)|} \leq \int_{\mathbb{R}^N} S^{(N)}(x - y, t) \cdot |\varphi(y) - \varphi(x)|\df y$
+	\end{tabular}\newpage\par}
+
+	If we let $C = \|\varphi\|_u$, then we can in turn say that:\\ [-24pt]
+
+	{\center\begin{tabular}{l}
+		$|u(x, t) - \varphi(x)| \leq \int_{B_{2\delta}(x_0)} S^{(N)}(x - y, t) \cdot |\varphi(y) - \varphi(x)| \df y + 2C\int_{B_{2\delta}(x_0)^{\comp}} S^{(N)}(x - y, t)\df y$\\ [8pt]
+		$\phantom{|u(x, t) - \varphi(x)|} \leq \sup\limits_{y \in B_{2\delta}(x_0)}|\varphi(y) - \varphi(x)| \cdot \int_{\mathbb{R}^N} S^{(N)}(y, t)\df y + 2C\int_{B_{2\delta}(x_0)^{\comp}} S^{(N)}(x -y, t)\df y$\\ [14pt]
+		$\phantom{|u(x, t) - \varphi(x)|} \leq \frac{2\varepsilon}{4}(1) + 2C\int_{B_{2\delta}(x_0)^{\comp}} S^{(N)}(x - y, t)\df y$.
+	\end{tabular}\retTwo\par}
+
+	Now to finish off, we just need to pick $T > 0$ such that $2C\int_{B_{2\delta}(x_0)^\comp}S^{(N)}(x - y, t)\df y < \frac{\varepsilon}{4}$ when $x \in B_\delta(x_0)$ and $t \in (0, T)$.\retTwo
+
+	Fortunately, we know that if $|y - x| > 2\delta$ and $|x - x_0| < \delta$, then $|y - x| > \delta$. Hence, we can guarentee for all $x \in B_\delta(x_0)$ that:\\ [-24pt]
+
+	{\center\begin{tabular}{l}$2C\int_{B_{2\delta}(x_0)^\comp}S^{(N)}(x - y, t)\df y \leq 2C\int_{B_{\delta}(x)^\comp}S^{(N)}(x - y, t)\df y = 2C\int_{B_{\delta}(0)^\comp}S^{(N)}(y, t)\df y$\end{tabular}\retTwo\par}
+
+	Thus, we've reduced our problem to finding some $T > 0$ such that:
+	
+	{\centering$\int_{B_{\delta}(0)^\comp}S^{(N)}(y, t)\df y < \frac{\varepsilon}{4(2C + 1)}$ for all $t \in (0, T)$.\retTwo\par}
+
+	Fortunately, note that there exists some positive constant $A$ such that:
+
+	{\centering$\int_{B_{\delta}(0)^\comp}S^{(N)}(y, t)\df y = A \cdot \int_\delta^\infty \frac{r^{N-1}}{t^{N/2}}e^{\frac{-r^2}{4 \kappa t}}\df r$\retTwo\par}
+
+	Next, let $\psi(r, t) \coloneqq \frac{r^{N-1}}{t^{N/2}}e^{\frac{-r^2}{4 \kappa t}}$ and note that:
+	
+	{\centering$\psi_t(r, t) = \frac{r^{N - 1}t^{-N/2}}{4\kappa t^2}(r^2 - 2N\kappa t)e^{\frac{-r^2}{4\kappa t}}$.\retTwo\par}
+
+	Thus once $t < \frac{\delta^2}{2N\kappa}$, then we know for any fixed $r > \delta$ that $\psi(r, t)$ is strictly decreasing as $t$ decreases. Yet also note that $\psi(r, t) > 0$ for all $r$ and $t$. Hence, by the dominated convergence theorem (using $\int_\delta^\infty\psi(r, \frac{\delta^2}{2N\kappa})\df r$ as an upper bound), we can conclude that:
+
+	{\center$\lim\limits_{t \to 0^+}\int_\delta^{\infty} \psi(r, t) \df r = \int_\delta^{\infty}(\lim\limits_{t \to 0^+} \psi(r, t)) \df r$.\retTwo\par}
+
+	Finally, it is not difficult to prove for all $r > 0$ that $\psi(r, t) \to 0$ as $t \to 0^+$. Hence, $\int_\delta^{\infty}(\lim\limits_{t \to 0^+} \psi(r, t)) \df r = \int_\delta^{\infty} 0 \df r = 0$.\retTwo
+
+	Since we've thus proven $\int_{B_{\delta}(0)^\comp}S^{(N)}(y, t)\df y \to 0$ as $t \to 0^+$, it thus follows that there exists some $T > 0$ such that $0 < \int_{B_{\delta}(0)^\comp}S^{(N)}(y, t)\df y < \frac{\varepsilon}{4(2C + 1)}$ when $t < T$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		As a side note, if we had wanted to actually write a rigorous proof of this theorem using the Fourier transform, we would have had to work with generalized functions of some variety in order to guarentee all the needed Fourier transforms were well-defined.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo One notable remark is that the above equation for $u$ is well-defined on $\mathbb{R}^N \times (0, \infty)$ even if $\varphi$ is not continuous. Additionally, $u$ will still be smooth since it is defined by convolving $\varphi$ with a Schwartz function $S^{(N)}(x, t)$.\retTwo
+
+\mySepTwo\newpage
+
+Unfortunately some hackers just took down Canvas and so I don't have access to the\\ professor's course notes anymore. Thus, unfortunately I have little choice but to switch over to studying the textbook on the course website (which sucks compared to Zlatos' notes). See \inLinkRap{Third Citation}{item 3} in the bibliography for a citation.\retTwo
+
+What about the diffusion equation $u_t - \kappa \triangle u = 0$ on the half line (with the homogeneous Dirichlet condition at the end point $x = 0$)? In other words, upon letting $\Omega = \mathbb{R}_{>0} \times \mathbb{R}_{> 0}$ we want to solve the initial value problem:
+
+{\centering$u_t - \kappa u_{x,x} = 0$ in $\Omega$, $u(x, 0) = \varphi(x)$ for $x \in \mathbb{R}_{>0}$, and $u(0, t) = 0$ for $t \in \mathbb{R}_{>0}$,\\ [4pt]\par}
+
+where $\varphi \in C_b(\mathbb{R}_{>0})$ satisfies that $\lim_{x \to 0^+}\varphi(x) = 0$.\retTwo
+
+By slightly modified reasoning to that on \inLinkRap{page 917 reference}{pages 917-919}, we can show that any solution to this initial value problem is unique. Hence, we shall only worry about finding a solution when given $\varphi$\retTwo
+
+To start off, let us define $\widetilde{\varphi}$ to be the \textit{odd extension} of $\varphi$ to all of $\mathbb{R}$. In other words:
+
+{\centering$\widetilde{\varphi}(x) = \begin{cases}\varphi(x) & \text{ if } x > 0 \\ -\varphi(-x) & \text{ if } x < 0 \\ 0 & \text{ if } x = 0\end{cases}$\retTwo\par}
+
+Then $\widetilde{\varphi}$ is a continuous function on all of $\mathbb{R}$. Hence by our prior work, we know\\ $\widetilde{u}(x, t) \coloneqq \int_{\mathbb{R}} S^{(1)}(x - y, t)\widetilde{\varphi}(y)\df y$ is the unique solution in $C^{2,1}_b(\mathbb{R} \times \mathbb{R}_{>0}) \cap C(\mathbb{R} \times \mathbb{R}_{\geq 0})$\\ to the initial value problem $\widetilde{u}_t - \kappa \widetilde{u}_{x,x} = 0$ in $\mathbb{R} \times \mathbb{R}_{>0}$ and $\widetilde{u}(x, 0) = \widetilde{\varphi}(x)$ for all $x \in \mathbb{R}$.\retTwo
+
+\pracOne\ul{Claim:} $\widetilde{u}(x, t) = -\widetilde{u}(-x, t)$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Not only is $\widetilde{\varphi}$ an odd function but we also know $S^{(1)}(+x, t) = S^{(-1)}(-x, t)$. Hence:
+
+	{\centering\begin{tabular}{l}
+		$-\widetilde{u}(-x, t) = \int_\mathbb{R} S^{(1)}(-x - y, t) \cdot -\widetilde{\varphi}(y)\df y = \int_{\mathbb{R}} S^{(1)}(x - (-y), t) \cdot \widetilde{\varphi}(-y)\df y$\\ [4pt]
+		$\phantom{-\widetilde{u}(-x, t) = \int_\mathbb{R} S^{(1)}(-x - y, t) \cdot -\widetilde{\varphi}(y)\df y} = \int_{\mathbb{R}} S^{(1)}(x - y, t) \cdot \widetilde{\varphi}(y)\df y = \widetilde{u}(x, t)$.
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+In particular, by putting $x = 0$ we can see that $\widetilde{u}(0, t) = 0$ for all $t > 0$.\retTwo
+
+\hTwo By letting $u = \widetilde{u}|_{\overline{\Omega}}$ we thus get that $u$ satsfies the initial value problem for the half line.\retTwo
+
+\begin{myIndent}\myComment
+	Remark: If we were to instead take the \textit{even extension} of $\varphi$ to all of $\mathbb{R}$ then that will\\ similarly guarentee $\widetilde{u}$ is an even function (in $x$). But note that if $f$ is even then $f^\prime$ is odd. Hence, we must have that $u_x(0, t) = 0$ for all $t > 0$. In turn, this shows that the even extension of $\varphi$ yields a solution to the homogeneous Neumann condition at the end point $x = 0$.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+A different question to ask about the heat equation is how do we deal wth the\\ inhomogeneous diffusion equation $u_t - ku_{x,x} = f(x, t)$? Once again, to motivate the next results I'm first going to look at what the Fourier transform would predict.\newpage
+
+Suppose $u$ satisfies that $u_t - \kappa \triangle u = f(x, t)$ for all $(x, t) \in \mathbb{R}^N \times \mathbb{R}_{>0}$ and that\\ $u(x, 0) = \phi(x)$ for all $x \in \mathbb{R}^N$.
+\begin{myIndent}\pracTwo
+	At all following steps we'll assume $u$, $\phi$ , and $f$ are as well-behaved as necessary.\retTwo
+
+	Firstly, we apply the Fourier transformation to our PDE with respect to the spatial variable to get that:
+
+	{\centering $(\partial_t + 4\pi^2\kappa|\xi|^2)\widehat{u}(\xi, t) = \widehat{f}(\xi, t)$  and $\widehat{u}(\xi, 0) = \widehat{\varphi}(\xi)$.\retTwo\par}
+
+	In particular, for any fixed $\xi$ we consider the functions $v(t) = \widehat{u}(\xi, t)$ and $g(t) = \widehat{f}(\xi, t)$. Then we know $v$ satisfies the initial value problem:
+	
+	{\centering$v^\prime(t) + 4\pi^2 \kappa |\xi|^2 v(t) = g(t)$ and $v(0) = \widehat{\varphi}(\xi)$.\retTwo\par}
+
+	To solve for $v(t)$, we multiply on an integrating factor $\mu(t) = e^{4\pi^2 \kappa |\xi|^2 t}$. Then by product rule we can write:
+
+	{\centering$(v(t)e^{4\pi^2 \kappa |\xi|^2 t})^\prime = e^{4\pi^2 \kappa |\xi|^2 t} g(t)$.\retTwo\par}
+
+	By taking an antiderivative of both sides, we can then conclude there is some constant $C \in \mathbb{R}$ such that:
+
+	{\centering$v(t) = e^{-4\pi^2 \kappa |\xi|^2 t}C + e^{-4\pi^2 \kappa |\xi|^2 t}\int_0^t e^{4\pi^2 \kappa |\xi|^2 s} g(s)\df s$.\retTwo\par}
+
+	By plugging in $t = 0$ we can solve that $C = \widehat{\varphi}(\xi)$. And with that, we've shown that:
+
+	{\centering\begin{tabular}{l}
+		$\widehat{u}(\xi, t) = e^{-4\pi^2 \kappa |\xi|^2 t}\widehat{\varphi}(\xi) + \int_0^t e^{4\pi^2 \kappa |\xi|^2 (s - t)} \widehat{f}(\xi, s)\df s$\\ [4pt]
+		$\phantom{\widehat{u}(\xi, t)} = (S^{(N)}(\cdot, t) * \varphi)^\wedge(\xi) + \int_0^t (S^{(N)}(\cdot, t - s) * f(\cdot, s))^\wedge(\xi)\df s$
+	\end{tabular}\retTwo\par}
+
+	To finish off, by applying Fubini's theorem we get that:
+
+	{\centering$\int_0^t (S^{(N)}(\cdot, t - s) * f(\cdot, s))^\wedge(\xi)\df s = \left(\int_0^t (S^{(N)}(\cdot, t - s) * f(\cdot, s) )\df s\right)^\wedge(\xi)$\retTwo\par}
+
+	By inverting the Fourier transform, we thus should have that:
+
+	{\centering $u(x, t) = (S^{(N)}(\cdot, t) * \varphi)(x) + \int_0^t (S^{(N)}(\cdot, t - s) * f(\cdot, s) )(x)\df s$ \retTwo\par}
+
+	\begin{myIndent}\myComment
+		Gee, isn't math so easy when you don't need to justify anything?\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+Hopefully that is enough motivation to justify how someone would guess the following\\ theorem.\retTwo
+
+\exTwo\ul{Theorem:} Let $\kappa > 0$, $\Omega = \mathbb{R}^N \times \mathbb{R}_{>0}$, and $\varphi \in C_b(\mathbb{R}^N)$. Also suppose $f \in C_b^1(\Omega)$. Then the initial value problem $u_t - \kappa \triangle u = f$ on $\Omega$ and $u(x, 0) = \varphi(x)$ on $\mathbb{R}^N$ is solved by:
+
+{\centering$u(x, t) = \int_{\mathbb{R}^N} \varphi(y) \cdot S^{(N)}(x - y, t)\df y + \int_0^t \int_{\mathbb{R}^N} f(y, s)S^{(N)}(x - y, t - s)\df y\df s$.\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, note that:
+	
+	{\centering$\left|\int_0^t\int_{\mathbb{R}^N} f(y, s)S^{(N)}(x - y, t - s)\df y \df s\right| \leq \int_0^t (\|f\|_u \cdot 1)\df s = t\|f\|_u$.\retTwo\par}
+
+	As a result, we know that $\int_0^t\int_{\mathbb{R}^N} f(y, s)S^{(N)}(x - y, t - s)\df y \df s \to 0$ uniformly over $x$\\ as $t \to 0$. Consequently, we can now assume without $\varphi \equiv 0$ on $\mathbb{R}^N$ and therefore that the first term in the definition of $u$ cancels. After all, if we were to prove that\newpage
+	
+	{\centering$v(x, t) \coloneqq \int_0^t\int_{\mathbb{R}^N} f(y, s)S^{(N)}(x - y, t - s)\df y \df s$\\ [4pt]}
+	
+	is a particular solution to $v_t - \kappa \triangle v = f$, then we would know by the super-position principle that our original function $u(x, t)$ solves for the initial condition we actually want.\retTwo
+
+	So now our task is just to show that $u(x, t) = \int_0^t\int_{\mathbb{R}^N} f(y, s)S^{(N)}(x - y, t - s)\df y \df s$\\ satisfies that $u_t - \kappa \triangle u = f$ for all $(x, t) \in \Omega$.\retTwo
+
+	\color{Red} Unfortunately differentiating $u$ is highly nontrivial and I have no fucking idea how to\\ do this at least right now. After all, the integral expressions which we'd want to prove the partial derivatives equal are \textit{not} absolutely convergent. Hence, all of our expressions for the derivatives of $u$ will involve improper integrals. And right now I'm way too behind in this class to spend a day trying to figure this out, especially when the professor skipped going into detail on this as well.\retTwo 
+	
+	Maybe I'll come back to this on \inLinkRap{idk reference 3}{page \_\_\_\_}. I somehow didn't notice until just now that $f$ is assumed to be differentiable in the theorem statement. So right now my best educated guess for the proof of the derivative with respect to $t$ (for example) is that for some $\varepsilon > 0$ we write the expression for $u_t(x, t)$ as:
+	
+	{\centering\begin{tabular}{l}$
+		\lim\limits_{h \to 0+}\left(\int_0^{t - \varepsilon} \int_{\mathbb{R}^N} \frac{S^{(N)}(x - y, t + h - s) - S^{(N)}(x - y, t - s)}{h}f(y, s)\df y \df s\right.$\\ [8pt] 
+		$\phantom{aaaaaaaa} + \int_{t-\varepsilon}^t \int_{\mathbb{R}^N} \frac{S^{(N)}(x - y, t + h - s) - S^{(N)}(x - y, t - s)}{h}f(y, s)\df y \df s $\\ [8pt]
+		$\phantom{aaaaaaaa} \left.+ \frac{1}{h}\int_{t}^{t + h} \int_{\mathbb{R}^N} S^{(N)}(x - y, t + h - s)f(y, s)\df y \df s \right)$
+	\end{tabular}\retTwo\par}
+
+	Then we can probably apply reasoning like in the proof of Leibniz' rule (see \inLinkRap{placeholder}{pages 189-190}) to the first term. The second term meanwhile can probably be approximated as $\varepsilon f_t(x, t)$, and by taking $\varepsilon \to 0$ it will vanish. And finally, the third term will probably approach being $f(x, t)$.
+	\begin{myIndent}\color{orange}
+		I realize that we'd also need to address taking the limit as $h \to 0^-$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{5/10/2026}
+
+Not having access to vector calculus theorems has been getting increasingly debilitating. So, I'm going to try and study that. The textbook I will be looking at for inspiration and guidance for this is Guillemin and Haine's \textit{Differential Forms}. Also, instead of working with generalized manifolds as on \inLinkRap{placeholder}{pages 130-151}, I'll be working with manifolds (and their\\ surface measures) as developed on \inLinkRap{placeholder}{pages 77-99}.\retTwo
+
+To motivate the first result, recall that the implicit function theorem lets us say that the zero set of a function (satisfying certain assumptions) is a manifold without boundary. The next result will show a partial converse, that any $C^r$ manifold without boundary is locally the zero set of a function.\newpage
+
+\exTwo\ul{Theorem B.18:} Suppose $U \subseteq \mathbb{R}^k$ is an open set containing a point $p$ and $\phi: U \to \mathbb{R}^N$ is a $C^r$ map. Also suppose $\Df \phi(p)$ has full rank.
+\begin{myIndent}\myComment
+	(Guillen and Haine state the last requirement as $\Df \phi(p) : \mathbb{R}^k \to \mathbb{R}^n)$ is an injective map.\retTwo
+\end{myIndent}
+
+Then there exists a neighborhood $U_p$ of $p$ in $U$, a neighborhood $V$ of $\phi(p)$ in $\mathbb{R}^N$, and\\ a $C^r$ diffeomorphism $\psi: V \to U_p \times \mathbb{R}^{N - k}$ such that $\psi \circ \phi: U_p \to U_p \times \mathbb{R}^{N - k}$ is equal\\ to the embedding $\iota$ given by $\iota(x_1, \ldots, x_k) = (x_1, \ldots, x_k, \underbrace{0, \ldots, 0}_{N - k \text{ entries}})$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Write $\phi(x) = (\phi_1(x), \ldots, \phi_N(x))$ where each $\phi_i: \mathbb{R}^k \to \mathbb{R}$. Since $\Df \phi(p)$ has full rank, we know $\Df \phi(p)$ has $k$-linearly independent rows. By a change of basis in the codomain, we can assume without loss of generality that it is $\nabla \phi_1, \ldots, \nabla \phi_k$ which are linearly\\ independent.\retTwo
+
+	Next, let $\pi: \mathbb{R}^N \to \mathbb{R}^k$ be given by $(x_1, \ldots, x_n) \mapsto (x_1, \ldots, x_k)$. Then we can define $f \coloneqq \pi \circ \phi$ and say that $f$ is a $C^r$ function with $\Df f(p)$ being an invertible matrix. By the inverse function theorem, there exists a neighbrhood $U_p \subseteq U$ containg $p$ and an open set $V^\prime \subseteq \mathbb{R}^k$ such that $f$ is a $C^r$ diffeomorphism from $U_p$ to $V^\prime$. Now let $g \coloneqq (f|_{U_p})^{-1}$ and $V \coloneqq V^\prime \times \mathbb{R}^{N -k}$ and define $G : V \to U_p \times \mathbb{R}^{N - k}$ by the map:
+	
+	{\centering$G(x_1, \ldots, x_N) = (g(x_1, \ldots, x_k), x_{k+1}, \ldots, x_N)$.\retTwo\par}
+
+	Now note that for any $x \in U_p$ we have that:
+	
+	{\centering\begin{tabular}{l}
+		$G \circ \phi(x) = (g( \pi \circ \phi(x) ), \phi_{k+1}(x), \ldots, \phi_{N}(x)) = (x_1, \ldots, x_k, \phi_{k+1}(x), \ldots, \phi_N(x))$.
+	\end{tabular}\retTwo\par}
+
+	\begin{myIndent}\myComment
+		Remark 1: $G$ is itself an important function because it shows $\phi(U)$ is locally\\ diffeomorphic to the graph of a function $\mathbb{R}^k \to \mathbb{R}^{N - k}$.\retTwo
+	\end{myIndent}
+
+	Meanwhile, consider the function $H: U_p \times \mathbb{R}^{N - k} \to U_p \times \mathbb{R}^{N - k}$ defined by:
+
+	{\centering $H(x_1, \ldots, x_N) = (x_1, \ldots, x_k, x_{k+1} - \phi_{k+1}(x_1, \ldots, x_k), \ldots, x_N - \phi_N(x_1, \ldots, x_k))$ \retTwo\par}
+
+	Note that $H$ is a $C^r$ function with a $C^r$ inverse given by:
+
+	{\centering $(x_1, \ldots, x_N) \mapsto (x_1, \ldots, x_k, x_{k+1} + \phi_{k+1}(x_1, \ldots, x_k), \ldots, x_N + \phi_N(x_1, \ldots, x_k))$ \retTwo\par}
+
+	Finally, define $\psi: V \to U_p \times \mathbb{R}^{N - k}$ by $\psi \coloneqq H \circ G$. Then $\psi$ is a $C^r$ diffeomorphism and $\psi \circ \phi(x_1, \ldots, x_k) = (x_1, \ldots, x_k, 0, \ldots, 0)$. $\blacksquare$.\retTwo
+
+	\begin{myIndent}\myComment
+		Remark 2: If we project onto the final $N - k$ coordinates, we get a function\\ $F: \mathbb{R}^{N} \to \mathbb{R}^{N - k}$ such that $\phi(U_p) = F^{-1}(\{(0, \ldots, 0)\})$. Furthermore, $\Df F(x)$\\ has rank $N - k$ for all $x \in V$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo Next, given a $C^r$ $k$-dimensional manifold $M \subseteq \mathbb{R}^N$ without boundary as well as a point $p \in M$, we have two definitions of the \udefine{tangent plane} at $p$:
 \begin{enumerate}
-	\item[(i)] Show that $f$ is an odd entire function of order less or equal to $1$.
-	\begin{myIndent}\HexOne
-		Note that $f \not\equiv 0$ since $f(\frac{\pi}{2}) = \frac{\pi}{2}$ for example. In turn, because $-z$ has order $0$\\ and we showed in class (see \inLinkRap{idk reference 3}{page \_\_\_}) that $\sin(z)$ has order $1$, we know\\ $\lambda(f) \leq \max(0 , 1) = 1$.\newpage
-		
-		As for proving $f$ is an odd function, just observe that:
-		
-		{\centering$-f(-z) = -(-z) + \sin(-z) = z - \sin(z) = f(z)$.\retTwo\par}
-	\end{myIndent}
+	\item[1.] Given a chart $\phi: U \to V^\prime$ where $p \in V^\prime \subseteq M$, let $q = \phi^{-1}(p)$ and then define:
 	
-	\item[(ii)] Using (i), show that $f$ can be represented as a product $f(z) = \frac{z^3}{6}\prod_{n=1}^\infty (1 - \frac{z^2}{a_n^2})$ where $\{a_n\}_{n \in \mathbb{N}}$ is a sequence of non-zero complex numbers with $\sum_{n=1}^\infty \frac{1}{|a_n|^2} < \infty$.
-	
-	\begin{myIndent}\HexOne
-		The first thing I need to do is prove that $f(z)$ actually has infinitely many zeros.\\ Fortunately, note that if $f(z)$ only had finitely many zeros, we'd be able to write\\ $f(z) = e^{g(z)}P(z)$ where $g$ is an entire holomorphic function and $P(z)$ is a\\ polynomial. Next note that $\lambda(e^{g(z)}) = \lambda(f) \leq 1$. Hence, we can conclude that\\ for all $\varepsilon > 0$ there exists $r > 0$ such that $|z| > r \Longrightarrow |e^{g(z)}| = e^{\rea{g(z)}} < e^{|z|^{1 + \varepsilon}}$.\\ And by taking the logs of both sides, we get that $\rea{g(z)} < |z|^{1 + \varepsilon}$ when $|z| > r$\retTwo
+	{\centering$T_pM \coloneqq \{(p, \mVecAst{y}) : \mVecAst{y} \in \myIm(\Df \phi(q) : \mathbb{R}^k \to \mathbb{R}^{N})\}$.\retTwo\par}
 
-		\color{red} It is 11:47pm and I don't know how to show that $g(z)$ is a polynomial.
-
-		If you show $g(z)$ is a polynomial then it must be a linear one due to the degree of $e^{g(z)}$. Then as $z - sin(z) = e^{az + b}P(z)$, we can consider limit behaviors as $z = t$ goes to $\infty$ and $-\infty$ in $\mathbb{R}$ to conclude $a = 0$. But then this would imply $\sin(z)$ is a polynomial. And since $\sin(z)$ has infinite zeros but is not the zero function, this is a contradiction.\retTwo
+	\item[2.] Let $V \subseteq \mathbb{R}^N$ be an open set containing $p$ and suppose $f: V \to \mathbb{R}^{N - k}$ is a $C^r$ function satisfying that $\Df f(x)$ has rank $N - k$ for all $x \in V$ and $V \cap M = f^{-1}(\{0\})$.
+	\begin{myIndent}\myComment
+		Such a function $f$ and open set $V$ exists due to the prior theorem. Namely, let\newpage $\psi: U^\prime \to V^\prime \subseteq M$ be any coordinate chart containing $p$ and define via the prior theorem + remark the function $F: W \to \mathbb{R}^{N - k}$ (where $W \subseteq \mathbb{R}^N$ is some open set containing $p$ satisfying that $W \cap V^\prime = F^{-1}(\{0\})$). To finish off, note that since $(W \cap M) \cap V^\prime$ is an open subset of $M$, there exists some open set $A \subseteq \mathbb{R}^N$ such that $A \cap M = (W \cap M) \cap V^\prime$. And by setting $V = A \cap W$ and $f = F|_V$ we thus have that $V \cap M = f^{-1}(\{0\})$ like we wanted.\retTwo
 	\end{myIndent}
+
+	Now we define $T_pM \coloneqq \{(p, \mVecAst{y}) : \mVecAst{y} \in \ker(\Df f(p) : \mathbb{R}^N \to \mathbb{R}^{N - k})\}$.\retTwo
 \end{enumerate}
 
+\exTwo\ul{Lemma 4.2.8:} Both of the above definitions are equivalent.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\phi : U \to V^\prime$ and $f: V \to \mathbb{R}^{N - k}$ be functions as described in the prior two\\ definitions, and also let $\phi^{-1}(p) = q$. By restricting $U$ and $V^\prime$, we can assume without loss of generality that $V^\prime \subseteq V$. In turn, the function $f \circ \phi: U \to \mathbb{R}^{N - k}$ is a well-defined function. Yet since $V^\prime \subseteq M$, we also must have that $f \circ \phi$ is the constant zero function. Therefore, we can conclude that $\Df f(p) \Df \phi(q) = \bm{0}$.\retTwo
 
+	This proves that $\myIm(\Df \phi(q)) \subseteq \ker(\Df f(p))$. And since both vector spaces are $k$-\\dimensional, the only way this is possible is if $\myIm(\Df \phi(q)) = \ker(\Df f(p))$. $\blacksquare$\retTwo
 
+	\begin{myIndent}\myComment
+		Remark:\\
+		Since the first definition doesn't depend on the particular $f$ and the second definition doesn't depend on the particular $\phi$, this lemma also proves the tangent plane is defined independently of whichever $\phi$ and $f$ is chosen.\retTwo
+	\end{myIndent}
+\end{myIndent}
 
+\hTwo One particular note to be aware of is that $T_p M$ is an $\mathbb{R}$-vector space when equipped with the operations $a(p, \mVecAst{y}) = (p, a\mVecAst{y})$ and $(p, \mVecAst{y}_1) + (p, \mVecAst{y}_2) = (p, \mVecAst{y}_1 + \mVecAst{y}_2)$. In particular, we can embed $T_pM$ as a vector subspace of $T_p\mathbb{R}^N \coloneqq \{(p, \mVecAst{y}) : \mVecAst{y} \in \mathbb{R}^N\}$ in an obvious way. That said, I don't have time right now to get into the theory of differential forms and how they are defined as tensors on these spaces.\retTwo
 
+Given a topological space $X$, we say an open set $U \subseteq X$ is \udefine{regular} if $\partial U = \partial \overline{U}$. Meanwhile, we say a closed set $F \subseteq X$ is \udefine{regular} if $\partial F = \partial (F^\circ)$.\retTwo
 
+\exTwo\ul{Lemma:} A set $U \subseteq X$ is regular open if and only if $U^\comp$ is regular closed.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Note that for any $E \subseteq X$ we have that $(E^\comp)^\circ = (\overline{E})^\comp$. Using this fact, we can then\\ conclude for any open set $U \subseteq X$ that $\partial (U^\comp) = \partial U$. After all, if $x \in \partial U^\comp$ then $x \notin U$\\ and $x \notin (U^\comp)^{\circ} = (\overline{U})^\comp$. Hence $x \in \overline{U} - U = \partial U$, and this proves that $\partial (U^\comp) \subseteq \partial U$.\\ Meanwhile, if $x \in \partial U$ we know $x \notin U$ and $x \notin (\overline{U})^\comp = (U^\comp)^\circ$. It follows that\\ $x \in U^\comp - (U^\comp)^\circ = \partial U^\comp$, and this proves that $\partial U \subseteq \partial (U^\comp)$.\retTwo
 
+	Note that the above reasoning also lets us conclude that $\partial F = \partial F^\comp$ for all closed sets $F \subseteq X$. Hence, we at last get the following equivalences:\newpage
+	% https://q.uiver.app/#q=WzAsNyxbMSwwLCJcXHBhcnRpYWwgVSJdLFszLDAsIlxccGFydGlhbChVXlxcY29tcCkiXSxbNCwxLCJcXHBhcnRpYWwoKFVeXFxjb21wKV5cXGNpcmMpIl0sWzAsMSwiXFxwYXJ0aWFsIFxcb3ZlcmxpbmV7VX0iXSxbMiwxLCJcXHBhcnRpYWwoKFxcb3ZlcmxpbmV7VX0pXlxcY29tcCkiXSxbMywxXSxbMSwxXSxbMCwxLCJcXHRleHR7YWx3YXlzfSIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDQsIlxcdGV4dHthbHdheXN9IiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwyLCJcXHRleHR7YWx3YXlzfSIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNiwiXFx0ZXh0e3JlZ3VsYXIgb3Blbn0iLDEseyJzaG9ydGVuIjp7InRhcmdldCI6MjB9LCJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiXFx0ZXh0e3JlZ3VsYXIgY2xvc2VkfSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+	\[\begin{tikzcd}
+		& {\partial U} && {\partial(U^\comp)} & \\
+		{\partial \overline{U}} & {} & {\partial((\overline{U})^\comp)} & {} & {\partial((U^\comp)^\circ)}
+		\arrow["{\text{always}}", equals, from=1-2, to=1-4]
+		\arrow[equals, from=1-2, to=2-1]
+		\arrow["{\text{regular open}}"{description}, draw=none, from=1-2, to=2-2]
+		\arrow["{\text{regular closed}}"{description}, draw=none, from=1-4, to=2-4]
+		\arrow[equals, from=1-4, to=2-5]
+		\arrow["{\text{always}}"', equals, from=2-1, to=2-3]
+		\arrow["{\text{always}}"', equals, from=2-3, to=2-5]
+	\end{tikzcd}\]
+	$\blacksquare$\retTwo
 
+	\begin{myIndent}\myComment
+		Remark: The reason we care about if $U$ is a  regular open set is that if $U$ is regular then for any $x \in \partial U$ and neighborhood $N$ of $x$ we have that $N$ has a nonempty intersection with both $U$ and $(U^\comp)^\circ$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo The result I shall prove next is that if a manifold (without boundary) is an open subset of the topological boundary of a regular open set (in the subspace topology), then we can strengthen theorem B.18 from before.\retTwo
+
+\exTwo\ul{Lemma:} Suppose $U \subseteq \mathbb{R}^{N}$ is a regular open set, $M$ is a $C^r$ $(N-1)$-dimensional manifold without boundary that is also an open subset of $\partial U$, and $p \in M$. Then there exists an open set $V \subseteq \mathbb{R}^N$ containing $p$ and a $C^r$ function $f: V \to \mathbb{R}$ with $U \cap V = f^{-1}((-\infty, 0))$ and $M \cap V = f^{-1}(\{0\})$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\widetilde{V} \subseteq \mathbb{R}^N$ be an open set and $\widetilde{\psi}: \widetilde{V} \to \mathbb{R}^N$ be an injective $C^r$ function of full rank such that $\widetilde{\psi}(\widetilde{V} \cap M) \subseteq \mathbb{R}^{N - 1} \times \{0\}$. (The fact such a function exists is theorem B.18 plus the comment between pages 926 and 927). By shrinking $\widetilde{V}$, we can further assume $\widetilde{V} \cap \partial U = \widetilde{V} \cap M$ since $M$ is an open subset of $\partial U$. Then note $\widetilde{\psi}(\widetilde{V})$ is an open subset of $\mathbb{R}^N$ containing $\widetilde{\psi}(p)$. In turn, we can find an open ball $B_r(\widetilde{\psi}(p))$ contained in $\widetilde{\psi}(\widetilde{V})$. Hence, we define $V \coloneqq \widetilde{\psi}^{-1}(B_r(\widetilde{\psi}(p)))$ and $\psi \coloneqq \widetilde{\psi}|_V$.\retTwo
+
+	Now we have that $\psi: V \to B_r(\psi(p))$ is a diffeomorphism (which importantly for us\\ implies $\psi$ is also a homeomorphism). Also note that:
+	
+	{\center$B_r(\psi(p)) - \psi(M \cap V) = (B_r(\psi(p)) \cap \mathbb{H}^+) \cup (B_r(\psi(p)) \cap \mathbb{H}^-)$\\ [4pt]\par}
+	
+	where $\mathbb{H}^+$ and $\mathbb{H}^-$ denote the upper and lower half spaces respectiely. The latter expression is a union of two convex disjoint open sets. Hence $B_r(\psi(p)) - \psi(M \cap V)$ has exactly two connected components. And since $\psi$ is a homeomorphism, this also implies that $V - M$ has exactly two connected components, each of which maps homeomorphically to a distinct component of $B_r(\psi(p)) - \psi(M \cap V)$.\retTwo
+
+	To finish off, note that because $U$ is a regular open set and $V$ is a neighborhood of $p \in \partial U$, we know that $(V \cap U)$ and $(V \cap (U^\comp)^\circ)$ are disjoint nonempty open sets partitioning $V - M$. It follows that the connected components of $V - M$ are precisely $V \cap U$ and $V - \overline{U}$. If we now define $f: V \to \mathbb{R}$ by projecting $\psi(x)$ onto it's $n$th coordinate, we will get that $f$ is a $C^r$ map with rank $1$ on $V$ and the sign of $f$ will be positive on one of those components of $V - M$ and negative on the other.\retTwo
+
+	Just negate $f$ if necessary to force $f(U \cap V) \subseteq \mathbb{R}_{<0}$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo The significance of the prior result is that we now can talk about the unit normal vector to $M$ at any point $p \in M$ that points away from $U$.\retTwo
+
+To see why, let all the variables refer to what they did in the prior lemma. Then note that the orthogonal complement of $\ker(\Df f(p))$ in $\mathbb{R}^N$ is given by the span of $\nabla f(p)$ (where the latter is a nonzero vector because $\ker(\Df f(p))$ is only $(N-1)$-dimensional). We can get a unit vector out of this by just defining $\widehat{n} \coloneqq \frac{\nabla f(p)}{|\nabla f(p)|}$. Also by the way we constructed $f$, we know that by moving in a direction that increases $f$, we will leave $\overline{U}$. Similarly, by moving in a direction that decreases $f$ we will enter $U$. Hence, $\widehat{n}$ points outside of $\overline{U}$ and $-\widehat{n}$ points inside of $U$.\retTwo
+
+\hTwo\mySepTwo
+
+\dispDate{5/11/2026}
+
+The more I look into it, proving divergence theorem is still too far out of reach for me to do, at least in the generality that I'll need it. Because of that and my stupid insistence on proving everything here instead of just accepting black boxes, I'm going to move my PDE notes to being entirely on paper for the time being. I'll hopefully be taking the grad PDE class anyways next year, and by then hopefully I'll have proven Divergence theorem for real.\retTwo
+
+\mySepTwo 
+
+\dispDate{5/15/2026}
+
+I feel like studying something fun today since I had my PDE midterm yesterday. So I'm going to study geometric measure theory from chapter 11 of Folland.\retTwo
+
+Let $(X, \rho)$ be a metric space. An outer measure $\mu^*$ on $X$ is called a \udefine{metric outer measure} when $\rho(A, B) > 0 \Longrightarrow \mu^*(A \cup B) = \mu^*(A) + \mu^*(B)$.
+\begin{myIndent}\myComment
+	For a reminder of the definition of an outer measure, see my 240a notes. Also, given two nonempty sets $A, B$ we define $\rho(A, B) \coloneqq \inf\{\rho(a, b) : a \in A, b \in B\}$. If either $A$ or $B$ is empty, we define $\rho(A, B) = \emptyset$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem 11.16:} If $\mu^*$ is a metric outer measure on $X$ then every Borel subset of $X$ is $\mu^*$-measurable.
+\begin{myIndent}\exThreeP
+	Proof:
+	It suffices to show that every closed set is $\mu^*$-measurable since $\mathcalli{B}_X$ is generated\\ by the closed sets. So, let $F \subseteq X$ be closed and let $A \subseteq X$ be an arbitrary set with\\ $\mu^*(A) < \infty$. To prove $F$ is $\mu^*$-measurable we need to show that:
+	
+	{\centering$\mu^*(A \cap F) + \mu^*(A - F) \leq \mu^*(F)$.\retTwo\par}
+
+	Let $B_n \coloneqq \{x \in A - F : \rho(x, F) \geq n^{-1}\}$. Then $\{B_n\}_{n \in \mathbb{N}}$ is an increasing sequence of sets satisfying that $\bigcup_{n=1}^\infty B_n = A - F$ since $F$ is a closed set. Also clearly $\rho(B_n, F) \geq n^{-1}$. Hence:
+
+	{\centering$\mu^*(A) \geq \mu^*((A \cap F) \cup B_n) = \mu^*(A \cap F) + \mu^*(B_n)$.\newpage\par}
+
+	If we can show that $\mu^*(B_n) \to \mu^*(A - F)$ as $n \to \infty$ we will be done. Fortunately, as $\mu^*(B_n) \leq \mu^*(A - F)$ for all $n$ we already know that $\limsup_{n \to \infty}\mu^*(B_n) \leq \mu^*(A - F)$. Therefore we can focus entirely on the liminf. Let $C_n \coloneqq B_{n+1} - B_n$. By subadditivity we know $\mu^*(A - F) \leq \mu^*(B_n) + \sum_{j=n}^\infty \mu^*(C_j)$ for all $n$. Thus, if we can show that $\sum_{j=n}^\infty \mu^*(C_j) \to 0$ as $n \to \infty$, we will have proven $\liminf_{n \to \infty}\mu^*(B_n) \geq \mu^*(A - F)$.\retTwo
+
+	Note that if $x \in C_{n + 1}$ then $\rho(x, F) < \frac{1}{n+1}$. In turn, if $\rho(x, y) < \frac{1}{n(n + 1)}$ we have that:
+	
+	{\centering$\rho(y, F) \leq \rho(x, y) + \rho(x, F) < \frac{1}{n(n+1)} + \frac{1}{n+1} = \frac{1}{n}$.\retTwo\par}
+
+	It follows that $y \notin B_n$. Hence, we've proven that $\rho(C_{n+1}, B_n) \geq \frac{1}{n(n + 1)}$.\retTwo
+
+	Yet now it follows when $n \geq 2$ that:
+	
+	{\centering$\mu^*(B_n) \geq \mu^*(C_{n-1} \cup B_{n-2}) = \mu^*(C_{n-1}) + \mu^*(B_{n-2})$\retTwo\par}
+
+	By induction, we can conclude for all $n$ that:
+	\begin{itemize}
+		\item $\sum_{j=1}^n \mu^*(C_{2j}) \leq \mu^*(B_{2n + 1}) \leq \mu^*(A - F)$,
+		\item $\sum_{j=1}^n \mu^*(C_{2j - 1}) \leq \mu^*(B_{2n}) \leq \mu^*(A - F)$.\retTwo
+	\end{itemize}
+
+	Hence, $\sum_{j=1}^\infty \mu^*(C_j)$ is a convergent series with a total sum at most $2\mu^*(A - F)$.\\ Consequently, $\sum_{j=n}^\infty \mu^*(C_j) \to 0$ as $n \to \infty$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo As for constructing metric outer-measures, I want to use slightly more general terminology than what Folland uses.\retTwo
+
+Given a collection of sets $\mathcalli{F} \subseteq \mathcal{P}(X)$ such that $\emptyset \in \mathcalli{F}$, we say $p: \mathcalli{F} \to [0, \infty]$ is a \udefine{gauge} if $p(\emptyset) = 0$. Also, given any $\delta > 0$ we say $(E_i)_{i \in I} \subseteq \mathcal{P}(X)$ is a \udefine{$\delta$-covering} of $E \subseteq X$ if $E \subseteq \bigcup_{i \in I} E_i$ and $\diam(E_i) \leq \delta$ for all $i$. {\color{red}(Here $\diam(\emptyset) \coloneqq 0$.)}\retTwo
+
+Now given a gauge $p : \mathcal{F} \to [0, \infty]$ and any $\delta > 0$, let us define:
+
+{\centering$\psi_\delta(E) \coloneqq \inf(\{\sum_{n \in \mathbb{N}} p(E_n) : \{E_n\}_{n \in \mathbb{N}} \subseteq \mathcal{F} \text{ is a } \delta \text{ covering of } E\} \cup \{\infty\})$\retTwo\par}
+
+Clearly $\psi_\delta$ is increasing as $\delta$ decreases. Hence, we can also define:
+
+{\centering$\psi(E) \coloneqq \sup_{\delta > 0}\psi_\delta(E) = \lim_{\delta \to 0}\psi_\delta(E)$.\retTwo\par}
+
+\begin{myIndent}\myComment
+	I'm getting this terminology from some lecture notes by Marco Inversi (see \inLinkRap{Fifth Citation}{item 5} in the bibliography).\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} $\psi$ is a metric outer measure.
+\begin{myIndent}\exThreeP
+	Why?\\
+	We can conclude from page 21 of my math 240a notes that $\psi_\delta$ is an outer measure for every $\delta$, and from there it is easy to see $\psi$ is also an outer measure.\retTwo
+
+	Also, we can easily see that if $\rho(A, B) > \delta$ then $\psi_\delta(A \cup B) = \psi_\delta(A) + \psi_\delta(B)$. In turn, by taking $\delta \to 0$ we get that $\psi(A \cup B) = \psi(A) + \psi(B)$ and this proves that $\psi$ is a metric outer measure.\newpage
+\end{myIndent}
+
+\hTwo We get the $p$-dimensional Hausdorff outer measure (denoted $\mathcal{H}_p$) by applying the prior\\ construction to the gauge defined by $E \mapsto \diam(E)^p$ for all $E \in \mathcalli{P}(X)$.\retTwo
+
+\mySepTwo
+
+\dispDate{5/16/2026}
+
+I ended up falling asleep and I have other things I need to pivot to working on for the time being.\retTwo
+
+\blect{Math 200c Lecture Notes:}\retTwo
+
+\exTwo\ul{Proposition:} Let $A$ be an integrally closed domain, $F$ its field of fractions, and $L/F$ a\\ finite degree normal extension. Let $B$ be the integral closure of $A$ in $L$. Also let\\ $P \in \Spec(A)$ and $\mathcalli{T} \coloneqq \{Q \in \Spec(B) : Q^c = P\}$. Then $G = \Aut(L/F)$ restricts\\ to a group of automorphisms of $B$ fixing $A$ and $G$ acts transitively on $\mathcalli{T}$. In particular,\\ this shows that $\mathcalli{T}$ is finite (with at most $|\Aut_F(L)|$ elements).
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $\sigma \in G$. Then $\sigma$ fixes $F$ pointwise and in turn fixes $A$ pointwise. Also as $A \subseteq B$ is an integral extension so is $A = \sigma(A) \subseteq \sigma(B)$. Yet now by the definition of the integral closure of $A$ in $K$, we know that $\sigma(B) \subseteq B$. Since the same reasoning also shows that $\sigma^{-1}(B) \subseteq B$, we can conclude $\sigma(B) = B$. Hence, each automorphism of $L$ fixing $F$ restricts to an automorphism of $B$ fixing $A$.\retTwo
+
+	Next consider any fixed $Q \in \mathcalli{T}$. Then:
+	
+	{\centering$\sigma(Q)^c = \sigma(Q) \cap A = \sigma(Q) \cap \sigma(A) = \sigma(Q \cap A) = \sigma(P) = P$.\retTwo\par}
+
+	As a result, $\{\sigma(Q) : \sigma \in G\} = \{Q_1, \ldots, Q_n\}$ (where $Q_1 = Q$) is a subset of $\mathcalli{T}$. To finish our proof, we need to show this subset is not proper.\retTwo
+
+	Let $K \coloneqq \Fix(\Aut_F(L))$. By a corollary on \inLinkRap{placeholder}{page 777}, we know $L/K$ is a Galois extension. Meanwhile, I also will make the following claim about $K/F$.\retTwo
+
+	\ul{Lemma 1:} If $L/F$ is a finite degree normal extension of fields and $K = \Fix(\Aut_F(L))$, then $K/F$ is a purely inseparable extension.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Suppose $\alpha \in K - F$. Then $\deg(m_{\alpha ; F}) > 1$. Yet also note that since $L/F$ is a normal extension, $m_{\alpha; F}$ splits in $L$. Plus, $\Aut_F(L)$ acts transitively on the zeros of $m_{\alpha; F}$ in $L$.
+		\begin{myIndent}\color{orange}
+			To see this, just note that since $L/F$ is a finite degree extension, we know that there is some $F$-basis for $L$ given by $\beta_1, \ldots, \beta_m$. In turn as $L/F$ is a normal extension we can say that $L$ is the splitting field of $f \coloneqq \prod_{i=1}^m m_{\beta_i; F}$ over $F$. And now we can conclude $\Aut_F(L)$ acts transitively on the zeros of $m_{\alpha; F}$ due to the problem on \inLinkRap{Math 200b Set 9 Problem 10}{page 815}.\retTwo
+		\end{myIndent}
+
+		Yet since $\Aut_F(L)$ fixes $K$, we can thus conclude that $m_{\alpha; F}(x) = (x - \alpha)^{\deg(m_{\alpha; F})}$. This proves that $m_{\alpha; F}$ is not separable.\newpage
+	\end{myIndent}
+
+	Now let $C$ be the integral closure of $A$ in $K$ and note that $A \subseteq C \subseteq B$. I shall make the following claim:\retTwo
+
+	\ul{Lemma 2:} Let $A$ be an integrally closed domain, $F$ its field of fractions, $K/F$ a finite purely inseparable extension, and $C$ the integral closure of $A$ in $K$. Then for any $P \in \Spec(A)$ there is a unique $\widetilde{P} \in \Spec(C)$ with $\widetilde{P} \cap A = P$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		To start off, if $K = F$ then this theorem is trivial. Meanwhile if $K/F$ is purely inseparable and not a trivial extension, then we must have that $\mChar(F) = p > 0$. Yet in turn we know from set 2 problem 6 on \inLinkRap{Math 200c Set 2 Problem 6}{page 858} that for all $\alpha \in K$ there exists $m \geq 0$ such that $\alpha^{p^m} \in F$.\retTwo
+
+		Consider any fixed $P^\prime \in \Spec(C)$ satisfying that $P^\prime \cap A = P$. (We know such\\ an ideal exists by the going up theorem.) Then if $\alpha \in P^\prime$ and $m$ is such that\\ $\alpha^{p^m} \in F$, we know that $\alpha^{p^m} \in F \cap P^\prime$. Since $A$ is integrally closed in $F$, we\\ also know $C \cap F = A$. Hence $F \cap P^\prime = F \cap C \cap P^\prime = A \cap P^\prime = P$.\retTwo
+
+		It follows that if $\widetilde{P} \coloneqq \{\alpha \in C : \exists m \geq 0 \text{ with }\alpha^{p^m} \in P\}$, then $P^\prime \subseteq \widetilde{P}$. To\\ finish off the proof of this lemma, we need to show that $\widetilde{P} \in \Spec(C)$ and that $\widetilde{P} \cap A = P$. That way, by incomparability we must have that $P^\prime = \widetilde{P}$. And since\\ the latter was defined independently of our choice of $P^\prime$, this will prove what we\\ wanted.\retTwo
+
+		Firstly I'll show $\widetilde{P} \lhd C$. Suppose $\alpha_1, \alpha_2 \in \widetilde{P}$ and let $c_1, c_2 \in C$. Then let\\ $m_i \geq 0$ be such that $\alpha_i^{p^{m_i}}\in P$. Also let $n_i \geq 0$ be such that $c_i^{p^{n_i}} \in A$. Then if\\ $N = \max(m_1, m_2, n_1, n_2)$, we have that:
+		
+		{\centering$(c_1\alpha_1 + c_2\alpha_2)^{p^N} = c_1^{p^N}\alpha_1^{p^N} + c_2^{p^N}\alpha_2^{p^N} \in P$.\retTwo\par}
+
+		Hence $c_1 \alpha_1 + c_2\alpha_2 \in \widetilde{P}$.\retTwo
+
+		Next I show that $\widetilde{P} \in \Spec(C)$. Let $\alpha_1, \alpha_2 \in C$ satisfy that $\alpha_1 \alpha_2 \in \widetilde{P}$. Then let $m \geq 0$ be such that $(\alpha_1 \alpha_2)^{p^m} = \alpha_1^{p^m} \cdot \alpha_2^{p^m} \in P$. By increasing $m$ if necessary we can also assume $\alpha_i^{p^m} \in A$ for both $i$. But now as $P$ is prime, we must have that either $\alpha_1^{p^m} \in P$ or $\alpha_2^{p^m} \in P$. Hence, $\alpha_1 \in \widetilde{P}$ or $\alpha_2 \in \widetilde{P}$.\retTwo
+
+		Finally, suppose $\alpha \in \widetilde{P} \cap A$, and let $m \geq 0$ be such that $\alpha^{p^m} \in P$. Since\\ $P \in \Spec(A)$ and $\alpha \in A$, the only way this is possible is if $\alpha \in P$. So, $A \cap \widetilde{P} \subseteq P$. The other inclusion is trivial.\retTwo
+	\end{myIndent}
+
+	Now given any $Q \in \mathcalli{T}$, we must have that $Q \cap C$ is unique prime ideal $\widetilde{P}$ in $C$ whose contraction to $A$ is $P$. Conversely, suppose $Q \in \Spec(B)$ satisfies that $Q \cap C = \widetilde{P}$. Then $Q \cap A = \widetilde{P} \cap A = P$. Hence, $\mathcalli{T}$ is equivalently the set of all prime ideals of $B$ lying over $\widetilde{P}$ in $C$. And if we can show that the set $\{\sigma(Q) : \sigma \in G\} = \{Q_1, \ldots, Q_n\}$ from before contains all such ideals lying over $\widetilde{P}$, we will be done. Fortunately now we will be aided by the fact that $L/K$ is a Galois extension with $\Gal(L/K) = \Aut_F(L)$ and $\Fix(\Gal(L/K)) = K$.\newpage
+
+	Suppose $Q^\prime \in \mathcalli{T}$. Then for any $b \in Q^\prime$ we have that $N_{L/K}(b) = \prod_{\sigma \in G}\sigma(b) \in K$. Yet also note $b \in B$ and $\sigma(B) = B$ for all $\sigma \in G$ implies that $N_{L/K}(b) \in B$. Hence, $N_{L/K}(b) \in B \cap K = C$ (since $C$ is integrally closed in $K$). In turn:
+
+	{\centering$N_{L/K}(b) \in Q^\prime \cap C = \widetilde{P} \subseteq Q_1$.\retTwo\par}
+
+	Since $\prod_{\sigma \in G}\sigma(b) \in Q_1$ and $Q_1$ is a prime ideal of $B$, we must have that $\sigma_0(b) \in Q_1$ for some $\sigma_0 \in G$. In turn $b \in \sigma_0^{-1}(Q_1) = Q_j$ for some $j$.\retTwo
+
+	With that, we've proven that $b \in \bigcup_{j=1}^n Q_j$ for all $b \in Q^\prime$. Or in other words, $Q^\prime \subseteq \bigcup_{j=1}^n Q_j$. By the prime avoidence lemma on \inLinkRap{Prime Avoidence Lemma}{page 893}, we can conclude that $Q^\prime \subseteq Q_j$ for some $j$. Then by incomparability plus the fact that both $Q^\prime$ and $Q_j$ contract to $\widetilde{P}$, we can conclude that $Q^\prime = Q_j$. This shows $\mathcalli{T} \subseteq \{Q_1, \ldots, Q_n\}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem (Going Down):} Let $A$ be an integrally closed domain, $F$ its field of fractions, $K/F$ a finite extension, and $B$ the integral closure of $A$ in $K$. Given primes $P_1 \subseteq P_2$ in $\Spec(A)$, if $Q_2 \in \Spec(B)$ has $Q_2^c = P_2$ then there exists $Q_1 \subseteq Q_2$ with $Q_1 \in \Spec(B)$ such that $Q_1^c = P_1$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\beta_1, \ldots, \beta_m$ span $K$ as an $F$-vector space, and define $f \coloneqq \prod_{i=1}^m m_{\beta_i; F}$. Then let $L$ be the splitting field of $f$ over $K$. Importantly, we can easily see that $L$ is also the splitting field of $f$ over $F$. Hence, $L/F$ and $L/K$ are finite normal extensions.\retTwo
+
+	Next, let $C$ be the integral closure of $A$ in $L$. Thus $A \subseteq B \subseteq C$ with $C/A$ and $C/B$ both being integral extensions. Using lying over and going up, we can find $Q_1^\prime \subseteq Q_2^\prime$ in $\Spec(C)$ such that $Q_i^\prime \cap A = P_i$. Similarly, we can find $Q_2^\pprime \in \Spec(C)$ such that $Q_2^\pprime \cap B = Q_2$. Yet now note that $Q_2^\pprime \cap A = P_2 = Q_2^\prime \cap A$. Thus by our prior theorem, there exists $\sigma \in \Aut(L/F)$ such that $\sigma(Q_2^\prime) = Q_2^\pprime$.\retTwo
+
+	Let $Q_1^\pprime \coloneqq \sigma(Q_1^\prime)$ and then let $Q_1 \coloneqq Q_1^\pprime \cap B$. Then $Q_1 \subseteq Q_2^\pprime \cap B = Q_2$. Also $Q_1 \cap A = Q_1^\pprime \cap A = \sigma(Q_1^\prime) \cap A = P_1$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+An \udefine{affine $k$-algebra} is another name for a f.g. unital commutative $k$-algebra (where $k$ is a field).\retTwo
+
+Note that if $A$ is an affine $k$-algebra generated by $a_1, \ldots, a_n$, then equivalently that means that the natural map $\phi: k[x_1, \ldots, x_n] \to A$ sending $k$ to $k$ and $x_i$ to $a_i$ is surjective. In turn, by the first isomorphism theorem we have that $A \cong \frac{k[x_1, \ldots, x_n]}{\ker(\phi)}$. Also because $k[x_1, \ldots, x_n]$ is Noetherian, we know $\ker(\phi)$ is generated as an ideal by finitely many polynomials\\ $f_1, \ldots, f_m$.\retTwo
+
+Let $A$ be a $k$-algebra and $a_1, \ldots, a_n \in A$. We say $a_1, \ldots, a_n$ are \udefine{algebraically independent over $k$} if there does not exist $0 \neq f \in k[x_1, \ldots, x_n]$ with $f(a_1, \ldots, a_n) = 0$. Equivalently, $a_1, \ldots, a_n$ are algebraically independent over $K$ iff the natural map $\phi: k[x_1, \ldots, x_n] \to A$ sending $x_i$ to $a_i$ and $k$ to $k$ is injective.\newpage
+
+\exTwo\ul{Lemma:} Let $k[x_1, \ldots, x_n]$ be a polynomial ring over a field $k$. Suppose $0 \neq f \in k[x_1, \ldots, x_n]$. Then there are elements $x_1^\prime, \ldots, x_{n-1}^\prime, x_n$ in $k[x_1, \ldots, x_n]$ generating the entire ring and satisfying that $f = cx_n^d + g_{d-1} x_n^{d-1} + \ldots + g_1 x_n + g_0$ where each $g_i \in k[x_1^\prime, \ldots, x_{n-1}^\prime]$ and $c \in k^\times$. In particular, we let $x_i^\prime = x_i - x_n^{d_i}$ for some integers $d_1, \ldots, d_{n-1}$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Write $0 \neq f = \hspace{-1.4em}\sum\limits_{(i_1, \ldots, i_n) \in (\mathbb{Z}_{\geq 0})^n}\hspace{-1em} a_{(i_1, \ldots, i_n)} x_1^{i_1} \cdots x_n^{i_n}$ where all but finitely many summands are $0$.\retTwo
+
+	Next, for $1 \leq i \leq n - 1$ we introduce the polynomial $x_i^\prime = x_i - x_n^{d_i}$ where $d_i \geq 1$ is some integer. Note that $x_1^\prime, \ldots, x_{n-1}^\prime, x_n$ is still an  algebraically independent generating set for $A \coloneqq k[x_1, \ldots, x_n]$.
+	\begin{myIndent}\exPPP
+		To see why, note that the natural map $\phi: A \to A$ given by $x_i \mapsto x_i - x_n^{d_i}$ for $1 \leq i \leq n - 1$ and $x_n \mapsto x_n$ has an inverse $\phi^{-1}$ which is the natural map given by $x_i \mapsto x_i + x_n^{d_i}$ for $1 \leq i \leq n - 1$ and $x_n \mapsto x_n$. Hence, $\phi$ is injective and surjective.\retTwo
+	\end{myIndent}
+
+	Next, we rearrange to get that $x_i = x_i^\prime + x_n^{d_i}$ for all $1 \leq i \leq n - 1$. In turn by substituting this into a monomial $ x_1^{i_1} \cdots x_n^{i_n}$ we get the expression:
+
+	{\centering\begin{tabular}{l}
+		$(x_1^\prime + x_n^{d_1})^{i_1}\cdots(x_{n-1}^\prime + x_n^{d_{n-1}})^{i_{n-1}}x_n^{i_n}$\\ [4pt]
+		$\phantom{aaaaaaaaaaaa} = x_n^{d_1 i_1 + \ldots + d_{n-1} i_{n-1} + i_n} + \text{ lower degree terms in }x_n$\\ [0pt]
+		$\phantom{aaaaaaaaaaaa = x_n^{d_1 i_1 + \ldots + d_{n-1} i_{n-1} + i_n} + aa} \text{ with coefficients in }k[x_1^\prime, \ldots,  x_{n-1}^\prime]$.
+	\end{tabular}\retTwo\par}
+
+	To finish off, let $S \coloneqq \{(i_1, \ldots, i_n) \in (\mathbb{Z}_{\geq 0})^n : a_{(i_1, \ldots, i_n) \neq 0}\}$. As mentioned before, $S$\\ is finite. Thus, I claim that we can choose $d_1, \ldots, d_{n-1}$ such that the map $\psi: S \to \mathbb{Z}$\\ given by:
+	
+	{\centering$(i_1, \ldots, i_n) \mapsto d_1 i_1 + \ldots + d_{n-1}i_{n-1} + i_n$\par}
+
+	is injective.
+	\begin{myIndent}\exPPP
+		There are many ways of doing this. One such way is to let:
+		
+		{\centering$N = \max\{\max\limits_{1 \leq k \leq n} i_k : (i_1, \ldots, i_n) \in S\}$ and  $d_i = N^i$.\retTwo\par}
+
+		Given a permutation $\sigma \in S_{n-1}$, it would also be valid to let $d_{\sigma(i)} = N^i$. Either way, our function $\psi$ would then just be outputting some integer with digits $i_j$ in base $N$.\retTwo
+	\end{myIndent}
+
+	Hopefully it's then clear how $f$ takes on the form we want. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		As a side note, if all we care about is the ideal generated by $f$ or a particular zero of $f$, then we can rescale $f$ by $c^{-1}$ to force $f$ to be monic.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Corollary:} $\dim(k[x_1, \ldots, x_n]) = n$.
+\begin{myIndent}\exThreeP
+	To start off, $\dim(k[x_1, \ldots, x_n]) \geq n$ since:
+	
+	{\centering $\{0\} \subsetneqq \langle x_1\rangle \subsetneqq \langle x_1, x_2\rangle \subsetneqq \cdots \subsetneqq \langle x_1, \ldots, x_n\rangle$\\ [4pt]\par}
+	
+	is a chain of prime ideals in $k[x_1, \ldots, x_n]$. As for the other inequality, suppose by induction that the corollary holds for integers less than $n$. (Our base case is covered by the fact that if $n = 1$ then $k[x_1]$ is a PID and not a field, and thus $\dim(k[x_1]) = 1$).\retTwo
+
+	Let $\{0\} \subsetneqq  P_1 \subsetneqq  \cdots \subsetneqq P_m$ be a chain of prime ideals in $k[x_1, \ldots, x_n]$ of maximal length. Then choose $f \in P_1 - \{0\}$ so that $\{0\} \subsetneqq \langle f\rangle \subseteq P_1$. We then shall consider the ring $A \coloneqq k[x_1, \ldots, x_n]/\langle f\rangle = k[\overline{x_1}, \ldots, \overline{x_n}]$.\newpage
+
+	By the prior lemma, we can find $x_1^\prime, \ldots, x_{n-1}^\prime \in k[x_1, \ldots, x_n]$ such that $k[x_1^\prime, \ldots, x_{n-1}^\prime, x_n]$ and $f$ is a polynomial in $x_n$ over the ring $k[x_1^\prime, \ldots, x_{n-1}^\prime]$ whose leading term is in $k$. By rescaling $f$, we can without loss of generality assume $f$ is monic.\retTwo
+
+	But then $B \coloneqq k[\overline{x_1^\prime}, \ldots, \overline{x_{n-1}^\prime}]$ is a subring of $A$. Furthermore $\overline{x_n} \in A$ is a zero of the monic polynomial $\overline{f}(x) \in B[x]$. It follows that $B \subseteq B[\overline{x_n}] = A$ is an integral extension, and in turn $\dim(B) = \dim(A)$.\retTwo
+
+	Next note that $\overline{x_1^\prime}, \ldots, \overline{x_{n-1}^\prime}$ are algebraically independent in $A$. Therefore, by our\\ induction hypothesis we can conclude that $\dim(B) = \dim(\overline{x_1^\prime}, \ldots, \overline{x_{n-1}^\prime}) = n - 1$.\\ Yet we also can easily see that $\dim(A) \geq m - 1$. Thus, we've proven:
+	
+	{\centering$n - 1 \geq \dim(k[x_1, \ldots, x_n]) - 1$.\retTwo\par}
+	
+	Or in other words, $n \geq \dim(k[x_1, \ldots, x_n])$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Noether Normalization Theorem:} Let $A$ be an affine $k$-algebra with generators $a_1, \ldots, a_n$. Then there is a subring $k[b_1, \ldots, b_r]$ where $b_1, \ldots, b_r$ are algebraically independent over $k$ and $A$ is a finitely generated $k[b_1, \ldots, b_r]$-module.
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		Remark: In particular, this says that $A$ is integral over $k[b_1, \ldots, b_r]$ since module\\ finite extensions are integral. Also if $k[b_1, \ldots, b_r] \subseteq A$ is an integral extension then $\dim(A) = \dim(k[b_1, \ldots, b_r]) = \dim(k[x_1, \ldots, x_r]) = r$.\retTwo
+
+		Also, it is valid in this theorem for $\dim(A) = 0$. In that case, $r = 0$ and $A$ is a finitely generated $k$-vector space.\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	We shall induct on $n$. If $a_1, \ldots, a_n$ are already algebraically independent, then just take $b_i = a_i$ for all $i$. Then $A$ is trivially a finitely generated $k[b_1, \ldots, b_n]$-module. Alternatively, in the trivial case that $n = 1$ and $a_1$ is not algebraically independent by itself (meaning $\exists f \in k[x]$ with $f(a_1) = 0$), then $A = k[a_1]$ is a finitely generated $k$-vector space with $\deg(f)$ many generators.\retTwo
+
+	Now suppose $n > 1$ and there exists $0 \neq f \in k[x_1, \ldots, x_n]$ such that $f(a_1, \ldots, a_n) = 0$.\\ Then let $d_1, \ldots, d_{n-1}$ be integers as in the lemma on the prior page, and set $x_i^\prime = x_i - x_n^{d_i}$ for $1 \leq i \leq n-1$. By rescaling $f$ if necessary, we can assume that:
+	
+	{\centering$f = x_n^d + g_{d-1}x_n^{d-1} + \ldots + g_1 x_n + g_0$ for some polynomials $g_j \in k[x_1^\prime, \ldots, x_{n-1}^\prime]$.\retTwo\par}
+
+	Yet now if we set $b_i = a_j - a_n^{d_i}$, we have that $a_n^d + \sum_{j=0}^{d-1}g_j(b_1, \ldots, b_{n-1}) a_n^j = 0$. This proves that $a_n$ is integral over $k[b_1, \ldots, b_{n-1}]$, and in turn $A = k[b_1, \ldots, b_{n-1}][a_n]$ is a finitely generated $k[b_1, \ldots, b_{n-1}]$-module.\retTwo
+
+	By our inductive hypothesis, $k[b_1, \ldots, b_{n-1}]$ is a finitely generated module over some\\ polynomial ring $k[c_1, \ldots, c_r] \subseteq A$ (here $r$ may perhaps be $0$). And by the same\\ reasoning as was used to prove the tower lemma on \inLinkRap{placeholder}{page 762}, we can conclude $A$ is a\\ finitely generated $k[c_1, \ldots, c_r]$-module. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage 
+
+Here are a few important consequences of Noether normalization:\retTwo
+
+\exTwo\ul{Proposition:} Let $A$ be an affine $k$-algebra which is also a field. Then $A/k$ is a finite degree field extension.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By Noether normalization, $\dim(A) = 0$ and $A$ being a finitely generated $k$-algebra implies that $A$ is a finitely generated $k$-vector space. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary:} Let $P$ be a maximal ideal of a polynomial ring $A = k[x_1, \ldots, x_n]$. Then $A/P$ is a field and $k \subseteq K \coloneqq A/P$ is a finite degree field extension. If $k = \overline{k}$ (i.e. $k$ is algebraically closed), then $P = \langle x_1 - a_1, x_2 - a_2, \ldots, x_n - a_n\rangle$ for some $a_1, \ldots, a_n \in k$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$K \coloneqq A/P$ is obviously a field. Yet it is also a finitely generate $k$-algebra still since\\ $K = k[\overline{x_1}, \ldots, \overline{x_n}]$ where $\overline{x_i} = x_i + P$. So by our prior proposition, we know $k \subseteq K$\\ is a finite degree field extension.\retTwo
+
+	Next, suppose $k = \overline{k}$. Then $P \in \Spec(k[x_1, \ldots, x_n])$ implies $k[x_i] \cap P \in \Spec(k[x_i])$ for all $i$. Also, as $k[x_i]$ is a PID we can then conclude there is an irreducible polynomial $f \in k[x_i]$ such that $P \cap k[x_i] = \langle f\rangle$. Yet since $k$ is algebraically closed, the only way $f$ can be irreducible is if $f(x_i) = x_i - a_i$ for some $a_i \in k$.\retTwo
+
+	Hence, for all $i$ there exists $a_i \in k$ such that $P \cap k[x_i] = \langle x_i - a_i\rangle$. In turn, we can conclude that $I \coloneqq \langle x_1 - a_1, x_2 - a_2, \ldots, x_n - a_n\rangle \subseteq P$.\retTwo
+
+	Yet note that $I$ is the kernel of the evaluation map $e: k[x_1, \ldots, x_n] \to k$ given by\\ $f(x_1, \ldots, x_n) \mapsto f(a_1, \ldots, a_n)$.
+	\begin{myIndent}\exPPP
+		To see this, first note that $x_i - a_i \in I$ for all $i$ implies $x_i \equiv a_i \mMod{I}$. As a result, we can conclude that $f(x_1, \ldots, x_n) \equiv f(a_1, \ldots, a_n) = e(f) \mMod{I}$ for all $f \in k[x_1, \ldots, x_n]$. Consequently, $f(x_1, \ldots, x_n) \equiv 0 \mMod{I}$ iff $e(f) \in I$. And since $e(f) \in k$ and $k \cap I = \{0\}$, this happens iff $f \in \ker(e)$. Hence, we've proven that $I = \ker(e)$.\retTwo
+	\end{myIndent}
+
+	Since the evaluation map $e$ is surjective (which we know by considering constant\\ polynomials), we can conclude by the first isomorphism theorem that $\frac{k[x_1, \ldots, x_n]}{I} \cong k$. In particular, this shows that $\frac{k[x_1, \ldots, x_n]}{I}$ is a field and thus $I$ is a maximal ideal. And since $I \subseteq P$ with $P$ being a proper ideal, we can conclude $I = P$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		This last result will be important when studying algebraic geometry.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+Let $A$ be a ring. The \udefine{Jacobson radical} of $A$ is $J(A) = \bigcap_{P \in \Max(A)} P$. Clearly\\ $\Nil(A) = \bigcap_{P \in \Spec(A)}P \subseteq J(A)$. Usually this containment will be proper but in\\ a special class of rings we have that $J(A) = \Nil(A)$.\retTwo
+
+A ring $A$ is \udefine{Jacobson} is every prime ideal $P \lhd A$ is an intersection of maximal ideals.\newpage
+
+\exTwo\ul{Proposition (Algebraic Weak Nullstellensatz):} \hypertarget{200c Algebraic Weak Nullstellensatz}{Let} $A$ be any affine $k$-algebra. Then $A$ is a Jacobson ring.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose not. Then there is some prime $P$ that is not an intersection of maximal ideals. Since $A$ is Noetherian, we can in turn pick $P$ to be a maximal such ideal that is not an intersection of maximal ideals. In turn, if we let $B = A/P$ then we have that $\{0\}$ is not an intersection of maximal ideals in $B$ and yet every nonzero prime $Q \in \Spec(B)$ is an intersection of maximal ideals in $B$.\retTwo
+
+	Since $\{0\}$ is not an intersection of maximal ideals in $B$, we know $J(B) \neq \{0\}$. Hence, we can pick $f \neq 0$ in $J(B)$. Yet now consider the localized ring $B_f \coloneqq S^{-1}B$ where $S = \{1, f, f^2, \ldots\}$. Any prime ideal of $B_f$ corresponds to a prime ideal $Q$ of $B$ such that $f \notin Q$. Since $f \in J(B)$ and every nonzero prime of $B$ contains $J(B)$, we can conclude that the only prime ideal of $B_f$ is the zero ideal. This implies the zero ideal of $B_f$ is a maximal ideal, and in turn we know $B_f$ is a field.\retTwo
+
+	Yet now note that $B_f$ is still a finitely generated $k$-algebra.
+	\begin{myIndent}\exPPP
+		After all, we can write that $B$ is a f.g. $k$-algebra generated by $b_1, \ldots, b_n$ over $k$.\\ In turn, $B_f$ is finitely generated (as a $k$-algebra) by $b_1, \ldots, b_n, f^{-1}$.\retTwo
+	\end{myIndent}
+
+	By the proposition on the prior page, we have that $k \subseteq B_f$ is a finite degree field\\ extension. Yet as $B$ is a domain and thus $S$ has no zero-divisors, we know the natural embedding $B \to B_f$ given by $b \mapsto \frac{b}{1}$ is an injection. Hence, we have a ring extension $B \subseteq B_f$, and in turn we know $B$ is a $k$-module of finite rank.\retTwo
+
+	\ul{Lemma:} If $B$ is an integral domain and a $k$-vector space of finite dimension, then $B$ is a field.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Let $b \in B - \{0\}$. Since $B$ is finite dimensioned, we know that $\{1, b, b^2, \ldots\}$ are not $k$-linearly independent. Hence, we can find a nonzero polynomial $g(x) \in k[x]$ such that $g(b) = 0$.\retTwo
+
+		Without loss of generality, let us now assume $g$ is a minimal monic polynomial of $k[x]$ with $g(b) = 0$. (Such a polynomial exists because $k[x]$ is a PID.) Then let us write $g(x) = c_n x^n + \ldots + c_1 x + c_0$ where $c_n \neq 0$. By the minimality of $g$ we can also conclude $c_0 \neq 0$. Otherwise, we'd be able to write $g(b) = b \cdot h(b)$ for some $h(x) \in k[x]$ of lesser degree. And since $b \neq 0$ and $B$ is a domain, we'd have that $g(b) = 0$ iff $h(b) = 0$.\retTwo
+
+		Now $0 = c_n b^n + \ldots + c_1 b + c_0$ where $c_n \neq 0 \neq c_0$. Hence, after rearranging we get that $1 = b \cdot \frac{-1}{c_0}(c_n b^{n-1} + \ldots + c_1)$. This proves that $b$ is a unit. And since $b$ was arbitrary, we've shown that $B$ is a field.\retTwo
+	\end{myIndent}
+
+	As a result of the above lemma, we know $B$ is a field and thus $\{0\}$ is a maximal ideal of $B$. Yet this contradicts our prior conclusion that $\{0\}$ is not an intersection of maximal ideals of $B$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage
+
+For this next section, we'll assume $k$ is an algebraically closed field. Then we call $\mathbb{A}^n \coloneqq k^n$ the \udefine{affine $n$-space}. (The reason for the new symbol is purely psychological since we will be less interested in the vector space properties of $\mathbb{A}^n$ and moreso interested in the geometric properties).\retTwo
+
+We'll call $B \coloneqq k[x_1, \ldots, x_n]$ be the \udefine{coordinate ring of $\mathbb{A}^n$}.\retTwo
+
+Also, given any collection of polynomials $S \subseteq B$ we define:
+
+{\centering$Z(S) \coloneqq \{(a_1, \ldots, a_n) \in \mathbb{A}^n : f(a_1, \ldots, a_n) = 0 \text{ for all } f \in S\}$.\retTwo\par}
+
+\begin{myIndent}\myComment
+	If $S = \{f\}$ then we abbreviate $Z(S)$ as $Z(f)$. Also, note that this is just slightly modified notation from the example of a functor on \inLinkRap{placeholder}{pages 635-636}. (The difference in notations is entirely just the personal whims of Alireza versus Rogalski.)\retTwo
+\end{myIndent}
+
+\pracOne Note that $Z(S) = Z(BS)$ where $BS$ is the ideal generated by $S$ in $B$. Hence, we can restrict ourselves to just considering $S = I$ where $I$ is an ideal of $B$ (if we wanted).\retTwo
+
+Conversely, let $X \subseteq \mathbb{A}^n$ and define the ideal:
+
+{\centering$I(X) = \{f \in B : f(a_1, \ldots, a_n) = 0 \text{ for all } (a_1, \ldots, a_n) \in X\}$.\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Note that $I(X)$ is an ideal because it is the intersection of the kernels of the evaluation maps $f \mapsto f(a_1, \ldots, a_n)$ for all $(a_1, \ldots, a_n) \in X$.\retTwo
+\end{myIndent}
+
+\hTwo Our next goal will be to establish some facts about the functions:
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXG1hdGhjYWx7UH0oXFxtYXRoYmJ7QX1ebikiXSxbMiwwLCJcXG1hdGhybXtJZGVhbHN9KEIpIl0sWzAsMSwiWihcXGNkb3QpIiwwLHsib2Zmc2V0IjotM31dLFsxLDAsIkkoXFxjZG90KSIsMCx7Im9mZnNldCI6LTN9XV0=
+\[\begin{tikzcd}
+	{\mathcal{P}(\mathbb{A}^n)} && {\mathcalli{P}(B)}
+	\arrow["{I(\cdot)}", shift left=3, from=1-1, to=1-3]
+	\arrow["{Z(\cdot)}", shift left=3, from=1-3, to=1-1]
+\end{tikzcd}\]
+
+Some hopefully obvious observations are as follows:
+\begin{enumerate}
+	\item[1.] $S \subseteq T \subseteq B \Longrightarrow Z(T) \subseteq Z(S)$,
+	\item[2.] $X \subseteq Y \subseteq \mathbb{A}^n \Longrightarrow I(Y) \subseteq I(X)$,
+	\item[3.] $X \subseteq Z(I(X))$ for all $X \subseteq \mathbb{A}^n$.
+	\item[4.] $S \subseteq I(Z(S))$ for all $S \subseteq B$.   
+\end{enumerate}
+
+\begin{myIndent}\myComment
+	You may notice these obvious relations are incredibly similar to the obvious relations of the Galois correspondance (see \inLinkRap{placeholder}{page 776}). In fact, some people call two maps satisfying these observations a \udefine{Galois connection}.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:}
+\begin{itemize}
+	\item $I(Z(I(X))) = I(X)$ for all $X \subseteq \mathbb{A}^n$.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		We know $X \subseteq Z(I(X))$. Hence $I(Z(I(X))) \subseteq I(X)$ by observation 2. Yet we also know from observation 4 that $I(X) \subseteq I(Z(I(X)))$.\newpage
+	\end{myIndent}
+
+	\item $Z(I(Z(S))) = Z(S)$ for all $S \subseteq B$.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		The same idea as above works but using observations 1 and 3. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\ul{Theorem:} There is a bijective correspondance given by:
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGxlZnRcXHsgXFxoc3BhY2V7LTIuMmVtfSBcXGJlZ2lue21hdHJpeH1YIFxcc3Vic2V0ZXEgXFxtYXRoYmJ7QX1ebiA6IFggPSBaKFMpIFxcXFwgXFxwaGFudG9te2FhYWFhYWFhYWFhYX0gXFx0ZXh0eyBmb3Igc29tZSB9IFMgXFxzdWJzZXRlcSBCIFxcZW5ke21hdHJpeH1cXHJpZ2h0XFx9Il0sWzIsMCwiXFxsZWZ0XFx7IFxcaHNwYWNley0zZW19XFxiZWdpbnttYXRyaXh9SiBcXGxoZCBCIDogSiA9IEkoWCkgXFxcXCBcXHBoYW50b217YWFhYWFhYWFhYWFhfVxcdGV4dHsgZm9yIHNvbWUgfSBYIFxcc3Vic2V0ZXEgXFxtYXRoYmJ7QX1ebiBcXGVuZHttYXRyaXh9XFxyaWdodFxcfSJdLFswLDEsIlooXFxjZG90KSIsMCx7Im9mZnNldCI6LTN9XSxbMSwwLCJJKFxcY2RvdCkiLDAseyJvZmZzZXQiOi0zfV1d
+\[\begin{tikzcd}
+	\begin{array}{c} \left\{ \hspace{-2.2em} \begin{matrix}X \subseteq \mathbb{A}^n : X = Z(S) \\ \phantom{aaaaaaaaaaaa} \text{ for some } S \subseteq B \end{matrix}\right\} \end{array} && \begin{array}{c} \left\{ \hspace{-3em}\begin{matrix}J \lhd B : J = I(X) \\ \phantom{aaaaaaaaaaaa}\text{ for some } X \subseteq \mathbb{A}^n \end{matrix}\right\} \end{array}
+	\arrow["{I(\cdot)}", shift left=3, from=1-1, to=1-3]
+	\arrow["{Z(\cdot)}", shift left=3, from=1-3, to=1-1]
+\end{tikzcd}\]
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	This should be obvious from the prior lemma. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\begin{myDindent}
+	\mySepFour
+\end{myDindent}
+
+Now it'd be nice to have an actual description of which sets and ideals are in the above domains for which $I(\cdot)$ and $Z(\cdot)$ are bijections. To this end, we define a topology on $\mathbb{A}^n$.\retTwo
+
+We'll say $X \subseteq \mathbb{A}^n$ is a \textit{closed} set if $X = Z(S)$ for some $S \subseteq B$.
+\begin{myIndent}\pracTwo
+	To check that this defines a topology on $\mathbb{A}^n$, note that:
+	\begin{itemize}
+		\item $\emptyset = Z(c)$ for any constant nonzero polynomial $c \in B$. Hence, $\emptyset$ is a closed set.\retTwo
+		\item $\mathbb{A}^n = Z(0)$ where $0$ is the constant zero polynomial in $B$. Hence, $\mathbb{A}^n$ is a closed set.\retTwo
+		\item Let $X_1 = Z(S_1), \ldots, X_n = Z(S_n)$ be closed subsets of $\mathbb{A}^n$. Then let:
+		
+		{\centering$S \coloneqq \{\prod_{i=1}^n f_i : f_i \in S_i \text{ for all } i\}$.\retTwo\par}
+		
+		Note that if $f = \prod_{i=1}^n f_i$ is a polynomial in $S$ then $f(a_1, \ldots, a_n) = 0$ if and only if\\ $f_i(a_1, \ldots, a_n) = 0$ for some $i$. As a result, we can see that $\bigcup_{i=1}^n X_i \subseteq Z(S)$. To get the other inclusion, suppose $\mVecAst{a} \notin \bigcup_{i=1}^n X_i$. Then for each $i$ we can find some $\widetilde{f}_i \in S_i$ with $f_i(\mVecAst{a}) \neq 0$. In turn $\widetilde{f} = \prod_{i=1}^n \widetilde{f}_i$ is an element of $S$ with $\widetilde{f}(\mVecAst{a}) \neq 0$. So, $\mVecAst{a} \notin Z(S)$. Hence, we've proven that $\bigcup_{i=1}^n X_i$ is closed.\retTwo
+
+		\item Let $\{X_\alpha\}_{\alpha \in A}$ be an arbitrary collection of closed subsets of $\mathbb{A}^n$, and for each $\alpha$ let $S_\alpha \subseteq B$ be such that $X_\alpha = Z(S_\alpha)$. Then let $S \coloneqq \bigcup_{\alpha \in A} S_\alpha$. It is easy to see that $\bigcap_{\alpha \in A}X_\alpha = Z(S)$.\retTwo
+	\end{itemize}
+\end{myIndent}
+
+The topology that this defines on $\mathbb{A}^n$ is called the \udefine{Zariski topology}. Clearly from the name of this topology, there is some connection to the Zariski topology on $\Spec(B)$.\retTwo
+
+Consider $Z(J)$ where $J \lhd B$. Then $(a_1, \ldots, a_n) \in Z(J)$ implies $f(a_1, \ldots, a_n) = 0$\\ for all $f \in J$. Equivalently, this means that $f$ is contained in the maximal ideal\\ $\langle x_1 - a_1, \ldots, x_n - a_n\rangle$ for all $f \in J$. Or in other words, $J \subseteq \langle x_1 - a_1, \ldots, x_n - a_n\rangle$.\newpage
+
+As a result, we can write that:
+
+{\centering$Z(J) = \{(a_1, \dots, a_n) \in \mathbb{A}^n : J \subseteq \langle x_1 - a_1, \ldots, x_n - a_n\rangle\}$ \retTwo\par}
+
+But now by the proposition on \inLinkRap{200c Algebraic Weak Nullstellensatz}{page 937}, we know there is a bijective correspondance\\ from $\mathbb{A}^n$ to $\Max(B)$ given by $(a_1, \ldots, a_n) \mapsto \langle x_1 - a_1, \ldots, x_n - a_n\rangle$.
+\begin{myIndent}\myComment
+	(Here we are finally using that $k$ is an algebraically closed field.)\retTwo
+\end{myIndent}
+
+By identifying any $\mVecAst{a} \in \mathbb{A}^n$ with it's corresponding ideal in $\Max(B)$, we can thus say that:
+
+{\centering $Z(J) = \{P \in \Max(B) : J \subseteq P\} = V(J) \cap \Max(B)$ \retTwo\par}
+
+As a result, the map $(a_1, \ldots, a_n) \mapsto \langle x_1 - a_1, \ldots, x_n - a_n\rangle$ is a homeomorphism from $\mathbb{A}^n$ equipped with the Zariski topology to $\Max(B)$ equipped with the Zariski subspace topology (relative to $\Spec(B)$).
+\begin{myIndent}\myComment
+	As a side note, this proves that the Zariski topology on $\mathbb{A}^n$ is $T_1$.
+	\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+\ul{Proposition:} Any prime ideal $P \lhd k[x, y]$ (where $k = \overline{k}$) is of the form:
+\begin{itemize}
+	\item $P = \langle x - a, y - b\rangle$,
+	\item $P = \langle f\rangle$ (where $f$ is irreducible in $k[x, y]$),
+	\item $P = \{0\}$.
+\end{itemize}
+\begin{myIndent}\pracTwo
+	Proof:\\
+	$k[x, y]$ has a Krull dimension of $2$. Therefore, the \udefine{height} of any prime ideal $P$ of $k[x, y]$, (which is defined as $\max\{n \in \mathbb{Z}_{\geq 0} : \exists Q_0 \subsetneqq \cdots \subsetneqq Q_n = P \text{ in } \Spec(k[x, y])\}$), is either $0$, $1$, or $2$.\retTwo
+
+	Since $k[x, y]$ is a domain, we know the only prime ideal with height $0$ is $\{0\}$. Meanwhile, consider the following lemma.\retTwo
+
+	\ul{Lemma:} If $D$ is a UFD and $P \lhd D$ is a prime ideal with height $1$, then $P$ is a principal ideal.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Since $P$ has height $1$ we know $P \neq \{0\}$. Hence, we can find $x \in P$ such that $x \notin \{0\} \cup D^\times$. Then as $D$ is a UFD, we can factor $x$ as a product of irreducible elements $p_1 \cdots p_n$. In particular, as $P$ is a prime ideal, we then must have that $p_i \in P$ for some $i$. Yet also, because $D$ is a UFD we know $\langle p_i\rangle$ is a nonzero prime ideal that is contained in $P$. Since $P$ has height $1$, the only way we don't have a contradiction is if $P = \langle p_i\rangle$.\retTwo
+	\end{myIndent}
+
+	This lemma shows every height $1$ ideal in $k[x, y]$ is a principal ideal. To finish off, note that if a prime ideal has height $2$ than it must be maximal. But by the proposition on \inLinkRap{200c Algebraic Weak Nullstellensatz}{page 937} we know what every maximal ideal looks like. $\blacksquare$\retTwo
+\end{myIndent}
+
+As a consequence of this proposition, we can say that any proper closed subset $F \subseteq \mathbb{A}^2$ is a finite union of irreducible curves in $\mathbb{A}^2$ of the form:
+
+{\centering$\{(a_1, a_2) : f(a_1, a_2) = 0 \text{ where } f \in k[x, y] \text{ is irreducible}\}$\\ [4pt]\par}
+
+as well as individual points $\{(a_1, \ldots, a_n)\}$.\newpage
+
+\begin{myIndent}\pracTwo
+	Why?\\
+	We can write $F = V(J) \cap \Max(k[x, y])$ for some $J \lhd k[x, y]$. But now since $k[x, y]$ is a Noetherian ring, we can find prime ideals $Q_1, \ldots, Q_n$ (not all necessarily distinct) such that $J = Q_1 \cdots Q_n$.
+	\begin{myIndent}\color{VioletRed}
+		Proof:\\
+		$k[x, y]$ being Noetherian implies that $k[x,y]/J$ is as well. Thus, we can apply\\ the theorem on \inLinkRap{Noetherian Rings allow prime factorization of ideals}{page 900} followed by the ideal correspondance theorem to get\\ the factorization we want.\retTwo
+	\end{myIndent}
+
+	But now $V(J) = \bigcup_{i=1}^n V(Q_j)$. Also since $F \neq \mathbb{A}^2 \cong \Max(k[x, y])$, we know that $J \neq \{0\}$. In turn, we can't have that $Q_i = \{0\}$ for any $i$. Hence, we now just apply the prior proposition in order to describe what $V(Q_i) \cap \Max(k[x, y])$ looks like for each $i$.\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo Question: What are the ideals of $B$ of the form $I(X)$ where $X \subseteq \mathbb{A}^n$ is a closed set?\retTwo
+
+\exTwo\ul{Proposition:} Given $J \lhd B$, we have that:
+
+{\centering$I(Z(J)) = \sqrt{J}$ ($ = \bigcap_{P \in V(J)} P = \{f \in B : f^n \in J \text{ for some } n \in \mathbb{Z}_{\geq 0}\}$).\retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Note that
+	
+	{\centering\begin{tabular}{l}
+		$I(Z(J)) = \{f \in B : f(\mVecAst{a}) = 0 \text{ for all } \mVecAst{a} \in Z(J)\} = \hspace{-1.5em}\bigcap\limits_{P \in V(J) \cap \Max(B)}\hspace{-1.5em} P$.
+	\end{tabular}\retTwo\par}
+
+	Then since $B$ is a Jacobson ring, every prime ideal $P$ is an intersection of maximal ideals. In particular, if $P \in V(J)$ then $P$ must be an intersection of ideals in $V(J) \cap \Max(B)$. Hence:
+
+	{\centering\begin{tabular}{l}
+		$\hspace{-1.5em}\bigcap\limits_{P \in V(J) \cap \Max(B)}\hspace{-1.5em} P = \bigcap\limits_{P \in V(J)} P = \sqrt{J}$
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+\exTwo\ul{Corollary:} There are inverse inclusion-reversing bijections:
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJcXGxlZnRcXHtYIFxcc3Vic2V0ZXEgXFxtYXRoYmJ7QX1ebiA6IFggXFx0ZXh0eyBpcyBaYXJpc2tpIGNsb3NlZH0gXFxyaWdodFxcfSJdLFsyLDAsIiBcXGxlZnRcXHtKIFxcbGhkIEIgOiBKID0gXFxzcXJ0e0peXFxwcmltZX0gXFx0ZXh0eyBmb3Igc29tZSB9IEpeXFxwcmltZSBcXGxoZCBCXFxyaWdodFxcfSJdLFswLDEsIkkoXFxjZG90KSIsMCx7Im9mZnNldCI6LTN9XSxbMSwwLCJaKFxcY2RvdCkiLDAseyJvZmZzZXQiOi0zfV1d
+\[\begin{tikzcd}
+	{\left\{X \subseteq \mathbb{A}^n : X \text{ is Zariski closed} \right\}} && { \left\{J \lhd B : J = \sqrt{J^\prime} \text{ for some } J^\prime \lhd B\right\}}
+	\arrow["{I(\cdot)}", shift left=3, from=1-1, to=1-3]
+	\arrow["{Z(\cdot)}", shift left=3, from=1-3, to=1-1]
+\end{tikzcd}\]
+
+\hTwo\mySepTwo
+
+This next section will be on a completely different topic. For this section, we'll assume $A$ is Noetherian throughout.\retTwo
+
+Let $M$ be an $A$-module. Then recall that $\Ann_A(M) \lhd A$. Also note that $M$ is naturally an $A/\Ann_A(M)$-module (where we define $(a + \Ann_A(M))m = am$).
+\begin{myIndent}\pracTwo
+	After all, if $a_1 - a_2 \in \Ann_A(M)$ then $(a_1  - a_2)m  = 0$. Hence $a_1 m = a_2 m $.\retTwo
+\end{myIndent}
+
+We define the \udefine{Krull dimension} of $M$ to be $\dim(M) = \dim(A/\Ann_A(M))$.
+\begin{myIndent}\pracTwo
+	After all, if $a_1 - a_2 \in \Ann_A(M)$ then $(a_1  - a_2)m  = 0$. Hence $a_1 m = a_2 m $.\newpage
+\end{myIndent}
+
+\begin{myIndent}\myComment
+	Note: If $M$ is finitely generated then $\dim(M)$ is equal to the maximal chain length of\\ $\supp(M) \subseteq \Spec(A)$. (See \inLinkRap{placeholder}{pages 672-673}).\retTwo
+\end{myIndent}
+
+Let $M$ be an $A$-module. An \udefine{associated prime} of $M$ is a prime ideal $P$ of $A$ such that\\ $P = \Ann_A(m)$ for some $m \in M$ with $m \neq 0$. The set of all associated primes is $\Ass(M)$.\\ [-8pt]
+\begin{myIndent}\pracTwo
+	Remark: If $P \in \Spec(A)$ and we view $A/P$ as an $A$-module, then the fact that $A/P$\\ is an integral domain means that $\Ass(A/P) = \{P\}$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Let $M$ be an $A$-module. Then $P \in \Ass(M)$ iff $M$ has as a submodule\\ $N \cong A/P$.
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	Suppose $P \in \Ass(M)$ with $P = \Ann_A(m)$ for some $m \neq 0$, then $N \coloneqq Am$ is a submodule of $M$ such that $N \cong A/P$. After all, consider the map $\phi: A \to N$ given by $\phi(a) = am$. Then $\ker(\phi) = P$. Hence, by the first isomorphism theorem we get that $A/P \cong N$.\retTwo
+
+	$(\Longleftarrow)$\\
+	Let $\phi: A/P \to N$ be the module isomorphism and then let $m \coloneqq \phi(1 + P)$. Now $am = a\phi(1 + P) = \phi(a + P)$ for all $a \in A$. Since $\phi$ is injective, we thus have that $am = 0$ iff $a + P = 0 + P$. Hence, $\Ann_A(m) = P$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} Let % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV8xIl0sWzIsMCwiTV8yIl0sWzMsMCwiTV8zIl0sWzQsMCwiXFx7MFxcfSJdLFsxLDIsIlxccGhpXzEiXSxbMiwzLCJcXHBoaV8yIl0sWzMsNF0sWzAsMV1d
+$\begin{tikzcd}
+	{\{0\}} & {M_1} & {M_2} & {M_3} & {\{0\}}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{\phi_1}", hook, from=1-2, to=1-3]
+	\arrow["{\phi_2}", two heads, from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}$ be a short exact sequence of $A$-modules. Then:
+\begin{enumerate}
+	\item $\Ass(M_1) \subseteq \Ass(M_2) \subseteq \Ass(M_1) \cup \Ass(M_3)$.
+	\item If the SES splits then $\Ass(M_2) = \Ass(M_1) \cup \Ass(M_3)$.
+\end{enumerate}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off $\phi_1(M_1)$ is a submodule of $M_2$. Hence any submodules of $M_1$ are isomorphic to submodules of $M_1$. In particular, if $M_1$ has a submodule isomorphic to $A/P$ for some $P \in \Spec(A)$, then so does $M_2$. Hence, $\Ass(M_1) \subseteq \Ass(M_2)$.\retTwo
+
+	Next, let $0 \neq m \in M_2$ be such that $\Ann_A(m) = P \in \Spec(A)$. If $m \in \phi_1(M_1) = \ker(\phi_2)$ then we know $P \in \Ass(M_1)$ by analogous reasoning as in the first paragraph. Hence, we may assume $\phi_2(m) \neq 0$. But then also note by the first isomorphism theorem that $M_2 / \phi(M_1) \cong M_3$ by the map $m^\prime + \phi_1(M_1) \mapsto \phi_2(m^\prime)$. So, we shall now ask what\\ $\Ann_A(m + \phi_1(M_1))$ is.\retTwo
+
+	Clearly $P = \Ann_A(m) \subseteq \Ann_A(m + \phi_1(M_1))$. On the other hand, suppose that\\ $a(m + \phi_1(M_1)) = 0$ for some $a \in A - P$. Then $am \in \phi_1(M_1)$ but $am \neq 0$. Also note that since $P$ is prime and $a \notin P$, we have that $\Ann_A(am) = P$. Therefore, we have once again shown that $P \in \Ass(M_1)$.\retTwo
+
+	Hence, we now know that either $P = \Ann_A(m + \phi_1(M_1))$ or $P \in \Ass(M_1)$. And in the former case, we then equivalently know that $P = \Ann_A(\phi_2(m))$. So, $P \in \Ass(M_3)$. This finishes the proof of claim 1.\newpage
+
+	As for claim 2, if our SES splits then $M_3$ is a isomorphic to a submodule of $M_2$.\\ Hence by identical reasoning to the claim $\Ass(M_1) \subseteq \Ass(M_2)$, we can conclude\\ $\Ass(M_3) \subseteq \Ass(M_2)$. It follows that $\Ass(M_1) \cup \Ass(M_3) \subseteq \Ass(M_2)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Let $M$ be a nontrivial finitely generated module over a Noetherian ring $A$.
+\begin{itemize}
+	\item[1.] $\Ass(M) \neq \emptyset$. {\color{red} (This claim doesn't require $M$ to be finitely generated.)}
+	\item[2.] $M$ has a \udefine{prime filtration}. In other words, there exists a sequence of modules\\ $\{0\} = M_0 \subseteq M_1 \subseteq \cdots \subseteq M_n = M$ with $M_{i+1}/M_i \cong A/P_i$ for some $P_i \in \Spec(A)$.
+	\item[3.] Every prime $P \in \Ass(M)$ is one of the $P_i$ in claim 2 (which in turn means $\Ass(M)$ is finite).
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		To show claim 1, consider the set of ideals $\{\Ann_A(m^\prime) : m^\prime \in M - \{0\}\}$. Because $A$ is Noetherian, there is a maximal ideal $P = \Ann_A(m)$ in this set. Then we claim $P$ is prime (and thus in $\Ass(M)$).
+		\begin{myIndent}\exPPP
+			After all, firstly note that since $1 m = m \neq 0$, we know $P$ is a proper ideal. Also, suppose $ab \in P$ and $a \notin P$. Then $am \neq 0$, meaning $\Ann_A(am)$ is in our original set of ideals. Yet also note that $P = \Ann_A(m) \subseteq \Ann_A(am)$. So by the maximality of $P$ in our original set, we must have that $P = \Ann_A(am)$. Since $b \in \Ann_A(am)$, this proves that $b \in P$.\retTwo
+		\end{myIndent}
+
+		To show claim 2, note that since $M$ has at least one associated prime $P_1$, we know $M$ has a submodule $M_1 = Am_1 \cong A/P_1$. Similarly $M/M_1$ has an associated prime $P_2$. Thus, $M/M_1$ has a submodule $M_2/M_1 \cong A/P_2$. And now we keep repeating the same reasoning so on and so forth with $M/M_2$, $M/M_3$, etc. until we get to the situation where $M_n = M$ and can ascend no further.\retTwo
+
+		Note that because $M$ is a finitely generated module over a Noetherian ring, we know $M$ is a Noetherian module and thus there will in fact be some $n \in \mathbb{N}$ with $M_n = M$.
+		\begin{myIndent}\exPPP
+			If not then we'd have constructed an infinite ascending chain of submodules of $M$, violating that $M$ is Noetherian.\retTwo
+		\end{myIndent}
+
+		Hence, this shows claim 2.\retTwo
+
+		Finally to show claim 3, consider any prime filtration
+		
+		{\centering$\{0\} = M_0 \subseteq M_1 \subseteq \cdots \subseteq M_n = M$\\ [4pt]\par}
+		
+		as described in claim 2. Also let $P_1, \ldots, P_n \in \Spec(A)$ such that $M_{i+1}/M_i \cong A/P_i$ for each $i$. Then consider the short exact sequence below:
+		% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV97bi0xfSJdLFsyLDAsIk1fbiJdLFszLDAsIlxcZnJhY3tNX259e01fe24tMX19Il0sWzQsMCwiXFx7MFxcfSJdLFswLDFdLFsxLDIsImkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XV0=
+		\[\begin{tikzcd}
+			{\{0\}} & {M_{n-1}} & {M_n} & {\frac{M_n}{M_{n-1}}} & {\{0\}}
+			\arrow[from=1-1, to=1-2]
+			\arrow["i", hook, from=1-2, to=1-3]
+			\arrow["\pi", two heads, from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+		\end{tikzcd}\]
+
+		From the prior lemma we know $\Ass(M) \subseteq \Ass(M_{n-1}) \cup \Ass(M_{n}/M_{n-1})$. Yet, we also know $\Ass(M_{n}/M_{n-1}) = \Ass(A/P_n) = \{P_n\}$. Thus, we can conclude that $\Ass(M) \subseteq \Ass(M_{n-1}) \cup \{P_n\}$. By repeating this reasoning but with $M_{n-1}$, $M_{n-2}$, etc., we can eventually conclude that $\Ass(M) \subseteq \{P_1, \ldots, P_n\}$. $\blacksquare$\newpage
+	\end{myIndent}
+\end{itemize}
+
+\pracOne\mySepTwo
+A question we can ask about the prior theorem is if every prime from our prime filtration is an associated prime of $M$. The answer is unfortunately not necessarily yes. For example, let $k$ be a field and $A \coloneqq k[x, y]$. Then let $M = \langle x, y\rangle$.
+\begin{myIndent}\pracTwo
+	For any torsion free module (over a domain), we have that the only associated prime ideal is the zero ideal. Hence, $\Ass(M) = \{\{0\}\}$.\retTwo
+
+	On other hand, consider the ascending chain of submodules:
+
+	{\centering $0 \subseteq \langle x\rangle \subseteq \langle x, y\rangle = M$\retTwo\par}
+
+	Since $\langle x\rangle$ is a principal ideal, we know $\langle x\rangle \cong A \cong A/\{0\}$ as $A$-modules. Meanwhile, $\langle x, y\rangle/\langle x\rangle \cong A/\langle x\rangle$.
+	\begin{myIndent}\pracTwo
+		To prove this, define $\psi: A \to \frac{\langle x, y\rangle}{\langle x\rangle}$ by $\psi(f(x, y)) = yf(x, y) + \langle x\rangle$. Then $\psi$ is a well-defined module homomorphism. Furthermore, I claim $\psi$ is surjective. After all, any $g(x, y) \in \langle x, y\rangle$ can be written in the form $g(x, y) = h_1(x, y)x + yh_2(y)$. In turn, $g(x, y) + \langle x\rangle = yh_2(y) + \langle x\rangle = \psi(h_2(y))$. Thirdly, note that $\ker(\psi) = \langle x\rangle$. Hence, we can use the first isomorphism theorem.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+More generally, if $M$ is a finitely generated torsion-free module that is not a free-module, then any prime filtration will contain non-associated primes.
+\begin{myIndent}\pracTwo
+	After all, if not then we'd have that $\{0\} = M_0 \subseteq M_1 \subseteq \cdots \subseteq M_n = M$ satisfies that $M_{i+1}/M_i \cong A$ for all $i$. But now as $A$ is free (and thus projective), and also because we have an SES:
+	% https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV97bi0xfSJdLFsyLDAsIk1fbiJdLFszLDAsIlxcZnJhY3tNX259e01fe24tMX19Il0sWzQsMCwiXFx7MFxcfSJdLFswLDFdLFsxLDIsImkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XV0=
+		\[\begin{tikzcd}
+		{\{0\}} & {M_{i}} & {M_{i+1}} & {\frac{M_{i+1}}{M_{i}}} & {\{0\}}
+		\arrow[from=1-1, to=1-2]
+		\arrow[hook, from=1-2, to=1-3]
+		\arrow[two heads, from=1-3, to=1-4]
+		\arrow[from=1-4, to=1-5]
+	\end{tikzcd},\]
+
+	we can conclude $M_{i+1} \cong M_i \oplus A$ for all $i$. Hence $M \cong A^n$ and this contradicts that $M$\\ is not a free-module.\retTwo
+\end{myIndent}
+
+\begin{myIndent}\mySepFour\end{myIndent}
+
+For another example calculation, suppose $A$ is a PID and $M$ is a finitely generated\\ $A$-module. By the fundamental theorem of PIDs we can write $M \cong A^r \oplus \bigoplus_{k=1}^m \frac{A}{\langle a_k\rangle}$\\ where $a_1 \divides a_2 \divides \cdots \divides a_m$. Then after considering the prime decompositions of each $a_k$, we can use the Chinese remainder theorem to get that $M \cong A^r \oplus \bigoplus_{i=1}^\ell \frac{A}{\langle p_i^{e_i}\rangle}$ where each $p_i$ is a prime element of $A$ and each $e_i$ is a positive integer.\retTwo
+
+By applying the short exact sequence lemma from two pages ago, we can see that:
+
+{\centering$\Ass(M) = \underbrace{\Ass(A)}_{\text{ if } r > 0} \cup \bigcup\limits_{i=1}^\ell \Ass(\frac{A}{\langle p_i^{e_i}\rangle})$.\retTwo\par}
+
+In turn, we can see that $\Ass(M) = \{\langle p_i\rangle : 1 \leq i \leq \ell\} \cup \underbrace{\{\{0\}\}}_{\text{ if } r > 0}$.\retTwo
+
+\mySepTwo\newpage
+
+\exTwo\ul{Proposition:} Let $A$ be a nontrivial Noetherian ring and let $D$ be the set of zero divisors in\\ $A$ (including $0$). Then $D = \bigcup_{P \in \Ass(A)} P$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	It's obvious that $\bigcup_{P \in \Ass(A)} \subseteq D$. Conversely, if $a \in D$ then we know there exists\\ $b \in A - \{0\}$ such that $ab = 0$. Or in other words, $a \in \Ann_A(b)$.\retTwo 
+
+	But now consider the set $\{\Ann_A(x^\prime b) : x^\prime b \neq 0 \text{ and } x^\prime \in A\}$. This set is nonempty since $\Ann_A(1b) = \Ann_A(b)$ is in this set. So because $A$ is Noetherian, we can consider an ideal $P = \Ann_A(x b)$ that is maximal among the elements of this set. Then, we can see that $P$ is a prime ideal.
+	\begin{myIndent}\exPPP
+		$P$ is a proper ideal because $1xb = xb \neq 0$. Hence $1 \notin P$. Also suppose $cd \in P$ but $c \notin P$. Then as $P$ is maximal in our original set and $c \notin P$, we must have that $\Ann_A(cxb) = \Ann_A(xb)$. In turn, $dc \in P \Longrightarrow d \in \Ann_A(cxb) = P$.\retTwo
+	\end{myIndent}
+
+	Now note that $\Ann_A(b) \subseteq \Ann_A(xb) = P$. Hence, we have found an associated prime containing $\Ann_A(b)$ (which contains $a$). This proves that $D \subseteq \bigcup_{P \in \Ass(A)}P$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne One application of this proposition is as follows. Suppose $A$ is a \udefine{reduced} (meaning\\ $\Nil(A) = \{0\}$) Noetherian ring.
+\begin{myIndent}\pracTwo
+	We already know that minimal primes consist exclusively of zero divisors. After all, if $A$ is an integral domain then the only minimal prime is $\{0\}$. Meanwhile, if $A$ not an integral domain then we know every prime ideal of $A$ contains nonzero elements. Yet simultaneously, because $A$ is Noetherian, we can apply the theorem on \inLinkRap{Noetherian Rings allow prime factorization of ideals}{pages 899-900} plus the fact that every prime ideal contains a minimal prime in order to say that $0$ is a product of every minimal prime ()
+\end{myIndent}
 
 
 
@@ -5421,6 +6563,7 @@ One last observation I want to to make is that if $f(x, y) = u(x, y) + iv(x, y)$
 
 
 \hypertarget{idk reference 2}{}
+\hypertarget{idk reference 3}{}
 
 \newpage
 
@@ -5429,6 +6572,12 @@ One last observation I want to to make is that if $f(x, y) = u(x, y) + iv(x, y)$
 	\item Folland, G. B. (1999). \textit{Real Analysis : Modern Techniques and Their Applications} (2nd ed.). John Wiley And Sons.
 	
 	\item \hypertarget{Second citation}{Willanksy}, A. (2013). \textit{Modern Methods in Topological Vector Spaces}. Dover Publications, Inc.
+	
+	\item \hypertarget{Third Citation}{Strauss}, W. A. (2008). \textit{Partial Differential Equations An Introduction} (2nd ed.). John Wiley And Sons.
+	
+	\item Guillemin, V., \& Haine, P. (2019). \textit{Differential Forms}. World Scientific Publishing Company.
+	
+	\item \hypertarget{Fifth Citation}{Inversi,} M. (n.d.). Retrieved May 16, 2026, from https://poisson.phc.dm.unipi.it/~inversi/GMT.pdf
 \end{enumerate}
 
 \end{document}
@@ -5440,10 +6589,23 @@ One last observation I want to to make is that if $f(x, y) = u(x, y) + iv(x, y)$
 
 
 
-% 
-% \begin{myIndent}\color{RawerSienna}
-	% By the way, I realize I haven't ever mentioned this before but given a field\\ extension $L/F$ and any $\alpha \in L$, we write $F(\alpha)$ to denote the smallest field\\ containing $F$ and $\alpha$. Meanwhile, we write $F[\alpha]$ to denote the smallest ring\\ containing $F$ and $\alpha$. If $\alpha$ is algebraic over $F$, then $F(\alpha) = F[\alpha]$ (hence why\\ I haven't brought this up ever). That said, if $\alpha$ is transcendental then we'll\\ have that $F(\alpha) \neq F[\alpha]$. After all, $F[\alpha]$ is isomorphic to $F[x]$ mod the kernel of the evaluation map. But if that kernel is trivial, then we aren't quotienting out by a maximal ideal and hence $F[\alpha]$ won't be a field. The TLDR of this is that if we don't know if $\alpha$ is transcendental or not, it does actually matter to write $F(\alpha)$ instead of $F[\alpha]$.
+% \pracOne\mySepTwo
+
+% \ul{Lemma (Leibniz' Rule with Varying Boundaries):} Suppose $g(x, t)$ and $\frac{\partial g}{\partial t}(x, t)$ are both\\ continuous functions on a rectangle $[A, B] \times [c, d] \subseteq \mathbb{R} \times \mathbb{R}$ Also, suppose $a(t)$,\\ $b(t)$ are differentiable functions such that $c \leq a(t) < b(t) \leq d$. Then upon setting\\ $I(t) \coloneqq \int_{a(t)}^{b(t)} g(x, t)\df x$ we have that:
+
+% {\centering $\frac{\df I}{\df t}(t) = \int_{a(t)}^{b(t)}\frac{\partial g}{\partial t}(x, t)\df x + f(b(t), t)b^\prime(t) - f(a(t), t)a^\prime(t)$ \retTwo\par}
+
+% \begin{myIndent}\pracTwo
+% 	Proof:\\
+% 	This is just a consequence of chain rule. Let $H(t, a, b) = \int_a^{b} g(x, t)\df x$. Then:
+
+% 	{\centering\begin{tabular}{l} $\frac{\df}{\df t}H(t, a(t), b(t)) = \frac{\partial H}{\partial t}(t, a(t), b(t)) + a^\prime(t) \frac{\partial H}{\partial a}(t, a(t), b(t)) + b^\prime(t) \frac{\partial H}{\partial b}(t, a(t), b(t))$ \end{tabular}\retTwo\par}
+
+% 	By our standard Leibniz rule, we know that $\frac{\partial H}{\partial t}(t, a(t), b(t)) = \int_{a(t)}^{b(t)}\frac{\partial g}{\partial t}(x, t)\df x$.\\ Meanwhile, by the fundamental theorem of calculus we know that:
+
+% 	{\centering$\frac{\partial H}{\partial a}(t, a(t), b(t)) = -g(a(t), t)$ and $\frac{\partial H}{\partial b}(t, a(t), b(t)) = g(b(t), t)$. $\blacksquare$\retTwo\par}
 % \end{myIndent}
+% \mySepTwo
 
 
 
