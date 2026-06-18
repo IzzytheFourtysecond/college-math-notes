@@ -2049,7 +2049,7 @@ We claim $f$ is holomorphic in $\Delta$ and $\rea{f} = u$ in $\Delta$.
 		
 		{\centering$\int_{0}^{2\pi}P_r(-t)\df t = \int_{0}^{2\pi} P_r(t)\df t = \int_{-\pi}^\pi P_r(t)\df t$\retTwo\par}
 
-		Finally to show (iii), fix any $\Delta > 0$. By the evenness of $P_r$ it suffices to show\\ uniform convergence on the interval $[\delta, \pi]$. Fortunately, as $P_r(t) = \frac{1 - r^2}{1 - 2r\cos(t) + r^2}$,\\ we can see that $P_r(t)$ is decreasing for all $t \in [0, \pi]$. Hence:
+		Finally to show (iii), fix any $\delta > 0$. By the evenness of $P_r$ it suffices to show\\ uniform convergence on the interval $[\delta, \pi]$. Fortunately, as $P_r(t) = \frac{1 - r^2}{1 - 2r\cos(t) + r^2}$,\\ we can see that $P_r(t)$ is decreasing for all $t \in [0, \pi]$. Hence:
 
 		{\centering $\sup_{t \in [\delta, \pi]}|P_r(t)| = P_r(\delta) = \frac{1 - r^2}{1 - 2r\cos(\delta) + r^2}$.\retTwo\par}
 		
@@ -3687,7 +3687,7 @@ Using standardizable arguements, we can solve many PDEs of the form:
 	In other words, we need $g^\prime = \frac{1}{a - bc}f$. But this is doable since $f$ is continuous and thus has an antiderivative. $\blacksquare$\retTwo
 \end{myIndent}
 
-\exTwo\ul{Theorem:} Suppose we are given the PDE $(\partial_t + a_1\partial_x) \cdots (\partial_t + a_n\partial_x)u = 0$ where all $a_i$ are distinct real numbers. Then any solution will have the form $u(x, t) = \sum_{i=1}^n f_i(x - a_i t)$ where each $f_i$ is a $C^n$ function.
+\exTwo\ul{Theorem:} \hypertarget{Page 874 Theorem}{Suppose} we are given the PDE $(\partial_t + a_1\partial_x) \cdots (\partial_t + a_n\partial_x)u = 0$ where all $a_i$ are distinct real numbers. Then any solution will have the form $u(x, t) = \sum_{i=1}^n f_i(x - a_i t)$ where each $f_i$ is a $C^n$ function.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	Write $v_1 = (\partial_t + a_2\partial_x) \cdots (\partial_t + a_n \partial_x)u$. Then we know that $(\partial_t + a_1\partial_x)v_1 = 0$. Hence, by lemma 1 we can solve that $v_1(x, t) = f(x - a_1 t)$ for some $C_1$ function $f$.\retTwo
@@ -4588,9 +4588,9 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 \begin{enumerate}
 	\item[(a)] Let $\mathscr{O}_S \coloneqq \{P \in \Spec(A) : P \cap S = \emptyset\}$ be the image of $\phi^*$ considered as a subspace of $\Spec(A)$. Show that $\phi^*$ is a homeomorphism from $\Spec(S^{-1}A)$ to $\mathscr{O}_S$.
 	\begin{myIndent}\HexOne
-		I've already shown in math 200b that $\phi^*$ is a bijection from $\Spec(S^{-1}A)$ to $\mathscr{O}_S$ (see \inLinkRap{placeholder}{page 625}). Also, we automatically have that $\phi^*$ is continuous. Hence, all we need to do now is show $(\phi^*)^{-1}$ is also continuous.\retTwo
+		I've already shown in math 200b that $\phi^*$ is a bijection from $\Spec(S^{-1}A)$ to $\mathscr{O}_S$ (see \inLinkRap{placeholder}{pages 624-625}). Also, we automatically have that $\phi^*$ is continuous. Hence, all we need to do now is show $(\phi^*)^{-1}$ is also continuous.\retTwo
 
-		Fortunately, if $V(S^{-1}I)$ is a closed set in $\Spec(S^{-1}A)$, then $S^{-1}P \in V(S^{-1}I)$ iff $I \subseteq P$ and $P \cap S = \emptyset$. Therefore $\phi^*(V(S^{-1}I)) = V(I) \cap \mathscr{O}_S$ is open in the subspace topology of $\mathscr{O}_S$.\retTwo
+		Fortunately, if $V(S^{-1}I)$ is a closed set in $\Spec(S^{-1}A)$, then $S^{-1}P \in V(S^{-1}I)$ iff $S^{-1}I \subseteq S^{-1}P$. Since $P$ is prime, by a comment on \inLinkRap{placeholder}{page 625} we know this happens iff $P \in \mathscr{O}_S$ and $I \subseteq P$. Therefore $\phi^*(V(S^{-1}I)) = V(I) \cap \mathscr{O}_S$ is closed in the\\ subspace topology of $\mathscr{O}_S$.\retTwo
 	\end{myIndent}
 
 	\item[(b)] In the case that $S = A - P$ for some prime ideal $P$, show that $\mathscr{O}_S$ is also equal to the intersection of all open subsets $U$ of $\Spec(A)$ such that $P \in U$.
@@ -4696,31 +4696,33 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 
 \hTwo After going to office hours, I was made aware that there was a theorem from a class I skipped that I didn't take notes on that I really need here. So I shall deal with that now.\retTwo
 
-\exTwo\ul{Theorem:} \hypertarget{Noetherian Rings allow prime factorization of ideals}{Let} $A$ be a Noetherian ring.
+\exTwo\ul{Theorem:} \hypertarget{Noetherian Rings allow prime factorization of ideals}{Let} $A$ be a nontrivial Noetherian ring.
 \begin{enumerate}
 	\item[1.] We can write $0 = P_1 \cdots P_n$ as a product of prime ideals (where not all $P_i$ are\\ necessarily distinct).
 	\begin{myIndent}\exThreeP
 		Proof:\\
-		For the sake of contradiction suppose not and let $S$ be the set of ideals of $A$ not\\ containing a product of prime ideals. Due to our supposing we know that $S \neq \emptyset$.\\ Then since $A$ is Noetherian we know that $S$ contains a maximal element $I$.\retTwo
+		For the sake of contradiction suppose not and let $S$ be the set of ideals of $A$ not\\ containing a product of prime ideals. Due to our supposing we know that $S \neq \emptyset$. \\ Then since $A$ is Noetherian we know that $S$ contains a maximal element $I$. And clearly $I \neq A$ since $A$ contains a prime ideal.\retTwo
 
 		Now $I$ can't be a prime ideal since then $I$ would trivially be a product of primes, thus contradicting that $I \in S$. Yet we can also show that $I$ must be prime. After all, if $I$ were not prime, we'd be able to find two ideal $J_1, J_2$ of $A$ such that $I \subsetneqq J_1$, $I \subsetneqq J_2$, but $J_1J_2 \subseteq I$.
 		\begin{myIndent}\exPPP
-			The professor claims this is the definition we received on \inLinkRap{placeholder}{page 541}. However, the professor is mistaken. So, I want to actually prove we can do this.\retTwo
+			The professor claims this is the definition we received on \inLinkRap{placeholder}{page 451}. However, the professor is mistaken. So, I want to actually prove we can do this.\retTwo
 
-			\ul{Lemma:} $P \lhd A$ is prime if and only if there does not exist ideals $I, J \lhd A$ satisfying that $P \subsetneqq I$, $P \subsetneqq J$, but $IJ \subseteq P$.
+			\ul{Lemma:} $P \lhd A$ is prime if and only if $P \neq A$ and there doesn't exist ideals $I, J \lhd A$ satisfying that $P \subsetneqq I$, $P \subsetneqq J$, but $IJ \subseteq P$.
 			\begin{myIndent}\color{orange}
 				$(\Longrightarrow)$\\
-				If $P$ is prime, then we know from the definition given on \inLinkRap{placeholder}{page 541} that $IJ \subseteq P \Longrightarrow I \subseteq P$ or $J \subseteq P$. Hence, the right side of the implication holds.\retTwo
+				If $P$ is prime, then we know from the definition given on \inLinkRap{placeholder}{page 451} that $P \neq A$ and $IJ \subseteq P \Longrightarrow I \subseteq P$ or $J \subseteq P$. Hence, the right side of the implication holds.\retTwo
 
 				$(\Longleftarrow)$\\
-				Suppose $P$ is not prime. Then we know there exists $\widetilde{I}, \widetilde{J} \lhd A$ such that $\widetilde{I} \not\subseteq P$, $\widetilde{J} \not\subseteq P$, and $\widetilde{I}\widetilde{J} \subseteq P$. Now let $x \in \widetilde{I} - P$ and $y \in \widetilde{J} - P$. Next, set $I \coloneqq \langle x, P\rangle$ and $J \coloneqq \langle y, P\rangle$. Then $P \subsetneqq I$ and $P \subsetneqq J$. That said, since $xy \in P$, we have that $IJ \subseteq P$.\retTwo
+				Suppose $P$ is not prime. If $P \neq A$  then we know there exists $\widetilde{I}, \widetilde{J} \lhd A$ such that $\widetilde{I} \not\subseteq P$, $\widetilde{J} \not\subseteq P$, and $\widetilde{I}\widetilde{J} \subseteq P$. Now let $x \in \widetilde{I} - P$ and $y \in \widetilde{J} - P$. Next, set $I \coloneqq \langle x, P\rangle$ and $J \coloneqq \langle y, P\rangle$. Then $P \subsetneqq I$ and $P \subsetneqq J$. That said, since $xy \in P$, we have that $IJ \subseteq P$.\retTwo
 			\end{myIndent}
 		\end{myIndent}
 
-		By the maximality of $I$ in $S$, we know that $J_1, J_2 \notin S$. Hence, we can write\\ $J_1 = P_1\cdots P_k$ and $J_2 = Q_1 \cdots Q_\ell$ as products of prime ideals. In turn, we know that $(P_1 \cdots P_k)(Q_1 \cdots Q_\ell) = J_1J_2 \subseteq I$. And this contradicts $I$ doesn't contain a product of primes.\newpage
+		By the maximality of $I$ in $S$, we know that $J_1, J_2 \notin S$. Hence, we can write\\ $J_1 = P_1\cdots P_k$ and $J_2 = Q_1 \cdots Q_\ell$ as products of prime ideals. In turn, we know that $(P_1 \cdots P_k)(Q_1 \cdots Q_\ell) = J_1J_2 \subseteq I$. And this contradicts $I$ doesn't contain a product of primes.
 
 		\begin{myIndent}\myComment
-			As a side note, something I want to quickly mention is that given ideals\\ $P_1, \ldots, P_k$, we define the product $P_1 \cdots P_k$ to be the ideal:
+			Remark 1: Given any proper ideal $J \lhd A$ we can apply this result to the ring $A/J$ to write $J$ as a product of prime ideals.\newpage
+			
+			Remark 2: Something I want to quickly mention is that given ideals\\ $P_1, \ldots, P_k$, we define the product $P_1 \cdots P_k$ to be the ideal:
 			
 			{\centering$\{\sum_{i=1}^n (\prod_{j=1}^k p_{j,i}) : n \in \mathbb{N}_{>0} \text{ and } p_{j,i} \in P_j \text{ for all } i, j\}$.\retTwo\par}
 
@@ -4765,7 +4767,7 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 	Longer Proof (following my idea before office hours):\\
 	Consider any $P \in \Spec(A)$ and let $S = A - P$. Then $S$ is a multiplicatively closed subset of $A$. Also $S^\prime \coloneqq \phi(S)$ is a multiplicatively closed subset of $B$. By localizing, we get that $(S^\prime)^{-1} B/ S^{-1}A$ is an integral extension via the embedding $\psi(\frac{a}{s}) = \frac{\phi(a)}{\phi(s)}$. Also, observe the following:
 	\begin{itemize}
-		\item Localizations of Noetherian rings are always still Noetherian and hence $(S^\prime)^{-1}$ is\\ Noetherian.
+		\item Localizations of Noetherian rings are always still Noetherian and hence $(S^\prime)^{-1}B$ is\\ Noetherian.
 		\begin{myIndent}\HexTwoP
 			To see why, note that a ring $C$ is Noetherian if and only if every ideal $I \lhd C$ is finitely generated. Yet given any multiplicatively closed set $T$, we have that $T^{-1}\langle x_1, \ldots, x_n \rangle = \langle \frac{x_1}{1}, \ldots, \frac{x_n}{1}\rangle$. Therefore, if every ideal of $C$ is\\ finitely generated then every ideal of $T^{-1}C$ is also finitely generated.\retTwo
 		\end{myIndent}
@@ -4785,7 +4787,7 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 	To finish off, since every prime ideal containing $I$ is maximal, we can conclude that $B/I$ is ring with Krull dimension $0$. In other words, every prime ideal of $B/I$ is both a maximal ideal and a minimal prime ideal. Also note that $B/I$ is Noetherian because $B$ is. Hence, by the theorem on the prior page, $B/I$ only has finitely many prime ideals. In turn, this also proves that $\Max(B)$ is finite, which is what we wanted. $\blacksquare$
 
 	\begin{myIndent}\myComment
-		As a side note, a commutative unital Noetherian ring with Krull dimension $0$ is called an \udefine{Artinian ring}. And now I actually know how one would come across one that isn't just a field.\newpage
+		\hypertarget{page 901 Artinian ring cameo}{As} a side note, a commutative unital Noetherian ring with Krull dimension $0$ is called an \udefine{Artinian ring}. And now I actually know how one would come across one that isn't just a field.\newpage
 	\end{myIndent}
 \end{myIndent}
 
@@ -6058,7 +6060,7 @@ Note that if $A$ is an affine $k$-algebra generated by $a_1, \ldots, a_n$, then 
 
 Let $A$ be a $k$-algebra and $a_1, \ldots, a_n \in A$. We say $a_1, \ldots, a_n$ are \udefine{algebraically independent over $k$} if there does not exist $0 \neq f \in k[x_1, \ldots, x_n]$ with $f(a_1, \ldots, a_n) = 0$. Equivalently, $a_1, \ldots, a_n$ are algebraically independent over $K$ iff the natural map $\phi: k[x_1, \ldots, x_n] \to A$ sending $x_i$ to $a_i$ and $k$ to $k$ is injective.\newpage
 
-\exTwo\ul{Lemma:} Let $k[x_1, \ldots, x_n]$ be a polynomial ring over a field $k$. Suppose $0 \neq f \in k[x_1, \ldots, x_n]$. Then there are elements $x_1^\prime, \ldots, x_{n-1}^\prime, x_n$ in $k[x_1, \ldots, x_n]$ generating the entire ring and satisfying that $f = cx_n^d + g_{d-1} x_n^{d-1} + \ldots + g_1 x_n + g_0$ where each $g_i \in k[x_1^\prime, \ldots, x_{n-1}^\prime]$ and $c \in k^\times$. In particular, we let $x_i^\prime = x_i - x_n^{d_i}$ for some integers $d_1, \ldots, d_{n-1}$.
+\exTwo\ul{Lemma:} \hypertarget{Technical lemma page 934}{Let} $k[x_1, \ldots, x_n]$ be a polynomial ring over a field $k$. Suppose $0 \neq f \in k[x_1, \ldots, x_n]$. Then there are elements $x_1^\prime, \ldots, x_{n-1}^\prime, x_n$ in $k[x_1, \ldots, x_n]$ generating the entire ring and satisfying that $f = cx_n^d + g_{d-1} x_n^{d-1} + \ldots + g_1 x_n + g_0$ where each $g_i \in k[x_1^\prime, \ldots, x_{n-1}^\prime]$ and $c \in k^\times$. In particular, we let $x_i^\prime = x_i - x_n^{d_i}$ for some integers $d_1, \ldots, d_{n-1}$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	Write $0 \neq f = \hspace{-1.4em}\sum\limits_{(i_1, \ldots, i_n) \in (\mathbb{Z}_{\geq 0})^n}\hspace{-1em} a_{(i_1, \ldots, i_n)} x_1^{i_1} \cdots x_n^{i_n}$ where all but finitely many summands are $0$.\retTwo
@@ -6152,7 +6154,7 @@ Here are a few important consequences of Noether normalization:\retTwo
 	Proof:\\
 	$K \coloneqq A/P$ is obviously a field. Yet it is also a finitely generate $k$-algebra still since\\ $K = k[\overline{x_1}, \ldots, \overline{x_n}]$ where $\overline{x_i} = x_i + P$. So by our prior proposition, we know $k \subseteq K$\\ is a finite degree field extension.\retTwo
 
-	Next, suppose $k = \overline{k}$. Then $P \in \Spec(k[x_1, \ldots, x_n])$ implies $k[x_i] \cap P \in \Spec(k[x_i])$ for all $i$. Also, as $k[x_i]$ is a PID we can then conclude there is an irreducible polynomial $f \in k[x_i]$ such that $P \cap k[x_i] = \langle f\rangle$. Yet since $k$ is algebraically closed, the only way $f$ can be irreducible is if $f(x_i) = x_i - a_i$ for some $a_i \in k$.\retTwo
+	Next, suppose $k = \overline{k}$. Then $P \in \Spec(k[x_1, \ldots, x_n])$ implies $k[x_i] \cap P \in \Spec(k[x_i])$ for all $i$. Furthermore, as $\frac{k[x_1, \ldots, x_n]}{P}$ is a finite field extension of $k$, we know there is some nonzero polynomial $g(x) \in k[x]$ with $g(x_i + P) = 0 + P$. Hence, $g(x_i) \in P \cap k[x_i]$ and this proves that $P \cap k[x_i] \neq \{0\}$. Because $k[x_i]$ is a PID, we can then conclude there is an irreducible polynomial $f \in k[x_i]$ such that $P \cap k[x_i] = \langle f\rangle$. Yet since $k$ is algebraically closed, the only way $f$ can be irreducible is if $f(x_i) = x_i - a_i$ for some $a_i \in k$.\retTwo
 
 	Hence, for all $i$ there exists $a_i \in k$ such that $P \cap k[x_i] = \langle x_i - a_i\rangle$. In turn, we can conclude that $I \coloneqq \langle x_1 - a_1, x_2 - a_2, \ldots, x_n - a_n\rangle \subseteq P$.\retTwo
 
@@ -6170,7 +6172,7 @@ Here are a few important consequences of Noether normalization:\retTwo
 
 \hTwo\mySepTwo
 
-Let $A$ be a ring. The \udefine{Jacobson radical} of $A$ is $J(A) = \bigcap_{P \in \Max(A)} P$. Clearly\\ $\Nil(A) = \bigcap_{P \in \Spec(A)}P \subseteq J(A)$. Usually this containment will be proper but in\\ a special class of rings we have that $J(A) = \Nil(A)$.\retTwo
+Let $A$ be a ring. The \udefine{Jacobson radical} of $A$ is $J(A) = \bigcap_{P \in \Max(A)} P$. Clearly\\ $\Nil(A) = \bigcap_{P \in \Spec(A)}P \subseteq \bigcap_{P \in \Max(A)}P = J(A)$. Usually this containment will be\\ proper but in a special class of rings we have that $J(A) = \Nil(A)$.\retTwo
 
 A ring $A$ is \udefine{Jacobson} is every prime ideal $P \lhd A$ is an intersection of maximal ideals.\newpage
 
@@ -6391,7 +6393,7 @@ as well as individual points $\{(a_1, \ldots, a_n)\}$.\newpage
 
 \hTwo\mySepTwo
 
-This next section will be on a completely different topic. For this section, we'll assume $A$ is Noetherian throughout.\retTwo
+This next section will be on a completely different topic. For this section, we'll mostly\\ assume $A$ is Noetherian throughout.\retTwo
 
 Let $M$ be an $A$-module. Then recall that $\Ann_A(M) \lhd A$. Also note that $M$ is naturally an $A/\Ann_A(M)$-module (where we define $(a + \Ann_A(M))m = am$).
 \begin{myIndent}\pracTwo
@@ -6421,14 +6423,14 @@ Let $M$ be an $A$-module. An \udefine{associated prime} of $M$ is a prime ideal 
 	Let $\phi: A/P \to N$ be the module isomorphism and then let $m \coloneqq \phi(1 + P)$. Now $am = a\phi(1 + P) = \phi(a + P)$ for all $a \in A$. Since $\phi$ is injective, we thus have that $am = 0$ iff $a + P = 0 + P$. Hence, $\Ann_A(m) = P$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\exTwo\ul{Lemma:} Let % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV8xIl0sWzIsMCwiTV8yIl0sWzMsMCwiTV8zIl0sWzQsMCwiXFx7MFxcfSJdLFsxLDIsIlxccGhpXzEiXSxbMiwzLCJcXHBoaV8yIl0sWzMsNF0sWzAsMV1d
+\exTwo\ul{Lemma:} \hypertarget{Lemma bottom of page 942}{Let} % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV8xIl0sWzIsMCwiTV8yIl0sWzMsMCwiTV8zIl0sWzQsMCwiXFx7MFxcfSJdLFsxLDIsIlxccGhpXzEiXSxbMiwzLCJcXHBoaV8yIl0sWzMsNF0sWzAsMV1d
 $\begin{tikzcd}
 	{\{0\}} & {M_1} & {M_2} & {M_3} & {\{0\}}
 	\arrow[from=1-1, to=1-2]
 	\arrow["{\phi_1}", hook, from=1-2, to=1-3]
 	\arrow["{\phi_2}", two heads, from=1-3, to=1-4]
 	\arrow[from=1-4, to=1-5]
-\end{tikzcd}$ be a short exact sequence of $A$-modules. Then:
+\end{tikzcd}$ be a short exact\\ sequence of $A$-modules. Then:
 \begin{enumerate}
 	\item $\Ass(M_1) \subseteq \Ass(M_2) \subseteq \Ass(M_1) \cup \Ass(M_3)$.
 	\item If the SES splits then $\Ass(M_2) = \Ass(M_1) \cup \Ass(M_3)$.
@@ -6436,7 +6438,7 @@ $\begin{tikzcd}
 
 \begin{myIndent}\exThreeP
 	Proof:\\
-	To start off $\phi_1(M_1)$ is a submodule of $M_2$. Hence any submodules of $M_1$ are isomorphic to submodules of $M_1$. In particular, if $M_1$ has a submodule isomorphic to $A/P$ for some $P \in \Spec(A)$, then so does $M_2$. Hence, $\Ass(M_1) \subseteq \Ass(M_2)$.\retTwo
+	To start off $\phi_1(M_1)$ is a submodule of $M_2$. Hence any submodules of $M_1$ are isomorphic to a submodule of $M_2$. In particular, if $M_1$ has a submodule isomorphic to $A/P$ for some $P \in \Spec(A)$, then so does $M_2$. Hence, $\Ass(M_1) \subseteq \Ass(M_2)$.\retTwo
 
 	Next, let $0 \neq m \in M_2$ be such that $\Ann_A(m) = P \in \Spec(A)$. If $m \in \phi_1(M_1) = \ker(\phi_2)$ then we know $P \in \Ass(M_1)$ by analogous reasoning as in the first paragraph. Hence, we may assume $\phi_2(m) \neq 0$. But then also note by the first isomorphism theorem that $M_2 / \phi(M_1) \cong M_3$ by the map $m^\prime + \phi_1(M_1) \mapsto \phi_2(m^\prime)$. So, we shall now ask what\\ $\Ann_A(m + \phi_1(M_1))$ is.\retTwo
 
@@ -6447,7 +6449,7 @@ $\begin{tikzcd}
 	As for claim 2, if our SES splits then $M_3$ is a isomorphic to a submodule of $M_2$.\\ Hence by identical reasoning to the claim $\Ass(M_1) \subseteq \Ass(M_2)$, we can conclude\\ $\Ass(M_3) \subseteq \Ass(M_2)$. It follows that $\Ass(M_1) \cup \Ass(M_3) \subseteq \Ass(M_2)$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\exTwo\ul{Proposition:} Let $M$ be a nontrivial finitely generated module over a Noetherian ring $A$.
+\exTwo\ul{Proposition:} \hypertarget{Page 943 Proposition}{Let} $M$ be a nontrivial finitely generated module over a nontrivial Noetherian ring $A$.
 \begin{itemize}
 	\item[1.] $\Ass(M) \neq \emptyset$. {\color{red} (This claim doesn't require $M$ to be finitely generated.)}
 	\item[2.] $M$ has a \udefine{prime filtration}. In other words, there exists a sequence of modules\\ $\{0\} = M_0 \subseteq M_1 \subseteq \cdots \subseteq M_n = M$ with $M_{i+1}/M_i \cong A/P_i$ for some $P_i \in \Spec(A)$.
@@ -6541,9 +6543,1335 @@ In turn, we can see that $\Ass(M) = \{\langle p_i\rangle : 1 \leq i \leq \ell\} 
 	Now note that $\Ann_A(b) \subseteq \Ann_A(xb) = P$. Hence, we have found an associated prime containing $\Ann_A(b)$ (which contains $a$). This proves that $D \subseteq \bigcup_{P \in \Ass(A)}P$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\pracOne One application of this proposition is as follows. Suppose $A$ is a \udefine{reduced} (meaning\\ $\Nil(A) = \{0\}$) Noetherian ring.
+\pracOne\mySepTwo 
+One application of the above proposition is as follows. Suppose $A$ is a nontrivial \udefine{reduced}\\ ring (meaning $\Nil(A) = \{0\}$). Then after letting $\mathrm{Min}(A)$ denote the set of minimal\\ primes of $A$, we have that $\Ass(A) \subseteq \mathrm{Min}(A)$.
 \begin{myIndent}\pracTwo
-	We already know that minimal primes consist exclusively of zero divisors. After all, if $A$ is an integral domain then the only minimal prime is $\{0\}$. Meanwhile, if $A$ not an integral domain then we know every prime ideal of $A$ contains nonzero elements. Yet simultaneously, because $A$ is Noetherian, we can apply the theorem on \inLinkRap{Noetherian Rings allow prime factorization of ideals}{pages 899-900} plus the fact that every prime ideal contains a minimal prime in order to say that $0$ is a product of every minimal prime ()
+	Why?\\
+	Suppose $P \in \Ass(A)$ and let $0 \neq a \in A$ be such that $P = \Ann_A(a)$. Then suppose $Q \subsetneqq P$ is another prime ideal properly contained in $P$. Then we can find $b \in P - Q$. By the definition of $P$, we know $ba = 0 \in Q$. In turn, since $Q$ is prime we know $a \in Q \subseteq P$. Hence, $a^2 = 0$. This contradicts that $\Nil(A) = \{0\}$.\retTwo
+
+	So, we can conclude that $\Ass(A)$ is contained in the set of minimal primes of $A$.\retTwo
+\end{myIndent}
+
+If $A$ is also Noetherian then we can also say $\mathrm{Min}(A) \subseteq \Ass(A)$.
+\begin{myIndent}\pracTwo
+	Why?\\
+	If $A$ is a domain, then trivially the only minimal prime (which is also the only associated prime) is $\{0\}$. Hence, we'll now suppose $A$ is not a domain.\retTwo
+
+	By the theorem on \inLinkRap{Noetherian Rings allow prime factorization of ideals}{pages 899-900}, we can find a bunch of primes $P_1,  \ldots,  P_n$ with\\ $0 = P_1 \cdots P_n$. Without loss of generality, we can assume $n$ is minimal (and since $A$ is not an integral domain, we know $n \geq 2$).\retTwo
+
+	But now by the minimality of $n$ we know $\prod\limits_{\substack{i=1 \\ i \neq k}}^n P_i \neq \{0\}$ for any $k \in \{1, \ldots, n\}$.\retTwo
+
+	Let $P$ be a minimal prime. Then we know $P = P_k$ for some $k$, and we can also pick some\\ $0 \neq a \in \prod\limits_{\substack{i=1 \\ i \neq k}}^n P_i$ with $P \subseteq \Ann_A(a) \subsetneqq A$.\retTwo
+
+	Finally, by identical reasoning as in the proof of the above proposition, we can\newpage find some $x \in A$ such that $xa \neq 0$ and also $\Ann_A(xa)$ is prime. Yet now\\ $P \subseteq \Ann_A(a) \subseteq \Ann_A(xa)$, and we also know $\Ann_A(xa) \in \Ass(A) \subseteq \mathrm{Min}(A)$.\\ By the minimality of $\Ann_A(xa)$ we thus know $P = \Ann_A(xa) \in \Ass(A)$. Since $P$\\ was arbitrary, this proves that $\mathrm{Min}(A) \subseteq \Ass(A)$.
+	\begin{myIndent}\myComment
+		I'd like to briefly rant that the professor proved neither inclusion in class.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+By our prior proposition, we can thus conclude that if $A$ is a nontrival Noetherian reduced ring, then the set of zero divisors of $A$ is precisely given by $\bigcup_{P \in \mathrm{Min}(A)}P$.
+
+\mySepTwo
+
+\hTwo If it is ambiguous whether $M$ could be viewed as an $A$-module or a $B$-module, we'll\\ annotate $\Ass(M)$ with a subscript to indicate which ring we are considering the associated primes of $M$ with respect to.\retTwo
+
+\exTwo\ul{Proposition:} \hypertarget{Page 946 proposition}{Let} $A$ be a Noetherian ring and $M$ an $A$-module. Also let $S \subseteq A$\\ be a multiplicatively closed set. Then:
+
+{\centering $\Ass_{S^{-1}A}(S^{-1}M) = \{S^{-1}P : P \in \Ass_A(M) \text{ and } P \cap S = \emptyset\}$ \retTwo\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	First we note the following lemma.\retTwo
+
+	\ul{Lemma:} For any $m \in M$, we have that $S^{-1}(\Ann_A(m)) = \Ann_{S^{-1}A}(\frac{m}{1})$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Suppose $a \in \Ann_A(m)$ and let $s \in S$. Then $\frac{a}{s} \cdot \frac{m}{1} = \frac{am}{1} = \frac{0}{1}$. So, $\frac{a}{s} \in \Ann_{S^{-1}A}(\frac{m}{1})$ and this proves one inclusion.\retTwo
+
+		Meanwhile, suppose $\frac{a}{s} \in \Ann_{S^{-1}A}(\frac{m}{1})$. Then we know $\frac{am}{s} = \frac{0}{1}$. Hence, there exists $t \in S$ with $tam = 0$. But now $ta \in \Ann_A(m)$. In turn, $\frac{a}{s} = \frac{ta}{ts} \in S^{-1}(\Ann_A(M))$. So, $P \in \Ass_A(M)$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	Now suppose $P \in \Ass(M)$ with $P \cap S = \emptyset$. Then $S^{-1}P$ is prime in $S^{-1}A$. Also, let us write $P = \Ann_A(m)$ where $m \neq 0$. By the prior lemma we know $S^{-1}P = \Ann_{S^{-1}A}(\frac{m}{1})$. Hence, $S^{-1}P \in \Ass_{S^{-1}A}(S^{-1}M)$. This proves one inclusion we wanted.\retTwo
+
+	Conversely, suppose $Q \in \Ass_{S^{-1}A}(S^{-1}M)$. By the prime correspondance I proved on \inLinkRap{placeholder}{page 625}, we know $Q = S^{-1}P$ for some $P \in \Spec(A)$ with $P \cap S = \emptyset$. Also let us write $Q = \Ann_{S^{-1}A}(\frac{m}{s})$. Since $s$ is a unit, we can equivalently say that $Q = \Ann_{S^{-1}A}(\frac{m}{1})$. But now by our prior lemma, we have that $S^{-1}P = Q = S^{-1}(\Ann_A(m))$.\retTwo 
+	
+	By a comment on \inLinkRap{placeholder}{page 625}, we know $\Ann_A(m) \subseteq P$. Hence, it makes sense to consider the localization $S^{-1}(\frac{P}{\Ann_A(M)})$ which we know is isomorphic to $ \frac{S^{-1}P}{S^{-1}(\Ann_A(m))} = \frac{Q}{Q} \cong \{0\}$ as a module. It follows that for all $a \in P$ there exists $t \in S$ with $ta \in \Ann_A(m)$. Yet since $A$ is Noetherian, we know $P = \langle a_1, \ldots, a_n\rangle$ for some elements $a_1, \ldots, a_n \in A$. Let $t_i \in S$ satisfy that $t_i a_i = 0$ for all $i$, and then set $t \coloneqq \prod_{i=1}^n t_i$.  Then $ta \in \Ann_A(m)$ for all $a \in P$.\retTwo
+
+	To finish off, I now show that $P \in \Ass(A)$ since $P = \Ann_A(tm)$. To start off, from our\newpage construction of $t$ we know $P \subseteq \Ann_A(tm)$. On the other hand, if $b \in \Ann_A(tm)$ then $bt \in \Ann_A(m) \subseteq P$. Since $t \in S \subseteq A - P$, we thus must have that $b \in P$. So, $\Ann_A(tm) \subseteq P$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+There is one more lecture to cover before I am caught up with everything (except the\\ homework) for this class.\retTwo
+
+A proper ideal ideal $Q$ of a ring $A$ is called \udefine{primary} if $xy \in Q \Longrightarrow x \in Q$ or $y \in \sqrt{Q}$.
+\begin{myIndent}\myComment
+	Remark 1:\\
+	If $Q$ is primary then $P \coloneqq \sqrt{Q}$ is prime. After all, if $xy \in P$ then $(xy)^n = x^n y^n \in Q$. So either $x^n \in Q$ or $y^n \in P$ (which in turn means that $(y^n)^{\ell} \in Q$ for another power $\ell$). Either way, this proves that either $x$ to some power is in $Q$ or $y$ to some power is in $Q$. Hence, $x \in P$ or $y \in P$.\retTwo
+
+	I'll also note that if $Q$ is a proper ideal then trivially $\sqrt{Q}$ is not a proper ideal as $1 \notin \sqrt{Q}$. Hence, this finishes showing that $P \in \Spec(A)$.\retTwo
+
+	Remark 2:\\
+	Based on the prior remark, if $Q$ is primary and $P = \sqrt{Q}$ then we say $Q$ is \udefine{$P$-primary}.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} \hypertarget{Page 947 lemma}{The} following are equivalent for a proper ideal $Q$ of a Noetherian ring $A$.
+\begin{enumerate}
+	\item[1.] $Q$ is primary,\\ [-18pt]
+	\item[2.] The set of zero divisors of $\frac{A}{Q}$ is precisely $\frac{\sqrt{Q}}{Q}$,\\ [-18pt]
+	\item[3.] $\Ass_{A/Q}(A/Q) = \{\frac{\sqrt{Q}}{Q}\}$,\\ [-18pt]
+	\item[4.] $\Ass_A(A/Q) = \{\sqrt{Q}\}$.
+\end{enumerate}
+\begin{myIndent}\exThreeP
+	$(1 \Longrightarrow 2)$\\
+	Suppose $xy \in Q$ but $x \notin Q$. Then as $Q$ is primary we must have that $y^n \in Q$ for some $n$. Hence, the zero divisors of $A/Q$ are contained in $\sqrt{Q}/Q$. On the other hand, suppose $y \in \sqrt{Q}$. Then we know $y^n \in Q$ for some integer $n$, and in turn $y + Q$ is a zero divisor in $A/Q$. After all, if we take the minimal positive integer $n$ for which $y^n \in Q$, then $y \cdot y^{n-1} \in Q$ but $y^{n-1} \notin Q$. This proves that $\sqrt{Q}/Q$ is a subset of the set of zero divisors of $A/Q$.\retTwo
+
+	$(2 \Longrightarrow 1)$\\
+	Suppose $xy \in Q$ but $x \notin Q$. Then $y + Q$ is a zero divisor of $\frac{A}{Q}$, which in turn means\\ [-2pt] $y \in \sqrt{Q}$. So, $y^n \in Q$ for some $n$. And this proves $Q$ is primary.\retTwo
+
+	$(2 \Longrightarrow 3)$\\
+	We know from page 945 that $\frac{\sqrt{Q}}{Q} = \bigcup_{P/Q \in \Ass_{A/Q}(A/Q)}P/Q$. Hence, every\\ $P/Q \in \Ass_{A/Q}(A/Q)$ is contained in $\sqrt{Q}/Q$. Yet we also know $\sqrt{Q}/Q$ is contained in every prime ideal of $A/Q$. Hence, the only possible prime ideal in $\Ass_{A/Q}(A/Q)$ is $\sqrt{Q}/Q$. Also, we know $\Ass_{A/Q}(A/Q)$ is nonempty or else $\frac{\sqrt{Q}}{Q} \neq \bigcup_{P/Q \in \Ass_{A/Q}(A/Q)}P/Q$.\newpage
+
+	$(3 \Longrightarrow 2)$\\
+	If $\Ass_{A/Q}(A/Q) = \{\sqrt{Q}/Q\}$ then we know from page 945 that the set of zero divisors of $\frac{A}{Q}$ is exactly $\frac{\sqrt{Q}}{Q}$.\retTwo
+
+	$(3 \Longleftrightarrow 4)$\\
+	In general, if $I = \Ann_A(M)$ then $\Ass_{A/I}(M) = \{P/I : P \in \Ass_A(M)\}$.
+	\begin{myIndent}\exPPP
+		Why?\\
+		Note that every $P \in \Ass_A(M)$ contains $I$. Also suppose $P \in \Ass_A(M)$ and\\ let $P = \Ann_A(m)$ for some $m \in M - \{0\}$. Then $P/I = \Ann_{A/I}(m)$ since\\ $(a + I)m = am = 0$ if and only if $a \in P$. Also by the prime correspondance\\ theorem, we know $P/I$ is a prime ideal.\retTwo
+
+		Conversely, suppose $Q/I \in \Ass_{A/i}(M)$ and let $Q/I = \Ann_{A/I}(m)$ for some\\ $m \in M - \{0\}$. Then $(a + I)m = am = 0$ iff $a \in Q$. Hence, $\Ann_A(m) = Q$.\\ Also by the prime correspondance theorem, we know $Q \in \Spec(A)$.\retTwo
+	\end{myIndent}
+
+	Now $\Ann_A(A/Q) = Q$. Hence, we can just apply the above claim to prove that (3) and (4) are equivalent. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne \hypertarget{page 948 Example of primary ideal}{For} an example of a primary ideal that isn't necessarily prime, suppose $P \in \Max(A)$ and $Q \lhd A$ with $\sqrt{Q} = P$. Then $Q$ is $P$-primary.
+\begin{myIndent}\pracTwo
+	$A/Q$ only has primes $P^\prime/ Q$ where $P^\prime \in V(Q)$. Yet since $P = \sqrt{Q} = \bigcap_{P^\prime \in V(Q)}P^\prime$, we know every prime containing $Q$ also contains $P$. Then since $P$ is a maximal ideal, that implies the only prime ideal containing $Q$ is $P$. Also, since $A$ is Noetherian and $A/Q$\\ is a finitely generated $A$-module, we know $\Ass_A(A/Q) \neq \emptyset$. It follows that\\ $\Ass_A(A/Q) = \{P\} = \{\sqrt{Q}\}$. Hence by the prior lemma, $Q$ is primary.\retTwo
+\end{myIndent}
+
+\hTwo Let $I$ be an ideal of $A$. A \udefine{primary decomposition} of $I$ is an expression $I = Q_1 \cap \cdots \cap Q_n$ where each $Q_i$ is $P_i$-primary for some prime $P_i$.\retTwo
+
+A primary decomposition for $I$ is called \udefine{irredundant} if each $Q_j$ does not contain the\\ intersection of the other $Q_i$ and all the primes $P_i$ are distinct.\retTwo
+
+\pracOne Example (Set 5 Problem 2(a)): If $A$ is a UFD and $f \in A$, then we can write $f = up_1^{e_1}\cdots p_n^{e_n}$ where the $p_i$ are pairwise nonassociate primes and each $e_i$ is a positive integer. In turn, we have that $I = \bigcap_{i=1}^n \langle p_i^{e_i}\rangle$ is an irredundant primary decomposition of $I$.
+\begin{myIndent}\pracTwo
+	Why?\\
+	Firstly, $\langle p_i^{e_i}\rangle$ is $\langle p_i\rangle$-primary. After all, suppose $g, h \in A$ satisfy that $gh \in \langle p_i^{e_i}\rangle$ but\\ $g \notin \langle p_i^{e_i}\rangle$. Equivalently, this means $p_i^{e_i} \divides gh$ but $p_i^{e_i} \not\hspace{0.26em}\divides\hspace{0.2em} g$. Hence, $p_i \divides h$, which in turn means $p_i^{e_i} \divides h^{e_i}$. This proves that $h^{e_i} \in \langle p_i^{e_i}\rangle$, thus showing that $\langle p_i^{e_i}\rangle$ is primary. Similar reasoning also shows $g^n \in \langle p_i^{e_i}\rangle$ for some integer $n$ if and only if $p_i \divides g$ (meaning $g \in \langle p_i\rangle$). So $\langle p_i^{e_i}\rangle$ is $\langle p_i\rangle$-primary for each $i$.\retTwo
+
+	Now to finish off, just note that $\langle f\rangle = \langle p_1^{e_1} \cdots p_n^{e_n}\rangle = \bigcap_{i=1}^n \langle p_i^{e_i}\rangle$. Also:
+	
+	{\centering$p_j^{e_j} \in \langle p_j^{e_j}\rangle - \bigcap_{i \neq j}\langle p_i^{e_i}\rangle$ for all $j$.\retTwo\par}
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage
+
+I'm going to move onto doing homework now.\retTwo
+
+\Hstatement\blab{Set 4 Problem 1:} Let $k$ be an infinite field.
+\begin{enumerate}
+	\item[(a)] Show for any nonzero polynomial $f \in k[x_1, \ldots, x_n]$ that there is $(a_1, \ldots, a_n) \in k^n$ such that $f(a_1, \ldots, a_n) \neq 0$.
+	\begin{myIndent}\HexOne
+		We proceed by induction on $n$. If $n = 1$, then the set $Z(f)$ of zeros of $f$ in $k$ has\\ at most $\deg(f)$ ($< \infty$) elements in $k$ (since $f$ is a nonzero polynomial). Since $k$ is\\ infinite, we thus know $k - Z(f) \neq \emptyset$. Hence, ther exists $a \in k$ with $f(a) \neq 0$.\retTwo
+
+		Meanwhile, suppose $n > 1$ and that we have proven the problem for integers less than $n$. Then note that we can write $f(x_1, \ldots, x_n)$ as:
+
+		{\centering $g_d(x_1, \ldots, x_{n-1})x_n^d + \ldots + g_1(x_1, \ldots, x_{n-1})x_n + g_0(x_1, \ldots, x_{n-1})$ \\ [4pt]\par}
+
+		where $d \geq 0$ and $g_d(x_1, \ldots, x_{n-1}) \neq 0$.\retTwo
+
+		By induction, we can find $a_1, \ldots, a_{n-1} \in k$ such that $g_d(a_1, \ldots, a_{n-1}) \neq 0$. In turn, if we set $c_i = g_i(a-1, \ldots, a_{n-1})$ and $h(x) = c_d x^d + \ldots + c_1 x + c_0 \in k[x]$ we then have that $h$ is a nonzero polynomial and $f(a_1, \ldots, a_{n-1}, x_n) = h(x_n)$. By our base case, we know there exists $a_n \in k$ with $h(a_n) \neq 0$. And now we are done since $f(a_1, \ldots, a_n) \neq 0$.\retTwo
+
+		\begin{myIndent}\myComment
+			A notable consequence of this result is that it proves that distinct polynomials in an infinite field $k$ always define distinct functions from $k^n$ to $k$. I.e., equality in the polynomial ring $k[x]$ is equivalent to equality in the set of functions $k^{(k^n)}$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] Over an infinite field, the lemma on \inLinkRap{Technical lemma page 934}{page 934} can be simplified by using a nicer change of variables. This was Noether's original result:\retTwo
+	
+	Suppose $f \in k[x_1, \ldots, x_n]$. Then there is a change of variables $x_i^\prime = x_i - a_i x_n$ for some\\ [1pt] $a_i \in k$ such that for some $d \geq 0$, $f$ obtains the form $f = \lambda x_n^d + g_{n-1} x_n^{d-1} + \ldots + g_1 x_n + g_0$\\ [2pt] where each $g_i \in k[x_1^\prime, \ldots, x_{n-1}^\prime]$ for all $1 \leq i \leq n- 1$ and $0 \neq \lambda \in k$.
+	\begin{myIndent}\HexOne
+		Proof:\\
+		Consider a monomial $x_1^{i_1} \cdots x_n^{i_n}$. For now we'll just let $a_i$ be any element of $k$ and then set $x_i^\prime = x_i - a_i x_n$. In turn, we know that $x_i = x_i^\prime + a_i x_n$. Hence our original monomial becomes:
+
+		{\centering\begin{tabular}{l}
+			$(x_1^\prime + a_1 x_n)^{i_1} \cdots (x_{n-1}^\prime + a_{n-1}x_n)^{i_{n-1}} x_n^{i_n}$\\ [4pt]
+			$\phantom{aaaaaaaaaaaaaaaaaaa} = (\prod_{j=1}^{n-1} a_j^{i_j}) x_n^{\sum_{j=1}^n i_j} + \text{ lower degree terms in }x_n$
+		\end{tabular}\retTwo\par}
+
+		Now if we consider the entire polynomial $f$, let us write $f = f_{\mathrm{max}} + f_{\mathrm{low}}$ where $f_{\mathrm{max}}$ consists of only the max total degree monomials in the polynomial (in other words the $cx_1^{i_1}\cdots x_n^{i_n}$ terms for which $\sum_{j=1}^n i_j$ is maximized) and $f_{\mathrm{low}}$ consists only of the lower total degree terms. I'll also let $d$ denote the maximal value for $\sum_{j=1}^n i_j$. Then based on the prior observation about how our change of variables affects monomials, we can see that:
+
+		{\centering\begin{tabular}{l}
+			$f(x_1, \ldots, x_n) = f_{\mathrm{max}}(a_1, \ldots, a_{n-1}, 1) x_n^d + \text{ lower degree terms in } x_n$\\ [4pt]
+			$\phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} \text{ with coefficients in } k[x_1^\prime, \ldots, x_{n-1}^\prime]$.
+		\end{tabular}\newpage\par}
+
+		But now $g(y_1, \ldots, y_{n-1}) = f_\mathrm{max}(y_1, \ldots, y_{n-1}, 1)$ is a nonzero polynomial. By part (a), we can set $a_1, \ldots, a_{n-1}$ such that $g(a_1, \ldots, a_{n-1}) \neq 0$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 4 Problem 2:} The point of this problem is to give an alternate proof that if $F$ is a field and an affine $k$-algebra then $[F : k] < \infty$. This proof won't use Noether normalization but it will also depend on $k$ being uncountable.
+\begin{enumerate}
+	\item[(a)] Let $k(x)$ be the field of rational functions in one variable over $k$. Thinking of $k(x)$ as a $k$-vector space, prove that the set of elements $\{(x - a)^{-1} : a \in k\}$ is linearly independent over $k$.
+	\begin{myIndent}\HexOne
+		For any $n \in \mathbb{N}$ let $a_1, \ldots, a_n \in k$ be distinct and then suppose:
+
+		{\centering $\frac{c_1}{x - a_1} + \ldots + \frac{c_n}{x - a_n} = 0$\retTwo\par}
+
+		We need to show that $c_i = 0$ for all $i$. To do this consider, consider fixing an $i$ and multiplying both sides of our equation by $x - a_i$. By doing this, we get that:
+		
+		{\centering$c_i + \sum\limits_{j \neq i} c_j\frac{x - a_i}{x - a_j} = 0$. \retTwo\par}
+
+		Next, we consider evaluating this expression when $x = a_i$. By doing so, most stuff cancels out and we are left with $c_i = 0$. This proves the linear independence we wanted.
+
+		\begin{myIndent}\HexTwoP
+			Note that since we can use Zorn's lemma to complete a linearly independent set (i.e. make it span all of a vector space), this proves that we can find a $k$-basis\\ for $k(x)$ with cardinality at least that of $k$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+	
+	\item[(b)] let $k$ be any field. Prove that if $A$ is a f.g. $k$-algebra, then $\dim_k(A)$ is countable.
+	\begin{myIndent}\HexOne
+		Suppose $A$ is generated by $a_1, \ldots, a_n$, and then consider any $k$-basis: $\{v_\beta\}_{\beta \in B}$, for $A$. For every $\beta \in B$ we can pick some $f_\beta \in k[x_1, \ldots, x_n]$ with $v_\beta = f_\beta(a_1, \ldots, a_n)$. And now, we let $B_m$ be the set of $\beta \in B$ such that the max degree of $f_\beta$ with respect to $x_1$, $x_2$, \dots, or $x_n$ individually is at most $m$.\retTwo
+
+		Now $B = \bigcup_{m=1}^\infty B_m$. Also note that the linear independence of the $v_\beta$ forces each $B_m$ to be finite with cardinality at most $m^n$. If this weren't the case we could associate a nontrivial linear combination of $v_\beta$ that is associated to the zero polynomial.\retTwo
+
+		It follows that $B$ is a countable set. Hence, every basis of $\dim_k(A)$ is countable.\retTwo
+	\end{myIndent}
+	
+	\item[(c)] In the case that $k$ is uncountable, prove that if $F$ is a field and a f.g. $k$-algebra then\\ $[F : k] < \infty$.
+	\begin{myIndent}\HexOne
+		First we show an easier result, that $F/k$ must be an algebraic extension.
+		\begin{myIndent}\HexTwoP
+			Suppose to the contrary that there exists $\alpha \in F$ that is transcendental over\\ $k$ (meaning there does not exist any nonzero polynomial $f \in k[x]$ with\\ $f(\alpha) = 0$). In that case, evaluation at $\alpha$ yields a well-defined injective map from $k(x)$ to $F$. So by part (a) plus the fact that $k$ is an uncountable field, we can find an uncountable $k$-basis for $F$. Yet this contradicts part (b) which says that every $k$-basis for $F$ must be countable. Hence, we conclude no such $\alpha$ can exist.\retTwo
+		\end{myIndent}
+
+		Now that we know that $F/k$ is an algebraic extension, let $a_1, \ldots, a_n \in F$ be\newpage generators of $F$. $F = k[a_1, \ldots, a_n]$ is a finite $k$-vector space with dimension at\\ most $\prod_{i=1}^n \deg(m_{a_i; k})$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 4 Problem 3:} Let $k$ be any field (not necessarily algebraically closed). Let $A \coloneqq k[x_1, \ldots, x_n]$. In this case, the maximal ideals of $A$ do not necessarily have the form $\langle x_1 - a_1, \ldots, x_n - a_n\rangle$ so the maximal ideals of $A$ are harder to describe exactly.
+\begin{enumerate}
+	\item[(a)] Show that if $P$ is maximal in $A$, then for each $i$ there is an irreducible polynomial $f_i \in k[x_i]$ such that $f_i \in k[x_i] \cap P$. Thus, the ideal $I = \langle f_1(x_1), \ldots, f_n(x_n)\rangle$ is contained in $P$.
+	\begin{myIndent}\HexOne
+		Note that if $P \in \Spec(k[x_1, \ldots, x_n])$ then $P \cap k[x_i] \in \Spec(k[x_i])$. Furthermore, as $k[x_1, \ldots, x_n]/P$ is a field with finite $k$-dimension, there is some nonzero polynomial $g \in k[x]$ with $g(x_i + P) = 0 + P$. Hence, $g(x_i) \in P \cap k[x_i]$, and this proves that $P \cap k[x_i] \neq \{0\}$.\retTwo
+
+		Since $k[x_i]$ is a PID, we can thus conclude there is an irreducible polynomial $f_i \in k[x_i]$ with $P \cap k[x_i] = \langle f_i(x_i)\rangle$. In particular, as $f_i(x_i) \in P$ for all $1 \leq i \leq n$, we can conclude that $I = \langle f_1(x_1), \ldots, f_n(x_n)\rangle$ is contained in $P$.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] Show that in the context of part (a) we have $A/I \cong K_1 \otimes_k K_2 \otimes_k \cdots \otimes_k K_n$ as rings where $K_i \coloneqq k[x_i]/\langle f_i(x_i)\rangle$ is a field.
+	\begin{myIndent}\HexOne
+		It suffices to prove for any $n \geq 2$ that $\frac{k[x_1, \ldots, x_n]}{\langle f_1(x_1), \ldots, f_n(x_n)\rangle} \cong \frac{k[x_1, \ldots, x_{n-1}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle} \otimes_k \frac{k[x_n]}{\langle f_n(x_n)\rangle}$.\\ [3pt] After all, we can then conclude the claim of part (b) by induction plus the fact that the tensor functor always sends isomorphisms to isomorphisms.\retTwo
+
+		But now recall from \inLinkRap{placeholder}{page 728} that:
+		
+		{\centering$\left(\frac{k[x_1, \ldots, x_{n-1}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle}\right) \otimes_k \frac{k[x_n]}{\langle f_n\rangle} \cong \frac{\left(\frac{k[x_1, \ldots, x_{n-1}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle}\right)[x_n]}{f_n(x_n)\left(\frac{k[x_1, \ldots, x_{n-1}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle}\right)[x_n]}$ (as $k$-algebras).\retTwo\par}
+
+		Then on \inLinkRap{placeholder}{pages 459-460} I showed that (as rings):
+
+		{\centering$\left(\frac{k[x_1, \ldots, x_{n-1}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle}\right)[x_n] \cong \frac{k[x_1, \ldots, x_{n-1}][x_n]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]} \cong \frac{k[x_1, \ldots, x_n]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]}$\retTwo\par}
+
+		Hence we know:
+
+		{\centering$\frac{\left(\frac{k[x_1, \ldots, x_{n-1}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle}\right)[x_n]}{f_n(x_n)\left(\frac{k[x_1, \ldots, x_{n-1}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle}\right)[x_n]} \cong \frac{\left(\frac{k[x_1, \ldots, x_n]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]}\right)}{f_n(x_n)\left(\frac{k[x_1, \ldots, x_n]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]}\right)}$ (as rings).\retTwo\par}
+
+		To finish off, if we can calculate the ideal $J$ generated by\\ $\{f_n(x_n)\} \cup \langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n] $, then we will be able to\\ conclude that:
+
+		{\centering$\frac{\left(\frac{k[x_1, \ldots, x_{n}]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]}\right)}{f_n(x_n)\left(\frac{k[x_1, \ldots, x_n]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]}\right)} \cong \frac{\left(\frac{k[x_1, \ldots, x_n]}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]}\right)}{\left(\frac{J}{\langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]}\right)} \cong \frac{k[x_1, \ldots, x_n]}{J}$ (as rings).\newpage\par}
+
+		Fortunately, it is easy to see that $f_i(x_i) \in J$ for all $i$ and hence\\ $\langle f_1(x_1), \ldots, f_n(x_n)\rangle \subseteq J$. Meanwhile:
+		
+		{\centering$J = \langle f_n(x_n)\rangle + \langle f_1(x_1), \ldots, f_{n-1}(x_{n-1})\rangle[x_n]$.\retTwo\par}
+		
+		But then any element of $J$ can be written as:
+
+		{\centering\begin{tabular}{l}
+			$p_n(x_1, \ldots, x_n)f_n(x_n) + \sum\limits_{k=0}^d \left(\sum\limits_{j=1}^{n-1} p_{k,j}(x_1, \ldots, x_{n-1})f_j(x_j)\right)x_n^k$\\ [8pt]
+			$\phantom{aaaaaaaa} = p_n(x_1, \ldots, x_n)f_n(x_n) + \sum\limits_{j=1}^{n-1}\left(\sum\limits_{k=0}^d p_{k,j}(x_1, \ldots, x_{n-1})x_n^{k}\right)f_j(x_j)$
+		\end{tabular}\retTwo\par}
+
+		Hence, $J \subseteq \langle f_1(x_1), \ldots, f_n(x_n)\rangle$.\retTwo
+		\begin{myIndent}\myComment
+			As a side note, the ring isomorphism described above is given by $\overline{g} \otimes \overline{h} \mapsto \overline{g}\overline{h}$. Clearly this preserves scalar multiplication by elements of $k$. So, this\\ isomorphism is a $k$-algebra isomorphism.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+	
+	\item[(c)] Describe explicitly all the maximal ideals of $A \coloneqq \mathbb{R}[x, y]$. 
+	\begin{myIndent}\HexOne
+		Given a maximal ideal $P \lhd \mathbb{R}[x, y]$, let $I$ be the ideal described in parts (a) and (b). Then since every irreducible nonzero polynomial in $\mathbb{R}[x]$ is either degree one with a real root or degree two with conjugate complex roots, we have exactly three cases to deal with.\retTwo
+
+		Firstly, suppose $I = \langle x - a, y - b\rangle$. Then we can see that $A/I \cong \mathbb{R} \otimes_\mathbb{R} \mathbb{R} \cong \mathbb{R}$ as rings. It follows that $A/I$ is a field and thus $I$ is a maximal ideal. And since $I \subseteq P$, we can conclude that $P = \langle x - a, y - b\rangle$.
+		\begin{myIndent}\HexTwoP 
+			The maximal ideal $P = \langle x - a, y - b\rangle$ can be thought of as corresponding to the point $(a, b) \in \mathbb{R}^2$.\retTwo
+		\end{myIndent}
+
+		Secondly, suppose $I = \langle x^2 + ax + b, y - c\rangle$. Then we have that $A/I \cong \mathbb{C} \otimes_\mathbb{R} \mathbb{R} \cong \mathbb{C}$ as rings. In turn, by identical reasoning as before we can conclude that:
+		
+		{\centering$P = I = \langle x^2 + ax + b, y - c\rangle$.\retTwo\par}
+
+		\begin{myIndent}\HexTwoP 
+			(Symmetric reasoning works if $I = \langle x - a, y^2 + cy + d\rangle$.)\retTwo
+		\end{myIndent}
+
+		Thirdly, suppose $I = \langle x^2 + ax + b, y^2 + cy + d\rangle$. Then we have that\\ $A/I \cong \mathbb{C} \otimes_{\mathbb{R}} \mathbb{C} \cong \mathbb{C}^2$ as rings. (See \inLinkRap{placeholder}{page 729}.) But the latter is no longer a field\\ and hence we don't have that $I$ is a maximal ideal. At the very least though, the only two nonzero proper ideals of $\mathbb{C}^2$ are $\mathbb{C} \times \{0\}$ and $\{0\} \times \mathbb{C}$. Thus, there are exactly two proper ideals in $A$ containing $I$ and $P$ could be either of the two.\retTwo
+
+		\begin{myIndent}\color{red}
+			\hypertarget{bookmark on page 952}{I} am not done calculating what $P$ is but I have other things I need to get done and it looks like it will be time-consuming to work backwards to calculate $P$. If I come back to this, it will be on \inLinkRap{idk reference 4}{page 956}. I can see though that $P$ will be generated by three polynomials.\newpage
+		\end{myIndent}
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo Here is a short proposition about the Jacobson radical of a ring $A$.\retTwo
+
+\exTwo\ul{Lemma:} $a \in J(A)$ if and only if $1 - ab$ is a unit in $A$ for all $b \in A$.
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	Suppose $1 - ab$ is not a unit for some $b \in A$. In that case, $\langle 1 - ab\rangle$ is a proper ideal of $A$ and so there exists a maximal ideal $M \in \Max(A)$ with $1 - ab \in M$. But now it follows that $1 + M = ab + M$. Since $1 \notin M$, we thus know $ab \notin M$ and in turn that $a \notin M$. This proves that $a \notin J(A)$.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $a \notin J(A)$. Then there exists $M \in \Max(A)$ such that $a \notin M$. Yet then since $\langle a, M\rangle$ is an ideal properly containing the maximal ideal $M$, we must have that $A = \langle a, M\rangle$. Hence there exists $b \in A$ and $m \in M$ with $ab + m = 1$. Or in other words, $1 - ab = m \in M$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\Hstatement\blab{Set 4 Problem 4:} For any ring $A$, show that $J(A[x]) = \Nil(A[x])$.
+\begin{myIndent}\HexOne
+	Proof:\\
+	Recall from \inLinkRap{placeholder}{pages 460-461} that:
+	\begin{itemize}
+		\item $\Nil(A[x]) = \Nil(A)[x]$,
+		\item $(A[x])^\times = \{a_0 + xf(x) : a_0 \in A^\times \text{ and } f \in \Nil(A)[x]\}$.\retTwo
+	\end{itemize}
+
+	Now we always have that $\Nil(A) \subseteq J(A)$. Hence, we just need to show the other\\ containment. Fortunately, note by the prior lemma that if $g(x) \in J(A)$ then\\ $1 - xg(x) \in (A[x])^\times$. In turn, we must have that $-g \in \Nil(A)[x]$, which is equivalent\\ to what we needed to show. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Set 4 Problem 5:} \hypertarget{Math 200c Set 4 Problem 5}{Let} $X$ be a topological space. $X$ is called \udefine{Noetherian} if $X$ satisfies the descending chain condition on closed subsets (i.e. every descending chain of closed sets $\{F_i\}_{i \in I}$ has a minimal element).
+\begin{myIndent}\color{RawerSienna}
+	Remark 1: Note that the following are equivalent:
+	\begin{itemize}
+		\item[1.] $X$ is Noetherian
+		\item[2.] Every nonempty family of closed sets in $X$ has a minimal element.
+		\item[3.] Given any descending sequence of closed sets $F_1 \supseteq F_2 \supseteq \cdots$ there exists\\ some $n \in \mathbb{N}$ with $F_n = F_{n + k}$ for all $k \in \mathbb{N}$. 
+	\end{itemize}
+	\begin{myIndent}\color{BrickRed}
+		Proof:\\
+		$(1 \implies 2)$\\
+		This is just an application of Zorn's lemma.\retTwo
+
+		$(2 \implies 3)$\\
+		Let $\{F_n\}_{n \in \mathbb{N}}$ be a descending sequence of closed sets. By (2) we know there\\ is a minimal element $F_N$. But now since $\{F_n\}_{n \in \mathbb{N}}$ is descending we must have that\\ $F_N = F_{N+1} = \cdots$.\retTwo
+
+		$(3 \implies 1)$\\
+		Suppose the chain $\{F_i\}_{i \in I}$ had no minimal element. Then we could construct\\ a sequence of closed sets $\{F_{i_n}\}$ violating claim 3.\retTwo
+	\end{myIndent}
+
+	Remark 2: All three of the above properties are equivalent to properties concerning an ascending chain condition on open sets.\newpage
+\end{myIndent}
+
+A closed set $Z \subseteq X$ is called \udefine{irreducible} if one cannot write $Z = Z_1 \cup Z_2$ where $Z_1$ and $Z_2$ are both \textit{proper} closed subsets of $Z$ (which are \textit{not} necessarily disjoint).
+\begin{enumerate}
+	\item[(a)] Show that any closd set $Z \subseteq X$ (where $X$ is a Noetherian topological space) is a union of finitely many irreducible closed sets.
+	\begin{myIndent}\HexOne
+		Let $\mathcalli{S}$ be the set of closed subsets of $X$ which aren't a union of finitely many irreducible closed sets. Then suppose for the sake of contradiction that $\mathcalli{S}$ is nonempty. Since $X$ is Noetherian, we then know that $\mathcalli{S}$ has a minimal element $Z \subseteq \mathcalli{S}$. Yet since $Z \in \mathcalli{S}$, we must have that $Z$ is not irreducible. Hence, there exists proper closed subsets of $Z$: $F_1$, $F_2$, such that $F_1 \cup F_2 = Z$. Then since $F_1, F_2 \notin \mathcalli{S}$ (since $Z$ was minimal), we know that we can write each $F_i$ as a finite union $Z_1^{(i)} \cup \cdots \cup Z_{n_i}^{(i)}$ of closed irreducible sets. And now we have a contradiction because $Z = \bigcup_{i=1}^2(Z_1^{(i)} \cup \cdots \cup Z_{n_i}^{(i)})$.\retTwo
+	\end{myIndent}
+
+	Furthermore, explain why we can choose an expression $Z = Z_1 \cup \cdots \cup Z_n$ where the $Z_i$ are irreducible and closed and no $Z_i$ is contained in $Z_j$ for any $i \neq j$.
+	\begin{myIndent}\HexOne
+		Let $Z \subseteq X$ be a closed set and let $n$ be the minimal integer such that we can write $Z = Z_1 \cup \cdots \cup Z_n$ with all $Z_i$ being irreducible. If $Z_i \subseteq Z_j$ for any distinct $i,j$ that would contradict the minimality of $n$. So, we know that must not occur.\retTwo
+	\end{myIndent}
+
+	Finally, show that such an expression $Z = Z_1 \cup \cdots \cup Z_n$ as described above is unique up to permutation of the $Z_i$.
+	\begin{myIndent}\HexOne
+		Let $n$ be the minimal integer such that we can write $Z = Z_1 \cup \ldots \cup Z_n$ with all $Z_i$ being irreducible and closed. Then suppose we can also write $Z = F_1 \cup \ldots \cup F_m$ where each $F_i$ is irreducible and closed, and $F_i \not\subseteq F_j$ for any distinct $i, j$.\retTwo
+
+		Firstly, I shall show that every $F_i$ is equal to some $Z_j$. To do this, first note that without generality we can just let $i = 1$. Next note that as $F_1 \subseteq Z = \bigcup_{i=1}^n Z_i$ we have that $F_1 \cap Z_1$ and $F_1 \cap (\bigcup_{i=2}^n Z_i)$ are both closed subsets of $F_1$ whose union is all of $F_1$. By\\ [1pt] the irreducibility of $F_1$ we thus know that:
+		
+		{\centering either $F_1 \cap Z_1 = F_1$ or $F_1 \cap (\bigcup_{i = 2}^n Z_i) = F_1$.\retTwo\par}
+
+		Now if the former statement holds true, then we have already successfully shown that $F_1 \cap Z_j = F_1$ for some $j$. Otherwise, we can just repeat the same reasoning to say that  either $F_1 \cap Z_{2} = F_1$ or $F_1 \cap (\bigcup_{i = 3}^n Z_i) = F_1$.\retTwo
+
+		And if we keep going without ever having the first case happening, we will eventually get that either $F_1 \cap Z_{n-1} = F_1$ or $F_1 \cap Z_{n} = F_1$. Hence, we are guarenteed to have that $F_1 \cap Z_j = F_1$ for some $Z_j$.\retTwo
+
+		But now since $Z_j \subseteq Z = \bigcup_{i=1}^n F_i$, we know that $Z_j \cap F_1$ and $Z_j \cap (\bigcup_{i=2}^m F_i)$ are both closed subsets of $Z_j$. By the irreducibility of $Z_j$, we must have that:
+		
+		{\centering either $Z_j \cap F_1 = Z_j$ or $Z_j \cap (\bigcup_{i=2}^m F_i) = Z_j$.\retTwo\par}
+
+		In the former case, we are done since $F_1 = Z_j \cap F_1 = Z_j$. So suppose the latter case that $Z_j \cap (\bigcup_{i=2}^m F_i) = Z_j$. Then like before we can conclude either $Z_j \cap F_2 = Z_j$ or $Z_j \cap (\bigcup_{i=3}^m F_i) = Z_j$. And by repeating this over and over, we will eventually be\\ [1pt] forced to conclude that $Z_j \cap F_k = Z_j$ for some $1 \leq k \leq m$.\newpage
+
+		Yet now $F_1 = F_1 \cap Z_j = F_1 \cap Z_j \cap F_k \subseteq F_k$. If $k \neq 1$ then this contradicts that no $F_i$ is contained in another $F_k$. So we can conclude the former case must hold.\retTwo
+
+		\hspace{0.2em}\mySepFour 
+
+		Now that we've shown that ever $F_i$ is equal to some $Z_j$, the requirement that no $F_{i_1}$ is contained in another $F_{i_2}$ forces the assignment of $F_i$ to their corresponding $Z_j$ to be injective. And since $m \geq n$, we also must have by the pigeonhole principle that this assignment is surjective. This finishes the proof. $\blacksquare$\retTwo
+
+		\begin{myIndent}\myComment
+			The $Z_i$ are called the \udefine{irreducible components} of $Z$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] Show that $\Spec(A)$ (equipped with the Zariski topology) is a Noetherian topological space for any Noetherian ring $A$.
+	\begin{myIndent}\HexOne
+		Let $\{V(I_k)\}_{k \in \mathbb{N}}$ be a descending chain of closed sets in $\Spec(A)$.\retTwo
+
+		Note that for any ideal $I \lhd A$ we have that $V(I) = V(\sqrt{I})$. After all, since $I \subseteq \sqrt{I}$ we know that $V(\sqrt{I}) \subseteq V(I)$. On the other hand, $V(I) \subseteq V(\bigcap_{P \in V(I)} P) = V(\sqrt{I})$. Due to this observation, we can replace each ideal $I_n$ defining our closed sets with $\sqrt{I_n}$.\retTwo
+
+		Next note that if $V(\sqrt{I}) \subseteq V(\sqrt{J})$ then $\sqrt{J} = \bigcap_{P \in V(J)} P \subseteq \bigcap_{P \in V(I)} P = \sqrt{I}$.\retTwo
+
+		But now we have shown that we have an ascending chain $\{\sqrt{I_n}\}_{n \in \mathbb{N}}$ of ideals in $A$. Since $A$ is a Noetherian ring, there must be some fixed $n$ such that $\sqrt{I_n} = \sqrt{I_{n + k}}$ for all $k \in \mathbb{N}$. In turn, $V(\sqrt{I_n}) = V( \sqrt{I_{n + k}})$ for all $k \in \mathbb{N}$.\retTwo
+	\end{myIndent}
+
+	\item[(c)] Given a closed subset $Z \coloneqq V(I)$ of $\Spec(A)$ where $A$ is a Noetherian ring and $I$ is an ideal of $A$, show that the irreducible components of $Z$ are precisely the subsets $V(P_i)$ for the finitely many primes $P_i$ where $\frac{P_i}{I}$ is a minimal prime of $A/I$.
+	\begin{myIndent}\HexOne
+		Since $A/I$ is a Noetherian ring, we know that it has finitely many minimal primes $P_1/I, \ldots, P_n/I$. My first goal is to show that each set $V(P_i)$ is irreducible.
+		\begin{myIndent}\HexTwoP
+			Suppose $J_1, J_2$ are two ideals such that $V(P_i) = V(J_1) \cup V(J_2)$. Then\\ since $P_i \in V(P_i)$ we know that $P_i \in V(J_1)$ or $P_i \in V(J_2)$. Without loss\\ of generality, suppose the former happens. Then $J_1 \subseteq P_i$, which in turn\\ means that $V(P_1) \subseteq V(J_1)$. Yet we also know from our initial expression\\ that $V(J_1) \subseteq V(P_1)$. Hence, $V(P_1) = V(J_1)$ and this proves that $V(P_1)$ is\\ irreducible.
+			\begin{myIndent}\myComment
+				More generally, this shows that for any $P \in \Spec(A)$ we have that $V(P)$ is an irreducible closed set.\retTwo
+			\end{myIndent}
+		\end{myIndent}
+
+		Now for every prime $P$ containing $I$ there is a minimal prime $P_i/I$ with $P_i/I \subseteq P/I$. Hence, we can conclude that $I \subseteq P_i \subseteq P$. Or in other words $\bigcup_{i=1}^n V(P_i) \subseteq V(I)$. The other containment is obvious.\retTwo
+
+		Next note that $P_i \notin V(P_j)$ unless $P_i = P_j$. This is because since $P_i/I$ is a minimal prime in $A/I$ we have that $I \subseteq P_j \subseteq P_I \Longrightarrow P_i = P_j$. As a result, we can see that\newpage $V(P_i) \not\subseteq V(P_j)$ if $i \neq j$. This finishes showing what we wanted.\retTwo
+	\end{myIndent}
+
+	\item[(d)] Give an example of a ring $A$ such that $\Spec(A)$ is a Noetherian space but $A$ is not a\\ Noetherian ring.
+	\begin{myIndent}\HexOne
+		Given a monoid $M \coloneqq \bigoplus_{i=1}^\infty \mathbb{Z}_{\geq 0}$, consider the monoid ring $\mathbb{Q}[M]$ which we express as the polynomial ring of countably infinitely many variables: $\mathbb{Q}[x_1, x_2, \ldots]$. Next, let $I \lhd \mathbb{Q}[x_1, x_2, \ldots]$ be the ideal generated by $\{x_n^2 : n \in \mathbb{N}\}$. Then, we let:
+		
+		{\centering$A \coloneqq \frac{\mathbb{Q}[x_1, x_2, \ldots]}{I}$.\retTwo\par}
+
+		Note that $I$ contains every polynomial in $\mathbb{Q}[x_1, x_2, \ldots]$ such that every monomial in said polynomial has at least one variable raised to a power of $2$. As a result, we can see that $x_n \notin I$ for all $n$.\retTwo
+
+		Meanwhile, let $J \lhd \mathbb{Q}[x_1, x_2, \ldots]$ be the ideal generated by $\{x_n : n \in \mathbb{N}\}$. Then $J$ contains every polynomial in $\mathbb{Q}[x_1, x_2 \ldots]$ without a constant term.\retTwo
+
+		Now notably, every $\overline{x_n}$ in $A$ is nilpotent. Hence $J/I \subseteq P/I$ for all $P \in \Spec(A)$. At the same time though, we can easily see that $J \in \max(\mathbb{Q}[x_1, x_2, \ldots])$. After all, given any $f(x_1, x_2, \ldots) \in \mathbb{Q}[x_1, x_2, \ldots] - J$ we'll be able to subtract off any higher degree terms and be left with an element of $\mathbb{Q}$ (which is a unit). Hence, we have proven that $A$ has exactly one prime ideal which is given by $\frac{\langle x_1, x_2, \ldots\rangle}{\langle x_1^2, x_2^2, \ldots \rangle}$. Because of that, $\Spec(A)$ is trivially a Noetherian space.\retTwo
+
+		On the other hand though, let us define $I_N \lhd \mathbb{Q}[x_1, x_2, \ldots]$ to be the ideal generated\\ [1pt] by $\{x_1, \ldots, x_N\} \cup \{x_n^2 : n \in \mathbb{N}\}$. Then $I_N \subsetneqq I_{N+1}$ for all $N$, which we can verify by noting that $x_{N+1} \in I_{N+1} - I_N$.\retTwo
+
+		But now $\frac{I_1}{I} \subsetneqq \frac{I_2}{I} \subsetneqq \cdots$ is an asscending chain of ideals not satisfying the ascending chain property for ideals. Hence, $A$ is not a Noetherian ring. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo \hypertarget{idk reference 4}{I'm} going to spend 30 more minutes doing problem 3 before I turn in what I have and call it a night. Go back to \inLinkRap{bookmark on page 952}{page 952} for a refresher on what I was proving.\retTwo
+
+\Hstatement\blab{Set 3 Problem 3 (continued):}
+\begin{myIndent}\HexOne
+	To start off, since $x^2 + ax + b$ and $y^2 + cx + d$ are irreducible polynomials in $\mathbb{R}[x]$, we can rewrite them as $(x - \alpha)^2 + \beta^2$ and $(y - \gamma)^2 + \delta^2$ so that their respective zeros are given by $\alpha \pm i\beta$ and $\gamma \pm i\delta$ (where $\beta, \delta \neq 0$).\retTwo
+
+	Next, we need to write out and then walk backwards through the isomorphism going
+	
+	{\centering from $\frac{\mathbb{R}[x]}{\langle (x - \alpha)^2 + \beta^2\rangle} \otimes_\mathbb{R} \frac{\mathbb{R}[x]}{\langle (y - \gamma)^2 + \delta^2\rangle}$ to $\mathbb{C}^2$.\retTwo\par}
+
+	My diagram chase / scratch work is on the next page since it's too large to fit on this page. That said, there are roughly three steps in the isomorphism to invert in order to find an\\ element corresponding to $(1, 0)$ in $\mathbb{C} \oplus \mathbb{C}$. {\color{red} (Also at this point I'm working after the\\ deadline\dots)}\retTwo
+
+	Firstly, we need to find a complex linear polynomial $p(y) = (a + ib)y + (c + id)$ such\\ that $p(\gamma + i\delta) = 1$ and $p(\gamma - i\delta) = 0$. We can do this by solving a certain system of linear equations to get that the only linear polynomial that works is $p(y) = \frac{-i}{2\delta}y + (\frac{1}{2} + i\frac{\gamma}{2\delta})$.
+	
+	\newpage
+
+	\hspace{-1em}\begin{tabular}{p{3.5in} p{2.5in}}
+		% https://q.uiver.app/#q=WzAsMTUsWzEsMCwiXFxmcmFje1xcbWF0aGJie1J9W3hdfXtcXGxhbmdsZSh4IC0gXFxhbHBoYSleMiArIFxcYmV0YV4yXFxyYW5nbGV9XFxvdGltZXNfXFxtYXRoYmJ7Un0gXFxmcmFje1xcbWF0aGJie1J9W3ldfXtcXGxhbmdsZSAoeSAtIFxcZ2FtbWEpXjIgKyBcXGRlbHRhXjJcXHJhbmdsZX0iXSxbMSwxLCJcXG1hdGhiYntDfSBcXG90aW1lc19cXG1hdGhiYntSfSBcXGZyYWN7XFxtYXRoYmJ7Un1beV19e1xcbGFuZ2xlICh5IC0gXFxnYW1tYSleMiArIFxcZGVsdGFeMlxccmFuZ2xlfSJdLFsxLDIsIlxcZnJhY3tcXG1hdGhiYntDfVt5XX17XFxsYW5nbGUgKHkgLSBcXGdhbW1hKV4yICsgXFxkZWx0YV4yXFxyYW5nbGV9Il0sWzEsMywiXFxmcmFje1xcbWF0aGJie0N9W3ldfXtcXGxhbmdsZSB5IC1cXGdhbW1hIC0gaVxcZGVsdGFcXHJhbmdsZX0gXFxvcGx1cyBcXGZyYWN7XFxtYXRoYmJ7Q31beV19e1xcbGFuZ2xlIHkgLSBcXGdhbW1hICsgaVxcZGVsdGFcXHJhbmdsZX0iXSxbMSw0LCJcXG1hdGhiYntDfVxcb3BsdXNcXG1hdGhiYntDfSJdLFszLDBdLFszLDFdLFszLDJdLFszLDNdLFszLDRdLFszLDVdLFsxLDVdLFswLDFdLFswLDJdLFswLDNdLFswLDFdLFswLDEsIlxcc2ltIiwzLHsib2Zmc2V0IjotMiwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMl0sWzEsMiwiXFxzaW0iLDMseyJvZmZzZXQiOi0yLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMiwzXSxbMiwzLCJcXHNpbSIsMyx7Im9mZnNldCI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs1LDYsIiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs3LDgsIiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs4LDksIiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDRdLFszLDQsIlxcc2ltIiwzLHsib2Zmc2V0IjotMywic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzQsMTEsIiIsMyx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFs5LDEwLCIiLDMseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMTIsMTMsIiIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFsxMywxNCwiIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzYsNywiIiwzLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzIxLDE1LCJcXG92ZXJsaW5le2F4K2J9IFxcb3RpbWVzIFxcb3ZlcmxpbmV7Y3kgKyBkfSIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzIyLDE5LCJcXG92ZXJsaW5le2N5ICsgZH0iLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyMywyNCwiXFx0ZXh0e0knbSBub3Qgd3JpdGluZyB0aGlzfSIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzI3LDI2LCIoYyhcXGdhbW1hICsgaVxcZGVsdGEpICsgZCwgYyhcXGdhbW1hIC0gaVxcZGVsdGEpICsgZCkiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyOCwxNywiKGEgKyBpYilcXG90aW1lcyBcXG92ZXJsaW5le2N5ICsgZH0iLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyOSwxOSwiKGEgKyBpYilcXG92ZXJsaW5le2N5ICsgZH0iLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFszMCwxNywiKGEoXFxhbHBoYSArIGlcXGJldGEpICtiKVxcb3RpbWVzXFxvdmVybGluZXtjeSArIGR9IiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMzIsMzMsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzM1LDM2LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFszMSwzNywiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMzMsMzQsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+		$\begin{tikzcd}
+			& {\frac{\mathbb{R}[x]}{\langle(x - \alpha)^2 + \beta^2\rangle}\otimes_\mathbb{R} \frac{\mathbb{R}[y]}{\langle (y - \gamma)^2 + \delta^2\rangle}} && {} \\
+			{} & {\mathbb{C} \otimes_\mathbb{R} \frac{\mathbb{R}[y]}{\langle (y - \gamma)^2 + \delta^2\rangle}} && {} \\
+			{} & {\frac{\mathbb{C}[y]}{\langle (y - \gamma)^2 + \delta^2\rangle}} && {} \\
+			{} & {\frac{\mathbb{C}[y]}{\langle y -\gamma - i\delta\rangle} \oplus \frac{\mathbb{C}[y]}{\langle y - \gamma + i\delta\rangle}} && {} \\
+			& {\mathbb{C}\oplus\mathbb{C}} && {} \\
+			& {} && {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, from=1-2, to=2-2]
+			\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=1-2, to=2-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, draw=none, from=1-4, to=2-4]
+			\arrow[""{name=2, anchor=center, inner sep=0}, draw=none, from=2-1, to=3-1]
+			\arrow[""{name=3, anchor=center, inner sep=0}, from=2-2, to=3-2]
+			\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=2-2, to=3-2]
+			\arrow[""{name=4, anchor=center, inner sep=0}, draw=none, from=2-4, to=3-4]
+			\arrow[""{name=5, anchor=center, inner sep=0}, draw=none, from=3-1, to=4-1]
+			\arrow[""{name=6, anchor=center, inner sep=0}, from=3-2, to=4-2]
+			\arrow["\sim"{marking, allow upside down}, shift left=2, draw=none, from=3-2, to=4-2]
+			\arrow[""{name=7, anchor=center, inner sep=0}, draw=none, from=3-4, to=4-4]
+			\arrow[""{name=8, anchor=center, inner sep=0}, from=4-2, to=5-2]
+			\arrow["\sim"{marking, allow upside down}, shift left=3, draw=none, from=4-2, to=5-2]
+			\arrow[""{name=9, anchor=center, inner sep=0}, draw=none, from=4-4, to=5-4]
+			\arrow[""{name=10, anchor=center, inner sep=0}, draw=none, from=5-2, to=6-2]
+			\arrow[""{name=11, anchor=center, inner sep=0}, draw=none, from=5-4, to=6-4]
+			\arrow[""{name=12, anchor=center, inner sep=0}, "{\overline{ax+b} \otimes \overline{cy + d}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1, to=0]
+			\arrow[""{name=13, anchor=center, inner sep=0}, "{(a + ib)\otimes \overline{cy + d}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2, to=3]
+			\arrow[""{name=14, anchor=center, inner sep=0}, "{(a(\alpha + i\beta) +b)\otimes\overline{cy + d}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=4, to=3]
+			\arrow[""{name=15, anchor=center, inner sep=0}, "{(a + ib)\overline{cy + d}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=5, to=6]
+			\arrow[""{name=16, anchor=center, inner sep=0}, "{\overline{cy + d}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=7, to=6]
+			\arrow[""{name=17, anchor=center, inner sep=0}, "{\text{I'm not writing this}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=9, to=8]
+			\arrow[""{name=18, anchor=center, inner sep=0}, "{(c(\gamma + i\delta) + d, c(\gamma - i\delta) + d)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=11, to=10]
+			\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=12, to=14]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=13, to=15]
+			\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=16, to=17]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=17, to=18]
+		\end{tikzcd}$ & 
+		\\ [-240pt] & 
+		As for reversing the second part we\newline need to, unfortunately there is no\newline single complex number $a + ib$ such that $\frac{p(z)}{a + ib} \in \mathbb{R}[y]$. So, we instead need to settle for taking a sum of two pure tensors. Namely:
+		
+		{\centering$p(y) = -i(\frac{1}{2\delta}y - \frac{\gamma}{2\delta}) + (0y + \frac{1}{2})$.\retTwo\par}
+
+		Hence, we now consider the element:
+
+		{\centering$-i \otimes \overline{\frac{1}{2\delta}y - \frac{\gamma}{2\delta}} + 1 \otimes \overline{0y + \frac{1}{2}}$.\retTwo\par}
+
+		To finish off, $a(\alpha + i\beta) + b = -i$ would imply that $a = \frac{-1}{\beta}$ and $b = \frac{\alpha}{\beta}$\retTwo
+
+		Meanwhile, $a(\alpha + i\beta) + b = 1$ would imply that $a = 0$ and $b = 1$.\newline
+	\end{tabular}
+
+	\retTwo
+
+	Hence, the element in $\frac{\mathbb{R}[x]}{\langle (x - \alpha)^2 + \beta^2\rangle} \otimes_\mathbb{R} \frac{\mathbb{R}[x]}{\langle (y - \gamma)^2 + \delta^2\rangle}$ corresponding to $(1, 0)$ in $\mathbb{C} \oplus \mathbb{C}$ can be written as:
+
+	{\centering $\frac{-1}{2}\left(\overline{\frac{1}{\beta}x - \frac{\alpha}{\beta}} \otimes \overline{\frac{1}{\delta}y - \frac{\gamma}{\delta}}\right) + \frac{1}{2}(\overline{1} \otimes \overline{1})$ \retTwo\par}
+
+	Now that we know this element, its also easy to get an element corresponding to $(0, 1)$. After all note that $(0, 1) = (1, 1) - (1, 0)$. Also, we can easily see $1 \otimes 1$ corresponds to $(1, 1)$ since both are the respective multiplicative identies of their rings. Hence, the element corresponding to $(0, 1)$ is given by:
+
+	{\centering $(1 \otimes 1) - \left(\frac{-1}{2}\left(\overline{\frac{1}{\beta}x - \frac{\alpha}{\beta}} \otimes \overline{\frac{1}{\delta}y - \frac{\gamma}{\delta}}\right) + \frac{1}{2}(\overline{1} \otimes \overline{1})\right)$ \retTwo\par}
+
+	In other words, the element corresponding to $(0, 1)$ can be written as:
+
+	{\centering $\frac{+1}{2}\left(\overline{\frac{1}{\beta}x - \frac{\alpha}{\beta}} \otimes \overline{\frac{1}{\delta}y - \frac{\gamma}{\delta}}\right) + \frac{1}{2}(\overline{1} \otimes \overline{1})$ \retTwo\par}
+
+	Now to finish off, recall that the isomorphism from $\frac{\mathbb{R}[x]}{\langle (x - \alpha)^2 + \beta^2\rangle} \otimes_\mathbb{R} \frac{\mathbb{R}[x]}{\langle (y - \gamma)^2 + \delta^2\rangle}$ to\\ $\frac{A}{\langle(x - \alpha)^2 + \beta^2, (y - \gamma)^2 + \delta^2\rangle}$ is given merely by $\overline{g}\otimes \overline{h} \mapsto \overline{gh}$. Therefore, the two maximal ideals\\ [1pt] of $A/I$ are principal and generated respectively by the polynomials:
+
+	{\centering $\pm\frac{1}{2}(\frac{1}{\beta}x - \frac{\alpha}{\beta})(\frac{1}{\delta}y - \frac{\gamma}{\delta}) + \frac{1}{2}$ \retTwo\par}
+
+	In other words, we've shown the only two maximal ideals containing $I$ are:
+	\begin{itemize}
+		\item $\langle (x - \alpha)^2 + \beta^2,\phantom{..} (y - \gamma)^2 + \delta^2,\phantom{..} (x - \alpha)(y - \gamma) + \beta\delta\rangle$
+		
+		\item $\langle (x - \alpha)^2 + \beta^2,\phantom{..} (y - \gamma)^2 + \delta^2,\phantom{..} (x - \alpha)(y - \gamma) - \beta\delta\rangle$. $\blacksquare$\retTwo
+	\end{itemize}
+\end{myIndent}
+
+\hTwo\mySepTwo\newpage
+
+\dispDate{6/8/2026}
+
+It's been a while since I studied math while not doing homework. Today I'm going to study distributions on $\mathbb{R}^n$. Also if I don't specify what measure I'm integrating aginst, assume I'm integrating against the Lebesgue measure $m$. Finally, see \inLinkRap{placeholder}{page 229} for where I left off.\retTwo
+
+We associate with any $f \in L^1_\loc$ the linear functional $(f, \phi) \coloneqq \int f \phi$ where $\phi \in C_c^\infty(\mathbb{R}^n)$.
+
+\begin{myIndent}\pracTwo
+	Note that $(f, \cdot)$ is a continuous linear functional. After all, suppose $K \subseteq \mathbb{R}^n$ is compact and let $\{\phi_j\}_{j \in \mathbb{N}}$ be a sequence converging to $\phi$ in $C_c^\infty(K)$. In other words, $\partial^{\alpha} \phi_j \to \partial^{\alpha}\phi$ uniformly as $j \to \infty$ for all multi-indices $\alpha$. But now by Hölder's inequality:
+	
+	{\centering$\int f(\phi_j - \phi) \leq \|f\|_{L^1(K)} \cdot \|\phi_j - \phi\|_u \to 0$ as $j \to \infty$.\retTwo\par}
+	
+	Hence, $(f, \cdot)$ meets the requirements for being a continuous linear functional on $C_c^\infty(\mathbb{R}^n)$ (i.e. a distribution).\retTwo
+\end{myIndent}
+
+Furthermore, note that $f, g \in L^1_\loc$ define the same linear functional if and only if $f = g$ a.e.
+\begin{myIndent}\pracTwo
+	To see why, note that if $f$ and $g$ define the same linear functional then $\int (f - g)\phi = 0$\\ for all $\phi \in C_c^\infty(\mathbb{R}^n)$. But now I claim if $h \in L^1_\loc$ and $\int h \phi = 0$ for all $\phi \in C_c^\infty(\mathbb{R}^n)$\\ then $h = 0$ a.e.\retTwo
+
+	This is because for any $x \in \mathbb{R}^n$ and $r, \varepsilon > 0$, we can find a smooth function\\ $\phi_{r,\varepsilon} :\mathbb{R}^n \to [0, 1]$ that satisfies that $\phi_{r,\varepsilon} \equiv 1$ on $B_{r}(x)$ and $\phi_n \equiv 0$ on $(B_{r + \varepsilon}(0))^\comp$. In turn, we have that:
+
+	{\centering $0 = (h,\phantom{..} \frac{\phi_{r,\varepsilon}}{m(B_{r}(x))}) = \frac{1}{m(B_{r}(x))}\int_{B_{r}(x)} h(y) \df y + \frac{1}{m(B_{r}(x))} \int_{\{y : r \leq \|y\|_2 < r + \varepsilon\}} h(y) \phi_{r,\varepsilon}(y) \df y$ \retTwo\par}
+
+	But now by the Lebesgue differentiation theorem, $\frac{1}{m(B_{r}(x))}\int_{B_{r}(x)} h(y) \df y \to h(x)$ as\\ [-3pt] $r \to 0$ for a.e. $x \in \mathbb{R}^n$.\retTwo
+	
+	Meanwhile note that:
+	
+	{\centering$0 \leq \frac{1}{m(B_{r}(x))} \int_{\{y : r \leq \|y\|_2 < r + \varepsilon\}} h(y) \phi_{r,\varepsilon}(y) \df y  \leq \frac{1}{m(B_{r}(x))} \int_{\{y : r \leq \|y\|_2 < r + \varepsilon\}} |h(y)| \df y$.\retTwo\par}
+
+	Since $\|h\|_{L^1(B_1(x))} < \infty$, we can guarentee for every fixed $r > 0$ that by taking $\varepsilon \to 0$, the latter integral written above must go to $0$. Hence, by strategically picking a sequence of $r_n$ and $\varepsilon_n$, we can conclude for a.e. $x \in \mathbb{R}^n$ that there is some sequence of $C_c^\infty$ test-functions $\phi_n$ such that $0 = (h, \phi_n) \to h(x)$. And this proves that $h = 0$ a.e.\retTwo
+\end{myIndent}
+
+It follows that $L^1_\loc$ is a subspace of the space of distributions $\mathcal{D}^\prime$.\retTwo
+
+Another set that can be embedded into $\mathcal{D}^\prime$ is the space of complex Radon measures $M(\mathbb{R}^n)$. Namely, we identify any $\mu \in M(\mathbb{R}^n)$ with the linear functional $(\mu, \phi) \coloneqq \int \phi \df \mu$ where $\phi \in C_c^\infty(\mathbb{R}^n)$.
+\begin{myIndent}\pracTwo
+	By nearly identical reasoning as with $f \in L^1_{\loc}$, we can conclude that the linear functional associated with $\mu$ is continuous in the distribution sense. As for seeing that if $\mu_1$ and $\mu_2$ in $M(\mathbb{R}^n)$ both define the same distribution then $\mu_1 = \mu_2$, note that any Radon measure $\nu \in M(\mathbb{R}^n)$ is uniquely determined by the linear functional $f \mapsto \int f \df \nu$ defined for\\ $f \in C_c(\mathbb{R}^n)$. Yet since $C_c^\infty(\mathbb{R}^n)$ is uniformly dense in $C_c(\mathbb{R}^n)$ and $f \mapsto \int f \df \nu$ is a\\ continuous function on $C_c(\mathbb{R}^n)$, we can conclude that the value of the linear functional defined by $\nu$ in $C_c^\infty(\mathbb{R}^n)$ uniquely determines $\nu$.\retTwo
+
+	\begin{myIndent}\myComment
+		To see that $C_c^\infty(\mathbb{R}^n)$ is uniformly dense in $C_c(\mathbb{R}^n)$, just suppose $f \in C_c(\mathbb{R}^n)$. Then $f$ is bounded and uniformly continuous. Next, consider any $\varphi \in L^1(\mathbb{R}^n) \cap C_c^\infty(\mathbb{R}^n)$ with $\int\varphi(x)\df x = 1$, and put $\varphi_t(x) \coloneqq \frac{1}{t^n} \varphi(\frac{x}{t})$. Then we can guarentee that\\ $f * \varphi_t \in C_c^\infty(\mathbb{R}^n)$ for all $t > 0$. Also, $f * \varphi_t \to f$ uniformly as $t \to 0$. (See pages 27-30 of my Spring 2025 math 240c notes\dots)\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+For the sake of consistency, given a general distribution $F \in \mathcal{D}^\prime$ and $\phi \in C_c^\infty(\mathbb{R}^n)$ we shall often use the notation $(F, \phi)$ to mean $F(\phi)$.\retTwo
+
+One might ask why we defined distributions to specifically be linear functions on $C_c^\infty(\mathbb{R}^n)$. The reason why we want our test functions to be compactly supported is so that any locally integrable function defines a distribution. After all, a lot of important familes of functions that I have now seen in my life are not globally integrable. Meanwhile, the full power of requiring our test functions to be smooth is demonstrated by the following reasoning.\retTwo
+
+Suppose $F \in \mathcal{D}^\prime$ and let $\alpha$ be a multi-index. Then we define the $\alpha$th \udefine{distributional\\ derivative} of $F$ to be: $\partial^{\alpha} F \coloneqq (-1)^{|\alpha|} F(\partial^{\alpha} \cdot)$.
+\begin{myIndent}\pracTwo
+	To see that $\partial^{\alpha} F$ is in fact a distribution, notice that if $\phi_j \to \phi$ in $C_c^\infty(\mathbb{R}^n)$ then we also have that $\partial^{\alpha}\phi_j \to \partial^{\alpha}\phi$ in $C_c^\infty(\mathbb{R}^n)$ due to how we defined convergence in that space. In turn, as $F$ is continuous we have that $F(\partial^{\alpha}\phi_j) \to F(\partial^{\alpha}\phi)$ as $j \to \infty$. And multiplication by a constant doesn't change that convergence.\retTwo
+\end{myIndent}
+
+Notably, all distributions have all distributional derivatives defined automatically. Thus, when working with distributions we never need to worry about how smooth they are.\\ Two other cool observations are as follows.
+\begin{itemize}
+	\item If $\alpha$ and $\beta$ are two different multi-indices and $F \in \mathcal{D}^\prime$, then $\partial^\alpha(\partial^\beta F) = \partial^{\alpha + \beta}F$.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		Since our test functions $\phi$ are smooth, we can swap the order of differentiation of $\phi$ without any worry. Thus:
+
+		{\centering\begin{tabular}{l}
+			$\partial^\alpha(\partial^\beta F)(\phi) = (-1)^{|\alpha|}\partial^\beta F(\partial^\alpha \phi) = (-1)^{|\alpha|} \cdot (-1)^{|\beta|} F(\partial^\beta(\partial^\alpha \phi))$\\ [4pt]
+			$\phantom{\partial^\alpha(\partial^\beta F)(\phi) = (-1)^{|\alpha|}\partial^\beta F(\partial^\alpha \phi)} = (-1)^{|\alpha + \beta|}F(\partial^{\alpha + \beta}\phi)$\\ [4pt]
+			$\phantom{\partial^\alpha(\partial^\beta F)(\phi) = (-1)^{|\alpha|}\partial^\beta F(\partial^\alpha \phi)} = \partial^{\alpha + \beta}F(\phi)$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+	\item $f \in C^1(\mathbb{R}^n)$, then for any $j \in \{1, \ldots, n\}$ we have that the $x_j$th distributional\\ derivative of $f$ is precisely the distribution corresponding to the classical\\ partial derivative $\partial_{x_j}f$. Hence, distributional derivatives generalize the standard\\ definition of a derivative.
+	\begin{myIndent}\pracTwo
+		Why?\\
+		Let $\phi \in C_c^\infty(\mathbb{R}^n)$. By using Fubini's theorem, we can say that:
+		
+		{\centering$\int (\partial_{x_j}f) \phi = \iint (\partial_{x_j}f) \phi \df x_j\df (x_1, \ldots, \widehat{x}_j, \ldots x_n)$.\retTwo\par}
+
+		But now by integration by parts plus the fact that $f\phi \to 0$ as $x_j$ gets large, we can say that $\int (\partial_{x_j}f) \phi \df x_j = -\int f (\partial_{x_j}\phi)\df x_j$. In turn, after undoing Fubinis' theorem we are left with $\int (\partial_{x_j}f) \phi = - \int f (\partial_{x_j}\phi)$.\newpage
+	\end{myIndent}
+\end{itemize}
+
+One more definition is that if $f \in L^1_\loc$, $\alpha$ is a multi-index, and the $\alpha$th distributional\\ derivative of $f$ is equivalent to the distribution given by another function $g \in L^1_\loc$, we\\ say that $g = \partial^\alpha f$ is the \udefine{$\alpha$th partial weak derivative} of $f$.\retTwo
+
+One other note is that we could have replaced $\mathbb{R}^n$ by any open subset $U \subseteq \mathbb{R}^n$ and\\ none of the prior results would have changed much.\retTwo
+
+Hopefully it's now clear that the reason distributions were defined the way they\\ are is because they allow for PDEs to be solvable without having to make restrictive\\ assumptions about what domains we are working on, or what our initial and boundary\\ conditions are allowed to be.\retTwo
+
+\begin{myIndent}
+	\mySepThree
+\end{myIndent}
+
+Whenever I prove a theorem or exercise, in this section it will be from Folland Real Analysis. Also, we'll let $\widetilde{\phi}(x) \coloneqq \phi(-x)$ for all $\phi \in C_c^\infty(\mathbb{R})$.\retTwo
+
+\exTwo\ul{Proposition 9.1:} \hypertarget{Folland Proposition 9.1}{If} $f \in L^1(\mathbb{R}^n)$ and $\int f = a$, then $f_t \to a\delta_0$ in $\mathcal{D}^\prime$ as $t \to 0$.
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		Note: Here $\delta_0$ denotes the dirac delta function at $0$. Also, $f_t(x) \coloneqq \frac{1}{t^n}f(\frac{x}{t})$.\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	For all $\phi \in C_c^\infty(\mathbb{R}^n)$ we have that $(f_t, \phi) = \int f_t(y)\widetilde{\phi}(-y)\df y = (f_t * \widetilde{\phi})(0)$. But the latter then converges to $a\widetilde{\phi}(0) = (a\delta_0, \phi)$ as $t \to 0$. $\blacksquare$
+	\begin{myIndent}\exPPP
+		See page 30 of my math 240c spring 2025 notes and note that $\phi$ is uniformly\\ continuous and bounded to understand why $(f_t * \widetilde{\phi})(0) \to a\delta_0$. Technically, I only proved the result for when $a = 1$. That sad, the proof of that result in 240c notes doesn't change much if $a \neq 1$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo If $F, G \in \mathcal{D}^\prime(U)$, $V \subseteq U$ is an open set, and $\forall \phi \in C_c^\infty(V)$ we have that $(F, \phi) = (G, \phi)$ (in other words $F|_{C_c^\infty(V)} = G|_{C_c^\infty(V)}$), we say that $F = G$ on $V$.\retTwo
+
+\exTwo\ul{Proposition 9.2:} If $F, G \in \mathcal{D}^\prime(U)$ and $F = G$ on $V_\alpha$ for all $\alpha \in A$ (with $V_\alpha$ an open subset of $U$), then $F = G$ on $\bigcup_{\alpha \in A}V_\alpha$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\phi \in C_c^\infty(\bigcup_{\alpha \in A} V_\alpha)$. Since $\supp(\phi)$ is compact, we can pick $\alpha_1, \ldots, \alpha_m \in A$ such that $\supp(\phi) \subseteq \bigcup_{i=1}^m V_{\alpha_i}$. Then, we can let $\psi_1, \ldots, \psi_m \in C_c^\infty(\mathbb{R}^n)$ be a partition of unity on $\supp(\phi)$ that is subordnate to $\{V_{\alpha_1}, \ldots, V_{\alpha_m}\}$ In turn:
+	
+	{\centering$(F, \phi) = \sum_{j=1}^m (F, \psi_j \phi) = \sum_{j=1}^m (G, \psi_j \phi) = (G, \phi)$. $\blacksquare$.\retTwo\par}
+\end{myIndent}
+
+\hTwo Based on the last proposition, we define the \udefine{support} of $F \in \mathcal{D}^\prime(U)$ to be the set:
+
+{\centering$\supp(F) \coloneqq U - \bigcup \{V \subseteq U \text{ open } : F = 0 \text{ on V}\}$.\retTwo\par}
+
+\begin{myIndent}
+	\mySepThree
+\end{myIndent}
+
+There's a general procedure for extending linear operators from acting on functions to acting on distributions. Suppose $U, V$ are open subsets of $\mathbb{R}^n$, $\mathcalli{X}$ is a vector subspace of $L^1_\loc(U)$, and $T: \mathcalli{X} \to L^1_\mathrm{loc}(V)$ is a linear operator. Then we try to solve for a continuous\newpage linear operator $T^\prime: C_c^\infty(V) \to C_c^\infty(U)$ such that $\int_V (Tf)\phi = \int_U f(T^\prime \phi)$ for all $f \in \mathcalli{X}$ and $\phi \in C_c^\infty(V)$. Finally, we define $T: \mathcal{D}^\prime(U) \to \mathcal{D}^\prime(V)$ by $(TF, \phi) \coloneqq (F, T^\prime \phi)$.\\ [-8pt]
+\begin{myIndent}\pracTwo
+	Firstly, I need to show that $T$ is a well-defined map. So, suppose $F \in \mathcal{D}^\prime(U)$. Fortunately, it's obvious that $TF$ is a linear map on $C_c^\infty(V)$. As for proving continuity, let $\{\phi_j\}_{j \in \mathbb{N}}$ be\\ a sequence of functions converging to another function $\phi$ in $C_c^\infty(V)$. Since $T^\prime$ is a\\ continuous map from $C_c^\infty(V)$ to $C_c^\infty(U)$, we know $T^\prime\phi_j \to T^\prime \phi$ in $C_c^\infty(U)$. And finally, by the continuity of $F$ we thus know that $(F, T^\prime \phi_j) \to (F, T^\prime \phi)$. This finishes showing that $TF$ is a distribution.\retTwo
+
+	Next it's trivial to show that $T: \mathcal{D}^\prime(U) \to \mathcal{D}^\prime(V)$ is a linear map. However, I also claim that $T$ is a continuous map with respect to the topology on the space of distributions. To see this, suppose $\{F_j\}_{j \in \mathbb{N}}$ is a sequence of distributions converging \weakst\hspace{-0.2em}-ly to $F$ in $\mathcal{D}^\prime(U)$. Then given any fixed $\phi \in C_c^\infty(V)$ we have that $(F_j, T^\prime \phi) \to (F, T^\prime \phi)$ as $j \to \infty$.\retTwo
+\end{myIndent}
+
+Some important continuous linear operators on distributions defined by the above\\ procedure are as follows:
+\begin{itemize}
+	\item \ul{(Differentiation):} If $U \subseteq \mathbb{R}^n$ is open and $\alpha$ is a multi-index, then $\partial^\alpha : \mathcal{D}^\prime(U) \to \mathcal{D}^\prime(U)$ is a continuous map. 
+	
+	\begin{myIndent}\pracTwo
+		Why?\\
+		If you squint you can see that differentiation of distributions is defined via the\\ procedure mentioned priorly where $\mathcalli{X} = C^{|\alpha|}(U)$ and $T^\prime: C_c^\infty(U) \to C_c^\infty(U)$ is defined by $\phi \mapsto (-1)^{|\alpha|}\partial^{\alpha}\phi$. Also, $T^\prime$ is easily checked to be a continuous linear map.
+		\begin{myIndent}\color{VioletRed}
+			This is because $T^\prime$ continuously maps $C_c^\infty(K)$ into $C_c^\infty(K)$ for all compact sets $K \subseteq U$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	Note that $\partial^\alpha$ being continuous is very useful to the study of PDEs because it means that if $\{F_j\}_{j \in \mathbb{N}}$ is a sequence of distributions converging to $F$ and satisfying some linear PDE, then $F$ automatically satisfies that same linear PDE (as a distribution).\retTwo
+
+	\item \ul{(Multiplication by smooth functions):} \hypertarget{Multiplication of distributions by smooth functions}{If} $U \subseteq \mathbb{R}^n$ is open and $\psi \in C^\infty(U)$, then\\ multiplication by $\psi$ (defined as $(\psi F, \phi) \coloneqq (F, \psi\phi)$) is a continuous linear map from $\mathcal{D}^\prime(U)$ to $\mathcal{D}^\prime(U)$.
+	
+	\begin{myIndent}\pracTwo
+		Why?\\
+		Let $T^\prime: C_c^\infty(U) \to C_c^\infty(U)$ be defined by $T^\prime \phi \coloneqq \psi \phi$. This is a linear map which I also claim is continuous. After all, suppose $\phi_j \to \phi$ in $C_c^\infty(U)$ and let $K \subseteq U$ be any compact set satisfying that $\supp(\phi_j) \subseteq K$ for all $j$. Then clearly $T^\prime$ maps $C_c^\infty(K)$ into $C_c^\infty(K)$. Furthermore, by product rule we have for any multi-index $\alpha$ that:
+
+		{\centering\begin{tabular}{l}
+			$\|\partial^\alpha (\psi (\phi_j - \phi))\|_u = \left\|\sum\limits_{\beta + \gamma = \alpha} \frac{\alpha!}{\beta!\gamma!}(\partial^\beta \psi)(\partial^\gamma (\phi_j - \phi))\right\|_u$\\ [22pt]
+			$\phantom{\|\partial^\alpha (\psi (\phi_j - \phi))\|_u} \leq \sum\limits_{\beta + \gamma = \alpha} \frac{\alpha!}{\beta!\gamma!} \|\partial^\beta \psi\|_u \|\partial^\gamma (\phi_j - \phi)\|_u$
+		\end{tabular}\newpage\par}
+
+		Since $\|\partial^\beta \psi\|_u$ is fixed for all mult-indices $\beta$ while $\|\partial^\gamma (\phi_j - \phi)\|_u \to 0$ as $j \to \infty$ for all multi-indicies $\gamma$, we can thus conclude the above finite sum goes to $0$ as $j \to \infty$.\retTwo
+	\end{myIndent}
+
+	Furthermore, if $\psi \in C_c^\infty(U)$ then multiplication by $\psi$ is a well-defined continuous linear map from $\mathcal{D}^\prime(U)$ to $\mathcal{D}^\prime(\mathbb{R}^n)$.
+
+	\begin{myIndent}\pracTwo
+		Why?\\
+		If $K \subseteq \mathbb{R}^n$ is any compact set and we let $T^\prime$ be defined as before, then $T^\prime$ is a linear map from $C_c^\infty(K)$ into $C_c^\infty(K \cap \supp(\psi))$. Also, the same reasoning still shows that $T^\prime$ is continuous.\retTwo
+	\end{myIndent}
+
+	\item \ul{(Translation):} Suppose $U \subseteq \mathbb{R}^n$ is open and $y \in \mathbb{R}^n$. Let $V = U + y$. Then we define a continuous map $\tau_y: \mathcal{D}^\prime(U) \to \mathcal{D}^\prime(V)$ by $(\tau_y F, \phi) \coloneqq (F, \tau_{-y}\phi)$
+	\begin{myIndent}\pracTwo
+		Explanation:\\
+		Recall for any $f \in L^1_\loc(U)$ that $\tau_y f(x) \coloneqq f(x - y)$ is a function defined on\\ $U + y = V$. Importantly, note that for any $\phi \in C_c^\infty(V)$ that:
+		
+		{\centering$\int (\tau_y f)\phi = \int f(x - y)\phi(x)\df x = \int f(x)\phi(x + y)\df x = \int f \cdot \tau_{-y}\phi$\retTwo\par}
+
+		So, we define $T^\prime : C_c^\infty(V) \to C_c^\infty(U)$ by $\phi \mapsto \tau_{-y}\phi$. This map is obviously linear and continuous.\retTwo
+	\end{myIndent}
+
+	\item \ul{(Composition with Linear Maps):} Suppose $U \subseteq \mathbb{R}^n$ is open, $S \in \GL_n(\mathbb{R})$, and\\ $V \coloneqq S^{-1}(U)$. Then "composition with $S$" (which is defined and denoted as\\ $(F \circ S, \phi) \coloneqq |\det(S)|^{-1}(F, \phi \circ S^{-1})$) is a continuous linear map from $\mathcal{D}^\prime(U)$\\ to $\mathcal{D}^\prime(V)$.
+	\begin{myIndent}\pracTwo
+		\begin{myIndent}\myComment
+			Annoyingly, the distribution definition of $F \circ S$ does \textit{not} correspond to the set theoretic definition of function composition which would instead be the map $\phi \mapsto (F, S \circ \phi)$. However, as we will see the distribution definition is what generalizes the definition of $f \circ S$ when $f \in L^1_\loc(U)$.\retTwo
+		\end{myIndent}
+
+		Explanation:\\
+		Given any $f \in L^1_\loc$ and $\phi \in C_c^\infty(V)$ we have that:
+		
+		{\centering$\int (f \circ S) \cdot \phi = |\det(S)|^{-1}\int f \cdot (\phi \circ S^{-1})$.\retTwo\par}
+		
+		Hence, we define $T^\prime: C_c^\infty(V) \to C_c^\infty(U)$ by $\phi \mapsto |\det(S)|^{-1}(\phi \circ S^{-1})$. It's easy to see that $T^\prime$ is linear, and that for any compact set $K \subseteq V$ we have that $T^\prime$ maps $C_c^\infty(K)$ into $C_c^\infty(S(K))$.  Meanwhile, suppose $\phi_j \to \phi$ in $C_c^\infty(V)$. Then $\|T^\prime(\phi_j - \phi)\|_u = |\det(S)|^{-1}\|\phi_j - \phi\|_u \to 0$ as $j \to \infty$. And by substituting $\phi$ with $\partial^{\alpha}\phi$ for any arbitrary multi-index $\alpha$, this finishes proving that $T^\prime$ is a continuous map.
+	\end{myIndent}
+\end{itemize}
+
+\pracOne\mySepTwo
+
+I want to finish my notes for today with a short calculation. This should be reminiscent of \inLinkRap{Page 874 Theorem}{page 874}. I claim that any locally integrable function of the form $u(x, t) = f(x - ct)$ gives a distribution solution to the PDE $\partial_t + c\partial_x = 0$.\newpage
+
+\begin{myIndent}\pracTwo
+	Let $\phi \in C_c^\infty(\mathbb{R}^n)$. Then set  $v = x - ct$ and $w = x + ct$, and let $\alpha$  $(= 2c)$ be the Jacobian of the map from the variables $(x, t)$ to the variables $(v, w)$. In turn, we know that $x = \frac{v + w}{2}$ and $t = \frac{w - v}{2c}$. Also:
+
+	{\center $(\partial_t u, \phi) = \int_{\mathbb{R}^2} -f(x - ct)\phi_t(x, t)\df(x, t) = \int_{\mathbb{R}^2} -\alpha^{-1} f(v)\phi_t(\frac{v + w}{2}, \frac{w - v}{2c})\df(v, w)$ \retTwo\par}
+
+	Yet now consider by chain rule that $\phi_w(v, w) = \frac{1}{2}\phi_x(\frac{v + w}{2}, \frac{w - v}{2c}) + \frac{1}{2c}\phi_t(\frac{v + w}{2}, \frac{w - v}{2c})$.\retTwo
+
+	Therefore:
+	
+	{\centering\begin{tabular}{l}
+		$\int_{\mathbb{R}^2} -\alpha^{-1} f(v)\phi_t(\frac{v + w}{2}, \frac{w - v}{2c})\df(v, w)$\\ [4pt]
+		$\phantom{aaaaaaaaa} = \int_{\mathbb{R}^2} c\alpha^{-1} f(v)\phi_x(\frac{v + w}{2}, \frac{w - v}{2c})\df (v, w) - \int_{\mathbb{R}^2} 2c\alpha^{-1} f(v)\phi_w(v, w)\df (v, w)$.
+	\end{tabular}\retTwo\par}
+
+	If we reverse our change of variables, the first of the two integrals becomes:
+	
+	{\centering$\int_{\mathbb{R}^2} c f(x - ct)\phi_x(x, t)\df (v, w) = -c(\partial_x u, \phi)$.\retTwo\par}
+
+	Meanwhile, we can use Fubini's theorem to evaluate that the second integral cancels. This is because:
+	
+	{\centering$\int_{\mathbb{R}^2} 2c\alpha^{-1} f(v)\phi_w(v, w)\df (v, w) = \int_{-\infty}^\infty 2c\alpha^{-1}f(v)\int_{-\infty}^\infty \phi_w(v, w)\df w \df v$\retTwo\par}
+
+	But since $\phi$ is compactly supported (even in the variables $v$ and $w$):
+	
+	{\centering$\int_{-\infty}^\infty \phi_w(v, w) \df w = \lim\limits_{\substack{b \to \infty \\ a \to -\infty}} [\phi(v, b) - \phi(v, a)] = 0$ for all $v$.\retTwo\par}
+
+	So, we've finished showing that $\partial_t u = -c\partial_x u$ as distributions. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo\dispDate{6/11/2026}
+
+Starting off today, here are some relavant exercises from Folland to the prior notes.\retTwo
+
+\Hstatement\blab{Exercise 9.1:} Let $U \subseteq \mathbb{R}^n$ be open and suppose that $f_1, f_2, \ldots,$ and $f$ are in $L^1_\loc(U)$. Then the following implies that $f_j \to f$ in $\mathcal{D}^\prime(U)$:
+\begin{itemize}
+	\item[(a)] Each $f_j \in L^p(U)$ (where $1 \leq p \leq \infty$) and $f_j \to f$ weakly or in the $L^p$ operator norm.
+	\begin{myIndent}\HexOne
+		Let $\phi$ be a fixed test function in $C_c^\infty(U)$, and also let $q$ be the conjugate exponent of $p$. If $f_j \to f$ in the $L^p$ operator norm, we have that:
+
+		{\centering $|\int(f_j - f)\phi| \leq \|f_j - f\|_p \cdot \|\phi\|_q \to 0$ as $j \to \infty$.\retTwo\par}
+
+		Meanwhile, if $f_j \to f$ weakly in $L^p$ then note that because $\phi \in L^q$, $\int (\cdot) \phi$ defines a continuous linear functional on $L^p$. Hence $\int f_j \phi \to \int f \phi$ as $j \to \infty$. In either case, this proves $f_j \to f$ in $\mathcal{D}^\prime(U)$.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] There exists $g \in L^1_\loc(U)$ with $|f_j| \leq g$ for all $j$, and $f_j \to f$ a.e.
+	\begin{myIndent}\HexOne
+		Again fix some test function $\phi \in C_c^\infty(U)$. Then $|f_j \phi| \leq g \|\phi\|_u \chi_{\supp(\phi)} \in L^1$ for all $j \in \mathbb{N}$ Also, $f_j \to f$ pointwise a.e. implies that $f_j\phi \to f\phi$ pointwise a.e. as well. So, now just apply the dominated convergence theorem to get what we want.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+Meanwhile $f_j \to f$ pointwise on $U$ does not imply that $f_j \to f$ in $\mathcal{D}^\prime(U)$.\newpage
+\begin{myIndent}\HexOne
+	For example, consider any $f \in C_c^\infty(\mathbb{R})$ satisfying that $\int f = 1$ and $f(0) = 0$. Then\\ for any $t > 0$ consider the map $f_t(x) \coloneqq \frac{1}{t}f(\frac{x}{t})$. As $t \to 0$ we have that $f_t \to 0$ pointwise\\ on $\mathbb{R}$. After all, $f_t(0) = 0$ for all $t$. Meanwhile, we can find some $R > 0$ such that\\ $\supp(f) \subseteq S \{x : \|x\|_2 \leq R\}$. And now for any $y \neq 0$, we know for small enough $t$\\ that $\frac{\|y\|_2}{t} > R$. So $f_t(y) \to 0$ as $t \to 0$.\retTwo
+
+	But now recalling \inLinkRap{Folland Proposition 9.1}{proposition 9.1 on page 960}, we know that $f_t \to \delta_0$ in $\mathcal{D}^\prime(\mathbb{R})$ as $t \to 0$. Additionally, $\delta_0$ is a different distribution from the zero distribution. So, $f_j \to 0$ pointwise, $f_j \not\to 0$ in $\mathcal{D}^\prime(\mathbb{R})$, and instead $f_j \to \delta_0$ in $\mathcal{D}^\prime(\mathbb{R})$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\blab{Exercise 9.2:} \hypertarget{page 964 exercise 9.2}{The} product rule for derivatives is valid for products of smooth functions and\\ distributions.
+\begin{myIndent}\HexOne
+	Let $U \subseteq \mathbb{R}^n$ be an open set, $F \in \mathcal{D}^\prime(U)$, and $\psi \in C^\infty(U)$. Then consider any\\ fixed test function $\phi \in C_c^\infty(U)$. Importantly, by product for functions we have that\\ $\partial_{x_j}(\psi \phi) = \psi_{x_j}\phi + \psi \phi_{x_j}$. In turn, we can say that:
+
+	{\centering\begin{tabular}{l}
+		$(\partial_{x_j}(\psi F), \phi) = -(\psi F, \phi_{x_j}) = (F, -\psi \phi_{x_j})$\\ [4pt]
+		$\phantom{(\partial_{x_j}(\psi F), \phi) = -(\psi F, \phi_{x_j})} = (F, -\partial_{x_j}(\psi \phi) + \psi_{x_j}\phi) = (\partial_{x_j}F, \psi \phi) + (\psi_{x_j}F, \phi)$\\ 
+	\end{tabular}\retTwo\par}
+
+	Or in other words, $\partial_{x_j}(\psi F) = (\partial_{x_j}\psi)F + \psi (\partial_{x_j}F)$. $\blacksquare$\retTwo 
+\end{myIndent}
+
+\blab{Exercise 9.5:} Suppose that $f$ is continuously differentiable on $\mathbb{R}$ except at $x_1, \ldots, x_m$ where $f$ has jump discontinuities, and that its pointwise derivative $\df f/ \df x$ (defined except at the $x_j$'s) is in $L^1_{\loc}(\mathbb{R})$. Then the distribution derivative $f^\prime$ of $f$ is given by:
+
+{\centering$f^\prime = (\df f / \df x) + \sum_{j=1}^m [f(x_j +) - f(x_j -)]\delta_{x_j}$.\retTwo\par}
+\begin{myIndent}\HexOne
+	\begin{myIndent}\color{RawerSienna}
+		Here $\delta_{x_j}$ denotes the Dirac delta function at $x_j$. Also $f(x_j +) \coloneqq \lim\limits_{x \to x_j^+}f(x)$ and\\ [-10pt] $f(x_j -) \coloneqq \lim\limits_{x \to x_j^-}f(x)$.\retTwo
+	\end{myIndent}
+
+	Let $\phi \in C_c^\infty(\mathbb{R}^n)$ be a fixed test function. Also without loss of generality suppose\\ $x_1 < x_2 < \ldots < x_m$. Then we can write that:
+
+	{\center$(f^\prime, \phi) = -\int_{-\infty}^{x_1} f(x)\phi^\prime(x)\df x - \int_{x_m}^\infty f(x)\phi^\prime(x)\df x - \sum_{j=2}^m \int_{x_{j-1}}^{x_j}f(x)\phi^\prime(x)\df x$.\retTwo\par}
+
+	But now by integration by parts, we have for $2 \leq j \leq m$ that:
+
+	{\centering $\int_{x_{j-1}}^{x_j}f(x)\phi^\prime(x)\df x = f(x_j-)\phi(x_j) - f(x_{j-1}+)\phi(x_{j-1}) - \int_{x_{j-1}}^{x_j} \frac{\df f}{\df x}(x)\phi(x)\df x$ \retTwo\par}
+
+	Similarly, as $\phi$ is compactly supported we know that:
+	\begin{itemize}
+		\item $\int_{-\infty}^{x_1} f(x)\phi^\prime(x)\df x = f(x_1 -)\phi(x_1) - 0 - \int_{-\infty}^{x_1} \frac{\df f}{\df x}(x)\phi(x)\df x$,
+		\item $\int_{x_m}^{\infty} f(x)\phi^\prime(x)\df x = 0 - f(x_m +)\phi(x_m) - \int_{x_m}^{\infty} \frac{\df f}{\df x}(x)\phi(x)\df x$.\retTwo
+	\end{itemize}
+
+	Therefore, we can conclude that:
+
+	{\center\begin{tabular}{l}
+		$(f^\prime, \phi) = +\int_{-\infty}^{x_1} \frac{\df f}{\df x}(x)\phi(x)\df x + \int_{x_m}^\infty \frac{\df f}{\df x}(x)\phi(x)\df x + \sum_{j=2}^m \int_{x_{j-1}}^{x_j}\frac{\df f}{\df x}(x)\phi(x)\df x$\\ [6pt]
+		$\phantom{(f^\prime, \phi) = +\int_{-\infty}^{x_1} \frac{\df f}{\df x}(x)\phi(x)\df x + \int_{x_m}^\infty \frac{\df f}{\df x}(x)\phi(x)} + \sum_{j=1}^m (f(x_j+) - f(x_j -))\phi(x_j)$\\ [10pt]
+		$\phantom{(f^\prime, \phi)} = \int_{-\infty}^\infty \frac{\df f}{\df x}(x)\phi(x)\df x + \sum_{j=1}^m (f(x_j+) - f(x_j -))\phi(x_j)$\\ [10pt]
+		$\phantom{(f^\prime, \phi)aaaaaaaaaaaaaaaaaaaaa} = (\frac{\df f}{\df x}, \phi) + \sum_{j=1}^m (f(x_j+) - f(x_j -)) (\delta_{x_j}, \phi)$. $\blacksquare$
+	\end{tabular}\newpage\par}
+\end{myIndent}
+
+\hTwo An important operation for distributions I need to establish is convolutions. We have two ways of doing this (which I will eventually show are equivalent).
+\begin{myDindent}\color{red}\fontsize{11}{13}\selectfont
+	Note from 6/17/2026: I also just realized that since this point in my journal I've been\\ short-handing $\|x\|_2$ as $|x|$ when $x \in \mathbb{R}^n$.
+\end{myDindent}
+\begin{enumerate}
+	\item[1.] Suppose $U \subseteq \mathbb{R}^n$ is open. Then for a given $\psi \in C_c^\infty$, let
+	
+	{\centering$V \coloneqq \{x \in \mathbb{R}^n : x - y \in U \text{ for all } y \in \supp(\psi)\}$.\retTwo\par}
+
+	\begin{myIndent}\pracTwo
+		Note that $V$ is open (although it may be empty). After all, if $x \in V$ then we know $x + (-\supp(\psi))$ is a compact subset of $U$. In turn, we can find some $r > 0$ with $|a - b| \geq r$ for all $a \in x + (-\supp(\psi))$ and $b \in U^\comp$.\retTwo
+
+		Now suppose $x^\prime \in B_r(x)$. Then for any $y \in \supp(\psi)$ we have that $x^\prime - y \in U$. After all, $b \coloneqq x^\prime - y = x^\prime - x + x - y$. So if we set $a \coloneqq x - y \in x + (-\supp(\psi))$, we have that $|a - b| = |x^\prime - x| < r$. Hence, we know $b \notin U^\comp$. And this proves that $B_r(x) \subseteq V$.\retTwo
+	\end{myIndent}
+
+	If $f \in L_\loc^1(U)$ then the integral
+
+	{\centering $f * \psi(x) = \int f(x - y)\psi(y)\df y = \int f(y)\psi(x - y)\df y = \int f \tau_x \widetilde{\psi} = (f, \tau_x \widetilde{\psi})$\\ [4pt]\par}
+
+	is well-defined for all $x \in V$. In turn, to extend convolutions to distributions we define for any $F \in \mathcal{D}^\prime(U)$ the \textit{function} $F * \psi: V \to \mathbb{C}$ given by $F * \psi(x) \coloneqq (F, \tau_x \widetilde{\psi})$.\retTwo
+
+	\exTwo\ul{Proposition 9.3 (Part 1):} $F * \psi \in C^\infty(V)$ \hypertarget{page 965 proposition 9.3}{and} $\partial^{\alpha}(F * \psi) = \partial^\alpha F * \psi = F * \partial^\alpha \psi$\\ for all multi-indices $\alpha$.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $e_1, \ldots, e_n \in \mathbb{R}^n$ denote the standard basis. Then given any $x \in \mathbb{R}^n$, we can pick $t_0 > 0$ such that $x + te_j \in V$ whenever $|t| \leq t_0$.\retTwo
+
+		Claim: $\frac{1}{t}(\tau_{x + te_j}\widetilde{\psi} - \tau_x \widetilde{\psi}) \to \tau_x\widetilde{\partial_{x_j}\psi}$ in $C_c^\infty(U)$ as $t \to 0$.
+		\begin{myIndent}\exPPP
+			Why?\\
+			$\frac{1}{t}(\tau_{x + te_j}\widetilde{\psi} - \tau_x \widetilde{\psi})(y) = \frac{\psi(x + te_j - y) - \psi(x - y)}{t}$ while $\tau_x\widetilde{\partial_{x_j}\psi}(y) = \psi_{x_j}(x - y)$. We need to show that as functions in $y$, the former expression goes to the latter in $C_c^\infty(U)$ as $t \to 0$.\retTwo
+
+			To start off, note that $\supp_y(\psi(x + te_j - y)) = x + te_j - \supp(\psi)$. Thus, we need to find a compact set $K \subseteq U$ which (perhaps after shrinking $t_0$) contains $x + te_j - \supp(\psi)$ for all $t \in [-t_0, t_0]$. Fortunately, as $U^c$ is a closed set which is disjoint from the compact set $x - \supp(\psi)$, we know there is some $r > 0$ such that $|x - y - z| > r$ for all $y \in \supp(\psi)$ and $z \notin U$. Now shrink $t_0$ if necessary so that $0 < t_0 \leq r$. Then set:
+			
+			{\centering$K \coloneqq \{z \in \mathbb{R}^n : \inf\limits_{y \in \supp(\psi)}|x - y - z| \leq r\}$.\retTwo\par}
+
+			\begin{itemize}
+				\item Clearly $K \subseteq U$.
+				\item I also claim that $K$ is closed in $\mathbb{R}^n$. After all, $\rho(z) \coloneqq \hspace{-0.4em}\inf\limits_{y \in \supp(\psi)}|y - z|$ is easily\newpage checked to be a continuous function. In turn, $\rho(x - z)$ is also a continuous function of $z$. And thus, the preimage of $[0, r]$ with respect to it is closed.
+				\item Thirdly $\diam(K) \leq 2r + \diam(x - \supp(\psi)) < \infty$. So, $K$ is a bounded set. Since $K$ is both closed and bounded, this proves that $K$ is compact.
+				\item Finally, $x + te_j - \supp(\psi) \subseteq K$ for all $t \in [-t_0, t_0]$.\retTwo
+			\end{itemize}
+
+			With that, it now easily follows that $\frac{1}{t}(\tau_{x + te_j}\widetilde{\psi} - \tau_x \widetilde{\psi})$ are all supported in a single compact subset of $U$ once $t$ is small enough. Hence, we can move on to proving the other requirement for convergence in $C_c^\infty(U)$, which is that the derivatives of $\frac{\psi(x + te_j - y) - \psi(x - y)}{t}$ (with respect to $y$) converge uniformly to the derivatives of $\psi_{x_j}(x - y)$.\retTwo
+
+			Note that for any multi-index $\beta$, we have that:
+			
+			{\centering$\partial^\beta(\frac{\psi(x + te_j - y) - \psi(x - y)}{t}) = (-1)^{|\beta|}\frac{\partial^\beta\psi(x + te_j - y) - \partial^\beta\psi(x - y)}{t}$.\retTwo\par}
+			
+			Similarly:
+			
+			{\centering\begin{tabular}{l}$\partial^\beta_{(y)}(\psi_{x_j}(x - y)) = (-1)^{|\beta|} \cdot \partial^\beta (\partial_{x_j}\psi)(x - y) = (-1)^{|\beta|}\cdot (\partial^\beta\psi)_{x_j}(x - y)$\end{tabular}\retTwo\par}
+
+			So by cancelling out the $(-1)^{|\beta|}$ if necessary, it actually suffices to only do the proof that $\frac{\psi(x + te_j - y) - \psi(x - y)}{t} \to \psi_{x_j}(x - y)$ uniformly over all $y$ (since the same proof will also work when $\psi$ is replaced by $\partial^\beta \psi$).\retTwo
+
+			By the mean value theorem though, we know for every $t \in [-t_0, t_0]$ and $y \in U$ that there exists some $s_{t,y}$ (dependent on both $t$ and $y$) that is between $0$ and $t$ and satisfying that:
+
+			{\centering $\psi(x + te_j - y) - \psi(x - y) = t\psi_{x_j}(x + s_{t,y}e_j - y)$. \retTwo\par}
+
+			In turn, for all $t \in [-t_0, t_0] - \{0\}$ and $y \in U$ we have that:
+			
+			{\centering$\left|\frac{\psi(x + te_j - y) - \psi(x - y)}{t} - \psi_{x_j}(x - y)\right| = |\psi_{x_j}(x + s_{t,y}e_j - y) - \psi_{x_j}(x- y)|$\retTwo\par}
+
+			And since $\psi_{x_j}$ is uniformly continuous and $s_{t,y} \to 0$ as $t \to 0$ uniformly over all $y$, this finishes proving what we wanted.\retTwo
+		\end{myIndent}
+
+		Now that we've shown the prior claim, it now is trivial that $\partial_{x_j}(F * \psi)(x)$ is defined (in the traditional non-distribution sense) and equal to:
+		
+		{\centering$(F, \tau_{x}\widetilde{\partial_{x_j}\psi}) = F * \psi_{x_j}(x)$.\retTwo\par}
+
+		By induction, we can then conclude for any multi-index $\alpha$ that $\partial^\alpha(F * \psi) = F * \partial^\alpha \psi$.\retTwo
+
+		As for showing that these partial derivatives are continuous, note that $\tau_{x}\widetilde{\psi} \to \tau_{x_0}\widetilde{\psi}$ in $C_c^\infty(U)$ as $x \to x_0$ for any $x_0 \in U$. This is simply because every partial derivative of $\psi$ is uniformly continuous (since it is smooth and compactly supported). In turn,\newpage we know that $F * \psi$ is continuous. And by replacing $\psi$ with $\partial^\alpha \psi$ for any multi-index $\alpha$, we can also conclude that $F * \partial^\alpha \psi$ is continuous.\retTwo
+
+		Finally, note that:
+
+		{\centering\begin{tabular}{l} 
+			$(F * \partial^\alpha \psi)(x) = (F, \tau_x \widetilde{\partial^\alpha \psi}) = (F, (-1)^{|\alpha|}\partial^\alpha(\tau_x\widetilde{\psi}))$\\
+			$\phantom{(F * \partial^\alpha \psi)(x) = (F, \tau_x \widetilde{\partial^\alpha \psi})} = (\partial^\alpha, \tau_x \widetilde{\psi}) = ((\partial^\alpha F) * \psi)(x)$.
+		\end{tabular}\retTwo\par}
+
+		This shows that $F * \partial^\alpha \psi = \partial^\alpha F * \psi$. $\blacksquare$\retTwo
+	\end{myIndent}\hTwo
+
+	\item[2.] Letting $\psi$ and $V$ be from before, we can alternatively extend the definition of a\\ convolution by defining $F * \psi$ as a distribution.\retTwo
+	
+	If $f \in L^1_{\loc}(U)$ then $f * \psi$ is a bounded continuous function. Hence, it is locally integrable and defines a distribution. Next, let $\phi$ be a test function in $C_c^\infty(V)$. Then:
+
+	{\centering\begin{tabular}{l}
+		$\int (f * \psi)\phi = \int (\int f(y)\psi(x - y)\df y)\phi(x)\df x$\\ [4pt]
+		$\phantom{\int (f * \psi)\phi} = \int f(y) (\int \psi(x - y)\phi(x)\df x)\df y = \int f \cdot (\phi * \widetilde{\psi})$
+	\end{tabular}\retTwo\par}
+
+	In other words, if $T: L^1_\loc(U) \to L^1_\loc(V)$ is the linear map $Tf = f * \psi$, then\\ $T^\prime: C_c^\infty(V) \to C_c^\infty(U)$ given by $T^\prime \phi = \phi * \widetilde{\psi}$ is a linear map satisfying that:
+	
+	{\centering$\int (Tf)\phi = \int f(T^\prime \phi)$.\retTwo\par}
+
+	\begin{myIndent}\color{orange}
+		The linearity of $T^\prime$ is obvious. Also note that $\phi * \widetilde{\psi} = \int \phi(x - y)\widetilde{\psi}(y)$. Hence, $\phi * \widetilde{\psi}(x) \neq 0$ implies that $x - y \in \supp(\phi) \subseteq V$ and $-y \in \supp(\psi)$ for some $y$. But now let $r = \min\{|x - y| : x \in \supp(\phi), y \in V^\comp\}$. By the definition of $V$, we know that $B_r(x - y) + y = B_r(x) \subseteq U$. Hence, $\supp(\phi * \widetilde{\psi}) \subseteq U$.\retTwo
+
+		It's also trivial from other theorems that $T^\prime \phi$ is smooth for any $\phi \in C_c^\infty(V)$. Going a step further though, I claim $T^\prime$ is continuous as a map from $C_c^\infty(V)$ to $C_c^\infty(U)$. After all, let $\{\phi_j\}_{j \in \mathbb{N}}$ be a sequence converging in $C_c^\infty(V)$ to $\phi$. Then we have that $\partial^\alpha(T^\prime \phi_j) = (\partial^\alpha \phi_j) * \widetilde{\psi}$ and similarly that $\partial^\alpha(T^\prime \phi) = (\partial^\alpha \phi) * \widetilde{\psi}$. But now $\|(\partial^\alpha \phi - \partial^\alpha \phi_j) * \widetilde{\psi}\|_u \leq \|\widetilde{\psi}\|_1 \cdot \|\partial^\alpha \phi - \partial^\alpha \phi_j\|_u \to 0$ as $j \to \infty$ for all multi-indices $\alpha$.\retTwo
+	\end{myIndent}
+
+	It follows that for any distribution $F \in \mathcal{D}^\prime(U)$, we can define a distribution on $V$ given by $(F * \psi, \phi) \coloneqq (F, \phi * \widetilde{\psi})$. Also, the map $F \mapsto F * \psi$ is continuous from $\mathcal{D}^\prime(U)$\\ [2pt] to $\mathcal{D}^\prime(V)$.\retTwo
+
+	\exTwo\ul{Proposition 9.3 (Part 2):} The prior two definitions of convolutions yield identical\\ distributions. In other words, if $F * \psi$ is the function from part 1 of this proposition and $\phi \in C_c^\infty(V)$, then $\int(F * \psi)\phi = (F, \phi * \widetilde{\psi})$.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Note that $\phi * \widetilde{\psi}(x) = \int \phi(y)\psi(y - x)\df y = \int \phi(y)\tau_{y}\widetilde{\psi}(x)\df y$. We shall proceed by approximating the latter integral with Riemann sums.\newpage
+
+		Namely, for any $m \in \mathbb{N}$ we can lay the grid $(2^{-m}\mathbb{Z})^n$ over $\mathbb{R}^n$. Then we consider sampling a point $y_j^m$ from each cube in the grid. Because $\supp(\phi)$ is compact in $V$, we know that $\phi(y_j^m) = 0$ for all but finitely many cubes. Hence, without loss of generality we can say that $y_1^m, \ldots, y_{k(m)}^m$ are the only sampled points where $\phi$ is\\ nonzero. And then, we set:
+
+		{\centering $S_m(x) \coloneqq 2^{-nm}\sum\limits_j \phi(y_j^m)\tau_{y_j^m}\widetilde{\psi}(x)$ \retTwo\par}
+
+		\ul{Claim:} $S_m(x) \to \phi * \widetilde{\psi}$ uniformly on $U$.
+		\begin{myIndent}\exPPP
+			Note that this trick specifically works because $\supp(\phi)$ is bounded and also\\ because both $\phi$ and $\widetilde{\psi}$ are uniformly continuous and bounded.\retTwo
+
+			Let $Q_j^m$ denote the cube that $y_j^m$ was sampled from. Then let $\alpha$ equal the lebesgue measure of $\supp(\phi) + \overline{B_{\sqrt{n}}(0)}$. Importantly, each $Q_j^m$ has volume $2^{-nm}$. Furthermore, each $Q_j$ has a null interception with every other $Q_{j^\prime}$, and the union of all the $Q_j$ must be contained in $\supp(\phi) + \overline{B_{\sqrt{n}}(0)}$. It follows that $\sum_j \int \chi_{Q_j^m} \leq \alpha$ for all $m$.\retTwo
+
+			Now note that:
+			
+			{\centering\begin{tabular}{l}
+				$|\phi * \widetilde{\psi}(x) - S_m(x)| = \left|\int \phi(y)\tau_y \widetilde{\psi}(x) - \sum\limits_j \phi(y_j^m)\tau_{y_j^m}\widetilde{\psi}(x)\chi_{Q_j^m}\df y\right|$\\ [8pt]
+				$\phantom{|\phi * \widetilde{\psi}(x) - S_m(x)|} \leq \sum\limits_j \int_{Q_j}|\phi(y)\tau_y \widetilde{\psi}(x) - \phi(y_j^m)\tau_{y_j^m}\widetilde{\psi}(x)|\df y$\\ [8pt]
+				$\phantom{|\phi * \widetilde{\psi}(x) - S_m(x)|} \leq \sum\limits_j \int_{Q_j}|\phi(y)\tau_y \widetilde{\psi}(x) - \phi(y_j^m)\tau_y\widetilde{\psi}(x)|\df y$\\ [0pt]
+				$\phantom{|\phi * \widetilde{\psi}(x) - S_m(x)|aaaaaaaaaa} + \sum\limits_{j}\int_{Q_j}|\phi(y_j^m)\tau_y\widetilde{\psi}(x) - \phi(y_j^m)\tau_{y_j^m}\widetilde{\psi}(x)|\df y$\\ [4pt]
+			\end{tabular}\retTwo\par}
+
+			But now as $|y - y_j^m| < 2^{-m}\sqrt{n}$ for all $y \in Q_j^m$, we can guarentee for\\ any $\delta > 0$ that there exists $M \in \mathbb{N}$ with $|y - y_j^m| < \delta$ for all $m \geq M$,\\ $j \in \{1, \ldots, k(m)\}$, and $y \in Q_j^m$. Also because $\phi$ and $\widetilde{\psi}$ are uniformly\\ continuous, we know that there exists some $\delta > 0$ such that:
+			
+			{\centering$|\phi(y^\prime) - \phi(y)| < \frac{\varepsilon}{2\alpha\|\widetilde{\psi}\|_u}$ and $|\widetilde{\psi}(y^\prime) - \widetilde{\psi}(y)| < \frac{\varepsilon}{2\alpha\|\phi\|_u}$ when $|y^\prime -y| < \delta$.\retTwo\par}
+
+			And now after putting these inequalities together, we get that when $m$ is made large enough, then $|\phi * \widetilde{\psi}(x) - S_m(x)| < \varepsilon$ for all $x$.\retTwo
+		\end{myIndent}
+
+		Also note that $\partial^\alpha S_m = \sum\limits_j \phi(y_j^m)\tau_{y_j^m}(\partial^\alpha\widetilde{\psi})(x)$ and $\partial^\alpha(\phi * \widetilde{\psi})(x) = (\phi * \partial^\alpha\widetilde{\psi})(x)$.\retTwo
+
+		Thus by repeating the proof of our prior claim, we can conclude $\partial^\alpha S_m \to \phi * \widetilde{\psi}$ uniformly for all multi-indices $\alpha$. And now, this lets us conclude that:
+
+		{\centering\begin{tabular}{l}
+			$(F, \phi * \widetilde{\psi}) = \lim\limits_{m \to \infty}(F, S_m) = \lim\limits_{m \to \infty} 2^{-nm}\sum\limits_j \phi(y_j^m) \cdot (F, \tau_{y_j^m}\widetilde{\psi})$\\ [10pt]
+			$\phantom{(F, \phi * \widetilde{\psi}) = \lim\limits_{m \to \infty}(F, S_m)} = \lim\limits_{m \to \infty} 2^{-nm}\sum\limits_j \phi(y_j^m) \cdot (F * \psi)(y_j^m)$
+		\end{tabular}\newpage
+		\begin{tabular}{l}
+			$\phantom{(F, \phi * \widetilde{\psi}) = \lim\limits_{m \to \infty}(F, S_m) = \lim\limits_{m \to \infty} 2^{-nm}\sum\limits_j \phi(y_j^m) \cdot (F * \psi)(y_j^m)}$\\ [-20pt]
+			$\phantom{(F, \phi * \widetilde{\psi}) = \lim\limits_{m \to \infty}(F, S_m)} = \lim\limits_{m \to \infty} \int \sum\limits_j (F * \psi)(y_j^m)\phi(y_j^m)\chi_{Q_j^m}$.
+		\end{tabular}\retTwo\par}
+
+		Finally, by the uniform continuity of $(F * \psi)\phi$ we know that:
+		
+		{\centering$\sum\limits_j (F * \psi)(y_j^m)\phi(y_j^m)\chi_{Q_j} \to (F * \psi)\phi$ pointwise.\retTwo\par}
+
+		By the dominated convergence theorem (using $\|\phi\|_u\|F * \psi\|_u\chi_{\supp(\phi) + \overline{B_{\sqrt{n}}(0)}}$ as\\ a bounding function), we can conclude that:
+
+		{\centering $(F, \phi * \widetilde{\psi}) = \lim\limits_{m \to \infty} \int \sum\limits_j (F * \psi)(y_j^m)\phi(y_j^m)\chi_{Q_j} = \int (F * \psi)\phi$. $\blacksquare$\retTwo\par}
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo A big use of convolutions is that they let us approximate distributions with functions in a restricted nice-to-work-with subspace.\retTwo
+
+\exTwo\ul{Lemma 9.4:} Suppose that $\phi, \psi \in C_c^\infty(\mathbb{R}^n)$ and $\int \psi = 1$. Then let $\psi_t(x) = \frac{1}{t^n}\psi(\frac{x}{t})$.
+\begin{enumerate}
+	\item[(a)] Given any neighborhood $U$ of $\supp(\phi)$, we have that $\supp(\phi * \psi_t) \subseteq U$ for $t$\\ sufficiently small.
+	\item[(b)] $\phi * \psi_t \to \phi$ in $C_c^\infty(U)$ as $t \to 0$.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Pick $R > 0$ such that $\supp(\psi) \subseteq \overline{B_R(0)}$. Then $\supp(\phi * \psi_t)$ is contained in the\\ set $\supp(\phi) + \overline{B_{tR}(0)}$. Furthermore, because $\supp(\phi)$ is compact and disjoint from the closed set $U^\comp$, we know there is some $\varepsilon > 0$ with $|x - y| > \varepsilon$ for all $x \in \supp(\phi)$ and $y \in U^\comp$. In turn, once $t$ is small enough so that $tR < \varepsilon$, we know that\\ $\supp(\phi * \psi_t) \subseteq U$.\retTwo
+
+		As for showing convergence in $C_c^\infty(U)$, first note that we can get a fixed compact set $K$ which is contained in $U$ and contains the support of $\phi * \psi_t$ by taking the closure\\ of $\supp(\phi) + \overline{B_{\sfrac{\varepsilon}{2}}(0)}$ and then only considering $t < \frac{\varepsilon}{2R}$.\retTwo
+
+		Finally, for all multi-indices $\alpha$ we have that: $\partial^\alpha(\phi * \psi_t) = (\partial^\alpha \phi) * \psi_t \to \partial^\alpha \phi$ uniformly as $t \to 0$. (Just check pages 27-28 and 30 on my math 240c spring 2025 notes.) $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\exTwo\ul{Proposition 9.5:} For any open $U \subseteq \mathbb{R}^n$, $C_c^\infty(U)$ is (sequentially) dense in $\mathcal{D}^\prime(U)$ in the topology of $\mathcal{D}^\prime(U)$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $F \in \mathcal{D}^\prime(U)$. Our first goal will be to approximate $F$ with a distribution\\ supported in a compact subset of $U$.\retTwo
+
+	Let $\{V_j\}_{j \in \mathbb{N}}$ be an increasing sequence of precompact open subsets of $U$ whose union is $U$. (In particular assume $V_j \subseteq \overline{V_j} \subseteq V_{j+1}$ for all $j$.) By the $C^\infty$ Urysohn lemma, we can pick a function $\omega_j \in C_c^\infty(U)$ with $\omega_j = 1$ on $\overline{V_j}$ and $\omega_j = 0$ on $V_{j+1}^\comp$. But now given any test function $\phi \in C_c^\infty(U)$, we know for $j$ sufficiently large that $\supp(\phi) \subseteq V_j$ and hence $( F, \phi) = (F, \omega_j \phi) = (\omega_j F, \phi)$.\newpage
+
+	Something else that is convenient to note is that because $\omega_j$ is compactly supported, we know  $\omega_j F$ gives a well-defined distribution in $\mathcal{D}^\prime(\mathbb{R}^n)$. (See \inLinkRap{Multiplication of distributions by smooth functions}{pages 961-962}\dots) This is nice because it means that we won't need to worry about the domains of any convolutions of $\omega_j F$.\retTwo
+	
+	Next, we approximate the distribution $\omega_j F$ with functions in $C^\infty(U)$.\retTwo
+	
+	For every $j$ we can pick some $r_j > 0$ with $|x - y| > r_j$ for every $x \in \overline{V_{j}}$ and\\ [2pt] $y \in V_{j+1}^\comp$. Next, suppose $\psi$ and $\psi_t$ are as in lemma 9.4. Then for each $j$, we can follow\\ [-2pt] the reasoning of lemma 9.4 all over again to pick some $T_j > 0$ with $\supp(\widetilde{\psi}_{t}) \subseteq \overline{B_{r_j}(0)}$\\ [1pt] for all $t < T_j$. Using these bounds, we can also pick a decreasing sequence $\{t_j\}_{j \geq 2}$ in\\ [2pt] $\mathbb{R}_{>0}$ converging to $0$ and satisfying that $t_j < T_{j-1}$ and $t_j < T_{j+1}$ for all $j$.\retTwo
+
+	But now if $\phi \in C_c^\infty(U)$ with $\supp(\phi) \subseteq V_{j-1}$, we have that $\supp(\phi * \widetilde{\psi}_{t_j}) \subseteq \overline{V_j}$. In turn:
+	
+	{\centering$\left((\omega_j F) * \psi_{t_j}, \phi\right) = \left(\omega_j F, \phi * \widetilde{\psi}_{t_j}\right) = \left(F, (\phi * \widetilde{\psi}_{t_j})\omega_j\right) = \left(F, \phi * \widetilde{\psi}_{t_j}\right)$\retTwo\par}
+
+	Combining the above fact with lemma 9.4(b) which tells us that $\phi * \widetilde{\psi}_{t_j} \to \phi$ in $C_c^\infty(U)$ as $t_j \to 0$, we can  conclude after restricting the domain of $(\omega_j F) * \psi_{t_j}$ that:
+	
+	{\centering$(\omega_j F) * \psi_{t_j} \to F$ in $\mathcal{D}^\prime(U)$ as $j \to \infty$.\retTwo\par}
+
+	Finally, we already know from earlier that $(\omega_j F) * \psi_{t_j}$ will be a smooth function. Hence, we just need to show that this function is also compactly supported. To do this, note for any $x$ that:
+
+	{\centering $((\omega_j F) * \psi_{t_j})(x) = (\omega_j F, \tau_x \widetilde{\psi}_{t_j}) = (F, \omega_j \cdot \tau_x \widetilde{\psi}_{t_j})$. \retTwo\par}
+
+	For the latter to not equal zero, we must have that $\omega_j \cdot \tau_x \widetilde{\psi}_{t_j} \not\equiv 0$. Hence, there must\\ exist some $y \in V_{j+1}$ with $\psi_{t_j}(x - y) \neq 0$. Yet then, $\supp(\psi_{t_j}) \subseteq \overline{B_{r_{j+2}}(0)}$ implies that $x = (x - y) + y \in V_{j+2}$. So, $\supp((\omega_j F) * \psi_{t_j}) \subseteq \overline{V_{j + 2}} \subseteq U$. $\blacksquare$\\ [-9pt]
+	\begin{myIndent}\color{red}
+		(As a side note: Folland proved denseness but not sequential denseness.\\ So the result I showed is slightly stronger.)\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{6/15/2026}
+
+Before moving on, there are some more exercises I want to do. In the first exercise I want to do, I will specifically build off of the proof of the prior proposition to prove a stronger statement than what Folland actually originally asked. \retTwo
+
+\Hstatement\blab{Exercise 9.13:} Let $U \subseteq \mathbb{R}^n$ be a nonempty, open, and connected set. Then suppose $F \in \mathcal{D}^\prime(U)$ satisfies that $\partial_{x_k} F \equiv 0$ for $k = 1, \ldots, n$. Prove that $F$ is given by a constant function.\\ [-9pt]
+\begin{myIndent}\HexOne
+	To start off, note that when we picked our increasing sequnce of precompact open subsets $\{V_j\}_{j \in \mathbb{N}}$ while proving the prior lemma, it was possible to modify that sequence so that each $V_j$ is connected.
+	\begin{myIndent}\HexPPP
+		One way to do this would be by picking a base point $x_0 \in V_1$ and then letting $V_j^{\mathrm{new}}$ be\\ just the connected component of $V_j$ containing $x_0$.\newpage
+
+		\begin{itemize}
+			\item It's then trivial that $V_j^{\mathrm{new}}$ is connected for all $j$. Plus, since open subsets of $\mathbb{R}^n$ are\\ locally connected, we know that each $V_j^{\mathrm{new}}$ is open. And thirdly, each $V_j^{\mathrm{new}}$ is\\ automatically precompact since it is a subset of a precompact set.\retTwo
+
+			\item Note that $\overline{V_j^{\mathrm{new}}}$ is a connected subset of $\overline{V_j}$ containing $x_0$. In turn, it's also a connected subset of $V_{j+1}$ containing $x_0$. Hence by the definition of $V_{j+1}^{\mathrm{new}}$, we know $\overline{V_j^{\mathrm{new}}} \subseteq V_{j+1}^{\mathrm{new}}$. And with that, we've shown that the increasing condition on our modified sequence still holds. In other words:
+			
+			{\centering $V_j^{\mathrm{new}} \subseteq \overline{V_j^{\mathrm{new}}} \subseteq V_{j+1}^{\mathrm{new}}$ for all $j$.\retTwo\par}
+
+			\item Finally, we need to show that the $V_j^{\mathrm{new}}$ still exhaust all of $U$ (i.e. their union is all of $U$). To do this, note for any $x \in U$ that we can find a compact a compact subset $K$ of $U$ containing both $x$ and $x_0$.
+			\begin{myIndent}\color{orange}
+				After all, $U$ is path connected. So just consider a path going from $x_0$ to $x$.\retTwo
+			\end{myIndent}
+
+			But now $K$ must be contained in $V_j$ when $j$ is sufficiently large. In turn, this proves that $x \in V_j^{\mathrm{new}}$ when $j$ is sufficiently large. And since $x$ was arbitrary, we can conclude that $U = \bigcup_{j \in \mathbb{N}}V_j^{\mathrm{new}}$.\retTwo
+		\end{itemize}
+	\end{myIndent}
+
+	Now define the sequence of functions $\{(\omega_j F) * \psi_{t_j}\}_{j \geq 2}$ in $C_c^\infty(U)$ identically as in the prior proposition. Then from exercise 9.2 on \inLinkRap{page 964 exercise 9.2}{page 964} as well as proposition 9.3 part 1 on \inLinkRap{page 965 proposition 9.3}{pages 965-967}, we know that:
+
+	{\centering $\partial_{x_k}((\omega_j F) * \psi_{t_j}) = (\partial_{x_k}(\omega_j F)) * \psi_{t_j} = ((\partial_{x_k}\omega_j)F) * \psi_{t_j} + (\omega_j \partial_{x_k}F) * \psi_{t_j}$ \retTwo\par}
+
+	But now $((\omega_j \partial_{x_k}F) * \psi_{t_j})(x) = \left(\partial_{x_k}F, \omega_j \cdot \tau_x \widetilde{\psi}_{t_j}\right) = 0$ for all $x$ by assumption. Hence:
+	
+	{\center$\partial_{x_k}((\omega_j F) * \psi_{t_j}) = ((\partial_{x_k}\omega_j)F) * \psi_{t_j}$.\retTwo\par}
+
+	Also, note that since $\omega_j \equiv 1$ on $V_{j}$, we know $\partial_{x_k}\omega_j \equiv 0$ on $V_{j}$. Then as $\partial_{x_k}\omega_j$ is continuous and the zero set of a continuous function is closed, we can also conclude that $\partial_{x_k}\omega_j \equiv 0$ on $\overline{V_j}$. But now for any $\phi \in C_c^\infty(V_{j-1})$ we have that $\supp(\phi * \widetilde{\psi}_{t_j}) \subseteq \overline{V_{j}}$ and hence:
+	
+	{\centering$\left(((\partial_{x_k}\omega_j)F) * \psi_{t_j}, \phi\right) = (F, \partial_{x_k}\omega_j \cdot (\phi * \widetilde{\psi}_{t_j})) = (F, 0) = 0$.\retTwo\par}
+
+	It follows that $((\partial_{x_k}\omega_j)F) * \psi_{t_j}$ and the constant zero function both define identical\\ distributions in $\mathcal{D}^\prime(V_{j-1})$. So, they equal each other almost everywhere on $V_{j-1}$. And\\ since both are continuous, we can further conclude they are equal on $V_{j-1}$. Thus by the\\ connectedness of $V_{j-1}$ plus the fact that $\partial_{x_k}((\omega_j F) * \psi_{t_j}) \equiv 0$ on $V_{j-1}$ for every $k$, we have shown that $(\omega_j F) * \psi_{t_j}$ is constant on $V_{j-1}$.\retTwo
+
+	For the sake of brevity and since the convolution in the definition won't matter hereafter, I'm going to name $f_j \coloneqq (\omega_j F) * \psi_{t_j}$. All that's important to remember is that:
+	\begin{itemize}
+		\item each $f_j$ is a measurable function.
+		\item there exists $c_j \in \mathbb{C}$ with $f_j \equiv c_j$ on $V_{j-1}$,
+		\item $f_j \to F \in \mathcal{D}^\prime(U)$.\retTwo
+	\end{itemize}
+
+	To finish off, note that if $\phi \in C_c^\infty(V_1)$ is a test function satisfying that $\int \phi = 1$, then $c_j = \int f_j \phi \to (F, \phi)$ as $j \to \infty$. It follows that the sequence $\{c_j\}_{j \geq 2}$ converges to some constant $C \in \mathbb{C}$.\newpage
+
+	Next note that the $f_j$ converge uniformly on compact subsets of $U$ to the constant $C$. That is enough to conclude for any test function $\phi \in C_c^\infty(U)$ that $\int f_j \phi \to C\int \phi$ as $j \to \infty$. And since $f_j \to F \in \mathcal{D}^\prime(U)$, we can also conclude that $(F, \phi) = C\int \phi$ for all $\phi \in C_c^\infty(U)$. This proves that $F$ is given by a constant function. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo On a related note, the next exercise describes all the distributions $F$ satisfying the\\ condition that $\supp(F) = \{0\}$.\retTwo
+
+\Hstatement\blab{Exercise 9.11:} Let $F$ be a distribution on $\mathbb{R}^n$ such that $\supp(F) = \{0\}$.
+\begin{enumerate}
+	\item[(a)] There exists $N \in \mathbb{N}$ and $C > 0$ such that for all $\phi \in C_c^\infty(\mathbb{R}^n)$:
+	
+	{\centering $|(F, \phi)| \leq C\sum\limits_{|\alpha| \leq N} \sup\limits_{|x| \leq 1}|\partial^\alpha \phi(x)|$ \retTwo\par}
+
+	\begin{myIndent}\HexOne
+		By the $C^\infty$-Urysohn lemma,  there is a function $\omega \in C_c^\infty(\mathbb{R}^n, [0, 1])$ satisfying that $\omega \equiv 1$ on $\overline{B_{1/2}(0)}$ and $\omega \equiv 0$ on $B_{1}(0)^\comp$. Then note for any test function $\phi \in C_c^\infty(\mathbb{R}^n)$ and $\varepsilon > 0$ that:
+
+		{\centering $(F, \phi) = (F, \omega \phi) + (F, (1 - \omega)\phi) = (F, \omega \phi) + 0$.\retTwo\par}
+
+		The second term above cancels since $\supp(F) = \{0\}$.\retTwo
+
+		Yet now since $F$ is a continuous linear functional on the Fréchet space $C_c^\infty(\overline{B_1(0)})$, we know there must exist some $C > 0$ and $N \in \mathbb{N}$ such that for all $\psi \in C_c^\infty(\overline{B_1(0)})$:
+
+		{\centering $|(F, \psi)| \leq C\sum\limits_{|\alpha| \leq N} \sup\limits_{|x| \leq 1}|\partial^\alpha \psi(x)|$.\retTwo\par}
+
+		In particular, we can thus conclude that:
+
+		{\centering \begin{tabular}{l}
+			$|(F, \phi)| = |(F, \omega \phi)| \leq C\sum\limits_{|\alpha| \leq N} \sup\limits_{|x| \leq 1}|\partial^\alpha (\omega \phi)(x)|$\\ [16pt]
+		\end{tabular}\retTwo\par}
+
+		Then by product rule, we have that $\partial^\alpha (\omega \phi) = \sum\limits_{\beta + \gamma = \alpha} \frac{\alpha!}{\beta! \gamma!}(\partial^\beta \omega)(\partial^\gamma \phi)$. This lets us\\ [-6pt] conclude for each multi-index $\alpha$ that:
+
+		{\centering $\sup\limits_{|x| \leq 1} |\partial^\alpha (\omega \phi)(x)| \leq \sum\limits_{\beta + \gamma = \alpha} \left(\frac{\alpha!}{\beta! \gamma!} \sup\limits_{|x| \leq 1}|\partial^\beta \omega(x)| \right) \cdot \sup\limits_{|x| \leq 1}|\partial^\gamma \phi(x)|$ \retTwo\par}
+
+		Hence, it is now clear how to find a larger constant $C^\mathrm{new}$ such that for all test functions $\phi \in C_c^\infty(\mathbb{R}^n)$:
+
+		{\centering $|(F, \phi)| = |(F, \omega \phi)| \leq C^{\mathrm{new}}\sum\limits_{|\alpha| \leq N}\sup\limits_{|x| \leq 1} |\partial^\alpha \phi(x)|$.\retTwo\par}
+	\end{myIndent}
+
+	\item[(b)] Fix $\psi \in C_c^\infty(\mathbb{R}^n)$ with $\psi(x) = 1$ for $|x| \leq 1$ and $\psi(x) = 0$ for $|x| \geq 2$. If $\phi \in C_c^\infty(\mathbb{R}^n)$,\\ [2pt] let $\phi_k(x) = \phi(x)[1 - \psi(kx)]$. If $\partial^\alpha \phi(0) = 0$ for $|\alpha| \leq N$, then $\partial^\alpha \phi_k \to \partial^\alpha \phi$ uniformly\\ [2pt] as $k \to \infty$ for $|\alpha| \leq n$.
+	\begin{myIndent}\HexOne
+		\begin{myIndent}\color{RawerSienna}
+			As a reminder, if $x = (x_1, \ldots, x_n) \in \mathbb{R}^n$ and $\alpha = (\alpha_1, \ldots, \alpha_n)$ is a\\ multi-index, we denote $x^\alpha \coloneqq \prod_{i=1}^n x_i^{\alpha_i}$.\retTwo
+		\end{myIndent}
+
+		Suppose $\alpha$ is a multi-index with $|\alpha| \leq N$. Then we know $\partial^\alpha \phi \in C^{N + 1 - |\alpha|}(\mathbb{R}^n)$. Hence, by Taylor's theorem we can write that:\newpage
+
+		{\centering $\partial^\alpha \phi(x) = \hspace{-1em}\sum\limits_{|\beta| \leq N + 1 - |\alpha|}\hspace{-0.5em} (\partial^{\beta +\alpha}\phi)(0) \cdot \frac{x^\beta}{\beta!} + E(x)$\\ [6pt]\par}
+
+		where $E(x)$ is an error term satisfying that $\frac{E(x)}{|x|^{N + 1 - |\alpha|}} \to 0$ as $x \to 0$. Another fact which will be relevant is that $E$ must be continuous since every other term in the\\ [2pt] above equation is continuous.\retTwo
+
+		Now note that if $|\beta| \leq N - |\alpha|$, then $|\beta + \alpha| \leq N$ and so $(\partial^{\beta +\alpha}\phi)(0) = 0$. Meanwhile, at the same we can fairly easily show that $|x^\beta| \leq |x|^{|\beta|}$. Hence, we get that:
+
+		{\centering\begin{tabular}{l}
+			$|\partial^\alpha \phi(x)| = \left|\hspace{-0em}\sum\limits_{|\beta| = N + 1 - |\alpha|}\hspace{-0.5em} (\partial^{\beta +\alpha}\phi)(0) \cdot \frac{x^\beta}{\beta!} + E(x)\right|$\\ [18pt]
+			$\phantom{|\partial^\alpha \phi(x)|} \leq \hspace{-1em}\sum\limits_{|\beta| = N + 1 - |\alpha|}\hspace{-0.5em} \frac{|(\partial^{\beta +\alpha}\phi)(0)|}{\beta!} \cdot |x|^{N + 1 - |\alpha|} + |E(x)|$
+		\end{tabular}\retTwo\par}
+
+		Next note that by the extreme value theorem applied to the function:
+		
+		{\centering$f(x) \coloneqq \begin{cases} \frac{E(x)}{|x|^{N + 1 - |\alpha|}} & \text{ if } x \neq 0 \\ 0 & \text{ if } x = 0\text{,}\end{cases}$\\ [4pt]\par}
+
+		we can find some constant $C^\prime \geq 0$ such that $|E(x)| \leq C^\prime|x|^{N + 1 - |\alpha|}$.\retTwo
+
+		Then upon letting $C_\alpha \coloneqq C^\prime + \hspace{-1em}\sum\limits_{|\beta| = N + 1 - |\alpha|}\hspace{-0.5em} \frac{|(\partial^{\beta +\alpha}\phi)(0)|}{\beta!}$, we know $|\partial^\alpha \phi(x)| \leq C_\alpha|x|^{N + 1 - |\alpha|}$.\retTwo
+
+
+		To finish off, note that when $|x| > \frac{2}{k}$ we trivially have that $\partial^\alpha \phi = \partial^\alpha \phi_k$ for any\\ multi-index $\alpha$. Therefore, it suffices to show that:
+		
+		{\centering$\sup_{|x| \leq \frac{2}{k}}|\partial^\alpha \phi - \partial^\alpha \phi_k| \to 0$ as $k \to \infty$ when $|\alpha| \leq N$.\retTwo\par}
+
+		Fortunately, note for every $k$ that:
+
+		{\centering $\partial^\alpha \phi - \partial^{\alpha}\phi_k = \partial^\alpha(\phi(x)\psi(kx)) = \sum\limits_{\beta + \gamma = \alpha} \frac{\alpha!}{\beta!\gamma!}k^{|\gamma|}\partial^\beta \phi(x)\partial^\gamma \psi(kx)$ \retTwo\par}
+
+		In turn, we get that:
+
+		{\centering\begin{tabular}{l}
+			$|\partial^\alpha \phi(x) - \partial^{\alpha}\phi_k(x)| \leq \sum\limits_{\beta + \gamma = \alpha} \frac{\alpha!}{\beta!\gamma!}k^{|\gamma|}\|\partial^\gamma \psi\|_u \cdot \partial^\beta \phi(x)$\\ [18pt]
+			$\phantom{|\partial^\alpha \phi(x) - \partial^{\alpha}\phi_k(x)|} \leq \sum\limits_{\beta + \gamma = \alpha} \frac{\alpha!}{\beta!\gamma!}k^{|\gamma|}\|\partial^\gamma \psi\|_u \cdot C_{\beta}|x|^{N + 1 - |\alpha| + |\gamma|}$
+		\end{tabular} \retTwo\par}
+
+		And in particular when $|x| \leq \frac{2}{k}$, we have that:
+
+		{\centering\begin{tabular}{l}
+			$|\partial^\alpha \phi(x) - \partial^{\alpha}\phi_k(x)| \leq \sum\limits_{\beta + \gamma = \alpha} \frac{\alpha!}{\beta!\gamma!}2^{|\gamma|}C_{\beta}\|\partial^\gamma \psi\|_u \cdot |x|^{N + 1 - |\alpha|}$
+		\end{tabular} \retTwo\par}
+
+		This last bound is independent of $k$ and also crucially goes to $0$ as $x$ goes to $0$. (This specifically works because $|\alpha| \leq N$.) Hence, it is now easy to conclude that:
+		
+		{\centering$\sup_{|x| \leq \frac{2}{k}}|\partial^\alpha \phi - \partial^\alpha \phi_k| \to 0$ as $k \to \infty$.\newpage\par}
+	\end{myIndent}
+
+	\item[(c)] If $\phi \in C_c^\infty(\mathbb{R}^n)$ and $\partial^\alpha \phi(0) = 0$ for $|\alpha| \leq N$, then $(F, \phi) = 0$.
+	\begin{myIndent}\HexOne
+		Let $\phi_k$ be defined as in part (b). Then because $\supp(\phi_k) \subseteq \mathbb{R}^n - \{0\}$, we trivially know that $(F, \phi_k) = 0$ for all $k$. That said, by part (a) and (b) put together, we can also see that:
+		
+		{\centering$|(F, \phi)| = |(F, \phi) - 0| = |(F, \phi) - (F, \phi_k)| = |(F, \phi - \phi_k)| \to 0$ as $k \to \infty$.\retTwo\par}
+
+		Therefore, we must also have that $(F, \phi) = 0$.\retTwo
+	\end{myIndent}
+	
+	\item[(d)] There exists constants $c_\alpha$ (for $|\alpha| \leq N$) such that $F = \sum\limits_{|\alpha| \leq N}c_\alpha \partial^\alpha \delta_0$.
+	\begin{myIndent}\HexOne
+		Let $\phi$ be any test function in $C_c^\infty(\mathbb{R}^n)$. Also let $\omega \in C_c^\infty(\mathbb{R}^n)$ be a function satisfying\\ [1pt] that $\omega \equiv 1$ on $\overline{B_1(0)}$. That way, we have that $g(x) \coloneqq \omega(x)\sum_{|\alpha| \leq N}\frac{(\partial^\alpha \phi)(0)}{\alpha!}x^\alpha$ is compactly supported, smooth, and equals the polynomial $P(x) \coloneqq \sum_{|\alpha| \leq N}\frac{(\partial^\alpha \phi)(0)}{\alpha!}x^\alpha$\\ [2pt] on a neighborhood of the origin.\retTwo
+
+		But now note that $\partial^\alpha(\phi - g)(0) = \partial^\alpha(\phi - P)(0) = 0$ for all multi-indices $\alpha$ with $|\alpha| \leq N$. Hence, by part (c) we can conclude that:
+
+		{\centering $(F, \phi) = (F, \phi - g) + (F, g) = 0 + (F, g)$ \retTwo\par}
+
+		Furthermore, $(F, g) = \sum\limits_{|\alpha| \leq N}\frac{(\partial^\alpha \phi)(0)}{\alpha!}(F, \omega(x)x^\alpha) = \frac{(-1)^{|\alpha|}(F, \omega(x)x^\alpha)}{\alpha!}(\partial^\alpha \delta_0, \phi)$.
+
+		So, we just need to set $c_\alpha \coloneqq \frac{(-1)^{|\alpha|}(F, \omega(x)x^\alpha)}{\alpha!}$. Then as $\phi$ was arbitrary, we've proven that $F = \sum_{|\alpha| \leq N}c_\alpha \partial^\alpha \delta_0$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo\mySepTwo
+
+\dispDate{6/17/2026}
+
+My goal for maybe today and tomorrow is to type all my remaining math 200c notes. This will mean finishing going over primary decompositions before then taking notes on\\ Artinian rings, discrete valuation rings (DVRs), and Dedekind rings.\retTwo
+
+\blect{Math 200c Lecture Notes:}\retTwo
+
+\exTwo\ul{Lemma:} Let $A$ be a Noetherian ring and $J \lhd A$ a proper ideal. If $A/J$ has only one\\ associated prime then $\Ass_A(A/J) = \{\sqrt{J}\}$. In turn, by the lemma on \inLinkRap{Page 947 lemma}{page 947} we also\\ know $J$ is primary.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We know $\sqrt{J} \subseteq P$ for all $P \in \Ass_A(A/J)$ since every prime ideal containing $J$ contains $\sqrt{J}$. Meanwhile, suppose for the sake of contradiction that $P \in \Ass_A(A/J)$ and that $P - \sqrt{J} \neq \emptyset$. Then we can fix some $x \in P - \sqrt{J}$ and let $S \coloneqq \{1, x, x^2, \ldots\}$.\retTwo
+
+	But now by the proposition on \inLinkRap{Page 946 proposition}{page 946}, we know that:
+
+	{\centering $\Ass_{S^{-1}A}(S^{-1}(\frac{A}{J})) = \{S^{-1}Q : Q \in \Ass_A(\frac{A}{J}) \text{ and } Q \cap S = \emptyset\}$ \retTwo\par}
+
+	Since $\Ass_A(\frac{A}{J}) = \{P\}$ and $P \cap S \neq \emptyset$, we thus know that $\Ass_{S^{-1}A}(S^{-1}(\frac{A}{J})) = \emptyset$.\newpage
+
+	Yet simultaneously since $S^{-1}A$ is a Noetherian ring, we know from the proposition\\ on \inLinkRap{Page 943 Proposition}{page 943} that if $S^{-1}A$ and $S^{-1}(\frac{A}{J})$ are nontrivial then $\Ass_{S^{-1}A}(S^{-1}(\frac{A}{J})) \neq \emptyset$. So,\\ we can only avoid a contradiction if $S^{-1}A$ and $S^{-1}(\frac{A}{J})$ are trivial.\retTwo
+
+	Yet $S^{-1}(\frac{A}{J})$ would be trivial if and only if for all $a \in A$ there exists $n \in \mathbb{N}$ with\\ $x^n(a + J) = 0 + J$. In particular, we'd have to have that $x^n(1 + J) = x^n + J = 0 + J$. Yet that contradicts that $x \notin \sqrt{J}$. Hence, we know $S^{-1}(\frac{A}{J})$ is not a trivial module. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} Let $A$ be a Noetherian ring. If $Q_1, Q_2$ are both $P$-primary ideals, then $Q_1 \cap Q_2$ is also $P$-primary.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider the map $A \to \frac{A}{Q_1} \oplus \frac{A}{Q_2}$ given by $a \mapsto (\overline{a}, \overline{a})$. The kernel of this map is $Q_1 \cap Q_2$. Hence, $\frac{A}{Q_1 \cap Q_2}$ embeds into $\frac{A}{Q_1} \oplus \frac{A}{Q_2}$.\retTwo
+
+	But now note from the lemma at the bottom of \inLinkRap{Lemma bottom of page 942}{page 942} that:
+	
+	{\centering\begin{tabular}{l}$\Ass_A(\frac{A}{Q_1 \cap Q_2}) \subseteq \Ass_A(\frac{A}{Q_1} \oplus \frac{A}{Q_2})$ and $\Ass_A(\frac{A}{Q_1} \oplus \frac{A}{Q_2}) = \Ass_A(\frac{A}{Q_1}) \cup \Ass_A(\frac{A}{Q_2}) = \{P\}$.\end{tabular}\retTwo\par}
+	
+	Also note from the proposition on \inLinkRap{Page 943 Proposition}{page 943} that $\Ass_A(\frac{A}{Q_1 \cap Q_2}) \neq \emptyset$. It follows that\\ $\Ass_A(\frac{A}{Q_1 \cap Q_2}) = \{P\}$. And by the prior lemma we can conclude that $\sqrt{Q_1 \cap Q_2} = P$\\ [1pt] and that $Q_1 \cap Q_2$ is $P$-primary. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} Any proper ideal $I$ of a Noetherian ring $A$ has an irredundant primary\\ decomposition $I = Q_1 \cap \cdots \cap Q_n$ where each $Q_i$ is $P_i$-primary. Moreover,\\ $\Ass_A(A/I) = \{P_1, \ldots, P_n\}$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We'll say a proper ideal $J$ is \udefine{irreducible} if there doesn't exist ideals $K_1 \supsetneqq J$ and $K_2 \supsetneqq J$ with $J = K_1 \cap K_2$.\retTwo
+
+	\ul{Claim 1:} If $J \lhd A$ is irreducible then it is primary.
+	\begin{myIndent}\exPPP
+		Why?\\
+		Suppose $A/J$ has two distinct associated primes $P_1, P_2$. Then $A/J$ has submodules $N_1 \cong A/P_1$ and $N_2 \cong A/P_2$. And since $P_1 \neq P_2$, we know $N_1 \cap N_2 = \{0\}$. 
+		\begin{myIndent}\color{orange}
+			Otherwise, we'd have that $\Ass_A(N_1 \cap N_2) \neq \emptyset$ since $N_1 \cap N_2$ is a\\ nontrivial module over a Noetherian ring (see \inLinkRap{Page 943 Proposition}{page 943}). In turn, there'd\\ exist $a \in N_1 \cap N_2$ with $\Ann_A(a + J) \in \Spec(A)$. Yet since $N_1 \cap N_2$\\ embeds into both $A/P_1$ and $A/P_2$, we also must have that:
+			\begin{itemize}
+				\item $\Ann_A(a + J) \in \Ass_A(A/P_1) = \{P_1\}$,
+				\item $\Ann_A(a + J) \in \Ass_A(A/P_2) = \{P_2\}$.\retTwo
+			\end{itemize}
+			
+			So, $\Ann_A(a + J)$ must equal both $P_1$ and $P_2$, which is a contradiction.\retTwo
+		\end{myIndent}
+
+		But now upon writing $N_1 = K_1/J$ and $N_2 = K_2/J$, we have that $N_1 \cap N_2 = \{0\}$ implies that $K_1 \cap K_2 = J$. This contradicts that $J$ is irreducible. So, $A/J$ has at most one associated prime.\retTwo
+		
+		Since $A/J$ is nontrivial and $A$ is nontrivial and Noetherian, we also know $A/J$ has at least one associated prime (see \inLinkRap{Page 943 Proposition}{page 943}). Hence, $A/J$ has exactly one associated prime. And by two lemmas ago, that proves that $J$ is primary.\newpage
+	\end{myIndent}
+
+	\ul{Claim 2:} Any proper ideal is a finite intersection of irreducible ideals.
+	\begin{myIndent}\exPPP
+		Why?\\
+		If not, since $A$ is Noetherian we could choose a maximal proper ideal $J$ which\\ is not a finite intersection of irreducible ideals. Then $J$ is not irreducible. So,\\ $J = K_1 \cap K_2$ where $K_1 \supsetneqq J$ and $K_2 \supsetneqq J$. Yet now by the maximality of $J$,\\ we must have that each $K_i$ is eiter a finite intersection of irreducible ideals or\\ the entire ring $A$. Although, we can't have that both $K_i = A$ since that would\\ imply $J = A$ which is not true. So after ignorning potentially intersecting $J$\\ with $A$, we've written $J$ has a finite intersection of irreducible ideals. This is a\\ contradiction.\retTwo
+	\end{myIndent}
+
+	Putting the two prior claims together, we've thus shown every ideal $I$ has a primary\\ decomposition. So, let us write $I = Q_1 \cap \cdots \cap Q_n$ where each $Q_i$ is $P_i$-primary.\retTwo
+
+	By the lemma before this theorem, we can without loss of generality intercept pairs of our $Q_i$ together until no $P_i$ is repeated. Next, if $Q_I \subseteq \bigcap_{j \neq i}Q_j$ for any $i$, then we can without loss of generality just remove $Q_i$ from our decomposition. After finitely many steps of this, we will get an irredundant primary decomposition.\retTwo
+
+	\begin{myIndent}\mySepFour\end{myIndent} 
+
+	As for the other claim of the theorem, suppose $I = Q_1 \cap \cdots \cap Q_n$ is an irredundant\\ primary decomposition where each $Q_i$ is $P_i$-primary. Then $A/I = A/(Q_1 \cap \cdots \cap Q_n)$\\ is isomorphic to a submodule of $\bigoplus_{j=1}^n A/Q_j$.
+	\begin{myIndent}\exPPP
+		(Consider the homomorphism $a \mapsto (a + Q_1, \ldots, a + Q_n)$. The kernel of this map is $Q_1 \cap \cdots \cap Q_n$.)\retTwo
+	\end{myIndent}
+
+	But now from the lemma at the bottom of \inLinkRap{Lemma bottom of page 942}{page 942}, we know that:
+
+	{\centering $\Ass_A(\frac{A}{I}) \subseteq \Ass_A(\bigoplus_{j=1}^n \frac{A}{Q_j}) = \bigcup_{j=1}^n \Ass_A(\frac{A}{Q_j}) = \bigcup_{j=1}^n \{P_j\}$. \retTwo\par}
+
+	Hence, $\Ass_A(A/I) \subseteq \{P_1, \ldots, P_n\}$. As for the other inclusion, consider any fixed $P_i$\\ and look at $J_i = \bigcap_{j \neq i} Q_j$. Note that $\frac{J_i}{I} = \frac{J_i}{J_i \cap Q_i} \cong \frac{J_i + Q_i}{Q_i}$ is a nonzero submodule of\\ $A/Q_i$. So, we know that $\emptyset \subsetneqq \Ass_A(J_i/I) \subseteq \Ass_A(A/Q_i) = \{P_i\}$. It follows that\\ $J_i/I$ has $P_i$ as an associate prime. So there is a submodule of $J_i/I \subseteq A/I$ isomorphic\\ to $A/P_i$. And this proves that $P_i \in \Ass_A(A/I)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Some relevant homework problems are as follows:\retTwo
+
+\Hstatement\blab{Set 5 Problem 1:} In the polynomial ring $A = k[x, y, z]$ where $k$ is a field, let $P_1 = \langle x, y\rangle$, $P_2 = \langle x, z\rangle$, and let $I = P_1P_2 = \langle x^2, xy, xz, yz\rangle$.
+\begin{enumerate}
+	\item[(a)] Find a prime filtration of the module $A/I$.
+	\begin{myIndent}\HexOne
+		To start off, $\langle x, y, z\rangle$ is a maximal ideal of $A$. We know this because $\frac{k[x, y, z]}{\langle x, y, z\rangle} \cong k$ is a\\ [-1pt] field. Yet also note that $\langle x, y, z\rangle \subseteq \Ann_{A}(x + I)$. By maximality plus the fact that\\ [2pt] $1(x + I) \neq 0 + I$, we can thus conclude that $\langle x, y, z\rangle = \Ann_A(x + I) \in \Ass(A/I)$.\\ [2pt] Also, if we let $M_1$ be the submodule $\langle x + I\rangle$, we have that $M_1 \cong \frac{A}{\langle x, y, z\rangle}$.\newpage
+		
+		Next, consider that $M_1 = \frac{\langle x, x^2, xy, xz, yz\rangle}{\langle x^2, xy, xz, yz\rangle} = \frac{\langle x, yz\rangle}{I}$. Furthermore, $\frac{A/I}{\langle x, yz\rangle/I} \cong \frac{A}{\langle x, yz\rangle}$ by the isomorphism $\overline{f + I} \mapsto \overline{f}$. So, we need to find an associated prime of $A/\langle x, yz\rangle$.\retTwo
+		
+		Fortunately, consider that $P_1 = \langle x, y\rangle$ is a prime ideal of $A$. After all $\frac{k[x, y, z]}{\langle x, y\rangle} \cong k[z]$ is a domain. Furthermore, it's obvious that $P_1 \subseteq \Ann_A(z)$, while the other inclusion\\ [2pt] comes from the fact that if $f(x, y, z)$ contains any term not divisible by $x$ or $y$, then\\ [2pt] $zf(x, y, z)$ will also contain a term which is not divisible by $xz$ (which is divisible by\\ [2pt] $x$) or $yz$. Therefore, $P_1 = \Ann_A(z + \langle x, yz\rangle)$.\retTwo
+		
+		$\widetilde{M}_2$ be the submodule of $\frac{A}{\langle x, yz\rangle}$ generated by $z + \langle x, yz\rangle$. Then notice that\\ [-1pt]$\widetilde{M}_2 = \frac{\langle z, x, yz\rangle}{\langle x, yz\rangle} = \frac{P_2}{\langle x, yz\rangle}$. Hence, if we let $M_2 \coloneqq \frac{P_2}{I}$, we have that our original\\ [-1pt] isomorphism from $\frac{A/I}{\langle x, yz\rangle/I}$ to $\frac{A}{\langle x, yz\rangle}$ sends $M_2/M_1$ to $\widetilde{M}_2$. Furthermore,\\ [-1pt] $M_2 / M_1 \cong \widetilde{M}_2 \cong A/P_1$.\retTwo
+
+		Finally, note that $P_2 \in \Spec(A)$ for identical reasons that $P_1 \in \Spec(A)$ is.\\ Furthermore, $\frac{A/I}{P_2/I} \cong \frac{A}{P_2}$. Hence, we can conclude that a prime filtration of $A/I$ is\\ given by:
+
+		{\centering$\{0\} \subseteq \frac{\langle x, yz\rangle}{I} \subseteq \frac{\langle x, z\rangle}{I} \subseteq \frac{A}{I}$.\retTwo\par}
+
+		Also, the primes in this filtration are $\langle x, y, z\rangle$ followed by $P_1$ and then $P_2$.\retTwo
+	\end{myIndent}
+	
+	\item[(b)] Find two different primary decompositions of $I$.
+	\begin{myIndent}\HexOne
+		Here is a way to get an infinite family of primary decompositions. Let $n, m$ be positive integers and define $Q = \langle x^2, y^n, z^m, xy, xz, xy\rangle$. Then we have that $x, y, z \in \sqrt{Q}$. And since $\langle x, y, z\rangle$ is a maximal ideal and $\sqrt{Q}$ is a proper ideal, we can conclude that $\sqrt{Q} = \langle x, y, z\rangle$. By the worked example on \inLinkRap{page 948 Example of primary ideal}{page 948}, we can thus conclude that $Q$ is $\langle x, y, z\rangle$-primary.\retTwo
+
+		Next, note that $I = \langle x^2, xy, xz, yz\rangle$ contains precisely the polynomials for which\\ every nonzero monomial term is divisible by $x^2$, $xy$, $xz$, or $yz$. Meanwhile $f$ is\\ contained in $P_1 \cap P_2 \cap Q$ if and only if each of the three following things are true\\ for every nonzero monomial term of $f$:
+		\begin{itemize}
+			\item[1.] the term is divisible by $x$ or $y$,
+			\item[2.] the term is divisible by $x$ or $z$,
+			\item[3.] the term is divisible by $x^2$, $y^n$, $z^m$, $xy$, $xz$, or $yz$.\retTwo
+		\end{itemize}
+
+		By breaking into cases, we can thus see that $P_1 \cap P_2 \cap Q = I$. Since $P_1$ and $P_2$ are prime ideals and thus automatically primary, this proves that $P_1 \cap P_2 \cap Q$ is a primary decomposition of $I$.\retTwo
+
+		Finally, I want to show this decomposition is irredundant. To start off $P_1$, $P_2$, and $\langle x, y, z\rangle$ are all distinct primes. Hence we have no issue there. Meanwhile:
+		\begin{itemize}
+			\item $P_1 \cap P_2$ contains the element $x$ which is not in $Q$. Hence, $P_1 \cap P_2 \not\subseteq Q$.
+			\item $P_1 \cap Q$ contains the element $y^n$ which is in $P_2$. Hence, $P_1 \cap Q \not\subseteq P_2$.\newpage
+			\item $P_2 \cap Q$ contains the element $z^m$ which is not in $P_1$. Hence, $P_2 \cap Q \not\subseteq P_1$. $\blacksquare$\retTwo
+		\end{itemize}
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 5 Problem 2(b):} Suppose $A$ is a Noetherian domain. Then show that $A$ is a UFD if and only if for every principal ideal $\langle f\rangle$ in $A$, every prime ideal minimal over $\langle f\rangle$ is also principal.
+\begin{myIndent}\HexOne
+	$(\Longrightarrow)$\\
+	Suppose $A$ is a UFD. Then we can write $f = up_1^{e_1}\cdots p_n^{e_n}$ where each $p_i$ is a pairwise\\ nonassociate prime and each $e_i$ is a positive integer. But in turn, we know that\\ $\langle f\rangle = \prod_{i=1}^n \prod_{j=1}^{e_i}\langle p_i\rangle$ where the latter is a product of prime ideals. Hence, the minimal prime ideals over $\langle f\rangle$ must be contained among the $\langle p_i\rangle$. And this proves that every prime ideal minimal over $\langle f\rangle$ is principal.
+	\begin{myIndent}\HexTwoP
+		As a side note none of the reasoning in this direction required $A$ to be Noetherian.\retTwo
+	\end{myIndent}
+
+	$(\Longleftarrow)$\\
+	Note that because $A$ is a Noetherian domain, it suffices to prove that every irreducible element of $A$ is prime in order to prove that $A$ is a UFD. (See the theorem on \inLinkRap{placeholder}{page 486} as well as the lemma on \inLinkRap{placeholder}{pages 488-489}).\retTwo
+
+	Fortunately, note that $p$ is an irreducible element of $A$ if and only if $\langle p\rangle \neq A$,\\ $\langle p \rangle \neq \{0\}$, and $\langle p\rangle$ is maximal among principal proper ideals. But then since every prime ideal minimal over $\langle p\rangle$ is principal, we in turn must have that every minimal prime ideal over $\langle p\rangle$ is contained in $\langle p\rangle$. Since $\langle p\rangle$ does have a minimal prime over it (since $A/\langle p\rangle$ is nontrivial), the only way this makes sense is if $\langle p\rangle$ is the unique minimal prime ideal over itself. And now we've proven that $p$ is prime. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+On \inLinkRap{page 901 Artinian ring cameo}{page 901} I briefly defined Artinian rings. That said, that definition is not where Rogalski wants to start covering them. So instead we'll define them differently here and later prove the two definitions are equivalent.\retTwo
+
+We say a ring $A$ is \udefine{Artinian} if it has the descending chain condition on ideals. (See set 4 problem 5 and especially remark 1 on \inLinkRap{Math 200c Set 4 Problem 5}{page 953}).\retTwo
+
+More generally, we say an $A$-module $M$ is \udefine{Artinian} if it has the descending chain condition on submodules. Note that $A$ is an Artinian $A$-module iff $A$ is an Artinian ring.\retTwo
+
+\exTwo\ul{Proposition:} If % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV5cXHByaW1lIl0sWzIsMCwiTSJdLFszLDAsIk1eXFxwcHJpbWUiXSxbNCwwLCJcXHswXFx9Il0sWzAsMV0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XV0=
+$\begin{tikzcd}
+	{\{0\}} & {M^\prime} & M & {M^\pprime} & {\{0\}}
+	\arrow[from=1-1, to=1-2]
+	\arrow[hook, from=1-2, to=1-3]
+	\arrow[two heads, from=1-3, to=1-4]
+	\arrow[from=1-4, to=1-5]
+\end{tikzcd}$ is an S.E.S. of\\ $A$-modules, then $M$ is Artinian if and only if $M^\prime$ and $M^\pprime$ are Artinian.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, by applying an isomorphism of short exact sequences we can without loss of generality  assume $M^\prime$ is a submodule $N$ of $M$ and $M^\pprime = M/N$. Then you may note that I already showed on \inLinkRap{placeholder}{pages 570-571} that this proposition holds if we replace the word "Artinian" with "Noetherian". As it happens, we can basically readapt the proof from then almost verbatim. I don't care to write the details here. $\blacksquare$\retTwo
 \end{myIndent}
 
 
@@ -6562,8 +7890,399 @@ In turn, we can see that $\Ass(M) = \{\langle p_i\rangle : 1 \leq i \leq \ell\} 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\Hstatement\blab{Set 5 Problem 3:} Let $A$ be an affine $k$-algebra for some field $k$. Prove that the following are equivalent.
+\begin{enumerate}
+	\item[(i)] $\dim_k(A) < \infty$
+	\item[(ii)] $A$ is an Artinian ring. 
+\end{enumerate}
+
+\begin{myIndent}\HexOne
+	Firstly, $A$ is automatically Noetherian. Hence, $A$ is an Artinian ring if and only if the Krull dimension of $A$ is $0$. Yet also by the Noether normalization theorem, we have that the Krull dimension of $A$ being $0$ would imply that $A$ is finitely generated $k$-vector space. This proves that the direction: (ii $\implies$ i). Conversely, if the Krull dimension of $A$ is greater than $0$, then Noether normalization tells us that $A$ contains a polynomial ring which has infinite $k$-dimension. This proves the contrapositive of (i $\implies$ ii). $\blacksquare$\retTwo
+\end{myIndent}
+
+\newpage
+
+\Hstatement\blab{Set 5 Problem 4:} In lecture we will only discuss discrete valuation rings, but general valuation rings are also interesting. An integral domain $A$ with field of fractions $K$ is a \udefine{valuation ring} if for all $x \in K^\times$, either $x \in A$ or $x^{-1} \in A$.\retTwo
+
+An ordered abelian group $\Gamma$ is an abelian group equipped with with a total order $\leq$ that is\\ compatible with the addition operation of the group (i.e. $\alpha \leq \beta \Longrightarrow \alpha + \gamma \leq \beta + \gamma$\\ for all $\alpha, \beta, \gamma \in \Gamma)$.
+\begin{myIndent}\color{RawerSienna}
+	Note that the compatibility also guarentees that:
+	
+	{\centering$0 \leq \alpha \iff -\alpha \leq 0$ for all $\alpha \in \Gamma$.\retTwo\par}
+
+	Since $-\alpha = 0 \iff \alpha = 0$, we in turn know for every $\alpha \neq 0$ in $\Gamma$ that exactly one of the following cases is true:
+	\begin{itemize}
+	\item$\alpha > 0$ and $-\alpha < 0$,
+	\item$\alpha < 0$ and $-\alpha > 0$.\retTwo
+	\end{itemize}
+
+	Consequently, in an ordered abelian group we have that $\alpha = -\alpha$ if and only if $\alpha = 0$. After all, if $\alpha$ weren't zero and $\alpha = -\alpha$ then we'd have that $0 < \alpha < 0$. But that violates the law of trichotemy. Meanwhile, if $\alpha = 0$ then $\alpha = -\alpha$ trivially.\retTwo
+\end{myIndent}
+
+Let $\Gamma$ be an ordered abelian group. By convention we adjoin an element $\infty$ to $\Gamma$ such that:
+\begin{itemize}
+	\item $\alpha < \infty$ for all $\alpha \in \Gamma$,
+	\item $\alpha + \infty = \infty$ for all $\alpha \in \Gamma$,
+	\item $\min(\alpha, \infty) = \alpha$ for all $\alpha \in \Gamma \cup \{\infty\}$.\retTwo
+\end{itemize}
+
+A \udefine{valuation} of a field $K$ is a surjective map $v: K \to \Gamma \cup \{\infty\}$ satisfying that:
+\begin{itemize}
+	\item $v(0) = \infty$ and $v(a) \in \Gamma$ for all $a \neq 0$,
+	\item $v(ab) = v(a) + v(b)$ for all $a, b \in K$,
+	\item $v(a + b) \geq \min(v(a), v(b))$ for all $a, b \in K$.
+\end{itemize}
+\begin{myDindent}
+	(Here $\Gamma$ is called the \udefine{value group}.)\retTwo
+\end{myDindent}
+
+The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ with the usual ordering.
+
+\begin{myIndent}\color{RawerSienna}
+	Recalling \inLinkRap{placeholder}{pages 274, 491, and 518}, hopefully it's clear how valuations here are a\\ generalization of our previous $p$-adic valuations.\retTwo
+\end{myIndent}
+
+\begin{enumerate}
+	\item[(a)] Show that if $v: K \to \Gamma \cup \{\infty\}$ is a valuation, then $A = \{x \in K : v(x) \geq 0\}$ is a valuation ring (called the \udefine{associated valuation ring} of $v$).
+	\begin{myIndent}\HexOne
+		To start off, it's clear that for all $x \in K^\times$ we have that $v(x^{-1}) = -v(x)$.
+		\begin{myIndent}\HexTwoP
+			After all, $v(1) = v(1 \cdot 1) = v(1) + v(1) \implies v(1) = 0$. Then in turn, if $x \in K^\times$ we have that $0 = v(1) = v(x \cdot x^{-1}) = v(x) + v(x^{-1})$. Hence, $-v(x) = v(x^{-1})$.\retTwo
+
+			Now if $v(x) < 0$ then $0 < -v(x) = v(x^{-1})$. Hence, $x \notin A \Longrightarrow x^{-1} \in A$.\retTwo
+		\end{myIndent}
+
+		It follows that once we show that $A$ is a ring then we will know that $A$ is a valuation ring (since we can embed the field of fractions of $A$ into $K$). Fortunately, showing that $A$ is a ring isn't that bad.
+		\begin{itemize}
+			\item $v(0) = \infty \geq 0$. Hence $0 \in A$.
+			\item $0 = v(1)$. Hence, $1 \in A$.
+			\item $0 = v(1) = v(-1 \cdot -1) = v(-1) + v(-1) \Longrightarrow v(-1) = -v(-1)$. Since $\Gamma$ is an ordered abelian group and $-1 \neq 0$ in $K$ implies $v(-1) \neq \infty$, we thus know from an earlier observation that $v(-1) = 0$.
+			\item Suppose $a, b \in A$. Then $a - b \in A$ since:
+			
+			{\centering\begin{tabular}{l}
+				$v(a - b) \geq \min(v(a), v(-b)) = \min(v(a), v(-1) + v(b))$\\ [4pt]
+				$\phantom{v(a - b) \geq \min(v(a), v(-b))} = \min(v(a), v(b)) \geq 0$.
+			\end{tabular}\retTwo\par}
+
+			\item Suppose $a, b \in A$. Then $v(ab) = v(a) + v(b)$. Since $v(a), v(b) \geq 0$, we can conclude that $v(a) + v(b) \geq 0 + v(b) = v(b) \geq 0$. Hence, $ab \in A$.\retTwo
+		\end{itemize} 
+
+		\begin{myIndent}\color{RawerSienna}
+			In fact, we can actually say that $K$ is isomorphic to the field of fractions of $A$ since the embedding of the latter into the former will be surjective. After all, if $c \in K - A$ then $c \neq 0$ and $c^{-1} \in A$. So, $c = \frac{1}{c^{-1}}$ is in the field of fractions of $A$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] If $A$ is a valuation ring, let $\Gamma \coloneqq K^\times / U$ where $K$ is the field of fractions of $A$ and $U$ is the\\ multiplicative group of units of $A$.
+	\begin{myIndent}\color{RawerSienna}
+		Note that as $K^\times$ is an abelian group, all subgroups of $K^\times$ (including $U$) are normal subgroups. Hence, $K^\times / U$ is a well-defined quotient group. Plus $K^\times / U$ is an abelian group since $K^\times$ is as well.\retTwo
+	\end{myIndent}
+
+	Show that $\Gamma$ is an ordered abelian group when we define $xU \leq yU$ if $yx^{-1} \in A$.
+	\begin{myIndent}\HexOne
+		Firstly, I'll show that $\leq$ is a well-defined ordering.
+		\begin{itemize}
+			\item Firstly, suppose $xU = yU$. Then $xy^{-1}, yx^{-1} \in U \subseteq A$. In turn, $y U \leq xU$ and $x U \leq yU$.\retTwo
+			
+			Conversely, suppose $xU \leq yU$ and $yU \leq xU$. Then $yx^{-1}$ and $xy^{-1}$ are in $A$. Yet also note $1 = yx^{-1} \cdot xy^{-1}$. Hence, $xy^{-1} \in U$ and in turn $x U = y U$. This finishes proving that:
+
+			{\centering $xU = yU \iff xU \leq yU \text{ and } yU \leq xU$.\retTwo\par}
+
+			\item Next suppose $xU \leq yU \leq zU$. Then $yx^{-1} \in A$ and $zy^{-1} \in A$. In turn, $zx^{-1} = zy^{-1} \cdot yx^{-1} \in A$ as well. Hence, $xU \leq zU$. This proves transitivity.\retTwo
+			
+			\item Finally, suppose $xU \not\leq yU$. Then $yx^{-1} \notin A$. Yet since $A$ is a valuation ring, we must in turn have that $(yx^{-1})^{-1} = xy^{-1} \in A$. So, $yU \leq xU$.\retTwo
+		\end{itemize}
+
+		I also still need to show $\leq$ is compatible with the group operation of $\Gamma$. (Note that\\ it will be convenient to express this operation as multiplication instead of addition\dots)
+		\begin{myIndent}\HexTwoP
+			Let $xU, yU, zU \in \Gamma$ satisfy that $xU \leq yU$. Then:
+			
+			{\centering$yx^{-1} = yz \cdot z^{-1}x^{-1} = (yz) \cdot (xz)^{-1} \in A$,\\ [4pt]\par}
+			
+			which in turn tells us that $xU \cdot zU = xz U \leq yzU = yU \cdot zU$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	Also show that the map $v: K \to \Gamma \cup \{\infty\}$ given by $v(x) = xU$ for $x \in K^\times$ and\\ $v(0) = \infty$ is a valuation.
+	\begin{myIndent}\HexOne
+		As I did prior, I shall use multplicative notation for the group operation on $\Gamma = K^\times/ U$.\retTwo
+
+		Consider any $a, b \in K$. Since $K$ is a field (and thus a domain), we know that $ab = 0$ iff $a = 0$ or $b = 0$, and this guarentees that if $ab = 0$ then trivially $v(ab) = v(a) \cdot v(b)$. Meanwhile, if $ab \neq 0$ then $a \neq 0$ and $b \neq 0$ as well. Hence, $v(ab) = abU = aU \cdot bU = v(a) \cdot v(b)$. And this finishes proving that:
+
+		{\centering $v(ab) = v(a) \cdot v(b)$. \retTwo\par}
+
+		Next, suppose without loss of generality that $v(a) \leq v(b)$. Then it suffices to prove that $v(a) \leq v(a + b)$. Yet if $a + b = 0$ this is trivial. Similarly, if $a = 0$ that $\infty = v(a) \leq v(b) \Longrightarrow v(b) = \infty \Longrightarrow b = 0$ as well. But then $a + b = 0$ and $v(a) = \infty = v(a + b)$.\retTwo
+
+		Hence, we can now assume $a$ and $a + b$ are nonzero. Yet now $v(a) \not\leq v(a + b) \implies (a + b)a^{-1} = 1 + ba^{-1} \notin A$. Also, the only way the latter expression can hold is if $ba^{-1} \notin A$. But that would contradict that $v(a) = aU \leq bU = v(b)$. Hence, we can conclude that $v(a) \leq v(a + b)$.\retTwo
+
+		The final thing that needs pointing out is that $v$ is surjective since it is the natural\\ projection map $K^\times \to K^\times / U$ with one additional assignment appended on.\retTwo
+	\end{myIndent}
+
+	\item[(c)] Show that if $A$ is a valuation ring and we define $v: K \to \Gamma \cup \{\infty\}$ as in part (b), then\\ $A = \{x \in K : v(x) \geq 1_{\Gamma}\}$.
+	\begin{myIndent}\HexOne
+		Note that $0 \in A$ and $v(0) = \infty \geq 1_\Gamma$. Meanwhile, suppose $x \in K^\times$. Then $v(x) = xU \geq 1U = 1_\Gamma$ iff $x = x \cdot 1^{-1} \in A$.\retTwo
+	\end{myIndent}
+
+	Conversely, if $v$ is a valuation from some field $K$ to the value group $\Gamma$ and we use\\ $A \coloneqq \{x \in K : v(x) \geq 0_\Gamma\}$ to define a valuation $w: K \to \Gamma^\prime \cup \{\infty\}$ as in part (b),\\ then there is an order-preserving group isomorphism $\phi: \Gamma \to \Gamma^\prime$ such that $\phi \circ v = w$.
+	\begin{myIndent}\HexOne
+		Let us define the map $\phi: \Gamma \to \Gamma^\prime$ by the assignment $\phi(\alpha) = yU$ where $y$ is some element in $K^\times$ with $v(y) = \alpha$.
+		\begin{myIndent}\HexTwoP
+			To see that this map is well-defined, suppose $v(y_1) = v(y_2)$. Then\\ $v(y_2 y_1^{-1}) = v(y_2) - v(y_1) = 0$, which in turn tells us that $y_2 y_1^{-1} \in A$. Similarly, $v(y_1 y_2^{-1}) = v(y_1) - v(y_2) = 0$, which in turn tells us that $y_1 y_2^{-1} \in A$. Yet now this proves that $y_1 U \leq y_2 U$ and $y_2 U \leq y_1 U$ in $\Gamma^\prime$ and from before this implies that $y_1 U = y_2 U$. So, $\phi(v(y_1)) = \phi(v(y_2))$.\retTwo
+
+			Next, I shall show that this map is a group homomorphism. Let $\alpha, \beta \in \Gamma$ and let $x, y \in K^\times$ satisfy that $v(x) = \alpha$ and $v(y) = \beta$. Then $v(xy) = \alpha + \beta$. In turn, $\phi(\alpha + \beta) = xyU = xU \cdot yU = \phi(\alpha)\phi(\beta)$.\retTwo
+
+			Thirdly, I show $\phi$ is order preserving. Suppose $\alpha \leq \beta$ in $\Gamma$ and let $x, y \in K^\times$ satisfy that $v(x) = \alpha$ and $v(y) = \beta$. Since $\alpha \leq \beta$, we can in turn say that $0 \leq \beta - \alpha$. Also $v(yx^{-1}) = v(y) - v(x) = \beta - \alpha$. Hence, $yx^{-1} \in A$, which in turn implies that $xU \leq yU$ in $\Gamma^\prime$. So, $\alpha \leq \beta \Longrightarrow \phi(\alpha) \leq \phi(\beta)$.\retTwo
+
+			To finish off, note that $\phi$ is surjective since for all $xU \in \Gamma^\prime$, $\phi(v(x)) = xU$. Meanwhile, to see that $\phi$ is injective, suppose $\phi(\alpha) = 1U$ in $\Gamma^\prime$. Then we know $\alpha = v(1) = 0_\Gamma$. Hence, $\ker(\phi) = \{0_\Gamma\}$.\retTwo
+		\end{myIndent}
+
+		The rest of the problem is now obvious. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\blab{Set 5 Problem 5:} Let $v: K \to \Gamma \cup \{\infty\}$ be a valuation for some ordered group $\Gamma$, and let $A$ be the associated valuation ring. Assume $A \neq K$.
+\begin{enumerate}
+	\item[(a)] Prove that the principal ideals of $A$ are exactly the ideals $I_g = \{a \in A : v(a) \geq g\}$ as $g$ ranges over elements of $\Gamma \cup \{\infty\}$ with $g \geq 0$.
+	\begin{myIndent}\HexOne
+		Firstly, I want to establish that $I_g$ is an ideal for every $g \in \Gamma \cup \{\infty\}$.
+		\begin{myIndent}\HexTwoP
+			I need to show that if $a_1, a_2 \in I_g$ and $c_1, c_2 \in A$, then $c_1a_1 + c_2a_2 \in I_g$. Fortunately:
+			
+			{\centering\begin{tabular}{l}
+				$v(c_1a_1 + c_2a_2) \geq \min(v(c_1a_1), v(c_2a_2)) = \min(v(c_1) + v(a_1), v(c_2) + v(a_2))$.
+			\end{tabular}\retTwo\par}
+
+			Now as $c_i \in A$, we know $v(c_i) \geq 0$. In turn, $v(c_i) + v(a_i) \geq v(a_i) \geq g$. Since this works for both $i$, we've proven that $v(c_1a_1 + c_2a_2) \geq g$.\retTwo
+		\end{myIndent}
+
+		Now suppose $I = \langle b \rangle$ is a principal ideal of $A$. Then let $g = v(b) \geq 0$. I claim that $I = I_g$.
+		\begin{myIndent}\HexTwoP
+			If $a \in A$ then $v(ab) = v(a) + v(b)$. And since $v(a) \geq 0$, we know that $v(a) + v(b) \geq v(b) = g$. Hence, $ab \in I_g$ for all $a$. This shows $I \subseteq I_g$.\retTwo
+
+			Conversely, suppose $d \in I_g$. If $b = 0$ then $g = \infty$, then $v(d) \geq g$ iff $d = 0$. Hence, $I_g = \{0\} = I$. So without loss of generality we can assume $b \neq 0$. Next, if $d = 0$ then trivially $d \in I$. Meanwhile, if $d \neq 0$ then because $K$ is a field, we know there exists $c \in K^\times$ with $cd = b$. In turn:
+			
+			{\centering$g = v(b) = v(cd) = v(c) + v(d) \geq v(c) + g \Longrightarrow 0 \geq v(c)$.\retTwo\par}
+
+			But now we know $v(c^{-1}) \geq 0$. Hence, $c^{-1} \in A$ and $d = c^{-1}b \in I$. This proves that $I_g \subseteq I$.\retTwo
+		\end{myIndent}
+
+		Conversely, I claim for any $g \in \Gamma \cup \{\infty\}$ with $g \geq 0$ that there exists $b \in A$ with with $I_g = \langle b\rangle$.
+		\begin{myIndent}\HexTwoP
+			Since $v$ is by definition surjective, we can pick $b \in A$ with $v(b) = g$. And now from our prior reasoning, we know $\langle b\rangle = I_g$.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] Prove that $A$ is a Bezout domain. (See \inLinkRap{placeholder}{page 532} for a reminder of what that is\dots)
+	\begin{myIndent}\HexOne
+		Let $a, b \in A$ and consider the ideal $I = \langle a, b\rangle$. By the surjectivity of $v$, we know there exists $d \in A$ with $v(d) = \min(v(a), v(b))$. Also from part (a), we know for all $c \in A$ that:
+		
+		{\centering$d \divides c$ in $A \iff c \in \langle d\rangle \iff v(d) \leq v(c)$.\retTwo\par}
+
+		So, $v(d) \leq v(a)$ and $v(d) \leq v(b)$ tells us that $a, b \in \langle d\rangle$, which in turn means that $\langle a, b\rangle \subseteq \langle d\rangle$. At the same, since either $v(d) \geq v(a)$ or $v(d) \geq v(b)$, we know that either $d \in \langle a\rangle$ or $d \in \langle b\rangle$. Either way, this proves that $\langle d\rangle \subseteq \langle a, b\rangle$.\retTwo
+	\end{myIndent}
+
+	\item[(c)] Prove that if $A$ is Noetherian, then $A$ is a discrete valuation ring, that is $\Gamma \cong \mathbb{Z}$ by an order-\\preserving group isomorphism. 
+	\begin{myIndent}\HexOne
+		To start off, note that $A$ being Noetherian is equivalent to $\Gamma^\geq \coloneqq \{\alpha \in \Gamma : \alpha \geq 0_\Gamma\}$ being a well-ordered set.
+		\begin{myIndent}\HexTwoP
+			$(\Longrightarrow)$\\
+			Suppose $S \subseteq \Gamma^\geq$ is a nonempty set. Since $A$ is Noetherian, we know the set $\{I_g : g \in S\}$ has a maximal ideal $I_{g_0}$. At the same time though, since $S$ is a chain in $\Gamma$ and $I_{g} \subseteq I_{g^\prime}$ iff $g^\prime \leq g$ we know that $\{I_g : g \in S\}$ is a chain with respect to set inclusion. Hence, $I_{g_0}$ contains $I_g$ for all $g \in S$, which in turn implies that $g_0 \leq g$ for all $g \in S$. This proves that $S$ has a minimal element $g_0$.\retTwo
+
+			$(\Longleftarrow)$\\
+			It suffices to prove that all ideals of $A$ are finitely generated. So suppose for the sake of contradiction that $I \lhd A$ is some ideal that isn't finitely generated. Then we can pick a sequence $\{a_n\}_{n \in \mathbb{N}} \subseteq I$ such that $a_m \notin \langle a_1, \ldots, a_{m-1}\rangle$ for all $m \in \mathbb{N}$.\retTwo
+
+			But now since $A$ is a Bezout domain, we know that for every $n \in \mathbb{N}$ there exists $b_n \in A$ with $\langle b_n\rangle = \langle a_1, \ldots, a_n\rangle$. And since $\{\langle b_n\rangle\}_{n \in \mathbb{N}}$ is a strictly increasing sequence of principal ideals in $A$, by part (a) we can find a strictly decreasing sequence $\{g_n\}_{n \in \mathbb{N}} \subseteq \Gamma^{\geq}$ with $I_{g_n} = \langle b_n\rangle$ for all $n$. This contradicts though that $\Gamma^\geq$ is well-ordered.\retTwo
+		\end{myIndent}
+
+		Next, note that $A \neq K$ iff $\Gamma^{\geq} \neq \{0_\Gamma\}$.
+		\begin{myIndent}\HexTwoP
+			$(\Longrightarrow)$\\
+			$A \neq K \iff \exists c \in K$ with $v(c) < 0_\Gamma$. Yet as $c \neq 0$ since otherwise\\ $v(c) = \infty \geq 0_\Gamma$, we can guarentee that $c^{-1}$ exists in $K$ and $v(c^{-1}) > 0_\Gamma$.\\ So, $0_\Gamma \neq v(c^{-1}) \in \Gamma^{\geq}$.\retTwo
+
+			$(\Longleftarrow)$\\
+			Since $v$ is by definition surjective, if $\Gamma^{\geq} \neq \{0_\Gamma\}$ then we can find $a \in A - \{0\}$ satisfying that $v(a) > 0_\Gamma$. But then $v(a^{-1}) < 0_\Gamma$. So, $a^{-1} \in K - A$.\retTwo
+		\end{myIndent}
+
+		It follows that $\{\alpha \in \Gamma : \alpha > 0_\Gamma\}$ is a nonempty subset of $\Gamma^{\geq}$. Thus by the well-ordering of $\Gamma^{\geq}$, it must have some minimal element which I will call $1_\Gamma$.\retTwo
+
+		Now define $\phi: \mathbb{Z} \to \Gamma$ by the map $\phi(n) = n1_\Gamma$. (Here $n1_\Gamma$ is defined in the usual way involving repeated addition). It's obvious that $\phi$ is a group homomorphism.\\ Furthermore, if $n \leq m$ then $m - n \geq 0$. Since we can easily prove that $k1_\Gamma \geq 0_\Gamma$\\ if $k \geq 0$, it follows that $m1_\Gamma - n1_\Gamma = (m - n)1_\Gamma\geq 0_\Gamma$.
+		\begin{myIndent}\HexTwoP
+			After all, $1_\Gamma \geq 0_\Gamma \Longrightarrow 2 1_\Gamma \geq 1_\Gamma \geq 0_\Gamma$. And now we can continue on from there.\retTwo
+		\end{myIndent}
+
+		But now $m1_\Gamma \geq n1_\Gamma$. This finishes proving that $\phi$ is order-preserving as well.\retTwo
+
+		To finish off, I just need to show $\phi$ is injective and surjective.
+		\begin{myIndent}\HexTwoP
+			(Injectivity):\\
+			Since $\phi$ is a group homomorphism, it suffices to show that $\phi(n) = n1_\Gamma = 0_\Gamma$ only if $n = 0$. So suppose for the sake of contradiction that $n \in \mathbb{Z} - \{0\}$ satisfies that $n1_\Gamma = 0_\Gamma$. Note that $0_\Gamma = -0_\Gamma = -(n1_\Gamma) = (-n)1_\Gamma$. Therefore, without loss of generality we can assume that $n$ is positive.\retTwo
+
+			But now by similar reasoning to how we proved $k1_\Gamma \geq 0_\Gamma$ for all $k \geq 0$, we can also show $k1_\Gamma \geq 1_\Gamma$ for all $k \geq 1$. Hence, we know $1_\Gamma \leq n1_\Gamma = 0_\Gamma$. Yet we also know from how we picked out $1_\Gamma$ that $0_\Gamma < 1_\Gamma$ This is a contradiction.\retTwo
+
+			(Surjectivity):\\
+			Suppose for the sake of contradiction that there exists $g \in \Gamma - \phi(\mathbb{Z})$. By\\ negating $g$ if necessary, we can assume without loss of generality that $g \in \Gamma^{\geq}$. And now we consider the sequence $\{g - n1_\Gamma\}_{n \in \mathbb{Z}_{\geq 0}}$.\retTwo
+
+			Note that as $\phi$ is an order-preserving injective map, we know that if $n < m$\\ then $- m1_\Gamma < -n1_\Gamma$ and in turn $g - m1_\Gamma < g - n1_\Gamma$. It follows that our\\ sequence is strictly decreasing and thus has no minimal element. In turn,\\ since $\Gamma^\geq$ is well-ordered, we can only avoid a contradiction if there exists some\\ minimal $N \in \mathbb{Z}_{\geq 0}$ with $g - N1_\Gamma < 0_\Gamma$. By the minimality of the $N$ we chose though, we also know $g - (N - 1)1_\Gamma \geq 0_\Gamma$. Hence, $-1_\Gamma \leq g - N 1_\Gamma < 0_\Gamma$.\retTwo
+			
+			Equivalently, we have that $0_\Gamma < N1_\Gamma - g \leq 1_\Gamma$. And since $1_\Gamma$ is by\\ definition the minimal element of $\Gamma$ greater than $0_\Gamma$, we can conclude that\\ $N1_\Gamma - g = 1_\Gamma$. This is a contradiction as it implies that $(N - 1)1_\Gamma = g$. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{myIndent}
+\end{enumerate}
+
+\color{RawerSienna}
+\ul{Remark 1:} A fun thing about how I proved part (c) is that I abstracted the problem to showing\\ that up to isomorphism, the only well-ordered abelian groups (whose order respects the group\\ operation) are $(\mathbb{Z}, +)$ and the trivial group. There is a much more direct way of proving 5(c) though that doesn't abstract the problem like I did.\retTwo
+
+\ul{Remark 2:} Once we have established that $A$ is a Noetherian valuation ring, the prior problem lets us conclude that $A$ is a local PID.
+\begin{myIndent}\color{orange}
+	Why?\\
+	If $A$ is a field then $A$ is trivially local and a PID. So, we can assume without loss of generality that $A$ is not a field (so that part (c) of the prior problem applies).\retTwo
+
+	Then being a PID is equivalent to being a Noetherian Bezout domain. Hence $A$ is a PID. Also, since every ideal is principal and thus has the form $I_n$ for some $n \in \mathbb{Z}_{\geq 0}$, and also since $n < m \Longrightarrow I_m \subseteq I_n$, we can conclude that every proper ideal of $A$ is contained in $I_1$. After all, $v(1) = 0$ implies that $A = I_0$ since $1 \in I_0$ and $A \neq I_1$ since $1 \notin I_1$. Then every other candidate ideal is contained in $I_1$ by the prior observation.\retTwo
+\end{myIndent}
+
+\ul{Remark 3:} Conversely, suppose $v: K \to \mathbb{Z} \cup \{\infty\}$ is a discrete valuation whose associated valuation ring is $A$. Then $A$ is Noetherian.
+\begin{myIndent}\color{orange}
+	This is because $\mathbb{Z}_{\geq 0}$ is a well-ordered set and I did unnecessary extra work in part (c) to show that the nonnegative elements of $\mathbb{Z}$ being well-ordered implies $A$ is Noetherian.\retTwo
+\end{myIndent}
+
+Furthermore, if $A$ is a local PID that is not a field and $x$ generates the unique maximal ideal $P$ of $A$, then the unique factorization of any $a \in A - \{0\}$ into a product of irreducibles has form $a = ux^n$ where $u$ is a unit and $n \in \mathbb{Z}_{\geq 0}$.
+\begin{myIndent}\color{orange}
+	Why?\\
+	Since $A$ is a PID, every irreducibe element is prime and every prime element generates an ideal which is maximal over all principal ideals (and hence all ideals).  of $A$ must be maximal over all pricipal ideals. It follows that up to companion class, $x$ is the unique irreducible element of $A$. In turn, the stated fact is just a result of $A$ also being a UFD.\retTwo
+\end{myIndent}
+
+Consequently, if $K$ is the field of fractions of the local PID $A$ we were working with before, then every element of $K^\times$ can be uniquely written as $u x^n$ where $u \in A^\times$ and $n \in \mathbb{Z}$. 
+\begin{myIndent}\color{orange}
+	Why?\\
+	Any element of $K^\times$ has the form $\frac{u_1 x^s}{u_2 x^\ell} = u_1 u_2^{-1}x^{s - \ell} = ux^n$ where $n = s - \ell$ and\\ $u = u_1 u_2^{-1}$. Next suppose $ux^n = u^\prime x^{N}$. Without loss of generality, we can assume $N \geq n$ (meaning $N - n \geq 0$). Hence, $1 = u^\prime u^{-1} x^{N - n}$ in $A$. And by the uniqueness we just proved, this tells us that $N = n$ and $u^\prime = u$.\retTwo
+\end{myIndent}
+
+Hence, we can define the discrete valuation $v: K \to \mathbb{Z} \cup \{\infty\}$ where $v(0) = \infty$ and\\ $v(u x^n) = n$ for all $u \in A^\times$ and $n \in \mathbb{Z}$.
+\begin{myIndent}\color{orange}
+	This is just a $p$-adic valuation so it should be clear that this meets all the criteria that a valuation must fulfill.\retTwo
+\end{myIndent}
+
+Also, it's then trivial to see from the prior two uniqueness claims that $A \subseteq K$ is precisely the set of elements with $v(a) \geq 0$.\retTwo
+
+To summarize the prior remarks as well as problems 4 and 5, we have three equivalent definitions for when a ring $A$ is a \udefine{discrete valuation ring (DVR)}:
+\begin{enumerate}
+	\item[(1.)] $A$ is the associated valuation ring of a discrete valuation $v: K \to \mathbb{Z} \cup \{\infty\}$,
+	\item[(2.)] $A$ is a Noetherian valuation ring that is not a field,
+	\item[(3.)] $A$ is a local PID that is not a field.\retTwo
+\end{enumerate}
+
+\ul{Remark 4:} Let $A$ be a local PID and also let $x$ be a generator of the unique maximal ideal of $A$. Then the distinct ideals of $A$ are precisely $A$, $\{0\}$, and $\langle x^n\rangle$ where $n \in \mathbb{N}$.
+\begin{myIndent}\color{orange}
+	Why?\\
+	Let $v$ be the discrete valuation constructed in the prior remark. Then we can see that\\ $I_n = \langle x^n\rangle$ for all $n \in \mathbb{N}$.\retTwo
+\end{myIndent}
+
+\ul{Remark 5:} The prime spectrum of a DVR $A$ consists of only the unique maximal ideal and the zero ideal. This captures the idea that a DVR is the simplest type of PID that is not a field.
+
+\newpage
+
+\color{red} I am writing this after 11pm and probably won't finish this in time to turn this in. I'll fix my notation after finals week.\retTwo
+
+\Hstatement\blab{Set 5 Problem 6:} Let $A$ be a Dedekind domain.
+\begin{enumerate}
+	\item[(a)] Suppose that $P$ is a maximal ideal of $A$. For any $n \geq 1$, show that every ideal of the ring $A/P^n$ is principal.
+	\begin{myIndent}\HexOne
+		{\color{red} Placeholder for proving that $A/P^n \cong A_p / (P_P)^n$}
+
+		\retTwo
+
+		Now importantly, $A_P$ is a DVR with the maximal ideal $P_P$. It follows that $P_P$ is a principal ideal generated by some element $x$, and every ideal of $A_P$ has the form $\{0\}$, $A_P$, or $\langle x^k\rangle$ where $k \in \mathbb{N}$. In turn, we have that of $\frac{A_P}{(P_P)^n}$ are precisely given by\\ [-4pt] $\{0\}$, $\frac{A_P}{(P_P)^n}$, $\frac{P_P}{(P_P)^n}$,$\ldots$, $\frac{(P_P)^{n-1}}{(P_P)^n}$. Also, all of the ideals are principal. Therefore,\\ since $A / P^n \cong A_P / (P_P)^n$, this proves every ideal of $A / P^n$ is principal.\retTwo
+	\end{myIndent}
+
+	\item[(b)] Show that for any nonzero ideal $I$ of $A$, every ideal of $A/I$ is principal.
+	\begin{myIndent}\HexOne
+		If $I$ is a nonzero ideal of $A$, then we can write $I = P_1^{j_1}P_2^{j_2}\cdots P_m^{j_m}$ where each $P_i$ is a distinct maximal ideal of $A$ and each $j_i$ is a poistive integer. In turn, by CRT we have that:
+
+		{\centering $\frac{A}{I} = \frac{A}{P_1^{j_1}P_2^{j_2}\cdots P_m^{j_m}} = \frac{A}{P_1^{j_1} \cap P_2^{j_2} \cap \cdots \cap P_m^{j_m}} \cong \frac{A}{P_1^{j_1}} \times \cdots \times \frac{A}{P_m^{j_m}}$ \retTwo\par}
+
+		It suffices now to show that every ideal of $\frac{A}{P_1^{j_1}} \times \cdots \times \frac{A}{P_m^{j_m}}$ is principal. Fortunately, note that for any ideal $J$ in this new ring, $J \cap \frac{A}{P_i^{j_i}}$ is a principal ideal $\langle \overline{f_i}\rangle$ by part (a). And now I claim that $J$ is principal because it is generated by $(\overline{f_1}, \ldots, \overline{f_m})$.
+		\begin{myIndent}\HexTwoP
+			Why?\\
+			By adding elements together, it's clear $(\overline{f_1}, \ldots, \overline{f_m}) \in J$. Meanwhile, suppose $(\overline{g_1}, \ldots, \overline{g_m})$ is another element of $J$. Then by multiplying by $(0, \cdots, 1, \cdots, 0)$, we can show that $\overline{g_i} \in \langle \overline{f_i}\rangle$ for all $i$.\retTwo
+
+			Now let $\overline{h_i}$ be such that $g_i = \overline{h_i} \cdot \overline{f_i}$. Then $(\overline{g_1}, \ldots, \overline{g_m}) = (\overline{h_1}, \ldots, \overline{h_m})(\overline{f_1}, \ldots, \overline{f_m})$.\retTwo
+		\end{myIndent}
+
+		This proves for any nonzero ideal $I$ of $A$ that every ideal of $A/I$ is principal.\retTwo
+	\end{myIndent}
+
+	Conclude that any ideal of $A$ can be generated by at most $2$ elements.
+	\begin{myIndent}\HexOne
+		Suppose $I \lhd A$. If $x = \{0\}$ then $I$ is generated by $1$ element. Otherwise, we can pick $x \in I - \{0\}$. But now by the prior reasoning, we know that every ideal of $A/\langle x\rangle$ is principal. Hence, $I/\langle x\rangle$ is generated by $y + \langle x\rangle$ for some $y \in A$. And now $I = \langle x, y\rangle$. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \hypertarget{idk reference 2}{}
 \hypertarget{idk reference 3}{}
+\hypertarget{idk reference 4}{}
 
 \newpage
 
@@ -6581,6 +8300,37 @@ In turn, we can see that $\Ass(M) = \{\langle p_i\rangle : 1 \leq i \leq \ell\} 
 \end{enumerate}
 
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
