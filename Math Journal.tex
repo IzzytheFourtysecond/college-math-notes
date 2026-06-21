@@ -19560,10 +19560,12 @@ This topology on $\Spec(A)$ is called the \udefine{Zariski topology} and it is s
 		Proof:\\
 		If $x \in \Nil(A)$ then $x^n = 0$ for some positive integer $n$. But also note that for all $\mathfrak{p} \in \Spec(A)$ we have that $A/\mathfrak{p}$ is an integral domain and thus $\Nil(A/\mathfrak{p}) = \{0 + \mathfrak{p}\}$. Since $(x + \mathfrak{p})^n = 0$ we must have that $x + \mathfrak{p} = 0 + \mathfrak{p}$. So, $x \in \mathfrak{p}$. This proves that $\Nil(A) \subseteq \bigcap_{\mathfrak{p} \in \Spec(A)} \mathfrak{p}$.\retTwo
 
-		Meanwhile, suppose $x \notin \Nil(A)$ and consider $S_x = \{1, x, x^2, \ldots\}$. Then $\{0\}$ is an ideal of $A$ not intercepting $S_x$. Hence, by our last theorem we know there exists $\mathfrak{p} \in \Spec(A)$ such that $\mathfrak{p} \cap S_x = \emptyset$. In particular, $x \notin \mathfrak{p}$. Hence, $x \notin \bigcap_{\mathfrak{p} \in \Spec(A)} \mathfrak{p}$. $\blacksquare$\retTwo
+		Meanwhile, suppose $x \notin \Nil(A)$ and consider $S_x = \{1, x, x^2, \ldots\}$. Then $\{0\}$ is an ideal of $A$ not intercepting $S_x$. Hence, by our last theorem we know there exists $\mathfrak{p} \in \Spec(A)$ such that $\mathfrak{p} \cap S_x = \emptyset$. In particular, $x \notin \mathfrak{p}$. Hence, $x \notin \bigcap_{\mathfrak{p} \in \Spec(A)} \mathfrak{p}$. $\blacksquare$
+		\begin{myIndent}\color{RawerSienna}
+			Remark: By convention an intersection of no subsets of $A$ is the entire ring $A$.
+		\end{myIndent}
 	\end{myIndent}
 \end{itemize}
-
 \mySepTwo\newpage
 
 For the next section (until I say otherwise), it will be assumed that $A$ is an integral domain.\retTwo
@@ -20945,11 +20947,11 @@ Also note that if $A$ is Noetherian and $\mathfrak{a} \lhd A$, then we have that
 
 Today I'm preparing for the math 200a final and also taking some miscellaneous notes on topics that came up while I was doing practice problems.\retTwo
 
-Recall how if $n$ is an integer and $p$ is a prime then we defined:
+Recall how if $n$ is a nonzero integer and $p$ is a prime number then we defined:
 
 {\centering$\nu_p(n) = \max\{k \in \mathbb{Z}_{\geq 0} : p^k \divides n\}$.\retTwo\par}
 
-We can extend $\nu_p$ to being defined on $\mathbb{Q}$ as follows. Given any rational number $\sfrac{m}{n} \neq 0$ we define $\nu_p(\sfrac{m}{n}) = \nu_p(m) - \nu_p(n)$.
+We can extend $\nu_p$ to being defined on $\mathbb{Q}^\times$ as follows. Given any rational number $\sfrac{m}{n} \neq 0$ we define $\nu_p(\sfrac{m}{n}) = \nu_p(m) - \nu_p(n)$.
 \begin{myIndent}\pracTwo
 	To prove this is well-defined, suppose $\frac{m_1}{n_1} = \frac{m_2}{n_2}$. Then after canceling common prime\\ [-3pt] factors of $m_i$ and $n_i$, we can find pairs of integers $m_i^\prime, n^\prime_i$ such that for each $i$:
 	
@@ -20958,7 +20960,7 @@ We can extend $\nu_p$ to being defined on $\mathbb{Q}$ as follows. Given any rat
 	But now it is easy to check that $m_1^\prime = m_2^\prime$ and $n^\prime_1 = n_2^\prime$. After all, we know that\\ [-1pt] $\frac{m_1^\prime}{n_1^\prime} = \frac{m_2^\prime}{n_2^\prime} \Longleftrightarrow m_1^\prime n_2^\prime = m_2^\prime n_1^\prime$. Then by comparing the prime factorings of both sides\\ [-1pt] of the latter equation and noting that $m_i^\prime$ and $n_i^\prime$ are coprime for each $i$, we can show that $m_1^\prime = \pm m_2^\prime$ and $n^\prime_1 = \pm n_2^\prime$. Yet the sign of $m_1^\prime$ doesn't effect $\nu_p(m_1^\prime)$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\hTwo Note that since $\nu_p(n_1 n_2) = \nu_p(n_1)\nu_p(n_2)$ when $n_1, n_2 \in \mathbb{Z}$, we can easily show that $\nu_p(rs) = \nu_p(r) + \nu_p(s)$ for all $r, s \in \mathbb{Q} - \{0\}$. We can also easily see that $\nu_p(r^{-1}) = -\nu_p(r)$ for all $r \in \mathbb{Q}$.\retTwo
+\hTwo Note that since $\nu_p(n_1 n_2) = \nu_p(n_1)\nu_p(n_2)$ when $n_1, n_2 \in \mathbb{Z}$, we can easily show that $\nu_p(rs) = \nu_p(r) + \nu_p(s)$ for all $r, s \in \mathbb{Q} - \{0\}$. We can also easily see that $\nu_p(r^{-1}) = -\nu_p(r)$ for all $r \in \mathbb{Q}^\times$.\retTwo
 
 \Hstatement\blab{Problem 2 From Fall 2024 Midterm:} Suppose $G$ is a finite group, $p$ is a prime integer,  and $H, K$ are $2$ subgroups of $G$ such that $G = HK$.
 \begin{itemize}
@@ -20993,8 +20995,8 @@ We can extend $\nu_p$ to being defined on $\mathbb{Q}$ as follows. Given any rat
 		At the same time, note that:
 		
 		{\centering\begin{tabular}{l}
-			$\nu_p(\frac{|G|}{|P_HP_K|}) = \nu_p(\frac{|H|}{|P_H|} \cdot \frac{|K|}{|P_K|} \cdot \frac{|P_H \cap P_K|}{H \cap K})$\\ [6pt]
-			$\phantom{\nu_p(\frac{|G|}{|P_HP_K|})} =  \nu_p(\frac{|H|}{|P_H|}) + \nu_p(\frac{|K|}{|P_K|}) + \nu_p(\frac{|P_H \cap P_K|}{H \cap K}) = 0 + \nu_p(\frac{|P_H \cap P_K|}{H \cap K})$
+			$\nu_p(\frac{|G|}{|P_HP_K|}) = \nu_p(\frac{|H|}{|P_H|} \cdot \frac{|K|}{|P_K|} \cdot \frac{|P_H \cap P_K|}{|H \cap K|})$\\ [6pt]
+			$\phantom{\nu_p(\frac{|G|}{|P_HP_K|})} =  \nu_p(\frac{|H|}{|P_H|}) + \nu_p(\frac{|K|}{|P_K|}) + \nu_p(\frac{|P_H \cap P_K|}{|H \cap K|}) = 0 + \nu_p(\frac{|P_H \cap P_K|}{|H \cap K|})$
 		\end{tabular}\retTwo\par}
 
 		Additionally, note that $P_H \cap P_K = (P \cap H) \cap (P \cap K) = P \cap (H \cap K)$. Hence, it follows that $P_H \cap P_K$ is $p$-subgroup of $H \cap K$ and therefore $\nu_p(\frac{|P_H \cap P_K|}{H \cap K}) \leq 0$.\retTwo
@@ -22670,7 +22672,7 @@ Prove that $A$ is not Noetherian.
 		
 		Yet note that since $D$ is a U.F.D., $s \divides a_n r^n$, and $s$ shares no irreducible factors with $r$, we know for any irreducible $p \in D$ with $\nu_p(s) \neq 0$ that:
 		
-		{\centering $\nu_p(s) \leq \nu_p(a_nr^n) = \nu_p(a_n) + n\nu_p(r^n) = \nu_p(a_n)$ \retTwo\par}
+		{\centering $\nu_p(s) \leq \nu_p(a_nr^n) = \nu_p(a_n) + n\nu_p(r) = \nu_p(a_n)$ \retTwo\par}
 
 		It follows that $\nu_p(s) \leq \nu_p(a_n)$ for all irreducible elements $p$, and that implies that $s \divides a_n$. By analogous reasoning, we can also show $r \divides a_0$.
 	\end{myIndent}
@@ -23559,7 +23561,7 @@ Remarks:
 	\end{myIndent}
 \end{itemize}
 
-\hTwo And now I am fully caught up to Math 220b. God I hope my left hand heels fast cause I'm so far behind due to my stupid injury.
+\hTwo And now I am fully caught up to Math 220b. God I hope my left hand heals fast cause I'm so far behind due to my stupid injury.
 
 \mySepTwo
 
@@ -23570,9 +23572,9 @@ Here are two more important examples of $A$-modules:
 \begin{itemize}
 	\item If $\{M_i\}_{i \in I}$ is a family of $A$-modules, then we define their \udefine{external direct sum} to be:
 
-	{\centering$\oplus_{i \in I} M_i \coloneqq \{(x_i)_{i \in I} : x_i \in M_i \text{ for all } i \text{ and } x_i = 0 \text{ except for finitely many }i\}$.\retTwo\par}
+	{\centering$\bigoplus_{i \in I} M_i \coloneqq \{(x_i)_{i \in I} : x_i \in M_i \text{ for all } i \text{ and } x_i = 0 \text{ except for finitely many }i\}$.\retTwo\par}
 
-	To turn $\oplus_{i \in I} M_i$ into an $A$-module, we interpret all the elements of $\oplus_{i \in I} M_i$ as finite formal sums of the elements of the $M_i$. Equivalently, note that $\oplus_{i \in I}M_i$ is a submodule of $\prod_{i \in I} M_i$\retTwo
+	To turn $\bigoplus_{i \in I} M_i$ into an $A$-module, we interpret all the elements of $\bigoplus_{i \in I} M_i$ as finite formal sums of the elements of the $M_i$. Equivalently, note that $\bigoplus_{i \in I}M_i$ is a\\ submodule of $\prod_{i \in I} M_i$\retTwo
 
 	\item Suppose $M$ and $N$ are two $A$-modules.\retTwo
 
@@ -23607,11 +23609,11 @@ Let $\{M_i\}_{i \in I}$ be a family of $A$-modules. Then we define:
 	\item $P_i : \prod\limits_{i^\prime \in I} \to M_i$ by $P_i((x_{i^\prime})_{i^\prime \in I}) = x_i$.
 \end{itemize}
 
-It's easy to check $j_i$ and $P_i$ are $A$-module homomorphism. Also, by restricting the codomain of $j_i$ or the domain of $P_i$, we can obtain instead view $j_i$ as mapping into $\oplus_{i^\prime \in I}M_{i^\prime}$ and $P_i$ as mapping from $\oplus_{i^\prime \in I} M_{i^\prime}$.\retTwo
+It's easy to check $j_i$ and $P_i$ are $A$-module homomorphism. Also, by restricting the codomain of $j_i$ or the domain of $P_i$, we can obtain instead view $j_i$ as mapping into $\bigoplus_{i^\prime \in I}M_{i^\prime}$ and $P_i$ as mapping from $\bigoplus_{i^\prime \in I} M_{i^\prime}$.\retTwo
 
 \Hstatement\blab{Math 200b Set 2 Problem 3:} \hypertarget{Math 200b Set 2 Problem 3}{Prove} that:
 \begin{enumerate}
-	\item[(a)] $\Hom_A(\oplus_{i \in I} M_i, N) \cong \prod_{i \in I}\Hom_A(M_i, N)$
+	\item[(a)] $\Hom_A(\bigoplus_{i \in I} M_i, N) \cong \prod_{i \in I}\Hom_A(M_i, N)$
 	
 	\item[(b)] $\Hom_A(N, \prod_{i \in I} M_i) \cong \prod_{i \in I}\Hom_A(N, M_i)$
 \end{enumerate}
@@ -23653,13 +23655,13 @@ as $A$-modules.\\ [-6pt]
 	\mySepThree
 
 	\ul{Proof of (a)}:\\ [2pt]
-	For all $\Phi \in \Hom_A(\oplus_{i \in I} M_i, N)$ and $i \in I$ define $\phi_i \coloneqq \Phi \circ j_i$ for all $i$. Note that $\phi_i$ being the composition of two $A$-module homomorphism is also an $A$-module homomorphism. Next consider the mapping $\Phi \mapsto (\phi_i)_{i \in I} \in \prod_{i \in I}\Hom_A(M_i, N)$.\retTwo
+	For all $\Phi \in \Hom_A(\bigoplus_{i \in I} M_i, N)$ and $i \in I$ define $\phi_i \coloneqq \Phi \circ j_i$ for all $i$. Note that $\phi_i$ being the composition of two $A$-module homomorphism is also an $A$-module homomorphism. Next consider the mapping $\Phi \mapsto (\phi_i)_{i \in I} \in \prod_{i \in I}\Hom_A(M_i, N)$.\retTwo
 
 	To show that that mapping is invertible, first note that:
 	
-	{\centering$\Phi((x_i)_{i \in I}) = \sum_{i \in I} \Phi(j_i(x_i)) = \sum_{i \in I}\phi_i(x_i)$ for all $(x_i)_{i \in I} \in \oplus_{i \in I} M_i$.\retTwo\par}
+	{\centering$\Phi((x_i)_{i \in I}) = \sum_{i \in I} \Phi(j_i(x_i)) = \sum_{i \in I}\phi_i(x_i)$ for all $(x_i)_{i \in I} \in \bigoplus_{i \in I} M_i$.\retTwo\par}
 
-	Meanwhile, suppose $(\psi_i)_{i \in I} \in \prod_{i \in I}\Hom_A(M_i, N)$ and define $\Psi : \oplus_{i \in I} M_i \to N$ by\\ $\Psi((x_i)_{i \in I}) \coloneqq \sum_{i \in I}\psi_i(x_i)$. I claim that $\Psi$ is an $A$-module homomorphism. After all,\\ suppose $a, b \in A$ and $(x_i)_{i \in I}, (y_i)_{i \in I} \in \oplus_{i \in I} M_i$. Then:
+	Meanwhile, suppose $(\psi_i)_{i \in I} \in \prod_{i \in I}\Hom_A(M_i, N)$ and define $\Psi : \bigoplus_{i \in I} M_i \to N$ by\\ $\Psi((x_i)_{i \in I}) \coloneqq \sum_{i \in I}\psi_i(x_i)$. I claim that $\Psi$ is an $A$-module homomorphism. After all,\\ suppose $a, b \in A$ and $(x_i)_{i \in I}, (y_i)_{i \in I} \in \bigoplus_{i \in I} M_i$. Then:
 
 	{\center\begin{tabular}{l}
 		$\Psi(a(x_i)_{i \in I} + b(y_i)_{i \in I}) = \Psi((ax_i + by_i)_{i \in I})$\\ [4pt]
@@ -23676,7 +23678,7 @@ as $A$-modules.\\ [-6pt]
 
 	Finally, we need to show that $\Phi \mapsto (\phi_i)_{i \in I}$ is an $A$-linear map.\\ [-10pt]
 	\begin{myIndent}\HexTwoP
-		Suppose $\Phi, \Psi \in \Hom_A(\oplus_{i \in I} M_i, N)$ and let $a, b \in A$. Then for any $i \in I$ and $x \in M_i$, we have that:
+		Suppose $\Phi, \Psi \in \Hom_A(\bigoplus_{i \in I} M_i, N)$ and let $a, b \in A$. Then for any $i \in I$ and $x \in M_i$, we have that:
 
 		{\center\begin{tabular}{l}
 			$((a \cdot \Phi) + (b \cdot \Psi))(j_i(x)) = \Phi(a j_i(x)) + \Psi(b j_i(x))$\\ [4pt]
@@ -23689,7 +23691,7 @@ as $A$-modules.\\ [-6pt]
 
 \pracOne\mySepTwo
 
-Note that $\oplus_{i \in I} M_i$ satisfying identity (a) from the prior result is equivalent to saying that $\oplus_{i \in I} M_i$ is the category theoretic \udefine{coproduct} of the $M_i$ in the category of $A$-modules.\retTwo
+Note that $\bigoplus_{i \in I} M_i$ satisfying identity (a) from the prior result is equivalent to saying that $\bigoplus_{i \in I} M_i$ is the category theoretic \udefine{coproduct} of the $M_i$ in the category of $A$-modules.\retTwo
 
 Similarly, $\prod_{i \in I} M_i$ satisfying identity (b) from the prior result is equivalent to saying that $\prod_{i \in I} M_i$ is the category theoretic \udefine{product} of the $M_i$ in the category of $A$-modules.\retTwo
 
@@ -23747,14 +23749,14 @@ Suppose $N \subseteq M$ is a submodule. Since $(M, +)$ is an abelian group, we k
 
 \hypertarget{Construction of a Free A-module}{Suppose} $X$ is an arbitrary set, and then for all $x \in X$ define $Ax \coloneqq \{ax : a \in A\}$\\ where $ax$ is a formal expression. We can turn $Ax$ into an obvious $A$-module by defining\\ $ax + a^\prime x = (a + a^\prime)x$ and $a \cdot (a^\prime x) = (aa^\prime)x$.\retTwo
 
-We claim $\mathcal{F}(X) \coloneqq \oplus_{x \in X} Ax$ is the free $A$-module of $X$.
+We claim $\mathcal{F}(X) \coloneqq \bigoplus_{x \in X} Ax$ is the free $A$-module of $X$.
 \begin{myIndent}\pracTwo
 	Proof:\\
 	Let $i: X \hookrightarrow \mathcal{F}(X)$ be given by $x \mapsto j_x(x)$ (recall the definition of $j$ three pages ago). 
 	
 	Now suppose we are given some function $f: X \to N$ where $N$ is an $A$-module. Next, define $\phi_x : Ax \to N$ by $\phi_x(ax) \coloneqq af(x)$ for all $a \in A$ and $x \in X$.  Clearly $\phi_x$ is the unique $A$-module homomorphism from $Ax$ to $N$ satifsying that $\phi_x(x) = f(x)$.\retTwo
 
-	But now by the homework problem I did prior, there is a unique $A$-module homomorphism $\widehat{f} \in \Hom_A(\oplus_{x \in X}Ax, N)$ such that $\widehat{f}(j_x(ax)) = \phi_x(ax) = af(x)$ for all $a \in A$ and $x \in X$.\retTwo
+	But now by the homework problem I did prior, there is a unique $A$-module homomorphism $\widehat{f} \in \Hom_A(\bigoplus_{x \in X}Ax, N)$ such that $\widehat{f}(j_x(ax)) = \phi_x(ax) = af(x)$ for all $a \in A$ and $x \in X$.\retTwo
 
 	Thus, the following diagram holds:\\ [-20pt]
 	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJYIl0sWzEsMCwiXFxtYXRoY2Fse0Z9KFgpIl0sWzEsMSwiTiJdLFswLDIsImYiLDJdLFswLDEsImkiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDIsIlxcZXhpc3RzICFcXHdpZGVoYXR7Zn0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
@@ -23993,12 +23995,12 @@ I'm struggling to focus on the notes so I'm going to do a homework problem and t
 
 If $M$ is an $A$-module and $\{M_i\}_{i \in I}$ is a collection of submodules of $M$ satisfying that:
 
-{\center$\sum_{i \in I}x_i = 0 \Longrightarrow \text{ all } x_i \text{ are zero}$ for all $(x_i)_{i \in I} \in \oplus_{i \in I}M_i$,\\ [6pt]\par}
+{\center$\sum_{i \in I}x_i = 0 \Longrightarrow \text{ all } x_i \text{ are zero}$ for all $(x_i)_{i \in I} \in \bigoplus_{i \in I}M_i$,\\ [6pt]\par}
 
 then we say the submodule generated by $\bigcup_{i \in I} M_i$ forms an \udefine{internal direct sum}.\retTwo
 
 \begin{myIndent}
-	\exThree\ul{Lemma:} The smallest submodule containing $\bigcup_{i \in I}M_i$ is $\{\sum_{i \in I} x_i : (x_i)_{i \in I} \in \oplus_{i \in I} M_i\}$.\\ Sometimes, we'll denote this submodule as $\sum_{i \in I}M_i$.
+	\exThree\ul{Lemma:} The smallest submodule containing $\bigcup_{i \in I}M_i$ is $\{\sum_{i \in I} x_i : (x_i)_{i \in I} \in \bigoplus_{i \in I} M_i\}$.\\ Sometimes, we'll denote this submodule as $\sum_{i \in I}M_i$.
 	\begin{myIndent}\exPPP
 		Hopefully this is obvious.\retTwo
 	\end{myIndent}
@@ -24008,7 +24010,7 @@ then we say the submodule generated by $\bigcup_{i \in I} M_i$ forms an \udefine
 \begin{enumerate}
 	\item[1.] $\sum_{i \in I} M_i$ forms an internal direct sum.
 	\item[2.] If $\sum_{i \in I}x_i = \sum_{i \in I}x_i^\prime$ (where all but finitely many $x_i$ and $x_i^\prime$ are zero), then $x_i = x_i^\prime$ for all $i$.
-	\item[3.] $f: \oplus_{i \in I}M_i \to  \sum_{i \in I}$ given by $(x_i)_{i \in I} \mapsto \sum_{i \in I}x_i$ is an isomorphism.
+	\item[3.] $f: \bigoplus_{i \in I}M_i \to  \sum_{i \in I}$ given by $(x_i)_{i \in I} \mapsto \sum_{i \in I}x_i$ is an isomorphism.
 	\item[4.] $\forall i \in I$, $M_i \cap (\sum_{\begin{smallmatrix}
 	i^\prime \in I \\ i^\prime \neq i
 	\end{smallmatrix}} M_{i^\prime}) = \{0\}$.
@@ -24380,13 +24382,13 @@ Now the actual problem:
 	\begin{myIndent}\HexOne
 		Suppose $A = \mSpan(x_1, \ldots, x_n)$. Then, there exists a surjective $A$-module\\ homomorphism $\phi : A^n \to M$ given by $| (a_1, \ldots, a_n){\rangle} \mapsto \sum_{i=1}^n a_i x_i$.\retTwo
 
-		Next note that $A^n = \oplus_{i=1}^n A$. Importantly, as $A$ is a Noetherian ring we also have that $A$ is a Noetherian $A$-module. Also, we can show as follows that if $M_1, \ldots, M_n$ is a finite collection of Noetherian $A$-modules, then so is $\oplus_{i=1}^n M_i$.
+		Next note that $A^n = \bigoplus_{i=1}^n A$. Importantly, as $A$ is a Noetherian ring we also have that $A$ is a Noetherian $A$-module. Also, we can show as follows that if $M_1, \ldots, M_n$ is a finite collection of Noetherian $A$-modules, then so is $\bigoplus_{i=1}^n M_i$.
 		\begin{myIndent}\HexTwoP
 			It suffices to show that if $M_1, M_2$ are Noetherian then so is $M_1 \oplus M_2$. After all, in the general case we have that:
 
 			{\centering $M_1 \oplus \cdots \oplus M_{n-1} \oplus M_n \cong (M_1 \oplus \cdots \oplus M_{n-1}) \oplus M_n$ \par}
 
-			So, we can just conclude by our simple case plus an inductive hypothesis that $\oplus_{i=1}^n M_i$ is Noetherian.\retTwo
+			So, we can just conclude by our simple case plus an inductive hypothesis that $\bigoplus_{i=1}^n M_i$ is Noetherian.\retTwo
 
 			Fortuantely, if we view $M_1$ as a submodule of $M_1 \oplus M_2$ {\HexPPP(i.e. identify $M_1$ with the internal direct sum $M_1 \oplus \{0\} \subseteq M_1 \oplus M_2$)}, then we know by assumption that $M_1$ is Noetherian. Furthermore, it is easily seen that $\frac{M_1 \oplus M_2}{M_1} \cong M_2$ which is also Noetherian. By part (a) of the problem, we thus know that $M_1 \oplus M_2$ is\\ [1pt] Noetherian.\newpage
 		\end{myIndent}
@@ -25272,9 +25274,9 @@ Note that if $A$ is a unital commutative ring and $\mathfrak{a} \lhd A$, then $\
 		{\centering$\frac{\oplus_{i \in I} M_i}{\oplus_{i \in I} N_i} \cong \oplus_{i \in I} \frac{M_i}{N_i}$.\par}
 		\begin{myIndent}\exPPP
 			Proof:\\
-			Consider the map $\phi: \frac{\oplus_{i \in I} M_i}{\oplus_{i \in I} N_i} \to \oplus_{i \in I} \frac{M_i}{N_i}$ given by:
+			Consider the map $\phi: \frac{\bigoplus_{i \in I} M_i}{\bigoplus_{i \in I} N_i} \to \bigoplus_{i \in I} \frac{M_i}{N_i}$ given by:
 			
-			{\center$\phi((x_i)_{i \in I} + \oplus_{i \in I} N_i) = (x_i + N_i)_{i \in I}$. \retTwo\par}
+			{\center$\phi((x_i)_{i \in I} + \bigoplus_{i \in I} N_i) = (x_i + N_i)_{i \in I}$. \retTwo\par}
 
 			This is easily checked to be an $A$-module isomorphism.\retTwo
 		\end{myIndent}

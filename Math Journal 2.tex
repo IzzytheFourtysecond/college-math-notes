@@ -640,7 +640,7 @@ Now it's significant that $[\cdot]_p$ is a quasinorm because any vector space $\
 
 \dispDate{3/30/2026}
 
-I'd like to continue the rabbit-hole from yesterday by taking notes on the book \textit{Modern Methods in Topological Vector Spaces} by Albert Wilanksy (see my \inLinkRap{Second citation}{second citation}).\retTwo
+I'd like to continue the rabbit-hole from yesterday by taking notes on the book \textit{Modern Methods in Topological Vector Spaces} by Albert Wilanksy (see \inLinkRap{Second citation}{citation 2}).\retTwo
 
 To start off, here are some conventions that Wilanksy uses. Given a topological space\\ $(X, \mathcalli{T})$ as well as some $x \in X$, we write $\mathscr{N}_x$ to denote the collection of neighborhoods of $x$. Also, we say a \udefine{local base of neighborhoods of $x$} is a collection $\mathscr{B} \subseteq \mathscr{N}_x$ such that for all $N \in \mathscr{N}_x$ there exists $E \in \mathscr{B}$ with $E \subseteq N$.\newpage
 \begin{myIndent}\color{red}\fontsize{12}{14}\selectfont
@@ -4696,7 +4696,7 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 
 \hTwo After going to office hours, I was made aware that there was a theorem from a class I skipped that I didn't take notes on that I really need here. So I shall deal with that now.\retTwo
 
-\exTwo\ul{Theorem:} \hypertarget{Noetherian Rings allow prime factorization of ideals}{Let} $A$ be a nontrivial Noetherian ring.
+\exTwo\ul{Theorem:} \hypertarget{Noetherian rings have finitely many minimal primes}{Let} $A$ be a nontrivial Noetherian ring.
 \begin{enumerate}
 	\item[1.] We can write $0 = P_1 \cdots P_n$ as a product of prime ideals (where not all $P_i$ are\\ necessarily distinct).
 	\begin{myIndent}\exThreeP
@@ -4717,11 +4717,9 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 			\end{myIndent}
 		\end{myIndent}
 
-		By the maximality of $I$ in $S$, we know that $J_1, J_2 \notin S$. Hence, we can write\\ $J_1 = P_1\cdots P_k$ and $J_2 = Q_1 \cdots Q_\ell$ as products of prime ideals. In turn, we know that $(P_1 \cdots P_k)(Q_1 \cdots Q_\ell) = J_1J_2 \subseteq I$. And this contradicts $I$ doesn't contain a product of primes.
+		By the maximality of $I$ in $S$, we know that $J_1, J_2 \notin S$. Hence, we can write\\ $J_1 = P_1\cdots P_k$ and $J_2 = Q_1 \cdots Q_\ell$ as products of prime ideals. In turn, we know that $(P_1 \cdots P_k)(Q_1 \cdots Q_\ell) = J_1J_2 \subseteq I$. And this contradicts $I$ doesn't contain a product of primes.\newpage
 
-		\begin{myIndent}\myComment
-			Remark 1: Given any proper ideal $J \lhd A$ we can apply this result to the ring $A/J$ to write $J$ as a product of prime ideals.\newpage
-			
+		\begin{myIndent}\myComment	
 			Remark 2: Something I want to quickly mention is that given ideals\\ $P_1, \ldots, P_k$, we define the product $P_1 \cdots P_k$ to be the ideal:
 			
 			{\centering$\{\sum_{i=1}^n (\prod_{j=1}^k p_{j,i}) : n \in \mathbb{N}_{>0} \text{ and } p_{j,i} \in P_j \text{ for all } i, j\}$.\retTwo\par}
@@ -4739,6 +4737,8 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 			\begin{myIndent}
 				The intersection over any \textit{de}scending chain of prime ideals in a ring will be another prime ideal. Hence, given any prime ideal $P$ we can apply Zorn's lemma on the poset of prime ideals contained in $P$ ordered by reverse inclusion. This poset is nonempty since it contains $P$. Also, every chain has an upper bound due to the comment about intersections. I am stretched for time so I won't prove this.\retTwo
 			\end{myIndent}
+
+			Another side note is that if $J \lhd A$ is a proper ideal, then we can apply this lemma to show that $A/J$ has only finitely many minimal primes. In other words, there are only finitely many minimal primes over $J$.\retTwo
 		\end{myIndent}
 	\end{myIndent}
 \end{enumerate}
@@ -4784,7 +4784,7 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 
 	Also note that because $P$ is a maximal ideal, we know that $\{P\} = V(P)$ is a closed set in $\Spec(A)$. Hence, by the continuty of $\phi^*$, we know that $\Max(B)$ must be a closed set in $\Spec(B)$. Or in other words, there must exist some ideal $I \lhd B$ such that $\Max(B) = V(I)$.\retTwo
 
-	To finish off, since every prime ideal containing $I$ is maximal, we can conclude that $B/I$ is ring with Krull dimension $0$. In other words, every prime ideal of $B/I$ is both a maximal ideal and a minimal prime ideal. Also note that $B/I$ is Noetherian because $B$ is. Hence, by the theorem on the prior page, $B/I$ only has finitely many prime ideals. In turn, this also proves that $\Max(B)$ is finite, which is what we wanted. $\blacksquare$
+	To finish off, since every prime ideal containing $I$ is maximal, we can conclude that $B/I$ is a ring with Krull dimension $0$. In other words, every prime ideal of $B/I$ is both a maximal ideal and a minimal prime ideal. Also note that $B/I$ is Noetherian because $B$ is. Hence, by the theorem on the prior page, $B/I$ only has finitely many prime ideals. In turn, this also proves that $\Max(B)$ is finite, which is what we wanted. $\blacksquare$
 
 	\begin{myIndent}\myComment
 		\hypertarget{page 901 Artinian ring cameo}{As} a side note, a commutative unital Noetherian ring with Krull dimension $0$ is called an \udefine{Artinian ring}. And now I actually know how one would come across one that isn't just a field.\newpage
@@ -6174,7 +6174,7 @@ Here are a few important consequences of Noether normalization:\retTwo
 
 Let $A$ be a ring. The \udefine{Jacobson radical} of $A$ is $J(A) = \bigcap_{P \in \Max(A)} P$. Clearly\\ $\Nil(A) = \bigcap_{P \in \Spec(A)}P \subseteq \bigcap_{P \in \Max(A)}P = J(A)$. Usually this containment will be\\ proper but in a special class of rings we have that $J(A) = \Nil(A)$.\retTwo
 
-A ring $A$ is \udefine{Jacobson} is every prime ideal $P \lhd A$ is an intersection of maximal ideals.\newpage
+A ring $A$ is \udefine{Jacobson} if every prime ideal $P \lhd A$ is an intersection of maximal ideals.\newpage
 
 \exTwo\ul{Proposition (Algebraic Weak Nullstellensatz):} \hypertarget{200c Algebraic Weak Nullstellensatz}{Let} $A$ be any affine $k$-algebra. Then $A$ is a Jacobson ring.
 \begin{myIndent}\exThreeP
@@ -6230,7 +6230,7 @@ Conversely, let $X \subseteq \mathbb{A}^n$ and define the ideal:
 \hTwo Our next goal will be to establish some facts about the functions:
 % https://q.uiver.app/#q=WzAsMixbMCwwLCJcXG1hdGhjYWx7UH0oXFxtYXRoYmJ7QX1ebikiXSxbMiwwLCJcXG1hdGhybXtJZGVhbHN9KEIpIl0sWzAsMSwiWihcXGNkb3QpIiwwLHsib2Zmc2V0IjotM31dLFsxLDAsIkkoXFxjZG90KSIsMCx7Im9mZnNldCI6LTN9XV0=
 \[\begin{tikzcd}
-	{\mathcal{P}(\mathbb{A}^n)} && {\mathcalli{P}(B)}
+	{\mathcal{P}(\mathbb{A}^n)} && {\mathcal{P}(B)}
 	\arrow["{I(\cdot)}", shift left=3, from=1-1, to=1-3]
 	\arrow["{Z(\cdot)}", shift left=3, from=1-3, to=1-1]
 \end{tikzcd}\]
@@ -6351,13 +6351,11 @@ as well as individual points $\{(a_1, \ldots, a_n)\}$.\newpage
 
 \begin{myIndent}\pracTwo
 	Why?\\
-	We can write $F = V(J) \cap \Max(k[x, y])$ for some $J \lhd k[x, y]$. But now since $k[x, y]$ is a Noetherian ring, we can find prime ideals $Q_1, \ldots, Q_n$ (not all necessarily distinct) such that $J = Q_1 \cdots Q_n$.
-	\begin{myIndent}\color{VioletRed}
-		Proof:\\
-		$k[x, y]$ being Noetherian implies that $k[x,y]/J$ is as well. Thus, we can apply\\ the theorem on \inLinkRap{Noetherian Rings allow prime factorization of ideals}{page 900} followed by the ideal correspondance theorem to get\\ the factorization we want.\retTwo
-	\end{myIndent}
+	If $F = \emptyset$ then it is trivially a finite union of zero irreducible curves. So, we can now assume that $F \neq \emptyset$.\retTwo
 
-	But now $V(J) = \bigcup_{i=1}^n V(Q_j)$. Also since $F \neq \mathbb{A}^2 \cong \Max(k[x, y])$, we know that $J \neq \{0\}$. In turn, we can't have that $Q_i = \{0\}$ for any $i$. Hence, we now just apply the prior proposition in order to describe what $V(Q_i) \cap \Max(k[x, y])$ looks like for each $i$.\retTwo
+	Next, note that $F = V(J) \cap \Max(k[x, y])$ for some $J \lhd k[x, y]$. And importantly since $F \neq \emptyset$, we know that $J \neq k[x, y]$. In other words, $J$ is a proper ideal of $k[x, y]$. But now since $k[x, y]$ is a Noetherian ring, we know that there are only finitely many minimal primes $Q_1, \ldots, Q_n$ over $J$ (see \inLinkRap{Noetherian rings have finitely many minimal primes}{page 900}). And then, we can see that $V(J) = \bigcup_{i=1}^n V(Q_i)$.\retTwo
+
+	Since $F \neq \mathbb{A}^2$, we know none of the minimal primes over $J$ can be the zero ideal. Hence, we now can just apply the prior prosition in order to describe what $V(Q_i) \cap \Max(k[x, y])$ looks like for each $i$.\retTwo
 \end{myIndent}
 
 \mySepTwo
@@ -6366,7 +6364,7 @@ as well as individual points $\{(a_1, \ldots, a_n)\}$.\newpage
 
 \exTwo\ul{Proposition:} Given $J \lhd B$, we have that:
 
-{\centering$I(Z(J)) = \sqrt{J}$ ($ = \bigcap_{P \in V(J)} P = \{f \in B : f^n \in J \text{ for some } n \in \mathbb{Z}_{\geq 0}\}$).\retTwo\par}
+{\centering$I(Z(J)) = \sqrt{J}\phantom{a}$ ($ = \bigcap_{P \in V(J)} P = \{f \in B : f^n \in J \text{ for some } n \in \mathbb{Z}_{\geq 0}\}$).\retTwo\par}
 
 \begin{myIndent}\exThreeP
 	Proof:\\
@@ -6401,12 +6399,8 @@ Let $M$ be an $A$-module. Then recall that $\Ann_A(M) \lhd A$. Also note that $M
 \end{myIndent}
 
 We define the \udefine{Krull dimension} of $M$ to be $\dim(M) = \dim(A/\Ann_A(M))$.
-\begin{myIndent}\pracTwo
-	After all, if $a_1 - a_2 \in \Ann_A(M)$ then $(a_1  - a_2)m  = 0$. Hence $a_1 m = a_2 m $.\newpage
-\end{myIndent}
-
 \begin{myIndent}\myComment
-	Note: If $M$ is finitely generated then $\dim(M)$ is equal to the maximal chain length of\\ $\supp(M) \subseteq \Spec(A)$. (See \inLinkRap{placeholder}{pages 672-673}).\retTwo
+	Note: If $M$ is finitely generated then $\dim(M)$ is equal to the maximal chain length of\\ $\supp(M) \subseteq \Spec(A)$. (See \inLinkRap{placeholder}{pages 672-673}).\newpage
 \end{myIndent}
 
 Let $M$ be an $A$-module. An \udefine{associated prime} of $M$ is a prime ideal $P$ of $A$ such that\\ $P = \Ann_A(m)$ for some $m \in M$ with $m \neq 0$. The set of all associated primes is $\Ass(M)$.\\ [-8pt]
@@ -6557,7 +6551,7 @@ If $A$ is also Noetherian then we can also say $\mathrm{Min}(A) \subseteq \Ass(A
 	Why?\\
 	If $A$ is a domain, then trivially the only minimal prime (which is also the only associated prime) is $\{0\}$. Hence, we'll now suppose $A$ is not a domain.\retTwo
 
-	By the theorem on \inLinkRap{Noetherian Rings allow prime factorization of ideals}{pages 899-900}, we can find a bunch of primes $P_1,  \ldots,  P_n$ with\\ $0 = P_1 \cdots P_n$. Without loss of generality, we can assume $n$ is minimal (and since $A$ is not an integral domain, we know $n \geq 2$).\retTwo
+	By the theorem on \inLinkRap{Noetherian rings have finitely many minimal primes}{pages 899-900}, we can find a bunch of primes $P_1,  \ldots,  P_n$ with\\ $0 = P_1 \cdots P_n$. Without loss of generality, we can assume $n$ is minimal (and since $A$ is not an integral domain, we know $n \geq 2$).\retTwo
 
 	But now by the minimality of $n$ we know $\prod\limits_{\substack{i=1 \\ i \neq k}}^n P_i \neq \{0\}$ for any $k \in \{1, \ldots, n\}$.\retTwo
 
@@ -6830,7 +6824,7 @@ I'm going to move onto doing homework now.\retTwo
 	Suppose $1 - ab$ is not a unit for some $b \in A$. In that case, $\langle 1 - ab\rangle$ is a proper ideal of $A$ and so there exists a maximal ideal $M \in \Max(A)$ with $1 - ab \in M$. But now it follows that $1 + M = ab + M$. Since $1 \notin M$, we thus know $ab \notin M$ and in turn that $a \notin M$. This proves that $a \notin J(A)$.\retTwo
 
 	$(\Longleftarrow)$\\
-	Suppose $a \notin J(A)$. Then there exists $M \in \Max(A)$ such that $a \notin M$. Yet then since $\langle a, M\rangle$ is an ideal properly containing the maximal ideal $M$, we must have that $A = \langle a, M\rangle$. Hence there exists $b \in A$ and $m \in M$ with $ab + m = 1$. Or in other words, $1 - ab = m \in M$. $\blacksquare$\retTwo
+	Suppose $a \notin J(A)$. Then there exists $M \in \Max(A)$ such that $a \notin M$. Yet then since $\langle a, M\rangle$ is an ideal properly containing the maximal ideal $M$, we must have that $A = \langle a, M\rangle$. Hence there exists $b \in A$ and $m \in M$ with $ab + m = 1$. Or in other words, $1 - ab = m \in M$. So, $1 - ab$ is not a unit in $A$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \Hstatement\blab{Set 4 Problem 4:} For any ring $A$, show that $J(A[x]) = \Nil(A[x])$.
@@ -6892,7 +6886,7 @@ A closed set $Z \subseteq X$ is called \udefine{irreducible} if one cannot write
 
 		And if we keep going without ever having the first case happening, we will eventually get that either $F_1 \cap Z_{n-1} = F_1$ or $F_1 \cap Z_{n} = F_1$. Hence, we are guarenteed to have that $F_1 \cap Z_j = F_1$ for some $Z_j$.\retTwo
 
-		But now since $Z_j \subseteq Z = \bigcup_{i=1}^n F_i$, we know that $Z_j \cap F_1$ and $Z_j \cap (\bigcup_{i=2}^m F_i)$ are both closed subsets of $Z_j$. By the irreducibility of $Z_j$, we must have that:
+		Next, since $Z_j \subseteq Z = \bigcup_{i=1}^n F_i$, we know that $Z_j \cap F_1$ and $Z_j \cap (\bigcup_{i=2}^m F_i)$ are both closed subsets of $Z_j$ whose union is all of $Z_j$ By the irreducibility of $Z_j$, we must have that:
 		
 		{\centering either $Z_j \cap F_1 = Z_j$ or $Z_j \cap (\bigcup_{i=2}^m F_i) = Z_j$.\retTwo\par}
 
@@ -6902,7 +6896,7 @@ A closed set $Z \subseteq X$ is called \udefine{irreducible} if one cannot write
 
 		\hspace{0.2em}\mySepFour 
 
-		Now that we've shown that ever $F_i$ is equal to some $Z_j$, the requirement that no $F_{i_1}$ is contained in another $F_{i_2}$ forces the assignment of $F_i$ to their corresponding $Z_j$ to be injective. And since $m \geq n$, we also must have by the pigeonhole principle that this assignment is surjective. This finishes the proof. $\blacksquare$\retTwo
+		Now that we've shown that every $F_i$ is equal to some $Z_j$, the requirement that no $F_{i_1}$ is contained in another $F_{i_2}$ forces the assignment of $F_i$ to their corresponding $Z_j$ to be injective. And since $m \geq n$, we also must have by the pigeonhole principle that this assignment is surjective. This finishes the proof. $\blacksquare$\retTwo
 
 		\begin{myIndent}\myComment
 			The $Z_i$ are called the \udefine{irreducible components} of $Z$.\retTwo
@@ -6913,7 +6907,7 @@ A closed set $Z \subseteq X$ is called \udefine{irreducible} if one cannot write
 	\begin{myIndent}\HexOne
 		Let $\{V(I_k)\}_{k \in \mathbb{N}}$ be a descending chain of closed sets in $\Spec(A)$.\retTwo
 
-		Note that for any ideal $I \lhd A$ we have that $V(I) = V(\sqrt{I})$. After all, since $I \subseteq \sqrt{I}$ we know that $V(\sqrt{I}) \subseteq V(I)$. On the other hand, $V(I) \subseteq V(\bigcap_{P \in V(I)} P) = V(\sqrt{I})$. Due to this observation, we can replace each ideal $I_n$ defining our closed sets with $\sqrt{I_n}$.\retTwo
+		Note that for any ideal $I \lhd A$ we have that $V(I) = V(\sqrt{I})$. After all, since $I \subseteq \sqrt{I}$ we know that $V(\sqrt{I}) \subseteq V(I)$. Meanwhile, if $P \in V(I)$ then $P \supseteq \bigcap_{Q \in V(I)}Q = \sqrt{I}$. So $P \in V(\sqrt{I})$, thus proving that $V(I) \subseteq V(\sqrt{I})$. Due to this observation, we can replace each ideal $I_n$ defining our closed sets with $\sqrt{I_n}$.\retTwo
 
 		Next note that if $V(\sqrt{I}) \subseteq V(\sqrt{J})$ then $\sqrt{J} = \bigcap_{P \in V(J)} P \subseteq \bigcap_{P \in V(I)} P = \sqrt{I}$.\retTwo
 
@@ -6930,9 +6924,9 @@ A closed set $Z \subseteq X$ is called \udefine{irreducible} if one cannot write
 			\end{myIndent}
 		\end{myIndent}
 
-		Now for every prime $P$ containing $I$ there is a minimal prime $P_i/I$ with $P_i/I \subseteq P/I$. Hence, we can conclude that $I \subseteq P_i \subseteq P$. Or in other words $\bigcup_{i=1}^n V(P_i) \subseteq V(I)$. The other containment is obvious.\retTwo
+		Now for every prime $P$ containing $I$ there is a minimal prime $P_i/I$ with $P_i/I \subseteq P/I$. Hence, we can conclude that $I \subseteq P_i \subseteq P$. Or in other words $V(I) \subseteq \bigcup_{i=1}^n V(P_i)$. The other containment is obvious.\retTwo
 
-		Next note that $P_i \notin V(P_j)$ unless $P_i = P_j$. This is because since $P_i/I$ is a minimal prime in $A/I$ we have that $I \subseteq P_j \subseteq P_I \Longrightarrow P_i = P_j$. As a result, we can see that\newpage $V(P_i) \not\subseteq V(P_j)$ if $i \neq j$. This finishes showing what we wanted.\retTwo
+		Next note that $P_i \notin V(P_j)$ unless $P_i = P_j$. This is because since $P_i/I$ is a minimal prime in $A/I$ we have that $I \subseteq P_j \subseteq P_i \Longrightarrow P_i = P_j$. As a result, we can see that\newpage $V(P_i) \not\subseteq V(P_j)$ if $i \neq j$. This finishes showing what we wanted.\retTwo
 	\end{myIndent}
 
 	\item[(d)] Give an example of a ring $A$ such that $\Spec(A)$ is a Noetherian space but $A$ is not a\\ Noetherian ring.
@@ -7793,7 +7787,7 @@ My goal for maybe today and tomorrow is to type all my remaining math 200c notes
 
 	{\centering $\Ass_A(\frac{A}{I}) \subseteq \Ass_A(\bigoplus_{j=1}^n \frac{A}{Q_j}) = \bigcup_{j=1}^n \Ass_A(\frac{A}{Q_j}) = \bigcup_{j=1}^n \{P_j\}$. \retTwo\par}
 
-	Hence, $\Ass_A(A/I) \subseteq \{P_1, \ldots, P_n\}$. As for the other inclusion, consider any fixed $P_i$\\ and look at $J_i = \bigcap_{j \neq i} Q_j$. Note that $\frac{J_i}{I} = \frac{J_i}{J_i \cap Q_i} \cong \frac{J_i + Q_i}{Q_i}$ is a nonzero submodule of\\ $A/Q_i$. So, we know that $\emptyset \subsetneqq \Ass_A(J_i/I) \subseteq \Ass_A(A/Q_i) = \{P_i\}$. It follows that\\ $J_i/I$ has $P_i$ as an associate prime. So there is a submodule of $J_i/I \subseteq A/I$ isomorphic\\ to $A/P_i$. And this proves that $P_i \in \Ass_A(A/I)$. $\blacksquare$\retTwo
+	Hence, $\Ass_A(A/I) \subseteq \{P_1, \ldots, P_n\}$. As for the other inclusion, consider any fixed $P_i$\\ and look at $J_i = \bigcap_{j \neq i} Q_j$. Note that $\frac{J_i}{I} = \frac{J_i}{J_i \cap Q_i} \cong \frac{J_i + Q_i}{Q_i}$ is a nonzero submodule of\\ $A/Q_i$. So, we know that $\emptyset \subsetneqq \Ass_A(J_i/I) \subseteq \Ass_A(A/Q_i) = \{P_i\}$. It follows that\\ $J_i/I$ has $P_i$ as an associate prime. So, there is a submodule of $J_i/I \subseteq A/I$ isomorphic\\ to $A/P_i$. And this proves that $P_i \in \Ass_A(A/I)$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo Some relevant homework problems are as follows:\retTwo
@@ -7842,15 +7836,17 @@ My goal for maybe today and tomorrow is to type all my remaining math 200c notes
 \blab{Set 5 Problem 2(b):} Suppose $A$ is a Noetherian domain. Then show that $A$ is a UFD if and only if for every principal ideal $\langle f\rangle$ in $A$, every prime ideal minimal over $\langle f\rangle$ is also principal.
 \begin{myIndent}\HexOne
 	$(\Longrightarrow)$\\
-	Suppose $A$ is a UFD. Then we can write $f = up_1^{e_1}\cdots p_n^{e_n}$ where each $p_i$ is a pairwise\\ nonassociate prime and each $e_i$ is a positive integer. But in turn, we know that\\ $\langle f\rangle = \prod_{i=1}^n \prod_{j=1}^{e_i}\langle p_i\rangle$ where the latter is a product of prime ideals. Hence, the minimal prime ideals over $\langle f\rangle$ must be contained among the $\langle p_i\rangle$. And this proves that every prime ideal minimal over $\langle f\rangle$ is principal.
-	\begin{myIndent}\HexTwoP
-		As a side note none of the reasoning in this direction required $A$ to be Noetherian.\retTwo
+	Suppose $A$ is a UFD. Then we can write $f = up_1^{e_1} \cdots p_n^{e_n}$ where each $p_i$ is a pairwise\\ nonassociate prime, each $e_i$ is a positive integer, and $u$ is a unit. But then in turn, we know $\langle f\rangle = \prod_{i=1}^n\langle p_i^{e_i}\rangle = \prod_{i=1}^n (\prod_{j=1}^{e_i} \langle p_i\rangle)$ (see \inLinkRap{placeholder}{pages 594-595}). So, we've written $\langle f\rangle$ as a product of prime ideals $P_1 \cdots P_m$ which are all principal.\retTwo
+
+	Now to finish off, just use identical reasoning as on \inLinkRap{Noetherian rings have finitely many minimal primes}{page 900} to show that any minimal prime $Q$ over $\langle f\rangle$ is one of those $P_j$.
+	\begin{myIndent}\exThreeP
+		As a side note, none of the reasoning in this direction required $A$ to be Noetherian.\retTwo
 	\end{myIndent}
 
 	$(\Longleftarrow)$\\
 	Note that because $A$ is a Noetherian domain, it suffices to prove that every irreducible element of $A$ is prime in order to prove that $A$ is a UFD. (See the theorem on \inLinkRap{placeholder}{page 486} as well as the lemma on \inLinkRap{placeholder}{pages 488-489}).\retTwo
 
-	Fortunately, note that $p$ is an irreducible element of $A$ if and only if $\langle p\rangle \neq A$,\\ $\langle p \rangle \neq \{0\}$, and $\langle p\rangle$ is maximal among principal proper ideals. But then since every prime ideal minimal over $\langle p\rangle$ is principal, we in turn must have that every minimal prime ideal over $\langle p\rangle$ is contained in $\langle p\rangle$. Since $\langle p\rangle$ does have a minimal prime over it (since $A/\langle p\rangle$ is nontrivial), the only way this makes sense is if $\langle p\rangle$ is the unique minimal prime ideal over itself. And now we've proven that $p$ is prime. $\blacksquare$\retTwo
+	Fortunately, note that $p$ is an irreducible element of $A$ if and only if $\langle p\rangle \neq A$,\\ $\langle p \rangle \neq \{0\}$, and $\langle p\rangle$ is maximal among principal proper ideals. But then since every prime ideal minimal over $\langle p\rangle$ is principal, and also because we know such minimal primes exist (since $A/\langle p \rangle$ is nontrivial), we in turn must have that $\langle p\rangle$ is the minimal prime ideal over itself. And now we've proven that $p$ is prime. $\blacksquare$\retTwo
 \end{myIndent}
 
 \hTwo\mySepTwo
@@ -7861,7 +7857,7 @@ We say a ring $A$ is \udefine{Artinian} if it has the descending chain condition
 
 More generally, we say an $A$-module $M$ is \udefine{Artinian} if it has the descending chain condition on submodules. Note that $A$ is an Artinian $A$-module iff $A$ is an Artinian ring.\retTwo
 
-\exTwo\ul{Proposition:} If % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV5cXHByaW1lIl0sWzIsMCwiTSJdLFszLDAsIk1eXFxwcHJpbWUiXSxbNCwwLCJcXHswXFx9Il0sWzAsMV0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XV0=
+\exTwo\ul{Proposition:} \hypertarget{Page 978 proposition}{If} % https://q.uiver.app/#q=WzAsNSxbMCwwLCJcXHswXFx9Il0sWzEsMCwiTV5cXHByaW1lIl0sWzIsMCwiTSJdLFszLDAsIk1eXFxwcHJpbWUiXSxbNCwwLCJcXHswXFx9Il0sWzAsMV0sWzEsMiwiIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XV0=
 $\begin{tikzcd}
 	{\{0\}} & {M^\prime} & M & {M^\pprime} & {\{0\}}
 	\arrow[from=1-1, to=1-2]
@@ -7871,74 +7867,154 @@ $\begin{tikzcd}
 \end{tikzcd}$ is an S.E.S. of\\ $A$-modules, then $M$ is Artinian if and only if $M^\prime$ and $M^\pprime$ are Artinian.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	To start off, by applying an isomorphism of short exact sequences we can without loss of generality  assume $M^\prime$ is a submodule $N$ of $M$ and $M^\pprime = M/N$. Then you may note that I already showed on \inLinkRap{placeholder}{pages 570-571} that this proposition holds if we replace the word "Artinian" with "Noetherian". As it happens, we can basically readapt the proof from then almost verbatim. I don't care to write the details here. $\blacksquare$\retTwo
+	To start off, by applying an isomorphism of short exact sequences we can without loss of generality  assume $M^\prime$ is a submodule $N$ of $M$ and $M^\pprime = M/N$. Then you may note that I already showed on \inLinkRap{placeholder}{pages 570-571} that this proposition holds if we replace the word "Artinian" with "Noetherian". As it happens, we can basically readapt the proof from then almost verbatim. I don't care to write the details here. $\blacksquare$\newpage
 \end{myIndent}
 
+\exTwo\ul{Lemma:} An Artinian domain $A$ is a field.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider any $x \in A - \{0\}$ and note that $\langle x\rangle \supseteq \langle x^2\rangle \supseteq \cdots$ is a descending chain of ideals. So, there must exists $n$ such that $\langle x^n\rangle = \langle x^{n+1}\rangle$. But then $x^n = ux^{n+1}$ where $u$ is a unit. Since we are in a domain, we can equivalently say that $1 = ux$. So, $x$ is a unit. $\blacksquare$\retTwo
+\end{myIndent}
 
+\ul{Proposition:} \hypertarget{Page 979 proposition}{Let} $A$ be an Artinian ring.
+\begin{enumerate}
+	\item[1.] Every prime ideal of $A$ is maximal. Hence, $\dim(A) = 0$.
+	\item[2.] There are finitely many maximal ideals.
+	
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Firstly, note that if $P$ is prime then $A/P$ is an artinian domain. So by the prior lemma, we have that $A/P$ is a field. And that implies that $P$ is a maximal ideal.\retTwo
 
+		Secondly, suppose to the contrary that $P_1, P_2, \ldots$ was an infinite list of distinct max ideals of $A$. Then $P_1 \supseteq P_1 \cap P_2 \subseteq P_1 \cap P_2 \cap P_3 \supseteq \cdots$ would be a descending chain of ideals. Hence, we must have that $P_1 \cap \cdots \cap P_{n+1} = P_1 \cap \cdots \cap P_n$ for some $n$. Yet, this would imply that $P_1\cdots P_n \subseteq P_1 \cap \cdots \cap P_n \subseteq P_{n+1}$. Thus by the definition of a prime ideal, we must have that $P_i \subseteq P_{n+1}$ for some $i \leq n$. Since $P_i$ is a maximal ideal though, this in turn implies $P_i = P_{n+1}$. And this contradicts that each prime in our list was distinct. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
 
+\hTwo One consequence of the last proposition is that the Jacobson radical $J(A)$ and nilradical $\Nil(A)$ of an Artinian ring $A$ agree with each other.\retTwo
 
+\hypertarget{Pages 979-980 reasoning}{Also} let $J \coloneqq J(A) = P_1 \cap \cdots \cap P_n$ where the $P_i$ are the max ideals of $A$. Then since the $P_i$ are pairwise coprime (i.e. $P_i + P_j = A$ for all $i \neq j$), we can conclude by CRT that $P_1 \cdots P_n = P_1 \cap \cdots \cap P_n$ and $\frac{A}{J} = \frac{A}{P_1 \cap \cdots \cap P_n} \cong \frac{A}{P_1} \oplus \cdots \oplus \frac{A}{P_n} \cong K_1 \times \cdots \times K_n$ where each $K_i$ is a field.\retTwo
 
+In turn, we have that every $\frac{A}{J}$-module has the form $V_1 \oplus \cdots \oplus V_n$ where each $V_i$ is a\\ $K_i$-vector space.
+\begin{myIndent}\pracTwo
+	Why?\\
+	For each $i$ let $e_i \in K_1 \times \cdots \times K_n$ be the element $(0, \ldots, 0, \underbrace{1}_{i\text{th. } element}, 0, \ldots, 0)$.\retTwo
 
+	Next, suppose $M$ is an arbitrary $\frac{A}{J}$-module and let $V_i = e_i M = \{e_i x : x \in M\}$ for each $i$. Note that $\sum_{i=1}^n e_i = 1_{A/J}$. Hence, every $x \in M$ can be written as $\sum_{i=1}^n e_i x \in \sum_{i=1}^n V_i$. Going a step further, note that $e_i^2 = e_i$ for all $i$ and that $e_i e_j = 0_{A/J}$ for all $i \neq j$. Therefore, suppose $0 = \sum_{i=1}^n e_i y_i$ where $y_1, \ldots, y_n \in M$. Then we know that $e_i y_i = 0$ for each $i$. After all, $e_i y_i = -\sum_{j \neq i}e_j y_j$. In turn:
 
+	{\centering $e_i y_i = e_i^2 y_i = - \sum_{j \neq i}e_ie_j y_j = 0$ \retTwo\par}
 
+	This finishes showing that $M = V_1 \oplus \cdots \oplus V_n$ as an internal direct sum. And as is also hopefully clear, each $V_i$ can be viewed as $K_i$-vector space where scalar multiplication is defined by $c \cdot x = (ce_i) x$.\newpage
+\end{myIndent}
 
+A \udefine{simple} $A$-module $M$ is a nonzero module whose only submodules are $\{0\}$ and $M$ itself. Meanwhile, a \udefine{semisimple} $A$-module is a direct sum of simple $A$-modules. I have some examples below:
 
+\begin{itemize}
+	\item If $A$ is an Artinian ring and $J \coloneqq J(A)$, then the prior reasoning shows that any\\ $\frac{A}{J}$-module is semisimple. After all, we can express the module as $V_1 \oplus \cdots \oplus V_n$ where each $V_i$ is a $K_i$-vector space for some field $K_i$. Then, we just pick a $K_i$-basis for each $V_i$.\retTwo
+	
+	\item Given any nontrivial unital commutative ring $A$, an $A$-module $M$ is simple if and only if it is isomorphic to $A/P$ for some $P \in \Max(A)$.
+	\begin{myIndent}\color{orange}
+		The $\Longleftarrow$ implication is obvious. Meanwhile, suppose $M$ is a simple $A$-module, and let $x \in M - \{0\}$. Then since $M$ is simple, we must have that $Ax = M$. In turn, by considering the map $a \mapsto ax$, we can find some ideal $J \lhd A$ with\\ $\frac{A}{J} \cong M$. Finally, $J$ must be maximal as otherwise $\frac{A}{J}$ wouldn't be a simple\\ module.\retTwo
+	\end{myIndent}
 
+	\item As a side note, the prior bullet point also shows that if $M$ is a semisimple $A$-module then $J(A) \subseteq \Ann_A(M)$. Meanwhile, if $A$ is Artinian, then the first bullet point says that $J(A) \subseteq \Ann_A(M)$ implies that $M$ is semisimple. Thus, for specifically Artinian rings we have that:
+	
+	{\centering An $A$-module $M$ is semisimple if and only if $J(A) \subseteq \Ann_A(M)$.\retTwo\par}
+\end{itemize}
 
+\myComment Remark: Given any commutative unital ring $A$, we trivially have that every simple $A$-module is Artinian. Also, by using the proposition on \inLinkRap{Page 978 proposition}{page 978} we can conclude that any finite direct sum of simple $A$-modules is Artinian.
 
+\hTwo
+\begin{myIndent}\mySepThree\end{myIndent}
 
+\exTwo\ul{Proposition:} Let $A$ be an Artinian ring. Then $J \coloneqq J(A)$ is nilpotent (i.e. $J^n = \{0\}$ for\\ some $n \geq 1$).
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$J \supseteq J^2 \supseteq \cdots$ is a descending chain of ideals. Since $A$ is Artinian, this chain must\\ stabilize. So take $n$ with $J^n = J^{n+1} = \cdots$.\retTwo
 
+	Next, we look at the \udefine{socle series} of $A$. For our purposes, we define:
+	
+	{\centering$\mathrm{soc}^k(A) \coloneqq \{x \in A : J^k x = \{0\}\}$.\retTwo\par}
+	
+	This is easily checked to be an ideal of $A$. Also note that $\{0\} \subseteq \mathrm{soc}^1(A) \subseteq \mathrm{soc}^2(A) \subseteq \cdots$. And due to how we picked $n$ before, we know $\mathrm{soc}^n(A) = \mathrm{soc}^{n+1}(A) = \cdots$.\\ [-9pt]
+	\begin{myIndent}\exPPP
+		For some intuition on why we are doing this, note that the \udefine{socle} of a module $M$ (denoted $\mathrm{soc}(M)$) is defined to be the internal sum of all simple submodules of $M$. Note that this sum is a direct sum.
+		\begin{myIndent}\color{orange}
+			To see, why suppose $\{N_i\}_{i \in I}$ is an indexing of all simple submodules of $M$ (where $N_{i_1} \neq N_{i_2}$ if $i_1 \neq i_2$). Then for any fixed $i^\prime \in I$, as $N_{i^\prime}$ is simple we\newpage know that either:
 
+			{\centering $N_{i^\prime} \cap (\sum_{i \neq i^\prime} N_i) = \{0\}$ or $N_{i^\prime} \cap (\sum_{i \neq i^\prime} N_i) = N_{i^\prime}$.\retTwo\par}
 
+			The latter being true though would imply $N_{i^\prime}$ contains $N_i$ for every $i \neq i^\prime$. And since each of those $N_i$ are nonzero and distinct from $N_{i^\prime}$, this would contradict that $N_{i^\prime}$ is simple. So, we've proven that $N_{i^\prime} \cap (\sum_{i \neq i^\prime} N_i) = \{0\}$ for all $i^\prime$.\retTwo
+		\end{myIndent}
 
+		It follows that the socle of a module $M$ is the "largest" semisimple submodule of $M$ (i.e. the semisimple submodule that contains all other semisimple submodules). This also hints at the reason for the name "socle" (which is French for "foundation" or "base"). {\color{red}[Thus socle is not a proper noun nor from a language that capitalizes all nouns.]}\retTwo
 
+		In the special case of an Artinian ring $A$ where $I \lhd A$ is semisimple iff $JI = \{0\}$,\\ our first definition for $\mathrm{soc}^1(A)$ is merely just using another way of getting the largest semisimple submodule of $A$. Furthermore:
 
+		{\centering\begin{tabular}{l}
+			$J^{k+1}x = \{0\} \iff J^k(Jx) = \{0\} \iff Jx \subseteq \mathrm{soc}^k(A)$\\ [4pt]
+			$\phantom{J^{k+1}x = \{0\} \iff J^k(Jx) = \{0\}} \iff J(x + \mathrm{soc}^k(A)) = \{\mathrm{soc}^k(A)\}$.
+		\end{tabular} \retTwo\par}
 
+		Hence, $\frac{\mathrm{soc}^{k+1}(A)}{\mathrm{soc}^k(A)}$ is the socle of $\frac{A}{\mathrm{soc}^k(A)}$. The claim we are about to make (and in turn the proposition as a whole) is thus akin to saying that $A$ has a filtration where each factor is a semisimple module.\retTwo
+	\end{myIndent}
 
+	We claim that $\mathrm{soc}^n(A) = A$. After all, suppose not. Then $\frac{A}{\mathrm{soc}^n(A)} \neq \{0\}$. Yet we also know that $\frac{A}{\mathrm{soc}^n(A)}$ is Artinian. Hence, the set of nonzero ideals must have a minimal element $I/\mathrm{soc}^n(A)$. Yet now $I/\mathrm{soc}^n(A)$ being simple implies that $J(I/\mathrm{soc}^n(A)) = \{0\}$. So, $I$ properly contains $\mathrm{soc}^n(A)$ and is contained in $\mathrm{soc}^{n+1}(A)$. Yet this contradicts our earlier observation that $\mathrm{soc}^n(A) = \mathrm{soc}^{n+1}(A)$.\retTwo
 
+	Finally, note that $\mathrm{soc}^n(A) = A$ iff $J^nA = \{0\}$ iff $J^n \cdot 1 = J^n = \{0\}$. $\blacksquare$\retTwo
+\end{myIndent}
 
+\exTwo\ul{Theorem:} If $A$ is Artinian then $A$ is also Noetherian.
+\begin{myIndent}\exThreeP
+	Let $J \coloneqq J(A)$. We know that $J^n = \{0\}$ for some positive integer $n$. Therefore, we now consider the filtration:
 
+	{\centering $\{0\} = J^n \subseteq J^{n-1} \subseteq \cdots \subseteq J \subseteq A \eqqcolon J^0$. \retTwo\par}
 
+	By considering short exact sequences, it thus sufices to show that $\frac{J^k}{J^{k+1}}$ is a Noetherian module for all $0 \leq k < n$ in order to prove that $A$ is Noetherian.\retTwo
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\newpage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	Fortunately, for any $k$ we can observe that $\frac{J^k}{J^{k+1}}$ is semisimple since it is annihilated by $J$.\\ [-2pt] Furthermore, we know $\frac{J^k}{J^{k+1}}$ is an Artinian module. Therefore, we must have that $\frac{J^k}{J^{k+1}}$ is a \textit{finite} direct sum of simple $A$-modules.
+	\begin{myIndent}\exPPP
+		(We'd be able to violate that $\frac{J^k}{J^{k+1}}$ is Artinian if $\frac{J^k}{J^{k+1}}$ were an infinite direct sum.)\retTwo
+	\end{myIndent}
+
+	But now we can write $\frac{J^k}{J^{k+1}} = S_1 \oplus S_2 \oplus \cdots \oplus S_m$ where each $S_i$ is a simple module (and thus Noetherian). Also, by doing induction with short exact sequences (see \inLinkRap{placeholder}{page 571}), we know finite direct sums of Noetherian modules are Noetherian. Hence, we've proven that $\frac{J^k}{J^{k+1}}$ is Noetherian. $\blacksquare$\newpage
+\end{myIndent}
+
+\exTwo\ul{Corollary:} $A$ is an Artinian ring if and only if $A$ is Noetherian with $\dim(A) = 0$.
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	This is just the prior theorem as well as the proposition on \inLinkRap{Page 979 proposition}{page 979}.\retTwo
+
+	$(\Longleftarrow)$\\
+	Let $A$ be a Noetherian ring with $\dim(A) = 0$. It suffices to assume $A \neq \{0\}$. Then since Noetherian rings have only finitely many minimal prime ideals and $\dim(A) = 0$ implies that each minimal prime is a maximal ideal, we can conclude $N \coloneqq \Nil(A) = P_1 \cap \cdots \cap P_n$ for some distinct maximal ideals $P_i$.\retTwo
+
+	In turn, by the same reasoning as on \inLinkRap{Pages 979-980 reasoning}{page 979} we can conclude that $A/N$ is isomorphic to a product of fields $K_1 \times \cdots \times K_n$ where $K_i = A/P_i$ for every $i$. Since finite direct sums of Artinian modules are Artinian and each $K_i$ is trivially Artinian, this proves that $A/N$ is an Artinian ring.\retTwo
+
+	Next note that in a Noetherian ring, $N \coloneqq \Nil(A)$ is nilpotent (i.e. $N^m = \{0\}$ for some $m \geq 1$).
+	\begin{myIndent}\exPPP
+		To see why, note that if $A$ is trivial then this fact is trivial. Meanwhile, if $A$ is not trivial then we can write $\{0\} = P_1 \cdots P_m$ where each $P_i \in \Spec(A)$. (See \inLinkRap{Noetherian rings have finitely many minimal primes}{page 899}.) In turn, as $N \subseteq P_i$ for each $i$, we can conclude that:
+		
+		{\centering$\{0\} \subseteq N^m \subseteq P_1 \cdots P_m = \{0\} \Longrightarrow N^m = \{0\}$.\retTwo\par}
+	\end{myIndent}
+
+	Therefore, we can consider the filtration $0 = N^m \subseteq N^{m-1} \subseteq \cdots \subseteq N \subseteq A$. Since we already know that $A/N$ is Artinian, it now suffices to show that $\frac{N^k}{N^{k+1}}$ is an Artinian module for every $1 \leq k < m$ in order to prove that $A$ is Artinian.\retTwo
+
+	Fortunately, note that $\frac{N^k}{N^{k+1}}$ is Noetherian and an $A/N$-module. Since\\ $A/N \cong K_1 \times \cdots \times K_n$ where each $K_i$ is a field, we can thus conclude like on\\ \inLinkRap{Pages 979-980 reasoning}{page 979} that $\frac{N^k}{N^{k+1}} \cong V_1 \oplus \cdots \oplus V_n$ where each $V_i$ is a $K_i$-vector space. Also each $V_i$ must be finite-dimensioned or else we'd able to contradict the Noetherian-ness of $\frac{N^k}{N^{k+1}}$. So, we can conclude that $\frac{N^k}{N^{k+1}}$ is a finitely generated semisimple $A$-module. Hence $\frac{N^k}{N^{k+1}}$ is Artinian. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo With that we have successfully unified Rogalski's definition to the one I mentioned\\ off-handedly on \inLinkRap{page 901 Artinian ring cameo}{page 901}. I have one more theorem from lecture on the topic of Artinian rings as well as a homework exercise.\retTwo
+
+\exTwo\ul{Theorem:} Let $A$ be an Artinian ring. Then $A \cong A_1 \times \cdots \times A_n$ where each $A_i$ is a local and Artinian ring.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $P_1, \ldots, P_n$ be the distinct max ideals of $A$. Then:
+	
+	{\centering$J \coloneqq J(A) = P_1 \cap \cdots \cap P_n = P_1 \cdots P_n$ by CRT.\retTwo\par}
+	
+	Also $J^m = \{0\}$ for some $m$. Hence, $P_1^mP_2^m \cdots P_n^m = \{0\}$.\newpage
+
+	But now note that the $P_i^m$ are pairwise coprime. To see why, note by the definition of a prime ideal that if $P \in \Spec(A)$ then $P_i^m \subseteq P \iff P_i \subseteq P$. But since $P_i$ is maximal, we in turn know that the only prime ideal containing $P_i^m$ is $P_i$ itself. Consequently, suppose $i \neq j$. Then $P_i^m + P_j^m$ is not contained in any maximal ideal. So, $P_i^m + P_j^m$ must be the entire ring.\retTwo
+
+	By CRT we can conclude that $\{0\} = P_1^m \cap \cdots \cap P_n^m$ and $A \cong \frac{A}{\{0\}} \cong \frac{A}{P_1^m} \times \cdots \times \frac{A}{P_n^m}$. Also, each $A/P_i^m$ is local with a unique max ideal $P_i/P_i^m$. $\blacksquare$\retTwo
+\end{myIndent}
 
 \Hstatement\blab{Set 5 Problem 3:} Let $A$ be an affine $k$-algebra for some field $k$. Prove that the following are equivalent.
 \begin{enumerate}
@@ -7947,12 +8023,14 @@ $\begin{tikzcd}
 \end{enumerate}
 
 \begin{myIndent}\HexOne
-	Firstly, $A$ is automatically Noetherian. Hence, $A$ is an Artinian ring if and only if the Krull dimension of $A$ is $0$. Yet also by the Noether normalization theorem, we have that the Krull dimension of $A$ being $0$ would imply that $A$ is finitely generated $k$-vector space. This proves that the direction: (ii $\implies$ i). Conversely, if the Krull dimension of $A$ is greater than $0$, then Noether normalization tells us that $A$ contains a polynomial ring which has infinite $k$-dimension. This proves the contrapositive of (i $\implies$ ii). $\blacksquare$\retTwo
+	Firstly, $A$ is automatically Noetherian. Hence, $A$ is an Artinian ring if and only if the Krull dimension of $A$ is $0$. Yet also by the Noether normalization theorem, we have that the Krull dimension of $A$ being $0$ would imply that $A$ is finitely generated $k$-vector space. This proves the direction (ii $\implies$ i). Conversely, if the Krull dimension of $A$ is greater than $0$, then Noether normalization tells us that $A$ contains a polynomial ring which has infinite $k$-dimension. This proves the contrapositive of (i $\implies$ ii). $\blacksquare$\retTwo
 \end{myIndent}
 
-\newpage
+\hTwo\mySepTwo
 
-\Hstatement\blab{Set 5 Problem 4:} In lecture we will only discuss discrete valuation rings, but general valuation rings are also interesting. An integral domain $A$ with field of fractions $K$ is a \udefine{valuation ring} if for all $x \in K^\times$, either $x \in A$ or $x^{-1} \in A$.\retTwo
+The next major topic of the class is discrete valuation rings. A lot of what there is to cover can be easily concluded from the following two exercises. So I shall do those first.\retTwo
+
+\Hstatement\blab{Set 5 Problem 4:} An integral domain $A$ with field of fractions $K$ is a \udefine{valuation ring} if for all $x \in K^\times$, either $x \in A$ or $x^{-1} \in A$.\retTwo
 
 An ordered abelian group $\Gamma$ is an abelian group equipped with with a total order $\leq$ that is\\ compatible with the addition operation of the group (i.e. $\alpha \leq \beta \Longrightarrow \alpha + \gamma \leq \beta + \gamma$\\ for all $\alpha, \beta, \gamma \in \Gamma)$.
 \begin{myIndent}\color{RawerSienna}
@@ -7973,7 +8051,7 @@ Let $\Gamma$ be an ordered abelian group. By convention we adjoin an element $\i
 \begin{itemize}
 	\item $\alpha < \infty$ for all $\alpha \in \Gamma$,
 	\item $\alpha + \infty = \infty$ for all $\alpha \in \Gamma$,
-	\item $\min(\alpha, \infty) = \alpha$ for all $\alpha \in \Gamma \cup \{\infty\}$.\retTwo
+	\item $\min(\alpha, \infty) = \alpha$ for all $\alpha \in \Gamma \cup \{\infty\}$.\newpage
 \end{itemize}
 
 A \udefine{valuation} of a field $K$ is a surjective map $v: K \to \Gamma \cup \{\infty\}$ satisfying that:
@@ -8027,7 +8105,7 @@ The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ wit
 		Note that as $K^\times$ is an abelian group, all subgroups of $K^\times$ (including $U$) are normal subgroups. Hence, $K^\times / U$ is a well-defined quotient group. Plus $K^\times / U$ is an abelian group since $K^\times$ is as well.\retTwo
 	\end{myIndent}
 
-	Show that $\Gamma$ is an ordered abelian group when we define $xU \leq yU$ if $yx^{-1} \in A$.
+	Show that $\Gamma$ is an ordered abelian group when we define $xU \leq yU$ if $yx^{-1} \in A$.\newpage
 	\begin{myIndent}\HexOne
 		Firstly, I'll show that $\leq$ is a well-defined ordering.
 		\begin{itemize}
@@ -8069,7 +8147,7 @@ The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ wit
 
 	\item[(c)] Show that if $A$ is a valuation ring and we define $v: K \to \Gamma \cup \{\infty\}$ as in part (b), then\\ $A = \{x \in K : v(x) \geq 1_{\Gamma}\}$.
 	\begin{myIndent}\HexOne
-		Note that $0 \in A$ and $v(0) = \infty \geq 1_\Gamma$. Meanwhile, suppose $x \in K^\times$. Then $v(x) = xU \geq 1U = 1_\Gamma$ iff $x = x \cdot 1^{-1} \in A$.\retTwo
+		Note that $0 \in A$ and $v(0) = \infty \geq 1_\Gamma$. Meanwhile, suppose $x \in K^\times$. Then $v(x) = xU \geq 1U = 1_\Gamma$ iff $x = x \cdot 1^{-1} \in A$.\newpage
 	\end{myIndent}
 
 	Conversely, if $v$ is a valuation from some field $K$ to the value group $\Gamma$ and we use\\ $A \coloneqq \{x \in K : v(x) \geq 0_\Gamma\}$ to define a valuation $w: K \to \Gamma^\prime \cup \{\infty\}$ as in part (b),\\ then there is an order-preserving group isomorphism $\phi: \Gamma \to \Gamma^\prime$ such that $\phi \circ v = w$.
@@ -8108,7 +8186,7 @@ The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ wit
 		\begin{myIndent}\HexTwoP
 			If $a \in A$ then $v(ab) = v(a) + v(b)$. And since $v(a) \geq 0$, we know that $v(a) + v(b) \geq v(b) = g$. Hence, $ab \in I_g$ for all $a$. This shows $I \subseteq I_g$.\retTwo
 
-			Conversely, suppose $d \in I_g$. If $b = 0$ then $g = \infty$, then $v(d) \geq g$ iff $d = 0$. Hence, $I_g = \{0\} = I$. So without loss of generality we can assume $b \neq 0$. Next, if $d = 0$ then trivially $d \in I$. Meanwhile, if $d \neq 0$ then because $K$ is a field, we know there exists $c \in K^\times$ with $cd = b$. In turn:
+			Conversely, suppose $d \in I_g$. If $b = 0$ then $g = \infty$, then $v(d) \geq g$ iff $d = 0$. Hence, $I_g = \{0\} = I$. So without loss of generality we can assume $b \neq 0$. Next, if $d = 0$ then trivially $d \in I$. Meanwhile, if $d \neq 0$ then because $K$ is a field, we know there exists $c \in K^\times$ with $cd = b$. In turn:\newpage
 			
 			{\centering$g = v(b) = v(cd) = v(c) + v(d) \geq v(c) + g \Longrightarrow 0 \geq v(c)$.\retTwo\par}
 
@@ -8118,6 +8196,10 @@ The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ wit
 		Conversely, I claim for any $g \in \Gamma \cup \{\infty\}$ with $g \geq 0$ that there exists $b \in A$ with with $I_g = \langle b\rangle$.
 		\begin{myIndent}\HexTwoP
 			Since $v$ is by definition surjective, we can pick $b \in A$ with $v(b) = g$. And now from our prior reasoning, we know $\langle b\rangle = I_g$.\retTwo
+
+			\begin{myIndent}\color{RawerSienna}
+				As a side note since the TA didn't seem to understand this: an easy\\ consequence of this part of the problem is that the  principal ideals of $A$ are simply ordered by inclusion. After all, suppose $I_{g_1}$ and $I_{g_2}$ are principal ideals. Then $g_1 \leq g_2$ implies that $I_{g_2} \subseteq I_{g_1}$. And since $\Gamma \cup \{\infty\}$ is simply ordered, we know either $g_1 \leq g_2$ or $g_2 \leq g_1$.\retTwo
+			\end{myIndent}
 		\end{myIndent}
 	\end{myIndent}
 
@@ -8135,12 +8217,12 @@ The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ wit
 		To start off, note that $A$ being Noetherian is equivalent to $\Gamma^\geq \coloneqq \{\alpha \in \Gamma : \alpha \geq 0_\Gamma\}$ being a well-ordered set.
 		\begin{myIndent}\HexTwoP
 			$(\Longrightarrow)$\\
-			Suppose $S \subseteq \Gamma^\geq$ is a nonempty set. Since $A$ is Noetherian, we know the set $\{I_g : g \in S\}$ has a maximal ideal $I_{g_0}$. At the same time though, since $S$ is a chain in $\Gamma$ and $I_{g} \subseteq I_{g^\prime}$ iff $g^\prime \leq g$ we know that $\{I_g : g \in S\}$ is a chain with respect to set inclusion. Hence, $I_{g_0}$ contains $I_g$ for all $g \in S$, which in turn implies that $g_0 \leq g$ for all $g \in S$. This proves that $S$ has a minimal element $g_0$.\retTwo
+			Suppose $S \subseteq \Gamma^\geq$ is a nonempty set. Since $A$ is Noetherian, we know the set $\{I_g : g \in S\}$ has a maximal ideal $I_{g_0}$. Yet since the principal ideals of $A$ are simply ordered by inclusion, we know $I_g \subseteq I_{g_0}$ for all $g \in S$. Hence, $g_0 \leq g$ for all $g \in S$, and this proves that $S$ has a minimal element $g_0$.\retTwo
 
 			$(\Longleftarrow)$\\
 			It suffices to prove that all ideals of $A$ are finitely generated. So suppose for the sake of contradiction that $I \lhd A$ is some ideal that isn't finitely generated. Then we can pick a sequence $\{a_n\}_{n \in \mathbb{N}} \subseteq I$ such that $a_m \notin \langle a_1, \ldots, a_{m-1}\rangle$ for all $m \in \mathbb{N}$.\retTwo
 
-			But now since $A$ is a Bezout domain, we know that for every $n \in \mathbb{N}$ there exists $b_n \in A$ with $\langle b_n\rangle = \langle a_1, \ldots, a_n\rangle$. And since $\{\langle b_n\rangle\}_{n \in \mathbb{N}}$ is a strictly increasing sequence of principal ideals in $A$, by part (a) we can find a strictly decreasing sequence $\{g_n\}_{n \in \mathbb{N}} \subseteq \Gamma^{\geq}$ with $I_{g_n} = \langle b_n\rangle$ for all $n$. This contradicts though that $\Gamma^\geq$ is well-ordered.\retTwo
+			But now since $A$ is a Bezout domain, we know that for every $n \in \mathbb{N}$ there exists $b_n \in A$ with $\langle b_n\rangle = \langle a_1, \ldots, a_n\rangle$. And since $\{\langle b_n\rangle\}_{n \in \mathbb{N}}$ is a strictly increasing sequence of principal ideals in $A$, by part (a) we can find a strictly decreasing sequence $\{g_n\}_{n \in \mathbb{N}} \subseteq \Gamma^{\geq}$ with $I_{g_n} = \langle b_n\rangle$ for all $n$. This contradicts that $\Gamma^\geq$ is well-ordered.\newpage
 		\end{myIndent}
 
 		Next, note that $A \neq K$ iff $\Gamma^{\geq} \neq \{0_\Gamma\}$.
@@ -8173,13 +8255,13 @@ The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ wit
 
 			Note that as $\phi$ is an order-preserving injective map, we know that if $n < m$\\ then $- m1_\Gamma < -n1_\Gamma$ and in turn $g - m1_\Gamma < g - n1_\Gamma$. It follows that our\\ sequence is strictly decreasing and thus has no minimal element. In turn,\\ since $\Gamma^\geq$ is well-ordered, we can only avoid a contradiction if there exists some\\ minimal $N \in \mathbb{Z}_{\geq 0}$ with $g - N1_\Gamma < 0_\Gamma$. By the minimality of the $N$ we chose though, we also know $g - (N - 1)1_\Gamma \geq 0_\Gamma$. Hence, $-1_\Gamma \leq g - N 1_\Gamma < 0_\Gamma$.\retTwo
 			
-			Equivalently, we have that $0_\Gamma < N1_\Gamma - g \leq 1_\Gamma$. And since $1_\Gamma$ is by\\ definition the minimal element of $\Gamma$ greater than $0_\Gamma$, we can conclude that\\ $N1_\Gamma - g = 1_\Gamma$. This is a contradiction as it implies that $(N - 1)1_\Gamma = g$. $\blacksquare$\retTwo
+			Equivalently, we have that $0_\Gamma < N1_\Gamma - g \leq 1_\Gamma$. And since $1_\Gamma$ is by\\ definition the minimal element of $\Gamma$ greater than $0_\Gamma$, we can conclude that\\ $N1_\Gamma - g = 1_\Gamma$. This is a contradiction as it implies that $(N - 1)1_\Gamma = g$. $\blacksquare$\newpage
 		\end{myIndent}
 	\end{myIndent}
 \end{enumerate}
 
 \color{RawerSienna}
-\ul{Remark 1:} A fun thing about how I proved part (c) is that I abstracted the problem to showing\\ that up to isomorphism, the only well-ordered abelian groups (whose order respects the group\\ operation) are $(\mathbb{Z}, +)$ and the trivial group. There is a much more direct way of proving 5(c) though that doesn't abstract the problem like I did.\retTwo
+\ul{Remark 1:} A fun thing about how I proved part (c) is that I abstracted the problem to showing\\ that up to isomorphism, the only well-ordered abelian groups (whose order respects the group\\ operation) are $(\mathbb{Z}, +)$ and the trivial group. There is a much more direct way of proving 5(c)\\ though that doesn't abstract the problem like I did.\retTwo
 
 \ul{Remark 2:} Once we have established that $A$ is a Noetherian valuation ring, the prior problem lets us conclude that $A$ is a local PID.
 \begin{myIndent}\color{orange}
@@ -8194,10 +8276,10 @@ The valuation is called \udefine{discrete} in the case $\Gamma = \mathbb{Z}$ wit
 	This is because $\mathbb{Z}_{\geq 0}$ is a well-ordered set and I did unnecessary extra work in part (c) to show that the nonnegative elements of $\mathbb{Z}$ being well-ordered implies $A$ is Noetherian.\retTwo
 \end{myIndent}
 
-Furthermore, if $A$ is a local PID that is not a field and $x$ generates the unique maximal ideal $P$ of $A$, then the unique factorization of any $a \in A - \{0\}$ into a product of irreducibles has form $a = ux^n$ where $u$ is a unit and $n \in \mathbb{Z}_{\geq 0}$.
+Furthermore, if $A$ is a local PID that is not a field and $x$ generates the unique maximal ideal $P$ of $A$, then the unique factorization of any $a \in A - \{0\}$ into a product of irreducibles has the form $a = ux^n$ where $u$ is a unit and $n \in \mathbb{Z}_{\geq 0}$.
 \begin{myIndent}\color{orange}
 	Why?\\
-	Since $A$ is a PID, every irreducibe element is prime and every prime element generates an ideal which is maximal over all principal ideals (and hence all ideals).  of $A$ must be maximal over all pricipal ideals. It follows that up to companion class, $x$ is the unique irreducible element of $A$. In turn, the stated fact is just a result of $A$ also being a UFD.\retTwo
+	Since $A$ is a PID, every irreducibe element generates an ideal which is maximal over all proper principal ideals (and hence all proper ideals) of $A$. In turn, every irreducible\\ element generates the same unique maximal ideal. So up to companion class, $x$ is\\ the unique irreducible element of $A$.\retTwo
 \end{myIndent}
 
 Consequently, if $K$ is the field of fractions of the local PID $A$ we were working with before, then every element of $K^\times$ can be uniquely written as $u x^n$ where $u \in A^\times$ and $n \in \mathbb{Z}$. 
@@ -8215,7 +8297,7 @@ Also, it's then trivial to see from the prior two uniqueness claims that $A \sub
 
 To summarize the prior remarks as well as problems 4 and 5, we have three equivalent definitions for when a ring $A$ is a \udefine{discrete valuation ring (DVR)}:
 \begin{enumerate}
-	\item[(1.)] $A$ is the associated valuation ring of a discrete valuation $v: K \to \mathbb{Z} \cup \{\infty\}$,
+	\item[(1.)] $A$ is the associated valuation ring of a discrete valuation $v: K \to \mathbb{Z} \cup \{\infty\}$,\newpage
 	\item[(2.)] $A$ is a Noetherian valuation ring that is not a field,
 	\item[(3.)] $A$ is a local PID that is not a field.\retTwo
 \end{enumerate}
@@ -8226,45 +8308,241 @@ To summarize the prior remarks as well as problems 4 and 5, we have three equiva
 	Let $v$ be the discrete valuation constructed in the prior remark. Then we can see that\\ $I_n = \langle x^n\rangle$ for all $n \in \mathbb{N}$.\retTwo
 \end{myIndent}
 
-\ul{Remark 5:} The prime spectrum of a DVR $A$ consists of only the unique maximal ideal and the zero ideal. This captures the idea that a DVR is the simplest type of PID that is not a field.
+\ul{Remark 5:} The prime spectrum of a DVR $A$ consists of only the unique maximal ideal and the zero ideal. This captures the idea that a DVR is the simplest type of PID that is not a field.\retTwo
 
-\newpage
+\hTwo
+\begin{myIndent}\mySepThree\end{myIndent}
 
-\color{red} I am writing this after 11pm and probably won't finish this in time to turn this in. I'll fix my notation after finals week.\retTwo
+Returning to actual lecture notes, here are two examples of DVRs:
+\begin{itemize}
+	\item Let $K = \mathbb{Q}$. Then given a prime number $p$, consider the $p$-adic valuation\\ $v_p : \mathbb{Q} \to \mathbb{Z} \cup \{\infty\}$ defined on \inLinkRap{placeholder}{page 491}. (i.e., if $n \in \mathbb{Z} - \{0\}$ then:
+	
+	{\centering$v_p(n) \coloneqq \max\{k \in \mathbb{Z}_{\geq 0} : p^k \divides n\}$.\\ [4pt]\par}
+	
+	(Also, $v_p(0) \coloneqq \infty$). And more generally, if $\sfrac{n}{m} \in \mathbb{Q}$ we define:
+	
+	{\centering$v_p(n/m) \coloneqq v_p(n) - v_p(m)$.)\retTwo\par}
 
-\Hstatement\blab{Set 5 Problem 6:} Let $A$ be a Dedekind domain.
-\begin{enumerate}
-	\item[(a)] Suppose that $P$ is a maximal ideal of $A$. For any $n \geq 1$, show that every ideal of the ring $A/P^n$ is principal.
-	\begin{myIndent}\HexOne
-		{\color{red} Placeholder for proving that $A/P^n \cong A_p / (P_P)^n$}
+	\begin{myIndent}\pracTwo
+		On page 491 I never showed that $v_p(\frac{n_1}{m_1} + \frac{n_2}{m_2}) \geq \min(v_p(\frac{n_1}{m_1}), v_p(\frac{n_2}{m_2}))$. That said, note that:
 
-		\retTwo
+		{\centering $v_p(\frac{n_1}{m_1} + \frac{n_2}{m_2}) = v_p(n_1m_2 + m_1n_2) - v_p(m_1) - v_p(m_2)$ \retTwo\par}
 
-		Now importantly, $A_P$ is a DVR with the maximal ideal $P_P$. It follows that $P_P$ is a principal ideal generated by some element $x$, and every ideal of $A_P$ has the form $\{0\}$, $A_P$, or $\langle x^k\rangle$ where $k \in \mathbb{N}$. In turn, we have that of $\frac{A_P}{(P_P)^n}$ are precisely given by\\ [-4pt] $\{0\}$, $\frac{A_P}{(P_P)^n}$, $\frac{P_P}{(P_P)^n}$,$\ldots$, $\frac{(P_P)^{n-1}}{(P_P)^n}$. Also, all of the ideals are principal. Therefore,\\ since $A / P^n \cong A_P / (P_P)^n$, this proves every ideal of $A / P^n$ is principal.\retTwo
+		Next, we can easily show for two integers $r, k$ that $v_p(r + k) \geq \min(v_p(r), v_p(k))$. After all, if $p^e \divides r$ and $p^e \divides k$ then $p^e \divides r + k$. It follows that:
+		
+		{\centering\begin{tabular}{l}$v_p(n_1m_2 + m_1n_2) \geq \min(v_p(n_1m_2), v_p(m_1n_2))$ \\ [4pt] $\phantom{v_p(n_1m_2 + m_1n_2)} = \min(v_p(n_1) + v_p(m_2), v_p(m_1) + v_p(n_2))$\end{tabular}\retTwo\par}
+
+		So, $v_p(\frac{n_1}{m_1} + \frac{n_2}{m_2}) \geq \min(v_p(n_1) - v_p(m_1), v_p(n_2) - v_p(m_2)) = \min(v_p(\frac{n_1}{m_1}), v_p(\frac{n_2}{m_2}))$.\retTwo
 	\end{myIndent}
 
-	\item[(b)] Show that for any nonzero ideal $I$ of $A$, every ideal of $A/I$ is principal.
-	\begin{myIndent}\HexOne
-		If $I$ is a nonzero ideal of $A$, then we can write $I = P_1^{j_1}P_2^{j_2}\cdots P_m^{j_m}$ where each $P_i$ is a distinct maximal ideal of $A$ and each $j_i$ is a poistive integer. In turn, by CRT we have that:
+	The associated valuation ring of $v_p$ is $A = \{\frac{a}{b} : v_p(\frac{a}{b}) \geq 0\} = \{\frac{a}{b} : b \notin \langle p\rangle\}$. In other words, the valuation ring of $v_p$ is the localized ring $\mathbb{Z}_{\langle p\rangle}$.\retTwo
 
-		{\centering $\frac{A}{I} = \frac{A}{P_1^{j_1}P_2^{j_2}\cdots P_m^{j_m}} = \frac{A}{P_1^{j_1} \cap P_2^{j_2} \cap \cdots \cap P_m^{j_m}} \cong \frac{A}{P_1^{j_1}} \times \cdots \times \frac{A}{P_m^{j_m}}$ \retTwo\par}
+	\item Let $K = k(x)$ be the field of rational functions in some field $k$. Then define\\ $v(\frac{p(x)}{q(x)}) = i - j$ where $i$ and $j$ are the least degrees of nonzero terms in $p$ and\\ $q$ respectively.
+	\begin{myIndent}\pracTwo
+		Notice that $v$ is equivalent to the prime valuation on $k(x)$ associated with the\\ irreducible polynomial $x \in k[x]$. Hence, the proof that $v$ is a valuation is identical\\ to the proof that $v_p$ from the first bullet point is a valuation.\retTwo
+	\end{myIndent}
 
-		It suffices now to show that every ideal of $\frac{A}{P_1^{j_1}} \times \cdots \times \frac{A}{P_m^{j_m}}$ is principal. Fortunately, note that for any ideal $J$ in this new ring, $J \cap \frac{A}{P_i^{j_i}}$ is a principal ideal $\langle \overline{f_i}\rangle$ by part (a). And now I claim that $J$ is principal because it is generated by $(\overline{f_1}, \ldots, \overline{f_m})$.
-		\begin{myIndent}\HexTwoP
-			Why?\\
-			By adding elements together, it's clear $(\overline{f_1}, \ldots, \overline{f_m}) \in J$. Meanwhile, suppose $(\overline{g_1}, \ldots, \overline{g_m})$ is another element of $J$. Then by multiplying by $(0, \cdots, 1, \cdots, 0)$, we can show that $\overline{g_i} \in \langle \overline{f_i}\rangle$ for all $i$.\retTwo
+	The associated valuation ring of $v$ is the localized ring $A = (k[x])_{\langle x\rangle}$.\newpage
+\end{itemize}
 
-			Now let $\overline{h_i}$ be such that $g_i = \overline{h_i} \cdot \overline{f_i}$. Then $(\overline{g_1}, \ldots, \overline{g_m}) = (\overline{h_1}, \ldots, \overline{h_m})(\overline{f_1}, \ldots, \overline{f_m})$.\retTwo
+I have one more characterization of DVRs to go over from lecture.\retTwo
+
+Let $A$ be a Noetherian local ring with a maximal ideal $M$. We denote the pair as $(A, M)$. $A$ is called \udefine{regular-local} if $M = \langle a_1, \ldots, a_n\rangle$ for some $a_1, \ldots, a_n \in A$ where $n = \dim(A)$.
+\begin{myIndent}\myComment
+	Also we take the convention that $\langle \emptyset \rangle = \{0\}$. So, if $A$ is such that $\dim(A) = 0$ then we $A$ is regular if $M = \{0\}$. In other words, a Noetherian dimension zero local ring is regular-local iff it is a field.\retTwo
+\end{myIndent}
+
+More generally for a nonlocal Noetherian ring $A$, we say $A$ is \udefine{regular} if $A_P$ is a regular-local ring for all $P \in \Spec(A)$.
+\begin{myIndent}\myComment
+	Note: I will not be showing or using in this class that $A$ being regular-local implies that $A$ is regular.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem:} Let $(A, M)$ be a local Noetherian domain with $\dim(A) = 1$. Then the following are equivalent:
+\begin{itemize}
+	\item[i.] $A$ is a DVR,
+	\item[ii.] $A$ is regular-local (i.e. $M$ is principal),
+	\item[iii.] $A$ is integrally closed in its field of fractions.
+	
+	\begin{myIndent}\exThreeP
+		(i $\implies$ iii):\\
+		Assume $A$ is a DVR and $K$ is the field of fractions of $A$. Then supposing $c \in K$ is integral over $A$, let us write $c^n + b_{n-1}c^{n-1} + \ldots + b_1 c + b_0 = 0$ where all $b_i \in A$. If $c \notin A$ then we know that $c^{-1}$ exists and is in $A$. Hence, after multiplying both sides of our polynomial expression by $c^{-n + 1}$ we get that:
+
+		{\centering $c + b_{n-1} + b_{n-2}c^{-1} + \ldots + b_1 c^{-n+2} + b_0 c^{-n + 1} = 0$ \retTwo\par}
+
+		Yet now $c = -(b_{n-1} + b_{n-2}c^{-1} + \ldots + b_1 c^{-n+2} + b_0 c^{-n + 1}) \in A$. This contradicts the premise that $c \notin A$.\retTwo
+
+		(iii $\implies$ ii):\\
+		Pick some $a \in M - \{0\}$. Then note that $M^n \subseteq \langle a\rangle$ for some $n \geq 1$.
+		\begin{myIndent}\exPPP
+			To see why, first note that $A$ being local with $\dim(A) = 1$ implies that the only prime ideals of $A$ are $\{0\}$ and $M$. Hence, since $\langle a\rangle \neq \{0\}$, it follows that $\sqrt{\langle a \rangle} = M$.\retTwo
+			
+			Next note that since $A$ is a Noetherian ring, we know that $M$ is finitely\\ generated. So let $M = \langle y_1, \ldots, y_d\rangle$. Importantly, since $\sqrt{\langle a \rangle} = M$ there exists $\ell$ with $y_i^\ell \in \langle a\rangle$ for all $i$. But now $M^{d\ell}$ is generated by elements which are all in $\langle a\rangle$. So, $M^{d\ell}\subseteq \langle a\rangle$.\retTwo
 		\end{myIndent}
 
-		This proves for any nonzero ideal $I$ of $A$ that every ideal of $A/I$ is principal.\retTwo
-	\end{myIndent}
+		If $M^1 \subseteq \langle a\rangle$ then we are already finished showing ii. After all, we knew from how we chose $a$ that $\langle a \rangle \subseteq M^1$. So, we'd have already proven that $M$ is principal.\retTwo
+		
+		Now suppose $n$ is the least integer such that $M^n \subseteq \langle a\rangle$, and also that $n > 1$. Then choose $b \in M^{n-1} - \langle a\rangle$. Note that $bM \subseteq M^n \subseteq \langle a\rangle$. So, let $K$ be the field of fractions of $A$ and consider $x \coloneqq ab^{-1} \in K$. We have that $x^{-1}M = a^{-1}bM \subseteq \langle a\rangle a^{-1} \subseteq A$. Hence $x^{-1}M$ is a submodule (and thus ideal) of $A$.\newpage
 
-	Conclude that any ideal of $A$ can be generated by at most $2$ elements.
-	\begin{myIndent}\HexOne
-		Suppose $I \lhd A$. If $x = \{0\}$ then $I$ is generated by $1$ element. Otherwise, we can pick $x \in I - \{0\}$. But now by the prior reasoning, we know that every ideal of $A/\langle x\rangle$ is principal. Hence, $I/\langle x\rangle$ is generated by $y + \langle x\rangle$ for some $y \in A$. And now $I = \langle x, y\rangle$. $\blacksquare$\retTwo
+		For the sake of contradiction, assume $x^{-1}M \neq A$. Then we'd have that $x^{-1}M \subseteq M$. In turn, $x^{-k}M = x^{-k + 1}(x^{-1}M) \subseteq x^{-k + 1}M \subseteq \cdots \subseteq M$. So by taking linear combinations of negative powers of $x$, we can further say that $A[x^{-1}]M \subseteq M$.\retTwo
+		
+		In particular, this means for any $c \in M - \{0\}$ that $A[x^{-1}]c$ is a proper nonzero ideal of $A$. Yet now note that $A[x^{-1}]c$ being an ideal of $A$ means it's a Noetherian module. Also $A[x^{-1}]c \cong A[x^{-1}]$ as $A$-modules. Hence, we've proven that $A[x^{-1}]$ is a Noetherian $A$-submodule of $K$. Consequently, we know that $A[x^{-1}]$ is finitely generated as an $A$-module. In turn, this also means that $x^{-1}$ is intgral over $A$.
+		\begin{myIndent}\exPPP
+			(Suppose $d$ is large enough so that $1, x^{-1}, \ldots, x^{-d}$ generate $A[x^{-1}]$. We\\ can always find such a $d$ by taking any finite generating set of polynomials\\ in $A[x^{-1}]$ and then letting $-d$ be the most negative power order of any of\\ those polynimials. Then we can express $x^{-d - 1}$ as an $A$-linear combination of\\ $1, x^{-1}, \ldots, x^{-d}$. And this gives us our monic polynomial.)\retTwo
+		\end{myIndent}
+
+		Since $A$ is integrally closed in $K$ though, we've proven that $x^{-1} \in A$. In turn,\\ $ba^{-1} \in A \Longrightarrow b \in aA = \langle a\rangle$. But this contradicts that we specifically chose\\ $b$ to not be in $\langle a\rangle$.\retTwo
+
+		With that, we've now proven that $x^{-1}M = A$. Equivalently, we can conclude that $M = xA$. Since $x(1) \in M \subseteq A$, we know $x \in A$. And now we've shown that $M$ is a principal ideal with $M = \langle x\rangle$.\retTwo
+
+		(ii $\implies$ i):\\
+		Since $A$ is regular-local, we know that $M$ is principal. So, we can pick $x \in A$\\ generating $M$. Also note that $\dim(A) = 1 \implies A$ is not a field. So, to prove that $A$ is a DVR it now suffices to prove that $A$ is a PID.\retTwo
+
+		Let $I \lhd A$. If $I = \langle 0\rangle$ then $I$ is trivially principal. Meanwhile suppose $I \neq \{0\}$. Then by identical reasoning as in the proof of (iii $\implies$ ii), we can conclude that $\sqrt{I} = M = \langle x\rangle$. So, there exists some largest $n \geq 1$ such that $I \subseteq \langle x^n\rangle = M^n$.\retTwo
+
+		Since $I \not\subseteq \langle x^{n+1}\rangle$, we can find $y \in I - \langle x^{n+1}\rangle$. Then $y \in I \subseteq \langle x^n\rangle$ implies that\\ $y = x^n z$ where $z \notin M = \langle x\rangle$. But now we know that $z$ is a unit. Therefore,\\ $\langle x^n\rangle = \langle y\rangle \subseteq I$. So, we've proven that $I = \langle x^n\rangle$ is a principal ideal. And this finishes showing that $A$ is a PID. $\blacksquare$\retTwo
 	\end{myIndent}
+\end{itemize}
+
+\hTwo\mySepTwo
+
+\dispDate{6/20/2026}
+
+Instead of studying Dedekind rings next, I'm going to take a break from 200c notes to study point set topology. In particular, I want to learn about uniform spaces. So, I shall be reading \textit{Topological and Uniform Spaces} by Ioan James (see \inLinkRap{Sixth Citation}{citation 6} in my bibliography).\newpage
+
+Here are some conventions for relations on $X$ (i.e. subsets of $X \times X$).
+\begin{itemize}
+	\item If $R \subseteq X \times X$ then we shorthand $(a,b) \in R$ as $aRb$.
+	\item We write $\Delta X \coloneqq \{(a, a) : a \in X\}$. Note that $\Delta X \subseteq R$ if and only if $R$ is a reflexive relation.
+	\item Given $R \subseteq X \times X$ we define $R^{-1} \coloneqq \{(a, b) : (b, a) \in R\}$. Note that $R^{-1} \subseteq R$ if and only if $R$ is a symmetric relation.
+	\item Given $R, S \subseteq X \times X$, we define $R \circ S \subseteq X \times X$ where $aR \circ S b$ iff there exists\\ $c \in X$ such that $aRc$ and $cSb$. Note that $R \circ R \subseteq R$ if and only if $R$ is a transitive relation.\retTwo
+\end{itemize}
+
+\exTwo\ul{Remark 1:} If $R_1, R_2, R_3 \subseteq X \times X$, then $(R_1 \circ R_2) \circ R_3 = R_1 \circ (R_2 \circ R_3)$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $a(R_1 \circ R_2) \circ R_3 b$ then there exists $c$ with $a(R_1 \circ R_2)c$ and $cR_3 b$. Next, there exists $d$ with $aR_1 d$ and $dR_2 c$. But now $dR_2 \circ R_3 b$. So, $aR_1 \circ (R_2 \circ R_3)b$. This proves that $(R_1 \circ R_2) \circ R_3 \subseteq R_1 \circ (R_2 \circ R_3)$. Mirror reasoning shows the other inclusion. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Remark 2:} If $(R \circ S)^{-1} = S^{-1} \circ R^{-1}$.
+\begin{myIndent}\exThreeP
+	Proof:
+	$a(R \circ S)^{-1} b$ iff $bR \circ Sa$. But that happens iff there exists $c$ such that $bRc$ and $cSa$, and that happens iff there exists $c$ such that $aS^{-1}c$ and $cR^{-1}b$. That is equivalent to saying that $aS^{-1} \circ R^{-1}b$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Remark 3:} If $\Delta X \subseteq S$ then $R \subseteq R \circ S$ and $R \subseteq S \circ R$.
+\begin{myIndent}\exThreeP
+	Why?\\
+	If $aRb$ then $aSa$ implies that $aS \circ Rb$. Similarly $bSb$ implies that $aR \circ Sb$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Remark 4:} If $R \subseteq R^\prime$ then $S \circ R \subseteq S \circ R^\prime$ and $R \circ S \subseteq R^\prime \circ S$.
+\begin{myIndent}\exThreeP
+	Hopefully this is obvious.\retTwo
+\end{myIndent}
+
+\hTwo For our purposes here, the relations on $X$ that we will care about will be relations giving a way of describing when two elements $a$ and $b$ in $X$ are "close" to each other.\retTwo
+
+A \udefine{uniform structure} on a set $X$ is a filter $\mathscr{U}$ on $X \times X$ satisfying that:
+\begin{itemize}
+	\item $\Delta X \subseteq D$ for all $D \in \mathscr{U}$
+	\item $D \in \mathscr{U} \Longrightarrow D^{-1} \in \mathscr{U}$
+	\item If $D \in \mathscr{U}$ then there exsts $D^\prime \in \mathscr{U}$ with $D^\prime \circ D^\prime \subseteq D$.\retTwo
+\end{itemize}
+
+A \udefine{uniform space} $(X, \mathscr{U})$ is a set $X$ equipped with a uniform structure $\mathscr{U}$.\retTwo
+
+\begin{myIndent}\mySepThree\end{myIndent}
+
+Some examples of uniform spaces are as follows:
+\begin{enumerate}
+	\item[1.]
 \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \newpage
+
+% \color{red} I am writing this after 11pm and probably won't finish this in time to turn this in. I'll fix my notation after finals week.\retTwo
+
+% \Hstatement\blab{Set 5 Problem 6:} Let $A$ be a Dedekind domain.
+% \begin{enumerate}
+% 	\item[(a)] Suppose that $P$ is a maximal ideal of $A$. For any $n \geq 1$, show that every ideal of the ring $A/P^n$ is principal.
+% 	\begin{myIndent}\HexOne
+% 		{\color{red} Placeholder for proving that $A/P^n \cong A_p / (P_P)^n$}
+
+% 		\retTwo
+
+% 		Now importantly, $A_P$ is a DVR with the maximal ideal $P_P$. It follows that $P_P$ is a principal ideal generated by some element $x$, and every ideal of $A_P$ has the form $\{0\}$, $A_P$, or $\langle x^k\rangle$ where $k \in \mathbb{N}$. In turn, we have that of $\frac{A_P}{(P_P)^n}$ are precisely given by\\ [-4pt] $\{0\}$, $\frac{A_P}{(P_P)^n}$, $\frac{P_P}{(P_P)^n}$,$\ldots$, $\frac{(P_P)^{n-1}}{(P_P)^n}$. Also, all of the ideals are principal. Therefore,\\ since $A / P^n \cong A_P / (P_P)^n$, this proves every ideal of $A / P^n$ is principal.\retTwo
+% 	\end{myIndent}
+
+% 	\item[(b)] Show that for any nonzero ideal $I$ of $A$, every ideal of $A/I$ is principal.
+% 	\begin{myIndent}\HexOne
+% 		If $I$ is a nonzero ideal of $A$, then we can write $I = P_1^{j_1}P_2^{j_2}\cdots P_m^{j_m}$ where each $P_i$ is a distinct maximal ideal of $A$ and each $j_i$ is a poistive integer. In turn, by CRT we have that:
+
+% 		{\centering $\frac{A}{I} = \frac{A}{P_1^{j_1}P_2^{j_2}\cdots P_m^{j_m}} = \frac{A}{P_1^{j_1} \cap P_2^{j_2} \cap \cdots \cap P_m^{j_m}} \cong \frac{A}{P_1^{j_1}} \times \cdots \times \frac{A}{P_m^{j_m}}$ \retTwo\par}
+
+% 		It suffices now to show that every ideal of $\frac{A}{P_1^{j_1}} \times \cdots \times \frac{A}{P_m^{j_m}}$ is principal. Fortunately, note that for any ideal $J$ in this new ring, $J \cap \frac{A}{P_i^{j_i}}$ is a principal ideal $\langle \overline{f_i}\rangle$ by part (a). And now I claim that $J$ is principal because it is generated by $(\overline{f_1}, \ldots, \overline{f_m})$.
+% 		\begin{myIndent}\HexTwoP
+% 			Why?\\
+% 			By adding elements together, it's clear $(\overline{f_1}, \ldots, \overline{f_m}) \in J$. Meanwhile, suppose $(\overline{g_1}, \ldots, \overline{g_m})$ is another element of $J$. Then by multiplying by $(0, \cdots, 1, \cdots, 0)$, we can show that $\overline{g_i} \in \langle \overline{f_i}\rangle$ for all $i$.\retTwo
+
+% 			Now let $\overline{h_i}$ be such that $g_i = \overline{h_i} \cdot \overline{f_i}$. Then $(\overline{g_1}, \ldots, \overline{g_m}) = (\overline{h_1}, \ldots, \overline{h_m})(\overline{f_1}, \ldots, \overline{f_m})$.\retTwo
+% 		\end{myIndent}
+
+% 		This proves for any nonzero ideal $I$ of $A$ that every ideal of $A/I$ is principal.\retTwo
+% 	\end{myIndent}
+
+% 	Conclude that any ideal of $A$ can be generated by at most $2$ elements.
+% 	\begin{myIndent}\HexOne
+% 		Suppose $I \lhd A$. If $x = \{0\}$ then $I$ is generated by $1$ element. Otherwise, we can pick $x \in I - \{0\}$. But now by the prior reasoning, we know that every ideal of $A/\langle x\rangle$ is principal. Hence, $I/\langle x\rangle$ is generated by $y + \langle x\rangle$ for some $y \in A$. And now $I = \langle x, y\rangle$. $\blacksquare$\retTwo
+% 	\end{myIndent}
+% \end{enumerate}
 
 
 
@@ -8297,6 +8575,8 @@ To summarize the prior remarks as well as problems 4 and 5, we have three equiva
 	\item Guillemin, V., \& Haine, P. (2019). \textit{Differential Forms}. World Scientific Publishing Company.
 	
 	\item \hypertarget{Fifth Citation}{Inversi,} M. (n.d.). Retrieved May 16, 2026, from https://poisson.phc.dm.unipi.it/~inversi/GMT.pdf
+	
+	\item \hypertarget{Sixth Citation}{James,} I. M. (1987). \textit{Topological and Uniform Spaces}. Springer-Verlag.
 \end{enumerate}
 
 \end{document}
