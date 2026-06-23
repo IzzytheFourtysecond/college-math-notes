@@ -400,10 +400,43 @@
 \setul{0.14em}{0.07em}
 \calibri
 
+\pracOne One other note I want to make is that if $\langle x_\alpha\rangle_{\alpha \in A}$ is an ultra-net and $X = \bigcup_{i=1}^n E_i$, then\\ we can conclude that there is at least one $E_i$ such that $x_\alpha$ is eventually in $E_i$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We proceed by induction on $n$. For our base case, suppose $X = E_1 \cup E_2$. Then if $x_\alpha$ is not eventually in $E_1$, we know that $x_\alpha$ is eventually in $X - E_1$. And since $X - E_1 \subseteq E_2$, we can conclude that $x_\alpha$ is eventually in $E_2$.\retTwo
+
+	Now suppose $n > 2$ and that $X = \bigcup_{i=1}^n E_i$. Then by writing:
+	
+	{\centering$X = (E_1 \cup E_2) \cup E_3 \cup \cdots \cup E_n$,\\ [4pt]\par}
+	
+	we can conclude by induction that either there exists $i \geq 3$ with $x_\alpha$ eventually in $E_i$, or\\ we have that $x_\alpha$ is eventually in $E_1 \cup E_2$. We're trivially done in the former case. So assume the latter case is what happens.\retTwo
+
+	Next, write $X = E_1 \cup (E_2 \cup E_3) \cup E_4 \cup \cdots \cup E_n$. Then we know from our induction hypothesis that either there exists $i \neq 2, 3$ with $x_\alpha$ eventually in $E_i$ or we have that $x_\alpha$ is eventually in $E_2 \cup E_3$. We assume the former case doesn't happen since otherwise we'd be trivially done. In particular, this means that $x_\alpha$ is not eventually in $E_1$.\retTwo
+
+	But now we have that $x_\alpha$ is eventually in $(E_1 \cup E_2)$, and yet at the same time since $\langle x_\alpha\rangle_{\alpha \in A}$ is an ultrafilter, we can conclude that $x_\alpha$ is eventually in $X - E_1$. In turn, we can conclude that $x_\alpha$ is eventually in $(E_1 \cup E_2) \cap (X - E_1) = E_2 - E_1 \subseteq E_2$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
+
 \exTwo\ul{Proposition:} Suppose $X$ is a uniform space. Then $X$ is totally bounded if and only if every net $\langle x_\alpha\rangle_{\alpha \in A}$ in $X$ admits a Cauchy subnet.
 \begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	Let $\langle x_{\alpha_\beta}\rangle_{\beta \in B}$ be an ultra-subnet of $\langle x_\alpha\rangle_{\alpha \in A}$. Then I claim that $\langle x_{\alpha_\beta}\rangle_{\beta \in B}$ is Cauchy since more generally, any ultra-net $\langle y_\gamma\rangle_{\gamma \in C}$ is Cauchy in a totally bounded space.\\ [-6pt]
+	\begin{myIndent}\exPPP
+		To see why, let $\{y_\gamma\}_{\gamma \in C}$ be an ultra-net. Then suppose $E$ is any entourage of $X$. Firstly, we find an entourage $E^\prime$ such that $E^\prime = (E^\prime)^{-1}$ and $E^\prime \circ E^\prime \subseteq E$. Next,\\ note that since $X$ is totally bounded, there exists $x_1, \ldots, x_n \in X$ such that\\ $X = \bigcup_{i=1}^n E^\prime[x_i]$. Since $\{y_\gamma\}_{\gamma \in C}$ is an ultra-net, we know there must exist some\\ $x_i$ such that $y_\gamma$ is eventually in $E^\prime[x_i]$.\retTwo
 
+		But now let $\gamma_0 \in C$ be such that $y_\gamma \in E^\prime[x_i]$ for all $\gamma \geq \gamma_0$. Then for all\\ $\gamma_1, \gamma_2 \geq \gamma_0$ in $C$ we have that $x_i E^\prime y_{\gamma_1}$ and $x_i E^\prime y_{\gamma_2}$. This implies that $y_{\gamma_1} E y_{\gamma_2}$.\retTwo
+	\end{myIndent}
+
+	$(\Longleftarrow)$\\
+	Suppose that $X$ is not a totally bounded space. Thus, we know there exists an entourage $E$ such that $E[S]$ is a proper subset of $X$ for all finite subsets $S$ of $X$.\retTwo
+
+	Let $\mathcal{S}$ be the collection of all finite subsets of $X$. This becomes a directed set when\\ partially ordered by inclusion. Next, for every $S \in \mathcal{S}$ let $x_S$ be an element of $X - E[S]$. Then, we can consider the net $\langle x_S\rangle_{S \in \mathcal{S}}$.\newpage
+
+	I claim that $\langle x_S\rangle_{S \in \mathcal{S}}$ has no Cauchy subnets. To see why, suppose that $\langle x_{S_\beta}\rangle_{\beta \in B}$ is any subnet of $\langle x_S\rangle_{S \in \mathcal{S}}$. Then consider any fixed $\beta_0 \in B$. It suffices to show that there exists\\ [2pt] $\beta_1, \beta_2 \geq \beta_0$ in $B$ such that $(x_{S_{\beta_1}}, x_{S_{\beta_2}}) \notin E$. Fortunately, just let $\beta_1 = \beta_0$ and then let $\beta_2 \in B$ be such that $\beta_2 \geq \beta_0$ and $S_{\beta_2} \supseteq S_{\beta_0} \cup \{x_{S_{\beta_0}}\}$. Then we know $(x_{S_{\beta_1}}, x_{S_{\beta_2}}) \notin E$. $\blacksquare$\retTwo
 \end{myIndent}
+
+\hTwo Before wrapping up for the day, I also want to translate the prior result into a result about Cauchy sequences in the case that the uniform structure on $X$ has a countable filterbase.
 
 
 

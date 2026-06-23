@@ -8668,7 +8668,9 @@ If $\mathscr{F}$ is a maximal filter (meaning that for any filter $\mathscr{G}$ 
 	Suppose $\mathscr{F}$ is not an ultrafilter and let $\mathscr{G}$ be a filter properly containing $\mathscr{F}$. In turn, we know that there exists a set $A \in \mathscr{G} - \mathscr{F}$. But now consider that $X - A \notin \mathscr{G}$ since otherwise\newpage $\emptyset = (X - A) \cap A$ would be in $\mathscr{G}$. Since $\mathscr{F} \subseteq \mathscr{G}$, we can also thus conclude that\\ $X - A \notin \mathscr{F}$. Simultanously though, we know $X \in \mathscr{F}$. So $X = A \cup (X - A) \in \mathscr{F}$\\ but $A$ and $X - A$ are both not in $\mathscr{F}$. $\blacksquare$\retTwo
 
 	\begin{myIndent}\myComment
-		As a side note, we can more strongly conclude from the reasoning of the prior proof that $\mathscr{F}$ is an ultrafilter on $X$ if and only if for all $A \subseteq X$ we have that $A \in \mathscr{F}$ or $X - A \in \mathscr{F}$.\retTwo
+		\ul{Remark 1:}, we can more strongly conclude from the reasoning of the prior proof that $\mathscr{F}$ is an ultrafilter on $X$ if and only if for all $A \subseteq X$ we have that $A \in \mathscr{F}$ or $X - A \in \mathscr{F}$.\retTwo
+
+		\ul{Remark 2:} If $\mathscr{F}$ is an ultrafilter and $\bigcup_{i=1}^n A_i \in \mathscr{F}$, then we can easily now conclude by induction that at least one $A_i$ is in $\mathscr{F}$.\retTwo
 	\end{myIndent}
 \end{myIndent}
 
@@ -8694,11 +8696,28 @@ A useful application of ultrafilters is as follows. We say a net $\langle x_\alp
 		\begin{itemize}
 			\item Suppose $E \in \mathscr{F}$. Then we can pick some $\alpha_0 \in A$ with $x_{\alpha_0} \in E$. (This is because $E \cap T_\alpha \in \mathscr{F}$ and thus $E \cap T_\alpha \neq \emptyset$ for all $\alpha \in A$.) But now if $(\alpha, F) \in B$\\ satisfies that $(\alpha, F) \gtrsim (\alpha_0, E)$, we know $y_{(\alpha, F)} = x_\alpha \in E$. So, our subnet\\ is eventually in $E$.\retTwo
 
-			\item Meanwhile, the case where $X - E \in \mathscr{F}$ can be dealt with using analogous reasoning. (Just replace $E$ with $X - E$.)\retTwo
+			\item Meanwhile, the case where $X - E \in \mathscr{F}$ can be dealt with using analogous reasoning. (Just replace $E$ with $X - E$.)\newpage
 		\end{itemize}
 	\end{myIndent}
 \end{myIndent}
-\mySepTwo\newpage
+
+One other note I want to make is that if $\langle x_\alpha\rangle_{\alpha \in A}$ is an ultra-net and $X = \bigcup_{i=1}^n E_i$, then\\ we can conclude that there is at least one $E_i$ such that $x_\alpha$ is eventually in $E_i$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	We proceed by induction on $n$. For our base case, suppose $X = E_1 \cup E_2$. Then if $x_\alpha$ is not eventually in $E_1$, we know that $x_\alpha$ is eventually in $X - E_1$. And since $X - E_1 \subseteq E_2$, we can conclude that $x_\alpha$ is eventually in $E_2$.\retTwo
+
+	Now suppose $n > 2$ and that $X = \bigcup_{i=1}^n E_i$. Then by writing:
+	
+	{\centering$X = (E_1 \cup E_2) \cup E_3 \cup \cdots \cup E_n$,\\ [4pt]\par}
+	
+	we can conclude by induction that either there exists $i \geq 3$ with $x_\alpha$ eventually in $E_i$, or\\ we have that $x_\alpha$ is eventually in $E_1 \cup E_2$. We're trivially done in the former case. So assume the latter case is what happens.\retTwo
+
+	Next, write $X = E_1 \cup (E_2 \cup E_3) \cup E_4 \cup \cdots \cup E_n$. Then we know from our induction hypothesis that either there exists $i \neq 2, 3$ with $x_\alpha$ eventually in $E_i$ or we have that $x_\alpha$ is eventually in $E_2 \cup E_3$. We assume the former case doesn't happen since otherwise we'd be trivially done. In particular, this means that $x_\alpha$ is not eventually in $E_1$.\retTwo
+
+	But now we have that $x_\alpha$ is eventually in $(E_1 \cup E_2)$, and yet at the same time since $\langle x_\alpha\rangle_{\alpha \in A}$ is an ultrafilter, we can conclude that $x_\alpha$ is eventually in $X - E_1$. In turn, we can conclude that $x_\alpha$ is eventually in $(E_1 \cup E_2) \cap (X - E_1) = E_2 - E_1 \subseteq E_2$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\mySepTwo
 
 
 
