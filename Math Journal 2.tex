@@ -659,7 +659,7 @@ Given a set $X$ (and denoting its power set as $\mathcal{P}(X)$), we say $\maths
 Also, we say $\mathscr{B} \subseteq \mathcal{P}(X)$ is a \udefine{filterbase} if it is nonempty, doesn't contain $\emptyset$, and is directed by inclusion (i.e if $A, B \in \mathscr{B}$ then there exists $C \in \mathscr{B}$ with $C \subseteq A \cap B$).
 
 \begin{myIndent}\myComment 
-	Note that if $\{\mathscr{F}_i\}_{i \in I}$ is a family of filters, then $\bigcap_{i \in I}\mathscr{F}_i$ is also a filter. Therefore, it makes sense to talk about the smallest filter containing some generating set.\retTwo
+	Note that if $\{\mathscr{F}_i\}_{i \in I}$ is a family of filters, then $\bigcap_{i \in I}\mathscr{F}_i$ is also a filter. Therefore, it makes sense to talk about the smallest filter containing some generating collection of sets\\ (assuming any filters containing that collection even exist).\retTwo
 
 	Given a filterbase $\mathscr{B}$, we claim the smallest filter containing $\mathscr{B}$ is the collection:
 	
@@ -8483,7 +8483,7 @@ We say a \udefine{uniformity base} on a set $X$ is a filterbase $\mathscr{B}$ on
 
 		Finally, let $C \geq 1$ satisfy that $\rho(x, z) \leq C(\rho(x, y) + \rho(y, z))$ for all $x, y, z \in X$. Then we can see that $D_{\frac{\varepsilon}{2C}} \circ D_{\frac{\varepsilon}{2C}} \subseteq D_\varepsilon$.
 		\begin{myIndent}\exPPP
-			I used an arbitrary constant $C$ instead of just setting $C = 1$ cause I wanted to show that this construction also works for certain \udefine{semimetrics} (such as quasinorms).\retTwo
+			I used an arbitrary constant $C$ instead of just setting $C = 1$ cause I wanted to show that this construction also works for certain \udefine{semimetrics} (such as\\ quasinorms).\retTwo
 		\end{myIndent}
 	\end{myIndent}
 
@@ -8542,7 +8542,7 @@ Let $\phi: X \to Y$ be a map between two uniform spaces $(X, \mathscr{U}_X)$ and
 \exTwo\ul{Corollary:} If $(X, \rho_X)$ and $(Y, \rho_Y)$ are metric spaces equipped with their metric uniform structures, then our new definition of uniform continuity agrees with our old definition.
 \begin{myIndent}\exThreeP
 	Why?\\
-	Let $\mathscr{U}_X$ and $\mathscr{U}_Y$ denote the uniform structures on $X$ and $Y$ respectively, and suppose $\phi: X \to Y$ is a map. Now for any $E_\varepsilon$ in the standard uniformity base for $\mathscr{U}_Y$ we have that $(\phi \times \phi)^{-1}(E_\varepsilon) \in \mathscr{U}_X$ iff there exists $D_\delta$ in the standard uniformity base for $\mathscr{U}_X$ such that $D_\delta \subseteq (\phi \times \phi)^{-1}(E_\varepsilon)$. Equivalently this means that $\phi$ is uniformly continuous according to our new definition iff for all $\varepsilon > 0$ there exists $\delta > 0$ with $\rho_X(x, y) < \delta \Longrightarrow \rho_Y(\phi(x), \phi(y)) < \varepsilon$.\retTwo
+	Let $\mathscr{U}_X$ and $\mathscr{U}_Y$ denote the uniform structures on $X$ and $Y$ respectively, and suppose\\ $\phi: X \to Y$ is a map. Now for any $E_\varepsilon$ in the standard uniformity base for $\mathscr{U}_Y$ we have that $(\phi \times \phi)^{-1}(E_\varepsilon) \in \mathscr{U}_X$ iff there exists $D_\delta$ in the standard uniformity base for $\mathscr{U}_X$ such that $D_\delta \subseteq (\phi \times \phi)^{-1}(E_\varepsilon)$. Equivalently this means that $\phi$ is uniformly continuous according to our new definition iff for all $\varepsilon > 0$ there exists $\delta > 0$ with $\rho_X(x, y) < \delta \Longrightarrow \rho_Y(\phi(x), \phi(y)) < \varepsilon$.\retTwo
 \end{myIndent}
 
 \hTwo One related headache to mention is as follows:\retTwo
@@ -8580,7 +8580,7 @@ As a consequence, we can also say that if $\phi: G \to H$ is a topological group
 	Proof:\\
 	Let $R_Y \coloneqq \bigcap_{E \in \mathscr{U}_Y} E$. We want to prove $R_Y = \Delta Y$. So consider any $(y_1, y_2) \in Y \times Y$ such that $y_1 \neq y_2$. Since $\phi$ is bijective, we know that there exists unique distinct elements $x_1, x_2 \in X$ such that $\phi(x_1) = y_1$ and $\phi(x_2) = y_2$. And now since $X$ is separated, we can find some $D \in \mathscr{U}_X$ such that $(x_1, x_2) \notin D$.\retTwo
 
-	But now set $E = (\phi \times \phi)(D)$. Since $\phi^{-1}$ is uniformly continuous, we know that\\ $(\phi \times \phi)(D) \in \mathscr{U}_Y$. Furthermore, $(\phi \times \phi)^{-1}(\{(y_1, y_2)\}) = \{(x_1, x_2)\} \not\subseteq D$. So $(y_1, y_2) \notin E$. And with that, we have shown that $(y_1, y_2) \notin \Delta Y \Longrightarrow (y_1, y_2) \notin R_Y$. $\blacksquare$\retTwo
+	But now set $E = (\phi \times \phi)(D)$. Since $\phi^{-1}$ is uniformly continuous, we know that\\ $(\phi \times \phi)(D) \in \mathscr{U}_Y$. Furthermore, $(\phi \times \phi)^{-1}(\{(y_1, y_2)\}) = \{(x_1, x_2)\} \not\subseteq D$. So\\ $(y_1, y_2) \notin E$. And with that, we've shown that $(y_1, y_2) \notin \Delta Y \Longrightarrow (y_1, y_2) \notin R_Y$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \exTwo\ul{Corollary:} If $(X, \mathscr{U}_X)$ and $(Y, \mathscr{U}_Y)$ are uniform spaces and $\phi: X \to Y$ is a uniform\\ equivalence, then $X$ is separated iff $Y$ is separated.\retTwo
@@ -8595,7 +8595,110 @@ Firstly, here's another convention of James for relations on a set $X$. Suppose 
 
 Similarly, if $S \subseteq X$ then we define $R[S] \coloneqq \bigcup_{a \in S}R[a]$.\newpage
 
+Suppose $(X, \mathscr{U})$ is a uniform space. We say that $X$ is \udefine{totally bounded} if for all $D \in \mathscr{U}$ there exists a finite set $S \subseteq X$ such that $X = D[S]$.
+\begin{myIndent}\myComment
+	Remark: If $\mathscr{B}$ is a filterbase for $\mathscr{U}$ then $X$ is totally bounded iff for all $D \in \mathscr{B}$ we can find a finite set $S \subseteq X$ such that $X = D[S]$. From this observation, hopefully it is clear how this definition of total boundedness agrees with the metric space definition when we equip our metric space with the metric uniform structure.\retTwo
+\end{myIndent}
 
+\exTwo\ul{Proposition:} Suppose $(X, \mathscr{U}_X)$ and $(Y, \mathscr{U}_Y)$ are uniform spaces and $\phi: X \to Y$ is a\\ uniformly continuous surjection. If $X$ is totally bounded then so is $Y$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider any $E \in \mathscr{U}_Y$ and then let $D \coloneqq (\phi \times \phi)^{-1}(E) \in \mathscr{U}_X$. Since $X$ is totally bounded, we can find a finite set $S \subseteq X$ with $D[S] = X$. In turn, we have that $Y = E[\phi(S)]$. After all, suppose $y \in Y$. Since $\phi$ is surjective, there exists $x \in X$ such that $\phi(x) = y$. Yet now pick $s \in S$ such that $s D x$. Then $\phi(s) E y$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Corollary:} If $X$ and $Y$ are uniform spaces, and $\phi: X \to Y$ is a uniform equivalence, then $X$ is totally bounded iff $Y$ is totally bounded.\retTwo
+
+\hTwo
+\begin{myIndent}\mySepThree\end{myIndent}
+
+One of the main reasons for caring about uniform spaces is that they let us define what it means for a sequence to be Cauchy.\retTwo
+
+Suppose $(X, \mathscr{U})$ is a uniform space and $\{x_n\}_{n \in \mathbb{N}}$ is a sequence in $X$. Then we say $\{x_n\}_{n \in \mathbb{N}}$ is a \udefine{Cauchy sequence} if:
+
+{\centering $\forall D \in \mathscr{U}, \hspace{0.3em} \exists N \in \mathbb{N} \suchthat \forall n, m \geq N, \hspace{0.3em} x_n D x_m$ \retTwo\par}
+
+\begin{myIndent}\myComment
+	Remark: Like with total boundedness, if $\mathscr{B}$ is a filterbase for $\mathscr{U}$ then it suffices to check the condition for a sequence being Cauchy only for the elements in $\mathscr{B}$. With this in mind, hopefully it is clear how this definition of a sequence being Cauchy agrees with the metric space definition when we equip out metric space with the metric uniform structure.\retTwo
+\end{myIndent}
+
+Similarly, we say a net $\langle x_\alpha\rangle_{\alpha \in A}$ is \udefine{Cauchy} if:
+
+{\centering $\forall D \in \mathscr{U}, \hspace{0.3em} \exists \alpha \in A \suchthat \forall \beta, \gamma \geq \alpha, \hspace{0.3em} \beta D \gamma$ \retTwo\par}
+
+Once we define a topology associated with a uniform structure, we'll be able to discuss whether a uniform space is \udefine{complete} or not (i.e. if all Cauchy sequences and nets converge or not). Furthermore, we'll be able to discuss taking completions of uniform spaces.\retTwo
+
+\exTwo\ul{Proposition:} Suppose $(X, \mathscr{U}_X)$ and $(Y, \mathscr{U}_Y)$ are uniform spaces, $\langle x_\alpha\rangle_{\alpha \in A}$ is a Cauchy net in $X$, and $\phi: X \to Y$ is a uniformly continuous map. Then $\langle \phi(x_\alpha)\rangle_{\alpha \in A}$ is a Cauchy net in $Y$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $E$ be a relation in $\mathscr{U}_Y$.
+	\begin{myIndent}\myComment
+		By the way, something I've not mentioned before is that a relation in $\mathscr{U}_Y$ would\\ normally be called an \udefine{entourage}. The reason I wasn't using that terminology before\newpage is that the word "entourage" makes my mind immediately think of a neighborhood in $Y$ as opposed to a subset of $Y \times Y$. That said, it would be helpful to not have to keep explicitely naming the uniform structure of $X$ and $Y$. So, I'm going to start calling relations in uniform structures "entourages".\retTwo
+	\end{myIndent}
+
+	Since $\phi$ is uniformly continuous, we know that $D \coloneqq (\phi \times \phi)^{-1}(E)$ is an entourage on $X$. In turn, as $\langle x_\alpha\rangle_{\alpha \in A}$ is a Cauchy net, we know there exists $\alpha_0 \in A$ with $x_\beta D x_\gamma$ for all $\beta, \gamma \geq \alpha_0$. And now $\phi(x_\beta) E \phi(x_\gamma)$ for all $\beta, \gamma \geq \alpha_0$. Since $E$ was arbitrary, we can conclude that $\langle \phi(x_\alpha)\rangle_{\alpha \in A}$ is a Cauchy net in $Y$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\pracOne\mySepTwo
+
+I would mostly rather work with nets if possible since they along with sequences are\\ much more natural to think about then filters are (at least when it comes to things like\\ convergence). That said, I think it is unavoidable that I need to introduce some facts about them here.\retTwo
+
+Suppose $\mathscr{F}$ is a filter. We say another filter $\mathscr{F}^\prime$ \udefine{refines} $\mathscr{F}$ if $\mathscr{F} \subseteq \mathscr{F}^\prime$.\\ [-6pt]
+\begin{myIndent}\pracTwo
+	Note that we can let $\mathcal{F}$ be the collection of all filters $\mathscr{F}^\prime$ refining $\mathscr{F}$. Importantly, $\mathcal{F}$ is nonempty since $\mathscr{F} \in \mathcal{F}$. Next, we can partially order $\mathcal{F}$ via inclusion. Then suppose we are given a chain of filters $\{\mathscr{F}^\prime_\alpha\}_{\alpha \in A}$ contained in $\mathcal{F}$. By defining $\mathscr{F}^\prime \coloneqq \bigcup_{\alpha \in A}\mathscr{F}^\prime_\alpha$, we get another filter in $\mathcal{F}$ which is an upper bound to our chain. With that, we can conclude by Zorn's lemma that $\mathcal{F}$ has a maximal element.\retTwo
+
+	So, we've shown for any filter that there is a maximal filter refining our original filter.\retTwo
+\end{myIndent}
+
+If $\mathscr{F}$ is a maximal filter (meaning that for any filter $\mathscr{G}$ refining $\mathscr{F}$ we have that $\mathscr{F} = \mathscr{G}$), then we call $\mathscr{F}$ an \udefine{ultrafilter}.\retTwo
+
+\ul{Proposition:} Let $\mathscr{F}$ be a filter on a set $X$. Then $\mathscr{F}$ is an ultrafilter if and only if whenever $A \cup B \in \mathscr{F}$ where $A, B \subseteq X$ then $A \in \mathscr{F}$ or $B \in \mathscr{F}$.
+\begin{myIndent}\pracTwo 
+	$(\Longrightarrow)$\\
+	Suppose that $A$ and $B$ are subsets of $X$ such that $A \cup B \in \mathscr{F}$ but $A \notin \mathscr{F}$ and $B \notin \mathscr{F}$. Then we can define another filter $\mathscr{G} \coloneqq \{B^\prime \subseteq X : A \cup B^\prime \in \mathscr{F}\}$.\retTwo
+	
+	To see that $\mathscr{G}$ is a filter, first note that $\emptyset \notin \mathscr{G}$ since $A = A \cup \emptyset \notin \mathscr{F}$. Meanwhile, $X \in \mathscr{G}$\\ since $X = A \cup X \in \mathscr{F}$. Next, suppose $B^\prime \in \mathscr{G}$ and $B^\prime \subseteq C^\prime \subseteq X$. Then note that\\ $A \cup C^\prime \supseteq A \cup B^\prime \in \mathscr{F}$. So, $A \cup C^\prime \in \mathscr{F}$ and this proves that $C^\prime \in \mathscr{G}$. Finally, suppose $B_1^\prime, B_2^\prime \in \mathscr{G}$. Then $(A \cup B_1^\prime) \cap (A \cup B_2^\prime) = A \cup (B_1^\prime \cap B_2^\prime) \in \mathscr{F}$. So, $B_1^\prime \cap B_2^\prime \in \mathscr{G}$.\retTwo
+
+	Yet now note that $\mathscr{G}$ refines $\mathscr{F}$. After all, if $B^\prime \in \mathscr{F}$ then:
+	
+	{\centering $A \cup B^\prime \subseteq B^\prime \Longrightarrow A \cup B^\prime \in \mathscr{F} \Longrightarrow B^\prime \in \mathscr{G}$.\retTwo\par}
+
+	At the same time, $B \in \mathscr{G} - \mathscr{F}$. This proves that $\mathscr{F}$ is not an ultrafilter since $\mathscr{G}$ properly contains $\mathscr{F}$.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $\mathscr{F}$ is not an ultrafilter and let $\mathscr{G}$ be a filter properly containing $\mathscr{F}$. In turn, we know that there exists a set $A \in \mathscr{G} - \mathscr{F}$. But now consider that $X - A \notin \mathscr{G}$ since otherwise\newpage $\emptyset = (X - A) \cap A$ would be in $\mathscr{G}$. Since $\mathscr{F} \subseteq \mathscr{G}$, we can also thus conclude that\\ $X - A \notin \mathscr{F}$. Simultanously though, we know $X \in \mathscr{F}$. So $X = A \cup (X - A) \in \mathscr{F}$\\ but $A$ and $X - A$ are both not in $\mathscr{F}$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		As a side note, we can more strongly conclude from the reasoning of the prior proof that $\mathscr{F}$ is an ultrafilter on $X$ if and only if for all $A \subseteq X$ we have that $A \in \mathscr{F}$ or $X - A \in \mathscr{F}$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+A useful application of ultrafilters is as follows. We say a net $\langle x_\alpha\rangle_{\alpha \in A}$ on a set $X$ is\\ an \udefine{ultra-net} if and only if for all $E \subseteq X$ we have that $x_\alpha$ is eventually in $E$ or $x_\alpha$ is\\ eventually in $X - E$. Importantly, every net $\langle x_\alpha\rangle_{\alpha \in A}$ has an ultra-subnet.\\ [-6pt]
+\begin{myIndent}\pracTwo
+	Proof:\\
+	For all $\alpha \in A$ we let $T_\alpha \coloneqq \{x_\beta : \beta \in A \text{ with } \beta \geq \alpha\}$. Importantly, the collection of all $T_\alpha$ constitutes a filterbase. In turn, we can find some ultrafilter $\mathscr{F}$ containing each of the $T_\alpha$.\retTwo
+
+	Next, let $B \subseteq A \times \mathscr{F}$ be defined to be the set of all pairs $(\alpha, F) \in A \times \mathscr{F}$ with $x_\alpha \in F$. Importantly, $B$ is a directed set when we define $(\alpha_1, F_1) \lesssim (\alpha_2, F_2)$ if $\alpha_1 \leq \alpha_2$ and $F_1 \supseteq F_2$.
+	\begin{myIndent}
+		Why?\\
+		The only nonobvious thing to prove is that if $(\alpha_1, F_1), (\alpha_2, F_2) \in B$ then there\\ exists $(\alpha^\prime, F^\prime) \in B$ such that $(\alpha^\prime, F^\prime) \gtrsim(\alpha_1, F_1)$ and $(\alpha^\prime, F^\prime) \gtrsim(\alpha_2, F_2)$.\\ Fortunately, note that $A$ being a directed set means that there exists $\beta \in A$\\ with $\beta \gtrsim \alpha_1$ and $\beta \gtrsim \alpha_2$. Next, as $\mathscr{F}$ is a filter containing $F_1$, $F_2$, and $T_\beta$, we\\ know that $F^\prime \coloneqq F_1 \cap F_2 \in \mathscr{F}$ and $F^\prime \cap T_\beta \in \mathscr{F}$. In particular, this means\\ that $F^\prime \cap T_\beta \neq \emptyset$. So, there exists $\alpha^\prime \in A$ such that $x_{\alpha^\prime} \in F^\prime$ and $\alpha^\prime \geq \beta$.\\ And with that, we've now show that $(\alpha^\prime, F^\prime) \in B$. Also, this element is clearly\\ an upper bound to our original two elements of $B$.\retTwo
+	\end{myIndent}
+
+	Now for any $(\alpha, F) \in B$ we define $y_{(\alpha, F)} = x_\alpha$. Then we consider the net $\langle y_{(\alpha, F)}\rangle_{(\alpha, F) \in B}$.
+	\begin{myIndent}
+		To see that this is a subnet of $\langle x_\alpha\rangle_{\alpha \in A}$, suppose that $\alpha_0 \in A$ and then pick any\\ $F \in \mathscr{F}$. Since $T_{\alpha_0} \in \mathscr{F}$ we know that $F \cap T_{\alpha_0} \in \mathscr{F}$. In particular, this means that $F \cap T_{\alpha_0} \neq \emptyset$. So, we can find $\alpha_1 \in A$ with $(\alpha_1, F) \in B$ and $\alpha_1 \geq \alpha_0$. Now it is easy to see that if $(\alpha^\prime, F^\prime) \in B$ satisfies that $(\alpha^\prime, F^\prime) \gtrsim (\alpha_1, F)$ then $\alpha^\prime \geq \alpha_0$.\retTwo
+	\end{myIndent}
+
+	Finally, I claim that $\langle y_{(\alpha, F)}\rangle_{(\alpha, F) \in B}$ is an ultra-net.
+	\begin{myIndent}
+		After all, suppose $E \subseteq X$ is any set. Since $\mathscr{F}$ is an ultrafilter, we know that either $E \in \mathscr{F}$ or $X - E \in \mathscr{F}$.
+		\begin{itemize}
+			\item Suppose $E \in \mathscr{F}$. Then we can pick some $\alpha_0 \in A$ with $x_{\alpha_0} \in E$. (This is because $E \cap T_\alpha \in \mathscr{F}$ and thus $E \cap T_\alpha \neq \emptyset$ for all $\alpha \in A$.) But now if $(\alpha, F) \in B$\\ satisfies that $(\alpha, F) \gtrsim (\alpha_0, E)$, we know $y_{(\alpha, F)} = x_\alpha \in E$. So, our subnet\\ is eventually in $E$.\retTwo
+
+			\item Meanwhile, the case where $X - E \in \mathscr{F}$ can be dealt with using analogous reasoning. (Just replace $E$ with $X - E$.)\retTwo
+		\end{itemize}
+	\end{myIndent}
+\end{myIndent}
+\mySepTwo\newpage
 
 
 
