@@ -8530,7 +8530,7 @@ Let $\phi: X \to Y$ be a map between two uniform spaces $(X, \mathscr{U}_X)$ and
 	Both remarks are trivial to verify.\retTwo
 \end{myIndent}
 
-\exTwo\ul{Proposition:} If $\phi: (X, \mathscr{U}_X) \to (Y, \mathscr{U}_Y)$ is a map betwen uniform spaces and $\mathscr{B}_Y$ is a uniformity base for $\mathscr{U}_Y$, then $\phi: X \to Y$ is uniformly continuous iff $(\phi \times \phi)^{-1}(E) \in \mathscr{U}_X$ for all $E \in \mathscr{B}_Y$.
+\exTwo\ul{Proposition:} \hypertarget{top of page 996}{If} $\phi: (X, \mathscr{U}_X) \to (Y, \mathscr{U}_Y)$ is a map between uniform spaces and $\mathscr{B}_Y$ is a uniformity base for $\mathscr{U}_Y$, then $\phi: X \to Y$ is uniformly continuous iff $(\phi \times \phi)^{-1}(E) \in \mathscr{U}_X$ for all $E \in \mathscr{B}_Y$.
 \begin{myIndent}\exThreeP
 	$(\implies)$\\
 	This direction is trivial from the fact that $\mathscr{B}_Y \subseteq \mathscr{U}_Y$.\retTwo
@@ -8761,6 +8761,359 @@ One other note I want to make is that if $\langle x_\alpha\rangle_{\alpha \in A}
 \end{myIndent}
 \hTwo\mySepTwo\newpage
 
+\dispDate{6/23/2026}
+
+Today I want to start tying the theory of uniform spaces to the theory of topology. So, I'll continue loosely following the book I was following before.\retTwo
+
+Let $(X, \mathscr{U})$ be a uniform space. Then taking inspiration from \inLinkRap{Page 798 theorem 4-3-5}{pages 798-800} as well as from how the metric space topology is defined, we'll define that a set $U \subseteq X$ is open in the uniform topology if for all $x \in U$ there exists an entourage $E \in \mathscr{U}$ with $E[x] \subseteq U$.\retTwo
+
+\exTwo\ul{Proposition:} The uniform topology is a well-defined topology. 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, we trivially have that $\emptyset$ and $X$ are open sets in the uniform topology.\retTwo
+
+	Next suppose $U_1$ and $U_2$ are open sets in the uniform topology, and consider any\\ $x \in U_1 \cap U_2$. Since $U_1$ and $U_2$ are open, we can find entourages $E_1$ and $E_2$ such that $E_1[x] \subseteq U_1$ and $E_2[x] \subseteq U_2$. So, we then consider the entourage $E \coloneqq E_1 \cap E_2$. Now $E[x] \subseteq U_1 \cap U_2$. And since $x$ was arbitrary, we've proven that $U_1 \cap U_2$ is an open set in the uniform topology.
+	\begin{myIndent}\exPPP
+		(By induction we can in turn conclude that any finite intersection of open sets is open in the uniform topology.)\retTwo
+	\end{myIndent}
+
+	Finally, suppose $\{U_\alpha\}_{\alpha \in A}$ is an arbitrary collection of open sets in the uniform topology. Then for any $x \in \bigcup_{\alpha \in A}U_\alpha$ we know that there exists $\alpha_0 \in A$ with $x \in U_{\alpha_0}$. Next, since $U_{\alpha_0}$ is open we know that there exist an entourage $E$ such that $E[x] \subseteq U_{\alpha_0}$. And now $E[x] \subseteq \bigcup_{\alpha \in A}U_\alpha$. This proves that $\bigcup_{\alpha \in A}U_\alpha$ is open. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Suppose $\mathscr{B}$ is a filterbase for $\mathscr{U}$. Then for any $x \in X$ we have that\\ $\{E[x] : E \in \mathscr{B}\}$ is a local base of neighborhoods of $x$. {\color{red} (See \inLinkRap{local base of neighborhoods definition}{page 796} for the definition\\ of a local base of neighborhoods.)}
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, suppose $N$ is any neighborhood of $x$. Then we know there is an open set $U$ such that $x \in U \subseteq N$. But now since $U$ is open, we know there exists some entourage $D \in \mathscr{U}$ such that $D[x] \subseteq U$. And finally, since $\mathscr{B}$ is a filterbase for $\mathscr{U}$ we know that there exists another entourage $E \in \mathscr{B}$ with $E \subseteq D$. In turn, $E[x] \subseteq D[x]$. And with that, we've proven that for all neighborhoods $N$ of $x$ there exists $E \in \mathscr{B}$ with $x \in E[x] \subseteq N$.\retTwo
+	
+	Meanwhile, we also need to show that $E[x]$ is a neighborhood of $x$ for all $E \in \mathscr{B}$. So, having fixed our entourage $E$, let $U \coloneqq \{y \in X : \exists D \in \mathscr{U} \text{ s.t. } D[y] \subseteq E[x]\}$. Note that:
+	\begin{itemize}
+		\item $x \in U$ since $E \in \mathscr{U}$ and $E[x] \subseteq E[x]$.
+		\item Also since $y \in D[y]$ for all entourages $D \in \mathscr{U}$ and $y \in X$, we know that $U \subseteq E[x]$.
+		\item Finally, $U$ is open. After all, consider any $y \in U$ and let $D \in \mathscr{B}$ be such that\\ $D[y] \subseteq E[x]$. But now since $\mathscr{U}$ is a uniform structure, we can find some $D^\prime \in \mathscr{U}$\\ such that $D^\prime \circ D^\prime \subseteq D$. And now I claim that $D^\prime[y] \subseteq U$.
+		\begin{myIndent}\exPPP
+			After all, suppose $z \in D^\prime[y]$. Then for any $w \in D^\prime[z]$ we have that $y D^\prime z$ and $z D^\prime w$. It follows that $y D^\prime \circ D^\prime w$. So, $w \in D[y] \subseteq E[x]$. And this proves that\newpage $D^\prime[z] \subseteq E[x]$. In turn, by the definition of $U$ we know that $z \in U$. And since $z$ was arbitrary, this proves that $D^\prime[y] \subseteq U$.\retTwo
+		\end{myIndent}
+	\end{itemize}
+
+	With that, we can conclude that $E[x]$ is a neighborhood of $x$ for every entourage $E \in \mathscr{B}$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Corollary:} If $(X, \rho)$ is a metric space, then the uniform topology associated with the metric uniform structure is precisely the standard metric topology.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $\{D_\varepsilon\}_{\varepsilon > 0}$ be the standard uniformity base for the metric uniform structure. Then we can see for all $x \in X$ that $D_\varepsilon[x]$ is just the ball of radius $\varepsilon$ centered at $x$. Hence, for any $x \in X$ we have that $\{D_\varepsilon[x], \varepsilon > 0\}$ is a local base of neighborhoods of $x$ in both the standard metric topology and in the uniform topology. It follows that convergence in both topologies are equivalent, and in turn the topologies are equal to each other. $\blacksquare$\retTwo 
+\end{myIndent}
+
+\ul{Corollary 2:} Let $G$ be a topological group. Then the uniform topologies associated with the left uniform structure and the right uniform structure are both equivalent to the original topology on $G$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Just show like in the prior corollary that either of the uniform topologies on $G$ admits\\ a local base of neighborhoods at any $x \in G$ which is also a local base of neighborhoods\\ of $x$ in the original topology. After all given any neighborhood $N$ of the identity element\\ $e \in G$ we have that $L_N[x] = xN$ and $R_N[x] = Nx$.\retTwo
+
+	\begin{myIndent}\myComment
+		As a side note, since the left and right uniform structures on a topological group are generally not the same, this corollary also demonstrates that while we can speak of a single canonical topology associated with a uniform space, we generally can't speak of a single canonical uniform structure whose associated topology is some desired topology.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\begin{myIndent}\mySepThree\end{myIndent}
+
+There are two propertes of the uniform topology which had better be true. Namely,\\ uniform continuity should be stronger than continuity, and also every convergent net\\ should be Cauchy. I'll prove these facts below.\retTwo
+
+\exTwo\ul{Proposition:} Suppose $X$ and $Y$ are uniform spaces and $\phi: X \to Y$ is uniformly continuous. Then $\phi$ is continuous when $X$ and $Y$ are equipped with the uniform topologies.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider any $x \in X$ and then consider any neighborhood $N$ of $\phi(x)$ in $Y$. We\\ know there exists an entourage $E$ of $Y$ with $E[\phi(x)] \subseteq N$. Yet also note that\\ $D \coloneqq (\phi \times \phi)^{-1}(E)$ is an entourage of $X$ since $\phi$ is uniformly continuous. And\\ now I claim that $D[x]$ is a neighborhood of $x \in X$ satisfying that $\phi(D[x]) \subseteq N$.\\ After all, if $y \in D[x]$ then $\phi(y) \in E[\phi(x)] \subseteq N$. This proves that $\phi$ is continuous\\ at $x$. And since $x$ was arbitrary, we can conclude that $\phi$ is continuous everywhere. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Suppose $X$ is a uniform space and that the net $\langle x_\alpha\rangle_{\alpha \in A}$ converges with\\ respect to the uniform topology to a point $x \in X$. Then $\langle x_\alpha\rangle_{\alpha \in A}$ is a Cauchy net.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $E$ be any entourage of $X$ and then pick a symmetric entourage $E^\prime$ of $X$ such\\ that $E^\prime \circ E^\prime \subseteq E$. Since $x_\alpha \to x$ in the uniform topology, we know that the $x_\alpha$ are\\ eventually in $E^\prime[x]$. But now let $\alpha_0 \in A$ satisfy that $x_\alpha \in E^\prime[x]$ for all $\alpha \geq \alpha_0$. Then\\ for all $\alpha, \beta \geq \alpha_0$ we have that $xE^\prime x_\alpha$ and $xE^\prime x_\beta$ implies that $x_\alpha E^\prime \circ E^\prime x_\beta$. So,\\ $x_\alpha E x_\beta$ for all $\alpha, \beta \geq \alpha_0$. And this proves that our net is Cauchy. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Next I want to prove another useful fact about uniform the uniform topology.\retTwo
+
+\exTwo\ul{Proposition:} Suppose $X$ is a uniform space. Then the following are equivalent:
+\begin{enumerate}
+	\item[(a)] $X$ is a separated uniform space,
+	\item[(b)] the uniform topology on $X$ is $T_0$, 
+	\item[(c)] the uniform topology on $X$ is $T_1$,
+	\item[(d)] the uniform topology on $X$ is Hausdorff.
+\end{enumerate}
+\begin{myIndent}\exThreeP
+	$(a \Longrightarrow d)$\\
+	Let $x$ and $y$ be two distinct points in $X$. Since $X$ is separated, we know that there exists an entourage $E$ such that $y \notin E[x]$. Next, we pick a symmetric entourage $E^\prime$ such that $E^\prime \circ E^\prime \subseteq E$. And I claim that $E^\prime[x]$ and $E^\prime[y]$ are disjoint neighborhoods of $x$ and $y$ respectively.\retTwo
+
+	To see why they are disjoint, suppose $z \in E^\prime[x]$. Then we know that $z \notin E^\prime[y]$ since otherwise $xE^\prime z$ and $y E^\prime z$ would imply that $xEy$ (a contradiction). So, $E^\prime[x] \cap E^\prime[y] = \emptyset$. This proves that $X$ is Hausdorff.\retTwo
+
+	$(d \Longrightarrow c)$ and $(c \Longrightarrow b)$\\
+	This is obvious.\retTwo
+
+	$(b \Longrightarrow a)$\\
+	Suppose $X$ is $T_0$ and let $x$ and $y$ be distinct elements of $X$. Without loss of generality we can assume there exists an open set $U$ such that $x \in U$ and $y \notin U$. In turn, we can find an entourage $E[x]$ such that $x \in E[x] \subseteq U$. And now we know $(x, y) \notin E$. This proves that $X$ is separated. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\begin{myIndent}\mySepThree\end{myIndent}
+
+A particularly important thing we ought to be able to do is consider uniform structures on product spaces. After all, multi-variable functions ought to be able to be jointly continuous.\retTwo
+
+Suppose $\{X_\alpha, \mathscr{U}_\alpha\}_{\alpha \in A}$ is a collection of uniform spaces and let us write $X = \prod_{\alpha \in A} X_\alpha$. We can identify $X \times X$ with $\prod_{\alpha \in A} X_\alpha \times X_\alpha$ via the obvious map. And now, we let the collection of $\prod_{\alpha \in A}D_\alpha$ form a uniformity base for $X$ (where each $D_\alpha \in \mathscr{U}_\alpha$ and for all but finitely many $\alpha$ we have that $D_\alpha = X_\alpha \times X_\alpha$).\\ [-6pt]
+\begin{myIndent}\pracTwo
+	First, I want to justify that this is in fact a uniformity base for $X$.\newpage
+	\begin{itemize}
+		\item To start off, note that $X \times X$ is always in this base. Hence our base is nonempty.\\ [-6pt]
+		\item Also note that $\Delta X = \prod_{\alpha \in A}\Delta X_\alpha$ is a subset of very entourage in our base.\\ [-6pt]
+		\item Our base is a directed collection of sets. After all, suppose $\prod_{\alpha \in A}D_\alpha$ and $\prod_{\alpha \in A}E_\alpha$ are both entourages in our base. Then we have that $\prod_{\alpha \in A}(D_\alpha \cap E_\alpha)$ is also an entourage in our base contained in both of the original entourages.
+		\begin{myIndent}\exPPP
+			You check if you aren't convinced!!\\ [-6pt]
+		\end{myIndent}
+		\item Suppose $\prod_{\alpha \in A}D_\alpha$ is an entourage in our base. Then we can see that\\ $(\prod_{\alpha \in A}D_\alpha)^{-1} = \prod_{\alpha \in A}(D_\alpha^{-1})$ is also in our base.
+		\begin{myIndent}\exPPP
+			Again, you check if you aren't convinced!!\\ [-6pt]
+		\end{myIndent}
+		\item Finally, suppose $\prod_{\alpha \in A}D_\alpha$ is an entourage in our base. Then for each $\alpha$ such that $D_\alpha \neq X_\alpha \times X_\alpha$, we can pick an entourage $D^\prime_\alpha$ of $X_\alpha$ such that $D^\prime_\alpha \circ D^\prime_\alpha \subseteq D_\alpha$. Meanwhile, if $D_\alpha = X_\alpha \times X_\alpha$ then we trivially set $D_\alpha^\prime = D_\alpha$ and observe that $D^\prime_\alpha \circ D^\prime_\alpha \subseteq D_\alpha$. But now:
+		
+		{\centering$(\prod_{\alpha \in A}D_\alpha^\prime) \circ (\prod_{\alpha \in A}D_\alpha^\prime) = \prod_{\alpha \in A}(D_\alpha^\prime \circ D_\alpha^\prime) \subseteq \prod_{\alpha \in A}D_\alpha$.\retTwo\par}
+
+		\begin{myIndent}\exPPP
+			I'll show that $(\prod_{\alpha \in A}D_\alpha^\prime) \circ (\prod_{\alpha \in A}D_\alpha^\prime) = \prod_{\alpha \in A}(D_\alpha^\prime \circ D_\alpha^\prime)$ just to prove I know how to.\retTwo
+
+			Let $f, g: A \to \bigcup_{\alpha \in A}X_\alpha$ be elements of $\prod_{\alpha \in A}X_\alpha$. Then\\ $(f, g) \in (\prod_{\alpha \in A}D_\alpha^\prime) \circ (\prod_{\alpha \in A}D_\alpha^\prime)$ iff there exists $h: A \to \bigcup_{\alpha \in A}X_\alpha$\\ such that $(f, h) \in \prod_{\alpha \in A}D_\alpha^\prime$ and $(h, g) \in \prod_{\alpha \in A}D_\alpha^\prime$. Yet now note that the\\ latter is possible iff for every $\alpha$ there exsts $h(\alpha) \in X_\alpha$ such that $f(\alpha) D^\prime_\alpha h(\alpha)$ and $h(\alpha) D^\prime_\alpha g(\alpha)$ for all $\alpha$, and that's equivalent to saying $f(\alpha) D^\prime_\alpha \circ D^\prime_\alpha g(\alpha)$ for all $\alpha$. Or in other words, $(f, g) \in \prod_{\alpha \in A}(D_\alpha^\prime \circ D_\alpha^\prime)$.\retTwo
+		\end{myIndent}
+
+		Also note that $\prod_{\alpha \in A}D_\alpha^\prime$ is in our base.\retTwo
+	\end{itemize}
+
+	\mySepFour
+
+	Next, I want to justify why this is the natural definition for a uniformity base on $X$. For each $\alpha$ let $\pi_\alpha : X \to X_\alpha$ be the projection map. Then for any entourage $D_\alpha$ of $X_\alpha$ we have that:
+
+	{\centering $(\pi_\alpha \times \pi_\alpha)^{-1}(D_\alpha) = D_\alpha \times \left(\prod_{\alpha^\prime \in A - \{\alpha\}} X_{\alpha^\prime} \times X_{\alpha^\prime}\right)$. \retTwo\par}
+
+	It follows that $\pi_\alpha$ is uniformly continuous for every $\alpha \in A$ when $X$ is equipped with the \udefine{product uniform structure} (i.e. the structure generated by the uniformity base described priorly). More generally, by taking finite intersections we can also see that every uniform structure on $X$ satisfying that $\pi_\alpha: X \to X_\alpha$ is uniformly continuous for all $\alpha$ will\\ contain our uniformity base. So, the product uniform structure on $X$ is the smallest\\ uniform strucure such that all the $\pi_\alpha$ are uniformly continuous.\retTwo
+
+	\mySepFour \newpage
+
+	Finally, if all the $X_\alpha$ are equipped with their corresponding uniform topologies, then the uniform topology associated with $X$ (given the product uniform structure) is precisely the same as the product topology on $X = \prod_{\alpha \in A}X_\alpha$.
+	\begin{myIndent}\exPPP
+		Why?\\
+		Note that $(\prod_{\alpha \in A}D_\alpha)[(x_\alpha)_{\alpha \in A}] = \prod_{\alpha \in A}D_\alpha[x_\alpha]$. Hence, we can see that both topologies have identical local bases of neighborhoods at any $(x_\alpha)_{\alpha \in A}$ in $X$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\exTwo\ul{Proposition:} Let $\{X_\alpha\}_{\alpha \in A}$ be a collection of uniform spaces and then let $X \coloneqq \prod_{\alpha \in A}X_\alpha$ be equipped with the product uniform structure. Next suppose $A$ is another uniform space and $\phi: A \to X$ is a map. Then $\phi$ is uniformly continuous if and only if for all $\alpha \in A$ we have that $\phi_\alpha \coloneqq \pi_\alpha \circ \phi:A \to X_\alpha$ is uniformly continuous.
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	This direction is clear from the fact that compositions of uniformly continuous functions are uniformly continuous and $\pi_\alpha$ is uniformly continuous for all $\alpha$.\retTwo
+
+	$(\Longleftarrow)$\\
+	It suffices to show that $(\phi \times \phi)^{-1}(\prod_{\alpha \in A}D_\alpha)$ is an entourage of $A$ for any collection of entourages $\{D_\alpha\}_{\alpha \in A}$ with $D_\alpha = X_\alpha \times X_\alpha$ for all but finitely many $\alpha$. (After all, see the proposition at the top of \inLinkRap{top of page 996}{page 996}).\retTwo
+
+	Fortunately, upon letting $B \subseteq A$ be the set of all $\alpha \in A$ with $D_\alpha \neq X_\alpha \times X_\alpha$, we can say that:
+	
+	{\centering\begin{tabular}{l}
+		$(\phi \times \phi)^{-1}(\prod_{\alpha \in A}D_\alpha) = (\phi \times \phi)^{-1}(\bigcap_{\alpha \in B}(\pi_\alpha \times \pi_\alpha)^{-1}(D_\alpha))$\\ [4pt]
+		$\phantom{(\phi \times \phi)^{-1}(\prod_{\alpha \in A}D_\alpha)} = \bigcap_{\alpha \in B} (\phi \times \phi)^{-1}((\pi_\alpha \times \pi_\alpha)^{-1}(D_\alpha))$\\ [4pt]
+		$\phantom{(\phi \times \phi)^{-1}(\prod_{\alpha \in A}D_\alpha)} = \bigcap_{\alpha \in B} ((\pi_\alpha \circ \phi) \times (\pi_\alpha \circ \phi))^{-1}(D_\alpha)$.
+	\end{tabular}\retTwo\par}
+
+	Since the latter is a finite intersection of entourages of $A$ (since $\pi_\alpha \circ \phi$ is uniformly\\ continuous), we can conclude that $(\phi \times \phi)^{-1}(\prod_{\alpha \in A}D_\alpha)$ is an entourage of $A$. So, $\phi$ is uniformly continuous. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{6/25/2026}
+
+I'm feeling burnt out talking about uniform spaces. So I'm going to take a break from that and instead study manifolds. I'll return to talking about uniform spaces on \inLinkRap{idk reference 5}{page \_\_\_\_}.\retTwo
+
+My first goal for today is to give some proofs for some important facts about topological manifolds. An algebraic purist might not like the proofs I'm following to get these results. That said, my attempts to study manifolds prior to this point have been incredibly\\ hampered by not having these results.\retTwo
+
+First is a proof that I'm getting from Terence Tao's blog (see \inLinkRap{Seventh Citation}{citation 7}).\retTwo
+
+\exTwo\ul{Theorem (Invariance of Domain):} Suppose $U \subseteq \mathbb{R}^n$ is open and $f: U \to \mathbb{R}^n$ is an injective continuous function. Then $f(U)$ is an open set.
+\begin{myIndent}\exThreeP
+	To start off, for any $x \in U$ we can find a closed ball $\overline{B_r(x)}$ centered at $x$ and contained in $U$. And now to prove that $f(U)$ is an open set, it suffices to prove that $f(x)$ is an interior point of $f(\overline{B_r(x)})$. But now by scaling and translated our domain, we can without loss of generality assume that $r = 1$ and $x = 0$. So having denoted $B^n \coloneqq \overline{B_1(0)}$, we are left with the task of showing that:\\ [-6pt]
+	\begin{myIndent}
+		If $f: B^n \to \mathbb{R}^n$ is a continuous injective function then $f(0)$ lies in the interior of $f(B^n)$.\retTwo
+	\end{myIndent}
+
+	Fortunately, note that $f: B^n \to f(B^n)$ is a continuous bijection from a compact set to a Hausdorff space. So, the inverse map $f^{-1}: f(B^n) \to B^n$ must also be continuous. Furthermore, since $f(B^n)$ is a compact (and thus closed subset) of $\mathbb{R}^n$, we can apply a corollary of the Tietze Extension theorem to find a continuous function $G: \mathbb{R}^n \to \mathbb{R}^n$ with $G|_{F(B^n)} = f^{-1}$.
+	\begin{myIndent}\exPPP
+		See Folland corollary 4.17 in my math 240b notes.\retTwo
+	\end{myIndent}
+
+	Now $G(f(x)) = x$ for all $x \in B^n$. In particular this means that $G(f(0)) = 0$. So, $G$ has a zero on $f(B^n)$. As it turns out, this remains true when we perturb $G$.\retTwo
+
+	\ul{Lemma:} Let $\widetilde{G}: f(B^n) \to \mathbb{R}^n$ be a continuous function with $|G(y) - \widetilde{G}(y)| \leq 1$ for all $y \in f(B^n)$. Then $\widetilde{G}$ has at least one zero.
+	\begin{myIndent}\exPPP
+		Why?\\
+		Consider the function $h: B^n \to \mathbb{R}^n$ given by:
+		
+		{\centering$h(x) = x - \widetilde{G}(f(x)) = G(f(x)) - \widetilde{G}(f(x))$.\retTwo\par}
+		
+		By our assumpion that $|G(y) - \widetilde{G}(y)| \leq 1$  for all $y \in f(B^n)$ we know that $h$ maps $B^n$ into $B^n$. So by Brouwer's fixed point theorem (see \inLinkRap{placeholder}{pages 324-326}), there must exist $x \in B^n$ with $x = h(x) = x - \widetilde{G}(f(x))$. But now we have that $\widetilde{G}(f(x)) = 0$.\retTwo 
+	\end{myIndent}
+
+	The rest of the proof will now be spent showing that if $f(0)$ is not an interior point of\\ $f(B^n)$ then we can find a perturbed $\widetilde{G}$ contradicting our lemma.\retTwo
+
+	Fix $\varepsilon > 0$ with $|G(y)| < \frac{1}{3}$ if $|y - f(0)| \leq 2\varepsilon$. (We can do this since $G$ is continuous and $G(f(0)) = 0$.) Then supposing for the sake of contradiction that $f(0)$ is not an interior point of $f(B^n)$, we can find some $c \in \mathbb{R}^n - f(B^n)$ with $|c - f(0)| < \varepsilon$. By translating our codomain, we can assume without loss of generality that $c = 0$. So, we have that:
+	
+	{\centering $0 \notin f(B^n)$, $|f(0)| < \varepsilon$, and $|G(y)| < \frac{1}{3}$ if $|y| < \varepsilon$.\retTwo\par}
+
+	Next let $\Sigma \coloneqq \Sigma_1 \cup \Sigma_2$ where:
+	
+	{\centering$\Sigma_1 \coloneqq \{y \in f(B^n) : |y| \geq \varepsilon\}$ and $\Sigma_2 \coloneqq \{y \in \mathbb{R}^n : |y| = \varepsilon\}$.\retTwo\par}
+	
+	Since $0 \notin f(B^n)$, we can define a continuous function $\Phi: f(B^n) \to \Sigma$ given by\\ [2pt] $\Phi(y) \coloneqq \max(\frac{\varepsilon}{|y|}, 1)y$. Also note that since $\Sigma_1$ is compact and $G$ is nonzero on $\Sigma_1$, we\\ [-1pt] can find some $0 < \delta < \frac{1}{3}$ with $|G(y)| \geq \delta$ for all $y \in \Sigma_1$. Also because $\Sigma$ is compact,\\ [2pt] we can conclude by the Stone Weierstrass theorem that there is a smooth function (even\\ [2pt] a polynomial) $P: \mathbb{R}^n \to \mathbb{R}^n$ with $|P(y) - G(y)| < \frac{\delta}{2}$ for all $y \in \Sigma$.\newpage
+
+	In particular, since $|P(y) - G(y)| < \frac{\delta}{2}$ and $|G(y)| \geq \delta$ for all $y \in \Sigma_1$, we can conclude that $P$ is nonzero on $\Sigma_1$. That said, it may be the case that $P$ has a zero on $\Sigma_2$. So, we want to modify $P$ such that $P$ is nowhere zero on $\Sigma_2$.\retTwo
+
+	Fortunately, note that $\Sigma_2$ has measure zero. It then follows that $P(\Sigma_2)$ also has measure zero. After all, consider the following lemma:\retTwo
+
+	\ul{Lemma:} Let $U \subseteq \mathbb{R}^n$ be an open set. If $g: U \to \mathbb{R}^n$ is a Lipschitz continuous function and $N \subseteq U$ has Lebesgue measure zero, then $g(N)$ is Lebesgue measurable and has Lebsgue measure zero.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Let $C > 0$ be such that $|g(y_1) - g(y_2)| \leq C|y_1 - y_1|$ for all $y_1, y_2 \in U$.\\ Then importantly, for any closed ball $\overline{B_r(y)}$ contained in $U$ we have that $g(\overline{B_r(y)})$\\ is measurable (since it is a compact set) and also $g(\overline{B_r(y)}) \subseteq \overline{B_{rC}(g(y))}$.\retTwo
+		
+		Hence, we can say that $m(g(\overline{B_r(y)})) \leq m(\overline{B_{rC}(g(y))}) = C^n m(\overline{B_r(y)})$.
+		\begin{myIndent}\color{orange}
+			As a side note, this is the exact sentence of the lemma where we use that\\ $g$ is mapping $U$ into $\mathbb{R}^n$ as opposed to $\mathbb{R}^\ell$ where $\ell \neq n$. After all, let $V_n$ be the volume of the unit ball in $\mathbb{R}^n$ and let $V_\ell$ be the unit ball in $\mathbb{R}^\ell$. Then $m(B_{rC}(g(y))) = r^\ell C^\ell V_\ell$. Meanwhile $m(\overline{B_r(y)}) = r^n V_n$. We want to say that $r^\ell C^\ell V_\ell = C^n r^n V_n$ for all $r > 0$. Yet this is equivalent to asking that $r^{\ell - n} = C^{n-\ell} V_n / V_\ell$ for all $r > 0$. And if $\ell - n \neq 0$ this doesn't work.\retTwo
+		\end{myIndent}
+
+		But now since $N$ is a null set, for any $\varepsilon > 0$, we can find a cover of closed balls $\{B_k\}_{k \in \mathbb{N}}$ contained in $U$, covering $N$, and satisfying that $\sum_{k=1}^\infty m(B_k) < \varepsilon$. In turn, we have that:
+		
+		{\centering$m(\bigcup_{k\in \mathbb{N}} g(B_k)) \leq \sum_{k \in \mathbb{N}} m(g(B_k)) \leq C^n\sum_{k=1}^\infty m(B_k) < C^n\varepsilon$\retTwo\par}
+
+		But now by taking $\varepsilon \to 0$, we can show that that $g(N)$ is contained in a countable intersection of measurable sets and that that intersection has measure $0$. Therefore since the $\sigma$-algebra of Lebesgue measurable sets is complete, we know that $g(N)$ is also measurable with a measure of $0$.\retTwo
+	\end{myIndent}
+
+	Since $\Sigma_2$ is compact, we can find a precompact set $V$ with $\Sigma_2 \subseteq V \subseteq \overline{V} \subseteq \mathbb{R}^n$. Next,\\ since $P$ is smooth we know that $P$ is Lipschitz continuous on compact sets (see \inLinkRap{placeholder}{page 291}). In particular, we can find a Lipschitz constant for $P$ on $\overline{V}$. And now we apply the prior lemma to the null set $\Sigma_2$ contained in the open set $V$ to get that $P(\Sigma_2)$ is a null set.\retTwo
+
+	Since $B_{\delta / 2}(0)$ doesn't have measure zero, we know that $B_{\delta/2}(0) - P(\Sigma_2) \neq \emptyset$. Hence, there must exist a constant $a \in B_{\delta/2}(0) - P(\Sigma_2)$. And by defining $Q(y) \coloneqq P(y) - a$, we have that $Q(y)$ is nowhere zero on $\Sigma_2$. Plus, $|Q(y) - G(y)| < \delta$ for all $y \in \Sigma$. Hence, we still don't have that $P = 0$ anywhere on $\Sigma_1$.\retTwo
+
+	To finish off, let $\widetilde{G}: f(B^n) \to \mathbb{R}^n$ be defined as $\widetilde{G}(y) \coloneqq Q(\Phi(y))$. Then $Q$ is continuous and nowhere zero. Also note that if $|y| \geq \varepsilon$ then $|\widetilde{G}(y) - G(y)| < \delta < 1$. Meanwhile, if $|y| < \varepsilon$ then $|\Phi(y) - f(0)| \leq |\Phi(y)| + |f(0)| < 2\varepsilon$ implies that $|G(\Phi(y))| < \frac{1}{3}$. Since $|y| < \varepsilon$ also implies $|G(y)| < \varepsilon$, we can conclude that:\newpage
+
+	{\centering\begin{tabular}{l}
+		$|\widetilde{G}(y) - G(y)| \leq |Q(\Phi(y)) - G(\Phi(y))| + |G(\Phi(y)) - 0| + |G(y) - 0|$\\ [4pt]
+		$\phantom{|\widetilde{G}(y) - G(y)|} < \delta + \frac{2}{3} < 1$.
+	\end{tabular}\retTwo\par}
+
+	This contradicts the lemma on the prior page. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo The invariance of domain theorem has far reaching consequences for the study of\\ manifolds. Now that I've received my bazooka from Terrance Tao, these next results will be easy to show on my own.\retTwo
+
+In the statements of the below proposiions, $H^n \coloneqq \{(x_1, \ldots, x_n) \in \mathbb{R}^n : x_n \geq 0\}$.\retTwo
+
+\exTwo\ul{Proposition:} If $m < n$ and $U \subseteq \mathbb{R}^n$ is an open set, then there is no continuous injective function $f: U \to \mathbb{R}^m$.
+\begin{myIndent}\exThreeP
+	Let $i: \mathbb{R}^m \hookrightarrow \mathbb{R}^n$ be the obvious embedding. Then if such a function $f$ did exist, we'd\\ have that $i \circ f$ is an injective continuous function from $\mathbb{R}^n$ into $\mathbb{R}^n$. Yet we'd also have that $i \circ f(U)$ is contained in an $m$-dimensional hyperplane and thus has an empty interior. This contradicts the invariance of domain theorem. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Corollary:} Suppose that $n$ and $m$ are positive integers, that $M$ is an $n$-dimensional\\ topological manifold, and that for some nonempty open set $U \subseteq M$ and some nonempty open set $V \subseteq \mathbb{R}^m$ or $H^m$ there is a homeomorphism $\varphi: U \to V$. Then, we must have that $m = n$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, by shrinking $U$ and $V$ if necessary, we can without loss of generality assume $V$ is an open subset of $\mathbb{R}^m$. Next, pick a point $p \in U$ and then pick a chart $(W, \psi)$ such that $p \in W$ and $\psi$ maps $W$ homeomorphically to an open set $\psi(W)$ of $H^n$ or $\mathbb{R}^n$. Again, by shrinking $W$ and maybe shifting $p$, we can assume with loss of generality that $W \subseteq U$ and $\psi(W)$ is open in $\mathbb{R}^n$.\retTwo
+
+	But now we have homeomorphisms $\varphi|_W: W \to \varphi(W)$ and $\psi: W \to \psi(W)$ where $\varphi(W)$ is an open subset of $\mathbb{R}^m$ and $\psi(W)$ is an open subset of $\mathbb{R}^n$.
+	\begin{itemize}
+		\item If $n < m$ then $\psi \circ \varphi^{-1}$ contradicts our prior proposition.
+		\item Meanwhile if $m < n$ then $\varphi \circ \psi^{-1}$ contradicts our prior proposition.\retTwo
+	\end{itemize}
+
+	It follows that $m = n$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Based on the prior corollary, we can now easily conclude that the dimension of a\\ topological manifold is well-defined. In fact, we can make an even stronger statement that if $M$ is an $n$-dimensional topological manifold and $N$ is an $m$-dimensional topological manifold, then $M$ being homeomorphic to $N$ implies that $m = n$. Thus, the dimension of a topological manifold is invariant under homeomorphisms.\retTwo 
+
+\exTwo\ul{Proposition:} Suppose $M$ is an $n$-dimensional  topological manifold. Then $x$ is a boundary point of $M$ if and only if there is a chart $(U, \varphi)$ on $M$ such that $x \in U$, $\varphi(U)$ is open in $H^n$, and $\varphi(x) \in \partial H^n$.\newpage
+\begin{myIndent}\exThreeP
+	$(\Longrightarrow)$\\
+	The definition of a boundary point that I gave on \inLinkRap{placeholder}{page 146} is that there are no charts\\ $(V, \psi)$ on $M$ with $x \in V$ and $\psi(V)$ open in $\mathbb{R}^n$. So suppose $x$ is a boundary point. By the definition of a topological manifold there must exists a chart $(U, \varphi)$ on $M$ with $x \in U$. But since $x$ is a boundary point, we know that $\varphi(U)$ is not open in $\mathbb{R}^n$. Hence, we know that $\varphi(U)$ is only open in $H^n$. Furthermore, by intersecting $\varphi(U)$ with balls of decreasing radius around $\varphi(x)$, we can't be able to get a restricted chart whose image is open in $\mathbb{R}^n$. Hence, it follows that $\varphi(x) \in \partial H^n$.\retTwo
+
+	$(\Longleftarrow)$\\
+	Suppose $x \in M$ and $(U, \varphi)$ is a chart on $M$ such that $x \in U$, $\varphi(U)$ is open in $H^n$, and $\varphi(x) \in \partial H^n$. Then suppose for the sake of contradiction that $(V, \psi)$ is another chart on $M$ such that $x \in V$ and $\psi(V)$ is open in $\mathbb{R}^n$.\retTwo
+
+	Let $W \coloneqq U \cap V$. Then we must have that $\varphi \circ \psi^{-1}$ is a continuous function mapping the open subset $\psi(W) \subseteq \mathbb{R}^n$ into $\mathbb{R}^n$. So by the invariance of domain theorem, we must have that $\varphi(W)$ is an open subset $\mathbb{R}^n$. Yet simultaneously note that $\varphi(W)$ is a subset of $H^n$ containing $\varphi(x) \in \partial H^n$. Thus, we can't have that $\varphi(W)$ is open in $\mathbb{R}^n$ since $x$ is not an interior point of $\varphi(W)$ (considered as a subset of $\mathbb{R}^n$ instead of $H^n$). This is a contradiction. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Anyways, hopefully the prior results were enlightening.\retTwo
+
+\mySepTwo
+
+\dispDate{6/26/2026}
+
+I have notes from math 220c that I can use to supplement an intro to Riemann surfaces. So I shall follow that.\retTwo
+
+\blect{Math 220c Notes:}\retTwo
+
+Let $M$ be a $2$-dimensional topological manifold (without boundary). We identify $\mathbb{R}^2$ with $\mathbb{C}$.\retTwo
+
+Next, suppose we have an atlas $\mathcal{A}$ on $M$ such that for all charts $(U, \varphi)$ and $(V, \psi)$ satisfying that $U \cap V \neq \emptyset$ we have that $\psi \circ \varphi^{-1}$ is a biholomorphic function from $\varphi(U \cap V)$ to $\psi(U \cap V)$. We call such an atlas a \udefine{complex atlas}. By identical reasoning as on \inLinkRap{placeholder}{pages 142-143}, we can find a maximal complex atlas containing an initial complex atlas. We call this maximal atlas a \udefine{complex structure on $M$}.\retTwo
+
+Now a \udefine{Riemann surface} is defined as a $2$-dimensional topological manifold $M$ equipped with a complex structure. I will refer to all the charts in the complex structure on $M$ as \udefine{complex charts}.\retTwo
+
+For some examples:\newpage
+\begin{itemize}
+	\item Any open subset $U$ of $\mathbb{C}$ equipped with the standard structure (i.e. the one generated by the chart $(U, \myId_{U})$) is a Riemann surface.\\ [-6pt]
+	\item The Riemann sphere (i.e. $\mathbb{C}_\infty$) is a Riemann surface.
+	\begin{myIndent}\pracTwo
+		We specifically equip it with the structure generated by the charts $(\mathbb{C}, z \mapsto z)$ and\\ $(\mathbb{C}_\infty - \{0\}, z \mapsto \frac{1}{z})$. Proving these charts are homeomorphisms into $\mathbb{C}$ is easy enough. Also, both of our transition maps are given by $z \mapsto \frac{1}{z}$ (defined on $\mathbb{C} - \{0\}$).\\ [-6pt]
+	\end{myIndent}
+	\item Let $\omega_1, \omega_2 \in \mathbb{C} - \{0\}$ satisfy that $\omega_1/ \omega_2 \notin \mathbb{R}$. Then let:
+	
+	{\centering$\Lambda \coloneqq \{n\omega_1 + m\omega_2 : n, m \in \mathbb{Z}\}$ be a lattice in $\mathbb{C}$.\retTwo\par}
+	
+	We know that $\Lambda$ is a subgroup of $\mathbb{C}$ (when considered a group equipped with\\ addition). Therefore, we now consider the topological group $X \coloneqq \mathbb{C}/\Lambda$ equipped with the quotient topology. Also, we let $\pi: \mathbb{C} \to X$ be the projection map. All that I want to say about $X$ as a Riemann surface is long enough that I'm going to go on a separate tangent first.
+\end{itemize}
+
+\pracOne\mySepTwo 
+
+Let $X$ and $Y$ be topological spaces. We say a map $p: X \to Y$ is locally injective if every $x \in X$ has a neighborhood $N$ such that $p|_N : N \to Y$ is an injective function.
+\begin{myIndent}\pracTwo
+	For example, let $\pi: \mathbb{C} \to \mathbb{C}/\Lambda$ be the quotient map from before. Then note that\\ $\pi(z) = \pi(w)$ if and only if $z = w + n\omega_1 + m\omega_2$ for some $n, m \in \mathbb{Z}$. But now note that if $n \neq 0 \neq m$ (which happens iff $z \neq w$), then $z - w \in \Lambda - \{0\}$. At the same time, recall from \inLinkRap{placeholder}{pages 582-583} that there exists $c > 0$ with $|n\omega_1 + m\omega_2| \geq c(|n| + |m|)$ for all $n,m \in \mathbb{Z}$. In turn, we can see that $\pi(z) = \pi(w)$ where $z \neq w$ implies that $|z - w| \geq c$. Or alternatively, we can see that if $U\subseteq \mathbb{C}$ satisfies that $\diam(U) < c$, then $\pi$ is injective on $U$.\retTwo
+\end{myIndent}
+
+Also recall from \inLinkRap{placeholder}{page 121} the definition of a covering map.
+\begin{myIndent}\pracTwo
+	We can go a step further and say that the map $\pi: \mathbb{C} \to \mathbb{C}/\Lambda$ from before is a\\ covering map. To see why, let $c$ be the constant from the prior paragraph such that\\ $|n\omega_1 + m\omega_2| \geq c(|n| + |m|)$. Next, consider any $z + \Lambda \in \mathbb{C}/\Lambda$. Then $B_{c/3}(z) + \Lambda$\\ is a union of the collection of disjoint open sets: $\{B_{c/3}(z) + n\omega_1 + m\omega_2 : n, m\in \mathbb{Z}\}$.
+	\begin{myIndent}\exPPP
+		As for why these sets are disjoint, note that if they weren't all disjoint then we could find $n_1, n_2, m_1, m_2 \in \mathbb{Z}$ with $|n_1 - n_2| + |m_1 - m_2| \geq 1$ as well as $w_1, w_2 \in \mathbb{C}$ with $|w_i| < c/3$ for both $i$, all satisfying that:
+		
+		{\centering$z + w_1 + n_1\omega_1 + m_1\omega_2 = z + w_2 + n_2\omega_1 + m_2\omega_2$\retTwo\par}
+
+		By moving terms, we can see that $w_1 - w_2 = (n_2 - n_1)\omega_1 + (m_2 - m_1)\omega_2 \in \Lambda - \{0\}$. So, $|w_1 - w_2| \geq c$. But this contradicts that $|w_1| < c/3$ and $|w_2| < c/3$ implies that $|w_1 - w_2| < c$.\retTwo
+	\end{myIndent}
+
+	Now note that $\pi^{-1}(\pi(B_{c/3}(z) + \Lambda)) = B_{c/3}(z) + \Lambda$. Since $\pi$ is a quotient map, it follows that $\frac{B_{c/3}(z) + \Lambda}{\Lambda}$ is an open subset of $\mathbb{C}/\Lambda$. Plus, it contains $z + \Lambda$.\newpage
+
+	To finish off, I need to show that $B_{c/3}(z) + n\omega_1 + m\omega_2$ is homeomorphically mapped by $\pi$ to $\frac{B_{c/3}(z) + \Lambda}{\Lambda}$ for all integers $n$ and $m$. Fortunately since translation on $\mathbb{C}$ is a homeomoprhism, it already suffices to assume that $n = m = 0$. So, we just need to show that $B_{c/3}(z)$ is homeomorphically mapped by $\pi$ to $\frac{B_{c/3}(z) + \Lambda}{\Lambda}$.
+	\begin{myIndent}\exPPP
+		Yet since $\diam(B_{c/3}(z)) < c$, we know that $\pi$ is injective on $B_{c/3}(z)$. Also note that, $\pi$ maps $B_{c/3}(z)$ surjectively onto $\frac{B_{c/3}(z) + \Lambda}{\Lambda}$.\retTwo
+		
+		We trivially know that $\pi$ is continuous. And on \inLinkRap{placeholder}{page 350} I proved that if $G$ is a\\ topological group and $H \lhd G$, then the quotient map $G \mapsto G/H$ is an open map. This shows that $\pi$ is a homeomorphism from $B_{c/3}(z)$ to $\frac{B_{c/3}(z) + \Lambda}{\Lambda}$.
+	\end{myIndent}
+	\retTwo
+\end{myIndent}
+
+Based on all the prior reasoning, we can now easily see that $\mathbb{C}/\Lambda$ is a topological manifold. We define a complex structure generated by the maps $\pi: V \to \mathbb{C}/\Lambda$ where $\pi$ is a homeomorphism from $V \subseteq \mathbb{C}$ into $\mathbb{C}/\Lambda$. The transition maps between the charts corresponding to these maps will all have the form $z \mapsto z + n\omega_1 + m\omega_2$ for some $n, m \in \mathbb{Z}$. So this is a well-defined complex structure.\retTwo 
+
+One other note I'd like to make is that by the universal property of quotient maps, we have that any function on $\mathbb{C}/\Lambda$ is associated with a doubly periodic function on $\mathbb{C}$ (i.e. $f(z) = f(z + \omega_1) = f(z + \omega_2)$).\retTwo
+
+\mySepTwo
+
+\hTwo Among the two example complex manifolds I gave before, I already know that $\mathbb{C}_\infty$ is\\ compact. I can also show that $\mathbb{C}/\Lambda$ is compact.
+\begin{myIndent}\pracTwo
+	Let $\Lambda = \{n\omega_1 + m\omega_2 : n, m \in \mathbb{Z}\}$ where $\omega_1, \omega_2 \in \mathbb{C} - \{0\}$ with $\omega_1 / \omega_2 \notin \mathbb{R}$. Next, let $K$ be the fundamental parallelogram $\{x\omega_1 + y\omega_2 : x, y \in [0, 1]\}$. Note that $K$ is a compact subset of $\mathbb{C}$. Also if $\pi: \mathbb{C} \to \mathbb{C}/\Lambda$ is the quotient map, then we can see that $\pi(K) = \mathbb{C}/\Lambda$.\retTwo
+	
+	Next let $\{U_\alpha\}_{\alpha \in A}$ be any open cover of $\mathbb{C}/\Lambda$. Then we have that $\{\pi^{-1}(U_\alpha)\}_{\alpha \in A}$ is an open cover of $\mathbb{C}$ and in turn also of $K$. Since $K$ is compact, we can find $\alpha_1, \ldots, \alpha_n$ with $K \subseteq \bigcup_{j=1}^n \pi^{-1}(U_{\alpha_j}) = \pi^{-1}(\bigcup_{j=1}^n U_{\alpha_j})$. And finally since $\pi$ is surjective, we have that $\pi(\pi^{-1}(\bigcup_{j=1}^n U_{\alpha_j})) = \bigcup_{j=1}^n U_{\alpha_j}$. So, $\mathbb{C}/\Lambda = \pi(K) \subseteq \bigcup_{j=1}^n U_{\alpha_j}$.\retTwo
+\end{myIndent}
+
+Knowing a Riemann surface is compact will be relevant once I define holomorphic functions on and between Riemann surfaces.\retTwo
+
+Recalling the definition of a differentiable map between manifolds on \inLinkRap{placeholder}{page 147}, we make the following definition:
+\begin{myIndent}
+	Suppose $M$ and $N$ are Riemann surfaces. Then a map $F: M \to N$ is \udefine{holomorphic} if for all $p \in M$ there is a complex chart $(U, \varphi)$ on $M$ and a complex chart $(V, \psi)$ on $N$ such that $p \in U$, $F(U) \subseteq V$, and $\psi \circ F \circ \varphi^{-1}$ is a holomorphic function (in the complex analytic sense) from $\varphi(U)$.\newpage
+\end{myIndent}
 
 
 
@@ -8866,7 +9219,7 @@ One other note I want to make is that if $\langle x_\alpha\rangle_{\alpha \in A}
 
 \hypertarget{idk reference 2}{}
 \hypertarget{idk reference 3}{}
-\hypertarget{idk reference 4}{}
+\hypertarget{idk reference 5}{}
 
 \newpage
 
@@ -8883,6 +9236,8 @@ One other note I want to make is that if $\langle x_\alpha\rangle_{\alpha \in A}
 	\item \hypertarget{Fifth Citation}{Inversi,} M. (n.d.). Retrieved May 16, 2026, from https://poisson.phc.dm.unipi.it/~inversi/GMT.pdf
 	
 	\item \hypertarget{Sixth Citation}{James,} I. M. (1987). \textit{Topological and Uniform Spaces}. Springer-Verlag.
+	
+	\item \hypertarget{Seventh Citation}{Tao,} T. (2011, June 13). Brouwer's fixed point and invariance of domain theorems, and Hilbert's fifth problem. What's new. https://terrytao.wordpress.com/2011/06/13/brouwers-fixed-point-and-invariance-of-domain-theorems-and-hilberts-fifth-problem/
 \end{enumerate}
 
 \end{document}
