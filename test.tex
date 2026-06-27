@@ -400,20 +400,31 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\hTwo Note by identical reasoning as on \inLinkRap{placeholder}{pages 147-148}, we can see that a holomorphic function between Riemann surfaces is continuous.\retTwo
+\hTwo Here's one more pair of results to justify why we will care about meromorphic functions a lot once we define them in a second.\retTwo
 
-\exTwo\ul{Proposition:} If $M$ and $N$ are Riemann surfaces and $F: M \to N$ is a holomorphic function, then for any complex charts $(U, \varphi)$ on $M$ and $(V, \psi)$ on $M$ we have that $\psi \circ F \circ \varphi^{-1}$ is a holomorphic function (in the complex analytic sense) on $\varphi(U \cap F^{-1}(V))$
+\exTwo\ul{Maximum Modulus Theorem:} Suppose $M$ is a connected Riemann surface and\\ $F: M \to \mathbb{C}$ is a holomorphic function. If $|F|$ attains a local maximum on $M$ then $F$\\ is a constant function.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	Because $F$ is continuous, we know that $U \cap F^{-1}(V)$ is an open subset of $M$. Now we have nothing to show if $U \cap F^{-1}(V) = \emptyset$. So, we can assume $U \cap F^{-1}(V)$ is nonempty. Then by shrinking $U$, we can without loss of generality just say that $U \subseteq F^{-1}(V)$. That way, our problem becomes showing that $\psi \circ f \circ \varphi^{-1}$ is a holomorphic function (in the\\ complex analytic sense) from $\varphi(U)$ into $\psi(V) \subseteq \mathbb{C}$.\retTwo
+	Suppose $|F|$ has a local maximum at $p \in M$. Then let $(U, \varphi)$ be a complex chart containing $p$. By shrinking $U$ if necessary, we can also without loss of generality assume $\varphi(U)$ is a connected set. But now  $F \circ \varphi^{-1}$ is a holomorphic function on the region $\varphi(U)$ of $\mathbb{C}$ which also satisfies that $|F \circ \varphi^{-1}|$ attains a local maximum at $\varphi(p)$. It follows by the maximum modulus principle from complex analysis (see \inLinkRap{placeholder}{page 384}) that $F \circ \varphi^{-1}$ is a constant function on $\varphi(U)$. In turn $F \circ \varphi^{-1} \circ \varphi = F$ is also a constant function on $U$. And by the identity principle, we can then conclude that $F$ is constant on $M$. $\blacksquare$\retTwo
 
-	Fortunately let $x = \varphi(p) \in \varphi(U)$. Then we know there exists complex charts $(U^\prime, \varphi^\prime)$ on $M$ and $(V^\prime, \psi^\prime)$ on $N$ with $p \in U^\prime$, $F(U^\prime) \subseteq V^\prime$, and $\psi^\prime \circ F \circ (\varphi^\prime)^{-1}$ a holomorphic function (in the complex analytic sense) from $\varphi^\prime(U^\prime)$.\retTwo
-
-	But now $\psi \circ f \circ \varphi^{-1} = (\psi \circ (\psi^\prime)^{-1}) \circ (\psi^\prime \circ f \circ (\varphi^\prime)^{-1}) \circ (\varphi^\prime \circ \varphi^{-1})$ is a holomorphic function from $\varphi(U \cap U^\prime)$ to $\psi(V \cap V^\prime)$. Since $\varphi(U \cap U^\prime)$ is an open set containing $x$ (since $U \cap U^\prime$ is an open set containing $p$), we've proven that $\psi \circ f \circ \varphi^{-1}$ is holomorphic\\ at $x \in \varphi(U)$. And since $x$ was arbitrary, we can conclude that $\psi \circ f \circ \varphi^{-1}$ is a\\ holomorphic function from $\varphi(U)$. $\blacksquare$
+	\begin{myIndent}\myComment
+		As a side note since I realize that I never showed this, any constant function between Riemann surfaces is automatically holomorphic. To see why, suppose $M$ and $N$ are Riemann surfaces, and $F: M \to N$ satisfies that $F(p) = q \in N$ for all $p \in M$. Then having picked a complex chart $(V, \psi)$ in $N$ containing $Q$, we have for every complex chart $(U, \varphi)$ in $M$ that $F(U) \subseteq V$ and $\psi \circ F \circ \varphi^{-1}$ is a constant function from $\varphi(U) \subseteq \mathbb{C}$ into $\mathbb{C}$. So, $\psi \circ F \circ \varphi^{-1}$ is trivially holomorphic.\retTwo
+	\end{myIndent}
 \end{myIndent}
 
+\ul{Corollary:} If $M$ is a compact Riemann surface then $O(M, \mathbb{C})$ consists entirely of locally constant functions. In particular, if $M$ is connected then $O(M, \mathbb{C})$ consists only of constant functions. 
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Note that every connected component of $M$ is closed. And since closed subsets of compact sets are compact, we can thus conclude that every connected component of $M$ is compact.\retTwo
+	
+	Also note that since $M$ is locally connected, we know that every connected component of $M$ is open. Therefore every connected component of $M$ (equipped with the subspace topology) can sill still be viewed as a Riemann surface where $F$ restricted to each\\ component is holomorphic.\retTwo
 
+	Finally, suppose $F \in O(M, \mathbb{C})$ and let $N$ be any connected component of $M$. Then $F$ being continuous on $N$ plus $N$ being compact implies that $|F|$ attains a local maximum on $N$. Yet also note that $F$ being holomorphic on $N$ as a Riemann surface means that the maximum modulus theorem applies. So, we must have that $F$ is constant on $N$. $\blacksquare$.\retTwo
+\end{myIndent}
 
+\hTwo Since a lot of the Riemann surfaces we actually care about are compact and connected, we thus can see that $O(M, \mathbb{C})$ is often not the collection of functions we want to study on a Riemann surface. Hence, we will instead often consider $O(M, \mathbb{C}_\infty)$.
+
+\begin{myIndent}\mySepThree\end{myIndent}
 
 
 

@@ -6319,10 +6319,10 @@ Suppose $M$ is a $C^r$ manifold and $f: M \to \mathbb{R}^m$ is a function. We sa
 \hOne Now note that when viewing $\mathbb{R}^m$ as being a $C^r$ manifold, we can "symmetrize" our definition by noting that a function $f: M \to \mathbb{R}^m$ is $C^k$ if and only if for all $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ and another smooth chart $(V, \psi)$ on $\mathbb{R}^m$ with $f(U) \subseteq V$ such that $\psi \circ f \circ \varphi^{-1}$ is $C^k$ from $\varphi(U)$ into $\psi(V)$.
 \begin{myIndent}\pracTwo
 	$(\Longrightarrow)$\\
-	Since $f$ is $C^k$, let $(U, \varphi)$ be a smooth chart such that $f \circ \varphi^{-1}$ is $C^k$. Then let $(V, \psi)$ be any smooth chart on $\mathbb{R}^m$ with $f(U) \subseteq V$. Note that such a chart must exist since we know $(\mathbb{R}^m, \myId)$ works. Now $\psi \circ \myId^{-1} = \psi$ is a $C^r$ map from $V$. So, $\psi \circ f \circ \varphi^{-1}$ is a $C^k$ from $\varphi(U)$ into $\psi(V)$.\retTwo
+	Just let $(V, \psi) = (\mathbb{R}^m, \myId)$. Then the right side is obvious.\retTwo
 
 	$(\Longleftarrow)$\\
-	Let $(V, \psi)$ be a chart on $\mathbb{R}^n$. Then we know that $\myId \circ \psi^{-1} = \psi^{-1}$ is a $C^r$ in the real-analytic sense. In turn, $f \circ \varphi^{-1} = \psi^{-1} \circ (\psi \circ f \circ \varphi^{-1})$ is a $C^r$ function in the real-analytic sense as well. $\blacksquare$\retTwo
+	Consider charts $(U, \varphi)$ on $M$ and $(V, \psi)$ on $\mathbb{R}^m$ with $f(U) \subseteq V$. Then we know the transition map $\myId \circ \psi^{-1} = \psi^{-1}$ between $(V, \psi)$ and $(\mathbb{R}^m, \myId)$ is a $C^r$ in the real-analytic sense. In turn, $f \circ \varphi^{-1} = \psi^{-1} \circ (\psi \circ f \circ \varphi^{-1})$ is a $C^k$ function in the real-analytic sense as well. $\blacksquare$\retTwo
 \end{myIndent}
 
 This points us to following generalization of differentiability on manifolds. Suppose $M$ and $N$ are both $C^r$ manifolds and let $F: M \to N$ be any map. We say $F$ is a \udefine{$C^k$ map} if for every $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ with $p \in U$ and another smooth chart $(V, \psi)$ on $N$ with $F(U) \subseteq V$ satisfying that the composite map $\psi \circ F \circ \varphi^{-1}$ is a $C^k$ map from $\varphi(U)$ into $\psi(V)$.\retTwo
@@ -10388,7 +10388,7 @@ If $z_1, \ldots, z_n \in \mathbb{C}$, then the path resulting from concatenating
 	This direction is easy because you just need to define the obvious path going from $a$ to $b$ to show that $G$ is path connected and thus connected.\retTwo
 \end{myIndent}
 
-\hTwo Meanwhile here is how Conway show this same result:
+\hTwo Meanwhile here is how Conway shows this same result:
 
 \begin{myIndent}\exThreeP
 	$(\Longrightarrow)$\\
@@ -10396,7 +10396,7 @@ If $z_1, \ldots, z_n \in \mathbb{C}$, then the path resulting from concatenating
 	\begin{itemize}
 		\item Suppose $b \in A$. Then because $G$ is open, there exists a ball $B_\varepsilon(b)$ of radius $\varepsilon$ about $b$ such that $B_\varepsilon(b) \subseteq G$. And if $P$ is any polygon in $G$ going from $a$ to $b$, then for any $z \in B_\varepsilon(b)$ we have that $P \cup [b, z]$ is a polygon in $G$ going from $a$ to $z$. So, $B_\varepsilon(b)$ is also contained in $A$, thus proving that $A$ is open.\retTwo
 		
-		\item Next suppose for the that $z \in \acc(A)$ and let $\varepsilon > 0$ be such that $B_\varepsilon(z) \subseteq G$. Then we know that there exists $b \in A$ such that $b \in B_\varepsilon(z)$. And then for any polygon $P \subseteq G$ going from $a$ to $b$, we have that $P \cup [b, z]$ is a polygon going from $a$ to $z$ contained in $G$. This shows that $\acc(A) \subseteq A$. Hence $A$ is closed.\retTwo
+		\item Next suppose that $z \in \acc(A)$ and let $\varepsilon > 0$ be such that $B_\varepsilon(z) \subseteq G$. Then\\ we know that there exists $b \in A$ such that $b \in B_\varepsilon(z)$. And then for any polygon $P \subseteq G$ going from $a$ to $b$, we have that $P \cup [b, z]$ is a polygon going from $a$ to $z$ contained in $G$. This shows that $\acc(A) \subseteq A$. Hence $A$ is closed.\retTwo
 	\end{itemize}
 
 	Now since $G$ is connected, the only clopen sets in $G$ are $\emptyset$ and $G$. But $A$ is clearly\\ nonempty since it trivially contains $a$. So $A = G$.\newpage
@@ -16327,7 +16327,7 @@ If $|z| < 1$ then $\int_0^{2\pi} \frac{e^{it}}{e^{it} - z} \df t  = 2\pi$.
 \exTwo\ul{The Maximum Modulus Theorem:} \hypertarget{Conway The Maximum Modulus Theorem}{If} $G$ is a  region (i.e. an open and connected set) and $f: G \to \mathbb{C}$ is an analytic function such that there is a point $a \in G$ with $|f(a)| \geq |f(z)|$ for all $z$ in a neighborhood $U \subseteq G$ of $a$, then $f$ is constant.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	Pick $r > 0$ such that $\overline{B_r(a)} \subseteq U$ and then define $\gamma(t) = a + re^{it}$. By Cauchy's integral formula, we have that:
+	If $|f(a)| = 0$ then $f \equiv 0$ on $U$. In turn we are trivially done showing $f$ is constant on $G$. So assume $|f(a)| \neq 0$. Pick $r > 0$ such that $\overline{B_r(a)} \subseteq U$ and then define $\gamma(t) = a + re^{it}$. By Cauchy's integral formula, we have that:
 
 	{\centering $f(a) = \frac{1}{2\pi i}\int_{\gamma} \frac{f(w)}{w - a} \df w = \frac{1}{2\pi i}\int_{0}^{2\pi} \frac{f(a + re^{it}) \cdot ire^{it}}{a + re^{it} - a} \df t = \frac{1}{2 \pi}\int_{0}^{2\pi} f(a + re^{it}) \df t$ \retTwo\par}
 
@@ -18970,7 +18970,7 @@ To start off, I already proved in math math 240b homework that there is only one
 			\ul{Lemma:} If $X$ is a topological space and $A, B \subseteq X$ satisfy that $B$ is open, then\\ [2pt] $\overline{A} \cap B \subseteq \overline{A \cap B}$.
 			\begin{myIndent}
 				Proof:\\
-				Suppose $x \in \overline{A} \cap B$. If $x \in A$ then we trivially have that $x \in \overline{A \cap B}$. Meanwhile, suppose $x \notin A$ and let $U$ be any neighborhood containing $x$. Since $U \cap B$ is a neighborhood of $x$ and $x \in \overline{A}$, we must have that $(U \cap B) \cap A \neq \emptyset$. Or in other words, $U \cap (A \cap B) \neq \emptyset$. As $U$ was arbitrary we've proven that $x \in \Acc(A \cap B)$.\retTwo
+				Suppose $x \in \overline{A} \cap B$. If $x \in A$ then we trivially have that $x \in \overline{A \cap B}$. Meanwhile, suppose $x \notin A$ and let $U$ be any neighborhood containing $x$. Since $U \cap B$ is a neighborhood of $x$ and $x \in \overline{A}$, we must have that $(U \cap B) \cap A \neq \emptyset$. Or in other words, $U \cap (A \cap B) \neq \emptyset$. As $U$ was arbitrary we've proven that $x \in \acc(A \cap B)$.\retTwo
 			\end{myIndent}
 		\end{myIndent}
 
