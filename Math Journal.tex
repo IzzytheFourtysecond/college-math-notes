@@ -19982,20 +19982,20 @@ Recall that if $\mathfrak{a}$ is an ideal of a ring $A$, then there is a bijecti
 	So, the singular part at $n\pi + \frac{\pi}{2}$ is $\frac{-1}{z - n\pi - \frac{\pi}{2}}$ for each $n \in \mathbb{Z}$. $\blacksquare$\newpage
 \end{myIndent}
 
-\blab{Exercise V.1.6:} If $f: G \to \mathbb{C}$ is analytic except for poles, show that the poles of $f$ cannot have a limit point in $G$.
+\blab{Exercise V.1.6:} If $G \subseteq \mathbb{C}$ is a region and $f: G \to \mathbb{C}$ is analytic except for poles, show that the poles of $f$ cannot have a limit point in $G$.
 \begin{myIndent}\HexOne
-	Given an analytic function $h$ let $Z(h)$ and $P(h)$ denote the zero set and pole set respectively of $h$. Now, if $f$ is the function from the problem statement, define:
-
-	{\centering $g(z) = 1/f(z)$ when $z \in G - (Z(f) \cup P(f))$ and $g(z) = 0$ when $z \in P(f)$\retTwo\par}
-
-	It is trivial to see that $Z(g) = P(f)$. Additionally, we claim that $g$ is analytic on $G - Z(f)$ and that $P(g) = Z(f)$.
-	\begin{myIndent}\HexTwoP
-		To see this first note that if $f(z_0) \neq 0$ then there is some neighorhood $N$ about $z_0$ on which $g(z) = 1/f(z)$ for all $z \in N$. In turn, it is easy to see that $g$ is analytic at $z_0$. Meanwhile, if $f$ has a pole at $z_0$, then we know that $\lim_{z \to z_0} 1/f(z) = 0$. Hence, $g$ is continuous at $z_0$. Furthermore, if we let $r > 0$ be such that $f$ is analytic on $A(z_0;0, r)$, then we know that $g$ is continuous on $B_r(z_0)$ and differentiable on $B_r(z_0) - \{z_0\}$. This implies that $g$ is actually differentiable and in turn analytic on all of $B_r(z_0)$ including $z_0$.\retTwo
-
-		Finally, note that since $f(z) \to 0$ as $z \to z_0$ for any $z_0 \in Z(f)$, we know that $g(z) \to \infty$ as $z \to z_0$ for any $z_0 \in Z(f)$.\retTwo
+	Let $P(f)$ denote the pole set of $f$. Note Conway is implicitely assuming that $P(f)$ is a\\ closed subset of $G$ (or else it wouldn't be well-defined to say $f$ is analytic on $G - P(f)$).\\ Hence, every limit point of $P(f)$ also contained in $G$ must itself be in $P(f)$. Yet also by the definition of a singularity, we know that every $a \in P(f)$ has a neighborhood $N \subseteq G$ on which $f$ is analytic on $N - \{a\}$. Therefore, no element of $P(f)$ is a limit point of $P(f)$. This proves that no point in $G$ can be a limit point of $P(f)$. $\blacksquare$
+	\begin{myIndent}\color{RawerSienna}\fontsize{11}{13}
+		This is such a boring answer though. So I want to come up with at least a nugget of intereting reasoning.
+		\begin{itemize}
+			\item[\phantom{.}] Suppose $G \subseteq \mathbb{C}$ is a region, $S \subseteq G$ is a set of isolated points with no limit point in $G$ (thus meaning $S$ is closed in $G$), $f$ is an analytic function on $G - S$, and $f$ has poles at every point in $S$. If we define $f(a) = \infty$ for all $a \in S$, we'd have that $f$ is a continuous function in $\mathbb{C}_\infty$. Furthermore, if $f \not\equiv 0$ on $G$ then we can define a function $g: G \to \mathbb{C}_\infty$ by $g(z) = 0$ if $f(z) = \infty$, $g(z) = \infty$ if $f(z) = 0$, and $g(z) = 1/f(z)$ otherwise.\retTwo
+			
+			If $z_0 \notin f^{-1}(\{0, \infty\})$ then we can find a closed disk $B_r(z_0)$ about $z_0$ such that\\ $g(z) = 1/f(z)$ for all $z \in B_r(z_0)$. So, $g|_{B_r(z_0)}$ is analytic. Also, $g$ is continuous at its zero set (by the definition of a pole of $f$). And since $g$ is analytic on a punctured disk about each of its zeros, we know $g$ is analytic at its zeros. Finally, $f$ being continuous as a map into $\mathbb{C}_\infty$ means $f^{-1}(\{0\})$ is a closed subset of $0$. Also because $f$ isn't constantly zero we know $f^{-1}(\{0\})$ has no limits points in $G - f^{-1}(\{\infty\})$. Similarly by the definition of a pole, $f^{-1}(\{0\})$ has no limit points in $f^{-1}(\{\infty\})$. Then as $G - f^{-1}(\{\infty\})$ is an open set containing $f^{-1}(\{0\})$, we know that every element $a \in f^{-1}(\{0\})$ has a neighborhood on which $g(z) = 1/f(z)$ on $N - \{a\}$. And now we have that $g$ has a pole at each $a \in f^{-1}(\{0\})$.\retTwo
+		\end{itemize}
+		
+		
+		
 	\end{myIndent}
-
-	But now we know that $Z(g)$ can have no limit points in the open set $G - Z(f)$. {\HexPPP(Note: we know $Z(f)$ is closed in $G$ because we can view $f$ as a continuous well-defined function from $G$ to $\mathbb{C}_\infty$)} Equivalently, this means that $P(f)$ can have no limits point in $G - Z(f)$. Finally, since $f$ is continuous at all points in $Z(f)$, we can find a pole-free neighborhood of $z_0$ for each $z_0 \in Z(f)$ (namely by just taking a neighborhood of $z_0$ where $f$ is bounded). So $P(f)$ has no limit points in $Z(f)$ either. $\blacksquare$\retTwo
 \end{myIndent}
 
 \blab{Exercise V.1.7:} Let $f$ be an analytic function with an isolated singularity at $z = a$ and suppose $f$ is not the constant zero function around $a$. Show that if $\exists s \in \mathbb{R}$ such that either holds:
@@ -20012,11 +20012,11 @@ then there is an integer $m$ such that {\color{red} $(\ast)$} holds $\forall s >
 
 	Meanwhile, suppose $\lim_{z \to a}|z - a|^s \cdot |f(z)| = \infty$. Then similarly to before we know that $\lim_{z \to a}|z - a|^r \cdot |f(z)| = \infty$ for any $r < s$ since $|z - a|^{b} \to \infty$ as $z \to a$ so long as $b < 0$ and $|z - a|^r \cdot |f(z)| = |z - a|^{r-s} \cdot (|z - a|^s \cdot |f(z)|)$. Consequently, if {\color{red} $(\ast\ast)$} holds for some $s$ then we can find a negative integer $n^\prime$ such that $|z - a|^{n^\prime} \cdot |f(z)| = |(z-a)^{n^\prime}f(z)| \to \infty$ as $z \to a$. This proves that $(z - a)^{n^\prime}f(z)$ has a pole at $a$ and so there exists some negative integer $n^\pprime$ such that:
 
-	{\centering $(z-a)^{n^\prime}f(z) = \sum_{k=n^\pprime}^\infty b_k (z-a)^k$ \retTwo\par}
+	{\centering $(z-a)^{n^\prime}f(z) = \sum_{k=n^\pprime}^\infty b_k (z-a)^k$ \newpage\par}
 
 	Finally, setting $n = n^\pprime - n^\prime$ we have (after relabeling the coefficients $b_k$) that:
 	
-	{\centering$f(z) = \sum_{k=n}^\infty b_k (z-a)^k$\newpage\par}
+	{\centering$f(z) = \sum_{k=n}^\infty b_k (z-a)^k$\retTwo\par}
 
 	Thus if either {\color{red} $(\ast)$} or {\color{red} $(\ast\ast)$} holds, we've proven that there is an integer $n \in \mathbb{Z}$ such that\\ $f(z) = \sum_{k=n}^\infty b_k (z-a)^k$. Now as $f$ is not the zero function, we must have that at least one $b_k$ in the expansion is not $0$. By the well-ordering of the integers greater than $n$, we can thus pick a least integer $M$ such that $b_M \neq 0$. In other words,
 
@@ -20516,7 +20516,7 @@ Before I go home and take a nap before the final grind, here is another few exer
 	In particular, this shows us that $\Res(fg; a) = a_{-1}b_0 = \Res(f;a)g(a)$. $\blacksquare$\newpage
 \end{myIndent}
 
-\hTwo If $G$ is open and $f$ is a function defined and analytic in $G$ except for at poles, then we say $f$ is a \udefine{meromorphic} function on $G$.\retTwo
+\hTwo If $G$ is open, and there exists a set $S \subseteq G$ that is closed (relative to $G$) and with no limit points in $G$ such that $f$ is a function defined and analytic on $G - S$ and with isolated poles at all $a \in S$ then $f$ is called \udefine{meromorphic}.\retTwo
 
 Recall from \inLinkRap{Page 426 construction math 220a}{page 426} that if a function $f$ has zeros $a_1, \ldots, a_n$ (where the $a_k$ repeat\\ according to the multiplicity of the zeros), then we have that:
 
