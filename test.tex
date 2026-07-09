@@ -447,9 +447,560 @@ All in all, we can conclude that if $U \subseteq \mathbb{C}$ is an open set, the
 
 \dispDate{6/29/2026}
 
-\exTwo\ul{Proposition:} Let $X$ be a Riemann surface. And suppose $f: X \to \mathbb{C}_\infty$ which d
+\exTwo\ul{Proposition:} Let $X$ be a connected Riemann surface. And suppose $f: X \to \mathbb{C}_\infty$ is a function such that $f \not\equiv \infty$ on $X$. Then the following are equivalent.
+\begin{itemize}
+	\item[(a)] $f: X \to \mathbb{C}_\infty$ is a holomorphic function.
+	\item[(b)] For all complex charts $(U, \varphi)$ on $X$ we have that $f \circ \varphi^{-1}$ is a meromorphic function on $\varphi(U)$.
+	\item[(c)] For every $p \in X$ there exists a complex chart $(U, \varphi)$ on $X$ with $p \in U$ and $f \circ \varphi^{-1}$ a meromorphic function on $\varphi(U)$.  
+\end{itemize}
 
-Then $f:X \to \mathbb{C}_\infty$ is a holomorphic function if and only if for all $p \in X$ there exists a complex chart $(U, \varphi)$ with 
+\begin{myIndent}\exThreeP
+	$(a \Longrightarrow b)$\\
+	Let $(U, \varphi)$ be any complex chart on $X$. Since $f$ is continuous and $f \not\equiv \infty$ on $X$, we know that $f^{-1}(\{\infty\}) \cap U$ must be a closed set (relative to $U$) with no limit points in $U$. In other words, $\Omega \coloneqq U - f^{-1}(\{\infty\})$ is an open set with $f(\Omega) \subseteq \mathbb{C}_\infty - \{\infty\}$. If we now consider\newpage the charts $(\Omega, \varphi|_\Omega)$ and $(\mathbb{C}, \myId)$, we know that $\myId \circ f \circ \varphi^{-1} = f \circ \varphi^{-1}$ is a holomorphic map from $\varphi(\Omega) = \varphi(U) - \varphi(f^{-1}(\{\infty\}))$ into $\mathbb{C}$ since $f$ is holomorphic in the Riemann surface sense. Furthermore, we know every $a \in \varphi(U - \Omega)$ has a neigborhood $N$ where $f \circ \varphi^{-1}(z) \neq \infty$ for any $z \in N - \{a\}$. Plus by the continuity of $f \circ \varphi^{-1}$, we know that $f \circ \varphi^{-1}(z) \to \infty$ as $z \to a$. So, every $a \in \varphi(U - \Omega)$ is a pole. And this finishes showing that $f \circ \varphi^{-1}$ is meromorphic on $\varphi(U)$.\retTwo
+
+	$(b \Longrightarrow c)$\\
+	This is obvious.\retTwo
+
+	$(c \Longrightarrow a)$\\
+	Suppose $p \in X$ and let $(U, \varphi)$ be a complex chart on $X$ such that $p \in U$ and $f \circ \varphi^{-1}$\\ a meromorphic function on $\varphi(U)$. If $f(p) \neq \infty$ then by shrinking $U$ and $\varphi(U)$ to a\\ coordinate ball around $p$, we can assume $f \neq \infty$ anywhere on $B$. And now $f(U) \subseteq \mathbb{C}$ and $\myId \circ f \circ \varphi^{-1} = f \circ \varphi^{-1}$ is a holomomorphic function on $\varphi(U)$.\retTwo
+
+	Meanwhile, if $f(p) = \infty$ then we know $\varphi(p)$ is a pole of $f \circ \varphi^{-1}$. So, we can shrink $U$ and $\varphi(U)$ to a coordinate ball so that $f \neq 0$ anywhere on $U$. Next, $f(U) \subseteq \mathbb{C}_\infty - \{0\}$ and $z \mapsto 1/f(\varphi^{-1}(z))$ is a holomorphic function on $\varphi(U)$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Given a Riemann surface $X$, we say $f: X \to \mathbb{C}_\infty$ is \udefine{meromorphic} if $f \in O(X, \mathbb{C}_\infty)$ and $f \not\equiv \infty$ on any neighborhood in $X$. We denote the set of meromorphic functions on $X$ as $\mathcalli{M}(X)$.\retTwo
+
+\pracOne Example: What are the meromorphic functions on $\mathbb{C}_\infty$?
+\begin{myIndent}\pracTwo
+	Suppose $f: \mathbb{C}_\infty \to \mathbb{C}_\infty$ is meromorphic. Since $\mathbb{C}_\infty$ is compact, we know that $f$ has only finitely many \udefine{poles} (i.e. points in the set $f^{-1}(\{\infty\})$). So, we can let $p_1, \ldots, p_n$ be the poles of $f$ in $\mathbb{C}$ (repeated according to multiplicity). Then $g(z) \coloneqq f(z)\prod_{i=1}^n (z - p_i)$ is a well-defined entire function on $\mathbb{C}$.\retTwo
+
+	Next, let $g(z) = \sum_{k=0}^\infty c_k z^k$ be the Taylor expansion of $g$ about $0$. Since $g$ is an entire function, we know this power series has an infinite radius of convergence. In turn, we also know $g(\frac{1}{z}) = \sum_{k=0}^\infty c_k z^{-k}$ is absolutely convergent for all $z \in \mathbb{C} - \{0\}$. Yet also note $g(\frac{1}{z}) = f(\frac{1}{z})\prod_{i=1}^n (\frac{1}{z} - p_i)$. And since $f$ is meromorphic, we know that $h(z) \coloneqq f(\frac{1}{z})$ has either a removable singularity or pole at $z = 0$. It follows that $z \mapsto g(\frac{1}{z})$ has a pole or removable singularity at $z = 0$ as well.\retTwo
+
+	Yet now we can conclude there exists $K \in \mathbb{N}$ with $c_k = 0$ for all $k \geq K$. (If not then $z \mapsto g(\frac{1}{z})$ would have an essential singularity.) So, we've proven there exists a polynomial $P(z) \in \mathbb{C}[z]$ with $P(z) = f(z)\prod_{i=1}^n (z - p_i)$. Finally, by rearranging our expression and factoring $P(z)$, we can conclude that there exists $\lambda \in \mathbb{C}$ as well as $a_1, \ldots, a_m \in \mathbb{C}$ such that:
+
+	{\centering $f(z) = \lambda\frac{(z - a_1)\cdots (z - a_m)}{(z - p_1)\cdots(z - p_n)}$ \retTwo\par}
+
+	So, $\mathcalli{M}(\mathbb{C}_\infty) \subseteq \mathbb{C}(z)$ (where $\mathbb{C}(z)$ is the field of rational functions in $\mathbb{C}$). Conversely, it's easy to show every rational function is a holomorphic map from $\mathbb{C}_\infty$ into $\mathbb{C}_\infty$. $\blacksquare$\newpage
+\end{myIndent}
+
+Here's another interesting observation that the prior example brought to mind.\retTwo
+
+\ul{Lemma:} Suppose $X$ and $Y$ are connected Riemann surface with $X$ also compact. Then any nonconstant holomorphic function $F \in O(X, Y)$ must be surjective.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Since $F$ is continuous and $X$ is compact, we know that $F(X)$ must be a compact subset of $Y$. In turn, since $Y$ is Hausdorff we also know that $F(X)$ is a closed subset of $Y$.\\ Meanwhile, since $F$ is a nonconstant holomorphic function and $X$ is connected, we know $F$ is an open map. In turn, as $X$ is open we must have that $F(X)$ is an open subset of\\ $Y$. Finally, we trivially know that $F(X) \neq \emptyset$. So, we can conclude from the connectedness\\ of $Y$ that $F(X) = Y$. $\blacksquare$\retTwo
+\end{myIndent}
+
+As a result of this lemma, any nonconstant rational function in $\mathbb{C}(z)$ must define a\\ surjective map from $\mathbb{C}_\infty$ into $\mathbb{C}_\infty$. In particular, this means that every nonconstant\\ meromorphic function on $\mathbb{C}_\infty$ will have both poles and zeros.
+
+\hTwo\mySepTwo 
+
+\dispDate{6/30/2026}
+
+I moved to the room next door today. I was hoping to cover some category theory but all I managed to cover were the following definitions. I was not very productive today. Firstly, here are two definitions I got from \textit{Algebra: Chapter 0} by Paulo Aluffi. (see \inLinkRap{Eighth Citation}{citation 8}\dots)\retTwo
+
+Suppose $\mcateg{I}$ is category (which we can think of as an indexing category). Next, we consider a functor $F: \mcateg{I} \to \mcateg{C}$. The \udefine{limit} of $F$ (if it exists) is defined to be an object $L$ in $\mcateg{C}$ along with a class of morphisms $\pi_I \in \Hom_{\mcateg{C}}(L, F(I))$ such that:
+\begin{enumerate}
+	\item[1.] the following diagram commutes for all $I, J \in \Obj(\mcateg{I})$ and $f \in \End_{\mcateg{I}}(I, J)$
+	% https://q.uiver.app/#q=WzAsMyxbMSwwLCJMIl0sWzAsMSwiRihpKSJdLFsyLDEsIkYoaikiXSxbMCwyLCJcXHBpX2oiXSxbMCwxLCJcXHBpX2kiLDJdLFsxLDIsIkYoaSBcXGxlcSBqKSIsMl1d
+	\[\begin{tikzcd}
+		& L & \\
+		{F(I)} && {F(J)}
+		\arrow["{\pi_I}"', from=1-2, to=2-1]
+		\arrow["{\pi_J}", from=1-2, to=2-3]
+		\arrow["{F(f)}"', from=2-1, to=2-3]
+	\end{tikzcd}\]
+	\item[2.] If $M \in \Obj(\mcateg{C})$ and $\eta_I \in \Hom_{\mcateg{C}}(M, F(I))$ is any other object and collection of\\ morphisms satisfying the prior commuting diagram, then there exists a unique\\ morphism $g: M \to L$ such that:\\ [-18pt]
+	% https://q.uiver.app/#q=WzAsNCxbMSwxLCJMIl0sWzAsMiwiRihpKSJdLFsyLDIsIkYoaikiXSxbMSwwLCJNIl0sWzAsMiwiXFxwaV9qIl0sWzAsMSwiXFxwaV9pIiwyXSxbMSwyLCJGKGkgXFxsZXEgaikiLDJdLFszLDEsIlxcZXRhX2kiLDIseyJjdXJ2ZSI6Mn1dLFszLDIsIlxcZXRhX2oiLDAseyJjdXJ2ZSI6LTJ9XSxbMywwLCJcXGV4aXN0cyAhZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		& M & \\
+		& L \\
+		{F(I)} && {F(J)}
+		\arrow["{\exists !g}", dashed, from=1-2, to=2-2]
+		\arrow["{\eta_I}"', curve={height=12pt}, from=1-2, to=3-1]
+		\arrow["{\eta_J}", curve={height=-12pt}, from=1-2, to=3-3]
+		\arrow["{\pi_I}"', from=2-2, to=3-1]
+		\arrow["{\pi_J}", from=2-2, to=3-3]
+		\arrow["{F(f)}"', from=3-1, to=3-3]
+	\end{tikzcd}\]
+\end{enumerate}
+
+\myComment \ul{Remark:} It's easy to see any two limits of a functor $F: \mcateg{I} \to \mcateg{C}$ are isomorphic. Thus, we can refer to there being a single limit (denoted as $\lim\limits_{\longleftarrow}(F)$). Also, we call this limit a \udefine{projective limit}.\newpage
+
+\hTwo Similarly, the \udefine{colimit} of $F$ (if it exists) is defined to be an object $C$ in $\mcateg{C}$ along with a class of morphisms $j_I \in \Hom_{\mcateg{C}}(F(I), C)$ such that:
+\begin{enumerate}
+	\item[1.] the following diagram commutes for all $I, J \in \Obj(\mcateg{I})$ and $f \in \End_{\mcateg{I}}(I, J)$
+	% https://q.uiver.app/#q=WzAsMyxbMSwxLCJMIl0sWzAsMCwiRihJKSJdLFsyLDAsIkYoSikiXSxbMSwyLCJGKGYpIl0sWzEsMCwial9JIl0sWzIsMCwial9KIiwyXV0=
+	\[\begin{tikzcd}
+		{F(I)} && {F(J)} \\
+		& L
+		\arrow["{F(f)}", from=1-1, to=1-3]
+		\arrow["{j_I}", from=1-1, to=2-2]
+		\arrow["{j_J}"', from=1-3, to=2-2]
+	\end{tikzcd}\]
+	\item[2.] If $M \in \Obj(\mcateg{C})$ and $\eta_I \in \Hom_{\mcateg{C}}(M, F(I))$ is any other object and collection of\\ morphisms satisfying the prior commuting diagram, then there exists a unique\\ morphism $g: C \to M$ such that:\\ [-18pt]
+	% https://q.uiver.app/#q=WzAsNCxbMSwxLCJMIl0sWzAsMCwiRihJKSJdLFsyLDAsIkYoSikiXSxbMSwyLCJNIl0sWzEsMiwiRihmKSJdLFsxLDAsImpfSSJdLFsyLDAsImpfSiIsMl0sWzEsMywiXFxldGFfSSIsMix7ImN1cnZlIjoyfV0sWzIsMywiXFxldGFfSiIsMCx7ImN1cnZlIjotMn1dLFswLDMsIlxcZXhpc3RzICEgZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		{F(I)} && {F(J)} \\
+		& L \\
+		& M
+		\arrow["{F(f)}", from=1-1, to=1-3]
+		\arrow["{j_I}", from=1-1, to=2-2]
+		\arrow["{\eta_I}"', curve={height=12pt}, from=1-1, to=3-2]
+		\arrow["{j_J}"', from=1-3, to=2-2]
+		\arrow["{\eta_J}", curve={height=-12pt}, from=1-3, to=3-2]
+		\arrow["{\exists ! g}", dashed, from=2-2, to=3-2]
+	\end{tikzcd}\]
+\end{enumerate}
+
+\myComment \ul{Remark:} It's easy to see any two colimits of a functor $F: \mcateg{I} \to \mcateg{C}$ are isomorphic. Thus, we\\ can refer to there being a single colimit (denoted as $\lim\limits_{\longrightarrow}(F)$). Also, we call this limit an\\ [-4pt] \udefine{injective/direct limit}.\retTwo
+
+\pracOne\mySepTwo 
+
+Suppose $\mcateg{I}$ is a small category and let $F : \mcateg{I} \to A\text{-}\mcateg{mod}$ be a functor (where $A$ is some unital commutative ring). I'll also denote $M_I \coloneqq F(I)$ for all $I \in \Obj(\mcateg{I})$.\retTwo
+
+Firstly, here's how to construct $\lim\limits_{\longleftarrow}(F)$.
+\begin{myIndent}\pracTwo
+	Let $L \subseteq \prod_{I \in \Obj(\mcateg{I})}M_I$ be given by the set:
+
+	{\centering $L = \{(x_I)_{I \in \Obj(\mcateg{I})} : \forall I,J \in \Obj(\mcateg{I}) \text{ and } \forall f \in \Hom_{\mcateg{I}}(I, J),\myHS (F(f))(x_I) = x_J\}$.\retTwo\par}
+
+	I claim that $L$ is a submodule of $\prod_{I \in \Obj(\mcateg{I})}M_I$. After all, $(0_{M_I})_{I \in \Obj(\mcateg{I})} \in N$ since all\\ module homomorphisms send zero elements to zero elements. Also suppose $(x_I)_{I \in \Obj(\mcateg{I})}$,\\ $(y_I)_{I \in \Obj(\mcateg{I})} \in N$ and $a, a^\prime \in A$. Then:
+	
+	{\centering$(F(f))(ax_I + a^\prime y_I) = a(F(f))(x_I) + a^\prime(F(f))(y_I) = ax_J  + a^\prime y_J$\\ [4pt]\par}
+	
+	for all $I, J \in \Obj(\mcateg{I})$ and $f \in \Hom_{\mcateg{I}}(I, J)$. Hence $a(x_I)_{I \in \Obj(\mcateg{I})} + a^\prime(y_I)_{I \in \Obj(\mcateg{I})} \in N$.\retTwo
+
+	Next, for every $I \in \mcateg{I}$ let $\pi_{I}$ by the projection from $\prod_{I^\prime \in \Obj(\mcateg{I})} M_{I^\prime}$ to $M_I$. I shall prove that $L$ along with all the $\pi_I$ (with their domains restricted to $L$) forms the limit of $F$.
+	\begin{enumerate}
+		\item[1.] Suppose $I, J \in \Obj(\mcateg{I})$ and $f \in \Hom_{\mcateg{I}}(I, J)$. Then the following diagram holds:\newpage\phantom{,}\\ [-14pt]
+		% https://q.uiver.app/#q=WzAsNyxbMywxLCJMIl0sWzEsMiwiTV9pIl0sWzQsMiwiTV9qIl0sWzMsMF0sWzAsMl0sWzYsM10sWzQsM10sWzEsMiwiRihmKSJdLFswLDEsIlxccGlfaSIsMl0sWzAsMiwiXFxwaV9qIl0sWzAsMywiKHhfaSlfe2kgXFxpbiBcXE9iaihcXG1jYXRlZ3tJfSl9IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw1LCJ4X2oiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDQsInhfaSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzYsMiwiKEYoZikpKHhfaSkiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxMCwxMiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTAsMTEsIiIsMSx7ImN1cnZlIjotMiwic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTIsMTMsIiIsMSx7ImN1cnZlIjoyLCJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMywxMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjUwLCJ0YXJnZXQiOjIwfSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+		\[\begin{tikzcd}
+			&&& {} &&& \\
+			&&& L \\
+			{} & {M_I} &&& {M_J} \\
+			&&&& {} && {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{(x_I)_{I \in \Obj(\mcateg{I})}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-4]
+			\arrow["{\pi_I}"', from=2-4, to=3-2]
+			\arrow["{\pi_J}", from=2-4, to=3-5]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{x_I}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-2, to=3-1]
+			\arrow["{F(f)}", from=3-2, to=3-5]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "{x_J}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-5, to=4-7]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{(F(f))(x_I)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=4-5, to=3-5]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.9}, maps to, from=0, to=1]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, curve={height=-12pt}, between={0.2}{0.9}, maps to, from=0, to=2]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, curve={height=12pt}, between={0.1}{0.8}, maps to, from=1, to=3]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.5}{0.8}, equals, from=3, to=2]
+		\end{tikzcd}\]
+
+		\item[2.] Now suppose another $A$-module $M$ as well as the homomorphisms $\eta_I: M \to M_I$\\ satisfy the diagram that $L$ and the $\pi_I$ satisfy. By the universal property of products of modules, we know there is a unique module homomorphism $g: M \to \prod_{I \in \Obj(\mcateg{I})}M_I$ satisfying for all $I \in \Obj(\mcateg{I})$ that:
+		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzEsMSwiXFxwcm9kX3tpIFxcaW4gXFxPYmooXFxtY2F0ZWd7SX0pfSBNX2kiXSxbMiwwLCJNX2kiXSxbMSwyLCJcXHBpX2kiXSxbMCwxLCJnIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMiwiXFxldGFfaSIsMix7ImN1cnZlIjotM31dXQ==
+		\[\begin{tikzcd}
+			M && {M_I} \\
+			& {\prod_{I^\prime \in \Obj(\mcateg{I})} M_{I^\prime}}
+			\arrow["{\eta_I}"', curve={height=-18pt}, from=1-1, to=1-3]
+			\arrow["g", dashed, from=1-1, to=2-2]
+			\arrow["{\pi_{I}}", from=2-2, to=1-3]
+		\end{tikzcd}\]
+
+		Since our desired homomorphism must satisfy the above commuting diagram, we\\ can conclude that our desired morphism is unique. Also note that since $M$ and\\ the $\eta_I$ satisfy the same commuting diagram that $L$ and the $\pi_I$ satisfy, we have\\ that $\myIm(g) \subseteq L$. So, $g$ is our desired morphism.\retTwo
+	\end{enumerate}
+\end{myIndent}
+
+Secondly, here's how to construct $\lim\limits_{\longrightarrow}(F)$.
+\begin{myIndent}\pracTwo
+	For all $I \in \Obj(\mcateg{I})$ let $j_I: M_I \to \bigoplus_{I^\prime \in \Obj(\mcateg{I})} M_{I^\prime}$ be the embedding homomorphism.\\ Then, define $N \subseteq \bigoplus_{I^\prime \in \Obj(\mcateg{I})} M_{I^\prime}$ to be the submodule generated by all elements of the form $j_I(x_I) - j_J((F(f))(x_I))$ where $I, J \in \Obj(\mcateg{I})$, $x_I \in M_I$, and $f \in \Hom_{\mcateg{I}}(I, J)$.\\ [6pt]
+
+	We let $C \coloneqq (\bigoplus_{I \in \Obj(\mcateg{I})} M_I)/ N$. After letting $\pi: \bigoplus_{I \in \Obj(\mcateg{I})} M_I \to (\bigoplus_{I \in \Obj(\mcateg{I})} M_I)/N$\\ [-2pt] be the quotient map, we then define the map $\widetilde{j_I} \coloneqq \pi \circ j_I$ for all $I \in \Obj(\mcateg{I})$ to be. I claim\\ [2pt] that $C$ along with the $\widetilde{j_I}$ is the colimit of $F$.
+	\begin{enumerate}
+		\item[1.] Suppose $I, J \in \Obj(\mcateg{I})$ and $f \in \Hom_{\mcateg{I}}(I, J)$. Then we need to verify that the\\ following diagram holds for all $X_I \in M_I$:
+		% https://q.uiver.app/#q=WzAsNyxbMSwxLCJNX0kiXSxbMywxLCJNX0oiXSxbMiwyLCJDIl0sWzAsMF0sWzQsMF0sWzQsM10sWzAsM10sWzAsMiwiXFx3aWRldGlsZGV7al9JfSIsMl0sWzEsMiwiXFx3aWRldGlsZGV7al9KfSJdLFswLDEsIkYoZikiXSxbMCwzLCJ4X0kiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDQsIihGKGYpKSh4X0kpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw1LCJqX0ooKEYoZikpKHhfSSkpK04iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDYsImpfSSh4X0kpK04iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxMCwxMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTEsMTIsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEwLDEzLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMywxMiwiP1xccGhhbnRvbXsuLi4uLi4ufSIsMCx7InNob3J0ZW4iOnsic291cmNlIjozMCwidGFyZ2V0Ijo1MH0sImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dXQ==
+		\[\begin{tikzcd}
+			{} &&&& {} \\
+			& {M_I} && {M_J} \\
+			&& C \\
+			{} &&&& {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "{x_I}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
+			\arrow["{F(f)}", from=2-2, to=2-4]
+			\arrow["{\widetilde{j_I}}"', from=2-2, to=3-3]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{(F(f))(x_I)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-5]
+			\arrow["{\widetilde{j_J}}", from=2-4, to=3-3]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "{j_I(x_I)+N}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-1]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{j_J((F(f))(x_I))+N}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-5]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.8}, maps to, from=0, to=1]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=2]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.9}, maps to, from=1, to=3]
+			\arrow["{?\phantom{.......}}", color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.6}, equals, from=2, to=3]
+		\end{tikzcd}\]
+		\newpage
+		Fortunately, note that $j_I(x_I) - j_J((F(f))(x_I)) \in N$ because we defined $N$ to have that element as a generator. So, the equality we needed does hold.\retTwo 
+
+		\item[2.] Suppose another $A$-module $M$ and a bunch of homomorphisms $\eta_I: M_I \to M$ also\\ satisfy the same commuting diagram that $C$ and the $\widetilde{j_I}$ satisfy. Then by the universal\\ property of direct sums of modules, there is a unique module homomorphism\\ $h: \bigoplus_{I \in \Obj(\mcateg{I})} M_I \to M$ satisfying that for all $I \in \Obj(\mcateg{I})$ the below diagram holds:
+		% https://q.uiver.app/#q=WzAsMyxbMiwwLCJQIl0sWzAsMCwiTV9JIl0sWzEsMSwiXFxiaWdvcGx1c197SV5cXHByaW1lIFxcaW4gXFxPYmooXFxtY2F0ZWd7SX0pfU1fe0leXFxwcmltZX0iXSxbMSwwLCJcXGV0YV9JIl0sWzEsMiwial9JIiwyXSxbMiwwLCJoIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+		\[\begin{tikzcd}
+			{M_I} && P \\
+			& {\bigoplus_{I^\prime \in \Obj(\mcateg{I})}M_{I^\prime}}
+			\arrow["{\eta_I}", from=1-1, to=1-3]
+			\arrow["{j_I}"', from=1-1, to=2-2]
+			\arrow["h"', dashed, from=2-2, to=1-3]
+		\end{tikzcd}\]
+
+		Yet note that $\eta_I(x_I) - \eta_J((F(f))(x_I)) = 0_P$ for all $I, J \in \Obj(\mcateg{I})$, $x_I \in M_I$,\\ and $f \in \Hom_{\mcateg{I}}(I, J)$. As a result, $N \subseteq \ker(h)$ and in turn we can define a module homomorphism $g: C \to P$ by $g((x_I)_{I \in \Obj(\mcateg{I})} + N) = h((x_I)_{I \in \Obj(\mcateg{I})})$. This will still be the unique homomorphism satisfying that: % https://q.uiver.app/#q=WzAsMyxbMiwwLCJQIl0sWzAsMCwiTV9JIl0sWzEsMSwiQyJdLFsxLDAsIlxcZXRhX0kiXSxbMSwyLCJcXHdpZGV0aWxkZXtqX0l9IiwyXSxbMiwwLCJnIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+		\[\begin{tikzcd}
+			{M_I} && P \\
+			& C
+			\arrow["{\eta_I}", from=1-1, to=1-3]
+			\arrow["{\widetilde{j_I}}"', from=1-1, to=2-2]
+			\arrow["g"', dashed, from=2-2, to=1-3]
+		\end{tikzcd}\]
+	\end{enumerate}
+\end{myIndent}
+
+Since $A$-$\mcateg{mod}$ has a limit and colimit respectively for all functors $F$ going into $A$-$\mcateg{mod}$\\ from a small category, we say $A$-$\mcateg{mod}$ is \udefine{complete} and \udefine{cocomplete} respectively. Since\\ $A$-$\mcateg{mod}$ is \textit{both} complete \textit{and} cocomplete, we also call $A$-$\mcateg{mod}$ a \udefine{bicomplete} category.\retTwo
+
+\begin{myIndent}\myComment
+	Something else I want to mention is that both of the prior constructions still work if\\ we replace the category $A$-$\mcateg{mod}$ with the category $A$-$\mcateg{alg}$ of $A$-algebras and algebra\\ homomorphisms. In the colimit construction we just have to make $N$ the algebra\\ generated by some points instead of the module generated by some points.\retTwo
+
+	Furthermore, since $\mcateg{Ab}$ is identical to category of $\mathbb{Z}$-modules and $\mcateg{CRing}$ is identical to the category of $\mathbb{Z}$-algebras, we also now have constructions for limits and colimits of abelian groups and commutative rings.\retTwo
+\end{myIndent}
+
+One more colimit I want to construct is as follows. Suppose $(I, \lesssim)$ is a directed set (see my math 240b notes to recall what that means). We can turn $I$ into a small category $\mcateg{I}$ whose objects are just the elements of $I$ and whose morphisms are just the relations $i \lesssim j$. Now suppose $F: \mcateg{I} \to \mcateg{Set}$ is a functor. Then we can construct $\lim\limits_{\longrightarrow}(F)$ as follows.
+\begin{myIndent}\pracTwo
+	Let $S_i \coloneqq F(i)$ for all $i \in I$. Also, for reasons that will become apparent later, denote $F(i \lesssim j)$ as $r^{i}_j$. To construct the colimit of $F$, first let $S \coloneqq \bigcup_{i \in I}(\{i\} \times S_i)$. Next, we use the fact that $I$ is a directed set to define an equivalence relation. Namely, we say that $(i, x) \sim (j, y)$ if after having let $k \in I$ be any element with $i \lesssim k$ and $j \lesssim k$, we then have that there exists $z \in S_k$ with $r^i_k(x) = z = r^j_k(y)$.\newpage
+
+	I claim that $\sim$ is an equivalence relation. After all, since $i \lesssim i$ and $r_i^i = \myId_{S_i}$ for all $i \in I$, we know that $(i, x) \sim (i, x)$ for all $i \in I$ and $x \in S_i$. Also, its obvious from our definition that $(i, x) \sim (j, y)$ iff $(j, y) \sim (i, x)$. Finally, suppose $(i_1, x_1) \sim (i_2, x_2) \sim (i_3, x_3)$. Then we know there exists $(j, y)$ such that $r_{j}^{i_1}(x_1) = y = r_j^{i_2}(x_2)$. Similarly, we know there exists $(j^\prime, y^\prime)$ such that $r_{j^\prime}^{i_1}(x_2) = y^\prime = r_{j^\prime}^{i_2}(x_3)$. And finally, we let $k \in I$ be any element with $j \lesssim k$ and $j^\prime \lesssim k$. Note that $r^{j}_k \circ r_j^{i_2} = r_k^{i_2} = r^{j^\prime}_k \circ r_{j^\prime}^{i_2}$, and also that $r_k^{i_1} = r^{j}_k \circ r_j^{i_1}$ and $r_k^{i_3} = r^{j^\prime}_k \circ r_{j^\prime}^{i_3}$. Thus:
+
+	{\centering $r_k^{i_1}(x_1) = r^{j}_k \circ r_j^{i_1}(x_1) = r^{j}_k \circ r_j^{i_2}(x_2) = r^{j^\prime}_k \circ r_{j^\prime}^{i_2}(x_2) = r^{j^\prime}_k \circ r_{j^\prime}^{i_3}(x_3) = r_k^{i_3}(x_3)$ \retTwo\par}
+
+	And this proves that $(i_1, x_1) \sim (i_3, x_3)$.\retTwo
+
+	We now let $C \coloneqq S/_\sim$. Also for every $i \in I$ we define $\iota_i: S_i \to C$ by $x \mapsto [(i, x_i)]$. I claim that $C$ along with the $\iota_i$ forms a colimit.
+	\begin{itemize}
+		\item Note that $(i, x) \sim (j, r_j^i(x))$ for all $j \in I$ with $i \lesssim j$. Hence, the following diagram holds for all $i, j \in I$ with $i \lesssim j$:\\ [-18pt]
+		% https://q.uiver.app/#q=WzAsNyxbMSwxLCJTX2kiXSxbMywxLCJTX2oiXSxbMiwyLCJDIl0sWzAsMF0sWzQsMF0sWzMsM10sWzEsM10sWzAsMiwiXFxpb3RhX2kiLDJdLFsxLDIsIlxcaW90YV9qIl0sWzAsMSwicl57aX1faiJdLFswLDMsIngiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDQsInJfal5pKHgpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw1LCJbcl9qXmkoeCldIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw2LCJbeF0iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxMCwxMSwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTEsMTIsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzEwLDEzLCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMywxMiwiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjQwfSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
+		\[\begin{tikzcd}
+			{} &&&& {} \\
+			& {S_i} && {S_j} \\
+			&& C \\
+			& {} && {}
+			\arrow[""{name=0, anchor=center, inner sep=0}, "x"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
+			\arrow["{r^{i}_j}", from=2-2, to=2-4]
+			\arrow["{\iota_i}"', from=2-2, to=3-3]
+			\arrow[""{name=1, anchor=center, inner sep=0}, "{r_j^i(x)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-5]
+			\arrow["{\iota_j}", from=2-4, to=3-3]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "{[x]}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-2]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{[r_j^i(x)]}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-4]
+			\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.85}, maps to, from=0, to=1]
+			\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=2]
+			\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.9}, maps to, from=1, to=3]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.65}, equals, from=2, to=3]
+		\end{tikzcd}\]
+
+		\item Next, suppose a set $M$ and functions $\eta_i$ also satisfy for all $i \lesssim j$ that:\\ [-14pt]
+		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTX2kiXSxbMiwwLCJTX2oiXSxbMSwxLCJNIl0sWzAsMSwicl5pX2oiXSxbMCwyLCJcXGV0YV9pIiwyXSxbMSwyLCJcXGV0YV9qIl1d
+		\[\begin{tikzcd}
+			{S_i} && {S_j} \\
+			& M
+			\arrow["{r^i_j}"', from=1-1, to=1-3]
+			\arrow["{\eta_i}"', from=1-1, to=2-2]
+			\arrow["{\eta_j}", from=1-3, to=2-2]
+		\end{tikzcd}\]
+
+		Then by the universal property of disjoint unions of sets (i.e. that they are categorical coproducts of sets), we know that there is a unique function $h: S \to M$ such that the following diagram holds for all $i \in I$:\\ [-14pt]
+		% https://q.uiver.app/#q=WzAsNSxbMSwwLCJTX2kiXSxbMywwLCJNIl0sWzIsMSwiUyJdLFswLDFdLFsxLDJdLFswLDEsIlxcZXRhX2kiLDJdLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMSwiXFxleGlzdHMhIGgiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCwyLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMywwLCIiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbOSwwLCJ4IiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwfSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbOCwyLCIoaSwgeCkiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjB9LCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxMCwxMSwiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjIwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+		\[\begin{tikzcd}
+			& {S_i} && M \\
+			{} && S \\
+			& {}
+			\arrow["{\eta_i}"', from=1-2, to=1-4]
+			\arrow[hook, from=1-2, to=2-3]
+			\arrow[""{name=0, anchor=center, inner sep=0}, draw=none, from=2-1, to=1-2]
+			\arrow["{\exists! h}"', dashed, from=2-3, to=1-4]
+			\arrow[""{name=1, anchor=center, inner sep=0}, draw=none, from=3-2, to=2-3]
+			\arrow[""{name=2, anchor=center, inner sep=0}, "x"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=0, to=1-2]
+			\arrow[""{name=3, anchor=center, inner sep=0}, "{(i, x)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=1, to=2-3]
+			\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=2, to=3]
+		\end{tikzcd}\]
+		\phantom{.}\\ [-20pt]
+		
+		In other words, $h(i, x) = \eta_i(x)$ for all $(i, x) \in S$. Yet now suppose $(i, x) \sim (j, y)$. Thus, there exists $k \in I$ with $i \lesssim k$, $j \lesssim k$, and $r^{i}_k(x) = r^j_k(y)$. Since we also know that $\eta_k \circ r_k^i = \eta_i$ and $\eta_k \circ r_k^j = \eta_j$, we can say that:
+
+		{\centering $h(i, x) = \eta_i(x) = \eta_k \circ r_k^i(x)= \eta_k \circ r_k^j(y) = \eta_j(y) = h(j, y)$ \newpage\par}
+
+		It follows that we can define a function $g: C \to M$ by $g([(i, x)]) \coloneqq h(i, x)$. And since $h$ was uniquely determined, we also know $g$ is uniquely determined. This finishes showing that $C$ is a colimit.
+	\end{itemize}
+\end{myIndent}
+
+\mySepTwo
+
+\hTwo\dispDate{7/3/2026}
+
+Today I want to try and take some notes on presheaves, stalks, and germs. I will be loosely following \textit{Differential Analysis on Complex Manifolds} by Raymond Wells. (See \inLinkRap{Ninth Citation}{citation 9}\dots)\retTwo
+
+To start off, suppose $\mcateg{C}$ is a category. Then a \udefine{presheaf} is just a functor $F: \mcateg{C}^{\mathrm{op}} \to \mcateg{Set}$. If we replace the category $\mcateg{Set}$ with a different category $\mcateg{D}$ (say $A$-$\mcateg{mod}$), we just say our presheaf is \udefine{$\mcateg{D}$-valued}.\retTwo
+
+A morphism between presheaves $F_1$ and $F_2$ is just a natural transformation between the two functors. In the special case that the natural transformation $\eta: F_1 \to F_2$ consists of only injective functions, then we say $F_1$ is a \udefine{subpresheaf} of $F_2$.\retTwo
+
+Given a topological $X$, a relevant category for us to define is the category $\mcateg{Op}(X)$ of\\ nonempty open subsets of $X$. The objects of this category are open subsets, and the\\ morphisms are given by set inclusions. Clearly this is a small category. Using this category,\\ we now define a \udefine{presheaf} $\mathcalli{F}$ \textit{over a topological space} $X$ to be:
+\begin{itemize}
+	\item An assignment to every nonempty open set $U \subseteq X$ some other set $\mathcalli{F}(U)$,
+	\item A collection of homomorphisms $r_{V}^U : \mathcalli{F}(U) \to \mathcalli{F}(V)$ (called \udefine{restriction\\ homomorphisms}) for each pair of nonempty open sets $V \subseteq U \subseteq X$ such that:
+	\begin{itemize}
+		\item[$\circ$] $r_U^U = \myId_{\mathcalli{F}(U)}$,
+		\item[$\circ$] If $W \subseteq V \subseteq U$ then $r_W^U = r_W^V \circ r_V^U$. 
+	\end{itemize}
+\end{itemize}
+
+\begin{myDindent}\myComment
+	As a side note, we call the objects $\mathcalli{F}(U)$ \udefine{sections} of the presheaf $\mathcalli{F}$.\retTwo
+\end{myDindent}
+
+The subpresheafs in this case that we care about are when we restrict the domain of $\mathcalli{F}$ to only open sets containing some arbitrary point $x \in X$.\retTwo
+
+Let $\mcateg{D}$ denote either $\mcateg{Set}$, $\mcateg{Ab}$, $\mcateg{CRing}$, or $A$-$\mcateg{mod}$ or $A$-$\mcateg{alg}$ (where $A$ is some unital\\ commutative ring). Then let $\mathcalli{F}$ be a  $\mcateg{D}$-valued presheaf over a topological space $X$.\\ Given any $x \in X$ we define the \udefine{stalk of $\mathcalli{F}$ at $x$} to be the direct limit (i.e. colimit) of\\ $\mathcalli{F}$ restricted to the open sets containing $x$:
+
+$$\mathcalli{F}_x \coloneqq \hspace{-1em}\lim\limits_{\substack{\longrightarrow\\ x \in U \in \Obj(\mcateg{Op}(X))}}\hspace{-2em}\mathcalli{F}(U)$$
+
+
+Then, an element of $\mathcalli{F}_x$ is called a \udefine{germ}.\newpage
+\begin{myIndent}\myComment
+	The intuition for this naming scheme is that in agriculture, a sheaf refers to a bundle of wheat, then each stalk is a single wheat strand, and finally the germs are the seeds at end of the stalk. Similarly in the math sense, a sheaf (which will be a presheaf equipped with a few more assumptions) is a structure encoding local data on an entire topological space, each stalk is a structure encoding local data at a specific point, and the germs are all the possible configurations of local data at a given point.\retTwo
+\end{myIndent}
+
+\pracOne Here are three examples of presheaves over a topological space $X$:
+\begin{itemize}
+	\item Suppose $Y$ is another topological space and then for every $U \in \Obj(\mcateg{Op}(X))$ define:
+
+	{\centering$\mathcalli{F}(U) = C(U, Y) \coloneqq \{(f: U \to Y) : f \text{ is continuous}\}$.\retTwo\par}
+
+	Also if $V \subseteq U \subseteq X$ let $r^U_V(f) \coloneqq f|_V$. This is easily checked to be a presheaf which we denote $\mathcalli{C}_{X,Y}$. Also if $Y = k$ (where $k = \mathbb{R}$ or $\mathbb{C}$) then this presheaf is $(k$-$\mcateg{alg})$-valued.\retTwo
+
+	\item Suppose that $X$ in particular is a topological manifold equipped with a $C^r$ structure (where $r \in \mathbb{N} \cup \{\infty\}$). Then for every $U \in \Obj(\mcateg{Op}(X))$ let $\mathcalli{C}_X^r(U)$ denote the space of real-valued $C^r$ functions from $U$ to $\mathbb{R}$. Also for $V \subseteq U \subseteq X$ let $r^U_V(f) \coloneqq f|_V$. This is also easily checked to be a $(\mathbb{R}$-$\mcateg{alg})$-valued presheaf.
+	
+	\item Meanwhile, suppose that $X$ is a topological manifold equipped with a complex\\ structure. Then for every $U \in \Obj(\mcateg{Op}(X))$ let $\mathcalli{O}_X$ denote the space of holomorphic functions from $U$. Also for $V \subseteq U \subseteq X$ let $r^U_V(f) \coloneqq f|_V$. This is also easily checked to be a $(\mathbb{C}$-$\mcateg{alg})$-valued presheaf.\retTwo
+\end{itemize}
+
+\hTwo Now a presheaf $\mathcalli{F}$ over a topological space $X$ is called a \udefine{sheaf} if for every collection of open sets $\{U_\alpha\}_{\alpha \in A}$ with $U \coloneqq \bigcup_{\alpha \in A}U_\alpha$ the following two axioms are satisfied:
+\begin{enumerate}
+	\item[1.] If $s, t \in \mathcalli{F}(U)$ satisfy that $r_{U_\alpha}^U(s) = r^{U}_{U_\alpha}(t)$ for all $\alpha \in A$ then $s = t$.
+	\item[2.] Suppose there exists $s_\alpha \in \mathcalli{F}(U_\alpha)$ for all $\alpha \in A$ satisfying that if $\beta \in A$ and\\ $U_\alpha \cap U_\beta \neq \emptyset$ then $r_{U_\alpha \cap U_\beta}^{U_\alpha}(s_\alpha) =  r_{U_\alpha \cap U_\beta}^{U_\beta}(s_\beta)$. Then there exists an $s \in \mathcalli{F}(U)$\\ such that $r^U_{U_\alpha}(s) = s_\alpha$ for all $\alpha \in A$.\retTwo
+\end{enumerate}
+
+\pracOne Hopefully it is clear why all three examples of presheaves I just gave are also sheaves. The first bullet point is satisfied because because functions are uniquely determined by their values at each point. Meanwhile, the second bullet point is satisfied because we can glue compatible continuous, smooth, or holomorphic functions together.\retTwo
+
+\hTwo\mySepTwo
+
+\dispDate{7/6/2026}\newpage
+
+Augh I wanted to read the book by Wells but I've been having immense difficulty. I think my two gaps in knowledge are that I still don't have enough knowledge about manifolds, and also that I don't know any complex analysis on multivariable complex functions. Since I don't have a textbook covering the latter yet, I'll just read John Lee's \textit{Introduction to Smooth Manifolds}.\retTwo
+
+Firstly, I want to generalize the notes about tangent planes on \inLinkRap{page 926 tangent plane definition}{pages 926 and 927} to\\ abstract $C^r$ manifolds.\retTwo
+
+Let $M$ be a $C^r$ manifold with or without boundary (where $r \in \mathbb{Z}_{\geq 1} \cup \{\infty\}$), and consider any $p \in M$. A linear map $v: C^1(M, \mathbb{R}) \to \mathbb{R}$ is a \udefine{derivation at $p$} if
+
+{\centering$v(fg) = f(p)v(g) + g(p)v(f)$ for all $f, g \in C^r(X, \mathbb{R})$.\retTwo\par}
+
+Also, we let $T_p M$ be the set of all derivations at $p$. Importantly, we can see that $T_p M$ is a real vector space. So, we say an element of $T_p M$ is a \udefine{tangent vector at $p$}.\retTwo
+
+\exTwo\ul{Lemma:} Suppose $v \in T_p M$.
+\begin{itemize}
+	\item If $f \equiv C$ where $C \in \mathbb{R}$ then $v(f) = 0$.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		$v(f) = \frac{1}{c} v(cf) = \frac{1}{c}v(f^2) = \frac{1}{c}(2f(p)v(f)) = 2v(f)$. By subtracting $v(f)$\\ from both sides we then get that $0 = v(f)$.\retTwo
+	\end{myIndent}
+
+	\item If $f, g \in C^r(M, \mathbb{R})$, $f(p) = 0$, and $g(p) = 0$ then $v(fg) = 0$.
+	
+	\begin{myIndent}\exThreeP
+		Hopefully this is obvious.
+	\end{myIndent}
+\end{itemize}
+
+\pracOne\mySepTwo
+
+For the sake of getting intuition for why derivations should be thought of as tangent\\ vectors, suppose we have a $k$-dimensional $C^r$ manifold $M \subseteq \mathbb{R}^n$, and for the sake of\\ convenience assume $M$ has no boundary. (Here I'm taking $M$ to be a manifold as was studied on \inLinkRap{placeholder}{pages 77-99} as opposed to the more general abstract manifolds covered by John Lee. As a side note, $M$ would also be an abstract manifold and its $C^r$ structure would be generated by all full rank bijective $C^r$ maps from open subsets of $\mathbb{R}^k$ to open subsets of $M$ which also have continuous inverses.)\retTwo
+
+Next, consider any $p \in M$ and let $\phi$ be a $C^r$ diffeomorphism from an open set $U$ of $\mathbb{R}^k$ to an open set $V^\prime$ of $M$ containing $p$. Also let $q = \phi^{-1}(p)$. Then recalling \inLinkRap{page 926 tangent plane definition}{pages 926 and 927}, we define the "geometric tangent plane" based at $p$ as:
+
+{\centering$\widetilde{T_p M} \coloneqq \{(p, \mVecAst{y}) : \mVecAst{y} \in \myIm(\Df \phi(q) : \mathbb{R}^k \to \mathbb{R}^n)\}$\retTwo\par}
+
+\begin{myIndent}\pracTwo
+	Importantly, $\widetilde{T_p M}$ is an $k$-dimensional vector space. Also suppose that\\ $\mVecAst{v}_p = (p, \mVecAst{v}) \in \widetilde{T_p M}$.\retTwo
+
+	I realize I have two diffent definitions for what it means for a function $f: M \to \mathbb{R}$\\ to be a $C^s$ function (where $s \leq r$). So I want to quickly rectify that.\newpage
+	\begin{itemize}
+		\item Definition 1: $f: M \to \mathbb{R}$ is a $C^s$ map if there is an open set $W \subseteq \mathbb{R}^n$ containing $M$ and a $C^s$ function $g: W \to \mathbb{R}$ with $g|_M = f$.
+		\item Definition 2: $f$ is a $C^s$ function in the manifold sense. Equivalently, this means for any open sets $U \subseteq \mathbb{R}^k$ and $V \subseteq M$ as well as any bijective $C^r$ function $\varphi: U \to V$ such that $\Df \varphi(x)$ has full rank for all $x \in U$ and $\varphi^{-1}$ is continuous, we have that $f \circ \varphi$ is a $C^s$ map. (Note: this is equivalent to the manifold definition because the  $\varphi$ form a\\ $C^r$ subatlas of the $C^r$ structure of $M$).
+	\end{itemize}
+
+	\begin{myIndent}\exPPP
+		$(1 \Longrightarrow 2)$\\
+		This is hopefully obvious.\retTwo
+
+		$(2 \Longrightarrow 1)$\\
+		Recall from lemma 23.1 on \inLinkRap{placeholder}{page 83} that by passing to a partition of unity, it suffices to show definition 1 only locally. In other words, we must show for any $p \in M$ that there exists a $C^s$ function $g: W \to \mathbb{R}$ for some open set $W \subseteq \mathbb{R}^n$ containing $p$ such that $g|_{M \cap V} = f|_{M \cap V}$.\retTwo
+
+		Fortunatly, we can find open sets $U \subseteq \mathbb{R}^k$ and $V \subseteq M$ as well as a homeomorphism $\varphi: U \to V$ such that $p \in V$, $\varphi$ is a $C^r$ function, and $\Df \varphi(x)$ has full rank for all $x \in U$. Next, note from theorem 24.1 on \inLinkRap{placeholder}{page 87} that $\varphi^{-1}$ can be extended to a\\ $C^r$ function $\psi: W \to \mathbb{R}^k$ such that $W \subseteq \mathbb{R}^n$ is open and $\psi|_V = \varphi^{-1}$. But now as\\ $\psi$ is continuous and $\psi(V) = \varphi^{-1}(V) = U$, we know that $\psi^{-1}(U)$ is an open subset of $W$ containing $V$. Plus, $p \in V \subseteq \psi^{-1}(U)$. In other words, we can without loss of generality shrink $W$ so that $\psi(W) \subseteq U$ and still have that $p \in W$. And finally, $(f \circ \varphi) \circ \psi = f$ on $M$ and $(f \circ \varphi) \circ \psi$ is a composition of a $C^s$ map and a $C^r$ map on $W$. Hence, we've proven that definition 1 holds locally for if $f$.\retTwo
+	\end{myIndent}
+
+	Next, suppose $f \in C^1(M, \mathbb{R})$. We define its \udefine{directional derivative} $\Df_{\mVecAst{v}}|_p f$ in the direction of $\mVecAst{v}$ as follows:\retTwo
+
+	Let $\gamma: [-1, 1] \to M$ be any $C^1$-path such that $\gamma(0) = p$ and $\gamma^\prime(0) = \mVecAst{v}$.
+	\begin{myIndent}\color{VioletRed}
+		As for how we know such a path $\gamma$ exists, recall that $\mVecAst{v} \in \Df \phi(q)$. Hence, there exists $w \in \mathbb{R}^k$ such that $(\Df \phi(q))\mVecAst{w} = \mVecAst{v}$. Let $\widetilde{\gamma} : [-1, 1] \to U$ be a $C^1$-path such that $\widetilde{\gamma}(0) = q$ and $\widetilde{\gamma}^\prime(0) = \mVecAst{w}$. Then let $\gamma \coloneqq \phi \circ \widetilde{\gamma}$. Clearly $\gamma(0) = p$ and $\gamma([-1, 1])$ is contained in $M$. Also by chain rule we have that:
+		
+		{\centering$\gamma^\prime(0) = (\Df \phi(q))\widetilde{\gamma}^\prime(0) = (\Df \phi(q))\mVecAst{w} = \mVecAst{v}$.\retTwo\par}
+	\end{myIndent}
+
+	Now suppose $f \in C^r(M)$.   we define $\Df_{\mVecAst{v}}|_p f = (f \circ \gamma)^\prime(0)$. I claim this definition is independent of the specific path $\gamma$ chosen. After all:
+	\begin{myIndent}\color{VioletRed}
+		Suppose $\gamma_1$ and $\gamma_2$ are two distinct $C^1$-paths such that $\gamma_i(0) = p$ and $\gamma_i^\prime(0) = \mVecAst{v}$ for both $i$. Then after extending $f$ to a $C^r$ function on an open set $V \subseteq \mathbb{R}^n$ with $V^\prime = V \cap M$ (which we can do since $f \in C^r(M, \mathbb{R})$), we know that:
+		
+		{\centering$(f \circ \gamma_1)^\prime(0) = \nabla f(p)\cdot \gamma_1^\prime(0) = \nabla f(p) \cdot \mVecAst{v} = \nabla f(p) \cdot \gamma_2^\prime(0) = (f \circ \gamma_2)^\prime(0)$.\retTwo\par}
+	\end{myIndent}
+
+	It's also easy to see that the directional derivative $\Df_{\mVecAst{v}}|_p$ is a derivation at $p$. After all, we can just apply the product rule to the gradiant operator and also note that taking a dot product against a fixed vector $\mVecAst{v}$ defines a linear functional.\retTwo
+\end{myIndent}
+
+Now consider the function $\widetilde{T_p M}$ to $T_p M$ given by $(p, \mVecAst{v}) \mapsto \Df_{\mVecAst{v}}|_p$. We can see from the\newpage fact that taking a dot product against a fixed vector $\nabla f(p)$ defines a linear functional that our mapping $(p, \mVecAst{v}) \mapsto \Df_{\mVecAst{v}}|_p$ is actually a linear map between vector spaces.\retTwo
+
+Furthermore, I claim that our linear map is injective. After all, suppose $(p, \mVecAst{v})$ maps\\ to the zero derivation (i.e. the derivation mapping every $C^r$ function to $0$). Then let\\ $(p, u_1), \ldots, (p, u_k)$ be an orthonormal $\mathbb{R}$-basis for the vector space $\widetilde{T_p M}$. We can uniquely\\ express $\mVecAst{v} = c_1 u_1 + \ldots + c_k u_k$ where $c_1, \ldots, c_k \in \mathbb{R}$. And now for any $f \in C^1(M ,\mathbb{R})$ we\\ have that:
+
+{\centering $\Df_{\mVecAst{v}}|_p f = \sum_{j=1}^k c_j \Df_{u_j}|_p f$ \retTwo\par}
+
+To finish off, we can define $f_i \in C^1(M, \mathbb{R})$ by $f_i(x) = x \cdot u_i$ for all $x \in M \subseteq \mathbb{R}^n$. This is a $C^1$ map because it more strongly extends to a smooth map on all of $\mathbb{R}^n$. Furthermore, note that $\nabla f_i(p) = u_i$. So, $\Df_{u_j}|_p f = u_i \cdot u_j$. And this equals $1$ if $i = j$ and $0$ otherwise. So, we can conclude for all $i$ that:
+
+{\centering $0 = \Df_{\mVecAst{v}}|_p f_i = \sum_{j=1}^k c_j \Df_{u_j}|_p f_i = c_i$\retTwo\par}
+
+In other words $\mVecAst{v} = 0u_1 + \ldots + 0u_k = 0$. And with that we've proven that $(p, \mVecAst{v}) \mapsto \Df_{\mVecAst{v}}|_p$ has a trivial kernel.\retTwo
+
+Now to finish off, note that $\widetilde{T_p M}$ is $k$-dimensional. We'll also soon show for a general abstract $C^r$ $k$-dimensional manifold that $T_p M$ is $k$-dimensional. Hence, our injective linear map must also be surjective. And thus, we've proven that our linear map $\widetilde{T_p M}$ to $T_p M$ given by $(p, \mVecAst{v}) \mapsto \Df_{\mVecAst{v}}|_p$ is a bijection.\retTwo
+
+The T.L.D.R. to all of this is that you should think of a tangent plane as being isomorphic to a vector space of directional derivative operators. Also, derivations are a generalization of directional derivatives.\retTwo
+
+\mySepTwo
+
+\hTwo Suppose $M$ and $N$ are $C^r$ manifolds with or without boundary, and $F: M \to N$ is a\\ $C^r$ map. We define a map $\df F_p : T_p M \to F_{F(p)}N$ called the \udefine{differential of $F$ at $p$} such\\ that $\df F_p(v)f \coloneqq v(f \circ F)$ for all $v \in T_p M$ and $f \in C^1(N, \mathbb{R})$.
+\begin{myIndent}\pracTwo
+	To see that this map is well-defined, suppose $v \in T_p M$ and let $f, g \in C^r(N, \mathbb{R})$. Also suppose $C \in \mathbb{R}$. Then $\df F_p(v)(cf) = v(cf \circ F) = cv(f \circ F) = c\df F_p(v)f$. Similarly,
+
+	{\centering\begin{tabular}{l}
+		$\df F_p(v)(f + g) = v((f + g) \circ F)$\\ [4pt]
+		$\phantom{\df F_p(v)(f + g)} = v((f \circ F) + (g \circ F)) = v((f \circ F)) + v((g \circ F))$\\ [4pt]
+		$\phantom{\df F_p(v)(f + g)= v((f \circ F) + (g \circ F))} = \df F_p(v)f + \df F_p(v)g$
+	\end{tabular}\retTwo\par}
+
+	Thus, we've shown that $\df F_p(v)$ is a linear map on $C^1(N, \mathbb{R})$. As for additionally showing that $\df F_p(v)$ is a derivation at $F(p)$, note that:
+
+	{\centering\begin{tabular}{l}
+		$\df F_p(v)(fg) = v((fg) \circ F)$\\ [4pt]
+		$\phantom{\df F_p(v)(fg)} = v((f \circ F)(g \circ F)) = (f \circ F)(p)v(g \circ F) + (g \circ F)(p)v(f \circ F)$\\ [4pt]
+		$\phantom{\df F_p(v)(fg) = v((f \circ F)(g \circ F))} = f(F(p))\df F_p(v)g + g(F(p))\df F_p(v)f$
+	\end{tabular}\newpage\par}
+\end{myIndent}
+
+\exTwo\ul{Proposition 3.6:} Let $M$, $N$, and $P$ be $C^r$ manifolds with or without boundary, let\\ $F: M \to N$ and $G: N \to P$ be $C^r$ maps, and let $p \in M$
+\begin{enumerate}
+	\item[(a)] $\df F_p: T_p M \to T_{F(p)}N$ is a linear map.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Suppose $a, b \in \mathbb{R}$ and $v, w \in T_p M$. Then for any $f \in C^1(N)$ we have that:
+		
+		{\centering\begin{tabular}{l}
+			$\df F_p(av + bw)f = (av + bw)(f \circ F)$\\ [4pt]
+			$\phantom{\df F_p(av + bw)f} = av(f \circ F) + bw(f \circ F) = a\df F_p(v)f + b\df F_p(w)f$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+	\item[(b)] $\df (G \circ F)_p = \df G_{F(p)} \circ \df F_p$.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $v \in T_p M$ and $f \in C^1(P, \mathbb{R})$. Then:
+
+		{\centering $\df(G \circ F)_p(v)f = v(f \circ G \circ F) = (\df F_p(v))(f \circ G) = (\df G_{F(p)}(\df F_p(v)))f$.\retTwo\par}
+
+		Thus $\df(G \circ F)_p(v) = \df G_{F(p)}(\df F_p(v))$.\retTwo
+	\end{myIndent}
+
+	\item[(c)] $\df (\myId_M)_p = \myId_{T_p M}$.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $v \in T_p M$ and $f \in C^1(M, \mathbb{R})$. Then:
+
+		{\centering $(\df (\myId_M)_p v)f = v(f \circ \myId_M) = v(f)$.\retTwo\par}
+
+		As a result, $\df (\myId_M)_p v = v$. In other words, $\df (\myId_M)_p = \myId_{T_p M}$.\retTwo
+	\end{myIndent}
+
+	\item[(d)] If $F$ is a $C^r$-diffeomorphism from $M$ to $N$ (i.e. a bijection such that $F$ and $F^{-1}$ are $C^r$ maps) then $\df F_p: T_p M \to T_{F(p)} N$ is an isomorphism and $(\df F_p)^{-1} = \df (F^{-1})_{F(p)}$.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		From parts (b) and (c) we know that:
+		\begin{itemize}
+			\item $\myId_{T_pM} = \df (\myId_{M})_p = \df (F^{-1} \circ F)_p = \df (F^{-1})_{F(P)} \circ \df F_p$,
+			\item $\myId_{T_{F(p)}N} = \df (\myId_{N})_{F(p)} = \df (F \circ F^{-1})_{F(p)} = \df F_p \circ \df (F^{-1})_{F(p)}$. $\blacksquare$\retTwo
+		\end{itemize}
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo To make use of the differential of a map $F: M \to N$ between $C^r$ manifolds at a point $p$, we need to be able consider functions defined on only neighborhoods of $F(p)$ instead of all $N$. There are two common approaches to this conundrum. One approach is to redefine derivations in terms of germs at a point $p$. This is the only approach available for complex manifolds (because the identity principle thwarts us). The other approach is to bring in "bump" functions. For the time being, I'm going to follow the other approach. That said, both approaches will eventually be shown to give isomorphic constructions.\retTwo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% I'm giving up on covering Wells' textbook out of order and am just going to cover things from the beginning.\retTwo
+
+% A useful convention that Wells uses is that he'll let $\mathcalli{S}_{X}$ refer to a differentiable structure on a manifold $X$ (whether it be a $C^r$ structure (where $r \in \mathbb{N} \cup \{\infty\}$) or a complex structure or etc\dots). Then, an \udefine{$\mathcalli{S}$-morphism} between $C^r$ manifolds $X$ and $Y$ is just a $C^r$ map $F: X \to Y$. Similarly, an \udefine{$\mathcalli{S}$-morphism} between two Riemann surfaces is just 
+
+% Then he says that an \udefine{$\mathcalli{S}$-morphism} between manifolds $(X, \mathcalli{S}_X)$ to $(Y, \mathcalli{S}_Y)$ is a continuous function $F: X \to Y$ such that $(V, \varphi) \in \mathcalli{S}_Y \Longrightarrow (f \circ F,\phantom{.} F^{-1}(V)) \in \mathcalli{S}_X$.
+
+
+
+% Let $K$ equal $\mathbb{R}$ or $\mathbb{C}$. A continuous map $\pi: E \to X$ between two Hausdorff spaces is called a \udefine{$K$-vector bundle of rank $n$} if the following conditions are satisfied:
+% \begin{enumerate}
+% 	\item[(a)] $E_p \coloneqq \pi^{-1}(p)$ is a $K$-vector space of dimension $n$ for all $p$.
+% 	\item[(b)] For every $p \in X$ there is a neighborhood $U$ of $p$ and a homeomorphism\\ $h: \pi^{-1}(U) \to U \times K^n$ such that:
+% 	\begin{itemize}
+% 		\item[i.] $\pi_U \circ h = \pi$ (where $\pi_U: U \times \mathbb{R}^n \to U$ is the projection map),
+% 		\item[ii.] for all $q \in U$ we have that $h(E_q) \subseteq \{q\} \times K^n$ {\color{red}(technically the prior thing is\\ evident from i.)} and also that the function $h^q$ defined by the composition\\ [-10pt]
+% 		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJFX3AiXSxbMSwwLCJcXHtwXFx9XFx0aW1lcyBLXnIiXSxbMiwwLCJLXnIiXSxbMCwxLCJoIl0sWzEsMiwiXFxtYXRocm17UHJvan0iLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
+% 		\[\begin{tikzcd}
+% 			{E_q} & {\{q\}\times K^n} & {K^n}
+% 			\arrow["h", from=1-1, to=1-2]
+% 			\arrow["{\mathrm{Proj}}", two heads, from=1-2, to=1-3]
+% 		\end{tikzcd}\]
+% 		\phantom{,}\\ [-16pt] is a bijective $K$-linear map.
+% 		\begin{myIndent}\hThree
+% 			(The pair $(U, h)$ is called a \udefine{local trivialization}.)\retTwo
+% 		\end{myIndent}
+% 	\end{itemize}
+% \end{enumerate}
+
+% Typically, $E$ is called the \udefine{total space} and $X$ is called the \udefine{base space} in the prior definition. If there is no ambiguity about what our base space is, we'll often just refer to $E$ as being the vector bundle.\retTwo
+% \begin{myIndent}\myComment
+% 	For some intuition on where this definition is coming from and heading towards, recall that in my notes about tangent planes on \inLinkRap{page 926 tangent plane definition}{pages 926 and 927} we made the elements of a tangent plane $T_p X$ have the form $(p, \mVecAst{y})$ where $p$ was the element in our manifold $X$ that the tangent plane was based at. Of course, I never defined a topology on $E \coloneqq \bigcup_{p \in X}T_p X$ when I was studying manifolds earlier. However, I'll get around to defining a topology soon, and then that $E$ will be the \textit{tangent bundle} of the manifold $X$.\retTwo
+% \end{myIndent}
+
+% \hTwo Notice that if $(U_\alpha, h_\alpha)$ and $(U_\beta, h_\beta)$ are two local trivializations then $h_\alpha \circ h_\beta^{-1}$ is a well-defined map from $(U_\alpha \cap U_\beta) \times K^n$ to $(U_\alpha \cup U_\beta) \times K^n$. In particular, for any $p \in U_\alpha \cap U_\beta$ we have that $h_\alpha^p \circ (h_\beta^p)^{-1}$ is a bijective linear map from $K^n$ to $K^n$. Therefore, we define a map $g_{\alpha, \beta} : U_\alpha \cap U_\beta \to \GL_n(K)$ by $g_{\alpha, \beta}(p) \coloneqq h_\alpha^p \circ (h_\beta^p)^{-1}$. This map is called a \udefine{transition function} of the $K$-vector bundle $\pi: E \to X$ (with respect to the two local trivializations $(U_\alpha, h_\alpha)$ and $(U_\beta, h_\beta)$).\retTwo
+
+% \exTwo\ul{Lemma:}
 
 
 
