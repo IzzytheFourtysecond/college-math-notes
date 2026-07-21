@@ -693,7 +693,7 @@
          Both $I$ and $J$ are countably infinite. We know this because we can define\\ surjections from $(\mathbb{Z_+})^2$ to $I$ and $\bigcup\limits_{n = 1}^\infty (\mathbb{Z}_+)^n$ to $J$.
          
          \begin{myIndent}
-            (Finite cartesian products of countable sets and unions of countably many countable sets are countable.)\retTwo\retTwo
+            (Finite cartesian products of countable sets and unions of countably many countable sets are countable. \redPen{[Oops, I implicitely used axiom of choice here!!]})\retTwo\retTwo
          \end{myIndent}
       \end{myIndent}
    \end{itemize}
@@ -4589,7 +4589,7 @@ Given an integer $k > 0$, and a tensor $T \in \mathcal{L}^k(V)$, let:
 
 {\centering $\Alt(T) \coloneqq \sum\limits_{\tau \in S_k} \sgn(\tau)T^\tau$.\retTwo\par}
 
-Then the \udefine{alternation operation} has the following properties:\\
+Then the \udefine{alternation operation} has the following properties:\retTwo
 \exOne\ul{Proposition 1.4.17:}
 \begin{itemize}
 	\item[(a)] Given any $T \in \mathcal{L}^k(V)$ and $\sigma \in S_k$ (where $k > 0$), we have that\\ $(\Alt(T))^{\sigma} = \sgn(\sigma)\Alt(T)$. I.e., $\Alt(T)$ is an alternating tensor.
@@ -4717,15 +4717,15 @@ Let $u_1, \ldots, u_n$ be a basis of the vector space $V$ over a field $F$ of ch
 	
 	{\centering $\frac{a_I}{k!} \Psi_I = \frac{a_I}{k!} \Psi_{J^\sigma} = \frac{a_I\sgn(\sigma)}{k!} \Psi_{J}$.\retTwo\par}
 
-	By collecting terms, we get that $T = \hspace{-1em}\sum\limits_{J \text{ increasing}}\hspace{-1em}c_J\Phi_J$ where each $c_J \in F$.\retTwo
+	By collecting terms, we get that $T = \hspace{-1em}\sum\limits_{J \text{ increasing}}\hspace{-1em}c_J\Psi_J$ where each $c_J \in F$.\retTwo
 
-	This shows that the $\Psi_J$ span all of $\mathcal{A}^k(V)$. Next we show that they form a basis.\\ Suppose $T = \hspace{-1em}\sum\limits_{J \text{ increasing}}\hspace{-1em}c_J\Phi_J = 0$.\retTwo
+	This shows that the $\Psi_J$ span all of $\mathcal{A}^k(V)$. Next we show that they form a basis.\\ Suppose $T = \hspace{-1em}\sum\limits_{J \text{ increasing}}\hspace{-1em}c_J\Psi_J = 0$.\retTwo
 
-	Then by part (c) of the last proposition, we know that if $I = (i_1, \ldots, i_k)$ is an\\ increasing multi-index, then:
+	Then by part (c) of the last proposition, we know that if $J = (j_1, \ldots, j_k)$ is an\\ increasing multi-index, then:
 
-	{\centering $0 = T(u_{i_1}, \ldots, u_{i_k}) = C_I$ \retTwo\par}
+	{\centering $0 = T(u_{j_1}, \ldots, u_{j_k}) = c_J$ \retTwo\par}
 
-	So, all the $C_I$ are equal to $0$. $\blacksquare$\retTwo
+	So, all the $c_J$ are equal to $0$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \ul{Corollary:} If $F$ has characteristic $0$ or greater than $k$, then $\mathcal{A}^k(V)$ has dimension $\binom{n}{k}$.\retTwo
@@ -4927,12 +4927,12 @@ Then like in proposition 1.4.17, we can show that given any $T \in \mathcal{L}^k
 	\item[(a)] $(\Sym(T))^\sigma = \Sym(T)$ (i.e. $\Sym(T) \in \mathcal{S}^k(V)$\dots)
 	\item[(b)] If $T \in \mathcal{S}^k(V)$, then $\Sym(T) = k!T$
 	\item[(c)] $\Sym(T^\sigma) = \Sym(T)$
-	\item[(d)] $\Sym: \mathcal{L}^k(V) \to \mathcal{A}^k(V)$ is an linear map (which is surjective so long as $k! \neq 0$ in the field $F$\dots).\retTwo 
+	\item[(d)] $\Sym: \mathcal{L}^k(V) \to \mathcal{S}^k(V)$ is a linear map (which is surjective so long as $k! \neq 0$ in the field $F$\dots).\retTwo 
 \end{itemize}
 
 Supposing $k! \neq 0$ in $F$, then by following a process very similar to what we did with the alternation operation, we can construct a basis for the symmetric tensors:
 
-{\centering$\{\Phi_I^*: I \text{ is a non-decreasing multi-index}\}$.\retTwo\par}
+{\centering$\{\Phi_I = \Sym(u_I^*): I \text{ is a non-decreasing multi-index}\}$.\retTwo\par}
 
 \begin{myDindent}\pracTwo
 	Note: By non-decreasing the textbook means that $I = (i_1, \ldots, i_k)$ satisfies that\\ $i_1 \leq i_2 \leq \cdots \leq i_k$.\retTwo
@@ -5187,7 +5187,7 @@ Slightly less obviously, if $T_1 \in \mathcal{L}^p(V)$ and $T_2 \in \mathcal{L}^
 
 \begin{myIndent}\exTwoP
 	Proof:\\
-	By linearity it suffices to prove this statement for decomposable $T$. Also, this statement is trivial when $k = 1$. So, we can proceed by induction, assuming that the theorem holds for $T \in \mathcal{L}^{r}(V)$ where $r < k$. Then after expressing $T = T^\prime \otimes \ell$ where $T^\prime \in \mathcal{L}^{k-1}(V)$ and $\ell \in V^*$, we have that:\newpage
+	By linearity it suffices to prove this statement for decomposable $T$. Also, this\\ statement is trivial when $k = 1$. So, we can proceed by induction, assuming the\\ theorem holds for $T \in \mathcal{L}^{r}(V)$ where $r < k$. Then after expressing $T = T^\prime \otimes \ell$ where $T^\prime \in \mathcal{L}^{k-1}(V)$ and $\ell \in V^*$, we have that:\newpage
 
 	{\centering \begin{tabular}{l}
 		$\iota_v T = \iota_v(T^\prime \otimes \ell) = (\iota_v T^\prime) \otimes \ell + (-1)^{k-1}T^\prime \otimes (\iota_v T^\prime)$\\ [2pt]
@@ -5800,7 +5800,7 @@ without boundary has a countable basis of precompact \udefine{coordinate balls} 
 
 \begin{myIndent}\exTwoP
 	Proof:\\
-	Firstly, since every point in $M$ has a coordinate patch (Lee uses the word "chart") about it, there exists an open covering $\{U_\alpha\}_{\alpha \in A}$ of $M$ consisting of domains of\\ coordinate patches $\varphi_\alpha: U_\alpha \to \hat{U_\alpha} \subseteq \mathbb{R}$.\retTwo
+	Firstly, since every point in $M$ has a coordinate patch (Lee uses the word "chart") about it, there exists an open covering $\{U_\alpha\}_{\alpha \in A}$ of $M$ consisting of domains of\\ coordinate patches $\varphi_\alpha: U_\alpha \to \hat{U_\alpha} \subseteq \mathbb{R}^n$.\retTwo
 
 	\ul{Lemma:} If $X$ is a second countable space and $\{U_\alpha\}_{\alpha \in A}$ is an open cover of $X$, then there exists a countable subcover $\{U_{\alpha_n}\}_{n \in \mathbb{N}}$ of $X$.
 	\begin{myIndent}\exPPP
@@ -6120,7 +6120,7 @@ Since manifolds are locally path connected, we know that a manifold is connected
 
 \hOne\mySepTwo
 
-A question I've had for a while is how smoothness can even be defined for manifolds which aren't subsets of $\mathbb{R}^n$. After all, differentiability as a concept relies on the topological structure of the reals. It turns out that the answer to this problem is to reframe some prior theorems as defining axioms which must be met.\retTwo
+A question I've had for a while is about how smoothness can even be defined for\\ manifolds which aren't subsets of $\mathbb{R}^n$. After all, differentiability as a concept relies on the topological structure of the reals. It turns out that the answer to this problem is to reframe some prior theorems as defining axioms which must be met.\retTwo
 
 \begin{myIndent}\hTwo
 	Let $M$ be a topological $n$-manifold. Two charts $(U, \varphi)$ and $(V, \psi)$ on $M$ are said to be \udefine{$C^r$ compatible} if either $U \cap V = \emptyset$ or the transition map $\psi \circ \varphi^{-1}$ from $\varphi(U \cap V)$ to $\psi(U \cap V)$ is a $C^r$ diffeomorphism.
@@ -18910,7 +18910,7 @@ To start off, I already proved in math math 240b homework that there is only one
 	\end{myIndent}
 \end{itemize}
 
-\exTwo\ul{Theorem 1.18} Let $\lambda$ be a linear functional on a topological vector space $\mathcalli{X}$ such that\\ $\lambda(x) \neq 0$ for some $x \in \mathcalli{X}$. Then the following are equivalent:
+\exTwo\ul{Theorem 1.18} Let $\lambda$ be a linear functional on a $T_1$ topological vector space $\mathcalli{X}$ such that\\ $\lambda(x) \neq 0$ for some $x \in \mathcalli{X}$. Then the following are equivalent:
 \begin{enumerate}
 	\item[(a)] $\lambda$ is continuous,
 	\item[(b)] $\ker(\lambda)$ is closed,
@@ -18963,10 +18963,8 @@ To start off, I already proved in math math 240b homework that there is only one
 			Note that it is a basic fact of linear algebra that if $\mathcalli{Y}$ is $n$-dimensional $K$-vector space then there always exists a bijective linear map $f : K^n \to \mathcalli{Y}$.\retTwo
 		\end{myIndent}
 
-		For some $t > 0$ we have that $p \in tV$.  In turn, we claim that $p \in \overline{\mathcalli{Y} \cap tV}$.
+		For some $t > 0$ we have that $p \in tV$.  In turn, we claim that $p \in \overline{\mathcalli{Y} \cap tV}$. To see why, observe the following result.
 		\begin{myIndent}\exPPP
-			To see why, observe the following result.\retTwo
-			
 			\ul{Lemma:} If $X$ is a topological space and $A, B \subseteq X$ satisfy that $B$ is open, then\\ [2pt] $\overline{A} \cap B \subseteq \overline{A \cap B}$.
 			\begin{myIndent}
 				Proof:\\
@@ -18975,11 +18973,12 @@ To start off, I already proved in math math 240b homework that there is only one
 		\end{myIndent}
 
 		But now $\overline{\mathcalli{Y} \cap tV} \subseteq \overline{f(tB^{n})} \subseteq \overline{f(t\overline{B^n})} = f(t\overline{B^n})$ (the final manipulation works\\ as $f$ being continuous, $t\overline{B^n}$ being compact, and $\mathcalli{X}$ being Hausdorff implies $f(t\overline{B^n})$\\ is closed). Hence, $p \in f(t\overline{B^n}) \subseteq \mathcalli{Y}$. This proves that $\overline{\mathcalli{Y}} = \mathcalli{Y}$. $\blacksquare$
+		\begin{myIndent}\myComment\fontsize{11}{12}\selectfont
+			Remark: Suppose $\mathcalli{X}$ is an $n$-dimensional $K$-vector space equipped with two different topologies, and let $f: K^n \to \mathcalli{X}$ be a bijective linear map. Then the prior theorem lets us conclude that $\myId_{\mathcalli{X}} = f \circ f^{-1}$ is a homeomorphism between the two topologies on $\mathcalli{X}$. This implies the two topologies are identical.
+		\end{myIndent}
 	\end{myIndent}
 \end{enumerate}
-
 \hTwo\mySepTwo 
-
 Well I'm on the topic of classifying topological vector spaces, something that's been\\ bugging me in the back of my mind is whether there are non-locally convex topological\\ vector spaces. As it turns out, yes there are.\newpage
 
 Let $(X, \mathcal{M}, \mu)$ be a finite measure space. Then recall (Folland) exercise 2.32 that I did for homework in math 240a [see pages 58-59 of my math 240a latex notes]. There I proved that:
