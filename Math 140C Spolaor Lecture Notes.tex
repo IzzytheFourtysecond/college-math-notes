@@ -1525,7 +1525,7 @@ Let $X$ be a metric space with the metric $d$, and consider some $\varphi: X \lo
       {\center
       \begin{tabular}{l}
          $\|\varphi(\mVec{x}) - \mVecAst{x}_0\| \leq \|\varphi(\mVec{x}) - \varphi(\mVecAst{x_0})\| + \|\varphi(\mVecAst{x}_0) - \mVecAst{x}_0\|$\\ [6pt]
-         $\phantom{\|\varphi(\mVec{x}) - \mVecAst{x}_0\|} < \frac{1}{2}\|\mVec{x} - \mVecAst{x}_0\| + \frac{R}{2} < \frac{R}{2} + \frac{R}{2} = R$
+         $\phantom{\|\varphi(\mVec{x}) - \mVecAst{x}_0\|} < \frac{1}{2}\|\mVec{x} - \mVecAst{x}_0\| + \frac{R}{2} \leq \frac{R}{2} + \frac{R}{2} = R$
       \end{tabular}\retTwo\par}
 
       Or in other words, $\mVec{x} \in B \Longrightarrow \phi(\mVec{x}) \in B$.\retTwo
@@ -1799,12 +1799,17 @@ Let $X$ be a vector space. We call $\mMat{P} \in L(X)$ a \udefine{projection} if
 
          Having done that, for any $\mVec{y} \in X$ there are unique scalars\\ $c_1, \ldots, c_n$ such that $\mVec{y} = c_1\mVecAst{x}_1 + \ldots + c_k\mVecAst{x}_k + \ldots + c_n\mVecAst{x}_n$.\\ So, assign $\mMat{P}\mVec{y} = c_1\mVecAst{x}_1 + \ldots + c_k\mVecAst{x}_k$.\retTwo
          
-         Clearly, $\mMat{P}$ is a linear operator with $\rangeSp{\mMat{P}} = \mySpan \{x_1, \ldots, x_k\} = X_1$.\\ Also, $\mVec{y} \in X_1 \Longrightarrow \mVec{y} = \mMat{P}\mVec{y}$. Thus, $\mMat{P}$ is  a projection since\\ $\mMat{P}\mVec{x} = \mMat{P}(\mMat{P}\mVec{x})$ for all $\mVec{x} \in X$.\retTwo
+         Clearly, $\mMat{P}$ is a linear operator with $\rangeSp{\mMat{P}} = \mySpan \{x_1, \ldots, x_k\} = X_1$.\\ Also, $\mVec{y} \in X_1 \Longrightarrow \mVec{y} = \mMat{P}\mVec{y}$. Thus, $\mMat{P}$ is  a projection since\\ $\mMat{P}\mVec{x} = \mMat{P}(\mMat{P}\mVec{x})$ for all $\mVec{x} \in X$.
       \end{myIndent}}
    \end{itemize}
 \end{myIndent}}
 
-With this background, we now present the following theorem:\\ [-9pt]
+\color{red}\mySepOne\\ [-24pt]
+\begin{myIndent}
+	Note from 7/26/2026: Rudin's presentation of this theorem is really bad. For example, he never defines what it means for $\varphi$ to be differentiable on $\mMat{A}(V)$ (since $\mMat{A}(V)$ isn't an open set of $\mathbb{R}^m$). Furthermore, his notation is so unclear that even with over two years more experience I still can't understand this theorem when I read it. Anyways, \textit{I have not ever needed this theorem a single time before this date}. Also I just proved this theorem again but with much better notation on page 1062 of my math journal. And for a simpler subcase that will give you much of the intuition you might want, you can look at page 926 of my journal. Anyways I'm only not deleting this proof from my notes because I don't want to ruin page numbering.\retTwo
+\end{myIndent}
+
+\hOne With this background, we now present the following theorem:\\ [-9pt]
 {\begin{myIndent}\hTwo
    \uuline{The Rank Theorem}:\\ [1pt] Suppose that $m, n, r$ are nonnegative integers with $m, n \geq r$, that $E\subseteq \mathbb{R}^n$ is\\ open, that $F \in \mathscr{C}^1(E, \mathbb{R}^m)$, and that $F^\prime(\mVec{x})$ has rank $r$ for every $\mVec{x} \in E$. Fix\\ $\mVec{a} \in E$, and set $\mMat{A} = F^\prime(\mVec{a})$. Next, having set $Y_1 = \rangeSp{\mMat{A}}$, let $\mMat{P} \in L(\mathbb{R}^m)$\\ be a projection with $\rangeSp{\mMat{P}} = Y_1$ and let $Y_2 = \nullSp{\mMat{P}}$. Then:
    \begin{itemize}
@@ -1813,15 +1818,13 @@ With this background, we now present the following theorem:\\ [-9pt]
    
    {\begin{myIndent}\hThree
       Proof:\\
-      If $r = 0$, then letting $R > 0$ be such that $B_r(\mVec{a}) \subseteq E$, we know that $f$\\ is constant on $B_R(\mVec{a})$. Thus, set $V = U = B_R(\mVec{a})$, $\myHS H(\mVec{x}) = \mVec{x}$, and\\ [-1pt] $\varphi(\mVec{0}) = F(\mVec{a})$. Clearly, $H \in \mathscr{C}^1(V, U)$ and is its own inverse.  Also,\\ while it doesn't make sense to say that $\varphi \in \mathscr{C}^1(\mMat{A}(V), Y_2)$ since\\ [-2pt] $\mMat{A}(V) = \{\mVec{0}\}$ has no limit points, we do have that since $\mMat{A}(V) = Y_1$,\\ trivially $\mMat{A}(V)$ is open relative to $Y_1$. And since $Y_2 = \mathbb{R}^m$, we know\\ [-1pt] that $\phi(\mVec{0}) \in Y_2$. Finally, we have for all $\mVec{x} \in V$ that:
+      If $r = 0$, then letting $R > 0$ be such that $B_r(\mVec{a}) \subseteq E$, we know that $f$\\ is constant on $B_R(\mVec{a})$. Thus, set $V = U = B_R(\mVec{a})$, $\myHS H(\mVec{x}) = \mVec{x}$, and\\ [-1pt] $\varphi(\mVec{0}) = F(\mVec{a})$. Clearly, $H \in \mathscr{C}^1(V, U)$ and is its own inverse.  Also,\newpage while it doesn't make sense to say that $\varphi \in \mathscr{C}^1(\mMat{A}(V), Y_2)$ since\\ [-2pt] $\mMat{A}(V) = \{\mVec{0}\}$ has no limit points, we do have that since $\mMat{A}(V) = Y_1$,\\ trivially $\mMat{A}(V)$ is open relative to $Y_1$. And since $Y_2 = \mathbb{R}^m$, we know\\ [-1pt] that $\phi(\mVec{0}) \in Y_2$. Finally, we have for all $\mVec{x} \in V$ that:
       
       {\centering $F(H(\mVec{x})) = F(\mVec{x}) = F(\mVec{a}) = \mVec{0} + \varphi(\mMat{A}\mVec{x}) = \mMat{A}\mVec{x} + \varphi(\mMat{A}\mVec{x})$ \retTwo\par}
       
       So, this theorem is "true" trivially when $r = 0$.\\ [8pt]
 
-      Now we shall assume that $r > 0$ for the rest of this proof. Let\\ $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_r\}$ be a basis for $Y_1$ and choose a $\mVecAst{z}_i$ for each $1 \leq i \leq r$\\ such that $\mMat{A}\mVecAst{z}_i = \mVecAst{y}_i$. Then let $\mMat{S} \in L(Y_1, \mathbb{R}^n)$ be the linear map\\ $\mMat{S}(c_1\mVecAst{y}_1 + \ldots + c_r\mVecAst{y}_r) = c_1\mVecAst{z}_1 + \ldots + c_r\mVecAst{z}_r$.
-
-      \newpage
+      Now we shall assume that $r > 0$ for the rest of this proof. Let\\ $\{\mVecAst{y}_1, \ldots, \mVecAst{y}_r\}$ be a basis for $Y_1$ and choose a $\mVecAst{z}_i$ for each $1 \leq i \leq r$\\ such that $\mMat{A}\mVecAst{z}_i = \mVecAst{y}_i$. Then let $\mMat{S} \in L(Y_1, \mathbb{R}^n)$ be the linear map\\ $\mMat{S}(c_1\mVecAst{y}_1 + \ldots + c_r\mVecAst{y}_r) = c_1\mVecAst{z}_1 + \ldots + c_r\mVecAst{z}_r$.\retTwo
 
       Note that $\mMat{AS}\mVecAst{y}_i = \mMat{A}\mVecAst{z}_i = \mVecAst{y}_i$ for all $i \in \{1, \ldots, r\}$.\retTwo
 
@@ -1851,19 +1854,17 @@ With this background, we now present the following theorem:\\ [-9pt]
          $\mMat{A}(G(\mVec{x})) {=} \mMat{A}\mVec{x} {+} \mMat{ASP}(F(\mVec{x}) {-} \mMat{A}\mVec{x}) {=} \mMat{AS}(\mMat{P}F(\mVec{x})) {+} \mMat{A}\mVec{x} {-} \mMat{A}{\mVec{x}} = \mMat{P}F(\mVec{x})$\retTwo
       \end{myIndent}}
 
-      In turn, we can then replace $\mVec{x}$ with $H(\mVec{x})$ and say that for all $\mVec{x} \in V$,\\ $\mMat{P}F(H(\mVec{x})) = \mMat{A}(G(H(\mVec{x}))) = \mMat{A}\mVec{x}$.\retTwo
+      In turn, we can then replace $\mVec{x}$ with $H(\mVec{x})$ and say that for all $\mVec{x} \in V$,\\ $\mMat{P}F(H(\mVec{x})) = \mMat{A}(G(H(\mVec{x}))) = \mMat{A}\mVec{x}$.\newpage
       
-      Then, having defined $\Psi(\mVec{x}) = F(H(\mVec{x})) - \mMat{A}\mVec{x}$, note that for all $\mVec{x} \in V$,\\ $\mMat{P} \Psi(\mVec{x}) = \mMat{P}F(H(\mVec{x})) - \mMat{A}\mVec{x} = \mVec{0}$. Also, $\Psi^\prime(\mVec{x}) = F^\prime(H(\mVec{x}))H^\prime(\mVec{x}) - \mMat{A}$\\ is continuous. So, $\Psi \in \mathscr{C}^1(V, P_2)$.\\ [8pt]
+      Then, having defined $\Psi(\mVec{x}) = F(H(\mVec{x})) - \mMat{A}\mVec{x}$, note that for all $\mVec{x} \in V$,\\ $\mMat{P} \Psi(\mVec{x}) = \mMat{P}F(H(\mVec{x})) - \mMat{A}\mVec{x} = \mVec{0}$. Also, $\Psi^\prime(\mVec{x}) = F^\prime(H(\mVec{x}))H^\prime(\mVec{x}) - \mMat{A}$\\ is continuous. So, $\Psi \in \mathscr{C}^1(V, P_2)$.\\ [6pt]
 
-      Finally, all that's left to do is show the existence of a $\mathscr{C}^1$-mapping $\varphi$ from $\mMat{A}(V)$\\ to $Y_2$ satisfying that $\varphi(\mMat{A}\mVec{x}) = \Psi(\mVec{x})$ for all $\mVec{x} \in V$. To start, we first show\\ that if $\mVecAst{x}_1 \in V$, $\hspace{0.3em}\mVecAst{x}_2 \in V$, and $\mMat{A}\mVecAst{x}_1 = \mMat{A}\mVecAst{x}_2$, then $\Psi(\mVecAst{x}_1) = \Psi(\mVecAst{x}_2)$.
+      Finally, we just need to show the existence of a $\mathscr{C}^1$-mapping $\varphi$ from $\mMat{A}(V)$\\ to $Y_2$ satisfying that $\varphi(\mMat{A}\mVec{x}) = \Psi(\mVec{x})$ for all $\mVec{x} \in V$. To start, we first show\\ that if $\mVecAst{x}_1 \in V$, $\hspace{0.3em}\mVecAst{x}_2 \in V$, and $\mMat{A}\mVecAst{x}_1 = \mMat{A}\mVecAst{x}_2$, then $\Psi(\mVecAst{x}_1) = \Psi(\mVecAst{x}_2)$.
       {\begin{myIndent}\hFour
          Put $\Phi(\mVec{x}) = F(H(\mVec{x}))$ for all $\mVec{x} \in V$. Then, $\Phi^\prime(\mVec{x}) = F^\prime(H(\mVec{x}))H^\prime(\mVec{x})$.\\ Also, since $\rangeSp{H^\prime(\mVec{x})} = \mathbb{R}^n$ for all $\mVec{x} \in V$, we know that: 
          
          {\centering$\rangeSp{F^\prime(H(\mVec{x}))H^\prime(\mVec{x})} = \rangeSp{F^\prime(H(\mVec{x}))}$.\retTwo\par}
          
-         Thus, $\rank{\Phi^\prime(\mVec{x})} = \rank{F^\prime(H(\mVec{x}))} = r$  for all $\mVec{x} \in V$.
-
-         \newpage
+         Thus, $\rank{\Phi^\prime(\mVec{x})} = \rank{F^\prime(H(\mVec{x}))} = r$  for all $\mVec{x} \in V$.\retTwo
 
          Next, fix $\mVec{x} \in V$ and set $M = \rangeSp{\Phi^\prime(\mVec{x})}$. Then because $\mMat{P}\Phi^\prime(\mVec{x})\mVec{v} = \mMat{A}\mVec{v}$\\ for all $\mVec{v} \in \mathbb{R}^m$, we know that $\mMat{P}$ maps $M$ surjectively onto $P_1$. In turn, by\\ the rank-nullity theorem and the fact that $\myDim{M} = \myDim{P_1}$, we know\\ that $\mMat{P}$ restricted to $M$ is injective.\retTwo
 
@@ -1876,31 +1877,34 @@ With this background, we now present the following theorem:\\ [-9pt]
          Importantly, $\mMat{A}\mVec{h} = \mVec{0}$. So, $g^\prime(t) = \Psi^\prime(\mVecAst{x}_1 + t\mVec{h})\mVec{h} = \mVec{0}$ for all $t$ and\\ that means that $g(0) = g(1)$. But $g(0)= \Psi(\mVecAst{x}_1)$ and $g(1) = \Psi(\mVecAst{x}_2)$.\\ Hence, $\Psi(\mVecAst{x}_1) = \Psi(\mVecAst{x}_2)$.\retTwo
       \end{myIndent}}
 
-      Therefore, we are able to umambiguously define $\varphi: V(A) \longrightarrow Y_2$ by\\ the expression $\varphi(\mMat{A}\mVec{x}) = \Psi(\mVec{x})$. Furthermore, we can show that $\varphi$ is\\ $\mathscr{C}^1$.
-
+      Therefore, we can umambiguously define $\varphi: V(A) \longrightarrow Y_2$ by the\\ expression $\varphi(\mMat{A}\mVec{x}) = \Psi(\mVec{x})$. Furthermore, we can show that $\varphi$ is $\mathscr{C}^1$.
       {\begin{myIndent}\hFour
          Fix $\mVecAst{y}_0 \in \mMat{A}(V)$ and set $\mVecAst{x}_0 \in V$ such that $\mMat{A}\mVecAst{x}_0 = \mVecAst{y}_0$. Next, let\\ $W \subseteq \mMat{A}(V)$ be open relative to $Y_1$ such that for any $\mVec{y} \in W$,\\ $\mVec{x} = \mVecAst{x}_0 + \mMat{S}(\mVec{y} - \mVecAst{y}_0) \in V$.\retTwo
 
-         Then because $\mVec{y} = \mMat{A}(\mVecAst{x}_0 + \mMat{S}(\mVec{y} - \mVecAst{y}_0))$ for all $\mVec{y} \in W$, we have that\\ $\varphi(\mVec{y}) = \Psi(\mVecAst{x}_0 - \mMat{S}(\mVecAst{y}_0 - \mVec{y}))$. Hence, $\varphi$ is continuously differentiable\\ with respect to $\mVec{y} \in W$. And since $W$ and $\mVecAst{y}_0$ was arbitrary, we have\\ that $\varphi$ is continuously differentiable on $\mMat{A}(V)$. $\blacksquare$
-         \retTwo\retTwo
+         Then because $\mVec{y} = \mMat{A}(\mVecAst{x}_0 + \mMat{S}(\mVec{y} - \mVecAst{y}_0))$ for all $\mVec{y} \in W$, we have that\\ $\varphi(\mVec{y}) = \Psi(\mVecAst{x}_0 - \mMat{S}(\mVecAst{y}_0 - \mVec{y}))$. Hence, $\varphi$ is continuously\\ differentiable with respect to $\mVec{y} \in W$.
+			\begin{myIndent}\color{red}
+				Note from 7/26/2026: RUDIN NEVER DEFINED WHAT THIS MEANS!!! WHAT DO YOU MEAN!!\retTwo
+			\end{myIndent}
+			
+			And since $W$ and $\mVecAst{y}_0$ was arbitrary, we have that $\varphi$ is continuously differentiable on $\mMat{A}(V)$. $\blacksquare$\retTwo
       \end{myIndent}}
    \end{myIndent}}
-
-   \teachComment
-   But what does this mean?
+   % \teachComment
+   % But what does this mean?
    
-   \begin{myIndent}
-      Letting $\mVec{y} \in F(U)$, we know there exists $\mVec{x} \in V$ such that $\mVec{y} = F(H(\mVec{x}))$.\\ In turn, we can find that $\mMat{P}\mVec{y} = \mMat{P}\mMat{A}\mVec{x} + \mMat{P}\varphi(\mMat{A}\mVec{x}) = \mMat{A}\mVec{x} + \mVec{0}$ and that\\ [1pt] $\mVec{y} = (\mMat{P}\mVec{y}) + \varphi(\mMat{P}\mVec{y})$.\retTwo
+   % \begin{myIndent}
+   %    Letting $\mVec{y} \in F(U)$, we know there exists $\mVec{x} \in V$ such that $\mVec{y} = F(H(\mVec{x}))$.\\ In turn, we can find that $\mMat{P}\mVec{y} = \mMat{P}\mMat{A}\mVec{x} + \mMat{P}\varphi(\mMat{A}\mVec{x}) = \mMat{A}\mVec{x} + \mVec{0}$ and that\\ [1pt] $\mVec{y} = (\mMat{P}\mVec{y}) + \varphi(\mMat{P}\mVec{y})$.\retTwo
 
-      This essentially means we can view $F(U)$ as the graph $\varphi$ over $\mMat{P}(F(U))$.\retTwo
-   \end{myIndent}
+   %    This essentially means we can view $F(U)$ as the graph $\varphi$ over $\mMat{P}(F(U))$.\retTwo
+   % \end{myIndent}
 
-   I'm behind and so am going to avoid going further in depth on this. However, this\\ will be useful if you study differential geometry and manifolds.
+   % I'm behind and so am going to avoid going further in depth on this. However, this\\ will be useful if you study differential geometry and manifolds.
 \end{myIndent}}
+\color{red}\mySepOne\newpage
 
 \newpage
 
-To finish off this chapter (I'm skipping the segment on determinants), here is a\\ theorem about differentiation of integrals.\\ [-6pt]
+\hTwo To finish off this chapter (I'm skipping the segment on determinants), here is a\\ theorem about differentiation of integrals.\\ [-6pt]
 
 {\begin{myIndent}\hTwo
    \uuline{Theorem 9.42}: Let $\varphi(x, t)$ be a real-valued function whose partial derivative\\ with respect to $t$ is defined for all $a \leq x \leq b$ and $c \leq t \leq d$. Also, let us\\ define $\varphi^t(x) = \varphi(x, t)$ for each $t \in [c, d]$. Then suppose:
@@ -2094,17 +2098,16 @@ Now define $f(t) = \int_{-1}^1 \varphi(x, t)dx$. Then for $|t| < \frac{1}{4}$, w
 
    If $\sigma(1) = k$, then we can say that $\sigma = \pi \circ \tau_{1,k-1} \circ \tau_{k-1,k}$ where $\pi$ is a\\ permutation such that $\pi(1) = 1$.\retTwo
 
-   In either case, by combining the three observations above we can say\\ for any permutation $\sigma \in S_k$ that $D_{i_1,i_2,\ldots,i_k}f = D_{i_{\sigma(1)}i_{\sigma(2)},\ldots,i_{\sigma(k)}}f$.\retTwo
+   In either case, by combining the three observations above we can say\\ for any permutation $\sigma \in S_k$ that $D_{i_1,i_2,\ldots,i_k}f = D_{i_{\sigma(1)}i_{\sigma(2)},\ldots,i_{\sigma(k)}}f$.
 \end{myIndent}}
-
 \mySepTwo
 
 \hOne\markLecture{5/2/2024}
 
-A note on notation:\\ [-20pt]
+Everything in my notes after this point would be better reviewed from my math 240a notes. Anyways a note on notation:\\ [-20pt]
 \begin{itemize}
    \item If $A$ and $B$ are any two sets, we shall write $A - B$ to mean the set\\ $\{x \in A \mid x \notin B\}$ (which we've previously referred to as $A \setminus B$).
-   \item We call a family of sets $(A_\alpha)_{\alpha \in A}$ \udefine{pairwise disjoint} if $A_\alpha \cap A_\beta = \emptyset$ for all\\ $\alpha, \beta \in A$ such that $\alpha \neq \beta$.\retTwo
+   \item We call a family of sets $(A_\alpha)_{\alpha \in A}$ \udefine{pairwise disjoint} if $A_\alpha \cap A_\beta = \emptyset$ for all\\ $\alpha, \beta \in A$ such that $\alpha \neq \beta$.\\ [-8pt]
 \end{itemize}
 
 A family of sets $\mathcal{R}$ is called a \udefine{ring} if $\forall A, B \in \mathcal{R},\myHS A \cup B \in \mathcal{R}$ and $A - B \in \mathcal{R}$.
@@ -2681,9 +2684,7 @@ Let $\mathcal{E}$ be the family of elementary subsets of $\mathbb{R}$ and denote
    {\begin{myIndent}\exTwo
       Let $\varepsilon > 0$. Then by the definition of $\mu^*(A)$, there exists a sequence\\ $(A_n)$ of open sets from $\mathcal{E}$ such that:
       
-      {\centering$A \subseteq \bigcup\limits_{n=1}^\infty A_n$ and $\mu^*(A) \leq \sum\limits_{n=1}^\infty m(A_n) \leq \mu^*(A) + \varepsilon$.\par}
-      
-      \newpage
+      {\centering$A \subseteq \bigcup\limits_{n=1}^\infty A_n$ and $\mu^*(A) \leq \sum\limits_{n=1}^\infty m(A_n) \leq \mu^*(A) + \varepsilon$.\retTwo\par}
 
       Importantly, $(A_n + t)$ is also an open cover of $A + t$. So, we know\\ that:\\ [-20pt]
       

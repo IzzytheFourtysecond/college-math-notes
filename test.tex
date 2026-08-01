@@ -400,640 +400,636 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\exTwo\ul{Lemma 3.2:} The map described above is surjective.
-\begin{myIndent}\exThreeP
+\pracOne\mySepTwo
+
+As a side note, the prior theorem can fail when we allow $M$ and $N$ to have nonempty\\ boundaries. For an obvious example of this, let $M = H^n$ and $N = \mathbb{R}^n$. Then let\\ $\iota: H^n \hookrightarrow \mathbb{R}^n$ be the inclusion map and consider any $p \in \partial H^n$. We already know from earlier that $\df \iota_p$ is a bijection. That said, the prior theorem holding in this situation would\newpage contradict the invariance of domain theorem on \inLinkRap{Invariance of Domain Theorem}{page 1008}. So, no such open sets $U_0$\\ and $V_0$ can exist in this case.\retTwo
+
+\Hstatement\blab{Exercise 4-2:} Suppose $M$ is a $C^r$ manifold (without a boundary) and $N$ is a $C^r$ manifold with a boundary. Also let $\Int(M)$ denote the set of interior / non-boundary points of $N$. Then if $F: N \to M$ is a $C^k$ map (where $k \leq r$), $p \in M$, and $\df F_p$ is bijective, we must have that $F(p) \in \Int(N)$.
+\begin{myIndent}\HexOne
 	Proof:\\
-	Let $w \in T_a \mathbb{R}^n$ be any derivation. Then  having let $e_1, \ldots, e_n$ be the standard basis, for all $1 \leq i \leq n$ let $c_i \coloneqq w(x \mapsto x \cdot e_i)$. I claim $w = \Df_{v}|_a$ where $v = c_1 e_1 + \ldots + c_n e_n$.\newpage
+	Once again, the fact that $\df F_p$ is injective means that there exists an integer $n$ with\\ $\dim(M) = n = \dim(N)$. Now let $(U, \varphi)$ be a smooth chart on $M$ containing $p$ and $(V, \psi)$ be a smooth chart on $N$ with $F(U) \subseteq V$. Since $M$ has no boundary, we know that $\widehat{U} \coloneqq \varphi(U)$ is open in $\mathbb{R}^n$.\retTwo
 
-	To see why, let $f$ be any $C^\infty$ function on $\mathbb{R}^n$. Next for any $x \in \mathbb{R}^n$ let\\ $h(t) \coloneqq f(a + t(x - a))$. If we say $a = (a_1, \ldots, a_n)$ and $x = (x_1, \ldots, x_n)$,\\ then note that:
-	
-	{\centering\begin{tabular}{l}
-		$f(x) - f(a) = h(1) - h(0) = \int_0^1 \frac{\df h}{\df t}(s)\df s$\\ [6pt]
-		$\phantom{f(x) - f(a) = h(1) - h(0)} = \int_0^1 (x - a) \cdot \nabla f(a + s(x - a))\df s$\\ [6pt]
-		$\phantom{f(x) - f(a) = h(1) - h(0)} = \sum_{i=1}^n  (x_i - a_i) \int_0^1 \frac{\partial}{\partial x_i}f(a + s(x - a))\df s$.
-	\end{tabular}\retTwo\par}
-
-	In particular, we set $h_{i}(x) \coloneqq \int_0^1 \frac{\partial}{\partial x_i}f(a + s(x - a))\df s$. By Leibniz's rule applied $h_i$ (which we can apply to $x$ in bounded subsets of $\mathbb{R}^n$ since $f$ is a $C^\infty$ function), we know $h_i$ is also a $C^\infty$ function on $\mathbb{R}^n$.
-	\begin{myIndent}\myComment
-		As a side note, if $f$ were only finitely many times differentiable then this paragraph would not work. This hints at how we need an alternate definition of tangent vectors for when we are working on $C^r$ manifolds where $r < \infty$.\retTwo
-	\end{myIndent}
-
-	And now we have that $w(f) = w\left(f(a) + \sum_{i=1}^n (x_i - a_i)g_i(x)\right)$. Yet $w(f(a)) = 0$ since $f(a)$ is a constant. Meanwhile:
-	
-	{\centering\begin{tabular}{l}
-		$w((x_i - a_i)g_i(x)) = (a_i - a_i)w(g_i) + g_i(a)w(x_i - a_i)$\\ [6pt]
-		$\phantom{w((x_i - a_i)g_i(x))} = 0 + (w(x \mapsto x \cdot e_i) - w(a_i))\int_0^1 \frac{\partial}{\partial x_i}f(a)\df s = (c_i - 0)\frac{\partial}{\partial x_i}f(a)$.
-	\end{tabular}\retTwo\par}
-
-	So, $w(f) = \sum_{i=1}^n c_i \frac{\partial}{\partial x_i}f(a) = D_v|_a f$. $\blacksquare$\retTwo
-
-	\begin{myIndent}\myComment
-		As a side note, if we consider "derivations" whose domain is the vector space\\ $C^k(M, \mathbb{R})$ where $M$ is a $C^r$ manifold and $k < \min(r + 1, \infty)$, then we can ask\\ about "exotic derivations" which aren't described by directional derivatives.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\exTwo\ul{Corollary:} A vector space basis for $T_a \mathbb{R}^n$ is given by the partial derivative operators $\frac{\partial}{\partial x_i}$ at $a$.\retTwo
-
-\hTwo\mySepTwo
-
-\dispDate{7/15/2026}
-
-\exTwo\ul{Lemma 3.11:} Suppose $\iota: H^n \hookrightarrow \mathbb{R}^n$ is the inclusion map. (Hopefully it is obvious that this is a $C^\infty$-map.) For any $a \in \partial H^n$ the differential $\df \iota_a: T_a H^n \to T_a \mathbb{R}^n$ is an isomorphism.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	First I shall show injectivity. Suppose $v \in T_a H^n$ and $\df \iota_a(v) = 0 \in T_a \mathbb{R}^n$. Then consider any smooth function $f: H^n \to \mathbb{R}$. By definition we know that $f$ extends to a smooth function $g: U \to \mathbb{R}$ where $U \subseteq \mathbb{R}^n$ is open and contains $H^n$. Furthermore, $H^n$ is a closed subset of $U$. Thus by identical reasoning as in the proof of proposition 3.9, we can find a smooth function $\widetilde{f}: \mathbb{R}^n \to \mathbb{R}$ such that $\widetilde{f}|_{H^n} = g|_{H^n} = f$.\retTwo
-
-	But now $v(f) = v(\widetilde{f}|_{H^n}) = v(\widetilde{f}\circ \iota) = \df \iota_a(v)\widetilde{f} = 0$. And since $f$ was arbitrary, we've proven that $v = 0$. So, $\df \iota_a$ has a trivial kernel and is thus injective.\retTwo
-
-	Next we show surjectivity. Suppose $w \in T_a \mathbb{R}^n$ and then define $v \in T_a H^n$ by\\ $v(f) \coloneqq w(\widetilde{f})$ where $\widetilde{f}$ is any smooth extension of $f$ to all of $\mathbb{R}^n$.\newpage
-	\begin{myIndent}\exPPP
-		To see that $v$ is well-defined, note by the prior corollary that $w = \sum_{i=1}^n c_i \frac{\partial}{\partial x_i}|_{a}$\\ for some $c_1, \ldots, c_n \in \mathbb{R}$. Yet since $\widetilde{f}$ has a continuous derivative, $\frac{\partial}{\partial x_i}\widetilde{f}(a)$ is\\ uniquely determined by $\widetilde{f}$'s restriction to $H^n$.\retTwo
-	\end{myIndent}
-
-	Now its easy to check that $v$ is a derivation and that $\df \iota_a(v) = w$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\exTwo\ul{Proposition 3.12:} Given any $n$-dimensional $C^\infty$ manifold $M$ with or without boundary, for all $p \in M$ we have that $T_p M$ is an $n$-dimensional vector space.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	We already know from \inLinkRap{Page 1034 note}{page 1034} that $T_p M$ is isomorphic to $T_a \widehat{U}$ where $\widehat{U}$ is some\\ open subset of $H^n$ or $\mathbb{R}^n$ and $a \in \mathbb{R}^n$. But now it's straightforward to prove that $T_a \widehat{U}$ is\\ isomorphic to $T_a \mathbb{R}^n$ by just chaining together the isomorphisms induced by varying\\ inclusion functions. And finally, \inLinkRap{Page 1035 lemma}{lemma 3.2} tells us that $T_a \mathbb{R}^n$ is $n$-dimensional.\\ Thus, $T_p M$ is also $n$-dimensional. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-I want to switch to covering some category theory related notes about manifolds.\retTwo Firstly, we let $\mcateg{Man}$ be the category whose objects are topological manifolds without\\ boundaries and whose morphisms are continuous maps. If we want to allow our manifolds to have a boundary, we instead consider the category $\mcateg{Man}_b$.\retTwo
-
-\exTwo\ul{Proposition:} Suppose $M_1, \ldots, M_{k-1}$ are topological manifolds without boundary and $M_k$ is a topological manifold with boundary. Also suppose each $M_i$ has dimension $n_i$. Then the topological product space $M \coloneqq M_1 \times \cdots \times M_k$ is an $n_1 + \ldots + n_k$ dimensional topological manifold with boundary. 
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Countable products of second countable topological spaces are still second countable. Hence $M$ is second countable.
-	\begin{myIndent}\exPPP
-		This is easy to verify.\retTwo
-	\end{myIndent}
-	
-	Also arbitrary products of Hausdorff spaces are still Hausdorff. Hence, $M$ is Haudorff.\retTwo
-
-	Finally, to show $M$ is locally Euclidean, let $(p_1, \ldots, p_k) \in M$. Then for each $1 \leq i \leq k$ we can pick a chart $(U_i, \varphi_i)$ on $M_i$ containing $p_i$. Now we identify $\mathbb{R}^{n_1} \times \cdots \times \mathbb{R}^{n_k}$ with $\mathbb{R}^{n_1 + \ldots + n_k}$ in the obvious way. Then we consider the chart $(U_1 \times \ldots \times U_k, \varphi_1 \times \cdots \times \varphi_k)$. This will be a homeomorphism to an open subset of $\mathbb{R}^{n_1 + \ldots + n_k}$ or $H^{n_1 + \ldots + n_k}$. $\blacksquare$\retTwo
-
-	\begin{myIndent}\myComment
-		Remark: By the proposition on \inLinkRap{Proposition page 1010}{pages 1010-1011}, we know that $(p_1, \ldots, p_k)$ is a boundary point of $M$ if and only if $p_k$ is a boundary point of $M_k$. Hence if $M_k$ has an empty boundary then our constructed chart from before will always be an interior chart instead of a boundary chart.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\hTwo Since $M = M_1 \times \cdots \times M_k$ is also a product in the category of topologies, we know $M$\\ interacts with morphisms (i.e. continuous maps) in the way that a category theoretic\\ product should. And by the above remark, we've thus proven that $\mcateg{Man}$ admits finite\\ products.\newpage
-
-As for whether $\mcateg{Man}_b$ admits finite products, we can actually assume in the prior\\ proposition that $M_1, \ldots, M_{k-1}$ have boundaries. To see why, let:
-
-{\centering$\mathbb{R}^k_+ \coloneqq \{(x_1, \ldots, x_k) : x_i \geq 0 \text{ for all }i\}$.\retTwo\par}
-
-\exTwo\ul{Proposition:} $\mathbb{R}^k_+$ is homeomorphic to $H^k$.
-\begin{myIndent}\exThreeP
-	Proof:\\ 
-	Firsty, note that $\mathbb{R}^1_+ = H^1$. Also $\mathbb{R}^2_+$ is homeomorphic to $H^2$ via the map:
-	
-	{\centering$\varphi(x, y) \coloneqq (x^2 - y^2, 2xy)$.\retTwo\par}
-
-	\begin{myIndent}\exPPP
-		Why?\\
-		It's clear that $\varphi$ is continuous and also that it maps $\mathbb{R}^2_+$ into $H^2$. After all, $x \geq 0$ and $y \geq 0$ implies that $2xy \geq 0$. As for showing the other requirements for $\varphi$ to be a homeomorphism, I want to explicitely solve for the inverse function $\varphi^{-1}$.\retTwo
-
-		Suppose $\varphi(x, y) = (z, w)$.
-		\begin{myIndent}\color{orange}
-			Suppose $y \neq 0$. Then $w = 2xy \Longrightarrow x^2 = \frac{w^2}{4y^2}$. In turn, we get that\\ $z = x^2 - y^2 = \frac{w^2}{4y^2} - y^2$. Or in other words, $4y^4 + 4zy^2 - w^2 = 0$. By\\ using the quadratic formula, we can then solve that:
-
-			{\centering $y^2 = \frac{-4z \pm \sqrt{16z^2 + 16w^2}}{8} = \frac{-z \pm \sqrt{z^2 + w^2}}{2}$ \retTwo\par}
-
-			We know $y^2 \geq 0$ though. So, we can actually further solve that:
-			
-			{\centering$y^2 = \frac{-z \cyPen{+} \sqrt{z^2 + w^2}}{2}$\retTwo\par}
-
-			And then since $y$ is nonnegative, we can finally say that $y = \sqrt{\frac{-z + \sqrt{z^2 + w^2}}{2}}$.\\ And this is a well-defined real number because $\sqrt{z^2 + w^2} \geq \max(|-z|, 0)$.\\ Also, since $y \neq 0$ by assumption we can say that:
-			
-			{\centering$x = \frac{w}{2y} = \frac{w}{2\sqrt{\frac{-z + \sqrt{z^2 + w^2}}{2}}}$.\retTwo\par}
-
-			So, we define: $\psi: H^2 - \{(z, 0) : z \geq 0\} \to \mathbb{R}^2_+ - \{(x, 0) : x \geq 0\}$ by:
-			
-			{\centering$\psi(z, w) = \left(\frac{w}{2\sqrt{\frac{-z + \sqrt{z^2 + w^2}}{2}}}, \phantom{.}\sqrt{\frac{-z + \sqrt{z^2 + w^2}}{2}}\right)$\retTwo\par}
-
-			Clearly $\psi$ is a continuous function. And by how we solved for $\psi$ we know that $\psi(\varphi(x, y)) = (x, y)$. Similarly, we can solve that $\varphi(\psi(z, w)) = (z, w)$.\retTwo
-
-			Finally, note that if $y = 0$ then $w = 0$ and $z = x^2$. Therefore, we want to define $\psi(z, 0) \coloneqq (\sqrt{z}, 0)$ when $z \geq 0$. And once we define this, we know that $\psi = \varphi^{-1}$. That said, we need to show our extension of $\psi$ to the ray $\{(z, 0) : z \geq 0\}$ is still continuous.\retTwo
-
-			To do this, consider any $z \geq 0$ and pick $R > \sqrt{z}$. Then $N \coloneqq \overline{B_R(0)} \cap \mathbb{R}^2_+$ is a compact neighborhood of $\varphi^{-1}(z, 0)$ relative to $\mathbb{R}^2_+$. Also, we can see that:
-			
-			{\centering$\varphi(N) = \varphi(\overline{B_R(0)} \cap \mathbb{R}^2_+) = \overline{B_{R^2}(0)} \cap H^2 \eqqcolon N^\prime$.\retTwo\par}
-
-			This is because $|\varphi(x, y)| = |(x, y)|^2$ and we already know from earlier that $\varphi$\\ surjectively maps $\mathbb{R}_+^2$ into $H^2$. So, $\varphi$ is a bijective continuous map from the compact neighborhood $N$ of $\varphi^{-1}(z, 0)$ onto a compact neighborhood $N^\prime$ of $(z, 0)$. It follows from the compactness of $N$ and the Hausdorffness of $N^\prime$ that $\varphi^{-1}$ is a continuous map from $N^\prime$ to $N$. In other words, $\varphi^{-1}$ is continuous at $(z, 0)$.\retTwo
-		\end{myIndent}
-	\end{myIndent}
-
-	But now its easy to conclude by induction that $\mathbb{R}^k_+$ is homeomorphic to $H^k$. After all,\\ $\mathbb{R}^k_+ = \mathbb{R}^{k-2}_+ \times \mathbb{R}^2_+$ is homeomorphic to $\mathbb{R}^{k-2}_+ \times H^2$ by the prior reasoning, and then\\ that is trivially homeomorphic to $\mathbb{R} \times \mathbb{R}^{k-1}_+$. And now we just conclude by induction that\\ $\mathbb{R}^{k-1}_+ \cong H^{k-1}$. So, $\mathbb{R} \times \mathbb{R}^{k-1}_+ \cong \mathbb{R} \times H^{k-1} \cong H^k$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\ul{Corollary:} Suppose $M_1, \ldots, M_{k}$ are topological manifolds with boundary. Also suppose each $M_i$ has dimension $n_i$. Then the topological product space $M \coloneqq M_1 \times \cdots \times M_k$ is an $n_1 + \ldots + n_k$ dimensional topological manifold with boundary. 
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Second countability and Hausdorffness is obvious. Hence, we only need to worry about if $M$ is locally Euclidean.\retTwo
-
-	Let $(p_1, \ldots, p_k)$ be any point in $M$ and let $(U_i, \varphi_i)$ be a chart in $M_i$ containing $p_i$. By shrinking each $U_i$, we can assume without loss of generality that $\widehat{U}_i \coloneqq \varphi(U_i)$ is a rectangle in $H^{n_i}$ whose ends are all open intervals in $\mathbb{R}$ or $[0, \infty]$. Then, we consider the function $\varphi_1 \times \cdots \times \varphi_n : U_1 \times \cdots \times U_k \longrightarrow \widehat{U}_1 \times \cdots \times \widehat{U}_k$. By composing this function with some permutation of our coordinates, we get that there are open sets $V \subseteq \mathbb{R}^{n_1 + \ldots + n_k - k}$ and $W \subseteq \mathbb{R}^k_+$, as well a homeomorphism $\psi: U \to V \times W$. Finally, transform $W$ into an open set of $H^k$ via a homeomorphism we know exists from the prior proposition. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo Next, given any $r \in \mathbb{Z}_{\geq 1} \cup \{\infty\}$ we let $\mcateg{Diff}^r$ denote the category whose objects are\\ manifolds without boundaries and that are equipped a $C^r$-structure. The morphisms of $\mcateg{Diff}^r$ are $C^r$ maps between manifolds. Also if we want to allow our manifolds to have boundaries then we consider the category $\mcateg{Diff}^r_b$.\retTwo
-
-\exTwo\ul{Proposition:} Suppose $M_1, \ldots, M_{k-1}$ are $C^r$ manifolds without boundary and $M_k$ is a $C^r$ manifold with boundary. Then there is a canonical product $C^r$-structure we can equip $M \coloneqq M_1 \times \cdots \times M_k$ with to turn $M$ into a $C^r$ manifold.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Given any smooth charts $(U_i, \varphi_i)$ on $M_i$ for $1 \leq i \leq k$ let $(U_1 \times \cdots \times U_k, \varphi_1 \times \cdots \times \varphi_k)$ be a smooth chart on $M$. Hopefully it's clear that these charts cover all of $M$. Also, suppose $(V_1 \times \cdots \times V_k, \psi_1 \times \cdots \times \psi_k)$ is another smooth chart on $M$ of this form. Then the transition function between our charts would be given by:
-	
-	{\centering$(\psi_1 \circ \varphi_1^{-1}) \times \cdots \times (\psi_k \circ \varphi^{-1}_k)$.\retTwo\par}
-
-	And since $\psi_i$ and $\varphi_i$ are $C^r$-compatible for each $i$, we know our transition function is a $C^r$-map. So, $(U_1 \times \cdots \times U_k, \varphi_1 \times \cdots \times \varphi_k)$ and $(V_1 \times \cdots \times V_k, \psi_1 \times \cdots \times \psi_k)$ are $C^r$-compatible. \retTwo
-
-	Now to finish, just take the maximal atlas containing all the charts we just named. $\blacksquare$\newpage
-\end{myIndent}
-
-\ul{Proposition:} Suppose $M_1, \ldots, M_{k}$ are $C^r$ manifolds and at most one of the $M_i$ has a nonempty boundary. Then let $M \coloneqq M_1 \times \cdots \times M_k$ and equip $M$ with the product structure.
-\begin{itemize}
-	\item The projection map $\pi_i : M \to M_i$ is a $C^r$ map.
-	\begin{myIndent}\exThreeP
-		Why?\\
-		Given any $(p_1, \ldots, p_k) \in M$, we can pick smooth charts $(U_j, \varphi_j)$ on $M_i$\\ containing $p_j$ for every $j$. And now, upon setting $U \coloneqq U_1 \times \cdots \times U_k$ and\\ $\varphi \coloneqq \varphi_1 \times \cdots \times \varphi_k$, we have that $(U, \varphi)$ is a smooth chart on $M$ and $(U_i, \varphi_i)$\\ is a smooth chart on $M_i$ such that $(p_1, \ldots, p_k) \in U$ and $\pi(U) \subseteq U_i$. Finally, let\\ $V_j \coloneqq \varphi_j(U_j)$ for all $j$. Then $\varphi_i \circ \pi_i \circ \varphi^{-1}$ is easily checked to just be the projection map from $V_1 \times \cdots \times V_k$ onto $V_i$. Since that is a $C^\infty$-map in the real-analysis sense, we can conclude $\pi_i$ is a $C^r$ map.\\ [-6pt]
-	\end{myIndent}
-
-	\item The inclusion map $\iota_i : M_i \to M$ is a $C^r$ map.
-	\begin{myIndent}\exThreeP
-		I'm omitting the proof of this cause its similar to the proof of the prior bullet point.\\ [-6pt]
-	\end{myIndent}
-
-	\item Suppose $N$ is a $C^r$-manifold with or without boundary. Then given any $C^k$ maps\\ $F_i: N \to M_i$ (where $k \leq r$), we have that $F: N \to M$ defined by\\ $F(p) = (F_1(p), \ldots, F_k(p))$ is a $C^k$-map from $N \to M$.
-	\begin{myIndent}\exThreeP
-		Why?\\
-		Consider any $p \in N$. Since each $F_i$ is a $C^k$ map, we know for each $i$ that there\\ is a smooth chart $(U^{(i)}, \varphi^{(i)})$ on $N$ containing $p$ as well as a smooth chart $(V_i, \psi_i)$\\ on $M_i$ such that $F_i(U^{(i)}) \subseteq V_i$ and $\psi_i \circ F \circ (\varphi^{(i)})^{-1}$ is a $C^k$ function. By letting\\ $U \coloneqq U^{(1)} \cap \cdots \cap U^{(k)}$ and letting $\varphi$ be any of the $\varphi^{(i)}$ priorly chosen, we thus\\ get a single smooth chart $(U, \varphi)$ on $N$ such that $F_i(U) \subseteq V_i$ and $\psi_i \circ F_i \circ \varphi^{-1}$\\ is a $C^k$ map for all $i$.\retTwo
-		
-		Now let $\psi \coloneqq \psi_1 \times \cdots \times \psi_k$ and $V \coloneqq V_1 \times \cdots \times V_k$. Then $(V, \psi)$ is a\\ smooth chart on $M$ such that $F(U) \subseteq V$. Plus $\psi \circ F \circ \varphi^{-1}$ is precisely the map $x \mapsto (\psi_1 \circ F_1 \circ \varphi^{-1}(x), \ldots, \psi_k \circ F_k \circ \varphi^{-1}(x))$. And since all the components of this function are $C^k$ functions, we know the entire thing is a $C^k$ function. So, $F$ is a $C^k$ map from $N$ to $M$.
-		\begin{myIndent}\myComment
-			Remark: This also proves that $M$ along with the $\pi_i$ is a category theoretic product. After all, $F$ is the unique morphism from $M$ to $N$ with $\pi_i \circ F = F_i$ for each $i$ when we forget the manifold structures on everything and just look at $M$, $N$, and the $M_i$ as sets.\retTwo
-		\end{myIndent}
-	\end{myIndent}
-
-	\item Conversely to the last bullet point, suppose $F : N \to M$ is a $C^k$ map (where $k < r$). Then let $F_i \coloneqq \pi_i \circ F$ for each $i$. Since each $\pi_i$ is a $C^r$ map, we know that each $F_i$ is a $C^k$ map. Also $F(p) = (F_1(p), \ldots, F_k(p))$. $\blacksquare$\retTwo
-\end{itemize}
-
-\hTwo In particular, the prior two propositions show that $\mcateg{Diff}^r$ admits products over any finite collection of objects, and also that $\mcateg{Diff}^r_b$ admits products over finite collections of objects satisfying special conditions.\newpage
-
-In general though, we'd have to consider \udefine{$C^r$ manifolds with corners} in order to take\\ products over arbitrary finite collections of objects in $\mcateg{Diff}^r_b$.\retTwo
-
-In an \udefine{$n$-dimensional topological manifold with corners $M$} is defined to be a second\\ countable Hausdorff space such that every $p \in M$ has an open neighborhood $U$ that\\ is homeomorphic to an open subset $V$ of $\mathbb{R}^n$, $H^n$, or $\overline{\mathbb{R}_+}^{n}$.
-\begin{myIndent}\myComment
-	Since $\overline{\mathbb{R}_+}^{n}$ is homeomorphic to $H^n$, we can say that $M$ is an $n$-dimensional topological\\ manifold with corners if and only if $M$ is an $n$-dimensional topological manifold with\\ a boundary.\retTwo
-\end{myIndent}
-
-Now suppose $r \in \mathbb{Z}_{\geq 1} \cup \{\infty\}$, $U$ is an open subset of $\overline{\mathbb{R}_+}^{n}$, and $f \in C^r(U)$. Then we know there is an open set $V \subseteq \mathbb{R}^n$ containing $U$ and a $C^r$ map $g \in C^r(V)$ such that $g|_U = f$. Yet by identical reasoning as on \inLinkRap{placeholder}{pages 83-84}, we can then say that $\partial^{\alpha}g(x)$ is uniquely determined by $f$ for all $x \in \partial \overline{\mathbb{R}_+}^{n}$ and multi-indices $\alpha$ with $|\alpha| \leq r$. Hence, we can uniquely refer to $f$ as having derivatives on $U \cap \partial \overline{\mathbb{R}_+}^{n}$.\retTwo
-
-Consequently from the prior paragraph, we can now talk about a \udefine{corner chart} on $M$ (i.e. a chart $(U, \varphi)$ with $U$ open in $\overline{\mathbb{R}_+}^{n}$ but not $H^n$ or $\mathbb{R}^n$) being $C^r$ compatible with another chart on $M$. And then, we can consider a maximal atlas on $M$ containing some atlas of $C^r$-compatible charts (some of which potentially may be corner charts). As a side note, the proposition on \inLinkRap{placeholder}{pages 142-143} still holds by identical reasoning.\retTwo
-
-We say a topological manifold with corners $M$ equipped with a maximal $C^r$ atlas (a.k.a a \udefine{$C^r$ structure}) is a $C^r$-manifold with corners. Also we shall still call the charts in that structure "smooth charts".\retTwo
-
-Supposing $M$ is a $C^r$-manifold with corners, we call $p \in M$ a \udefine{corner point} if there\\ exists a smooth corner chart $(U, \varphi)$ on $M$ containing $p \in U$ such that at least two\\ coordinates of $\varphi(p)$ in $U$ are zero.\retTwo
-
-\mySepTwo 
-
-\dispDate{7/17/2026}
-
-Before doing anything else today, I want to go further in depth into the claim that $\overline{\mathbb{R}_+}^n$ is homeomorphic to $H^n$.
-\begin{myIndent}\pracTwo 
-	Recall from\phantom{.} \inLinkRap{proposition pages 1037-1038}{pages 1037-1038 } that $\varphi(x, y) \coloneqq (x^2 - y^2, 2xy)$ is a homeomorphism\\ between $\overline{\mathbb{R}_+}^2$ and $H^2$. But then importantly, we also have that $(x, y) \mapsto (x, \frac{1}{2}y)$ is a\\ homeomorphism between $H^2$ and $H^2$. Therefore, $\widetilde{\varphi}(x, y) \coloneqq (x^2 - y^2, xy)$ is also\\ a homeomorphism from $\overline{\mathbb{R}_+}^2$ and $H^2$. And now by induction we can explicitely conclude that the map $\psi$ defined by:
-
-	{\centering $(x_1, \ldots, x_k) \mapsto (x_1^2 - x_2^2,\phantom{..} x_1^2x_2^2 - x_3^2,\phantom{..} \ldots,\phantom{..} (\prod_{i=1}^{n-1}x_i^2) - x_n^2,\phantom{..} \prod_{i=1}^{n}x_i)$ \\[4pt]\par}
-
-	is a homeomorphism from $\overline{\mathbb{R}_+}^n$ to $H^n$.\retTwo
-
-	One particular thing I want to point out is that $\psi(\partial \overline{\mathbb{R}_+}^n) = \partial H^n$.\newpage
-\end{myIndent}
-
-\hTwo One may notice that the homeomorphism I specifically wrote before is also a smooth map from $\mathbb{R}^n_+$ into $H^n$. A simple corollary of the following theorem will let us conclude that the function's inverse won't be differentiable from $H^n$ into $\mathbb{R}^n_+$ however.\retTwo
-
-\exTwo\ul{Theorem:} Suppose $M$ is a $n$-dimensional  $C^r$-manifold with corners and that $p \in M$ is a corner point due to the smooth chart $(U, \varphi)$. Then for any smooth chart $(V, \psi)$ on $M$ containing $p$, we have that $(V, \psi)$ is also a corner chart and at least two coordinates of $\psi(p)$ in $V$ are zero.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	To start off, we can't have that $\psi(V)$ is open in $\mathbb{R}^n$. After all, if not then the function\\ $\varphi \circ \psi^{-1}$ would violate the invariance of domain theorem (see \inLinkRap{Invariance of Domain Theorem}{page 1008}). In a similar vein, we can't have that $\psi(V)$ is open in $H^n$ or $\overline{\mathbb{R}_+}^n$ and also have that $\psi(p)$ is not on the boundary of those sets. After all, we'd otherwise be able to shrink $V$ to an open subset of $\mathbb{R}^n$. So there are exactly two possibilities. Either:
-	\begin{itemize}
-		\item $\psi(V)$ is open in $H^n$ but not $\mathbb{R}^n$ and $\psi(p) \in \partial H^n$,
-		\item $\psi(V)$ is open in $\overline{\mathbb{R}_+}^n$ but not $H^n$ or $\mathbb{R}^n$ and $\psi(p) \in \partial \overline{\mathbb{R}_+}^n$.\retTwo
-	\end{itemize}
-
-	We'll first focus on disproving the first possibility. So, suppose for the sake of contradiction that $\psi(V)$ is open in $H^n$ but not $\mathbb{R}^n$ and that $\psi(p) \in \partial H^n$.
-	\begin{myIndent}\exPPP
-		Let $\widehat{U} = \varphi(U)$ and without loss of generality suppose that:
-		
-		{\centering$\varphi(p) = (0, 0, x_3, \ldots, x_n)$.\retTwo\par}
-
-		\begin{myIndent}\color{orange}
-			Note that we can always permute our coordinates to move two of the zero\\ coordinates of $\varphi(p)$ to the first indices. After all, a coordinate permutation\\ function $P$ is a smooth diffeomorphism of $\overline{\mathbb{R}_+}^n$ to itself. Hence, the chart\\ $(U, P \circ \varphi)$ will be $C^r$ compatible with any other chart $(V, \psi)$ since\\ $P \circ (\varphi \circ \psi^{-1})$ and $(\psi \circ \varphi^{-1}) \circ P^{-1}$ are both $C^r$ maps.\retTwo
-		\end{myIndent}
-
-		Next let $e_1, \ldots, e_n$ be the standard basis for $\mathbb{R}^n$ and then consider the hyperplane $S \coloneqq \{y \in \mathbb{R}^n : y \cdot e_n = 0\}$. Importantly, we know that $S^\prime \coloneqq S \cap \psi(U \cap V)$\\ is an open subset of $S$ containing $\psi(p)$. Also let $\alpha = \varphi \circ \psi^{-1}$. Then since $\alpha$ is a $C^r$ function from $\psi(U \cap V)$ to $\varphi(U \cap V)$ with a $C^r$ inverse function, we know that $\Df \alpha$ must be an invertible linear map at all $y \in \psi(U \cap V)$. In particular, this means that $T \coloneqq \left(\Df \alpha(\psi(p))\right)(S)$ is an $(n - 1)$-dimensional subspace of $\mathbb{R}^n$.\retTwo
-		
-		But now consider that there must exist $v = (v_1, \ldots, v_n) \in T$ such that either $v_1 \neq 0$ or $v_2 \neq 0$. After all, if not then $T$ would be contained in an $(n - 2)$-dimensional subspace of $\mathbb{R}^n$. By replacing $v$ with $-v$ if needed, we can assume that either $v_1 < 0$ or $v_2 < 0$.\retTwo
-
-		Finally, let $\gamma: (-\varepsilon, \varepsilon) \to S^\prime$ be any $C^1$ curve such that $\gamma(0) = \psi(p)$ and\\ $(\alpha \circ \gamma)^\prime(0) = (\Df \alpha(\psi(p)))\gamma^\prime(0) = v$. But now for small enough $t \in (0, \varepsilon)$, we must have that $(\alpha \circ \gamma)(t) \cdot e_1 < 0$ or $(\alpha \circ \gamma)(t) \cdot e_2 < 0$. And this contradicts that $\alpha$ maps $S^\prime \subseteq \psi(U \cap V)$ into $\varphi(U \cap V) \subseteq \overline{\mathbb{R}_+}^n$.\retTwo
-	\end{myIndent}
-
-	With that, we can now conclude that $\psi(V)$ is open in $\overline{\mathbb{R}_+}^n$ but not $H^n$ or $\mathbb{R}^n$, and also we must have that $\psi(p) \in \partial \overline{\mathbb{R}_+}^n$. In particular, if $\psi(p) = (y_1, \ldots, y_n)$ that at least one $y_i$\newpage must equal $0$. To finish off, we need to prove another coordinate $y_j$ equals $0$ (where\\ $j \neq i$).
-	\begin{myIndent}\exPPP
-		Suppose otherwise. Then after permuting the coordinate of $\psi$ we can assume\\ without loss of generality that $\psi(p) = (y_1, \ldots, y_{n-1}, 0)$ where $y_j \neq 0$ for all\\ $1 \leq j \leq n - 1$. Yet now we can shrink $V$ such that $p \in V$ still and also $\psi(V)$\\ is open in $H^n$.
-		\begin{myIndent}\color{orange}
-			For example, restrict $V$ to the set $V \cap \psi^{-1}(((0, \infty)^{n-1} \times [0, \infty)) \cap \psi(V))$.\retTwo
-		\end{myIndent}
-
-		And now we've contradicted the earlier conclusion in our proof. \exThreeP $\blacksquare$\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\hTwo We can define what it means for a map $F$ from a manifold with corners $M$ to another manifold $N$ to be a $C^r$-map identically to how we defined $C^r$ maps from manifolds without corners. And everything on \inLinkRap{placeholder}{pages 146-151} still works via identical reasoning. Furthermore, the proof of the lemma on \inLinkRap{page 1031 lemma}{pages 1031-1032} still works for manifolds with corners when we just replace every instance of $H^n$ with $\overline{\mathbb{R}_+}^n$. And once we have that lemma, we can construct partitions of unity and prove Urysohn's lemma without even adknowledging that $M$ has corners.\retTwo
-
-One more related note is that if $M$ is a $C^\infty$ manifold with corners, then for any $p \in M$ we can define derivations at $p$, the vector space $T_p M$, and the differental $\df F_p$ of a $C^\infty$ function $F: M \to N$ at $p$ identically to how we priorly did so when $M$ was a manifold without corners.\retTwo 
-
-By analogous reasoning as in lemma 3.11 on \inLinkRap{lemma 3.11 page 1035}{pages 1035-1036}, we can show that if\\ $\iota: \overline{\mathbb{R}_+}^n \hookrightarrow \mathbb{R}^n$ is the inclusion map then $\df \iota_a : T_a \overline{\mathbb{R}_+}^n \to T_a\mathbb{R}^n$ is an isomorphism for all $a \in \partial \overline{\mathbb{R}_+}^n$. And it thus follows that every fact about $C^\infty$ manifolds without corners proven since page 1028 still holds for $C^\infty$ manifolds with corners. 
-
-\hTwo\mySepTwo
-
-\dispDate{7/18/2026} 
-
-Firstly, I realized that $(\mathbb{R}_{\geq 0})^n$ is way better notation than $\overline{\mathbb{R}_+}^n$. So I'm going to write the corner space in my way instead of John Lee's way. Anyways, before I get back to progressing through chapter 3 of Lee's book, I want to define one more standard manifold structure.\retTwo
-
-Suppose $V$ is a finite dimensioned real vector space. Then there is a unique Hausdorff vector space topology on $V$ (see \inLinkRap{placeholder}{pages 442-443}). Furthermore, if $f: \mathbb{R}^n \to V$ is any invertible linear map and $V$ is equipped with the unique Hausdorff topology, then $f$ will be a homeomorphism. Therefore, can trivially say that any finite dimensioned real vector space is a topological manifold (without a boundary).
-\begin{myIndent}\pracTwo
-	The standard smooth structure we equip $V$ is the one generated by all the charts $(V, f)$\\ where $f: V \to \mathbb{R}^n$ is a bijective linear map. Importantly, given any bijective linear maps $f, g: V \to \mathbb{R}^n$ we have that $g \circ f^{-1}$ is a bijective linear map from $\mathbb{R}^n$ to $\mathbb{R}^n$ (which is thus smooth). So, these charts do define a $C^\infty$-structure.\newpage
-\end{myIndent}
-
-Suppose $V$ is an $n$-dimensional real vector space equipped with the standard smooth\\ structure. Then let $p \in V$. Given any $v \in V$ we define $\Df_v|_p : C^\infty(V, \mathbb{R}) \to \mathbb{R}$ by\\ $\Df_v|_p f \coloneqq \left.\frac{\df}{\df t}\right|_{t = 0}f(p + tv)$.
-\begin{myIndent}\pracTwo
-	First I want to show $D_v|p$ is even well-defined. So suppose $f \in C^\infty(V)$ and let\\ $S: \mathbb{R}^n \to V$ be any invertible linear map. Then we must have that $f \circ S \in C^\infty(\mathbb{R}^n)$.\\ Yet also let $a, y \in \mathbb{R}^n$ be such that $S(a) = p$ and $S(y) = v$. Then because:
-	
-	{\centering$S(a + ty) = S(a) + tS(y) = p + tv$,\\ [4pt]\par}
-	
-	we can say that $f(p + tv) = (f \circ S)(a + ty)$.\retTwo
-	
-	It follows that $\Df_v|_p f = \nabla(f \circ S)(a) \cdot y = \nabla(f \circ S)(S^{-1}(p)) \cdot S^{-1}(v)$.\retTwo
-
-	And based on the formula I just derived, it's also now clear that $D_v|_p$ is a derivation\\ at $p$ and that the map $V \to T_p V$ given by $v \mapsto D_v|_p$ is a linear map.
-	
-	
-	\begin{myIndent}\myComment
-		As a side note, if $V = \mathbb{R}^n$ then $\Df_v|_p$ is just the directional derivative at $p$ in the direction of $v$.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\exTwo\ul{Lemma:} Suppose $V$ is an $n$-dimensional real vector space and $W$ is an $m$-dimensional real vector space. Also equip $V$ and $W$ with their standard smooth structure. Then any linear map $T: V \to W$ is a $C^\infty$ map.
-\begin{myIndent}\exThreeP
-	Why?\\
-	Let $S_V : \mathbb{R}^n \to V$ and $S_W: \mathbb{R}^m \to W$ be bijective linear maps. Then $(V, S_V^{-1})$ is a smooth chart on $V$ covering all of $V$, $(W, S_W^{-1})$ is a smooth chart on $W$ covering all of $W$, and $S_W^{-1} \circ T \circ S_V$ is a linear map (and thus a $C^\infty$-map) from $\mathbb{R}^n$ to $\mathbb{R}^m$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\exTwo\ul{Corollary:} Let $V$ be an $n$-dimensional real vector space equipped with the standard smooth structure, and also let $V^*$ denote the "algebraic dual space" of $V$ (i.e. the vector space of all linear functionals $\phi: V \to \mathbb{R}$ that are continuous or not continuous. [Although since $V$ is finite-dimensioned, all linear functionals will be continuous\dots]). Then $V^* \subseteq C^\infty(V, \mathbb{R})$.
-\begin{myIndent}\exThreeP
-	Why?\\
-	The standard vector space smooth structure on $\mathbb{R}$ as well as the standard smooth structure on $\mathbb{R}$ are both generated by the chart $(\mathbb{R}, \myId_{\mathbb{R}})$. Hence, both smooth structures are the same and we can in turn apply the prior lemma. $\blacksquare$\retTwo
-\end{myIndent}
-
-\exTwo\ul{Proposition 3.13:} Let $V$ be an $n$-dimensional real vector spaces equipped with the\\ standard smooth structure and suppose $p \in V$. The map $v \mapsto \Df_v|_p$ is a vector space\\ isomorphism from $V$ to $T_p V$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	To start off, since $V$ is an $n$-dimensional manifold, we know that $T_p V$ is also an $n$-dimensional vector space. Hence, so long as we can prove that the linear map $v \mapsto D_v|_p$ is injective then we must have that $v \mapsto D_v|_p$ is a vector space isomorphism.\retTwo
-
-	Fortunately, suppose for the sake of contradiction that there exists $v \in V - \{0\}$ such that $\Df_v|_p f = 0$ for all $f \in C^\infty(V)$. Then we can pick vectors $v_2, \ldots, v_n \in V$ such that $\mSpan(v, v_2, \ldots, v_n) = V$. Next, there's a well-defined linear functional $f: V \to \mathbb{R}$ given by $f(c_1 v + \sum_{i=2}^n c_i v_i) \coloneqq c_1$. Importantly, $f \in C^\infty(V, \mathbb{R})$ by the prior corollary. Also since $C^\infty(V, \mathbb{R})$ is a real vector space containing all constant functions, we can additionally say that $g \coloneqq f - f(p)$ is a $C^\infty$ map from $V$ to $\mathbb{R}$.\newpage
-
-	With that, we now have that:
-	
-	{\centering$0 = \Df_v|_p g = \left.\frac{\df}{\df t}\right|_{t = 0} g(p + tv) = \left.\frac{\df}{\df t}\right|_{t = 0} f(tv) = \left.\frac{\df}{\df t}\right|_{t = 0} t = 1$.\retTwo\par}
-
-	This is a contradiction. So we can conclude that $\ker(v \mapsto \Df_v|_p) = \{0\}$.\retTwo
-\end{myIndent}
-
-Furthermore, suppose $W$ is an $m$-dimensional real vector space equipped with the\\ standard smooth structure and $L: V \to W$ is a linear map. Then for any $p \in V$ the\\ below diagram commutes:\\ [-20pt]
-% https://q.uiver.app/#q=WzAsOSxbMSwxLCJWIl0sWzEsMiwiVyJdLFsyLDEsIlRfcFYiXSxbMiwyLCJUX3tMKHApfVciXSxbMCwwXSxbMywwXSxbNCwyXSxbMiwzXSxbMCwzXSxbMCwxLCJMIiwyXSxbMCwyLCJcXHNpbSIsMl0sWzEsMywiXFxzaW0iXSxbMiwzLCJcXGRmIExfcCJdLFswLDQsInYiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsyLDUsIlxcRGZfdnxfcCIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzMsNiwiXFxkZiBMX3AoXFxEZl92fF9wKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzMsNywiXFxEZl97TCh2KX18X3tMKHApfSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsOCwiTCh3KSIsMSx7Im9mZnNldCI6LTEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEzLDE3LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMywxNCwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTQsMTUsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjoyMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE3LDE2LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MjAsInRhcmdldCI6MzB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxNSwxNiwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjMwLCJ0YXJnZXQiOjMwfSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
-\[\begin{tikzcd}
-	{} &&& {} & \\
-	& V & {T_pV} \\
-	& W & {T_{L(p)}W} && {} \\
-	{} && {}
-	\arrow[""{name=0, anchor=center, inner sep=0}, "v"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
-	\arrow["\sim"', from=2-2, to=2-3]
-	\arrow["L"', from=2-2, to=3-2]
-	\arrow[""{name=1, anchor=center, inner sep=0}, "{\Df_v|_p}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=1-4]
-	\arrow["{\df L_p}", from=2-3, to=3-3]
-	\arrow["\sim", from=3-2, to=3-3]
-	\arrow[""{name=2, anchor=center, inner sep=0}, "{L(w)}"{description}, shift left, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-2, to=4-1]
-	\arrow[""{name=3, anchor=center, inner sep=0}, "{\df L_p(\Df_v|_p)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=3-5]
-	\arrow[""{name=4, anchor=center, inner sep=0}, "{\Df_{L(v)}|_{L(p)}}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-3]
-	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
-	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=2]
-	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.8}, maps to, from=1, to=3]
-	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.7}, maps to, from=2, to=4]
-	\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.3}{0.7}, equals, from=3, to=4]
-\end{tikzcd}\]
-\begin{myIndent}\exThreeP
-	Proof:\\
-	It suffices to show that $\df L_p(\Df_v|_p) = \Df_{L(v)}|_{L(p)}$. Fortunately, for any $f \in C^\infty(W, \mathbb{R})$\\ we have that:
-
-	{\centering\begin{tabular}{l}
-		$\df L_p(\Df_v |_p)f = \Df_v|_p(f \circ L) = \left.\frac{\df}{\df t}\right|_{t = 0} (f \circ L)(p + tv)$\\ [8pt] 
-		$\phantom{\df L_p(\Df_v |_p)f = \Df_v|_p(f \circ L)} = \left.\frac{\df}{\df t}\right|_{t = 0} f(L(p) + tL(v)) = \Df_{L(v)}|_{L(p)}f$. $\blacksquare$
-	\end{tabular}\retTwo\par}
+	Yet now note that $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ is a $C^k$ map from $\widehat{U}$ into $\mathbb{R}$ such that $\Df \widehat{F}(\varphi(p))$ is invertible. It follows by the inverse function theorem in my math 140c notes that there are open sets $\widehat{U}_0$ and $\widehat{V}_0$ of $\mathbb{R}^n$ such that $\varphi(p) \in \widehat{U}_0 \subseteq \widehat{U}$ and $\widehat{F}$ is a bijection from $\widehat{U}_0$ to $\widehat{V}_0$. So $(\psi|_{\psi^{-1}(\widehat{V}_0)}, \psi^{-1}(\widehat{V}_0))$ is an interior chart on $N$ containing $F(p)$. $\blacksquare$\retTwo
 \end{myIndent}
 
 \pracOne\mySepTwo
 
-One may notice that the definition of a derivation on a $C^\infty$ manifold $M$ which was given prior specifically required us to work with maps in $C^\infty(M, \mathbb{R})$ maps. Also, we only defined differentials of $C^\infty$ maps between maps. But what if we want to work with less smooth manifolds.\retTwo
+\hTwo\dispDate{7/23/2026}
 
-To start off, I want to recall a comment I made on \inLinkRap{Side note page 1035}{page 1035}. Namely, suppose we\\ are working with $C^r$ manifold $M$ (where $r \in \mathbb{Z}_{\geq 1} \cup \{\infty\}$). Then given any $p \in M$ and\\ $k < \min(\infty, r + 1)$, what is the space of "derivations at $p$" mapping $C^k(M, \mathbb{R})$ to $\mathbb{R}$?
-\begin{myIndent}\pracTwo
-	I'm only slightly modifying a proof that I read from math stack exchange (see \inLinkRap{citation 11}{citation 11}\\ in my bibliography).\retTwo
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	Recall that $C^k(M, \mathbb{R})$ is a unital real algebra. So, let us consider the set:
-	
-	{\centering$\mathfrak{m} \coloneqq \{f \in C^k(M, \mathbb{R}) : f(p) = 0\}$.\retTwo\par}
-	
-	I claim this is a maximal ideal of $C^k(M, \mathbb{R})$.
-	\begin{myIndent}\exPPP
-		To see that this is an ideal, just note that if $f \in \mathfrak{m}$ and $g \in C^k(M, \mathbb{R})$ then\\ $fg \in C^k(M, \mathbb{R})$ with $(fg)(p) = 0 \cdot g(p) = 0$. So, $fg \in \mathfrak{m}$. Similarly, if\\ $f, g \in \mathfrak{m}$ then $f + g \in C^k(M, \mathbb{R})$ with $(f + g)(p) = f(p) + g(p) = 0 + 0 = 0$.\\ So, $f + g \in \mathfrak{m}$.\retTwo
+\pracOne To start off, it's been bugging me for several days that I don't have a way of talking about tangent spaces to corner points of $C^r$ manifolds (where $r < \infty$). So I'm going to bodge a solution. I am not getting this construction from any resources though so I'm sorry if my construction disagrees with a better solution.\retTwo
 
-		As for showing that $\mathfrak{m}$ is a maximal ideal, suppose $g \in C^k(M, \mathbb{R}) - \mathfrak{m}$. Then\newpage consider any $f \in C^k(M, \mathbb{R})$. Since $g(p) \neq 0$, we can say that $f - \frac{f(p)}{g(p)}g \in \mathfrak{m}$. In turn, $f \in \mathbb{R}g + \mathfrak{m}$. And since $f$ was arbitrary, we've proven that:
+Let $M$ be a $C^r$ manifold with a corner point $p$. Then we define $\mathcalli{C}(M, p)$ and $\mathcalli{V}_p M$ as on \inLinkRap{Page 1046 reference}{page 1046}. Also, we let $\mathcalli{D}_p M$ denote the space of derivations at $p$ from $C^1(M, \mathbb{R})$ to $\mathbb{R}$. Now for any $\gamma \in \mathcalli{C}(M, p)$ we know $D_\gamma: C^1(M, \mathbb{R}) \to \mathbb{R}$ given by $D_\gamma(f) \coloneqq (f \circ \gamma)^\prime(0)$ is a well-defined derivation at $p$. Also, we know by the definition of the equivalence classes in $\mathcalli{V}_p(M)$ that $[\gamma_1] = [\gamma_2]$ in $\mathcalli{V}_p$ if and only if $D_{\gamma_1} = D_{\gamma_2}$.\retTwo
+\begin{myIndent}
+	\ul{Lemma:} Let $S \coloneqq \{D_\gamma : [\gamma] \in \mathcalli{V}_p M\}$. Then let $T_p M$ be the subspace of $\mathcalli{D}_p M$ spanned by $S$.
+	\begin{enumerate}
+		\item[(a)] If $M$ is an $n$-dimensional manifold then $T_p M$ is also $n$-dimensional.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			Let $(U, \varphi)$ be a smooth chart on $M$ containing $p$, and then recall for any\\ $f \in C^1(M, \mathbb{R})$ and $[\gamma] \in \mathcalli{V}_p M$ that:
+
+			{\centering $\Df_\gamma(f) = (f \circ \gamma)^\prime(0) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot (\varphi \circ \gamma)^\prime(0)$ \retTwo\par}
+
+			Now suppose $\gamma_1, \ldots, \gamma_{n+1}$ are all in $\mathcalli{C}(M, p)$. Then for any $c_1, \ldots, c_{n+1}$\\ we have that:
+
+			{\centering $\left(\sum_{i=1}^{n+1} c_i D_{\gamma_i}\right)(f) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot \left( \sum_{i=1}^{n+1} c_i(\varphi \circ \gamma_i)^\prime(0)\right)$ \retTwo\par}
+
+			Yet because $\mathbb{R}^n$ is an $n$-dimensional vector space, we know there exists\\ $c_1, \ldots, c_{n+1}$ which aren't all zero such that $\sum_{i=1}^{n+1} c_i(\varphi \circ \gamma_i)^\prime(0) = 0 \in \mathbb{R}^n$.\newpage And then we'll have $\left(\sum_{i=1}^{n+1} c_i D_{\gamma_i}\right)(f) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot 0 = 0$ for all $f \in C^1(M, \mathbb{R})$. This proves that $\dim(T_p M) \leq n$.\retTwo
+
+			As for the other inequality, note that because $\varphi(U)$ is open in $(\mathbb{R}_{\geq 0})^n$, we can guarentee if $e_1, \ldots, e_n$ is the standard basis for $\mathbb{R}^n$ then there exists $R > 0$ with $\varphi(p) + te_i \in \varphi(U)$ for all $t \in [0, R]$ and each $i$. So, I define $\gamma_i: [0, R] \to M$ by $\gamma(t) \coloneqq \varphi^{-1}(\varphi(p) + te_i)$. Then for any $c_1, \ldots, c_n$ we have that:
+
+			{\centering $\left(\sum_{i=1}^{n} c_i D_{\gamma_i}\right)(f) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot (c_1, \ldots, c_n)$ \retTwo\par}
+
+			At last, we just need to show that if $\mVecAst{c} \coloneqq (c_1, \ldots, c_n) \neq 0$ then there exists some $f \in C^1(M, \mathbb{R})$ with $\nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot \mVecAst{c} \neq 0$. Fortunately, we know from the proof of the lemma on \inLinkRap{Lemma page 1047}{page 1047} how to go a step further and find $f \in C^r(M, \mathbb{R})$ with $\nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot \mVecAst{c} \neq 0$. Therefore:
+			\begin{itemize}
+				\item $D_{\gamma_1}, \ldots, D_{\gamma_n}$ is a collection of linearly independent vectors in $S \subseteq \mathcalli{D}_p M$.
+				\item If we restrict the domains of all the derivations in $T_p M$ to just $C^r(M, \mathbb{R})$ then we still have that $D_{\gamma_1}, \ldots, D_{\gamma_n}$ are linearly independent vectors.\retTwo
+			\end{itemize}
+		\end{myIndent}
+
+		\item[(b)] Let $F: M \to N$ be a $C^1$ map. Then let $S^\prime \coloneqq \{D_\gamma : [\gamma] \in \mathcalli{V}_{F(p)} N\}$ and let $T_{F(p)} N$ be the subspace of $\mathcalli{D}_{F(p)} N$ spanned by $S^\prime$.
+		\begin{myIndent}\color{red}
+			[Note that if $F(p)$ is not a corner point of $N$, then this definition agress with our definition from \inLinkRap{Page 1051 reference}{page 1051} because $T_{F(p)}N$ would equal $S^\prime$].\retTwo
+		\end{myIndent}
 		
-		{\center$C^k(M, \mathbb{R}) = \mathbb{R}g + \mathfrak{m} \subseteq \langle \{g\} \cup \mathfrak{m}\rangle \subseteq C^k(M, \mathbb{R})$.\retTwo\par}
-		
-		Also since $g$ was arbitrary, we've shown that $\mathfrak{m}$ is a maximal ideal (and even a maximal proper vector subspace) of $C^k(M, \mathbb{R})$.\retTwo
-	\end{myIndent}
-
-	Now $\mathfrak{m}^2$ will be an ideal (and thus also vector subspace) of $C^k(M, \mathbb{R})$ contained in $\mathfrak{m}$.\\ Hence, we can consider the quotient space $V \coloneqq \mathfrak{m}/\mathfrak{m}^2$. I claim that the space of\\ "derivations at $p$" mapping $C^k(M, \mathbb{R})$ to $\mathbb{R}$ is isomorphic to the algebraic dual space $V^*$.
-	\begin{myIndent}\exPPP
-		Proof:\\
-		Firstly suppose $\varphi \in V^* = (\mathfrak{m}/\mathfrak{m}^2)^*$. Equivalently, we can view $\varphi$ as linear\\ functional on $\mathfrak{m}$ such that $\varphi(\mathfrak{m}^2) = \{0\}$. Next, we know from before that\\ $C^k(M, \mathbb{R}) = \{\text{constant functions}\} \oplus \mathfrak{m}$. So, we can uniquely extend $\varphi$ to being\\ a linear functional on $C^k(M, \mathbb{R})$ by just setting $\varphi(\text{constant function}) \coloneqq 0$. For\\ convenience, I'll give this extended linear functional the name $\Df_\varphi$.\retTwo
-
-		I claim $\Df_{\varphi}$ is a derivation at $p$. After all, we already know its a linear map from $C^k(M, \mathbb{R})$ to $\mathbb{R}$. Furthermore, suppose $f, g \in C^k(M, \mathbb{R})$. Then we know that $\widetilde{f} \coloneqq f - f(p)$ and $\widetilde{g} \coloneqq g - g(p)$ are both in $\mathfrak{m}$. Also:
-
-		{\centering\begin{tabular}{l}
-			$\Df_\varphi(fg) = \Df_\varphi((\widetilde{f} + f(p))(\widetilde{g} + g(p)))$\\ [4pt]
-			$\phantom{\Df_\varphi(fg)} = \Df_\varphi(\widetilde{f}\widetilde{g}) + f(p)\Df_\varphi(g - g(p)) + g(p)\Df_\varphi(f - f(p)) + \Df_\varphi(f(p)g(p))$.
-		\end{tabular}\retTwo\par}
-
-		But now as $\Df_{\varphi}(\mathfrak{m}^2) = \{0\}$, we know that $\Df_\varphi(\widetilde{f}\widetilde{g}) = 0$. Also, $\Df_\varphi(f(p)g(p)) = 0$, $\Df_\varphi(g - g(p)) = \Df_\varphi(g)$, and $\Df_\varphi(f - f(p)) = \Df_\varphi(f)$ since $\Df_\varphi$ is a linear map sending constant functions to zero. Hence, we can conclude that:
-
-		{\centering $\Df_\varphi(fg) = f(p)\Df_\varphi(g) + g(p)\Df_\varphi(f)$.\retTwo\par}
-
-		Now after letting $\mathcalli{D}_p M$ denote the space of derivations at $p$ mapping $C^k(M, \mathbb{R})$ to $\mathbb{R}$ define the map $\Phi: V^* \to \mathcalli{D}_p M$ by $\varphi \mapsto \Df_\varphi$. It is obvious from the construction of $\Df_\varphi$ that $\Phi$ is a linear map. Meanwhile, to show that $\Phi$ is bijective we shall note that $\Phi$ has an incredibly simple inverse.\retTwo
-
-		Suppose $w \in \mathcalli{D}_p M$ and consider $w|_{\mathfrak{m}}$. Since $w$ is a derivation, we know from the lemma on \inLinkRap{lemma page 1028}{page 1028} that $w(\mathfrak{m}^2) = \{0\}$. {\color{red}[Technically that lemma assumes all the functions being input into the derivation are $C^\infty$. That said, nothing in the proof of that lemma actually requires any smoothness conditions.]} It follows that $w|_{\mathfrak{m}}$\\ quotients to a well defined map $\Psi(w) \in (\mathfrak{m}^2/\mathfrak{m})^*$. Also, we can easily see that\\ $\Psi = \Phi^{-1}$. $\blacksquare$\retTwo
-	\end{myIndent}
-
-	You may note that none of our reasoning in this section so far has required that $k$ is finite. However, a fact one can prove is that if $k$ is finite then $V$ will be infinite dimensioned. In turn, we'll also have that $V^*$ is infinite dimensioned. I'm tired, its almost 1am, and proving this fact isn't the most insanely interesting thing ever. So, I'm going to skip showing this. But the T.L.D.R. is that if $k < \infty$ then there are way more derivations from $C^k(M, \mathbb{R})$ into $\mathbb{R}$ then there should be if derivations are purely an abstraction of directional derivatives. And we don't want this.\newpage
+		Now define $\df F_p : \mathcalli{D}_p M \to \mathcalli{D}_{F(p)}N$ by $\df F_p(v)f \coloneqq v(f \circ F)$. Then we have that $\df F_p(T_p M) \subseteq T_{F(p)}N$.
+		\begin{myIndent}\pracTwo
+			Proof:\\
+			It suffices to show that $\df F_p(S) \subseteq S^\prime$. Fortunately, given any $D_\gamma \in S$ we have that $\df F_p (D_{\gamma})f = D_\gamma(f \circ F) = (f \circ F \circ \gamma)^\prime(0) = D_{F \circ \gamma} f$. Therefore\\ $\df F_p (D_{\gamma}) = D_{F \circ \gamma} \in S^\prime$. $\blacksquare$\retTwo
+		\end{myIndent}
+	\end{enumerate}
 \end{myIndent}
 
-{\hTwo\dispDate{7/19/2026}}
+Based on the prior lemma, we now have a way of defining $T_p M$ when $p$ is a corner point. Also by part (b), we know that the differential of $F: M \to N$ at $p$ gives a well defined linear map $T_p M \to T_{F(p)}N$.\retTwo
 
-If our goal is to have the tangent space to a $C^r$-manifold $M$ (where $r$ is potentially finite) only contain directional derivatives, then we can try to formalize a tangent space in the following different way from how we were doing so before. (Also for this section I'll be assuming by default that our manifolds can have corners and a boundary.)\retTwo
+The proofs for propositions 3.6, 3.8, and 3.9 on pages \inLinkRap{Proposition 3.6 page 1031}{1031} and \inLinkRap{page 1033 reference}{1033-1034} can now be repeated verbatim for our modified definition of $T_p M$ for when $p$ is a corner chart and $M$ is a $C^r$ manifold with $r \neq \infty$ necessarily. Similarly, nothing on \inLinkRap{page 1051-1053 reference}{pages 1051-1053} breaks down with our definition for this special case either. Finally, proposition 4.1 on \inLinkRap{Proposition 4.1 pages 1054-1056}{pages 1054-1056} as exercise 4-2 on the prior page still work by identical reasoning.\retTwo
 
-Pick a point $p \in M$. Next, we consider any $C^1$ path $\gamma: J \to M$ where $J \subseteq \mathbb{R}$ is a closed interval containing $0$ and having a nonempty interior, and $\gamma(0) = p$.
+And with that I'll now allow my manifolds to have corners again by default.\retTwo
+
+\mySepTwo 
+
+\hTwo Next, I want to talk about product manifolds. Let $M_1, \ldots, M_k$ be $C^r$-manifolds of\\ dimensions $n_1, \ldots, n_k$ respectively. Then let $M \coloneqq M_1 \times \cdots \times M_k$ be their product\\ manifold, and for each $i$ let $\pi_i: M \to M_i$ be the projection map $(p_1, \ldots, p_k) \mapsto p_i$.\newpage
 \begin{myIndent}\myComment
-	As a side note, I'm allowing $0$ to be either endpoint of $J$.\retTwo
+	Remark: Given any finite collection of $C^r$ manifolds $M_1, \ldots, M_k$ with corners, the standard product $C^r$-structure on $M \coloneqq M_1 \times \cdots \times M_k$ defined on \inLinkRap{proposition bottom of page 1038}{page 1038} is still well-defined. Furthermore, the proof of the proposition on \inLinkRap{proposition on page 1039}{page 1039} still works verbatim. Thus the category of $C^r$ manifolds with corners (which I'll denote $\mcateg{Diff}^r_c$) does admit products over any finite collection of objects. In particular, we can see that $(p_1, \ldots, p_k)$ is a corner point of $M$ if at least one $p_i$ is a corner point of $M_i$ or there are two components $p_i$ and $p_j$ which are boundary points of $M_i$ and $M_j$ respectively.\retTwo
+\end{myIndent}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\exTwo\ul{Proposition 3.14:} Let $p = (p_1, \ldots, p_k) \in M$. Then the map $\alpha: T_p M \to \bigoplus_{i=1}^k T_{p_i}M_i$ defined by $\alpha(v) \coloneqq (\df (\pi_1)_p (v), \ldots, \df (\pi_k)_p (v))$ is an isomorphism.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	For each $i$ let us define $\iota_i: M_i \to M$ by $\iota_i(q) \coloneqq (p_1, \ldots, p_{i-1}, q, p_{i+1}, \ldots, p_k)$. Then, we define $\beta: \bigoplus_{i=1}^k T_{p_i}M_i \to T_p M$ by $\beta(v_1, \ldots, v_k) \coloneqq \sum_{i=1}^k \df (\iota_i)_{p_i}(v_i)$. I claim that\\ $\beta = \alpha^{-1}$. To see why, first note that:
+
+	{\centering\begin{tabular}{l}
+		$(\alpha \circ \beta)(v_1, \ldots, v_k) = \alpha\left(\sum\limits_{i=1}^k \df (\iota_i)_{p_i}(v_i)\right)$\\ [12pt]
+		$\phantom{(\alpha \circ \beta)(v_1, \ldots, v_k)} = \left(\df (\pi_1)_p\left(\sum\limits_{i=1}^k \df (\iota_i)_{p_i}(v_i)\right), \ldots, \df (\pi_k)_p\left(\sum\limits_{i=1}^k \df (\iota_i)_{p_i}(v_i)\right)\right)$\\ [16pt]
+		$\phantom{(\alpha \circ \beta)(v_1, \ldots, v_k)} = \left(\sum\limits_{i=1}^k\df (\pi_1)_p(\df (\iota_i)_{p_i}(v_i)), \ldots, \sum\limits_{i=1}^k\df (\pi_k)_p(\df (\iota_i)_{p_i}(v_i))\right)$\\ [16pt]
+		$\phantom{(\alpha \circ \beta)(v_1, \ldots, v_k)} = \left(\sum\limits_{i=1}^k\df (\pi_1 \circ \iota_i)_{p_i}(v_i), \ldots, \sum\limits_{i=1}^k\df (\pi_k \circ \iota_i)_{p_i}(v_i)\right)$
+	\end{tabular}\retTwo\par}
+
+	But now $\pi_j \circ \iota_i$ is a constant map if $j \neq i$. As a result, if $v \in T_{p_i}M_i$ and $f \in C^1(M_j, \mathbb{R})$ then $f \circ \pi_j \circ \iota_i$ is a constant function from $M_i$ to $\mathbb{R}$ and in turn:
 	
-	Furthermore, as $J$ is a $1$-dimensional manifold (with a boundary) it does make sense to talk about $\gamma$ as being $C^1$ or not. In fact, given any smooth chart $(U, \varphi)$ on $M$, we can say that $\gamma$ is a $C^1$ map if and only if $\gamma$ is continuous and $\varphi \circ \gamma$ is a $C^1$ map from $\gamma^{-1}(U) \subseteq \mathbb{R}$.\retTwo
+	{\centering$\df (\pi_j \circ \iota_i)_{p_i}(v_i)f = v_i(f \circ \pi_j \circ \iota_i) = 0$.\retTwo\par}
+	
+	Since $f$ was arbitrary, this shows that if $j \neq i$ then $\df (\pi_j \circ \iota_i)_{p_i}(v)$ is the zero map. And since $v$ was arbitary, we can conclude $\df (\pi_j \circ \iota_i)_{p_i}$ is also the zero map. Meanwhile, $\pi_i \circ \iota_i = \myId_{M_i}$. Hence, we can conclude that:
+
+	{\centering\begin{tabular}{l}
+		$\left(\sum\limits_{i=1}^k\df (\pi_1 \circ \iota_i)_{p_i}(v_i), \ldots, \sum\limits_{i=1}^k\df (\pi_k \circ \iota_i)_{p_i}(v_i)\right) = (\df (\myId_{M_1})_{p_1}(v_1), \ldots, \df (\myId_{M_k})_{p_k}(v_k))$\\ [6pt]
+		$\phantom{\left(\sum\limits_{i=1}^k\df (\pi_1 \circ \iota_i)_{p_i}(v_i), \ldots, \sum\limits_{i=1}^k\df (\pi_k \circ \iota_i)_{p_i}(v_i)\right)} = (v_1, \ldots, v_k)$.
+	\end{tabular}\retTwo\par}
+
+	With that, we've proven that $\beta$ is a right inverse of $\alpha$. Based on the fact that $\alpha$ has a right inverse, we know that $\alpha$ is a surjective linear map. And since $T_p M$ and $\bigoplus_{i=1}^k T_{p_i}M_i$ are both $(n_1 + \ldots + n_k)$-dimensional vector spaces and $\alpha$ is a linear map, we can conclude more strongly that $\alpha$ must be a bijection. And finally, any right inverse of a bijective function must also be a left inverse. Therefore, $\beta = \alpha^{-1}$. $\blacksquare$\retTwo
 \end{myIndent}
 
-We shall consider the set $\mathcalli{C}(M, p)$ of all such $C^1$-paths $\gamma$ described priorly. And then, we define an equivalence relation on $\mathcalli{C}(M, p)$. Namely, we say $\gamma_1 \sim \gamma_2$ iff:
+\hTwo The map $\alpha$ in the prior proposition is taken to define a standard identification between $T_p M$ and $\bigoplus_{i=1}^k T_{p_i}M_i$.\retTwo
 
-{\centering$(f \circ \gamma_1)^\prime(0) = (f \circ \gamma_2)^\prime(0)$ for all $f \in C^1(M, \mathbb{R})$.\retTwo\par}
+\mySepTwo\newpage
 
-The fact that this is an equivalence relation is trivial to show. Hence, we can consider the space $\mathcalli{V}_p M$ of equivalence classes of $\mathcalli{C}(M, p)$. Plus, if $\gamma \in \mathcalli{C}(M, p)$ then we consider its equivalence class in $\mathcalli{V}_p M$ to be $[\gamma]$.\retTwo
+\dispDate{7/24/2026}
 
-\begin{myIndent}
-	\ul{Lemma:} Suppose $F: M \to N$ is a $C^1$ map and $\gamma_1: J_1 \to M$ and $\gamma_2: J_2 \to M$ are paths in $\mathcalli{C}(M, p)$ such that $[\gamma_1] = [\gamma_2]$.
-	\begin{enumerate}
-		\item[(a)] We know $(F \circ \gamma_i): J_i \to N$ is a path in $\mathcalli{C}(N, F(p))$.
-		\begin{myIndent}\pracTwo
-			Hopefully this is obvious. After all, $F \circ \gamma_i$ is a composition of $C^1$ maps and is thus a $C^1$ map itself. Also $(F \circ \gamma_i)(0) = F(p)$.\retTwo
-		\end{myIndent}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-		\item[(b)] Furthermore, $[F \circ \gamma_1] = [F \circ \gamma_2]$ in $\mathcalli{V}_{F(p)}N$.
-		\begin{myIndent}\pracTwo
-			Why?\\
-			Suppose $g \in C^1(N, \mathbb{R})$. Then $g \circ F \in C^1(M, \mathbb{R})$. Hence, we know that:
+\exTwo\ul{Proposition 4.6 (Properties of local $C^k$-diffeomorphisms):}
+\begin{enumerate}
+	\item[(a)] Let $M, N, P$ be $C^r$ manifolds and suppose $k \leq r$. If $F: M \to N$ and $G: N \to P$ are local $C^k$-diffeomorphisms, then so is $G \circ F: M \to P$.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		Consider any $p \in M$. Since $F$ is a local $C^k$-diffeomorphism, we know there exists an open set $U \subseteq M$ containing $p$ and an open set $V \subseteq N$ such that $F|_U$ is a $C^k$-diffeomorphism from $U$ to $V$. Next, since $G$ is a local $C^k$-diffeomorphism, we know that there is an open set $V^\prime \subseteq N$ containing $F(p)$ and an open set $W^\prime \subseteq P$ such that $G|_{V^\prime}$ is a $C^k$-diffeomorphism from $V^\prime$ to $W^\prime$. And now we set $V_0 \coloneqq V \cap V^\prime$, $W_0 \coloneqq G(V_0)$, and $U_0 \coloneqq F^{-1}(V_0) \cap U$. We know that $U_0$ and $W_0$ are open sets in $M$ and $P$ respectively, that $p \in U_0$, and that $(G \circ F)$ is a $C^k$ diffeomorphism from $U_0$ to $W_0$.
+	\end{myIndent}
+
+	\item[(b)] Suppose $M_1, \ldots, M_k$ are $C^r$ manifolds with $M \coloneqq M_1 \times \cdots \times M_k$, $N_1, \ldots, N_k$ are also $C^r$ manifolds with $N \coloneqq N_1 \times \cdots \times N_k$, and $F_i : M_i \to N_i$ is a local $C^s$ diffeomorphism for all $1 \leq i \leq k$ (where $s \leq r$). Then $F_1 \times \cdots \times F_k : M \to N$ is a local $C^s$ diffeomorphism.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		Let $(p_1, \ldots, p_k)$ be any point in $M$. For each $i$ we can pick open sets $U_i \subseteq M_i$\\ containing $p$ and $V_i \subseteq N_i$ such that $F|_{U_i}: U_i \to V_i$ is a $C^s$ diffeomorphism.\\ And now $U \coloneqq U_1 \times \cdots \times U_k$ is an open subset of $M$ containing $(p_1, \ldots, p_k)$\\ and $V \coloneqq V_1 \times \cdots V_k$ is an open subset of $N$. I claim $F \coloneqq F_1 \times \cdots \times F_k$ is a\\ $C^s$ diffeomorphism from $U$ to $V$. This is because of the following lemma.\retTwo
+
+		\ul{Lemma:} Suppose $M_1, \ldots, M_k$ are $C^r$ manifolds with $M \coloneqq M_1 \times \cdots \times M_k$,\\ $N_1, \ldots, N_k$ are also $C^r$ manifolds with $N \coloneqq N_1 \times \cdots \times N_k$, and $F_i : M_i \to N_i$ is a $C^s$ diffeomorphism for all $1 \leq i \leq k$. Then $F_1 \times \cdots \times F_k : M \to N$ is a $C^s$ diffeomorphism.
+		\begin{myIndent}\exPPP
+			Proof:\\
+			It's incredibly straightforward to show that $F_1 \times \cdots \times F_k$ is a $C^s$ map. Also, for each $i$ let $G_i$ be the inverse map of $F_i$. Then as each $G_i$ is $C^s$, we can conclude by identical reasoning that $G_1 \times \cdots \times G_k: N \to M$ is a $C^s$ map. And also it is easy to check that 
 			
-			{\centering$((g \circ F) \circ \gamma_1)^\prime(0) = ((g \circ F) \circ \gamma_2)^\prime(0)$. $\blacksquare$\retTwo\par}
-		\end{myIndent}
-	\end{enumerate}
-\end{myIndent}
-
-Based on this, we'll define the \udefine{differential at $p$} of a $C^1$ map $F: M \to N$ to be the\\ function $\df F_p : \mathcalli{V}_p M \to \mathcalli{V}_{F(p)} N$ given by $\df F_p [\gamma] \coloneqq [F \circ \gamma]$.
-\begin{myTindent}\myComment
-	(Ignore the conflict in notation now. I'll deal with it later\dots)\retTwo
-\end{myTindent}
-
-\begin{myIndent}
-	\ul{Proposition:} Let $M, N, P$ be $C^r$ manifolds, let $F: M \to N$ and $G: N \to P$ be\\ $C^1$ maps, and let $p \in M$.
-	\begin{enumerate}
-		\item[(a)] $\df(G \circ F)_p = \df G_{F(p)} \circ \df F_p$.
-		\begin{myIndent}\pracTwo
-			Why?\\
-			$\df(G \circ F)_p([\gamma]) = [G \circ F \circ \gamma] = \df G_{F(p)}([F \circ \gamma]) =  \df G_{F(p)}( \df F_{p}([\gamma]))$.\newpage
-		\end{myIndent}
-		\item[(b)] $\df (\myId_M)_p = \myId_{\mathcalli{V}_p M}$.
-		\begin{myIndent}\pracTwo
-			Hopefully this is obvious from the fact $[\myId_M \circ \gamma] = [\gamma]$.\retTwo
-		\end{myIndent}
-		\item[(c)] If $F: M \to N$ is a $C^1$-diffeomorphism then $\df F_p$ is a bijection and\\ $(\df F_p)^{-1} = \df (F^{-1})_{F(p)}$.
-		\begin{myIndent}\pracTwo
-			To see why, just combine parts (a) and (b). $\blacksquare$.\retTwo
-		\end{myIndent}
-	\end{enumerate}
-\end{myIndent}
-
-Now a downside of viewing the tangent space $\mathcalli{V}_p M$ as a collection of equivalence classes of curves is that the vector space structure on $\mathcalli{V}_p M$ is not at all obvious. So my next goal will be to make that structure clear.\retTwo
-
-\begin{myIndent}
-	\ul{Lemma:} Let $M$ be an $n$-dimensional $C^r$ manifold, let $p \in M$, and let $(U, \varphi)$ be any smooth chart on $M$ containing $p$. Then $\gamma_1, \gamma_2 \in \mathcalli{C}(M, p)$ satisfy that $[\gamma_1] = [\gamma_2]$ if and only if $(\varphi \circ \gamma_1)^\prime(0) = (\varphi \circ \gamma_2)^\prime(0)$.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		Note for any $f \in C^1(M, \mathbb{R})$ that:
-		
-		{\centering$(f \circ \gamma_i)^\prime(0) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot (\varphi \circ \gamma_i)^\prime(0)$\retTwo\par}
-
-		Since $\nabla(f \circ \varphi^{-1})(\varphi(p))$ depends only on $f$ and not on $\gamma_i$, it's now clear that if $(\varphi \circ \gamma_1)^\prime(0) = (\varphi \circ \gamma_2)^\prime(0)$ then we'll also have that $(f \circ \gamma_1)^\prime(0) = (f \circ \gamma_2)^\prime(0)$.\retTwo
-		
-		Conversely, suppose $v_1 \coloneqq (\varphi \circ \gamma_1)^\prime(0) \neq (\varphi \circ \gamma_2)^\prime(0) \eqqcolon v_2$. Then it suffices to find some $f \in C^1(M, \mathbb{R})$ such that:
-
-		{\centering $\nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot v_1 \neq \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot v_2$ \retTwo\par}
-
-		Fortunately, because $v_1 \neq v_2$ in $\mathbb{R}^n$, we know there is some $w \in \mathbb{R}^n$ with\\ $w \cdot v_1 \neq w \cdot v_2$. Next we can define $g: \mathbb{R}^n \to \mathbb{R}$ by $g(x) = x \cdot w$. Clearly $g$ is a\\ $C^\infty$ function on $\varphi(U)$ with $\nabla g(\varphi(p)) = w$. If we then further set $\widetilde{g} \coloneqq g \circ \varphi$, we have that $\widetilde{g} \in C^r(M, \mathbb{R})$.\retTwo
-
-		By standard arguments on LCH spaces as well as with bump functions on $C^r$\\ manifolds, we can find a precompact open set $V \subseteq M$ with $p \in V \subseteq \overline{V} \subseteq U$\\ as well as a function $f \in C^r(M, \mathbb{R}) \subseteq C^1(M, \mathbb{R})$ such that $f = \widetilde{g}$ on $\overline{V}$. And\\ at last, we have on a neighborhood of $\varphi(p)$ that:
-		
-		{\centering\begin{tabular}{l}
-			$\nabla(f \circ \varphi^{-1})(\varphi(p)) = \nabla(\widetilde{g} \circ \varphi^{-1})(\varphi(p))$\\ [4pt]
-			$\phantom{\nabla(f \circ \varphi^{-1})(\varphi(p))} = \nabla(g \circ \varphi \circ \varphi^{-1})(\varphi(p)) = \nabla g(\varphi(p)) = w$. $\blacksquare$
-		\end{tabular}\retTwo\par}
-	\end{myIndent}
-\end{myIndent}
-
-One consequence of the prior lemma is that for any smooth chart $(U, \varphi)$ on an $n$-dimensional manifold $M$ containing a point $p$, there is a well-defined injective map $T_\varphi: \mathcalli{V}_p M \to \mathbb{R}^n$ given by $T_\varphi([\gamma]) \coloneqq (\varphi \circ \gamma)^\prime(0)$.\retTwo
-
-\begin{myIndent}
-	\ul{Proposition:} Suppose $p$ is \textit{not} a corner point of $M$. Then the map $T_\varphi$ defined above is also surjective.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		Consider any $w \in \mathbb{R}^n$ and note that since $\varphi(U)$ must be an open neighborhood\\ of $\varphi(p)$ in either $H^n$ or $\mathbb{R}^n$, we know for a small enough $R > 0$ that either\\ $\varphi(p) + tw \in \varphi(U)$ or $\varphi(p) - tw \in \varphi(U)$ for all $t \in [0, R]$.\newpage
-
-		Now we can define a map $\gamma$ going from either $[0, R]$ or $[-R, 0]$ to $M$ by setting $\gamma(t) \coloneqq \varphi^{-1}(\varphi(p) + tw)$. In either case, we have that $\gamma \in \mathcalli{C}(M, p)$ and:
-		
-		{\centering$(\varphi \circ \gamma)^\prime(0) = \left.\frac{\df}{\df t}\right|_{t = 0}(\varphi(p) + tw) = w$. $\blacksquare$\retTwo\par}
-
-		\begin{myIndent}\myComment
-			Unfortunately, this proof doesn't work if $p$ is a corner point of $M$. In fact, if $p$ is a corner point of $M$ then we'll not even have that $T_\varphi(\mathcalli{T}_p M)$ is a vector subspace of $\mathbb{R}^n$. So from here on out in this section I'll be assuming my $C^r$ manifolds do not have corners.\retTwo
+			{\centering$G_1 \times \cdots \times G_k = (F_1 \times \cdots \times F_k)^{-1}$.\retTwo\par}
 		\end{myIndent}
 	\end{myIndent}
-\end{myIndent}
 
-Now that we have a bijection $T_\varphi: \mathcalli{V}_p M \to \mathbb{R}^n$, we can let this bijection induce a vector\\ space structure on $\mathcalli{V}_p M$. In other words, given any $[\gamma_1], [\gamma_2] \in \mathcalli{V}_p M$ as well as any\\ $c_1, c_2 \in \mathbb{R}$, we define:
-
-{\centering$c_1[\gamma_1] + c_2[\gamma_2] \coloneqq T_\varphi^{-1}(c_1T_\varphi([\gamma_1]) + c_2 T_\varphi([\gamma_2]))$.\retTwo\par}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\begin{myIndent}
-	\ul{Proposition:} The vector space structure on $\mathcalli{V}_p M$ is defined independently of any particular smooth chart $(U, \varphi)$ on $M$ containing $p$. In particular, suppose $(V, \psi)$ is another smooth chart on $M$ containing $p$. Then for any $[\gamma_1], [\gamma_2] \in \mathcalli{V}_p M$ as well as any $c_1, c_2 \in \mathbb{R}$ we have that:
-
-	{\centering$T_\varphi^{-1}(c_1T_\varphi([\gamma_1]) + c_2 T_\varphi([\gamma_2])) = T_\psi^{-1}(c_1T_\psi([\gamma_1]) + c_2 T_\psi([\gamma_2]))$\retTwo\par}
-	\begin{myIndent}\pracTwo
+	\item[(c)] Let $M$ and $N$ be $C^r$ manifolds, and suppose $F: M \to N$ is a local $C^k$ diffeomorphism (where $k \leq r$). Then $F$ is a local homeomorphism and an open map.
+	\begin{myIndent}\exThreeP
 		Proof:\\
-		Define the vectors:
-		\begin{itemize}
-			\item $v \coloneqq c_1T_\varphi([\gamma_1]) + c_2 T_\varphi([\gamma_2]) = c_1(\varphi \circ \gamma_1)^\prime(0) + c_2(\varphi \circ \gamma_2)^\prime(0)$,
-			\item $w \coloneqq c_1T_\psi([\gamma_1]) + c_2 T_\psi([\gamma_2]) = c_1(\psi \circ \gamma_1)^\prime(0) + c_2(\psi \circ \gamma_2)^\prime(0)$.\retTwo
-		\end{itemize}
-
-		Next let $[\widetilde{\gamma}] \coloneqq T_\varphi^{-1}(v)$. Thus $\widetilde{\gamma}$ is a $C^1$ path on $M$ with $\widetilde{\gamma}(0) = p$ and $T_\varphi([\widetilde{\gamma}]) = (\varphi \circ \widetilde{\gamma})^\prime(0) = v$. To prove the proposition, we need to show that $[\widetilde{\gamma}] = T_\psi^{-1}(w)$. Or in other words, we need to show that $T_\psi([\widetilde{\gamma}]) = (\psi \circ \widetilde{\gamma})^\prime(0) = w$.\retTwo
-		
-		Fortunately, $\widetilde{\gamma}$ will map some open neighborhood of $0$ in the interval $\widetilde{\gamma}$ is defined on into the set $U \cap V$. Therefore, we can say by chain rule that:
-
-		{\centering $(\psi \circ \widetilde{\gamma})^\prime(0) = (\psi \circ \varphi^{-1} \circ \varphi \circ \widetilde{\gamma})^\prime(0) = \left[(\Df(\psi \circ \varphi^{-1}))(\varphi(p))\right](\varphi \circ \widetilde{\gamma})^\prime(0)$ \retTwo\par}
-
-		Next note that the matrix $\left[(\Df(\psi \circ \varphi^{-1}))(\varphi(p))\right]$ defines a linear map. Therefore\\ as $(\varphi \circ \widetilde{\gamma})^\prime(0) = v = c_1(\varphi \circ \gamma_1)^\prime(0) + c_2(\varphi \circ \gamma_2)^\prime(0)$, we can say that:\\ [-20pt]
-
-		{\center\begin{tabular}{l}
-			$\left[(\Df(\psi \circ \varphi^{-1}))(\varphi(p))\right](\varphi \circ \widetilde{\gamma})^\prime(0)$\\ [4pt]
-			$\phantom{\left[(\Df(\right.} = c_1\left[(\Df(\psi \circ \varphi^{-1}))(\varphi(p))\right](\varphi \circ \gamma_1)^\prime(0) + c_2\left[(\Df(\psi \circ \varphi^{-1}))(\varphi(p))\right](\varphi \circ \gamma_2)^\prime(0)$
-		\end{tabular} \retTwo\par}
-
-		Finally, by one more application of chain rule (which we can use on $\gamma_1$ and $\gamma_2$ for identical reasons as why we could use it on $\widetilde{\gamma}$) we get that:o
-		
-		{\centering$\left[(\Df(\psi \circ \varphi^{-1}))(\varphi(p))\right](\varphi \circ \gamma_i)^\prime(0) = (\psi \circ \gamma_i)^\prime(0)$.\retTwo\par}
-		
-		Thus, we've proven that $(\psi \circ \widetilde{\gamma})^\prime(0) =  c_1(\psi \circ \gamma_1)^\prime(0) + c_2(\psi \circ \gamma_2)^\prime(0) = w$. $\blacksquare$\retTwo
+		Since diffeomorphisms are homeomorphisms, the first claim should be obvious. Next suppose $U \subseteq M$ is any open set. Then for any $p \in U$ we need to prove that $F(p)$ is in the interior of $F(U)$. Fortunately, as $F$ is a local diffeomorphism we know there exists an open set $U_p \subseteq M$ containing $p$ and an open set $V_p \subseteq N$ such that $F|_{U_p}: U_p \to V_p$\newpage is a diffeomorphism. Next, as $U \cap U_p$ is an open subset of $U_p$, we know $F|_{U_p}(U \cap U_p)$ must be an open subset of $V_p$. So, $V \coloneqq V_p \cap F(U \cap U_p)$ is an open set in $N$ which is contained in $F(U)$. Also, $F(p) \in V$. $\blacksquare$
 	\end{myIndent}
-\end{myIndent}
+\end{enumerate}
 
-Now that $\mathcalli{V}_p M$ has been equipped with a standard vector space structure, I've now\\ almost shown everything I want to on this tangent. What's left to do is show how\\ $\mathcalli{V}_p M$ corresponds to the space of derivations at $p$ on $M$.\newpage
+\hTwo I'm bored and don't want to prove anymore parts of the prior proposition. So I'm moving on.\retTwo
 
-\begin{myIndent}
-	\ul{Lemma:} Suppose $M$ and $N$ are $C^r$ manifolds and $F: M \to N$ is a $C^1$ map. Then for any $p \in M$ we have that $\df F_p : \mathcalli{V}_p M \to \mathcalli{V}_{F(p)}N$ is a linear map.
-	\begin{myIndent}\pracTwo
-		Proof:\\
-		Consider any $c_1, c_2 \in \mathbb{R}$ as well as $\gamma_1, \gamma_2 \in \mathcalli{C}(M, p)$. Next let $\widetilde{\gamma} \in \mathcalli{C}(M, p)$ be such that $[\widetilde{\gamma}] = c_1[\gamma_1] + c_2[\gamma_2]$ in $\mathcalli{V}_p M$. To prove this lemma it suffices to show that:
-		
-		{\center\begin{tabular}{l}
-			$[F \circ \widetilde{\gamma}] = \df F_p [\widetilde{\gamma}] = c_1 \df F_p [\gamma_1] + c_2 \df F_p [\gamma_2] = c_1[F \circ \gamma_1] + c_2[F \circ \gamma_2]$
-		\end{tabular}\\ [4pt]\par}
+\exTwo\ul{Proposition 4.8:} Suppose $M$ is $C^r$ manifold without a boundary, $N$ is any other $C^r$\\ manifold, and $F$ is a $C^k$ function (where $k \leq r$).
+\begin{enumerate}
+	\item[(a)] $F$ is a local $C^k$-diffeomorphism if and only if it is both an immersion and submersion.
+	\begin{myIndent}\exThreeP
+		$(\Longrightarrow)$\\
+		Given any $p \in M$, there is an open set $U \subseteq M$ containing $p$ such that $F(U)$ is an open set and $F$ is a $C^k$-diffeomorphism from $U$ to $F(U)$. But then in turn we must have that $\df (F|_{U})_p : T_p U \to T_{F(p)}(F(U))$ is an invertible map. Equivalently, this means that $\df F_p : T_p M \to T_p N$ is invertible. And since was $p$ was arbitrary, we can conclude that $\mRank(F) = \dim(M) = \dim(N)$. This shows that $F$ is an immersion and a submersion.\retTwo
 
-		in $\mathcalli{V}_{F(p)}N$.\retTwo
-
-		But now because $F \in C^1(M, N)$ we know there is a smooth chart $(U, \varphi)$ on $M$ containing $p$ as well as a smooth chart $(V, \psi)$ on $N$ containing $F(p)$ such that $F(U) \subseteq V$ and $\psi \circ F \circ \varphi^{-1}$ is a $C^1$ map. Based on how we defined the vector space structure for $\mathcalli{V}_{F(p)}N$, we just need to show that:
-
-		{\centering $(\psi \circ F \circ \widetilde{\gamma})^\prime(0)  = c_1(\psi \circ F \circ \gamma_1)^\prime(0) + c_2(\psi \circ F \circ \gamma_2)^\prime(0)$. \retTwo\par}
-
-		Fortunately, we also know since $[\widetilde{\gamma}] = c_1[\gamma_1] + c_2[\gamma_2]$ that:
-		
-		{\centering$(\varphi \circ \widetilde{\gamma})^\prime(0) = c_1(\varphi \circ \gamma_1)^\prime(0) + c_2(\varphi \circ \gamma_2)^\prime(0)$.\retTwo\par}
-
-		And now if we let $\mathbf{A}$ denote the matrix $(\Df (\psi \circ F \circ \varphi^{-1}))(\varphi(p))$, we have by\\ chain rule that:
-
-		{\centering\begin{tabular}{l}
-			$(\psi \circ F \circ \widetilde{\gamma})^\prime(0) = \mathbf{A}(\varphi \circ \widetilde{\gamma})^\prime(0) = c_1\mathbf{A}(\varphi \circ \gamma_1)^\prime(0) + c_2\mathbf{A}(\varphi \circ \gamma_2)^\prime(0)$\\ [4pt]
-			$\phantom{(\psi \circ F \circ \widetilde{\gamma})^\prime(0) = \mathbf{A}(\varphi \circ \widetilde{\gamma})^\prime(0)} = c_1(\psi \circ F \circ \gamma_1)^\prime(0) + c_2(\psi \circ F \circ \gamma_1)^\prime(0)$. $\blacksquare$
-		\end{tabular}\retTwo\par}
+		$(\Longleftarrow)$\\
+		Conversely, suppose $F$ is an immersion and a submersion. Then we must have that $\df F_p$ is invertible for all $p \in M$. By the inverse function theorem for manifolds as well as exercise 4-2 on \inLinkRap{Theorem 4.5 page 1056}{pages 1056-1057}, we thus know that $F(M) \subseteq \Int(N)$ and $F$ is a local $C^k$-diffeomorphism.\retTwo
 	\end{myIndent}
 
-	\ul{Lemma:} Let $M$ be a $C^r$ manifold and let $\mathcalli{D}_p M$ denote the space of derivations\\ at $p \in M$ mapping $C^k(M, \mathbb{R})$ to $\mathbb{R}$ (where $k \leq r$). Then there is a well-defined\\ map $\Psi: \mathcalli{V}_p M \to \mathcalli{D}_p M$ given by $\Psi([\gamma])f \coloneqq (f \circ \gamma)^\prime(0)$.
-	\begin{myIndent}\pracTwo
+	\item[(b)] If $\dim(M) = \dim(N)$ and $F$ is either an immersion or submersion, then $F$ is a local $C^k$-diffeomorphism. 
+	\begin{myIndent}\exThreeP
 		Why?\\
-		The fact that $\Psi([\gamma])$ is a well-defined injective function on $C^1(M, \mathbb{R})$ is obvious from the definition of the equivalence class of $\gamma$. As for showing that $\Psi([\gamma])$ is a derivation, just apply normal derivative rules to $((c_1 f + c_2 g) \circ \gamma)^\prime$ and $((fg) \circ \gamma)^\prime$.\retTwo
+		If $\dim(M) = \dim(N)$ then $F$ is an immersion if and only if $F$ is a submersion. $\blacksquare$\retTwo
 	\end{myIndent}
+\end{enumerate}
 
-	Furthermore, $\Psi$ is a linear map.
-	\begin{myIndent}\pracTwo
-		Why?\\
-		Fix any $f \in C^1(M, \mathbb{R})$ and smooth chart $(U, \varphi)$ on $M$ containing $p$, and recall from the proof of the lemma on \inLinkRap{Lemma page 1047}{page 1047} that:
+\Hstatement\ul{Exercise 4.10:} Suppose $M$, $N$, and $P$ are $C^r$ manifolds and $F: M \to N$ is a local $C^k$\\ diffeomorphism.
+\begin{enumerate}
+	\item[(a)] If $G: P \to M$ is a continuous map then $G$ is $C^k$ if and only if $F \circ G$ is $C^k$.
+	\begin{myIndent}\HexOne
+		$(\Longrightarrow)$\\
+		This is obvious.\retTwo
+
+		$(\Longleftarrow)$\\
+		Let $p \in P$. Since $F \circ G$ is $C^k$, we know that there are smooth charts $(U, \varphi)$ on $P$\\ [1pt]containing $p$ and $(V, \psi)$ on $N$ with $(F \circ G)(U) \subseteq V$ and $\psi \circ F \circ G \circ \varphi^{-1}$ a $C^k$\\ map. Next, because $F$ is a local $C^k$ diffeomorphism we know that there are open\\ [2pt] sets $W^\prime \subseteq M$ containing $G(p)$ and $V^\prime \subseteq N$ such that $F$ is a $C^k$ diffeomorphism\\ [1pt] from $W^\prime$ to $V^\prime$. By shrinking $W^\prime$ and $V^\prime$, we can assume without loss of generality\\ [2pt] that $V^\prime \subseteq V$ and that there is a smooth chart $(W^\prime, \eta)$ on $M$. Finally, because $G$\\ is continuous, we know that $U^\prime \coloneqq G^{-1}(W^\prime)$ is an open set of $P$. So, we set\\ $U_0 \coloneqq U \cap U^\prime$.\newpage
+
+		Let $H = (F|_{W^\prime})^{-1}$. Then $(U_0, \varphi)$ is a smooth chart on $P$ containing $p$, $(W^\prime, \eta)$ is a smooth chart on $M$ with $F(U_0) \subseteq W^\prime$, and:
 		
-		{\centering$(f \circ \gamma)^\prime(0) = \nabla (f \circ \varphi^{-1})(\varphi(p)) \cdot (\varphi \circ \gamma)^\prime(0)$ for all $\gamma \in \mathcalli{C}(M, p)$.\retTwo\par}
+		{\centering$\eta \circ G \circ \varphi^{-1} = (\eta \circ H \circ \psi^{-1}) \circ (\psi \circ F \circ G \circ \varphi^{-1})$ is a $C^k$ map.\retTwo\par}
+	\end{myIndent}
 
-		But now if $[\widetilde{\gamma}] = c_1[\gamma_1] + c_2[\gamma_2]$, we know that:
+	\item[(b)] If $F$ is surjective and $G: N \to P$ is any map, then $G$ is $C^k$ if and only if $G \circ F$ is $C^k$.
+	\begin{myIndent}\HexOne
+		$(\Longrightarrow)$\\
+		Again this is obvious.\retTwo
+
+		$(\Longleftarrow)$\\
+		Consider any $p \in N$. Since $F$ is surjective, we know there exists $q \in M$ such that\\ [2pt] $F(q) = p$. Next, since $G \circ F$ is a $C^k$ map, we know there is a smooth chart $(U, \varphi)$\\ [2pt] on $M$ containing $q$ and a smooth chart $(V, \psi)$ on $P$ such that $(G \circ F)(U) \subseteq V$ and $\psi \circ G \circ F \circ \varphi^{-1}$ is a $C^k$ map. But now as $F$ is a local $C^k$ diffomorphism, we can\\ [2pt] find an open set $U^\prime \subseteq M$ containing $q$ and an open set $W^\prime \subseteq N$ such that $F$ is a $C^k$\\ [2pt] diffeomorphism from $U^\prime$ to $W^\prime$. Finally, by shrinking $U^\prime$ and $W^\prime$, we can assume that\\ [2pt] $U^\prime \subseteq U$ and that there is a smooth chart $(W^\prime, \eta)$ on $N$.\retTwo
+
+		But now $W^\prime$ is an open set containing $F(p)$ such that $W^\prime = F(U^\prime) \subseteq F(U) \subseteq V$. Also let $H = (F|_{U^\prime})^{-1}$. Then:
+
+		{\centering $\psi \circ G \circ \eta^{-1} = (\psi \circ G \circ F \circ \varphi^{-1}) \circ (\varphi \circ H \circ \eta^{-1})$ is a $C^k$ map. $\blacksquare$\retTwo\par}
+	\end{myIndent}
+\end{enumerate}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\hTwo\mySepTwo
+
+\dispDate{7/26/2026} Welp, I've been fearing this day for a long time but I finally need to actually understand the rank theorem.\retTwo
+
+\exTwo\ul{Theorem 4.12 (The Rank Theorem):} Suppose $M$ and $N$ are $C^k$ manifolds \textit{without}\\ \textit{boundaries} of dimension $m$ and $n$ respectively, and also suppose $F: M \to N$ is a $C^k$ map of constant rank $r$. Then for each $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ with $p \in U$ as well as a smooth chart $(V, \psi)$ on $N$ with $F(U) \subseteq V$ such that $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ has the form $\widehat{F}(x_1, \ldots, x_r, x_{r+1}, \ldots, x_m) = (x_1, \ldots, x_r,\hspace{-0.5em} \underbrace{0, \ldots, 0}_{n-r \text{ many zeros}}\hspace{-0.5em})$.\retTwo
+\begin{myIndent}\exThreeP
+	\begin{myIndent}\myComment
+		As a side note, if $k_1 > k_2$ in $\mathbb{Z}_{\geq 1} \cup \{\infty\}$ then every $C^{k_1}$ structure on a manifold $M$ is contained in a unique $C^{k_2}$ structure. Therefore, it's not too too restrictive to assume $F$ is as smooth a map as the structure on the manifold is smooth. That said, if I didn't make this restriction clear than one might falsely think that this theorem proves every constant rank $C^1$ map between $C^k$ manifolds without boundaries is actually a $C^k$ map.\retTwo
+	\end{myIndent}
+
+	Proof:\\
+	\ul{(Step 0: Simplying our notation)}\\
+	Firstly, by choosing local coordinates around $p$ it suffices to assume $M$ is an open set\\ $U \subseteq \mathbb{R}^m$ and $N$ is an open set $V \subseteq \mathbb{R}^m$.\newpage 
+	\begin{myIndent}\exPPP
+		To see why, consider picking smooth charts $(\widetilde{U}, \widetilde{\varphi})$ on $M$ containing $p$ and $(\widetilde{V}, \widetilde{\psi})$ on $N$ such that $F(\widetilde{U}) \subseteq \widetilde{V}$. Then set $U \coloneqq  \widetilde{\varphi}(\widetilde{U})$ and $V \coloneqq \widetilde{\psi}(\widetilde{V})$ and note that $U$ and $V$ are open in $\mathbb{R}^m$ and $\mathbb{R}^n$ respectively. Once we've shown that the theorem holds for $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}: U \to V$, then we can just find two $C^k$ diffeomorphisms\\ [2pt] $\varphi: U_0 \to \varphi(U_0)$ and $\psi: V_0 \to \psi(V_0)$ such that $\widetilde{\varphi}(p) \subseteq U_0 \subseteq U$, $V_0 \subseteq V$, and $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}(U_0) \subseteq V_0$, and $(\psi \circ \widetilde{\psi}) \circ F \circ ((\widetilde{\varphi})^{-1} \circ \varphi^{-1})$ has the desired form. And since $(\widetilde{\varphi}^{-1}(U_0), \varphi \circ \widetilde{\varphi})$ is a smooth chart on $M$ and $(\widetilde{\psi}^{-1}(V_0), \psi \circ \widetilde{\psi})$ is a smooth chart on $N$, we'll have shown our theorem holds at $p$ for the map $F$.\retTwo
+	\end{myIndent}
+
+	Next, note that since $\Df F(p)$ has rank $r$, we know the Jacobian matrix has some\\ $r \times r$ invertible submatrix. By reordering our coordinates, we can assume without loss\\ of generality that the $r \times r$ invertible submatrix makes up the top left portion of $\Df F(p)$.\\ So, let us rename the standard coordinates on $\mathbb{R}^m$ and $\mathbb{R}^n$ as:
+	
+	{\centering$(x, y) \coloneqq (x_1, \ldots, x_r, y_{r+1}, \ldots, y_m)$ and $(v, w) \coloneqq (v_1, \ldots, v_r, w_{r+1}, \ldots, w_n)$.\retTwo\par}
+
+	By applying a translation to the open sets $U$ and $V$, we can without loss of generality\\ assume $p = (0, 0)$ and $F(p) = (0, 0)$. Also, we write $F(x, y) \coloneqq (Q(x, y), R(x, y))$\\ where $Q: U \to \mathbb{R}^r$ and $R: U \to \mathbb{R}^{n - r}$ are $C^k$ functions. Therefore:
+
+	$$\Df F(0, 0) = \begin{bmatrix} \left[\frac{\partial Q_i}{\partial x_j}(0, 0)\right]_{\substack{1 \leq i \leq r \\ 1 \leq j \leq r}}\phantom{1} & \left[\frac{\partial Q_i}{\partial y_j}(0, 0)\right]_{\substack{1 \leq i \leq r \\ r+1 \leq j \leq m}} \\ 
+	\left[\frac{\partial R_i}{\partial x_j}(0, 0)\right]_{\substack{1 \leq i \leq n - r \\ 1 \leq j \leq r}} & \left[\frac{\partial R_i}{\partial y_j}(0, 0)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}}\end{bmatrix}$$ 
+
+	where $\left[\frac{\partial Q_i}{\partial x_j}(0, 0)\right]_{\substack{1 \leq i \leq r \\ 1 \leq j \leq r}}$ is an invertible matrix.\retTwo 
+
+	\ul{(Step 1: Getting $\varphi$)}\\
+	Now define $\varphi: U \to \mathbb{R}^m$ by $\varphi(x, y) = (Q(x, y), y)$. This will be $C^k$ map whose total derivative is given by:
+
+	$$\Df \varphi(x, y) = \begin{bmatrix} \left[\frac{\partial Q_i}{\partial x_j}(x, y)\right]_{\substack{1 \leq i \leq r \\ 1 \leq j \leq r}} & \left[\frac{\partial Q_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq r \\ r+1 \leq j \leq m}} \\ \mMat{0} & \mMat{I}_{m - r} \end{bmatrix}$$ 
+
+	where $\mMat{I}_{m - r}$ is the $(m - r) \times (m - r)$ identity matrix. Importantly, we can specifically see that all the columns of $\Df \varphi(0, 0)$ are linearly independent. Hence, $\Df \varphi(0, 0)$ is invertible. And by the inverse function theorem we know there are connected open sets $U_0 \subseteq U$ and $\widehat{U}_0 \subseteq \mathbb{R}^m$ satisfying that $(0, 0) \in U_0$, $\varphi(0, 0) = (0, 0) \in \widehat{U}_0$, and $\varphi: U_0 \to \widehat{U}_0$ is a\\ $C^k$-diffeomorphism. By shrinking $U_0$ and $\widehat{U}_0$ we can without loss of generality assume\\ that $\widehat{U}_0 = (-\varepsilon, \varepsilon)^{m}$ for some $\varepsilon > 0$.\retTwo
+
+	Now we write the inverse map $\varphi^{-1}: \widehat{U}_0 \to U_0$ as $\varphi^{-1}(x, y) = (A(x, y), B(x, y))$ where $A: \widehat{U}_0 \to \mathbb{R}^r$ and $B: \widehat{U}_0 \to \mathbb{R}^{m-r}$ are $C^k$ maps. Importantly, we know that:
+	
+	{\center$(x, y) = \varphi(A(x, y), B(x, y)) = (Q(A(x, y), B(x, y)),\hspace{0.2em} B(x, y))$\retTwo\par}
+
+	By comparing $y$-components we can see that $B(x, y) = y$. Hence, $\varphi^{-1}$ has the form\newpage $\varphi^{-1}(x, y) = (A(x, y),\hspace{0.2em} y)$. Meanwhile, by comparing $x$-components we can see that\\ $x = Q(A(x, y), \hspace{0.2em} y)$. Therefore, upon letting $\widetilde{R}(x, y) \coloneqq R(A(x, y), y)$ then we have\\ that:
+
+	{\centering $(F \circ \varphi^{-1})(x, y) = (x,\hspace{0.2em} \widetilde{R}(x, y))$ \retTwo\par}
+
+	\ul{(Step 2: Simplifying $\widetilde{R}$)}\\
+	Consider that the Jacobian matrix of $F \circ \varphi^{-1}$ at any $(x, y) \in \widehat{U}_0 = (-\varepsilon, \varepsilon)^m$ is given by:
+
+	$$\Df (F \circ \varphi^{-1})(x, y) = \begin{bmatrix} \mMat{I}_r & \mMat{0} \\ \left[\frac{\partial \widetilde{R}_i}{\partial x_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ 1 \leq j \leq r}} & \left[\frac{\partial \widetilde{R}_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}}\end{bmatrix}$$
+
+	\phantom{.}\\
+	Yet we also have that $\Df (F \circ \varphi^{-1})(x, y) = \Df F(\varphi^{-1}(x, y)) \Df (\varphi^{-1})(x, y)$. By assumption, we know that $\mRank(\Df F(\varphi^{-1}(x, y))) = r$ for all $(x, y) \in \widehat{U}_0$. Meanwhile, since $\varphi^{-1}$ is\\ a diffeomorphism, we know that $\Df (\varphi^{-1})(x, y)$ defines a bijective linear map for all\\ $(x, y) \in \widehat{U}_0$. It follows that $\mRank(\Df (F \circ \varphi^{-1})(x, y))$ will still equal $r$ for all $(x, y) \in \widehat{U}_0$.\retTwo
+
+	Yet the only way this matrix:
+	$$\begin{bmatrix} \mMat{I}_r & \mMat{0} \\ \left[\frac{\partial \widetilde{R}_i}{\partial x_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ 1 \leq j \leq r}} & \left[\frac{\partial \widetilde{R}_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}}\end{bmatrix}\textit{,}$$
+	can ever have rank $r$ is if $\left[\frac{\partial \widetilde{R}_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}} = \mMat{0}$.
+	\begin{myIndent}\exPPP
+		This is because the first $r$ columns are already linearly independent, and the\\ intersection of their span with the span of the last $m - r$ columns is just the\\ trivial subspace $\{0\}$.\retTwo
+	\end{myIndent}
+
+	Consequently, we know that $\widetilde{R}$ must be constant with respect to $y$. In other words, there exists some $C^k$ map $S: (-\varepsilon, \varepsilon)^r \to \mathbb{R}^{n - r}$ such that $\widetilde{R}(x, y) = S(x)$. And with that, we can write:
+
+	{\centering $(F \circ \varphi^{-1})(x, y) = (x, S(x))$\retTwo\par}
+
+	\ul{(Step 3: Getting $\psi$)}\\
+	Let $V_0 \coloneqq \{(v, w) \in V : (v, 0) \in \widehat{U}_0\}$. Then $V_0$ will be an open subset of $V$ containing $F(0, 0) = (0, 0)$. Also because $\widehat{U}_0$ is a cube and $(F \circ \varphi^{-1})(x, y) = (x, S(x))$, we can see that $(F \circ \varphi^{-1})(\widehat{U}_0) \subseteq V_0$. (And this also implies $F(U_0) \subseteq V_0$).\retTwo
+
+	To finish off, define $\psi: V_0 \to \mathbb{R}^n$ by $\psi(v, w) = (v, w - S(v))$. Then $\psi$ is a $C^k$ map which is also a diffeomorphism onto its image. After all, by the invariance of domain theorem we know its image is an open subset of $\mathbb{R}^n$. Also, its inverse map is precisely given by $\psi(v, w) = (v, w + S(v))$.\retTwo
+
+	And now just note that $(\psi \circ F \circ \varphi^{-1})(x, y) = \psi(x, S(x)) = (x, S(x) - S(x)) = (x, 0)$. $\blacksquare$\newpage
+\end{myIndent}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\exTwo\ul{Corollary 4.13:} Let $M$ and $N$ be $C^k$ manifolds without boundaries and let $F: M \to N$ be a $C^k$ map. Also suppose $M$ is connected. The following are equivalent.
+\begin{enumerate}
+	\item[(a)] For each $p \in M$ there exists smooth charts $(U, \varphi)$ on $M$ and $(V, \psi)$ on $N$ with $p \in U$, $F(U) \subseteq V$, and $\widehat{F} \coloneqq \psi \circ F \circ \varphi$ a linear map.
+	\item[(b)] $F$ has constant rank.
+\end{enumerate}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Firstly suppose (a) holds and for every $r \leq N \coloneqq \min(\dim(M), \dim(N))$ let $A_r \subseteq M$ be the set of all $p \in M$ at which $F$ has rank $r$. Trivially each $A_r$ is disjoint with $\bigcup_{r=0}^N A_r = M$. By (a) we also know each $A_r$ is an open set. By the connectedness of $M$ we can thus conclude there exists a single $r$ with $A_r = M$. So, $F$ has constant rank on $M$.\retTwo
+
+	Conversely, if (b) is true than the rank theorem tells us how to find the smooth charts\\ described in (a). $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 4.14:} Let $M, N$ be $C^k$ manifolds without boundaries and let $F: M \to N$ be a $C^1$ map of constant rank.
+\begin{enumerate}
+	\item[(a)] If $F$ is surjective then $F$ is a submersion.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $m = \dim(M)$ and $n = \dim(N)$, and suppose $F$ has constant rank $r$. We'll\\ suppose to the contrary that $F$ is \textit{not} a submersion. Thus $r < n$.\retTwo
+
+		Now without loss of generality we can assume $k = 1$ (i.e. that $M$ and $N$ are $C^1$ manifolds).
+		\begin{myIndent}\exPPP
+			This is because the $C^k$ structures $\mathcal{A}_M$ and $\mathcal{A}_N$ that $M$ and $N$ are equipped\\ with are both contained in unique $C^1$ structures $\mathcalli{B}_M$ and $\mathcalli{B}_N$ respectively.\\ Furthemore, a map $f: M \to \mathbb{R}$ is $C^1$ with respect to $\mathcal{A}_M$ if and only if\\ it is $C^1$ with respect to $\mathcal{B}_M$. And a similar story holds for any $f: N \to \mathbb{R}$.\\ It follows that the tangents spaces to $M$ and $N$ stay identical when each is\\ equipped with either structure. In turn $F: (M, \mathcal{A}_M) \to (N, \mathcal{A}_N)$ is a\\ submersion if and only if $F: (M, \mathcal{B}_M) \to (N, \mathcal{B}_N)$ is a submersion.\retTwo
+		\end{myIndent}
+
+		Due to the prior reasoning, the rank theorem now applies. So, for all $p \in M$ there exists a smooth chart $(U_p, \varphi_p)$ on $M$ containing $p$ and a smooth chart $(V_p, \psi_p)$ on $N$ with $F(U_p) \subseteq V_p$ and $\widehat{F}_p: \psi \circ F \circ \varphi^{-1}$ having the form:
 		
-		{\centering$(\varphi \circ \widetilde{\gamma})^\prime(0) = c_1(\varphi \circ \gamma_1)^\prime(0) + c_2(\varphi \circ \gamma_2)^\prime(0)$.\retTwo\par}
+		{\centering$\widehat{F}_p(x_1, \ldots, x_r, x_{r+1}, \ldots, x_m) = (x_1, \ldots, x_r, \hspace{-0.75em}\underbrace{0, \ldots, 0}_{\text{nonzero }\#\text{ of zeros}}\hspace{-0.75em})$.\retTwo\par}
 
-		Since $x \mapsto \nabla (f \circ \varphi^{-1})(\varphi(p)) \cdot x$ is a linear map, we can now easily conclude that if $[\widetilde{\gamma}] = c_1[\gamma_1] + c_2[\gamma_2]$ then $(f \circ \gamma)^\prime(0) = c_1(f \circ \gamma_1)^\prime(0) + c_2(f \circ \gamma_2)^\prime(0)$.\retTwo
+		Since $M$ is an LCH space, we can for each $p$ pick a precompact open set $W_p \subseteq M$\\ such that $p \in W_p \subseteq \overline{W_p} \subseteq U_p$. Then as $\overline{W_p}$ is compact and $N$ is Hausdorff, we\\ know that $F(\overline{W_p})$ is a closed subset of $N$ containing $F(W_p)$. Moreover, $F(\overline{W_p})$ has an empty interior. After all, let $\widehat{U}_{p} \coloneqq \varphi_{p}(U_p)$ and $\widehat{V}_{p} \coloneqq \psi_{p}(V_p)$. Then we have that $(\psi \circ F)(\overline{W_p}) \subseteq \widehat{F}_p(\widehat{U}_p) \subseteq (\text{ a hyperplane }) \cap \widehat{V}_p$. Since the latter set has an empty interior relative to $\widehat{V}_p$, we can conclude that $(\psi \circ F)(\overline{W_p})$ has an empty interior\newpage relative to $\widehat{V}_p$ as well. Then since $\psi$ is a homeomorphism from $V_p$ to $\widehat{V}_p$, we can\\ conclude that $F(\overline{W_p})$ has an empty interior relative to $V_p$. And since $F(\overline{W_p})$ is a closed subset of $N$ containing $F(W_p)$ and contained in $V_p$, we can finally conclude that $F(W_p)$ is nowhere dense.\retTwo
+		
+		But now to get our contradiction, note that because $M$ is second countable there must be a sequence $\{p_\ell\}_{\ell \in \mathbb{N}}$ such that $M = \bigcup_{\ell \in \mathbb{N}} W_{p_\ell}$. Since $F$ is surjective, we in turn know that $N = F(M) = \bigcup_{\ell \in \mathbb{N}}F(W_{p_\ell})$. So, we've proven that $N$ is a countable union of nowhere dense sets. In other words $N$ is meager. Yet $N$ is an LCH space and so this contradicts the Baire category theorem. [See \inLinkRap{placeholder}{pages 540-541}.]\retTwo 
 	\end{myIndent}
 
-	Plus I claim no matter what $k$ is, $\Psi$ is still injective.
-	\begin{myIndent}\pracTwo
-		When $k = 1$ then this is just a result of the definition of the equivalence classses in $\mathcalli{V}_p M$. After all, $[\gamma_1] \neq [\gamma_2]$ if and only if there exists some function $f \in C^1(M, \mathbb{R})$ with $(f \circ \gamma_1)^\prime(0) \neq (f \circ \gamma_2)^\prime(0)$. Meanwhile, if $1 < k \leq r$ then the thing we need\\ to specifically show is that if $[\gamma_1] \neq [\gamma_2]$ then we can more strongly take $f$ to be a $C^k$ map (as opposed to just a $C^1$ map) such that $(f \circ \gamma_1)^\prime(0) \neq (f \circ \gamma_2)^\prime(0)$. Since $C^r(M, \mathbb{R}) \subseteq C^k(M, \mathbb{R})$ for all $k \leq r$, I might as well by default just look for some $f \in C^r(M, \mathbb{R})$. Fortunately, I already showed how to construct such a function $f \in C^r(M, \mathbb{R})$ in my proof of the lemma on \inLinkRap{Lemma page 1047}{page 1047}. $\blacksquare$\retTwo
-	\end{myIndent}
+	\item[(b)] If $F$ is injective then $F$ is an immersion.
+	\begin{myIndent}\exThreeP
+		Proof:\\
+		Let $m$, $n$, and $r$ be as in the prior proof, and this time suppose to the contrary that\\ $F$ is \textit{not} an immersion. For identical reasons as in the last proof, we can assume\\ without loss of generality that $k = 1$ (i.e. that $M$ and $N$ are $C^1$ manifolds). And this is important because it lets us apply the rank theorem.\retTwo 
 
-	\ul{Proposition:} Let $M, N$ be $C^r$ manifolds and suppose $F: M \to N$ is a $C^k$ map (where $k \leq r$). Given any $p \in M$ we let $\mathcalli{D}_p M$ denote the space of derivations at $p$ from $C^k(M, \mathbb{R})$ to $\mathbb{R}$. Similarly, we let $\mathcalli{D}_{F(p)} N$ denote the space of derivations at $F(p)$ from $C^k(N, \mathbb{R})$ to $\mathbb{R}$. And finally, we let $\widehat{\df} F_p : \mathcalli{D}_p M \to \mathcalli{D}_{F(p)}$ be the linear map $\widehat{\df} F_p (v)f = v(f \circ F)$. Then the following diagram commutes:
-	% https://q.uiver.app/#q=WzAsOCxbMSwxLCJcXG1hdGhjYWxsaXtWfV9wIE0iXSxbMSwyLCJcXG1hdGhjYWxsaXtWfV97RihwKX1OIl0sWzIsMSwiXFxtYXRoY2FsbGl7RH1fcCBNIl0sWzIsMiwiXFxtYXRoY2FsbGl7RH1fe0YocCl9TiJdLFswLDNdLFszLDNdLFszLDBdLFswLDBdLFswLDIsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMSwiXFxkZiBGX3AiXSxbMiwzLCJcXHdpZGVoYXR7XFxkZn1GX3AiLDJdLFsxLDMsIiIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsNywiW1xcZ2FtbWFdIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw2LCJmIFxcbWFwc3RvIChmIFxcY2lyYyBcXGdhbW1hKV5cXHByaW1lKDApIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMSw0LCJbRiBcXGNpcmMgXFxnYW1tYV0iLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFszLDUsImcgXFxtYXBzdG8gKGcgXFxjaXJjIEYgXFxjaXJjIFxcZ2FtbWEpXlxccHJpbWUoMCkiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxMiwxMywiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTMsMTUsIiIsMSx7InNob3J0ZW4iOnsic291cmNlIjoxMCwidGFyZ2V0IjoxMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV0sWzE0LDE1LCIiLDEseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MjB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXX1dLFsxMiwxNCwiIiwxLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
+		Consider any $p \in M$ and let $(U, \varphi)$ and $(V, \psi)$ be smooth charts on $M$ such that $p \in U$, $F(U) \subseteq V$, and $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ has the form:
+
+		{\centering$\widehat{F}(x_1, \ldots, x_r, \hspace{-0.75em}\underbrace{x_{r+1}, \ldots, x_m}_{\text{nonzero }\#\text{ of coordinates}}\hspace{-0.5em}) = (x_1, \ldots, x_r, \hspace{-0.5em}\underbrace{0, \ldots, 0}_{n - r \text{ many zeros}}\hspace{-0.5em})$.\retTwo\par}
+
+		But now $F$ being injective implies that $\widehat{F}$ is also injective. Simultaneously, write\\ $\varphi(p) = (p_1, \ldots, p_r, p_{r+1}, \ldots, p_m)$. Since $\varphi(U)$ is open in $\mathbb{R}^n$ we know for some\\ small enough $\varepsilon > 0$ that $\widehat{q} \coloneqq (p_1, \ldots, p_r, p_{r+1} + \varepsilon, \ldots, p_m) \in \varphi(U)$. But now if we let $q = \varphi^{-1}(q)$ we have that $(\psi \circ F)(p) = \widehat{F}(\varphi(p)) = \widehat{F}(\varphi(q)) = (\psi \circ F)(q)$. Since $\psi$ is injective, we in turn have that $F(p) = F(q)$. Yet $p \neq q$ since $\varphi^{-1}$ is injective. So, this all contradicts that $F$ is injective. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{enumerate}
+
+\exTwo\ul{Corollary:} Let $M, N$ be $C^r$ manifolds without boundaries and let $F: M \to N$ be a $C^k$ map of constant rank (where $k \leq r$). If $F$ is a bijection then $F$ is a $C^k$ diffeomorphism.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By the prior theorem, $F$ being a bijection means that $F$ is both a submersion and an\\ immersion. It then follows by proposition 4.8 on \inLinkRap{Proposition 4.8 page 1061}{page 1061} that $F$ is a local $C^k$\\ diffeomorphism. Yet finally, we can easily see by the pasting lemma that any local\\ $C^k$ diffeomorphism that is also bijective is a (global) $C^k$ diffeomorphism. So, $F$ is a $C^k$\\ diffeomorphism. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{7/27/2026}
+
+I mentioned a few days ago that my construction of the tangent space to a corner point might not be optimal. After talking to a colleague, I can now say that while nothing I've\newpage written is wrong, there is a cleaner equivalent way of defining the tangent space. This improved way will also be the way that generalizes to analytic and complex manifolds. So, it wouldn't hurt to go over now.\retTwo
+
+\pracOne\mySepTwo
+\hypertarget{idk reference 6}{Firstly,} I'm going to fix an oversight I priorly made on \inLinkRap{page 1024 correction}{page 1024}. I already deleted the false statement on that page but I did leave a note explaining where my deleted remark went wrong.\retTwo
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Firstly, since it will make my life easier and serve as a good review, I want to generalize the universal property of tensor products of module. Note that this will only use knowledge from math 200B.\retTwo
+
+Given a collection of $A$-modules $M_1, \ldots, M_k$, we say their tensor product $\bigotimes_{i=1}^k M_i$ is an\\ $A$-module equipped with a $k$-linear map $\iota: \prod_{i=1}^k M_i \to \bigotimes_{i=1}^k M_i$ such that for any $k$-linear map $T: \prod_{i=1}^k M_i \to N$ the following diagram holds:\\ [-24pt]
+% https://q.uiver.app/#q=WzAsNyxbMSwyLCJcXHByb2Rfe2k9MX1eayBNX2kiXSxbMiwxLCJcXGJpZ290aW1lc197aT0xfV5rIE1faSJdLFsyLDIsIk4iXSxbMCwzXSxbMywzXSxbMywwXSxbMCwyXSxbMCwyLCJUIiwyXSxbMCwxLCJcXGlvdGEiXSxbMSwyLCJcXGV4aXN0cyAhZl9iIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsNSwibV8xIFxcb3RpbWVzIFxcY2RvdHMgXFxvdGltZXMgbV9rIFxcY29sb25lcXEgXFxpb3RhKG1fMSwgXFxsZG90cywgbV9rKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzIsNCwiVChtXzEsIFxcbGRvdHMsIG1faykiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFszLDYsIihtXzEsIFxcbGRvdHMsIG1faykiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxMCwxMSwiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTIsMTAsIiIsMCx7ImN1cnZlIjotNCwic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTIsMTEsIiIsMix7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjozMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
+\[\begin{tikzcd}
+	&&& {} \\
+	&& {\bigotimes_{i=1}^k M_i} \\
+	{} & {\prod_{i=1}^k M_i} & N \\
+	{} &&& {}
+	\arrow[""{name=0, anchor=center, inner sep=0}, "{m_1 \otimes \cdots \otimes m_k \coloneqq \iota(m_1, \ldots, m_k)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=1-4]
+	\arrow["{\exists !f_T}", dashed, from=2-3, to=3-3]
+	\arrow["\iota", from=3-2, to=2-3]
+	\arrow["T"', from=3-2, to=3-3]
+	\arrow[""{name=1, anchor=center, inner sep=0}, "{T(m_1, \ldots, m_k)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-4]
+	\arrow[""{name=2, anchor=center, inner sep=0}, "{(m_1, \ldots, m_k)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=4-1, to=3-1]
+	\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
+	\arrow[draw={rgb,255:red,92;green,92;blue,214}, curve={height=-24pt}, between={0.1}{0.8}, maps to, from=2, to=0]
+	\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.7}, maps to, from=2, to=1]
+\end{tikzcd}\]
+
+In math 200b I learned how to construct tensor products of $2$ modules and I also showed that $M_1 \otimes (M_2 \otimes M_3) \cong (M_1 \otimes M_2) \otimes M_3$. But for the sake of better notation and easier thinking, I want to be able to talk about tensor products of any finite number of modules. Fortunately, by standard reasoning we can see that any two $A$-modules satisfying the universal property in the above diagram are isomorphic.\retTwo
+
+\ul{Lemma A:} Let $k \geq 2$ and suppose $M_1, \ldots, M_k$ are all $A$-modules. Then there exists a\\ module $\bigotimes_{i=1}^k M_i$ and a $k$-linear map $\iota: \prod_{i=1}^k M_i \to \bigotimes_{i=1}^k M_i$ fulfilling the above universal property. Furthermore, $\iota(\prod_{i=1}^k M_i)$ is a generating / spanning set for $\bigotimes_{i=1}^k M_i$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Our base case of $k = 2$ is already covered. So let us now proceed by induction and assume that we've already defined $\bigotimes_{i=2}^{k} M_i$ and $\overline{\iota}: \prod_{i=2}^{k} M_i \to \bigotimes_{i=2}^{k} M_i$. Then let's define\\ $M \coloneqq M_1 \otimes (\bigotimes_{i=2}^{k} M_i)$ and $\iota: \prod_{i=1}^k M_i \to M$ by:
+	
+	{\centering$\iota(m_1, \ldots, m_k) \coloneqq m_1 \otimes \overline{\iota}(m_2, \ldots, m_k)$.\retTwo\par}
+
+	It's easy to see that $\iota$ is a $k$-linear map. Furthemore, suppose $T: \prod_{i=1}^k M_i \to N$ is any $k$-linear map. Then for any fixed $m_1 \in M_1$, we can see that $T_{m_1}: \prod_{i=2}^k M_i \to N$ defined by $T_{m_1}(m_2,\ldots, m_k) \coloneqq T(m_1, \ldots, m_k)$ is a well-defined $(k-1)$-linear map. So by the universal property of $\bigotimes_{i=2}^{k} M_i$ and $\overline{\iota}: \prod_{i=2}^{k} M_i \to \bigotimes_{i=2}^{k} M_i$, we know that there exists a unique $A$-module homomorphism $f_{m_1}: \bigotimes_{i=2}^{k} M_i \to N$ such that $f_{m_1} \circ \overline{\iota} = T_{m_1}$.\newpage
+
+	Next, we define $S: M_1 \times (\bigotimes_{i=2}^{k} M_i) \to N$ by $S(m_1, t) \coloneqq f_{m_1}(t)$. Since each $f_{m_1}$ is $A$-linear, we know that $S$ is $A$-linear in its second variable. Meanwhile, note that:
+	
+	{\center\begin{tabular}{l}
+		$f_{am_1 + a^\prime m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k)) = T(am_1 + a^\prime m_1^\prime, m_2, \ldots, m_k)$\\ [3pt]
+		$\phantom{f_{am_1 + a^\prime m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k))} = aT(m_1, m_2, \ldots, m_k) + a^\prime T(m_1^\prime, m_2, \ldots, m_k)$\\ [3pt]
+		$\phantom{f_{am_1 + a^\prime m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k))} = af_{m_1}(\overline{\iota}(m_2, \ldots, m_k)) + a^\prime f_{m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k))$.
+	\end{tabular}\retTwo\par}
+
+	It follows $S$ is $A$-linear in its first variable if its second variable is contained in $\overline{\iota}(\prod_{i=2}^{k} M_i)$. And since $S$ is a $A$ linear in its second variable and $\overline{\iota}(\prod_{i=2}^{k} M_i)$ spans all of $\bigotimes_{i=2}^{k} M_i$, we\\ can in turn conclude that $S$ is $A$-linear in its first variable regardless of the value of its second variable. And with that we've shown $S$ is a bilinear map.\retTwo
+
+	By the universal property of tensor products, we know there is a unique $A$-module\\ homomorphism $f_T: M_1 \otimes (\bigotimes_{i=2}^{k} M_i) \to N$ such that the below diagram commutes:\\ [-10pt]
+	% https://q.uiver.app/#q=WzAsNyxbMSwyLCJNXzEgXFx0aW1lcyAoXFxiaWdvdGltZXNfe2k9Mn1eayBNX2kpIl0sWzIsMSwiTV8xIFxcb3RpbWVzIChcXGJpZ290aW1lc197aT0yfV5rIE1faSkiXSxbMiwyLCJOIl0sWzAsM10sWzQsM10sWzMsMF0sWzAsMl0sWzAsMiwiUyIsMl0sWzAsMV0sWzEsMiwiXFxleGlzdHMgIWZfVCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDUsIm1fMSBcXG90aW1lcyB0IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw0LCJmX3ttXzF9KHQpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMyw2LCIobV8xLCB0KSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEwLDExLCIiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMiwxMCwiIiwwLHsiY3VydmUiOi01LCJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMiwxMSwiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
 	\[\begin{tikzcd}
-		{} &&& {} \\
-		& {\mathcalli{V}_p M} & {\mathcalli{D}_p M} \\
-		& {\mathcalli{V}_{F(p)}N} & {\mathcalli{D}_{F(p)}N} \\
-		{} &&& {}
-		\arrow[""{name=0, anchor=center, inner sep=0}, "{[\gamma]}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
-		\arrow[hook, from=2-2, to=2-3]
-		\arrow["{\df F_p}", from=2-2, to=3-2]
-		\arrow[""{name=1, anchor=center, inner sep=0}, "{f \mapsto (f \circ \gamma)^\prime(0)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=1-4]
-		\arrow["{\widehat{\df}F_p}"', from=2-3, to=3-3]
-		\arrow[hook, from=3-2, to=3-3]
-		\arrow[""{name=2, anchor=center, inner sep=0}, "{[F \circ \gamma]}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-2, to=4-1]
-		\arrow[""{name=3, anchor=center, inner sep=0}, "{g \mapsto (g \circ F \circ \gamma)^\prime(0)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-4]
-		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.8}, maps to, from=0, to=1]
-		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=2]
-		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=1, to=3]
-		\arrow[color={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.8}, from=2, to=3]
+		&&& {} & \\
+		&& {M_1 \otimes (\bigotimes_{i=2}^k M_i)} \\
+		{} & {M_1 \times (\bigotimes_{i=2}^k M_i)} & N \\
+		{} &&&& {}
+		\arrow[""{name=0, anchor=center, inner sep=0}, "{m_1 \otimes t}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=1-4]
+		\arrow["{\exists !f_T}", dashed, from=2-3, to=3-3]
+		\arrow[from=3-2, to=2-3]
+		\arrow["S"', from=3-2, to=3-3]
+		\arrow[""{name=1, anchor=center, inner sep=0}, "{f_{m_1}(t)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-5]
+		\arrow[""{name=2, anchor=center, inner sep=0}, "{(m_1, t)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=4-1, to=3-1]
+		\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
+		\arrow[draw={rgb,255:red,92;green,92;blue,214}, curve={height=-30pt}, between={0.1}{0.9}, maps to, from=2, to=0]
+		\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=2, to=1]
 	\end{tikzcd}\]
 
+	I further claim that $f_T$ is the unique $A$-module homomorphism making this diagram\\ commute:
+	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXHByb2Rfe2k9MX1eayBNX2kiXSxbMSwwLCJNIl0sWzEsMSwiTiJdLFswLDIsIlQiLDJdLFswLDEsIlxcaW90YSJdLFsxLDIsImZfVCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		& M \\
+		{\prod_{i=1}^k M_i} & N
+		\arrow["{f_T}", dashed, from=1-2, to=2-2]
+		\arrow["\iota", from=2-1, to=1-2]
+		\arrow["T"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+
+	After all, the fact that this diagram commutes is simply because:
+
+	{\centering\begin{tabular}{l}
+		$f_T(\iota(m_1, \ldots, m_k)) = f_T(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k))$\\ [4pt]
+		$\phantom{f_T(\iota(m_1, \ldots, m_k))} = S(m_1, \overline{\iota}(m_2, \ldots, m_k)) = f_{m_1}(\overline{\iota}(m_2, \ldots, m_k))$\\ [4pt]
+		$\phantom{f_T(\iota(m_1, \ldots, m_k)) = S(m_1, \overline{\iota}(m_2, \ldots, m_k))} = T(m_1, m_2, \ldots, m_k)$.
+	\end{tabular}\retTwo\par}
+
+	Meanwhile, if $g$ was another $A$-module homomorphism making the diagram commute, we'd similarly be able to say that:
+
+	{\centering\begin{tabular}{l}
+		$g(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k)) = g((\iota(m_1, \ldots, m_k)))$\\ [4pt]
+		$\phantom{g(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k))} = T(m_1, m_2, \ldots, m_k) = f_{m_1}(\overline{\iota}(m_2, \ldots, m_k))$\\ [4pt]
+		$\phantom{g(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k)) = T(m_1, m_2, \ldots, m_k)} = S(m_1, \overline{\iota}(m_2, \ldots, m_k))$.
+	\end{tabular}\retTwo\par}
+
+	In turn since $g$ is $A$-linear and $\overline{\iota}(\prod_{i=2}^{k} M_i)$ spans all of $\bigotimes_{i=2}^{k} M_i$, we can conclude that $g(m_1 \otimes t) = S(m_1, t)$ for all $(m_1, t) \in  M_1 \times (\bigotimes_{i=2}^{k} M_i)$. By the uniqueness of $f_T$, we thus must have that $g = f_T$. And with that, we've proven that $M$ equipped with $\iota$ satisfies the universal property of a tensor product of $k$ many modules.\newpage
+
+	To finish off the proof, we already know our construction of $M_1 \otimes (\bigotimes_{i=2}^{k} M_i)$ in math 200b that that space is spanned by pure tensors of the form $m_1 \otimes t$ where $t \in \bigotimes_{i=2}^{k} M_i$. So, we can write any arbitrary element in $M$ as a sum of pure tensors $\sum_{j=1}^\ell m_1^{(j)} \otimes t^{(j)}$.
+	\begin{myIndent}\exPPP
+		(And via $A$-balance I'm letting $m_1^{(j)}$ absorb any scalars in this sum.)\retTwo
+	\end{myIndent}
+
+	But by induction we can then write $t^{(j)} = \sum_{j^\prime = 1}^{r_j} \overline{\iota}(m_2^{(j, j^\prime)}, \ldots, m_k^{(j, j^\prime)})$ (where again I'm letting the $m_i^{(j, j^\prime)}$ absorb any of the scalars). So:
+
+	{\center\begin{tabular}{l}
+		$\sum_{j=1}^\ell m_1^{(j)} \otimes t^{(j)} = \sum_{j=1}^\ell \sum_{j^\prime = 1}^{r_j} m_1^{(j)} \otimes \overline{\iota}(m_2^{(j, j^\prime)}, \ldots, m_k^{(j, j^\prime)})$\\ [4pt]
+		$\phantom{\sum_{j=1}^\ell m_1^{(j)} \otimes t^{(j)}} = \sum_{j=1}^\ell \sum_{j^\prime = 1}^{r_j} \iota(m_1^{(j)}, m_2^{(j, j^\prime)}, \ldots, m_k^{(j, j^\prime)})$. $\blacksquare$
+	\end{tabular}\retTwo\par}
+
 	\begin{myIndent}\myComment
-		Hopefully this is obvious. Also as a side note, if $k = \infty$ then the horizontal\\ arrows must be vector space isomorphisms. After all, $\mathcalli{V}_p M$ and $\mathcalli{D}_p M$ will both be $n$-dimensional vector spaces (assuming $M$ is an $n$-dimensional manifold), and we just showed the arrow $\mathcalli{V}_p M \to \mathcalli{D}_p M$ is given by an injective linear map.\retTwo
+		As a side note: The prior proof can also be interpretted as saying that\\ $M_1 \otimes (M_2 \otimes (\cdots \otimes (M_{k-1} \otimes M_k)\cdots))$ along with the $k$-linear map\\ $\iota(m_1, \ldots, m_k) = m_1 \otimes (m_2 \otimes (\cdots \otimes (m_{k-1} \otimes m_k)\cdots))$ satisfies the\\ universal property of a tensor product of $k$ many $A$-modules.\retTwo
 	\end{myIndent}
 \end{myIndent}
 
-{\hTwo\dispDate{7/21/2026}}
+\pracOne Note that we can by identical reasoning then prove an analogous proposition as on\\ \inLinkRap{pages}{pages 726-728} if $M_1, \ldots, M_k$ are $A$-algebras (albeit with more cumbersome notation).
+\begin{myIndent}\myComment
+	In other words, if $M_1, \ldots, M_k$ are $A$-algebras then $\bigotimes_{i=1}^k M_i$ is also an $A$-algebra when equipped with the multiplication operation:
+	
+	{\centering$(m_1 \otimes \cdots \otimes m_k)(m_1^\prime \otimes \cdots \otimes m_k^\prime) = m_1m_1^\prime \otimes \ldots \otimes m_km_k^\prime$\retTwo\par}
+\end{myIndent}
 
-Derivations are much nicer to work with then equivalence classes of curves. So I guess the take away from all the prior reasoning in this tangent is that we now have a formal way of describing which derivations we care about (i.e. which derivations actually correspond to "directional derivatives"). And importantly, this reasoning works even for non-$C^\infty$-manifolds.\retTwo
+Similarly, given $A$-module homomorphisms $f_i: M_i \to M_i^\prime$ we can show identically as on \inLinkRap{placeholder}{page 700} that there is a unique $A$-module homomorphism $\bigotimes_{i=1}^k M_i \to \bigotimes_{i=1}^k M_i^\prime$ such\\ [1pt] that $f(m_1 \otimes \cdots \otimes m_k) = f(m_1) \otimes \cdots \otimes f(m_k)$.\retTwo
 
-So if $M$ is a $C^r$ manifold without corners and $\Psi: \mathcalli{V}_p M \to \mathcalli{D}_p M$ is the function from the lemma on the prior page, then we let $T_p M \coloneqq \Psi(\mathcalli{V}_p M)$.\retTwo
+\ul{Lemma B:} Suppose $N, M_1, \ldots, M_k$ are $A$-algebras and $f_i: M_i \to N$ is an $A$-algebra\\ homomorphism for $1 \leq i \leq k$. Then there is a unique $A$-module homomorphism\\ $f: \bigotimes_{i=1}^k M_i \to N$ such that $f(m_1 \otimes \cdots \otimes m_k) = \prod_{i=1}^k f_i(m_i)$.
+\begin{myIndent}\pracTwo
+	Proof:\\
+	To start off, if we define $T: \prod_{i=1}^k M_i \to N$ by $T(m_1, \ldots, m_k) = \prod_{i=1}^k f_i(m_i)$ then we can easily see that $T$ is $k$-linear. So by the universal property of $\bigotimes_{i=1}^k M_i$, we know there is a unique $A$-module homomorphism $f: \bigotimes_{i=1}^k M_i \to N$ such that:
+	
+	{\centering$f(m_1 \otimes \cdots \otimes m_k) = \prod_{i=1}^k f_i(m_i)$.\retTwo\par}
 
+	What we need to do now though is show that $f$ also happens to be algebra homomorphism. This is not difficult but involves a lot of tedious symbol pushing which I don't want to type out. $\blacksquare$
+	\begin{myIndent}\myComment
+		Another observation to make is that if each $f_i: M_i \to N$ is unital then\\ $f$ is also unital.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\begin{myIndent}\mySepThree\end{myIndent}
+
+{\hTwo \dispDate{7/31/2026}\newpage}
+
+This tangent has actually become significantly longer and deeper than I originally thought it would be. I just don't know enough about algebras. So at this point I'm going to start following the textbook \textit{Multilinear Algebra} by Douglas Northcott. See \inLinkRap{Citation 12}{citation 12} for more information. Also I'm going to switch back to the normal color scheme.\retTwo
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\hTwo For the time being, I'll let $R$ denote a fixed commutative unital ring. I'm letting $R$ as opposed to $A$ denote the ring both because the ring I will care about eventually is just $\mathbb{R}$, and also because this frees up $A$ to refer to an $R$-algebra.\retTwo
+
+Let $A$ be an $R$-algebra (which doesn't have to be commutative). We say a family $\{A_n\}_{n \in \mathbb{Z}}$ of $R$-submodules of $A$ is a \udefine{grading} on $A$ if $A = \bigoplus_{n \in \mathbb{Z}}A_n$ as an internal direct sum of $R$-modules and $a_r \in A_r$ and $a_s \in A_s$ implies that $a_r a_s \in A_{r + s}$.
+\begin{itemize}
+	\item An $R$-algebra with a grading $\{A_n\}_{n \in \mathbb{Z}}$ is said to be a \udefine{graded $R$-algebra}. If all $A_n = \{0\}$ for $n < 0$ then we say our grading is \udefine{nonnegative}.
+	\item Also any elements of $A_n$ are called \udefine{homogeneous of degree $n$}.
+	\item By definition, any $a \in A$ can be written uniquely as $\sum_{n \in \mathbb{Z}}a_n$ where each $a_n \in A$ and all but finitely many $a_n$ are zero. We call the $a_n$ in this sum the \udefine{homogeneous coefficients of $a$}.\retTwo
+\end{itemize}
+
+\exTwo\ul{Theorem 3.5:} Let $A$ be a unital graded $R$-algebra with the grading $\{A_n\}_{n \in \mathbb{N}}$. Then $1_A$ is\\ homogeneous of degree $0$.
+\begin{myIndent}\exThreeP
+	Let us write $1_A = \sum_{n \in \mathbb{Z}} a_n$ as a sum of the homogeneous coefficients of $1_A$. Then for any $m \in \mathbb{Z}$ we consider any $b_m \in A_m$. But now note that:
+	
+	{\centering$\sum_{n \in \mathbb{Z}} a_n b_m = 1_A b_m = b_m = b_m1_A = \sum_{n \in \mathbb{Z}} b_m a_n$\retTwo\par}
+
+	By comparing homogeneous coefficients, we get that $a_0 b_m = b_m = b_m a_0$ (and also that $a_n b_m = 0 = b_m a_n$ if $n \neq 0$). And thus since every $b \in A$ is a sum of $b_m \in A_m$ as $m$ ranges over some finite subset of $\mathbb{Z}$, we can conclude for all $b \in A$ that $a_0 b = b = b a_0$. This shows that $a_0$ is an identity element of $A$. And thus $1_A = 1_A a_0 = a_0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Given a unital $R$-algebra $A$, I'll say $B \subseteq A$ is a \udefine{subalgebra} if it is also an $R$-algebra under the algebra operations of $A$ and $1_B = 1_A$.\retTwo
+
+\exTwo\ul{Corollary:} Let $A$ be a graded unital $R$-algebra with the grading $\{A_n\}_{n \in \mathbb{N}}$. Then $A_0$ is a subalgebra of $A$.
+\begin{myIndent}\exThreeP
+	Why?\\
+	$A_0$ is an $R$-module and we know from the definition of a grading that if $a, b \in A_0$ then so is $ab \in A_0$. Finally, $1_A \in A_0$ lets us conclude $A_0$ is a subalgebra. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Let $A$ be an $R$-algebra. Note that if $\{B_i\}_{i \in I}$ is a collection of subalgebras of $A$ then so is $B \coloneqq \bigcap_{i \in I} B_i$. As a result, given a subset $S$ of $A$ we let the $R$-subalgebra generated by $S$ (denoted $\langle S\rangle$) to be the smallest subalgebra of $A$ containing $S$. We can construct $\langle S\rangle$ as follows:\newpage
+\begin{myIndent}\pracTwo
+	Let $B$ be the collection of all finite linear combinations of finite products of elements of $S$ (where a product of zero-many elements is interpretted as equalling $1_A$). It is easy to justify that $B \subseteq \langle S\rangle$ and that $B$ is itself a subalgebra of $A$ which contains $S$. So, $\langle S\rangle \subseteq B$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma 3.1:} Let $\{A_n\}_{n \in \mathbb{Z}}$ be a grading on a unital $R$-algebra $A$, and suppose that $A = \langle A_1\rangle$. Then the grading on $A$ is nonnegative and for all $n \geq 0$ we have that any $a \in A_n$ is a finite linear combinations of products of $n$ many elements of $A_1$. In particular, this means that $A_0$ is generated as an $R$-module by $1_A$. So, $A_0$ is contained in the center of $A$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$A$ is generated as an $R$-module by all finite products of elements of $A_1$. Therefore, let $B_{0} = R1_A$, let $B_n = \{0\}$ for $n < 0$, and finally for $n > 0$ let $B_n$ be the $R$-module generated by all finite products of $n$ many elements of $A_1$. We know $A = \sum_{n \in \mathbb{Z}} B_n$, and we can also easily see that $B_n \subseteq A_n$ for all $n$. The only way both statements can be true is if $A_n = B_n$ for all $n$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Let $A$ and $B$ be unital graded $R$-algebras with gradings $\{A_n\}_{n \in \mathbb{N}}$ and $\{B_n\}_{n \in \mathbb{N}}$ respectively. We say $f: A \to B$ is a \udefine{homomorphism of graded $R$-algebras} if it is a unital $R$-algebra homomorphism and $f(A_n) \subseteq B_n$ for all $n$.\retTwo
+
+\exTwo\ul{Lemma:} If $f: A \to B$ is a homomorphism of graded $R$-algebras and a bijection, then\\ $f(A_n) = B_n$ for all $n$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Consider any $n \in \mathbb{Z}$ and $b_n \in B_n$. Then write $f^{-1}(b_n) = \sum_{m \in \mathbb{Z}} a_m$ where $a_m \in A_m$\\ for each $m$. In turn, $b_n = f(f^{-1}(b_n)) = f(\sum_{m \in \mathbb{Z}} a_m) = \sum_{m \in \mathbb{Z}} f(a_m)$. So if $m \neq 0$\\ then we can compare homogeneous coefficients of $b_n$ to get that $f(a_m) = 0$. Since $f$ is\\ injective, it follows that $a_m = 0$ for all $m \neq 0$. And so, we've shown that $f^{-1}(b_n) \in A_n$.\\ In other words, $f^{-1}(B_n) \subseteq A_n$. And since $f(A_n) \subseteq B_n$, we can now conclude that\\ $f(A_n) = B_n$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Let $I \lhd A$ be a two-sided ideal of a graded unital $R$-algebra $A$ (i.e. $I$ is an $R$-submodule\\ and a two-sided ideal of $A$). We say $I$ is \udefine{homogeneous} if $a \in I$ implies that all the\\ homogeneous components of $A$ are also in $I$.\retTwo
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \ul{Lemma C:} Let $M_1, \ldots, M_n$ be unital $A$-algebras and let $k$ be a positive integer less than or equal to $n$. Then consider an injective function $\sigma: \{1, \ldots, k\} \to \{1, \ldots, n\}$. There exists a unique unital $A$-module homomorphism $j_{\sigma}: \bigotimes_{i=1}^k M_i \to \bigotimes_{i^\prime=1}^n M_{i^\prime}$ such that $j_{\sigma}(m_1 \otimes \cdots \otimes m_k) \coloneqq \widetilde{m}_1 \otimes \cdots \otimes \widetilde{m}_n$ where $\widetilde{m}_{\sigma(i)} = m_i$ for all $i$ and $\widetilde{m}_{i^\prime} = 1_{M_i^\prime}$ if $i^\prime \notin \myIm(\sigma)$. Furthermore $j_{\sigma}$ is an injective unital $A$-algebra homomorphism.\newpage
+% \begin{myIndent}\pracTwo
+% 	Proof:\\
+% 	To start off, we have a $k$-linear map $T: \prod_{i=1}^k M_i \to \bigotimes_{i^\prime=1}^n M_i$ given by:
+	
+% 	{\centering$T(m_1, \ldots, m_k) \coloneqq \widetilde{m}_1 \otimes \cdots \otimes \widetilde{m}_n$\\ [4pt]\par}
+	
+% 	(where $\widetilde{m}_i$ is as defined in the statement of the lemma). Therefore, by the universal\\ property of tensor products we know we can pass to a unique unital $A$-module\\ homomorphism $j_{\sigma}$.\retTwo
+
+
+% \end{myIndent}
+
+% As a corollary to the prior lemma, if each $M_i$ is an $A$-algebra then we can also now embed each $M_i$ into $\bigotimes_{i=1}^k M_i$.
+
+
+
+
+
+
+
+
+% \newpage
+
+% \begin{myIndent}\mySepThree\end{myIndent}
+
+% My next goal in this aside is to construct categorical coproducts in $\mcateg{CAlg}_A$. Unfortunately, this construction will be convoluted and rely on a lot of universal properties. So get ready for that!\retTwo
+
+% \begin{myIndent}\pracTwo
+% 	Let $\{B_i\}_{i \in I}$ be a collection of $A$-algebras. We can construct a category $\mcateg{I}_f$ whose objects are all the finite subsets of $I$ and whose morphisms are all the increasing inclusion relations. (In other words there is a morphism from $J_1 \subseteq I$ to $J_2 \subseteq I$ if $J_1 \subseteq J_2$. And the composition of $J_1 \subseteq J_2$ and $J_2 \subseteq J_3$ is just the morphism $J_1 \subseteq J_3$).\retTwo
+
+% 	We shall define a functor $\mathcalli{G}: \mcateg{I}_f \to A$-$\mcateg{mod}$ as follows.
+% 	\begin{myIndent}\exPPP
+% 		For each finite set $J \subseteq I$ we can choose an indexing $J = \{i_J^{(1)}, \ldots, i_J^{(n)}\}$. Then we\\ [2pt] define $\mathcalli{G}(J) = \bigotimes_{j=1}^n B_{i_j}$. Next, suppose $J \subseteq J^\prime$ and let $|J| = n$ and $|J^\prime| = m$.\\ We know there is an injection $\sigma^{J^\prime}_J: \{1, \ldots, n\} \to \{1, \ldots, m\}$ such that:
+		
+% 		{\center$J = \{i_J^{(1)} = i_{J^\prime}^{(\sigma_J^{J^\prime}(1))}, \ldots, i_J^{(n)} = i_{J^\prime}^{(\sigma_J^{J^\prime}(n))}\} \subseteq \{i_{J^\prime}^{(1)}, \ldots, i_{J^\prime}^{(m)}\} = J^\prime$.\retTwo\par}
+
+% 		Furthermore it's easy to see that if $J \subseteq J^\prime \subseteq J^\pprime$ then $\sigma_J^{J^\pprime} = \sigma_{J^\prime}^{J^\pprime} \circ \sigma_J^{J^\prime}$. Hence,\newpage we shall now consider the $A$-module homomorphism $\iota_J^{J^\prime}: \bigotimes_{j=1}^n B_{i_J^{(j)}} \to \bigotimes_{j=1}^m B_{i_{J^\prime}^{(j)}}$ which maps the pure tensor $b_{i_J^{(1)}} \otimes \cdots \otimes b_{i_J^{(n)}}$ to the pure tensor $c_{i_{J^\prime}^{(1)}} \otimes \cdots \otimes c_{i_{J^\prime}^{(m)}}$ where:
+% 		\begin{itemize}
+% 			\item if there exists $j$ with $\sigma^{J^\prime}_J(j) = j^\prime$ then $c_{i_{J^\prime}^{(j^\prime)}} = b_{i^{(j)}_J}$, 
+% 			\item otherwise $c_{i_{J^\prime}^{(j^\prime)}} = 1_{B_{i_{J^\prime}^{(j^\prime)}}}$.\retTwo
+% 		\end{itemize}
+
+% 		The fact that a unique such $A$-module homomorphism exists is easy to prove from universal properties. And also we clearly have that $\iota^{J^\pprime}_{J} = \iota^{J^\pprime}_{J^\prime} \circ \iota^{J^\prime}_J$ for all pure tensors (and thus all elements of $\bigotimes_{j=1}^n B_{i_J^{(j)}}$ in general). So, we set $\mathcalli{G}(J \subseteq J^\prime) = \iota^{J^\prime}_J$.\retTwo
+% 	\end{myIndent}
+
+% 	Next we define the $A$-module $C \coloneqq \lim\limits_{\longrightarrow}(\mathcalli{G})$.
+% \end{myIndent}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \mySepTwo
 
+\hTwo Recall the definition of sheaves, stalks, and germs given on \inLinkRap{Page 1026 reference}{pages 1026-1027}. Then\\ given any $C^r$ manifold $M$ and any $k \leq r$ in $\mathbb{Z}_{\geq 1} \cup \{\infty\}$, we consider the sheaf\\ $\mathcalli{F}: \mcateg{Op}(M) \to \mathbb{R}$-$\mcateg{alg}$ such that $\mathcalli{F}(U) = C^k(U)$ and for any open sets $V \subseteq U \subseteq M$\\ we have that $r^U_V(f) = f|_V$.\retTwo
+
+For any $p \in M$ we denote the stalk of $\mathcalli{F}$ at $p$ to be the set $C_p^k(M)$. Also, given any open set $U$ and $C^k$ map $f: U \to \mathbb{R}$, we let $[(U, f)]$ denote the germ of $f$ in $C^k_p(M)$.\retTwo
+
+\begin{myIndent}
+	\exTwo\ul{Lemma A:} Suppose $[(U, f)]$ and $[(V, g)]$ are germs in $C_p^k(M)$. Then $[(U, f)] = [(V, g)]$ if and only if there is an open set $W \subseteq U \cap V$ such that $p \in W$ and $f|_W = g|_W$.
+	\begin{myIndent}\exThreeP
+		$(\Longleftarrow)$\\
+		By the definition of a direct limit, we know $[(U, f)] = [(W, f|_W)]$ and\\ $[(V, g)] = [(W, g|_W)]$ in $C^k_p$. But also note that $(W, f|_W) = (W, g|_W)$ and\\ so their germs are equal. It follows that $[(U, f)] = [(V, g)]$.\retTwo
+
+		$(\Longrightarrow)$\\
+		Let $W^\prime = U \cap V$. As mentioned before, we know that $[(U, f)] = [(W^\prime, f|_{W^\prime})]$\\ and $[(V, g)] = [(W^\prime, g|_{W^\prime})]$. Hence:
+		
+		{\centering$[(U, f)] =[(V, g)] \Longrightarrow [(W^\prime, f|_{W^\prime})] = [(W^\prime, g|_{W^\prime})]$.\retTwo\par}
+
+		To simplify our notation, I'll thus assume without loss of generality that\\ $U = V$ $( = W^\prime)$. And now it suffices to find some open set $W \subseteq U$ containing\\ $p$ such that $f|_W = g|_W$. Fortunately, note that $j_U: C^k(U) \to C^k_p(M)$ given by $j_U(f) = [(U, f)]$ 
+	\end{myIndent}
+\end{myIndent}
 
 
 
-
-
-
-
-
-
-
-
-
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 % I'm giving up on covering Wells' textbook out of order and am just going to cover things from the beginning.\retTwo
 
