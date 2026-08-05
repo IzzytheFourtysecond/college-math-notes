@@ -400,534 +400,482 @@
 \setul{0.14em}{0.07em}
 \calibri
 
-\pracOne\mySepTwo
+\hTwo\dispDate{8/2/2026}\newpage
 
-As a side note, the prior theorem can fail when we allow $M$ and $N$ to have nonempty\\ boundaries. For an obvious example of this, let $M = H^n$ and $N = \mathbb{R}^n$. Then let\\ $\iota: H^n \hookrightarrow \mathbb{R}^n$ be the inclusion map and consider any $p \in \partial H^n$. We already know from earlier that $\df \iota_p$ is a bijection. That said, the prior theorem holding in this situation would\newpage contradict the invariance of domain theorem on \inLinkRap{Invariance of Domain Theorem}{page 1008}. So, no such open sets $U_0$\\ and $V_0$ can exist in this case.\retTwo
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\Hstatement\blab{Exercise 4-2:} Suppose $M$ is a $C^r$ manifold (without a boundary) and $N$ is a $C^r$ manifold with a boundary. Also let $\Int(M)$ denote the set of interior / non-boundary points of $N$. Then if $F: N \to M$ is a $C^k$ map (where $k \leq r$), $p \in M$, and $\df F_p$ is bijective, we must have that $F(p) \in \Int(N)$.
-\begin{myIndent}\HexOne
-	Proof:\\
-	Once again, the fact that $\df F_p$ is injective means that there exists an integer $n$ with\\ $\dim(M) = n = \dim(N)$. Now let $(U, \varphi)$ be a smooth chart on $M$ containing $p$ and $(V, \psi)$ be a smooth chart on $N$ with $F(U) \subseteq V$. Since $M$ has no boundary, we know that $\widehat{U} \coloneqq \varphi(U)$ is open in $\mathbb{R}^n$.\retTwo
+Unfortunately, there is still a little more infrastructure that needs to be built up before I can get to constructing interesting $R$-algebras satisfying certain universal properties.\retTwo
 
-	Yet now note that $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ is a $C^k$ map from $\widehat{U}$ into $\mathbb{R}$ such that $\Df \widehat{F}(\varphi(p))$ is invertible. It follows by the inverse function theorem in my math 140c notes that there are open sets $\widehat{U}_0$ and $\widehat{V}_0$ of $\mathbb{R}^n$ such that $\varphi(p) \in \widehat{U}_0 \subseteq \widehat{U}$ and $\widehat{F}$ is a bijection from $\widehat{U}_0$ to $\widehat{V}_0$. So $(\psi|_{\psi^{-1}(\widehat{V}_0)}, \psi^{-1}(\widehat{V}_0))$ is an interior chart on $N$ containing $F(p)$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\pracOne\mySepTwo
-
-\hTwo\dispDate{7/23/2026}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\pracOne To start off, it's been bugging me for several days that I don't have a way of talking about tangent spaces to corner points of $C^r$ manifolds (where $r < \infty$). So I'm going to bodge a solution. I am not getting this construction from any resources though so I'm sorry if my construction disagrees with a better solution.\retTwo
-
-Let $M$ be a $C^r$ manifold with a corner point $p$. Then we define $\mathcalli{C}(M, p)$ and $\mathcalli{V}_p M$ as on \inLinkRap{Page 1046 reference}{page 1046}. Also, we let $\mathcalli{D}_p M$ denote the space of derivations at $p$ from $C^1(M, \mathbb{R})$ to $\mathbb{R}$. Now for any $\gamma \in \mathcalli{C}(M, p)$ we know $D_\gamma: C^1(M, \mathbb{R}) \to \mathbb{R}$ given by $D_\gamma(f) \coloneqq (f \circ \gamma)^\prime(0)$ is a well-defined derivation at $p$. Also, we know by the definition of the equivalence classes in $\mathcalli{V}_p(M)$ that $[\gamma_1] = [\gamma_2]$ in $\mathcalli{V}_p$ if and only if $D_{\gamma_1} = D_{\gamma_2}$.\retTwo
-\begin{myIndent}
-	\ul{Lemma:} Let $S \coloneqq \{D_\gamma : [\gamma] \in \mathcalli{V}_p M\}$. Then let $T_p M$ be the subspace of $\mathcalli{D}_p M$ spanned by $S$.
-	\begin{enumerate}
-		\item[(a)] If $M$ is an $n$-dimensional manifold then $T_p M$ is also $n$-dimensional.
-		\begin{myIndent}\pracTwo
-			Proof:\\
-			Let $(U, \varphi)$ be a smooth chart on $M$ containing $p$, and then recall for any\\ $f \in C^1(M, \mathbb{R})$ and $[\gamma] \in \mathcalli{V}_p M$ that:
-
-			{\centering $\Df_\gamma(f) = (f \circ \gamma)^\prime(0) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot (\varphi \circ \gamma)^\prime(0)$ \retTwo\par}
-
-			Now suppose $\gamma_1, \ldots, \gamma_{n+1}$ are all in $\mathcalli{C}(M, p)$. Then for any $c_1, \ldots, c_{n+1}$\\ we have that:
-
-			{\centering $\left(\sum_{i=1}^{n+1} c_i D_{\gamma_i}\right)(f) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot \left( \sum_{i=1}^{n+1} c_i(\varphi \circ \gamma_i)^\prime(0)\right)$ \retTwo\par}
-
-			Yet because $\mathbb{R}^n$ is an $n$-dimensional vector space, we know there exists\\ $c_1, \ldots, c_{n+1}$ which aren't all zero such that $\sum_{i=1}^{n+1} c_i(\varphi \circ \gamma_i)^\prime(0) = 0 \in \mathbb{R}^n$.\newpage And then we'll have $\left(\sum_{i=1}^{n+1} c_i D_{\gamma_i}\right)(f) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot 0 = 0$ for all $f \in C^1(M, \mathbb{R})$. This proves that $\dim(T_p M) \leq n$.\retTwo
-
-			As for the other inequality, note that because $\varphi(U)$ is open in $(\mathbb{R}_{\geq 0})^n$, we can guarentee if $e_1, \ldots, e_n$ is the standard basis for $\mathbb{R}^n$ then there exists $R > 0$ with $\varphi(p) + te_i \in \varphi(U)$ for all $t \in [0, R]$ and each $i$. So, I define $\gamma_i: [0, R] \to M$ by $\gamma(t) \coloneqq \varphi^{-1}(\varphi(p) + te_i)$. Then for any $c_1, \ldots, c_n$ we have that:
-
-			{\centering $\left(\sum_{i=1}^{n} c_i D_{\gamma_i}\right)(f) = \nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot (c_1, \ldots, c_n)$ \retTwo\par}
-
-			At last, we just need to show that if $\mVecAst{c} \coloneqq (c_1, \ldots, c_n) \neq 0$ then there exists some $f \in C^1(M, \mathbb{R})$ with $\nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot \mVecAst{c} \neq 0$. Fortunately, we know from the proof of the lemma on \inLinkRap{Lemma page 1047}{page 1047} how to go a step further and find $f \in C^r(M, \mathbb{R})$ with $\nabla(f \circ \varphi^{-1})(\varphi(p)) \cdot \mVecAst{c} \neq 0$. Therefore:
-			\begin{itemize}
-				\item $D_{\gamma_1}, \ldots, D_{\gamma_n}$ is a collection of linearly independent vectors in $S \subseteq \mathcalli{D}_p M$.
-				\item If we restrict the domains of all the derivations in $T_p M$ to just $C^r(M, \mathbb{R})$ then we still have that $D_{\gamma_1}, \ldots, D_{\gamma_n}$ are linearly independent vectors.\retTwo
-			\end{itemize}
-		\end{myIndent}
-
-		\item[(b)] Let $F: M \to N$ be a $C^1$ map. Then let $S^\prime \coloneqq \{D_\gamma : [\gamma] \in \mathcalli{V}_{F(p)} N\}$ and let $T_{F(p)} N$ be the subspace of $\mathcalli{D}_{F(p)} N$ spanned by $S^\prime$.
-		\begin{myIndent}\color{red}
-			[Note that if $F(p)$ is not a corner point of $N$, then this definition agress with our definition from \inLinkRap{Page 1051 reference}{page 1051} because $T_{F(p)}N$ would equal $S^\prime$].\retTwo
-		\end{myIndent}
-		
-		Now define $\df F_p : \mathcalli{D}_p M \to \mathcalli{D}_{F(p)}N$ by $\df F_p(v)f \coloneqq v(f \circ F)$. Then we have that $\df F_p(T_p M) \subseteq T_{F(p)}N$.
-		\begin{myIndent}\pracTwo
-			Proof:\\
-			It suffices to show that $\df F_p(S) \subseteq S^\prime$. Fortunately, given any $D_\gamma \in S$ we have that $\df F_p (D_{\gamma})f = D_\gamma(f \circ F) = (f \circ F \circ \gamma)^\prime(0) = D_{F \circ \gamma} f$. Therefore\\ $\df F_p (D_{\gamma}) = D_{F \circ \gamma} \in S^\prime$. $\blacksquare$\retTwo
-		\end{myIndent}
-	\end{enumerate}
-\end{myIndent}
-
-Based on the prior lemma, we now have a way of defining $T_p M$ when $p$ is a corner point. Also by part (b), we know that the differential of $F: M \to N$ at $p$ gives a well defined linear map $T_p M \to T_{F(p)}N$.\retTwo
-
-The proofs for propositions 3.6, 3.8, and 3.9 on pages \inLinkRap{Proposition 3.6 page 1031}{1031} and \inLinkRap{page 1033 reference}{1033-1034} can now be repeated verbatim for our modified definition of $T_p M$ for when $p$ is a corner chart and $M$ is a $C^r$ manifold with $r \neq \infty$ necessarily. Similarly, nothing on \inLinkRap{page 1051-1053 reference}{pages 1051-1053} breaks down with our definition for this special case either. Finally, proposition 4.1 on \inLinkRap{Proposition 4.1 pages 1054-1056}{pages 1054-1056} as exercise 4-2 on the prior page still work by identical reasoning.\retTwo
-
-And with that I'll now allow my manifolds to have corners again by default.\retTwo
-
-\mySepTwo 
-
-\hTwo Next, I want to talk about product manifolds. Let $M_1, \ldots, M_k$ be $C^r$-manifolds of\\ dimensions $n_1, \ldots, n_k$ respectively. Then let $M \coloneqq M_1 \times \cdots \times M_k$ be their product\\ manifold, and for each $i$ let $\pi_i: M \to M_i$ be the projection map $(p_1, \ldots, p_k) \mapsto p_i$.\newpage
-\begin{myIndent}\myComment
-	Remark: Given any finite collection of $C^r$ manifolds $M_1, \ldots, M_k$ with corners, the standard product $C^r$-structure on $M \coloneqq M_1 \times \cdots \times M_k$ defined on \inLinkRap{proposition bottom of page 1038}{page 1038} is still well-defined. Furthermore, the proof of the proposition on \inLinkRap{proposition on page 1039}{page 1039} still works verbatim. Thus the category of $C^r$ manifolds with corners (which I'll denote $\mcateg{Diff}^r_c$) does admit products over any finite collection of objects. In particular, we can see that $(p_1, \ldots, p_k)$ is a corner point of $M$ if at least one $p_i$ is a corner point of $M_i$ or there are two components $p_i$ and $p_j$ which are boundary points of $M_i$ and $M_j$ respectively.\retTwo
-\end{myIndent}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\exTwo\ul{Proposition 3.14:} Let $p = (p_1, \ldots, p_k) \in M$. Then the map $\alpha: T_p M \to \bigoplus_{i=1}^k T_{p_i}M_i$ defined by $\alpha(v) \coloneqq (\df (\pi_1)_p (v), \ldots, \df (\pi_k)_p (v))$ is an isomorphism.
+\exTwo\ul{Theorem 2.1:} Let $M_1, \ldots, M_p$ be $R$-modules (where $p > 2$) and suppose $1 \leq q < p$. Then there is an $R$-module isomorphism from $(\bigotimes_{i=1}^q M_i) \otimes (\bigotimes_{i=q + 1}^p M_i)$ to $\bigotimes_{i=1}^p M_i$ such that $(m_1 \otimes \cdots \otimes m_q) \otimes (m_{q +1} \otimes \cdots \otimes m_p) \mapsto m_1 \otimes \cdots \otimes m_p$ for all $m_i \in M_i$.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	For each $i$ let us define $\iota_i: M_i \to M$ by $\iota_i(q) \coloneqq (p_1, \ldots, p_{i-1}, q, p_{i+1}, \ldots, p_k)$. Then, we define $\beta: \bigoplus_{i=1}^k T_{p_i}M_i \to T_p M$ by $\beta(v_1, \ldots, v_k) \coloneqq \sum_{i=1}^k \df (\iota_i)_{p_i}(v_i)$. I claim that\\ $\beta = \alpha^{-1}$. To see why, first note that:
+	I shall proceed by induction on $p$. For our base case of $p = 3$, recall from \inLinkRap{Page 1067 Lemma A}{pages 1067-1069} that my original construction of $M_1 \otimes M_2 \otimes M_3$ was the set $M_1 \otimes (M_2 \otimes M_3)$ where $m_1 \otimes m_2 \otimes m_3$ is equal to $m_1 \otimes (m_2 \otimes m_3)$. Meanwhile, I showed on \inLinkRap{placeholder}{pages 730-731} that $M_1 \otimes (M_2 \otimes M_3)$ is isomorphic to $(M_1 \otimes M_2) \otimes M_3$ via an isomorphism mapping $m_1 \otimes (m_2 \otimes m_3)$ to $(m_1 \otimes m_2) \otimes m_3$. Hence, our base case is entirely dealt with via prior results.\retTwo
 
-	{\centering\begin{tabular}{l}
-		$(\alpha \circ \beta)(v_1, \ldots, v_k) = \alpha\left(\sum\limits_{i=1}^k \df (\iota_i)_{p_i}(v_i)\right)$\\ [12pt]
-		$\phantom{(\alpha \circ \beta)(v_1, \ldots, v_k)} = \left(\df (\pi_1)_p\left(\sum\limits_{i=1}^k \df (\iota_i)_{p_i}(v_i)\right), \ldots, \df (\pi_k)_p\left(\sum\limits_{i=1}^k \df (\iota_i)_{p_i}(v_i)\right)\right)$\\ [16pt]
-		$\phantom{(\alpha \circ \beta)(v_1, \ldots, v_k)} = \left(\sum\limits_{i=1}^k\df (\pi_1)_p(\df (\iota_i)_{p_i}(v_i)), \ldots, \sum\limits_{i=1}^k\df (\pi_k)_p(\df (\iota_i)_{p_i}(v_i))\right)$\\ [16pt]
-		$\phantom{(\alpha \circ \beta)(v_1, \ldots, v_k)} = \left(\sum\limits_{i=1}^k\df (\pi_1 \circ \iota_i)_{p_i}(v_i), \ldots, \sum\limits_{i=1}^k\df (\pi_k \circ \iota_i)_{p_i}(v_i)\right)$
-	\end{tabular}\retTwo\par}
+	Next suppose $p > 3$.
+	\begin{itemize}
+		\item If $q = 1$ then recall that $\bigotimes_{i=2}^p M_i$ is isomorphic to $M_2 \otimes (\cdots \otimes (M_{p-1} \otimes M_p )\cdots)$ via an isomorphism $\phi$ such that:
+		
+		{\centering\begin{tabular}{l}
+			$m_2 \otimes \cdots \otimes m_{p-1} \otimes m_p \mapsto m_2 \otimes (\cdots \otimes(m_{p-1} \otimes m_p)\cdots)$.
+		\end{tabular}\retTwo\par}
 
-	But now $\pi_j \circ \iota_i$ is a constant map if $j \neq i$. As a result, if $v \in T_{p_i}M_i$ and $f \in C^1(M_j, \mathbb{R})$ then $f \circ \pi_j \circ \iota_i$ is a constant function from $M_i$ to $\mathbb{R}$ and in turn:
-	
-	{\centering$\df (\pi_j \circ \iota_i)_{p_i}(v_i)f = v_i(f \circ \pi_j \circ \iota_i) = 0$.\retTwo\par}
-	
-	Since $f$ was arbitrary, this shows that if $j \neq i$ then $\df (\pi_j \circ \iota_i)_{p_i}(v)$ is the zero map. And since $v$ was arbitary, we can conclude $\df (\pi_j \circ \iota_i)_{p_i}$ is also the zero map. Meanwhile, $\pi_i \circ \iota_i = \myId_{M_i}$. Hence, we can conclude that:
+		In turn, $\myId_{M_1} \otimes \phi$ is an isomorphism from $M_1 \otimes (\bigotimes_{i=2}^p M_i)$ to\\ $M_1 \otimes (M_2 \otimes (\cdots \otimes (M_{p-1} \otimes M_p )\cdots))$ such that:
+		
+		{\centering$m_1 \otimes (m_2 \otimes \cdots \otimes m_p)\mapsto m_1 \otimes (m_2 \otimes (\cdots \otimes(m_{p-1} \otimes m_p)\cdots))$.\retTwo\par}
 
-	{\centering\begin{tabular}{l}
-		$\left(\sum\limits_{i=1}^k\df (\pi_1 \circ \iota_i)_{p_i}(v_i), \ldots, \sum\limits_{i=1}^k\df (\pi_k \circ \iota_i)_{p_i}(v_i)\right) = (\df (\myId_{M_1})_{p_1}(v_1), \ldots, \df (\myId_{M_k})_{p_k}(v_k))$\\ [6pt]
-		$\phantom{\left(\sum\limits_{i=1}^k\df (\pi_1 \circ \iota_i)_{p_i}(v_i), \ldots, \sum\limits_{i=1}^k\df (\pi_k \circ \iota_i)_{p_i}(v_i)\right)} = (v_1, \ldots, v_k)$.
-	\end{tabular}\retTwo\par}
+		And via the reasoning on \inLinkRap{placeholder}{pages 1067-1069}, we can compose that map with an\\ isomorphism $\psi: M_1 \otimes (M_2 \otimes (\cdots \otimes (M_{p-1} \otimes M_p )\cdots)) \to \bigotimes_{i=1}^p M_i$\\ sending $m_1 \otimes (m_2 \otimes (\cdots \otimes(m_{p-1} \otimes m_p)\cdots))$ to $m_1 \otimes \cdots \otimes m_p$.\retTwo 
 
-	With that, we've proven that $\beta$ is a right inverse of $\alpha$. Based on the fact that $\alpha$ has a right inverse, we know that $\alpha$ is a surjective linear map. And since $T_p M$ and $\bigoplus_{i=1}^k T_{p_i}M_i$ are both $(n_1 + \ldots + n_k)$-dimensional vector spaces and $\alpha$ is a linear map, we can conclude more strongly that $\alpha$ must be a bijection. And finally, any right inverse of a bijective function must also be a left inverse. Therefore, $\beta = \alpha^{-1}$. $\blacksquare$\retTwo
+		\item Meanwhile, if $q > 1$ then we can conclude by our induction hypothesis that $\bigotimes_{i=1}^q M_i$ is isomorphic to $M_1 \otimes \bigotimes_{i=2}^q M_i$ via an isomorphism $\phi$ mapping $m_1 \otimes \cdots \otimes m_q$ to $m_1 \otimes (m_2 \otimes \cdots \otimes m_q)$.\retTwo
+		
+		In turn, $\phi \otimes \myId_{\bigotimes_{i=q+1}^p M_i}$ is an isomorphism from $(\bigotimes_{i=1}^q M_i) \otimes (\bigotimes_{i=q+1}^p M_i)$ to\\ $(M_1 \otimes (\bigotimes_{i=2}^q M_i)) \otimes (\bigotimes_{i=q+1}^p M_i)$ such that $(m_1 \otimes \cdots \otimes m_q) \otimes (m_{q+1} \otimes \cdots \otimes m_p)$ is mapped to $(m_1 \otimes (m_2 \otimes \cdots \otimes m_q)) \otimes (m_{q+1} \otimes \cdots \otimes m_p)$.\retTwo
+
+		Next, by the exercise on \inLinkRap{placeholder}{pages 730-731} we have an isomorphism from\\ $(M_1 \otimes (\bigotimes_{i=2}^q M_i)) \otimes (\bigotimes_{i=q+1}^p M_i)$ to $M_1 \otimes ((\bigotimes_{i=2}^q M_i) \otimes (\bigotimes_{i=q+1}^p M_i))$\\ sending $(m_1 \otimes (m_2 \otimes \cdots \otimes m_q)) \otimes (m_{q+1} \otimes \cdots \otimes m_p)$ to\\ $m_1 \otimes ((m_2 \otimes \cdots \otimes m_q) \otimes (m_{q+1} \otimes \cdots \otimes m_p))$.\retTwo
+
+		Then by our induction hypothesis, $(\bigotimes_{i=2}^q M_i) \otimes (\bigotimes_{i=q+1}^p M_i)$ is isomorphic to\\ $\bigotimes_{i=2}^p M_i$ via an isomorphism $\psi$ mapping $(m_2 \otimes \cdots \otimes m_q) \otimes (m_{q+1} \otimes \cdots \otimes m_p)$ to\\ $m_2 \otimes \cdots \otimes m_p$.\retTwo
+		
+		In turn, $\myId_{M_1} \otimes \psi$ is an isomorphism from $M_1 \otimes ((\bigotimes_{i=2}^q M_i) \otimes (\bigotimes_{i=q+1}^p M_i))$ to $M_1 \otimes (\bigotimes_{i=2}^p M_i)$ sending $m_1 \otimes ((m_2 \otimes \cdots \otimes m_q) \otimes (m_{q+1} \otimes \cdots \otimes m_p))$ to\\ $m_1 \otimes (m_2 \otimes \cdots \otimes m_p)$.\newpage
+
+		Finally, we can now use our reasoning for the case when $q = 1$ to finish up. $\blacksquare$\retTwo
+	\end{itemize}
 \end{myIndent}
 
-\hTwo The map $\alpha$ in the prior proposition is taken to define a standard identification between $T_p M$ and $\bigoplus_{i=1}^k T_{p_i}M_i$.\retTwo
+\hTwo Next let $A_1, \ldots, A_p$ be $R$-algebras. I already mentioned how $\bigotimes_{i=1}^p A_i$ can naturally be turned into an $R$-algebra itself. However, here is another interpretation of this natural product operation on $\bigotimes_{i=1}^p A_i$.\\ [-8pt]
+\begin{myIndent}\pracTwo
+	Consider the $2p$-linear map $T: A_1 \times \cdots \times A_p \times A_1 \times \cdots \times A_p \to \bigotimes_{i=1}^p A_i$ given by:
+	
+	{\centering$T(a_1, \ldots, a_p, a_1^\prime, \ldots, a_p^\prime) \coloneqq (a_1a_1^\prime, \ldots, a_p a_p^\prime)$.\retTwo\par}
 
-\mySepTwo\newpage
+	By the universal property of tensor products we thus know there is a unique $R$-module homomorphism $\phi: A_1 \otimes \cdots \otimes A_p \otimes A_1 \otimes \cdots \otimes A_p \to \bigotimes_{i=1}^p A_i$ such that:
 
-\dispDate{7/24/2026}
+	{\centering$\phi(a_1 \otimes \cdots \otimes a_p \otimes a_1^\prime \otimes \cdots \otimes a_p^\prime) \coloneqq (a_1a_1^\prime, \ldots, a_p a_p^\prime)$.\retTwo\par}
+
+	Then by the prior theorem, we can also say that there is a unique $R$-module\\ homomorphism $\widetilde{\phi}: (\bigotimes_{i=1}^p A_i) \otimes (\bigotimes_{i=1}^p A_i) \to \bigotimes_{i=1}^p A_i$ such that:
+
+	{\centering$\widetilde{\phi}((a_1 \otimes \cdots \otimes a_p) \otimes (a_1^\prime \otimes \cdots \otimes a_p^\prime)) \coloneqq (a_1a_1^\prime, \ldots, a_p a_p^\prime)$.\retTwo\par}
+
+	And finally, we can conclude that there is a unique bilinear map\\ $\mu: (\bigotimes_{i=1}^p A_i) \times (\bigotimes_{i=1}^p A_i) \to \bigotimes_{i=1}^p A_i$ such that:
+	
+	{\centering$\mu((a_1 \otimes \cdots \otimes a_p), (a_1^\prime \otimes \cdots \otimes a_p^\prime)) \coloneqq (a_1a_1^\prime, \ldots, a_p a_p^\prime)$.\retTwo\par}
+
+	\ul{Lemma:} \hypertarget{Lemma middle of page 1081}{Suppose} $M$ is an $R$-module generated by a set $B$, and $\mu: M \times M \to M$ is a bilinear map such that $\mu(\mu(b_1, b_2), b_3) = \mu(b_1, \mu(b_2, b_3))$ for all $b_1, b_2, b_3 \in B$. Then $\mu(\mu(m_1, m_2), m_3) = \mu(m_1, \mu(m_2, m_3))$ for all $m_1, m_2, m_3 \in M$.
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Write $m_1 = \sum_{i=1}^n c_i b_i$,\hspace{0.1em} $m_2 = \sum_{j=1}^m c_j^\prime b_j^\prime$,\hspace{0.1em} and $m_3 = \sum_{k=1}^\ell c_k^\pprime b_k^\pprime$. Then:
+		\begin{itemize}
+			\item $\mu(\mu(m_1, m_2), m_3) = \sum_{i=1}^n \sum_{j=1}^m \sum_{k=1}^\ell c_i c_j^\prime c_k^\pprime \mu(\mu(b_i, b_j^\prime), b_k^\pprime)$,
+			\item $\mu(m_1, \mu(m_2, m_3)) = \sum_{i=1}^n \sum_{j=1}^m \sum_{k=1}^\ell c_i c_j^\prime c_k^\pprime \mu(b_i, \mu(b_j^\prime, b_k^\pprime))$.\retTwo
+		\end{itemize}
+
+		And now we just invoke that $\mu(\mu(b_i, b_j^\prime), b_k^\pprime) = \mu(b_i, \mu(b_j^\prime, b_k^\pprime))$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	Based on that lemma, its now clear that $\mu$ defines an associative operation on $M$. Clearly, $\mu$ is the standard multiplication map on $\bigotimes_{i=1}^p A_i$.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Lemma:} Suppose $A_1, A_2$ are $R$-algebras, $A_1$ is generated as an $R$-module by a subset $B$, $f: A_1 \to A_2$ is an $R$-module homomorphism, and $f(b b^\prime) = f(b)f(b^\prime)$ for all $b, b^\prime \in B$. Then $f$ is an $R$-algebra homomorphism.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We need to show for any $a, a^\prime \in A_1$ that $f(aa^\prime) = f(a)f(a^\prime)$. Fortunately, we can write $a = \sum_{i=1}^n c_i b_i$ and $a^\prime = \sum_{j=1}^m c_j^\prime b_j^\prime$. Then:
+
+	{\centering \begin{tabular}{l}
+		$f(aa^\prime) = f((\sum_{i=1}^n c_i b_i)(\sum_{j=1}^m c_j^\prime b_j^\prime)) = \sum_{i=1}^n \sum_{j=1}^m c_i c_j^\prime f(b_i b_j^\prime)$\\ [4pt]
+		$\phantom{f(aa^\prime) = f((\sum_{i=1}^n c_i b_i)(\sum_{j=1}^m c_j^\prime b_j^\prime))} = \sum_{i=1}^n \sum_{j=1}^m c_i c_j^\prime f(b_i)f(b_j^\prime)$\\ [4pt]
+		$\phantom{f(aa^\prime) = f((\sum_{i=1}^n c_i b_i)(\sum_{j=1}^m c_j^\prime b_j^\prime))} = \left(\sum_{i=1}^n c_i f(b_i)\vphantom{|_j^j}\right)\left(\sum_{j=1}^m c_j^\prime f(b_j^\prime)\right)$\\ [8pt]
+		$\phantom{f(aa^\prime) = f((\sum_{i=1}^n c_i b_i)(\sum_{j=1}^m c_j^\prime b_j^\prime))} = f(\sum_{i=1}^n c_i b_i)f(\sum_{j=1}^m c_j^\prime b_j^\prime) = f(a)f(a^\prime)$. $\blacksquare$
+	\end{tabular}\newpage\par}
+\end{myIndent}
+
+\exTwo\ul{Theorem 3.2:} Let $A_1, \ldots, A_p$ be $R$-algebras (where $p > 2$) and suppose $1 \leq q < p$. Then the $R$-module isomorphism $f : (\bigotimes_{i=1}^q A_i) \otimes (\bigotimes_{i=q+1}^p A_i) \to \bigotimes_{i=1}^p A_i$ given by theorem 2.1 is also an $R$-algebra homomorphism.
+
+\begin{myIndent}\exThreeP
+	Why?\\
+	Just apply the prior lemma where:
+	
+	{\centering$B = \{(a_1 \otimes \cdots \otimes a_q) \otimes (a_{q + 1} \otimes \cdots \otimes a_p) : a_1, \ldots, a_p \in A\}$.\retTwo\par}
+\end{myIndent}
+
+\exTwo\ul{Theorem 3.4:} Let $A$ be an $R$-algebra and note that $R$ itself is trivially an $R$-algebra. Thus, we can consider the standard $R$-algebra structure on $R \otimes A$.  I claim that the $R$-module isomorphism $\phi: R \otimes A \to A$ satisfying that $\phi(c \otimes a) = ca$ is also an $R$-algebra\\ homomorphism.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Let $B = \{(c \otimes a) : c \in R \text{ and } a \in A\}$. Then:
+	
+	{\centering$\phi((c \otimes a) \cdot (c^\prime \otimes a^\prime)) = \phi(cc^\prime \otimes aa^\prime) = cc^\prime aa^\prime = ca c^\prime a^\prime = \phi(c \otimes a) \phi(c^\prime \otimes a^\prime)$.\retTwo\par}
+
+	So, we can apply the lemma at the bottom of the prior page. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Obviously a similar thing holds if we replace $R \otimes A$ with $A \otimes R$.\retTwo
+
+\dispDate{8/3/2026}
+
+Today I can look forward to constructing another important object which I'll mostly try to treat as a black box satisfying a universal property!!\retTwo
+
+Let $M$ be an $R$-module. Then suppose $A$ is an $R$-algebra and $\phi: M \to A$ is an $R$-\\module homomorphism. If $B$ is a second $R$-algebra and $h: A \to B$ is a unital $R$-algebra\\ homomorphism, we know that $h \circ \phi$ is an $R$-module homomorphism from $M$ to $B$.\\ This brings up the following question:\\ [-6pt]
+\begin{myIndent}
+	Does there exist a unital $R$-algebra $A$ and an $R$-module homomorphism $\phi: M \to A$\\ such that for any unital $R$-algebra $B$ and any $R$-module homomorphism $f: M \to B$\\ there exists a unique unital $R$-algebra homomorphism $h: A \to B$ with $h \circ \phi = f$?
+	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJNIl0sWzEsMSwiQiJdLFsxLDAsIkEiXSxbMCwxLCJmIiwyXSxbMCwyLCJcXHBoaSJdLFsyLDEsIlxcZXhpc3RzICEgaCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		& A \\
+		M & B
+		\arrow["{\exists ! h}", dashed, from=1-2, to=2-2]
+		\arrow["\phi", from=2-1, to=1-2]
+		\arrow["f"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+
+	If such an $R$-algebra $A$ and $R$-module homomorphism $\phi$ exists then we say $A$\\ along with $\phi$ is the \udefine{tensor algebra of $M$}. Furthermore, if $(A_1, \phi_1)$ and $(A_2, \phi_2)$ both satisfy the above universal property then it is easy to see that there exists inverse $R$-algebra isomorphisms $f: A_1 \to A_2$ and $g: A_2 \to A_1$ such that $f \circ \phi_1 = \phi_2$ and $g \circ \phi_2 = \phi_1$. So, assuming a model of the tensor algebra of $M$ exists, it is unique up to isomorphism.\newpage
+\end{myIndent}
+
+\exTwo\ul{Theorem 4.1:} Such a unital $R$-algebra $A$ and $R$-module homomorphism $\phi: M \to A$ exists. Furthermore:
+\begin{itemize}
+	\item[(a)] $\phi: M \to A$ is an injection.
+	\item[(b)] $A$ is generated as an $R$-algebra by $\phi(M)$.
+	\item[(c)] There is a grading on $\{A_n\}_{n \in \mathbb{Z}}$ on $A$ such that $A_1 = \phi(M)$.
+	\item[(d)] The grading $\{A_n\}_{n \in \mathbb{Z}}$ is nonnegative and $A_0 = R1_A$.
+	\item[(e)] For $p \geq 1$, $T_p(M)$ is isomorphic to $A_p$ via the unique $R$-module homomorphism\\ sending $m_1 \otimes \cdots \otimes m_p$ to $\phi(m_1)\cdots \phi(m_p)$.
+\end{itemize}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	I'll first focus on just constructing $A$ and $\phi$. So let $A_p \coloneqq T_p(M)$ for all $p \in \mathbb{Z}_{\geq 1}$ and let $A_0 = R$. Then let us set $A \coloneqq \bigoplus_{p=0}^\infty A_p$. Clearly $A$ has an $R$-module structure. But we still need to define a multiplication operation on $A$ such that $A$ becomes an algebra.\retTwo
+
+	Fortunately for any $p, q \in \mathbb{Z}_{\geq 1}$ we know by theorem 2.1 that there is a (unique) $R$-\\module homomorphism $\phi_{p,q}: T_p(M) \otimes T_q(M) \to T_{p + q}(M)$ such that:
+	
+	{\centering$\phi_{p, q}((m_1 \otimes \cdots \otimes m_p) \otimes (m_1^\prime \otimes \cdots \otimes m_q^\prime)) = m_1 \otimes \cdots \otimes m_p \otimes m_1^\prime \otimes \cdots \otimes m_q^\prime$\retTwo\par}
+
+	In turn, we know there is a (unique) bilinear map $\mu_{p, q} : T_p(M) \times T_q(M) \to T_{p + q}(M)$\\ such that:
+	
+	{\centering$\mu_{p, q}((m_1 \otimes \cdots \otimes m_p), (m_1^\prime \otimes \cdots \otimes m_q^\prime)) = m_1 \otimes \cdots \otimes m_p \otimes m_1^\prime \otimes \cdots \otimes m_q^\prime$\retTwo\par}
+
+	Similarly for any $p \in \mathbb{Z}_{\geq 1}$ we know there is a (unique) $R$-module homomorphism\\ $\phi_{0, q} : R \otimes T_p(M) \to T_p(M)$ such that:
+	
+	{\centering$\phi_{0, q}(c \otimes (m_1 \otimes \cdots \otimes m_p)) = c(m_1 \otimes \cdots \otimes m_p)$.\retTwo\par}
+
+	In turn, we get a (unique) bilinar map $\mu_{0, p}: R \times T_p(M) \to T_p(M)$ such that\\ $\mu(c, m_1 \otimes \cdots \otimes m_p) = c(m_1 \otimes \cdots \otimes m_p)$. And we can similarly construct (unique)\\ maps $\mu_{0, 0}: R \times R \to R$ and $\mu_{p, 0} : T_p(M) \times R \to T_p(M)$ for all $p \geq 1$.\retTwo
+
+	I now define multiplication on $A$ as follows. Note that any element $x \in A$ can be written uniquely as $\sum_{p=0}^\infty x_p$ where $x_p \in A_p$ for all $p$ and all but finitely many $x_p$ are zero. So, having written $x = \sum_{p = 0}^\infty x_p$ and $y = \sum_{p = 0}^\infty y_p$ then I define:
+	
+	{\centering$\mu(x, y) \coloneqq \sum_{p = 0}^\infty \sum_{q = 0}^\infty \mu_{p,q}(x_p, y_q)$.\retTwo\par}
+
+	\begin{itemize}
+		\item I claim $\mu: A \times A \to A$ is bilinear. After all, let $c_1, c_2 \in \mathbb{R}$ and let $x = \sum_{p = 0}^\infty x_p$, $y = \sum_{p = 0}^\infty y_p$, and $z = \sum_{p = 0}^\infty z_p$ be elements of $A$. Then:
+		
+		{\centering\begin{tabular}{l}
+			$\mu(x, c_1y + c_2 z) = \sum\limits_{p,q \geq 0} \mu_{p, q}(x_p, c_1 y_q + c_2 z_q) = \sum\limits_{p,q \geq 0} (c_1\mu_{p, q}(x_p, y_q) + c_2(x_p, z_q))$\\ [12pt]
+			$\phantom{\mu(x, c_1y + c_2 z) = \sum\limits_{p,q \geq 0} \mu_{p, q}(x_p, c_1 y_q + c_2 z_q)} = c_1\sum\limits_{p,q \geq 0} \mu_{p, q}(x_p, y_q) + c_2\sum\limits_{p,q \geq 0} \mu_{p, q}(x_p, z_q)$\\ [12pt]
+			$\phantom{\mu(x, c_1y + c_2 z) = \sum\limits_{p,q \geq 0} \mu_{p, q}(x_p, c_1 y_q + c_2 z_q)} = c_1\mu(x, y) + c_2\mu(x, z)$
+		\end{tabular}\retTwo\par}
+
+		And analogous reasoning shows that $\mu(c_1 x + c_2 y, z) = c_1 \mu(x, z) + c_2\mu(y, z)$.\newpage
+
+		\item I also claim $\mu(\mu(x, y), z) = \mu(x, \mu(y, z))$ for all $x, y, z \in A$. After all, let\\ $B = \{1_R\} \cup \left(\bigcup_{p = 1}^\infty\{m_1 \otimes \cdots \otimes m_p \in A_p :  m_1, \ldots, m_p \in M\}\right)$. Then $B$\\ generates $A$ as an $R$-module and its easy to see that:
+		
+		{\centering$\mu(\mu(b_1, b_2), b_3) = \mu(b_1, \mu(b_2, b_3))$ for all $b_1, b_2, b_3 \in B$.\retTwo\par}
+		
+		So by the lemma on the middle of \inLinkRap{Lemma middle of page 1081}{page 1081}, we know this claim holds.\retTwo
+
+		\item Also note that $1_R \in A_0$ satisfies that $\mu(1_R, x) = x = \mu(x, 1_R)$. Therefore, upon letting $\mu$ be the multiplication operation that $A$ is equipped with, then $A$ is unital with $1_A = 1_R$.\retTwo
+	\end{itemize}
+
+	Thus $A$ equipped with $\mu$ becomes a unital $A$-algebra. If we set $A_n = \{0\}$ for all $n < 0$ then it is clear that $A$ is graded by the nonnegative grading $\{A_n\}_{n \in \mathbb{Z}}$. Also $A_0 = R1_A$. And since $M = T_1(m)$, if we let $\phi: M \to A = R \oplus \bigoplus_{p = 1}^\infty T_p(M)$ be the embedding map then we have that $\phi$ is injective and $A_1 = \phi(M)$. Plus, it is easy to see that $A$ is generated as an $R$-algebra by $A_1$ and that each $A_p$ is isomorphic to $T_p(M)$ in the way wanted by property (e).\retTwo
+
+	To finish off the main part of the proof, I claim that $A$ and $\phi$ satisfy the universal property of the tensor algebra of $M$.
+	\begin{myIndent}\exPPP
+		After all, let $B$ an $R$-algebra and suppose $f: M \to B$ is an $R$-module\\ homomorphism. Then note for all $p \geq 1$ that $f^{(p)}: M \times \cdots \times M \to B$\\ given by $f(m_1, \ldots, m_p) = f(m_1)f(m_2)\cdots f(m_p)$ is also a $p$-linear map. So,\\ by the universal property of $T_p(M)$ there is a unique $R$-module homomorphism $\psi^{(p)}: T_p(M) \to B$ such that:
+		
+		{\centering$\psi^{(p)}(m_1 \otimes m_2 \otimes \cdots \otimes m_p) = f(m_1)f(m_2)\cdots f(m_p)$.\retTwo\par}
+
+		We also define the $R$-module homomorphism $\psi^{(0)}: R \to B$ by $\psi^{(0)}(c) = c1_B$.\retTwo
+
+		By the universal property of coproducts of $R$-modules, there is a unique $R$-module homomorphism $h$ from $A = \bigoplus_{p = 0}^\infty A_p$ to $B$ such that $h(x_p) = \psi^{(p)}(x_p)$ for all $x_p \in A_p$ (where $p \geq 0$). Also, it's clear that $h(1_A) = \psi^{(0)}(1_R) = 1_B$. And we can further verify $h$ is an $R$-algebra homomorphism via the second lemma on \inLinkRap{Lemma middle of page 1081}{page 1081}. After all if $p, q \geq 1$ then:
+		
+		{\centering\begin{tabular}{l}
+			$h((m_1 \otimes \cdots \otimes m_p) \cdot ( m_1^\prime \otimes \cdots \otimes m_q^\prime)) = h(m_1 \otimes \cdots \otimes m_p \otimes m_1^\prime \otimes \cdots \otimes m_q^\prime)$\\ [6pt]
+			$\phantom{h((m_1 \otimes \cdots \otimes m_p) \cdot ( m_1^\prime \otimes \cdots \otimes m_q^\prime))} = f(m_1)\cdots f(m_p)f(m_1^\prime)\cdots f(m_q^\prime)$\\ [6pt]
+			$\phantom{h((m_1 \otimes \cdots \otimes m_p) \cdot ( m_1^\prime \otimes \cdots \otimes m_q^\prime))} = h(m_1 \otimes \cdots \otimes m_p) h(m_1^\prime \otimes \cdots \otimes m_q^\prime)$\\ [6pt]
+		\end{tabular}\retTwo\par}
+
+		Finally, I claim $h$ is the unique unital $R$-algebra homomorphism such that:
+		% https://q.uiver.app/#q=WzAsMyxbMCwxLCJNIl0sWzEsMSwiQiJdLFsxLDAsIkEiXSxbMCwxLCJmIiwyXSxbMCwyLCJcXHBoaSJdLFsyLDEsImgiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+		\[\begin{tikzcd}
+			& A \\
+			M & B
+			\arrow["h", dashed, from=1-2, to=2-2]
+			\arrow["\phi", from=2-1, to=1-2]
+			\arrow["f"', from=2-1, to=2-2]
+		\end{tikzcd}\]
+		
+		\phantom{.}\newpage
+
+		After all, if $h^\prime: A \to B$ was another unital $R$-algebra homomorphism that worked then we'd have to have that $h = h^\prime$ on $A_1$. Yet since $A_1$ generates $A$ as a unital $R$-algebra, we can conclude $h = h^\prime$ everywhere on $A$.\retTwo
+	\end{myIndent}
+
+	This finishes showing that there exists a model $(A, \phi)$ of the tensor algebra of $M$.
+
+	\mySepThree
+
+	One more note I want to give is that if $(A^\prime, \phi^\prime)$ is another model of the tensor algebra of $M$, then properties (a) through (e) will still hold for $A^\prime$ and $\phi^\prime$.
+	\begin{myIndent}\exPPP
+		To see why, note that there are unique inverse $R$-algebra isomorphisms $f: A \to A^\prime$ and $g: A^\prime \to A$ satisfying that $f \circ \phi = \phi^\prime$ and $g \circ \phi^\prime = \phi$. And this already guarentees (a) and (b) will hold.\retTwo
+
+		Futhermore, let $A_n^\prime = f(A_n)$ for all $n \in \mathbb{Z}$. Then we can easily see the grading $\{A_n^\prime\}_{n \in \mathbb{Z}}$ on $A^\prime$ will satisfy (c), (d), and (e). \exThreeP$\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo For hopefully obvious reasons, we denote the tensor algebra of $M$ as $T(M)$. And if\\ $T(M)$ is equipped with the grading $\{A_n\}_{n \in \mathbb{Z}}$ described in the last theorem then we\\ identify the $p$th tensor power of $M$, $T_p(M)$ with $A_p$ for all $p \geq 0$ (where $T_0(M)$ is\\ understood to just be $R$). In particular, this means we'll identify $M = T_1(M)$ as a\\ submodule of $T(M)$ and $R = T_0(M)$ as a subring of $T(M)$ sharing the same\\ identity element.\retTwo
+
+Also we'll typically use $\otimes$ as the multiplication sign in $T(M)$.\retTwo
+
+One notable consequence of having a natural way of viewing $M$ as a submodule of $T(M)$ is as follows:
+\begin{myIndent}\pracTwo
+	Suppose $M$ and $N$ are $R$-modules and $f: M \to N$ is an $R$-algebra homomorphism. By viewing $N$ as an $R$-submodule of $T(N)$, we can then say by the universal property of $T(M)$ that there is a unique unital $R$-algebra homomorphism $T(f): T(M) \to T(N)$ such that $T(f)|_M = f$.\retTwo
+
+	Furthermore, note that $x \in T(M)$ is homogeneous of degree $1$ iff $x \in M$. Yet then $(T(f))(x) = f(x) \in N$. So, $(T(f))(x) \in T(N)$ is homogeneous of degree $1$ as well and so we can conclude $(T(f))(T_1(M)) \subseteq T_1(N)$.\retTwo
+	
+	By lemma 3.1 on \hspace{0.1em}\inLinkRap{Lemma 3.1 page 1071}{page 1071}\hspace{0.2em} it then follows that $T(f)$ maps a generating set for\\ $T_p(M)$ (as an $R$-submodule) into $T_p(N)$ for all $p \geq 2$. Plus, it's obvious that:
+	
+	{\centering$(T(f))(T_0(M)) = R(T(f))(1_{T(M)}) = R1_{T(N)} = T_0(N)$.\retTwo\par}
+	
+	So, $T(f): T(M) \to T(N)$ is a graded $R$-algebra homomorphism.\retTwo
+\end{myIndent}
+
+Another way of describing the prior consequence is as follows. Let $\mcateg{GrAlg}_R$ denote the category whose objects are graded unital $R$-algebras and whose morphisms are (unital) graded algebra homomorphisms.\retTwo
+
+We can define a functor $T: R$-$\mcateg{mod} \to \mcateg{GrAlg}_R$ mapping any $R$-module $M$ to its tensor algebra and mapping any $R$-module homomorphism $f: M \to N$ to the graded $R$-algebra homomorphism $T(f) : T(M) \to T(N)$ described earlier.
+\begin{myIndent}\pracTwo
+	Note that $T(\myId_M) = \myId_{T(M)}$ for all $R$-modules $M$. After all, $\myId_{T(M)}: T(M) \to T(M)$\\ is a graded $R$-algebra homomorphism whose restriction to $M$ is just the inclusion map\\ $M \hookrightarrow T(M)$. Yet by the univeral property of tensor algebras there is only one unital $R$-algebra homomorphism $T(\myId_M)$ with that property.\retTwo
+
+	In a similar vein, if $f: M \to N$ and $g: N \to K$ are $R$-module homomorphisms, then $T(g \circ f) = T(g) \circ T(f)$. After all, the restriction of either map to $M$ is just the map $g \circ f$. So, both maps must be the same unique map satisfying that. And this proves that $T: R$-$\mcateg{mod} \to \mcateg{GrAlg}_R$ is a functor.\retTwo
+\end{myIndent}
+
+One other note is that every element of $T_1(M) = M$ is homogeneous in $T(M)$. Therefore, if $K \subseteq M$ is a submodule then we know from lemma 3.2 on \inLinkRap{Lemma 3.2 page 1071}{page 1071} that the two-sided ideal $I(K) \subseteq T(M)$ generated by $K$ is homogeneous.\retTwo
+
+\exTwo\ul{Theorem 4.3:} Let $f: M \to N$ be a surjective $R$-module homomorphism and let\\ $K = \ker(f)$. Then $T(f): T(M) \to T(N)$ is surjective and $\ker(T(f)) = I(K)$ where $I(K)$ is the two-sided ideal in $T(M)$ generated by $K$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Firstly, $f$ being surjective means that $T_1(N) \subseteq (T(f))(T(M))$. And since $T_1(N)$ is a\\ generating set for $T(N)$ as an $R$-algebra and we can easily verify that the image of a\\ unital $R$-algebra homomorphism is a subalgebra, we in turn must have that\\ $(T(f))(T(M)) = T(N)$. So, $T(f)$ is surjective.\retTwo
+
+	Next note that it's obvious that $I(K) \subseteq \ker(T(f))$ since $K \subseteq \ker(T(f))$ and we can\\ easily verify that the kernel of an $R$-algebra homomorphism is an ideal and $R$-module.\retTwo
+	
+	As for the other inclusion, consider the quotient map $\pi: T(M) \to T(M)/I(K)$. We know from \inLinkRap{Page 1072 quotients of graded algebras}{page 1072} that $T(M)/I(K)$ has a natural grading $\{A_n\}_{n \in \mathbb{N}}$ satisfying that $M/K$ is isomorphic to $A_1$ as an $R$-module via the map $\phi(m + K) \coloneqq m + I(K)$. Also note by the first isomorphism theorem that $f: M \to N$ induces an $R$-module isomorphism $\widetilde{f}: M/K \to N$.\retTwo
+	
+	So, $g \coloneqq \phi \circ \widetilde{f}^{-1}$ is an $R$-module homorphism from $N$ to $A_1 \subseteq T(M)/I(K)$ satisfying that $g(n) = m + I(K)$ where $m \in M$ is any element satisfying that $f(m) = n$. By the universal property of $T(N)$, we can then extend $g$ to a unique $R$-algebra homomorphism $T(g) : T(N) \to T(M)/I(K)$.\retTwo 
+
+	But now note that $T(g) \circ T(f) = \pi$. After all, we can easily check for pure tensors that $(T(f))(m_1 \otimes \cdots \otimes m_p) = f(m_1) \otimes \cdots \otimes f(m_p)$. And then if $n_i = f(m_i)$, we have that:\\ [-8pt]
+	
+	{\centering\begin{tabular}{l}
+		$(T(g))(n_1 \otimes \cdots \otimes n_p) = g(n_1)\cdots g(n_p)$\\ [2pt]
+		$\phantom{(T(g))(n_1 \otimes \cdots \otimes n_p)} = (m_1 + I(K))\cdots(m_p + I(K)) = (m_1 \otimes \cdots \otimes m_p) + I(K)$.
+	\end{tabular}\retTwo\par}
+
+	So, $T(g) \circ T(f)$ agrees with $\pi$ on a generating set for $T(M)$ as an $R$-module and it follows that $T(g) \circ T(f) = \pi$ everywhere.\newpage
+
+	Consequently, $\ker(T(f)) \subseteq \ker(\pi) = I(K)$ and thus we've shown the other inclusion\\ we wanted. $\blacksquare$
+	\begin{myIndent}\myComment
+		As a side note, $T(f)$ restricted to $T_p(M)$ is the map $\otimes^p f \coloneqq \underbrace{f \otimes \cdots \otimes f}_{p \text{ times}}$.\\ [-16pt] This is because both maps satisfy that:
+
+		{\centering $m_1 \otimes \cdots \otimes m_p \mapsto f(m_1) \otimes \cdots \otimes f(m_p)$. \retTwo\par}
+		
+		But also note that we can now conclude that:
+		
+		{\centering$\ker(\otimes^p f) = I(K) \cap T_p(M) \subseteq T(M)$\\ [4pt]\par}
+		
+		where $K = \ker(f)$ and $I(K)$ is the two-sided ideal in $T(M)$ generated by $K$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo\dispDate{8/4/2026}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Welp I realized my tangent for the last 5 days might have not been necssary after all. I'd still like to think it was informative though since I don't have much experience right now working with $R$-algebras. I'll start off today though going over two more results about tensor algebras from Northcott's book.\retTwo
+
+To start off, given a set $X$, here's how to construct the free $R$-algebra of $X$.\\ [-8pt]
+\begin{myIndent}\pracTwo
+	Let $M$ be the free $R$-module of $X$ (equipped with the embedding $\iota_m: X \to M$). Next, consider the tensor algebra $T(M)$ of $M$ equipped with the $R$-module homomorphism $\phi: M \to T(M)$. And finally let $\iota : X \to T(M)$ be defined by $\iota \coloneqq \phi \circ \iota_m$. Note that $\iota$ will be injective since both $\phi$ and $\iota_m$ are. Also, $\iota(X)$ will generate $T(M)$ as an $R$-algebra.\retTwo
+
+	\ul{Theorem 4.4:} If $A$ is a unital $R$-algebra and $f: X \to A$ is any function, then there is a unique unital $R$-algebra homomorphism $\widetilde{f}: T(M) \to A$ such that the following diagram holds:
+	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJYIl0sWzEsMSwiQSJdLFsxLDAsIlQoTSkiXSxbMCwxLCJmIiwyXSxbMCwyLCJcXGlvdGEiXSxbMiwxLCJcXHdpZGV0aWxkZXtmfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+	\[\begin{tikzcd}
+		& {T(M)} \\
+		X & A
+		\arrow["{\widetilde{f}}", dashed, from=1-2, to=2-2]
+		\arrow["\iota", from=2-1, to=1-2]
+		\arrow["f"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+	\begin{myIndent}\exPPP
+		Proof:\\
+		Firstly such an $\widetilde{f}$ exists. After all, $A$ is also an $R$-module, we can conclude by the universal property of $M$ and $\iota_M$ that there is a unique $R$-module homomorphism $g: M \to A$ such that $g \circ \iota_m = f$. Next, we can use the universal property of $T(M)$ and $\phi$ to say that there is a unique $R$-algebra homomorphism $\widetilde{f}: T(M) \to A$ such that $\widetilde{f} \circ \phi = g$. And thus $\widetilde{f} \circ \iota = (\widetilde{f} \circ \phi) \circ \iota_m = g \circ \iota_m = f$.
+		% https://q.uiver.app/#q=WzAsNCxbMCwyLCJYIl0sWzIsMiwiQSJdLFsxLDEsIk0iXSxbMiwwLCJUKE0pIl0sWzAsMSwiZiIsMl0sWzAsMiwiXFxpb3RhX20iLDJdLFsyLDEsIlxcZXhpc3RzIWciLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMiwzLCJcXHBoaSIsMl0sWzMsMSwiXFxleGlzdHMhXFx3aWRldGlsZGV7Zn0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMCwzLCJcXGlvdGEiLDAseyJjdXJ2ZSI6LTN9XV0=
+		\[\begin{tikzcd}
+			&& {T(M)} \\
+			& M \\
+			X && A
+			\arrow["{\exists!\widetilde{f}}", dashed, from=1-3, to=3-3]
+			\arrow["\phi"', from=2-2, to=1-3]
+			\arrow["{\exists!g}"', dashed, from=2-2, to=3-3]
+			\arrow["\iota", curve={height=-18pt}, from=3-1, to=1-3]
+			\arrow["{\iota_m}"', from=3-1, to=2-2]
+			\arrow["f"', from=3-1, to=3-3]
+		\end{tikzcd}\]\newpage
+
+		Next suppose $h: T(M) \to A$ is another unital $R$-algebra homomorphism satisfying that $h \circ \iota = f$. Then as $\iota(X)$ generates all of $T(M)$ as an $R$-algebra, we can say that $h$ is uniquely determind by its restriction to $\iota(X)$. Yet the commuting diagram for $\widetilde{f}$ says that $h(\iota(x)) = f(x) = \widetilde{f}(\iota(x))$ for all $x \in X$. So, $h$ must equal $\widetilde{f}$ everywhere on $T(M)$. $\blacksquare$\retTwo
+	\end{myIndent}
+
+	As a side note we can also show through standard arguments that if $(A, \iota)$ and $(A^\prime, \iota^\prime)$ both satisfy the universal property of a free $R$-algebra of a set $X$, then there are inverse $R$-algebra isomorphisms $f: A \to A^\prime$ and $g: A^\prime \to A$ such that $f \circ \iota = \iota^\prime$ and $g \circ \iota^\prime = \iota$.\retTwo
+\end{myIndent}
+
+\hTwo On a different note, it's easy to see that if $M$ is a free $R$-module with a linearly independent basis $B$ then $T(M)$ is also a free $R$-module with a linearly independent basis consisting of all pure tensors whose components are in $B$.\retTwo
+
+A related result we can prove is that $M$ is a projective $R$-module if and only if the tensor algebra $T(M)$ of $M$ is a projective $R$-module.\retTwo
+
+\exTwo\ul{Lemma 4.1:} Let $u: N \to M$ and $v: M \to N$ be $R$-module homomorphisms such\\ that $v \circ u = \myId_N$. Then $u$ is an injection, $v$ is a surjection, and $M = u(N) \oplus \ker(v)$ as\\ an internal direct sum.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	That $u$ is an injection and $v$ a surjection is obvious. Also note for any $m \in M$ that\\ $m - u(v(m)) \in \ker(v)$ since:
+	
+	{\centering$v(m - u(v(m))) = v(m) - v(u(v(m))) = v(m) - v(m) = 0$.\retTwo\par}
+	
+	Similarly $u(v(m)) \in u(N)$. And since $m = u(v(m)) + (m - u(v(m)))$ we can\\ conclude that $u(N) + \ker(v) = M$. Finally, suppose $m \in u(N) + \ker(v)$. Then\\ there exists $n \in N$ such that $u(n) = m$. Yet also note that:
+	
+	{\centering$n = \myId_N(n) = v(u(n)) = v(m) = 0$. So $m = u(0) = 0$.\retTwo\par}
+	
+	And ths proves that $u(N) + \ker(v)$ is actually an internal direct sum. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Theorem 4.5:} Let $P$ be an $R$-module and let $T(P)$ be the tensor algebra of $P$. Then $P$ is a projective $R$-module if and only if $T(P)$ is a projective $R$-module.
+\begin{myIndent}\exThreeP
+	$(\Longleftarrow)$\\
+	Note that $T(P) \cong P \oplus (\bigoplus_{\substack{p \geq 0 \\ p \neq 1}}T_p(P))$ as $R$-modules.\retTwo
+	
+	But now note that $T(P)$ is projective if and only if there is a free $R$-module $\mathcal{F}$ and some $R$-module $K$ such that $T(P) \oplus K \cong \mathcal{F}$. In turn:
+	
+	{\centering$\mathcal{F} \cong (P \oplus (\bigoplus_{\substack{p \geq 0 \\ p \neq 1}}T_p(P))) \oplus K \cong P \oplus ((\bigoplus_{\substack{p \geq 0 \\ p \neq 1}}T_p(P)) \oplus K)$\retTwo\par}
+
+	So, $P$ is also a direct summand of a free $R$-module and is thus projective.
+	\begin{myIndent}\myComment
+		As a side note, analogous reasoning lets us further say that if $T(P)$ is a projective $R$-module then $T_p(P)$ is a projective $R$-module for all $p \in \mathbb{Z}_{\geq 0}$.\retTwo
+	\end{myIndent}
+
+	$(\Longrightarrow)$\\
+	Since $P$ is projective we can choose an $R$-module $Q$ such that $P \oplus Q \cong \mathcal{F}$ where $\mathcal{F}$\newpage is a free $R$-module. Then we let $\iota: P \hookrightarrow \mathcal{F}$ be the direct sum embedding and we let\\ $\pi: \mathcal{F} \rightarrowdbl P$ be the direct sum projection. By the universal property of $T(P)$ and $T(\mathcal{F})$, we know that $\iota$ and $\pi$ uniquely extend to $R$-algebra homomorphisms:
+	
+	{\centering$T(\iota): T(P) \to T(\mathcal{F})$ and $T(\pi) : T(\mathcal{F}) \to T(P)$.\retTwo\par}
+
+	But now as $\pi \circ \iota = \myId_P$, we can conclude that $T(\pi) \circ T(\iota) = T(\myId_P) = \myId_{T(P)}$. So by the prior lemma, we can conclude that $T(\mathcal{F}) \cong T(P) \oplus \ker(T(\pi))$. Yet also note that since $\mathcal{F}$ is a free $R$-module, we know $T(\mathcal{F})$ is also a free $R$-module. So, $T(P)$ is a direct summand of a free $R$-module and is thus projective. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo I'm now going to return to what I was trying and failing to construct on 7/27/2026. Also for the sake of continuity I'll go back to the red and orange text tangent color scheme.\retTwo
+
+\pracOne\begin{myIndent}\mySepThree\end{myIndent}
+
+My endgoal is to show that if $R$ is a unital commutative ring then the category $\mcateg{CAlg}_R$ (whose objects are unital commutative $R$-algebras and whose morphisms are unital $R$-algebra homomorphisms) is cocomplete. There will be three steps to showing this.
+\begin{enumerate}
+	\item[1.] I need to show $\mcateg{CAlg}_R$ admits \textit{filtered} colimits. In other words if $(I, \gtrsim)$ is a directed set (which we turn into a category $\mcateg{I}$ as described on \inLinkRap{Page 1024 reference}{page 1024}), then any functor $F: \mcateg{I} \to \mcateg{CAlg}_R$ has a colimit.
+	\item[2.] Then I need to use the filtered colimit construction to construct coproducts / tensor products over arbitrary collections of commutative unital $R$-algebras.
+	\item[3.] Finally, I can adapt the construction on \inLinkRap{Colimits of $A$-modules construction page 1023}{pages 1023-1024} for constructing colimits of $R$-modules in order to construct general colimits in the category $\mcateg{CAlg}_R$.\retTwo
+\end{enumerate}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-\exTwo\ul{Proposition 4.6 (Properties of local $C^k$-diffeomorphisms):}
-\begin{enumerate}
-	\item[(a)] Let $M, N, P$ be $C^r$ manifolds and suppose $k \leq r$. If $F: M \to N$ and $G: N \to P$ are local $C^k$-diffeomorphisms, then so is $G \circ F: M \to P$.
-	\begin{myIndent}\exThreeP
-		Why?\\
-		Consider any $p \in M$. Since $F$ is a local $C^k$-diffeomorphism, we know there exists an open set $U \subseteq M$ containing $p$ and an open set $V \subseteq N$ such that $F|_U$ is a $C^k$-diffeomorphism from $U$ to $V$. Next, since $G$ is a local $C^k$-diffeomorphism, we know that there is an open set $V^\prime \subseteq N$ containing $F(p)$ and an open set $W^\prime \subseteq P$ such that $G|_{V^\prime}$ is a $C^k$-diffeomorphism from $V^\prime$ to $W^\prime$. And now we set $V_0 \coloneqq V \cap V^\prime$, $W_0 \coloneqq G(V_0)$, and $U_0 \coloneqq F^{-1}(V_0) \cap U$. We know that $U_0$ and $W_0$ are open sets in $M$ and $P$ respectively, that $p \in U_0$, and that $(G \circ F)$ is a $C^k$ diffeomorphism from $U_0$ to $W_0$.
-	\end{myIndent}
-
-	\item[(b)] Suppose $M_1, \ldots, M_k$ are $C^r$ manifolds with $M \coloneqq M_1 \times \cdots \times M_k$, $N_1, \ldots, N_k$ are also $C^r$ manifolds with $N \coloneqq N_1 \times \cdots \times N_k$, and $F_i : M_i \to N_i$ is a local $C^s$ diffeomorphism for all $1 \leq i \leq k$ (where $s \leq r$). Then $F_1 \times \cdots \times F_k : M \to N$ is a local $C^s$ diffeomorphism.
-	\begin{myIndent}\exThreeP
-		Why?\\
-		Let $(p_1, \ldots, p_k)$ be any point in $M$. For each $i$ we can pick open sets $U_i \subseteq M_i$\\ containing $p$ and $V_i \subseteq N_i$ such that $F|_{U_i}: U_i \to V_i$ is a $C^s$ diffeomorphism.\\ And now $U \coloneqq U_1 \times \cdots \times U_k$ is an open subset of $M$ containing $(p_1, \ldots, p_k)$\\ and $V \coloneqq V_1 \times \cdots V_k$ is an open subset of $N$. I claim $F \coloneqq F_1 \times \cdots \times F_k$ is a\\ $C^s$ diffeomorphism from $U$ to $V$. This is because of the following lemma.\retTwo
-
-		\ul{Lemma:} Suppose $M_1, \ldots, M_k$ are $C^r$ manifolds with $M \coloneqq M_1 \times \cdots \times M_k$,\\ $N_1, \ldots, N_k$ are also $C^r$ manifolds with $N \coloneqq N_1 \times \cdots \times N_k$, and $F_i : M_i \to N_i$ is a $C^s$ diffeomorphism for all $1 \leq i \leq k$. Then $F_1 \times \cdots \times F_k : M \to N$ is a $C^s$ diffeomorphism.
-		\begin{myIndent}\exPPP
-			Proof:\\
-			It's incredibly straightforward to show that $F_1 \times \cdots \times F_k$ is a $C^s$ map. Also, for each $i$ let $G_i$ be the inverse map of $F_i$. Then as each $G_i$ is $C^s$, we can conclude by identical reasoning that $G_1 \times \cdots \times G_k: N \to M$ is a $C^s$ map. And also it is easy to check that 
-			
-			{\centering$G_1 \times \cdots \times G_k = (F_1 \times \cdots \times F_k)^{-1}$.\retTwo\par}
-		\end{myIndent}
-	\end{myIndent}
-
-	\item[(c)] Let $M$ and $N$ be $C^r$ manifolds, and suppose $F: M \to N$ is a local $C^k$ diffeomorphism (where $k \leq r$). Then $F$ is a local homeomorphism and an open map.
-	\begin{myIndent}\exThreeP
-		Proof:\\
-		Since diffeomorphisms are homeomorphisms, the first claim should be obvious. Next suppose $U \subseteq M$ is any open set. Then for any $p \in U$ we need to prove that $F(p)$ is in the interior of $F(U)$. Fortunately, as $F$ is a local diffeomorphism we know there exists an open set $U_p \subseteq M$ containing $p$ and an open set $V_p \subseteq N$ such that $F|_{U_p}: U_p \to V_p$\newpage is a diffeomorphism. Next, as $U \cap U_p$ is an open subset of $U_p$, we know $F|_{U_p}(U \cap U_p)$ must be an open subset of $V_p$. So, $V \coloneqq V_p \cap F(U \cap U_p)$ is an open set in $N$ which is contained in $F(U)$. Also, $F(p) \in V$. $\blacksquare$
-	\end{myIndent}
-\end{enumerate}
-
-\hTwo I'm bored and don't want to prove anymore parts of the prior proposition. So I'm moving on.\retTwo
-
-\exTwo\ul{Proposition 4.8:} Suppose $M$ is $C^r$ manifold without a boundary, $N$ is any other $C^r$\\ manifold, and $F$ is a $C^k$ function (where $k \leq r$).
-\begin{enumerate}
-	\item[(a)] $F$ is a local $C^k$-diffeomorphism if and only if it is both an immersion and submersion.
-	\begin{myIndent}\exThreeP
-		$(\Longrightarrow)$\\
-		Given any $p \in M$, there is an open set $U \subseteq M$ containing $p$ such that $F(U)$ is an open set and $F$ is a $C^k$-diffeomorphism from $U$ to $F(U)$. But then in turn we must have that $\df (F|_{U})_p : T_p U \to T_{F(p)}(F(U))$ is an invertible map. Equivalently, this means that $\df F_p : T_p M \to T_p N$ is invertible. And since was $p$ was arbitrary, we can conclude that $\mRank(F) = \dim(M) = \dim(N)$. This shows that $F$ is an immersion and a submersion.\retTwo
-
-		$(\Longleftarrow)$\\
-		Conversely, suppose $F$ is an immersion and a submersion. Then we must have that $\df F_p$ is invertible for all $p \in M$. By the inverse function theorem for manifolds as well as exercise 4-2 on \inLinkRap{Theorem 4.5 page 1056}{pages 1056-1057}, we thus know that $F(M) \subseteq \Int(N)$ and $F$ is a local $C^k$-diffeomorphism.\retTwo
-	\end{myIndent}
-
-	\item[(b)] If $\dim(M) = \dim(N)$ and $F$ is either an immersion or submersion, then $F$ is a local $C^k$-diffeomorphism. 
-	\begin{myIndent}\exThreeP
-		Why?\\
-		If $\dim(M) = \dim(N)$ then $F$ is an immersion if and only if $F$ is a submersion. $\blacksquare$\retTwo
-	\end{myIndent}
-\end{enumerate}
-
-\Hstatement\ul{Exercise 4.10:} Suppose $M$, $N$, and $P$ are $C^r$ manifolds and $F: M \to N$ is a local $C^k$\\ diffeomorphism.
-\begin{enumerate}
-	\item[(a)] If $G: P \to M$ is a continuous map then $G$ is $C^k$ if and only if $F \circ G$ is $C^k$.
-	\begin{myIndent}\HexOne
-		$(\Longrightarrow)$\\
-		This is obvious.\retTwo
-
-		$(\Longleftarrow)$\\
-		Let $p \in P$. Since $F \circ G$ is $C^k$, we know that there are smooth charts $(U, \varphi)$ on $P$\\ [1pt]containing $p$ and $(V, \psi)$ on $N$ with $(F \circ G)(U) \subseteq V$ and $\psi \circ F \circ G \circ \varphi^{-1}$ a $C^k$\\ map. Next, because $F$ is a local $C^k$ diffeomorphism we know that there are open\\ [2pt] sets $W^\prime \subseteq M$ containing $G(p)$ and $V^\prime \subseteq N$ such that $F$ is a $C^k$ diffeomorphism\\ [1pt] from $W^\prime$ to $V^\prime$. By shrinking $W^\prime$ and $V^\prime$, we can assume without loss of generality\\ [2pt] that $V^\prime \subseteq V$ and that there is a smooth chart $(W^\prime, \eta)$ on $M$. Finally, because $G$\\ is continuous, we know that $U^\prime \coloneqq G^{-1}(W^\prime)$ is an open set of $P$. So, we set\\ $U_0 \coloneqq U \cap U^\prime$.\newpage
-
-		Let $H = (F|_{W^\prime})^{-1}$. Then $(U_0, \varphi)$ is a smooth chart on $P$ containing $p$, $(W^\prime, \eta)$ is a smooth chart on $M$ with $F(U_0) \subseteq W^\prime$, and:
-		
-		{\centering$\eta \circ G \circ \varphi^{-1} = (\eta \circ H \circ \psi^{-1}) \circ (\psi \circ F \circ G \circ \varphi^{-1})$ is a $C^k$ map.\retTwo\par}
-	\end{myIndent}
-
-	\item[(b)] If $F$ is surjective and $G: N \to P$ is any map, then $G$ is $C^k$ if and only if $G \circ F$ is $C^k$.
-	\begin{myIndent}\HexOne
-		$(\Longrightarrow)$\\
-		Again this is obvious.\retTwo
-
-		$(\Longleftarrow)$\\
-		Consider any $p \in N$. Since $F$ is surjective, we know there exists $q \in M$ such that\\ [2pt] $F(q) = p$. Next, since $G \circ F$ is a $C^k$ map, we know there is a smooth chart $(U, \varphi)$\\ [2pt] on $M$ containing $q$ and a smooth chart $(V, \psi)$ on $P$ such that $(G \circ F)(U) \subseteq V$ and $\psi \circ G \circ F \circ \varphi^{-1}$ is a $C^k$ map. But now as $F$ is a local $C^k$ diffomorphism, we can\\ [2pt] find an open set $U^\prime \subseteq M$ containing $q$ and an open set $W^\prime \subseteq N$ such that $F$ is a $C^k$\\ [2pt] diffeomorphism from $U^\prime$ to $W^\prime$. Finally, by shrinking $U^\prime$ and $W^\prime$, we can assume that\\ [2pt] $U^\prime \subseteq U$ and that there is a smooth chart $(W^\prime, \eta)$ on $N$.\retTwo
-
-		But now $W^\prime$ is an open set containing $F(p)$ such that $W^\prime = F(U^\prime) \subseteq F(U) \subseteq V$. Also let $H = (F|_{U^\prime})^{-1}$. Then:
-
-		{\centering $\psi \circ G \circ \eta^{-1} = (\psi \circ G \circ F \circ \varphi^{-1}) \circ (\varphi \circ H \circ \eta^{-1})$ is a $C^k$ map. $\blacksquare$\retTwo\par}
-	\end{myIndent}
-\end{enumerate}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\hTwo\mySepTwo
-
-\dispDate{7/26/2026} Welp, I've been fearing this day for a long time but I finally need to actually understand the rank theorem.\retTwo
-
-\exTwo\ul{Theorem 4.12 (The Rank Theorem):} Suppose $M$ and $N$ are $C^k$ manifolds \textit{without}\\ \textit{boundaries} of dimension $m$ and $n$ respectively, and also suppose $F: M \to N$ is a $C^k$ map of constant rank $r$. Then for each $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ with $p \in U$ as well as a smooth chart $(V, \psi)$ on $N$ with $F(U) \subseteq V$ such that $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ has the form $\widehat{F}(x_1, \ldots, x_r, x_{r+1}, \ldots, x_m) = (x_1, \ldots, x_r,\hspace{-0.5em} \underbrace{0, \ldots, 0}_{n-r \text{ many zeros}}\hspace{-0.5em})$.\retTwo
-\begin{myIndent}\exThreeP
-	\begin{myIndent}\myComment
-		As a side note, if $k_1 > k_2$ in $\mathbb{Z}_{\geq 1} \cup \{\infty\}$ then every $C^{k_1}$ structure on a manifold $M$ is contained in a unique $C^{k_2}$ structure. Therefore, it's not too too restrictive to assume $F$ is as smooth a map as the structure on the manifold is smooth. That said, if I didn't make this restriction clear than one might falsely think that this theorem proves every constant rank $C^1$ map between $C^k$ manifolds without boundaries is actually a $C^k$ map.\retTwo
-	\end{myIndent}
-
-	Proof:\\
-	\ul{(Step 0: Simplying our notation)}\\
-	Firstly, by choosing local coordinates around $p$ it suffices to assume $M$ is an open set\\ $U \subseteq \mathbb{R}^m$ and $N$ is an open set $V \subseteq \mathbb{R}^m$.\newpage 
-	\begin{myIndent}\exPPP
-		To see why, consider picking smooth charts $(\widetilde{U}, \widetilde{\varphi})$ on $M$ containing $p$ and $(\widetilde{V}, \widetilde{\psi})$ on $N$ such that $F(\widetilde{U}) \subseteq \widetilde{V}$. Then set $U \coloneqq  \widetilde{\varphi}(\widetilde{U})$ and $V \coloneqq \widetilde{\psi}(\widetilde{V})$ and note that $U$ and $V$ are open in $\mathbb{R}^m$ and $\mathbb{R}^n$ respectively. Once we've shown that the theorem holds for $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}: U \to V$, then we can just find two $C^k$ diffeomorphisms\\ [2pt] $\varphi: U_0 \to \varphi(U_0)$ and $\psi: V_0 \to \psi(V_0)$ such that $\widetilde{\varphi}(p) \subseteq U_0 \subseteq U$, $V_0 \subseteq V$, and $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}(U_0) \subseteq V_0$, and $(\psi \circ \widetilde{\psi}) \circ F \circ ((\widetilde{\varphi})^{-1} \circ \varphi^{-1})$ has the desired form. And since $(\widetilde{\varphi}^{-1}(U_0), \varphi \circ \widetilde{\varphi})$ is a smooth chart on $M$ and $(\widetilde{\psi}^{-1}(V_0), \psi \circ \widetilde{\psi})$ is a smooth chart on $N$, we'll have shown our theorem holds at $p$ for the map $F$.\retTwo
-	\end{myIndent}
-
-	Next, note that since $\Df F(p)$ has rank $r$, we know the Jacobian matrix has some\\ $r \times r$ invertible submatrix. By reordering our coordinates, we can assume without loss\\ of generality that the $r \times r$ invertible submatrix makes up the top left portion of $\Df F(p)$.\\ So, let us rename the standard coordinates on $\mathbb{R}^m$ and $\mathbb{R}^n$ as:
-	
-	{\centering$(x, y) \coloneqq (x_1, \ldots, x_r, y_{r+1}, \ldots, y_m)$ and $(v, w) \coloneqq (v_1, \ldots, v_r, w_{r+1}, \ldots, w_n)$.\retTwo\par}
-
-	By applying a translation to the open sets $U$ and $V$, we can without loss of generality\\ assume $p = (0, 0)$ and $F(p) = (0, 0)$. Also, we write $F(x, y) \coloneqq (Q(x, y), R(x, y))$\\ where $Q: U \to \mathbb{R}^r$ and $R: U \to \mathbb{R}^{n - r}$ are $C^k$ functions. Therefore:
-
-	$$\Df F(0, 0) = \begin{bmatrix} \left[\frac{\partial Q_i}{\partial x_j}(0, 0)\right]_{\substack{1 \leq i \leq r \\ 1 \leq j \leq r}}\phantom{1} & \left[\frac{\partial Q_i}{\partial y_j}(0, 0)\right]_{\substack{1 \leq i \leq r \\ r+1 \leq j \leq m}} \\ 
-	\left[\frac{\partial R_i}{\partial x_j}(0, 0)\right]_{\substack{1 \leq i \leq n - r \\ 1 \leq j \leq r}} & \left[\frac{\partial R_i}{\partial y_j}(0, 0)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}}\end{bmatrix}$$ 
-
-	where $\left[\frac{\partial Q_i}{\partial x_j}(0, 0)\right]_{\substack{1 \leq i \leq r \\ 1 \leq j \leq r}}$ is an invertible matrix.\retTwo 
-
-	\ul{(Step 1: Getting $\varphi$)}\\
-	Now define $\varphi: U \to \mathbb{R}^m$ by $\varphi(x, y) = (Q(x, y), y)$. This will be $C^k$ map whose total derivative is given by:
-
-	$$\Df \varphi(x, y) = \begin{bmatrix} \left[\frac{\partial Q_i}{\partial x_j}(x, y)\right]_{\substack{1 \leq i \leq r \\ 1 \leq j \leq r}} & \left[\frac{\partial Q_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq r \\ r+1 \leq j \leq m}} \\ \mMat{0} & \mMat{I}_{m - r} \end{bmatrix}$$ 
-
-	where $\mMat{I}_{m - r}$ is the $(m - r) \times (m - r)$ identity matrix. Importantly, we can specifically see that all the columns of $\Df \varphi(0, 0)$ are linearly independent. Hence, $\Df \varphi(0, 0)$ is invertible. And by the inverse function theorem we know there are connected open sets $U_0 \subseteq U$ and $\widehat{U}_0 \subseteq \mathbb{R}^m$ satisfying that $(0, 0) \in U_0$, $\varphi(0, 0) = (0, 0) \in \widehat{U}_0$, and $\varphi: U_0 \to \widehat{U}_0$ is a\\ $C^k$-diffeomorphism. By shrinking $U_0$ and $\widehat{U}_0$ we can without loss of generality assume\\ that $\widehat{U}_0 = (-\varepsilon, \varepsilon)^{m}$ for some $\varepsilon > 0$.\retTwo
-
-	Now we write the inverse map $\varphi^{-1}: \widehat{U}_0 \to U_0$ as $\varphi^{-1}(x, y) = (A(x, y), B(x, y))$ where $A: \widehat{U}_0 \to \mathbb{R}^r$ and $B: \widehat{U}_0 \to \mathbb{R}^{m-r}$ are $C^k$ maps. Importantly, we know that:
-	
-	{\center$(x, y) = \varphi(A(x, y), B(x, y)) = (Q(A(x, y), B(x, y)),\hspace{0.2em} B(x, y))$\retTwo\par}
-
-	By comparing $y$-components we can see that $B(x, y) = y$. Hence, $\varphi^{-1}$ has the form\newpage $\varphi^{-1}(x, y) = (A(x, y),\hspace{0.2em} y)$. Meanwhile, by comparing $x$-components we can see that\\ $x = Q(A(x, y), \hspace{0.2em} y)$. Therefore, upon letting $\widetilde{R}(x, y) \coloneqq R(A(x, y), y)$ then we have\\ that:
-
-	{\centering $(F \circ \varphi^{-1})(x, y) = (x,\hspace{0.2em} \widetilde{R}(x, y))$ \retTwo\par}
-
-	\ul{(Step 2: Simplifying $\widetilde{R}$)}\\
-	Consider that the Jacobian matrix of $F \circ \varphi^{-1}$ at any $(x, y) \in \widehat{U}_0 = (-\varepsilon, \varepsilon)^m$ is given by:
-
-	$$\Df (F \circ \varphi^{-1})(x, y) = \begin{bmatrix} \mMat{I}_r & \mMat{0} \\ \left[\frac{\partial \widetilde{R}_i}{\partial x_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ 1 \leq j \leq r}} & \left[\frac{\partial \widetilde{R}_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}}\end{bmatrix}$$
-
-	\phantom{.}\\
-	Yet we also have that $\Df (F \circ \varphi^{-1})(x, y) = \Df F(\varphi^{-1}(x, y)) \Df (\varphi^{-1})(x, y)$. By assumption, we know that $\mRank(\Df F(\varphi^{-1}(x, y))) = r$ for all $(x, y) \in \widehat{U}_0$. Meanwhile, since $\varphi^{-1}$ is\\ a diffeomorphism, we know that $\Df (\varphi^{-1})(x, y)$ defines a bijective linear map for all\\ $(x, y) \in \widehat{U}_0$. It follows that $\mRank(\Df (F \circ \varphi^{-1})(x, y))$ will still equal $r$ for all $(x, y) \in \widehat{U}_0$.\retTwo
-
-	Yet the only way this matrix:
-	$$\begin{bmatrix} \mMat{I}_r & \mMat{0} \\ \left[\frac{\partial \widetilde{R}_i}{\partial x_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ 1 \leq j \leq r}} & \left[\frac{\partial \widetilde{R}_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}}\end{bmatrix}\textit{,}$$
-	can ever have rank $r$ is if $\left[\frac{\partial \widetilde{R}_i}{\partial y_j}(x, y)\right]_{\substack{1 \leq i \leq n - r \\ r+1 \leq j \leq m}} = \mMat{0}$.
-	\begin{myIndent}\exPPP
-		This is because the first $r$ columns are already linearly independent, and the\\ intersection of their span with the span of the last $m - r$ columns is just the\\ trivial subspace $\{0\}$.\retTwo
-	\end{myIndent}
-
-	Consequently, we know that $\widetilde{R}$ must be constant with respect to $y$. In other words, there exists some $C^k$ map $S: (-\varepsilon, \varepsilon)^r \to \mathbb{R}^{n - r}$ such that $\widetilde{R}(x, y) = S(x)$. And with that, we can write:
-
-	{\centering $(F \circ \varphi^{-1})(x, y) = (x, S(x))$\retTwo\par}
-
-	\ul{(Step 3: Getting $\psi$)}\\
-	Let $V_0 \coloneqq \{(v, w) \in V : (v, 0) \in \widehat{U}_0\}$. Then $V_0$ will be an open subset of $V$ containing $F(0, 0) = (0, 0)$. Also because $\widehat{U}_0$ is a cube and $(F \circ \varphi^{-1})(x, y) = (x, S(x))$, we can see that $(F \circ \varphi^{-1})(\widehat{U}_0) \subseteq V_0$. (And this also implies $F(U_0) \subseteq V_0$).\retTwo
-
-	To finish off, define $\psi: V_0 \to \mathbb{R}^n$ by $\psi(v, w) = (v, w - S(v))$. Then $\psi$ is a $C^k$ map which is also a diffeomorphism onto its image. After all, by the invariance of domain theorem we know its image is an open subset of $\mathbb{R}^n$. Also, its inverse map is precisely given by $\psi(v, w) = (v, w + S(v))$.\retTwo
-
-	And now just note that $(\psi \circ F \circ \varphi^{-1})(x, y) = \psi(x, S(x)) = (x, S(x) - S(x)) = (x, 0)$. $\blacksquare$\newpage
-\end{myIndent}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\exTwo\ul{Corollary 4.13:} Let $M$ and $N$ be $C^k$ manifolds without boundaries and let $F: M \to N$ be a $C^k$ map. Also suppose $M$ is connected. The following are equivalent.
-\begin{enumerate}
-	\item[(a)] For each $p \in M$ there exists smooth charts $(U, \varphi)$ on $M$ and $(V, \psi)$ on $N$ with $p \in U$, $F(U) \subseteq V$, and $\widehat{F} \coloneqq \psi \circ F \circ \varphi$ a linear map.
-	\item[(b)] $F$ has constant rank.
-\end{enumerate}
-
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Firstly suppose (a) holds and for every $r \leq N \coloneqq \min(\dim(M), \dim(N))$ let $A_r \subseteq M$ be the set of all $p \in M$ at which $F$ has rank $r$. Trivially each $A_r$ is disjoint with $\bigcup_{r=0}^N A_r = M$. By (a) we also know each $A_r$ is an open set. By the connectedness of $M$ we can thus conclude there exists a single $r$ with $A_r = M$. So, $F$ has constant rank on $M$.\retTwo
-
-	Conversely, if (b) is true than the rank theorem tells us how to find the smooth charts\\ described in (a). $\blacksquare$\retTwo
-\end{myIndent}
-
-\ul{Theorem 4.14:} Let $M, N$ be $C^k$ manifolds without boundaries and let $F: M \to N$ be a $C^1$ map of constant rank.
-\begin{enumerate}
-	\item[(a)] If $F$ is surjective then $F$ is a submersion.
-	\begin{myIndent}\exThreeP
-		Proof:\\
-		Let $m = \dim(M)$ and $n = \dim(N)$, and suppose $F$ has constant rank $r$. We'll\\ suppose to the contrary that $F$ is \textit{not} a submersion. Thus $r < n$.\retTwo
-
-		Now without loss of generality we can assume $k = 1$ (i.e. that $M$ and $N$ are $C^1$ manifolds).
-		\begin{myIndent}\exPPP
-			This is because the $C^k$ structures $\mathcal{A}_M$ and $\mathcal{A}_N$ that $M$ and $N$ are equipped\\ with are both contained in unique $C^1$ structures $\mathcalli{B}_M$ and $\mathcalli{B}_N$ respectively.\\ Furthemore, a map $f: M \to \mathbb{R}$ is $C^1$ with respect to $\mathcal{A}_M$ if and only if\\ it is $C^1$ with respect to $\mathcal{B}_M$. And a similar story holds for any $f: N \to \mathbb{R}$.\\ It follows that the tangents spaces to $M$ and $N$ stay identical when each is\\ equipped with either structure. In turn $F: (M, \mathcal{A}_M) \to (N, \mathcal{A}_N)$ is a\\ submersion if and only if $F: (M, \mathcal{B}_M) \to (N, \mathcal{B}_N)$ is a submersion.\retTwo
-		\end{myIndent}
-
-		Due to the prior reasoning, the rank theorem now applies. So, for all $p \in M$ there exists a smooth chart $(U_p, \varphi_p)$ on $M$ containing $p$ and a smooth chart $(V_p, \psi_p)$ on $N$ with $F(U_p) \subseteq V_p$ and $\widehat{F}_p: \psi \circ F \circ \varphi^{-1}$ having the form:
-		
-		{\centering$\widehat{F}_p(x_1, \ldots, x_r, x_{r+1}, \ldots, x_m) = (x_1, \ldots, x_r, \hspace{-0.75em}\underbrace{0, \ldots, 0}_{\text{nonzero }\#\text{ of zeros}}\hspace{-0.75em})$.\retTwo\par}
-
-		Since $M$ is an LCH space, we can for each $p$ pick a precompact open set $W_p \subseteq M$\\ such that $p \in W_p \subseteq \overline{W_p} \subseteq U_p$. Then as $\overline{W_p}$ is compact and $N$ is Hausdorff, we\\ know that $F(\overline{W_p})$ is a closed subset of $N$ containing $F(W_p)$. Moreover, $F(\overline{W_p})$ has an empty interior. After all, let $\widehat{U}_{p} \coloneqq \varphi_{p}(U_p)$ and $\widehat{V}_{p} \coloneqq \psi_{p}(V_p)$. Then we have that $(\psi \circ F)(\overline{W_p}) \subseteq \widehat{F}_p(\widehat{U}_p) \subseteq (\text{ a hyperplane }) \cap \widehat{V}_p$. Since the latter set has an empty interior relative to $\widehat{V}_p$, we can conclude that $(\psi \circ F)(\overline{W_p})$ has an empty interior\newpage relative to $\widehat{V}_p$ as well. Then since $\psi$ is a homeomorphism from $V_p$ to $\widehat{V}_p$, we can\\ conclude that $F(\overline{W_p})$ has an empty interior relative to $V_p$. And since $F(\overline{W_p})$ is a closed subset of $N$ containing $F(W_p)$ and contained in $V_p$, we can finally conclude that $F(W_p)$ is nowhere dense.\retTwo
-		
-		But now to get our contradiction, note that because $M$ is second countable there must be a sequence $\{p_\ell\}_{\ell \in \mathbb{N}}$ such that $M = \bigcup_{\ell \in \mathbb{N}} W_{p_\ell}$. Since $F$ is surjective, we in turn know that $N = F(M) = \bigcup_{\ell \in \mathbb{N}}F(W_{p_\ell})$. So, we've proven that $N$ is a countable union of nowhere dense sets. In other words $N$ is meager. Yet $N$ is an LCH space and so this contradicts the Baire category theorem. [See \inLinkRap{placeholder}{pages 540-541}.]\retTwo 
-	\end{myIndent}
-
-	\item[(b)] If $F$ is injective then $F$ is an immersion.
-	\begin{myIndent}\exThreeP
-		Proof:\\
-		Let $m$, $n$, and $r$ be as in the prior proof, and this time suppose to the contrary that\\ $F$ is \textit{not} an immersion. For identical reasons as in the last proof, we can assume\\ without loss of generality that $k = 1$ (i.e. that $M$ and $N$ are $C^1$ manifolds). And this is important because it lets us apply the rank theorem.\retTwo 
-
-		Consider any $p \in M$ and let $(U, \varphi)$ and $(V, \psi)$ be smooth charts on $M$ such that $p \in U$, $F(U) \subseteq V$, and $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ has the form:
-
-		{\centering$\widehat{F}(x_1, \ldots, x_r, \hspace{-0.75em}\underbrace{x_{r+1}, \ldots, x_m}_{\text{nonzero }\#\text{ of coordinates}}\hspace{-0.5em}) = (x_1, \ldots, x_r, \hspace{-0.5em}\underbrace{0, \ldots, 0}_{n - r \text{ many zeros}}\hspace{-0.5em})$.\retTwo\par}
-
-		But now $F$ being injective implies that $\widehat{F}$ is also injective. Simultaneously, write\\ $\varphi(p) = (p_1, \ldots, p_r, p_{r+1}, \ldots, p_m)$. Since $\varphi(U)$ is open in $\mathbb{R}^n$ we know for some\\ small enough $\varepsilon > 0$ that $\widehat{q} \coloneqq (p_1, \ldots, p_r, p_{r+1} + \varepsilon, \ldots, p_m) \in \varphi(U)$. But now if we let $q = \varphi^{-1}(q)$ we have that $(\psi \circ F)(p) = \widehat{F}(\varphi(p)) = \widehat{F}(\varphi(q)) = (\psi \circ F)(q)$. Since $\psi$ is injective, we in turn have that $F(p) = F(q)$. Yet $p \neq q$ since $\varphi^{-1}$ is injective. So, this all contradicts that $F$ is injective. $\blacksquare$\retTwo
-	\end{myIndent}
-\end{enumerate}
-
-\exTwo\ul{Corollary:} Let $M, N$ be $C^r$ manifolds without boundaries and let $F: M \to N$ be a $C^k$ map of constant rank (where $k \leq r$). If $F$ is a bijection then $F$ is a $C^k$ diffeomorphism.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	By the prior theorem, $F$ being a bijection means that $F$ is both a submersion and an\\ immersion. It then follows by proposition 4.8 on \inLinkRap{Proposition 4.8 page 1061}{page 1061} that $F$ is a local $C^k$\\ diffeomorphism. Yet finally, we can easily see by the pasting lemma that any local\\ $C^k$ diffeomorphism that is also bijective is a (global) $C^k$ diffeomorphism. So, $F$ is a $C^k$\\ diffeomorphism. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo\mySepTwo
-
-\dispDate{7/27/2026}
-
-I mentioned a few days ago that my construction of the tangent space to a corner point might not be optimal. After talking to a colleague, I can now say that while nothing I've\newpage written is wrong, there is a cleaner equivalent way of defining the tangent space. This improved way will also be the way that generalizes to analytic and complex manifolds. So, it wouldn't hurt to go over now.\retTwo
-
-\pracOne\mySepTwo
-\hypertarget{idk reference 6}{Firstly,} I'm going to fix an oversight I priorly made on \inLinkRap{page 1024 correction}{page 1024}. I already deleted the false statement on that page but I did leave a note explaining where my deleted remark went wrong.\retTwo
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Firstly, since it will make my life easier and serve as a good review, I want to generalize the universal property of tensor products of module. Note that this will only use knowledge from math 200B.\retTwo
-
-Given a collection of $A$-modules $M_1, \ldots, M_k$, we say their tensor product $\bigotimes_{i=1}^k M_i$ is an\\ $A$-module equipped with a $k$-linear map $\iota: \prod_{i=1}^k M_i \to \bigotimes_{i=1}^k M_i$ such that for any $k$-linear map $T: \prod_{i=1}^k M_i \to N$ the following diagram holds:\\ [-24pt]
-% https://q.uiver.app/#q=WzAsNyxbMSwyLCJcXHByb2Rfe2k9MX1eayBNX2kiXSxbMiwxLCJcXGJpZ290aW1lc197aT0xfV5rIE1faSJdLFsyLDIsIk4iXSxbMCwzXSxbMywzXSxbMywwXSxbMCwyXSxbMCwyLCJUIiwyXSxbMCwxLCJcXGlvdGEiXSxbMSwyLCJcXGV4aXN0cyAhZl9iIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsNSwibV8xIFxcb3RpbWVzIFxcY2RvdHMgXFxvdGltZXMgbV9rIFxcY29sb25lcXEgXFxpb3RhKG1fMSwgXFxsZG90cywgbV9rKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzIsNCwiVChtXzEsIFxcbGRvdHMsIG1faykiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFszLDYsIihtXzEsIFxcbGRvdHMsIG1faykiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxMCwxMSwiIiwwLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTIsMTAsIiIsMCx7ImN1cnZlIjotNCwic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjIwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XSxbMTIsMTEsIiIsMix7InNob3J0ZW4iOnsic291cmNlIjoyMCwidGFyZ2V0IjozMH0sImxldmVsIjoxLCJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJtYXBzIHRvIn19fV1d
-\[\begin{tikzcd}
-	&&& {} \\
-	&& {\bigotimes_{i=1}^k M_i} \\
-	{} & {\prod_{i=1}^k M_i} & N \\
-	{} &&& {}
-	\arrow[""{name=0, anchor=center, inner sep=0}, "{m_1 \otimes \cdots \otimes m_k \coloneqq \iota(m_1, \ldots, m_k)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=1-4]
-	\arrow["{\exists !f_T}", dashed, from=2-3, to=3-3]
-	\arrow["\iota", from=3-2, to=2-3]
-	\arrow["T"', from=3-2, to=3-3]
-	\arrow[""{name=1, anchor=center, inner sep=0}, "{T(m_1, \ldots, m_k)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-4]
-	\arrow[""{name=2, anchor=center, inner sep=0}, "{(m_1, \ldots, m_k)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=4-1, to=3-1]
-	\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
-	\arrow[draw={rgb,255:red,92;green,92;blue,214}, curve={height=-24pt}, between={0.1}{0.8}, maps to, from=2, to=0]
-	\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.2}{0.7}, maps to, from=2, to=1]
-\end{tikzcd}\]
-
-In math 200b I learned how to construct tensor products of $2$ modules and I also showed that $M_1 \otimes (M_2 \otimes M_3) \cong (M_1 \otimes M_2) \otimes M_3$. But for the sake of better notation and easier thinking, I want to be able to talk about tensor products of any finite number of modules. Fortunately, by standard reasoning we can see that any two $A$-modules satisfying the universal property in the above diagram are isomorphic.\retTwo
-
-\ul{Lemma A:} Let $k \geq 2$ and suppose $M_1, \ldots, M_k$ are all $A$-modules. Then there exists a\\ module $\bigotimes_{i=1}^k M_i$ and a $k$-linear map $\iota: \prod_{i=1}^k M_i \to \bigotimes_{i=1}^k M_i$ fulfilling the above universal property. Furthermore, $\iota(\prod_{i=1}^k M_i)$ is a generating / spanning set for $\bigotimes_{i=1}^k M_i$.
-\begin{myIndent}\pracTwo
-	Proof:\\
-	Our base case of $k = 2$ is already covered. So let us now proceed by induction and assume that we've already defined $\bigotimes_{i=2}^{k} M_i$ and $\overline{\iota}: \prod_{i=2}^{k} M_i \to \bigotimes_{i=2}^{k} M_i$. Then let's define\\ $M \coloneqq M_1 \otimes (\bigotimes_{i=2}^{k} M_i)$ and $\iota: \prod_{i=1}^k M_i \to M$ by:
-	
-	{\centering$\iota(m_1, \ldots, m_k) \coloneqq m_1 \otimes \overline{\iota}(m_2, \ldots, m_k)$.\retTwo\par}
-
-	It's easy to see that $\iota$ is a $k$-linear map. Furthemore, suppose $T: \prod_{i=1}^k M_i \to N$ is any $k$-linear map. Then for any fixed $m_1 \in M_1$, we can see that $T_{m_1}: \prod_{i=2}^k M_i \to N$ defined by $T_{m_1}(m_2,\ldots, m_k) \coloneqq T(m_1, \ldots, m_k)$ is a well-defined $(k-1)$-linear map. So by the universal property of $\bigotimes_{i=2}^{k} M_i$ and $\overline{\iota}: \prod_{i=2}^{k} M_i \to \bigotimes_{i=2}^{k} M_i$, we know that there exists a unique $A$-module homomorphism $f_{m_1}: \bigotimes_{i=2}^{k} M_i \to N$ such that $f_{m_1} \circ \overline{\iota} = T_{m_1}$.\newpage
-
-	Next, we define $S: M_1 \times (\bigotimes_{i=2}^{k} M_i) \to N$ by $S(m_1, t) \coloneqq f_{m_1}(t)$. Since each $f_{m_1}$ is $A$-linear, we know that $S$ is $A$-linear in its second variable. Meanwhile, note that:
-	
-	{\center\begin{tabular}{l}
-		$f_{am_1 + a^\prime m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k)) = T(am_1 + a^\prime m_1^\prime, m_2, \ldots, m_k)$\\ [3pt]
-		$\phantom{f_{am_1 + a^\prime m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k))} = aT(m_1, m_2, \ldots, m_k) + a^\prime T(m_1^\prime, m_2, \ldots, m_k)$\\ [3pt]
-		$\phantom{f_{am_1 + a^\prime m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k))} = af_{m_1}(\overline{\iota}(m_2, \ldots, m_k)) + a^\prime f_{m_1^\prime}(\overline{\iota}(m_2, \ldots, m_k))$.
-	\end{tabular}\retTwo\par}
-
-	It follows $S$ is $A$-linear in its first variable if its second variable is contained in $\overline{\iota}(\prod_{i=2}^{k} M_i)$. And since $S$ is a $A$ linear in its second variable and $\overline{\iota}(\prod_{i=2}^{k} M_i)$ spans all of $\bigotimes_{i=2}^{k} M_i$, we\\ can in turn conclude that $S$ is $A$-linear in its first variable regardless of the value of its second variable. And with that we've shown $S$ is a bilinear map.\retTwo
-
-	By the universal property of tensor products, we know there is a unique $A$-module\\ homomorphism $f_T: M_1 \otimes (\bigotimes_{i=2}^{k} M_i) \to N$ such that the below diagram commutes:\\ [-10pt]
-	% https://q.uiver.app/#q=WzAsNyxbMSwyLCJNXzEgXFx0aW1lcyAoXFxiaWdvdGltZXNfe2k9Mn1eayBNX2kpIl0sWzIsMSwiTV8xIFxcb3RpbWVzIChcXGJpZ290aW1lc197aT0yfV5rIE1faSkiXSxbMiwyLCJOIl0sWzAsM10sWzQsM10sWzMsMF0sWzAsMl0sWzAsMiwiUyIsMl0sWzAsMV0sWzEsMiwiXFxleGlzdHMgIWZfVCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDUsIm1fMSBcXG90aW1lcyB0IiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMiw0LCJmX3ttXzF9KHQpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMyw2LCIobV8xLCB0KSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEwLDExLCIiLDAseyJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMiwxMCwiIiwwLHsiY3VydmUiOi01LCJzaG9ydGVuIjp7InNvdXJjZSI6MTAsInRhcmdldCI6MTB9LCJsZXZlbCI6MSwiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoibWFwcyB0byJ9fX1dLFsxMiwxMSwiIiwyLHsic2hvcnRlbiI6eyJzb3VyY2UiOjEwLCJ0YXJnZXQiOjEwfSwibGV2ZWwiOjEsImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7InRhaWwiOnsibmFtZSI6Im1hcHMgdG8ifX19XV0=
-	\[\begin{tikzcd}
-		&&& {} & \\
-		&& {M_1 \otimes (\bigotimes_{i=2}^k M_i)} \\
-		{} & {M_1 \times (\bigotimes_{i=2}^k M_i)} & N \\
-		{} &&&& {}
-		\arrow[""{name=0, anchor=center, inner sep=0}, "{m_1 \otimes t}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-3, to=1-4]
-		\arrow["{\exists !f_T}", dashed, from=2-3, to=3-3]
-		\arrow[from=3-2, to=2-3]
-		\arrow["S"', from=3-2, to=3-3]
-		\arrow[""{name=1, anchor=center, inner sep=0}, "{f_{m_1}(t)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-3, to=4-5]
-		\arrow[""{name=2, anchor=center, inner sep=0}, "{(m_1, t)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=4-1, to=3-1]
-		\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=0, to=1]
-		\arrow[draw={rgb,255:red,92;green,92;blue,214}, curve={height=-30pt}, between={0.1}{0.9}, maps to, from=2, to=0]
-		\arrow[draw={rgb,255:red,92;green,92;blue,214}, between={0.1}{0.9}, maps to, from=2, to=1]
-	\end{tikzcd}\]
-
-	I further claim that $f_T$ is the unique $A$-module homomorphism making this diagram\\ commute:
-	% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXHByb2Rfe2k9MX1eayBNX2kiXSxbMSwwLCJNIl0sWzEsMSwiTiJdLFswLDIsIlQiLDJdLFswLDEsIlxcaW90YSJdLFsxLDIsImZfVCIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
-	\[\begin{tikzcd}
-		& M \\
-		{\prod_{i=1}^k M_i} & N
-		\arrow["{f_T}", dashed, from=1-2, to=2-2]
-		\arrow["\iota", from=2-1, to=1-2]
-		\arrow["T"', from=2-1, to=2-2]
-	\end{tikzcd}\]
-
-	After all, the fact that this diagram commutes is simply because:
-
-	{\centering\begin{tabular}{l}
-		$f_T(\iota(m_1, \ldots, m_k)) = f_T(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k))$\\ [4pt]
-		$\phantom{f_T(\iota(m_1, \ldots, m_k))} = S(m_1, \overline{\iota}(m_2, \ldots, m_k)) = f_{m_1}(\overline{\iota}(m_2, \ldots, m_k))$\\ [4pt]
-		$\phantom{f_T(\iota(m_1, \ldots, m_k)) = S(m_1, \overline{\iota}(m_2, \ldots, m_k))} = T(m_1, m_2, \ldots, m_k)$.
-	\end{tabular}\retTwo\par}
-
-	Meanwhile, if $g$ was another $A$-module homomorphism making the diagram commute, we'd similarly be able to say that:
-
-	{\centering\begin{tabular}{l}
-		$g(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k)) = g((\iota(m_1, \ldots, m_k)))$\\ [4pt]
-		$\phantom{g(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k))} = T(m_1, m_2, \ldots, m_k) = f_{m_1}(\overline{\iota}(m_2, \ldots, m_k))$\\ [4pt]
-		$\phantom{g(m_1 \otimes \overline{\iota}(m_2, \ldots, m_k)) = T(m_1, m_2, \ldots, m_k)} = S(m_1, \overline{\iota}(m_2, \ldots, m_k))$.
-	\end{tabular}\retTwo\par}
-
-	In turn since $g$ is $A$-linear and $\overline{\iota}(\prod_{i=2}^{k} M_i)$ spans all of $\bigotimes_{i=2}^{k} M_i$, we can conclude that $g(m_1 \otimes t) = S(m_1, t)$ for all $(m_1, t) \in  M_1 \times (\bigotimes_{i=2}^{k} M_i)$. By the uniqueness of $f_T$, we thus must have that $g = f_T$. And with that, we've proven that $M$ equipped with $\iota$ satisfies the universal property of a tensor product of $k$ many modules.\newpage
-
-	To finish off the proof, we already know our construction of $M_1 \otimes (\bigotimes_{i=2}^{k} M_i)$ in math 200b that that space is spanned by pure tensors of the form $m_1 \otimes t$ where $t \in \bigotimes_{i=2}^{k} M_i$. So, we can write any arbitrary element in $M$ as a sum of pure tensors $\sum_{j=1}^\ell m_1^{(j)} \otimes t^{(j)}$.
-	\begin{myIndent}\exPPP
-		(And via $A$-balance I'm letting $m_1^{(j)}$ absorb any scalars in this sum.)\retTwo
-	\end{myIndent}
-
-	But by induction we can then write $t^{(j)} = \sum_{j^\prime = 1}^{r_j} \overline{\iota}(m_2^{(j, j^\prime)}, \ldots, m_k^{(j, j^\prime)})$ (where again I'm letting the $m_i^{(j, j^\prime)}$ absorb any of the scalars). So:
-
-	{\center\begin{tabular}{l}
-		$\sum_{j=1}^\ell m_1^{(j)} \otimes t^{(j)} = \sum_{j=1}^\ell \sum_{j^\prime = 1}^{r_j} m_1^{(j)} \otimes \overline{\iota}(m_2^{(j, j^\prime)}, \ldots, m_k^{(j, j^\prime)})$\\ [4pt]
-		$\phantom{\sum_{j=1}^\ell m_1^{(j)} \otimes t^{(j)}} = \sum_{j=1}^\ell \sum_{j^\prime = 1}^{r_j} \iota(m_1^{(j)}, m_2^{(j, j^\prime)}, \ldots, m_k^{(j, j^\prime)})$. $\blacksquare$
-	\end{tabular}\retTwo\par}
-
-	\begin{myIndent}\myComment
-		As a side note: The prior proof can also be interpretted as saying that\\ $M_1 \otimes (M_2 \otimes (\cdots \otimes (M_{k-1} \otimes M_k)\cdots))$ along with the $k$-linear map\\ $\iota(m_1, \ldots, m_k) = m_1 \otimes (m_2 \otimes (\cdots \otimes (m_{k-1} \otimes m_k)\cdots))$ satisfies the\\ universal property of a tensor product of $k$ many $A$-modules.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\pracOne Note that we can by identical reasoning then prove an analogous proposition as on\\ \inLinkRap{pages}{pages 726-728} if $M_1, \ldots, M_k$ are $A$-algebras (albeit with more cumbersome notation).
-\begin{myIndent}\myComment
-	In other words, if $M_1, \ldots, M_k$ are $A$-algebras then $\bigotimes_{i=1}^k M_i$ is also an $A$-algebra when equipped with the multiplication operation:
-	
-	{\centering$(m_1 \otimes \cdots \otimes m_k)(m_1^\prime \otimes \cdots \otimes m_k^\prime) = m_1m_1^\prime \otimes \ldots \otimes m_km_k^\prime$\retTwo\par}
-\end{myIndent}
-
-Similarly, given $A$-module homomorphisms $f_i: M_i \to M_i^\prime$ we can show identically as on \inLinkRap{placeholder}{page 700} that there is a unique $A$-module homomorphism $\bigotimes_{i=1}^k M_i \to \bigotimes_{i=1}^k M_i^\prime$ such\\ [1pt] that $f(m_1 \otimes \cdots \otimes m_k) = f(m_1) \otimes \cdots \otimes f(m_k)$.\retTwo
-
-\ul{Lemma B:} Suppose $N, M_1, \ldots, M_k$ are $A$-algebras and $f_i: M_i \to N$ is an $A$-algebra\\ homomorphism for $1 \leq i \leq k$. Then there is a unique $A$-module homomorphism\\ $f: \bigotimes_{i=1}^k M_i \to N$ such that $f(m_1 \otimes \cdots \otimes m_k) = \prod_{i=1}^k f_i(m_i)$.
-\begin{myIndent}\pracTwo
-	Proof:\\
-	To start off, if we define $T: \prod_{i=1}^k M_i \to N$ by $T(m_1, \ldots, m_k) = \prod_{i=1}^k f_i(m_i)$ then we can easily see that $T$ is $k$-linear. So by the universal property of $\bigotimes_{i=1}^k M_i$, we know there is a unique $A$-module homomorphism $f: \bigotimes_{i=1}^k M_i \to N$ such that:
-	
-	{\centering$f(m_1 \otimes \cdots \otimes m_k) = \prod_{i=1}^k f_i(m_i)$.\retTwo\par}
-
-	What we need to do now though is show that $f$ also happens to be algebra homomorphism. This is not difficult but involves a lot of tedious symbol pushing which I don't want to type out. $\blacksquare$
-	\begin{myIndent}\myComment
-		Another observation to make is that if each $f_i: M_i \to N$ is unital then\\ $f$ is also unital.\retTwo
-	\end{myIndent}
-\end{myIndent}
-
-\begin{myIndent}\mySepThree\end{myIndent}
-
-{\hTwo \dispDate{7/31/2026}\newpage}
-
-This tangent has actually become significantly longer and deeper than I originally thought it would be. I just don't know enough about algebras. So at this point I'm going to start following the textbook \textit{Multilinear Algebra} by Douglas Northcott. See \inLinkRap{Citation 12}{citation 12} for more information. Also I'm going to switch back to the normal color scheme.\retTwo
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-\hTwo For the time being, I'll let $R$ denote a fixed commutative unital ring. I'm letting $R$ as opposed to $A$ denote the ring both because the ring I will care about eventually is just $\mathbb{R}$, and also because this frees up $A$ to refer to an $R$-algebra.\retTwo
-
-Let $A$ be an $R$-algebra (which doesn't have to be commutative). We say a family $\{A_n\}_{n \in \mathbb{Z}}$ of $R$-submodules of $A$ is a \udefine{grading} on $A$ if $A = \bigoplus_{n \in \mathbb{Z}}A_n$ as an internal direct sum of $R$-modules and $a_r \in A_r$ and $a_s \in A_s$ implies that $a_r a_s \in A_{r + s}$.
+Suppose $(I, \lesssim)$ is a directed set, that every $i \in I$ is associated with a commutative\\ unital $R$-algebra $A_i$, and that for all $i, j \in I$ with $i \lesssim j$ there exists a unital $R$-algebra\\ homomorphism $r^{i}_j: A_i \to A_j$ such that:\\ [-18pt]
 \begin{itemize}
-	\item An $R$-algebra with a grading $\{A_n\}_{n \in \mathbb{Z}}$ is said to be a \udefine{graded $R$-algebra}. If all $A_n = \{0\}$ for $n < 0$ then we say our grading is \udefine{nonnegative}.
-	\item Also any elements of $A_n$ are called \udefine{homogeneous of degree $n$}.
-	\item By definition, any $a \in A$ can be written uniquely as $\sum_{n \in \mathbb{Z}}a_n$ where each $a_n \in A$ and all but finitely many $a_n$ are zero. We call the $a_n$ in this sum the \udefine{homogeneous coefficients of $a$}.\retTwo
+	\item $i \lesssim j \lesssim k$ in $I$ implies that $r^{i}_k = r^{j}_k \circ r^i_j$,
+	\item $r^i_i = \myId_{A_i}$ for all $i \in I$.\retTwo
 \end{itemize}
 
-\exTwo\ul{Theorem 3.5:} Let $A$ be a unital graded $R$-algebra with the grading $\{A_n\}_{n \in \mathbb{N}}$. Then $1_A$ is\\ homogeneous of degree $0$.
-\begin{myIndent}\exThreeP
-	Let us write $1_A = \sum_{n \in \mathbb{Z}} a_n$ as a sum of the homogeneous coefficients of $1_A$. Then for any $m \in \mathbb{Z}$ we consider any $b_m \in A_m$. But now note that:
-	
-	{\centering$\sum_{n \in \mathbb{Z}} a_n b_m = 1_A b_m = b_m = b_m1_A = \sum_{n \in \mathbb{Z}} b_m a_n$\retTwo\par}
-
-	By comparing homogeneous coefficients, we get that $a_0 b_m = b_m = b_m a_0$ (and also that $a_n b_m = 0 = b_m a_n$ if $n \neq 0$). And thus since every $b \in A$ is a sum of $b_m \in A_m$ as $m$ ranges over some finite subset of $\mathbb{Z}$, we can conclude for all $b \in A$ that $a_0 b = b = b a_0$. This shows that $a_0$ is an identity element of $A$. And thus $1_A = 1_A a_0 = a_0$. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo Given a unital $R$-algebra $A$, I'll say $B \subseteq A$ is a \udefine{subalgebra} if it is also an $R$-algebra under the algebra operations of $A$ and $1_B = 1_A$.\retTwo
-
-\exTwo\ul{Corollary:} Let $A$ be a graded unital $R$-algebra with the grading $\{A_n\}_{n \in \mathbb{N}}$. Then $A_0$ is a subalgebra of $A$.
-\begin{myIndent}\exThreeP
-	Why?\\
-	$A_0$ is an $R$-module and we know from the definition of a grading that if $a, b \in A_0$ then so is $ab \in A_0$. Finally, $1_A \in A_0$ lets us conclude $A_0$ is a subalgebra. $\blacksquare$\retTwo
-\end{myIndent}
-
-\hTwo Let $A$ be an $R$-algebra. Note that if $\{B_i\}_{i \in I}$ is a collection of subalgebras of $A$ then so is $B \coloneqq \bigcap_{i \in I} B_i$. As a result, given a subset $S$ of $A$ we let the $R$-subalgebra generated by $S$ (denoted $\langle S\rangle$) to be the smallest subalgebra of $A$ containing $S$. We can construct $\langle S\rangle$ as follows:\newpage
+In other words, we have a functor $F: I \to \mcateg{CAlg}_R$. Now here's how to construct $\lim\limits_{\longrightarrow}(F)$.
 \begin{myIndent}\pracTwo
-	Let $B$ be the collection of all finite linear combinations of finite products of elements of $S$ (where a product of zero-many elements is interpretted as equalling $1_A$). It is easy to justify that $B \subseteq \langle S\rangle$ and that $B$ is itself a subalgebra of $A$ which contains $S$. So, $\langle S\rangle \subseteq B$.\retTwo
+	Let $S \coloneqq \bigcup_{i \in I}(\{i\} \times A_i)$ be the disjoint union of the algebras $A_i$. Then equip $S$ with\\ the equivalence relation where $(i, x) \sim (j, y)$ if there exists $k \in I$ with $i \lesssim k$ and\\ $j \lesssim k$ such that $r^i_k(x) = r^j_k(y)$. Finally, let $A \coloneqq S/_\sim$ and let $\iota_i: A_i \to A$ be the\\ map $x \mapsto [(i, x)]$ for all $i \in I$.\retTwo
+
+	If $\mathcal{G}: \mcateg{CAlg}_R \to \mcateg{Set}$ is the forgetful functor than we know from the construction on\\ \inLinkRap{Page 1024 reference}{pages 1024-1026} that $A$ equipped with all the $\iota_i$ is the colimit $\lim\limits_{\longrightarrow}(\mathcal{G} \circ F)$.\retTwo
+
+	Thus if we can equip $A$ with a unital $R$-algebra structure and then show that $\iota_i: A_i \to A$ is a unital $R$-algebra homomorphism for all $i$, then this will be enough to conclude that $A$ equipped with all the $\iota_i$ is the colimit $\lim\limits_{\longrightarrow}(F)$.\newpage
+
+	Here's how we define are algebra operations on $A$.
+	\begin{itemize}
+		\item (Scaling): Given any $c \in R$ and $[(i, x)] \in A$, we let $c[(i, x)] \coloneqq [(i, cx)]$.
+		\begin{myIndent}\exPPP
+			To see that this is well-defined, suppose $[(i, x)] = [(j, y)]$. Then there exists $k \in I$ with $i \lesssim k$, $j \lesssim k$, and $r^{i}_k(x) = r^j_k(y)$. Then as $r^{i}_k$ and $r^j_k$ are $R$-algebra homomorphisms, we have that $r^{i}_k(c \cdot x) = c \cdot r^{i}_k(x) = c \cdot r^j_k(y) = r^j_k(c \cdot y)$. As a result, $[(i, cx)] = [(j, cy)]$.\retTwo
+		\end{myIndent}
+
+		\item (Addition): Suppose $[(i, x)], [(j, y)] \in A$. Then given any $k \in I$ with $i \lesssim k$ and $j \lesssim k$ we let $[(i, x)] + [(j, y)] \coloneqq [(k, r^i_k(x) + r^j_k(y))]$.
+		\begin{myIndent}\exPPP
+			To see that this is well-defined, suppose $[(i_1, x_1)] = [(i_2, x_2)]$ and\\ $[(j_1, y_1)] = [(j_2, y_2)]$, and then consider any $k_1, k_2 \in I$ such that\\ $i_1 \lesssim k_1$, $j_1 \lesssim k_1$, $i_2 \lesssim k_2$, and $j_2 \lesssim k_2$. We need to show that:
+			
+			{\centering$[(k_1, r^{i_1}_{k_1}(x_1) + r^{j_1}_{k_1}(y_1))] = [(k_2, r^{i_2}_{k_2}(x_2) + r^{j_2}_{k_2}(y_2))]$.\retTwo\par}
+
+			Fortunately, note that as $[(i_1, x_1)] = [(i_2, x_2)]$ there exists $\ell \in I$ such that $r_{\ell}^{i_1}(x_1) = r_\ell^{i_2}(x_2)$. Also without loss of generality we can assume $k_1 \lesssim \ell$ and $k_2 \lesssim \ell$. Similarly, as $[(j_1, y_1)] = [(j_2, y_2)]$ we can find $\ell^\prime \in I$ such that $r_{\ell^\prime}^{j_1}(y_1) = r_{\ell^\prime}^{j_2}(y_2)$. And now I claim without loss of generality that we can just take $\ell = \ell^\prime$ and also assume that $k_1, k_2 \lesssim \ell$.\\ [-8pt]
+			\begin{myDindent}
+				This is because since $I$ is a directed set, we know there exists\\ $\ell^{\mathrm{new}} \in I$ with $\ell, \ell^\prime, k_1, k_2 \lesssim \ell^{\mathrm{new}}$. And then:
+
+				{\centering $r_{\ell^{\mathrm{new}}}^{i_1}(x_1) = (r_{\ell^{\mathrm{new}}}^{\ell} \circ r_\ell^{i_1})(x_1) =  (r_{\ell^{\mathrm{new}}}^\ell \circ r_\ell^{i_2})(x_2) = r_{\ell^{\mathrm{new}}}^{i_2}(x_2)$ \retTwo\par}
+
+				Similarly, we can show $r_{\ell^{\mathrm{new}}}^{j_1}(y_1) = r_{\ell^{\mathrm{new}}}^{j_2}(y_2)$.\retTwo
+			\end{myDindent}
+
+			So, there exists $\ell \in I$ such that $i_1, i_2, j_1, j_2, k_1, k_2 \lesssim \ell$, $r^{i_1}_\ell(x_1) = r^{i_2}_\ell(x_2)$, and $r^{j_1}_\ell(y_1) = r^{j_2}_\ell(y_2)$. And finally, we can now conclude that:
+
+			{\centering \begin{tabular}{l}
+				$r_\ell^{k_1}(r^{i_1}_{k_1}(x_1) + r^{j_1}_{k_1}(y_1)) = r_\ell^{i_1}(x_1) + r_\ell^{j_1}(y_1)$\\ [2pt]
+				$\phantom{r_\ell^{k_1}(r^{i_1}_{k_1}(x_1) + r^{j_1}_{k_1}(y_1))} = r_\ell^{i_2}(x_2) + r_\ell^{j_2}(y_2) = r_\ell^{k_2}(r^{i_2}_{k_2}(x_2) + r^{j_2}_{k_2}(y_2))$
+			\end{tabular} \retTwo\par}
+		\end{myIndent}
+
+		\item (Multiplication): Suppose $[(i, x)], [(j, y)] \in A$. Then given any $k \in I$ with $i \lesssim k$ and $j \lesssim k$ we let $[(i, x)][(j, y)] = [(k, r_k^i(x)r_k^j(y))]$.
+		\begin{myIndent}\exPPP
+			We can use basically identical reasoning to prove multiplication is well-defined as we used to prove addition is well-defined. Just replace all the addition\\ operations with multiplication operations in the prior reasoning.\retTwo
+		\end{myIndent}
+	\end{itemize}
+
+	Now one major reason why I showed all the algebra operations are well-defined \textit{before} I showed they satisfy the scaling/addition/multiplication axioms for a commutative $R$-algebra is that we can now always insist on working with whichever elements of an equivalence class are most convenient to work with.\retTwo
+
+	As a general observation, it's easy to see that if $i \lesssim j$ then $[(i, x)] = [(j, r^i_j(x))]$. Also, we can see that $[(i, x)] + [(i, y)] = [(i, x + y)]$ and that $[(i, x)][(i, y)] = [(i, xy)]$. Thus, here's how we can "quickly" prove $A$ is a commutative $R$-algebra.\newpage
+	\begin{myIndent}\exPPP
+		Let $[(i, x)], [(j, y)], [(k, z)] \in A$. By picking a common upper bound to $i$, $j$, and $k$ in $I$ we can assume without loss of generality that $i = j = k$. And then since $A_i$ is a commutative algebra:
+		\begin{itemize}
+			\item $([(i, x)][(i, y)])[(i, z)] = [(i, xyz)] = [(i, x)]([(i, y)][(i, z)])$,\\ [-10pt]
+			\item $[(i, x)]([(i, y)] + [(i, z)]) = [(i, xy + xz)] = [(i, x)][(i, y)] + [(i, x)][(i, z)]$,\\ [-10pt]
+			\item $([(i, x)] + [(i, y)])[(i, z)] = [(i, xz + xy)] = [(i, x)][(i, z)] + [(i, y)][(i, z)]$,\\ [-10pt]
+			\item $[(i, x)][(i, y)] = [(i, xy)] = [(i, yx)] = [(i, y)][(i, x)]$,\\ [-10pt]
+			\item $[(i, x)] + [(i, y)] = [(i, x + y)] = [(i, y + x)] = [(i, y)] + [(i, x)]$.\retTwo
+		\end{itemize}
+
+		Additionally suppose $c_1, c_2 \in R$. Then:
+		\begin{itemize}
+			\item $c_1(c_2[(i, x)]) = [(i, c_1c_2 x)] = c_2c_2 [(i, x)]$\\ [-10pt]
+			\item $(c_1 + c_2)[(i, x)] = [(i, (c_1 + c_2)x)] = [(i, c_1x + c_2x)] = c_1[(i, x)] + c_2[(i, x)]$.\retTwo
+		\end{itemize}
+
+		Also if $c \in R$ then:
+		\begin{itemize}
+			\item $(c[(i, x)])[(i, y)] = [(i, (cx)y)] = [(i, x(cy))] = [(i, x)](c[(i, y)])$,\\ [-10pt]
+			\item $(c[(i, x)])[(i, y)] = [(i, (cx)y)] = [(i, c(xy))] = c([(i, x)][(i, y)])$,\\ [-10pt]
+			\item $c([(i, x)] + [(i, y)]) = [(i, c(x + y))] = [(i, cx + cy)] = c[(i, x)] + c[(i, y)]$.\retTwo
+		\end{itemize}
+
+		Finally, we just need to show $A$ has an element $1_A$ and an element $0_A$. So, I define $0_A \coloneqq [(i, 0_{A_i})]$ and $1_A \coloneqq [(i, 1_{A_i})]$ where $i$ is any element of $I$.\\ [-8pt]
+		\begin{myIndent}
+			To see that this is well-defined, note that $[i, 0_{A_i}] = [j, 0_{A_j}]$ and\\ $[i, 1_{A_i}] = [j, 1_{A_j}]$ for all $i, j \in I$. This is because if we let $k \in I$ be\\ such that $i\lesssim k$ and $j \lesssim k$ then $r_k^i(0_{A_i}) = 0_{A_k}$, $r_k^i(1_{A_i}) = 1_{A_k}$,\\ $r_k^j(0_{A_j}) = 0_{A_k}$, and $r_k^j(1_{A_j}) = 1_{A_k}$.\retTwo
+		\end{myIndent}
+
+		And now we can easily see that $0_A + [(i, x)] = [(i, x)]$ and $1_A [(i, x)] = [(i, x)]$. Also $[(i, x)] + [(i, -x)] = [(i, 0_{A_i})] = 0_A$. So every element of $A$ has an additive inverse.\retTwo
+	\end{myIndent}
+
+	It's also now obvious that $\iota_i: A_i \to A$ is a unital $R$-algebra homomorphism for all $i \in I$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\exTwo\ul{Lemma 3.1:} Let $\{A_n\}_{n \in \mathbb{Z}}$ be a grading on a unital $R$-algebra $A$, and suppose that $A = \langle A_1\rangle$. Then the grading on $A$ is nonnegative and for all $n \geq 0$ we have that any $a \in A_n$ is a finite linear combinations of products of $n$ many elements of $A_1$. In particular, this means that $A_0$ is generated as an $R$-module by $1_A$. So, $A_0$ is contained in the center of $A$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	$A$ is generated as an $R$-module by all finite products of elements of $A_1$. Therefore, let $B_{0} = R1_A$, let $B_n = \{0\}$ for $n < 0$, and finally for $n > 0$ let $B_n$ be the $R$-module generated by all finite products of $n$ many elements of $A_1$. We know $A = \sum_{n \in \mathbb{Z}} B_n$, and we can also easily see that $B_n \subseteq A_n$ for all $n$. The only way both statements can be true is if $A_n = B_n$ for all $n$. $\blacksquare$\retTwo
+With that I've finished showing how to construct a \textit{filtered} colimit. 
+\begin{myIndent}\myComment
+	Remark 1: This is actually all we need in order to study stalks and germs on topological spaces. However, I made the claim earlier that $\mcateg{CAlg}_R$ is a cocomplete category. And if I want to actually justify that assertion, I need to do more work.\retTwo
+
+	Remark 2: The prior construction also works for constructing filtered colimits of $R$-modules. I mention that because it's much easier to interpret what any element of this construction looks like compared to what any element of the general construction on \inLinkRap{Colimits of $A$-modules construction page 1023}{pages 1023-1024} looks like.\retTwo
 \end{myIndent}
 
-\hTwo Let $A$ and $B$ be unital graded $R$-algebras with gradings $\{A_n\}_{n \in \mathbb{N}}$ and $\{B_n\}_{n \in \mathbb{N}}$ respectively. We say $f: A \to B$ is a \udefine{homomorphism of graded $R$-algebras} if it is a unital $R$-algebra homomorphism and $f(A_n) \subseteq B_n$ for all $n$.\retTwo
+{\hTwo\dispDate{8/5/2026}}\newpage
 
-\exTwo\ul{Lemma:} If $f: A \to B$ is a homomorphism of graded $R$-algebras and a bijection, then\\ $f(A_n) = B_n$ for all $n$.
-\begin{myIndent}\exThreeP
-	Proof:\\
-	Consider any $n \in \mathbb{Z}$ and $b_n \in B_n$. Then write $f^{-1}(b_n) = \sum_{m \in \mathbb{Z}} a_m$ where $a_m \in A_m$\\ for each $m$. In turn, $b_n = f(f^{-1}(b_n)) = f(\sum_{m \in \mathbb{Z}} a_m) = \sum_{m \in \mathbb{Z}} f(a_m)$. So if $m \neq 0$\\ then we can compare homogeneous coefficients of $b_n$ to get that $f(a_m) = 0$. Since $f$ is\\ injective, it follows that $a_m = 0$ for all $m \neq 0$. And so, we've shown that $f^{-1}(b_n) \in A_n$.\\ In other words, $f^{-1}(B_n) \subseteq A_n$. And since $f(A_n) \subseteq B_n$, we can now conclude that\\ $f(A_n) = B_n$. $\blacksquare$\retTwo
-\end{myIndent}
+I have two more constructions to make before I can conclude that $\mcateg{CAlg}_R$ is cocomplete. Firstly, given an arbitrary collection $\{A_\beta\}_{\beta \in B}$ of unital commutative algebras I need to\\ construct their coproduct.
 
-\hTwo Let $I \lhd A$ be a two-sided ideal of a graded unital $R$-algebra $A$ (i.e. $I$ is an $R$-submodule\\ and a two-sided ideal of $A$). We say $I$ is \udefine{homogeneous} if $a \in I$ implies that all the\\ homogeneous components of $A$ are also in $I$.\retTwo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
@@ -1005,27 +953,27 @@ Let $A$ be an $R$-algebra (which doesn't have to be commutative). We say a famil
 
 
 
-\newpage
-\mySepTwo
+% \newpage
+% \mySepTwo
 
-\hTwo Recall the definition of sheaves, stalks, and germs given on \inLinkRap{Page 1026 reference}{pages 1026-1027}. Then\\ given any $C^r$ manifold $M$ and any $k \leq r$ in $\mathbb{Z}_{\geq 1} \cup \{\infty\}$, we consider the sheaf\\ $\mathcalli{F}: \mcateg{Op}(M) \to \mathbb{R}$-$\mcateg{alg}$ such that $\mathcalli{F}(U) = C^k(U)$ and for any open sets $V \subseteq U \subseteq M$\\ we have that $r^U_V(f) = f|_V$.\retTwo
+% \hTwo Recall the definition of sheaves, stalks, and germs given on \inLinkRap{Page 1026 reference}{pages 1026-1027}. Then\\ given any $C^r$ manifold $M$ and any $k \leq r$ in $\mathbb{Z}_{\geq 1} \cup \{\infty\}$, we consider the sheaf\\ $\mathcalli{F}: \mcateg{Op}(M) \to \mathbb{R}$-$\mcateg{alg}$ such that $\mathcalli{F}(U) = C^k(U)$ and for any open sets $V \subseteq U \subseteq M$\\ we have that $r^U_V(f) = f|_V$.\retTwo
 
-For any $p \in M$ we denote the stalk of $\mathcalli{F}$ at $p$ to be the set $C_p^k(M)$. Also, given any open set $U$ and $C^k$ map $f: U \to \mathbb{R}$, we let $[(U, f)]$ denote the germ of $f$ in $C^k_p(M)$.\retTwo
+% For any $p \in M$ we denote the stalk of $\mathcalli{F}$ at $p$ to be the set $C_p^k(M)$. Also, given any open set $U$ and $C^k$ map $f: U \to \mathbb{R}$, we let $[(U, f)]$ denote the germ of $f$ in $C^k_p(M)$.\retTwo
 
-\begin{myIndent}
-	\exTwo\ul{Lemma A:} Suppose $[(U, f)]$ and $[(V, g)]$ are germs in $C_p^k(M)$. Then $[(U, f)] = [(V, g)]$ if and only if there is an open set $W \subseteq U \cap V$ such that $p \in W$ and $f|_W = g|_W$.
-	\begin{myIndent}\exThreeP
-		$(\Longleftarrow)$\\
-		By the definition of a direct limit, we know $[(U, f)] = [(W, f|_W)]$ and\\ $[(V, g)] = [(W, g|_W)]$ in $C^k_p$. But also note that $(W, f|_W) = (W, g|_W)$ and\\ so their germs are equal. It follows that $[(U, f)] = [(V, g)]$.\retTwo
+% \begin{myIndent}
+% 	\exTwo\ul{Lemma A:} Suppose $[(U, f)]$ and $[(V, g)]$ are germs in $C_p^k(M)$. Then $[(U, f)] = [(V, g)]$ if and only if there is an open set $W \subseteq U \cap V$ such that $p \in W$ and $f|_W = g|_W$.
+% 	\begin{myIndent}\exThreeP
+% 		$(\Longleftarrow)$\\
+% 		By the definition of a direct limit, we know $[(U, f)] = [(W, f|_W)]$ and\\ $[(V, g)] = [(W, g|_W)]$ in $C^k_p$. But also note that $(W, f|_W) = (W, g|_W)$ and\\ so their germs are equal. It follows that $[(U, f)] = [(V, g)]$.\retTwo
 
-		$(\Longrightarrow)$\\
-		Let $W^\prime = U \cap V$. As mentioned before, we know that $[(U, f)] = [(W^\prime, f|_{W^\prime})]$\\ and $[(V, g)] = [(W^\prime, g|_{W^\prime})]$. Hence:
+% 		$(\Longrightarrow)$\\
+% 		Let $W^\prime = U \cap V$. As mentioned before, we know that $[(U, f)] = [(W^\prime, f|_{W^\prime})]$\\ and $[(V, g)] = [(W^\prime, g|_{W^\prime})]$. Hence:
 		
-		{\centering$[(U, f)] =[(V, g)] \Longrightarrow [(W^\prime, f|_{W^\prime})] = [(W^\prime, g|_{W^\prime})]$.\retTwo\par}
+% 		{\centering$[(U, f)] =[(V, g)] \Longrightarrow [(W^\prime, f|_{W^\prime})] = [(W^\prime, g|_{W^\prime})]$.\retTwo\par}
 
-		To simplify our notation, I'll thus assume without loss of generality that\\ $U = V$ $( = W^\prime)$. And now it suffices to find some open set $W \subseteq U$ containing\\ $p$ such that $f|_W = g|_W$. Fortunately, note that $j_U: C^k(U) \to C^k_p(M)$ given by $j_U(f) = [(U, f)]$ 
-	\end{myIndent}
-\end{myIndent}
+% 		To simplify our notation, I'll thus assume without loss of generality that\\ $U = V$ $( = W^\prime)$. And now it suffices to find some open set $W \subseteq U$ containing\\ $p$ such that $f|_W = g|_W$. Fortunately, note that $j_U: C^k(U) \to C^k_p(M)$ given by $j_U(f) = [(U, f)]$ 
+% 	\end{myIndent}
+% \end{myIndent}
 
 
 
