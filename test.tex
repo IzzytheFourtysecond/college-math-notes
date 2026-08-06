@@ -868,75 +868,215 @@ With that I've finished showing how to construct a \textit{filtered} colimit.
 \begin{myIndent}\myComment
 	Remark 1: This is actually all we need in order to study stalks and germs on topological spaces. However, I made the claim earlier that $\mcateg{CAlg}_R$ is a cocomplete category. And if I want to actually justify that assertion, I need to do more work.\retTwo
 
-	Remark 2: The prior construction also works for constructing filtered colimits of $R$-modules. I mention that because it's much easier to interpret what any element of this construction looks like compared to what any element of the general construction on \inLinkRap{Colimits of $A$-modules construction page 1023}{pages 1023-1024} looks like.\retTwo
+	Remark 2: The prior construction also works for constructing filtered colimits of $R$-modules. I mention that because it's much easier to interpret what any element of this construction looks like compared to what any element of the general construction on \inLinkRap{Colimits of $A$-modules construction page 1023}{pages 1023-1024} looks like.\newpage
 \end{myIndent}
 
-{\hTwo\dispDate{8/5/2026}}\newpage
+{\hTwo\dispDate{8/5/2026}}
 
-I have two more constructions to make before I can conclude that $\mcateg{CAlg}_R$ is cocomplete. Firstly, given an arbitrary collection $\{A_\beta\}_{\beta \in B}$ of unital commutative algebras I need to\\ construct their coproduct.
+I have two more constructions to make before I can conclude that $\mcateg{CAlg}_R$ is cocomplete. Firstly, given an arbitrary collection $\{A_\beta\}_{\beta \in B}$ of unital commutative $R$-algebras I need to\\ construct their coproduct.\retTwo
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+\ul{Lemma A:} Let $A_1, \ldots, A_n$ be unital $R$-algebras and let $1 \leq k \leq n$ be a positive integer. Then there is a unique unital $R$-algebra homomorphism $j: \bigotimes_{i=1}^k A_i \to \bigotimes_{i=1}^n A_i$ satisfying that:
 
+{\centering$j(a_1 \otimes \cdots \otimes a_k) = a_1 \otimes \cdots \otimes a_k \otimes 1_{A_{k+1}} \otimes \cdots \otimes 1_{A_{n}}$.\retTwo\par}
 
-
-
-
-
-
-
-
-
-
-
-
-% \ul{Lemma C:} Let $M_1, \ldots, M_n$ be unital $A$-algebras and let $k$ be a positive integer less than or equal to $n$. Then consider an injective function $\sigma: \{1, \ldots, k\} \to \{1, \ldots, n\}$. There exists a unique unital $A$-module homomorphism $j_{\sigma}: \bigotimes_{i=1}^k M_i \to \bigotimes_{i^\prime=1}^n M_{i^\prime}$ such that $j_{\sigma}(m_1 \otimes \cdots \otimes m_k) \coloneqq \widetilde{m}_1 \otimes \cdots \otimes \widetilde{m}_n$ where $\widetilde{m}_{\sigma(i)} = m_i$ for all $i$ and $\widetilde{m}_{i^\prime} = 1_{M_i^\prime}$ if $i^\prime \notin \myIm(\sigma)$. Furthermore $j_{\sigma}$ is an injective unital $A$-algebra homomorphism.\newpage
-% \begin{myIndent}\pracTwo
-% 	Proof:\\
-% 	To start off, we have a $k$-linear map $T: \prod_{i=1}^k M_i \to \bigotimes_{i^\prime=1}^n M_i$ given by:
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Note that $\phi: \prod_{i=1}^k A_i \to \bigotimes_{i=1}^n A_i$ given by
 	
-% 	{\centering$T(m_1, \ldots, m_k) \coloneqq \widetilde{m}_1 \otimes \cdots \otimes \widetilde{m}_n$\\ [4pt]\par}
-	
-% 	(where $\widetilde{m}_i$ is as defined in the statement of the lemma). Therefore, by the universal\\ property of tensor products we know we can pass to a unique unital $A$-module\\ homomorphism $j_{\sigma}$.\retTwo
+	{\centering$\phi(a_1, \ldots, a_k) = a_1 \otimes \cdots \otimes a_k \otimes 1_{A_{k+1}} \otimes \cdots \otimes 1_{A_{n}}$.\\ [4pt]\par}
 
+	is a $k$-linear map. Thus by the universal property of tensor products, we know there is a unique $R$-module homomorphism $j: \bigotimes_{i=1}^k A_i \to \bigotimes_{i=1}^n A_i$ such that:
 
-% \end{myIndent}
+	{\centering$j(a_1 \otimes \cdots \otimes a_k) = a_1 \otimes \cdots \otimes a_k \otimes 1_{A_{k+1}} \otimes \cdots \otimes 1_{A_{n}}$.\retTwo\par}
 
-% As a corollary to the prior lemma, if each $M_i$ is an $A$-algebra then we can also now embed each $M_i$ into $\bigotimes_{i=1}^k M_i$.
+	Also note that $j(a_1 \otimes \cdots \otimes a_k)j(a_1^\prime \otimes \cdots \otimes a_k^\prime) = j((a_1 \otimes \cdots \otimes a_k)(a_1^\prime \otimes \cdots \otimes a_k^\prime))$ for every pure tensor $a_1 \otimes \cdots \otimes a_k$ and $a_1^\prime \otimes \cdots \otimes a_k^\prime$. Thus by the lemma at the bottom of \inLinkRap{Lemma middle of page 1081}{page 1081}, we can conclude that $j$ is an $R$-algebra homomorphism.\retTwo
 
+	Finally, note that $j(1_{\bigotimes_{i=1}^k A_i}) = j(1_{A_1} \otimes \cdots \otimes 1_{A_k}) = 1_{A_1} \otimes \cdots \otimes 1_{A_n} = 1_{\bigotimes_{i=1}^n A_i}$. So, $j$ is unital. $\blacksquare$\retTwo
+\end{myIndent}
 
+\ul{Lemma B:} Let $A_1, \ldots, A_n$ be unital $R$-algebras and let $\sigma: \{1, \ldots, n\} \to \{1, \ldots, n\}$\\ be a bijective function (i.e. a permutation). Then there is a unique unital $R$-algebra\\ isomorphism $\phi: \bigotimes_{i=1}^n A_i \to \bigotimes_{i=1}^n A_{\sigma^{-1}(i)}$ such that:
 
+{\centering$\phi(a_1 \otimes \cdots \otimes a_n) = a_{\sigma^{-1}(1)} \otimes \cdots \otimes a_{\sigma^{-1}(n)}$.\retTwo\par}
 
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Showing that such a unique unital $R$-algebra homomorphism $\phi$ exists uses the same\\ standard argument used in the proof of the last lemma. As for why $\phi$ is an isomorphism, note that we can by identical reasoning conclude that there is a unique unital $R$-algebra homomorphism $\psi: \bigotimes_{i=1}^n A_{\sigma^{-1}(i)} \to \bigotimes_{i=1}^n A_{i} $ such that:
 
+	{\centering$\psi(a_1 \otimes \cdots \otimes a_n) = a_{\sigma(1)} \otimes \cdots \otimes a_{\sigma(n)}$.\retTwo\par}
 
+	But now $\psi \circ \phi = \myId_{\bigotimes_{i=1}^n A_i}$ since both agree on all pure tensors. Similarly,\\ $\phi \circ \psi = \myId_{\bigotimes_{i=1}^n A_{\sigma^{-1}(i)}}$ since both agree on all pure tensors. $\blacksquare$\retTwo
+\end{myIndent}
 
-
-% \newpage
-
-% \begin{myIndent}\mySepThree\end{myIndent}
-
-% My next goal in this aside is to construct categorical coproducts in $\mcateg{CAlg}_A$. Unfortunately, this construction will be convoluted and rely on a lot of universal properties. So get ready for that!\retTwo
-
-% \begin{myIndent}\pracTwo
-% 	Let $\{B_i\}_{i \in I}$ be a collection of $A$-algebras. We can construct a category $\mcateg{I}_f$ whose objects are all the finite subsets of $I$ and whose morphisms are all the increasing inclusion relations. (In other words there is a morphism from $J_1 \subseteq I$ to $J_2 \subseteq I$ if $J_1 \subseteq J_2$. And the composition of $J_1 \subseteq J_2$ and $J_2 \subseteq J_3$ is just the morphism $J_1 \subseteq J_3$).\retTwo
-
-% 	We shall define a functor $\mathcalli{G}: \mcateg{I}_f \to A$-$\mcateg{mod}$ as follows.
-% 	\begin{myIndent}\exPPP
-% 		For each finite set $J \subseteq I$ we can choose an indexing $J = \{i_J^{(1)}, \ldots, i_J^{(n)}\}$. Then we\\ [2pt] define $\mathcalli{G}(J) = \bigotimes_{j=1}^n B_{i_j}$. Next, suppose $J \subseteq J^\prime$ and let $|J| = n$ and $|J^\prime| = m$.\\ We know there is an injection $\sigma^{J^\prime}_J: \{1, \ldots, n\} \to \{1, \ldots, m\}$ such that:
+Using the prior lemmas, we're now ready to construct a functor whose (filtered) colimit\\ will be the categorical coproduct of the collection $\{A_\beta\}_{\beta \in B}$ of unital commutative\\ $R$-algebras.
+\begin{myIndent}\pracTwo
+	Let $I_f$ be the collection of finite subsets of $B$, and let $I_f$ be directed by increasing inclusion. Then after viewing $I_f$ as a category, we'll define a functor $F: I_f \to \mcateg{CAlg}_R$ as follows:\newpage
+	\begin{myIndent}\exPPP
+		For each $J \in I_f$ we choose an indexing $J = \{\beta_1^{(J)}, \ldots, \beta_n^{(j)}\}$. Importantly, if\\ $J_1 \subseteq J_2$ then we know there is a unique injection:
 		
-% 		{\center$J = \{i_J^{(1)} = i_{J^\prime}^{(\sigma_J^{J^\prime}(1))}, \ldots, i_J^{(n)} = i_{J^\prime}^{(\sigma_J^{J^\prime}(n))}\} \subseteq \{i_{J^\prime}^{(1)}, \ldots, i_{J^\prime}^{(m)}\} = J^\prime$.\retTwo\par}
+		{\centering$\sigma_{J_1 \subseteq J_2}: \{1, \ldots, |J_1|\} \to \{1, \ldots, |J_2|\}$\\ [4pt]\par}
+		
+		such that $\beta_i^{(J_1)} = \beta_{\sigma_{J_1 \subseteq J_2}(i)}^{(J_2)}$ for all $i \in \{1, \ldots, |J_1|\}$. Also, it's easy to verify that if $J_1 \subseteq J_2 \subseteq J_3$ then $\sigma_{J_1 \subseteq J_3} = \sigma_{J_2 \subseteq J_3} \circ \sigma_{J_1 \subseteq J_2}$. And also note that $\sigma_{J \subseteq J} = \myId_{\{1, \ldots, |J|\}}$.\retTwo
 
-% 		Furthermore it's easy to see that if $J \subseteq J^\prime \subseteq J^\pprime$ then $\sigma_J^{J^\pprime} = \sigma_{J^\prime}^{J^\pprime} \circ \sigma_J^{J^\prime}$. Hence,\newpage we shall now consider the $A$-module homomorphism $\iota_J^{J^\prime}: \bigotimes_{j=1}^n B_{i_J^{(j)}} \to \bigotimes_{j=1}^m B_{i_{J^\prime}^{(j)}}$ which maps the pure tensor $b_{i_J^{(1)}} \otimes \cdots \otimes b_{i_J^{(n)}}$ to the pure tensor $c_{i_{J^\prime}^{(1)}} \otimes \cdots \otimes c_{i_{J^\prime}^{(m)}}$ where:
-% 		\begin{itemize}
-% 			\item if there exists $j$ with $\sigma^{J^\prime}_J(j) = j^\prime$ then $c_{i_{J^\prime}^{(j^\prime)}} = b_{i^{(j)}_J}$, 
-% 			\item otherwise $c_{i_{J^\prime}^{(j^\prime)}} = 1_{B_{i_{J^\prime}^{(j^\prime)}}}$.\retTwo
-% 		\end{itemize}
+		Next, for any $J \in I_f$ let $F(J) \coloneqq \bigotimes_{i=1}^{|J|} A_{\beta_i^{(J)}}$. Note that as multiplication is\\ commutative on pure tensors (since each $A_{\beta_i^{(J)}}$ is commutative), we can further\\ conclude that $F(J)$ is a unital commutative $R$-algebra for all $J$.\retTwo
+		
+		Also, if $J_1 \subseteq J_2$ then we define $r^{J_1}_{J_2} = F(J_1 \subseteq J_2) : \bigotimes_{i=1}^{|J_1|} A_{\beta_i^{(J_1)}} \to \bigotimes_{i=1}^{|J_2|} A_{\beta_i^{(J_2)}}$ to be the unique unital $R$-algebra homomorphism such that:
 
-% 		The fact that a unique such $A$-module homomorphism exists is easy to prove from universal properties. And also we clearly have that $\iota^{J^\pprime}_{J} = \iota^{J^\pprime}_{J^\prime} \circ \iota^{J^\prime}_J$ for all pure tensors (and thus all elements of $\bigotimes_{j=1}^n B_{i_J^{(j)}}$ in general). So, we set $\mathcalli{G}(J \subseteq J^\prime) = \iota^{J^\prime}_J$.\retTwo
-% 	\end{myIndent}
+		{\centering $r^{J_1}_{J_2}(a_1 \otimes \cdots a_{|J_1|}) = \widetilde{a}_1 \otimes \cdots \otimes \widetilde{a}_{|J_2|}$\\ [4pt]\par}
 
-% 	Next we define the $A$-module $C \coloneqq \lim\limits_{\longrightarrow}(\mathcalli{G})$.
-% \end{myIndent}
+		where $\widetilde{a}_i = a_j$ if there exists $1 \leq j \leq |J_1|$ with $\sigma_{J_1 \subseteq J_2}(j) = i$ and $\widetilde{a}_i = 1_{A_{\beta_i^{(J_2)}}}$\\ [-2pt] otherwise.\retTwo
+
+		Note that we can show $r^{J_1}_{J_2}$ is unique and well-defined by combining lemmas A\\ and B on the prior page. Also, we can see that $r^J_J = \myId_{F(J)}$ for all pure tensors and similarly that $J_1 \subseteq J_2 \subseteq J_3 \implies \sigma_{J_1 \subseteq J_3} = \sigma_{J_2 \subseteq J_3} \circ \sigma_{J_1 \subseteq J_2} \implies R^{J_1}_{J_3} = r^{J_2}_{J_3} \circ r^{J_1}_{J_2}$ for all pure tensors. So by $R$-linearity we can conclude that:
+		
+		{\centering$r^J_J = \myId_{F(J)}$ and $R^{J_1}_{J_3} = r^{J_2}_{J_3} \circ r^{J_1}_{J_2}$ for all $J, j_1, J_2, J_3 \in I_f$.\retTwo\par}
+	\end{myIndent}
+
+	With that we now have a well-defined functor $F: I_f \to \mcateg{CAlg}_R$. By yesterday's work\\ we know how to construct a unital $R$-algebra $C$ as well a bunch of unital $R$-algebra\\ homomorphisms $\iota_J: \bigotimes_{i=1}^{|J|} A_{\beta_i^{(J)}} \to C$ such that $C$ along with all the $\iota_J$ is a colimit\\ [-1pt] of $F$.\retTwo
+\end{myIndent}
+
+\ul{Lemma C:} Let $A_1, \ldots, A_n$ be unital $R$-algebras and let $A = \bigotimes_{i=1}^n A_i$. Also let $\iota_i: A_i \to A$ be the unital $R$-algebra homomorphism $\iota_i(a) = 1_{A_1} \otimes \cdots \otimes 1_{A_{i-1}} \otimes a \otimes 1_{A_{i+1}} \otimes \cdots \otimes 1_{A_n}$. If $A^\prime$ is another unital $R$-algebra and for each $i$ we have a unital $R$-algebra homomorphism $f_i: A_i \to A^\prime$, then there is a unique unital $R$-algebra homomorphism $f: A \to A^\prime$ such that following diagram holds for all $i$:
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJBX2kiXSxbMSwwLCJBIl0sWzEsMSwiQV5cXHByaW1lIl0sWzAsMiwiZl9pIiwyXSxbMCwxLCJcXGlvdGFfaSJdLFsxLDIsIlxcZXhpc3RzICEgZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	& A \\
+	{A_i} & {A^\prime}
+	\arrow["{\exists ! f}", dashed, from=1-2, to=2-2]
+	\arrow["{\iota_i}", from=2-1, to=1-2]
+	\arrow["{f_i}"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+\begin{myIndent}\pracTwo
+	Proof:\\
+	Note that the unique $R$-algebra homomorphism $f: \bigotimes_{i=1}^n A_i \to A^\prime$ such that\\ $f(a_1 \otimes \cdots \otimes a_n) = \prod_{i=1}^n f_i(a_i)$ satisfies the diagram we want. Furthermore, if $g$ were any other $R$-algebra homomorphism also satisfying our diagrams, we'd have to have that $g(a_1 \otimes \cdots \otimes a_n) = g(\prod_{i=1}^n \iota_i(a_i)) = \prod_{i=1}^n g(\iota_i(a_i)) = \prod_{i=1}^n f_i(a_i) = f(a_1 \otimes \cdots \otimes a_n)$. So $g$ and $f$ will agree on all pure tensors and in turn on all of $A = \bigotimes_{i=1}^n A_i$. $\blacksquare$\newpage
+\end{myIndent}
+
+As a side note, lemma C also shows us that a tensor product is a categorical coproduct over a finite collection of commutative unital $R$-algebras. This fact will be used when showing that the colimit from earlier is a categorical coproduct over an arbitrary collection of\\ commutative unital $R$-algebras.\retTwo
+
+\begin{myIndent}\pracTwo
+	Let's now return to talking about the functor $F: I_f \to \mcateg{CAlg}_R$ defined on the prior\\ two pages, as well as it's colimit $C$ equipped with the unital $R$-algebra homomorphisms\\ $\iota_J: F(J) \to C$. In particular, if $J \in I_f$ is the singleton set $\{\beta\}$ then I'll denote $\iota_J$ as $\iota_{\beta}$.\retTwo
+
+	I claim now that $C$ equipped with the homomorphisms $\iota_{\beta}$ is the coproduct of the collection $\{A_\beta\}_{\beta \in B}$ of commutative unital $R$-algebras.
+	\begin{myIndent}\exPPP
+		Suppose $A^\prime$ is a unital commutative $R$-algebra and $\{f_\beta: A_\beta \to A^\prime\}_{\beta \in B}$ is a\\ collection of unital $R$-algebra homomorphisms.\retTwo
+
+		If $J = \{\beta_1^{(J)}, \ldots, \beta_n^{(J)}\}$ (where $n = |J|$) then we can find a unique unital $R$-algebra homomorphism $f_J: F(J) \to A^\prime$ such that $f_J(a_1 \otimes \cdots \otimes a_n) = \prod_{i=1}^n f_{\beta_i^{(J)}}(a_i)$.\retTwo Yet also note that if $J_1 \subseteq J_2$ then $F_{J_2} \circ r^{J_1}_{J_2}$ agrees with $F_{J_1}$ for all pure tensors (and thus for everything). So by the universal property of the colimit $R$-algebra $C$, there exists a unique unital $R$-algebra homomorphism $f: C \to A^\prime$ such that if $J_1 \subseteq J_2$ then the following commuting diagram holds:
+		% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGJpZ290aW1lc197aT0xfV57fEpfMXx9IEFfe1xcYmV0YV9pXnsoSl8xKX19Il0sWzIsMCwiXFxiaWdvdGltZXNfe2k9MX1ee3xKXzJ8fSBBX3tcXGJldGFfaV57KEpfMil9fSJdLFsxLDIsIkFeXFxwcmltZSJdLFsxLDEsIkMiXSxbMCwzLCJcXGlvdGFfe0pfMX0iLDJdLFsxLDMsIlxcaW90YV97Sl8yfSJdLFswLDEsInJee0pfMX1fe0pfMn0iXSxbMCwyLCJmX3tKXzF9IiwyLHsiY3VydmUiOjJ9XSxbMSwyLCJmX3tKXzJ9IiwwLHsiY3VydmUiOi0yfV0sWzMsMiwiXFxleGlzdHMgISBmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+		\[\begin{tikzcd}
+			{\bigotimes_{i=1}^{|J_1|} A_{\beta_i^{(J_1)}}} && {\bigotimes_{i=1}^{|J_2|} A_{\beta_i^{(J_2)}}} \\
+			& C \\
+			& {A^\prime}
+			\arrow["{r^{J_1}_{J_2}}", from=1-1, to=1-3]
+			\arrow["{\iota_{J_1}}"', from=1-1, to=2-2]
+			\arrow["{f_{J_1}}"', curve={height=12pt}, from=1-1, to=3-2]
+			\arrow["{\iota_{J_2}}", from=1-3, to=2-2]
+			\arrow["{f_{J_2}}", curve={height=-12pt}, from=1-3, to=3-2]
+			\arrow["{\exists ! f}", dashed, from=2-2, to=3-2]
+		\end{tikzcd}\]
+
+		In particular, if we let $J_1 = \{\beta\}$ for any $\beta \in B$ and then focus on just part of the above diagram, we can conclude that:
+		% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBX1xcYmV0YSJdLFsxLDEsIkFeXFxwcmltZSJdLFsxLDAsIkMiXSxbMCwyLCJcXGlvdGFfe1xcYmV0YX0iXSxbMCwxLCJmX3tcXGJldGF9IiwyXSxbMiwxLCJmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+		\[\begin{tikzcd}
+			{A_\beta} & C \\
+			& {A^\prime}
+			\arrow["{\iota_{\beta}}", from=1-1, to=1-2]
+			\arrow["{f_{\beta}}"', from=1-1, to=2-2]
+			\arrow["f", dashed, from=1-2, to=2-2]
+		\end{tikzcd}\]
+
+		Next I claim that if $g: C \to A^\prime$ is any other unital $R$-algebra homomorphism such that $g \circ \iota_\beta = f_\beta$ for all $\beta$, then $g = f$. This is because of the following observation:\retTwo
+
+		\ul{Lemma:} $\bigcup_{\beta \in B}\iota_\beta(A_{\beta})$ generates $C$ as an $R$-algebra.
+		\begin{myIndent}\color{red}
+			To see why, recall from my remark yesterday that $C = \bigcup_{J \in I_f} \iota_{J}(F(J))$.\retTwo
+			
+			Then consider any $J = \{\beta_1^{(J)}, \ldots, \beta_n^{(J)}\} \in I_f$ and then pick any pure tensor:
+			
+			{\centering$a_1 \otimes \cdots \otimes a_n \in \bigotimes_{i=1}^n A_{\beta_i^{(J)}} = F(J)$.\newpage\par}
+
+			Importantly, we can observe from the following commuting diagram of\\ $R$-algebra homomorphisms:\\ [-20pt]
+			% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBX3tcXGJldGFfaV57KEopfX0iXSxbMSwxLCJDIl0sWzIsMCwiXFxiaWdvdGltZXNfe2k9MX1ebiBBX3tcXGJldGFfaV57KGopfX0iXSxbMCwxLCJcXGlvdGFfe1xcYmV0YV9pXnsoSil9fSIsMl0sWzIsMSwiXFxpb3RhX0oiXSxbMCwyLCJyXntcXHtcXGJldGFfaV57KEopfVxcfX1fSiJdXQ==
+			\[\begin{tikzcd}
+				{A_{\beta_i^{(J)}}} && {\bigotimes_{i=1}^n A_{\beta_i^{(j)}}} \\
+				& C
+				\arrow["{r^{\{\beta_i^{(J)}\}}_J}", from=1-1, to=1-3]
+				\arrow["{\iota_{\beta_i^{(J)}}}"', from=1-1, to=2-2]
+				\arrow["{\iota_J}", from=1-3, to=2-2]
+			\end{tikzcd}\]
+			that:
+			
+			{\centering\begin{tabular}{l}
+				$\iota_J(a_1 \otimes \cdots \otimes a_n) = \iota_J(\prod_{i=1}^n r^{\{\beta_i^{(J)}\}}_J(a_i))$\\ [4pt]
+				$\phantom{\iota_J(a_1 \otimes \cdots \otimes a_n)} = \prod_{i=1}^n (\iota_J \circ r^{\{\beta_i^{(J)}\}}_J)(a_i) = \prod_{i=1}^n \iota_{\{\beta_i^{(J)}\}}(a_i)$
+			\end{tabular}\retTwo\par}
+
+			But now since $F(J)$ is generated as an $R$-module by the pure tensors\\ $a_1 \otimes \cdots \otimes a_n$, we know that $\iota_J(F(J))$ is also generated as an $R$-module\\ by the elements $\iota_J(a_1 \otimes \cdots \otimes a_n)$ which I just showed are products of\\ elements in $\bigcup_{\beta \in B}\iota_\beta(A_{\beta})$.\retTwo
+			
+			So, $C$ is a union of $R$-submodules, each of which are generated by elements in the subalgebra of $C$ generated by $\bigcup_{\beta \in B}\iota_\beta(A_{\beta})$. It follows that $\bigcup_{\beta \in B}\iota_\beta(A_{\beta})$ is a generating set for $C$ as a unital $R$-algebra.\retTwo
+		\end{myIndent}
+
+		If $g \circ \iota_\beta = f \circ \iota_\beta$ for all $\beta \in B$ then that implies $f = g$ on $\bigcup_{\beta \in B} \iota_\beta(A_\beta)$. As a result of the prior lemma, we in turn must have that $f = g$ on $C$.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\myComment Before continuing on, I'd like to further unpack the prior construction a little bit. Usually, the set $C$ constructed priorly is written as $\bigotimes_{\beta \in B}A_\beta$ and called a "tensor product". In order to justify this nomenclature, we consider the following observations.\retTwo
+
+Let $\prod_{\beta \in B}^\prime A_\beta \coloneqq \{(a_\beta)_{\beta \in B} \in \prod_{\beta \in B} A_\beta : a_\beta = 1_{A_\beta} \text{ for all but finitely many } \beta \in B\}$.\retTwo
+
+Given a commutative unital $R$-algebra $A^\prime$, we can say a function $T: \prod_{\beta \in B}^\prime A_\beta \to A^\prime$ is\\ "multilinear" if it is $R$-linear with respect to each component of $\prod_{\beta \in B}^\prime A_\beta$ individually.
+\begin{myIndent}\pracTwo
+	For example, if we have a collection of unital $R$-algebra homomorphisms\\ $\{f_\beta: A_\beta \to A^\prime\}_{\beta \in B}$ then we can get a well-defined multilinear map\\ $T: \prod_{\beta \in B}^\prime A_\beta \to A^\prime$ given by:
+
+	{\centering $T((a_\beta)_{\beta \in B}) \coloneqq \prod_{\beta \in B} f_\beta(a_\beta)$ \retTwo\par}
+
+	$T$ is well-defined because $f_\beta(a_\beta) = 1_{A^\prime}$ for all but finitely many $\beta \in B$. Ths is because each $f_\beta$ is unital and $a_\beta = 1_{A_\beta}$ for all but finitely many $\beta$. Seeing that $T$ is multilinear is also easy.\retTwo
+\end{myIndent}
+
+In particular, consider $\bigotimes_{\beta \in B} A_\beta$ equipped with all the $\iota_\beta$. Then set $\iota: \prod_{\beta \in B}^\prime A_\beta \to \bigotimes_{\beta \in B} A_\beta$\\ to be the map $\iota((a_\beta)_{\beta \in B}) \coloneqq \prod_{\beta \in B} \iota_\beta(a_\beta)$. From the prior reasoning we know that $\iota$ is well-\\defined and multilinear.\retTwo
+
+Furthermore, suppose $A^\prime$ is a commutative $R$-algebra and we are given any collection of unital\newpage $R$-algebra homomorphisms $\{f_\beta: A_\beta \to A^\prime\}_{\beta \in B}$, and we let $T((a_\beta)_{\beta \in B}) \coloneqq \prod_{\beta \in B} f_\beta(a_\beta)$.\\ Then there is a unique unital $R$-algebra homomorphism $f: \bigotimes_{\beta \in B} A_\beta \to A^\prime$ such that:
+% https://q.uiver.app/#q=WzAsMyxbMCwxLCJcXHByb2ReXFxwcmltZV97XFxiZXRhIFxcaW4gQn0gQV9cXGJldGEiXSxbMSwxLCJBXlxccHJpbWUiXSxbMSwwLCJcXGJpZ290aW1lc197XFxiZXRhIFxcaW4gQn0gQV9cXGJldGEiXSxbMCwxLCJUIiwyXSxbMCwyLCJcXGlvdGEiXSxbMiwxLCJcXGV4aXN0cyAhZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	& {\bigotimes_{\beta \in B} A_\beta} \\
+	{\prod^\prime_{\beta \in B} A_\beta} & {A^\prime}
+	\arrow["{\exists !f}", dashed, from=1-2, to=2-2]
+	\arrow["\iota", from=2-1, to=1-2]
+	\arrow["T"', from=2-1, to=2-2]
+\end{tikzcd}\]
+
+\begin{myIndent}\pracTwo
+	The uniqueness is because $\bigcup_{\beta \in B}\iota_\beta(A_\beta) \subseteq \iota(\prod_{\beta \in B}^\prime A_\beta)$ where the former set generates $\bigotimes_{\beta \in B}A_\beta$ as an $R$-algebra. So any two unital $R$-algebra homomorphisms completing this diagram must equal each other everywhere.\retTwo
+	
+	As for showing that $f$ exists, just use the fact that $\bigotimes_{\beta \in B} A_\beta$ is a coproduct in order to conclude there is a unique unital $R$-algebra homomorphism $f: \bigotimes_{\beta \in B} A_\beta \to A^\prime$ such that $f \circ \iota_\beta = f_\beta$ for all $\beta$. Then as multiplication passes through $f$, we can conclude that:
+	
+	{\centering\begin{tabular}{l}
+		$(f \circ \iota)((a_\beta)_{\beta \in B}) = f(\prod_{\beta \in B} \iota_\beta(a_\beta))$\\ [4pt]
+		$\phantom{(f \circ \iota)((a_\beta)_{\beta \in B})} = \prod_{\beta \in B} (f \circ \iota_\beta)(a_\beta) = \prod_{\beta \in B} f_\beta(a_\beta) = T((a_\beta)_{\beta \in B})$.
+	\end{tabular}\retTwo\par}
+\end{myIndent}
+
+Anyways, this connection isn't the most important thing ever.\retTwo
+
+\pracOne To finish off for today, I'll just mention that now that we know how to take coproducts in $\mcateg{CAlg}_R$, the construction on \inLinkRap{Colimits of $A$-modules construction page 1023}{pages 1023-1024} can be easily adapted to construct general colimits of functors $F: \mcateg{I} \to \mcateg{CAlg}_R$.
+\begin{myIndent}\pracTwo
+	We just need to change the direct sum to a tensor product and then we need to make $N$ a two sided ideal instead of a submodule.\retTwo
+\end{myIndent}
+
+I don't think it is worth my time going further in depth on this. So I'm going to finish my tangent on algebras and colimits and etc.\retTwo
+
+\mySepTwo
+
+\hTwo\dispDate{8/6/2026}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+
+
+
+
+
 
 
 
