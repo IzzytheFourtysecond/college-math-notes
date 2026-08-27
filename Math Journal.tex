@@ -3781,7 +3781,7 @@ Now returning to our goal of extending the concept of differentiability, we have
 
 \hOne With that, we now have the ability to define parametrized manifolds with a\\ boundary by making the domain of our parametrization open with respect to $H^k$\\ instead of $\mathbb{R}^k$. As for our other issue of wanting to talk about manifolds that can't be parametrized by a single function, we shall deal with that now.\retTwo
 
-Let $k > 0$. A \udefine{$k$-manifold} in $\mathbb{R}^n$ of class $C^r$ is a subset $M$ of $\mathbb{R}^n$ having the following property: For each $p \in M$ there is an open set $V$ of $M$ containing $p$, a set $U$ that is open in either $\mathbb{R}^k$ or $H^k$, and a continuous bijective map $\alpha: U \to V$ such that:\\ [-26pt]
+Let $k > 0$. A \udefine{$k$-manifold} in $\mathbb{R}^n$ of class $C^r$ is a subspace $M$ of $\mathbb{R}^n$ with the following property: For each $p \in M$ there is an open set $V$ of $M$ containing $p$, a set $U$ that is open in either $\mathbb{R}^k$ or $H^k$, and a continuous bijective map $\alpha: U \to V$ such that:\\ [-26pt]
 
 \begin{enumerate}
 	\item $\alpha \in C^r(U)$\\ [-22pt]
@@ -3789,9 +3789,7 @@ Let $k > 0$. A \udefine{$k$-manifold} in $\mathbb{R}^n$ of class $C^r$ is a subs
 	\item $\Df \alpha(x)$ has rank $k$ for each $x \in U$.\retTwo
 \end{enumerate}
 
-The map $\alpha$ is called a \udefine{coordinate patch} on $M$ about $p$.\retTwo
-
-Also, we call a discrete collection of points in $\mathbb{R}^n$ to be a \udefine{$0$-manifold}.\retTwo
+The map $\alpha$ is called a \udefine{coordinate patch} on $M$ about $p$. Also, we call a discrete\\ collection of points in $\mathbb{R}^n$ to be a \udefine{$0$-manifold}.\retTwo
 
 \exOne\ul{Lemma 23.3:} Let $M$ be a manifold in $\mathbb{R}^n$ and $\alpha: U \to V$ be a coordinate patch on $M$. If $U_0$ is a subset of $U$ that is open in $U$, then the restriction of $\alpha$ to $U_0$ is also a coordinate patch on $M$.
 
@@ -5535,7 +5533,7 @@ If every point $b \in B$ has an open neighborhood $U \subseteq B$ that is evenly
 	\arrow["f"', from=3-1, to=3-3]
 \end{tikzcd}\]
 
-\exOne\ul{Lemma 54.1:} Let $p: E \to B$ be a covering map and let $e_0 \in p^{-1}(\{b_0\})$. Then if\\ $f: [0, 1] \to B$ is a path beginning at $b_0$, there is a unique lifting of $f$ to a path $\tilde{f} \in E$\\ beginning at $e_0$.
+\exOne\ul{Lemma 54.1:} Let $p: E \to B$ be a covering map and let $e_0 \in p^{-1}(\{b_0\})$. Then if\\ $f: [0, 1] \to B$ is a path beginning at $b_0$, there is a unique lifting of $f$ to a path\\ $\tilde{f}: [0, 1] \to E$ beginning at $e_0$.
 
 \begin{myIndent}\exTwoP
 	Proof:\\
@@ -5550,7 +5548,7 @@ If every point $b \in B$ has an open neighborhood $U \subseteq B$ that is evenly
 
 		Since $f$ is a continuous map from a compact set, we know by the extreme value\\ theorem that $f$ attains a minimum $\alpha \in \mathbb{R}$. Also, since the $U_i$ cover $X$ and each $x \in U_i$ is some $\varepsilon$ from $F_i$, we know $f(x) \neq 0$ for all $x \in X$. Hence, $\alpha > 0$.\retTwo
 
-		Now set $\delta = \sfrac{\alpha}{n}$. Then for any $E \subseteq X$ with $\diam(E) < \delta$, if we pick $x_0 \in E$ we have that $E \subseteq B_{\delta}(x_0)$. Importantly, since $f(x_0) > \alpha = n\delta$, we must have that $d(x, F_i) > \delta$ for some $i$. It follows then that $E \subseteq U_i$. This proves that $\delta$ works as a Lebesgue number. $\blacksquare$\retTwo
+		Now set $\delta = \sfrac{\alpha}{n}$. Then for any $E \subseteq X$ with $\diam(E) < \delta$, if we pick $x_0 \in E$ we have that $E \subseteq B_{\delta}(x_0)$. Importantly, since $f(x_0) > \alpha = n\delta$, we must have that $d(x_0, F_i) > \delta$ for some $i$. It follows then that $E \subseteq U_i$. This proves that $\delta$ works as a Lebesgue number. $\blacksquare$\retTwo
 	\end{myIndent}
 
 	By the above lemma, we know that there exists $0 = s_0 < s_1 < \ldots < s_n = 1$\\ satisfying for each $0 \leq i < n$ that $[s_i, s_{i+1}] \subseteq f^{-1}(U_{\alpha_i})$ for some $\alpha_i \in A$. Or in other words, $f([s_i, s_{i+1}]) \subseteq U_{\alpha_i}$ for some $\alpha_i \in A$. After setting $\tilde{f}(0) = e_0$, we may proceed by induction as follows in order to show a suitable $\tilde{f}$ exists.
@@ -5716,7 +5714,10 @@ By the last theorem, $\phi: \pi_1(B, b_0) \to p^{-1}(\{b_0\})$ is a well-defined
 	$(1 \Longrightarrow 2)$\\
 	Let $H : S^1 \times [0, 1] \to X$ be a homotopy from $h$ to some constant map. Then if we define $\pi: S^1 \times [0, 1] \to D^2$ by $\pi(x, t) = x(1 - t)$, we have that $\pi$ defines a quotient map. 
 	\begin{myIndent}\exPPP
-		It's obvious that $\pi$ is continuous and surjective. Also, it's clear that $\pi$ is an open function since any closed set of $S^1 \times [0, 1]$ is compact and thus maps to another compact set of $D^2$ which must be closed.\retTwo
+		It's obvious that $\pi$ is continuous and surjective. Also, it's clear that $\pi$ is a closed map since any closed subset of $S^1 \times [0, 1]$ is compact and thus maps to another compact set of $D^2$ which must be closed. It then follows that $f$ is a quotient map.
+		\begin{myIndent}\color{red}
+			\hypertarget{quotient map confusion}{After} all, any surjective continuous map that is open or closed is a quotient map. [See \inLinkRap{quotient map confusion end}{page 1105} for a proof.]\retTwo
+		\end{myIndent}
 	\end{myIndent}
 
 	Now since $H$ is constant over the preimage with respect to $\pi$ of any given singleton, we know that $H$ induces a continuous map $k: D^2 \to X$ satisfying that $H = k \circ \pi$. Also, it's clear that for $x \in S^1$, $k(x) = H(x, 0) = h(x)$.\retTwo
@@ -5725,7 +5726,7 @@ By the last theorem, $\phi: \pi_1(B, b_0) \to p^{-1}(\{b_0\})$ is a well-defined
 	Let $k : D^2 \to X$ be an extension of $h$ and let $j: S^1 \to D^2$ be the inclusion map. Then $h = k \circ j$, meaning $h_* = k_* \circ j_*$. But now since the fundamental group of $D^2$ is trivial, we know that $h_*$ must be the trivial homomorphism.\newpage
 
 	$(3 \Longrightarrow 1)$\\
-	Let $p: \mathbb{R} \to S^1$ be the standard covering map (the one defined in theorem 53.1). Then $p_0 \coloneqq p|_{[0, 1]}$ is a generator for $\pi_1(S^1, 0)$. If we let $x_0 = h(b_0)$, then $f = h \circ p_0$ is a loop in $X$. And since $h_*$ is trivial, we know there exists a path homotopy $F$ from $h \circ p_0$ to the constant map $x_0$.\retTwo
+	Let $p: \mathbb{R} \to S^1$ be the standard covering map (the one defined in theorem 53.1). Then $p_0 \coloneqq p|_{[0, 1]}$ is a generator for $\pi_1(S^1, (1, 0))$. If we let $x_0 = h((1, 0))$, then $f = h \circ p_0$ is a loop in $X$. And since $h_*$ is trivial, we know there exists a path homotopy $F$ from $h \circ p_0$ to the constant map $x_0$.\retTwo
 
 	Now the map $(p_0 \times i): [0,1]^2 \to S^1 \times [0, 1]$ defined by $(p_0 \times i)(x, t) = (p_0(x), t)$ is a quotient map. 
 	\begin{myIndent}\exPPP
@@ -5771,15 +5772,15 @@ This notation also extends to trivial Euclidean manifolds where (for example) Jo
 		Note: Given $x \in \mathbb{R}^{n+1}$, denote $[x] \coloneqq \pi(x)$.\retTwo
 	\end{myIndent}
 
-	To prove that $\mathbb{RP}^n$ is in fact a manifold, for each $i \in \{1, \ldots, n+1\}$ let\\ $\tilde{U_i} = \{x \in \mathbb{R}^{n+1}: x^i \neq 0\}$. Then let $U = \pi(\tilde{U_i})$. Now $\tilde{U_i}$ is a \udefine{saturated set} with respect to $\pi$ (meaning $\pi^{-1}(\pi(U_i)) = U_i$) for each $i$. Hence $\pi(U_i)$ is open $\mathbb{RP}^n$ for each $i$.\retTwo
+	To prove that $\mathbb{RP}^n$ is in fact a manifold, for each $i \in \{1, \ldots, n+1\}$ let\\ $\tilde{U_i} = \{x \in \mathbb{R}^{n+1}: x^i \neq 0\}$. Then let $U_i = \pi(\tilde{U_i})$. Now $\tilde{U_i}$ is a \udefine{saturated set} with respect to $\pi$ (meaning $\pi^{-1}(\pi(\widetilde{U_i})) = \widetilde{U_i}$) for each $i$. Hence $U_i$ is open $\mathbb{RP}^n$ for each $i$.\retTwo
 
 	Next, define a map $\varphi_i: U_i \to \mathbb{R}^n$ by:
 	
-	{\centering$\varphi([(x^1, \ldots, x^{n+1})]) \coloneqq (\frac{x^1}{x^i}, \ldots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \ldots,  \frac{x^{n+1}}{x^i})$.\retTwo\par}
+	{\centering$\varphi_i([(x^1, \ldots, x^{n+1})]) \coloneqq (\frac{x^1}{x^i}, \ldots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \ldots,  \frac{x^{n+1}}{x^i})$.\retTwo\par}
 
 	If we scale $x \in \mathbb{R}^{n+1}$ by a nonzero constant, $\varphi_i([x])$ doesn't change. It follows that $\varphi_i$ is a well-defined map. Also, $\varphi_i$ is continuous since it's clear that $\varphi_i \circ \pi$ is continuous and $\pi$ is a quotient map. Finally, to show that $\varphi_i$ has a continuous inverse, note that:
 
-	{\centering $\varphi_i^{-1}(u^1, \ldots, u^n) = [(u^1, \ldots, u^{i-1}, 1, u^{i+1}, \ldots, u^{n+1})]$.\retTwo\par}
+	{\centering $\varphi_i^{-1}(u^1, \ldots, u^n) = [(u^1, \ldots, u^{i-1}, 1, u^{i+1}, \ldots, u^{n})]$.\retTwo\par}
 
 	Since $\varphi_i^{-1}$ is the composition of a continuous function from $\mathbb{R}^n$ to $\mathbb{R}^{n+1}$ and $\pi$ which is also continuous, we have that $\varphi_i^{-1}$ is continuous. So $\varphi_i$ is a homeomorphism.\retTwo
 
@@ -6279,7 +6280,7 @@ To finish off today, I want to briefly address the boundary of a manifold.\newpa
 	It is easy to see that $\Interior{M}$ is an open subset of $M$ and a manifold by itself without a boundary. Based on that we can also easily see that $\partial M$ is a closed subset of $M$.\retTwo
 \end{myIndent}
 
-Oh, I also forgot to mention: if $U \subseteq M$ is open and $M$ is a $C^r$ manifold, then we can view $U \subseteq M$ as a $C^r$ \udefine{submanifold} of $M$. Specifically, it's clear that $U$ is a second countable Hausdorff space in the relative topology. Also, given any smooth chart $(V, \varphi)$ on $M$, we define a smooth chart $(U \cap V, \varphi|_{U \cap V})$ on $U$. This gives us a $C^r$ structure on $U$.\retTwo
+Oh, I also forgot to mention: if $U \subseteq M$ is open and $M$ is a $C^r$ manifold, then we can view $U \subseteq M$ as a $C^r$ manifold. Specifically, it's clear that $U$ is a second countable Hausdorff space in the subspace topology. Also, given any smooth chart $(V, \varphi)$ on $M$, we define a smooth chart $(U \cap V, \varphi|_{U \cap V})$ on $U$. This gives us a $C^r$ structure on $U$. And $U$ equipped with this structure is called an \udefine{open submanifold} of $M$.\retTwo
 
 \dispDate{8/24/2025}
 
@@ -14923,7 +14924,7 @@ Before getting to the next theorem, I need to learn some more about quotient top
 As for why this will be relevant, suppose $G$ is a topological group and $H \lhd G$. Then if we consider the natural projection map $\pi: G \to G/H$ and equip $G/H$ with the quotient topology (so that $\pi$ is a quotient map), then we have that $\pi$ is an open map.
 \begin{myIndent}\pracTwo
 	Why?\\
-	Suppose $U \subseteq G$ is open. Then $\pi(U)$ is open in $g/H$ if and only if $\pi^{-1}(\pi(U))$ is open in\\ [1pt] $G$. But note that $\pi^{-1}(\pi(U)) = \{x \in G : \exists y \in U \suchthat x \in yH\} = UH = \bigcup_{h \in H}Uh$.\\ [1pt] Since each $Uh$ is open (since $G$ is a topological group), we thus have that $\pi^{-1}(\pi(U))$\\ [1pt] is open. $\blacksquare$\retTwo
+	Suppose $U \subseteq G$ is open. Then $\pi(U)$ is open in $G/H$ if and only if $\pi^{-1}(\pi(U))$ is open in\\ [1pt] $G$. But note that $\pi^{-1}(\pi(U)) = \{x \in G : \exists y \in U \suchthat x \in yH\} = UH = \bigcup_{h \in H}Uh$.\\ [1pt] Since each $Uh$ is open (since $G$ is a topological group), we thus have that $\pi^{-1}(\pi(U))$\\ [1pt] is open. $\blacksquare$\retTwo
 \end{myIndent}
 
 \ul{Theorem 4:} Suppose $X, Y, \overline{X}, \overline{Y}$ are topological spaces, $p_1: X \to \overline{X}$ and $p_2: Y \to \overline{Y}$ are quotient maps, and $f, \overline{f}$ are functions such that the following diagram commutes:
@@ -26988,7 +26989,7 @@ Prove that $\Theta$ and $\Psi$ are well-defined and inverses of each other.
 \begin{myIndent}\HexOne
 	It suffices to prove that $\Theta$ and $\Psi$ map primes to primes and that $\Theta$ is injective (since we know from problem 4 it is surjective). The last part is easy though. If $S^{-1}\mathfrak{p} = S^{-1}\mathfrak{q}$ where $\mathfrak{p}, \mathfrak{q} \in \Spec(S^{-1}A)$ don't intercept $S$, then $a \in \mathfrak{p} \Longrightarrow tas = tb$ for some $t,s \in S$ and $b \in \mathfrak{q}$. So $tas \in \mathfrak{q}$, and in turn $a \in \mathfrak{q}$. This proves $\mathfrak{p} \subseteq \mathfrak{q}$ and symmetric reasoning shows the other inclusion.
 	\begin{myIndent}\color{RawerSienna}
-		More generally, this reasoning shows that if $\mathfrak{p} \in \Spec(A)$ and $\mathfrak{a} \lhd A$ with $S \cap \mathfrak{p} = \emptyset = \mathfrak{a} \cap S$ satisfy that $S^{-1}\mathfrak{a} \subseteq S^{-1}\mathfrak{p}$ then $\mathfrak{a} \subseteq \mathfrak{p}$.
+		More generally, this reasoning shows that if $\mathfrak{p} \in \Spec(A)$ and $\mathfrak{a} \lhd A$ with $S \cap \mathfrak{p} = \emptyset = \mathfrak{a} \cap S$ together satisfy that $S^{-1}\mathfrak{a} \subseteq S^{-1}\mathfrak{p}$ then $\mathfrak{a} \subseteq \mathfrak{p}$.
 		\retTwo
 	\end{myIndent}
 
@@ -35017,7 +35018,7 @@ Prove that $f$ takes real values on the imaginary axis.
 
 \dispDate{3/22/2026}
 
-I'm starting a new pdf since this one is getting really long. If any hyperlink went to this page, it means that where ever the link was supposed to go is in a later journal. I'll leave a list a below. I was going to try to implementing cross-pdf links. However, I couldn't figure out how to do that and I realized that even if I did finally figure it out, it would probably break whenever the pdfs were downloaded on any other computer. So I'm figuring the best solution is the simplest.\retTwo
+\hypertarget{placeholder}{I'm} starting a new pdf since this one is getting really long. If any hyperlink went to this page, it means that where ever the link was supposed to go is in a later journal. I'll leave a list a below. I was going to try to implementing cross-pdf links. However, I couldn't figure out how to do that and I realized that even if I did finally figure it out, it would probably break whenever the pdfs were downloaded on any other computer. So I'm figuring the best solution is the simplest.\retTwo
 
 Stuff in Journal 2:
 \begin{itemize}
@@ -35025,7 +35026,7 @@ Stuff in Journal 2:
 	
 	\item \hypertarget{existence and uniqueness diff eq notes}{More} diff-eq notes following up what I did on \inLinkRap{page 294 reference}{pages 289-294}
 	
-	\phantom{.}
+	\item \hypertarget{quotient map confusion end}{Some} notes about quotient maps (linked from \inLinkRap{quotient map confusion}{page 129}).
 \end{itemize}
 
 Stuff in no journal yet:

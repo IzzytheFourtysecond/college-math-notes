@@ -4590,7 +4590,7 @@ Before anything else, I want to do my remaining 200c homework.\retTwo
 	\begin{myIndent}\HexOne
 		I've already shown in math 200b that $\phi^*$ is a bijection from $\Spec(S^{-1}A)$ to $\mathscr{O}_S$ (see \inLinkRap{placeholder}{pages 624-625}). Also, we automatically have that $\phi^*$ is continuous. Hence, all we need to do now is show $(\phi^*)^{-1}$ is also continuous.\retTwo
 
-		Fortunately, if $V(S^{-1}I)$ is a closed set in $\Spec(S^{-1}A)$, then $S^{-1}P \in V(S^{-1}I)$ iff $S^{-1}I \subseteq S^{-1}P$. Since $P$ is prime, by a comment on \inLinkRap{placeholder}{page 625} we know this happens iff $P \in \mathscr{O}_S$ and $I \subseteq P$. Therefore $\phi^*(V(S^{-1}I)) = V(I) \cap \mathscr{O}_S$ is closed in the\\ subspace topology of $\mathscr{O}_S$.\retTwo
+		Fortunately, if $V(S^{-1}I)$ is a nonempty closed set in $\Spec(S^{-1}A)$, then $S^{-1}I \neq S^{-1}A$ and so $I \cap S = \emptyset$. Also $S^{-1}P \in V(S^{-1}I)$ iff $S^{-1}I \subseteq S^{-1}P$. Since $P$ is prime with $P \cap S = \emptyset$, we know $I \subseteq P$ by a comment on \inLinkRap{placeholder}{page 625}. So, $\phi^*(V(S^{-1}I)) \subseteq V(I) \cap \mathscr{O}_S$ and the other inclusion is obvious. Hence, $\phi^*(V(S^{-1}I))$ is closed in the subspace topology of $\mathscr{O}_S$.\retTwo
 	\end{myIndent}
 
 	\item[(b)] In the case that $S = A - P$ for some prime ideal $P$, show that $\mathscr{O}_S$ is also equal to the intersection of all open subsets $U$ of $\Spec(A)$ such that $P \in U$.
@@ -5402,7 +5402,7 @@ I did not finish all the homework I was supposed to have. But here are two exerc
 
 		Yet note that for every integer $k$ we have that $\sum_{n=2}^\infty \frac{1}{(\log(n))^k} = \infty$.
 		\begin{myIndent}\HexTwoP
-			To see, why first evaluate by L'Hôpital's rule that:
+			To see why, first evaluate by L'Hôpital's rule that:
 
 			{\centering $\lim\limits_{n \to \infty}\frac{n}{(\log(n))^{k}} = \lim\limits_{x \to \infty}\frac{x}{(\log(x))^{k}} = \lim\limits_{x \to \infty}\frac{x}{k(\log(x))^{k-1}} = \cdots = \lim\limits_{x \to \infty}\frac{x}{k!} = \infty$ \newpage\par}
 
@@ -5786,7 +5786,7 @@ To motivate the first result, recall that the implicit function theorem lets us 
 
 \exTwo\ul{Theorem B.18:} Suppose $U \subseteq \mathbb{R}^k$ is an open set containing a point $p$ and $\phi: U \to \mathbb{R}^N$ is a $C^r$ map. Also suppose $\Df \phi(p)$ has full rank.
 \begin{myIndent}\myComment
-	(Guillen and Haine state the last requirement as $\Df \phi(p) : \mathbb{R}^k \to \mathbb{R}^n)$ is an injective map.\retTwo
+	(Guillen and Haine state the last requirement as $\Df \phi(p) : \mathbb{R}^k \to \mathbb{R}^N)$ is an injective map.\retTwo
 \end{myIndent}
 
 Then there exists a neighborhood $U_p$ of $p$ in $U$, a neighborhood $V$ of $\phi(p)$ in $\mathbb{R}^N$, and\\ a $C^r$ diffeomorphism $\psi: V \to U_p \times \mathbb{R}^{N - k}$ such that $\psi \circ \phi: U_p \to U_p \times \mathbb{R}^{N - k}$ is equal\\ to the embedding $\iota$ given by $\iota(x_1, \ldots, x_k) = (x_1, \ldots, x_k, \underbrace{0, \ldots, 0}_{N - k \text{ entries}})$.
@@ -5820,7 +5820,7 @@ Then there exists a neighborhood $U_p$ of $p$ in $U$, a neighborhood $V$ of $\ph
 	Finally, define $\psi: V \to U_p \times \mathbb{R}^{N - k}$ by $\psi \coloneqq H \circ G$. Then $\psi$ is a $C^r$ diffeomorphism and $\psi \circ \phi(x_1, \ldots, x_k) = (x_1, \ldots, x_k, 0, \ldots, 0)$. $\blacksquare$.\retTwo
 
 	\begin{myIndent}\myComment
-		Remark 2: If we project onto the final $N - k$ coordinates, we get a function\\ $F: \mathbb{R}^{N} \to \mathbb{R}^{N - k}$ such that $\phi(U_p) = F^{-1}(\{(0, \ldots, 0)\})$. Furthermore, $\Df F(x)$\\ has rank $N - k$ for all $x \in V$.\retTwo
+		Remark 2: If we project onto the final $N - k$ coordinates, we get a function\\ $F: V \to \mathbb{R}^{N - k}$ such that $\phi(U_p) = F^{-1}(\{(0, \ldots, 0)\})$. Furthermore, $\Df F(x)$\\ has rank $N - k$ for all $x \in V$.\retTwo
 	\end{myIndent}
 \end{myIndent}
 
@@ -5858,7 +5858,7 @@ Given a topological space $X$, we say an open set $U \subseteq X$ is \udefine{re
 \exTwo\ul{Lemma:} A set $U \subseteq X$ is regular open if and only if $U^\comp$ is regular closed.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	Note that for any $E \subseteq X$ we have that $(E^\comp)^\circ = (\overline{E})^\comp$. Using this fact, we can then\\ conclude for any open set $U \subseteq X$ that $\partial (U^\comp) = \partial U$. After all, if $x \in \partial U^\comp$ then $x \notin U$\\ and $x \notin (U^\comp)^{\circ} = (\overline{U})^\comp$. Hence $x \in \overline{U} - U = \partial U$, and this proves that $\partial (U^\comp) \subseteq \partial U$.\\ Meanwhile, if $x \in \partial U$ we know $x \notin U$ and $x \notin (\overline{U})^\comp = (U^\comp)^\circ$. It follows that\\ $x \in U^\comp - (U^\comp)^\circ = \partial U^\comp$, and this proves that $\partial U \subseteq \partial (U^\comp)$.\retTwo
+	Note that for any $E \subseteq X$ we have that $(E^\comp)^\circ = (\overline{E})^\comp$. Using this fact, we can then\\ conclude for any open set $U \subseteq X$ that $\partial (U^\comp) = \partial U$. After all, if $x \in \partial (U^\comp)$ then $x \notin U$\\ and $x \notin (U^\comp)^{\circ} = (\overline{U})^\comp$. Hence $x \in \overline{U} - U = \partial U$, and this proves that $\partial (U^\comp) \subseteq \partial U$.\\ Meanwhile, if $x \in \partial U$ we know $x \notin U$ and $x \notin (\overline{U})^\comp = (U^\comp)^\circ$. It follows that\\ $x \in U^\comp - (U^\comp)^\circ = \partial (U^\comp)$, and this proves that $\partial U \subseteq \partial (U^\comp)$.\retTwo
 
 	Note that the above reasoning also lets us conclude that $\partial F = \partial F^\comp$ for all closed sets $F \subseteq X$. Hence, we at last get the following equivalences:\newpage
 	% https://q.uiver.app/#q=WzAsNyxbMSwwLCJcXHBhcnRpYWwgVSJdLFszLDAsIlxccGFydGlhbChVXlxcY29tcCkiXSxbNCwxLCJcXHBhcnRpYWwoKFVeXFxjb21wKV5cXGNpcmMpIl0sWzAsMSwiXFxwYXJ0aWFsIFxcb3ZlcmxpbmV7VX0iXSxbMiwxLCJcXHBhcnRpYWwoKFxcb3ZlcmxpbmV7VX0pXlxcY29tcCkiXSxbMywxXSxbMSwxXSxbMCwxLCJcXHRleHR7YWx3YXlzfSIsMCx7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsMiwiIiwwLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwzLCIiLDEseyJsZXZlbCI6Miwic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dLFszLDQsIlxcdGV4dHthbHdheXN9IiwyLHsibGV2ZWwiOjIsInN0eWxlIjp7ImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbNCwyLCJcXHRleHR7YWx3YXlzfSIsMix7ImxldmVsIjoyLCJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzAsNiwiXFx0ZXh0e3JlZ3VsYXIgb3Blbn0iLDEseyJzaG9ydGVuIjp7InRhcmdldCI6MjB9LCJsZXZlbCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV0sWzEsNSwiXFx0ZXh0e3JlZ3VsYXIgY2xvc2VkfSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX1dXQ==
@@ -5876,7 +5876,7 @@ Given a topological space $X$, we say an open set $U \subseteq X$ is \udefine{re
 	$\blacksquare$\retTwo
 
 	\begin{myIndent}\myComment
-		Remark: The reason we care about if $U$ is a  regular open set is that if $U$ is regular then for any $x \in \partial U$ and neighborhood $N$ of $x$ we have that $N$ has a nonempty intersection with both $U$ and $(U^\comp)^\circ$.\retTwo
+		Remark: The reason we care about if $U$ is a  regular open set is that if $U$ is regular then for any $x \in \partial U$ and neighborhood $N$ of $x$ we have that $N$ has a nonempty intersection with both $U$ and $(U^\comp)^\circ = (\overline{U})^\comp$.\retTwo
 	\end{myIndent}
 \end{myIndent}
 
@@ -5885,7 +5885,7 @@ Given a topological space $X$, we say an open set $U \subseteq X$ is \udefine{re
 \exTwo\ul{Lemma:} Suppose $U \subseteq \mathbb{R}^{N}$ is a regular open set, $M$ is a $C^r$ $(N-1)$-dimensional manifold without boundary that is also an open subset of $\partial U$, and $p \in M$. Then there is an open\\ set $V \subseteq \mathbb{R}^N$ containing $p$ and a $C^r$ function $f: V \to \mathbb{R}$ with $U \cap V = f^{-1}((-\infty, 0))$ and $M \cap V = f^{-1}(\{0\})$.
 \begin{myIndent}\exThreeP
 	Proof:\\
-	Let $\widetilde{V} \subseteq \mathbb{R}^N$ be an open set and $\widetilde{\psi}: \widetilde{V} \to \mathbb{R}^N$ be an injective $C^r$ function of full rank such that $\widetilde{\psi}(\widetilde{V} \cap M) \subseteq \mathbb{R}^{N - 1} \times \{0\}$. (The fact such a function exists is theorem B.18 plus the comment between pages 926 and 927). By shrinking $\widetilde{V}$, we can further assume $\widetilde{V} \cap \partial U = \widetilde{V} \cap M$ since $M$ is an open subset of $\partial U$. Then note $\widetilde{\psi}(\widetilde{V})$ is an open subset of $\mathbb{R}^N$ containing $\widetilde{\psi}(p)$. In turn, we can find an open ball $B_r(\widetilde{\psi}(p))$ contained in $\widetilde{\psi}(\widetilde{V})$. Hence, we define $V \coloneqq \widetilde{\psi}^{-1}(B_r(\widetilde{\psi}(p)))$ and $\psi \coloneqq \widetilde{\psi}|_V$.\retTwo
+	Let $\widetilde{V} \subseteq \mathbb{R}^N$ be an open set and $\widetilde{\psi}: \widetilde{V} \to \mathbb{R}^N$ be an injective $C^r$ function of full rank such that $\widetilde{V} \cap M = \widetilde{\psi}^{-1}(\mathbb{R}^{N - 1} \times \{0\})$. (The fact such a function exists is theorem B.18 plus the comment between pages 926 and 927). By shrinking $\widetilde{V}$, we can further assume $\widetilde{V} \cap \partial U = \widetilde{V} \cap M$ since $M$ is an open subset of $\partial U$. Then note $\widetilde{\psi}(\widetilde{V})$ is an open subset of $\mathbb{R}^N$ containing $\widetilde{\psi}(p)$. In turn, we can find an open ball $B_r(\widetilde{\psi}(p))$ contained in $\widetilde{\psi}(\widetilde{V})$. Hence, we define $V \coloneqq \widetilde{\psi}^{-1}(B_r(\widetilde{\psi}(p)))$ and $\psi \coloneqq \widetilde{\psi}|_V$.\retTwo
 
 	Now we have that $\psi: V \to B_r(\psi(p))$ is a diffeomorphism (which importantly for us\\ implies $\psi$ is also a homeomorphism). Also note that:
 	
@@ -7938,11 +7938,11 @@ A \udefine{simple} $A$-module $M$ is a nonzero module whose only submodules are 
 	\begin{myIndent}\exPPP
 		For some intuition on why we are doing this, note that the \udefine{socle} of a module $M$ (denoted $\mathrm{soc}(M)$) is defined to be the internal sum of all simple submodules of $M$. Note that this sum is a direct sum.
 		\begin{myIndent}\color{orange}
-			To see, why suppose $\{N_i\}_{i \in I}$ is an indexing of all simple submodules of $M$ (where $N_{i_1} \neq N_{i_2}$ if $i_1 \neq i_2$). Then for any fixed $i^\prime \in I$, as $N_{i^\prime}$ is simple we\newpage know that either:
+			To see why, suppose $\{N_i\}_{i \in I}$ is an indexing of all simple submodules of $M$ (where $N_{i_1} \neq N_{i_2}$ if $i_1 \neq i_2$). Then for any fixed $i^\prime \in I$, as $N_{i^\prime}$ is simple we\newpage know that either:
 
 			{\centering $N_{i^\prime} \cap (\sum_{i \neq i^\prime} N_i) = \{0\}$ or $N_{i^\prime} \cap (\sum_{i \neq i^\prime} N_i) = N_{i^\prime}$.\retTwo\par}
 
-			The latter being true though would imply $N_{i^\prime}$ contains $N_i$ for every $i \neq i^\prime$. And since each of those $N_i$ are nonzero and distinct from $N_{i^\prime}$, this would contradict that $N_{i^\prime}$ is simple. So, we've proven that $N_{i^\prime} \cap (\sum_{i \neq i^\prime} N_i) = \{0\}$ for all $i^\prime$.\retTwo
+			The latter being true though would imply $N_{i^\prime}$ contains $N_i$ for some $i \neq i^\prime$. And since each of those $N_i$ are nonzero and distinct from $N_{i^\prime}$, this would contradict that $N_{i^\prime}$ is simple. So, we've proven that $N_{i^\prime} \cap (\sum_{i \neq i^\prime} N_i) = \{0\}$ for all $i^\prime$.\retTwo
 		\end{myIndent}
 
 		It follows that the socle of a module $M$ is the "largest" semisimple submodule of $M$ (i.e. the semisimple submodule that contains all other semisimple submodules). This also hints at the reason for the name "socle" (which is French for "foundation" or "base"). {\color{red}[Thus socle is not a proper noun nor from a language that capitalizes all nouns.]}\retTwo
@@ -9157,7 +9157,7 @@ Secondly, suppose $M$ is any Riemann surface. Also suppose $V \subseteq \mathbb{
 
 Given any Riemann surfaces $M$ and $N$ we let $O(M, N)$ denote the set of holomorphic functions from $M$ to $N$. In the special case that $N = \mathbb{C}$, we can now easily see from the second result prior that $O(M, \mathbb{C})$ is a complex algebra.\retTwo
 
-\exTwo\ul{Theorem (Identity Principle):} Suppose $M$ and $N$  are Riemann surfaces with $M$ connected. Also suppose $F: M \to N$ and $G: M \to N$ are two holomorphic functions. If\\ $S \coloneqq \{x \in M : F(x) = G(x)\}$ has an accumulation point in $M$ then $S = M$.
+\exTwo\ul{Theorem (Identity Principle):} \hypertarget{Identity Principle for Riemann surfaces}{Suppose} $M$ and $N$  are Riemann surfaces with $M$ connected. Also suppose $F: M \to N$ and $G: M \to N$ are two holomorphic functions. If\\ $S \coloneqq \{x \in M : F(x) = G(x)\}$ has an accumulation point in $M$ then $S = M$.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	Let $A = \mathrm{acc}(S) \subseteq M$ be the set of accumulation points of $S$ in $M$. By assumption we know that $A$ is nonempty. I also immediately claim that $A$ is a closed set. 
@@ -9815,7 +9815,7 @@ In order to get anywhere studying differentials of $C^\infty$ maps, we will want
 	\end{myIndent}
 \end{myIndent}
 
-\hTwo \hypertarget{page 1033 reference}{Now} that we have the ablity to construct all the bump functions we need, we can go back to studying the differential of a $C^\infty$ map between $C^\infty$ manifolds.\retTwo
+\hTwo \hypertarget{page 1033 reference}{Now} that we have the ability to construct all the bump functions we need, we can go back to studying the differential of a $C^\infty$ map between $C^\infty$ manifolds.\retTwo
 
 \exTwo\ul{Proposition 3.8:} Let $M$ be a $C^\infty$ manifold with or without boundary, $p \in M$, and $v \in T_p M$. If $f, g \in C^\infty(M, \mathbb{R})$ agree on some neighborhood of $p$, then $v(f) = v(g)$.
 \begin{myIndent}\exThreeP
@@ -10544,7 +10544,7 @@ In turn, the preimages of these operators under the map $\df \varphi_p$ gives a 
 
 Thus in particular we have that $\left.\frac{\partial}{\partial x_i}\right|_{p} f = \left.\frac{\partial}{\partial x_i}\right|_{\varphi(p)}f \circ \varphi^{-1} = \frac{\partial \widehat{f}}{\partial x_i}(\widehat{p})$ where $\widehat{f} \coloneqq f \circ \varphi^{-1}$\\ [-4pt] and $\widehat{p} \coloneqq (p_1, \ldots, p_n) = \varphi(p)$.\retTwo
 
-We call $\left.\frac{\partial}{\partial x_1}\right|_p, \ldots, \left.\frac{\partial}{\partial x_n}\right|_p$ the \udefine{coordinate basis vectors} of $T_p M$ associated with the local\\ coordinates on $M$ given by the chart $(U, \varphi)$. Because they form a basis for $T_p M$, any $v \in T_p M$ can be written as an $\mathbb{R}$-linear combination $\sum_{i=1}^n v_i\left.\frac{\partial}{\partial x_i}\right|_p$. The real numbers $v_1, \ldots, v_n$ are called the \udefine{components} of $v$ with respect to our local coordinates.\\ [-8pt]
+\hypertarget{page 1052 reference}{We} call $\left.\frac{\partial}{\partial x_1}\right|_p, \ldots, \left.\frac{\partial}{\partial x_n}\right|_p$ the \udefine{coordinate basis vectors} of $T_p M$ associated with the local\\ coordinates on $M$ given by the chart $(U, \varphi)$. Because they form a basis for $T_p M$, any $v \in T_p M$ can be written as an $\mathbb{R}$-linear combination $\sum_{i=1}^n v_i\left.\frac{\partial}{\partial x_i}\right|_p$. The real numbers $v_1, \ldots, v_n$ are called the \udefine{components} of $v$ with respect to our local coordinates.\\ [-8pt]
 \begin{myIndent}\pracTwo
 	Given an initial tangent vector $v \in T_p U\phantom{..} (= T_p M)$, here is how to calculate the\\ components of $v$. Define $f_j \in C^r(U, \mathbb{R})$ given by $f_j(q) = e_j \cdot \varphi(q)$. (In other words,\\ if $q = (x_1, \ldots, x_n)$ via the chart $(U, \varphi)$ then $f_j(q) = x_j$.) But then:
 	
@@ -10652,9 +10652,9 @@ Also, we call $F$ a \udefine{submersion} if $\mRank(F) = \mathrm{dim}(N)$, and w
 		
 		Yet now note that $\det : \mathbb{R}^{k^2} \to \mathbb{R}$ is a continuous function (as its even a polynomial). Hence, $\GL(k, \mathbb{R}) = {\det}^{-1}(\mathbb{R} - \{0\})$ is an open subset of $\mathbb{R}^{k^2}$. In particular, this means we can find some $\varepsilon > 0$ such that
 		
-		{\centering$\|\mathbf{B_0} - \mathbf{A_0}\|_F \coloneqq \left(\sum_{i, j}(b_{i_r,j_s} - a_{i_r, j_s})^2\right)^{1/2} < \varepsilon \Longrightarrow \mathbf{B}_0$ is invertible.\retTwo\par}
+		{\centering$\|\mathbf{B_0} - \mathbf{A_0}\|_F \coloneqq \left(\sum_{r, s}(b_{i_r,j_s} - a_{i_r, j_s})^2\right)^{1/2} < \varepsilon \Longrightarrow \mathbf{B}_0$ is invertible.\retTwo\par}
 
-		But now suppose $\mathbf{B} \in M(m \times n, \mathbb{R})$ with $\|\mathbf{B} - \mathbf{A}\|_F < \varepsilon$. Then after making $\mathbf{B}_0$ be the submatrix of $\mathbf{B}$ consisting of the same indices as the submatrix $\mathbf{A}_0$ of $\mathbf{A}$, we have that $\|\mathbf{B}_0 - \mathbf{A}_0\|_F \leq \|\mathbf{B} - \mathbf{A}\| < \varepsilon \Longrightarrow \mathbf{B}_0$ is invertible. By lemma C, we can thus conclude that $\|\mathbf{B} - \mathbf{A}\|_F < \varepsilon$ implies that $\mRank(\mathbf{B}) \geq k$. Yet since we must also have that $\mRank(\mathbf{B}) \leq k$, we have thus shown that for any $\mathbf{A} \in M_k(m \times n, \mathbb{R})$ there exists a ball $B_\varepsilon(\mathbf{A}) \subseteq M_k(m \times n, \mathbb{R})$. $\blacksquare$\newpage
+		But now suppose $\mathbf{B} \in M(m \times n, \mathbb{R})$ with $\|\mathbf{B} - \mathbf{A}\|_F < \varepsilon$. Then after making $\mathbf{B}_0$ be the submatrix of $\mathbf{B}$ consisting of the same indices as the submatrix $\mathbf{A}_0$ of $\mathbf{A}$, we have that $\|\mathbf{B}_0 - \mathbf{A}_0\|_F \leq \|\mathbf{B} - \mathbf{A}\|_F < \varepsilon \Longrightarrow \mathbf{B}_0$ is invertible. By lemma C, we can conclude that $\|\mathbf{B} - \mathbf{A}\|_F < \varepsilon$ implies that $\mRank(\mathbf{B}) \geq k$. Yet since we must also have that $\mRank(\mathbf{B}) \leq k$, we have thus shown that for any $\mathbf{A} \in M_k(m \times n, \mathbb{R})$ there exists a ball $B_\varepsilon(\mathbf{A}) \subseteq M_k(m \times n, \mathbb{R})$. $\blacksquare$\newpage
 	\end{myIndent}
 
 	Finally, this is relevant because we know that $\Df \widehat{F}(\varphi(p))$ has full rank. So, we can pick some $\varepsilon > 0$ such that if $\mathbf{B} \in M(m \times n, \mathbb{R})$ satisfies that $\|\mathbf{B} - \Df \widehat{F}(\varphi(p))\|_F < \varepsilon$ then $\mathbf{B}$ has full rank. Next, because $\Df \widehat{F}$ is a $C^1$ map we know that the matrix components of $\Df \widehat{F}$ vary continuously. Hence, we can pick $\delta > 0$ such that $B_\delta(\varphi(p)) \subseteq \varphi(U)$ and $\widehat{q} \in B_\delta(\varphi(p)) \Longrightarrow \|\Df \widehat{F}(\widehat{q}) - \Df \widehat{F}(\varphi(p))\|_F < \varepsilon \Longrightarrow \Df \widehat{F}(\widehat{q})$ has full rank. So, we set $W = \varphi^{-1}(B_\delta(\varphi(p)))$. And now $W$ is an open set containing $p$ and $F$ has full rank on $W$. $\blacksquare$\retTwo
@@ -10680,7 +10680,7 @@ Also, we call $F$ a \udefine{submersion} if $\mRank(F) = \mathrm{dim}(N)$, and w
 
 As a side note, the prior theorem can fail when we allow $M$ and $N$ to have nonempty\\ boundaries. For an obvious example of this, let $M = H^n$ and $N = \mathbb{R}^n$. Then let\\ $\iota: H^n \hookrightarrow \mathbb{R}^n$ be the inclusion map and consider any $p \in \partial H^n$. We already know from earlier that $\df \iota_p$ is a bijection. That said, the prior theorem holding in this situation would\newpage contradict the invariance of domain theorem on \inLinkRap{Invariance of Domain Theorem}{page 1008}. So, no such open sets $U_0$\\ and $V_0$ can exist in this case.\retTwo
 
-\Hstatement\blab{Exercise 4-2:} Suppose $M$ is a $C^r$ manifold (without a boundary) and $N$ is a $C^r$ manifold with a boundary. Also let $\Int(N)$ denote the set of interior / non-boundary points of $N$. Then if $F: N \to M$ is a $C^k$ map (where $k \leq r$), $p \in M$, and $\df F_p$ is bijective, we must have that $F(p) \in \Int(N)$.
+\Hstatement\blab{Exercise 4-2:} \hypertarget{Exercise 4-2 page 1057}{Suppose} $M$ is a $C^r$ manifold (without a boundary) and $N$ is a $C^r$ manifold with\\ a boundary. Also let $\Int(N)$ denote the set of interior / non-boundary points of $N$. Then if\\ $F: N \to M$ is a $C^k$ map (where $k \leq r$), $p \in M$, and $\df F_p$ is bijective, we must have that\\ $F(p) \in \Int(N)$.
 \begin{myIndent}\HexOne
 	Proof:\\
 	Once again, the fact that $\df F_p$ is injective means that there exists an integer $n$ with\\ $\dim(M) = n = \dim(N)$. Now let $(U, \varphi)$ be a smooth chart on $M$ containing $p$ and $(V, \psi)$ be a smooth chart on $N$ with $F(U) \subseteq V$. Since $M$ has no boundary, we know that $\widehat{U} \coloneqq \varphi(U)$ is open in $\mathbb{R}^n$.\retTwo
@@ -10748,7 +10748,7 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 	Remark: Given any finite collection of $C^r$ manifolds $M_1, \ldots, M_k$ with corners, the standard product $C^r$-structure on $M \coloneqq M_1 \times \cdots \times M_k$ defined on \inLinkRap{proposition bottom of page 1038}{page 1038} is still well-defined. Furthermore, the proof of the proposition on \inLinkRap{proposition on page 1039}{page 1039} still works verbatim. Thus the category of $C^r$ manifolds with corners (which I'll denote $\mcateg{Diff}^r_c$) does admit products over any finite collection of objects. In particular, we can see that $(p_1, \ldots, p_k)$ is a corner point of $M$ if at least one $p_i$ is a corner point of $M_i$ or there are two components $p_i$ and $p_j$ which are boundary points of $M_i$ and $M_j$ respectively.\retTwo
 \end{myIndent}
 
-\exTwo\ul{Proposition 3.14:} Let $p = (p_1, \ldots, p_k) \in M$. Then the map $\alpha: T_p M \to \bigoplus_{i=1}^k T_{p_i}M_i$ defined by $\alpha(v) \coloneqq (\df (\pi_1)_p (v), \ldots, \df (\pi_k)_p (v))$ is an isomorphism.
+\exTwo\ul{Proposition 3.14:} \hypertarget{Proposition 3.14 page 1059}{Let} $p = (p_1, \ldots, p_k) \in M$. Then the map $\alpha: T_p M \to \bigoplus_{i=1}^k T_{p_i}M_i$ defined by $\alpha(v) \coloneqq (\df (\pi_1)_p (v), \ldots, \df (\pi_k)_p (v))$ is an isomorphism.
 \begin{myIndent}\exThreeP
 	Proof:\\
 	For each $i$ let us define $\iota_i: M_i \to M$ by $\iota_i(q) \coloneqq (p_1, \ldots, p_{i-1}, q, p_{i+1}, \ldots, p_k)$. Then, we define $\beta: \bigoplus_{i=1}^k T_{p_i}M_i \to T_p M$ by $\beta(v_1, \ldots, v_k) \coloneqq \sum_{i=1}^k \df (\iota_i)_{p_i}(v_i)$. I claim that\\ $\beta = \alpha^{-1}$. To see why, first note that:
@@ -10782,7 +10782,7 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 
 \exTwo\ul{Proposition 4.6 (Properties of local $C^k$-diffeomorphisms):}
 \begin{enumerate}
-	\item[(a)] Let $M, N, P$ be $C^r$ manifolds and suppose $k \leq r$. If $F: M \to N$ and $G: N \to P$ are local $C^k$-diffeomorphisms, then so is $G \circ F: M \to P$.
+	\item[(a)] \hypertarget{Properties of local $C^k$-diffeomorphisms page 1060}{Let} $M, N, P$ be $C^r$ manifolds and suppose $k \leq r$. If $F: M \to N$ and $G: N \to P$ are local $C^k$-diffeomorphisms, then so is $G \circ F: M \to P$.
 	\begin{myIndent}\exThreeP
 		Why?\\
 		Consider any $p \in M$. Since $F$ is a local $C^k$-diffeomorphism, we know there exists an open set $U \subseteq M$ containing $p$ and an open set $V \subseteq N$ such that $F|_U$ is a $C^k$-diffeomorphism from $U$ to $V$. Next, since $G$ is a local $C^k$-diffeomorphism, we know that there is an open set $V^\prime \subseteq N$ containing $F(p)$ and an open set $W^\prime \subseteq P$ such that $G|_{V^\prime}$ is a $C^k$-diffeomorphism from $V^\prime$ to $W^\prime$. And now we set $V_0 \coloneqq V \cap V^\prime$, $W_0 \coloneqq G(V_0)$, and $U_0 \coloneqq F^{-1}(V_0) \cap U$. We know that $U_0$ and $W_0$ are open sets in $M$ and $P$ respectively, that $p \in U_0$, and that $(G \circ F)$ is a $C^k$ diffeomorphism from $U_0$ to $W_0$.
@@ -10829,7 +10829,7 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 	\end{myIndent}
 \end{enumerate}
 
-\Hstatement\ul{Exercise 4.10:} Suppose $M$, $N$, and $P$ are $C^r$ manifolds and $F: M \to N$ is a local $C^k$\\ diffeomorphism.
+\Hstatement\ul{Exercise 4.10:} \hypertarget{Exercise 4.10 page 1061}{Suppose} $M$, $N$, and $P$ are $C^r$ manifolds and $F: M \to N$ is a local $C^k$\\ diffeomorphism.
 \begin{enumerate}
 	\item[(a)] If $G: P \to M$ is a continuous map then $G$ is $C^k$ if and only if $F \circ G$ is $C^k$.
 	\begin{myIndent}\HexOne
@@ -10839,7 +10839,7 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 		$(\Longleftarrow)$\\
 		Let $p \in P$. Since $F \circ G$ is $C^k$, we know that there are smooth charts $(U, \varphi)$ on $P$\\ [1pt]containing $p$ and $(V, \psi)$ on $N$ with $(F \circ G)(U) \subseteq V$ and $\psi \circ F \circ G \circ \varphi^{-1}$ a $C^k$\\ map. Next, because $F$ is a local $C^k$ diffeomorphism we know that there are open\\ [2pt] sets $W^\prime \subseteq M$ containing $G(p)$ and $V^\prime \subseteq N$ such that $F$ is a $C^k$ diffeomorphism\\ [1pt] from $W^\prime$ to $V^\prime$. By shrinking $W^\prime$ and $V^\prime$, we can assume without loss of generality\\ [2pt] that $V^\prime \subseteq V$ and that there is a smooth chart $(W^\prime, \eta)$ on $M$. Finally, because $G$\\ is continuous, we know that $U^\prime \coloneqq G^{-1}(W^\prime)$ is an open set of $P$. So, we set\\ $U_0 \coloneqq U \cap U^\prime$.\newpage
 
-		Let $H = (F|_{W^\prime})^{-1}$. Then $(U_0, \varphi)$ is a smooth chart on $P$ containing $p$, $(W^\prime, \eta)$ is a smooth chart on $M$ with $F(U_0) \subseteq W^\prime$, and:
+		Let $H = (F|_{W^\prime})^{-1}$. Then $(U_0, \varphi)$ is a smooth chart on $P$ containing $p$, $(W^\prime, \eta)$ is a smooth chart on $M$ with $G(U_0) \subseteq W^\prime$, and:
 		
 		{\centering$\eta \circ G \circ \varphi^{-1} = (\eta \circ H \circ \psi^{-1}) \circ (\psi \circ F \circ G \circ \varphi^{-1})$ is a $C^k$ map.\retTwo\par}
 	\end{myIndent}
@@ -10852,7 +10852,7 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 		$(\Longleftarrow)$\\
 		Consider any $p \in N$. Since $F$ is surjective, we know there exists $q \in M$ such that\\ [2pt] $F(q) = p$. Next, since $G \circ F$ is a $C^k$ map, we know there is a smooth chart $(U, \varphi)$\\ [2pt] on $M$ containing $q$ and a smooth chart $(V, \psi)$ on $P$ such that $(G \circ F)(U) \subseteq V$ and $\psi \circ G \circ F \circ \varphi^{-1}$ is a $C^k$ map. But now as $F$ is a local $C^k$ diffomorphism, we can\\ [2pt] find an open set $U^\prime \subseteq M$ containing $q$ and an open set $W^\prime \subseteq N$ such that $F$ is a $C^k$\\ [2pt] diffeomorphism from $U^\prime$ to $W^\prime$. Finally, by shrinking $U^\prime$ and $W^\prime$, we can assume that\\ [2pt] $U^\prime \subseteq U$ and that there is a smooth chart $(W^\prime, \eta)$ on $N$.\retTwo
 
-		But now $W^\prime$ is an open set containing $F(p)$ such that $W^\prime = F(U^\prime) \subseteq F(U) \subseteq V$. Also let $H = (F|_{U^\prime})^{-1}$. Then:
+		Now $W^\prime$ is an open set containing $p = F(q)$ with $G(W^\prime) = (G \circ F)(U^\prime)$\\ $\subseteq (G \circ F)(U) \subseteq V$. Also let $H = (F|_{U^\prime})^{-1}$. Then:
 
 		{\centering $\psi \circ G \circ \eta^{-1} = (\psi \circ G \circ F \circ \varphi^{-1}) \circ (\varphi \circ H \circ \eta^{-1})$ is a $C^k$ map. $\blacksquare$\retTwo\par}
 	\end{myIndent}
@@ -10862,7 +10862,7 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 
 \dispDate{7/26/2026} Welp, I've been fearing this day for a long time but I finally need to actually understand the rank theorem.\retTwo
 
-\exTwo\ul{Theorem 4.12 (The Rank Theorem):} Suppose $M$ and $N$ are $C^k$ manifolds \textit{without}\\ \textit{boundaries} of dimension $m$ and $n$ respectively, and also suppose $F: M \to N$ is a $C^k$ map of constant rank $r$. Then for each $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ with $p \in U$ as well as a smooth chart $(V, \psi)$ on $N$ with $F(U) \subseteq V$ such that $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ has the form $\widehat{F}(x_1, \ldots, x_r, x_{r+1}, \ldots, x_m) = (x_1, \ldots, x_r,\hspace{-0.5em} \underbrace{0, \ldots, 0}_{n-r \text{ many zeros}}\hspace{-0.5em})$.\retTwo
+\exTwo\ul{Theorem 4.12 (The Rank Theorem):} \hypertarget{The Rank Theorem}{Suppose} $M$ and $N$ are $C^k$ manifolds \textit{without}\\ \textit{boundaries} of dimension $m$ and $n$ respectively, and also suppose $F: M \to N$ is a $C^k$ map of constant rank $r$. Then for each $p \in M$ there exists a smooth chart $(U, \varphi)$ on $M$ with $p \in U$ as well as a smooth chart $(V, \psi)$ on $N$ with $F(U) \subseteq V$ such that $\varphi(p) = 0$ and $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ has the form $\widehat{F}(x_1, \ldots, x_r, x_{r+1}, \ldots, x_m) = (x_1, \ldots, x_r,\hspace{-0.5em} \underbrace{0, \ldots, 0}_{n-r \text{ many zeros}}\hspace{-0.5em})$.\retTwo
 \begin{myIndent}\exThreeP
 	\begin{myIndent}\myComment
 		As a side note, if $k_1 > k_2$ in $\mathbb{Z}_{\geq 1} \cup \{\infty\}$ then every $C^{k_1}$ structure on a manifold $M$ is contained in a unique $C^{k_2}$ structure. Therefore, it's not too too restrictive to assume $F$ is as smooth a map as the structure on the manifold is smooth. That said, if I didn't make this restriction clear than one might falsely think that this theorem proves every constant rank $C^1$ map between $C^k$ manifolds without boundaries is actually a $C^k$ map.\retTwo
@@ -10870,9 +10870,9 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 
 	Proof:\\
 	\ul{(Step 0: Simplying our notation)}\\
-	Firstly, by choosing local coordinates around $p$ it suffices to assume $M$ is an open set\\ $U \subseteq \mathbb{R}^m$ and $N$ is an open set $V \subseteq \mathbb{R}^m$.\newpage 
+	Firstly, by choosing local coordinates around $p$ it suffices to assume $M$ is an open set\\ $U \subseteq \mathbb{R}^m$ and $N$ is an open set $V \subseteq \mathbb{R}^n$.\newpage 
 	\begin{myIndent}\exPPP
-		To see why, consider picking smooth charts $(\widetilde{U}, \widetilde{\varphi})$ on $M$ containing $p$ and $(\widetilde{V}, \widetilde{\psi})$ on $N$ such that $F(\widetilde{U}) \subseteq \widetilde{V}$. Then set $U \coloneqq  \widetilde{\varphi}(\widetilde{U})$ and $V \coloneqq \widetilde{\psi}(\widetilde{V})$ and note that $U$ and $V$ are open in $\mathbb{R}^m$ and $\mathbb{R}^n$ respectively. Once we've shown that the theorem holds for $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}: U \to V$, then we can just find two $C^k$ diffeomorphisms\\ [2pt] $\varphi: U_0 \to \varphi(U_0)$ and $\psi: V_0 \to \psi(V_0)$ such that $\widetilde{\varphi}(p) \subseteq U_0 \subseteq U$, $V_0 \subseteq V$, and $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}(U_0) \subseteq V_0$, and $(\psi \circ \widetilde{\psi}) \circ F \circ ((\widetilde{\varphi})^{-1} \circ \varphi^{-1})$ has the desired form. And since $(\widetilde{\varphi}^{-1}(U_0), \varphi \circ \widetilde{\varphi})$ is a smooth chart on $M$ and $(\widetilde{\psi}^{-1}(V_0), \psi \circ \widetilde{\psi})$ is a smooth chart on $N$, we'll have shown our theorem holds at $p$ for the map $F$.\retTwo
+		To see why, consider picking smooth charts $(\widetilde{U}, \widetilde{\varphi})$ on $M$ containing $p$ and $(\widetilde{V}, \widetilde{\psi})$ on $N$ such that $F(\widetilde{U}) \subseteq \widetilde{V}$. Then set $U \coloneqq  \widetilde{\varphi}(\widetilde{U})$ and $V \coloneqq \widetilde{\psi}(\widetilde{V})$ and note that $U$ and $V$ are open in $\mathbb{R}^m$ and $\mathbb{R}^n$ respectively. Once we've shown that the theorem holds for $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}: U \to V$, then we can just find two $C^k$ diffeomorphisms\\ [2pt] $\varphi: U_0 \to \varphi(U_0)$ and $\psi: V_0 \to \psi(V_0)$ such that $\widetilde{\varphi}(p) \subseteq U_0 \subseteq U$, $V_0 \subseteq V$, $\varphi(\widetilde{\varphi}(p)) = 0$,  and $\widetilde{\psi} \circ F \circ (\widetilde{\varphi})^{-1}(U_0) \subseteq V_0$, and $(\psi \circ \widetilde{\psi}) \circ F \circ ((\widetilde{\varphi})^{-1} \circ \varphi^{-1})$ has the desired form. And since $(\widetilde{\varphi}^{-1}(U_0), \varphi \circ \widetilde{\varphi})$ is a smooth chart on $M$, $(\widetilde{\psi}^{-1}(V_0), \psi \circ \widetilde{\psi})$ is a smooth chart on $N$, we'll have shown our theorem holds at $p$ for the map $F$.\retTwo
 	\end{myIndent}
 
 	Next, note that since $\Df F(p)$ has rank $r$, we know the Jacobian matrix has some\\ $r \times r$ invertible submatrix. By reordering our coordinates, we can assume without loss\\ of generality that the $r \times r$ invertible submatrix makes up the top left portion of $\Df F(p)$.\\ So, let us rename the standard coordinates on $\mathbb{R}^m$ and $\mathbb{R}^n$ as:
@@ -10985,7 +10985,7 @@ And with that I'll now allow my manifolds to have corners again by default.\retT
 
 \dispDate{7/27/2026}
 
-I mentioned a few days ago that my construction of the tangent space to a corner point might not be optimal. After talking to a colleague, I can now say that while nothing I've\newpage written is wrong, there is a cleaner equivalent way of defining the tangent space. This improved way will also be the way that generalizes to analytic and complex manifolds. So, it wouldn't hurt to go over it now.\retTwo
+\hypertarget{page 1066-1067 note}{I} mentioned a few days ago that my construction of the tangent space to a corner point might not be optimal. After talking to a colleague, I can now say that while nothing I've\newpage written is wrong, there is a cleaner equivalent way of defining the tangent space. This improved way will also be the way that generalizes to analytic and complex manifolds. So, it wouldn't hurt to go over it now.\retTwo
 
 \pracOne\mySepTwo
 \hypertarget{idk reference 6}{Firstly,} I'm going to fix an oversight I priorly made on \inLinkRap{page 1024 correction}{page 1024}. I already deleted the false statement on that page but I did leave a note explaining where my deleted remark went wrong.\retTwo
@@ -12107,7 +12107,7 @@ Furthermore, suppose $A^\prime$ is a commutative $R$-algebra and we are given an
 \begin{myIndent}\pracTwo
 	The uniqueness is because $\bigcup_{\beta \in B}\iota_\beta(A_\beta) \subseteq \iota(\prod_{\beta \in B}^\prime A_\beta)$ where the former set generates $\bigotimes_{\beta \in B}A_\beta$ as an $R$-algebra. So any two unital $R$-algebra homomorphisms completing this diagram must equal each other everywhere.\retTwo
 	
-	As for showing that $f$ exists, just use the fact that $\bigotimes_{\beta \in B} A_\beta$ is a coproduct in order to conclude there is a unique unital $R$-algebra homomorphism $f: \bigotimes_{\beta \in B} A_\beta \to A^\prime$ such that $f \circ \iota_\beta = f_\beta$ for all $\beta$. Then as multiplication passes through $f$, we can conclude that:
+	As for showing that $f$ exists, just use the fact that $\bigotimes_{\beta \in B} A_\beta$ is a coproduct in order to\\ conclude there is a unique unital $R$-algebra homomorphism $f: \bigotimes_{\beta \in B} A_\beta \to A^\prime$ such\\ that $f \circ \iota_\beta = f_\beta$ for all $\beta$. Then as multiplication passes through $f$, we can conclude:
 	
 	{\centering\begin{tabular}{l}
 		$(f \circ \iota)((a_\beta)_{\beta \in B}) = f(\prod_{\beta \in B} \iota_\beta(a_\beta))$\\ [4pt]
@@ -12122,19 +12122,679 @@ Anyways, this connection isn't the most important thing ever.\retTwo
 	We just need to change the direct sum to a tensor product and then we need to make $N$ a two sided ideal instead of a submodule.\retTwo
 \end{myIndent}
 
-I don't think it is worth my time going further in depth on this. So I'm going to finish my tangent on algebras and colimits and etc.\retTwo
+I don't think it is worth my time going further in depth on this. So I'm going to finish my tangent on algebras and colimits and etc now.\retTwo
 
 \mySepTwo
 
 \hTwo\dispDate{8/6/2026}
 
+\hTwo I'm finally going to talk about manifolds again. If you recall from \inLinkRap{page 1066-1067 note}{page 1067}, I was originally going to go over a cleaner equivalent way of defining a tangent space which importantly generalizes to analytic and complex manifolds. I'm going to finally go over that now that I've described how to take a filtered colimits of commutative unital $\mathbb{R}$-algebras.\retTwo
+
+To give some quick motivation for what comes next, if $M$ is a $C^r$ manifold (perhaps with corners) and $U \subseteq M$ is an open set containing a point $p$, then our prior ability to identify $T_p M$ with $T_p U$ relied on us being able to construct $C^r$ bump functions. In other words, given any closed set $K \subseteq U$ also containing $p$ we needed to be able to find a function $\phi \in C^r(M, [0, 1])$ such that $\phi \equiv 1$ on $K$ and $\supp(\phi) \subseteq U$. Unfortunately, the identity principle (see \inLinkRap{Identity Principle for Riemann surfaces}{page 1015} for one case of it) guarentees that there won't exist analytic or holomorphic bump functions.\newpage
+
+To address this short coming we instead consider derivations acting on a stalk. Recall\\ the definition of sheaves, stalks, and germs given on \inLinkRap{Page 1026 reference}{pages 1026-1027}. Then given any\\ $C^r$ manifold $M$ (with $r \in \mathbb{Z}_{\geq 1} \cup \{\infty\}$) and any $0 \leq k \leq r$, we consider the sheaf\\ $\mathcalli{F}: \mcateg{Op}(M) \to \mcateg{CAlg}_\mathbb{R}$ such that $\mathcalli{F}(U) = C^k(U, \mathbb{R})$ and for any open sets $V \subseteq U \subseteq M$\\ we have that $r^U_V(f) = f|_V$.
+\begin{myTindent}\myComment
+	Here $C^0(U, \mathbb{R}) \coloneqq C(U, \mathbb{R})$.\retTwo
+\end{myTindent}
+
+For any $p \in M$ we denote the stalk of $\mathcalli{F}$ at $p$ to be the set $C_p^k(M)$. Also, given any open set $U$ and $C^k$ map $f: U \to \mathbb{R}$, we typically denote their germ as either $[(U, f)]$ or $[f]$.\retTwo
+
+Given any germ $[f] \in C^k_p(M)$, it is well-defined to evaluate $f(p)$.
+\begin{myIndent}\pracTwo
+	This is because if $[(U, f)] = [(V, g)]$ then there is some open set $W \subseteq U \cap V$ containing $p$ such that $f|_W = g|_W$. But in turn we know that $f(p) = g(p)$.\retTwo
+\end{myIndent}
+
+Now, we say a \udefine{derivation} on $C^1_p(M)$ is an $\mathbb{R}$-linear map $v: C^1_p(M) \to \mathbb{R}$ which also satisfies that if $[f]$ and $[g]$ are germs then $v([f][g]) = f(p)v([g]) + g(p)v([f])$. The set of all derivations on $C^1_p(M)$ is easily checked to be a real vector space and we denote that vector space by $\mathcalli{D}_p(M)$.\retTwo
+
+\begin{myIndent}\mySepThree\end{myIndent}
+
+Let $M$ be an $n$-dimensional $C^r$ manifold (where $r \in \mathbb{Z}_{\geq 1} \cup \{\infty\}$). Then let $U \subseteq M$ be an open set, let $p \in M$, and consider any smooth chart $(V, \varphi)$ such that $p \in V \subseteq U$. Note that $\varphi$ defines local coordinates $(x_1, \ldots, x_n)$ on $V$. I'll also write $\varphi(p) = (x_1(p), \ldots, x_n(p))$.\retTwo
+
+\exTwo\ul{Lemma 1:} If $f \in C^k(U, \mathbb{R})$ (where $k \geq 1$) and $f(p) = 0$ then there is some open subset $W \subseteq V$ containing $p$ such that:
+
+{\centering$f|_W = \sum\limits_{i=1}^n (x_i - x_i(p))h_i$,\\ [4pt]\par}
+
+where $h_i \in C^{k-1}(W, \mathbb{R})$ for all $i$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	To start off, if $\varphi(V)$ is not open in $\mathbb{R}^n$, then by definition $f \circ \varphi^{-1}$ can be extended to\\ being a $C^k$ function $\widetilde{f}$ from an open set $\widetilde{V} \subseteq \mathbb{R}^n$.\retTwo 
+
+	Next, let $0 < r$ be a real number such that $\overline{B_r(\varphi(p))} \subseteq \widetilde{V}$. Then for any\\ $x = (x_1, \ldots, x_n) \in \overline{B_r(\varphi(p))}$ we can write:
+
+	{\centering $\widetilde{f}(x) = \sum\limits_{i=1}^n (x_i - x_i(p))\int_0^1 \frac{\partial}{\partial x_i} \widetilde{f}(\varphi(p) + s(x - \varphi(p)))\df s$ \retTwo\par}
+
+	By Leibniz's rule, we can conclude that $\widetilde{h}_i : B_r(\varphi(p)) \to \mathbb{R}$ given by:
+	
+	{\center$\widetilde{h_i}(x) = \int_0^1 \frac{\partial}{\partial x_i} \widetilde{f}(\varphi(p) + s(x - \varphi(p)))\df s$\\ [4pt]\par}
+	
+	is a $C^{k-1}$ map. And now we let $W = \varphi^{-1}(\varphi(V) \cap B_r(\varphi(p)))$ and $h_i: W \to \mathbb{R}$ be defined by $h_i = \widetilde{h}_i \circ \varphi$. And then each $h_i$ will be a $C^{k-1}$ map and $f|_W = \sum_{i=1}^n (x_i - x_i(p))h_i$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo Now let $(V, \varphi)$ be the smooth chart from before and suppose $f \in C^1(U, \mathbb{R})$ with $f(p) = 0$. If there exists an open set $W \subseteq U \cap V$ such that $f|_W = \sum_{i=1}^n (x_i - x_i(p))h_i$ where each $h_i \in C^{0}(W)$ and $h_i(\varphi(p)) = 0$ for each $i$, we say $f$ \udefine{vanishes to first order at $p$}.\retTwo
+
+\exTwo\ul{Lemma 2:} Let $W, W^\prime \subseteq U \cap V$ both be open sets containing $p$ and then suppose\\ $h_1, \ldots, h_n \in C^{0}(W, \mathbb{R})$ and $\overline{h_1}, \ldots, \overline{h_n} \in C^{0}(W^\prime, \mathbb{R})$ satisfy that:
+
+{\centering$f|_W = \sum_{i=1}^n (x_i - x_i(p))h_i$ and $f|_{W^\prime} = \sum_{i=1}^n (x_i - x_i(p))\overline{h_i}$.\\ [4pt]\par}
+
+Then $h_i(p) = \overline{h_i}(p)$ for all $i$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By considering the set $W \cap W^\prime$ we can assume without loss of generality that $W = W^\prime$. Also, we can assume without loss of generality that $W$ is an open set in $\mathbb{R}_{\geq 0}^n$, $H^n$, or $\mathbb{R}^n$ since $\overline{h_i}(p) = h_i(p) = 0$ iff $(\overline{h_i} \circ \varphi^{-1})(\varphi(p)) = (h_i \circ \varphi^{-1})(\varphi(p)) = 0$. Finally, note that\\ $f = \sum_{i=1}^n (x_i - x_i(p))h_i = \sum_{i=1}^n (x_i - x_i(p))\overline{h}_i$ means that:
+	
+	{\center$0 \equiv \sum_{i=1}^n (x_i - x_i(p)) \cdot (h_i - \overline{h_i})$.\retTwo\par}
+	
+	Thus, we will be done once we show that if $0 \equiv \sum_{i=1}^n (x_i - x_i(p)) g_i$ where\\ $g_i \in C^{0}(W, \mathbb{R})$ then $g_i(x(p)) = 0$ for all $i$ (where $x(p) = (x_1(p), \ldots, x_n(p))$).\retTwo
+
+	Fortunately, consider any $s > 0$ such that $x(p) + se_i \in W$. (Here $e_1, \ldots, e_n$ is the standard basis for $\mathbb{R}^n$). Then $0 = \int_0^s 0\df t = \int_0^s tg_i(x(p) + te_i)\df t$. But now if $g_i(x(p)) \neq 0$ then by continuity we know there is some $s > 0$ and $\varepsilon > 0$ such that $|g_i(x(0) + te_i)| > \varepsilon$ when $0 \leq t \leq s$. In turn, we have a contradiction as $\left|\int_0^s tg_i(x(p) + te_i)\df t\right| \geq s\varepsilon$ means that $0 = \int_0^s tg_i(x(p) + te_i)\df t \neq 0$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo More specifically, what the prior lemma shows is that if $f \in C^1(U, \mathbb{R})$ with $f(p) = 0$\\ and $f|_W = \sum_{i=1}^n (x_i - x_i(p))h_i$ for some open set $W \subseteq U \cap V$ containing $p$ and\\ some $C^{0}$ maps $h_1, \ldots, h_n$ then:
+
+{\centering $h_i(p) = \left.\frac{\partial}{\partial x_i}\right|_p f$ for each $i$.\retTwo\par}
+
+After all, the above equation holds for the functions $h_1, \ldots, h_n$ constructed in lemma 1, and lemma 2 then says that all other possible $h_1, \ldots, h_n$ must agree with the functions constructed in lemma 1. As a result:
+
+{\centering $f$ vanishes to first order iff $\left.\frac{\partial}{\partial x_i}\right|_p f = 0$ for all $i$ iff $v(f) = 0$ for all $v \in T_p U$\retTwo\par}
+
+This leads naturally to another result:\retTwo
 
 
+\exTwo\ul{Lemma 3:} Now suppose $(V^\prime, \psi)$ is another smooth chart containing $p$. We'll let $\psi$ define the local coordinates $(y_1, \ldots, y_n)$ on $V^\prime$. Also I'll write $\psi(p) = y(p) = (y_1(p), \ldots, y_n(p))$. If $W \subseteq U \cap V$ is an open set containing $p$ and there exists functions $h_i \in C^{0}(W, \mathbb{R})$ such that $f|_W = \sum_{i=1}^n(x_i - x_i(p))h_i$ and $h_i(p) = 0$ for each $i$, then for any open set $\Omega \subseteq U \cap V^\prime$ containing $p$ as well as functions $g_i \in C^{0}(\Omega, \mathbb{R})$ such that $f|_\Omega = \sum_{i=1}^n(y_i - y_i(p))g_i$, we know that $g_i(p) = 0$ for each $i$.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	We can conclude via lemmas 1 and 2 that $g_i(p) = \left.\frac{\partial}{\partial y_i}\right|_p f$ for each $i$. But now note from\\ [-6pt] \inLinkRap{page 1052 reference}{page 1052} that each linear operator $\left.\frac{\partial}{\partial y_i}\right|_p$ is a linear combination of the operators $\left.\frac{\partial}{\partial x_j}\right|_p$.\\ [-6pt] And since $\left.\frac{\partial}{\partial x_j}\right|_p f = h_j(p) = 0$ for each $j$ by assumption, we can conclude $g_i(p) = 0$\\ for each $i$. $\blacksquare$\retTwo
+\end{myIndent}
 
+\hTwo As a result of the prior lemmas, we can say that $f$ vanishing to first order at $p$ is independent of our chosen local coordinates or the particular functions in our expression:
 
+{\centering$f|_W = \sum\limits_{i=1}^n (x_i - x_i(p))h_i$.\retTwo\par}
 
+Also as is hopefully obvious, if $[(U, f)] = [(\widetilde{U}, \widetilde{f})]$ in $C_p^1(M)$ and $f$ vanishes to first order at $p$ then so does $\widetilde{f}$. So, we can talk about a germ in $C^1_p(M)$ vanishing to first order.\retTwo
 
+Now here's the new and improved definition of the tangent plane of $p$. For now I'll denote my old construction as $T_p M$. Meanwhile, I'll define a new construction by:
 
+{\centering $\mathcal{T}_p M \coloneqq \{v \in \mathcalli{D}_p(M) : v([f]) = 0 \text{ if } [f] \text{ vanishes to first order}\}$. \retTwo\par}
+
+Clearly $\mathcal{T}_p M$ is a vector subspace of $\mathcalli{D}_p(M)$.\retTwo
+
+\exTwo\ul{Theorem:} There is a bijective linear map $\Phi: T_p M \to \mathcal{T}_p M$ such that $(\Phi(v))([f]) \coloneqq v(f)$ for all $f \in C^k(M, \mathbb{R})$.
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $[(U, f)]$ is any germ and note that by multiplying on a $C^r$ bump function, we can find a function $g \in C^1(M, \mathbb{R})$ such that $[(M, g)] = [(U, f)]$. So, for any $v \in T_p M$ we let $(\Phi(v))([f]) \coloneqq v(g)$.
+	\begin{myIndent}\exPPP
+		To see that $\Phi$ is well-defined, note that if $[(M, g)] = [(U, f)] = [(M, \widetilde{g})]$ then $g = f = \widetilde{g}$ on a neighborhood of $p$. So by proposition 3.8 on \inLinkRap{page 1033 reference}{page 1033} we know that $v(g) = v(\widetilde{g})$.\retTwo
+	\end{myIndent}
+
+	Showing that $\Phi(v) \in \mathcalli{D}_p(M)$ is then easy. Furthermore, if $[(U, f)]$ vanishes to first\\ order then we know for any $g \in C^k(M, \mathbb{R})$ with $[(M, g)] = [(U, f)]$ that $v(g) = 0$. So,\\ $\Phi(v) \in \mathcal{T}_p M$. Finally, it is easy to verify that $\Phi(c_1 v_1 + c_2 v_2) = c_1 \Phi(v_1) + c_2 \Phi(v_2)$\\ for all $c_1, c_2 \in \mathbb{R}$ and $v_1, v_2 \in T_p M$. So, $\Phi$ is a linear map from $T_p M$ to $\mathcal{T}_p M$.\retTwo
+
+	To show that $\Phi$ is an isomorphism, let $(U, \varphi)$ be a smooth chart containing $p$ and defining\\ local coordiantes $\varphi(m) = x(m) = (x_1(m), \ldots, x_n(m))$. Then recall $\left.\frac{\partial}{\partial x_1}\right|_p, \ldots, \left.\frac{\partial}{\partial x_n}\right|_p$\\ [-4pt] is a basis for $T_p M$. Meanwhile, we can define a basis for $\mathcal{T}_p M$ as follows:
+	\begin{myIndent}\exPPP
+		Let $[(V, f)] \in C^1_p(M)$. By lemma 1 from a few pages ago can find an open subset $W \subseteq V \cap U$ as well as functions $h_i \in C^{0}(W, \mathbb{R})$ such that:
+		
+		{\centering$f|_W = f(p) + (x_i - x_i(p))h_i$.\newpage\par}
+		
+		And now we define $\omega_i([f]) \coloneqq h_i(p)$.  This is well-defined because if\\ $[(V, f)] = [(\widetilde{V}, \widetilde{f})]$ then we know there is some open set $\Omega \subseteq V \cap \widetilde{V}$ such that $f|_\Omega = \widetilde{f}|_{\Omega}$. And now upon writing that $f|_W = f(p) + \sum_{i=1}^n (x_i - x_i(p))h_i$ and $\widetilde{f}|_{\widetilde{W}} = f(p) + \sum_{i=1}^n (x_i - x_i(p))\widetilde{h}_i$, we know that:
+		
+		{\centering\begin{tabular}{l}
+			$(f - f(p))|_{\Omega \cap \widetilde{W}} = \sum_{i=1}^n (x_i - x_i(p))\widetilde{h}_i$ and $(f - f(p))|_{W} = \sum_{i=1}^n (x_i - x_i(p))h_i$.
+		\end{tabular}\retTwo\par}
+		
+		So by lemma 2 from before, we know that $h_i(p) = \widetilde{h}_i(p)$ for each $i$. And this\\ proves that $\omega_i([f]) = \omega_i([\widetilde{f}])$.\retTwo
+
+		Showing that $\omega_i \in \mathcal{T}_p M$ is now easy.
+		\begin{myIndent}\color{orange}
+			To show one necessary algebraic property of $\omega_i$ suppose $[f], [g] \in C_p^k(M)$ and write:
+			
+			{\centering\begin{tabular}{l}$f|_W = f(p) + \sum_{i=1}^n(x_i - x_i(p))\widetilde{h}_i$ and $g|_{\widetilde{W}} = g(p) + \sum_{i=1}^n (x_i - x_i(p))\widetilde{h}_i$.\end{tabular}\retTwo\par}
+			
+			Then after regrouping terms we can see that:
+
+			{\centering $(fg)|_{W \cap \widetilde{W}} = (fg)(p) + \sum\limits_{i=1}^n (x_i - x_i(p)) \cdot \left(h_i g + \widetilde{h}_i f - (x_i - x_i(p))h_i \widetilde{h}_i\right)$ \retTwo\par}
+
+			So, $\omega_i([f][g]) = \omega_i([f]) g(p) + \omega_i([f]) f(p) - 0$.\retTwo
+		\end{myIndent}
+
+		I also claim $\omega_1, \ldots, \omega_n$ span $\mathcal{T}_p M$. After all, let $\nu \in \mathcal{T}_p M$ be an arbitrary derivation.
+		\begin{myIndent}\color{orange}
+			We can consider the germ $[(U, f_i)]$ such that $f_i(m) = x_i(m) - x_i(p)$.\\ And then we let $c_i = \nu([f_i])$. Now for any germ $[f] \in C^k_p$, upon writing\\ $f = f(p) + \sum_{i=1}^n (x_i - x_i(p))h_i$ we know that:
+			
+			{\centering$f - f(p) - \sum_{i=1}^n (x_i - x_i(p))h_i(p)$ vanishes to first order at $p$.\retTwo\par} So:
+
+			{\centering \begin{tabular}{l}
+				$0 = \nu\left(\left[f - f(p) - \sum_{i=1}^n (x_i - x_i(p))h_i(p)\right]\right)$\\ [4pt]
+				$\phantom{0} = \nu([f]) - f(p)\nu([0]) - \sum_{i=1}^n \nu([x_i - x_i(p)])h_i(p)$\\ [4pt]
+				$\phantom{0} = \nu([f]) - 0 - \sum_{i=1}^n c_i \omega_i([f])$.
+			\end{tabular}\retTwo\par}
+
+			Or in other words, $\nu = \sum_{i=1}^n c_i \omega_i$.\retTwo
+		\end{myIndent}
+
+		And finally, I claim that $\omega_1, \ldots, \omega_n$ are all linearly independent. After all, suppose $c_1, \ldots, c_n \in \mathbb{R}$ satisfy that $\sum_{i=1}^n c_i \omega_i([f]) = 0$ for every germ $[f]$. Then in particular we know that $c_j = \sum_{i=1}^n c_i \omega_i([x_j - x_j(p)]) = 0$ for every $j$.\retTwo
+	\end{myIndent}
+
+	And now to finish the proof, just note for any germ $[(U, f)]$ that:
+
+	{\centering$\Phi\left(\left.\frac{\partial}{\partial x_i}\right|_p\right)([f]) = \left.\frac{\partial}{\partial x_i}\right|_p f = \omega_i([f])$ for each $i$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\hTwo For the sake of convenience, I'll identify $\omega_i$ from the prior theorem with $\left.\frac{\partial}{\partial x_i}\right|_p$.\retTwo
+
+One last thing to sort out is how to define the differential of a $C^1$ map $F: M \to N$ with respect to the vector space $\mathcal{T}_p M$. To do this, we merely say:
+
+{\centering$(\df F_p(\nu))([(U, f)]) \coloneqq \nu([(F^{-1}(U), f \circ F)])$ for every $\nu \in \mathcal{T}_p M$ and $[(U, f)] \in C^1_{F(p)}(N)$.\newpage\par}
+
+\begin{myIndent}\pracTwo
+	Checking that $\df F_p(\nu)$ is a well-defined operator in $\mathcalli{D}_{F(p)}(N)$ for every $\nu \in \mathcal{T}_p M$ and\\ that $\df F_p : \mathcal{T}_p M \to \mathcalli{D}_{F(p)}(N)$ is a well-defined linear map is easy.\retTwo
+
+	As for proving that $\df F_p(\nu)$ annihilates all germs vanishing to first order, it suffices to prove that if $[f] \in C^1_{F(p)}(N)$ vanishes to first order then so does $[f \circ F] \in C^1_{p}(M)$.\retTwo
+
+	To do this, let $[(V, f)]$ be a germ and let $\widetilde{\df}F_p : T_p (F^{-1}(V)) \to T_{F(p)} V$ be the old\\ definition of the differential of $F$. Then note that $f \circ F$ vanishes to first order iff\\ $v(f \circ F) = 0$ for all $v \in T_p (F^{-1}(V))$. Yet simultaneously $v(f \circ F) = (\df F_p(v))(f)$.\\ And since $f$ vanishes to first order and $\df F_p(v) \in T_{F(p)}V$, we know that:
+	
+	{\center$(\df F_p(v))(f) = 0$.\retTwo\par}
+\end{myIndent}
+
+Also if $\Phi_M: T_p M \to \mathcal{T}_p M$ and $\Phi_N : T_{F(p)}N \to \mathcal{T}_{F(p)}N$ are the maps constructed in\\ the prior theorem, then we can see by looking at a representive for each germ whose\\ domain is all of $M$ or $N$  that:
+% https://q.uiver.app/#q=WzAsOCxbMSwxLCJUX3AgTSJdLFszLDEsIlRfe0YocCl9TiJdLFsxLDIsIlxcbWF0aGNhbHtUfV9wIE0iXSxbMywyLCJcXG1hdGhjYWx7VH1fe0YocCl9IE4iXSxbMCwwXSxbMCwzXSxbNCwzXSxbNCwwXSxbMCwyLCJcXFBoaV9NIl0sWzEsMywiXFxQaGlfTiJdLFsyLDMsIlxcZGYgRl9wIl0sWzAsMSwiXFx3aWRldGlsZGV7XFxkZn1GX3AiXSxbMCw0LCJmXFxtYXBzdG8gdihmKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzEsNywiZyBcXG1hcHN0byB2KGcgXFxjaXJjIEYpIiwxLHsiY29sb3VyIjpbMjQwLDYwLDYwXSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fSxbMjQwLDYwLDYwLDFdXSxbMyw2LCJbZ10gXFxtYXBzdG8gdihnIFxcY2lyYyBGKSIsMSx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6Im5vbmUifSwiaGVhZCI6eyJuYW1lIjoibm9uZSJ9fX0sWzI0MCw2MCw2MCwxXV0sWzIsNSwiW2ZdIFxcbWFwc3RvIHYoZikiLDEseyJjb2xvdXIiOlsyNDAsNjAsNjBdLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19LFsyNDAsNjAsNjAsMV1dLFsxLDMsIlxcc2ltIiwzLHsib2Zmc2V0IjoyLCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XSxbMCwyLCJcXHNpbSIsMyx7Im9mZnNldCI6Miwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoibm9uZSJ9LCJoZWFkIjp7Im5hbWUiOiJub25lIn19fV1d
+\[\begin{tikzcd}
+	{} &&&& {} \\
+	& {T_p M} && {T_{F(p)}N} \\
+	& {\mathcal{T}_p M} && {\mathcal{T}_{F(p)} N} \\
+	{} &&&& {}
+	\arrow["{f\mapsto v(f)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-2, to=1-1]
+	\arrow["{\widetilde{\df}F_p}", from=2-2, to=2-4]
+	\arrow["{\Phi_M}", from=2-2, to=3-2]
+	\arrow["\sim"{marking, allow upside down}, shift right=2, draw=none, from=2-2, to=3-2]
+	\arrow["{g \mapsto v(g \circ F)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=2-4, to=1-5]
+	\arrow["{\Phi_N}", from=2-4, to=3-4]
+	\arrow["\sim"{marking, allow upside down}, shift right=2, draw=none, from=2-4, to=3-4]
+	\arrow["{\df F_p}", from=3-2, to=3-4]
+	\arrow["{[f] \mapsto v(f)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-2, to=4-1]
+	\arrow["{[g] \mapsto v(g \circ F)}"{description}, color={rgb,255:red,92;green,92;blue,214}, draw=none, from=3-4, to=4-5]
+\end{tikzcd}\]
+
+Anyways this new definition of the tangent plane is the most general way the tangent plane of a manifold is defined. It is also nice because as mentioned before, it generalizes to types of manifolds (i.e. real-analytic and complex) where germs don't have representatives in any arbitrary neighborhood of a point.\retTwo
+
+\mySepTwo
+
+\dispDate{8/17/2026}
+
+I'm going to keep being distracted due to the fact I've been in and out of being homeless for two weeks. But right now I kinda want to study again. I'll be studying Lee's book again where I left off.\retTwo
+
+\exTwo\ul{Local Immersion Theorem For Manifolds with Boundaries:} \hypertarget{Local Immersion Theorem boundary page 1101}{Let} $M$ be an $m$-dimensional $C^r$ manifold with a boundary (but no corners), and let $N$ be an $n$-dimensional $C^r$ manifold without a boundary. Also suppose $F: M \to N$ is a $C^r$ immersion. For any $p \in \partial M$ there exists a smooth boundary chart $(U, \varphi)$ on $M$ containing $p$ as well as a smooth chart $(V, \psi)$ on $N$ such that $\varphi(p) = 0$, $F(U) \subseteq V$, and $\widehat{F} \coloneqq \psi \circ F \circ \varphi^{-1}$ is given by:
+
+{\centering $\widehat{F}(x_1, \ldots, x_m) = (x_1, \ldots, x_m, \underbrace{0, \ldots, 0}_{n - m \text{ zeros}})$ \newpage\par}
+
+\begin{myIndent}\exThreeP
+	Proof:\\
+	By choosing local coordinates around $p$ it suffices to assume $M$ is an open subset of $H^m$ and $N$ is an open set $\mathbb{R}^n$. This follows by identical reasoning as in the rank theorem. Also by identical reasoning as in the rank theorem, we can assume $p = 0$ and $F(p) = 0$.\retTwo
+
+	Next we know that $F$ extends to a $C^r$ function $\widetilde{F}: W \to \mathbb{R}^n$ such that $M \subseteq W$ and\\ $\widetilde{F}|_M = F$. Because $\df \widetilde{F}_0 = \df F_0$ is an injection (here we recall that we can identify $T_p M$\\ with $T_p W$), we can shrink $W$ and $M$ such that $\widetilde{F}$ is a $C^r$ immersion. Also, we can shrink $W$ (without shrinking $M$) such that $\widetilde{F}(W) \subseteq N$. And now let us write the coordinates on $W$ as $(x_1, \ldots, x_m)$ and the coordinates on $N$ as $((v_1, \ldots, v_m), (w_{1}, \ldots, w_{n-m}))$.\retTwo
+
+	By the rank theorem (see \inLinkRap{The Rank Theorem}{page 1062}), there exists smooth charts $(U_0, \varphi_0)$ and $(V_0, \psi_0)$ such that $0 \in U_0 \subseteq W$, $F(U_0) \subseteq V_0 \subseteq N$, $\varphi_0(0) = 0$, and $\widehat{F} \coloneqq \psi_0 \circ \widetilde{F} \circ \varphi_0^{-1}$ is given by:
+
+	{\centering $\widehat{F}(x_1, \ldots, x_m) = (x_1, \ldots, x_m, \underbrace{0, \ldots, 0}_{n - m \text{ zeros}})$\retTwo\par}
+
+	The one issue that needs to be worked out is that $\varphi_0(U_0 \cap M)$ may not be contained in $H^m$. To address this, we make the following modification:
+	\begin{myIndent}\exPPP	
+		$\varphi_0$ is a $C^r$ diffeomorphism from $U_0 \subseteq \mathbb{R}^m$ to an open set $\widehat{U}_0 \subseteq \mathbb{R}^m$ such that\\ $\varphi_0(0) = 0$. In turn, $\varphi_0^{-1} \times \myId_{\mathbb{R}^{n-m}}: \widehat{U}_0 \times \mathbb{R}^{n - m} \to U_0 \times \mathbb{R}^{n - m}$ is a $C^r$\\ [1pt] diffeomorphism defined on an open neighborhood of $0$.\retTwo
+
+		Next let $\psi \coloneqq (\varphi_0^{-1} \times \myId_{\mathbb{R}^{n - m}}) \circ \psi_0$. This is well-defined $C^r$ diffeomorphism from an\\ open set $V \coloneqq V_0 \cap \psi_0^{-1}(\widehat{U}_0 \times \mathbb{R}_{n - m})$ of $N$ containing $F(0) = 0$.\retTwo
+		
+		Finally $U \coloneqq U_0 \cap F^{-1}(V) \cap M$ is an open subset of $M$ containing $0$ such that for all $x \in U$:
+
+		{\centering\begin{tabular}{l}
+			$\psi \circ F(x_1, \ldots, x_m) = (\varphi_0^{-1} \times \myId_{\mathbb{R}^{n - m}}) \circ \psi_0 \circ F \circ \varphi_0^{-1} \circ \varphi_0(x_1, \ldots, x_m)$\\ [4pt]
+			$\phantom{\psi \circ F(x_1, \ldots, x_m)}  = (\varphi_0^{-1} \times \myId_{\mathbb{R}^{n-m}})(\varphi(x_1, \ldots, x_m), 0) = (x_1, \ldots, x_m, 0, \ldots, 0)$\\ [4pt]
+		\end{tabular}\retTwo\par}
+
+		Therefore the original coordinates for $M$ restricted to $U$ as well as the smooth chart $(V, \psi)$ works. \exThreeP$\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\hTwo Given $C^r$ manifolds $M$ and $N$, we say a map $F: M \to N$ is a \udefine{$C^k$ embedding} (where $k \leq r$) if $F$ is a $C^k$ immersion and $F$ is a homeomorphism from $M$ to $F(M)$.\retTwo
+
+\exTwo\ul{Exercise 4.16:} If $M, N, P$ are $C^r$ manifolds, $k \leq r$, and $F: M \to N$ and $G: N \to P$ are $C^k$ embeddings then $(G \circ F) : M \to P$ is a $C^k$ embedding as well.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$G \circ F$ is obviously $C^k$. Also a composition of immersions will be an immersion. After all, for all $p \in M$ we have that $\df (G \circ F)_p = \df G_{F(p)} \circ \df F_p$ is injective since $\df F_p$ and $\df G_{F(p)}$ are both injective. Finally, let $h_F : F(M) \to M$ and $h_G: G(N) \to N$ be the continuous inverse functions to $F$ and $G$ respectively. Then $(h_F \circ h_G)|_{G(F(M))}$ is a continuous inverse function to $G \circ F$. $\blacksquare$\newpage
+\end{myIndent}
+
+\hTwo Some examples of $C^r$ embeddings are:
+\begin{itemize}
+	\item[1.] If $M$ is a $C^r$ manifold and $U \subseteq M$ is an open set, then the inclusion map $\iota: U \hookrightarrow M$ is a $C^r$ embedding.
+	\begin{myIndent}\pracTwo
+		It's $C^r$, at every point it's differential is just the identity linear map, and also it's\\ injective with an inverse map from $\iota(U) \to U$ just being the identity function (which is obviously continuous).\retTwo
+	\end{myIndent}
+
+	\item[2.] Suppose $M_1, \ldots, M_k$ are $C^r$ manifolds and $p_i \in M_i$ is an arbitrarily chosen point for each $i$. Then for every $1 \leq j \leq k$ we have that the map $\iota_j : M_j \to M_1 \times \cdots \times M_k$ given by $\iota_j(m_j) = (p_1, \ldots, p_{j-1}, m_j, p_{j+1}, \ldots, p_k)$ is a $C^r$ embedding.
+	\begin{myIndent}\pracTwo
+		That $\iota_j$ is $C^r$ is immediate. Also we know that it has a continuous $C^r$ inverse\\ $\pi_j: M_1 \times \cdots \times M_k \to M_j$ given by $(m_1, \ldots, m_{j-1}, m_j, m_{j+1}, \ldots, m_k) \mapsto m_j$. Finally, for any $q \in M_j$ we have that$\df(\myId_{M_j})_q  = \df \pi_{\iota_j(q)} \circ \df (\iota_j)_q$ implies that $\df \pi_{\iota_j(q)}$ is surjective and $\df (\iota_j)_q$ is injective. From this we can conclude that $\iota_j$ is an immersion and $\pi_j$ is a submersion.\retTwo
+	\end{myIndent}
+\end{itemize}
+
+Next, here are two nonexamples of smooth embeddings:
+\begin{enumerate}
+	\item[1.] Consider the map $\gamma: \mathbb{R} \to \mathbb{R}^2$ given by $\gamma(t) = (t^3, 0)$. This is a $C^\infty$ map with\\ a continuous inverse function given by $(t, 0) \mapsto (\sqrt[3]{t}, 0)$. That said, $\df \gamma_0$ is a trivial\\ linear map since $\gamma^\prime(0) = 0$. So, $\gamma$ fails to be an immersion.\retTwo
+	
+	\item[2.] Consider the \udefine{lemniscate} $\beta: (-\pi, \pi) \to \mathbb{R}^2$ defined by $\beta(t) = (\sin(2t), \sin(t))$.
+	\begin{myIndent}\pracTwo
+		Proving that $\beta$ is injective just involves considering a bunch of subcases. So suppose $s, t \in (-\pi, \pi)$ satisfy that $\sin(2t) = \sin(2s)$ and $\sin(t) = \sin(s)$.
+		\begin{itemize}
+			\item If $t \in (0, \pi/2)$ and $s \neq t$ then $\sin(t) = \sin(s) \implies s = \pi - t$. Yet then\\ $\sin(2s) < 0$ while $\sin(2t) > 0$. So if $t \in (0, \pi/2)$ then $s = t$.
+			\item If $t \in (\pi/2, \pi)$ and $s \neq t$ then $\sin(t) = \sin(s) \implies s = \pi - t$ again. Yet now we have that $\sin(2t) < 0$ while $\sin(2s) > 0$. So if $t \in (\pi/2, \pi)$ then $s = t$.
+			\item Given that $t \in (-\pi, \pi)$, we have that $\sin(t) = 0$ iff $t = 0$ and $\sin(t) = 1$ iff $t = \pi/2$. So, $\beta$ is injective on $[0, \pi)$.
+			\item By the oddness of $\sin(2t)$ and $\sin(t)$ we can also conclude that $\beta$ is injective on $(-\pi, 0]$. And since $\sin(t) < 0$ for all $t < 0$ and $\sin(t) > 0$ for all $t > 0$, we can conclude that $\beta$ is injective on $(-\pi, \pi)$.\retTwo
+		\end{itemize}
+
+		We can also see that $\beta$ is a $C^\infty$ map. In particular, $\beta^\prime(t) = (2\cos(2t), \cos(t))$. But now $\cos(t) = 0$ iff $t = \pm \pi/2$. Yet $\cos(2(\pi/2)) = -1 = \cos(2(-\pi/2))$. So $\beta^\prime(t) \neq 0$ for any $t \in (-\pi, \pi)$ and we can conclude that $\beta$ is an immersion.\retTwo
+
+		That all said, $\beta$ does not have a continuous inverse function. After all, $\beta(0) = 0$ but also $\beta(t) \to 0$ as $t \to \pi$ or as $t \to -\pi$. Therefore, if $f: \beta((-\pi, \pi)) \to (-\pi, \pi)$ was the inverse function to $\beta$ then we'd have to have that $f$ is not continuous at $0$.\newpage
+	\end{myIndent}
+\end{enumerate}
+
+\exTwo\ul{Proposition 4.22:} Suppose $M$ and $N$ are $C^r$ manifolds with or without boundary, and\\ $F: M \to N$ is an injective $C^k$ immersion (where $k \leq r$). Then $F$ is a $C^k$ embedding if any of the following conditions hold:
+\begin{enumerate}
+	\item[(a)] $F$ is an open or closed map into $N$.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		$F$ being an open map into $N$ trivially means $F$ is an open map into the subspace topology of $F(M) \subseteq N$.\retTwo
+
+		Meanwhile, if $F$ is a closed map then let $U \subseteq M$ be an open set. Then $M - U$ is a closed set so $F(M - U)$ is a closed subset of $N$. It follows that $N - F(M - U)$ is an open subset of $N$. And so $F(M) \cap (N - F(M - U)) = F(U)$ (which holds because $F$ is injective) is an open set in the subspace topology of $F(M) \subseteq N$.
+		\begin{myIndent}\myComment
+			\hypertarget{Page 1104 reference}{More} generally, this reasoning shows that if $X$ and $Y$ are topological spaces then any injective continuous map $f: X \to Y$ that is also open or closed is a \udefine{topological embedding} (i.e. a homeomorphism from $X$ to $f(X) \subseteq Y$).\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(b)] $F$ is a proper map.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		Let $E$ be any closed subset of $M$ and then suppose $q$ is any accumulation point of $F(E)$ in $N$. Since $N$ is an LCH space, we can pick a precompact open set $V \subseteq N$\\ [-1pt] containing $q$. And now $\overline{V} \cap F(E)$ also has $q$ as an accumulation point. Yet because\\ $F$ is proper, we know that $F^{-1}(\overline{V})$ is compact. Then since closed subsets of compact sets are also compact, we know that $E \cap F^{-1}(\overline{V})$ is compact. In turn, as $F$ is\\ continuous we have that $F(E \cap F^{-1}(\overline{V})) = F(E) \cap \overline{V}$ is compact in $N$ (and thus closed since $N$ is Hausdorff). So $F(E) \cap \overline{V}$ must contain all its accumulation points and so $q \in F(E)$.\retTwo
+
+		Since $q$ was arbitrary, we've proven that $F(E)$ is a closed subset of $N$. So, $F$ is a closed map into $N$ and we can finish by citing part (a).
+		\begin{myIndent}\myComment
+			More generally, this reasoning shows that if $X$ is a topological space and $Y$ is an LCH space then any continuous proper map $f: X \to Y$ is also a closed map.\retTwo
+		\end{myIndent}
+	\end{myIndent}
+
+	\item[(c)] $M$ is a compact manifold.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		$F: M \to F(N)$ is a continuous bijection, $M$ is compact, and $F(N)$ is Hausdorff. Thus $F$ is a homeomorphism.\retTwo
+	\end{myIndent}
+
+	\item[(d)] $M$ has no boundary and $\dim(M) = \dim(N)$.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		By proposition 4.8(b) on \inLinkRap{Proposition 4.8 page 1061}{page 1061}, we know $F$ is a local $C^k$-diffeomorphism. It then follows by proposition 4.6(c) on the page before proposition 4.8(b) that $F$ is an open map. So, we finish by invoking part (a) of this theorem. $\blacksquare$\newpage
+	\end{myIndent}
+\end{enumerate}
+
+\hTwo\dispDate{8/20/2026}
+
+I was realizing yesterday that I've conflated open maps with closed maps an unhealthy\\ amount of times in my brain and am not sure if that's made some of my prior notes\\ incorrect. I've double checked a bunch of pages and not found any errors but still.\retTwo
+
+Anyways a thing I want to get across first and foremost today is that a closed surjective continuous map is a quotient map for different reasons then an open surjective continuous map is.\retTwo
+
+\exTwo\ul{Proposition:} Suppose $X$ and $Y$ are topological spaces and $f: X \to Y$ is a continuous surjective map. Then $f$ is a quotient map if either of the following holds:
+\begin{itemize}
+	\item[(a)] $f$ is an open map.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		Suppose $U \subseteq Y$ satisfies that $f^{-1}(U)$ is an open subset of $X$. Then because $f$ is surjective, we know that $f(f^{-1}(U)) = U$. And because $f$ is open, we know that $U$ is open.\retTwo
+	\end{myIndent}
+
+	\item[(b)] $f$ is a closed map.
+	\begin{myIndent}\exThreeP
+		Why?\\
+		Suppose $U \subseteq Y$ again satisfies that $f^{-1}(U)$ is an open subset of $X$. Then we know that $X - f^{-1}(U)$ is a closed subset of $X$. So because $f$ is a closed map, we know that $f(X - f^{-1}(U)) = f(X) - U$ is a closed subset of $Y$. Since $f$ is surjective, we in other words know that $Y - U$ is a closed set. Equivalently, $U$ is an open set. $\blacksquare$\retTwo
+	\end{myIndent}
+\end{itemize}
+
+\hTwo Another thing I want to mention is that I should think of a $C^k$ embedding as the differential-\\topology equivalent of a topological embedding. Similarly, a (surjective) $C^k$ submersion\\ is the differential-topology equivalent of a quotient map as I will soon show.\retTwo
+
+One final observation I want to make before getting back into taking notes on Lee's book is that we can precisely restate the definition of a coordinate patch $\alpha$ for a $k$-dimensional $C^r$ manifold in $\mathbb{R}^n$ given on \inLinkRap{placeholder}{page 84} as being that $\alpha$ is a $C^r$-embedding. I will come back to this soon when talking about embedded submanifolds.\retTwo
+
+\exTwo\ul{Theorem 4.25 (Local Embedding Theorem):} Suppose $M$ and $N$ are $C^r$ manifolds where $M$ has no corners and $F: M \to N$ is a $C^k$ map. Then $F$ is a $C^k$ immersion if and only if for all $p \in M$ there exists an open set $U \subseteq M$ such that $F|_U : U \to N$ is a $C^k$ embedding.
+\begin{myIndent}\exThreeP
+	$(\Longleftarrow)$\\
+	This direction is immediate.\retTwo
+
+	$(\Longrightarrow)$\\
+	Suppose $F$ is a $C^k$ immersion. Without loss of generality we can assume $M$ and $N$ are equipped with the unique $C^k$ structures containing their original $C^r$ structures since that would have no effect on whether $F$ is a $C^k$ immersion or $F|_U$ is a $C^k$ embedding. And this assumption is useful cause it let's us apply the rank theorem.\newpage
+
+	Firstly we show that any $p \in M$ has a neighborhood $U$ on which $F$ is injective.
+	\begin{myIndent}\exPPP
+		First suppose $F(p) \notin \partial N$. Then as the set of interior points $\Int(N)$ is an open\\ set and $F$ is continuous, we know that there is an open set  $\Omega \subseteq M$ containing $p$\\ with $F(\Omega) \subseteq \Int(N)$. Then by either the rank theorem on \inLinkRap{The Rank Theorem}{page 1062} or the local\\ immersion theorem on \inLinkRap{Local Immersion Theorem boundary page 1101}{page 1101}, we know there is an open set $U_1 \subseteq M$ of $p$\\ where $F$ has the coordinate representation:
+		
+		{\centering$(x_1, \ldots, x_m) \mapsto (x_1, \ldots, x_m, 0, \ldots, 0)$.\retTwo\par}
+		
+		So $F$ is injective on $U_1$.\retTwo
+
+		Meanwhile, suppose $F(p) \in \partial N$ and let $(W, \psi)$ be a smooth chart on $N$\\ containing $F(p)$. Then $U_0 \coloneqq F^{-1}(W)$ is an open subset of $M$ containing $p$.\\ Furthermore, let $\iota: H^n (\text{ or }\mathbb{R}_{\geq 0}^n) \hookrightarrow \mathbb{R}^n$ be the inclusion map (here $n = \dim(N)$).\\ Then $\iota \circ \psi \circ F|_{U_0}$ is a $C^k$ map from $M$ to a $C^k$ manifold without boundary.\\ Also, as $\df \iota_{a}$ and $\df \psi_{b}$ are bijections for all $a \in H^n$ and $b \in W$, we can conclude that $\iota \circ \psi \circ F|_{U_0}$ is a $C^k$-immersion still. Thus, we can apply the earlier reasoning to this map to find an open set $U_1 \subseteq U_0$ containing $p$ such that $(\iota \circ \psi \circ F|_{U_0})|_{U_1}$ is an injection. Equivalently, this implies $F|_{U_1}$ is an injection.\retTwo
+	\end{myIndent}
+
+	Now consider any $p \in M$ and let $U_1 \subseteq M$ be an open set containing $p$ on which $F$\\ is injective. Since $M$ is an LCH space, we can find a precompact open set $U$ such that\\ $p \in U \subseteq \overline{U} \subseteq U_1$. But now $F|_{\overline{U}}$ is an injective continuous function from a compact\\ set. Therefore, $F|_{\overline{U}}$ is a topological embedding. Next since restrictions of topological\\ embeddings are still topological embeddings, we know $F|_U$ is a topological embedding. And since $F|_U$ is a $C^k$ immersion, we can conclude that $F|_U: U \to N$ is a $C^k$ embedding. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo 
+
+Suppose $M$ and $N$ are $C^r$ manifolds. If $\pi: M \to N$ is a continuous map then a \udefine{section for $\pi$} is a continuous right inverse function $\sigma: N \to M$ (i.e. $\pi \circ \sigma = \myId_N$). A \udefine{local section for $\pi$} is a continuous map $\sigma: U \to M$ where $U \subseteq N$ is an open set and $\pi \circ \sigma = \myId_U$.\retTwo
+
+\exTwo\ul{Theorem 4.26 (Local Section Theorem):} Suppose $M$ and $N$ are $C^r$ manifolds without\\ boundaries, and $\pi: M \to N$ is a $C^k$ map (where $k \leq r$). Then $\pi$ is a $C^k$ submersion\\ if and only if every $p \in M$ is in the image of a $C^k$ local section of $\pi$.
+\begin{myIndent}\exThreeP
+	$(\Longleftarrow)$\\
+	Given any $p \in M$, let $\sigma: U \to M$ be a $C^k$ local section such that $q \in U$ and $\sigma(q) = p$. In other words, $q = \pi(\sigma(q)) = \pi(p)$. But now since $\pi \circ \sigma = \myId_U$, we can conclude that $\df \pi_p \circ \df \sigma_q = \myId_{T_q N}$. In turn, we must have that $\df \pi_p$ is surjective. And since $p$ was arbitrary, we can conclude $\pi$ is a submersion.\retTwo
+
+	$(\Longrightarrow)$\\
+	Suppose $\pi$ is a $C^k$ submersion. Then without loss of generality we can assume $M$ and $N$ are equipped with the unique $C^k$ structures containing their original $C^r$ structures. After all, this change won't effect whether $\pi$ is a $C^k$ submersion, or whether some local section of $\pi$ is $C^k$ or not. Also, this assumption lets us apply the rank theorem.\newpage
+
+	Pick any $p \in M$ and let $q = \pi(p)$. By the rank theorem, we can choose smooth charts $(V_0, \varphi)$ on $M$ containing $p$ and $(U_0, \psi)$ containing $q$ such that $\varphi(p) = 0$, $\pi(V_0) \subseteq U_0$, and $\widehat{\pi} \coloneqq \psi \circ \pi \circ \varphi^{-1}$ has the form $\widehat{\pi}(x_1, \ldots, x_n, x_{n+1}, \ldots, x_m) = (x_1, \ldots, x_n)$.\retTwo
+
+	For a small enough $\varepsilon > 0$ we have that the coordinate cube
+	
+	{\centering$C_\varepsilon \coloneqq \{(x_1, \ldots, x_m) : |x_i| < \varepsilon \text{ for all }i\}$\\ [4pt]\par}
+
+	is an open subset of $\varphi(V_0)$ containing $0 = \varphi(p)$. In turn we have that:
+	
+	{\centering$C_\varepsilon^\prime \coloneqq \{(y_1, \ldots, y_n) : |y_i| < \varepsilon \text{ for all }i\}$\\ [4pt]\par}
+	
+	is an open subset of $\psi(U_0)$ containing $0 = \widehat{\pi}(0) = \widehat{\pi} \circ \varphi(p) = \psi(q)$ and satisfying that $\widehat{\pi}(C_\varepsilon) = C_\varepsilon^\prime$. Let $U = \psi^{-1}(C_\varepsilon^\prime)$. Then define $\iota: C_\varepsilon^\prime \to C_\varepsilon$ by:
+	
+	{\centering$\iota(y_1, \ldots, y_n) = (y_1, \ldots, y_n, \underbrace{0, \ldots, 0}_{m - n \text{ zeros}})$.\retTwo\par}
+	
+	Finally, let $\sigma = \varphi^{-1} \circ \iota \circ \psi|_U$. Then if $q^\prime \in U$ and $\varphi(q^\prime) = (y_1, \ldots, y_n)$ we have that:
+
+	{\center\begin{tabular}{l}
+		$\pi \circ \sigma(q^\prime) = \psi^{-1} \circ \widehat{\pi} \circ \varphi \circ (\varphi^{-1} \circ \iota \circ \psi)(q^\prime)$\\ [4pt]
+		$\phantom{\pi \circ \sigma(q^\prime)} = \psi^{-1} \circ \widehat{\pi} \circ \iota(y_1, \ldots, y_n) = \psi^{-1} \circ \widehat{\pi}(y_1, \ldots, y_n, 0, \ldots, 0)$\\ [4pt]
+		$\phantom{\pi \circ \sigma(q^\prime) = \psi^{-1} \circ \widehat{\pi} \circ \iota(y_1, \ldots, y_n)} = \psi^{-1}(y_1, \ldots, y_n) = q^\prime$\\ [4pt]
+	\end{tabular}\retTwo\par}
+
+	So $\pi \circ \sigma = \myId_U$. Also $\sigma$ is a $C^k$ map and 
+	
+	{\centering$\sigma(q) = \varphi^{-1} \circ \iota(0, \ldots, 0) = \varphi^{-1}(0, \ldots, 0) = p$. $\blacksquare$\retTwo\par}
+\end{myIndent}
+
+\hTwo Based on theorems 4.25 and 4.26, we also get the following purely topological definitions. Suppose $X$ and $Y$ are topological spaces and $f: X \to Y$ is a continuous function.
+\begin{itemize}
+	\item $f$ is a \udefine{topological immersion} if every point $x \in X$ has a neighborhood $U \subseteq X$ such that $f|_U : U \to Y$ is a topological embedding.
+	\item $f$ is a \udefine{topological submersion} if every point $x \in X$ is in the image of a (continuous) local section for $f$.\retTwo
+\end{itemize}
+
+The prior two theorems say that any $C^k$ immersion / submersion is a topological\\ immersion / submersion. That said, be aware that a topological immersion or submersion that happens to also be a $C^k$ map is not necessarily a "$C^k$ immersion" or "$C^k$ submersion".
+\begin{myIndent}\pracTwo
+	For example, let $f: \mathbb{R} \to \mathbb{R}$ be defined by $f(t) = t^3$. Then $f$ is a $C^\infty$ map which is also a homeomorphism. And clearly homeomorphisms are trivially topological immersions and submersions. That said, as $\df f_0$ is the trivial linear map as $f^\prime(0) = 0$, we know $f$ is not a $C^\infty$ immersion or submersion.\retTwo
+\end{myIndent}
+
+\exTwo\ul{Theorem 4.27:} Let $M$ and $N$ be $C^r$ manifolds without boundaries, and suppose\\ $\pi: M \to N$ is a $C^k$ submersion. Then $\pi$ is an open map. Also consequently, if\\ $\pi$ is surjective then $\pi$ is a quotient map.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose $W \subseteq M$ is an open set and $q \in \pi(W) \subseteq N$. We can pick $p \in W$ with $\pi(p) = q$. And then by the local section theorem, we know there is an open subset $U \subseteq N$ containing $q$ as well as a $C^k$ map $\sigma: U \to M$ such that $\sigma(q) = p$ and $\pi \circ \sigma = \myId_U$. Yet now note\newpage that $\sigma^{-1}(W)$ is an open subset of $U$ (since $\sigma$ is continuous) and it contains $q$. Also note that if $y \in \sigma^{-1}(W)$ then $y = \pi(\sigma(y)) \in \pi(W)$ Therefore, we've shown that $q$ is in the topological interior of $\pi(W)$. And since $q$ was arbitrary, this proves that $\pi(W)$ is an open set. $\blacksquare$\retTwo
+\end{myIndent}
+
+\Hstatement\blab{Exercise 4-6:} Let $M$ be a nonempty compact $C^r$ manifold without a boundary, and let $N$ be a connected non-compact $C^r$ without a boundary. Then there is no $C^k$ submersion $\pi: M \to N$ (where $k \leq r$).
+\begin{myIndent}\HexOne
+	Proof:\\
+	By the prior theorem we must have that such a function $\pi$ is an open map. Thus in particular we can conclude that $\pi(M)$ is an open subset of $N$. That said, as $M$ is compact and $\pi$ is continuous, we must also have that $\pi(M)$ is a compact subset of $N$. Since $N$ is Hausdorff, we can conclude $\pi(M)$ is a clopen set. And since $N$ is connected, we thus must have that $\pi(M)$ is either the empty set or all of $N$.\retTwo
+
+	$\pi(M)$ can't be the empty set however because $M \neq \emptyset$. Simultaneously, since $N$ is not compact we can't have that $\pi(M) = N$. Thus we have a contradiction. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo The next theorem is a generalization of exercise 4.10(b) on \inLinkRap{Exercise 4.10 page 1061}{pages 1061-1062}.\retTwo
+
+\exTwo\ul{Theorem 4.29:} Suppose $M$ and $N$ are $C^r$ manifolds without boundaries and $\pi: M \to N$ is a surjective $C^k$ submersion. For any $C^r$ manifold $P$ we have that any map $F: N \to P$ is $C^k$ iff $F \circ \pi: M \to P$ is a $C^k$ map.
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzAsMSwiTiJdLFsxLDEsIlAiXSxbMCwxLCJcXHBpIiwyXSxbMCwyLCJGIFxcY2lyYyBcXHBpIl0sWzEsMiwiRiIsMl1d
+\[\begin{tikzcd}
+	M & \\
+	N & P
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow["{F \circ \pi}", from=1-1, to=2-2]
+	\arrow["F"', from=2-1, to=2-2]
+\end{tikzcd}\]
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $F$ is $C^k$ then the composition $F \circ \pi$ will also be $C^k$. So, one direction of this theorem is trivial.\retTwo
+
+	Conversely, suppose $F \circ \pi$ is $C^k$ and let $q \in N$ be any point. Then as $\pi$ is surjective we know that there exists $p \in M$ with $\pi(p) = q$. By the local section theorem, we know there exists an open set $U \subseteq N$ containing $q$ as well as a $C^k$ map $\sigma: U \to M$ such that $\sigma(q) = p$ and $\pi \circ \sigma = \myId_U$. And now $F|_U = F \circ \myId_U = F \circ (\pi \circ \sigma) = (F \circ \pi) \circ \sigma$ is a $C^k$ map.\retTwo
+
+	Since every point in $N$ has a neighborhood on which $F$ is a $C^k$ map, we can conclude\\ that $F$ is globally a $C^k$ map. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary 4.30:} Suppose $M$ and $N$ are $C^r$ manifolds without boundaries and $\pi: M \to N$ is a surjective $C^k$ submersion. If $P$ is any $C^r$ manifold and $F: M \to P$ is any $C^k$ map that is constant on the \udefine{fibers of $\pi$} (meaning $F$ is constant on each set $\pi^{-1}(q)$ for every $q \in N$),\newpage then there exists a unique $C^k$ map $\widetilde{F} : N \to P$ such that $F = \widetilde{F} \circ \pi$.
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzAsMSwiTiJdLFsxLDEsIlAiXSxbMCwxLCJcXHBpIiwyXSxbMCwyLCJGIl0sWzEsMiwiXFxleGlzdHMhXFx3aWRldGlsZGV7Rn0iLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	M & \\
+	N & P
+	\arrow["\pi"', from=1-1, to=2-1]
+	\arrow["F", from=1-1, to=2-2]
+	\arrow["{\exists!\widetilde{F}}"', dashed, from=2-1, to=2-2]
+\end{tikzcd}\]
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Since $\pi$ is a quotient map, we know from the universal property of quotient maps that there exists a unique continuous function $\widetilde{F}: N \to P$ such that $F = \widetilde{F} \circ \pi$. Then as $F$ is $C^k$, the prior theorem tells us that $\widetilde{F}$ is also $C^k$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Corollary 4.31:} Suppose $M, N_1, N_2$ are $C^r$ manifolds without boundaries and\\ $\pi_1: M \to N_1$ and $\pi_2: M \to N_2$ are surjective $C^k$ submersions that are constant on\\ each other's fibers (i.e. $\pi_1(x) = \pi_1(y) \iff \pi_2(x) = \pi_2(y)$). Then there exists a\\ unique $C^k$ diffeomorphism $F: N_1 \to N_2$ such that $\pi_2 = F \circ \pi_1$.
+% https://q.uiver.app/#q=WzAsMyxbMSwwLCJNIl0sWzAsMSwiTl8xIl0sWzIsMSwiTl8yIl0sWzAsMSwiXFxwaV8xIiwyXSxbMCwyLCJcXHBpXzIiXSxbMSwyLCJcXGV4aXN0cyFGIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMiwiXFxzaW0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJub25lIn0sImhlYWQiOnsibmFtZSI6Im5vbmUifX19XV0=
+\[\begin{tikzcd}
+	& M & \\
+	{N_1} && {N_2}
+	\arrow["{\pi_1}"', from=1-2, to=2-1]
+	\arrow["{\pi_2}", from=1-2, to=2-3]
+	\arrow["{\exists!F}"', dashed, from=2-1, to=2-3]
+	\arrow["\sim", draw=none, from=2-1, to=2-3]
+\end{tikzcd}\]
+
+\begin{myIndent}\exThreeP
+	Why?\\
+	Just consider the following two diagrams:
+	% https://q.uiver.app/#q=WzAsOCxbMCwxLCJNIl0sWzEsMCwiTl8xIl0sWzEsMSwiTl8yIl0sWzEsMiwiTl8xIl0sWzMsMSwiTSJdLFs0LDAsIk5fMSJdLFs0LDEsIk5fMSJdLFs0LDIsIk5fMiJdLFswLDEsIlxccGlfMSJdLFswLDIsIlxccGlfMiJdLFsxLDIsIlxcZXhpc3RzICFmIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMywiXFxwaV8xIiwyXSxbMiwzLCJcXGV4aXN0cyAhIGciLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSwzLCJcXGV4aXN0cyAhIFxcbXlJZF97Tl8xfSIsMCx7ImN1cnZlIjotNSwic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzQsNSwiXFxwaV8yIl0sWzQsNiwiXFxwaV8xIl0sWzUsNiwiXFxleGlzdHMgIWciLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbNCw3LCJcXHBpXzIiLDJdLFs2LDcsIlxcZXhpc3RzICEgZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFs1LDcsIlxcZXhpc3RzICEgXFxteUlkX3tOXzJ9IiwwLHsiY3VydmUiOi01LCJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+	\[\begin{tikzcd}
+		& {N_1} &&& {N_1} \\
+		M & {N_2} && M & {N_1} \\
+		& {N_1} &&& {N_2}
+		\arrow["{\exists !f}", dashed, from=1-2, to=2-2]
+		\arrow["{\exists ! \myId_{N_1}}", curve={height=-30pt}, dashed, from=1-2, to=3-2]
+		\arrow["{\exists !g}", dashed, from=1-5, to=2-5]
+		\arrow["{\exists ! \myId_{N_2}}", curve={height=-30pt}, dashed, from=1-5, to=3-5]
+		\arrow["{\pi_1}", from=2-1, to=1-2]
+		\arrow["{\pi_2}", from=2-1, to=2-2]
+		\arrow["{\pi_1}"', from=2-1, to=3-2]
+		\arrow["{\exists ! g}", dashed, from=2-2, to=3-2]
+		\arrow["{\pi_2}", from=2-4, to=1-5]
+		\arrow["{\pi_1}", from=2-4, to=2-5]
+		\arrow["{\pi_2}"', from=2-4, to=3-5]
+		\arrow["{\exists ! f}", dashed, from=2-5, to=3-5]
+	\end{tikzcd}\]
+	\phantom{.}\retTwo
+\end{myIndent}
+
+\hTwo Something I want to quickly mention is that an anlogous corollary can be proven for\\ quotient maps $p_1: X \to Y_1$ and $p_2: X \to Y_2$ (where $X, Y_1, Y_2$ are topological spaces). My original learning about quotient maps was fragmented so I never wrote that down before, but I think it's worth remembering in the future.\retTwo
+
+One last exercise I want to do before forcing myself to try to sleep is as follows:\retTwo
+
+\Hstatement\blab{Exercise 4-7:} Let $M$ and $N$ be $C^r$ manifolds without boundaries, and let $\pi: M \to N$ be\\ [1pt] a surjective $C^r$ submersion. Show there is no other manifold topology and $C^r$ structure that we\\ [1pt] can equip $N$ with such that for any $C^r$ manifold $P$ and map $F: N \to P$ we have that $F$ is $C^r$\\ if and only if $F \circ \pi$ is $C^r$.
+\begin{myIndent}\HexOne
+	Proof:\\ [2pt]
+	Let $\widetilde{N}$ be the same set as $N$ except equipped with a potentially different manifold topology and $C^r$ structure. Since the following diagram commutes and $\myId$ is a $C^r$ map from $\widetilde{N}$ to $\widetilde{N}$,\newpage we can conclude that $\pi: M \to \widetilde{N}$ is a $C^r$ map.
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzAsMSwiXFx3aWRldGlsZGV7Tn0iXSxbMSwxLCJcXHdpZGV0aWxkZXtOfSJdLFswLDEsIlxccGkiLDJdLFswLDIsIlxccGkiXSxbMSwyLCJcXG15SWQiLDJdXQ==
+	\[\begin{tikzcd}
+		M & \\
+		{\widetilde{N}} & {\widetilde{N}}
+		\arrow["\pi"', from=1-1, to=2-1]
+		\arrow["\pi", from=1-1, to=2-2]
+		\arrow["\myId"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+
+	But then since $\pi: M \to \widetilde{N}$ is a $C^r$ map we can also conclude from the following diagram that $\myId: N \to \widetilde{N}$ is a $C^r$ map.
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzAsMSwiTiJdLFsxLDEsIlxcd2lkZXRpbGRle059Il0sWzAsMSwiXFxwaSIsMl0sWzAsMiwiXFxwaSJdLFsxLDIsIlxcbXlJZCIsMl1d
+	\[\begin{tikzcd}
+		M & \\
+		N & {\widetilde{N}}
+		\arrow["\pi"', from=1-1, to=2-1]
+		\arrow["\pi", from=1-1, to=2-2]
+		\arrow["\myId"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+
+	Meanwhile, as $\pi: M \to N$ is a $C^r$ map we can conclude from the following diagram that $\myId: \widetilde{N} \to N$ is a $C^r$ map.
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzAsMSwiTiJdLFsxLDEsIlxcd2lkZXRpbGRle059Il0sWzAsMSwiXFxwaSIsMl0sWzAsMiwiXFxwaSJdLFsxLDIsIlxcbXlJZCIsMl1d
+	\[\begin{tikzcd}
+		M & \\
+		{\widetilde{N}} & N
+		\arrow["\pi"', from=1-1, to=2-1]
+		\arrow["\pi", from=1-1, to=2-2]
+		\arrow["\myId"', from=2-1, to=2-2]
+	\end{tikzcd}\]
+
+	So, we've proven that $\myId: N \to \widetilde{N}$ is a $C^r$-diffeomorphism. Since this also means $\myId$ is a homeomorphism, we can conclude that the topologies on $N$ and $\widetilde{N}$ are identical. Also, $\myId: N \to \widetilde{N}$ being a $C^r$ diffeomorphism easily lets us conclude that every smooth chart on $N$ is $C^r$ compatible with every smooth chart on $\widetilde{N}$ and vice versa.
+	\begin{myIndent}\HexTwoP
+		Why?\\
+		Suppose $(U, \varphi)$ is a smooth chart with respect to $N$ and $(V, \psi)$ is a smooth chart with respect to $\widetilde{N}$ such that $U \cap V \neq \emptyset$. Then as $\myId: N \to \widetilde{N}$ is a $C^r$-diffeomorphism, we know that $\psi \circ \varphi^{-1} = \psi \circ \myId \circ \varphi^{-1}$ and $\varphi \circ \psi^{-1} = \varphi \circ \myId \circ \psi^{-1}$ are $C^r$ maps.\retTwo
+	\end{myIndent}
+
+	It follows that the $C^r$ structures on $N$ and $\widetilde{N}$ are also the same. $\blacksquare$\retTwo
+\end{myIndent}
+
+\begin{myDindent}\myComment
+	In particular, this shows that if $M$ is a $C^r$ manifold without a boundary and\\ $\pi: M \to N$ is any surjective function then there is at most one manifold topology without boundary and $C^r$ structure on $N$ such that $\pi$ is a $C^r$ submersion.\retTwo
+\end{myDindent}
+\hTwo\mySepTwo
+
+\hTwo Chapter 5 of John Lee's book will let us fully connect the abstract definition of a manifold with the more naive definition studied on \inLinkRap{placeholder}{pages 77-99}.\retTwo
+
+Suppose $M$ is a $C^r$ manifold. A \udefine{$C^r$ embedded submanifold of $M$} is a subset $S \subseteq M$ which is a topological manifold when equipped with the subspace topology and which has a $C^r$ structure such that the inclusion map $\iota: S \to M$ is a $C^r$ embedding.\retTwo
+
+\myComment Remarks:\newpage
+\begin{itemize}
+	\item If $k \leq r$ then $M$ has a unique $C^k$ structure containing its $C^r$ structure. Based on this structure on $M$, if $S$ is a $C^k$ manifold then we can ask if $\iota: S \to M$ is a $C^k$ embedding. And if so we call $S$ a $C^k$ embedded submanifold of $M$.
+	\item Some authors also refer to embedded submanifolds as \udefine{regular submanifolds}.\retTwo
+\end{itemize}
+
+\hTwo If $M$ is a $C^r$ manifold and $S \subseteq M$ is a $C^k$ embedded submanifold of $M$ then the\\ \udefine{codimension of $S$ in $M$} is defined to be the difference $\dim(M) - \dim(S)$. Here $M$ is\\ called the \udefine{ambient manifold for $S$}. If $S$ has codimension $1$ we say $S$ is an \udefine{embedded\\ hypersurface}.\retTwo
+
+\exTwo\ul{Proposition 5.1:} Suppose $M$ is a $C^r$ manifold without a boundary. Then the embedded $C^k$\\ submanifolds of codimension $0$ (without boundaries) in $M$ are precisely the open\\ submanifolds of $M$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	If $U \subseteq M$ is an open submanfold then we know $\dim(U) = \dim(M)$. Furthermore, $U$ is equipped with the subspace topology and we know from before that the inclusion map $\iota: U \hookrightarrow M$ is a $C^k$ immersion and submersion. It follows that $\iota$ is a $C^k$ embedding. And as $M$ has no boundary, neither does $U$.\retTwo
+
+	Conversely, suppose $U \subseteq M$ is an embedded $C^k$ submanifold in $M$ of codimension $0$. By definition the inclusion map $\iota: U \hookrightarrow M$ is a $C^k$ embedding. Yet as $\dim(M) = \dim(U)$ and $\iota$ is an immersion, we know from proposition 4.8(b) on \inLinkRap{Proposition 4.8 page 1061}{page 1061} that $\iota$ is a local $C^k$-diffeomorphism. In turn, by proposition 4.6(c) on \inLinkRap{Properties of local $C^k$-diffeomorphisms page 1060}{page 1060} we know $\iota$ is an open map. So, $\iota(U) = U$ is an open subset of $M$.\retTwo
+
+	Finally, suppose $(V, \varphi)$ is a smooth chart on $M$ (equipped with its unique $C^k$ structure). Then $U \cap V$ is an open subset of $U$ and I claim that $(U \cap V, \varphi)$ is a smooth map on $U$. After all, suppose $(W, \psi)$ is any other smooth chart on $U$ as an embedded submanifold. Then as $\iota: U \hookrightarrow M$ is a $C^k$ map we know that $\varphi \circ \iota \circ \psi^{-1} = \varphi \circ \psi^{-1}$ is $C^k$ on $\psi((U \cap V) \cap W)$.\retTwo
+
+	Meanwhile, as $\iota$ is a local $C^k$-diffeomorphism, we know for every $p \in (U \cap V) \cap W$ that there is some open set $\Omega \subseteq U$ containing $p$ such that $\iota$ is a $C^k$-diffeomorphism from $\Omega$ (as an open submanifold of $U$) to $\Omega$ (as an open submanifold of $M$). In turn, $\psi \circ \varphi^{-1}$ is a $C^k$ map on $\psi((U \cap V) \cap W \cap \Omega)$. So, $\psi \circ \varphi^{-1}$ is $C^k$ at every $p \in (U \cap V) \cap W$. And with that, we've proven that the $C^k$ structure on $U$ as an embedded submanifold must be the same as the $C^k$ structure on $U$ as an open submanifold. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 5.2:} Suppose $M$ and $N$ are $C^r$ manifolds, and $F: N \to M$ is a $C^r$ embedding. Let $S = F(N)$. With the subspace topology $S$ is a topological manifold. Also $S$ has a unique $C^r$ structure making it into an embedded submanifold of $M$ and satisfying that $F$ is a $C^r$-diffeomorphism from $N$ to $S$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	$S$ being a subspace of $M$ and $M$ being second countable and Hausdorff means that $S$ is also second countable and Hausdorff. Also by assumption $F$ is a homeomorphism from $N$ to $S$. Therefore, $N$ being locally Euclidean of dimension $\dim(N)$ means that $S$ is as well.\newpage
+
+	Now we equip $S$ with the $C^r$ structure given by the charts $(F(U), \varphi \circ F^{-1})$ where $(U, \varphi)$ is any smooth chart on $N$. Them being $C^r$ compatible with each other is a result of the smooth charts on $N$ being $C^r$ compatible with each other. So, $S$ is a $C^r$ manifold. It's also easy to see now that $F$ is a $C^r$-diffeomorphism. After all, for any $p \in S$ we can pick a smooth chart $(U, \varphi)$ on $N$ containing $F^{-1}(p)$. Then $(F(U), \varphi \circ F^{-1})$ is a smooth chart on $S$ containing $p$, and:
+
+	{\centering $\varphi \circ F \circ (\varphi \circ F^{-1})^{-1} = \myId_{\varphi(U)}$ is a $C^r$ map.\\ [4pt]\par}
+
+	So, $F^{-1}: S \to N$ is a $C^r$ map.\retTwo
+
+	Next, to show uniqueness just note that if $F$ is to be a diffeomorphism from $N$ to $S$ then for any smooth chart $(U, \varphi)$ on $N$ we must have that $(F(U), \varphi \circ F^{-1}$) is a smooth chart on $S$. Similarly, for every smooth chart $(V, \psi)$ on $S$ we must have that $(F^{-1}(V), \psi \circ F)$ is a smooth chart on $N$. So the atlas described in the prior paragraph is maximal and $F$ being a $C^r$-diffeomorphism from $N$ to $S$ automatically implies that $S$ is equipped with that maximal structure.\retTwo
+	
+	Finally, I need to show that the map $\iota: S \to M$ is a $C^r$-embedding. Fortunately, consider that $\iota$ is given by the composition:
+	% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTIl0sWzEsMCwiTiJdLFsyLDAsIk0iXSxbMSwyLCJGIl0sWzAsMSwiRl57LTF9Il0sWzAsMiwiXFxpb3RhIiwyLHsiY3VydmUiOjJ9XV0=
+	\[\begin{tikzcd}
+		S & N & M
+		\arrow["{F^{-1}}", from=1-1, to=1-2]
+		\arrow["\iota"', curve={height=12pt}, from=1-1, to=1-3]
+		\arrow["F", from=1-2, to=1-3]
+	\end{tikzcd}\]
+	
+	Since $F^{-1}$ is a $C^r$-diffeomorphism and $F$ is a $C^r$-embedding, we can conclude $\iota$ is a $C^r$ embedding. So, $S$ is an embedded submanifold of $M$. $\blacksquare$\retTwo
+
+	\begin{myIndent}\myComment
+		As a side note, if $F: N \to M$ is a $C^k$ embedding (where $k \leq r$) we can also now say that $S = F(N)$ has a unique $C^k$ structure making it into an embedded submanifold of $M$ such that $F$ is a $C^k$-diffeomorphism from $N$ to $S$. After all, we can just re-equip $M$ and $N$ with the unique $C^k$ structures containing their original $C^r$ structures and then everything works the same.\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Proposition 5.3:} Suppose $M$ and $N$ are $C^r$ manifolds. For each $p \in N$ the subset\\ $M \times \{p\} \subseteq M \times N$ (called a \udefine{slice} of the product manifold) is an embedded submanifold of $M \times N$ diffeomorphic to $M$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	The map $F: M \to M \times N$ given by $F(m) \coloneqq (m, p)$ is a $C^r$ embedding. After all, it's a $C^r$ map that is a topological embedding. Furthermore, recall from \inLinkRap{Proposition 3.14 page 1059}{page 1059} how we standardly identify $T_{(m, p)}(M \times N)$ with $T_m M \oplus T_p N$.\retTwo
+
+	\ul{Lemma:} Suppose $N, M_1, \ldots, M_k$ are $C^r$ manifolds. Then let $M \coloneqq \prod_{i=1}^k M_i$ and\\ for each $i$ let $\pi_i: M \to M_i$ be the projection map. Given any $(p_1, \ldots, p_k) \in M$ we\\ identify $T_{(p_1, \ldots, p_k)}M$ with $\bigoplus_{i=1}^k T_{p_i}M_i$ via the standard identification. Now suppose for\\ each $1 \leq i \leq k$ that $F_i: N \to M_i$ is a $C^1$ map. Then let $F: N \to M$ be defined\\ by $F(q) = (F_1(q), \ldots, F_k(q))$. Now for any $q \in N$ we have that:
+	
+	{\centering$\df F_q(v) = (\df (F_1)_q (v),\phantom{.} \ldots,\phantom{.} \df (F_k)_q (v))$.\\ [4pt]\par}
+	\begin{myIndent}\exPPP
+		Why?\\
+		Suppose $v \in T_q N$ and $f: M \to \mathbb{R}$ is a $C^1$ map. Then $\df F_q(v) f$ is identified with:
+		
+		{\centering\begin{tabular}{l}
+			$(\df (\pi_1)_{F(q)} \circ \df F_q(v), \ldots \df (\pi_k)_{F(q)} \circ \df F_q(v)) = (\df (\pi_1 \circ F)_q (v), \ldots, \df (\pi_k \circ F)_q (v))$\\ [4pt]
+			$\phantom{(\df (\pi_1)_{F(q)} \circ \df F_q(v), \ldots \df (\pi_k)_{F(q)} \circ \df F_q(v))} = (\df (F_1)_q (v),\phantom{.} \ldots,\phantom{.} \df (F_k)_q (v))$
+		\end{tabular}\retTwo\par}
+	\end{myIndent}
+
+	Based on the prior lemma, we can see for any $v \in T_m M$ that:
+	
+	{\centering$\df F_m(v) = (v, 0) \in T_m M \oplus T_p N$.\retTwo\par}
+
+	It follows that $\df F_m$ is injective for all $m \in M$. So, $F$ is an immersion. $\blacksquare$\retTwo
+\end{myIndent}
+
+\exTwo\ul{Proposition 5.4:} Suppose $M$ is a $C^r$ $m$-dimensional manifold, $N$ is a $C^r$ $n$-dimensional manifold, $U \subseteq M$ is open, and $f: U \to N$ is a $C^k$ map. Let $\Gamma(f) \subseteq M \times N$ denote the graph of $f$:
+
+{\centering $\Gamma(f) \coloneqq \{(m, f(M)) \in M \times N : m \in U\}$ \\ [4pt]\par}
+
+Then $\Gamma(f)$ is a $C^k$ $m$-dimensional embedded submanifold of $M \times N$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Define a map $\gamma_f: U \to M \times N$ by $\gamma_f(m) = (m, f(m))$. This will be a $C^k$ map because the inclusion map $\iota: U \to M$ is $C^r$ and similarly the map $f: U \to N$ is $C^k$. Also let $\pi_M: M \times N \to M$ be the projection map. Then $\myId_{U} = \pi_M \circ \gamma_f$ implies that $\gamma_f$ injective. Also for any $m \in U$ we have $\df (\pi_M)_{(m, f(m))} \circ \df (\gamma_{f})_m = \df (\myId_{U})_m = \myId_{T_m U}$. So, for every $m \in U$ we have that $\df (\gamma_{f})_m$ is injective. In other words, $\gamma_{f}$ is an immersion. Finally, $\gamma_f$ is a topological embedding since its inverse function is given by $\pi_M |_{\Gamma(f)}$.\retTwo
+	
+	And now we've shown that $\Gamma(f)$ is the image of a $C^k$ embedding $\gamma_f$ from $U$. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo An embedded submanifold $S \subseteq M$ is said to be \udefine{properly embedded} if the inclusion map $S \hookrightarrow M$ is a proper map.\retTwo
+
+\exTwo\ul{Proposition 5.5:} Suppose $M$ is a $C^r$ manifold and $S \subseteq M$ is an embedded submanifold. $S$ is properly embedded if and only if $S$ is a closed subset of $M$.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Suppose the inclusion map $\iota: S \to M$ is a proper map. Then we know that it is a closed map (see \inLinkRap{Page 1104 reference}{page 1104}). In turn, $S = \iota(S)$ must be a closed subset of $M$.\retTwo
+
+	Conversely, note that $\iota$ being a topological embedding with a closed image implies that $\iota$ is proper.
+	\begin{myIndent}\exPPP
+		This is because if $K \subseteq M$ is a compact set, then $S \cap K$ will also be compact since $S$ is closed. And now as $\iota^{-1}$ is a continuous map, we know that $\iota^{-1}(K) = \iota^{-1}(S \cap K)$ is compact. So, $\iota$ is proper. \exThreeP $\blacksquare$\retTwo
+	\end{myIndent}
+\end{myIndent}
+
+\ul{Corollary 5.6:} Every compact embedded submanifold is properly embedded.
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Compact subsets of Haudorff spaces are closed. $\blacksquare$\retTwo
+\end{myIndent}
+
+\ul{Proposition 5.7:} Suppose $M$ and $N$ are $C^r$ manifolds, and $f: M \to N$ is a $C^k$ map. Then after equipping $\Gamma(f) \coloneqq \{(m, f(M)) \in M \times N : m \in M\}$ with the smooth structure defined in proposition 5.4, we have that $\Gamma(f)$ is properly embedded.\newpage
+\begin{myIndent}\exThreeP
+	Proof:\\
+	Note that $\gamma_f : M \to M \times N$ given by $\gamma_f(m) = (m, f(m))$ has the map\\ $\pi_M : M \times N \to M$ given by $\pi_M(m, n) = m$ as a continuous left inverse. In other words, $\pi_M \circ \gamma_f = \myId_M$. As a result we can conclude that $\gamma_f : M \to M \times N$ is a proper map. To see why, I claim the following:\retTwo
+
+	\ul{Lemma:} If $X, Y$ are topological spaces and $g: X \to Y$ and $h: Y \to X$ are continuous functions such that $h \circ g = \myId_X$, then $g$ must be proper.
+	\begin{myIndent}\exPPP
+		Why?\\
+		Suppose $K \subseteq Y$ is a compact set. Since $h$ is continuous, we know that $h(K) \subseteq X$ is a compact set. But also let $F \coloneqq g^{-1}(K)$. Then:
+		
+		{\centering\begin{tabular}{l}
+			$F = \myId_X(F) = (h \circ g)(F) = h(K \cap g(X))$\\ [4pt]
+			$\phantom{F = \myId_X(F) = (h \circ g)(F)} = h(K) \cap (h \circ g)(X)$\\ [4pt]
+			$\phantom{F = \myId_X(F) = (h \circ g)(F)} = h(K) \cap \myId_X(X) = h(K) \cap X = h(K)$.
+		\end{tabular}\retTwo\par}
+
+		So, we've shown that $g^{-1}(K)$ is compact.\retTwo
+	\end{myIndent}
+
+	Since $\gamma_f$ is a continuous proper map though and $M \times N$ is an LCH space, we can conclude that $\gamma_f$ is a closed map. So $\gamma_f(M) = \Gamma(f)$ is a closed subset of $M \times N$. And by proposition 5.5, we are done. $\blacksquare$\retTwo
+\end{myIndent}
+
+\hTwo\mySepTwo
+
+\dispDate{8/28/2026}
 
 
 
