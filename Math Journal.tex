@@ -2532,10 +2532,9 @@ Letting $C = \bigcap C_j$ be the standard Cantor set (i.e. where all $\alpha_j =
 	Note that if $x \in C$, then there exists a unique sequence $(a_j)_{j \in \mathbb{N}}$ with $x = \sum_{j=1}^\infty a_j\frac{1}{3^j}$ and all $a_j$ equal to either $0$ or $2$. (This is because each choice of $a_j$ as either $0$ or $2$ corresponds to which subinterval of $C_j$ that $x$ is in.) Let $f(x) = \sum_{j=1}^\infty b_j2^{-j}$ where $b_j = \frac{a_j}{2}$. Note that $f(x)$ is the binary expansion of a number in $[0, 1]$.\retTwo
 \end{myIndent}
 
-Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also, for $x_1, x_2 \in C$ with $x_1 < x_2$, we have that $f(x_1) \leq f(x_2)$ with equality if and only if $x_1$ and $x_2$ are the end points of a removed interval (thus making $x_1$ and $x_2$ correspond to the binary expansions $0.b_1b_2\ldots 0\overline{1}$ and $0.b_1b_2\ldots 1\overline{0}$). This allows us to continuously extend $f$ to all $[0, 1]$ by making $f$ constant on all the intervals between points of $C$.\retTwo
+Observe that for all $y \in [0, 1]$ there is $x \in C$ with $f(x) = y$. Also $|x_1 - x_2| < 3^{-n}$ implies $|f(x_1) - f(x_2)| < 2^{-n}$. So, $f$ is continuous as a function from $C$. Thirdly, for $x_1, x_2 \in C$ with $x_1 < x_2$, we have that $f(x_1) \leq f(x_2)$ with equality if and only if $x_1$ and $x_2$ are the end points of a removed interval (thus making $x_1$ and $x_2$ correspond to the binary expansions $0.b_1b_2\ldots 0\overline{1}$ and $0.b_1b_2\ldots 1\overline{0}$). This allows us to continuously extend $f$ to all $[0, 1]$ by making $f$ constant on all the intervals between points of $C$.\retTwo
 
-\exOne\blab{Exercise 2.9:} Let $f: [0, 1] \longrightarrow [0, 1]$ be the Cantor function, and let\\ $g(x) = f(x) + x$.
-
+\exOne\blab{Exercise 2.9:} Let $f: [0, 1] \to [0, 1]$ be the Cantor function, and let $g(x) \coloneqq f(x) + x$.
 \begin{itemize}
 	\item[(a)] $g$ is a bijection from $[0, 1]$ to $[0, 2]$, and $h = g^{-1}$ is continuous from $[0, 2]$ to $[0, 1]$.
 	
@@ -2544,10 +2543,7 @@ Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also
 
 		The proof that $h = g^{-1}$ is continuous works for any strictly increasing\\ continuous function.
 		\begin{myIndent}\exPPP
-			Given $y \in [0, 2]$ there exists $x \in [0, 1]$ such that $g(x) = y$.\retTwo
-
-			Now let $\varepsilon > 0$ and set $\alpha = \max(0, x - \varepsilon)$ and $\beta = \min(1, x + \varepsilon)$. Then\\ for all $y^\prime \in (g(\alpha), g(\beta))$, we have that $h(y^\prime) \in B(\varepsilon, x)$. So we can set\\ $\delta = \min(|g(\alpha) - y|, |g(\beta) - y|)$. This fulfills the definition of continuity.
-			\retTwo
+			Given $y \in [0, 2]$ there exists $x \in [0, 1]$ with $g(x) = y$. Now let $\varepsilon > 0$ and\\ set $\alpha = \max(0, x - \varepsilon)$ and $\beta = \min(1, x + \varepsilon)$. Then for all $y^\prime \in (g(\alpha), g(\beta))$,\\ we have that $h(y^\prime) \in B(\varepsilon, x)$. So we can set $\delta = \min(|g(\alpha) - y|, |g(\beta) - y|)$.\\ This fulfills the definition of continuity.\retTwo
 		\end{myIndent}
 	\end{myIndent}
 
@@ -2577,7 +2573,7 @@ Observe that for all $y \in [0, 1]$ there exists $x \in C$ with $f(x) = y$. Also
 	\item[(a)] Suppose $E \subseteq V$ where $V$ is a Vitali set (see the tangent on page 22) and $E \in \mathcal{L}$. Prove that $m(E) = 0$.
 	
 	\begin{myIndent}\exTwoP
-		For all $r \in \mathbb{Q} \cap [-1, 1]$, define $E_r = \{v + r : v \in E\}$. By translation invariance, we know that $E_r$ is measurable with $m(E_r) = m(E)$ for all $r$. Also each $E_r$ is disjoint and $\bigcup_{r \in \mathbb{Q} \cap [-1,1]}E_r \subseteq [-1, 2]$. It follows that $\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r$ is measurable and:
+		For all $r \in \mathbb{Q} \cap [-1, 1]$, define $E_r = \{v + r : v \in E\}$. By translation\\ invariance, we know that $E_r$ is measurable with $m(E_r) = m(E)$ for all $r$.\\ Also each $E_r$ is disjoint and $\bigcup_{r \in \mathbb{Q} \cap [-1,1]}E_r \subseteq [-1, 2]$. It follows that\\ $\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r$ is measurable and:
 
 		{\centering $3 \geq m(\bigcup_{r \in \mathbb{Q} \cap [-1, 1]} E_r) = \sum_{r \in \mathbb{Q} \cap [-1, 1]} m(E_r) = \sum_{r \in \mathbb{Q} \cap [-1, 1]} m(E)$\retTwo\par}
 
@@ -4062,10 +4058,10 @@ We denote the set of boundary points of $M$ as $\partial M$ and call it the \ude
 
 		Now if $\tau$ is the function permuting the first and $(k + 1)$th basis vectors, then we know there is some open set $A \subseteq H^{k+1}$ such that $0^{n-1} \times \tau(A) = U \cap (0^{n-1} \times [0, \infty) \times \mathbb{R}^{k})$. So, define $\alpha(x_1, \ldots, x_{k+1}) = G(0^{n-1}, x_{k+1}, x_1, \ldots, x_k)$. Then $\alpha$ is a bijective $C^r$ map from the open set $A$ of $H^{k+1}$ to $V \cap N$ with rank $k+1$ and a continuous inverse. Hence, $\alpha$ is a coordinate patch on $N$ about $p$.\newpage
 
-		Also, if $x \in U$ satisfies that $\alpha(x) = p$, then since $f \circ G = \pi_n$, we know that $f(G(x)) = f(p) = 0$. So $x \in \partial H^{k+1}$. This proves $p$ is on the boundary of $N$. $\blacksquare$\retTwo
-
+		Also, if $x \in U$ satisfies that $\alpha(x) = p$, then since $f \circ G = \pi_n$, we know that\\ $f(G(x)) = f(p) = 0$. So $x \in \partial H^{k+1}$. This proves $p$ is on the boundary of $N$. $\blacksquare$
 		\begin{myIndent}\myComment
-			Note from 8/28/2025: How the fuck did I just realize this is just implicit function theorem.\retTwo
+			\st{Note from 8/28/2025: How the fuck did I just realize this is just implicit function theorem.}\\
+			\color{red}Note from 8/28/2026: Implicit function theorem is entirely different.\retTwo
 		\end{myIndent}
 	\end{enumerate}
 \end{myIndent}
@@ -5758,7 +5754,7 @@ Suppose $M$ is a topological space. Then we say $M$ is a \udefine{topological ma
 	\item $M$ is \udefine{locally Euclidean of dimension $n$}, meaning that for any $p \in M$, there exists an open neighborhood $U \subseteq M$ of $p$ and a homeorphism $\varphi$ from $U$ to an open set $\hat{U}$ of $H^n$ or $\mathbb{R}^n$.\retTwo
 \end{itemize}
 
-If $n = 0$, we say $M$ is a topological $0$-manifold if $M$ is countable and equipped with the discrete topology.\newpage
+Sometimes if $n = 0$, we say $M$ is a topological $0$-manifold if $M$ is countable and\\1 equipped with the discrete topology.\newpage
 
 While it's clear that each pair $(U, \varphi)$ define \udefine{local coordinates} on $M$, one weird thing notation-wise is that those coordinates are commonly written as:
 
@@ -6644,7 +6640,7 @@ Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$
 	Proof:\\
 	Consider the family:
 	
-	{\centering $\mathcalli{B} \coloneqq \{B \in \mathcal{M} : \forall C \in \mathcal{A},\hspace{0.3em} C \subseteq B \Longrightarrow \nu(C) = 0 \text{ or } \nu(C) = \infty\}$.\retTwo\par}
+	{\centering $\mathcalli{B} \coloneqq \{B \in \mathcal{M} : \forall C \in \mathcal{M},\hspace{0.3em} C \subseteq B \Longrightarrow \nu(C) = 0 \text{ or } \nu(C) = \infty\}$.\retTwo\par}
 
 	Importantly, we know that $\mathcalli{B} \neq \emptyset$ since $\emptyset \in \mathcalli{B}$, and also that $\mu(B) \leq \mu(X) < \infty$ for all $B \in \mathcalli{B}$. So, it is well defined to set $\alpha \coloneqq \sup_{B \in \mathcal{B}} \mu(B)$. Next note that if $B , B^\prime \in \mathcalli{B}$, then $B \cup B^\prime \in \mathcalli{B}$.
 	\begin{myIndent}\exPPP
@@ -6653,7 +6649,7 @@ Also, we call $\mathcal{F}$ a \udefine{decomposition} of $(X, \mathcal{M}, \mu)$
 	
 	We can thus construct a nondecreasing sequence of sets $(B_n)_{n \in \mathbb{N}}$ in $\mathcalli{B}$ such that\\ $\lim_{n \to \infty} \mu(B_n) = \alpha$. Setting $D = \bigcup_{n \in \mathbb{N}} B_n$, we have that $\mu(D) = \alpha$ and we can also show that $D \in \mathcalli{B}$ using near identical reasoning as in the prior pink text.\retTwo
 
-	Next we show that $\nu$ is semifinite on $D^\comp$. Suppose $F \in \mathcal{M}$ with $F \subseteq D$ and $\nu(F) = \infty$. Then for the sake of contradiction assume that $\nu(G)$ equals $0$ or $\infty$ for every measurable subset $G \subseteq F$. It would follow that $F \cup D \in \mathcalli{B}$. But then since $\nu(F) > 0$ and $\nu \ll \mu$, we'd know that $\mu(F) > 0$. Hence, $F \cup D$ would be a set in $\mathcalli{B}$ with $\mu(F \cup D) > \alpha$ (and that inequality is strict since $\alpha < \infty$). Yet that contradicts how we defined $\alpha$.\retTwo
+	Next we show that $\nu$ is semifinite on $D^\comp$. Suppose $F \in \mathcal{M}$ with $F \subseteq D^\comp$ and $\nu(F) = \infty$. Then for the sake of contradiction assume that $\nu(G)$ equals $0$ or $\infty$ for every measurable subset $G \subseteq F$. It would follow that $F \cup D \in \mathcalli{B}$. But then since $\nu(F) > 0$ and $\nu \ll \mu$, we'd know that $\mu(F) > 0$. Hence, $F \cup D$ would be a set in $\mathcalli{B}$ with $\mu(F \cup D) > \alpha$ (and that inequality is strict since $\alpha < \infty$). Yet that contradicts how we defined $\alpha$.\retTwo
 
 	We furthermore show that $\nu$ is $\sigma$-finite on $D^\comp$. Let:
 
@@ -7570,7 +7566,10 @@ Let $X$ and $Y$ be LCH spaces and let $\pi_X$ and $\pi_Y$ denote the projections
 			It's clear that $\mathcal{B}$ is countable and contains only open sets. Meanwhile, in order to prove that $\mathcal{B}$ is a basis, suppose $(x, y) \in U \subseteq X \times Y$ where $U$ is open. Then we know there is a set $V_1 \times V_2 \subseteq U$ such that $V_1$ is open in $X$; $V_2$ is open in $Y$; and $x \in V_1$ and $y \in V_2$. Next, there are sets $B_1 \in \mathcal{B}_x$ and $B_2 \in \mathcal{B}_y$ such that $x \in B_1 \subseteq V_1$ and $y \in B_2 \subseteq V_2$. Now it's clear that $B_1 \times B_2 \in \mathcal{B}$ and $(x, y) \in B_1 \times B_2 \subseteq V_1 \times V_2 \subseteq U$.\retTwo
 		\end{myIndent}
 
-		Now since every open set in $X \times Y$ is a countable union of sets in $\mathcal{B}$, we know that $\mathcal{T} \subseteq \mathcal{M}(\mathcal{B})$ where $\mathcal{T}$ is the topology on $X \times Y$. It follows that $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B})$. But at the same time note that $\mathcal{B}$ is a subset of the entire collection of products of open sets, and we know by the proposition at the top of page 13 of my latex math 240a notes that the latter collection generates $\mathcalli{B}_X \otimes \mathcalli{B}_Y$. So, $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B}) \subseteq \mathcalli{B}_X \times \mathcalli{B}_Y$. $\blacksquare$\retTwo
+		Now since every open set in $X \times Y$ is a countable union of sets in $\mathcal{B}$, we know that $\mathcal{T} \subseteq \mathcal{M}(\mathcal{B})$ where $\mathcal{T}$ is the topology on $X \times Y$. It follows that $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B})$. But at the same time note that $\mathcal{B}$ is a subset of the entire collection of products of open sets, and we know by the proposition at the top of page 13 of my latex math 240a notes that the latter collection generates $\mathcalli{B}_X \otimes \mathcalli{B}_Y$. So, $\mathcalli{B}_{X \times Y} \subseteq \mathcal{M}(\mathcal{B}) \subseteq \mathcalli{B}_X \times \mathcalli{B}_Y$. $\blacksquare$
+		\begin{myIndent}\myComment
+			As a side note, parts (a) and (b) do not require $X$ and $Y$ to be LCH spaces.\retTwo
+		\end{myIndent}
 	\end{myIndent}
 
 	\item[\hypertarget{Folland Theorem 7.20c}{(c)}] If $X$ and $Y$ are second countable and $\mu$ and $\nu$ are Radon measures on $X$ and $Y$, then $\mu \times \nu$ is a Radon measure on $X \times Y$.
