@@ -3577,7 +3577,7 @@ Specifically, we have, $V(x_1, \ldots, x_k) = \left(\det(X^\trans X)\right)^{\sf
 	\begin{itemize}
 		\item If $h: \mathbb{R}^n \to \mathbb{R}^n$ is an orthogonal linear map, then $h(x) = Ax$ where $A$ is an\\ orthogonal matrix. Now $[h(x_1), \ldots, h(x_k)] = [Ax_1, \ldots, Ax_k] = AX$. Thus:
 		
-		{\centering $F(h(X)) = f(AX) = \det{(AX)^\trans AX} = \det{X^\trans A^\trans A X} = \det{X^\trans X} = F(X)$\retTwo\par}
+		{\centering $F(h(X)) = F(AX) = \det{(AX)^\trans AX} = \det{X^\trans A^\trans A X} = \det{X^\trans X} = F(X)$\retTwo\par}
 
 		\item If $Z$ is a $k\times k$ matrix and $Y$ is the $n \times k$ matrix $\left[\begin{smallmatrix}
 		Z \\ 0 \end{smallmatrix}\right]$, then:
@@ -5266,7 +5266,7 @@ If $f_1, f_2: X \to Y$ are continuous maps, we say $f_1$ is \udefine{homotopic} 
 		We know $G$ is continuous by the pasting lemma.\retTwo
 	\end{myIndent}
 
-	The added stuff needed to $\simeq_p$ is an equivalence relation is obvious.\retTwo
+	The added steps needed to show $\simeq_p$ is an equivalence relation are obvious.\retTwo
 \end{myIndent}
 
 \hOne If $f$ is a path in $X$ from $x_0$ to $x_1$ and $g$ is a path in $X$ from $x_1$ to $x_2$, we define the product $f * g$ to be the path $h$ given by the equation:
@@ -5335,7 +5335,7 @@ Recall that a groupoid is a category in which every morphism is an isomorphism (
 	\end{myIndent}
 \end{myIndent}
 
-Now given a point $x_0 \in X$, define $\pi_1(X, x_0) \coloneq \End(x_0)$. This is the \udefine{fundamental\\ group} of $X$ relative to $x_0$, and it is in fact a group with respect to our product\\ operation since $X$ was a groupoid. I'm going to state the next proposition as\\ abstractly as I can cause why the hell not.\retTwo
+Now given any $x_0 \in X$, define $\pi_1(X, x_0) \coloneq \End(x_0)$. This is the \udefine{(1st) fundamental\\ group} of $X$ relative to $x_0$, and it is in fact a group with respect to our product\\ operation since $X$ was a groupoid. I'm going to state the next proposition as\\ abstractly as I can cause why the hell not.\retTwo
 
 \pracOne\ul{Proposition:} \hypertarget{page 119 reference}{Let} $\mcateg{C}$ be a category and let $A, B \in \Obj(\mcateg{C})$. If there exists an\\ isomorphism $g \in \Hom(A, B)$, then $\Aut(A) \cong \Aut(B)$.
 
@@ -5754,7 +5754,7 @@ Suppose $M$ is a topological space. Then we say $M$ is a \udefine{topological ma
 	\item $M$ is \udefine{locally Euclidean of dimension $n$}, meaning that for any $p \in M$, there exists an open neighborhood $U \subseteq M$ of $p$ and a homeorphism $\varphi$ from $U$ to an open set $\hat{U}$ of $H^n$ or $\mathbb{R}^n$.\retTwo
 \end{itemize}
 
-Sometimes if $n = 0$, we say $M$ is a topological $0$-manifold if $M$ is countable and\\1 equipped with the discrete topology.\newpage
+Sometimes if $n = 0$, we say $M$ is a topological $0$-manifold if $M$ is countable and\\ equipped with the discrete topology.\newpage
 
 While it's clear that each pair $(U, \varphi)$ define \udefine{local coordinates} on $M$, one weird thing notation-wise is that those coordinates are commonly written as:
 
@@ -5763,20 +5763,25 @@ While it's clear that each pair $(U, \varphi)$ define \udefine{local coordinates
 This notation also extends to trivial Euclidean manifolds where (for example) John Lee denotes $x \in \mathbb{R}^n$ as $x = (x^1, \ldots, x^n)$. I don't know why this is apparently\\ common notation in this field of math. (Also, to be clear my differential geometry professor before I dropped the course also used that notation. So, I'm not making it up that the notation is common.\dots)\retTwo
 
 \begin{myIndent}\pracOne
-	One manifold I haven't seen before is the \udefine{$n$-dimensional real projective space},\\ denoted $\mathbb{RP}^n$. It is defined as the set of $1$-dimensional linear subspaces of $\mathbb{R}^{n+1}$ equipped with the quotient topology determined by the map $\pi: \mathbb{R}^{n+1} \to \mathbb{RP}^n$ where $x \mapsto \mSpan\{x\}$.
+	One manifold I haven't seen before is the \udefine{$n$-dimensional real projective space},\\ denoted $\mathbb{RP}^n$. It is the set of $1$-dimensional linear subspaces of $\mathbb{R}^{n+1}$ equipped with the quotient topology determined by the map $\pi: \mathbb{R}^{n+1} - \{0\} \to \mathbb{RP}^n$ where $x \mapsto \mSpan\{x\}$.
 	\begin{myIndent}\pracTwo
 		Note: Given $x \in \mathbb{R}^{n+1}$, denote $[x] \coloneqq \pi(x)$.\retTwo
 	\end{myIndent}
 
-	To prove that $\mathbb{RP}^n$ is in fact a manifold, for each $i \in \{1, \ldots, n+1\}$ let\\ $\tilde{U_i} = \{x \in \mathbb{R}^{n+1}: x^i \neq 0\}$. Then let $U_i = \pi(\tilde{U_i})$. Now $\tilde{U_i}$ is a \udefine{saturated set} with respect to $\pi$ (meaning $\pi^{-1}(\pi(\widetilde{U_i})) = \widetilde{U_i}$) for each $i$. Hence $U_i$ is open $\mathbb{RP}^n$ for each $i$.\retTwo
+	To show $\mathbb{RP}^n$ is a manifold, for all $1 \leq i \leq n + 1$ let $\tilde{U_i} = \{x \in \mathbb{R}^{n+1}: x^i \neq 0\}$.\\ Then let $U_i = \pi(\tilde{U_i})$. Now $\tilde{U_i}$ is a \udefine{saturated set} with respect to $\pi$ (meaning\\ $\pi^{-1}(\pi(\widetilde{U_i})) = \widetilde{U_i}$) for each $i$. Hence $U_i$ is open $\mathbb{RP}^n$ for each $i$.\retTwo
 
 	Next, define a map $\varphi_i: U_i \to \mathbb{R}^n$ by:
 	
-	{\centering$\varphi_i([(x^1, \ldots, x^{n+1})]) \coloneqq (\frac{x^1}{x^i}, \ldots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \ldots,  \frac{x^{n+1}}{x^i})$.\retTwo\par}
+	{\centering$\varphi_i([(x^1, \ldots, x^{n+1})]) \coloneqq (\frac{x^1}{x^i}, \ldots, \frac{x^{i-1}}{x^i}, \frac{x^{i+1}}{x^i}, \ldots,  \frac{x^{n+1}}{x^i})$.\\ [4pt]\par}
 
-	If we scale $x \in \mathbb{R}^{n+1}$ by a nonzero constant, $\varphi_i([x])$ doesn't change. It follows that $\varphi_i$ is a well-defined map. Also, $\varphi_i$ is continuous since it's clear that $\varphi_i \circ \pi$ is continuous and $\pi$ is a quotient map. Finally, to show that $\varphi_i$ has a continuous inverse, note that:
+	If we scale $x \in \mathbb{R}^{n+1}$ by a nonzero constant, $\varphi_i([x])$ doesn't change. It follows that $\varphi_i$ is a well-defined map. Also, $\varphi_i$ is continuous since $\varphi_i \circ \pi$ is continuous and $\pi|_{\tilde{U_i}}$ is a quotient map.
+	\begin{myIndent}\pracTwo
+		Note that $\pi|_{\tilde{U_i}}$ is a quotient map because $\tilde{U_i}$ is open and saturated with respect\\ to $\pi$. After all, $\pi|_{\tilde{U_i}}$ is a continuous surjection onto $U_i$. Also suppose $V \subseteq U_i$ is any set such that $\pi^{-1}(V)$ is an open subset. Then $\pi^{-1}(V) \subseteq \pi^{-1}(\pi(\tilde{U_i})) = \tilde{U_i}$.\\ Hence, $\pi^{-1}(V)$ is also an open subset of $\tilde{U_i}$.\retTwo
+	\end{myIndent}
+	
+	Finally, to show that $\varphi_i$ has a continuous inverse, note that:
 
-	{\centering $\varphi_i^{-1}(u^1, \ldots, u^n) = [(u^1, \ldots, u^{i-1}, 1, u^{i+1}, \ldots, u^{n})]$.\retTwo\par}
+	{\centering $\varphi_i^{-1}(u^1, \ldots, u^n) = [(u^1, \ldots, u^{i-1}, 1, u^{i+1}, \ldots, u^{n})]$.\\ [4pt]\par}
 
 	Since $\varphi_i^{-1}$ is the composition of a continuous function from $\mathbb{R}^n$ to $\mathbb{R}^{n+1}$ and $\pi$ which is also continuous, we have that $\varphi_i^{-1}$ is continuous. So $\varphi_i$ is a homeomorphism.\retTwo
 
@@ -5784,10 +5789,10 @@ This notation also extends to trivial Euclidean manifolds where (for example) Jo
 	\begin{myIndent}\pracTwo
 		We know $\mathbb{RP}^n$ is second countable since it is the union of a finite number of open second countable sets.\retTwo
 
-		To show that $\mathbb{RP}^n$ is Hausdorff, suppose that $[x_1], [x_2] \in \mathbb{RP}^n$ with $[x_1] \neq [x_2]$, and without loss of generality suppose $x_1$ and $x_2$ are unit vectors. Then $x_1$ and $x_2$ are not collinear. So, using the Hausdorffness of $S^n$, there is an open neighborhood $U_1 \subseteq S^n$ of $x_1$ such that $x_2, -x_2 \notin U_1$, and similarly there is an open neighborhood $U_2 \subseteq S^n$ of $x_2$ such that $x_1, -x_1 \notin U_2$.\newpage
+		To show that $\mathbb{RP}^n$ is Hausdorff, suppose that $[v]$ and $[w]$ are distinct elements of $\mathbb{RP}^n$. Then we can find vectors $u_3, u_4, \ldots, u_{n+1}$ which along with $v$ and $w$ form a basis for $\mathbb{R}^{n+1}$. And now we let $\tilde{V} \coloneqq \{c^1 v + c^2 w + \sum_{j=3}^{n+1}c^j u_j : c_{n+1} \neq 0\}$. This is a saturated set with respect to $\pi$. So, $V \coloneqq \pi(\tilde{V})$ is an open subset of $\mathbb{RP}^n$.\newpage
 
-		Now define $V_i = \{cu : c \in \mathbb{R} - \{0\}, u \in U_i\}$ for each $i$. Then each $V_i$ is easily checked to be a saturated open set with respect to $\pi$. Also, we have that $[x_2] \notin \pi(V_1)$ and $[x_1] \notin \pi(V_2)$. So $\pi(V_1)$ and $\pi(V_2)$ are disjoint open sets in $\mathbb{RP}^n$ separating $[x_1]$ and $[x_2]$.\retTwo
-
+		Next, we can define a chart $\psi: V \to \mathbb{R}^n$ nearly identically to before. We just set $\psi([c^1 v + c^2 w + \sum_{j=3}^{n+1} c^j u_j]) \coloneqq (\frac{c_1}{c_{n+1}}, \ldots, \frac{c_n}{c_{n+1}})$. This will be continuous for identical reasons as the $\varphi_i$ were. Also, it will have a continuous inverse defined by $\psi^{-1}(c^1, \ldots, c^n) = [c_1 v + c_2 w + \sum_{j=3}^n c^j u_j + 1u_{n+1}]$. And thus, we've found a coordinate chart on $\mathbb{RP}^n$ containing both $[v]$ and $[w]$. Hausdorffness follows.\retTwo
+		
 		One more note is that if we restrict $\pi$ to just $S^n$, then we get a continuous surjective map from a compact set to $\mathbb{RP}^n$. This says that $\mathbb{RP}^n$ is compact. $\blacksquare$\retTwo
 	\end{myIndent}
 \end{myIndent}
@@ -7127,7 +7132,7 @@ Before covering the next theorem in Folland, I'm gonna do another side quest con
 
 \exTwo\hypertarget{Folland Proposition 7.19}{\ul{Proposition 7.19:}} Suppose $\mu, \mu_1, \mu_2, \ldots \in M(\mathbb{R})$ and let $F_n(x) = \mu_n((-\infty, x])$ and\\ $F(x) = \mu((-\infty, x])$.\\ [-22pt]
 \begin{itemize}
-	\item[(a)] If $\sup_{n \in \mathbb{N}}\|\mu_n\| < \infty$ and $F_n(x) \to F(x)$ for every $x$ at which $F$ is continuous, then $\mu_n \to \mu$ vaguely.\newpage
+	\item[(a)] If $\sup_{n \in \mathbb{N}}\|\mu_n\| < \infty$ and $F_n(x) \to F(x)$ for every $x$ at which $F$ is continuous, then $\mu_n \to \mu$ vaguely. {\color{red}(Note from 10/11/2026: Part (a) also works if we just assume $F_n \to F$ $m$-a.e.)}\newpage
 	
 	\begin{myIndent}\exThreeP
 		Proof:\\
@@ -7796,7 +7801,7 @@ And since $|\nu_1 \times \nu_2| = |\nu_1| \times |\nu_2|$ is finite, it's clear 
 		Proof:\\
 		This is obvious for characteristic functions, and by applying standard linearity\\ arguments we can show this is true when $h$ is a simple function.\retTwo
 
-		For the general case, suppose $h: X \to \mathbb{C}$ is Borel measurable. Then, using a theorem on page 44 of my latex math 240a notes, we know there exists a sequence $\{\phi_n\}_{n \in \mathbb{N}}$ of simple functions such that $\{\phi_n\}_{n \in \mathbb{N}}$ is monotone increasing and $\phi_n \to h$ pointwise. If $h$ is bounded, then we can conclude by the dominated convergence theorem using $|h|$ and $\int |h(x, y)| \df \mu(x)$ as upper bounds that:
+		For the general case, suppose $h: \mathbb{R}^n \to \mathbb{C}$ is Borel measurable. Then, using a theorem on page 44 of my latex math 240a notes, we know there exists a sequence $\{\phi_n\}_{n \in \mathbb{N}}$ of simple functions such that $\{|\phi_n|\}_{n \in \mathbb{N}}$ is monotone increasing and $\phi_n \to h$ pointwise. If $|h|$ is bounded by $C$, then we can conclude by the dominated convergence theorem using $C$ and $C|\mu|(X)$ as upper bounds that:
 
 		{\centering\begin{tabular}{l}
 			$\int h \df (\mu * \nu) = \lim\limits_{n \to \infty}\int \phi_n \df (\mu * \nu)$\\ [9pt]
@@ -8042,7 +8047,7 @@ Basically all properties of a random variable we care about can be gathered just
 	{\centering$\sigma^2(X) = \int (t - E(X))^2 \df P_X(t)$.\retTwo\par}
 \end{myTindent}
 
-If $X_1, \ldots, X_n$ is a finite sequence of random variables on $\Omega$, then we can consider\\ $(X_1, \ldots, X_n)$ as a map from $\omega$ to $\mathbb{R}^n$. Then the induced measure $P_{(X_1, \ldots, X_n)}$ on $\mathbb{R}^n$ is\\ called the \udefine{joint distribution} of $X_1, \ldots, X_n$.
+If $X_1, \ldots, X_n$ is a finite sequence of random variables on $\Omega$, then we can consider\\ $(X_1, \ldots, X_n)$ as a map from $\Omega$ to $\mathbb{R}^n$. Then the induced measure $P_{(X_1, \ldots, X_n)}$ on $\mathbb{R}^n$\\ is called the \udefine{joint distribution} of $X_1, \ldots, X_n$.
 
 \begin{myTindent}\pracOne
 	Hopefully it's a given but if you doubt $(X_1, \ldots, X_n)$ is measurable\\ then see the proposition on page 41 of my math 240a latex notes.\retTwo
@@ -8294,7 +8299,7 @@ I won't be reintroducing distributions or proving things that are already in my 
 
 \blab{Exercise 10.10: (The Moment Convergence Theorem)}
 \begin{myIndent}
-	Let $X_1, X_2, \ldots, X$ be random variables such that $P_{X_n} \to P_X$ vaguely and\\ $\sup_{n \in \mathbb{N}}E(|X_n|^r) < \infty$ for some $r > 0$. Then $E(|X_n|^s) \to E(|X|^s)$ for all\\ $s \in (0, r)$, and if $s \in \mathbb{N}$ also, then $E((X_n)^s) \to E(X^s)$.\retTwo
+	Let $X_1, X_2, \ldots, X$ be random variables such that $P_{X_n} \to P_X$ vaguely and\\ $\sup_{n \in \mathbb{N}}E(|X_n|^r) < \infty$ for some $r > 0$. Then $E(|X_n|^s) \to E(|X|^s)$ for all\\ $s \in (0, r)$, and if $s \in \mathbb{N}$ also then $E((X_n)^s) \to E(X^s)$.\retTwo
 
 	\HexOne Proof:\\
 	Fix $C \geq \sup_{n \in \mathbb{N}} E(|X_n|^r)$. Then by Chebyshev's inequality (see my math 240b notes),\\ we know that $P(|X_n| > \alpha) \leq \frac{E(|X_n|^r)}{\alpha^r}$ for all $\alpha > 0$ and $n \in \mathbb{N}$. And hence for all $n \in \mathbb{N}$ we have that $P(|X_n| > \alpha) \leq C/\alpha^r$ when $\alpha > 0$.\retTwo
@@ -8319,7 +8324,7 @@ I won't be reintroducing distributions or proving things that are already in my 
 		$\phantom{\int_{-\alpha}^{\alpha} |t|^s \df P_{X} \leq \int \phi_{\alpha}(t)|t|^s \df P_{X} \leq \limsup\limits_{n \to \infty} \int |t|^s \df P_{X_n}} \leq \int_{-\alpha-1}^{\alpha + 1} |t|^s \df P_{X} + \frac{C}{\alpha^{r-s}}$
 	\end{tabular}\retTwo\par}
 
-	And by taking $\alpha \to \infty$, we know by the monotone convergence theorem and the fact that $\frac{1}{\alpha^{r-s}} \to 0$ that $\lim_{n \to \infty}E(|X|^s) = \lim_{n\to\infty}\int |t|^s \df P_{X_n} = \int |t|^s \df P_X = E(|X|^s)$ for all $s \in (0, r)$.\retTwo
+	And by taking $\alpha \to \infty$, we know by the monotone convergence theorem and the fact that $\frac{1}{\alpha^{r-s}} \to 0$ that $\lim_{n \to \infty}E(|X_n|^s) = \lim_{n\to\infty}\int |t|^s \df P_{X_n} = \int |t|^s \df P_X = E(|X|^s)$ for all $s \in (0, r)$.\retTwo
 
 	A notable consequence of this is that $X \in L^s(P)$ for all $s \in (0, r)$. After all, by Folland proposition 6.12 (see my math 240b notes):
 	
@@ -8797,7 +8802,7 @@ $\nu_\mu^{\sigma^2}$ is called the \udefine{normal / Gaussian distribution} with
 \pracOne\mySepTwo
 Before continuing on, I need to lay some groundwork for some notation used in Folland's next proof. I don't know of any particular resources for this so I'm just going to wing this next part and also look at wikipedia for definitions (see bibliography for a link).\retTwo
 
-Given a function $g: \mathbb{R} \to \mathbb{R}$ and $t_0 \in \overline{\mathbb{R}}$, we say that $f(t) = o(g(t))$ as $t \to t_0$ if there exists $\alpha: \mathbb{R} \to \mathbb{R}$ (or $\mathbb{C}$) such that $f(t) = \alpha(t)g(t)$ and $\alpha(t) \to 0$ as $t \to t_0$. This is called \udefine{little $o$ notation}.\newpage
+Given $t_0 \in \overline{\mathbb{R}}$ and a function $g: \mathbb{R} - \{t_0\} \to \mathbb{R}$, we say that $f(t) = o(g(t))$ as $t \to t_0$ if there exists $\alpha: \mathbb{R} - \{t_0\} \to \mathbb{R}$ (or $\mathbb{C}$) such that $f(t) = \alpha(t)g(t)$ and $\alpha(t) \to 0$ as $t \to t_0$. This is called \udefine{little $o$ notation}.\newpage
 
 \begin{myIndent}\myComment
 	Note that I'm letting $\alpha$ take on complex values because I want to let $f$ also take on complex values. Although, for the sake of simplicity, I'm requiring $g$ to be real-valued.
@@ -8865,7 +8870,7 @@ Note that if $g(t) \neq 0$ when $t \neq t_0$ on some neighborhood of $t_0$, then
 \ul{Lemma 8:} Suppose $f(t) = o(g(t))$ as $t \to t_0$ and $h: \mathbb{R} \to \mathbb{R}$ is another function. Then $(f \cdot h)(t) = o((g \cdot h)(t))$ as $t \to t_0$.
 \begin{myIndent}\pracTwo
 	Proof:\\
-	If $f(t) = \alpha(t)g(t)$, then $(f \circ h)(t) = \alpha(t)(g \circ h)(t)$.\retTwo
+	If $f(t) = \alpha(t)g(t)$, then $(f \circ h)(t) = (\alpha\circ h)(t)(g \circ h)(t)$.\retTwo
 \end{myIndent}
 
 \ul{Lemma 9:} Suppose $f(t) = o(g(t))$ as $t \to t_0$ and $g(t) = o(h(t))$ as $t \to t_0$. Then\\ $f(t) = o(h(t))$ as $t \to t_0$.
@@ -9063,9 +9068,9 @@ One more note to make is that (according to wikipedia) usually it is assumed tha
 	
 	Meanwhile, the central limit theorem says for all $a \in \mathbb{R}$ that:
 	
-	{\centering$\lim_{n \to \infty}P(n^{-1/2}\sum_{j=1}^n X_j < a) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$.\retTwo\par}
+	{\centering$\lim_{n \to \infty}P(n^{-1/2}\sum_{j=1}^n X_j \leq a) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$.\retTwo\par}
 	
-	So for the sake of brevity, from now on I will just write out that I'm working with a\\ sequence of random variables $\{\sfrac{Y_n}{Z_n}\}_{n \in \mathbb{N}}$ where $Z_n \to 1$ a.s. as $n \to \infty$ and\\ $\lim_{n\to \infty}P(Y_n < a) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$. And if we can show that the distribution of\\ $\sfrac{Y_n}{Z_n}$ converges vaguely to the standard normal distribution, we are done.\retTwo
+	So for the sake of brevity, from now on I will just write out that I'm working with a\\ sequence of random variables $\{\sfrac{Y_n}{Z_n}\}_{n \in \mathbb{N}}$ where $Z_n \to 1$ a.s. as $n \to \infty$ and\\ $\lim_{n\to \infty}P(Y_n \leq a) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$. And if we can show that the distribution of\\ $\sfrac{Y_n}{Z_n}$ converges vaguely to the standard normal distribution, we are done.\retTwo
 
 	From here our strategy is to apply \inLinkRap{Folland Proposition 7.19}{proposition 7.19}. Fortunately, the first condition of that proposition is trivial since we are working with probability measures. As for showing the second condition, let $F_n(a) \coloneqq P(Y_n / Z_n \leq a)$ and $F(a) \coloneqq \frac{1}{\sqrt{2\pi}}\int_{-\infty}^a e^{-t^2 /2} \df t$ for all $a \in \mathbb{R}$. Now, we need to show that $F_n \to F$ pointwise (since $F$ is continuous everywhere).\retTwo
 	
@@ -10527,7 +10532,7 @@ I'll continue with this class on \inLinkRap{math 241a lecture 3}{page 281}.
 
 	Next note that both $k = 0$ and $k = 1$ are perfect squares. So, we don't need to worry about those cases when solving this problem and can always assume $k \geq 2$. With that out of the way, fix any $k \geq 2$ and define $V \coloneqq \{(a, b) \in \mathbb{Z}^2 : a^2 + b^2 -kab - k = 0\}$. We need to show that if $V$ contains any pair $(a_0, b_0)$ such that $a_0 \geq 0$ and $b_0 \geq 0$, then $k$ is a perfect square.\retTwo
 	
-	To do this, first note that if $(a, b) \in V$, then we also have that $(b, a) \in V$. Also note\\ that if $b \in \mathbb{R}$, then the sum of the roots of the quadratic $x^2 - kbx + (b^2 - k)$ must\\ add up to $kb$. Also, $kb$ is an integer if $b$ is an integer. So, if $(a, b) \in V$, we know that\\ $(kb - a, b) \in V$. By combining this observation with the last observation, know that\\ $(a, b) \in V \Longrightarrow (b, kb-a) \in V$.
+	To do this, first note that if $(a, b) \in V$, then we also have that $(b, a) \in V$. Also note\\ that if $b \in \mathbb{R}$, then the sum of the roots of the quadratic $x^2 - kbx + (b^2 - k)$ must\\ add up to $kb$. Also, $kb$ is an integer if $b$ is an integer. So, if $(a, b) \in V$, we know that\\ $(kb - a, b) \in V$. By combining this observation with the last observation, we know that\\ $(a, b) \in V \Longrightarrow (b, kb-a) \in V$.
 	\begin{myDindent}\exPPP
 		Or as the hint that professor Golsefidy gave says, multiplication by the matrix $\left(\begin{smallmatrix}0 & 1 \\ -1 & k\end{smallmatrix}\right)$ is a symmetry of $V$.\retTwo
 	\end{myDindent}
@@ -10554,7 +10559,7 @@ I'll continue with this class on \inLinkRap{math 241a lecture 3}{page 281}.
 		If $b = a$ and $(a, b) \in V$, then $a^2 + a^2 - ka^2 - k = 0$. Or in other words $(2 - k)a^2 = k$. But since $a^2 \geq 0$ and $2 - k \leq 0$, we know that $(2 - k)a^2 \leq 0$. This contradicts that $k \geq 2$.\retTwo
 	\end{myIndent}
 
-	Now supposing there exists $(a, b) \in V$ with $a, b \geq 0$, we may choose $(a_0, b_0) \in V$ such that $0 \leq b_0 \leq a_0$ and $a_0$ is the least nonnegative integer for which such a $b_0$ exists. Then note that we must have that $b_0 = 0$. For if $b \geq 1$, then we know from the prior three claims that that $(b_0, kb_0 - a_0)$ is in $V$ with $0 \leq kb_0 - a_0 < b_0$ and $b_0 < a_0$. But this contradicts how we chose $a_0$.\retTwo
+	Now supposing there exists $(a, b) \in V$ with $a, b \geq 0$, we may choose $(a_0, b_0) \in V$ such that $0 \leq b_0 \leq a_0$ and $a_0$ is the least nonnegative integer for which such a $b_0$ exists. Then note that we have that $b_0 = 0$. For if $b \geq 1$, then we know from the prior three claims\\ that $(b_0, kb_0 - a_0)$ is in $V$ with $0 \leq kb_0 - a_0 < b_0$ and $b_0 < a_0$. But this contradicts\\ how we chose $a_0$.\retTwo
 	
 	So if there exists nonnegative integers $a, b$ such that $k = \frac{a^2 + b^2}{1 + ab}$, then we've also proven\\ [-4pt] there is an integer $c \geq 0$ such that $k = \frac{c^2 + 0^2}{1 + c(0)} = c^2$. $\blacksquare$\retTwo
 
@@ -10889,7 +10894,7 @@ This leads to the equation:
 
 		Our first big step is to show that $N_1^\prime$ and $N_2^\prime$ are normal subgroups (which in turn means that $G_1/N_2^\prime$ and $G_2/N_1^\prime$ are well-defined quotient groups).
 		\begin{myIndent}\HexTwoP
-			Suppose $g_1 \in N_2^\prime$ and let $g^\prime_1$ be any element of $G$. Since $\pi_1(H) = G_1$, we know\\ [2pt] there is some $g^\prime_2 \in G_2$ such that $(g^\prime_1, g^\prime_2) \in H$. And since $H$ is closed under\\ [2pt] inverses, we also know that $((g_1^\prime)^{-1}, (g_2^\prime)^{-1}) \in H$. Therefore $g^\prime_1 g (g^\prime_1)^{-1} \in N_2^\prime$\\ [2pt] since $(g^\prime_1 g (g^\prime_1)^{-1},  g^\prime_2 e_2 (g^\prime_2)^{-1}) = (g^\prime_1 g (g^\prime_1)^{-1}, e_2) \in H$. This proves that $N_2^\prime$ is\\ [2pt] normal in $G_1$. Analogous reasoning shows that $N_1^\prime$ is normal in $G_2$.\retTwo
+			Suppose $g_1 \in N_2^\prime$ and let $g^\prime_1$ be any element of $G_1$. Since $\pi_1(H) = G_1$, we know\\ [2pt] there is some $g^\prime_2 \in G_2$ such that $(g^\prime_1, g^\prime_2) \in H$. And since $H$ is closed under\\ [2pt] inverses, we also know that $((g_1^\prime)^{-1}, (g_2^\prime)^{-1}) \in H$. Therefore $g^\prime_1 g (g^\prime_1)^{-1} \in N_2^\prime$\\ [2pt] since $(g^\prime_1 g (g^\prime_1)^{-1},  g^\prime_2 e_2 (g^\prime_2)^{-1}) = (g^\prime_1 g (g^\prime_1)^{-1}, e_2) \in H$. This proves that $N_2^\prime$ is\\ [2pt] normal in $G_1$. Analogous reasoning shows that $N_1^\prime$ is normal in $G_2$.\retTwo
 		\end{myIndent}
 
 		Next we define a group homomorphism $\phi$ from $G_1$ to $G_2/N_1^\prime$ as follows:
@@ -10921,7 +10926,7 @@ This leads to the equation:
 				
 				{\centering$N_2 = \phi(N_1) = \phi(g_1^{-1}g_1 N_1) = \phi(g_1^{-1} N_1)\phi(g_1 N_1) = \phi(g_1^{-1} N_1) g_2N_2$.\retTwo\par}
 
-				Therefore $\phi(g_1^{-1}N_1) = (g_2N_2)^{-1} = g_2^{-1} N_2$ and we've shown that\\ $(g_1, g_2) \in H$.\\ [-6pt]
+				Therefore $\phi(g_1^{-1}N_1) = (g_2N_2)^{-1} = g_2^{-1} N_2$ and we've shown that\\ $(g_1^{-1}, g_2^{-1}) \in H$.\\ [-6pt]
 
 				\item Suppose $(g_1, g_2), (g_1^\prime, g_2^\prime) \in H$. Then we have that $\phi(g_1N_1) = g_2N_2$ and\\ $\phi(g_1^\prime N_1) = g_2^\prime N_2$. And since $\phi$ is a group homomorphism, we get that:
 				
@@ -10941,7 +10946,7 @@ This leads to the equation:
 	\begin{myIndent}\HexOne
 		Let $H$ be any subgroup of $G_1 \times G_2$ such that $\pi_1(H) = G_1$ and $\pi_2(H) = G_2$.\\ [2pt] Since $\pi_1$ and $\pi_2$ are group homomorphisms from $G_1 \times G_2$ to $G_1$ and $G_2$ respectively,\\ [2pt] we know that both $|G_1| = |\pi_1(H)|$and $|G_2| = |\pi_2(H)|$ divide $|H|$. Hence,\\ [2pt] $\lcm(|G_1|, |G_2|)$ divides $|H|$. Meanwhile, we have by Lagrange's theorem that\\ [2pt] $|H|$ divides $|G_1 \times G_2| = |G_1||G_2|$.\retTwo
 
-		But now because $\gcd(|G_1|, |G_2|) = 1$, we have that $\lcm(|G_1|, |G_2|) = |G_1||G_2|$ So, we must have $|H| = |G_1||G_2|$. And this proves that $H = G_1 \times G_2$.\newpage
+		But now because $\gcd(|G_1|, |G_2|) = 1$, we have that $\lcm(|G_1|, |G_2|) = |G_1||G_2|$. So, we must have $|H| = |G_1||G_2|$. And this proves that $H = G_1 \times G_2$.\newpage
 
 		By part (a), we can now conclude that $G_1$ and $G_2$ are algebraically independent. $\blacksquare$
 	\end{myIndent}
@@ -11538,7 +11543,7 @@ Also show that if $|z_n| \to \infty$, then $\{z_n\}_{n \in \mathbb{N}}$ is Cauch
 	To prove Cauchy-ness, it suffices to show $\{z_n\}_{n \in \mathbb{N}}$ converges to $\infty$. Fortunately, note that $d(z_n, \infty) - \frac{2}{(|z_n|^2 + 1)^{1/2}} \to 0$ as $|z_n| \to \infty$. So $z_n \to \infty$. $\blacksquare$\retTwo
 \end{myIndent}
 
-\blab{Exercise II.3.8:} Suppose $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence in a metric space and $\{x_{n_k}\}_{k \in \mathbb{N}}$ is a convergent subsequence. Then $\{x_n\}$ is convergent.
+\blab{Exercise II.3.8:} Suppose $\{x_n\}_{n \in \mathbb{N}}$ is a Cauchy sequence in a metric space and $\{x_{n_k}\}_{k \in \mathbb{N}}$ is a\\ convergent subsequence. Then $\{x_n\}$ is convergent.
 
 \begin{myIndent}\HexOne
 	Once again frick whoever is wasting all of our time with these stupid problems. Literally why I am wasting thousands of dollars to relearn content that any person getting into math grad school should already know.\retTwo
@@ -11635,7 +11640,7 @@ Firstly, recall on \hypertarget{Furstenberg confusion 1}{page 268} when I said a
 	This direction is obvious.\retTwo
 
 	$(\Longrightarrow)$\\
-	If $T^n(x) = x$ for some $n$, then we know that $T^{kn}(x) = x$ for all $k \in \mathbb{N}$ and then we trivially have that $T^{kn}(x) \to x$ as $k \to \infty$. Meanwhile, suppose $T^n(x) \neq x$ for any $n \in \mathbb{N}$ and let $\{U_k\}_{k \in \mathbb{N}}$ be a countable decreasing neighborhood base for $x \in X$. Then we may construct a subsequence $\{T^{n_k}\}_{k \in \mathbb{N}}$ converging to $k$ as follows:
+	If $T^n x = x$ for some $n$, then we know that $T^{kn}(x) = x$ for all $k \in \mathbb{N}$ and then we trivially have that $T^{kn}(x) \to x$ as $k \to \infty$. Meanwhile, suppose $T^n x \neq x$ for any $n \in \mathbb{N}$ and let $\{U_k\}_{k \in \mathbb{N}}$ be a countable decreasing neighborhood base for $x \in X$. Then we may construct a subsequence $\{T^{n_k}x\}_{k \in \mathbb{N}}$ converging to $k$ as follows:
 	\begin{myIndent}
 		To start off, just pick any $n_1 \in \mathbb{N}$ such that $T^{n_1}x \in U_1$. Then we proceed by recursive definition.\retTwo
 		
@@ -11660,7 +11665,7 @@ More generally, given a dynamical system $(X, T)$ and any $x \in X$, define the 
 
 		For any $k$ pick $j(k) \in \mathbb{N}$ such that $T^{n_{j(k)}}y \in U_k$ and $j(k) > j(k-1)$ (if $k > 1)$. Then set $V = (T^{n_j})^{-1}(U_k)$. Because $V$ is an open neighborhood of $y$, we know that there is some $I \in \mathbb{N}$ such that $T^{n_i}x  \in V$ whenever $i \geq I$. So pick $i(k)$ such that $T^{n_{i(k)}}x \in V$ and $i(k) > i(k-1)$ (if $k > 1$). Now $T^{n_{j(k)} + n_{i(k)}} x \in U_k$.\retTwo
 
-		Doing this for all $K \in \mathbb{N}$, we get that $T^{n_{j(k)} + n_{i(k)}} x \to z$ as $k \to \infty$ and that\\ $\{n_{j(k)} + n_{i(k)}\}_{k \in \mathbb{N}}$ is increasing. $\blacksquare$\retTwo
+		Doing this for all $k \in \mathbb{N}$, we get that $T^{n_{j(k)} + n_{i(k)}} x \to z$ as $k \to \infty$ and that\\ $\{n_{j(k)} + n_{i(k)}\}_{k \in \mathbb{N}}$ is increasing. $\blacksquare$\retTwo
 	\end{myIndent}
 \end{myIndent}
 
@@ -11692,16 +11697,16 @@ I think before next week I will try to read up on topological groups some more c
 		Why (since Furstenberg doesn't explain this)?\\ [4pt]
 		Note that $(T^\prime)^n(y_0, e) = (T^n y_0, k^{(n)})$ where:
 		
-		{\centering$k^{(n)} = \phi(T^{n-1} y_0 ) \phi( T^{n-2} y_0) \cdots \phi(T y_0)\phi(y_0)$.\retTwo\par}
+		{\centering$k^{(n)} \coloneqq \psi(T^{n-1} y_0 ) \psi( T^{n-2} y_0) \cdots \psi(T y_0)\psi(y_0)$.\retTwo\par}
 
-		Now because $y_0$ is recurrent for $(Y, T)$, we know that there is a subsequence\\ $\{T^{n_i} y\}_{i \in \mathbb{N}}$ such that $T^{n_i} y \to y$ as $i \to \infty$. And since $K$ is compact, we have that $\{k^{n_{i}}\}_{i \in \mathbb{N}}$ has a subsequential limit point $k_1$. And finally, by passing to another subsequence $\{n_{i_j}\}_{j \in \mathbb{N}}$ we get that $(T^\prime)^{n_{i_j}}(y_0, e) \to (y_0, k_1)$ as $j \to \infty$.\newpage
+		Now because $y_0$ is recurrent for $(Y, T)$, we know that there is a subsequence\\ $\{T^{n_i} y\}_{i \in \mathbb{N}}$ such that $T^{n_i} y \to y$ as $i \to \infty$. And since $K$ is compact, we have that $\{k^{(n_{i})}\}_{i \in \mathbb{N}}$ has a subsequential limit point $k_1$. And finally, by passing to another subsequence $\{n_{i_j}\}_{j \in \mathbb{N}}$ we get that $(T^\prime)^{n_{i_j}}(y_0, e) \to (y_0, k_1)$ as $j \to \infty$.\newpage
 	\end{myIndent}
 
 	But now note by induction that $(y_0, k_1^n) \in Q(y_0, e)$ for all $n \in \mathbb{N}$.
 
 	\begin{myIndent}\exPPP
 		Why?\\
-		We know $(y_0, k_1) \in Q(y_0, e)$. Now by induction assume that $(y_0, k_1^n) \in Q(y_0, e)$. Then $(y_0, k_1^{n+1}) = R_{k_1}(y_0, k_1^n)  \in Q(R(y_0, e)) = Q(y_0, k_1)$ by lemma B. But we also have that $(y_0, k_1) \in Q(y_0, e)$. So $(y_0, k_1^{n+1}) \in Q(y_0, e)$ by lemma A.\retTwo
+		We know $(y_0, k_1) \in Q(y_0, e)$. Now by induction assume that $(y_0, k_1^n) \in Q(y_0, e)$. Then $(y_0, k_1^{n+1}) = R_{k_1}(y_0, k_1^n)  \in Q(R_{k_1}(y_0, e)) = Q(y_0, k_1)$ by lemma B. But we also have that $(y_0, k_1) \in Q(y_0, e)$. So $(y_0, k_1^{n+1}) \in Q(y_0, e)$ by lemma A.\retTwo
 	\end{myIndent}
 
 	In turn by lemma C we have that there is an increasing subsequence $\{n_j\}_{j \in \mathbb{N}}$ such that $(y_0, k^{n_j}) \to (y_0, e)$ as $j \to \infty$. And since $Q(y_0, e)$ is closed, we thus have shown that $(y_0, e) \in Q(y_0, e)$. $\blacksquare$\retTwo
@@ -11726,7 +11731,7 @@ This leads to the following proposition:
 
 	\begin{myIndent}\exThreeP
 		Proof:\\
-		We know there is some increasing sequence $\{n_k\}_{k \in \mathbb{N}}$ in $\mathbb{N}$ such that\\ $(n_k a, n_k^2 a) \to (0, 0) \in \mathbb{T}^2$. In particular, since $n_k^2 a \to 0 \in \mathbb{T}$ we know that\\ if $k$ is fixed large enough, then there exists $m \in \mathbb{N}$ such that $|n_k^2 - m| < \varepsilon$. $\blacksquare$\retTwo
+		We know there is some increasing sequence $\{n_k\}_{k \in \mathbb{N}}$ in $\mathbb{N}$ such that\\ $(n_k a, n_k^2 a) \to (0, 0) \in \mathbb{T}^2$. In particular, since $n_k^2 a \to 0 \in \mathbb{T}$ we know that\\ if $k$ is fixed large enough, then there exists $m \in \mathbb{N}$ such that $|n_k^2 a - m| < \varepsilon$. $\blacksquare$\retTwo
 	\end{myIndent}
 \end{myIndent}
 
@@ -17588,7 +17593,7 @@ A hopefully clear corollary of this is the following:\retTwo
 
 \blect{Math 220a Notes:}
 
-\hTwo Given two closed curves $\gamma_0, \gamma_1 : [0, 1] \to X$, we shall say that $\gamma_0$ and $\gamma_1$ are \udefine{homotopic in $X$} (denoted $\gamma_0 \sim_G \gamma_1$) if there is a continuous function $\Gamma : [0, 1]^2 \to G$ such that $\gamma_0(s) = \Gamma(s, 0)$, $\gamma_1(s) = \Gamma(s, 1)$, and $\Gamma(0, t) = \Gamma(1, t)$ for all $t \in [0, 1]$.
+\hTwo Given two closed curves $\gamma_0, \gamma_1 : [0, 1] \to G$, we shall say that $\gamma_0$ and $\gamma_1$ are \udefine{homotopic in $G$} (denoted $\gamma_0 \sim_G \gamma_1$) if there is a continuous function $\Gamma : [0, 1]^2 \to G$ such that $\gamma_0(s) = \Gamma(s, 0)$, $\gamma_1(s) = \Gamma(s, 1)$, and $\Gamma(0, t) = \Gamma(1, t)$ for all $t \in [0, 1]$.
 \begin{myIndent}\myComment
 	Beware, this is a different definition from Munkres definition of being path homotopic. In fact, this would instead correspond to Munkre's definition of homotopy in general applied\\ to functions mapping the circle $S^{2-1}$ into $G$\retTwo
 \end{myIndent}
@@ -18613,7 +18618,7 @@ We call $\Delta : G \to (0, \infty)$ the \udefine{modular function} of $G$.\retT
 	
 	\item If $G$ is a topological group and $H < G$, then $H$ equipped with the subspace topology will be a topological group. In particular, this means any subgroup of $\GL_n(\mathbb{R})$ is a topological group.
 	\begin{myIndent}\myComment
-		Side note, on \inLinkRap{page 92 reference}{page 92} I showed that the set of all orthogonal $n$x$n$ matrices $O_n(\mathbb{R})$ is a smooth compact manifold in $\mathbb{R}^{n^2}$. And since the group operations on $O_n(\mathbb{R})$ are smooth, we say $O_n(\mathbb{R})$ is a \udefine{lie group}.\newpage
+		Side note, on \inLinkRap{page 92 reference}{page 92} I showed that the set of all orthogonal $n$x$n$ matrices $O_n(\mathbb{R})$ is a smooth compact manifold in $\mathbb{R}^{n^2}$. And since the group operations on $O_n(\mathbb{R})$ are smooth, we say $O_n(\mathbb{R})$ is a \udefine{Lie group}.\newpage
 	\end{myIndent}
 
 	\item If $\mathcalli{X}$ is a normed vector space, then $\Iso(\mathcalli{X})$ is a topological group when equipped with the strong operator topology.
@@ -33160,7 +33165,7 @@ Let $S^1$ be the boundary of the unit circle in $\mathbb{R}^2$. A \udefine{Jorda
 
 		{\center\includegraphics[scale=0.65]{Math_220b_Image_4.png}\retTwo\par}
 
-		Let $n = (2, 0)$ and $s = (-2, 0)$, and denote the line segment between them as\\ $\overline{ns}$. Note that $J$ can be split into two simple arcs going from $a$ to $b$. It follows by lemma 2 that $\overline{ns} \cap J \neq \emptyset$. And since $\overline{ns} \cap J$ is a closed bounded set (and thus compact), it follows there is some $\ell \in \overline{ns} \cap J$ with a maximal vertical coordinate. We label the simple arc of $J$ passing through $\ell$ as $J_n$, and we label the other simple arc as $J_s$.\retTwo
+		Let $n = (0, 2)$ and $s = (0, -2)$, and denote the line segment between them as\\ $\overline{ns}$. Note that $J$ can be split into two simple arcs going from $a$ to $b$. It follows by lemma 2 that $\overline{ns} \cap J \neq \emptyset$. And since $\overline{ns} \cap J$ is a closed bounded set (and thus compact), it follows there is some $\ell \in \overline{ns} \cap J$ with a maximal vertical coordinate. We label the simple arc of $J$ passing through $\ell$ as $J_n$, and we label the other simple arc as $J_s$.\retTwo
 		
 		Since $\overline{ns} \cap J_n$ is compact and nonempty (as it contains $\ell$), we can pick $m \in \overline{ns} \cap J_n$ with a minimal vertical component. (Note it might be that $\ell = m$). Next note that $\overline{ms} \cap J_s \neq \emptyset$. After all, if not then $\overline{n\ell} + \widehat{\ell m} + \overline{ms}$ would be a path going from the bottom of our rectangle to the top and not intercepting $J_s$ which goes from the left to right. This contradicts lemma 2.
 		\begin{myIndent}\color{orange}
